@@ -1,0 +1,39 @@
+{
+  "id": "Cd6cEGUq",
+  "slug": "inject",
+  "title": "inject",
+  "description": "A library for making injecting into Netty easier!",
+  "body": "# inject\nInject is a simple server-side library to allow developers to inject into Netty easier.\n\n## Example\nThis uses the `HttpInjector` class to respond to HTTP requests to the Minecraft\nserver.\n\n```java\nclass MyEpicHttpInjector extends HttpInjector {\n    @Override\n    public HttpByteBuf intercept(ChannelHandlerContext ctx, HttpRequest request) {\n        HttpByteBuf buf = HttpByteBuf.httpBuf(ctx);\n        buf.writeStatusLine(\"1.1\", 200, \"OK\");\n        buf.writeText(\"Hello, from Minecraft!\");\n        return buf;\n    }\n}\n```\n\n## Registration\nFor Fabric, use the `InjectFabric` class:\n```java\npublic class MyMod implements ModInitializer {\n    @Override\n    public void onInitialize() {\n        InjectFabric.INSTANCE.registerInjector(new MyEpicHttpInjector());\n    }\n}\n```\n\nFor Spigot, Paper and derivatives, use the `InjectSpigot` class:\n```java\npublic class MyPlugin extends JavaPlugin {\n    @Override\n    public void onEnable() {\n        InjectSpigot.INSTANCE.registerInjector(new MyEpicHttpInjector());\n    }\n}\n```\n\nThis will register an HTTP injector which will respond with `Hello, from Minecraft!`\nto any HTTP request to the Minecraft port.\n\n```bash\n$ curl http://localhost:25565\nHello, from Minecraft!\n```\n\n## Supported web servers\n- Spring Boot: `spring` module\n- Javalin: `javalin` module\n- Ktor: `ktor` module\n- Jetty: `jetty` module\n- manual request handling: `http` module\n\nExamples can be found in the `examples` module.\n\n## Usage\nAdd the andante repo to gradle:\n```kt\nrepositories {\n    maven(\"https://maven.mcbrawls.net/releases/\")\n}\n```\n\nAdd the dependency:\n```kt\ndependencies {\n    implementation(\"net.mcbrawls.inject:api:VERSION\")\n \n    // For HTTP-related things:\n    implementation(\"net.mcbrawls.inject:http:VERSION\")\n\n    // Fabric:\n    include(modImplementation(\"net.mcbrawls.inject:fabric:VERSION\")!!)\n \n    // Spigot/Paper:\n    implementation(\"net.mcbrawls.inject:spigot:VERSION\")\n\n    // You can find the other modules for Spring, Ktor, etc. on the Github repo.\n}\n```\n\nReplace `VERSION` with the latest version from the releases tab.\n",
+  "categories": [
+    "fabric",
+    "folia",
+    "library",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1413,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

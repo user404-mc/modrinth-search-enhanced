@@ -1,0 +1,28 @@
+{
+  "id": "AqbsA2Yj",
+  "slug": "shadowtraceplugin",
+  "title": "ShadowTracePlugin",
+  "description": "ShadowTrace is a Minecraft plugin that allows server administrators to track and inspect ore mining activity using data from CoreProtect.",
+  "body": "# ShadowTrace Server Plugin\n\nShadowTrace Server Plugin is a powerful backend companion for the ShadowTrace mod, designed specifically for Minecraft servers running on the Paper platform. It provides the essential server-side functionality that enables ShadowTrace’s in-game visualization features. The plugin integrates with CoreProtect to analyze and track block mining activity from specific players over a defined time period.\n\nBy processing CoreProtect data asynchronously, ShadowTrace can visually display where ores have been mined - helping admins and moderators detect potential X-ray usage in real time or after the fact. The plugin communicates directly with the ShadowTrace mod via plugin messaging channels to deliver this data.\n\n**ShadowTrace mod requires this plugin to function properly on servers.**\n\n**ShadowTrace plugin requires CoreProtect to function.**\n\n[Download the ShadowTrace Client Mod here.](https://modrinth.com/mod/shadowtrace)\n\n## Features\n\n* View historical mining activity of players.\n* See exact coordinates of mined blocks.\n* Filter lookups by player and timeframe (e.g. `1m`, `1h`, `1d`).\n* Supports up to 300 blocks per search, optimized for visibility.\n* Works both for online and offline players.\n* Uses a custom packet system for efficient data transfer.\n\n## Commands\nPlayers need the permission `shadowtrace.command.shadowtrace` to use any of the commands.\n\n## `/shadowtrace getores [player] [time]`\n\nThis command allows you to retrieve and visualize ore mining activity for a specific player within a given time frame. It pulls data from CoreProtect and sends it to the ShadowTrace mod for in-game display.\n\n### Arguments\n\n* `[player]` - The target player whose mining activity you want to inspect.\n* `[time]` - The time range to search within, using suffixes like:\n\n  `1m` = 1 minute\n\n  `1h` = 1 hour\n\n  `1d` = 1 day\n\n**Example usage:**\n\n`/shadowtrace getores Steve 2h`\n\nThis will show where Steve has mined ores in the past 2 hours.\n\n## `/shadowtrace blocks [player] [time] [blocks]`\n\nThis command lets you visualize specific block break events performed by a target player within a defined time window. You can specify exactly which block types you're interested in by listing them in the `[blocks]` argument.\n\n### Arguments\n\n* `[player]` - The player whose block-breaking activity you want to inspect.\n* `[time]` - The time range to search within, using suffixes like:\n\n  `1m` = 1 minute\n\n  `1h` = 1 hour\n\n  `1d` = 1 day\n* `[blocks]` - A comma-separated list of block types (as enum names, e.g., DIAMOND_ORE,GOLD_ORE).\n\n**Example usage:**\n\n`/shadowtrace blocks Steve 1d DIAMOND_ORE,GOLD_ORE,SPAWNER`\n\nThis shows where Steve has broken any of the specified blocks (diamond ore, gold ore, and spawners) in the past day.\n\n# config.yml\n```yaml\nquery:\n  # Max blockquery per blocktype.\n  max-blocks-per-type: 800\n```\n\n# messages.yml\n```yaml\nshadowtrace-command:\n  only-player-usage: '&cThis command can only be used by a player.'\n  invalid-argument-getores: '&cUsage: /shadowtrace getores <player> <time>'\n  invalid-argument-blocks: '&cUsage: /shadowtrace blocks <player> <time> <blockid>'\n  invalid-argument-teleport: '&cUsage: /shadowtrace teleport <x> <y> <z>'\n  no-permission: '&cYou do not have permission to use this command.'\n  invalid-player: '&cPlayer not found.'\n  no-ores-world: '&cNo ores where found in this world.'\n  invalid-blocks: '&cNo valid blocks in the argument.'\n  no-blocks-found: '&cNo blocks where found in this world.'\n  reload-command: '&eConfiguration reloaded successfully.'\n  help:\n    - '&e----==== &6SHADOWTRACE &e====----'\n    - '&e/shadowtrace getores &7<player> <time> &f- Show ore history for a player.'\n    - '&e/shadowtrace blocks &7<player> <time> <blocks> &f- Show block history for a player.'\n    - '&e/shadowtrace teleport &7<x> <y> <z> &f- Teleport to location.'\n    - '&e/shadowtrace reload &f- Reload the configuration.'\nsearch:\n  actionbar-search: '&e---------- &6Collecting block data &e----------'\n  no-data-found: '&cNo data was found.'\n  actionbar-no-data-found: '&c---------- No data was found ----------'\n  data-found: '&eBlock data is now ready for inspection.'\n  actionbar-data-found: '&e---------- &6Success &e----------'\nmisc:\n  prefix: '&6[&eShadowtrace&6]'\n```",
+  "categories": [
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 309,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

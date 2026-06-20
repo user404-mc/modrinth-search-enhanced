@@ -1,0 +1,30 @@
+{
+  "id": "BTcNXdTe",
+  "slug": "askew-world",
+  "title": "Askew World",
+  "description": "Resource pack makes askew world, no animations with core shader",
+  "body": "# Incompatible with Sodium\nResource pack makes askew world\n\n![askew world](https://cdn.modrinth.com/data/cached_images/53543f0c4e5001347e7e590c86f40e7354abd8ca_0.webp)\n\nIn resource pack have onle **terrain.vsh**\n\n### terrain.vsh\n\n```\n#version 150\n\nin vec3 Position;\nin vec4 Color;\nin vec2 UV0;\nin ivec2 UV2;\nin vec3 Normal;\n\nuniform sampler2D Sampler2;\nuniform sampler2D NoiseTexture;\n\nuniform mat4 ModelViewMat;\nuniform mat4 ProjMat;\nuniform vec3 ModelOffset;\nuniform float GameTime;\n\nout float vertexDistance;\nout vec4 vertexColor;\nout vec2 texCoord0;\nout vec3 normal;\n\nvoid main() {\n    float discreteTime = floor(GameTime * 5.0) / 5.0;\n    \n    vec3 blockPos = floor(Position + 0.5);\n    \n    float borderFactorX = smoothstep(0.0, 1.0, min(mod(Position.x, 16.0), 16.0 - mod(Position.x, 16.0)));\n    float borderFactorZ = smoothstep(0.0, 1.0, min(mod(Position.z, 16.0), 16.0 - mod(Position.z, 16.0)));\n    float borderFactor = min(borderFactorX, borderFactorZ);\n    \n    vec3 offset = vec3(0.0);\n    if (borderFactor > 0.01) {\n        vec2 noiseCoord = blockPos.xz * 0.1 + vec2(discreteTime * 0.5, 0.0);\n        offset = vec3(\n            texture(NoiseTexture, noiseCoord).r - 0.5,\n            texture(NoiseTexture, noiseCoord + vec2(0.3, 0.7)).r - 0.5,\n            texture(NoiseTexture, noiseCoord + vec2(0.7, 0.3)).r - 0.5\n        ) * 0.1 * borderFactor; // Плавное затухание к границам\n    }\n    \n    vec3 worldPos = Position + ModelOffset;\n    vec3 distortedPos = worldPos + offset;\n    \n    gl_Position = ProjMat * ModelViewMat * vec4(distortedPos, 1.0);\n    vertexDistance = length((ModelViewMat * vec4(distortedPos, 1.0)).xyz);\n    vertexColor = Color * texelFetch(Sampler2, UV2 / 16, 0);\n    texCoord0 = UV0;\n    normal = Normal;\n}\n```\n",
+  "categories": [
+    "blocks",
+    "core-shaders",
+    "decoration",
+    "minecraft",
+    "vanilla-like"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 135,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

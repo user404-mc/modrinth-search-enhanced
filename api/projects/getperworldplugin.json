@@ -1,0 +1,26 @@
+{
+  "id": "aQZFcuJE",
+  "slug": "getperworldplugin",
+  "title": "GetPerWorldPlugin",
+  "description": "A perworldplugin management plugin enabling whitelist for a pluign to work in a specific world.....",
+  "body": "**GetPerWorldPlugin** is a lightweight, high-performance Paper plugin designed to give server administrators control over where plugin commands can be used. It creates a \"per-world plugin\" experience by intercepting commands and checking if the player is in an allowed world, without the instability of trying to load/unload plugins dynamically.\n\nStop players from using economy commands in creative mode, prevent mcMMO grinding in the hub, and keep your minigame worlds clean—all with a simple whitelist configuration.\n\n***\n\n**THE PROBLEM IT SOLVES**\n\nOn servers with multiple worlds (Survival, Creative, Hub, Minigames), global plugins can cause chaos:\n*   **Economy Exploits:** Players selling creative items in survival shops.\n*   **Skill Grinding:** Leveling up skills in low-risk worlds.\n*   **Chat Spam:** Players using command-heavy features in lobbies.\n\n**THE SOLUTION**\n\nGetPerWorldPlugin acts as a gatekeeper. When a player types a command:\n1.  It identifies which plugin owns the command.\n2.  It checks if that plugin is restricted in the config.\n3.  If restricted, it checks if the player is in an allowed world.\n4.  If not allowed, the command is **silently blocked**.\n\n***\n\n**KEY FEATURES**\n\n*   **Whitelist System:** You only list the worlds where a plugin *should* work. All other worlds are automatically blocked.\n*   **Tab Completion Hiding:** Restricted commands are removed from the tab-complete list, making the restriction feel native.\n*   **Performance Optimized:** Caches configurations and command mappings to ensure 0.1ms overhead.\n*   **Global Bypass:** Admins can bypass restrictions with a single permission.\n*   **Alias Support:** Blocks the main command and all its aliases automatically.\n*   **Multiverse Ready:** Works seamlessly with Multiverse-Core and other world managers.\n\n***\n\n**HOW TO INSTALL**\n\n1.  Download the `.jar` file.\n2.  Place it in your server's `plugins/` folder.\n3.  Restart your server.\n4.  Configure the `config.yml`.\n5.  Run `/gpw reload`.\n\n**Requirements:**\n*   **Server:** Paper (or forks like Purpur).\n*   **Java:** Java 21 or higher.\n*   **Minecraft:** 1.21.x +\n\n***\n\n**CONFIGURATION**\n\nThe configuration uses a simple whitelist format. If a plugin is **not** listed in the config, it works everywhere. If it **is** listed, it only works in the worlds you specify.\n\n**File:** `plugins/GetPerWorldPlugin/config.yml`\n\n```yaml\nplugin-restrictions:\n   mcMMO will only work in these worlds\n  mcMMO:\n    - survival\n    - survival_nether\n    - survival_the_end\n\n   Jobs restricted to the main world\n  Jobs:\n    - survival\n\n   Economy plugins restricted to prevent creative exploits\n  EssentialsX:\n    - survival\n    - shops\n\n   Slimefun only in the dedicated world\n  Slimefun:\n    - slimefun_world\n\nblocked-message: \"&c&lBlocked! &7This command is not available in this world.\"\ndebug: false\n```\n\n**Tip:** Plugin names are **case-sensitive**. Use the exact name shown when you run `/plugins` in-game.\n\n***\n\n**COMMANDS**\n\n*   `/getperworld help` - Show the help menu.\n*   `/getperworld reload` - Reload the configuration file.\n*   `/getperworld list` - View all active restrictions.\n*   `/getperworld info <plugin>` - See which worlds allow a specific plugin.\n\n**Aliases:** `/gpw`, `/perworld`\n\n***\n\n**PERMISSIONS**\n\n*   `getperworld.admin` - Allows access to reload and list commands (Default: OP).\n*   `getperworld.bypass` - Allows the player to use any command in any world, ignoring restrictions (Default: OP).\n*   `getperworld.*` - Grants all permissions.\n\n***\n\n**FAQ**\n\n**Does this unload the plugin?**\nNo. The plugin is still running in the background. This plugin only blocks the **execution of commands**.\n\n**Why can I still see the commands in Tab Complete?**\nThe client caches tab completions. Switch worlds or relog to update the tab list.\n\n**Does this work with Vanilla commands?**\nNo. Vanilla commands (like `/gamemode` or `/tp`) do not belong to a specific plugin and cannot be restricted by this tool. Use a permissions plugin like LuckPerms for those.\n\n**My config isn't working!**\nCheck the capitalization of the Plugin Name. `mcmmo` will not work if the plugin is actually named `mcMMO`. Use `/plugins` to check.",
+  "categories": [
+    "management",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 121,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "fCDJbsBM",
+  "slug": "mcfc",
+  "title": "Function Compiler",
+  "description": "This mod allows the server to automatically compile most of the functions to Java bytecode",
+  "body": "## This mod has only been updated up to 1.21.4, because 1.21.5 completely changed the SNBT parser and accessing, which made me slightly less motivated to work on this project. (perhaps 26.1)\n\n# Function Compiler\n\nThis mod allows the server to compile functions from datapacks on load to Java bytecode, which results in increased performance, because compiled code can run everything at once instead of running commands one by one. \n\nSome statistics are automatically collected when using this mod. Feel free to check the [code](https://gitlab.epicpix.dev/EpicPix/MinecraftFunctionCompiler/-/blob/0.3.2-alpha.2/common/src/main/java/dev/epicpix/minecraftfunctioncompiler/reporter/FunctionCompilerReporter.java) to check what is reported, but the main things are: timings, function counts, instruction counts, exceptions/crashes (those might contain the commands for debugging).\n\nThis mod will not respect the `maxCommandChainLength` gamerule to improve performance, otherwise it would require the compiled code to check the amount of commands ran, which could be slow.\n\n## Usage\n\nPut the mod on a fabric server with all the dependencies, the mod will automatically try to optimize all functions and commands which are supported.\n\n**If you encounter any crashes, they will be automatically reported. If you have more context to how to trigger a crash, please report it on the [issue tracker](https://gitlab.epicpix.dev/EpicPix/MinecraftFunctionCompiler/-/issues).**\n\n## Supported Commands\n\nOf course this mod can't support every command, so it will only generate code for functions which contain only commands which are supported. **Currently, this will not compile every function with macros.** It can't compile some macros because any value could be interpreted in any way, which is hard to implement using only things known at compile-time, but some things could be guessed.\n\nThe list of commands supported currently as of `0.3.2-alpha.2` can be found in the [Command Support](https://gitlab.epicpix.dev/EpicPix/MinecraftFunctionCompiler/-/blob/0.3.2-alpha.2/docs/command_support.md) file.\n\n## Supported Selectors\n\nAll the selectors are supported, and all their options.\n\n## How it works\n\nThis mod works by using Java's class loader: It generates bytecode for the functions at runtime and loads them. If you'd like you can always look at the source [here](https://gitlab.epicpix.dev/EpicPix/MinecraftFunctionCompiler).",
+  "categories": [
+    "cursed",
+    "fabric",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 10635,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

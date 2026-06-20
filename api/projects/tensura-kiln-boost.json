@@ -1,0 +1,20 @@
+{
+  "id": "1xL5Fty3",
+  "slug": "tensura-kiln-boost",
+  "title": "Tensura Kiln Boost",
+  "description": "In vanilla Tensura, Mithril and Orichalcum kiln upgrades only increase molten storage — not speed. This mod makes each upgrade tier actually melt faster, with fully configurable multipliers (defaults: 4× Mithril, 8× Orichalcum).",
+  "body": "## What it does\n\nIn vanilla [Tensura: Reincarnated](https://modrinth.com/mod/tensura), upgrading your Kiln to **Mithril** or **Orichalcum** only increases the **molten storage capacity** — the actual melting speed is identical across all three tiers. This mod fixes that.\n\nEach kiln tier now multiplies the per-tick melting progress, so higher-tier kilns finish recipes faster:\n\n| Kiln tier   | Default multiplier | Configurable range |\n|-------------|--------------------|--------------------|\n| Normal      | 1× (unchanged)     | 1 – 100            |\n| Mithril     | 4×                 | 1 – 100            |\n| Orichalcum  | 8×                 | 1 – 100            |\n\n## Configuration\n\nOn first launch the mod writes `config/tensura_kiln_boost-common.toml`:\n\n​```toml\n[speed]\n    normalMultiplier = 1\n    mithrilMultiplier = 4\n    orichalcumMultiplier = 8\n​```\n\n## How it works\n\nThe mod ships a Mixin into Tensura's `KilnBlockEntity`, modifying the two `meltingProgress` increment constants in the melting tick to be scaled by the kiln tier.\n\n## Requirements\n\n- Minecraft **1.21.1**\n- NeoForge **21.1+**\n- Tensura: Reincarnated **2.0.0.9+** (not tested in prior versions)\n\n## Side\n\nServer-side only by behavior as the kiln tick runs on the server. For singleplayer / LAN-host you still need it in `mods/`. For dedicated servers it must be on the server; clients without it can connect only if your launcher / NeoForge handshake allows missing mods.\n\n## Compatibility notes\n\n- **Fire Elemental Core boost stacks.** Vanilla Tensura gives any kiln a `+2 per tick` boost while charged with a Fire Elemental Core. This mod scales that boost by the tier multiplier — so an Orichalcum kiln on a Fire Core charge effectively runs at 16×. If that's too much, set `orichalcumMultiplier` lower in the config.\n- Compatible with KubeJS recipe overrides (e.g. changes to `smeltTick`) — this mod only changes how fast progress accumulates, not how much progress a recipe needs.\n- Does not change molten storage limits, recipe outputs, fuel consumption, or any other kiln mechanic.\n\n## Credits\n\nAll credit for the Kiln itself goes to the **Tensura: Reincarnated** team (MinhEragon, MrProfessor, ItsJustArthur, Borniuus). This is a small companion patch — please support the original mod first.\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 283,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

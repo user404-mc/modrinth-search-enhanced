@@ -1,0 +1,26 @@
+{
+  "id": "LIhJdOPR",
+  "slug": "jsconf",
+  "title": "JasonConfig",
+  "description": "Simple config API that uses the JSON data structure",
+  "body": "# This is a LIBRARY mod, if you are a user just INSTALL it, do not read below! \n\n \n## For Developers ---\n\nAdding the dependancy [\n    Just use CurseMaven, the repository for that is here, https://www.cursemaven.com/\n    Add the dependency using the snippet in the needed version in Files\n    example (not the right mod)\n    implementation \"curse.maven:cloth-config-348521:5987045\"\n]\n\nPros and Cons vs Forge's config\n### \n### -Pros ----------------------------------\n\n    Uses JSON instead of TOML, making it more reliable (For example, Forge Configs do not easily support empty lists and can break when using them)\n    Compatible with reading and writing many more Java / Minecraft classes than Forge configs (For example, Vec3 cannot be written or read to a forge config, JasonConfig has no issues with it because of JSON objects)\n    Simpler to write in code while still being similar to how you create Forge config classes (see below)\n\n### -Cons ----------------------------------\n\n    Slightly less user readable because its in JSON format\n    Experimental, while I haven't found bugs yet I'm sure some will come, I'm only one guy after all\n\n \nExample Config (Can also be found in the \"api\" package of the mod once you add it to your dependencies)\n\nEverything you need in the \"api\" package is well documented and should be referred to\n\n\n```\npublic class ExampleConfigClass {\n    public static final Config EXAMPLE_CONFIG = new Config(MODID + \"-example_config\");\n\n    public static final ConfigComment DEVCOMMENT\n            = new ConfigComment(\"This file is only generated in a Dev environment\", EXAMPLE_CONFIG);\n\n    ///The following config values are called with the {<code>EXAMPLE_CONFIG</code>} Config passed in, this automatically adds it to the Config\n    public static final ConfigValue<Float> EXAMPLE_FLOAT\n            = new ConfigValue<>(10f, \"exampleFloat\", EXAMPLE_CONFIG, new TypeToken<Float>(){}.getType());\n    ///Comments are placed in order of declaration, so this comment will be below {<code>EXAMPLE_FLOAT</code>} and above {<code>EXAMPLE_LIST</code>}\n    public static final ConfigComment EXAMPLE_COMMENT\n            = new ConfigComment(\"This is a list!\", EXAMPLE_CONFIG);\n    public static final ConfigValue<List<String>> EXAMPLE_LIST\n            = new ConfigValue<>(List.of(\"value1\", \"value2\", \"value3\", \"value4\"), \"exampleList\", EXAMPLE_CONFIG, new TypeToken<List<String>>(){}.getType());\n    public static final ConfigComment VEC3_COMMENT\n            = new ConfigComment(\"This is a Vec3! Many Java classes that don't work in Forge configs will work here!\", EXAMPLE_CONFIG);\n    public static final ConfigValue<List<Vec3>> EXAMPLE_VEC3\n            = new ConfigValue<>(List.of(new Vec3(123,123,123), Vec3.ZERO), \"exampleVec3\", EXAMPLE_CONFIG, new TypeToken<List<Vec3>>(){}.getType());\n    public static final ConfigComment CLASS_COMMENT\n            = new ConfigComment(\"This is a newly created class, records are the best way to hold data like this\", EXAMPLE_CONFIG);\n    public static final ConfigValue<LinkedHashMap<String, Info>> EXAMPLE\n            = new ConfigValue<>(new LinkedHashMap<>(Map.of(\"information\", new Info(1.0f, false, 8))), \"example\", EXAMPLE_CONFIG, new TypeToken<LinkedHashMap<String, Info>>(){}.getType());\n\n    ///This method must be called in your mod's Main class\n    ///\n    /// You will need to call the {<code>register()</code>} method on the {<code>Config</code>} you declared\n    /// and add any {<code>ConfigValue<?></></code>} variables you created if you did not assign them in the constructor\n    public static void init()/* This method can be called anything, init(), register(), etc*/ {\n        EXAMPLE_CONFIG.register();\n\n        ///EXAMPLES OF GRABBING VALUES\n        //EXPLICIT (Very similar to Forge's Config)\n    }\n\n    public record Info(float f, boolean bool, int integer) { }\n}\n```\n\n\n",
+  "categories": [
+    "forge",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 165564,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

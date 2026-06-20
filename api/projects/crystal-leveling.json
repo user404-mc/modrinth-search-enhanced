@@ -1,0 +1,21 @@
+{
+  "id": "brg6yQeA",
+  "slug": "crystal-leveling",
+  "title": "Crystal Leveling",
+  "description": "Assigns every entity a random “difficulty level”, makes fighting more meaningful.",
+  "body": "![](https://media.forgecdn.net/attachments/description/null/description_b5fdbbf5-73b5-4751-b0d9-2c35df044c46.png)\n\nWhen a entity spawns or joins the world, this mod dynamically assigns it a **random “difficulty level” from 1 to 100** and then **buffs its stats based on that level**. The mob’s display name is then appended with a colored crystal icon that serves as a visual tier/rarity indicator of how tough it is.\n\nSo players will encounter mobs with increased:\n\n*   Max health\n*   Attack damage\n*   Armor\n*   Armor toughness\n\nScaled by that random difficulty level.  \nTheir name gets a suffix icon with a color code representing how high the difficulty is (e.g., **<span style=\"color: #2dc26b;\">green</span>** for low, **<span style=\"color: #2dc26b;\">c<span style=\"color: #f1c40f;\">o</span><span style=\"color: #e03e2d;\">lo<span style=\"color: #b96ad9;\">r</span></span><span style=\"color: #b96ad9;\">f</span><span style=\"color: #236fa1;\">ul</span> </span>** for top tier), making it easy to spot stronger-than-normal mobs at a glance.\n\nExample(from lowest to highest):\n\n![](https://media.forgecdn.net/attachments/description/null/description_16b1c70a-2f0a-4b15-8264-45c4b0002bd6.png)\n\n \n\n## For devs\n\nThe mod defines a syncable `difficulty_level` attribute (0–100) and attaches it to all entities. Other mods can **read that attribute and branch logic** (e.g., custom drops, loot tiers, effects) based on its value.\n\n```java\n@Mod.EventBusSubscriber\npublic class CustomDropOnDeathWithTiers {\n    @SubscribeEvent\n    public static void onLivingDeath(net.minecraftforge.event.entity.living.LivingDeathEvent event) {\n        LivingEntity entity = event.getEntityLiving();\n        if (entity == null)\n            return;\n\n        // Read difficulty level (default to 0 if missing)\n        double difficulty = 0;\n        if (entity.getAttributes().hasAttribute(CrystalLevelingModAttributes.DIFFICULTY_LEVEL.get())) {\n            difficulty = entity.getAttribute(CrystalLevelingModAttributes.DIFFICULTY_LEVEL.get()).getBaseValue();\n        }\n\n        // Determine tier and give corresponding drop\n        if (difficulty >= 81) {\n            // Top tier (colorful): very rare reward\n            entity.spawnAtLocation(new ItemStack(Items.NETHER_STAR), 0.0F);\n        } else if (difficulty >= 65) {\n            // Dark blue tier: rare reward\n            entity.spawnAtLocation(new ItemStack(Items.DIAMOND), 0.0F);\n        } else if (difficulty >= 49) {\n            // Light purple tier: uncommon reward\n            entity.spawnAtLocation(new ItemStack(Items.EMERALD), 0.0F);\n        } else if (difficulty >= 33) {\n            // Red tier: modest reward\n            entity.spawnAtLocation(new ItemStack(Items.IRON_INGOT), 0.0F);\n        } else if (difficulty >= 17) {\n            // Yellow tier: common reward\n            entity.spawnAtLocation(new ItemStack(Items.GOLD_INGOT), 0.0F);\n        } else {\n            // Green tier: baseline reward\n            entity.spawnAtLocation(new ItemStack(Items.APPLE), 0.0F);\n        }\n    }\n}\n```",
+  "categories": [
+    "adventure",
+    "forge",
+    "game-mechanics",
+    "mobs"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 209,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

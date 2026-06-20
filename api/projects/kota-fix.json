@@ -1,0 +1,18 @@
+{
+  "id": "DCfIUPxG",
+  "slug": "kota-fix",
+  "title": "KOTA Fix",
+  "description": "This mixin fixes the Knowledge enchant from Zenith not working with Create 6.0",
+  "body": "# Kota Fix (Zenith x Create Compatibility)\n\n**Kota Fix** is a lightweight Fabric 1.20.1 compatibility patch designed to restore the functionality of **Zenith's Knowledge Enchantment** when the **Create** mod is present.\n\n## The Core Issue\n\nBoth Zenith and Create rely on a shared library called `porting_lib`. This library's `DROPS` event system contains a critical design flaw: it stops processing handlers as soon as any handler returns `true`.\n\nIn many modpacks, Create's event handlers (which manage things like Deployer kills or Crushing Wheel drops) are registered earlier or run first. Even if a regular player performs the kill, logic within these handlers or other mods using the same library can trigger an early return, preventing Zenith's **Knowledge** handler from ever executing. This effectively \"breaks\" the Knowledge enchantment, making it impossible to gain the 25x XP bonus from Mob drops.\n\n## Technical Implementation (The \"Area Scanner\" Fix)\n\nInstead of attempting a fragile Mixin patch on the embedded `porting_lib` code, **Kota Fix** implements a robust \"post-processing\" solution:\n\n1. **Event Interception**: The mod registers its own high-priority handler on the `DROPS` event.\n2. **Kill Detection**: When a player with the **Knowledge** enchantment kills a mob, the mod identifies the event and calculates the expected XP multiplier based on the enchantment level.\n3. **Buffered Conversion**:\n   - The mod immediately clears items from the `drops` collection to prevent baseline looting.\n   - It registers a **2-tick delayed Area Scan** around the death location.\n4. **The Scan**: After 2 ticks (ensuring all other mods have finished their loot-spawning logic), the mod scans a 1x1x1 radius for any orphaned `ItemEntity` objects.\n5. **XP Transformation**: All found items are discarded and converted into `ExperienceOrbEntity` objects using the standard Zenith formula (`totalItems * knowledge * 25`).\n\n## Compatibility\n\n- **Minecraft**: 1.20.1\n- **Mod Loader**: Fabric\n- **Required Mods**: Zenith (or Apotheosis), Create (specifically versions using `porting_lib`).\n- **Logic**: This mod acts as a bridge and is safe to use in any modpack where Zenith Knowledge is failing to trigger.",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 163,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

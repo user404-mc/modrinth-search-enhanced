@@ -1,0 +1,27 @@
+{
+  "id": "4b54vhR2",
+  "slug": "biome-spreader",
+  "title": "Biome Spreader",
+  "description": "Adds recipes for potions that can spread biomes",
+  "body": "# Biome Spreader\nThis mod works by creating a datapack when the server loads a world which provides the crafting recipes. For that reason, the potions to spread the biomes need to be crafted at the crafting table and can't be brewed. It is written in a way that new potions can be added without modifying the mod itself.\n\nThe event that spreads the biomes looks for potions with a specific naming scheme and then spreads the corresponding biome, so you can add custom biome potions yourself if the provided ones aren't enough. It looks for the \"potion_contents\" nbt compound and checks the custom name of the potion. If the name ends with \"_fertilizer\", the prefix is converted to a biome. So to add a potion that spreads the ocean biome, you need to name the potion \"ocean_fertilizer\".\nFor examples you can look through the datapack in the assets directory of the mod.\n\nEven though the mod is a server-only mod, it can also be installed on the client to be used in singleplayer.\n\n## Configuration\nThe following things can be configured in the config.json:\n- Radius\n  \n  In blocks\n- How the biomes are spread on the vertical axis\n  \n  Possible values in the config are **CYLINDER** and **SPHERE**\n- If the datapack that provides the recipes should be recreated on startup\n  \n  This is on by default, but can be disabled after the first start\n- Whether the potions can be used in each dimension\n  \n  By default, potions can only spread biomes in the overworld dimension\n- Biomes that should not be overwritten\n  \n  The names have to include the namespace, eg. \"minecraft:lush_caves\"\n\nBy default, biomes are spread in a 16 block radius from the bottom of the world to the top, but can't replace lush and dripstone caves. Keep in mind, since biomes are stored in 4x4x4 cubes and not for each block, the biome will not be spread perfectly centered where the potion lands.\nAlso, setting the radius to a number that is not divisible by 4 might not work as expected.\n\n## Recipes\nEvery recipe is shapeless and follows the same pattern:\n1x bone meal, 1x blaze powder, 1x splash potion of water and 1 item or block that represents the biome.\n\nThese are the biomes that can be spread by default:\n- Badlands (Dead Bush)\n- Bamboo Jungle (Bamboo)\n- Birch Forest (Birch Sapling)\n- Cherry Grove (Cherry Sapling)\n- Dark Forest (Dark Oak Sapling)\n- Desert (Cactus)\n- Flower Forest (Allium)\n- Forest (Oak Sapling)\n- Jungle (Jungle Sapling)\n- Mangrove Swamp (Propagule)\n- Meadow (Dandelion)\n- Mushroom Fields (Mycelium)\n- Pale Garden (Pale Oak Sapling)\n- Plains (Short Grass)\n- Savanna (Acacia Sapling)\n- Snowy Plains (Snowball)\n- Sunflower Plains (Sunflower)\n- Swamp (Lilypad)\n- Taiga (Spruce Sapling)\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "game-mechanics",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1747,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

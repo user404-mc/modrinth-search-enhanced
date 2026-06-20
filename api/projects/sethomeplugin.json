@@ -1,0 +1,41 @@
+{
+  "id": "AaUSy7a0",
+  "slug": "sethomeplugin",
+  "title": "SetHomePlugin",
+  "description": "SetHomePlugin is a feature-rich, fully configurable home management plugin with paginated GUI, LuckPerms integration, multi-language support and smooth delayed teleportation.",
+  "body": "# ⌂ SetHomePlugin\n\nSetHomePlugin is a clean, feature-rich home management plugin for Spigot/Paper servers. Players set named homes at any location and teleport back with a countdown, particles and sounds. Admins control per-rank home limits via LuckPerms or permission nodes — no manual config needed. A polished paginated GUI with delete-confirmation makes home management intuitive for every player.\n\n---\n\n## ⌨️ Commands\n\n| Command | Alias | Permission | Description | Default |\n|---|---|---|---|---|\n| `/sethome <name>` | `/sh` | `sethome.use` | Save a home at your current location | ✅ All |\n| `/home <name>` | `/h` | `sethome.use` | Teleport to a saved home | ✅ All |\n| `/delhome <name>` | `/deletehome`, `/removehome` | `sethome.use` | Delete a saved home | ✅ All |\n| `/homes` | `/homelist`, `/listhomes` | `sethome.use` | Open the paginated homes GUI | ✅ All |\n| `/sethomereload` | `/shreload` | `sethome.admin` | Reload the plugin configuration | 🔒 OP |\n\n---\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `sethome.use` | All | Use /sethome, /home, /delhome, /homes |\n| `sethome.admin` | OP | Reload config, bypass home limits |\n| `sethome.homes.1` – `sethome.homes.10` | false | Allow exactly N homes (1, 2, 3, 5, 10) |\n| `sethome.homes.unlimited` | OP | Allow unlimited homes |\n\n---\n\n## 🏠 Home Limit Resolution\n\nThe plugin resolves the home limit for each player in this order — first match wins:\n\n| Priority | Source | Example |\n|---|---|---|\n| 1 | Permission node `sethome.homes.unlimited` | → unlimited homes |\n| 2 | Highest numeric permission node `sethome.homes.N` | `sethome.homes.10` → 10 homes |\n| 3 | LuckPerms primary group matched in `rank-homes` config | group `vip` → 5 homes |\n| 4 | `general.default-max-homes` in config.yml | default → 3 homes |\n\n---\n\n## 🖥️ GUI Overview\n\nThe homes GUI is a paginated 6-row inventory. The bottom row is always a navigation bar; the top 5 rows display home items. Right-clicking a home opens a 3-slot confirmation screen before deletion.\n\n| Action | Behavior |\n|---|---|\n| Left-click a home | Close GUI and start delayed teleport |\n| Right-click a home | Open delete-confirmation GUI (if enabled) |\n| Previous / Next arrows | Page through homes |\n| Barrier (close button) | Close inventory without action |\n\n---\n\n## ⚙️ Config Features\n\n```yaml\ngeneral:\n  language: en               # en, de\n  default-max-homes: 3\n  teleport-delay: 3          # seconds countdown before teleport\n  cancel-on-move: true       # cancel teleport if player moves\n\n  sounds:\n    enabled: true\n    teleport: ENTITY_ENDERMAN_TELEPORT\n    set-home: BLOCK_ENCHANTMENT_TABLE_USE\n    delete-home: ENTITY_ITEM_BREAK\n    open-gui: BLOCK_CHEST_OPEN\n    error: ENTITY_VILLAGER_NO\n\n  particles:\n    enabled: true\n    type: PORTAL\n    count: 30\n\nrank-homes:\n  default: 1\n  vip: 5\n  premium: 10\n\ngui:\n  rows: 6\n  home-item: LIME_BED\n  filler-item: GRAY_STAINED_GLASS_PANE\n  show-coordinates: true\n  show-world: true\n  confirm:\n    enabled: true\n    confirm-item: LIME_CONCRETE\n    cancel-item: RED_CONCRETE\n```\n\n- Delayed teleport countdown with movement-cancel detection\n- Particles spawn at both origin and destination on teleport\n- Per-player YAML home storage — no database required\n- Home names validated: letters, digits, hyphens, underscores; max 24 chars\n- Tab-completion for all home name arguments\n- All sounds and items fully configurable via `config.yml`\n- All messages customizable per language\n\n---\n\n## 🌍 Language Support\n\n| Code | Language |\n|---|---|\n| `en` | 🇬🇧 English |\n| `de` | 🇩🇪 Deutsch |\n\n---\n\n## 🖥️ Compatibility\n\n| Server Software | Version | Supported |\n|---|---|---|\n| Paper | 1.21 – 1.21.x | ✅ |\n| Purpur | 1.21 – 1.21.x | ✅ |\n| Spigot | 1.21 – 1.21.x | ✅ |\n| Bukkit | 1.21 – 1.21.x | ✅ |\n| Folia | 1.21 – 1.21.x | ✅ |\n\nJava 21 required. LuckPerms is an optional soft-dependency.\n\n---\n\n💬 Support & Updates: [Join our Discord](https://discord.com/invite/n6A3nc3EW7)\n\n---",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "magic",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 196,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

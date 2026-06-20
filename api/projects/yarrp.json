@@ -1,0 +1,22 @@
+{
+  "id": "Z2RtCqwR",
+  "slug": "yarrp",
+  "title": "YARRP",
+  "description": "Yet Another Runtime Resource Pack",
+  "body": "Has it ever bothered you that so much configuration of blocks, items, recipes,\nand now even enchantments is defined in untyped JSON files? Well then you should\nprobably just use\n[data generation](https://docs.fabricmc.net/develop/data-generation/setup) which\nis much more battle tested and even used by Mojang for the Vanilla data. _But_,\nif you _also_ want to be able to adjust the data dynamically or want some things\nto be configurable, then this might just be the thing for you. YARRP is inspired\nby [ARRP](https://modrinth.com/mod/arrp) and\n[BRRP](https://modrinth.com/mod/brrp) but written from the ground up with an\neasy to use Kotlin API. It allows you to create resource packs (i.e. both data\npacks and asset packs) at runtime, so you don't need to have JSON files ready\nfor all possible options.\n\n## Usage\n\nTo add YARRP as a dependency, add the following to your `build.gradle.kts`:\n\n```kotlin\nrepositories {\n    // you can use either one\n    maven(\"https://jitpack.io\")\n    maven(\"https://api.modrinth.com/maven\")\n}\n\ndependencies {\n    // replace the versions and loader as needed. the loader is one of `fabric` or `neoforge`\n    modImplementation(\"com.github.RubixDev.YARRP:yarrp-mc1.21.1-fabric:v0.2.0\") // when using jitpack\n    modImplementation(\"maven.modrinth:yarrp:0.2.0+1.21.1-fabric\") // when using modrinth maven\n}\n```\n\nDon't forget to also list YARRP as a dependency in your `fabric.mod.json` and\n`neoforge.mods.toml` files.\n\nYou can then use YARRP by creating a pack and adding it to one of the register\ncallbacks. Here's an example:\n\n```kotlin\nobject MyModResources {\n    // call this in your mod initializer\n    fun register() {\n        YarrpCallbacks.register(PackPosition.AFTER_VANILLA, ResourceType.SERVER_DATA) {\n            add(PACK)\n        }\n    }\n\n    @JvmField\n    val PACK = RuntimeResourcePack(\n        RuntimeResourcePack.createInfo(\n            Identifier.of(\"modid\", \"my_runtime_pack\"),\n            Text.of(\"Pack Title\"),\n            \"pack version\", // should probably be set to the version of your mod\n        ),\n        RuntimeResourcePack.createMetadata(Text.of(\"pack description\")),\n    )\n\n    val MY_ENCHANTMENT: RegistryKey<Enchantment> = PACK.addEnchantment(\n        Identifier.of(\"modid\", \"my_enchantment\"),\n        Enchantment.definition(\n            // this dummy type can be used to create a RegistryEntryList from a given TagKey\n            // but should only be used for adding resources to a runtime pack\n            DummyHolderSet(ItemTags.LEG_ARMOR_ENCHANTABLE),\n            5,\n            3,\n            Enchantment.leveledCost(5, 8),\n            Enchantment.leveledCost(55, 8),\n            2,\n            AttributeModifierSlot.LEGS,\n        ),\n    )\n\n    init {\n        if (MyModSettings.myEnchantmentIsTreasure) {\n            PACK.addTag(EnchantmentTags.TREASURE) { add(MY_ENCHANTMENT) }\n        } else {\n            PACK.addTag(EnchantmentTags.NON_TREASURE) { add(MY_ENCHANTMENT) }\n        }\n\n        if (MyModSettings.enableRecipe) {\n            PACK.addRecipeAndAdvancement(\n                Identifier.of(\"modid\", \"my_recipe\"),\n                ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.DIAMOND, 64)\n                    .criterion(\"tick\", TickCriterion.Conditions.createTick())\n                    .pattern(\"//\")\n                    .pattern(\"//\")\n                    .input('/', Items.STICK),\n            )\n        }\n    }\n}\n```\n\nFull API documentation can be found at\n[yarrp.rubixdev.de](https://yarrp.rubixdev.de).\n",
+  "categories": [
+    "fabric",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 26069,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

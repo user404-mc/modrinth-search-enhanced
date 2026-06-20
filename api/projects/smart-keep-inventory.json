@@ -1,0 +1,24 @@
+{
+  "id": "qeGAjqzW",
+  "slug": "smart-keep-inventory",
+  "title": "Smart Keep Inventory",
+  "description": "Configure when keep inventory should be enabled",
+  "body": "<p align=\"center\">\n    <a href=\"https://neoforged.net/\">\n        <img alt=\"neoforge\" height=\"56\" src=\"https://raw.githubusercontent.com/intergrav/devins-badges/8494ec1ac495cfb481dc7e458356325510933eb0/assets/cozy/supported/neoforge_vector.svg\">\n    </a>\n    <a href=\"https://fabricmc.net/\">\n        <img alt=\"fabric\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg\">\n    </a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/8Cx26tfWNs\">\n    <img alt=\"discord-singular\" width=\"148\" height=\"40\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-singular_vector.svg\">\n  </a>\n  <a href=\"https://ko-fi.com/flemmli97\">\n    <img alt=\"kofi-singular-alt\" width=\"140\" height=\"40\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/kofi-singular-alt_vector.svg\">\n  </a>\n  <a href=\"https://www.patreon.com/Flemmli97\">\n    <img alt=\"patreon-singular\" width=\"140\" height=\"40\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/patreon-singular_vector.svg\">\n  </a>\n</p>\n\n## Smart Keep Inventory\n\nIn vanilla you can only either have keep inventory enabled all time or not.\nSmart Keep Inventory allows you to decide under which conditions the players inventory should be kept upon death.\n\nFor example you can have it configured to only allow keep inventory if the player is killed by a specific mob.\n\nBy default this mod makes it so players will keep their inventory and experiences if they are killed by bosses (mobs tagged as `c:bosses`)\n\n## ⚙️ Configuration\n\nConfiguration is done via a datapack.\n\nConditions are defined via a file under `data/<namespace>/smart_keep_inventory/condition`\nand have the following format:\n```json\n{\n  \"player\": <EntityPredicate>, // Optional. This is the player that died\n  \"killer\": <EntityPredicate>, // Optional. This entity that killed the player. Directly or indirectly\n  \"damage\": <DamageSourcePredicate>, // Optional. The damagesource that killed the player\n  \"keepExperience\": <true | false>, // Default true. Whether to also keep the players experiences or not\n  \"disabled\": <true | false> // Optional. Only used to disable an EXISTING condition with the same id\n}\n```\nFor more information about predicates check out the minecraft wiki under https://minecraft.wiki/w/Predicate\n\n\n### Example:\n\nThis allows the player to keep their inventories if they are killed by a zombie but not their xp.\n```json\n{\n  \"killer\": {\n    \"type\": \"minecraft:zombie\"\n  },\n  \"keepExperience\": false\n}\n```\n\nThe following is the default configuration of the mod applying to bosses:\n```json\n{\n  \"killer\": {\n    \"type\": \"#c:bosses\"\n  }\n}\n```\n\n## Compability\n\nThis mod should support any mod adding inventories (Curios, Accessory etc.) provided they respected the gamerule already.\n\nGravestone mods should also be supported if they already check the gamerule. If a player keeps their inventory a grave should not be generated in that case.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 589,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,41 @@
+{
+  "id": "MUXv6Dpt",
+  "slug": "nekolist",
+  "title": "NekoList (Whitelist)",
+  "description": "Advanced whitelist management system with Discord integration and multi-language support",
+  "body": "<div align=\"center\">\n\n# NekoList\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n[![Modrinth](https://img.shields.io/modrinth/dt/nekolist?label=downloads&logo=modrinth)](https://modrinth.com/plugin/nekolist)\n[![GitHub Repo stars](https://img.shields.io/github/stars/hanamuramiyu/NekoList?style=social)](https://github.com/hanamuramiyu/NekoList)\n\n**A modern whitelist plugin with database support, Folia compatibility, and Discord integration.**\n\n[<kbd> <br>🇺🇸 English (US) [Current] <br> </kbd>](https://github.com/hanamuramiyu/NekoList/blob/main/README.md) | [<kbd> <br> 🇯🇵 日本語 (ja-JP) <br> </kbd>](https://github.com/hanamuramiyu/NekoList/blob/main/README_ja-JP.md) | [<kbd> <br> 🇨🇳 简体中文 (zh-CN) <br> </kbd>](https://github.com/hanamuramiyu/NekoList/blob/main/README_zh-CN.md)\n\n</div>\n\n## ✨ Features\n\n### 🗄️ Database & Storage\n- **Dual Storage Options**: Use either file-based storage or MySQL/MariaDB databases\n- **Automatic Fallback**: Seamlessly switches to file storage if database connection fails\n- **Data Persistence**: Guaranteed data integrity across server restarts and plugin reloads\n\n### ⚡ Performance & Compatibility\n- **Folia Server Support**: Full compatibility with Folia servers using adaptive schedulers\n- **Modern Formatting**: MiniMessage support for rich text formatting with `<color>` tags\n- **Java 21**: Built with the latest Java for optimal performance and security\n\n### 🔐 Security & Management\n- **UUID-Based Verification**: Advanced player verification using UUIDs with nickname fallback\n- **Smart Data Sync**: Automatic player data synchronization on login\n- **Connection Pooling**: Efficient database connections using HikariCP\n- **Role-Based Permissions**: Granular Discord permission control with user and role whitelists\n\n---\n\n## 🚀 Installation\n\n### System Requirements\n- **Java 21** or higher\n- **Minecraft 1.21.1** or higher\n- **Bukkit/Paper/Purpur/Folia** server\n\n### Installation Steps:\n1.  Download the latest `.jar` file from [Modrinth](https://modrinth.com/plugin/nekolist) or [GitHub Releases](https://github.com/hanamuramiyu/NekoList/releases)\n2.  Place the `.jar` file into your server's `plugins` folder\n3.  Start or restart your server\n4.  Configure `plugins/NekoList/config.yml` as needed\n\n---\n\n## ⚙️ Configuration\n\n### Basic Setup\n```yaml\n# NekoList Configuration v2.0.0\nlanguage: \"en-US\"\n# Available languages: en-US, en-GB, es-ES, es-419, ja-JP, ru-RU, uk-UA, zh-CN, zh-TW\n\n# Database settings\ndatabase:\n  type: \"file\"  # \"file\" or \"mysql\"\n  mysql:\n    host: \"localhost\"\n    port: 3306\n    database: \"minecraft\"\n    username: \"username\"\n    password: \"password\"\n    table: \"whitelist\"\n    use-ssl: false\n    connection-timeout: 30000\n\n# Discord Bot settings\ndiscord-bot:\n  enabled: false\n  token: \"YOUR_BOT_TOKEN_HERE\"\n  allowed-roles: []\n  allowed-users: []\n```\n\n---\n\n## 🔧 Commands & Permissions\n\n### In-Game Commands (`/whitelist`)\n- `/whitelist help` - Show available commands\n- `/whitelist on` - Enable the whitelist\n- `/whitelist off` - Disable the whitelist\n- `/whitelist list` - List whitelisted players\n- `/whitelist add <player>` - Add a player to whitelist\n- `/whitelist remove <player>` - Remove a player from whitelist\n- `/whitelist reload` - Reload configuration\n\n**Permission Nodes:**\n- `nekolist.use` - Use whitelist commands\n- `nekolist.bypass` - Bypass whitelist checks\n- `nekolist.admin` - Full administrative access\n\n### Discord Slash Commands\n- `/ping` - Check bot latency\n- `/whitelist add <player>` - Add player to whitelist\n- `/whitelist remove <player>` - Remove player from whitelist\n- `/whitelist list` - List whitelisted players\n- `/whitelist status` - Check whitelist status\n- `/whitelist reload` - Reload plugin configuration\n\n---\n\n## 🚨 Important Notes for v2.0.0\n\n### ⚠️ Breaking Changes\n1. **Velocity Support Removed**: v2.0.0+ only supports Bukkit, Paper, Purpur, and Folia servers\n2. **MiniMessage Formatting**: Language files now use `<color>` tags instead of legacy `&` codes\n4. **Configuration Updates**: Some config options have been restructured\n\n### 🔄 Migration from v1.x\n1. **Backup your data**: Copy `plugins/NekoList/whitelist.yml`\n2. **Update language files**: Convert `&` codes to MiniMessage format:\n   ```yaml\n   # Old format (v1.x)\n   player-added: \"&aPlayer %player% has been added to whitelist.\"\n   \n   # New format (v2.0.0)\n   player-added: \"<green>Player %player% has been added to whitelist.\"\n   ```\n3. **Velocity Users**: Continue using v1.2.1 for Velocity compatibility\n\n---\n\n## 🌐 Adding New Languages\n\n1.  Navigate to `plugins/NekoList/lang/` directory\n2.  Copy `en-US.yml` as a template\n3.  Rename to your language code (e.g., `fr-FR.yml`, `de-DE.yml`)\n4.  Translate all values using **MiniMessage format** (`<color>` tags)\n5.  Update `language` setting in `config.yml`\n\n**Example MiniMessage tags:**\n- `<red>` - Red text\n- `<green>` - Green text  \n- `<yellow>` - Yellow text\n- `<gray>` - Gray text\n- `<gold>` - Gold text\n- `<bold>` - **Bold text**\n\n---\n\n## 🏗️ Building from Source\n\n```bash\n# Clone repository\ngit clone https://github.com/hanamuramiyu/NekoList.git\ncd NekoList\n\n# Build plugin\n./gradlew build\n\n# Output file: build/libs/NekoList-2.0.0.jar\n```\n\n**Requirements:**\n- Java 21 JDK\n- Gradle 9.2.0+\n\n---\n\n## 🤝 Contributing\n\nContributions are welcome! Please follow these steps:\n1. Fork the repository\n2. Create a feature branch\n3. Make your changes\n4. Submit a Pull Request\n\nPlease ensure your code follows the existing style and includes appropriate tests.\n\n---\n\n## 🐛 Issue Reporting\n\nFound a bug or have a feature request? Please:\n1. Check existing [Issues](https://github.com/hanamuramiyu/NekoList/issues)\n2. Create a new issue with clear description\n3. Include server logs and configuration details\n4. Specify your server type and version\n\n---\n\n## 📄 License\n\nThis project is licensed under the MIT License - see the [LICENSE](https://github.com/hanamuramiyu/NekoList/blob/main/LICENSE) file for details.\n\n---\n\n<div align=\"center\">\n\n**Made with ❤️ by Hanamura Miyu**\n\n*Looking for Velocity support? Use v1.2.1 for Velocity compatibility.*\n\n</div>",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 984,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

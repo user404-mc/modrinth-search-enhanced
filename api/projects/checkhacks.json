@@ -1,0 +1,40 @@
+{
+  "id": "B2gBml7j",
+  "slug": "checkhacks",
+  "title": "CheckHacks",
+  "description": "Detect client-side mods and hack clients on your server using the Sign Translation Vulnerability.",
+  "body": "## ❓ What is it?\n\nCheckHacks is an innovative server-side anticheat plugin that detects client-side mods and hack clients using the **Sign Translation Vulnerability** (MC-265322), the same technique used by DonutSMP to catch cheaters on their server. No client-side mod is required, and the entire check happens invisibly: the target player never sees a sign appear or disappear. When a check is triggered, the plugin silently places one or more signs near the player, writes special translation keys on them, forces the client to open and close the sign editor, and reads back the resolved text. Since mods register their own translation keys, a vanilla client and a modded client will always return different responses, revealing exactly which mods are installed.\n\n---\n\n## 🧱 Features\n\n* Uses the Sign Translation Vulnerability (MC-265322), works entirely server-side, no client mod needed\n* Checks up to 3 mods per sign, multiple signs sent sequentially with configurable delay\n* Three detection modes - **METEOR**, **TRANSLATE**, **KEYBIND**, each mod uses the correct one automatically\n* Players with exploit protection are marked as **PROTECTED** instead of false negatives\n* Players who don't respond are marked as **PROTECTED** (likely blocking packets)\n* Easily add custom mods to detect by adding entries in `checkhacks.yml`\n* `/checkhacks <player>` - check all configured mods\n* `/checkhacks <player> meteor-client,freecam` - check only specific mods\n* `/chreload` - reload all configs without restarting the server\n* `/chalerts` (aliases: `/checkalerts`, `/alerts`) - toggle hack detection alerts on/off per player\n* `/checklang <player>` - detect the language of a player's Minecraft client using signs\n* `/checklang <player> en_us,it_it` - check against specific languages only\n* `/cheditor` - open the web editor directly from in-game with a one-time token link\n* Auto-check on player join with configurable delay and optional **first-join-only** mode\n* Auto language check on player join with its own configurable **first-join-only** mode\n* Anticheat integration: triggers automatic checks when **Grim**, **Vulcan** or **Spartan** flags a player\n* Configurable cooldown between automatic checks per player to avoid spam\n* Separate hack lists for **default checks**, **join checks** and **anticheat-triggered checks**\n* Optional commands triggered automatically on **DETECTED**, **PROTECTED** or clean results\n* Bedrock player detection: players whose name starts with a configured prefix (e.g. `.` or `*`) are automatically skipped\n* Results broadcast to all players with the `checkhacks.alerts` permission, individually toggleable with `/chalerts`\n* Results also sent privately to the player who ran the check if they don't have the alerts permission\n* Each result line shows the mod name and its individual outcome: **DETECTED**, **NOT_DETECTED**, **PROTECTED**, **SKIPPED**\n* Shows checker name and reason (manual check, join check, anticheat flag) in every result\n* Discord webhook for hack detection results and a separate one for language check results\n* Webhook placeholders: `&name&`, `&checker&`, `&reason&`, `&hacks&`, `&results&`, `&lang&`\n* **SQLite database** built-in - all scan results are saved automatically, no external setup needed\n* **Web editor** runs directly on your server - view all scans, browse players, run new checks and see lang results from a browser\n* Web editor uses time-limited tokens generated with `/cheditor`, no password needed\n* Configs are split by function: `config.yml` for global settings, `checkhacks.yml` for hack checks, `checklang.yml` for language checks\n* Plugin messages in separate language files (`messages/en.yml`, `it.yml`, `de.yml`, `es.yml`, `fr.yml`, `br.yml`, `ru.yml`, `lolcat.yml`, `uwu.yml`) - switchable with a single config line\n* Every message fully editable with **MiniMessage** formatting, configurable prefix and **PlaceholderAPI** support\n* Permissions: `checkhacks.check`, `checkhacks.reload`, `checkhacks.alerts`, `checkhacks.checklang`, `checkhacks.editor`, `checkhacks.*`\n\n---\n\n## 🔍 Detected Mods\n\n| Mod | Mode |\n|-----|------|\n| Meteor Client | METEOR |\n| LiquidBounce (without EP) | TRANSLATE |\n| Freecam | KEYBIND |\n| Wurst Client (1.21-) | KEYBIND |\n| XRay (Fabric) | KEYBIND |\n| ChestESP | KEYBIND |\n| KillAura (Fabric) | KEYBIND |\n| AutoFish | KEYBIND |\n| Lumina | KEYBIND |\n| AutoSwitch | KEYBIND |\n| BleachHack | TRANSLATE |\n| Aristois | TRANSLATE |\n| Coffee Client | TRANSLATE |\n| World Downloader | TRANSLATE |\n| AutoClicker (Fabric) | TRANSLATE |\n| AntiAFK | TRANSLATE |\n| Auto Clicker (p1k0chu) | KEYBIND |\n\n---\n\n## ⚠️ Warning\n\nMod developers can patch their mods at any time to block or spoof the Sign Translation Vulnerability, potentially making detection unreliable for specific clients. I will do my best to stay ahead of any patches, find bypasses, and continuously add support for new mods of all kinds. This is an ongoing effort, not a one-time solution.\n\nIf you need a specific mod added, or have any doubts about how detection works, feel free to join my Server Discord - [branduzzo.it/discord](https://branduzzo.it/discord)\n\n---\n\n## 📜 Credits\n\n* **Branduzzo** - Plugin creator and developer",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1854,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

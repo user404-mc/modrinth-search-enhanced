@@ -1,0 +1,22 @@
+{
+  "id": "LLaxCA8Y",
+  "slug": "figextra",
+  "title": "FigExtra",
+  "description": "Addon for figura that greatly expands its capabilities in integration with other mods",
+  "body": "## RU\nДанные аддон представляет из себя удобную прослойку для совмещения фигуры с популярными модами.\n\nВ данный момент реализована поддержка таких модов как:\n- plasmo voice\n- emote craft\n  \nРаботоспособность проверялась на 1.20.1, но должно работать и на версиях выше.\n\nПримеры:\n<details>\n<summary>emotecraft</summary> \n  \n**emotes:getEmotes()**\n  \n```\nlocal listEmotes = emotes:getEmotes() -- получить список всех эмоций\nfor _, emote in ipairs(listEmotes) do\n  emote:getUUID() -- получить uuid эмоции\n  emote:getName() -- получить имя эмоции \n  emote:getDescription() -- получить описание эмоции\n  emote:getAuthor() -- получить автора эмоции\n  emote:isNsfw() -- является ли эмоция nsfw характера\nend\n```\n\n**emotes:playEmote()**\n\n```\nemotes:playEmote(stringUUID) -- проигрывание эмоции по uuid\n```\n\n**emotes:stopEmote()**\n\n```\nemotes:stopEmote() -- останавливает проигрывание эмоции\n```\n\n</details>\n\n\n<details>\n<summary>plasmo voice</summary>\n\n**plasmovoice:getVoiceLevel()**\n\n```\nplasmovoice:getVoiceLevel(stringUUID) -- получить громкость речи игрока \n```\n\n```\n--пример\nfunction events.tick()\n  local uuid = player:getUUID()\n  local voiceLevel = plasmovoice:getVoiceLevel(uuid)\n  if voiceLevel > 0 then\n    log(voiceLevel)\n  end\nend\n```\n\n```\n-- так же можно проверить говорит ли игрок путём ивента \nevents[\"FIGEXTRA.PLASMOVOICE_PLAYER_SPEAK\"]:register(function(uuid, distance)\n    \nend, \"microphone\")\n```\n\n**plasmovoice:isMuted()**\n\n```\nplasmovoice:isMuted(stringUUID) -- проверить в муте ли игрок\n```\n\n**plasmovoice:getVersion()**\n\n```\nplasmovoice:getVersion() -- получить версию plasmo voice\n```\n\n**plasmovoice:renderDistanceVisualizer()**\n\n```\n-- я добавил это забавы ради, может кто найдёт этому интересное применение\nplasmovoice:renderDistanceVisualizer(radius, stringHex, x, y, z)\n\nplasmovoice:renderDistanceVisualizer(radius, stringHex, vec(x, y, z))\n```\n\n</details>\n\n## EN\nThis addon is a convenient layer for combining the figura with popular mods.\n\nCurrently implemented support for such mods as:\n- plasmo voice\n- emote craft\n  \nWorkability was tested on 1.20.1, but should work on versions above.\n\nExamples:\n<details>\n<summary>emotecraft</summary> \n  \n**emotes:getEmotes()**\n  \n```\nlocal listEmotes = emotes:getEmotes() -- get a list of all emotions\nfor _, emote in ipairs(listEmotes) do\n  emote:getUUID() -- get emote's uuid\n  emote:getName() -- get the name of the emotion \n  emote:getDescription() -- get the description of the emotion\n  emote:getAuthor() -- get the author of the emotion\n  emote:isNsfw() -- whether the emotion is a nsfw character\nend\n```\n\n**emotes:playEmote()**\n\n```\nemotes:playEmote(stringUUID) -- playing an emotion by uuid\n```\n\n**emotes:stopEmote()**\n\n```\nemotes:stopEmote() -- stops playing the emotion\n```\n\n</details>\n\n\n<details>\n<summary>plasmo voice</summary>\n\n**plasmovoice:getVoiceLevel()**\n\n```\nplasmovoice:getVoiceLevel(stringUUID) -- get the player's voice volume \n```\n\n```\n--example\nfunction events.tick()\n  local uuid = player:getUUID()\n  local voiceLevel = plasmovoice:getVoiceLevel(uuid)\n  if voiceLevel > 0 then\n    log(voiceLevel)\n  end\nend\n```\n\n```\n-- it is also possible to check if the player speaks through an event \nevents[“FIGEXTRA.PLASMOVOICE_PLAYER_SPEAK”]:register(function(uuid, distance)\n    \nend, “microphone”)\n```\n\n**plasmovoice:isMuted()**\n\n```\nplasmovoice:isMuted(stringUUID) -- check if the player is muted.\n```\n\n\n**plasmovoice:getVersion()**\n\n```\nplasmovoice:getVersion() -- get the version of plasmo voice\n```\n\n**plasmovoice:renderDistanceVisualizer()**\n\n```\n-- I added this for fun, maybe someone will find an interesting use for it.\nplasmovoice:renderDistanceVisualizer(radius, stringHex, x, y, z)\n\nplasmovoice:renderDistanceVisualizer(radius, stringHex, vec(x, y, z))\n```\n\n</details>\n",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 6564,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

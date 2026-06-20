@@ -1,0 +1,28 @@
+{
+  "id": "GXHr5QGL",
+  "slug": "attribute-loot-condition",
+  "title": "Attribute Loot Condition",
+  "description": "This mod adds a new type of loot condition.",
+  "body": "## 🪄Introduction\n\nThis mod has added a new type of loot table condition ([What is that?](https://minecraft.wiki/w/Predicate)) so that you can configure the loot based on entity attributes.\n\nRecommended to use with [RpgDifficulty](https://modrinth.com/mod/rpgdifficulty), [L2 Hostility](https://modrinth.com/mod/l2hostility) and other mods that implement monster attribute scaling.\n\n## ⚙️Configuration\n\n### The initial configuration file looks like:\n\n### ```(config/attribute_loot_condition.json)```\n\n```\n{\n  \"attributeWeights\": [\n    {\n      \"attribute\": \"minecraft:generic.max_health\",\n      \"weight\": 1.0\n    },\n    {\n      \"attribute\": \"minecraft:generic.armor\",\n      \"weight\": 1.0\n    },\n    {\n      \"attribute\": \"minecraft:generic.armor_toughness\",\n      \"weight\": 1.0\n    },\n    {\n      \"attribute\": \"minecraft:generic.attack_damage\",\n      \"weight\": 1.0\n    }\n  ]\n}\n```\n\nThe entries in this array determine the weights of various attributes.\n\nYou can configure addtional attributes, not just limited to these four.\n\n## 📜Example Usage\n\nIt is obvious that there should be no comments in the JSON format file, and this case is only for the sake of explanation.\n\n### Datapack:\n\n### ```data/minecraft/loot_tables/entities/zombie.json```\n\n```\n{\n    \"pools\": [\n        {\n            \"rolls\": 1,\n            \"entries\": [\n                {\n                    \"type\": \"item\",\n                    \"name\": \"minecraft:apple\"\n                }\n            ],\n            \"conditions\": [\n                {\n                    \"condition\": \"attribute_loot_condition:attribute_weighted_sum\",\n                    \"entity\": \"this\",\n                    \"min\": 20,\n                    \"max\": 0  // Not greater than 0 means canceling this check\n                }\n            ]\n        }\n    ]\n}\n```\n\nAfter loading this datapack, when a player kills a zombie, the game will weight and sum the maximum health, armor, armor toughness, and attack damage of the zombie. If this sum is not less than 20, then the condition is met.\n\n## ✉️Feedback\n\nIf there are any bugs or suggestions, please provide feedback to the issue page.",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "mobs",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 745,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

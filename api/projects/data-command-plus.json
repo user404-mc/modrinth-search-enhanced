@@ -1,0 +1,30 @@
+{
+  "id": "RDzf0iuC",
+  "slug": "data-command-plus",
+  "title": "Data Command Plus",
+  "description": "Storageplayer, Concatenate, Loot Entities, Player and Data Manipulation",
+  "body": "<center><h1>Data Command Plus</h1></center>\nThis mod expands the capabilities of /data command, /loot<br>\nOnly <b>required on</b> the <b>Server</b> side, client will need it for full syntax help!<br>\n\nSyntax of the command fits right into Vanilla syntax. see <a href=\"https://minecraft.wiki/w/Commands/data#Syntax\">Commands/data on Minecraft Wiki</a><br>\nAlways download the latest release to have access to all the features\n\n<h2>To use with <b>NeoForge</b>/<b>Forge</b></h2> Follow instructions at:\n<a href=\"https://modrinth.com/mod/connector\">Sinytra Connector</a> and <a href=\"https://modrinth.com/mod/forgified-fabric-api\">Forgified Fabric API</a>.<br>\nPlease be aware that that port is not perfect and can crash your game.<br>\nIn case it does crash, it should be reported to <a href=\"https://modrinth.com/mod/connector\">Sinytra Connector</a> mod developer!\n\n\n\n<h2>Squished tree: of /data command</h2>\n\n<ul><li>… get (block &lt;targetPos&gt;|entity &lt;target&gt;|storage &lt;target&gt;|<b>storageplayer </b>&lt;player&gt;) [&lt;path&gt;] [&lt;scale&gt;]</li>\n<li>… merge (block &lt;targetPos&gt;|entity &lt;target&gt;|storage &lt;target&gt;|<b>storageplayer </b>&lt;player&gt;) &lt;nbt&gt;</li>\n\n<li>… modify (block &lt;targetPos&gt;|entity &lt;target&gt;|storage &lt;target&gt;|<b>storageplayer </b>&lt;player&gt;) &lt;targetPath&gt; (append|insert &lt;index&gt;|merge|prepend|set| <b>operation</b>)\n    <ul><li>… from (block &lt;sourcePos&gt;|entity &lt;source&gt;|storage &lt;source&gt;|<b>storageplayer </b>&lt;player&gt;) [&lt;sourcePath&gt;]</li>\n    <li>… <b>concat</b> (block &lt;sourcePos&gt;|entity &lt;source&gt;|storage &lt;source&gt;|<b>storageplayer </b>&lt;player&gt;) [&lt;sourcePath&gt;]</li>\n    <li>… string (block &lt;sourcePos&gt;|entity &lt;source&gt;|storage &lt;source&gt;|<b>storageplayer </b>&lt;player&gt;) [&lt;sourcePath&gt;] [&lt;start&gt;] [&lt;end&gt;]</li>\n    <li>… &lt;(<b>operation</b> one of: =, +=, -=, *=, /=, %=, ^=, &lt;, &gt;)&gt; &lt;double value&gt;</li>\n    <li>… value &lt;value&gt;</li> </ul></li>\n<li>… remove (block &lt;targetPos&gt;|entity &lt;target&gt;|storage &lt;target&gt;|<b>storageplayer </b>&lt;player&gt;) &lt;path&gt;</li></ul>\n\n<h2>Squished tree: of /Loot command</h2>\n/loot &lt;TARGET&gt; &lt;SOURCE&gt;<br>\nwhere<br>\n&lt;TARGET&gt; is:\n<ul>\n <li> give | insert | spawn | replace &lt;targetPos&gt;</li>\n <li> <b>insert entity</b> &lt;to entity&gt; <b>inventory</b> &lt;from entity&gt;</li>\n</ul>\n&lt;SOURCE&gt; is:\n<ul>\n <li> fish | loot | kill | mine</li>\n <li> <b>inventory</b> &lt;entity&gt; [MaxSlots]</li>\n</ul>\n&lt;entity&gt; is of type: player, cart, boat, villager, horse/donkey/llama, item, other living entity<br>\n[MaxSlots] is optional and will return up to n Slots (counting from 1), (-n) minus will return last n Slots\n<br>\nEquipment in order: Armor feet to head, mainhand, offhand, body, saddle.\n<br><br>\nExample, compacting inventory from one chest minecart into another one:<br>\n<dd>/loot <b>insert entity</b> @e[limit=1,type=chest_minecart,tag=1] <b>inventory</b> @e[limit=1,type=chest_minecart,tag=2]</dd>\n\n<h2>Possibilities</h2>\n<h3>Concatenate</h3><ul>\n    <li>String old + String new</li>\n    <li>List of Strings</li>\n    <li>Any Array</li>\n    <li>Multiple Nbt Values (selected by nbt selector)</li>\n    <li>Nbt Compound (only the top layer) as strings with escaped Quotes (\"key\":\"value\") </li>\n    <li>Return result: amount of elements concatenated</li>\n</ul>\n<p>given path will be replaced with new string<br>\np.s. if given path is a string and a string is concatenated, the result is concatenation of those two strings\n</p>\n\n<h3>Math Operation</h3><ul>\n    <li>performs math operation on the target value, target can be of <b>any numeric type</b>, Error will be thrown and success set to 0 when type is not numeric</li>\n    <li>^= stands for Power, can also be used to calculate Root</li>\n    <li>Targeted Path <abbr title=\"int, long, short, byte, float, double\">number TYPE</abbr> will not change</li>\n    <li>for command syntax help install this mod client side</li>\n    <li>Return result and success: non zero on success</li>\n</ul>\n<h3>Storageplayer</h3><ul>\n    <li>store data per player in their own file <b>/players/&lt;UUID&gt;_pds.dat</b></li>\n    <li>works only on players, any other entity will return an error</li>\n    <li>! Data stored in storageplayer will not be synced with clients, it's purely server side !</li>\n</ul>\n\n<h3>Loot ... inventory ...</h3><ul>\n    <li>loot enitiy's inventory into container (works with players, minecarts, boats, merchants, horses, items, and all living entities)</li>\n    <li><b>insert</b>ing into <b>double chests</b> is now possible (1up over regular loot command) ...</li>\n    <li>Return result: Slots returned</li>\n</ul>\n/execute as @e[type=item] run loot insert ~ ~-0.1 ~ inventory @s (will try to insert a copy of all dropped items from the world into inventory under your feet)<br>\nExamples of Loot ... inventory ... can be found in <a href=\"https://www.planetminecraft.com/data-pack/fafik77-main-lib/\">datapack Fafik77 Lib</a>/inventory_manager<br>\n\n<center><h2>Delete Kill Command</h2></center>\nIn response to <a href=\"https://www.youtube.com/watch?v=TbrO5ONPp3s\">So I Added WAY Too Many Slimes to Minecraft -by Fundy</a><br>\n/<b>deletekill</b> &lt;entities&gt;<br>\nDeletes selected entities, no loot dropped, no events fired just gone<br>\np.s. works grat on slimes\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3573,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

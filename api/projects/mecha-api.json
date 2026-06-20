@@ -1,0 +1,30 @@
+{
+  "id": "NiHIYi3S",
+  "slug": "mecha-api",
+  "title": "MECHA - Multiple Entity Collision Hitboxes API",
+  "description": "Fabric API for implementing multiple collider hitboxes for a single entity",
+  "body": "A simple API for enabling custom entities to implement more than one collision box.\n\n## Setup\n\nAdd the Modrinth Maven and the right version of the mod to your build.gradle file:\n\n```gradle\nrepositories {\n\tmaven { url 'https://api.modrinth.com/maven' }\n}\n\ndependencies {\n\tmodImplementation \"maven.modrinth:mecha-api:VERSION_GOES_HERE\"\n}\n```\n\n## Usage\n\nImplement `MultiCollidable` in your custom entity class, and override `getColliders` to add extra colliders to the entity.\n\n## Example\n\nThe following example code adds 2 colliders to an entity, each the size of a slab:\n\n```java\npublic CustomEntity extends Entity implements MultiCollidable {\n    public List<VoxelShape> getColliders() {\n        List<VoxelShape> colliders = new ArrayList<>();\n        BlockPos pos = this.blockPos();\n        double x = pos.getX();\n        double y = pos.getY();\n        double z = pos.getZ();\n        colliders.add(VoxelShapes.cuboid(x, y, z, x+1, y+0.5, z+1));\n        colliders.add(VoxelShapes.cuboid(x, y+0.5, z, x+1, y+1, z+1));\n        return colliders;\n    }\n}\n```\n\nFor 0.1.2 and newer, there is now also a custom entity type, `DynamicBoundingBoxEntity`, which has a dynamic bounding box based on the list returned by `getColliders()`:\n\n```java\npublic CustomEntity extends DynamicBoundingBoxEntity {\n    // The bounding box of this entity will dynamically resize\n    // to fit the colliders returned by this function\n    @Override\n    public List<VoxelShape> getColliders() { ... }\n}\n```",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2032,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "H6mDH87Y",
+  "slug": "littlelink",
+  "title": "LittleLink",
+  "description": "Tiny Spigot plugin that enables Discord based whitelisting on the server",
+  "body": "# LittleLink\n\nTiny Spigot plugin that enables Discord based whitelisting on the server\n\n> Even if it seams like this plugin isn't updated its actually working fine (edited in Feb 2025). I am always monitoring compatibility with latestest versions and will do an update as soon as its required. If you managed to find a bug please join the [support discord here](https://discord.gg/pgmupvqvsm)\n\n## Setup\n\nBefore you start using this plugin you **will need to invite SuperLink discord bot** to your server\nusing [this link](https://discord.com/api/oauth2/authorize?client_id=770681237622095913&permissions=8&scope=applications.commands%20bot)\n\nNow download the latest file from [releases](https://github.com/Pequla/LittleLink/releases/latest) and put it into your\nplugins folder\n\nStart the server once in order to generate required config files\n\nNow go to `plugins/LittleLink` and edit the `config.yml` based by your server needs\n\n```yaml\nguild: 264801645370671114\nrole:\n  use: false\n  id: 426156903555399680\n```\n\n- `guild` represents the discord server id\n- `role.use` enable role based authentication, default is false (plugin will check for guild only)\n- `role.id` represents the role id user is required to have in order to join\n\n> If you don't know how to find a role and guild id you first need to enable discord developer mode. You can find a tutorial [here](https://www.howtogeek.com/714348/how-to-enable-or-disable-developer-mode-on-discord/)\n\nRestart the server and enjoy your new plugin\n\n### Lookup command\n\nCommand allows you to quickly find a Discord user based of the Minecraft username. Works only for people who have linked\naccounts. The lookup is global meaning users don't need to be online or be part of your Discord server\n\n> In order for players to use this command they will need the permission `littlelink.command.lookup`\n\n## How it works?\n\nThis plugin requires a discord bot in your server in order to retrieve all data. Discord bot is hosted by me enabling\nthe tiny footprint of the plugin. If you want to find out more about the bot and its API please go\nto [Pequla/SuperLink](https://github.com/Pequla/SuperLink)\n\nPlugin does a simple HTTP GET request towards the API running inside the bot application. After processing the\ninformation it decides if it should let the player join or kick it with an info message.\n\n> Looking for webhook integration as well? This plugin is just a core whitelisting system. It contains an api inside so other plugins can access the discord data. Webhook plugin available [here](https://github.com/Pequla/LittleHooks)\n\n## Other plugins\n\n- [LittleWeb](https://github.com/Pequla/LittleWeb) - Provides a REST API for a more complete server status\n- [LittleHooks](https://github.com/Pequla/LittleHooks) - Discord Webhook integration\n\n> Not sure what you need? Most likely you just need [LittleHooks](https://github.com/Pequla/LittleHooks). It adds an awesome look and feel to the discord server with a bonus of boosting server activity.\n\n## For developers\n\nPlugin contains a simple API. In order to consume it I suggest importing the plugin jar as a library. After receiving\nthe instance of the plugin just access the HashMap with all the player data by `LittleLink#getPlayerData()`.\n\nData class is `com.pequla.link.model.DataModel`\n\nExample setup code:\n\n```java\n@Override\npublic void onEnable(){\n    PluginManager manager = getServer().getPluginManager();\n    LittleLink plugin = (LittleLink) manager.getPlugin(\"LittleLink\");\n\n    if (plugin == null) {\n        getLogger().warning(\"Plugin LittleLink not found\");\n        manager.disablePlugin(this);\n        return;\n    }\n    // The rest of onEnable logic...\n}\n```\n\nYou can import the maven package from my maven repository\n\n```xml\n<repository>\n    <id>pequla-repo</id>\n    <url>https://maven.pequla.com/releases</url>\n</repository>\n\n<dependency>\n    <groupId>com.pequla</groupId>\n    <artifactId>little-link</artifactId>\n    <version>1.9</version>\n    <scope>provided</scope>\n</dependency>\n```\n\n> Before accessing the plugin instance don't forget to put LittleLink as your plugin dependency in `resources/plugin.yml`\n",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 342,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

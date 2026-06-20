@@ -1,0 +1,25 @@
+{
+  "id": "LZas0kaH",
+  "slug": "touhou-little-maid-epistalove",
+  "title": "Touhou Little Maid: Epistalove",
+  "description": "This mod is an add-on for Contact: LoveRekindled and Touhou Little Maid, allowing maids to write letters to their masters.",
+  "body": "## Touhou Little Maid: Epistalove\n\nThis mod is an add-on for **Contact: LoveRekindled** and **Touhou Little Maid**, allowing maids to write letters to their masters.\n\nYou can get a quick overview from this  \n[Bilibili video](https://www.bilibili.com/video/BV1apxbznEiq).\n\n### Letter Content\n\nLetters can be generated in two ways: **AI-generated** or **preset text**, with full customization through **data packs** or **KubeJS**. See the [**official documentation**](https://doc.sighs.cc/TLME/dev) for details.\n\nTo enable AI generation, follow the steps in the  \n[**official Touhou Little Maid guide**](https://www.bilibili.com/opus/1071601611768332294).\n\nAI generation is highly recommended — it can use in-game environmental data as prompts, allowing letters to naturally adapt to different situations.\n\n### When Letters Are Written\n\nBy talking to a maid using AI dialogue (press **T** on the maid), you can directly request a letter. This requires enabling the **Function Call** feature of Touhou Little Maid.\n\n![img](https://resource-api.xyeidc.com/client/pics/675497e0)\n\n![img](https://resource-api.xyeidc.com/client/pics/dc173d51)\n\nIn other cases, maids write letters based on configured rules. See the [**official documentation**](https://doc.sighs.cc/TLME/dev).\n\nLetter delivery works as follows:\n- **Following mode:** the maid hands the letter directly to the player.\n- **HOME mode + nearby mailbox:** the maid mails it through Epistalove; the player must retrieve it from their personal mailbox.\n- **HOME mode + no mailbox nearby:** the maid will hold the letter until a player or mailbox appears.\n\n### Best Example\n\nThe following KubeJS example makes the maid write a letter every time you earn a new advancement, with content related to that advancement.\n\nFor most well-known mods, the AI can recognize their advancements.\n\n```javascript\n// server_scripts\nLetterEvents.registerLetterRules(event => {\n    // AI: First Gift\n    event.createAI('advancement','lonesome',\n        'As a maid, your master has just completed the Minecraft advancement ${adv}. This is an important moment—please write a short letter to your master about it.')\n        .trigger('advancement').repeat().minAffection(0).maxAffection(500).cooldown(0).register();\n});\nPlayerEvents.advancement(event => {\n    let advancement = event.advancement;\n    if (advancement.description.empty) return;\n    let str = `${advancement.displayText.getString()}:${advancement.description.getString()}`;\n    if (advancement.description.getContents().getKey()) str += `(${advancement.description.getContents().getKey()})`;\n    LetterAPI.triggerEventWithContext(event.player, \"advancement\", { adv: str });\n});\n```\n### Future Plans\n- Improve customization features.\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 22536,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

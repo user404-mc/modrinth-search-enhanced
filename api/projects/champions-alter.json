@@ -1,0 +1,22 @@
+{
+  "id": "VhBJYZ00",
+  "slug": "champions-alter",
+  "title": "champions-alter",
+  "description": "This is an add-on for the Champions mod, which allows you to easily control the spawn rate of champion creatures.",
+  "body": "This mod allows you to dynamically control the spawn rates of champion mobs through Kubejs. You can find the configurations for the spawn rates of champion mobs provided by various stages in champions-server.toml and configure them via Kubejs.\n\n(KubeJS is optional, but if you don't install KubeJS for modifications, this mod will have no effect!)\n\nBy default, you can apply new stages in Kubejs to control the spawn rate of champions.\n\nYou can refer to the images below for partial script tutorials.\n\nFor example, if I set the stage to Kether, a large number of high-star creatures will spawn in the world (if possible)\n\nThis mod was created for the Reverie Foundry modpack!\n```\n// Visit the wiki for more info - https://kubejs.com/\n// console.info('Hello, World! (Loaded server example script)')\n//\nconst ChampionHelper = Java.loadClass(\"top.theillusivec4.champions.common.util.ChampionHelper\")\nconst ChampionAttachment = Java.loadClass(\"top.theillusivec4.champions.common.capability.ChampionAttachment\")\nconst List = Java.loadClass(\"java.util.List\")\n\nChampionsJs.addSephiahName(event => {\n\n  let entity = event.getEntity()\n  let entityName = entity.getName().getString()\n  let entityId = event.getMobId()\n  let sephiahName = event.getName()\n  console.log(entityName)\n  console.log(sephiahName)\n  console.log(entityId)\n  if (entityId === \"minecraft:zombie\") {\n    event.setName(\"Hod\")\n    console.log(\"after set sephirahName\")\n    console.log(event.getName())\n  }\n\n  // event.setCanceled(true);\n})\n// ChampionsJs.preSpawn(event =>{\n//\n//   console.log(\"/tp Dev \"+ event.getEntity().position().x()+ \" \" + event.getEntity().position().y()+ \" \" + event.getEntity().position().z())\n//   console.log(event.getEntity().name)\n//   // event.setCanceled(true);\n// })\nChampionsJs.postSpawn(event => {\n\n\n  console.log(\"/tp Dev \" + event.getEntity().position().x() + \" \" + event.getEntity().position().y() + \" \" + event.getEntity().position().z())\n  ChampionAttachment.getAttachment(event.getEntity()).ifPresent(champion => {\n    console.log(event.getEntity().name.getString() + \": \" + ChampionHelper.isValidChampion(event.getChampion().getServer()))\n  })\n  // event.setCanceled(true);\n})\n\n```\n",
+  "categories": [
+    "adventure",
+    "cursed",
+    "mobs",
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 886,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

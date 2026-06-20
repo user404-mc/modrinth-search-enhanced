@@ -1,0 +1,21 @@
+{
+  "id": "dA2TGGJp",
+  "slug": "slashblade-js",
+  "title": "SlashBlade JS",
+  "description": "An mod that facilitates developers in editing and creating recipes for Slashblade: Resharped using KubeJS scripts, along with utilizing its events.",
+  "body": "# Slashblade JS\n\nAn mod that facilitates developers in editing and creating recipes for Slashblade: Resharped using KubeJS scripts, along with utilizing its events.\n\n# What Can It Do?\n\nHere's a ready-to-use example:\n\n```javascript\n// priority: 0\n\n/* Server Side */\n\n// When Slashblade checks power state: If not powered, consume 10 ProudSoul to enter charged state\nSlashBladeJSEvents.powerBlade(event => {\n    let state = BladeState.of(event.blade)\n    let proudsoul = state.proudSoulCount\n    if (!event.isPowered() && proudsoul >= 10) {\n        state.setProudSoulCount(proudsoul - 10)\n        event.setPowered(true)\n    }\n    event.user.tell(\"ProudSoul: \" + proudsoul) // Notify player of current ProudSoul value\n})\n\n// A custom Slashblade recipe\nServerEvents.recipes(event => {\n    event.recipes.slashblade.slashblade_shaped_recipe(\"slashblade:slashblade\", [\n        \"ABA\",\n        \"CSC\",\n        \"ABC\"\n    ], {\n        \"S\": SlashBladeIngredient.of(\n            SlashBladeRequestDefinition.name(\"slashblade:fox_black\") // Required base blade\n                .killCount(233) // Kill count requirement\n                .proudSoul(114514) // ProudSoul requirement\n                .refineCount(10) // Refinement count requirement\n                .addEnchantment(SBEnchantmentDefinition.of(\"minecraft:power\", 2)) // Enchantment requirement\n                .build() // Don't forget to .build()\n        ),\n        \"A\": \"minecraft:golden_apple\", // Other materials (like vanilla recipes)\n        \"B\": \"#forge:bones\",\n        \"C\": \"minecraft:cake\",\n    }, \"slashblade:fox_white\"/* Resulting blade ID */)\n})\n\n// Create your custom blade\nServerEvents.highPriorityData(event => {\n    let customBlade = SBSlashBladeDefinition.of(\"kubejs:test_blade\", // Your blade ID\n        SBRenderDefinition.newInstance() // Render properties\n            .effectColor(2039347) // Blade effect color (hex RGB to decimal)\n            .standbyRenderType(SBCarryType.DEFAULT) // Sheathed position\n            .modelName(\"kubejs:model/named/test_blade.obj\") // Path: ./kubejs/assets/kubejs/model/named/test_blade.obj\n            .textureName(\"kubejs:model/named/test_blade.png\") // Path: ./kubejs/assets/kubejs/model/named/test_blade.png\n            .build(), // Don't forget to .build()\n        SBPropertiesDefinition.newInstance()\n            .maxDamage(666) // Max durability\n            .baseAttackModifier(999) // Base attack damage\n            .slashArtsType(\"slashblade:void_slash\") // Set special attack\n            .addSpecialEffect(\"slashblade:wither_edge\") // Add special effect\n            .defaultSwordType([SBSwordType.FIERCEREDGE, SBSwordType.BEWITCHED]) // Set blade types\n            .build(), // Don't forget to .build()\n        [ // Default enchantments\n            SBEnchantmentDefinition.of(\"minecraft:power\", 5),\n            SBEnchantmentDefinition.of(\"minecraft:unbreaking\", 10)\n        ]\n    )\n\n    // Register to game\n    event.addJson(\"kubejs:slashblade/named_blades/test_blade.json\", SBSlashBladeDefinition.toJSON(customBlade))\n})\n```\n\n# License\n\nThis mod is open-source under the GPL v3.0 License.\n\nYou may include it in your modpacks/servers as long as you **comply with the license terms**.",
+  "categories": [
+    "equipment",
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17938,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

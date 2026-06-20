@@ -1,0 +1,22 @@
+{
+  "id": "ePiELTnX",
+  "slug": "seaborgium",
+  "title": "Seaborgium",
+  "description": "A slight rendering optimization mod for Minecraft, increasing the performance of the vanilla HUD",
+  "body": "# DEPRECATION NOTICE:\nThis mod will not receive updates to later versions. Sodium has implemented a similar optimization to Seaborgium's fix into their mods. I also do lack the time to maintain this mod. The code is licensed under the ISC license, and you are free to make any modifications you wish to use.\n\nI am henceforth archiving the mod on github, and re-establishing it as public for on modrinth for archival purposes.\n\n# 1.19.4 Notice: Iris made a breaking change, making this making this mod incompatible.\nIf any developer has a reason to use this mod on 1.19.4, to make it compatible all you need to do is (aside from updating dependencies) is replace `net.coderbot.iris.shaderpack.DimensionId` with `net.coderbot.iris.shaderpack.materialmap.NamespacedId` in `MixinPipelineManager`\n\n_________________________________________\n![image](https://i.imgur.com/Sdp2oUo.png)\n# What is Seaborgium?\nSeaborgium is a free and open source optimization mod for Minecraft. It improves the rendering performance of the game by implementing optimizations that are overlooked by other mods.\n\nSeaborgium provides a `unified` jar, which means it contains both the Fabric-like and Forge versions of the mod. \n\n# Optimizations\nSeaborgium implements a simple cache that stores the locations of uniform variables for each shader program. \n\nWhen GLStateManager invokes `glGetUniformLocation` for the first time, Seaborgium checks if it has a cached location for the requested uniform. \nIf it does, it returns the cached location without invoking `glGetUniformLocation`. \nIf it does not, it invokes `glGetUniformLocation` and stores the result in the cache for future use.\n\nThis optimization reduces the number of OpenGL calls and avoids unnecessary overhead. \nInvoking `glGetUniformLocation` is known to be quite slow, and it is not uncommon for drivers to consume noticeable CPU time to process this function. \nBy caching the result of this function, Seaborgium is able to avoid wasting CPU cycles waiting for a function to return data we should already have on hand.\n\n# What sort of performance gains should I expect?\nThe performance gains can vary significantly by scenario. The performance numbers discussed are based off my personal machine, which has an `AMD Ryzen 5 5600x`, `32GB DDR4 @ 3200Mhz`, and an `Nvidia GTX 980ti`. All tests also include common optimization mods Lithium and Sodium. \n\nBecause of how Minecraft renders hearts to the screen, having a significant number of them quickly becomes expensive. With absorption 255, this mod able to increase the frame rate from a painful `53` average to fairly respectable `163` average. \n\nIn a regular gameplay scenario, the results were still noticeable but less pronounced. Enabling between a `30` and `50` FPS increase over what it would be without.\n\n# Compatibility\nSeaborgium is compatible with all of your expected mods, `Sodium`/`Rubidium`, `Canary`/`Lithium`, `Starlight`, and more!\n\nOutside of mods that change the backend graphics API (such as `Vulkan Mod`) there are no currently known incompatibilities. If you discover any, please report them on the issues page!",
+  "categories": [
+    "fabric",
+    "forge",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 21368,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

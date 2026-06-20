@@ -1,0 +1,38 @@
+{
+  "id": "ud9PM8xd",
+  "slug": "loginx",
+  "title": "LoginX",
+  "description": "a secure, modern authentication plugin for Minecraft servers that require players to register and log in. It protects accounts with encrypted passwords, persistent sessions, client fingerprinting, and a two-phase Mojang premium verification system",
+  "body": "# LoginX — Player Authentication & Session Protection\n\n**LoginX** is a secure, modern authentication plugin for Minecraft servers that require players to register and log in. It protects accounts with encrypted passwords, persistent sessions, client fingerprinting, and a two-phase Mojang premium verification system — all built with async database operations for minimal server impact.\n\n---\n\n## Why LoginX?\n\nLoginX was designed with a clean, layered architecture separating auth, session, security, and premium logic. It goes beyond basic login/register by actively protecting against account takeovers, alt account flooding, brute-force attacks, and replay attacks — out of the box, with zero extra setup.\n\n---\n\n## Core Features\n\n### 🔑 Authentication\n- Password hashing with **Argon2** or **bcrypt** (configurable in `config.yml`)\n- Configurable **minimum password length**\n- **Login timeout** — players who don't authenticate within N seconds are kicked\n- `/changepass` command for players to update their own password securely\n\n### 🕐 Session Management\n- **Persistent sessions** — authenticated players are remembered across reconnects\n- **Rolling sessions** — activity extends the session timer automatically\n- Sessions are **invalidated on IP change** to prevent session hijacking\n- Sessions are **invalidated on fingerprint change** for extra protection\n- Automatic **session cleanup task** runs in the background to purge expired sessions\n\n### 🖐 Client Fingerprinting\n- Tracks each player's **client brand** and **protocol version** on join\n- Detects when a player's fingerprint changes and can block or flag it\n- Configurable **max fingerprint changes per 7 days** to limit suspicious behaviour\n- Stricter fingerprint enforcement available for premium-locked accounts\n\n### ⭐ Premium Account Linking (`/premium`) **FIXING IT**\nLoginX uses a **two-phase Mojang verification handshake** to let players permanently link their account to their real Mojang/Microsoft identity:\n\n1. Player runs `/premium` → LoginX queries the Mojang Profiles API to confirm the username exists\n2. Player is kicked and asked to **reconnect within 60 seconds using the official launcher**\n3. On reconnect, LoginX verifies the session against **Mojang's session servers** using a unique token\n4. If verified → account is permanently **premium-locked** to the real Mojang UUID\n5. Premium-locked players are **auto-logged in** on future joins — no password prompt needed\n\nThis prevents name impersonation: anyone can claim a premium username, but only the real account owner can pass the session server check.\n\n### 🛡️ Security\n- **Brute-force protection** — account is temporarily locked after too many failed login attempts (configurable threshold and ban duration)\n- **Alt account limiting** — max registered accounts per IP address\n- **Anti-replay protection** — blocks reuse of intercepted authentication tokens\n- **Console log filtering** — sensitive auth details are stripped from server logs\n\n### 🗄️ Database\n- Supports **SQLite** (zero-config, default) and **MySQL**\n- Fully **async database operations** — no blocking the main thread\n- Separate tables for player accounts, sessions, and fingerprint change history\n\n---\n\n## ✦ Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/register <password> <confirm>` | Create a new account | `loginx.player` |\n| `/login <password>` | Log in to your account | `loginx.player` |\n| `/logout` | End your current session | `loginx.player` |\n| `/changepass <old> <new> <confirm>` | Change your password | `loginx.player` |\n| `/premium` | Link account to Mojang via 2-phase verification | `loginx.premium` |\n| `/loginx reload` | Reload config and messages | `loginx.admin` |\n| `/loginx info` | View plugin status and stats | `loginx.admin` |\n| `/loginx session <player>` | Inspect a player's session | `loginx.admin` |\n| `/loginx forcepremium <player>` | Force-lock an account as premium | `loginx.admin` |\n\n---\n\n## ✦ Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `loginx.player` | everyone | Basic auth commands |\n| `loginx.premium` | everyone | Access to `/premium` |\n| `loginx.admin` | op | All admin commands |\n| `loginx.bypass` | false | Skip authentication entirely |\n\n---\n\n## ✦ Configuration Highlights\n\n```yaml\nauth:\n  min-password-length: 8\n  login-timeout-seconds: 30\n  password-hash: ARGON2  # or BCRYPT\n\nsession:\n  enabled: true\n  timeout-minutes: 30\n  rolling: true\n  invalidate-on-ip-change: true\n  invalidate-on-fingerprint-change: true\n\nfingerprint:\n  enabled: true\n  max-changes-per-7d: 1\n\nsecurity:\n  max-accounts-per-ip: 3\n  brute-force:\n    max-attempts: 5\n    temp-ban-minutes: 10\n\ndatabase:\n  type: sqlite  # or mysql\n```\n\nAll messages are fully customizable via `messages.yml`.\n\n---\n\n## ✦ Developer API\n\nLoginX exposes a public `LoginXAPI` class for third-party plugin integration. Check session state, listen to auth events, and more. Full documentation is available on the [GitHub repository]([https://github.com/abdoabk/LoginX](https://github.com/AbdelrahmanM1/LoginX)).\n\n---\n\n## ✦ Compatibility\n\n| Platform | Status |\n|---|---|\n| Paper 1.20+ | ✅ Fully supported |\n| Spigot | ✅ Supported |\n| Bukkit | ⚠️ May work, not tested |\n\n**Java 17+ required · Minecraft 1.20+**\n\n---\n\n## ✦ Support & Links\n\n- 💻 **Source code** → [GitHub](https://github.com/AbdelrahmanM1/LoginX)\n\n> Please do **not** use Modrinth comments for bug reports.\n\n**NOTE** There is problems with ```/premium``` **I am working on it**",
+  "categories": [
+    "management",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 222,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

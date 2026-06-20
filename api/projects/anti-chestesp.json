@@ -1,0 +1,33 @@
+{
+  "id": "Rlaq8Exb",
+  "slug": "anti-chestesp",
+  "title": "Anti ChestESP Plugin",
+  "description": "Server-side anti-ChestESP plugin for Paper. Hides real containers via packet-level obfuscation, floods ESP tools with randomised fake chests, and flags suspicious miners via honeypot detection. No client mod required.",
+  "body": "# ChestObfuscator\n\nProtect your server's loot from ChestESP users — no client mod required.\n\nChestObfuscator works entirely server-side. It intercepts chunk and block packets before they reach players, so hidden containers show up as stone from a distance and fake containers get injected to confuse ESP mods. The actual world is never touched — it's all packet-level.\n\n![Thumbnail Banner](https://cdn.modrinth.com/data/cached_images/f2f3edd57d979e9761aa1a18f2b18a4e20d239dd_0.webp)\n\n---\n\n![After and Before Image showcase](https://cdn.modrinth.com/data/cached_images/831bc134da7d092ea83ad2a2a8702e0accc74443.jpeg)\n\n---\n\n## How it works\n\n**Container Obfuscation**\n\nContainers beyond a configurable radius (default: 6 blocks) are replaced visually with stone for distant players. NBT data is hidden too, so ESP mods can't inspect inventories or loot tables.\n\nSupported containers: Chests, Trapped Chests, Barrels, Shulker Boxes, Ender Chests, Hoppers.\n\n---\n\n**Fake Containers**\n\nThe plugin injects random fake containers underground inside stone areas to make ESP even less reliable.\n\n- Each player gets a different set of fake locations\n- Fakes disappear when players get close enough\n- Makes it hard for players to compare or trust their ESP layout\n\nSupported fake types: Chest, Barrel, Shulker Box, Ender Chest.\n\n---\n\n**Honeypot Detection**\n\nThe plugin watches for suspicious mining behavior near fake container positions. If a player repeatedly mines toward fake locations within a set time window, they get flagged — a console warning is logged and staff with the right permission receive an alert.\n\n---\n\n**Performance**\n\n- Fake positions are cached, no repeated scans\n- Packet handling is async and non-blocking\n- Chunk overrides happen shortly after chunk load\n- Designed to have no noticeable TPS impact\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/chestobfuscator reload` | Reload config |\n| `/chestobfuscator stats` | View plugin stats |\n| `/co reload` | Alias |\n| `/co stats` | Alias |\n\n---\n\n## Permissions\n\n| Permission | Description |\n|---|---|\n| `chestobfuscator.admin` | Access admin commands |\n| `chestobfuscator.alert` | Receive detection alerts |\n\n---\n\n## Config\n\n```yaml\nreveal-radius: 6\nfake-count-min: 5\nfake-count-max: 12\nfake-y-min: 20\nfake-y-max: 50\nfake-reveal-radius: 4\nhoneypot-enabled: true\nhoneypot-mine-radius: 3\nhoneypot-trigger-threshold: 3\nhoneypot-window-seconds: 600\n```\n\n---\n\n## Requirements\n\n| Requirement | Version |\n|---|---|\n| Paper | 1.21.1+ |\n| ProtocolLib | 5.3.0+ |\n| Java | 21+ |\n\n⚠️ ProtocolLib is required for packet interception.\n\n---\n\n## Compatibility\n\n| Platform | Support |\n|---|---|\n| Paper | ✅ |\n| Spigot | ❌ |\n| Fabric | 🔜 Planned |\n| Forge | ❌ |\n\n---\n\n## Planned\n\n- Per-world support\n- Configurable fake container types\n- Player whitelist system\n- Discord webhook alerts\n- Fabric version\n\n---\n\n## FAQ\n\n**Does it affect performance?**\nNot noticeably. Packet overrides are lightweight and data is cached.\n\n**Can players detect the fakes?**\nNot easily through ESP. Fakes behave like real blocks until the player gets close enough.\n\n**Does it support Spigot?**\nNo. This plugin uses Paper-specific APIs.\n\n---\n\n## Contact\n\n📧 [Email](mailto:iyash321@gmail.com) | ☕ [Buy Me a Coffee](https://buymeacoffee.com/yashh_labs)\n\nDeveloped by **Penchi** — pure server-side protection, no client mod needed.\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 115,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

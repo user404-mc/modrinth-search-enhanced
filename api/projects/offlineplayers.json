@@ -1,0 +1,33 @@
+{
+  "id": "BWYrlN8Z",
+  "slug": "offlineplayers",
+  "title": "OfflinePlayers",
+  "description": "Enable AFK mode without keeping your computer on. Use /offline to spawn a copy of your player. If your offline player dies, you'll die but still have time to retrieve your stuff. If the offline player survives, you'll inherit its gains upon return.",
+  "body": "## Goal\n\nThis mod allows players to go AFK on a server without leaving their computers on. Simply use the `/offline` command to spawn an exact copy of your player, called an offline player. Depending on the configuration, you'll be kicked after the offline player has spawned.\n\nIf the offline player is killed, it won't drop loot but will be kicked from the server. When you rejoin, the inventory and XP levels from the offline player are copied to you, and you'll be killed. This gives you time to retrieve your items.\n\nIf the offline player survives until you rejoin, its inventory and gained experience will be transferred to you.\n\n## How to Use\n\nType `/offline` to spawn an offline player.\n\n### Actions\n\nYou can add actions to your offline player. Available actions include:\n\n| Name          | Description                                                       |\n|---------------|-------------------------------------------------------------------|\n| attack        | Player left click                                                 |\n| break         | Player left click, but wait for block to fully break.             |\n| place / use   | Player right click                                                |\n| crouch        | Player crouching                                                  |\n| jump          | Player jumping                                                    |\n| eat           | Player eating (only if hungry & having food in one hand)          |\n| drop_item     | Drops an item from the active slot                                |\n| drop_stack    | Drops all items from the active slot                              |\n| move_forward  | Moves the player forward                                          |\n| move_backward | Moves the player backwards                                        |\n | disconnect    | Automatically disconnects the offline player after a set interval |\n\nTo use an action, type `/offline [action]`, e.g., `/offline attack`.\n\n> Tip: use `/offline actions` to see a list of available actions\n\n### Interval/Offset\n\nYou can execute actions with set intervals or offsets:\n\n- Interval: `/offline break:20` (20 tick or 1 second interval between breaking blocks)\n- Offset: `/offline attack:20:10` (10 tick offset added to the action)\n\n#### Time Parsing\n\nBesides using ticks (the default), it is also possible to set the interval and offset to milliseconds, seconds, minutes, hours, and even days.\n\nExample: `/offline use:100ms`, `/offline attack:1s`, `/offline attack:1.5m`, `/offline eat:0.25h`, `/offline disconnect:1d`\n\n### Chaining\n\nYou can chain actions, for example:\n\n- `/offline attack move_forward`\n- `/offline attack:100 jump eat:20:10`\n- `/offline jump:20 attack eat move_backward`\n\nActions are executed in the order specified.\n\n## Config\n\nAfter initialization, the configuration file is located at `config/OfflinePlayersReworked.json` in your Minecraft server's root folder.\n\nThe configuration looks as follows:\n```json\n{\n  \"opRequired\": false,\n  \"autoOp\": true,\n  \"autoWhitelist\": false,\n  \"autoDisconnect\": true,\n  \"killOnDeath\": true,\n  \"respawnKickedPlayers\": true,\n  \"informAboutKickedPlayer\": true,\n  \"copySkin\": true,\n  \"databaseLocation\": \"./offlineplayersreworked/\",\n  \"offlinePlayerPrefix\": \"[OFF]\",\n  \"availableOptions\": [\"attack\", \"break\", \"use\",\"etc...\"]\n}\n```\n- `opRequired`: If true, only OPs can use `/offline`.\n- `autoOp`: If true, offline players of OPs are automatically made OPs.\n- `autoWhitelist`: If true and whitelist is enabled, offline players are auto-whitelisted. (Default value is false at it doesn't seem necessary)\n- `autoDisconnect`: If true, players automatically disconnect after using `/offline`. (Use false at your own risk)\n- `killOnDeath`: If true, players automatically die upon reconnecting if their offline player died.\n- `respawnKickedPlayers`: If true, offline players automatically respawn on server restart when kicked\n- `informAboutKickedPlayer`: If true, if offline player was kicked and player rejoins, player will be informed about offlline player being kicked\n- `copySkin`: If true, offline players copy the original player's skin.\n- `databaseLocation`: Folder location for the database. Default is `./offlinePlayersReworked/`.\n- `offlinePlayerPrefix`: Sets the prefix for the offline player.\n- `availableOptions`: A list of the available action options that can be used.\n\n## Reporting Issues\n\nIf you encounter any bugs or have suggestions for improvements, please create an issue on our GitHub repository. To create an issue:\n\n1. Go to the [Issues](https://github.com/lilfish/Fabric_OfflinePlayersReworked/issues) tab of this repository.\n2. Click on \"New Issue\".\n3. Choose between \"Bug report\" or \"Feature request\" template.\n4. Fill out the template with as much detail as possible.\n5. Submit the issue.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2786,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

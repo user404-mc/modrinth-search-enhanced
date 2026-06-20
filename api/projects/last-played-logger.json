@@ -1,0 +1,39 @@
+{
+  "id": "fQmzuyuH",
+  "slug": "last-played-logger",
+  "title": "Last Played Logger",
+  "description": "Logs the last date a player was online to a Google spreadsheet.",
+  "body": "## Version 3.X.X  \nFor older versions of the mod, check the [wiki](https://github.com/GeheimagentNr1/LastPlayedLogger/wiki).  \n\nThis mod logs the last date a player was online/logged in into a Google spreadsheet.  \nIt's a utility mod to help you moderate your whitelist.  \nIt only works on the server side and won't work on the client side.  \n\n---\n\nYou need a server to play with friends? You don't know how to set up one? Just rent an already configured server!  \n\n![BisectHosting Promotion Banner](https://raw.githubusercontent.com/GeheimagentNr1/Online_Mod_Data/master/images/bisect_hosting_banner.png)  \n\nClick on the picture above, select a plan (with recommended at least 6 GB),  \nuse my code **[agent](https://bisecthosting.com/agent)** to get **25%** off your first month and enjoy playing with your friends!  \n\n---\n\n## Support  \n![Supported Versions Image](https://raw.githubusercontent.com/GeheimagentNr1/Online_Mod_Data/master/Supported_Versions.png)  \nMinecraft versions, for which the mod is not released, are not supported.  \nYou can find a text version [here](https://github.com/GeheimagentNr1/Online_Mod_Data/wiki/Supported-Versions).  \n\n## Server Config  \nThe config file can be found in the \"serverconfig\" folder in the \"world\" folder and is named \"last\\_played\\_logger-server.toml\". The name of the world folder is set for servers in the \"server.properties\" file.  \n\n* **active**  \nShall the mod be active or not?\n* **spreadsheetID**  \nID of the Spreadsheet.\n* **tab\\_name**  \nName of the spreadsheet tab.\n\nWonder how do you get these data? Read the \"How to configure the mod\".  \n\n## How to configure the mod  \n\n### Enable the Google Sheets API  \nFirst, you have to enable the \"Google Sheets API\" on [https://developers.google.com/sheets/api/quickstart/java#enable\\_the\\_api](https://developers.google.com/sheets/api/quickstart/java#enable_the_api) and click onto the \"Enable the API\" button.  \n\nCreate a folder named \"last\\_played\\_logger\" next to the \"config\" folder.  \n\nNext you have to go to [https://developers.google.com/sheets/api/quickstart/java#authorize\\_credentials\\_for\\_a\\_desktop\\_application](https://developers.google.com/sheets/api/quickstart/java#authorize_credentials_for_a_desktop_application) and follow the steps to create credentials, that the \"Last Played Logger\" uses to change the Google Spreadsheet.  \nSave the credentials.json in the \"last\\_played\\_logger\" folder.  \n\n### How to set up the spreadsheet  \nYou can copy this [Example Spreadsheet](https://docs.google.com/spreadsheets/d/1Dz1eo5jCWmzNAXh1WLeDwUXzACLbkTW47jYeJmmuq2o/edit?usp=sharing) to use it with the \"Last Played Logger\".  \nFor that, you have to click \"File\" > \"Make a copy\".  \n![Example Spreadsheet: Make a copy](https://cdn.modrinth.com/data/fQmzuyuH/images/dbe8b53b6ef6c62472d5c59379ead294f4b67d6b.png)  \n\nIn the copy window, you give it a name and click \"OK\".  \n![Example Spreadsheet: Copy document](https://cdn.modrinth.com/data/fQmzuyuH/images/d8a28838ea71205439c253cb10b522b571a56324.png)  \n\nThis \"Example Spreadsheet\" has two tabs.  \nIn the \"Online Log\" tab, the \"Last Played Logger\" adds lines for every player joining the server. For players already joint the server, only the date will be updated.  \n![Online Log tab](https://cdn.modrinth.com/data/fQmzuyuH/images/e43c684d491c18eae52d66fdec452bd551b8a1ee.png)  \n\nIn the \"Statistics\" tab, you have two lists. The left list shows all players sorted by name and the right list shows all players sorted by the date. The player last online is the first player in this list.  \n![Statistics tab](https://cdn.modrinth.com/data/fQmzuyuH/images/e98a5e5c5328bc878ae63588700210ea4ffde7a5.png)  \n\nFor the mod it's needed, that the spreadsheet is shared. For that you have to click onto the \"Share\" button.  \nIn the Share window you have to select \"Get Link\" and on the right side of \"Anyone with the link\" you have to select \"Editor\".  \n![Share spreadsheet](https://cdn.modrinth.com/data/fQmzuyuH/images/4ea1f5fc597b0366b05845acc5369deec70f6804.png)  \n\nIn the config, you now have to set \"active\" to \"true\" and set the \"tab\\_name\". In this example the \"tab\\_name\" has to be \"Online Log\".  \nFrom the URL, you have to extract the spreadsheet ID. In this example, the spreadsheet ID is \"1dcoWy1ZOCEzf9wSqpsd731MKr8rBsazUVuUYafF4nzA\".  \n![Example URL](https://cdn.modrinth.com/data/fQmzuyuH/images/fb00713330bd679fba9fe635bcec5092208b335b.png)  \n\n### What is to do on the first launch  \nWhen you have finished the config and done all previous steps, it gets to the first launch and the authentication of the server/mod.  \nImportant: The first launch of the server has to be on your local desktop pc. During the following steps don't stop the server.  \nAfter you launched the server and a player joined, you find in the log a link with the following lines:  \n\n*Please open the following address in your browser:*  \n*https://accounts.google.com/o/oauth2/auth?access\\_type=offline&client\\_id=...*  \n*Attempting to open that address in the default browser now…*  \n\nMaybe the link is opened by your default browser automatically. If not, copy the link to your browser and open it.  \nIt opens a website where you have to choose the Google account, from the owner of the spreadsheet.  \n![Choose Google account](https://cdn.modrinth.com/data/fQmzuyuH/images/2dcfcff10fb0ea291e7e52c5e3aff1818c32cc6d.png)  \n\nNext, there opens a warning because your project on which the application is running is not verified. You can ignore the warning and click \"Advanced\".  \n![Not verified warning](https://cdn.modrinth.com/data/fQmzuyuH/images/792b567c06c6b901a7e355944116c377a9853f60.png)  \n\nNext, you click on \"Go to Quickstart\"  \n![Go to Quickstart](https://cdn.modrinth.com/data/fQmzuyuH/images/1953dd95b8cda606d2a59ca8ae89f061f936d73b.png)  \n\nAfter that, a permission request is showing up, that wants to access your spreadsheets. \"Allow\" clicking will grant this permission.  \n![Grant Quickstart permission](https://cdn.modrinth.com/data/fQmzuyuH/images/e1ae00f79013f65f05c89ed78c79609b20d5719d.png)  \n\nThis permission request has to be confirmed.  \n![Confirm permission for Quickstart](https://cdn.modrinth.com/data/fQmzuyuH/images/fe2dea0ed2ede9e92e952b482d873e6bdc751589.png)  \n\nIf you grant the permission and confirmed it, the \"Last Played Logger\" will work and add players to your spreadsheet.  \nIf you want to enlarge the formatted area, here is a tutorial: [https://spreadsheetpoint.com/color-alternate-rows-google-sheets/](https://spreadsheetpoint.com/color-alternate-rows-google-sheets/)  \n\n---\n\nThanks for the logo to Muse31.  \nYou can use this mod in non-commercial modpacks without asking.  \nYou can find more mods from me on [CurseForge](https://www.curseforge.com/members/geheimagentnr1/projects) and [Modrinth](https://modrinth.com/user/GeheimagentNr1).  \n\n![This is a Forge mod only until 1.21.1. This is a NeoForge mod only starting 1.21.1. There will be no Fabric version. It will not be backported.](https://raw.githubusercontent.com/GeheimagentNr1/Online_Mod_Data/master/images/mod_loader_banner.png)  ",
+  "categories": [
+    "forge",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1216,
+  "followers": 0,
+  "game_versions": [
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

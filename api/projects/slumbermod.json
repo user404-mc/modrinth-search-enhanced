@@ -1,0 +1,27 @@
+{
+  "id": "ApGOv8nw",
+  "slug": "slumbermod",
+  "title": "Slumber",
+  "description": "Slumber simulates the world while everyone sleeps...",
+  "body": "# Slumber\n\nSleep with progress. Slumber accelerates the entire server tick while everyone sleeps — not just time-of-day. Blocks, entities, block entities, random ticks, scheduled updates, weather, raids… everything advances across all dimensions during sleep.\n\n## Features\n\n*   **Full world ticking:** Runs extra full ticks so blocks, entities, and schedules progress.\n*   **All dimensions:** Applies to every loaded dimension (Overworld, Nether, End, modded).\n*   **Server + singleplayer:** Works on dedicated servers and integrated singleplayer.\n*   **All-players requirement:** Only activates when all non‑spectator players are sleeping.\n*   **No instant skip:** Temporarily disables vanilla night‑skip while simulating; restores it after.\n*   **Configurable speed:** Controlled by a gamerule for quick per‑world tuning.\n\n## Configuration\n\n*   **Gamerule `slumberTickMultiplier` (integer, default `20`):**   - Total server tick multiplier while all players sleep.   - Example: `20` → 1 normal tick + 19 extra ticks per server tick (≈20× speed).   - Minimum effective value is `1` (no acceleration).\n\n### Commands\n\n*   Set multiplier: `/gamerule slumberTickMultiplier 30`\n*   Read current: `/gamerule slumberTickMultiplier`\n\n## Requirements\n\n*   **Minecraft:** 1.21.1+\n*   **Loader:** NeoForge, Forge, or Fabric (matching your MC version)\n\n## Installation\n\n*   **Client (singleplayer/LAN):** Drop the JAR into your `mods/` folder.\n*   **Server:** Drop the JAR into the server’s `mods/` folder. All connected clients only need to join a modded server; this mod runs server‑side and does not add items/blocks.\n\n## Performance Notes\n\n*   **Multiplier cost:** The higher the `slumberTickMultiplier`, the more work per real‑time second. Large multipliers with many loaded chunks can impact MSPT.\n*   **Recommendation:** Start with `20` and adjust. Consider reducing if the server approaches 50+ MSPT during sleep.\n\n## Multiplayer Behavior\n\n*   **Activation rule:** Every non‑spectator player in the server must be sleeping. Spectators are ignored for this check.\n*   **Partial sleep:** If any non‑spectator is awake, Slumber does nothing and vanilla behavior applies.\n\n## Compatibility\n\n*   Designed to be non‑invasive: it uses event hooks to run extra world ticks, without coremodding.\n*   Should be compatible with most mods. Extremely heavy tick‑based mods may amplify the cost of higher multipliers.\n\n## FAQ\n\n*   **Does this change loot or gameplay rules?** No. It only changes how many world ticks run while everyone sleeps.\n*   **Does it force morning instantly?** No. Vanilla fast‑forward is suppressed during the simulation. Once it’s naturally day (or someone wakes), the original threshold is restored and vanilla proceeds.\n*   **Does it affect only Overworld?** No. All loaded dimensions tick equally.\n\n## Contributing\n\nIssues and PRs are welcome. Please include logs and steps to reproduce performance or compatibility problems.",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 601,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

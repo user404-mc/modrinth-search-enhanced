@@ -1,0 +1,33 @@
+{
+  "id": "sOUCVGil",
+  "slug": "otel-instrumentation-extension",
+  "title": "OpenTelemetry Instrumentation Extension",
+  "description": "Instrumentation for the Java OpenTelemetry Agent to include additional game telemetry",
+  "body": "\n\nOpenTelemetry can be used to [report various monitoring data (including metrics, logs and traces)](https://opentelemetry.io/docs/what-is-opentelemetry/) and is a de-facto industry standard.\n\nThis mod provides additional instrumentation for the [OpenTelemetry JavaAgent](https://opentelemetry.io/docs/zero-code/java/agent/) so that various game metrics can be reported. The overall functionality is similar to [``fabric-exporter``](https://github.com/ruscalworld/fabric-exporter).\n\n<details><summary>Instrumented/Reported metrics</summary>\n\n* MSPT/TPS\n* Loaded chunks\n* Server state\n* Networking\n  * connections\n  * handshakes\n  * packets sent/received\n* Chunk generation\n* Entities\n  * grouped by type, spawn ground and world/dimension\n* Players\n  * by world\n  * online\n  * total xp (score)\n  * xp level\n* Runtime\n  * game version\n  * Fabric version\n* Optional data from [spark](https://github.com/lucko/spark)\n\n</details>\n\n## Setup \n\n1. Make sure you have an endpoint where OpenTelemetry data can be ingested.<br/>This could be a [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) hosted by you or by someone else (e.g. in the [Grafana Cloud](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/collector/)).\n2. [Setup the OpenTelemetry Java Agent](https://opentelemetry.io/docs/zero-code/java/agent/getting-started/) so that it sends data to your ingestion service.\n3. Add the [OpenTelemetry Agent Helper Extension for Fabric](https://github.com/litetex-oss/otel-fabric-helper-extension).\n    * This is required so that the OpenTelemetry Agent is correctly detecting and utilizing the mod.\n4. Simply add and (optionally) configure this mod. It should work out of the box.\n5. Import the provided dashboard into Grafana\n    * From [Grafana Dashboards](https://grafana.com/grafana/dashboards/23234)\n    * From the [local demo in the repo](https://github.com/litetex-oss/mcm-otel-instrumentation-extension/tree/dev/_monitoring_dev_infra/docker-compose.yml)\n\n<details><summary>Diagram showcasing how the overall infrastructure can look</summary>\n\n![Infra Overview](https://raw.githubusercontent.com/litetex-oss/mcm-otel-instrumentation-extension/refs/heads/dev/assets/InfraOverview.svg)\n\n</details>\n\nYou may also have a look at the corresponding [development setup](https://github.com/litetex-oss/mcm-otel-instrumentation-extension?tab=readme-ov-file#demo-for-development) as it contains an locally running deployment of the full infrastructure.\n\n<details><summary>Dashboard look</summary>\n\n![Overview](https://raw.githubusercontent.com/litetex-oss/mcm-otel-instrumentation-extension/refs/heads/dev/assets/dashboard-overview.jpg)\n![Network](https://raw.githubusercontent.com/litetex-oss/mcm-otel-instrumentation-extension/refs/heads/dev/assets/dashboard-network.jpg)\n![Chunk Generation](https://raw.githubusercontent.com/litetex-oss/mcm-otel-instrumentation-extension/refs/heads/dev/assets/dashboard-chunk-generation.jpg)\n![Entities](https://raw.githubusercontent.com/litetex-oss/mcm-otel-instrumentation-extension/refs/heads/dev/assets/dashboard-entities.jpg)\n![Player](https://raw.githubusercontent.com/litetex-oss/mcm-otel-instrumentation-extension/refs/heads/dev/assets/dashboard-players.jpg)\n\n</details>\n\n\n### Example [integrations](https://github.com/litetex-oss/mcm-otel-instrumentation-extension/tree/dev/_integrations)\n\n* For [``itzg/minecraft-server``](https://github.com/itzg/docker-minecraft-server) see [here](https://github.com/litetex-oss/mcm-otel-instrumentation-extension/tree/dev/_integrations/itzg-minecraft-server)\n\n## Configuration\n\n<details><summary>The configuration is dynamically loaded from (sorted by highest priority)</summary>\n\n* Environment variables \n    * prefixed with ``OIE_``\n    * all properties are in UPPERCASE and use `_` instead of `.` or `-`\n* System properties\n    * prefixed with ``oie.``\n* A configuration file located in ``.config/oie.json``\n\n</details>\n\n<details><summary>Full list of configuration options</summary>\n\n_Please note that the preconfigured values usually work out of the box.<br/>_\n_You should know exactly what you're doing when doing modifications._\n\n##### General\n\n| Property | Type | Default | Notes |\n| --- | --- | --- | --- |\n| `instrumentation-name` | `String` | `minecraft` | Used as `instrumentationScopeName`. _A name uniquely identifying the instrumentation scope, such as the instrumentation library, package, or fully qualified class name. Must not be null._ |\n| `strip-identifier-namespaces` | `bool` | `true` | Removes namespaces from `Identifier`. Disabling this causes identifiers to look like this `minecraft:overworld` instead of `overworld`.<br/>Usually only required for heavily modded servers. |\n\n##### Metrics\n\n| Property | Type | Default | Notes |\n| --- | --- | --- | --- |\n| `metrics.freeze-when-server-paused` | `bool` | `true` | Stop fetching certain metrics when the server is paused and uses previously cached values. This optimization usually improves the sampling speed for affected metrics by >10x.<br/>Outcomes vary and depend on the work required for fetching and how often the server enters idle mode.<br>_If the server is not using `pauseWhenEmptySeconds` (set to <= 0) this optimization will be ignored._ |\n| `metrics.prefix` | `String` | `minecraft_` | Prefix for all metrics |\n| `metrics.counter-suffix` | `String` | `_total` | Suffix for counters |\n| `metrics.enabled-only` | `List<String>` | - | Only enables the specified metrics.<br/>_ALL OTHER METRICS WILL BE DISABLED!_ |\n| `metrics.enabled-additionally` | `List<String>` | - | Additionally enables the specified metrics.<br/>_This is only relevant for metrics that are not enabled out of the box._ |\n| `metrics.disabled` | `List<String>` | - | Disables the specified metrics |\n| `metrics.enable-player-details-samplers` | `bool` | `true` | Determines if the `PlayerDetailsSamplers` (e.g. Online, TotalXP, XPLevel) are enabled |\n\n</details>\n\n\n",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 843,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6-rc1",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

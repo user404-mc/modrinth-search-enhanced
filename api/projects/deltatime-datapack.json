@@ -1,0 +1,29 @@
+{
+  "id": "FfDHZC8G",
+  "slug": "deltatime-datapack",
+  "title": "Deltatime",
+  "description": "Keep track of the real time even on laggy servers (uses the worldborder method)",
+  "body": "# WARNING!\n- this pack was designed to be used with [Multi world border mod](https://modrinth.com/mod/worldborderfix)\n- if you don't use this mod, you need to adjust the minimal diameter of the worldborder in the datapack (decreasing accuracy) to avoid getting unexpected worldborder damage\n\n## Scoreboard values\nScoreboard objective: deltatime\n- tickdelta -> previous tick duration (defaultly in milliseconds) (maxes out at 10 seconds by default)\n- tickstoadd -> number to add to a counter, which you don't want to be affected by lags (more info below on how to use it effectively)\n- accuracy <- the accuracy of the timings (defaults to 1000 -> milliseconds)\n  - for even more accuracy, you need to edit this datapack's worldborder's minimal values\n  - for even even more accuracy, you need to use my [mod with the same name](https://modrinth.com/mod/deltatime)\n\n## How to use tickstoadd\nexample:\n```\nscoreboard players operation untilactionprev objective = untilaction objective\nscoreboard players operation untilaction objective -= tickstoadd deltatime\nexecute if score untilaction objective matches ..20 unless score untilactionprev objective matches ..20 run function my:action1\nexecute if score untilaction objective matches ..0 unless score untilactionprev objective matches ..0 run function my:action2\n```\n- In this example, we are trying to run \"function my:action2\" after \"untilaction objective\" ticks run and a \"function my:action1\" 1 second before it.\n- If we want to make it independant of server performance, we need to add a larger number of ticks to the counter, if the server lags.\n- This means that there is a possibility that the counter jumps over the 20 or 0.\n- In order to prevent the actions from not executing, we need to have another variable, which tells us the tickcount before the tickstoadd get added (subtracted). Then we need to check if the previous count is higher than our desired value and the current count is exactly or less than our desired value.\n\nIf you just want to time one action, you can just check for ..0 without the helper variable\n\n(note that if you set the counter to a lower/higher (according to the direction of counting) value while the counter is counting and you won't also change the previous count, it will execute everything in between the previous and current value)\n\n## How does the datapack work?\n- worldborder in minecraft does not time itself based on ticks but on real seconds\n- this makes it possible to calculate the time by changing the border's size with a set duration\n- the next tick just get the border's size and calculate how much time passed based on how much has the border changed\n\nAlso check out the [mod version](https://modrinth.com/mod/deltatime) for even better accuracy! (although even less maintained)",
+  "categories": [
+    "cursed",
+    "datapack",
+    "game-mechanics",
+    "library",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 673,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21"
+  ],
+  "date_updated": null
+}

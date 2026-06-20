@@ -1,0 +1,21 @@
+{
+  "id": "5hOThXqO",
+  "slug": "create-track-map-fork-squared",
+  "title": "Create Track Map: Fork²",
+  "description": "Live web map of your Create train network fork² for huge networks.",
+  "body": "# Create Track Map: Fork²\n\nA live web map of your [Create](https://modrinth.com/mod/create) train network, rebuilt for scale. Same map, dramatically faster on huge networks.\n\n> ⚠️ **This is a fork of a fork.** It is **not** the [original](https://modrinth.com/mod/create-track-map) and **not** [AyOhEe's unofficial fork](https://modrinth.com/project/create-track-map-(unofficial-fork)). If your network is small, just use one of those.\n\n## Why this exists\n\nOriginal CTM was built around full-state polling and a Leaflet SVG renderer. Both fall over past a few hundred track segments. This fork keeps the user-visible behaviour identical and rewrites everything underneath:\n\n- OpenLayers canvas renderer with incremental updates\n- Single SSE endpoint with delta updates instead of four full-state streams\n- Train motion interpolated client-side; server polls at 1 Hz instead of 2 Hz\n- Gzip on the wire, 3-decimal coords, server-side curve flattening\n- Per-edge caches and a topology short-circuit so static networks cost almost nothing per tick\n\nResult on a stress test (3000 segments, 200 signals, 20 trains, 5 clients):\n\n| | upstream | this fork |\n|---|---|---|\n| Wire bytes/s | ~6.4 MB/s | ~3 KB/s |\n| Browser ops/tick | ~6000 DOM | ~20 features |\n\n## Compatibility\n\n| Minecraft | Loader | Create |\n|---|---|---|\n| 1.21.1 | NeoForge 21.1.x | ≥ 6.0 |\n| 1.20.1 | Forge 47.1.x (also NeoForge 1.20.1) | ≥ 6.0.6 |\n\n## Wire protocol break\n\nThe four `*.rt` SSE endpoints are replaced by `/api/v2/stream`. Legacy REST GETs still work. Third-party clients on the old streaming API need updating.\n\n## Credits\n\n- [**jenchanws**](https://github.com/jenchanws) — original [Create Track Map](https://modrinth.com/mod/create-track-map)\n- [**AyOhEe**](https://github.com/AyOhEe) — [unofficial fork](https://modrinth.com/project/create-track-map-(unofficial-fork)) that kept it alive across versions\n\nThis fork is by **NexusRealms** and not endorsed by either. **Don't file issues with them about anything in this fork** — report them on our discord",
+  "categories": [
+    "forge",
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 685,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

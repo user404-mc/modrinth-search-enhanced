@@ -1,0 +1,34 @@
+{
+  "id": "akuCeBRp",
+  "slug": "external_view",
+  "title": "External View",
+  "description": "Mod that changes the distance of the camera from the player in third person mode.",
+  "body": "# External View Reloaded\n\nA Forge / NeoForge mod for Minecraft 1.16.5+ based on [External View Reload](https://www.curseforge.com/minecraft/mc-mods/external-view-reload).  \nProvides adjustable third-person camera distance and optional long reach functionality.\n\nCurseForge: https://www.curseforge.com/minecraft/mc-mods/external-view  \nModrinth: https://modrinth.com/mod/external_view\n\n---\n\n## Features\n\n* Adjustable third-person camera distance (default: **Page Up / Page Down**)\n* Long Hand Mode (default: **K**) – increases interaction reach\n* Camera collision option (prevents clipping through blocks)\n* Fully configurable via TOML\n* Works client-only (with command fallback)\n* Optional server-side networking support\n* Permission API support\n* Languages: English, Russian, Simplified Chinese\n\n---\n\n## Configuration\n\nFile:\n\n```txt\nconfig/externalview-common.toml\n```\n\n### Camera\n\n* `cameraSpeed` (default: `0.5`) – zoom step size\n* `viewDistance` (default: `56`) – maximum camera distance\n* `cameraCollision` (default: `true`) – prevent camera clipping\n\n### Reach\n\n* `reach` (default: `40.0`) – reach in Long Hand Mode\n* `defaultReach` (default: `5.0`) – default reach (**vanilla = 5.0**)\n\nWARNING: Changing `defaultReach` may cause issues on some servers.\n\n### Forge 1.16.5 Note\n\nForge 1.16.5 config files do **not** support reliable hot reload.  \nSome configuration changes may require a full game restart to take effect.\n\n---\n\n## Command Fallback (Client-only)\n\nUsed when the server does **not** have the mod installed.\n\n### Forge 1.16.5\n\n```toml\nblockReachCommand = \"attribute @s forge:reach_distance base set {value}\"\n```\n\n### Forge 1.20.1\n\n```toml\nblockReachCommand = \"attribute @s forge:block_reach base set {value}\"\nentityReachCommand = \"attribute @s forge:entity_reach base set {value}\"\n```\n\n### NeoForge 1.21+\n\n```toml\nblockReachCommand = \"attribute @s minecraft:player.block_interaction_range base set {value}\"\nentityReachCommand = \"attribute @s minecraft:player.entity_interaction_range base set {value}\"\n```\n\n* `{value}` will be replaced automatically\n* Invalid commands fallback to default values\n* Requires permission to use `/attribute`\n\n---\n\n## Server Compatibility\n\n### Client-only\n\n* Uses commands to modify reach\n* Requires OP or permission from the server\n* Works on vanilla / Bukkit hybrid / most servers if `/attribute` is allowed\n\n### With server installed\n\n* Uses custom network packets (more reliable)\n* Supports permission control\n* Automatically resets reach when permission is lost\n\nPermission node:\n\n```txt\nexternalview.reach\n```\n\nDefault: OP only\n\nCompatible with permission systems such as:\n\n* LuckPerms\n* Forge Permission API\n* NeoForge Permission API\n\n---\n\n## Version Notes\n\n### Forge 1.16.5\n\nUses Forge reach attribute:\n\n```txt\nforge:reach_distance\n```\n\n### Forge 1.20.1\n\nUses Forge reach attributes:\n\n```txt\nforge:block_reach\nforge:entity_reach\n```\n\n### NeoForge 1.21+\n\nUses vanilla player interaction range attributes:\n\n```txt\nminecraft:player.block_interaction_range\nminecraft:player.entity_interaction_range\n```\n\n---\n\n## Notes\n\n* If `/attribute` is blocked, client-only mode will not work\n* Reach changes affect both block and entity interaction range\n* Command fallback mode is best-effort (no strict failure detection)\n* Supports hybrid servers such as Mohist and Youer\n\n---\n\n## License\n\nLGPL-2.1-or-later",
+  "categories": [
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 152,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

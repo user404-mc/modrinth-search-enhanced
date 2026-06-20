@@ -1,0 +1,22 @@
+{
+  "id": "ji4JdpCu",
+  "slug": "marketguard",
+  "title": "MarketGuard for Hypixel SkyBlock",
+  "description": "Protects you from accidentally over- and underbidding",
+  "body": "# ScamScreener MarketGuard\n\n`ScamScreener MarketGuard` is a client-side Fabric mod that protects you from expensive misclicks in the SkyBlock Auction House. It compares prices in relevant BIN auction screens against the current `Lowest BIN` and blocks risky clicks before you lose coins or accidentally list an item far too cheaply.\n\n## What The Mod Does\n\nMarketGuard currently steps in during two common risk situations:\n\n- When creating a `Create BIN Auction`, the mod checks whether your listed price is significantly below the `Lowest BIN`.\n- When opening a `Bin Auction View`, the mod checks whether the purchase price is significantly above the `Lowest BIN`.\n\nIf a price falls outside your configured tolerance, the click is blocked and you receive a clear chat warning with the item name and percentage difference. That gives you an extra safety stop before an expensive mistake goes through.\n\n## How It Helps You As A Player\n\n- Protects you from typo prices, missing zeroes, and careless input when listing a BIN auction.\n- Prevents impulsive misbuys when a BIN offer is far above the usual market price.\n- Saves coins by stepping in at the exact moment a misclick would become expensive.\n- Stays client-side: no server installation, no interaction with other players, no unnecessary overhead.\n\nThe mod is intentionally not a general-purpose scam scanner for everything. It is a direct price safety layer for the most critical BIN clicks in the Auction House.\n\n## How The Protection Works\n\n1. You open a relevant auction screen.\n2. MarketGuard preloads `Lowest BIN` data in the background.\n3. On a risky click, the mod compares the shown price against the market value.\n4. If the difference is too large, the click is stopped and a warning is shown.\n5. If you still want to continue on purpose, the block can be bypassed after several additional clicks.\n\nThis means accidental mistakes get caught, but intentional decisions are still possible.\n\n## Default Protection Values\n\nBy default, MarketGuard uses these thresholds:\n\n- `Underbidding: 80%`\n  This blocks auctions listed more than `20%` below `Lowest BIN`.\n- `Overbidding: 120%`\n  This blocks purchases that are more than `20%` above `Lowest BIN`.\n\n## Commands\n\nYou can adjust the protection thresholds directly in-game:\n\n- `/marketguard`\n- `/mg`\n- `/marketguard underbidding <0-100>`\n- `/marketguard overbidding <value 100 or higher>`\n\nExamples:\n\n- `/marketguard underbidding 85` allows at most `15%` below `Lowest BIN`.\n- `/marketguard overbidding 130` allows at most `30%` above `Lowest BIN`.\n\nDisabling protection:\n\n- `underbidding 0` or `underbidding 100` disables underbidding protection.\n- `overbidding 100` disables overbidding protection.\n\nThe values are stored in `config/scamscreener_marketguard/config.json`.\n\n## Important Notes\n\n- The mod uses `Lowest BIN` data from the external ScamScreener API.\n- If price data is still loading or temporarily unavailable, MarketGuard blocks the risky click instead of letting it pass blindly. Unless loading has failed.\n- If only stale cached data is available, the mod tells you.\n- On join, the mod can also notify you when a new version is available.\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 228975,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

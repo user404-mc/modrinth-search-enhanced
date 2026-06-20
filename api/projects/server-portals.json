@@ -1,0 +1,27 @@
+{
+  "id": "CzksbjpU",
+  "slug": "server-portals",
+  "title": "Server Portals",
+  "description": "Register serverside portals, which can be built using configured blocks, items to light them up and execute a command\nwhen accessed. [vanilla compatible!]",
+  "body": "# Server Portals\n\nRegister serverside portals, which can be built using configured blocks, items to light them up and execute a command\nwhen accessed. Works with vanilla clients. If this mod is installed on the client as well, the portal frame can get\ndisplayed in different colors configured on the server.\n\nNOTE v1.0 - installing on a client does not work yet due to the fact, that debugging locally with non-authenticated\nclients is pretty insane. I'm currently working on a build script plugin to get local authentication to work, because\nyou cannot debug like this. I'm not going to waste hours of copy pasting jars around, without a debugger attached.\n\n\n## Installation\n\nTo install this plugin **fabric**, **[fabric API](https://modrinth.com/mod/fabric-api)** and\n**[owo-lib](https://modrinth.com/mod/owo-lib)** is required.\n\nThis mod is available on [modrinth](https://modrinth.com/mod/server-portals) with slug `server-portals`.\nThe project source is available on [github/michiruf](https://github.com/michiruf/MCServerPortals) with the latest\nreadme [here](https://github.com/michiruf/MCServerPortals/blob/master/README.md).\n\nInternally this plugin is packed with [kyrptonaught's customportalapi](https://github.com/kyrptonaught/customportalapi),\n[kyrptonaught's CustomPortalApi-Polymer](https://github.com/kyrptonaught/CustomPortalApi-Polymer) and\nbecause of that with [Polymer](https://polymer.pb4.eu/).\n\n\n## Usage instructions\n\n<span style=\"color:darkred;font-weight:bold\">\nNOTE: The server must get restarted to load these changes!<br>\nSo after every change of the portals, restart the server (unfortunately)!\n</span>\n\n---\nList configured portals:\n```\n/serverportals list\n```\n\n---\nRegister a portal\n```\n/serverportals register NAME FRAME_BLOCK LIGHT_UP_ITEM COLOR COMMAND\n```\nFor example: `/serverportals register test minecraft:bone_block minecraft:ender_eye black \"say hello\"` will register a\nportal, with bone blocks as frame, ender eyes as light up activation item to hold in hand while right-clicking and\nprinting out hello from the user that steps into it.\n\n---\nUnregister a portal by its index\n```\n/serverportals unregister NAME\n```\n\n\n## Example configuration file\n\nThe configuration is location in `/config/server-portals.json5`.\nNote that changing the configuration while the server is running, will be overwritten by\ncommands that configure portals.\nLogLevel is currently unused.\n\n```json5\n{\n  \"logLevel\": 0,\n  \"portals\": [\n    {\n      \"index\": \"say_hello_portal\",\n      \"frameBlockId\": \"minecraft:bone_block\",\n      \"lightWithItemId\": \"minecraft:ender_eye\",\n      \"color\": 0,\n      \"command\": \"say \\\"hello world\\\"\"\n    },\n    {\n      \"index\": \"tp_portal\",\n      \"frameBlockId\": \"minecraft:gold_block\",\n      \"lightWithItemId\": \"minecraft:ender_eye\",\n      \"color\": 5592575,\n      \"command\": \"tp @p 0 100 0\"\n    }\n  ]\n}\n```\n\n## Usage together with ProxyCommands\n\nProxyCommands can be found [here](https://github.com/michiruf/MCProxyCommand). To create a portal to another server\nuse the command:\n```\n/serverportals register NAME BLOCK ITEM COLOR \"proxycommand \\\"server SERVERNAME\\\"\"\n```\nFor example:\n```\n/serverportals register server_creative minecraft:bone_block minecraft:ender_eye black \"proxycommand \\\"server creative\\\"\"\n```\n\n\n## Known error reports in server logs\n\nThe customportalapi will check if a portal without a dimension is registered and will print this on every launch of\nthe server:\n```\n[xx:xx:xx] [main/INFO] (Minecraft) [STDOUT]: [customportalapi]ERROR: Dimension is null\n```\nThe configured command will get executed nevertheless. \n\n\n## Changelog\n\nChangelog per release cycle can be found [here](https://github.com/michiruf/MCServerPortals/blob/master/CHANGELOG.md).\nThis changelog contains information from one release to the next one.\n\n\n## License\n\n[MIT License](https://github.com/michiruf/MCServerPortals/blob/master/LICENSE)\n\n\n## Further reading (for devs)\n\n* LoomProductionEnv could be good for real testing\n  https://github.com/DaemonicLabs/LoomProductionEnv\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1123,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

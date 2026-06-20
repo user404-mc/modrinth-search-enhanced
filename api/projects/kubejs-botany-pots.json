@@ -1,0 +1,19 @@
+{
+  "id": "xKoQRM8L",
+  "slug": "kubejs-botany-pots",
+  "title": "KubeJS Botany Pots",
+  "description": "A KubeJS addon that allows you to create crops, soils, and fertilizers for Botany Pots",
+  "body": "This mod allows you to create crops, soils, and fertilizers for the [Botany Pots](https://www.curseforge.com/minecraft/mc-mods/botany-pots) mod. \n\nNote: The Botany Pots mod is not available in Modrinth, so the mod must be downloaded from another source for this mod to work \n\n```js\nServerEvents.recipes(event => {\n    event.recipes.botanypots.crop(\n        \"minecraft:candle\", // seed item\n        [\"oak_leaves\"], // categories that this crop can be planted on\n        10, // growthTicks\n        1, // growthModifier - this can be set to 1 in most cases\n        { block: \"minecraft:candle\" }, // display block\n        [\n            {\n                output: \"minecraft:candle\", // item\n                chance: 100, // weight of this entry compared to the others\n                minRolls: 1, // the minimum times this loot will be chosen\n                maxRolls: 2, // the maximum times this loot will be chosen\n                // for example, when chosen this will give 1 to 2 candles\n            }\n        ]\n    )\n\n    event.recipes.botanypots.soil(\n        \"minecraft:oak_leaves\", // the item that this soil is attached to\n        { block: \"minecraft:oak_leaves\" }, // display block\n        [\"oak_leaves\"], // categories that this soil provides\n        100, // growth ticks that this soil will provide, set to -1 for no modifier\n        0.5 // optional, growth modifier, example: 0.5 means all crops will take half the time\n    )\n\n    event.recipes.botanypots.fertilizer(\n        \"minecraft:iron_ingot\", // fertilizer item\n        10, // min growth ticks applied\n        20 // max growth ticks applied\n        // ex: 10 to 20 ticks will be randomly given to the crop\n    )\n})\n```",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 904,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2"
+  ],
+  "date_updated": null
+}

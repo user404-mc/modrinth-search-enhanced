@@ -1,0 +1,31 @@
+{
+  "id": "3o3inmWM",
+  "slug": "better-tablist",
+  "title": "Better Tablist",
+  "description": "A way to customise your tablist on a forge server.",
+  "body": "# Better TabList\n\nA server-side Minecraft mod that fully customizes the in-game tab list with animated headers/footers, AFK detection, player sorting, and FTB Ranks integration.\n\nSupports **NeoForge**, **Fabric** for Minecraft 1.21–1.21.11 and **Forge** 1.21-1.21.1.\n\n> **Inspired by:** [Tab List on Modrinth](https://modrinth.com/mod/tab-list)\n\n## Overview\n![Showcase of the tablist](https://cdn.modrinth.com/data/3o3inmWM/images/2cf58e8c05e52c0fc875141cfd76afdb5da15d20.png)\n\nBetter TabList replaces the default tab list with a fully customizable version featuring live server data, animated frames, and per-player information.\n\n## Features\n\n- **Animated Header & Footer** — Define multiple frames that cycle automatically with configurable speed\n- **AFK Detection** — Players go grey after a configurable timeout, with an `#AFK` placeholder\n- **Player Sorting** — Sort the tab list alphabetically or by rank (via FTB Ranks)\n- **FTB Ranks Integration** — Optional; uses rank permissions for custom display names and sorting\n- **Hex Color Support** — Full `&#RRGGBB` hex colors alongside standard `&` color codes\n- **Gradient Support** — Smooth color transitions with MiniMessage and TAB-style syntax\n- **Efficient Updates** — Only sends packets when content actually changes\n\n## Installation\n\n1. Download the JAR for your mod loader (NeoForge, Fabric, or Forge).\n2. Place it in your server's `mods/` folder.\n3. Start the server — a `config/tablist.toml` file will be generated with defaults.\n4. Edit the config and restart or do `/tablist reload` to apply changes.\n\n## Configuration\n\nAll settings live in `config/tablist.toml`.\n\n### Placeholders\n\n| Placeholder    | Description                                        |\n|----------------|----------------------------------------------------|\n| `#N`           | New line                                           |\n| `#SERVERNAME`  | Server name (set in config)                        |\n| `#TPS`         | Ticks per second                                   |\n| `#CTPS`        | TPS with automatic color (green/yellow/red)        |\n| `#MSPT`        | Milliseconds per tick                              |\n| `#PLAYERCOUNT` | Number of online players                           |\n| `#MAXPLAYERS`  | Maximum player slots                               |\n| `#PLAYERNAME`  | Viewing player's name                              |\n| `#PING`        | Player ping in ms                                  |\n| `#RANK`        | Player rank (requires FTB Ranks)                   |\n| `#AFK`         | Shows \"AFK\" if the player is AFK, empty otherwise  |\n| `#WORLD`       | Player's current dimension                         |\n| `#MEMORY`      | Memory usage (used / max)                          |\n| `#UPTIME`      | Server uptime                                      |\n| `#DATE`        | Real date (yyyy-MM-dd)                             |\n| `#TIME`        | Real time (HH:mm)                                  |\n\n### Color Codes\n\n- Standard: `&a` (green), `&c` (red), `&l` (bold), `&r` (reset), etc.\n- Hex: `&#FF5555` for any RGB color\n\n### Gradients\n\nGradients smoothly transition text between two or more colors. Two syntax styles are supported:\n\n**MiniMessage-style** (supports 2 or more color stops):\n```\n<gradient:#FF0000:#0000FF>Red to Blue</gradient>\n<gradient:#FF0000:#00FF00:#0000FF>Red to Green to Blue</gradient>\n```\n\n**TAB-style** (exactly 2 colors):\n```\n<#FF0000>Red to Blue</#0000FF>\n```\n\nFormatting codes go inside the gradient tags and are preserved across the text:\n```\n<gradient:#FFD700:#FF4500>&lBold gold to red</gradient>\n<#00FFFF>&oItalic cyan to purple</#AA00FF>\n```\n\n### Display Name Format\n\nThe `display_name_format` option controls how player names appear in the tab list. Use `{name}` and `{rank}` as placeholders:\n\n```\ndisplay_name_format = \"{name} &7#AFK\"\n```\n\n### Example Config\n\n```toml\n[appearance]\nserver_name = \"My Server\"\nheader = [\n    \"#N        <gradient:#FF5555:#FF9955>&l#SERVERNAME</gradient>        #N&#AAAAAA&m            &r#N\",\n    \"#N        <gradient:#5555FF:#55FFFF>&l#SERVERNAME</gradient>        #N&#AAAAAA&m            &r#N\"\n]\nfooter = [\n    \"&fOnline: &e#PLAYERCOUNT&7/&e#MAXPLAYERS #N&7TPS: #CTPS &7| MSPT: &#55FFFF#MSPT #N&7Memory: &#AA55FF#MEMORY &7| Uptime: &#FFAA00#UPTIME\"\n]\ndisplay_name_format = \"{name} &7#AFK\"\nupdate_interval = 500\nanimation_interval = 4\n\n[sorting]\nsort_mode = \"NONE\"\n\n[ftbranks]\nenable_ftbranks_formatting = true\n\n[afk]\nafk_enabled = true\nafk_timeout = 300\n```\n",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 4149,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

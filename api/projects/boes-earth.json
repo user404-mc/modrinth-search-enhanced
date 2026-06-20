@@ -1,0 +1,27 @@
+{
+  "id": "ZD9NcIKj",
+  "slug": "boes-earth",
+  "title": "Boe's Earth",
+  "description": "Blockstates extension for shaders and resourcepacks",
+  "body": "# Boe's Earth\n\n## Description\n\nBoe's Earth is a mod that adds additional blockstated to couple of vanilla blocks.  \nThose blockstates may be later used by shaders or resourcepacks to improve visual fidelity.\n\n## Added blockstates\n\n- `is_on_leaves`:\n  Added to **Snow**, **Vines** and **Carpets**  \n  Example usage (Bliss shader):\n  - Snow on top of waving leaves will wave alongside the leaves\n  - Vines supported by/based on waving leaves will wave with them\n\n\n- `snow_on_top`:\n  Added to **leaves**  \n  Example usage:\n  - Leaves with snow on top will have different texture\n\n## FAQ\n\n**Q:** *Snow/Vines/Carpets are not waving*  \n**A:** *First make sure that your shader supports Boe's Earth, e.g. `Bliss`.   \n&nbsp;&nbsp;&nbsp;&nbsp; Then, make sure their respective blockstates are enabled in the config.  \n&nbsp;&nbsp;&nbsp;&nbsp; At last, naturally generated blocks always have the custom blockstates disabled, they will however update with time.   \n&nbsp;&nbsp;&nbsp;&nbsp; If you want to speed up the updating process, increase the `randomTickSpeed` gamerule, and decrease it back after to its default `3`/`5`*.  \n&nbsp;&nbsp;&nbsp;&nbsp; You can also force an update by placing/destroying the blocks\n\n**Q:** *There is a lot of lag caused by this mod*  \n**A:** *You can disable some of the update logic in the config.  \n&nbsp;&nbsp;&nbsp;&nbsp; On neighbor update updates are the heavies one and can be tuned with max chain updates.  \n&nbsp;&nbsp;&nbsp;&nbsp; Random tick updates are the lighter and are connected to in-game `randomTickSpeed` gamerule*\n\n**Q:** *Forge version?*  \n**A:** *The mod should work with Sinytra Connector, though that is not a guarantee in the future*\n\n## Documentation\n\nThe mods adds just another blockstates to existing blocks.  \nThe usage of those blockstates stays the same as for vanilla blockstates and any other blockstates added by different mods.\n\nOutside of that, the mod also adds an Iris shader define named `BOES_EARTH_BLOCKSTATES`.  \nIt can be used to add Boe's Earth blockstates support to your shader without breaking compatibility with vanilla blockstates.  \nThat does **not** mean Boe's Earth blockstates are incompatible with Optifine or other shader loaders, but there will be no way to knowing shader-side if the mod is present or not!\n\n### Example usage - shader\n\nIris *(vanilla compatible)*:\n```properties\n#ifdef BOES_EARTH_BLOCKSTATES\nblock.56=minecraft:birch_leaves minecraft:acacia_leaves snow:is_on_leaves=true vine:is_on_leaves=true blue_carpet:is_on_leaves=true moss_carpet:is_on_leaves=true\n#else\nblock.56=minecraft:birch_leaves minecraft:acacia_leaves\n#endif\n```\n```properties\n#ifdef BOES_EARTH_BLOCKSTATES\n#define boes_on_leaves = snow:is_on_leaves=true vine:is_on_leaves=true blue_carpet:is_on_leaves=true moss_carpet:is_on_leaves=true\n#endif\n\nblock.56=minecraft:birch_leaves minecraft:acacia_leaves boes_on_leaves\n```\n\nOther shader loaders *(**not** vanilla compatible)*:\n```properties\nblock.56=minecraft:birch_leaves minecraft:acacia_leaves snow:is_on_leaves=true vine:is_on_leaves=true blue_carpet:is_on_leaves=true moss_carpet:is_on_leaves=true\n```\n\n### Example usage - resourcepack\n\n```json\n{\n  \"variants\": {\n    \"layers=1,is_on_leaves=false\": {\n      \"model\": \"minecraft:block/snow_height2\"\n    },\n    \"layers=2,is_on_leaves=false\": {\n      \"model\": \"minecraft:block/snow_height4\"\n    },\n    \"layers=1,is_on_leaves=true\": {\n      \"model\": \"minecraft:block/snow_on_leaves_height2\"\n    },\n    \"layers=2,is_on_leaves=true\": {\n      \"model\": \"minecraft:block/snow_on_leaves_height4\"\n    }\n  }\n}\n```\nOr\n\n```json\n{\n  \"multipart\": [\n    {\n      \"when\": { \"AND\": [\n        {\"layers\": \"1\" },\n        {\"is_on_leaves\": false }\n      ]},\n      \"apply\": { \"model\": \"minecraft:block/snow_height2\" }\n    },\n    {\n      \"when\": { \"AND\": [\n        {\"layers\": \"2\" },\n        {\"is_on_leaves\": false }\n      ]},\n      \"apply\": { \"model\": \"minecraft:block/snow_height4\" }\n    },\n    {\n      \"when\": { \"AND\": [\n        {\"layers\": \"1\" },\n        {\"is_on_leaves\": true }\n      ]},\n      \"apply\": { \"model\": \"minecraft:block/snow_on_leaves_height2\" }\n    },\n    {\n      \"when\": { \"AND\": [\n        {\"layers\": \"2\" },\n        {\"is_on_leaves\": true }\n      ]},\n      \"apply\": { \"model\": \"minecraft:block/snow_on_leaves_height4\" }\n    }\n  ]\n}\n```",
+  "categories": [
+    "adventure",
+    "decoration",
+    "fabric",
+    "magic"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 806,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

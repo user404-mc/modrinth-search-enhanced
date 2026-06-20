@@ -1,0 +1,20 @@
+{
+  "id": "ThZv6LS0",
+  "slug": "toobee-optimization",
+  "title": "TooBee Optimization",
+  "description": "Game optimization mod that focuses on calculation reduction of stacking mobs, despawn condition of monsters and so on",
+  "body": "This project is a public minecraft optimization mod for [TooBee](https://toobee.top/) survival server, including a variety of aspects where each one is designed for a specific occasion.\n\nServer IP: `2ob.top`\n\nThe mod is at a very early stage of development, and please notice that it is dedicated server only.\n\nSupport for the newest minecraft version is updated if and only if TooBee server updates, and yet older version of minecraft is not supported.\n\nFor more detailed information, please read `README.md` in GitHub repo of this project.\n\n# What has been done\n\nMost modifications are ensured to be thread safe.\n\n## Mob Stacking Optimization\n\nCache some of the calculation results of vast amount of certain entities stacking in a single position. I try to optimize the time complexity of such calculation from O(n^2 * log n) to O(n) , which means the MSPT caused by 3000 wardens can be reduced from more than 700 to less than 15. However, notice that this mod is server only, so it should be no use on client side.\nThese mobs are recommended to\n- be the same type;\n- stack in the same dimension and block pos;\n- stand on a solid block steadily;\n- have limited mobility;\n- with climbable block in the position of their feet so that they don't crush.\n\n### Affected Mob\n\n- Warden: usually for pseudo-peace farm in server.\n- Piglin: usually for bartering farm.\n\n### Principle and Attention\n\nCache the calculation results of such mobs every tick: One mob experiences a full calculation process and its result will be cached, while others stacking in the same position share it. In this way, original behaviour of mobs stacking in one block are slightly affected, but not so much and most people don't care about it, as hardly any players interact with these thousands of entities.\n\n## More reasonable despawn condition\n\nIf mobs pickup items, they keep alive permanently unless killed. However, those mobs are not counted into spawn cap, making their population grows endlessly and finally causes huge lags. While a hostile mob (except for enderman) holds the following common items without any components, it will still despawn:\n\n> arrow, bone, brown mushroom, cobbled deepslate, cobblestone, dirt, egg, grass block, gravel, gunpowder, pointed dripstone, red mushroom, rotten flesh, spider eye, string, torch, wheat seeds.\n\nEnderman holding the following items will also despawn:\n\n> brown mushroom, crimson fungus, crimson nylium, crimson roots, dirt, grass block, gravel, red mushroom, sand, warped fungus, warped nylium, warped roots.",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6967,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,40 @@
+{
+  "id": "ajXAHSmP",
+  "slug": "haproxydetectorpaper",
+  "title": "HAProxyDetectorPaper",
+  "description": "HAProxyDetector for Paper and Velocity",
+  "body": "# HAProxyDetector\n\nA lightweight plugin for Paper/Folia and Velocity that makes native HAProxy / Proxy Protocol support compatible with normal direct player connections.\n\n## Core Features\n\n- **Mixed Connection Support**: Accepts real HAProxy/frp proxy traffic and normal direct player traffic at the same time.\n- **Native Parser Compatibility**: Adds a synthetic HAProxy V2 header to direct traffic so the server can continue using its native proxy-protocol parsing flow.\n- **Whitelist Supports Domain / IP / CIDR**: `whitelist` supports single IP entries, CIDR ranges, and domain names.\n- **Minimal Intercept Logging**: Logs when a non-whitelisted proxy connection is blocked, including the frps source IP and client IP.\n\n## How It Works\n\n1. **Real HAProxy traffic**: If a valid HAProxy v1/v2 header is detected, it is passed directly to the server's native parser.\n2. **Normal direct players**: If no HAProxy header exists, the plugin adds a synthetic HAProxy V2 header based on the player's real socket address.\n3. **Synthetic header protection**: Internally marks self-generated headers so later whitelist checks will not mistake them for external frps traffic.\n4. **Whitelist filtering**: When `enable-whitelist` is enabled, only real external proxy sources are checked.\n\n## Supported Platforms\n\n- **Paper / Folia**: Theoretically supports versions with native HAProxy support.\n- **Velocity**: Theoretically supports `3.0.0+`.\n\n## Configuration\n\nPaper and Velocity use the same `config.yml` structure:\n\n```\nenable-whitelist: true\nwhitelist:\n  - 127.0.0.1\n  - \"::1\"\n  - frps.example.com\n  - 203.0.113.0/24\n```\n\n### Whitelist Rules\n\n- **IP**: Exact match.\n- **CIDR**: Network range match, for example `203.0.113.0/24`.\n- **Domain**: Automatically resolved into an IP list when the plugin loads the configuration.\n\n### Notes About Domain Whitelist Entries\n\n- Domain names are resolved when the plugin loads or reloads its configuration, not on every connection.\n- If the DNS result changes later, restart or reload the plugin to refresh the resolved IP list.\n- If a domain temporarily fails to resolve, the plugin will not fail to start and will keep the original config entry.\n\n## Logging Behavior\n\nLogs are only printed when a non-whitelisted HAProxy connection is blocked.\n\nLog fields:\n- `frps`: The real source IP of the upstream proxy server.\n- `client`: The client source IP carried in the HAProxy header.\n\nExample:\n\n```\n[HAProxyDetectorPaper] 拦截非白名单 frps 连接: frps=91.78.69.13, client=91.78.69.13\n```\n\n## Usage\n\n1. **Enable native HAProxy support**:\n   - **Paper / Folia**: Set `proxy-protocol` to `true` in `config/paper-global.yml` (newer versions) or `paper.yml` (older versions).\n   - **Velocity**: Set `haproxy = true` in `velocity.toml`.\n2. **Install the plugin**: Put the plugin JAR into the correct platform plugin directory.\n3. **Configure the whitelist if needed**: If you only want to allow specific frps sources, edit `whitelist` in `config.yml`.\n4. **Restart the server / proxy**.\n\n## Disable / Unload Behavior\n\nThe plugin actively removes its injected Netty handlers during disable or shutdown, so unloading it will not continue affecting new connections.\nFor low-level network plugins in production environments, a full restart is still the safest option.\n\n## Technical Details\n\n- **Netty ChannelPipeline Injection**: Intercepts raw `ByteBuf` at the front of the network pipeline.\n- **Feature Detection**: Uses reflection to locate the server connection structure without depending on one fixed field name.\n- **HAProxy V2 Header Forging**: Generates a standard HAProxy V2 header for direct connections.\n- **Synthetic Marker**: Prevents self-generated headers from being checked again as external proxy traffic.\n",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 120,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

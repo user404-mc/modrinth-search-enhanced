@@ -1,0 +1,31 @@
+{
+  "id": "C7P0p3ig",
+  "slug": "optimizemod",
+  "title": "OptimizeMod",
+  "description": "Reduces server lag by throttling distant entity ticks, suspending mob AI, and limiting particles.",
+  "body": "# OptimizeMod\n\n> Keep distant simulation quiet so active gameplay gets more CPU time.\n\nOptimizeMod is a lightweight **Fabric** optimization mod for Minecraft **1.21.1**.\nIts goal is simple: reduce work on entities and effects that players are not actively interacting with.\n\n## What OptimizeMod changes\n\n### 1. Distance-based movement tick throttling (`EntityTickMixin`)\nHook: `LivingEntity.tickMovement()`\n\n- Players are excluded.\n- If no player is found within sleep distance (`96` blocks by default), non-player living entities skip movement ticks (`ENTITY_TICK_SKIP = 4` by default).\n- If a player is present but farther than reduce distance (`48` blocks), movement updates are throttled (roughly every other tick).\n\n### 2. Distance-based AI throttling (`MobEntityAIMixin`)\nHook: `LivingEntity.tickNewAi()` (for `MobEntity`)\n\n- If no player is found within reduce distance (`48` blocks), AI updates are cancelled for that tick.\n- In mid-distance ranges, AI updates are partially throttled (every other tick).\n- While throttled/cancelled, `despawnCounter` is reset to avoid unwanted despawn side effects.\n\n### 3. Particle throughput cap (`ParticleManagerMixin`, client)\nHook: `ParticleManager.addParticle(...)`\n\n- Particle creation is capped with a local counter (`MAX_PARTICLES_LIMIT = 4000`).\n- Excess particle spawn requests are dropped when the cap is exceeded.\n- Intended to reduce client stutter from extreme particle bursts.\n\n## Important accuracy notes\n\n- OptimizeMod does **not** guarantee fixed FPS/TPS/MSPT improvements.\n- Real impact depends on mob density, player spread, chunk activity, modpack composition, JVM/runtime settings, and test scenario.\n- Behavior changes for distant mobs/entities are intentional by design.\n\n## Reproducible evaluation (recommended)\n\nTo validate impact on your setup, compare baseline vs. OptimizeMod with identical conditions:\n\n1. Same Java version, JVM args, mod list, seed, and config.\n2. Same scenario and duration (recommended: 20-30 minutes per run).\n3. At least 3 baseline runs + 3 OptimizeMod runs.\n4. Collect comparable metrics:\n- p50/p95 MSPT (`spark` or equivalent)\n- CPU usage (process/system)\n- FPS/frame-time (client tests)\n5. Compare distributions (median/p95), not one-off spikes.\n\n## Installation\n\n1. Install Fabric Loader for Minecraft 1.21.1\n2. Install Fabric API\n3. Place the OptimizeMod jar in `mods/`\n\n## Compatibility\n\n- Designed to complement other optimization mods.\n- As with any mixin-based mod, test your exact modpack before production deployment.",
+  "categories": [
+    "fabric",
+    "forge",
+    "optimization"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 2254,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

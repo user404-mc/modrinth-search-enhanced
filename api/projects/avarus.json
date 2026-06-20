@@ -1,0 +1,21 @@
+{
+  "id": "sctXhpXD",
+  "slug": "avarus",
+  "title": "Avarus",
+  "description": "Buy permanent attribute buffs with commands. Server-side and configurable.",
+  "body": "## About\nServer-side Fabric mod adding commands that give the player permanent attribute modifiers at the cost of a large amount of a single item.\n\nBy default contains 43 purchasable buffs designed for a completionist playthrough.\n\n## Commands\n- `/avarus-get <item>`\\\n  example: `/avarus-get carrot_512` - gives 1 max hp for 512 carrots\\\n  Provides a buff by consuming the required number of items (unique to each item) from the player's inventory.\n- `/avarus-help`\\\n  Shows a short help message explaining the mod and its functionality.\n- `/avarus-status`\\\n  Tells you how many buffs are active, which are missing.\n- `/avarus-get-all`\\\n  Provides all the buffs for free at once. Requires permission level 2 and creative mode.\n- `/avarus-remove <item>`\\\n  Removes a buff. Requires permission level 2.\n- `/avarus-remove-all`\\\n  Removes all buffs. Requires permission level 2.\n\n## Configuration\n\nThe configuration can be found at `config/avarus.json`.\n\nBuff entry structure:\n\n- string name:  Optional. The name of the buff used in commands.\n  - `{itemId}_{itemsRequired}` is used if not specified.\n- string itemId: Identifier of the item used to obtain the buff.\n- int    itemsRequired: Number of items required to obtain the buff.\n- string attributeId: Identifier of the Attribute the player gains from the buff\n- double value: Value of the gained attribute as a floating point number.\n- string operationId: Operation type. Valid settings: `addition`, `multiply_base`, `multiply_total`.\n\n[Default configuration](https://github.com/wdfeer/avarus/blob/1.21.1/src/main/resources/data/avarus/default_buffs.json):\n\n```\n{\n  \"buffs\": [\n    {\n      \"itemId\": \"minecraft:sugar\",\n      \"itemsRequired\": 512,\n      \"attributeId\": \"minecraft:generic.movement_speed\",\n      \"value\": 0.075,\n      \"operationId\": \"multiply_base\"\n    },\n    {\n      \"itemId\": \"minecraft:feather\",\n      \"itemsRequired\": 512,\n      \"attributeId\": \"minecraft:generic.movement_speed\",\n      \"value\": 0.075,\n      \"operationId\": \"multiply_base\"\n    },\n    ...\n  ] \n}\n```\n",
+  "categories": [
+    "economy",
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 181,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

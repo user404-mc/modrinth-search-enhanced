@@ -1,0 +1,39 @@
+{
+  "id": "fPmaQiqU",
+  "slug": "antilavacast",
+  "title": "AntiLavaCast",
+  "description": "Prevents high altitude lava placement to stop lava casting on Paper 1.21.x. Uses CoreProtect history (when available) to detect player-placed blocks.",
+  "body": "# AntiLavaCast\n\n![Anti](https://i.imgur.com/p9mElIQ.png)\n\nPrevents high altitude lava placement to stop lava casting on Paper 1.21.x.\n\n## Features\n- Cancels lava bucket placement, flow or both if it is more than the configured height above natural ground.\n- Uses CoreProtect history (when available) to identify player-placed blocks for accurate ground detection.\n- Logs a server alert when a placement is blocked.\n- Supports live config reload and runtime toggling.\n- Lava casting attribution, optional logs will tell you who tried to place lava and where.\n- Maintains natural world lava flow.\n\n```[AntiLavaCast] Blocked lava placement by CevAPI at -85,164,-29 (heightAboveGround=96, groundY=68)```\n\n## Requirements\n- Paper 1.21.x\n- Java 21+\n\n## Install\n1. Download the jar.\n2. Drop the jar into your server `plugins` folder.\n3. Start the server to generate the config.\n\n## Commands\n- `/lavacast reload`\n- `/lavacast enable`\n- `/lavacast disable`\n- `/lavacast setheight <blocks>`\n- `/lavacast drop <on|off>` on allows dropping\n- `/lavacast flow <on|off>` on allows flowing\n- `/lavacast logs <on|off>` on logs blocked placements\n- `/lavacast coreprotect <on|off>` toggles CoreProtect integration\n- `/lavacast coreprotectlookback <seconds|1m|2h|7d|4w>` sets how far back CoreProtect history is searched\n- `/lavacast mark <radius>` marks nearby blocks as player-placed for height checks (max radius 100)\n\n## Permissions\n`lavacast.admin` (default: op)\n\n## Config\n`plugins/AntiLavaCast/config.yml`\n```yaml\nmax-height-above-ground: 20\nenabled: true\nallow-lava-drop: false\nallow-lava-flow: false\nlog-blocked-placements: true\ncoreprotect-enabled: true\ncoreprotect-lookback-seconds: 31536000\n```\n\n## Notes\n- The ground scan ignores player-placed blocks; when CoreProtect is available it will also treat historical placements as player-placed.\n- Use `/lavacast mark <radius>` around old builds to mark them as player-placed if CoreProtect is not available.\n- Marked blocks are stored on disk in `plugins/AntiLavaCast/marks` and persist across restarts.\n- When CoreProtect is enabled and detected, mark storage is disabled and lookups rely on CoreProtect instead.\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 214,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

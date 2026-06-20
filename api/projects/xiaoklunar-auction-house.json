@@ -1,0 +1,33 @@
+{
+  "id": "g4JvXts3",
+  "slug": "xiaoklunar-auction-house",
+  "title": "Xiaoklunar Auction House",
+  "description": "Simple premium auction house plugin",
+  "body": "# Auction\n\nA clean, GUI-first Auction House plugin for **Paper 1.21+** using **Vault** for economy.  \nDesigned to be lightweight, permission-minimal, and easy for both players and developers.\n\n---\n\n## Requirements\n\n- **Paper**: 1.21+\n- **Vault** (plugin)\n- **A Vault-compatible economy plugin** (e.g., EssentialsX)\n\n> Vault does **not** store balances. You must install an economy provider.\n\n---\n\n## Commands\n\n### `/ah`\nOpens the global Auction House GUI.\n\n### `/ah sell <price>`\nLists the item currently in the player’s hand for sale.\n\n- Item must not be `AIR`\n- Item must not be blocked by config\n- Price must be within configured limits\n- Listing limit enforced (normal vs premium)\n\n### `/ah storage`\nOpens **Auction Storage**, showing:\n- Active listings (click to cancel)\n- Cancelled / expired returns (click to claim)\n- Delivery overflow items (when inventory was full on purchase)\n\n### `/ah resell`\nRelists eligible stored items (premium feature + cooldown).\n\n### `/ah <playerName>`\nOpens a view showing **only listings by that exact seller name**.\n\n- Case-sensitive matching\n- Does not validate whether the name belongs to a real player\n- If no listings exist, GUI opens empty\n\n### `/ah search <keyword> [maxPrice]`\nSearches auction listings by keyword.\n\n- No `minecraft:` namespace required\n- Matches:\n  - Material key/name (e.g., `iron_ingot`)\n  - Display name (custom items like “Bulldozer” / “Drill”)\n\nExamples:\n- `/ah search iron`\n- `/ah search net`\n- `/ah search note block 500` *(premium price filter)*\n\n---\n\n## Premium Features\n\nPermission:\n- `auctionhouse.premium`\n\nPremium unlocks:\n- Increased listing limit (default: 20 vs 10)\n- `/ah resell` and “Relist All” button\n- Advanced search price filter (max price argument)\n- Cooldown on relist (default: 60s)\n\nRelist spam protection:\n- “Wait X seconds” message is throttled to **max once per second** per player.\n\n---\n\n## GUI Overview\n\n### Auction House GUI\n- Paginated\n- Edge glass border\n- Buttons:\n  - **Refresh** (nether star)\n  - **Storage** (chest)\n  - **Prev/Next page** arrows (hidden when not usable)\n\nListing lore formatting:\n- Seller name: **Yellow**\n- Price: **Green**\n- Expires in: **Red**\n- Lore is **non-italic**\n\n### Confirm Purchase GUI\n- Click listing → confirm screen:\n  - Green: Buy\n  - Red: Cancel (returns to `/ah`)\n\nPurchase logic:\n- Checks balance **before** opening confirmation\n- On successful buy:\n  - Money is withdrawn\n  - Item delivered to inventory\n  - If inventory full → moved to storage as delivery overflow\n\n### Auction Storage GUI\n- Title: **Auction Storage**\n- Shows:\n  - Active listings (cancelable)\n  - Cancelled returns\n  - Expired returns\n  - Overflow deliveries\n- Back arrow returns to main `/ah`\n\nStatus display:\n- Cancelled: red\n- Expired: red\n- Delivery: yellow\n\n---\n\n## Sounds\n\n- Successful listing: “ding” sound\n- Listing denied (limit reached / not allowed): villager “no”\n- Successful purchase: villager “yes”\n- Seller receives notification + sound on successful sale\n\n---\n\n## Configuration\n\nKey config options include:\n- Listing limits for normal/premium\n- Maximum sell price\n- Premium relist cooldown\n- Blocked item list\n- GUI sound toggles (if present in your build)\n\n*(Exact keys depend on your current shipped config.yml.)*\n\n---\n\n## Installation\n\n1. Drop into `plugins/`:\n   - Vault\n   - Economy plugin (e.g., EssentialsX)\n   - Xiaoklunar Auction\n2. Start server\n3. Configure `config.yml`\n4. Assign premium permission (optional)\n   - Example (LuckPerms):\n     ```\n     /lp group premium permission set auctionhouse.premium true\n     ```\n\n---\n\n## Troubleshooting\n\n### Vault installed but economy not working\nVault needs an economy provider (EssentialsX, etc.). Check console for economy registration logs.\n\n### “Invalid plugin.yml”\nYAML must use spaces (no tabs) and usage strings should be quoted.\n\nHave fun",
+  "categories": [
+    "bukkit",
+    "economy",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 170,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

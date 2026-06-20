@@ -1,0 +1,30 @@
+{
+  "id": "AkK8Fpwf",
+  "slug": "softyclouds",
+  "title": "SoftyClouds",
+  "description": "This vanilla resource pack replaces the default clouds with a 3D version, that changes dynamically depending on the weather and time, generated with value noise.",
+  "body": "![Sky preview](https://cdn.modrinth.com/data/cached_images/12e6af6f83a05a57c5f5a86e9b1fc8802654e681_0.webp)\nA vanilla resource pack that replaces the standard clouds with a dynamical soft 3D clouds using core shaders. Generated using value noise, clouds can be customized in the shader file `shaders/core/sky.fsh`:\n```glsl\n    //                         S E T T I N G S\n    // ------------------------------------------------------------------\n    int num_layers = 16;\n    float mosaic_scale = 4.0;\n    float cloud_height = 2400.0;\n    float thickness = 1024.0 * (1.0 - smoothstep(0.2, 0.8, distance_factor));\n    float cloud_size = 0.1;\n    float cloud_level_height = -1.0;\n    float density_threshold = 0.1;\n    // ------------------------------------------------------------------\n```\nand\n```\nfloat fbm3D(vec3 p) {\n    float value = 0.0;\n    float amplitude = 0.5;\n    float frequency = 0.05;\n\n    int level = 5; // <=======================\n\n    for (int i = 0; i < level; i++) {\n        value += amplitude * noise3D(p * frequency);\n        p *= 2.0;\n        amplitude *= 0.5;\n    }\n    return value;\n}\n```\nLags depend on the settings. If you have a weak computer, I recommend setting the value `int level = 3` for better experience.\n\nClouds reacts to the weather and day/night changes.\n\n_This is a vanilla resource pack, it doesn't require Optifine, Iris or any other modifications._\n\nTested on versions:\n- 26.1.1 ✔\n- 1.21.11 ✔\n- 1.21.10 ✔\n- 1.21.8 ✔\n- 1.21.6 ✔\n- 1.21.5 ⨉\n- 1.21.4 ⨉\n- 1.20.4 ⨉",
+  "categories": [
+    "core-shaders",
+    "environment",
+    "minecraft",
+    "realistic",
+    "vanilla-like"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 233,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "UrtZ8tjJ",
+  "slug": "lifesteal++",
+  "title": "Lifesteal ++",
+  "description": "This Plugin adds a highly customizable Lifesteal Plugin with the main feature being able to swap harts with the person you kill.",
+  "body": "# ❤️ LifestealSwapper\n\nA Paper plugin that adds configurable lifesteal mechanics:\n\n- Killer gains hearts and victim loses hearts on PvP kills.\n- Players drop their own head on death.\n- Placing a player's head triggers configurable heart swapping behavior.\n- Optional tab-list formatting to show each player's max hearts.\n\n## Features\n\n- Fully configurable heart bounds (`min`, `max`, `starting`).\n- Configurable kill transfer values (`killer-gain`, `victim-loss`).\n- Head swap modes:\n  - `FULL_SWAP`\n  - `TRANSFER_FROM_OWNER`\n  - `TRANSFER_TO_OWNER`\n- Configurable messages and sounds.\n- `/lifesteal reload` command.\n- Admin heart management commands.\n\n## Commands\n\n- `/lifesteal reload` - reload plugin config.\n- `/lifesteal hearts get <player>` - view a player's max hearts.\n- `/lifesteal hearts set <player> <amount>` - set max hearts (clamped by config min/max).\n- `/lifesteal hearts add <player> <amount>` - add hearts.\n- `/lifesteal hearts remove <player> <amount>` - remove hearts.\n- `/lifesteal hearts reset <player>` - reset to configured starting hearts.\n\n## Permissions\n\n- `lifesteal.admin` - allows all `/lifesteal` admin commands.\n\n## Configuration\n\nEdit `src/main/resources/config.yml` (or the generated `plugins/LifestealSwapper/config.yml` on your server).\n\nKey sections:\n\n- `hearts` - global heart limits and starting hearts\n- `lifesteal` - kill-based heart transfers\n- `heads` - death head drops and item appearance\n- `head-swap` - behavior when placing a player head\n- `tab-list` - optional tab display of hearts\n- `messages` / `sounds` - UX tuning\n- `permissions` - permission nodes\n\n## Config File:\n\n\n<details>\n<summary>Spoiler</summary>\n\n```\n# LifestealSwapper configuration\n# 1 heart = 2 health points in Minecraft internals.\n\nhearts:\n  starting: 10\n  min: 1\n  max: 20\n\nlifesteal:\n  enabled: true\n  killer-gain: 1\n  victim-loss: 1\n  require-player-killer: true\n  allow-self-kill: false\n\nheads:\n  drop-on-death: true\n  display-name: \"&c%player%'s Head\"\n  lore:\n    - \"&7Place this head to trigger a heart swap.\"\n\nhead-swap:\n  enabled: true\n  mode: FULL_SWAP # FULL_SWAP | TRANSFER_FROM_OWNER | TRANSFER_TO_OWNER\n  transfer-amount: 1\n  remove-placed-head-block: true\n  require-owner-online: true\n  allow-self-use: false\n\njoin:\n  apply-starting-hearts-to-new-players: true\n\ntab-list:\n  enabled: true\n  update-ticks: 40\n  format: \"&7%name% &c%hearts%❤\"\n\nmessages:\n  prefix: \"&8[&cLifesteal&8] \"\n  reload-success: \"&aConfiguration reloaded.\"\n  no-permission: \"&cYou do not have permission.\"\n  player-only: \"&cOnly players can use this.\"\n  owner-offline: \"&cThat head owner must be online to swap hearts.\"\n  self-head-blocked: \"&cYou cannot use your own head.\"\n  kill-victim: \"&cYou lost %victim_loss% heart(s).\"\n  kill-killer: \"&aYou stole %killer_gain% heart(s) from %victim%.\"\n  swap-placer: \"&aYou used %owner%'s head and swapped hearts.\"\n  swap-owner: \"&e%placer% placed your head and swapped hearts with you.\"\n\nsounds:\n  enabled: true\n  kill-victim: ENTITY_WITHER_HURT\n  kill-killer: ENTITY_PLAYER_LEVELUP\n  swap-placer: ENTITY_ENDERMAN_TELEPORT\n  swap-owner: ENTITY_ENDERMAN_TELEPORT\n\npermissions:\n  admin: lifesteal.admin\n\n```\n\n</details>\n\n\n",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 111,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

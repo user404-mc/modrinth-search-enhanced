@@ -1,0 +1,30 @@
+{
+  "id": "kNO8U2JY",
+  "slug": "obscraft",
+  "title": "OBSCraft",
+  "description": "Control OBS using command blocks/datapacks!",
+  "body": "**Right now this is in active development and still in alpha, please report any bugs you find!**\n\nConnect Minecraft directly to OBS Studio using the OBS WebSocket plugin. Allows using command blocks, datapacks, and plugins to trigger various actions in OBS Studio.\n\nThis works by listening for a specially formatted translatable chat message, which is decoded then acted upon. You can generate a tellraw command using the `/obscraft` command.\n\n## Demo Video\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/iM5pzSq7dtU?si=CchAkCgFsPzkmhRx\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>\n\n## Features\n\n- Set the active scene from in-game!\n- Update a Text source's text.\n- Set a source's visibility in a given scene.\n- Set the visible status of a filter on a source. (Also works with plugin filters such as the Move plugin)\n\nEach of these options support both typing literal names as well as looking up names from a scoreboard objective. You can either search for the first player with a specific score or search for the score of a specific player. (Works with both dummy objectives and \"real\" scoreboards)\n\n**NOTE: To have the client \"see\" a scoreboard objective for use in this mod, the scoreboard must be attached to a display. It can be any display, even if it's not visible to the player, like a different teams's sidebar.**\n\n## Commands\n\n- `/obscraft listConnections` - List all OBS connections by ID. Gives connection status for each one.\n- `/obscraft reconnect <id>` - Reconnect to an OBS connection by ID.\n- There are more commands to generate tellraw commands and save actions, but the in-game documentation is setup to show them all as you type.\n\n## Setup\n\n### OBS Studio\n\nFirst, we need to make sure the websocket server is enabled.\n\nIn OBS go to `Tools -> WebSocket Server Settings`.\n\nMake sure of the following:\n- `Enable WebSocket Server` is checked.\n- `Enable Authentification` is checked.\n- Note down the `Server Port` and `Server Password` Press `Show Connect Info` to see it.\n\n### Minecraft\n\nNote: The mod required the [Architectury API](https://modrinth.com/mod/architectury-api) installed to load.\n\nLaunch the game once to generate the config file, it should be with other configuration files for you mods.\n\nIt should look like this:\n```json\n{\n  \"connections\": [\n    {\n      \"ID\": \"default\",\n      \"host\": \"127.0.0.1\",\n      \"port\": 4455,\n      \"password\": \"password\"\n    }\n  ],\n  \"savedActions\": {},\n  \"savedActionKeys\": {}\n}\n```\n\n- `ID` is a unique identifier for the connection. You can have multiple connections to different OBS instances.\n- `host` is the IP address of the computer running OBS. If it's on the same computer, use `127.0.0.1`\n- `port` is the port number from the OBS WebSocket settings.\n- `password` is the password from the OBS WebSocket settings.\n\nFor a simple setup just make sure port and password match the OBS settings.\n\nAfter that restart the game and you should be good to go! Make sure everything is connected by running `/obscraft listConnections` and `default` should show up under Available Connections.",
+  "categories": [
+    "fabric",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 860,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

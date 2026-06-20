@@ -1,0 +1,29 @@
+{
+  "id": "RyrUIzkQ",
+  "slug": "complex-leaf-culling",
+  "title": "Complex Leaf Culling",
+  "description": "Multi-tier leaf culling for Sodium. Block cancellation, pass demotion, and face culling for dense modded forests (WWOO, etc.).",
+  "body": "# Complex Leaf Culling\n\nA multi-tier leaf culling mod for Minecraft 1.21.1 (Fabric + Sodium), designed for modpacks with dense foliage from mods like William Wyther's Overhauled Overworld (WWOO) where vanilla culling leaves significant performance on the table.\n\n**NOTE:**  \n_I've tested this locally on a heavily modded (300+ mods) instance, and have had others with differing computer specs test it as well. It has thusfar worked without issue, but that doesn't mean there may not be some problems. This has been made as compatible as I can personally manage, but for those with bigger brains than I have they can fork it and modify it as needed. I'm a new dad, so I may not be the one to swiftly fix issues or extend its compatibility._\n\n## What it does\n\nComplex Leaf Culling applies three independent culling strategies that complement each other:\n\n**Standard Leaf Culling** (Tier 1 - all renderers)\nMarks shared faces between adjacent leaf blocks as invisible during mesh building. Works for all leaf blocks and cooperates directly with Sodium's occlusion system. This is what most culling mods do.\n\n**Extended Leaf Culling** (Tier A - Sodium only)\nCancels rendering entirely for interior leaf blocks that are fully surrounded by other leaves. Zero geometry is generated for these blocks. Most effective in dense WWOO canopies and other modded forests where standard culling misses blocks it doesn't recognise.\n\n**Edge Pass Demotion** (Tier B - Sodium only)\nLeaf blocks on the edge of a canopy that partially qualify (one neighbour below the cancel threshold) are demoted from expensive translucent rendering to cheaper cutout rendering. Leaf shapes are fully preserved - only the render pass changes. Most noticeable with shader packs like Iris where translucent geometry is disproportionately expensive.\n\n## Requirements\n\n- Minecraft 1.21.1\n- Fabric Loader >= 0.16.0\n- Fabric API\n- [Sodium](https://modrinth.com/mod/sodium) - **NOTE:** _Tested with version 0.6.13. Newer/older versions may not work if hooks have moved/changed internally._\n\n## Recommended\n\n- [Iris Shaders](https://modrinth.com/mod/iris) - Tier B pass demotion gives the most visible benefit with shaders active\n- [ModMenu](https://modrinth.com/mod/modmenu) - provides access to the in-game config screen\n\n## Configuration\n\nOpen the config screen via ModMenu, or use the `/clc` command in-game:\n\n```\n/clc status\n/clc reload\n/clc set enabled true|false\n/clc set mode CONSERVATIVE|BALANCED|AGGRESSIVE\n/clc set threshold 0-6          (0 = auto from mode)\n/clc set standardCulling true|false\n/clc set extendedCulling true|false\n/clc set passDemotion true|false\n/clc set extendedDetect true|false\n```\n\n### Culling Modes\n\n| Mode | Neighbours Required | Description |\n|---|---|---|\n| CONSERVATIVE | 6/6 | Only perfectly buried blocks. Safest visuals. |\n| BALANCED | 5/6 | Good balance of performance and appearance. Default. |\n| AGGRESSIVE | 4/6 | Maximum performance. Slight edge thinning possible. |\n\n**Extended Leaf Detection** - when enabled, blocks whose registry path contains `leaf`, `leaves`, or `foliage` are treated as leaves even if not tagged `minecraft:leaves`. Required for full WWOO compatibility.\n\n## Compatibility\n\n| Mod | Status |\n|---|---|\n| Sodium 0.6.x | Required |\n| Iris | Full compatibility, Tier B most effective here |\n| Distant Horizons | No interaction (DH handles its own LOD geometry) |\n| C2ME | Compatible |\n| EntityCulling | Separate concern, no conflict |\n| MoreCulling | Complementary - covers different block types |\n| SodiumLeafCulling | Redundant - both target the same pipeline. Use one or the other. |\n| WWOO | Primary use case |\n\n## Performance notes\n\nAll culling work happens during chunk mesh building on Sodium's worker threads - not during rendering. There is no per-frame CPU cost. The performance benefit is realised when chunks are built or rebuilt (world load, block changes, F3+A, or saving settings).\n\n## Building from source\n\n```bash\ngit clone https://github.com/YOUR_GITHUB_HERE/complex-leaf-culling\ncd complex-leaf-culling\n\n# Place sodium-fabric-0.6.x+mc1.21.1.jar in libs/\n./gradlew build\n```\n\nThe built jar will be in `build/libs/`.\n\n## License\n\nMIT - free to fork, modify, and redistribute with attribution. See [LICENSE](LICENSE).",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 7352,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

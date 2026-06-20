@@ -1,0 +1,24 @@
+{
+  "id": "ubueRLtK",
+  "slug": "serverlinkssender",
+  "title": "ServerLinksSender",
+  "description": "Built on vanilla 1.21 functionality. Provide players with links they can open up in-game via their pause menu!",
+  "body": "# ServerLinksSender\n\n## Context\n\nMinecraft 1.21 released a new feature, allowing vanilla servers to send vanilla clients certain links which the client then can display in the pause menu under a new option called Server Links. In there they are listed and can be clicked on.\n\nVanilla only exposes sending a “Bug report link” that players can use to report bugs on the server, but the system is capable of doing much more! That’s where this mod comes in.\n\n## Description\n\nServerLinksSender allows to configure custom button labels and links for those, so you can supply your very own links and labels for things like server website, vote links, discord links, etc. and periodically update them as the server runs.\nAdditionally, this supports [placeholder API and quicktext](https://placeholders.pb4.eu/user/general/), allowing for easy and dynamic text components.\nFinally, you can make use of the [Predicate API](https://github.com/Patbox/PredicateAPI/blob/1.21/BUILTIN.md) to send certain links only under certain conditions, for example, send a link to the staff docs only to players with the staff permission or send a link with event rules if players are in the event world!\n\n## Limitations\n\nFirst things first, you are **not able to use clickevents or hovereffects of any sort** as these are used in a button, not chat. I have not tested everything, but can confirm **text decorations and colours work fine**.\n\nAdditionally, the vanilla server links screen does **NOT** re-render if the new links gets sent. It will only re-render whenever the player actually opens it, and then it **only gets rendered once**, meaning you can't do super dynamic placeholders like worldtime as they don't get updated as the played looks at them.\n\n## Commands\n\n| Command                               | Permission               | Description                                                                                                                                                                                                                                        |\n|---------------------------------------|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| `/reloadserverlinks [--force-update]` | `serverlinks.main` | Reloads the config from file and can optionally send the new list to all currently online players; this is especially useful if the players only get the links once (more on that below) and you want to update the links without having to re-log |\n\n## Example config\n\nThe mod creates a default configuration that you can use as a baseline, below is a similar configuration with some explanations (marked with `//`\n\n```json\n{\n// how many ticks should pass before the list gets sent to all players again\n// you will need this if you have placeholders in use that change throughout user's play session. Setting this to 20 means it gets sent roughly every second. Lower than 20 is not recommended.\n// Setting this to -1 will disable periodic updates, meaning players will only get the list when they login (or --force-update is used)\n  \"refresh_interval\": -1,\n// list of links to get sent to all users without any condition\n  \"global_server_links\": {\n    \"<red><bold>My cool link!\": \"https://google.com\"\n  },\n// multiple sets of links that can be sent additionally to those above if the player matches the requirements (e.g. has a certain permission or is in a certain world)\n  \"additional_links\": [\n    {\n      \"links\": {\n        \"<rb>My cool extra link!\": \"https://google.com\"\n      },\n      // for more info on how to use this, see here https://github.com/Patbox/PredicateAPI/blob/1.21/BUILTIN.md\n      \"requirement\": {\n        \"type\": \"permission\",\n        \"permission\": \"example.permission\",\n        \"operator\": 2\n      }\n    }\n  ]\n}\n```",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 476,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3"
+  ],
+  "date_updated": null
+}

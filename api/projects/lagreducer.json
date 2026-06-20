@@ -1,0 +1,25 @@
+{
+  "id": "Ga5QsrBe",
+  "slug": "lagreducer",
+  "title": "LagReducer",
+  "description": "A plugin that will help a server from lagging.",
+  "body": "LagReducer — dynamic distances, safe clearing, and smart entity caps for Paper 1.21.8\nKeep TPS high without gutting gameplay. LagReducer dynamically lowers a player’s view/simulation distance only while they’re moving fast, periodically clears clutter with safety guards, and caps entity counts per-chunk with precise, configurable rules.\n\nWhy use LagReducer?\n- Smooth performance: Reduce client/server load only when it matters (elytra/flying/vehicles/high speed).\n- Safe cleanup: Configurable warnings, blacklists, and name exemptions protect valuables and pets.\n- Hard caps where you need them: Per-chunk totals, categories, and per-type limits with a limiter blacklist.\n\nFeatures\n- Dynamic Distance (per-player)\n  - Lowers view and simulation distance while: flying, gliding, in vehicles, or exceeding a speed threshold (blocks/sec).\n  - Auto-restores distances after slowing down (with hysteresis and minimum switch delay).\n  - Honors a bypass permission for staff/testing.\n- Clear Items & Entities\n  - Automatic timed clearing with broadcast warnings (customizable times).\n  - Category toggles: items, living entities, XP orbs, projectiles, misc.\n  - Blacklists for item materials and entity types.\n  - Optional “exempt named entities” to protect pets and named mobs.\n- Entity Limiter (per-chunk)\n  - Limits for total, items, living, monsters, animals, ambient.\n  - Per-entity-type caps (e.g., ZOMBIE: 12).\n  - Limiter blacklist: completely ignore certain types (don’t count them and never cancel them).\n  - Ignore selected spawn reasons (e.g., CUSTOM, COMMAND, SPAWNER_EGG).\n  - Debug logging option.\n\nCommands\n- /lagreducer reload — Reload config and restart features\n- /lagreducer clear — Run an immediate clear\n- /lagreducer status — Show feature toggles and clear interval\nAlias: /lr\n\nPermissions\n- lagreducer.admin — Use reload/status and admin functions\n- lagreducer.clear — Allow manual clear command\n- lagreducer.bypass.distance — Exempt player from dynamic distance changes\n\nConfig at a glance\n- Dynamic distance tuning:\n  - sampleTicks, speedThresholdBps, restoreHysteresisFactor, minSwitchMillis\n  - fastViewDistance, fastSimulationDistance, consider: flying/gliding/vehicles\n- Clearer safety:\n  - warnAtSeconds, exemptNamedEntities\n  - entityBlacklist, itemBlacklist\n- Entity limiter controls:\n  - perChunk: total/items/living/monsters/animals/ambient (set -1 to disable a cap)\n  - perType: per-entity-type caps\n  - blacklist: types ignored entirely by the limiter\n  - ignoreSpawnReasons, debug\n\nExample config snippet\n```yaml\ndynamicDistance:\n  enabled: true\n  sampleTicks: 10\n  speedThresholdBps: 12.0\n  restoreHysteresisFactor: 0.7\n  minSwitchMillis: 1500\n  fastViewDistance: 6\n  fastSimulationDistance: 4\n  consider: { flying: true, gliding: true, vehicles: true }\n\nclearer:\n  enabled: true\n  intervalSeconds: 600\n  warnAtSeconds: [60, 30, 10, 5, 3, 2, 1]\n  exemptNamedEntities: true\n  categories: { items: true, living: true, xpOrbs: true, projectiles: false, misc: false }\n  entityBlacklist: [ARMOR_STAND, ITEM_FRAME, PAINTING]\n  itemBlacklist: [NETHER_STAR, DRAGON_EGG, SHULKER_BOX]\n\nentityLimiter:\n  enabled: true\n  blacklist: [ARMOR_STAND, ITEM_FRAME, PAINTING]\n  perChunk:\n    total: 150\n    items: 80\n    living: 100\n    monsters: 60\n    animals: 60\n    ambient: 20\n  perType: { ZOMBIE: 12 }\n  ignoreSpawnReasons: [CUSTOM, SPAWNER_EGG, COMMAND]\n  debug: false\n```\n\nCompatibility and requirements\n- Server: Paper 1.21.5+ (and compatible forks)\n- Java: 21\n- No NMS, API-only; safe across minor patches.\n- No external dependencies.\n\nInstallation\n- Drop LagReducer.jar into plugins/\n- Start the server to generate config\n- Edit plugins/LagReducer/config.yml\n- Use /lagreducer reload to apply changes\n\nNotes\n- Set any limiter value to -1 to disable that specific cap.\n- Blacklists protect entities/items from clearing or limiting.\n- Works alongside most optimization plugins; avoid running multiple “clear lag” plugins at once to prevent conflicts.",
+  "categories": [
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 373,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

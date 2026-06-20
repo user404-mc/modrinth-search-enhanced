@@ -1,0 +1,32 @@
+{
+  "id": "mrSESjNK",
+  "slug": "tfc-registry-api",
+  "title": "TFC Registry API",
+  "description": "Dynamically discovers and unifies access to all mod-added TFC registry types (metals, woods, ores, rocks, soils, sands, soil variants) from any mod using the registry interfaces.",
+  "body": "# TFC Registry API\n\nA lightweight library mod that automatically discovers and unifies **all** TerraFirmaCraft registry types added by any mod. It works with **any** addon, as long as they correctly implement this library's registry interfaces or TFC's own:\n\n- `RegistryMetal`\n- `RegistryRock`\n- `RegistrySoilVariant`\n- `RegistryWood`\n\nWhere these are provided by this library:\n- `RegistryOre`\n- `RegistrySand`\n- `RegistrySoil`\n\n### How discovery works\n\nThe mod automatically finds all types **if**:\n- The type implements the correct `Registry[Type]` interface\n- The type is an **enum** (required for auto-discovery)\n\nIf an addon does **not** use enums or needs manual registration, it can still be supported by the addon developer by calling the helper registration methods directly:\n\n\nExample: manually register soil variants from a non-enum source\n```java\nSoilVariantRegistryHelper.registerTypes(\n    YourSoilVariantClass.class,\n    List.of(yourVariant1, yourVariant2, ...),\n    \"yourmodid\"\n);\n```\nSame method exists in every helper class:\n```java\nMetalRegistryHelper.registerTypes(...)\nWoodRegistryHelper.registerTypes(...)\nRockRegistryHelper.registerTypes(...)\nOreRegistryHelper.registerTypes(...)\nSoilRegistryHelper.registerTypes(...)\nSandRegistryHelper.registerTypes(...)\nSoilVariantRegistryHelper.registerTypes(...)\n```\n\nCode examples:\n\n```java\n// Metals\nList<RegistryMetal> allMetals = MetalRegistryHelper.getAllMetalValues();\nRegistryMetal brass = MetalRegistryHelper.getMetalValueOrDefault(\"brass\");\n\n// Woods\nList<RegistryWood> allWoods = WoodRegistryHelper.getAllWoodValues();\nRegistryWood ebony = WoodRegistryHelper.getWoodValueOrDefault(\"ebony\");\n\n// Rocks\nList<RegistryRock> allRocks = RockRegistryHelper.getAllRockValues();\nRegistryRock marble = RockRegistryHelper.getRockValueOrDefault(\"marble\");\n\n// Ores\nList<RegistryOre> allOres = OreRegistryHelper.getAllOreValues();\nRegistryOre sphalerite = OreRegistryHelper.getOreValueOrDefault(\"sphalerite\");\n\n// Soils\nList<RegistrySoil> allSoils = SoilRegistryHelper.getAllSoilValues();\nRegistrySoil duff = SoilRegistryHelper.getSoilValueOrDefault(\"duff\");\n\n// Sand colors\nList<RegistrySand> allSands = SandRegistryHelper.getAllSandValues();\nRegistrySand white = SandRegistryHelper.getSandValueOrDefault(\"white\");\n\n// Soil variants\nList<RegistrySoilVariant> allVariants = SoilVariantRegistryHelper.getAllSoilVariantValues();\nRegistrySoilVariant inceptisol = SoilVariantRegistryHelper.getSoilVariantValueOrDefault(\"inceptisol\");\n```\n\nAll `get[Type]ValueOrDefault(\"name\")` methods are case-insensitive and return a safe fallback if not found.\n\nFor example, iterating over the `List<RegistryWood>` list, can yield a list of wood types like this, where this shows a scenario with [ArborFirmaCraft](<https://modrinth.com/mod/arborfirmacraft-(afc)>) installed:\n\n```java\nacacia, ash, aspen, birch, blackwood, chestnut, douglas_fir, hickory, kapok, mangrove, maple, oak, palm, pine, rosewood, sequoia, spruce, sycamore, white_cedar, willow, araucaria, baobab, beech, cypress, eucalyptus, fig, ginkgo, hevea, ipe, ironwood, mahoe, mahogany, teak, tualang\n```\nYou can easily register new blocks using the lists/getters provided by the helpers. Here is shown an example of how to add a new `SoilBlock` for all registered soil types and soil variants:\n```java\npublic static final Map<RegistrySoil, Map<RegistrySoilVariant, Id<Block>>> NEW_SOIL_BLOCKS =\n    SoilRegistryHelper.getAllSoilValues().stream()\n        .collect(Collectors.toMap(\n            type -> type,\n            type -> SoilVariantRegistryHelper.getAllSoilVariantValues().stream()\n                .collect(Collectors.toMap(\n                    variant -> variant,\n                    variant -> register(type.toString() + \"/\" + variant.toString(),\n                        () -> new SoilBlock(Block.Properties.of().mapColor(MapColor.DIRT).strength(1.4f), type, variant))\n                ))\n        ));\n```\nFor example: if a block/item/entity/whatever constructor *insists* on using e.g. `SoilBlockType`, such as [ConnectedGrassBlock](<https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.21.x/src/main/java/net/dries007/tfc/common/blocks/soil/ConnectedGrassBlock.java>), you can safely cast your `soil` from the RegistrySoil interface to it like this `(RegistrySoil)(Object)soil` (*or however else you prefer to do it*), since I've made TFC's `SoilBlockType`enum class implement the custom `RegistrySoil` interface.\n\nIdeal for addons, modpack makers, or any setting that needs to work with every TFC-compatible metal, wood, rock, ore, soil, sand, or variant regardless of which mods are installed. \n\nFor example, you can use the registry type lists created by this library, to easily create new blocks, items, entities etc. for all of or the desired entries of the specific type.",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 4593,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

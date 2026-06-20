@@ -1,0 +1,18 @@
+{
+  "id": "HpZy7yoR",
+  "slug": "crypt-mimic",
+  "title": "Crypt: Mimic",
+  "description": "Data-driven fake-player NPCs",
+  "body": "[![Made for ModFest: Carnival](https://raw.githubusercontent.com/ModFest/art/v2/badge/svg/carnival/cozy.svg)](https://modfest.net/carnival)\n\nNot what I set out to make, but still something cool :3\n\n### Usage guide\n#### Spawning\n`/crypt-mimic <identifier> <x> <y> <z> <nbt>`\\\nThe npc will act as an armour stand until it is locked with:\\\n`/data modify entity <seletor> Locked set value True`\\\nWhile it is unlocked interacting will modify items, once locked dialog actions will show.\\\nYou can also modify model part rotations just as you would an armour stand.\n<details>\n<summary>NBT tags</summary>\n\n```\nNpcId - The npc types id\nArmourItems - A list of item stack compounds\nHandItems - A list of item stack compounds\nSmall - Boolean for small model\nLocked - Boolean for locked model\nPose - Compound of pose rotations.\nPose.Head - A list of floats, euler for Head rotation.\nPose.Body - A list of floats, euler for Body rotation.\nPose.LeftArm - A list of floats, euler for Left Arm rotation.\nPose.RightArm - A list of floats, euler for Right Arm rotation.\nPose.LeftLeg - A list of floats, euler for Left Leg rotation.\nPose.RightLeg - A list of floats, euler for Right Leg rotation.\n```\n</details>\n\n#### NPCs\n`data/<namespace>/crypt-mimic/npc/<id>.json`\n```json5\n// note: this example uses json5 for the comments, use regular json for actual data\n{\n  // `name` uses the vanilla Text codec, so you can build fancy things\n  \"name\": [ // required\n    {\n      \"type\": \"translatable\",\n      \"translate\": \"npc.<namespace>.<id>.name\"\n    }\n  ],\n  // `title` also uses the vanilla Text codec\n  \"title\": [ // optional\n    {\n      \"type\": \"translatable\",\n      \"translate\": \"npc.<namespace>.<id>.title\"\n    }\n  ],\n  \"skin\": { // optional\n    \"texture\": \"<namespace>:textures/entity/npc/<id>.png\", // required\n    \"hasSlimArms\": true // optional, defaults to false\n  },\n  \"action\": { // optional\n    \"action\": \"crypt-mimic:show_dialog\", // required\n    \"value\": \"<namespace>:dialog_<id>\" // may be required, dependent on `action`\n  }\n}\n```\n#### Dialog\n`data/<namespace>/crypt-mimic/dialog/<id>.json`\n```json5\n// note: this example uses json5 for the comments, use regular json for actual data\n{\n  // `text` uses the vanilla Text codec\n  \"text\": [ // required\n    {\n      \"type\": \"translatable\",\n      \"translate\": \"dialog.<namespace>.<id>\"\n    }\n  ],\n  \"actions\": [ // required, even if empty but should contain at least one\n    {\n      \"action\": \"crypt_mimic:show_dialog\", // required\n      \"value\": \"<namespace>:<different_id>\" // may be required, dependent on `action`\n    }\n  ]\n}\n```\n#### Custom dialog actions\nDialog actions use the `action.<namespace>.<id>` translation key.\n```java\nimport gay.pyrrha.mimic.dialog.DialogAction;\nDialogAction.getEVENT().register((player, entity, action) -> {\n    // do things\n});\n```\n<details>\n<summary>Kotlin Example</summary>\n\n```kotlin\nimport gay.pyrrha.mimic.dialog.DialogAction\nDialogAction.EVENT.register { player, entity, action ->\n    // do things (but in kotlin :3)\n}\n```\n\n</details>\n\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2478,
+  "followers": 0,
+  "game_versions": [
+    "1.21"
+  ],
+  "date_updated": null
+}

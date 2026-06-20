@@ -1,0 +1,21 @@
+{
+  "id": "vZzxccCI",
+  "slug": "mercantile",
+  "title": "Mercantile",
+  "description": "Adds a simple currency system with optional Create 6+ integration",
+  "body": "<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/kvnmtz/mercantile/refs/heads/main/docs/logo_400x400.webp\" alt=\"Title\"/>\n  <br><br>\n  <img alt=\"mc-versions\" height=\"56\" src=\"https://raw.githubusercontent.com/kvnmtz/mercantile/refs/heads/main/docs/badge_mc_versions.svg\">\n  &nbsp\n  <img alt=\"forge\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg\">\n  &nbsp\n  <img alt=\"fabric\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg\">\n</p>\n\n# 🪙 Mercantile\n\nThis mod adds a simple currency to Minecraft: copper, silver and gold coins (configurable).\nWhile holding a coin and right-clicking, its value will be stored in your \"purse\".\nYou can get the coins back by clicking the respective buttons in your inventory.\n\nThere is no way to get the items (currently), apart from creative mode or commands.\nThis means, you'll have to come up with your own economy system for your server. \\\nSome ideas:\n- Admin shops, exchanging goods (e.g. Wheat) for coins\n- Add coins to chest loot tables using KubeJS + LootJS (this works best with the Lootr mod, so everyone has a chance to loot coins)\n- Coins as quest rewards (using something like FTB Quests)\n\n## Create Shopkeeper Integration\n\nIf you have Create 6+ installed, this mod will enable you to pay super easily with your stored coins at shopkeepers!\nAny coins you have in your inventory will be stored before the purchase. \\\nHere is how such an interaction might look like ingame:\n\n![Create Shopkeeper Integration](https://raw.githubusercontent.com/kvnmtz/mercantile/refs/heads/main/docs/create_integration.webp)\n\n## Adding your own coins\n\nThe mod provides standard textures and item models for copper, silver and gold coins (with different textures depending on the item stack size). \\\n(I am no artist, so I used existing textures from the Thermal Series mods made by Team CoFH.)\n\nIf you add any other coins you need to also provide a resource pack with corresponding textures and item models for these items.\nYou may also want to add the `#mercantile:coin` tag to any new coins using a datapack or something like KubeJS.\n\n### Example\n\nIf you want to add a platinum coin, you first need to declare it and its value in the `config/mercantile-common.properties` config file.\nYou can do this by adding this line to the file:\n```properties\nplatinum = 10000\n```\n\n>Note: The coin definitions in this file need to be the same on client and server.\n\nThis creates a `mercantile:platinum_coin` item with a value of 10,000.\n\nNow you need to provide a resource pack with the corresponding textures and item models. \\\nAn example for such a resource pack is provided for this specific example in the [GitHub repository](https://github.com/kvnmtz/mercantile/tree/main/resourcepack-example).\n\n## Tips for modpacks\n\n- Include a way to get coins\n- If you use the default textures and have Thermal Series mods installed, you may want to remove the recipes for Thermal's own coins using something like KubeJS:\n  ```js\n  ServerEvents.recipes(event => {\n    event.remove({ input: /^thermal:.+_coin$/ });\n    event.remove({ output: /^thermal:.+_coin$/ });\n    event.remove({ id: /^thermal:machines\\/press\\/press_.+_to_coin$/ });\n  });\n  ```",
+  "categories": [
+    "economy",
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 151,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

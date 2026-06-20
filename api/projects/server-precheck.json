@@ -1,0 +1,18 @@
+{
+  "id": "BdYE9zk0",
+  "slug": "server-precheck",
+  "title": "Server PreCheck",
+  "description": "A Fabric mod for Minecraft that allows server administrators to control which mods clients may have installed when connecting. Allows for granular control over individual users and their mods.",
+  "body": "A Fabric mod for Minecraft that allows server administrators to control which mods clients can use when connecting.\n\n## Overview\n\n**Required on both client and server.** The client sends its mod list to the server, which validates it against configured rules before allowing connection.\n\n## Installation\n\n1. Download the mod JAR file\n2. Place it in your `mods` folder (both client and server)\n3. Start Minecraft/Server\n4. Configure the server settings (see below)\n\n## Quick Start\n\n1. **Generate your whitelist**: Have a client with acceptable mods run `/serverprecheck build whitelist` to copy the mod list to clipboard\n2. **Configure**: Edit `config/server_precheck-config.json` on your server\n3. **Choose mode**: Set `USE_WHITELIST_ONLY` to `true` (whitelist) or `false` (blacklist)\n4. **Optional**: Add player UUIDs to `EXEMPT_PLAYERS` to bypass checks\n\n## Configuration\n\n### Validation Modes\n\n**Blacklist Mode** (default, `USE_WHITELIST_ONLY = false`)\n- Allows all mods except those in `CLIENT_MOD_BLACKLIST`\n- Default blacklist: `aristois`, `bleachhack`, `meteor-client`, `wurst`\n\n**Whitelist Mode** (`USE_WHITELIST_ONLY = true`)\n- Only allows mods in `CLIENT_MOD_WHITELIST`\n- Stricter control for curated modpacks\n\n### Key Configuration Options\n\n| Option | Type | Description |\n|--------|------|-------------|\n| `USE_WHITELIST_ONLY` | Boolean | `false` = blacklist mode, `true` = whitelist mode |\n| `CLIENT_MOD_NECESSARY` | Array | Mods required to join (default: `[\"server_precheck\"]`) |\n| `CLIENT_MOD_WHITELIST` | Array | Allowed mods in whitelist mode |\n| `CLIENT_MOD_BLACKLIST` | Array | Banned mods in blacklist mode |\n| `EXEMPT_PLAYERS` | Array | Player UUIDs that bypass all checks |\n| `MODPACK_NAME` | String | Shown in disconnect messages |\n| `CUSTOM_DISCONNECT_MESSAGE` | String | Overrides default disconnect message |\n\n**Message customization options** (`MSG_HEADER`, `MSG_UNAUTHORIZED_HEADER`, `MSG_MISSING_HEADER`, etc.) support i18n translation keys.\n\n## Client Commands\n\n| Command | Description |\n|---------|-------------|\n| `/serverprecheck list` | Lists all installed mods |\n| `/serverprecheck count` | Shows the number of installed mods |\n| `/serverprecheck build whitelist` | Copies mod list to clipboard for config |\n\n## Utilities\n\n**Finding a Mod ID**: Open the mod's JAR file → `fabric.mod.json` → look for the `\"id\"` field\n\n**Finding a Player UUID**: Use [NameMC](https://namemc.com/) or check server logs\n\n**Getting Mod List from Logs**: Check `.minecraft/logs/latest.log` for:\n```\nServer Pre-Check vx.x.x from the client! Modlist: [\"fabric-api\", ...]\n```\n\n## Example Configuration\n\n```json\n{\n    \"MODPACK_NAME\": \"My Server Modpack v1.0\",\n    \"USE_WHITELIST_ONLY\": false,\n    \"CLIENT_MOD_NECESSARY\": [\"server_precheck\"],\n    \"CLIENT_MOD_BLACKLIST\": [\"aristois\", \"bleachhack\", \"meteor-client\", \"wurst\"],\n    \"EXEMPT_PLAYERS\": [\"069a79f4-44e9-4726-a5be-fca90e38cmf5\"]\n}\n```\n\n## Issues\nPlease report all issues [here](https://github.com/calebcsimmons/server_precheck/issues)",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 341,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "rgyRr8kz",
+  "slug": "portaltoggler",
+  "title": "PortalToggler",
+  "description": "Manage whether players can create or enter Nether and End portals.",
+  "body": "# PortalToggler\n\n> A simple plugin to control Nether and End portal entry and creation on Paper/Spigot.\n\n## Description\n\nPortalToggler lets server admins easily enable or disable Nether/End portal entry and creation. It's lightweight, easy to configure, and great for events, minigames, or any server that needs tight portal control.\n\n## Features\n\n- Toggle Nether/End entry and creation separately\n- Bypass permissions for trusted players\n- Fully customizable MiniMessage messages\n- Reload config without restarting\n- Built-in debug mode\n- Tab completion for all commands\n- Lightweight and simple to set up\n\n## Usage\n\n### Commands\n\n<> = required, [] = optional\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/portal` or `/portaltoggler` | Main plugin command | `portaltoggler.admin` |\n| `/portal help` | Display command help | `portaltoggler.admin` |\n| `/portal reload` | Reload configuration files | `portaltoggler.admin` |\n| `/portal toggle <nether\\|end> <entry\\|creation>` | Toggle portal state | `portaltoggler.admin` |\n| `/portal status [nether\\|end]` | Check portal status (all or specific) | `portaltoggler.admin` |\n| `/portal enable <nether\\|end> <entry\\|creation>` | Enable specific portal function | `portaltoggler.admin` |\n| `/portal disable <nether\\|end> <entry\\|creation>` | Disable specific portal function | `portaltoggler.admin` |\n\n## Configuration\n\n### config.yml\n\nThe main configuration file controls portal states and debug settings:\n\n```yaml\n# PortalToggler Configuration\n\n# Debug Settings\ndebug: false\n\n# Portal Settings\nportals:\n  nether:\n    entry:\n      enabled: true\n    creation:\n      enabled: true\n  end:\n    entry:\n      enabled: true\n    creation:\n      enabled: true\n```\n\n**Configuration Options:**\n\n| Option | Type | Default | Description |\n|--------|------|---------|-------------|\n| `debug` | boolean | `false` | Enable debug logging for troubleshooting |\n| `portals.nether.entry.enabled` | boolean | `true` | Allow players to enter nether portals |\n| `portals.nether.creation.enabled` | boolean | `true` | Allow players to create nether portals |\n| `portals.end.entry.enabled` | boolean | `true` | Allow players to enter end portals |\n| `portals.end.creation.enabled` | boolean | `true` | Allow players to create end portals (place eyes of ender) |\n\n### messages.yml\n\nCustomize all plugin messages with MiniMessage formatting:\n\n```yaml\nprefix: \"<dark_gray>[</dark_gray><gradient:#ff55ff:#5555ff>PortalToggler</gradient><dark_gray>]</dark_gray>\"\n\n# Status Messages\nstatus-enabled: \"<green>Enabled</green>\"\nstatus-disabled: \"<red>Disabled</red>\"\n\n# Portal Messages\nportal-disabled: \"<red>Disabled {portal} portal {mode}.\"\nportal-enabled: \"<green>Enabled {portal} portal {mode}.\"\n\ndisabled-portal-attempt: \"<red>You cannot enter the {portal} as portal entry is disabled.\"\ndisabled-end-portal-creation: \"<red>You cannot insert an eye of ender into an {portal} portal frame while it is disabled.\"\ndisabled-nether-portal-creation: \"<red>You cannot create a {portal} portal while it is disabled.\"\n\n# Command Messages\nno-permission: \"<red>You don't have permission to use this command.\"\nreload-success: \"<green>Configuration reloaded successfully!\"\n```\n\n**MiniMessage Formatting:**\n- Supports gradients, colors, hover text, and more\n- Learn more at [MiniMessage Documentation](https://docs.advntr.dev/minimessage/format.html)\n\n### Command Examples\n\n```\n# Toggle nether portal entry\n/portal toggle nether entry\n\n# Disable end portal creation\n/portal disable end creation\n\n# Check all portal statuses\n/portal status\n\n# Check only nether portal status\n/portal status nether\n\n# Reload configuration\n/portal reload\n```\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `portaltoggler.admin` | Access to all plugin commands | op |\n| `portaltoggler.bypass.enter.nether` | Bypass nether portal entry restrictions | op |\n| `portaltoggler.bypass.enter.end` | Bypass end portal entry restrictions | op |\n| `portaltoggler.bypass.create.nether` | Bypass nether portal creation restrictions | op |\n| `portaltoggler.bypass.create.end` | Bypass end portal creation restrictions | op |\n\n### Permission Examples\n\n**LuckPerms:**\n```\n# Grant admin access to a group\n/lp group admin permission set portaltoggler.admin true\n\n# Allow VIP players to bypass nether portal restrictions\n/lp group vip permission set portaltoggler.bypass.enter.nether true\n/lp group vip permission set portaltoggler.bypass.create.nether true\n```\n\n**PermissionsEx:**\n```\n/pex group admin add portaltoggler.admin\n/pex group vip add portaltoggler.bypass.enter.nether\n```",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 135,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

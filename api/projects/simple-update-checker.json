@@ -1,0 +1,35 @@
+{
+  "id": "s5pYJlew",
+  "slug": "simple-update-checker",
+  "title": "Simple Update Checker",
+  "description": "Simple modpack update checker for Modrinth. Works client side and server side",
+  "body": "# Simple Update Checker\nSimple Update Checker is a small mod that adds in-game notification about Modrinth modpack update being available.\nIt works for both servers and clients. \n\nThe update information is displayed in logs on server/client boot and then in other places depending on where it runs.\nFor clients, it displays update info on main screen (on right side from modpack name/version text), refreshing every hour after\nthe game starts.\nFor servers, it displays it in logs after server starts and for operators on join. After that, it will check it every 12 hours\nuntil update is found, after which it will repeat it after double time from last message, up to 14 days of delay \n(12 hours, 1 day, 2 days, 4 days, 8 days, 14 days). \nThe check can also be triggered manually with `/simpleupdatechecker check` command, with limitation of 15 minutes per refresh.\n\nAll the checks can be disabled in `simpleupdatechecker_user.json` config or via `/simpleupdatechecker settings` command.\n\n## Configuration (User)\nYou can change settings via `/simpleupdatechecker settings <name> <value>` or within config. Both use same names.\nYou can find the config file in `config/simpleupdatechecker_user.json` and reload it with `/simpleupdatechecker reload` command.\n```json5\n{\n  // Disables update checking all together\n  \"disable_update_checking\": false,\n  // Disables showing modpack version and update info in main menu\n  \"disable_main_menu\": false,\n  // Disables sending info about update in logs after first version check.\n  \"disable_logs_first_check\": false,\n  // Disables sending info about update in logs after server starts.\n  \"disable_logs_server_started\": false,\n  // Disables sending info about update in logs repeatedly.\n  \"disable_logs_late\": false,\n  // Disables sending info about update to level 4 operators when they join.\n  \"disable_join_ops\": false\n}\n```\n\n\n## Configuration (Modpack)\nThis one should only be changed by modpack creator and as such only contains modpack related definitions\nYou can find the config file in `config/simpleupdatechecker_modpack.json` and reload it with `/simpleupdatechecker reload` command.\n```json5\n{\n  // Slug / Project id on Modrinth, used for lookup.\n  \"project_id\": \"some_project\",\n  // Version Number in incremental format, ideally same as one provided on Modrinth.\n  \"version_id\": \"1.0.0\",\n  // (Optional, empty to disable) Name of the modpack displayed in main menu and placeholders. Fallbacks to project_id.\n  \"display_name\": \"My modpack!\",\n  // (Optional, empty to disable) Modpack version used for display, if you want to make it look different.\n  \"display_version\": \"\",\n  // Allowed release types, matches with Modrinth ones. By default it allows all, but you can remove them as you want.\n  // Removing \"beta\" and \"alpha\" will prevent from recommending updating to beta and alpha versions.\n  \"release_type\": [\n    \"alpha\",\n    \"beta\",\n    \"release\"\n  ],\n  // Maximum (exclusive) version that gets matched, should use same format as version_id / modrinth version numbers.\n  // Prevents from versions equal or newer than provided from being matched as update.\n  \"max_exclusive_version\": \"\",\n  // Makes update version use version number for display instead of version name (top field).\n  \"use_version_number_for_display\": true\n}\n```\n\n\n",
+  "categories": [
+    "fabric",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 64017,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9-rc1",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

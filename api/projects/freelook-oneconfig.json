@@ -1,0 +1,35 @@
+{
+  "id": "S1v2ASLQ",
+  "slug": "freelook-oneconfig",
+  "title": "Freelook",
+  "description": "Allows you to rotate your camera freely around your character!",
+  "body": "## Freelook Mod\nAllows you to rotate your camera freely around your character!\n\n---\n\n### Features\n- Multiple Camera Perspectives\n- Customizable Activation Style\n- Camera Cycle Integration\n- Smooth Transitions\n\n### Server Opt-Opt\nSome servers may consider freelook a competitive advantage. As of 2.0.0, Freelook includes a simple opt‑out protocol.\n\n#### How it works\n1. When a player joins, the client sends a `freelook:handshake` packet.\n2. If the server wants to disable freelook, it responds with a `freelook:disable` packet.\n3. Then the player cannot use freelook for that session.\n\n<details>\n<summary>Click to expand code example</summary>\n\n```java\npublic class Example implements ModInitializer {\n    @Override\n    public void onInitialize() {\n        PayloadTypeRegistry.clientboundPlay().register(DisableModPayload.TYPE, DisableModPayload.CODEC);\n        PayloadTypeRegistry.serverboundPlay().register(HandshakePayload.TYPE, HandshakePayload.CODEC);\n\n        ServerPlayNetworking.registerGlobalReceiver(HandshakePayload.TYPE,\n                (payload, ctx) -> ServerPlayNetworking.send(ctx.player(), new DisableModPayload())\n        );\n    }\n\n    public record DisableModPayload() implements CustomPacketPayload {\n        public static final Type<DisableModPayload> TYPE = new Type<>(Identifier.parse(\"freelook:disable\"));\n        public static final StreamCodec<RegistryFriendlyByteBuf,  DisableModPayload> CODEC = StreamCodec.unit(new DisableModPayload());\n\n        @Override\n        public Type<? extends CustomPacketPayload> type() {\n            return TYPE;\n        }\n    }\n\n    public record HandshakePayload() implements CustomPacketPayload {\n        public static final Type<HandshakePayload> TYPE = new Type<>(Identifier.parse(\"freelook:handshake\"));\n        public static final StreamCodec<RegistryFriendlyByteBuf, HandshakePayload> CODEC = StreamCodec.unit(new HandshakePayload());\n\n        @Override\n        public Type<? extends CustomPacketPayload> type() {\n            return TYPE;\n        }\n    }\n}\n```\n\n</details>\n\n---\n\n###### Code licensed under LGPL 3.0.\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "minigame",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 74400,
+  "followers": 0,
+  "game_versions": [
+    "1.8.9",
+    "1.12.2",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

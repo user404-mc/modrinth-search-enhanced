@@ -1,0 +1,27 @@
+{
+  "id": "TIhAzrSf",
+  "slug": "everything-burns",
+  "title": "Everything Burns",
+  "description": "Makes all blocks other than fluids flammable.",
+  "body": "> What will you mine when stone turns to fire? \n>\n> What will you craft when diamonds crumble to ash?\n>\n> What will you build... when *Everything Burns*?\n\nThis mod makes all blocks, except for fluids and waterlogged blocks, flammable. \n\nIt's as simple as that. \n\n  \n\nThis is, essentially, the entire code of the mod:\n\n```java\n\n@Mixin(FireBlock.class)\npublic class FireBlockMixin {\n    public static final TagKey<Block> BURNING_NOT_MODIFIED = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, \"burning_not_modified\"));\n\n    @ModifyReturnValue(at = @At(\"RETURN\"), method = \"getBurnOdds(Lnet/minecraft/world/level/block/state/BlockState;)I\")\n    private int modifyBurnOdds(int original, @Local(argsOnly = true) BlockState state) {\n        return original <= 0 && !state.is(BURNING_NOT_MODIFIED) && state.getFluidState().isEmpty() && !state.isAir()  ? 30 : original;\n    }\n\n    @ModifyReturnValue(at = @At(\"RETURN\"), method = \"getIgniteOdds(Lnet/minecraft/world/level/block/state/BlockState;)I\")\n    private int modifyIgniteOdds(int original, @Local(argsOnly = true) BlockState state) {\n        return original <= 0 && !state.is(BURNING_NOT_MODIFIED) && state.getFluidState().isEmpty() && !state.isAir()  ? 60 : original;\n    }\n}\n```",
+  "categories": [
+    "cursed",
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 231,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

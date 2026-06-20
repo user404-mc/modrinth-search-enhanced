@@ -1,0 +1,23 @@
+{
+  "id": "XodEFO40",
+  "slug": "jsonwrangler",
+  "title": "JsonWrangler",
+  "description": "A tool for all your JSON-modifying needs",
+  "body": "# JsonWrangler\n\n*A tool for all your JSON-modifying needs*\n\nQuilt version requires: [QSL](https://modrinth.com/mod/qsl) and [GroovyDuvet](https://modrinth.com/mod/groovyduvet)\n\nForge version requires: [GML](https://modrinth.com/mod/gml)\n\nJsonWrangler is a Minecraft mod which allows for the modification of game data and resources, as stored in JSON files,\nthrough groovy scripts which can be packaged in resource or data packs.\n\n## Usage\n\nJsonWrangler should allow modification of basically any JSON file with a \"winner takes all\" behavior - for instance,\nloot tables, models, worldgen data, or animation metadata files. If JsonWrangler fails to wrangle a file that you think\nit should, please submit a bug report. If you wish to modify a file at a given path, say,\n`assets/minecraft/textures/block/magma.png.mcmeta` or `data/minecraft/loot_tables/chests/simple_dungeon.json`, you\nshould create a groovy script at same path, but with a `.groovy` at the end - in this case,\n`assets/minecraft/textures/block/magma.png.mcmeta.groovy` or `data/minecraft/loot_tables/chests/simple_dungeon.json.groovy`.\nInside of your groovy script, you are given several arguments, and must return a value which will replace the original\nJSON file. Valid values to return include maps, where map keys must be strings and values may be\nlists, maps, numbers, booleans, strings, or dates. In addition to normal groovy features, You have the following\nvariables at your disposal inside your script:\n\n* `json` - the original JSON file, parsed into a map\n* `platform` - either `\"quilt\"` or `\"forge\"`, depending on which platform you are running on\n* `override` - a method which, if called, will cause any further scripts attempting to modify the same file to not run\n\nMultiple scripts in different datapacks or resource packs can target the same file - they are ran in order from highest\npriority (the \"top\" pack) to lowest priority (the \"bottom\" pack). If a script calls `override()`, no further scripts\nwill run.\n\n## Servers\n\n**Note:** As the groovy scripts that JsonWrangler loads can execute arbitrary code, JsonWrangler will not load scripts\nfrom server resource packs. If you wish to load scripts from a server resource pack, you will have to copy it as a local\nresource pack first.\n\n## Examples\n\n### Changing the texture of an item\nPlacing the following file at `assets/minecraft/models/item/apple.json.groovy` will change the texture of the apple to\nuse the potato texture:\n```groovy\njson?.textures?.layer0 = 'minecraft:item/potato'\n\nreturn json\n```\n\n",
+  "categories": [
+    "forge",
+    "library",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1363,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

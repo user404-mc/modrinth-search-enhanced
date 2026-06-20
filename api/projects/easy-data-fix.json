@@ -1,0 +1,35 @@
+{
+  "id": "D9Wf2w6x",
+  "slug": "easy-data-fix",
+  "title": "Easy Data Fix",
+  "description": "A library that enables modders to register custom data fixers.",
+  "body": "<p align=\"center\"><img alt=\"easy data fix icon\" src=\"https://cdn.modrinth.com/data/cached_images/3c918cf13249b236a4f2d24c7e4dcc09c1b56c8e.png\" width=96></p>\n\n<h1><p align=\"center\">Easy Data Fix</p></h1>\n\n<p align=\"center\">A library that enables modders to register custom data fixers.</p>\n\n<div align=\"center\">\n\n[Download on Modrinth](https://modrinth.com/mod/easy-data-fix/versions) |\n[Download from Releases](https://github.com/BJTMastermind/easy-data-fix/releases)\n\n</div>\n\n## About The Project\n\n**Easy Data Fix** is a small library mod that aids in creation of data fixers for mods, allowing custom mod game data to be converted between different versions of the game safly. The mod wraps the builtin DataFixerUpper classes which are as Mojang says \"a set of utilities designed for incremental building, merging, and optimization of data transformations\"\n\n## Use\n\n1. Download `easy_data_fix-<loader>-x.x.x+mc26.1` from on of the places at the top of this README.\n2. Copy the downloaded jar file to your `mods` folder.\n\n## Using The Library In Development\n\nTo setup data fixers for your mod you first need to add the library as a dependency in your build.gradle file, then you just need to register them on pre-launch using Easy Data Fix's API. See example below.\n\n**build.gradle**\n```groovy\nrepositories {\n    mavenCentral()\n    maven { url 'https://jitpack.io' }\n}\n\ndependencies {\n    ...\n\n    // Replace <Tag> with the release tag string from the Releases page\n    implementation \"com.github.BJTMastermind:easy-data-fix:<Tag>\"\n}\n```\n\n**ExampleFix.java**\n```java\npublic class ExampleFix implements PreLaunchEntrypoint {\n    @Override\n    public void onPreLaunch() {\n        DataFixerRegistry.addDataFix(\"Description of data fixer\", builder -> {\n            // dataVersion = The Minecraft data version used in the version your upgrading to.\n            // SchemaVersion = The builtin schema class that goes with the data version.\n            // Example: (4773, V4771::new) = 26.1 full release\n            Schema schema = builder.addSchema(dataVersion, V[SchemaVersion]::new);\n            builder.addFixer(BlockRenameFix.create(schema, \"Fixer Name\", DataFixerAPI.createRenamer(\"example_mod:mod_block\", \"example_mod:new_mod_block\")));\n            builder.addFixer(ItemRenameFix.create(schema, \"Fixer Name\", DataFixerAPI.createRenamer(\"example_mod:mod_item\", \"example_mod:new_mod_item\")));\n        });\n        // You may also have multiple DataFixerRegistry here to better organize your data fixes or to support other versions.\n    }\n}\n```\n\n## Getting Started With Development\n\nTo get a local copy up and running, follow these simple steps.\n\n### Prerequisites\n\nEnsure you have the following installed on your machine:\n\n* **Java Development Kit (JDK)**: Version 25 or higher.\n  * [Download JDK](https://adoptium.net/)\n* **Gradle**: Version 9.2 or higher.\n  * [Install Gradle](https://gradle.org/install/)\n* **Minecraft**: Version 26.1\n\n### Build\n\n1. **Clone the repository**\n```sh\ngit clone https://github.com/BJTMastermind/easy-data-fix.git\n```\n\n2. Navigate to the project directory\n```sh\ncd easy-data-fix\n```\n\n3. Build the project with Gradle\n```sh\n./gradlew clean build\n```\n\nYou can find the built mod at `easy-data-fix/build/libs/easy_data_fix-<loader>-x.x.x+mc26.1.jar`.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 130,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

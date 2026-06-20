@@ -1,0 +1,21 @@
+{
+  "id": "6qTrsXCy",
+  "slug": "flw-vanillin",
+  "title": "Vanillin",
+  "description": "Instanced rendering for entities and block entities using Flywheel",
+  "body": "## How it Works\nVanillin optimizes Minecraft by implementing instanced rendering for entities and block entities through Flywheel.\n\nWith Flywheel doing the heavy lifting, Vanillin is able to achieve significant performance improvements on all the game objects it affects. The end result is that ten thousand of something have the same frame time impact as one of something.\n![64k chests rendering at 7fps without Vanillin, and 271fps with Vanillin.](https://cdn.modrinth.com/data/cached_images/9fa8aa9e37f7dbc39dcb7eb44c8d6cb26d96e2b9.png)\n\n## Shaders\nFlywheel 1.0, and therefore Vanillin, is currently **incompatible** with shaders. Work is underway to make first party compat between Flywheel and shaders a reality, but no time estimates can be made.\n\n\n## Optimizations\n\nVanillin does not optimize everything by default. Special support needs to be built for each type of entity and block entity. Those that are currently optimized are listed below.\n\n✅ = Stable, enabled by default.\n\n🧪 = Experimental, enabled behind a config.\n\n❌ = Temporarily disabled entirely due to crashes/compat/etc.\n\n### Block Entities\n- ✅ Chests\n- ✅ Shulker boxes\n- ✅ Bells\n- ❌ Signs\n\n### Entities\n- ✅ Minecarts (and all variants)\n- 🧪 Items\n- 🧪 Item Displays\n- 🧪 Block Displays\n\n## Config\n\nTo enable experimental optimizations, edit the config file:\n\n### Forge/NeoForge\n\n`config/vanillin.toml`\n```diff\n[entities]\n    #Allowed Values: DEFAULT, DISABLE, FORCE_ENABLE\n-   \"minecraft:item\" = \"DEFAULT\"\n+   \"minecraft:item\" = \"FORCE_ENABLE\"\n```\n\n### Fabric\n`config/vanillin.json`\n```diff\n{\n  \"entities\": {\n-   \"minecraft:item\": \"default\",\n+   \"minecraft:item\": \"force_enable\",\n  }\n}\n```\n\nAlternatively, you can disable optimizations that you find to be causing conflict:\n\n### Forge/NeoForge\n\n`config/vanillin.toml`\n```diff\n[entities]\n    #Allowed Values: DEFAULT, DISABLE, FORCE_ENABLE\n-   \"minecraft:minecart\" = \"DEFAULT\"\n+   \"minecraft:minecart\" = \"DISABLE\"\n```\n\n### Fabric\n`config/vanillin.json`\n```diff\n{\n  \"entities\": {\n-   \"minecraft:minecart\": \"default\",\n+   \"minecraft:minecart\": \"disable\",\n  }\n}\n```\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1037132,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "fKi1znuF",
+  "slug": "chat-lag-fix",
+  "title": "Chat Lag Fix",
+  "description": " Fixes Minecraft client lag from receiving chat messages (for 1.17 and 1.16)",
+  "body": "Fixes Minecraft client lag from receiving chat messages\n### YOU DO NOT NEED THIS MOD ANYMORE ON 1.18\n<br>\n<b>Mojang has fixed the bug in their API that was causing it to return an error instead of an empty list. Minecraft will fetch the block-list once when joining the world. This mod may still improve world loading times by the time it takes to make that HTTP request; especially if you have a slow internet connection.</b>\n<br><br>\nThis comment by a Mojang employee confirms that the bug was fixed: <a href=\"https://bugs.mojang.com/browse/WEB-5587?focusedCommentId=1134973&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-1134973\">https://bugs.mojang.com/browse/WEB-5587?focusedCommentId=1134973&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-1134973</a>\n<br><br>\nThis bug still affects 1.17 and 1.16 but only on the first chat message received: <a href=\"https://bugs.mojang.com/browse/MC-218167\">https://bugs.mojang.com/browse/MC-218167</a>\n<br><br>\n<b>Technical Details</b>:  When receiving a chat message, Minecraft sends a HTTP request in the render thread to check your player block list. The current frame does not finish rendering until this request has finished, causing a lag spike. This mod lets chat messages through until a block-list can be fetched. \n<br><br>\n<b>Why is this happening now and not before?</b>: something happened to Mojang's API. When joining a world, the blocklist would usually load fine, but Mojang's API has started returning errors for users who have migrated to Microsoft accounts, causing the block list to be fetched in 2 minute intervals when receiving a message.\n<br><br>\n<details>\n<summary>A commented walkthrough of why the bug occurs</summary>\n<pre>\n// A simplified view of the code.\nprivate static final long BLOCKLIST_REQUEST_COOLDOWN = 120;\nprivate Instant nextRequest;\nprivate final blockList Set<UUID>;\n\n// This method is called when receiving a chat message\npublic boolean isBlockedPlayer(UUID playerID) {\n    // If we don't have the blocklist yet, fetch it\n    // Note that when there's an error, fetchBlockList returns null\n    // \n    if (this.blockList == null) {\n        this.blockList = fetchBlockList();\n        // If we still don't have it, assume the player is not blocked\n        if (this.blockList == null) {\n            return false;\n        }\n    }\n    return this.blockList.contains(playerID);\n}\n\npublic Set<UUID> fetchBlockList() {\n    // Only check at least every 2 minutes.\n    // This is why the lagspike only occurs every 2 minutes or later\n    if (this.nextRequest == null || Instant.now().isAfter(this.nextRequest)) {\n        return null;\n    }\n    // Reset the 2 minute timer\n    this.nextRequest = Instant.now().plusSeconds(BLOCKLIST_REQUEST_COOLDOWN);\n    try {\n        // Make the HTTP request\n        BlockListResponse response = minecraftClient.get(routeBlocklist, BlockListResponse.class);\n        return response.getBlockedProfiles();\n    } catch (/* exception */) {\n        // If there's an error return null\n        return null;\n    }\n}\n</pre>\n</details>\n<br>\nIf you'd like to see the unmodified for yourself, check out com.mojang.authlib.yggdrasil.YggdrasilUserApiService, remember that these methods get called on the render thread, thus blocking the frame from finishing.\n<br><br>\n<details>\n  <summary>GIF demonstration of the bug</summary>\n<br>\n<img src=\"https://cdn.discordapp.com/attachments/857368936672526356/929654718660214804/chat-lag.gif\" style=\"max-width: 100%\">\n  \n</details>",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 9989,
+  "followers": 0,
+  "game_versions": [
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1"
+  ],
+  "date_updated": null
+}

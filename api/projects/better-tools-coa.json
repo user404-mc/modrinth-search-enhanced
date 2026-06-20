@@ -1,0 +1,34 @@
+{
+  "id": "oLBGMHMm",
+  "slug": "better-tools-coa",
+  "title": "Better Tools",
+  "description": "A lightweight quality-of-life plugin for tools & weapons on Paper 1.21.9+",
+  "body": "## Installation\n\n1. **Requirements**\n   - Paper **1.21.9** (compatible upwards, including 1.21.10+)\n   - Java **21**\n\n2. **Build/Deploy**\n   - Drop the JAR in `/plugins`, start the server.\n\n\n\n## Controls & Feedback\n\n- **Per-player toggle** via the **F** key (Swap-Hand) while the matching tool is in the **main hand**.\n- **Actionbar feedback** (English), e.g.  \n  `Vein Mining: ENABLED` / `DISABLED`, `Tree Capitator: ENABLED` / …\n\n\n## Features\n### Pickaxe – Vein Mining\n- **Goal:** Mine entire ore veins with one action.\n- **Toggle:** Hold a pickaxe → press **F**.\n- **Lore stats:**\n  - “Mined:” total + **per ore type**.\n  - All names appear in the **client language**.\n---\n### Axe – Tree Capitator (+ Replant)\n- **Goal:** Fell entire **natural** trees quickly.\n- **Toggle:** Hold an axe → press **F**.\n- **Natural tree detection:**\n  - Enough **non-persistent leaves** nearby (radius & distance checks).\n  - **Valid soil** under the base (e.g., Dirt/Grass/Podzol/**Sand/Red Sand**).\n- **Replanting:**\n  - Replants **1×1** or **2×2** (e.g., Spruce / Dark Oak) **after a short delay**.\n  - Finds base coordinates and places saplings **exactly** (if space & soil are valid).\n- **Lore stats:**\n  - “Chopped:” total + **per wood family** (Oak, Spruce, Birch, Jungle, Acacia, Dark Oak, Mangrove, Cherry, Pale Oak, Bamboo, Crimson, Warped).  \n  - **Client language** via translatable keys.\n---\n### Hoe – Right-Click Harvest & 3×3 Tilling\n- **Goal:** Comfortable harvesting without destroying farmland.\n- **Harvest (Right-Click):**\n  - **Always available:** **1×1** harvest/replant (even if the Hoe feature is off).\n  - **With toggle (F)** and allowed hoe: **3×3** around the clicked crop.\n  - Harvests **only mature**: Wheat, Carrots, Potatoes, Beetroots, Nether Wart.\n- **Tilling (Shift + Right-Click):**\n  - Creates **3×3** farmland (sneak requirement configurable).\n- **Anti-trample:**\n  - With a hoe in main hand, **farmland trampling is canceled**.\n---\n### Shovel – Plane Excavator (3×3)\n- **Goal:** Dig 3×3 planes efficiently.\n- **Toggle:** Hold a shovel → press **F** (if enabled).\n- **Lore stats (per material):**\n  - “Dug:” total + **single lines** for: Dirt, Grass Block, Coarse Dirt, Rooted Dirt, **Dirt Path**, Podzol, Mycelium, Moss Block, Sand, Red Sand, Gravel, Clay, Mud, Snow, Snow Block, **Soul Sand**, **Soul Soil**.  \n  - **Client language** via translatable keys.\n---\n### Weapons – Lore Stats\n- **Tracked:**\n  - **Damage** total\n  - **Kills** (Players, Undead, Arthropods, Illagers, Bosses, Others)\n  - **Bow/Crossbow:** **Accuracy** (Hits/Shots) & **Longest Distance Kill**\n---\n### Item Origin in Lore (“Crafted” / “Traded” / “Looted”)\n- **Crafted** — when the item was **crafted** by a player (name + date).\n- **Traded** — when the item was **acquired via villager trade** (actor + date).  \n  *(Villager profession/type shown when available.)*\n- **Looted** — when the item was **looted from a generated chest** (container type + date).\n- **Language:** Labels use **translatable keys** to display in the player’s **client language**.\n---\n\n## Configuration (`config.yml`)\n\n**Example (excerpt):**\n```yaml\nfeatures:\n  pickaxe:\n    vein_mining:\n      enabled: true\n      max_blocks: 96\n      durability_safety_buffer: 5\n      include_diagonals: true\n      tools:\n        WOODEN_PICKAXE: true\n        STONE_PICKAXE: true\n        IRON_PICKAXE: true\n        GOLDEN_PICKAXE: true\n        DIAMOND_PICKAXE: false\n        NETHERITE_PICKAXE: true\n\n  axe:\n    tree_capitator:\n      enabled: true\n      collect_drops_at_base: true\n      break_leaves: true\n      include_diagonals: true\n      max_logs: 256\n      max_leaves: 512\n      durability_safety_buffer: 5\n      tools:\n        WOODEN_AXE: true\n        STONE_AXE: true\n        IRON_AXE: true\n        GOLDEN_AXE: true\n        DIAMOND_AXE: true\n        NETHERITE_AXE: true\n\n  hoe:\n    harvest_3x3:\n      enabled: true\n      tools:\n        WOODEN_HOE: true\n        STONE_HOE: true\n        IRON_HOE: true\n        GOLDEN_HOE: true\n        DIAMOND_HOE: true\n        NETHERITE_HOE: true\n    till_3x3:\n      enabled: true\n      require_sneak: true\n      tools:\n        WOODEN_HOE: true\n        STONE_HOE: true\n        IRON_HOE: true\n        GOLDEN_HOE: true\n        DIAMOND_HOE: true\n        NETHERITE_HOE: true\n\n  shovel:\n    excavator:\n      enabled: true\n      tools:\n        WOODEN_SHOVEL: true\n        STONE_SHOVEL: true\n        IRON_SHOVEL: true\n        GOLDEN_SHOVEL: true\n        DIAMOND_SHOVEL: true\n        NETHERITE_SHOVEL: true\n\nmessages:\n  vein_enabled: \"Vein Mining: ENABLED\"\n  vein_disabled: \"Vein Mining: DISABLED\"\n  vein_halted: \"Vein mining halted to protect your tool\"\n  vein_summary: \"Vein mined: {count} blocks\"\n\n  axe_enabled: \"Tree Capitator: ENABLED\"\n  axe_disabled: \"Tree Capitator: DISABLED\"\n  axe_halted: \"Tree felling halted to protect your tool\"\n  axe_summary: \"Tree felled: {logs} logs, {leaves} leaves\"\n\n  hoe_tilled: \"Created 3x3 farmland\"\n  hoe_no_space: \"No space to create farmland\"\n  hoe_harvested: \"Harvested: {count} crops\"\n```\n\n---\n\n## Compatibility & Enchantments\n\n- **Silk Touch / Fortune:** honored everywhere that uses vanilla drops.\n- **Unbreaking:** reduces durability consumption probabilistically, vanilla-like.  \n- **Localization:** Lore and actionbar names use **translatable keys** → show in the player’s **client language**.\n",
+  "categories": [
+    "adventure",
+    "equipment",
+    "food",
+    "game-mechanics",
+    "mobs",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 159,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

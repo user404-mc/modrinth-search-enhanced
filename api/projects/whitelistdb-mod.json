@@ -1,0 +1,39 @@
+{
+  "id": "tW939Ob2",
+  "slug": "whitelistdb-mod",
+  "title": "WhitelistDb Mod",
+  "description": "This mod adds support for using a database as a whitelist, making it easier for players to whitelist on a Minecraft server and saving admins time from manually running the default command to whitelist everyone.",
+  "body": "# WhitelistDb Mod\n\n## Description\nThis mod is used to make it easier to have the same whitelist across different servers and to use different methods for allowing users to whitelist.\nFor example, having people in a school Minecraft server, and in order for them to join, they have to verify their school email to gain access to a whitelist command from a Discord bot. (Please note that this does not provide a Discord bot.)\n\n## Commands\n* /whitelistdb toggle\n  * Turns the whitelist on and off\n* /wban\n  * Updates the database record to show they are banned across **all servers!**\n  * Will kick the player if they are online – does work on players who aren't online\n* /wunban\n  * Updates the database record to show they are unbanned across **all servers!**\n\n## Getting Started\nTo use this mod correctly, the table needs to at least have this information in it.\n```\nuuid : UUID\nbanned : Boolean\ntag : String (Optional - for placeholder api, can be called something other than tag)\n```\n\nThis mod also caches usernames and UUIDs locally to ban/unban offline players much more easily.\nIf this is being added to a server that is already up, you can use the Python script provided in `scripts/convert.py` to correctly take the `usercache.json` file in the root directory of the server and make a file that should be placed in `config/whitelistdb`. This isn't completely necessary, as the cache will auto-update when new people join, but this will make sure that everyone who has ever joined will be detected by the mod.\n\nWhen the mod is in the mod folder, start the server, and it will make a file located at `config/whitelistdb-config.json`. This is where you can edit the default values to correctly set up the database and edit the messages that come up when not whitelisted and when users are banned.\n\nDefault layout of `config/whitelistdb-config.json`\n```\n{\n  \"host\": \"localhost\",\n  \"port\": 5432,\n  \"database\": \"minecraft\",\n  \"table\": \"server_whitelists\",\n  \"placeholder_column\": \"tag\",\n  \"username\": \"postgres\",\n  \"password\": \"password\",\n  \"ssl\": false,\n  \"message\": \"You are not whitelisted!\",\n  \"enabled\": true,\n  \"banReason\": \"You have been banned!\"\n}\n```\n\nThe placeholder for this mod varries depending on the version.\n* 1.21.x - `%whitelistdb:school%`\n* 26.1.x - `%whitelistdb:playerinfo%`\n\nPlease note that currently neoforge **does not** support placeholders!\n\n## Mod Information\nCurrent version: 1.6.0\n\nCurrently Supported: 26.x\n\nNo longer supported: 1.21.x",
+  "categories": [
+    "bukkit",
+    "fabric",
+    "management",
+    "neoforge",
+    "paper",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 218,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "yJ766vME",
+  "slug": "dialogwindow",
+  "title": "DialogWindow",
+  "description": "A powerful, fully configurable dialog UI system for version 1.21.6+. Create dynamic, interactive GUI dialogs entirely from YAML files",
+  "body": "## Overview\n\nDialogWindow is a plugin that allows server administrators to create fully configurable in-game dialogs using YAML files.\nIt is built on top of the Dialog API (1.21.6+) and enables you to design graphical user interfaces for commands that normally do not provide a UI.\n\nWith DialogWindow, you can:\n- Create dynamic dialog-based interfaces for commands\n- Define buttons, labels, checkboxes, select menus, sliders, and text inputs\n- Display custom items with name, lore, skull textures, glow, and more\n- Execute console and player commands based on user interaction\n- Use PlaceholderAPI and built-in placeholders inside texts and items\n- Organize multiple interfaces in structured folders\n\nIt is ideal for warp menus, confirmation dialogs, configuration panels, shop interfaces, rule confirmations, and any command that benefits from a structured UI.\n\n## Requirements\n\n- Version 1.21.6 or newer\n- Java 17 or newer\n- PlaceholderAPI (optional, but recommended for dynamic placeholders)\n\nThe plugin will not work on older Minecraft versions because it depends on the Dialog API.\n\n## Installation\n\n1. Download the DialogWindow jar file.\n2. Place it inside your server’s plugins folder.\n3. Start or restart the server.\n\n4. The plugin will generate:\n- config.yml\n- messages.yml\n- interfaces/ folder with example files\n5. Configure your interfaces inside the interfaces/ directory.\n6. Run /dwreload to apply changes.\n\n### Optional\n- Install PlaceholderAPI if you want to use advanced placeholders.\n\n\n## Basic Commands\n**/dwreload**\n\nReloads:\n- config.yml\n- messages.yml\n- all interface files\n\nThis command is used after editing configuration files.\n\nPermission:\n- _dialogwindow.reload_\n\n**/dwreport**\n\nGenerates a diagnostic report for support requests.\nIt collects relevant environment and plugin information to help troubleshoot issues.\n\nPermission:\n- _dialogwindow.report_\n\n## Configuration\n### config.yml\n\nContains general plugin settings, including:\n- Interfaces root directory\n\n\n### messages.yml\n\n- Contains all user-facing messages.\n- Fully configurable\n- Supports MiniMessage formatting\n- Supports PlaceholderAPI\n\n### interfaces/\n- Each YAML file inside the interfaces/ folder defines one command and one dialog.\n- Subfolders are supported and help keep large setups organized.\n\n## Interfaces\nA basic interface file consists of:\n\n```\ncommand:\n  name: \"warpui\"\n  description: \"Warp selection menu\"\n  permission: \"dialogwindow.warpui\"\n  aliases: []\n\ndialog:\n  title: \"<gold>Warp Menu</gold>\"\n  external-title: \"\"\n  can-close-with-escape: false\n\nui:\n  - label: \"<yellow>Select your destination:</yellow>\"\n\n  - item:\n      type: item\n      material: PLAYER_HEAD\n      name: \"<gold>%playername%</gold>\"\n      skull-owner: \"%playername%\"\n      glow: true\n\n  - input:\n      type: checkbox\n      key: confirm\n      label: \"<green>Confirm teleport</green>\"\n      initial: \"%some_placeholder%\"\n      on-true: \"yes\"\n      on-false: \"no\"\n\n  - buttons:\n      - label: \"<green>Teleport</green>\"\n        console-commands:\n          - \"warp ${destination}\"\n        player-commands:\n          - \"say %playername% confirmed teleport\"\n```\n\n### Supported Elements\nYou can define elements in the order they should appear:\n- label (text block)\n- item (custom item display)\n- input:\n  - text\n  - checkbox\n  - single_option (select menu)\n  - number_range (slider)\n- buttons\n\nAll elements are processed from top to bottom as defined in the YAML file.\n\n### Item Support (only PaperMC)\n- material\n- amount\n- name (MiniMessage + placeholders)\n- lore\n- skull-owner (player name or UUID)\n- glow (visual enchant effect without visible enchantments)\n- custom-model-data\n- enchantments\n- item flags\n- unbreakable\nExample:\n\n```\n- item:\n    type: item\n    material: PLAYER_HEAD\n    skull-owner: \"%playername%\"\n    name: \"<gold>%playername%</gold>\"\n    lore:\n      - \"<gray>UUID: %uuid%</gray>\"\n    glow: true\n```\n\n### Placeholder Support\n\nBuilt-in placeholders:\n- %playername%\n- %uuid%\n- %world%\n\n**PlaceholderAPI:**\nIf PlaceholderAPI is installed, all texts and commands support its placeholders automatically.\n\n**Supported locations:**\n- Titles\n- Labels\n- Item names\n- Item lore\n- Input initial values\n- Button commands\n- Hover text\n\n## Use Cases\n\nDialogWindow can be used for:\n- Warp menus\n- Shop confirmations\n- Rule acceptance dialogs\n- PvP toggles\n- Rank selection interfaces\n- Settings panels\n- Command configuration UIs\n- Admin tools\n\n## Web Editor\nCreate your yaml files with a web editor tool:\n[www.morelaid.com/dwe](https://www.morelaid.com/dwe)\n\n\n## Support\n​\nDiscord: https://discord.gg/5zuC36R\n\nFor requests, comments or errors, I am happy to help. In order to be able to help quickly, I would be pleased if the following information is already filled in during the inquiry:\n- Execute „/dwreport“\n- Join the discord server and give a short description of your problem\n\nRequests can be made in **German** or **English**.\n\n![bStats](https://bstats.org/signatures/bukkit/dialogwindow.svg)",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 248,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

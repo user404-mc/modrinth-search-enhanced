@@ -1,0 +1,28 @@
+{
+  "id": "kNXlRIKr",
+  "slug": "ecopower",
+  "title": "EcoPower",
+  "description": "Save energy for your Minecraft server",
+  "body": "#### **Mod Introduction**\n\n**EcoPower** is an energy-saving plugin for Minecraft servers on **Windows**. It dynamically switches system power plans based on predefined online player ranges, reducing power consumption during idle periods.\n\n***\n\n#### **Key Features**\n\n✅ **Smart Power Management**\n\n*   Auto-switch power plans (e.g., Power Saver/High Performance) via player count thresholds.  \n    ✅ **Bot Player Filtering**\n*   Exclude fake players using name prefixes (e.g., `bot_`), suffixes (e.g., `_bot`), or regex patterns.  \n    ✅ **Flexible Configuration**\n*   Customize power plan GUIDs and broadcast messages.\n*   Hot-reload configs without server restart.  \n    ✅ **Easy Control**\n*   Manually switch plans via commands.\n*   Real-time config status monitoring.\n\n***\n\n#### **Commands**\n\n| Command                                 |Description                         |\n| --------------------------------------- |----------------------------------- |\n| <code>/ecopower reload</code>           |Reload config file instantly        |\n| <code>/ecopower show</code>             |Show all configs and current status |\n| <code>/ecopower show <config></code> |Show status for a specific config   |\n| <code>/ecopower set plan <plan></code> |Manually switch power plan          |\n\n***\n\n#### **Configuration Guide**\n\n**Path**: `config/ecopower/config.yaml`\n\n```\n# Define Power Plans\nplan:\n  power_saver:  # Custom plan name\n    guid: a1841308-3541-4fab-bc81-f71556f20b4a  # Windows power plan GUID\n    range: [-2147483648, 0]  # Player range [min, max] (inclusive)\n    broadcastMessage: \"§a[Eco Power] §7Switched to §aPower Saver Mode\"\n  balanced:\n    guid: 381b4222-f694-41f0-9685-ff5bb260df2e\n    range: [1, 2]\n    broadcastMessage: \"§a[Eco Power] §7Switched to §eBalanced Mode\"\n  high_performance:\n    guid: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c\n    range: [3, 2147483647]\n    broadcastMessage: \"§a[Eco Power] §7Switched to §cHigh Performance Mode\"\n\n# Player Exclusion Rules\nexclude:\n  prefixes: [\"bot_\"]     # Exclude by prefix (e.g., bot_Steve)\n  suffixes: [\"_bot\"]     # Exclude by suffix (e.g., Steve_bot)\n  regexes: []            # Exclude by regex (e.g., \".*bot.*\")\n\nbroadcastChanges: true   # Broadcast plan switch messages\n```\n\n##### **Configuration Details**\n\n*   **`plan`**  \n    *   `guid`: Obtain via `powercfg /list` in Command Prompt.\n    *   `range`: Player count range to trigger the plan (boundaries inclusive).\n    *   `broadcastMessage`: Broadcast message on plan switch (supports § color codes).\n*   **`exclude`**: Rules to exclude players from counts (priority: prefix > suffix > regex).\n*   **`broadcastChanges`**: Set to `false` to disable switch broadcasts.\n\n***\n\n#### **插件介绍**\n\n**EcoPower** 是一款专为 Windows 平台 Minecraft 服务器设计的节能插件。通过监测在线玩家数量范围，自动切换系统电源计划，显著降低服务器闲置时的电力消耗。\n\n***\n\n#### **核心功能**\n\n✅ **智能电源管理**\n\n*   根据预定义的在线玩家数量范围，自动切换高性能/节能电源计划。  \n    ✅ **假人玩家过滤**\n*   支持名称前缀（如 `bot_`）、后缀（如 `_bot`）和正则表达式排除假人玩家。  \n    ✅ **灵活配置**\n*   自定义电源计划 GUID 和广播消息。\n*   支持热重载配置，无需重启服务器。  \n    ✅ **便捷控制**\n*   命令手动切换电源计划。\n*   实时查看配置状态。\n\n***\n\n#### **命令列表**\n\n| 命令                                     |功能          |\n| -------------------------------------- |----------- |\n| <code>/ecopower reload</code>          |热重载配置文件     |\n| <code>/ecopower show</code>            |显示所有配置及当前状态 |\n| <code>/ecopower show <配置名></code> |查看指定配置状态    |\n| <code>/ecopower set plan <计划名></code> |手动切换电源计划    |\n\n***\n\n#### **配置文件说明**\n\n**路径**: `config/ecopower/config.yaml`\n\n```\n# 电源计划定义\nplan:\n  power_saver:  # 计划名称（自定义）\n    guid: a1841308-3541-4fab-bc81-f71556f20b4a  # Windows 电源计划 GUID\n    range: [-2147483648, 0]  # 玩家数范围 [最小值, 最大值]（闭区间）\n    broadcastMessage: \"§a[Eco Power] §7服务器已切换至§a节能模式\"  # 切换时广播消息\n  balanced:\n    guid: 381b4222-f694-41f0-9685-ff5bb260df2e\n    range: [1, 2]\n    broadcastMessage: \"§a[Eco Power] §7服务器已切换至§e平衡模式\"\n  high_performance:\n    guid: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c\n    range: [3, 2147483647]\n    broadcastMessage: \"§a[Eco Power] §7服务器已切换至§c高性能模式\"\n\n# 玩家排除规则\nexclude:\n  prefixes: [\"bot_\"]     # 名称前缀排除（如 bot_Steve）\n  suffixes: [\"_bot\"]     # 名称后缀排除（如 Steve_bot）\n  regexes: []            # 正则表达式排除（如 \".*bot.*\"）\n\nbroadcastChanges: true   # 是否广播计划切换消息\n```\n\n##### **配置详解**\n\n*   **`plan`**  \n    *   `guid`：通过 `powercfg /list` 获取的电源计划 GUID。\n    *   `range`：触发该计划的在线玩家数量范围（含边界值）。\n    *   `broadcastMessage`：计划切换时的广播消息（支持 Minecraft 颜色代码 §）。\n*   **`exclude`**：不计入玩家统计的规则（优先级：前缀 > 后缀 > 正则）。\n*   **`broadcastChanges`**：设为 `false` 可禁用切换广播。\n\n***\n\n> **注意 (Note)**\n> \n> *   插件仅支持 Windows 服务器（Requires Windows Server）。\n> *   使用 `powercfg /list` 获取系统电源计划 GUID（Run as Administrator）。",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 178,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

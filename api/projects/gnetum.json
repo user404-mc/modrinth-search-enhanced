@@ -1,0 +1,36 @@
+{
+  "id": "7MoE34WK",
+  "slug": "gnetum",
+  "title": "Gnetum",
+  "description": "Distribute HUD updates over multiple frames to improve performance",
+  "body": "## Gnetum\n\nA Minecraft mod that improves performance by distributing HUD updates over multiple frames.\n\n### Overview\n\nGnetum divides a full HUD update into multiple \"passes.\" Only one pass is rendered each frame, reducing the time taken on HUD updates and improving FPS.\n\nBased on the rendering time of each element, Gnetum automatically distributes their updates over multiple frames, improving both the average FPS and the minimum.\n\n<details>\n\n<summary>Technical explanations</summary>\n\nThe idea behind Gnetum is to reduce the framerate of the HUD, which is not cheap to render and does not really change often, to improve the overall performance of the game, in a way that improves both the average and the minimum FPS. To achieve this:\n\n- Gnetum employs two framebuffers, called a back framebuffer and a front framebuffer, respectively\n- Each frame will render a \"pass\", that is, a (customizable) portion of the complete HUD, to the back framebuffer\n- If the number of passes is set to 4, for example, a full HUD update is distributed over 4 frames, saving a lot of draw calls every frame and improving FPS\n- After all passes finish rendering, the back framebuffer is \"swapped\" with the front framebuffer\n- Each frame also renders the front framebuffer, which contains a texture of the full HUD\n\nThere is also an HUD FPS limiter that defines the maximum FPS of the HUD.\n\n</details>\n\n### Configuration\n\nStarting from 4.0.0, integration is implemented with Sodium Config API. The configuration can be accessed from the Video Screen, allowing for adjustment of:\n\n- the number of passes\n- maximum HUD FPS\n- enabling/disabling caching for each element\n\n### Compatibility\n\n#### 1.20.1, 1.21.1 & 1.21.11\n\n✔️ ImmediatelyFast: fully compatible and recommended.\n\n#### 1.12.2\n\n⚠️ OptiFine: make sure \"Fast Render\" is disabled (this mod would do nothing otherwise.)\n\n⚠️ StellarCore: make sure their HUD Caching feature is disabled (if you are unsure how to disable it you can ignore this: it's disabled by default.)\n\n### Credits\n\nThis mod is inspired by the [HUDCaching](https://github.com/Moulberry/MCHUDCaching) mod by [Moulberry](https://github.com/moulberry).",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1089175,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.20.1",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2-snapshot-8",
+    "26.2-pre-1",
+    "26.2-pre-2",
+    "26.2-pre-3",
+    "26.2-pre-4",
+    "26.2-pre-5",
+    "26.2-pre-6",
+    "26.2-rc-1",
+    "26.2"
+  ],
+  "date_updated": null
+}

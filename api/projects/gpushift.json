@@ -1,0 +1,23 @@
+{
+  "id": "BpmMSdoc",
+  "slug": "gpushift",
+  "title": "GpuShift",
+  "description": "Adaptive entity and particle render budgeting.",
+  "body": "# GpuShift\n\nGpuShift is a client-side optimization utility for Minecraft 1.21.1.\n\nIt does **not** move all Minecraft CPU work to the GPU, replace the renderer, or guarantee higher FPS. Instead, it focuses on a small set of client-render tasks that can become expensive in some scenes, especially when there are many distant living entities or many cosmetic particles.\n\n## What It Does\n\n- Adds adaptive client-side render budgeting\n- Can skip some distant non-player living entity rendering under render pressure\n- Can limit newly spawned cosmetic particles based on a configurable particle budget\n- Protects important visuals such as players, named entities, glowing entities, close entities, weather particles, and known compatibility cases\n- Includes an optional FPS/frame-time overlay\n- Adds keybinds:\n  - `F8` toggles the GpuShift overlay\n  - `F9` opens GpuShift settings\n- Shows a one-time quick setup screen on first world/server join\n- Detects common render stacks such as Sodium, Embeddium, and Oculus/Iris-style shader setups\n- Includes compatibility safeguards for mods such as Pretty Rain and Tooltip Overhaul\n\n## What It Does Not Do\n\nGpuShift does **not** optimize:\n\n- Server TPS\n- Mob AI\n- Redstone or machines\n- World generation\n- Chunk loading\n- Networking\n- Memory usage\n- Recipe loading\n- The full Minecraft renderer pipeline\n\nIf your bottleneck is server-side logic, chunk generation, RAM pressure, shaders, or GPU load, GpuShift may show little or no visible FPS change.\n\n## Performance Expectations\n\nGpuShift is most likely to matter in CPU-bound client-render scenes with many particles or distant living entities.\n\nIt may have little effect in lightweight scenes, already-optimized modpacks, or packs where another optimization mod is already handling the expensive render work.\n\nThe overlay can be used to check whether GpuShift is actively doing anything. If the skipped entity/particle counters stay at zero, then the current scene likely has little for GpuShift to budget.\n\n## Recommended Settings\n\nDefault Balanced settings are intended to be conservative.\n\nRecommended particle budget:\n\n- `70%` for better visuals\n- `65%` for balanced use\n- `55%` for heavier packs where you are comfortable with fewer cosmetic particles\n- `100%` disables GpuShift particle culling\n\n## Compatibility\n\nGpuShift is designed to avoid hard dependencies.\n\nKnown/expected compatibility behavior:\n\n- Sodium / Embeddium: detected automatically\n- Oculus / shader stacks: shader assist is kept conservative\n- Pretty Rain: weather particles are protected\n- Tooltip Overhaul: armor tooltip preview entities are protected\n- AsyncParticles or other particle render mods: use `100%` particle budget if you want the other mod to fully control particles\n\nIf you find a visual issue, please report it with:\n\n- Minecraft version\n- Loader and loader version\n- GpuShift version\n- Modpack or mod list\n- `latest.log`\n- GpuShift config\n- Screenshot or reproduction steps",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 619,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "O8EAew6U",
+  "slug": "mifecompat",
+  "title": "Modern industrialization FE compat",
+  "description": "NeoForge addon for Modern Industrialization.\nMake MI electric network compatible with FE network.",
+  "body": "## MI-FE-Compat\n\nBridges **Modern Industrialization** (EU) and **NeoForge Forge Energy** (FE) — allowing FE generators to power MI cables and FE cables to connect to MI machines.\n\n---\n\n### What it does\n\nMI machines only speak the MI energy API (`EnergyApi.SIDED`). Mods speak NeoForge FE (`IEnergyStorage`). Without this mod, the two systems are invisible to each other. MI-FE-Compat registers two transparent bridges so energy flows freely in both directions.\n\n---\n\n### Two bridge directions\n\n| Direction | Use case |\n|-----------|----------|\n| **FE → MI** | FE generators (Mekanism, Thermal, etc.) supply power to MI cables |\n| **MI → FE** | FE cables (Mekanism Universal Cable, PowerGrid) connect to MI machines |\n\nBoth bridges are registered via NeoForge's `RegisterCapabilitiesEvent` and cached by `BlockCapabilityCache` — they are created once per block position on cache miss, not every tick. A shared recursion guard (`ThreadLocal`) prevents infinite loops when the two bridges would otherwise trigger each other.\n\n---\n\n### Configuration\n\nNo separate config file. The EU ↔ FE conversion ratio is read directly from **Modern Industrialization's own config** (`forgeEnergyPerEu`, default: **1 EU = 10 FE**). Changing the ratio in MI's config automatically applies to this mod.\n\n---\n\n### Commands\n\nAll commands require permission level 0 (any player).\n\n**`/mifecompat status`**  \nShows how many bridges have been created for each direction. Use this to verify the mod is working after placing cables.\n\n**`/mifecompat check`**  \nInspects the 6 blocks adjacent to your position and reports which energy APIs each one exposes: `[FE]` (NeoForge), `[GP]` (GrandPower), `[MI]` (Modern Industrialization).\n\n**`/mifecompat scan`**  \nScans a 5-block radius around you and lists all energy-capable block types found. Useful for diagnosing why a connection is not forming.\n\n---\n\n### Compatibility\n\nTested with Modern Industrialization 1.7+, Mekanism, and PowerGrid on NeoForge 21.1 (Minecraft 1.21.1). Any mod that uses standard NeoForge `IEnergyStorage` should work automatically.\n\n**Does not conflict** with GrandPower-based bridges already built into MI — this mod only activates for blocks that MI does not natively handle.",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 372,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

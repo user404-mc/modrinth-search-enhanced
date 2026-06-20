@@ -1,0 +1,19 @@
+{
+  "id": "e8fPTY6F",
+  "slug": "kubejs-ars-nouveau",
+  "title": "KubeJS Ars Nouveau",
+  "description": "KubeJS support for Ars Nouveau",
+  "body": "This addon allows you to create recipes for the mod [Ars Nouveau](https://www.curseforge.com/minecraft/mc-mods/ars-nouveau)\n\nNote: Modrinth does not host the Ars Nouveau mod, so to run this mod you must have it installed from a different source.\n\n```js\nServerEvents.recipes(event => {\n\tevent.recipes.ars_nouveau.enchanting_apparatus(\n        [\n            \"minecraft:sand\",\n            \"minecraft:sand\",\n            \"minecraft:sand\",\n            \"minecraft:sand\",\n        ], // input items\n\t    \"minecraft:gunpowder\", // reagent\n\t    \"minecraft:tnt\", // output\n\t    1000, // source cost\n\t    // true // keep nbt of reagent, think like a smithing recipe\n\t);\n\n\tevent.recipes.ars_nouveau.enchantment(\n        [\n            \"minecraft:sand\",\n            \"minecraft:sand\",\n            \"minecraft:sand\",\n            \"minecraft:sand\",\n        ], // input items\n        \"minecraft:vanishing_curse\", // applied enchantment\n        1, // enchantment level\n        1000, // source cost\n    );\n\n\tevent.recipes.ars_nouveau.crush(\n        \"minecraft:tnt\", // input block\n        [{\n            item: \"minecraft:sand\",\n            chance: 1\n        }] // loot table\n        // true // drop the item in world?\n    );\n\n    /*\n    // this *does* work, but the recipe must be a valid glyph\n    // in the tome, so this really can only be used to\n    // replace a glyph's recipe\n    event.recipes.ars_nouveau.glyph(\n        \"minecraft:tnt\", // output item (glyph)\n        [\n            \"minecraft:sand\", \n            \"minecraft:gunpowder\",\n        ], // input items\n        3 // exp cost\n    );\n    */\n\n    // accessible via `/ars-tome id` in this case `/ars-tome kubejs:not_glow`\n  \t// this is a direct copy of the Glow Trap tome in base Ars Nouveau\n    event.recipes.ars_nouveau.caster_tome(\n        \"Not-Glow Trap\", // name,\n        [\n            \"ars_nouveau:glyph_touch\",\n            \"ars_nouveau:glyph_rune\",\n            \"ars_nouveau:glyph_snare\",\n            \"ars_nouveau:glyph_extend_time\",\n            \"ars_nouveau:glyph_light\"\n        ], //spell\n        \"Doesn't snare the target and grant other targets Glowing.\", // description\n        16718260, // color\n        {\n            \"family\": \"ars_nouveau:default\",\n            \"pitch\": 1.0,\n            \"volume\": 1.0\n        },\n    ).id(\"kubejs:not_glow\")\n\n    event.recipes.ars_nouveau.imbuement(\n        \"minecraft:sand\", // input item\n        \"minecraft:tnt\", // output\n        1000, // source cost\n        [\n            \"minecraft:gunpowder\" \n        ] // pedestal items // optional\n    )\n})\n```",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1897,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2"
+  ],
+  "date_updated": null
+}

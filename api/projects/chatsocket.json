@@ -1,0 +1,22 @@
+{
+  "id": "UpvTt1Fw",
+  "slug": "chatsocket",
+  "title": "ChatSocket",
+  "description": "Game minimized, chat maximized! Lets send Minecraft chat messages via WebSockets.",
+  "body": "# ChatSocket\n\nA simple mod providing a web socket connection for sending and receiving chat messages / commands. Made for lazy people having Minecraft in the background while\nplaying other games or developing.\n\n## Config\n\nIngame Config is available via owo-config (also accessible via mod-menu). There you can configure\n\n- port (default: 8080)\n- host: (default: 127.0.0.1)\n- enabled: (default: true)\n- communication type: (default: PLAIN_TEXT)\n  - PLAIN_TEXT\n  - JSON\n\n## Usage\n\nFor testing purposes, I recommend using a browser extension like Weasel Websocket. Once you connected\nto the websocket (`ws://127.0.0.1:8080`), you will already receive messages and be able to send some.\n\nFor different purposes, there are currently two modes: ``PLAIN_TEXT`` and `JSON`.\n\n\n### PLAIN_TEXT Mode\n\nIn this mode, messages are being sent and received in full plain text. No json whatsoever.\nThis is intended for IntelliJ websocket plugins or other tools that are not able to parse JSON.\n\nMind that the communicationType update event is still being sent as a json object.\n\n### JSON Mode\n\nTo provide more flexibility, the JSON mode is available. In this mode, messages are being sent and received as JSON objects.\nThe following JSON objects are being sent:\n\n### Incoming messages\n#### Chat Message\n\n````json5\n{\n  \"type\": \"chat\",\n  \"messageString\": \"Hello World\",\n  \"gameProfile\": {\n    \"uuid\": \"8661e1be-bbf5-4cd6-86ba-60cc35f8f7e0\",\n    \"name\": \"AriVanHouten\"\n  },\n  \"timestamp\": \"2011-12-03T10:15:30Z\"\n}\n````\n\n#### Game Message\n\n````json5\n// most of the time these are being sent by the server\n{\n  \"type\": \"game\",\n  \"messageString\": \"Hello World\",\n  \"overlay\": false,\n}\n````\n\n#### CommunicationType Change\n\n````json5\n// Will be sent regardless of the mode\n{\n  \"type\": \"communicationType\",\n  \"communicationType\": \"PLAIN_TEXT\" // or \"JSON\"\n}\n````\n\n#### Error\n\n````json5\n// Will be sent regardless of the mode\n{\n  type: \"error\",\n  \"error\": \"Error message\"\n}\n````\n\n### Outgoing messages\n#### Sending a chat message\n````json5\n{\n  \"type\": \"chat\", // Alternatively: 'command' => will only prepend a slash to the message\n  \"message\": \"Hello World\",\n}\n````",
+  "categories": [
+    "fabric",
+    "management",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 124,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5"
+  ],
+  "date_updated": null
+}

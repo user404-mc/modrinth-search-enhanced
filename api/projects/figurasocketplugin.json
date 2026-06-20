@@ -1,0 +1,26 @@
+{
+  "id": "RL7e9XCk",
+  "slug": "figurasocketplugin",
+  "title": "SocketPlugin",
+  "description": "A Figura Addon that allows TCP sockets and more.",
+  "body": "### VERY WORK-IN-PROGRESS\n\nA figura addon that allows you to open and use TCP sockets.\n\n### You can contact me at `ktzukii` on Discord if the mod crashes your game, or doesn't work as intended.\n#### (please attach the logs on the message, if not you're getting a \"invalid, read description\")\n\n## Documentation:\n\n### SocketAPI (global `socket`)\n\n**These functions WILL return nil if the client (game) running the avatar (your scripts and model) is not the host (eg. your game will return a `LuaSocket` instance, others will return `nil`.)**<br>\n**So please add host checks on your socket scripts, otherwise your avatar will error on other clients, and will cause unneccesary trouble and confusion.**\n\n`SocketAPI:newSocket(String host, Number port) -> LuaSocket`<br>\nOpens a new socket, will print errors in log or throw vm error.<br>\n\n`SocketAPI:newWebsocket(String host, Number port) -> LuaWebsocket`<br>\nOpens a new websocket, will print errors in log or throw vm error.<br>\n\n`SocketAPI:closeAllSocket()`\nClose all sockets on the current avatar\n\n`SocketAPI:closeAllWebsocket()`\nClose all websockets on the current avatar\n\n`SocketAPI:closeAll() -> nil`<br>\nCloses all sockets and/or websockets on the current avatar\n\n### LuaSocket\n\n`LuaSocket:send(String data) -> nil`<br>\nSends data, limited to strings due to how I wrote this mod. (working on changing that)\n\n`LuaSocket:recv() -> string`<br>\nRecieves data, also limited to strings. (see above)\n\n`LuaSocket:hasData() -> boolean`<br>\nGets whether or not there is a message to be received, which can then be gotten by `LuaSocket:recv()`\n\n`Luasocket:close() -> nil`<br>\nSockets close automatically on avatar destroy/reload, but it's not a clean close, which is what this is for.\n\n### LuaWebsocket\n**Websockets are known to be buggy at this time.**\n\n`LuaWebsocket:send(String data) -> nil`<br>\nSends data, limited to strings due to my understanding of Java.\n\n`LuaWebsocket:recv() -> string`<br>\nRecieves data, also limited to strings. (see above)\n\n`LuaWebsocket:hasData() -> boolean`<br>\nGets whether or not there is a message to be received, which can then be gotten by `LuaWebsocket:recv()`\n\n`LuaWebsocket:close(String reason) -> nil`<br>\nWebsockets close automatically on avatar destroy/reload, but it's not a clean close, which is what this is for.\n\n## Examples:\n**REMOVED: My examples suck :3**\nI'll try to add some examples on the github wiki, but no promises.",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 114,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

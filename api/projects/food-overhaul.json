@@ -1,0 +1,26 @@
+{
+  "id": "UigDbuvI",
+  "slug": "food-overhaul",
+  "title": "Food Overhaul",
+  "description": "Overhauls the food system to be similar to games like Valheim or Enshrouded.",
+  "body": "# Food Overhaul\n\nThis is an overhaul of the food system. Eating food no longer fills the hunger bar or gives saturation. Each food item now grants a corresponding status effect instead. \nThese effects can grant attribute modifiers like increased health, more stamina or resistance against frost damage.\n\nThis gives players a real choice, when they decide what combination of food is the best for a given situation, which in my opinion is much more interesting than eating golden carrots all day.\n\n> Food Overhaul adds the back end system for this new food system, but it does not add gameplay content on its own.\n\nThis ensures that mod pack authors have the most possible control over how exactly their food items are balanced.\n\n## How does it work?\n\nItems in Minecraft can apply status effects to the player when consumed. Food Overhaul uses that functionality and simply checks if one of those status effects is a \"food effect\".\nIf an item grants such an effect, the item can only be consumed when the player does not already have that food effect.\n\n> A status effect is considered a food effect when it is in the \"foodoverhaul:food_effects\" mob_effect tag.\n\nFood Overhaul supports two different item types, consumables and potions. They are defined by having specific data components, namely \"minecraft:consumable\" and \"minecraft:potion_contents\", respectively.\n\n## What prevents a player from eating every available food?\n\nEach player can only have a limited amount of food status effects active at a time. It's not possible to eat food when that limit is reached.\nThe limit is controlled by an entity attribute called **_foodoverhaul:max_food_effects_** and its default value is defined in the server config.\n\nThe player doesn't have to wait until an effect is completely gone to refresh it.\nWhen a food effect is running out, it's corresponding food item can be consumed again. The exact threshold after which this is possible is set in the server config.\n\nFood Overhaul adds the \"foodoverhaul:remove_effects_in_tag\" consume effect typ. It works very similar to the \"minecraft:remove_effects\" consume effect, but also works with status effect tags.\n\n> This can be used to remove all active food effects.\n\n## Customization\n\n### For 26.1+\n\nCurrently, no data-driven solution exists, that would allow modifying default data components of items.\n\n### For 1.21.1:\n\nFood effects can be added to any item (even modded) by vanilla methods (mainly commands) or by using third party mods.\n\nhttps://modrinth.com/mod/item-components and https://modrinth.com/mod/default-components both allow setting the default components of items via data packs. \n\nThis gives mod pack authors / players the option to use their own food effects.\n\n## Food Blocks\n\nFood blocks can be interacted with to grant a status effect to the player. When that status effect is a food effect, interaction is only possible when the player doesn't already have the effect.\n\nFood Overhaul provides a simple Java API for add-on mods to create food blocks.\n\n## Food Display Block\n\nThe Food Display Block can hold and display up to 4 items. When these items have the \"minecraft:consumable\" component, they can be consumed by interacting with the display block. The usual checks for existing food effects and hunger are applied.\n\nThe Food Display Block can be configured by creative mode players via a config screen.\n\n## Just want to play?\n\n[Food Overhaul - Vanilla Foods](https://modrinth.com/mod/food-overhaul-vanilla-foods) adds food effects to vanilla items.\n\n## Hunger and saturation\n\nFood Overhaul does not remove these systems. They can be used in combination with the food effects.\n\nBy default, food items without a food effect can be eaten like normal. This can be disabled in the server config.\n\n> If the food system should be completely gone from your mod pack, maybe take a look at my mod [Health Regeneration Overhaul](https://modrinth.com/mod/health-regeneration-overhaul), which can completely disable vanillas hunger system including saturation and exhaustion.",
+  "categories": [
+    "adventure",
+    "fabric",
+    "food",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 5032,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

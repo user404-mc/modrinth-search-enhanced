@@ -1,0 +1,22 @@
+{
+  "id": "sDSLYSX9",
+  "slug": "cobblemon_tp_pastures",
+  "title": "Cobblemon TP-Pastures (No despawn for Pasture Block's)",
+  "description": "Cobblemon Pasture Recall/Teleport Change",
+  "body": "# Cobblemon TP-Pastures\n\nPrevents pastured Pokémon from being recalled to the PC when they wander too far away. Instead, they are teleported back near their [Pasture Block](https://wiki.cobblemon.com/index.php/Pasture_Block). Includes a fully configurable radius, safe landing detection, and optional in-game debug notifications.\n\n## Server-side\n\nThis mod works in both singleplayer and multiplayer. However, it is a **server-side mod**, so for multiplayer it only needs to be installed on the server.\n\n## Why should you use it?\n\n- No more the annoying feeling of your [Pasture Block](https://wiki.cobblemon.com/index.php/Pasture_Block) suddenly being almost empty, even though it was full of Pokémon earlier.\n- No more needing to force your Pokémon to stay in place by building fences.\n- Improves compatibility with [Cobbleworkers](https://modrinth.com/mod/cobbleworkers), allowing it to work more reliably and efficiently.\n- Lets you use your Pokémon much more freely for decoration, zoos, safaris, and similar builds.\n\nYou might also want to use [Cobblemon: SafePastures](https://modrinth.com/mod/cobblemon-safepastures), which protects your Pokémon from all damage sources.\n\n*If Cobblemon eventually changes or fixes the issue where Pokémon despawn (are recalled), this mod may become unnecessary. Until then, enjoy!*\n\n## Dependencies\n\n[Cobblemon](https://modrinth.com/mod/cobblemon) (1.7.1+)  \n[Fabric Loader](https://fabricmc.net/) (0.18.4+)  \n[Fabric API](https://modrinth.com/mod/fabric-api) (0.116.8+)\n\n## Configuration\n\nThe config file itself explains everything, but for the best experience make sure that `maxPastureRadius` is set slightly lower than Cobblemon’s `pastureMaxWanderDistance`.  \nFor example, if `pastureMaxWanderDistance` is `64`, `maxPastureRadius` should be around `56`. Just set it to about **8 blocks lower** and it should work fine.\n\n`...\\config\\cobblemon_tp_pastures.json` test\n```json\n{\n  \"_maxPastureRadius_info\": \"Max roam distance in blocks from the pasture block center before a Pokemon is teleported back. Measured horizontally by default (see useHorizontalDistanceOnly). Default: 56 (For best results make sure it is slightly lower than \\\"pastureMaxWanderDistance\\\" from Cobblemon's config).\",\n  \"maxPastureRadius\": 56,\n  \"_useHorizontalDistanceOnly_info\": \"If true, only horizontal (X/Z) distance is checked, ignoring height. Good for pastures near cliffs or multi-level farms. If false, full 3D sphere distance is used. Default: false.\",\n  \"useHorizontalDistanceOnly\": false,\n  \"_candidateTeleportAttempts_info\": \"How many random positions around the pasture block are tried when searching for a safe landing spot (solid ground + clear headroom). Higher values reduce the chance of landing inside a block, at a tiny performance cost. Default: 24.\",\n  \"candidateTeleportAttempts\": 24,\n  \"_fallbackYOffset_info\": \"If no safe position is found after candidateTeleportAttempts tries, the Pokemon is placed this many blocks directly above the pasture block as a last resort. Default: 1.5.\",\n  \"fallbackYOffset\": 1.5,\n  \"_debugLogging_info\": \"If true, nearby players see a chat message whenever a Pokemon is teleported back (e.g. 'Pikachu left tether box -> (x, y, z)'). Always logged to the server log regardless of this setting. Default: false.\",\n  \"debugLogging\": false,\n  \"_serverLogging_info\": \"If true, teleport events are written to the server log. Disable this if the log spam is unwanted. Default: false.\",\n  \"serverLogging\": false\n}\n```\n\n## Support / Bug Reports\n\nI currently don't use any dedicated platform for support or bug reports.\nIf you need help or want to report an issue, you can contact me on Discord: `@datibrr`.",
+  "categories": [
+    "decoration",
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1501,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

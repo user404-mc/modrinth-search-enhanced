@@ -1,0 +1,28 @@
+{
+  "id": "xlZpPQH6",
+  "slug": "staticparticle",
+  "title": "StaticParticle",
+  "description": "adds configurable particle types, useful for datapack VFX",
+  "body": "# ⚠️ please keep in mind that the description is only maintained for the latest version\n\n# 2 particle types are implemented\n\n<details>\n<summary>particles</summary>\n\n## static_particle\n- configurable `color`, `alpha`, `startSize`, `size`, `endSize`, `lifetime`, `texture`\n- is emissive (glow in the dark)\n# \n## static_oriented\n- configurable `color`, `alpha`, `startSizeX`, `sizeX`, `endSizeX`, `startSizeY`, `sizeY`, `endSizeY`, `lifetime`, `rotation`, `post_rotation`, `cull`, `texture`\n- is emissive (glow in the dark)\n<details>\n<summary>note</summary>\nimportant thing to know is that all number arguments are actually string arguments, due to a limitation of minecrafts codebase, its so that the stuff listed below can work\n  \n  ⠀\n  \nall number arguments(the particle parameters) support ranges (\"x..y\"=random from x to y), rotation arguments also support ~ which will use the command rotation context on the appropriate axis\n  \n⠀\n  \nalso if youre wondering, post_rotation is just a second pass of rotation, technically redundant, just convenient\n\n</details>\n<details>\n<summary>textures</summary>\ncurrently only 4 textures are implemented:\n  \n  `dot`\n  \n  `dither`\n  \n  `smooth`\n  \n  `pixel`\n</details>\n\n\n</details>\n\n\n# there are 3 standalone commands\n\n<details>\n<summary>commands</summary>\n\n> /fov <add|multiply|set|query> <targets> <float> [interpolation type] [interpolation duration]\n- changes/gets the client FOV of the targets\n# \n> /rendertext <targets> <x> <y> <z> <rotation> <text> <alignment> <sizeX> <sizeY> [duration] [opacity] [gui scale independent] [hide with HUD] [overlay] [shadow Color(RGBA HEX)]\n- displays text on the targets screens at the inputted position\n- boolean argument for making the text size independent of the clients GUI scale setting\n- boolean argument for forcing the text to display even if the HUD is hidden (F1)\n- boolean argument for the size being multiplied by the client window aspect ratio\n# \n> /camerarot <targets> <pitch> <yaw> <roll> [duration]\n- adds rotation offset to the client camera (linear interpolation)\n\n<details>\n  <summary>note</summary>\n(roll works perfectly, yaw and pitch technically do too, just a bit un-intuitive, in most cases its better to use actual entity rotation instead)\n</details>\n\n</details>\n\n\n\n# the mod adds two conditions for predicates\n\n<details>\n<summary>predicates</summary>\n\n\n> mouse* condition\n```json\n{\n  \"condition\": \"staticparticle:player_action\",\n  \"action\": \"attack\"/\"pick_item\"/\"use\",\n  \"context\": \"in_game\"/\"in_menu\"\n}\n```\n- true when the target of the predicate is holding the respective buttons in the respective context\n\n\n# \n> key condition\n- the mod adds 5 new keybinds that dont do anything, except for tell the server theyve been pressed by a client\n```json\n{ \n  \"condition\": \"staticparticle:special_key\",\n  \"key\": 0/1/2/3/4\n}\n```\n- true when the target of the predicate is holding the respective key\n\n\n</details>\n\n",
+  "categories": [
+    "fabric",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 372,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

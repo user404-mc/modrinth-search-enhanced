@@ -1,0 +1,36 @@
+{
+  "id": "xdm3qiWa",
+  "slug": "easynicetab",
+  "title": "EasyNiceTab",
+  "description": "Minimalist Minecraft tab list plugin",
+  "body": "# EasyNiceTab\n\n## Description:\nEasyNiceTab is a minimalist plugin for Minecraft (Spigot/Paper/Purpur) version 1.21.x/26.1.X that allows you to manually update each player's TAB list. The plugin is lightweight, easy to configure, and does not require any external libraries.\n\n## Main Features:\n – Updates the TAB list for all players when the /tabreload command is executed. \n – Supports Minecraft color codes (&a, &b, &c, etc.). \n – Uses custom placeholders for dynamic information. \n – TAB texts are fully configurable via config.yml. \n\n## Supported Placeholders:\n – (name) — the player's nickname. \n \n – (ping) — the player's ping in milliseconds. \n \n – (ple) — number of online players. \n \n – (world) — the name of the world the player is currently in. \n \n - (PlayersLine) - Line where should be nicknames of players\n \n## NEW Version 1.2:\n> Small changes to the config. (now you can choose the animation update time yourself)\n\n<details>\n<summary>Config</summary>\n==========================================\n# EasyNiceTab v1.2 - Advanced Visual Config\n# ==========================================\n\n# This block is active when animation_enabled: false\n# (PlayersLine) marks where the player list will appear\nNormal TAB:\n  - \"&8&m-------&r &b&lMY SERVER &8&m-------\"\n  - \"              &7Welcome back, &f(name)&7!\"\n  - \"(PlayersLine)\"\n  - \"&3World: &f(world)  &eOnline: &f(ple)\"\n  - \"&8&m--------------------------\"\n\n# Legacy mode — simple header/footer text at top and bottom of the tab\nUse Old Tab Type: false\nheader: \"&aWelcome, (name)!\"\nfooter-left: \"&ePing: (ping)\"\nfooter-right: \"&bPlayers: (ple) &dWorld: (world)\"\n\nsettings:\n  # Set to false to disable animation and use the \"Normal TAB\" block above instead.\n  # This now works correctly from config — no need to edit code.\n  animation_enabled: true\n\n  # Animation speed in ticks (20 ticks = 1 second).\n  # You can write any number you want, e.g.:\n  #   2  = very fast (2 ticks)\n  #   5  = fast (5 ticks = 0.25s)\n  #   10 = medium (10 ticks = 0.5s)\n  #   20 = slow (20 ticks = 1s)\n  #   40 = very slow (40 ticks = 2s)\n  animation_speed_ticks: 10\n\nframes:\n  1:\n    - \"&e&l> &6&lMY SERVER &e&l<\"\n    - \"&7You are playing on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&ePing: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  2:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&7You are playing on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  3:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&2Yo&7u are playing on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  4:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&7Yo&2u are &7playing on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  5:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&7You are &2play&7ing on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  6:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&7You are play&2ing &7on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  7:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&7You are playi&2ng on &fMyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n  8:\n    - \"&6&l> &6&lMY SERVER &6&l<\"\n    - \"&7You are playing on &6MyServer\"\n    - \"(PlayersLine)\"\n    - \"&6Ping: &f(ping)ms\"\n    - \"&bVisit: &3www.example.com\"\n\n# Placeholders: (name), (ping), (ple), (world)\n</details>\n> Now you can sync your settings via MySQL/MariaDB. Just apply changes to your config and run /tabreload. The plugin will save them to the database, and all other servers will automatically pull your config when you reload them.\n\n<details>\n<summary>database.yml</summary>\n# ==========================================\n# EasyNiceTab Database Configuration\n# ==========================================\n\n# Choose the storage type.\n# 'local' - Uses only the local config.yml (MySQL is disabled).\n# 'mysql' - Connects to MySQL/MariaDB to sync config.yml across multiple servers.\nstorage_type: local\n\nmysql:\n  host: \"XX.XX.XX.XX\"\n  port: 3306\n  database: \"easynicetab\"\n  username: \"root\"\n  password: \"password\"\n\n  # Set to true if your database server requires an SSL connection.\n  # If you are hosting this locally or on a standard game host, 'false' is usually fine.\n  useSSL: false\n\n  # Note: You do not need to create any tables manually.\n  # The plugin will automatically create the 'easynicetab_sync' table if it doesn't exist.\n</details>\n\n## Command:\n /tabreload — reloads the configuration file without restarting the server\n\n## Notes:\n – The plugin was tested only on Paper 1.21.11.\n - SSL mode on database was NOT tested.\n",
+  "categories": [
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 263,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

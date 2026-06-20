@@ -1,0 +1,22 @@
+{
+  "id": "9A9xjuMu",
+  "slug": "epic-fight-smart-items-addon",
+  "title": "Epic Fight - Smart Items Addon",
+  "description": "A Minecraft mod that automatically switches between Epic Fight's combat and mining modes based on the item you're holding",
+  "body": "# Epic Fight Smart Items\n\nA Minecraft mod that automatically switches between Epic Fight's combat and mining modes based on the item you're holding.\n\n## Requirements\n\n- [Epic Fight](https://modrinth.com/mod/epic-fight) mod\n\n## How It Works\n\nWhen you select an item in your hotbar:\n- **Item matches your config** → Switches to **Mining Mode** (vanilla animations)\n- **Item doesn't match** → Switches back to **Combat Mode** (Epic Fight animations)\n\nThis is the same as pressing the `R` key manually, but automatic!\n\n## Configuration\n\nCreate a file named `epicfight-smart-items.json` in your `config/` folder.\n\n### Basic Example\n\n```json\n{\n  \"items\": [\n    { \"tag\": \"minecraft:pickaxes\" },\n    { \"tag\": \"minecraft:shovels\" },\n    { \"tag\": \"minecraft:hoes\" },\n    { \"id\": \"minecraft:torch\" }\n  ]\n}\n```\n\nThis config will switch to mining mode when holding any pickaxe, shovel, hoe, or torch.\n\n### Config Options\n\nEach item entry can have:\n\n| Field | Description | Example |\n|-------|-------------|---------|\n| `id` | Match specific item | `\"minecraft:diamond_pickaxe\"` |\n| `tag` | Match item tag | `\"minecraft:pickaxes\"` |\n| `components` | Match data components | See below |\n\nAll conditions in a single entry use **AND** logic. Multiple entries use **OR** logic.\n\n### Matching by Item ID\n\n```json\n{\n  \"items\": [\n    { \"id\": \"minecraft:diamond_pickaxe\" },\n    { \"id\": \"minecraft:netherite_shovel\" }\n  ]\n}\n```\n\n### Matching by Tag\n\n```json\n{\n  \"items\": [\n    { \"tag\": \"minecraft:pickaxes\" },\n    { \"tag\": \"c:tools/hammers\" }\n  ]\n}\n```\n\n### Matching by Components (Advanced)\n\nYou can match items based on their data components (custom name, enchantments, damage, etc.):\n\n```json\n{\n  \"items\": [\n    {\n      \"id\": \"minecraft:book\",\n      \"components\": {\n        \"minecraft:custom_name\": \"\\\"Mining Manual\\\"\"\n      }\n    },\n    {\n      \"id\": \"minecraft:diamond_pickaxe\",\n      \"components\": {\n        \"minecraft:unbreakable\": {}\n      }\n    },\n    {\n      \"id\": \"minecraft:diamond_sword\",\n      \"components\": {\n        \"minecraft:enchantments\": {\n          \"levels\": {\n            \"minecraft:sharpness\": 5\n          }\n        }\n      }\n    }\n  ]\n}\n```\n\n#### Common Components\n\n| Component | Description | Example Value |\n|-----------|-------------|---------------|\n| `minecraft:custom_name` | Item's custom name | `\"\\\"My Pickaxe\\\"\"` |\n| `minecraft:damage` | Current damage value | `0` |\n| `minecraft:unbreakable` | Unbreakable flag | `{}` |\n| `minecraft:enchantments` | Enchantments | `{\"levels\": {\"minecraft:efficiency\": 5}}` |\n| `minecraft:custom_model_data` | Custom model data | `1234` |\n\n### Testing Items\n\nUse the `/give` command to create items with specific components:\n\n```\n/give @p minecraft:book[custom_name=\"Mining Manual\"]\n/give @p minecraft:diamond_pickaxe[unbreakable={}]\n/give @p minecraft:stick[custom_name=\"Mining Wand\"]\n```\n\n## Credits\n\n- [Epic Fight](https://modrinth.com/mod/epic-fight) by Yesman",
+  "categories": [
+    "equipment",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1381,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

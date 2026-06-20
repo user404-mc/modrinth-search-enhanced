@@ -1,0 +1,20 @@
+{
+  "id": "BJX83Ija",
+  "slug": "autologinmod",
+  "title": "Auto Login",
+  "description": "Automatically logs in to auth servers using a locally encrypted password",
+  "body": "# Languages\n\n[EN/English](https://lyuwenhan.github.io/extensions/minecraft-java/data/assets/auto-login/README/README.html) | [ZH-CN/简体中文](https://lyuwenhan.github.io/extensions/minecraft-java/data/assets/auto-login/README/README_ZH-CN.html)\n\n# Auto Login\n\nClient-side Fabric mod that automatically logs you into\nauthentication-based Minecraft servers (e.g. EasyAuth, AuthMe)\nusing a locally encrypted password.\n\nThis mod runs entirely on the client and does **not** modify\nany server behavior.\n\n---\n\n## Features\n\n- Automatically sends `/login <password>` after joining a server\n- Password is stored **locally and encrypted** (AES-GCM with random device key)\n- No server-side plugin or mod required\n- Client-only, safe for multiplayer servers\n- Manual trigger via command for testing or fallback\n\n---\n\n## Commands\n\n### Set password (required once)\n\n```text\n/autologin set <password>\n```\n\n- Encrypts and saves the password locally\n- Enables auto-login automatically\n\n### Trigger auto-login immediately\n\n```text\n/autologin login\n```\n\n- Executes login attempt right now\n- Useful for testing or manual retry\n\n### Enable / disable\n\n```text\n/autologin on\n/autologin off\n```\n\n### Clear saved password\n\n```text\n/autologin clear\n```\n\n- Deletes stored credentials\n- Disables auto-login\n\n---\n\n## How It Works\n\n1. On first setup, the password is encrypted and saved locally\n2. When you join a server:\n   - The mod waits until the client is fully initialized\n   - Then sends the login command directly to the server\n3. The password is **never sent anywhere else** and is not logged\n\nThe mod does **not** intercept packets, modify UI, or hook into\nserver authentication logic.\n\n---\n\n## Security Notes\n\n- Passwords are stored **only on your local machine**\n- Encryption uses:\n  - **Random 256-bit device key** (generated per installation, not derivable from public info)\n  - AES-GCM (authenticated encryption)\n- The encryption key is stored in a separate file from the config\n- No plaintext password is written to disk\n- Do **not** reuse important real-world passwords\n\n---\n\n## Supported Versions\n\n- Minecraft 26.1.2\n- Fabric Loader 0.19.2+\n- Fabric API 0.150.0+\n- Java 25\n\n---\n\n## License\n\nMIT\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 687,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

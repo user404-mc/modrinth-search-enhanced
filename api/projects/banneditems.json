@@ -1,0 +1,21 @@
+{
+  "id": "l2c3DpEy",
+  "slug": "banneditems",
+  "title": "Banned Items",
+  "description": "A lightweight server-side mod that lets operators ban specific items by their full item fingerprint (registry ID + NBT). Banned items are automatically destroyed wherever they appear: inventory, cursor, ground, crafting table, or anvil.",
+  "body": "# Banned Items Mod\n**NeoForge 21.1.220 | Minecraft 1.21.1 | Server-Side Only**\n\nA lightweight server-side mod that lets operators ban specific items by their\nfull item fingerprint (registry ID + all data-components / NBT).  Banned items\nare automatically destroyed wherever they appear: inventory, cursor, ground, crafting\ntable, or anvil.\n\n---\n\n## Commands  *(requires operator level 2)*\n\n| Command | Description |\n|---|---|\n| `/banhanditem` | Ban the item currently in your main hand. Deletes the item from your hand and scans the rest of your inventory for copies. Saves to config immediately. |\n| `/unbanhanditem` | Unban the item currently in your main hand. |\n| `/banneditemslist` | Print all currently banned items to chat. |\n| `/reloadbanneditems` | Reload `config/banneditems.json` without restarting the server. |\n\n---\n\n## How banning works\n\n1. Hold an item and run `/banhanditem`.\n2. The mod serialises the full item (item ID + every data-component such as\n   enchantments, custom name, lore, potion effects, etc.) to SNBT and stores it\n   in `config/banneditems.json`.\n3. From that moment, any item stack that matches **both** the item type **and**\n   all data-components is considered banned.\n4. Banning is exact-match: a Diamond Sword with Sharpness V is a different entry\n   from a plain Diamond Sword.  This lets you ban specific hacked items without\n   affecting normal ones.\n\n---\n\n## Enforcement\n\n| Trigger | Action |\n|---|---|\n| Inventory sweep (every 1 s) | Removes banned items from all 41 inventory slots and the cursor slot |\n| Crafting output | Zeroes the result stack so the player receives nothing |\n| Right-click on block / in air | Event cancelled; item cannot be used |\n| Left-click / attacking | Event cancelled |\n| Item pickup from ground | Item entity discarded immediately |\n| Anvil (repair / rename) | Output blocked |\n\n---\n\n## Config file\n\n`config/banneditems.json` — a JSON array of SNBT strings.\n\n```json\n[\n  \"{id:\\\"minecraft:diamond_sword\\\",count:1}\",\n  \"{id:\\\"minecraft:tnt\\\",count:1,components:{\\\"minecraft:custom_name\\\":\\\"{\\\\\\\"text\\\\\\\":\\\\\\\"Super TNT\\\\\\\"}\\\"} }\"\n]\n```\n\nYou can hand-edit this file and run `/reloadbanneditems` to apply changes without\nrestarting.\n\n---",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 364,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

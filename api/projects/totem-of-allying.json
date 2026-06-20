@@ -1,0 +1,27 @@
+{
+  "id": "NvpOQ0y9",
+  "slug": "totem-of-allying",
+  "title": "Totem of Allying",
+  "description": "Use a Totem of Allying to teleport your tamed animal to you, across any distance and dimension!",
+  "body": "This mod adds a simple item: the **Totem of Allying**.\n\nAfter using one on a tamed animal, a bond is created between the two. When right-clicking a bonded Totem of Allying, the animal assigned to it will teleport to you.\n\nTotems of Allying have a usage cooldown of three seconds.\n\n_This mod requires the Fabric API._\n\n![totem of allying use](https://cdn.modrinth.com/data/cached_images/9438caad67abb2237b0c9383a8fdbc8a4a9f4c8e.gif)\n\n## Requirements\nPlayers can use any Totem of Allying, even if its bonded animal is not owned by them.\n\nIn order for Totems of Allying and animals to be bonded,\n1. The totem must not be bonded to another entity\n2. The animal must be either tamed by the player using the totem, or tamed and not have a set owner\n\nAn exception to this is the Happy Ghast, which is not tameable. Any player can bond their totems to any happy ghast.\n\nTotems of Allying can only be unbonded if their corresponding animal dies.\n\n## Bondable Mobs\nMobs which can be bonded to Totems of Allying include:\n- Any vanilla tameable animal (horses, cats, etc.)\n- Happy ghasts\n- Allays that like the player\n- Any modded tameable entity (hopefully)!\n\n## Tooltip\nWhen hovering over a bonded Totem of Allying, you will see the animal's name, or its entity type if it has no custom name. If the given animal has its named changed, you can right-click it again with the totem to update the tooltip.\n\n![totem of allying component](https://cdn.modrinth.com/data/cached_images/2651a4b5109703cb1cdde70ec5ef144031b187e7.png)\n\n## Animal Death\nIf a bonded animal dies (or used to be in a non-existent dimension and cannot be retrieved), its corresponding Totem of Allying will become unbonded.\n\n## Crafting\nThe Totem of Allying has the following shapeless crafting recipe:\n\n![two diamonds, one ender pearl, one totem of undying](https://cdn.modrinth.com/data/cached_images/f8831ac15ec1aeafc6759cf6f4dbfd18450cf883.png)\n\n## /owner Command\nAs many mods and data packs add pregenerated tamed animals in structures, some of them may have an absent Owner. Because of this, a new admin command is added: /owner.\n\n### Syntax\n\nSets an animal's owner, tames the mob if untamed.\n```\n/owner [animal] set [new-owner]\n```\n\nRemoves an animal's owner, untames the mob if tamed.\n```\n/owner [animal] clear\n```\n\n## Technical Details\nWhen a Totem of Allying is used to teleport a mob, it will first check if that entity is loaded. If it's not, it will forcibly load the chunk it's in and wait until the mob is loaded to teleport it. If the mob cannot be found within 10 ticks after the chunk has been loaded, it will be marked as dead and the totem will be unbonded. After either event, the chunk will become unloaded.\n\nTotems of Allying work across vanilla and modded dimensions. They can be bonded to modded entities as well, as long as each mob implements the Tameable interface.\n\nIn order for the /owner command to work correctly, modded entities should also inherit from either the TameableEntity or AbstractHorseEntity classes. Even if not, though, the command will still try to access the ``Owner`` and ``Tame`` NBTs as a fallback.\n\n## \n\n_Feel free to use this mod in your modpacks!_",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 156,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

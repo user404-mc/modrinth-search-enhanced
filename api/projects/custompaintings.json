@@ -1,0 +1,32 @@
+{
+  "id": "dkTi0JRZ",
+  "slug": "custompaintings",
+  "title": "CustomPaintings",
+  "description": "This Plugin Ads Custom Paintings in Minecraft",
+  "body": "# CustomPaintings\n\nCustomPaintings lets server admins upload PNG images to the server and give players map-based paintings, including multi-map murals (2x2, 4x4, etc.).\n\n## Features\n\n- Upload PNG files directly to the server filesystem\n- Import as:\n- Single painting (`1x1` map)\n- Multi-map mural (`2x2` up to `8x8`)\n- Give painting sets to players with one command\n- Persistent painting index in `paintings.yml`\n- Tab-complete for commands and painting names\n\n## Requirements\n\n- Paper\n- Java `21`\n\n## Build\n\nFrom plugin source folder:\n\n```bash\n./gradlew build\n```\n\nOutput jar:\n\n```text\nbuild/libs/CustomPaintings-1.0.0.jar\n```\n\n## Install\n\n1. Stop your Paper server.\n2. Copy `CustomPaintings-1.0.0.jar` into your server `plugins/` folder.\n3. Start the server.\n4. Confirm plugin is enabled:\n- Run `/plugins`\n- `CustomPaintings` should be green\n\n## Created Folders/Files\n\nAfter successful startup, plugin creates:\n\n- `plugins/CustomPaintings/config.yml`\n- `plugins/CustomPaintings/uploads/` (put upload PNGs here)\n- `plugins/CustomPaintings/paintings/` (generated map tile PNGs)\n- `plugins/CustomPaintings/paintings.yml` (painting metadata)\n\n## Command Reference\n\nBase command:\n\n```text\n/painting\n```\n\n### 1) List paintings\n\n```text\n/painting list\n```\n\nShows all registered painting names and dimensions (example `wallart (4x4)`).\n\n### 2) Import painting\n\n```text\n/painting import <name> <upload-file.png> [widthMaps] [heightMaps]\n```\n\n- `name`: painting id (`a-z`, `0-9`, `_`, `-`, max 32 chars)\n- `upload-file.png`: filename placed in `uploads/`\n- `widthMaps`: optional, default `1`, range `1..8`\n- `heightMaps`: optional, default `1`, range `1..8`\n\nExamples:\n\n```text\n/painting import mona mona.png\n/painting import castle castle.png 2 2\n/painting import mega_wall panorama.png 4 3\n```\n\n### 3) Give painting set(s)\n\n```text\n/painting give <name> [player] [sets]\n```\n\n- `name`: registered painting\n- `player`: optional target player\n- `sets`: optional number of full sets (default `1`, clamped `1..64`)\n\nA set contains all map items required for the mural:\n- `1x1` mural = 1 map per set\n- `2x2` mural = 4 maps per set\n- `4x4` mural = 16 maps per set\n\nExamples:\n\n```text\n/painting give mona\n/painting give mona bitz\n/painting give castle bitz 3\n```\n\n### 4) Remove painting\n\n```text\n/painting remove <name>\n```\n\nDeletes metadata and generated tile images for that painting.\n\n### 5) Reload painting index\n\n```text\n/painting reload\n```\n\nReloads `paintings.yml` without restarting server.\n\n## Permissions\n\n- `custompaintings.use` (default: `true`)\n- `custompaintings.admin` (default: `op`)\n\nAdmin required for:\n- `/painting import ...`\n- `/painting remove ...`\n- `/painting reload`\n\n## Full Workflow Example (with username `bitz`)\n\n1. Upload `sunset.png` to:\n- `plugins/CustomPaintings/uploads/sunset.png`\n\n2. Import as 2x2 mural:\n\n```text\n/painting import sunset sunset.png 2 2\n```\n\n3. Confirm:\n\n```text\n/painting list\n```\n\n4. Give one set to yourself:\n\n```text\n/painting give sunset bitz 1\n```\n\n5. Place maps in item frames in grid order:\n- Top row left to right\n- Then next row left to right\n\n## Notes on Placement Order\n\nMap display names include tile position like:\n\n```text\nPainting: sunset [1/2, 1/2]\n```\n\nMeaning:\n- first value pair is horizontal position (`x/width`)\n- second pair is vertical position (`y/height`)\n\nUse that to place frames correctly for murals.\n\n## Troubleshooting\n\n### Plugin is red in `/plugins`\n\nCheck console logs on startup for `CustomPaintings` errors.\n\nCommon issue fixed in this project:\n- Missing `config.yml` in jar causes:\n- `The embedded resource 'config.yml' cannot be found`\n\n### Upload folder missing\n\nFolder is:\n\n```text\nplugins/CustomPaintings/uploads\n```\n\nIf it does not exist, plugin likely failed to enable.\n\n### \"Painting not found\"\n\n- Ensure painting was imported first\n- Check exact painting name in `/painting list`\n\n### \"Upload file not found\"\n\n- Verify file exists in `plugins/CustomPaintings/uploads/`\n- Use exact filename including `.png`\n\n### \"Only .png files are supported\"\n\nConvert source to PNG and retry import.\n\n### Mural too large\n\nMax import size is `8x8` maps.\n\n## Data Format\n\n`paintings.yml` stores each painting as:\n\n- `width`\n- `height`\n- `prefix` (tile filename prefix)\n\nThe plugin also supports loading older legacy single-file entries and treating them as `1x1`.\n\n## Upgrade/Replace Jar Safely\n\n1. Stop server.\n2. Replace plugin jar in `plugins/`.\n3. Start server.\n4. Run `/painting reload` if only metadata changed while running.\n\n## Uninstall\n\n1. Stop server.\n2. Remove plugin jar from `plugins/`.\n3. (Optional) Delete `plugins/CustomPaintings/` data folder.\n\n## License\n\nMIT",
+  "categories": [
+    "adventure",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 256,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

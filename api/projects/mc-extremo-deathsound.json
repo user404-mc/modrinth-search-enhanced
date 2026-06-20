@@ -1,0 +1,19 @@
+{
+  "id": "jivYd2qW",
+  "slug": "mc-extremo-deathsound",
+  "title": "MC Extremo DeathSound",
+  "description": "A Forge 1.20.1 modification that plays a custom sound effect upon death and alters the game's text components to display death messages in red, bold text with skull symbols in both the chat and the main death screen.",
+  "body": "# Death Sound Mod\n\nThis mod alters the visual and auditory behavior of death events in Minecraft, standardizing notifications under a highly visible format inspired by Hardcore mode mechanics. Now enhanced with global audio broadcasting and robust stability improvements.\n\n## Key Features\n\n### Global Audio Event\nUnlike client-side only implementations, this version utilizes server-side event handling (LivingDeathEvent) to broadcast the amplified hardcore death sound to **all connected players**.\n- **Cross-Dimension:** The sound is audible to everyone, regardless of whether they are in the Overworld, Nether, or End.\n- **Concurrent Safety:** Optimized to handle player lists safely, preventing crashes even if players disconnect during the event.\n\n### Strict Chat Formatting\nThe mod intercepts the chat stream (ClientChatReceivedEvent) to enforce a dramatic aesthetic:\n- **Visuals:** Forces all death messages to render in **BOLD RED**, flanked by skull symbols (☠).\n- **Enhanced Detection:** Now includes a fallback mechanism to detect death messages by text content, ensuring compatibility with mods that do not use standard \"death.*\" translation keys.\n- **False Positive Protection:** Intelligently filters out standard chat messages (e.g., player messages containing \":\") to avoid incorrect formatting.\n\n### Graphical Interface Modification\nUtilizing **Safe Java Reflection**, the mod accesses private variables within the DeathScreen class to inject the same red and bold formatting into the subtitle indicating the cause of death.\n- **Crash Protection:** The reflection logic is wrapped in robust error handling to ensure the game never crashes due to UI modifications, even in modded environments.\n\n### Utility Commands\n- /testsound: Audits the correct loading of the sound resource and its volume level for the executing player, without requiring an actual death event.\n\n## Requirements and Compatibility\n\n- **Minecraft:** 1.20.1\n- **Loader:** Minecraft Forge (47.2.0 or higher)\n- **Side:** Required on both **Client** and **Server**.\n\n## Installation\n\nDrop the .jar file into the mods folder of both your Minecraft client and your server.\n\n---\n*Developed by Tontoque28*",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 157,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

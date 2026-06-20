@@ -1,0 +1,43 @@
+{
+  "id": "TizFPouK",
+  "slug": "customnametags",
+  "title": "CustomNameTags",
+  "description": "This mod provides you with a way to customize your player's name tags completely server-side with no need for any client mods.",
+  "body": "# <img src=\"https://raw.githubusercontent.com/senseiwells/CustomNameTags/1.20.2/src/main/resources/assets/nametag/icon.png\" align=\"center\" width=\"64px\"/> CustomNameTags\n\nThis mod provides you with a way to customize your player's\nname tags completely server-side with no need for any client mods.\n\n![nametags.png](https://raw.githubusercontent.com/senseiwells/CustomNameTags/1.20.2/assets/nametags.png)\n\n## Commands\n\nYou are able to do some basic actions from within the game with the `/nametag`\ncommand, this requires permission level 2 or if you are using a permissions mod\nyou can have the permission `\"customnametags.command.nametag\"`.\n\n#### `/nametag create <identifier> <text>`\nThis creates a nametag with a given identifier and text, this supports the\n[placeholder api](https://placeholders.pb4.eu/user/default-placeholders/).\n\n#### `/nametag delete <identifier>`\nThis deletes a given nametag with identifier.\n\n#### `/nametag reload`\nThis reloads the config file.\n\n## Configuration\n\nThis mod allows a high level of customization, from the text being\ndisplayed, whether it is being displayed and who it can be displayed to.\n\nAll of this is configured using a json located in `config/CustomNameTags/config.json`.\nThe above image used the following configuration:\n\n```json\n{\n  \"nametags\": [\n    {\n      \"id\": \"example:admin_name\",\n      \"update_interval\": -1,\n      \"literal\": \"[Admin] <rainbow>%player:displayname_visual%<rainbow> \",\n      \"observee_predicate\": {\n        \"type\": \"operator\",\n        \"operator\": 4\n      }\n    },\n    {\n      \"id\": \"example:name\",\n      \"update_interval\": -1,\n      \"literal\": \"[Player] %player:displayname_visual%\",\n      \"observee_predicate\": {\n        \"type\": \"negate\",\n        \"value\": {\n          \"type\": \"operator\",\n          \"operator\": 4\n        }\n      }\n    },\n    {\n      \"id\": \"example:held_item\",\n      \"update_interval\": 1,\n      \"literal\": \"Holding: <green>%player:equipment_slot mainhand%</green>\",\n      \"observee_predicate\": {\n        \"type\": \"negate\",\n        \"value\": {\n          \"type\": \"entity\",\n          \"value\": {\n            \"equipment\": {\n              \"mainhand\": {\n                \"items\": [\n                  \"minecraft:air\"\n                ]\n              }\n            }\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"example:data\",\n      \"update_interval\": 1,\n      \"literal\": \"%player:health%♥ %player:hunger%🍖 %player:statistic minecraft:killed minecraft:player%⚔ %player:statistic minecraft:deaths%\\uD83D\\uDC80\"\n    }\n  ]\n}\n```\n\n### Creating a Nametag\n\nIn the config json, there will be an array which contains all the nametags\nthat will be displayed for your players. Each nametag is its own object.\n\nLet's have a look at what makes up a nametag:\n\n#### `\"id\"`\nThis is the identifier unique to your nametag, and follows this convention:\n`\"namespace:name\"`.\n\n#### `\"update_interval\"`\nThis is the interval at which the nametag will be updated, in ticks. \nSet to -1 if your nametag doesn't need to be updated.\n\n#### `\"literal\"`\nThis is the text that will be displayed on your nametag. This supports \nthe [placeholder api](https://placeholders.pb4.eu/user/default-placeholders/),\nwhich means you can add contextual data. \n\nFor example `\"%player:displayname\"` which will insert the display name of the current player. \nFor all the details reference the [placeholder api](https://placeholders.pb4.eu/user/default-placeholders/).\n\n#### `\"visible_radius\"`, `\"hidden_radius\"`\n\nThese two settings specify a range where the nametag will be visible to other players.\n\nSet these to a negative value to disable them.\n\nFor example, if you only wanted players in range from a 5.3 to 10.7 block radius to see each others nametags, \nyou can set:\n```json5\n{\n  // ...\n  \"hidden_radius\": 5.3,\n  \"visible_radius\": 10.7,\n  // ...\n}\n```\n\n#### `\"observee_predicate\"`\nThis is optional and doesn't need to be defined, but if defined will allow\nyou to decide which players will have this given nametag. \n\nFor example, in the example, above only operators are given the `\"example:admin_name\"` \nnametag and only non-operators are given the `\"example:name\"` nametag.\n\nThis uses the [predicate api](https://github.com/Patbox/PredicateAPI/blob/1.20.2/BUILTIN.md);\nyou can view the documentation for more details about what predicates you\ncan define.\n\n#### `\"observer_predicate\"`\nThis is optional and doesn't need to be defined, but if defined will determine \nwhether an observing player will be able to see this nametag.\n\nThis uses the [predicate api](https://github.com/Patbox/PredicateAPI/blob/1.20.2/BUILTIN.md);\nyou can view the documentation for more details about what predicates you\ncan define.\n\n# Caveats\n\nThere are some limitations of CustomNameTags, while for almost all the cases\nthe nametags will behave as expected, there are inconsistencies with the\ncustom nametags.\n\n- When players press F1 to hide their HUD player custom nametags will remain visible.\n- If the player is part of a team, their normal nametag will render.\n  - This can be solved by hiding all nametags for the given team:\n  - `/team modify <team> nametagVisibility never`",
+  "categories": [
+    "fabric",
+    "management",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16915,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

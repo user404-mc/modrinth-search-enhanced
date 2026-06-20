@@ -1,0 +1,19 @@
+{
+  "id": "n5DHyhc5",
+  "slug": "sable-reforgedplay-compat",
+  "title": "Sable Replay Compat",
+  "description": "Compatibility for the Sable physics engine with ReplayMod (reforgedplaymod): makes moving Sable. SubLevel contraptions correctly recordable and replayable in replays",
+  "body": "Compatibility for the Sable physics engine with ReplayMod (reforgedplaymod): makes moving Sable\nSubLevel contraptions correctly recordable and replayable in replays\n\nWhat it fixes:\n  - Movement recording. Sable broadcasts SubLevel pose snapshots bypassing the regular Minecraft\n    connection (in singleplayer via a direct call, in multiplayer over a separate UDP channel), so\n    ReplayMod does not record them and contraptions \"freeze\" in replays. While recording is active,\n    the mod routes the snapshots over the regular channel — so they end up in the replay, and on\n    playback the contraptions move again.\n  - Quick Mode. ReplayMod's quick mode rebuilds the world without NeoForge's modded network\n    handshake, which leaves the client stuck forever on the \"Reconfiguring\" screen. During a replay\n    the mod waves the connection through the NeoForge checks as a vanilla connection, and the world\n    loads.\n\nUseful for Sable-based mods — for example Create: Aeronautics (flying contraptions) — to record\ncinematic replays with moving ships and machines.\n\nSable, ReplayMod(reforgedplaymod) is required.\n\nNote: only replays RECORDED while this mod is installed and active will show moving contraptions.\nOld replays recorded without the mod have no movement data baked in and cannot be fixed afterwards —\ncontraptions will stay frozen on playback. Record a fresh replay to see the fix.",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 598,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

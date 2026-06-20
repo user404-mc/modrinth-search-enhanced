@@ -1,0 +1,23 @@
+{
+  "id": "st2oTJCP",
+  "slug": "direction-hud",
+  "title": "Direction HUD",
+  "description": "The Direction HUD mod displays the player's current facing direction (North, South, East, West, etc.) on the top left corner of the screen.",
+  "body": "# Direction HUD\n\n## Overview\n\nThe Direction HUD mod displays useful player information such as facing direction, world time, coordinates, and more directly on the screen. All HUD elements are configurable and can be toggled on or off using commands. The state is saved between game sessions.\n\n---\n\n## Features\n\n- **Direction Display**\n  Shows cardinal (N, S, E, W) and intercardinal directions (NE, NW, SE, SW) in the top left corner.\n\n- **Minecraft Days**\n  Displays the number of days passed in the current world (top left).\n\n- **Time Display**\n  Shows both:\n  - Real-world time (24-hour format)\n  - In-game time (12-hour format with AM/PM and sun/moon icons) in the top right corner\n\n- **Coordinate Display**\n  Shows current X, Y, Z coordinates above the hotbar.\n\n- **Biome Display**\n  Shows the current biome next to the coordinates.\n\n- **Coordinate Saving**\n  Save your current location with a custom name and retrieve it later.\n\n- **Toggleable Features**\n  Each HUD element can be enabled or disabled independently using commands.\n\n- **Persistent Config**\n  All preferences and saved coordinates are stored in:\n  `config/direction-hud.json`\n\n- **Minimalist UI**\n  Clean, readable overlays with subtle backgrounds for visibility.\n\n---\n\n## How It Works\n\n### 1. Initialization\n- The mod loads configuration from `config/direction-hud.json`\n- Commands are registered using the `/dh` namespace to avoid conflicts with other mods\n\n### 2. Direction Calculation\n- The player’s yaw angle is used to determine direction\n- The 360° circle is divided into 8 segments (45° each):\n  - N, NE, E, SE, S, SW, W, NW\n\n### 3. Rendering\n- Enabled HUD elements are rendered in their respective screen positions:\n  - **Top Left**: Direction + Minecraft days\n  - **Top Right**: Time (real + in-game)\n  - **Above Hotbar**: Coordinates + biome\n- Each element includes a semi-transparent background for readability\n\n### 4. Command Handling\n- All features are controlled via `/dh` commands\n- Changes are saved instantly to the config file\n\n---\n\n## Commands\n\n### Direction\n`/dh direction <on|off>`\nToggle direction display\n\n### Days\n`/dh days <on|off>`\nToggle Minecraft days display\n\n### Time\n`/dh time <on|off>`\nToggle real-world and in-game time display\n\n### Coordinates\n`/dh coords <on|off>`\nToggle coordinate display\n\n`/dh coords save <name>`\nSave current coordinates with a custom name\n\n`/dh coords list`\nList all saved coordinates\n\n### Biome\n`/dh biome <on|off>`\nToggle biome display\n\n---\n\n## Configuration\n\nThe mod uses a JSON-based configuration file:\n\n`config/direction-hud.json`\n\nThis file stores:\n- Enabled/disabled state for each HUD element\n- Saved coordinates with custom names\n\n---\n\n## Changelog\n\n### [3.2.1] - 29-04-2026\n\n#### Features\n- Added Minecraft day counter\n- Added real-world and in-game time display\n- Added coordinate and biome display\n- Added coordinate saving and listing system\n- Introduced per-feature toggles via commands\n- Migrated config from `.properties` to `.json`\n- Updated command namespace to `/dh` to avoid mod conflicts\n\n---\n\n## Notes\n\n- All settings persist between game sessions\n- Designed to be lightweight and non-intrusive\n- Compatible with most Fabric-based modpacks",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 2313,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

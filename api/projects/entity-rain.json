@@ -1,0 +1,22 @@
+{
+  "id": "QCtlZC5A",
+  "slug": "entity-rain",
+  "title": "Entity Rain Events",
+  "description": "Data driven events where entities fall from the sky",
+  "body": "Cause brief entity rain events where different creatures fall from the sky. The default data pack adds a fish rain event. \n\n## Data Packs\n\nNew entity rain events are defined by json files in the `entityrain` folder of data packs. \nThe format of these files is as follows, \n\n- `radius` (int): the number of blocks around each player that entities will spawn (the area will be a square)\n- `height` (int): how many blocks above the ground the entities will spawn\n- `spawnRate` (int): an entity will spawn near each player every x ticks (on average) while the event is active\n- `spawn` (list of EntitySpawnOption): the types of entities that will spawn during this event\n- `when` (EventConditions): what situations this event should start under\n- `chance` (int): how likely the event is to start. the chance for the event to start each check is (1/chance). the check is made for each possible event whenever it switches between day/night or raining/clear. the event will last until the next check. \n- `replace` (boolean): what happens if another data pack has already defined an event of this name. if true, the existing event will be deleted and this file will be used instead. if false, the contents of `spawn` and `dimensions` will be added to the existing event. the defaults to true.\n\nYou can see the default fish rain json data [on github](https://github.com/LukeGrahamLandryMC/smells-fishy-mod/blob/main/src/main/resources/data/smellsfishy/entityrain/fish.json).\n\n### EntitySpawnOption\n\n- `entity` (string): the registry key of the entity type (ie. `minecraft:zombie`)\n- `weight` (int): how likely this entity is compared to the others. chance of each entry is (weight / totalWeight) \n- `biomes` (list of string): resource locations of biomes to whitelist (allow this spawn in). **optional**, when not defined the spawn will occur in all biomes. Tags are supported, prefix with `#`\n- `biomesIsBlacklist` (boolean): when true, the `biomes` filter is inverted, the spawn will NOT occur in the listed biomes. **optional**, defaults to false\n\n> the data for currently active rain events does not change when the /reload command is used, you must wait for it to start again to see the effects\n\n### EventConditions\n\n- `raining` (boolean): can the event start while its raining\n- `notRaining` (boolean): can the event start while its NOT raining\n- `day` (boolean): can the event start in the daytime\n- `night` (boolean): can the event start in the nighttime\n- `dimensions` (list of string): the registry keys of the dimensions the event may happen in (ie. `minecraft:overworld`)\n- `biomes` (list of string): resource locations of biomes to whitelist (allow rain to occur in). **optional**, when not defined the event will cause spawns in all biomes. Tags are supported, prefix with `#`\n- `biomesIsBlacklist` (boolean): when true, the `biomes` filter is inverted, the entities will NOT be spawned in the listed biomes. **optional**, defaults to false\n\n## Commands\n\nTo test your data packs, you can force change the active entity rain event in your current dimension with the following commands (requires OP permissions).  \n\n```\n/entityrain start <key>\n/entityrain stop\n```\n\n## Credits \n\n- The 1.18.2 version was commissioned by [Coda](https://www.curseforge.com/members/coda1552/projects)\n- The 1.16.5 version was commissioned by [Adam](https://www.curseforge.com/members/adam98991/projects)",
+  "categories": [
+    "forge",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 335,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.18",
+    "1.18.1",
+    "1.18.2"
+  ],
+  "date_updated": null
+}

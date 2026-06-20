@@ -1,0 +1,23 @@
+{
+  "id": "RGY7pxkj",
+  "slug": "tango-webapi",
+  "title": "Tango Web API",
+  "description": "An API to bundle Webservers and Webinterfaces for your Mods",
+  "body": "# TangoWebAPI\n\nA single shared webserver mod for Fabric/NeoForge that removes boilerplate for other mods. TangoWebAPI provides one embedded HTTP server that mods can use to expose their own endpoints or static assets.\n\n## Features\n- Shared HTTP server (Java HTTP) for all mods, start/stop in common code.\n- Simple API for routes: `get/post/registerRoute` with mod namespace (`/modid/...`).\n- Static file serving per mod (`serveStatic` with safe path handling).\n- Built-in health/info/route listing: `/tango-webapi/health`, `/tango-webapi/info`, `/tango-webapi/routes`.\n- Configuration via file (`config/tango-webapi.properties`) or env/system props.\n- Error pages (404/405/503) with simple HTML templates.\n\n## Configuration\nFile: `config/tango-webapi.properties`\n```properties\nhost=0.0.0.0\nport=8080\nmaxRequestBytes=1000000\n```\nOr via env/system properties:\n- `TANGO_WEBAPI_HOST` / `tango.webapi.host`\n- `TANGO_WEBAPI_PORT` / `tango.webapi.port`\n- `TANGO_WEBAPI_MAX_BYTES` / `tango.webapi.max_bytes`\n\n## API for other mods (examples)\n```java\n// Simple text route at /mymod/ping\nTangoWebAPI.get(\"mymod\", \"/ping\", ctx -> ctx.sendText(200, \"pong\"));\n\n// JSON response\nTangoWebAPI.post(\"mymod\", \"/data\", ctx -> ctx.sendJson(200, \"{\\\"ok\\\":true}\"));\n\n// Static assets from config/mymod/static under /mymod/static/**\nTangoWebAPI.serveStatic(\"mymod\", \"static\", Path.of(\"config\", \"mymod\", \"static\"));\n```\n\n## Built-in endpoints\n- `GET /tango-webapi/health` – status\n- `GET /tango-webapi/info` – host/port/max-bytes\n- `GET /tango-webapi/routes` – all registered routes incl. prefix routes\n\n\n## Testing\n- After game start: `http://localhost:8080/tango-webapi/health` / `info` / `routes`\n- Register your own route and hit it via browser/curl.\n- Serve a static page under your mod path and verify it loads.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 426,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

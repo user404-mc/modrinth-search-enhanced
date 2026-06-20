@@ -1,0 +1,22 @@
+{
+  "id": "xbwvYZIz",
+  "slug": "linkedportals",
+  "title": "Linked Portals",
+  "description": "A Server side mod that allows creating linked portals",
+  "body": "## Portals!\nThis is a server-side portal mod.  Portal types and size limits can be controlled through datapacks. This mod is still very much a work in progress so if you see any issues, please be sure to report it.\n\n## Usage\n\n\n### Linking portals\nEach portal is activated by providing an item, and will link to all other portals using the same item. Customizing the name of the item and/or adding Custom Model Data will distinguish the item from other items.\n\n\nExample:  \n\n\n- `Portal A` uses a `Paper` named `Nether Portals`\n- `Portal B` uses a `Paper` without a name\n- `Portal C` uses a `Paper` named `Nether Portals`\n\n`Portal A` and `Portal C` will link. `Portal B` will be unlinked. Beware, attempting to use an unlinked portal may result in unforseen consequences.\n\n### Locking\nPortal types that support locking can be locked by sneaking and using the controller block. Items cannot be removed from locked controllers. Players with the proper permissions can lock any portal controller, regardless of the portal type (as long as they have the ability to modify blocks in that space). By default this is controlled through one of the following permissions:\n\n- `Single Players`\n- `Operator`\n- `linkedportals.masterkey` permission node in a permission mod like luckperms\n\n\n\n## Datapack configuration:\n\n### Block Tags:\n\n- `linkedportals:valid_frames` - Identifies valid frame blocks for the default portal type.\n- `linkedportals:portal_controller_base` - Identifies blocks that can be converted to portal control blocks. Breaking a controller block will drop the original block.\n\n### Item Tags:\n- `linkedportals:valid_activators` - Identifies items that are spent to convert base blocks to controllers.\n\n### Portal Types:\nPortal types are configured with json files in the `data/<namespace>/linkedportals/types/<portal_type_name>.json` path. Each portal type will be its own file. The default portal type can be disabled by overwriting the default.json portal type or by replacing the `linkedportals:valid_frames` tag with an empty tag.\n\nPortal types use rule tests to check for valid frames or internal blocks. This supports any custom rule tests added by mods or the standard structure processor tests. The most common will be `block_match`, `blockstate_match`, or `tag_match`. \n- `valid_frame_rule` Rule test to validate frame blocks.\n- `valid_interior_rule` Rule test to validate blocks inside the frame. Defaults to a block test for air.\n- `size_limit` Controls the maximum size of the portal frame width and height. Defaults to 21.\n- `lockable` Controls whether this portal type is lockable by players. Defaults to `true`.\n#### Format\n```json\n{\n  \"valid_frame_rule\": {\n    \"predicate_type\": \"minecraft:tag_match\",\n    \"tag\": \"linkedportals:valid_frames\"\n  },\n  \"valid_interior_rule\": {\n    \"predicate_type\": \"minecraft:blockstate_match\",\n    \"block_state\": {\n      \"Name\": \"minecraft:air\"\n    }\n  }\n  \"size_limit\": 21,\n  \"lockable\": false\n}\n```\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 303,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4"
+  ],
+  "date_updated": null
+}

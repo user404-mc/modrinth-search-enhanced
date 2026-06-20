@@ -1,0 +1,35 @@
+{
+  "id": "W0JWCVNo",
+  "slug": "mobsblocker",
+  "title": "Mobs Blocker",
+  "description": "Mobs Blocker is a simple and effective admin tool to prevent any mob from spawning on your server via a simple command.",
+  "body": "<div align=\"center\">\n\n# Mobs Blocker\n### Advanced Spawn Control for Your Server\n\n[![NeoForge](https://img.shields.io/badge/NeoForge-1.21+-orange?style=for-the-badge)](https://neoforged.net/)\n[![GitHub](https://img.shields.io/badge/GitHub-Source-black?style=for-the-badge&logo=github)](https://github.com/Dreyka-Oas/Mobs-Blocker)\n[![MCreaHub](https://img.shields.io/badge/Project_Setup-MCreaHub-blue?style=for-the-badge)](https://mcreahub.pages.dev/)\n[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://opensource.org/licenses/MIT)\n\n**Mobs Blocker** has been completely re-architected to give you granular control over entity spawning. Stop mobs based on specific conditions (natural spawns, spawners, eggs) or apply rules globally across mob categories.\n\n[Report a Bug or Suggest a Feature](https://github.com/Dreyka-Oas/Mobs-Blocker/issues)\n\n</div>\n\n**`⚠️ UPDATE NOTICE: This mod has been rewritten and currently ONLY supports version 1.2.0. For version 1.1.0, please check the GitHub repository. Versions below 1.1.0 are no longer supported.`**\n\n---\n\n## 🚀 How It Works & Core Features\n\n### The Logic System\nMobs Blocker intercepts every entity spawn attempt and checks rules in this specific order:\n1.  **Specific Rules**: Is there a rule for this exact Entity ID? (e.g., `minecraft:zombie`)\n2.  **Preset Rules**: If not, is there a rule for its Category? (e.g., `monsters`)\n3.  **Global Rules**: If not, is there a Global rule set?\n\n### Key Features\n* **Granular Control**: Block mobs based on *how* they spawn (Natural, Spawners, Eggs, Commands).\n* **Smart Presets**: Apply rules to entire categories (e.g., block all `monsters` or `water_creatures`).\n* **Global Settings**: Apply a rule to *every* entity on the server instantly.\n* **In-Game Management**: Full command system with auto-completion.\n* **Zero Lag**: Uses optimized `HashSet` lookups and hooks into NeoForge events for minimal performance impact.\n* **Server-Side Only**: Clients do not need to install this mod.\n\n<br>\n\n<details>\n<summary><strong>📜 The Rules System (Understanding Block Types)</strong></summary>\n<br>\n\nWhen adding a rule, you define **what** to block. You can block specific sources or use \"Inverse Mode\" to allow *only* specific sources.\n\n| Rule Keyword | Effect |\n| :--- | :--- |\n| `all` | Blocks **ALL** spawns for this target. |\n| `natural` | Blocks natural spawns (darkness, biome generation). |\n| `spawner` | Blocks mob spawners (dungeons, trial spawners). |\n| `egg` | Blocks spawn eggs and dispensers. |\n| `command` | Blocks `/summon` or command block spawns. |\n| `!natural` | **Inverse**: Blocks everything *EXCEPT* natural spawns. |\n| `!spawner` | **Inverse**: Blocks everything *EXCEPT* spawners. |\n| `!command` | **Inverse**: Blocks everything *EXCEPT* commands. |\n\n</details>\n\n<br>\n\n## 💻 Command Guide (Usage Examples)\n\nAll commands require **OP Level 4**.\n\n### 1. Specific Mob Control (`add`)\nTarget a single entity type.\n\n* **Block Zombies completely:**\n    ```mcfunction\n    /spawnblocker add minecraft:zombie all\n    ```\n* **Block Creepers from spawning naturally (but allow spawners/eggs):**\n    ```mcfunction\n    /spawnblocker add minecraft:creeper natural\n    ```\n* **Allow Skeletons ONLY from Spawners (Inverse Mode):**\n    ```mcfunction\n    /spawnblocker add minecraft:skeleton !spawner\n    ```\n\n### 2. Category Presets (`preset`)\nApply rules to groups of mobs.\n*Available categories:* `monsters`, `creatures`, `ambient`, `water`, `misc`.\n\n* **Block all Monsters from spawning naturally:**\n    ```mcfunction\n    /spawnblocker preset monsters natural\n    ```\n* **Disable all ambient creatures (Bats, etc.):**\n    ```mcfunction\n    /spawnblocker preset ambient all\n    ```\n\n### 3. Global Settings (`global`)\nApply a fallback rule to the entire server.\n\n* **Disable Natural Spawning server-wide (Adventure mode style):**\n    ```mcfunction\n    /spawnblocker global natural\n    ```\n\n### 4. Management & Utilities\n* **Remove a rule:**\n    ```mcfunction\n    /spawnblocker remove minecraft:zombie\n    /spawnblocker remove preset monsters\n    ```\n* **List active rules:**\n    ```mcfunction\n    /spawnblocker list\n    ```\n* **Reload Config (from disk):**\n    ```mcfunction\n    /spawnblocker reload\n    ```\n* **Reset Everything (Wipe Config):**\n    ```mcfunction\n    /spawnblocker reset\n    ```\n\n<br>\n\n<details>\n<summary><strong>📂 Configuration File (Manual Editing)</strong></summary>\n<br>\n\nThe configuration is saved automatically to `config/spawnblocker.json`. You can edit this file manually if the server is stopped.\n\n**Example `spawnblocker.json`:**\n```json\n{\n  \"minecraft:phantom\": [\n    \"all\"\n  ],\n  \"preset:monsters\": [\n    \"natural\"\n  ],\n  \"minecraft:zombie\": [\n    \"!spawner\"\n  ],\n  \"global_settings\": [\n    \"command\"\n  ]\n}",
+  "categories": [
+    "adventure",
+    "cursed",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "neoforge",
+    "optimization",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20530,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.4",
+    "1.20.1",
+    "1.20.4",
+    "1.20.6",
+    "1.21.1",
+    "1.21.4",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

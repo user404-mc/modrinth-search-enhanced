@@ -1,0 +1,25 @@
+{
+  "id": "YVoB66CZ",
+  "slug": "codex-client-control",
+  "title": "Codex Client Control",
+  "description": "A local HTTP bridge for AI-driven Minecraft client control.",
+  "body": "Codex Client Control started from a simple problem: most AI tools can explain Minecraft, talk about Minecraft, and write code for Minecraft, but they still cannot actually operate a running Minecraft client.\n\nThat gap is what this mod is meant to close. It opens a token-protected local HTTP and WebSocket interface on `127.0.0.1`, so an AI agent on the same machine can read client state and send real in-game actions back to the client it is supposed to control.\n\nThis project was built with Codex in mind first. The name is not accidental: it exists to give Codex a practical way to see what the client is doing, inspect the current UI, and perform actual gameplay-side operations instead of stopping at text-only reasoning.\n\nIn practice, that means an external tool can read chat, inspect the current screen, check the focused block, look at container contents, move the player, turn the camera, switch hotbar slots, type into GUI fields, click widgets, take screenshots, or run short action sequences.\n\nHTTP was chosen on purpose. It is simple, easy to inspect, easy to debug, and easy for AI tools to call. If an agent can make a normal local request, it can control the client without needing a special plugin host or an embedded scripting environment.\n\n## Why It Exists\n\n- To let AI tools operate a real Minecraft client instead of only talking about one\n- To give Codex a straightforward control path through a local API\n- To make client automation easy to inspect, test, and extend\n- To bridge normal scripts, desktop tools, and AI agents with a running game client\n\n## What It Can Control\n\n- Player state, chat history, crosshair target, container contents, current screen, and player list\n- Movement keys, look control, hotbar selection, chat sending, and command execution\n- GUI clicks, scroll input, key input, text entry, and widget targeting\n- Screenshots, action sequences, managed actions, and local debug helpers\n\n## Notes\n\n- The API is local-only by default and token-protected.\n- It controls the client you are already running; it does not log in a second account.\n- It was built for Codex first, but anything that can call the local API can use it.\n- If you need very heavy continuous automation, the repository also includes an optional `lan-bot` side project for that style of workload.",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 124,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

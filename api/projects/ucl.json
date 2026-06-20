@@ -1,0 +1,28 @@
+{
+  "id": "LUnnunTC",
+  "slug": "ucl",
+  "title": "Unnamed Common Library (UCL)",
+  "description": "A very simple, easy to use configuration library that fits right in your mod!",
+  "body": "<details open>\n  <summary>English</summary>\n  <h2>❔ Tell me more about it</h2>\n  <p>\n    <strong>Unnamed Common Library (UCL)</strong> is my attempt at making a simple, useful, (yet to be) powerful configuration library. Its goal is to be general purpose so that no matter the mod you build or your preferences, you can always use it. This library is obviously not meant to be used on its own,if you do so it will at most serve as an example and a test for its capabilities.\n  </p>\n\n  <h2>🤩 Why you should like it</h2>\n  <ul>\n    <li><strong>Very easy</strong> to implement and use</li>\n    <li>Optional configuration screen integrations</li>\n    <li>JSON, TOML, and YAML support</li>\n  </ul>\n\n  <h2>🧑‍💻 For developers</h2>\n\n  <details open>\n    <summary><strong>Installation</strong></summary>\n    <p>Add the repository to your <code>build.gradle(.kts)</code>:</p>\n<pre class=\"language-groovy\">\nrepositories {\n    maven {\n        url = \"https://maven.pkg.github.com/aurorarissime/unnamed-common-library\"\n    }\n}\n</pre>\n\n<p>And in your buildscript, add the dependency (<code>modImplementation</code> for Fabric, <code>implementation</code> for NeoForge):</p>\n\n<pre class=\"language-groovy\">\ndependencies {\n    (mod)Implementation(\"from.discorde:ucl:${ucl_version}+${minecraft_version}-fabric\")\n}\n</pre>\n  </details>\n\n  <details>\n    <summary><strong>Usage</strong></summary>\n    <h3>1. Create your configuration model</h3>\n    <h4>MyModConfig.java</h4>\n\n<pre class=\"language-java\">\nimport from.discorde.ucl.common.config.annotations.*;\n\n@Configuration(\n    name = \"mymod\"\n)\npublic class MyModConfig {\n    @Comment(\"Enable the awesome feature\")\n    public boolean awesomeFeature = true;\n\n    @Comment(\"Maximum power level (0-100)\")\n    public int maxPower = 50;\n\n    @Comment(\"Welcome message displayed to players\")\n    public String welcomeMessage = \"Hello!\";\n}\n</pre>\n\n<h3>2. Load the configuration in your mod initialiser</h3>\n<h4>MyMod.java</h4>\n\n<pre class=\"language-java\">\npublic class MyMod implements ModInitializer {\n    // The wrapper class is auto-generated at compile time\n    public static final MyModConfigWrapper CONFIG = MyModConfigWrapper.createAndLoad();\n\n    @Override\n    public void onInitialize() {\n        if (CONFIG.awesomeFeature) {\n            System.out.println(\"Awesome feature is enabled!\");\n        }\n    }\n}\n</pre>\n  </details>\n\n  <details>\n  <summary><strong>References</strong></summary>\n\n  <h3>Annotations</h3>\n  <h4><code>@Configuration</code></h4>\n  <p>Add this annotation right above your config class</p>\n\n| Parameter  | Type                    | Default        | Description                 |\n|------------|-------------------------|----------------|-----------------------------|\n| `name`     | `String`                | *required*     | Config file or folder name  |\n| `location` | `ConfigurationLocation` | `SUBDIRECTORY` | Where to save the config    |\n| `format`   | `ConfigurationFormat`   | `JSON5`        | File format to use          |\n| `screen`   | `boolean`               | `true`         | Generate YACL config screen |\n\n  <h4><code>@Comment</code></h4>\n  <p>Add this annotation above any field to include a comment in the config file</p>\n\n<pre class=\"language-java\">\n@Comment(\"This comment will appear above the field in the config file\")\npublic boolean myOption = true;\n</pre>\n\n  <h3>Enums</h3>\n  <h4><code>ConfigurationLocation</code></h4>\n\n| Value          | Description                                          |\n|----------------|------------------------------------------------------|\n| `ROOT`         | Save directly in the config folder as `{name}.{ext}` |\n| `SUBDIRECTORY` | Save in a subfolder as `{name}/configuration.{ext}`  |\n\n  <h4><code>ConfigurationFormat</code></h4>\n\n| Value   | Extension | Description                                            |\n|---------|-----------|--------------------------------------------------------|\n| `JSON5` | `.json5`  | JSON with comments, trailing commas, and unquoted keys |\n| `TOML`  | `.toml`   | Tom's Obvious Minimal Language                         |\n| `YAML`  | `.yaml`   | YAML Ain't Markup Language                             |\n  </details>\n\n  <details>\n    <summary><strong>Configuration screens integration</strong></summary>\n    <p>If <code>screen = true</code> (default) in your <code>@Configuration</code> annotation and <a href=\"https://modrinth.com/mod/yacl\">YetAnotherConfigLib (YACL)</a> is installed, a configuration screen will be auto-generated and accessible through <a href=\"https://modrinth.com/mod/modmenu\">Mod Menu</a>.<br> To disable the config screen, just set the <code>screen</code> parameter to <code>false</code> in the <code>@Configuration</code> annotation.</p>\n  </details>\n</details>\n\nEnjoy 🙂",
+  "categories": [
+    "fabric",
+    "library",
+    "magic",
+    "management",
+    "neoforge",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 425,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

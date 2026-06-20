@@ -1,0 +1,21 @@
+{
+  "id": "Z6vEgnoM",
+  "slug": "recruits-siege-fix",
+  "title": "Recruits Siege Fix",
+  "description": "Recruits addon that makes sieges core-chunk based, requiring attackers to contest a player-set core chunk to capture claims.",
+  "body": "You can support me through- https://ko-fi.com/knightmare61825\n\nThis addon for Villager Recruits that closes the biggest siege exploit: attackers no longer win by idling anywhere in the claim until the timer ends.\nInstead, claims are captured by contesting a single Core Chunk chosen by the owner.\n\nWhat This Mod Changes:\n- Replaces default “whole-claim pressure” siege behavior with core objective capture.\n- Each claim has one Core Chunk (owner-selected).\n- Attackers must contest that core chunk to make capture progress.\n- Siege progress is paused when attackers leave the core chunk.\n- If attackers stay away too long, siege fails.\n- Adds a clear attacker-side target marker (no guessing which chunk to push).\n  \n# **Core Siege Mechanics**:\n- Attackers enter a claim and start siege conditions.\n- Only units in the Core Chunk count for progressing capture.\n- Capture progress is based on time actively contested in core:\n  capture_duration_seconds (default: 600 = 10 minutes)\n- If attackers leave core:\n  Progress pauses (does not instantly fail)\n  After pause_timeout_seconds (default: 60), siege fails if they don’t return\n- Recruits siege UI/messages remain synced.\n  \n# **Visual Core Marker (for Attackers)**\nWhen an player enters a claim, attackers see the core objective clearly:\n- A bright red sky beam at core position\n- A floating red banner marker at the core\n- Visible through walls for easy objective direction\n- This appears for enemies to help them identify where to attack.\n**Command**:\n/setcorechunk\nUse it while standing in the desired chunk inside your claim.\n\nRules:\nMust be inside your own claim\nCannot be used during active siege\nClaim owner/faction leader (or OP) can set it\nNot available for admin claims\n\n## **Configuration File**:\n<world>/serverconfig/siegesystemfix-server.toml\n_[core_siege]\ncapture_duration_seconds = 600\npause_timeout_seconds = 60_\n\ncapture_duration_seconds: active core contest time required to capture\npause_timeout_seconds: max pause time before siege fails\n\n**Integration Notes:**\nUses Recruits’ existing siege data flow and client sync.\nRequired attacker count still follows Recruits config:\nClaiming.SiegeClaimsRecruitsAmount in recruits-server.toml.\nIf no core is manually set, claim center is used as fallback.\n\n**Quick Setup:**\n1.Install Recruits + SiegeSystemFix (same Forge 1.20.1 environment).\n2.Create/own a claim.\n3.Stand in your desired core chunk.\n4.Run /setcorechunk.\n5.Adjust timeout/capture settings in siegesystemfix-server.toml if needed.\n\nYou can support me through- https://ko-fi.com/knightmare61825",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 486,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

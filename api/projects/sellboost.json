@@ -1,0 +1,32 @@
+{
+  "id": "iMZeHt6P",
+  "slug": "sellboost",
+  "title": "SellBoost",
+  "description": "Randomized sell price boost events for EconomyShopGUI. Automatically triggers timed boosts on configurable items with custom multipliers, actionbar display, and restart persistence.",
+  "body": "# 🚀 SellBoost\nA Paper plugin that integrates with **EconomyShopGUI** to run automatic randomized sell price boost events. At a configurable interval, the plugin picks random items from your shop and applies individual multipliers to their sell price — keeping your economy fresh and giving players a reason to stay active.\n\n[![Discord](https://img.shields.io/discord/1234567890?label=Discord&logo=discord&color=5865F2)](https://discord.gg/tFXhkPVpxG)\n[![Modrinth](https://img.shields.io/badge/Modrinth-Profile-1bd96a?logo=modrinth)](https://modrinth.com/user/Treamhiler)\n[![GitHub](https://img.shields.io/badge/GitHub-Treamhilerjava-181717?logo=github)](https://github.com/Treamhilerjava)\n\n---\n\n## ✨ Features\n- Automatic boost rotation at a configurable interval (hours, minutes, or seconds)\n- **MULTIPLE** mode — several items boosted at once, each with its own multiplier\n- **SINGLE** mode — one item boosted at a time\n- Per-item `min_multiplier_only` flag — forces an item to always use the base minimum, never the rolling range (useful for rare/valuable items like diamonds)\n- **Rolling multiplier** — the multiplier window gradually escalates each cycle up to a configurable ceiling, then wraps back. Epoch and roll time persist across restarts\n- **Live shop tooltip updates** — boosted sell prices are written directly into the EconomyShopGUI shop files on boost start and restored automatically on boost end; no manual reload needed\n- **Server-wide boss bar** — shows boosted items, their multipliers, and a live countdown during a boost; shows time until the next boost while idle\n- Live actionbar display showing boosted items and multipliers\n- Chat and title screen announcements — each independently toggleable\n- `no_repeat_last` — prevents the same items from being picked in back-to-back boosts\n- Boost state (active items, multipliers, timers, rolling epoch) persists across server restarts via `data.yml`\n- Manual controls with `/sellboost start | stop | status | reload`\n\n---\n\n## 🎮 How It Works\nWhen a boost fires, SellBoost picks random items from your configured list and assigns each a random multiplier. Players see it live on the boss bar and actionbar:\n\n```\n⚡ SELL BOOST | Wheat (3x) | Coal (2.5x) | String (4x) | 13m 34s\n```\n\nThe sell price shown in `/shop` updates instantly to reflect the boost. When the boost ends, all prices are restored automatically. Only boosted items get the multiplier — everything else sells at normal price.\n\n---\n\n## 💻 Commands\nPermission node: `sellboost.admin` — OP only by default\n\n| Command | Description |\n|---|---|\n| `/sellboost start` | Trigger a boost manually |\n| `/sellboost stop` | Stop the current active boost |\n| `/sellboost status` | Show boosted items, multiplier range, rolling epoch, and countdown |\n| `/sellboost reload` | Reload config without restarting |\n\n---\n\n## ⚙️ Configuration\nFile: `plugins/SellBoost/config.yml`\n\n```yaml\nmode:\n  type: MULTIPLE        # MULTIPLE | SINGLE\n  multiple:\n    count: 3\n    no_repeat_last: true\n\nrotation:\n  unit: MINUTES         # HOURS | MINUTES | SECONDS\n  value: 60\n\nboost:\n  duration:\n    unit: MINUTES\n    value: 15\n\nmultiplier:\n  min: 2.0\n  max: 4.0\n  step: 0.5\n  rolling:\n    enabled: true\n    interval:\n      unit: HOURS\n      value: 2\n    ceiling: 6.0        # range stops escalating here, then wraps back to base\n\nautosave:\n  enabled: true\n  interval_ticks: 200\n\nnotifications:\n  actionbar: true\n  chat: true\n  title: true\n  bossbar: true\n\ndisplay:\n  bossbar:\n    active_format: \"&6⚡ SELL BOOST &8| &e{items} &8| &a{remaining}\"\n    idle_format: \"&7Next boost in &e{next}\"\n    show_idle: true\n\nitems:\n  - path: \"Farming.page1.items.28\"\n    display: \"Wheat\"\n  - path: \"Ores.page1.items.9\"\n    display: \"Diamond\"\n    min_multiplier_only: true\n```\n\n---\n\n## 🔍 Finding Item Paths\nOpen your EconomyShopGUI shop config files in `plugins/EconomyShopGUI/shops/`. The path format is:\n```\nShopFileName.page1.items.SLOT\n```\nExample — shop file `Ores.yml`, Iron Ingot in slot 16:\n```yaml\n- path: \"Ores.page1.items.16\"\n  display: \"Iron Ingot\"\n```\n> If a path is invalid or the item is not sellable, SellBoost logs a warning and skips it on boot.\n\n---\n\n## 📦 Installation\n1. Drop `SellBoost.jar` into your server's `plugins/` folder\n2. Ensure **EconomyShopGUI** (free or premium) is already installed\n3. Restart the server\n4. Edit `plugins/SellBoost/config.yml` — set your item paths and multiplier settings\n5. Run `/sellboost reload`\n\n---\n\n## 🔧 Requirements\n- Paper / Spigot 1.21.x · Java 21+\n- EconomyShopGUI (free or premium)\n\n---\n\n💬 **[Join our Discord](https://discord.gg/tFXhkPVpxG)** for support, downloads, and updates\n🔗 **[More plugins by Treamhiler](https://modrinth.com/user/Treamhiler)**\n🐙 **[GitHub](https://github.com/Treamhilerjava)**",
+  "categories": [
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 255,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

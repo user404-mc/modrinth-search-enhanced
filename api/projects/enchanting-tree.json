@@ -1,0 +1,24 @@
+{
+  "id": "47vEYX8Y",
+  "slug": "enchanting-tree",
+  "title": "Enchantree",
+  "description": "Replaces enchanting table RNG with a tree system to give enchanting a stronger sense of progression.",
+  "body": "## Summary\n\nWhen enchanting an item, a list of enchanted books will display any compatible enchantments that are accessible from the enchanting table. When apploying, enchantments are applied one level at a time. The cost to apply enchantments increases with each level.\n\nWorks best if you disable villager trading or use [this mod](https://modrinth.com/datapack/level-1-librarian-books) to limit all enchanted books from villagers to only be level one. This will prevent players from using villagers to bypass the tree entirely.\n\nI tried my best to make this work in all languages without requiring the mod on the client. This forced me to used existing translation keys which may result in some weird translation artifacts.\n\n![Example scenario with Looting I selected](https://cdn.modrinth.com/data/cached_images/4cbcd92c1f345470d561c6e2bfdae2ce82a9a280.png)\n\n## Configuration\n\nThere are 3 configuration options available for the mod:\n\n`maxBookshelves` - sets the maximum number of bookshelves that an enchant can require to be applied. Acceptable values are `0-32`, Default 18\n\n`scaleBookshelfCost` - determines how bookshelf cost should be calculated. If `true`, costs will be scaled to fit within the range `0-maxBookshelves`. If `false` calculated bookshelf requirements will simply be capped at `maxBookshelves`. Default: `true`\n\n`requireEnchantedBooks` - If enabled, the enchanting table will search for enchanted books stored in nearby chiseled bookshelves. Enchantments can only be applied up to the highest level of the book found by the enchanting table. This only works for enchantments that can normally be obtained from the enchanting table. Enchantments such as mending, swift sneak, and soul speed will not become accessible even if a book is provided. If you use this option, I recommend using [this mod/datapack](https://modrinth.com/datapack/enchant-table-decoration) to make chiseled bookshelves supply enchanting power like bookshelves.\n\n## Details\n\nWhen a player interacts with an enchanting table they will see the following menu:\n![Enchanting menu](https://cdn.modrinth.com/data/cached_images/5c88e4e6d89b02040340fc8b750654785dc7fd32.png)\n\nThe first open slot is for the item to enchant.\n\nThe second open slot is for the lapis.\n\nThe bookshelves exist to inform how much enchanting power the table currently has.\n\nWhen an item is inserted in the menu, the books will be replaced with enchanted books showing the available enchantments for the item. Each enchantment will a cost associated with it in the form of experience levels, lapis lazuli, and the number of bookshelves required to apply it.\n\n<details>\n<summary>Price Calculations & modification</summary>\n\nThe prices are calculated based on the enchantment definitions.\n\nLevel costs are calculated using the formula: \n`(( anvil_cost + min_cost.base + 1 ) + ( levelToApply - 1 )( min_cost.per_level_above_first ))/2`\n\nBookshelf requirements are calculated using the formula:\n`min_cost.base + ( levelToApply - 1 ) * Math.min( min_cost.per_level_above_first / 2, (MAX_BOOKSHELVES - min_cost.base ) / max_level )`\n\nLapis cost is always equal to the level of the enchant being applied (1 lapis for level 1, 2 for level 2, ...).\n\nUsing these formulas you may edit the level and bookshelf requirements by creating a datapack to modify the appropriate values for any enchantments you wish.\n\n</details>",
+  "categories": [
+    "adventure",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "magic"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 862,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

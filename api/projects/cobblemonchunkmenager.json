@@ -1,0 +1,19 @@
+{
+  "id": "B5Oa5DCX",
+  "slug": "cobblemonchunkmenager",
+  "title": "CobblemonChunkmenager",
+  "description": "A server-side Fabric mod for Cobblemon 1.7+ on Minecraft 1.21.1 that manages per-chunk Pokemon entity density to reduce server lag.",
+  "body": " CobbleChunkManager                                                                                                                                             \n                                                                                                                                                                 \n  A server-side Fabric mod for Cobblemon 1.7+ on Minecraft 1.21.1 that manages per-chunk Pokemon entity density to reduce server lag.                            \n                                                            \n  What it does                                                                                                                                                   \n                                                            \n  Spawn Prevention — Hooks into Cobblemon's spawn event and cancels Pokemon spawns in chunks that are already at the entity budget (default 16 per chunk). This\n  is the main performance feature — it stops entities from being created in the first place, reducing total entity count on the server.\n\n  Heatmap System — Tracks every loaded chunk's activity: Pokemon count, player presence, active battles. Each chunk is classified as HOT (active area with\n  players/battles), WARM (moderate activity), or COLD (empty/idle). Scans 50 chunks every 5 seconds.\n\n  Budget Enforcement — Every 10 seconds, finds chunks over the entity budget and handles the excess wild Pokemon using the configured strategy:\n  - MIGRATE — teleport excess to nearby chunks with free space\n  - DESPAWN — remove excess wild Pokemon\n  - MIGRATE_THEN_DESPAWN (default) — try to migrate first, despawn whatever can't be relocated\n\n  Only wild Pokemon that aren't in battle or busy are affected. Owned Pokemon are never touched.\n\n  AI Throttling — Disables vanilla AI (pathfinding, movement goals) for Pokemon in COLD chunks. Only triggers when a chunk's heat level changes, so the per-tick\n  cost is near zero.\n\n  Commands\n\n  - /ccm heatmap [radius] — visual grid of nearby chunk heat levels and entity counts\n  - /ccm status — detailed info for the current chunk\n  - /ccm budget — server-wide budget overview, lists over-budget chunks\n  - /ccm migrate — manually trigger overflow handling in the current chunk\n  - /ccm reload — hot-reload the config file\n\n  Config\n\n  All values are configurable via config/cobble_chunk_manager.json — thresholds, budget limits, scan intervals, overflow strategy, migration behavior.",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1683,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

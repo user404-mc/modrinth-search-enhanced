@@ -1,0 +1,35 @@
+{
+  "id": "uffx5ghE",
+  "slug": "renxi.ch",
+  "title": "称号与计时",
+  "description": "Lightweight Titles & Playtime Tracking for Modded Servers",
+  "body": "这是一个轻量化的称号和计时模组，弥补了模组服不能装称号和计时插件的痛！仅装服务端即可，目前只支持1.20.1fabric版本。支持称号通过指令自定义给玩家，支持彩字中文。在TAB列表做了融合显示，计时和称号互不冲突。以下是食用教程，\n设置显示位置：\n/time position <after|above|below>\nafter：同一行显示在玩家名后面（推荐；TAB 也生效）\n\nabove / below：用隐形盔甲架在玩家名上方/下方显示第二行\n\n/time afkTimeout <秒>\nAFK 判定秒数（默认 60）。60 秒无“自主操作”就暂停计时。\n\n/time monthBy30Days <true|false>\n是否按 30 天 = 1 月 进位（默认 true）。\n\n/time show <true|false>\n全局开关在线时长显示（默认 true）。\n\n判定“自主操作”示例：视角转动、使用/放置/攻击、物品交互、丢弃物品、热键换槽、背包点击等。\n不计入：聊天发言、命令、被动移动（例如水流/推挤）。\n\n2) 称号（与你之前一致的语法）\n\n/chtitle set <玩家> <称号…>\n将称号显示为 <称号>，作为队伍前缀应用（聊天/头顶/TAB 均可见）。\n若该玩家已保存颜色/调色板，则按其上色；否则用默认色 defaultColor。\n\n/chtitle color <玩家> <颜色名 …>\n\n一个颜色名 → 单色；多个颜色名 → 按字符轮换（非渐变）。\n\n分隔符支持：中文/英文逗号、空格（含全角）、加号（+/＋）。\n\n颜色名可用 中文/英文/别名；也可直接写 #RRGGBB、0xRRGGBB、十进制。\n\n/chtitle clear <玩家>\n清除称号（只清前缀，不影响在线时长的后缀）。\n\n/chtitle reload-config\n重载 config/ch-mod.json（不会清玩家称号/颜色数据）。\n\n权限：默认仅 OP 等级 ≥ 3 可用（可在 config/ch-mod.json 的 requiredOpLevel 修改）。\n<玩家> 支持玩家名和能解析为单一目标的选择器（如 @s/最近的 @p），不支持多目标（如 @a）。\n\n显示规则（避免冲突的关键点）\n\n同一支队伍：\n\n前缀 prefix = 称号 <…>（带颜色/轮换）；\n\n后缀 suffix = 在线时长（分→时→天→月自动进位）。\n\n因为前后缀都落在同一个队伍，所以玩家名与 TAB 列表会同时显示称号+时长，不会互相顶掉。\n\nabove/below 仅在名牌二层显示，不影响 TAB。\n\n配置与数据文件\n\n第一次启动会自动生成；手改后可用 /chtitle reload-config 或重启生效（仅 ch-mod.json 需重载）。\n\n配置文件\n\nconfig/ch-mod.json（主配置，JSON）\n\nrequiredOpLevel（int）—— /chtitle 所需 OP 等级（默认 3）\n\nuseScoreboard（bool）—— 是否启用队伍前缀（默认 true，一般保持开启）\n\ndefaultColor（int）—— 未保存颜色时的默认色（十进制，默认白色 16777215）\n\nnamedColors（map<string,int>）—— 颜色名映射，可扩展中文/英文/别名\n内置示例：红/紅、金、橙、黄/黃、绿/綠、青、蓝/藍、紫、白、灰/grey、黑、粉；red、gold、orange、yellow、green、aqua、blue、purple、white、gray、black、pink\n\nconfig/ch-mod-time.json（时长显示/逻辑；若未见也会按默认值运行）\n\nposition：\"after\"|\"above\"|\"below\"（默认 \"after\"）\n\nafkTimeout：AFK 秒数（默认 60）\n\nmonthBy30Days：是否 30 天进 1 月（默认 true）\n\nshow：是否显示时长（默认 true）\n\nstrongRefreshSeconds：进服/改称号/进位后 TAB “增压刷新”秒数（默认 5）\n\n以上时长项也都能用 /time … 动态修改（保存并实时生效）。\n希望各位服主用的满意~（我也是个小服主）\nTranslate the following content without altering the layout. Provide a correctly formatted version that can be directly copied for use on a Modrinth mod release page.\n\nThis is a lightweight titles and playtime tracking mod, addressing the pain point of not being able to use title and timing plugins on modded servers! Only needs to be installed on the server side. Currently only supports 1.20.1 Fabric. Supports customizing titles for players via commands, including colored text and Chinese characters. Integrates seamlessly into the TAB list, with titles and playtime tracking not conflicting with each other.\n\nHere's the usage tutorial:\n\n1) Setting Display Position:\n\n/time position <after|above|below>\n\nafter: Displays on the same line after the player's name (Recommended; also works in TAB).\n\nabove / below: Uses invisible armor stands to display a second line above/below the player's name.\n\n/time afkTimeout <seconds>\n\nSets the AFK detection timeout in seconds (default 60). Timers pause after 60 seconds of no \"voluntary actions\".\n\n/time monthBy30Days <true|false>\n\nWhether to use 30 days = 1 month for progression (default true).\n\n/time show <true|false>\n\nGlobal toggle for displaying online playtime (default true).\n\nExamples of \"Voluntary Actions\": Camera movement, using/placing/attacking blocks, item interaction, dropping items, hotbar slot switching, inventory clicks, etc.\nNot Counted: Chat messages, commands, passive movement (e.g., water flow, pushing).\n\n2) Titles (Syntax consistent with before)\n\n/chtitle set <player> <title...>\n\nSets the title displayed as <title>, applied as a team prefix (visible in chat, above head, and TAB).\n\nIf the player has a saved color/palette, it is used; otherwise, the defaultColor is applied.\n\n/chtitle color <player> <color name ...>\n\nOne color name → solid color; Multiple color names → cycles colors per character (not gradient).\n\nSupported separators: Chinese/English commas, spaces (including full-width), plus signs (+/＋).\n\nColor names can be in Chinese/English/aliases; Direct hex (#RRGGBB), 0xRRGGBB, or decimal values are also supported.\n\n/chtitle clear <player>\n\nClears the title (only clears the prefix, does not affect the online playtime suffix).\n\n/chtitle reload-config\n\nReloads config/ch-mod.json (does not clear player title/color data).\n\nPermissions: Default requires OP level ≥ 3 (configurable via requiredOpLevel in config/ch-mod.json).\n<player> supports player names and selectors resolving to a single target (e.g., @s, nearest @p), not multiple targets (e.g., @a).\n\nDisplay Rules (Key points to avoid conflicts)\n\nWithin the same team:\n\nPrefix = Title <...> (with colors/cycling).\n\nSuffix = Online playtime (auto-converts minutes → hours → days → months).\n\nBecause both prefix and suffix belong to the same team, the player's name in the TAB list displays both the title and playtime simultaneously without overriding each other.\n\nabove/below display only on the nameplate's second line and do not affect TAB.\n\nConfiguration & Data Files\n\nGenerated automatically on first run. Use /chtitle reload-config or restart after manual edits (only ch-mod.json requires reloading).\n\nConfiguration Files:\n\nconfig/ch-mod.json (Main config, JSON)\n\nrequiredOpLevel (int) – Required OP level for /chtitle commands (default 3).\n\nuseScoreboard (bool) – Whether to enable team prefix (default true, generally keep enabled).\n\ndefaultColor (int) – Default color if no saved color exists (decimal, default white 16777215).\n\nnamedColors (map<string,int>) – Color name mappings, extensible with Chinese/English/aliases.\n\nBuilt-in examples: 红/紅, 金, 橙, 黄/黃, 绿/綠, 青, 蓝/藍, 紫, 白, 灰/grey, 黑, 粉; red, gold, orange, yellow, green, aqua, blue, purple, white, gray, black, pink.\n\nconfig/ch-mod-time.json (Playtime display/logic; runs with defaults if not found)\n\nposition: \"after\"|\"above\"|\"below\" (default \"after\").\n\nafkTimeout: AFK timeout in seconds (default 60).\n\nmonthBy30Days: Whether 30 days = 1 month (default true).\n\nshow: Whether to display playtime (default true).\n\nstrongRefreshSeconds: TAB \"boosted refresh\" duration after joining/changing title/unit progression (default 5).\n\nAll these playtime settings can also be modified dynamically using /time ... (saved and applied immediately).\n\nHope all server owners find it satisfactory~ (I'm a server owner myself too).",
+  "categories": [
+    "fabric",
+    "management"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1030,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

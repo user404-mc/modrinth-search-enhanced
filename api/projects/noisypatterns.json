@@ -1,0 +1,24 @@
+{
+  "id": "QeTYqlgP",
+  "slug": "noisypatterns",
+  "title": "NoisyPatterns",
+  "description": "libnoise-based, highly configurable patterns for FastAsyncWorldEdit",
+  "body": "# NoisyPatterns\n\nThis tool extends [FastAsyncWorldEdit](https://modrinth.com/plugin/fastasyncworldedit) with new patterns.\nThey can be used in commands like `//set` or anything else where patterns are accepted.\n\nThe actual functionality is based on [jlibnoise](https://github.com/EngineHub/jlibnoise).\nThis library provides different modules to build custom noise functions from.\nSome of them are already exposed in WorldEdit (in expressions) and FastAsyncWorldEdit (e.g. the `#perlin` pattern).\n\nThis extension takes it to a next step: It lets you freely combine the modules in the way you want!\n\n## Usage\n\nThis section will use the `//set` command as an example, but it equally works for other commands and brushes.\n\nThe main structure of a noise pattern is `#noise[<module configuration>][<blocks to use>][<optional scale parameter>]`.\nA very simple command can look like this: `//set #noise[voronoi][black_wool,white_wool]`\n\n![voronoi noise with white and black wool, unscaled](assets/voronoi_wool_unscaled.png)\n\nWith additional scaling, e.g. `//set #noise[voronoi][black_wool,white_wool][2]`, the result will look different:\n\n![voronoi noise with white and black wool, scaled](assets/voronoi_wool_scaled.png)\n\nModules allow for more configuration. \nThe specific parameters can be found [in the libnoise documentation](https://libnoise.sourceforge.net/docs/classnoise_1_1module_1_1Module.html).\nAs an example, the voronoi module has an `EnableDistance` function,\nwhich we can use in NoisyPatterns like that: `voronoi[enableDistance=true]`.\nAs a full command, this could look like `//set #noise[voronoi[enableDistance=true]][##wool][8]` and result in\n![colorful voronoi noise with `enableDistance=true`](assets/voronoi_enableDistance.png)\n\nSome modules also take other modules as input. In such case, the inner modules are numbered from 0 to (n - 1),\nwhere n is the number of expected modules. \nFor example, `blend` takes 3 modules to generate noise from, so you need to specify modules 0, 1, and 2.\nExample for `//set #noise[blend[0=voronoi[enableDistance=true],1=checkerboard,2=perlin]][##wool][8]`:\n![blending](assets/blend.png)",
+  "categories": [
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 469,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

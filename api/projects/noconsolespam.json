@@ -1,0 +1,31 @@
+{
+  "id": "c4YY0EJn",
+  "slug": "noconsolespam",
+  "title": "NoConsoleSpam",
+  "description": "Pesky Console Spam, no more!",
+  "body": "# NoConsoleSpam\n\nA Minecraft Fabric mod that reduces console spam by filtering out unnecessary messages and warnings.\n\n## Features\n\n- Filters out common spam patterns including:\n  - Lithium-related messages\n  - Mismatch block errors\n  - Server overloading messages\n  - Player movement warnings\n  - Class Analysis Errors\n  - Support for custom patterns via configuration\n- External JSON configuration file for easy customization\n- Enhanced exception logging system:\n  - Organizes exceptions by source (mod/plugin/class)\n  - Captures all types of Java exceptions (Runtime, IO, Reflection, Security, Network, etc.)\n  - Logs JVM errors with detailed context\n  - Detailed exception information including cause, thread, logger, and context\n  - Individual error logs with full stack traces\n  - Automatic categorization of exceptions into logical groups\n- Robust error handling with graceful recovery mechanisms\n- Null-safe implementation for server stability\n- Lightweight and efficient\n- Compatible with Minecraft Major Updates and Snapshots\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft\n2. Download the correct version for your Minecraft version\n3. Place the mod JAR file in your Minecraft mods folder\n4. Launch Minecraft with Fabric Loader\n\n## Configuration\n\nThe mod now uses an external configuration file located at `config/NoConsoleSpam/spamfilters.json`. This file is automatically created when the mod is first run.\n\nYou can customize the following settings:\n- Spam patterns (using regular expressions)\n- Ignored loggers (to completely silence specific loggers)\n- Exception logging settings\n\nExample configuration:\n\n```json\n{\n  \"spamPatterns\": [\n    \".*Lithium.*\",\n    \".*mismatch.*\",\n    \".*overloading.*\",\n    \".*moving.*wrongly.*\",\n    \".*Class Analysis Error.*\"\n  ],\n  \"ignoredLoggers\": [\n    \"net.minecraft.class_5458\",\n    \"net.minecraft.class_5459\",\n    \"net.minecraft.class_5460\"\n  ],\n  \"exceptionSettings\": {\n    \"captureExceptions\": true,\n    \"logFile\": \"logs/exceptions.log\",\n    \"maxLogSize\": 10485760,\n    \"maxBackupIndex\": 3,\n    \"organizeBySource\": true,\n    \"captureRuntimeExceptions\": true,\n    \"captureIOExceptions\": true,\n    \"captureFabricExceptions\": true,\n    \"captureMinecraftExceptions\": true,\n    \"captureReflectionExceptions\": true,\n    \"captureSecurityExceptions\": true,\n    \"captureNetworkExceptions\": true,\n    \"captureDataExceptions\": true,\n    \"captureErrors\": true,\n    \"captureConcurrentExceptions\": true\n  }\n}\n```\n\n## Exception Logging\n\nExceptions are now logged individually to separate files in the `Console Errors` directory. By default, the exceptions are organized into subdirectories based on their source (mod/plugin/class), making it much easier to track down issues from specific components.\n\nEach exception log file contains:\n- Timestamp and exception type\n- Source identification (what mod/plugin/class caused it)\n- Exception category (Runtime, IO, Reflection, etc.)\n- Thread name, logger name, and log level\n- Full exception message and stack trace\n- Cause information, when available\n- Any suppressed exceptions\n\nThis enhanced logging system provides much more context for debugging issues in Minecraft and Fabric mods.\n\n### Exception Logging Settings\n\nThe new exception logging system provides several options to control what gets logged:\n\n- `organizeBySource`: When enabled, exceptions are organized into subdirectories by their source\n- `captureRuntimeExceptions`: Controls whether to log RuntimeExceptions (NullPointerException, etc.)\n- `captureIOExceptions`: Controls whether to log IOExceptions (file errors)\n- `captureFabricExceptions`: Controls whether to log Fabric-specific exceptions\n- `captureMinecraftExceptions`: Controls whether to log Minecraft-specific exceptions\n- `captureReflectionExceptions`: Controls whether to log reflection-related exceptions\n- `captureSecurityExceptions`: Controls whether to log security-related exceptions\n- `captureNetworkExceptions`: Controls whether to log network-related exceptions\n- `captureDataExceptions`: Controls whether to log data-related exceptions\n- `captureErrors`: Controls whether to log JVM errors\n- `captureConcurrentExceptions`: Controls whether to log concurrent-related exceptions\n\n## Changelog\n\nFor more detailed information about each release, see the [CHANGES.md](https://github.com/MichaJDev/NoConsoleSpam/blob/main/CHANGES.md) file.\n\n## License\n\nThis project is licensed under the MIT License - see the LICENSE file for details. ",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4590,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.4",
+    "1.21.5",
+    "25w20a",
+    "25w21a",
+    "1.21.6-pre1",
+    "1.21.6-pre3",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

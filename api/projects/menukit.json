@@ -1,0 +1,31 @@
+{
+  "id": "3vGajyPr",
+  "slug": "menukit",
+  "title": "MenuKit",
+  "description": "UI library for Fabric mods — HUD panels, widgets, layouts, region anchoring, modal overlays. Client-only.",
+  "body": "# MenuKit\n\nUI library for Fabric mods. HUD panels, widgets, layouts, modal panels on vanilla menus, region anchoring, click-through prohibition, recipe-book awareness — all client-only.\n\n## What it is\n\nMenuKit is a Fabric-side UI library for mod authors. It provides primitives for putting UI on top of Minecraft:\n\n- **HUD panels** that overlay the game world (waypoint markers, status displays, debug overlays)\n- **Decoration panels** on vanilla menu screens (settings buttons next to the inventory, info displays on storage UIs)\n- **Standalone screens** built from MenuKit primitives instead of vanilla widget code\n- **Region anchoring** so panels position themselves relative to screen edges and other panels — multiple mods coexist without overlapping\n- **Modal overlays** with proper click-through prohibition\n- **Recipe-book awareness** so panels respect the player's recipe-book state\n\nMenuKit is pure client-side. If you only need UI, depend on MenuKit alone. If you need custom container menus with slots, see **[MenuKit: Containers](https://github.com/trevorschoeny/menukit-containers)** — the slot extension built on MenuKit.\n\n## Install\n\nAdd the Modrinth Maven repository and the MenuKit dependency to your `build.gradle`:\n\n```gradle\nrepositories {\n    maven { url 'https://api.modrinth.com/maven' }\n}\n\ndependencies {\n    modImplementation 'maven.modrinth:menukit:1.1.0'\n}\n```\n\nAnd declare the dependency in your `src/main/resources/fabric.mod.json`:\n\n```json\n\"depends\": {\n    \"menukit\": \"*\"\n}\n```\n\nThat's it. MenuKit is client-only (`environment: client`), so its weight on your mod is zero on the server side.\n\n## Quickstart\n\n### A HUD panel\n\n```java\n// In your ClientModInitializer\npublic void onInitializeClient() {\n    MKHudPanel.builder(\"coords\")\n        .anchor(MKHudAnchor.TOP_LEFT, 4, 4)\n        .padding(4).autoSize()\n        .style(PanelStyle.RAISED)\n        .text(0, 0, () -> \"X: \" + (int) Minecraft.getInstance().player.getX())\n        .text(0, 12, () -> \"Y: \" + (int) Minecraft.getInstance().player.getY())\n        .build();\n}\n```\n\n### A decoration panel on a vanilla menu screen\n\n```java\n// In your ClientModInitializer\nList<PanelElement> elements = List.of(\n    new Button(0, 0, 50, 16, Component.literal(\"Settings\"),\n        btn -> openSettings()));\n\nPanel buttonPanel = new Panel(\n    \"myapp-settings-button\",\n    elements,\n    /*visible=*/ true,\n    PanelStyle.NONE,\n    PanelPosition.BODY,\n    /*toggleKey=*/ -1);\n\nnew ScreenPanelAdapter(buttonPanel, MenuRegion.RIGHT_ALIGN_TOP, /*padding=*/ 0)\n    .on(InventoryScreen.class, CreativeModeInventoryScreen.class);\n```\n\nThe button appears in the upper-right of vanilla `InventoryScreen` and `CreativeModeInventoryScreen`. If another MenuKit-using mod also drops a panel in `RIGHT_ALIGN_TOP`, both stack vertically — no manual coordination required.\n\n## Feature highlights\n\n- **Region anchoring system.** Eight edge regions (LEFT/RIGHT × ALIGN_TOP/BOTTOM, TOP/BOTTOM × ALIGN_LEFT/RIGHT) plus CENTER. Panels stack in the region's flow direction. Multi-mod-friendly by design — deterministic stacking order across mods via alphabetical-by-modId with optional priority override.\n- **Element library.** `Button`, `Toggle`, `Checkbox`, `Radio`, `RadioGroup`, `Icon`, `Divider`, `ItemDisplay`, `ProgressBar`, `Slider`, `TextField`, `TextLabel`, `Tooltip`, `ScrollContainer`, `Dropdown`, `DropdownMulti` (multi-select).\n- **Modal overlays.** Proper click-through prohibition over vanilla menus. Modals respect Esc, focus traversal, and z-ordering.\n- **Recipe-book awareness.** Panels track the recipe-book panel's open/closed state so they don't fight for screen real estate.\n- **Auto-wrap + auto-scroll.** `TextLabel.setWrapWidth()` triggers automatic line wrapping; `ScrollContainer` provides scrollable regions with mouse-wheel input; long text scrolls into view on overflow.\n- **Control styling.** Elements opt into MenuKit-styled or vanilla-matched looks — including vanilla-style pressed visuals — so your UI can blend in or stand apart.\n- **Universal cursor capture.** Compensates for vanilla teleporting the cursor to window center on screen transitions.\n- **Stable, opinionated layout.** Pinned-width / pinned-height stacking primitives keep panels predictable across resolutions.\n\n## MenuKit alone vs. MenuKit + Containers\n\nUse **MenuKit** alone if you're building:\n- HUD overlays (waypoints, debug, status)\n- Decoration panels on vanilla menus (settings buttons, info displays)\n- Custom screens built from MenuKit elements\n\nUse **MenuKit + [MenuKit: Containers](https://github.com/trevorschoeny/menukit-containers)** if you're building:\n- Custom container menus (storage blocks with new slot layouts)\n- Per-slot state that needs server authority\n- Anything that touches slot handlers\n\nMenuKit: Containers depends on MenuKit; MenuKit doesn't depend on MenuKit: Containers. The partition is enforced at compile time.\n\n## License\n\nMIT. See `LICENSE`.\n\n## Issues\n\nFile issues at [github.com/trevorschoeny/menukit/issues](https://github.com/trevorschoeny/menukit/issues).\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 387,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

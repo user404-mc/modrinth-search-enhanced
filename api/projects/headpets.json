@@ -1,0 +1,36 @@
+{
+  "id": "oA5HFojN",
+  "slug": "headpets",
+  "title": "HeadPets",
+  "description": "The plugin adds pets in the form of flying heads that follow the player.",
+  "body": "# HeadPets\n\nThis plugin adds pets as floating player heads (invisible `ArmorStand` + `Player Head`), with a GUI menu, tabs, pagination, particles and passive effects.\n\n<img src=\"https://github.com/Jorget01/HeadPets/blob/main/media/0215.gif?raw=true\" alt=\"OnePlayerBarPreview\" width=\"100%\"/>\n\n## Features\n\n- `/pets` opens the menu.\n- Tabs:\n  - **All pets** — shows every pet, including locked ones (if enabled in config).\n  - **My pets** — shows only pets the player has permission for.\n- Pages:\n  - Navigation arrows at the bottom switch pages.\n- Pet activation:\n  - **Left click** a pet — activate/deactivate (pet floats near the player and follows them).\n  - Multiple pets can be active at once (limit is `pets-settings.max-active-per-player`).\n- Particles:\n  - **Particles** button — selects the player’s global particle type (**LMB** next, **RMB** previous).\n  - **Shift+LMB** on **Particles** — enable/disable particles (if `particles.allow-player-disable` is enabled).\n  - If `particles.per-pet-selection` is enabled, you can select particles **per pet**:\n    - **RMB** on a pet — next particle\n    - **Shift+RMB** on a pet — previous particle\n  - Particles can be visible for everyone or only for the owner (config).\n- Passive effects:\n  - Each pet can apply potion effects while it is active (config).\n- Languages:\n  - Russian and English (`lang/ru.yml`, `lang/en.yml`)\n  - `settings.language.mode: auto` selects language by player locale (ru => Russian, otherwise English).\n\n## Commands & permissions\n\n- `/pets` — open menu\n  - permission: `pats.pets.open` (default: true)\n- `/pets reload` or `/petsreload` — reload config/lang/pets (no server restart)\n  - permission: `pats.pets.reload` (default: op)\n- `/pets add ...` or `/petadd ...` — add a pet to `config.yml`\n  - permission: `pats.pets.admin` (default: op)\n- `/pets remove <id>` or `/petremove <id>` — remove a pet from `config.yml`\n  - permission: `pats.pets.admin` (default: op)\n\nAccess to a specific pet is controlled via the pet’s `permission` in `config.yml` (for example: `pats.pets.head.118`).\n\n### Command examples\n\nAdd a pet (one name will be used for both RU/EN):\n\n```text\n/petadd head_test eyJ0ZXh0dXJlcyI6... Donkey_Kong\n```\n\nAdd a pet (different names for RU/EN):\n\n```text\n/petadd head_test eyJ0ZXh0dXJlcyI6... Донки_Конг Donkey_Kong\n```\n\nRemove a pet:\n\n```text\n/petremove head_test\n```\n\n## Config\n\nMain `config.yml` sections:\n\n- `settings.language` — language settings (`auto` / `fixed`).\n- `menu.show-locked-in-all` — show locked pets in “All pets” tab.\n- `menu.gui.*` — GUI settings (size, button slots, materials, pets grid area).\n- `follow.*` — follow distances/speeds.\n- `particles.*` — particles settings (visibility, frequency, `y-offset`, options list).\n- `effects.*` — passive effects timing settings.\n- `pets:` — pets list (add your own pets here).\n\n### Colors (HEX)\n\nYou can use color codes in many strings (pet names, messages, lore):\n\n- Legacy: `&a`, `&c`, `&7`, etc.\n- HEX: `&#ff00ff` (example: `&#ff00ffDonkey Kong`)\n\n### Pet example\n\n```yml\npets:\n  - id: head_118\n    # permission is optional (default: pats.pets.<id>)\n    permission: pats.pets.head.118\n    display:\n      ru: \"Донки Конг\"\n      en: \"Donkey Kong\"\n    head:\n      # profile-id is optional\n      profile-name: \"mcheads-118\"\n      textures: \"BASE64_TEXTURES_HERE\"\n    effects:\n      - type: SPEED\n        amplifier: 0\n      # shorthand:\n      - \"JUMP_BOOST:0\"\n```\n\n## Notes\n\n- Player particle choice and language override are stored in `plugins/PatsPets/data.yml`.\n- Active pets are stored in `plugins/PatsPets/data.yml` and restored when the player rejoins.\n- By default, effects are removed when a pet is deactivated (`effects.remove-on-deactivate: true`). If disabled, effects will simply expire based on `effects.duration-ticks`.\n",
+  "categories": [
+    "decoration",
+    "game-mechanics",
+    "magic",
+    "mobs",
+    "paper",
+    "purpur",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 151,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

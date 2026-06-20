@@ -1,0 +1,21 @@
+{
+  "id": "TYt9WXbA",
+  "slug": "chtr",
+  "title": "ChTR",
+  "description": "Simple mod for Global and Local chat",
+  "body": "A chat mod with two modes:\n- Global chat by prefix (default: `!`)\n- Local chat by radius (default: `100` blocks)\n\nIf nobody is in range for a local message, the sender gets a warning.\n\n## Compatibility\n\n- Minecraft: `1.21.1`\n- NeoForge: `21.1.222+`\n- Java: `21`\n\nClients do not need this mod installed: all chat logic runs on the server side.\n\n## How It Works\n\n- A message starting with `globalPrefix` is sent to all players.\n- A regular message is sent only to players in the same dimension within `localChatRadius`.\n- If there are no listeners, an optional warning can be shown (`warnIfNoListeners`).\n\n## Configuration (`config/chatter-common.toml`)\n\nAvailable settings:\n\n- `globalPrefix`  \n  Global chat prefix. Default: `\"!\"`\n\n- `localChatRadius`  \n  Local chat radius in blocks. Default: `100.0`\n\n- `globalMessageFormat`  \n  Global message format.  \n  Default: `\"&6[G] <{player}> {message}\"`\n\n- `localMessageFormat`  \n  Local message format.  \n  Default: `\"&7[L] <{player}> {message}\"`\n\n- `emptyGlobalMessage`  \n  Message shown when `globalPrefix` is used without text.  \n  Default: `\"&cYou must type message text after {prefix}.\"`\n\n- `noListenersMessage`  \n  Warning shown when nobody heard a local message.  \n  Default: `\"&cNobody heard you within {radius} blocks.\"`\n\n- `echoLocalToSender`  \n  Whether to show local messages to the sender.  \n  Default: `true`\n\n- `warnIfNoListeners`  \n  Whether to show warning when local message has no listeners.  \n  Default: `true`\n### Placeholders\n\nSupported in formats and warning messages:\n- `{player}` - player name\n- `{message}` - message text\n- `{radius}` - current local chat radius\n- `{prefix}` - current global chat prefix\n- `{listeners}` - number of listeners\n\n### Colors and Styles\n\nSupported `&` formatting codes:\n- Colors: `&0..&9`, `&a..&f`\n- Styles: `&l`, `&o`, `&n`, `&m`, `&k`\n- Reset: `&r`\n- Literal `&`: `&&`\n\n### Example Config\n\n```toml\nglobalPrefix = \"!\"\nlocalChatRadius = 120.0\nglobalMessageFormat = \"&6[GLOBAL] &f<{player}> &e{message}\"\nlocalMessageFormat = \"&7[LOCAL {radius}] &f<{player}> {message}\"\nemptyGlobalMessage = \"&cYou must type text after {prefix}.\"\nnoListenersMessage = \"&cNobody heard you ({radius} blocks).\"\nechoLocalToSender = true\nwarnIfNoListeners = true\n```",
+  "categories": [
+    "management",
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 192,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

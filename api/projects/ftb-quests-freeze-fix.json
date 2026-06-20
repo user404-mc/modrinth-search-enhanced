@@ -1,0 +1,20 @@
+{
+  "id": "6Z1o0Fxu",
+  "slug": "ftb-quests-freeze-fix",
+  "title": "FTB Quests Freeze Fix",
+  "description": "Caches the FTB Quests menu on startup to prevent freezing in game!",
+  "body": "![header](https://cdn.modrinth.com/data/cached_images/88dcacf78ab92dc6f07a09299b36df11a486bb08_0.webp)\n\nThis is a simple fix mod for FTB Quests that caches the Quests menu on startup to prevent freezing in game. Tested in packs such as Prominence II RPG, where it prevents a 10 second lag spike when opening the quest book for the first time.\n\n## How does this work?\n\nFTB Quests needs to initialize Minecraft's Creative mode text search provider, which is not done by default in survival Minecraft since it's never used. This involves looping over every item in the game, fetching all of the tooltip contents, and processing them all. In large modpacks, with lots of items and quests, this scales up exponentially with more mods that add more text to items.\n\nThis mod can't fix that, as it's actually important that all of that gets cached so that things work properly. But, what it can do is cache it on startup while the user is still in a loading screen, so that once they're in game, there won't be any random freezing. This adds a couple seconds to loading times (depending on how long the freeze would have been) but saves the headache of having the game randomly freeze during gameplay.",
+  "categories": [
+    "fabric",
+    "forge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 468147,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

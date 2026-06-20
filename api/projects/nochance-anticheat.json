@@ -1,0 +1,41 @@
+{
+  "id": "Joqdb8O6",
+  "slug": "nochance-anticheat",
+  "title": "NoChance AntiCheat",
+  "description": "Anti-cheat with trust-based system and 4-layer validation cascade system & packet analysis",
+  "body": "# NoChance - Multi-Layer Anti-Cheat\n\n**PacketEvents Required for 1.21.x**\n[PacketEvents](https://modrinth.com/plugin/packetevents)\n\n**Note**: Plugin can work without it but it may cause problems\n\n---\n\n## Description\nNoChance is a anti-cheat with a 4-layer validation cascade system and also with packet-level detection. Designed to catch cheaters while minimizing false positives through trust scoring, adaptive sampling, and statistical analysis.\n\n## Features\n- **18 Detection Modules** - Fly, Speed, KillAura, FastBreak, Reach, NoClip, Jesus, Blink, Timer, and more\n- **4-Layer Validation System** - Multi-stage verification to eliminate false positives\n- **PacketEvents Integration** - Deep packet analysis for advanced cheat detection (1.21-1.21.8 support)\n- **Trust Score System** - Players build trust over time, reducing false flags for legitimate skilled players\n- **In-Game GUI Configuration** - Edit all settings via interactive menu, no file editing needed\n- **Database Support** - SQLite & MySQL support with HikariCP connection pooling for optimal performance\n- **Staff Alerts** - Real-time notifications with customizable thresholds and alert throttling\n- **Discord Webhooks** - Send violation alerts directly to Discord with rich embeds\n- **Punishment System** - Automatic kicks, warnings, and configurable actions\n- **Per-Check Configuration** - Fine-tune every detection module independently\n- **Server Optimizations** - Adaptive sampling, async processing, and batch operations\n\n## Commands\n- **/nochance menu** - Open configuration GUI\n- **/nochance reload** - Reload configuration\n- **/nochance info <player>** - View player statistics\n- **/nochance violations <player>** - View violation history\n- **/nochance reset <player>** - Reset player data\n- **/nochance toggle <check>** - Enable/disable specific check\n- **/nochance stats** - View global statistics\n- **/nochance alerts** - Toggle staff alerts\n\n**Aliases:** `/nc`, `/ac`, `/anticheat`\n\n## Permissions\n- **nochance.admin** - Access to all NoChance commands (default: op)\n- **nochance.alerts** - Receive staff alert notifications (default: op)\n- **nochance.bypass** - Bypass ALL anti-cheat checks (default: false)\n- **nochance.bypass.<check>** - Bypass specific check (default: false)\n\n### Individual Check Bypasses\n- nochance.bypass.fly\n- nochance.bypass.speed\n- nochance.bypass.noclip\n- nochance.bypass.jesus\n- nochance.bypass.fastbreak\n- nochance.bypass.fastplace\n- nochance.bypass.nuker\n- nochance.bypass.killaura\n- nochance.bypass.nofall\n- nochance.bypass.autoclicker\n- nochance.bypass.reach\n- nochance.bypass.inventory\n- nochance.bypass.scaffold\n- nochance.bypass.timer\n- nochance.bypass.velocity\n- nochance.bypass.criticals\n- nochance.bypass.phase\n- nochance.bypass.step\n- nochance.bypass.blink\n\n## Default Config Preview\n\n<details>\n<summary>Click to view config.yml</summary>\n\n```yaml\ngeneral:\n  time_window_seconds: 60\n  grace_period_seconds: 5\n  min_samples: 5\n  op_exempt: true\n  notify_player_on_flag: true\n\nthresholds:\n  low_confidence: 0.70\n  medium_confidence: 0.85\n  high_confidence: 0.95\n  extreme_confidence: 0.98\n\nadvanced_filtering:\n  enabled: true\n  bayesian_prior: 0.05\n  z_score_threshold: 2.5\n  min_trust_score: 0.3\n  established_baseline_checks: 50\n  established_baseline_time_seconds: 60\n\nactions:\n  kick_on_extreme_confidence: true\n  kick_on_high_confidence: false\n  warn_on_high_confidence: true\n  warn_on_medium_confidence: true\n  log_low_confidence: true\n\nstatistical:\n  std_dev_multiplier: 3.0\n  outlier_forgiveness: 3\n\nperformance:\n  async_thread_pool_size: 4\n  database_max_pool_size: 10\n  database_min_idle: 2\n  database_connection_timeout_ms: 30000\n  database_idle_timeout_ms: 600000\n  database_max_lifetime_ms: 1800000\n  database_batch_size: 50\n  database_batch_interval_ms: 500\n  adaptive_sampling_enabled: true\n  adaptive_sampling_warmup_checks: 100\n  advanced_analysis_warmup_checks: 100\n  advanced_analysis_strict_threshold: 500\n\nchecks:\n  fly:\n    enabled: true\n    threshold: 4\n    severity_multiplier: 2.2\n    max_velocity_y: 0.52\n\n  speed:\n    enabled: true\n    threshold: 5\n    severity_multiplier: 2.8\n    max_speed: 0.36\n    sprint_multiplier: 1.32\n    ice_multiplier: 2.6\n\n  killaura:\n    enabled: true\n    threshold: 4\n    severity_multiplier: 3.4\n    max_reach: 3.2\n    max_angle: 48.0\n    max_rotation_speed: 650.0\n    max_cps: 17.0\n    cps_trusted_bonus: 2.0\n    cps_untrusted_penalty: 2.0\n    instant_flag_cps_over: 6.0\n    angle_trusted_bonus: 8.0\n    angle_untrusted_penalty: 5.0\n    instant_flag_angle_over: 18.0\n    rotation_trusted_bonus: 60.0\n    rotation_untrusted_penalty: 50.0\n    instant_flag_rotation_over: 140.0\n    rotation_variance_threshold: 40.0\n    rotation_variance_strict: 20.0\n    required_violations: 2\n    packet_variance_threshold: 25.0\n    packet_variance_strict: 12.0\n    packet_attack_rate_limit: 22\n\n  fastbreak:\n    enabled: true\n    threshold: 10\n    severity_multiplier: 1.8\n    min_check_interval_ms: 25\n    max_rapid_checks: 15\n    trust_score_bonus: true\n    require_multiple_systems: true\n    base_tolerance_ms: 50\n    percentage_tolerance: 0.10\n    shovel_instant_tolerance_ms: 45\n    shovel_instant_percentage: 0.25\n    hand_instant_tolerance_ms: 28\n    hand_instant_percentage: 0.18\n    trust_bonus_instant_ms: 15\n    trust_bonus_normal_ms: 50\n\ndatabase:\n  type: SQLITE\n  host: localhost\n  port: 3306\n  database: nochance\n  username: root\n  password: password\n  table_prefix: nc_\n\ndiscord:\n  enabled: false\n  webhook_url: \"\"\n\nskill_profiles:\n  low:\n    max_cps: 9\n    min_cps: 4\n    max_rotation_speed: 220\n    min_rotation_speed: 120\n    max_accuracy: 0.52\n    min_accuracy: 0.30\n  medium:\n    max_cps: 14\n    min_cps: 9\n    max_rotation_speed: 380\n    min_rotation_speed: 220\n    max_accuracy: 0.72\n    min_accuracy: 0.52\n  high:\n    max_cps: 22\n    min_cps: 14\n    max_rotation_speed: 650\n    min_rotation_speed: 380\n    max_accuracy: 0.88\n    min_accuracy: 0.72\n```\n\n</details>\n\n## Detection Modules\n- **Movement:** Fly, Speed, NoClip, Jesus, Blink\n- **Block Interaction:** FastBreak, FastPlace, Nuker, Scaffold\n- **Combat:** KillAura, AutoClicker, Reach\n- **Other Checks:** NoFall, Velocity, Criticals, Timer, Phase, Step\n- **Inventory:** Inventory Movement Detection\n\n## Previews\n![](https://i.ibb.co/277KyGsT/Screenshot-2025-10-08-022010.png)\n![](https://i.ibb.co/DHffdTwX/Screenshot-2025-10-08-040748.png)\n![](https://i.ibb.co/ntwn7Ks/Screenshot-2025-10-08-040813.png)\n![](https://i.ibb.co/Jwc6vJkk/Screenshot-2025-10-08-021245.png)\n![](https://i.ibb.co/Ps6ByrRP/Screenshot-2025-10-08-021333.png)\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2351,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

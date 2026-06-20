@@ -1,0 +1,35 @@
+{
+  "id": "zQvAgPT6",
+  "slug": "registry-helper-lib",
+  "title": "Registry Helper Lib",
+  "description": "A small library to register faster and easier. Supports Minecraft's and custom registries.",
+  "body": "# RegistryHelperLib\n\nAre you tired of writing a lot of code to register all the things of minecraft?  \nWith this little library, you will be able to register in an easier way.\n\n## Installation\n\nAdd the Modrinth's Maven Repository in build.gradle:\n```groovy\n    repositories {\n        maven {\n\t\t    name = 'Modrinth'\n\t\t    url = 'https://api.modrinth.com/maven'\n\t\t    content {\n\t\t\tincludeGroup 'maven.modrinth'\n\t\t}\n\t}\n    }\n```\nThen add the mod implementation, still in build.gradle:\n\n```groovy\n    dependencies{\n        //other dependencies\n        modImplementation(\"maven.modrinth:registry-helper-lib:${project.registry_helper_version}\")\n    }\n```\n\nThen add the version variable in gradle.properties. Replace the version below by the version of the lib you want:\n```ini\n    registry_helper_version= <version>\n```\n\n## How to use it?\nCreate an instance of the RegistryHelper class. This instance will allow you to register for a registry type.\n```java\n    public class ModItems {\n        private static final RegistryHelper<Item> registryHelper=new RegistryHelper<>(Registries.ITEM,ExampleMod.MOD_ID);\n        public static final Item EXAMPLE_ITEM= registryHelper.register(\"name\",new Item(new Item.Settings()));\n\n        public static void init(){\n        \n        }\n    }\n```\n\n\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 2034,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

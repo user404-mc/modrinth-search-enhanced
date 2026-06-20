@@ -1,0 +1,22 @@
+{
+  "id": "UnshaaiE",
+  "slug": "aerodynamics4mc",
+  "title": "Aerodynamics4MC",
+  "description": "A mod that adds realistic aerodynamics & wind to Minecraft",
+  "body": "<div align=\"center\">\n\n#  Aerodynamics4MC\n### *Physically Simulated Wind for Minecraft*\n\n**Real wind doesn't blow in a straight line.**  \nNeither should Minecraft's.\n\n[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://opensource.org/licenses/MIT)\n</div>\n\n---\n\n### ✦ Not another wind mod.\n\nAerodynamics4MC replaces Minecraft's single, world‑wide \"wind\" value with a **four‑layer atmospheric simulation** — from planetary weather systems down to per‑block turbulence. Every breeze, gust, and eddy you see is computed on‑the‑fly using actual fluid dynamics, not pre‑recorded animations.\n\n<br/>\n\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/MozillaFiredoge/Aerodynamics4MC-Fabric/main/docs/campfire_blown_by_wind.gif\" width=\"48%\" alt=\"Campfire smoke reacting to wind\"/>\n  <img src=\"https://raw.githubusercontent.com/MozillaFiredoge/Aerodynamics4MC-Fabric/main/docs/wind_meter.gif\" width=\"48%\" alt=\"Wind meter in action\"/>\n</p>\n\n---\n\n## 🔬 How It Works\n\nA multi‑scale, server‑authoritative wind field that streams to the client for visual effects — no gimmicks, just physics.\n\n| Layer | Grid | Description |\n|-------|------|-------------|\n| 🌍 **WorldDriver** | event‑driven | Cyclones, convective clusters, tornado genesis, Rossby waves — large‑scale atmospheric phenomena |\n| 🗺️ **L0** | 41×41 (global) | Pressure field, geostrophic wind, terrain drag, roughness length |\n| ⛰️ **L1** | 33×33×8 (local) | Topographic effects, boundary‑layer shear, gap winds, building wakes |\n| 💨 **L2** *(client‑only)* | 32³ | Sub‑grid turbulence via Lattice‑Boltzmann (LBM) + Smagorinsky model. Drives particles (smoke, leaves, flames) with realistic vortex dynamics |\n\n- **L0 & L1** → calculated on the server, deterministic for everyone.\n- **L2** → purely visual, client‑side, required on demand by other mods. **Zero network overhead**, no gameplay impact.\n\n---\n## 🖥️ Server Core + Optional Client Add‑on\n\n**This Modrinth page provides the server‑side core of Aerodynamics4MC.**  \nIt handles all the physics and wind simulation — everything servers need to run the model. \n\nTo interact with the wind in‑game (e.g. measuring devices, visual tools, or gameplay items), check out the official client add‑on:\n\n<p align=\"center\">\n  <a href=\"https://modrinth.com/mod/aerodynamics4mc-addon\" target=\"_blank\">\n    <img src=\"https://img.shields.io/badge/➡️_aerodynamics4mc‑addon-00AF54?style=for-the-badge&logo=modrinth\" alt=\"aerodynamics4mc-addon on Modrinth\"/>\n  </a>\n</p>\n\n---\n## ❓ Quick Answers\n\n<details>\n<summary><b>⚡ Does it lag?</b></summary>\n<br/>\nServer‑side computation (L0+L1) is lighter than most terrain generation mods. The client L2 layer can be turned off or scaled down in the config — you're always in control.\n</details>\n\n<details>\n<summary><b>☁️ Will it conflict with weather mods?</b></summary>\n<br/>\nGenerally no. Aerodynamics4MC acts as a <b>wind provider</b> — other mods can read the wind field through the API instead of relying on the static vanilla value.\n</details>\n\n---\n\n## 🧩 For Modders & Developers\n\nAerodynamics4MC exposes a clean API so your own mods can react to realistic wind.  \nSource code and integration examples live at the [Core Repository](https://github.com/MozillaFiredoge/Aerodynamics4MC-Core).\n\n```java\n// Example: query the wind vector at any position\nWindField field = AerodynamicsAPI.getWindField(level);\nVector3 wind = field.getWindAt(pos);\n```\n\n---\n\n## 📂 Open Source\n\nFound a bug? Have a crazy physics idea?  \nWe welcome contributions and discussions on [GitHub](https://github.com/MozillaFiredoge/Aerodynamics4MC-Core).  \nThis project is licensed under the **MIT License** — build on it freely.\n\n---\n\n<p align=\"center\">\n  <sub><i>Wind is the atmosphere’s way of balancing pressure.<br/>Now it balances your Minecraft world, too.</i> 🌍</sub>\n</p>\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 419,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

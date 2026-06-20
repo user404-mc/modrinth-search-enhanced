@@ -1,0 +1,40 @@
+{
+  "id": "GoAfnryN",
+  "slug": "networknick",
+  "title": "NetworkNick",
+  "description": "Lightweight nickname plugin for networks using REDIS. /nick & /hide",
+  "body": "# NetworkNick\n\n**NetworkNick** is a lightweight, network-aware nickname plugin for **Paper and Spigot** that provides persistent, Redis-backed nicknames with full support for **PlaceholderAPI**, **LuckPerms**, and modern multi-server environments.\n\nDesigned for modern servers and proxy networks, NetworkNick focuses on **correctness, timing, and compatibility** — ensuring nicknames apply **before join messages**, **sync instantly across servers**, and respect **offline permissions**.\n\n---\n\n### Changelog\n\n**1.0.1**\n\n- Network-wide nicknames via Redis\n- Join-time correctness (`%player_displayname%` works in join messages)\n- Offline-safe nickname exemption (LuckPerms integration)\n- Hide / unhide system with prior nickname restoration\n- Robust enforcement against late plugin overrides\n- PlaceholderAPI support\n- Clean reload support\n- Paper & Spigot compatible (no NMS, no ProtocolLib)\n\n---\n\n## Overview\n\nNetworkNick allows players to set nicknames that:\n\n- Persist across restarts and reconnects\n- Synchronize instantly across multiple backend servers\n- Appear correctly in join messages, chat, TAB, and scoreboards\n- Respect permissions, formatting rules, and offline exemptions\n\nThe plugin is built around a Redis source of truth, with careful handling of join timing to ensure `%player_displayname%` always reflects the correct nickname.\n\n---\n\n## Core Features\n\n### Nicknames\n- Set custom nicknames with `/nick`\n- Supports legacy color codes (`&a`) and hex colors (`&#RRGGBB`)\n- Optional formatting permissions (`&l`, `&o`, `&k`, etc.)\n- Safe length enforcement (3–16 visible characters)\n\n### Hide / Unhide\n- `/hide` obfuscates your name using `&k`\n- `/unhide` restores your previous nickname or real name\n- Prior nicknames are stored safely and restored correctly\n\n### Network Sync\n- Redis-backed nickname storage\n- Real-time updates across all servers\n- Automatic re-application on join, reload, and reconnect\n\n### Exempt Players\n- `networknick.exempt` prevents other players from changing or unhiding your nickname\n- Uses the LuckPerms API to check permissions even when the player is offline\n- Safe asynchronous handling (no main-thread blocking)\n\n### Enforcement System\n- Optional short-term enforcement to beat late plugin overrides\n- Protects against plugins that reset display names after join\n\n### Placeholder Support\n- PlaceholderAPI integration\n- Custom placeholders for network-aware name handling\n\n---\n\n## Requirements\n\n- Java 21\n- Paper or Spigot 1.20+\n- Redis server (required)\n- Optional but recommended: LuckPerms\n- Optional: PlaceholderAPI\n\n---\n\n## Installation\n\n### Single-Server Setup\n\n1. Download `NetworkNick-1.0.0.jar`\n2. Place it in your server’s `plugins/` directory\n3. Start the server\n4. Configure permissions (LuckPerms recommended)\n5. Restart or run `/networknick reload`\n\n---\n\n### Multi-Server Setup\n\nRecommended for Velocity or BungeeCord environments.\n\n**Requirements**\n- Shared Redis instance\n- Identical plugin configuration across all backend servers\n\n**Steps**\n1. Configure Redis connectivity\n2. Ensure all backend servers connect to the same Redis instance\n3. Restart all servers\n\n**Features**\n- Network-wide nicknames\n- Instant synchronization across servers\n- Consistent join messages everywhere\n\nRedis acts as the source of truth  \nLocal caches are ephemeral and safe\n\n---\n\n## Commands\n\n### Player Commands\n\n| Command | Description | Permission |\n|-------|-------------|------------|\n| `/nick <name>` | Set your nickname | `networknick.nick` |\n| `/nick off` | Clear your nickname | `networknick.nick.clear` |\n| `/hide` | Hide your name | `networknick.hide` |\n| `/unhide` | Restore your name | `networknick.unhide` |\n\n### Admin Commands\n\n| Command | Description | Permission |\n|-------|-------------|------------|\n| `/nick <player> <name>` | Set another player’s nickname | `networknick.nick.others` |\n| `/nick <player> off` | Clear another player’s nickname | `networknick.nick.others.clear` |\n| `/unhide <player>` | Unhide another player | `networknick.unhide.others` |\n| `/networknick reload` | Reload config and Redis | `networknick.reload` |\n\n---\n\n## Permissions\n\n### Core\n\n| Permission | Description | Default |\n|-----------|-------------|---------|\n| `networknick.nick` | Use `/nick` | op |\n| `networknick.nick.clear` | Clear own nickname | op |\n| `networknick.hide` | Use `/hide` | op |\n| `networknick.unhide` | Use `/unhide` | op |\n\n### Moderation\n\n| Permission | Description |\n|-----------|-------------|\n| `networknick.nick.others` | Set others’ nicknames |\n| `networknick.nick.others.clear` | Clear others’ nicknames |\n| `networknick.unhide.others` | Unhide others |\n\n### Formatting\n\n| Permission | Description |\n|-----------|-------------|\n| `networknick.nick.colors` | Color and hex codes |\n| `networknick.nick.format.k` | Obfuscated |\n| `networknick.nick.format.l` | Bold |\n| `networknick.nick.format.m` | Strikethrough |\n| `networknick.nick.format.n` | Underline |\n| `networknick.nick.format.o` | Italic |\n| `networknick.nick.format.r` | Reset |\n\n### Protection\n\n| Permission | Description |\n|-----------|-------------|\n| `networknick.exempt` | Prevent others from changing or unhiding your nickname |\n\n---\n\n## (PlaceholderAPI)\n\n| Placeholder | Description |\n|------------|-------------|\n| `%networknick_name%` | Visible nickname (or real name) |\n| `%networknick_unhidden%` | Real name or prior nickname |\n| `%networknick_hidden%` | `true` or `false` |\n\nNote: `%player_displayname%` will also reflect the nickname, as NetworkNick applies it before join messages are processed. Just make sure if you're using essentials you have change-displayname set to false in their config.\n\n---\n\n## Planned Enhancements\n\n- None currently. Open to suggestions\n\n---\n\n## License\n\nLicensed under the Apache License, Version 2.0  \nSee `LICENSE` for details.\n\n---\n\n## Credits\n\nDeveloped by **Chumbucket**  \nBuilt for the **Chumbucket Network**  \nhttps://www.chumbucket.net\n\n© 2025 Chumbucket — Apache-2.0 License\n",
+  "categories": [
+    "decoration",
+    "library",
+    "paper",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 274,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

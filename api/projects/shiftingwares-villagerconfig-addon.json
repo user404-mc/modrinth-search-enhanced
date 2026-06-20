@@ -1,0 +1,37 @@
+{
+  "id": "EphXztIa",
+  "slug": "shiftingwares-villagerconfig-addon",
+  "title": "Shifting-Wares: VillagerConfig Addon",
+  "description": "Compatibility addon for ShiftingWares and VillagerConfig",
+  "body": "# Shifting-Wares: VillagerConfig Addon\n\nCompatibility addon that enables [ShiftingWares](https://modrinth.com/mod/shifting-wares) rerolls to use the custom trades and layouts defined by [VillagerConfig](https://modrinth.com/mod/villagerconfig/).\n\n\n## Shifting Wares v2\nIn order for Shifting Ware's map caching to work properly, **Exploration Map trades must use the same item-naming convention as vanilla trades.** Behaviour is undefined otherwise.\n\n## Shifting Wares v3\nWith this addon, map persistence can be defined in the trade themselves, alongside to the costs and result:\n- `shiftingwares:isPersistent`: *(boolean)* Forcibly marks the trade as persistent. This trade's rerollability will be limited to the same conditions as for map trades.\n- `shiftingwares:tradeId`: *(Identifier)* When defined, this allows ShiftingWares to associate an existing trade to its source in the datapack, and prevent duplicates of that trade from being generated.\n\n### Example:\n```json\n{\n\t\"shiftingwares:isPersistent\": true,\n\t\"shiftingwares:tradeId\": \"minecraft:on_ocean_explorer_maps\",\n\t\"cost_a\": { \"type\": \"minecraft:item\", \"name\": \"minecraft:emerald\" },\n\t\"cost_b\": { \"type\": \"minecraft:item\", \"name\": \"minecraft:compass\" },\n\t\"result\": {\n\t\t\"type\": \"minecraft:item\",\n\t\t\"name\": \"minecraft:map\",\n\t\t\"functions\": [\n\t\t\t{\n\t\t\t\t\"decoration\": \"minecraft:monument\",\n\t\t\t\t\"destination\": \"minecraft:on_ocean_explorer_maps\",\n\t\t\t\t\"function\": \"minecraft:exploration_map\",\n\t\t\t\t\"search_radius\": 100\n\t\t\t}\n\t\t],\n\t}\n}\n```\n\nThis data will **not** be present by default when VillagerConfig generates data from vanilla trades, but map trades will still be made persistent even without it. Setting the trade Id is still recommended to avoid duplicatas.\nThe trade Id is not required to match the map's destination; this example is just how ShiftingWares handles them without villager config.\n\n## Versions Coverage\n\nMinecraft             |  VC  | SW | Addon       | Status\n:-------------------- | :--- | :- | :---------- | ------\n**1.21.11<br/>1.21.5** | v4.4 | v3 | v2.1+1.21.5 | Maintained\n**1.21.4**            | v4.4 | v3 | v2.1+1.21.4 | Maintained\n**1.21.3<br/>1.21.2** | v4.3 | v3 | v2.0+1.21.3 | _Discontinued_\n**1.21.1<br/>1.21.0** | v4.4 | v3 | v2.1+1.21.4 | Maintained\n**1.20.6<br/>1.20.5** | v4.1 | v2 | v1.0+1.20.6 | _Discontinued_\n**1.20.4<br/>1.20.0** | v4.1 | v2 | v1.0+1.20.2 | _Discontinued_\n",
+  "categories": [
+    "economy",
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13353,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

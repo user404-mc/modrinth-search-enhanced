@@ -1,0 +1,31 @@
+{
+  "id": "pR1Fpbbv",
+  "slug": "moehreag-modcredits",
+  "title": "Mod Credits",
+  "description": "Adds a credit screen for the installed mods in the style of the game credits, but with improved functionality and a custom poem.",
+  "body": "# Mod Credits screen\n\n> With custom poem!\n \nThis mod adds a screen in the style of the vanilla credits/win screen, but for the\ncurrently installed mods and with expanded functionality as well as a small custom poem.\n\n### Customization options (for modpack devs/users, available starting from version 2.0.0)\n\nThe config file is located at `<game dir>/config/moehreag_modcredits.json`.\n\nCurrently, the following options are available:\n\n- `enable_poem_in_credits_button`: Whether to display the poem when the mod credits screen is opened\n\tfrom the \"Credits & Attribution\" screen.\n- `enable_mod_links`: Whether to allow clicking on mod names to go to their homepage/sources/...\n- `show_mod_icons`: Whether to display mod icons in the credits screen. Note that mod authors are able to \n  override the default behavior and may not respect this option.\n- `compact_mode`: Whether to display the list in a more compact form. This option may also not be respected\n  by mods that implement their own entries (see below).\n\n\n### Customization options (for mod devs)\n\n<details>\n<summary>Custom FMJ property (simple)</summary>\n\nExample:\n```json5\n{\n  /*...*/\n  \"custom\": {\n    \"moehreag-modcredits:description\": \"Your custom text!\"\n  }\n}\n```\n**Note:** This property does not support localization.\n\n\nExample (using translation keys):\n```json5\n{\n  /*...*/\n  \"custom\": {\n    \"moehreag-modcredits:description-keys\": \"modid.modcredits.description\"\n  }\n}\n```\n\n**Note:** For both options, the line length is limited to a width of 256 and will be wrapped.\n</details>\n\n<details>\n<summary>Custom Entrypoint (more powerful, but also more manual work and likely to break with version updates)</summary>\n\n```json5\n{\n  /*...*/\n  entrypoints: {\n    \"moehreag-modcredits\": [\n      \"com.example.modid.modcredits.ModCreditsImpl\"\n    ]\n  },\n  /*...*/\n}\n```\n\n```java\npackage com.example.modid.modcredits;\n\nimport io.github.moehreag.modcredits.ModCreditsApi;\nimport io.github.moehreag.modcredits.entries.Entry;\n\nimport net.fabricmc.loader.api.ModContainer;\n\npublic class ModCreditsImpl implements ModCreditsApi { \n\t\n\t@Override \n\tpublic Entry createEntry(ModContainer self, boolean rightText) {\n\t\t/* Your code! */\n\t}\n}\n```\n\n</details>\n\n### Maven coordinates\n\nThis mod can be found on https://maven.axolotlclient.com/. Alternatively, the modrinth maven can be used.\n\n<details>\n<summary>\nbuild.gradle.kts\n</summary>\n\n```kotlin\n\nrepositories {\n    maven(\"https://maven.axolotlclient.com/releases\")\n}\n\ndependencies {\n    \n    modImplementation(\"io.github.moehreag:modcredits:$VERSION\")\n}\n\n\n```\n</details>\n\n<details>\n<summary>\nbuild.gradle\n</summary>\n\n```groovy\n\nrepositories {\n    maven { url = \"https://maven.axolotlclient.com/releases\" }\n}\n\ndependencies {\n    \n    modImplementation(\"io.github.moehreag:modcredits:$VERSION\")\n}\n\n\n```\n</details>\n\n---\n\nYou want to use this mod in a modpack but it doesn't offer the correct options? Head to the issue tracker and let us know!",
+  "categories": [
+    "fabric",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1493,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

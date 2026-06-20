@@ -1,0 +1,34 @@
+{
+  "id": "3huOLKO2",
+  "slug": "editionperms",
+  "title": "EditionPerms",
+  "description": "Permissions plugin with the ability to give separate permissions for Java and Bedrock accounts",
+  "body": "# EditionPerms\n\nA lightweight Minecraft plugin for managing permissions separately for Java Edition and Bedrock Edition players on crossplay servers.\n\n## Features\n\n- 🎮 **Separate permissions for Java and Bedrock players**\n- 🔍 **Automatic player detection** via username prefix and UUID checking\n- 🔄 **Fast reload** - Update permissions without restarting the server\n- ⚡ **Folia compatible** - Works on both Paper and Folia servers\n- 🛠️ **Simple configuration** - Easy YAML setup\n- 🪶 **Lightweight** - Minimal performance impact\n\n## Why was this plugin created?\n\nThis plugin was originally created to solve a specific problem on crossplay servers: giving Java Edition players anticheat bypass permissions while keeping Bedrock Edition players under normal anticheat protection. It has since evolved into a simple permission management system for any crossplay server running Geyser/Floodgate.\n\n## How It Works\n\n1. **Player joins** → Plugin detects if they're Java or Bedrock\n   - Checks username prefix (default: `.` for Bedrock)\n   - Checks UUID format (`00000000-0000-0000-xxxx` for Bedrock)\n\n2. **Groups are checked** → Plugin finds matching groups based on player type\n\n3. **Permissions applied** → All matching groups' permissions are granted instantly\n\n## Commands\n\n| Command | Aliases | Permission | Description |\n|---------|---------|------------|-------------|\n| `/editionpermsreload` | `/epr`, `/epreload`, `/editionreload` | `editionperms.reload` | Reloads the config and reapplies all permissions |\n\n1. Download the latest `EditionPerms-x.x.x.jar` \n2. Place the JAR file in your `plugins/` folder\n3. Restart your server\n4. Edit `plugins/EditionPerms/config.yml` to configure permissions\n5. Run `/editionpermsreload` or restart to apply changes\n\n## Configuration\n\nThe plugin creates a `config.yml` file in `plugins/EditionPerms/`:\n```yaml\n# ==================================================================================\n# BEDROCK PLAYER DETECTION\n# ==================================================================================\n# These settings determine HOW the plugin identifies Bedrock players\ndetection:\n  # Bedrock players have this prefix in their username (default: \".\")\n  # Example: \".PlayerName\" is a Bedrock player, \"PlayerName\" is Java\n  bedrock-prefix: \".\"\n  \n  # Also check UUID format to detect Bedrock players (recommended: true)\n  # Bedrock UUIDs start with \"00000000-0000-0000\"\n  bedrock-uuid-check: true\n\n# ==================================================================================\n# PERMISSION GROUPS\n# ==================================================================================\n# After a player is identified as Java or Bedrock, these groups assign permissions\n\ngroups:\n  # Give permissions to ALL Java players\n  default-java:\n    type: java\n    prefix: \"\"  # LEAVE EMPTY to apply to ALL Java players\n    permissions:\n      - minecraft.command.me\n      - minecraft.command.trigger\n  \n  # Give permissions to ALL Bedrock players\n  default-bedrock:\n    type: bedrock\n    prefix: \"\"  # LEAVE EMPTY to apply to ALL Bedrock players\n    permissions:\n      - minecraft.command.me\n      - minecraft.command.trigger\n```\n\n### Example Configurations\n\n**Give Java players anticheat bypass:**\n```yaml\ngroups:\n  default-java:\n    type: java\n    prefix: \"\"\n    permissions:\n      - nocheatplus.shortcut.bypass\n      - spartan.bypass\n      - essentials.spawn\n  \n  default-bedrock:\n    type: bedrock\n    prefix: \"\"\n    permissions:\n      - essentials.spawn\n```\n\n**Give Java players creative permissions:**\n```yaml\ngroups:\n  default-java:\n    type: java\n    prefix: \"\"\n    permissions:\n      - worldedit.selection\n      - essentials.fly\n      - essentials.gamemode\n  \n  default-bedrock:\n    type: bedrock\n    prefix: \"\"\n    permissions:\n      - essentials.spawn\n```\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](https://github.com/MistaSoup/EditionPerms/blob/main/LICENSE) file for details.",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 158,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

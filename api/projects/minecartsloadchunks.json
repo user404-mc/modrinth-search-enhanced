@@ -1,0 +1,21 @@
+{
+  "id": "2R55bKLm",
+  "slug": "minecartsloadchunks",
+  "title": "MinecartsLoadChunks",
+  "description": "Minecarts load terrain around them instead of getting stuck at the borders of unloaded chunks.",
+  "body": "# Minecarts Load Chunks Mod\n\nA **Fabric mod** that prevents minecarts from getting stuck at unloaded chunk borders by automatically loading chunks as the minecarts travel. It works with **all minecart types**: regular, chest, furnace, and hopper carts, ensuring smooth and uninterrupted transportation across your Minecraft world.\n\n## Features\n- **Automatic Chunk Loading:** Loads a **3x3 grid** of chunks around any moving minecart to prevent chunk border issues.\n- **Supports All Minecart Types:** Works with **regular minecarts**, **chest minecarts**, **furnace minecarts**, and **hopper minecarts**.\n- **Tick-Based Expiry:** Chunks remain loaded for **30 seconds (600 ticks)** after the minecart leaves. This can be changed in the configuration file.\n- **Persistent Chunk Data:** Loaded chunks are saved on a **per-world basis** and restored when the server restarts, preventing stranded minecarts even through server reboots.\n\n## How It Works\n- The mod scans for **all minecarts** (regular, chest, furnace, and hopper carts) every server tick.\n- When a minecart is detected with **nonzero velocity**, it records the tick and forces a **3x3 grid** of chunks around the minecart’s position to be loaded.\n- The chunks remain loaded for **30 seconds (600 ticks)**.\n- **Persistent storage:** The chunk data is saved to **each world’s save directory** and restored when the world is reloaded, preventing stranded minecarts.\n\n## Configuration\nThe mod uses a JSON configuration file (`config/minecartsloadchunks.json`) to allow you to customize its behavior. You can modify the settings to suit your needs. Here’s what each configuration option does:\n\n### General Settings\n\n- **`loadChunks`** - Enables or disables the mod entirely. Set this to `false` to disable the mod without removing it. (**Default:** `true`)\n\n- **`spamConsole`** - Enables detailed logging in the console every second for debugging purposes. (**Default:** `false`)\n\n### Chunk Loading Durations\n\n- **`cartLoadDuration`** - Specifies how long (in seconds) each chunk remains loaded after a minecart passes through. (**Default:** `30`)\n\n- **`movementDuration`** - Defines how long (in seconds) a chunk stays loaded after a minecart stops moving. (**Default:** `10`)\n\n### Minecart Type Settings\n\nThese settings determine which minecart types can load chunks. Set to `true` to enable chunk loading for specific minecart types:\n\n- **`loadMinecarts`** – Standard minecarts (**Default:** `true`)\n- **`loadFurnaceMinecarts`** – Furnace minecarts (**Default:** `true`)\n- **`loadChestMinecarts`** – Chest minecarts (**Default:** `true`)\n- **`loadHopperMinecarts`** – Hopper minecarts (**Default:** `true`)\n- **`loadTntMinecarts`** – TNT minecarts (**Default:** `false`)\n- **`loadCommandBlockMinecarts`** – Command block minecarts (**Default:** `false`, disabled to prevent unintended behavior)\n\n## Contributing\nFeel free to contribute to this project by:\n- Reporting issues\n- Submitting pull requests\n- Requesting new features\n\n## License\nThis mod is available under the **MIT License**.\n\n## Credits\n- Developed by **Dylan**\n- Special thanks to the Minecraft and Fabric communities for making modding such a joy.\n- [Github](https://github.com/cpagentboot/MinecartsLoadChunks)",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2001,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7"
+  ],
+  "date_updated": null
+}

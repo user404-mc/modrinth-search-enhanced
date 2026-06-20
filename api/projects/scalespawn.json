@@ -1,0 +1,25 @@
+{
+  "id": "4GVvBD1I",
+  "slug": "scalespawn",
+  "title": "ScaleSpawn",
+  "description": "This add-on will make the selected entities spawn with random sizes using the scale attribute, also, you will be able to set custom damage, speed, life and drops according to the size.",
+  "body": "Take advantage of the new features of 1.21 and give your players new experiences! **This add-on will make the selected entities spawn with random sizes using the scale attribute, also, you will be able to set custom damage, speed, life and drops according to the size.\n**\n\n\n**This plugin only works in 1.21**, it is fully compatible with Paper and any Paper fork.\n\n## Commands\n> /scalespawn reload **Permission:** _scalespawn.reload_\n> \n> /scalespawn gui **Permission:** _scalespawn.gui_\n\n## Configuration\n> You can set the maximum and minimum scale\n\n> Allowed mobs and worlds\n\n> Allowed spawn reasons\n\n> Adjust the dropping according to the size (scale)\n\n> Adjust life, speed and damage according to the scale\n\n> Add custom drops according to size, with probability and amount\n\n> And much more!\n\n\n```yml\n# DONT CHANGE THIS!\nversion: 1.0\n\nSpawn:\n  mythic-mobs-compatibility: false\n  scale-mythic-mobs: false\n  # Probability that an entity spawns with the modified scale, the higher this number the higher the probability, ex: 0.2 = 20%\n  spawn-scaled-probability: 0.4\n  allowed-worlds:\n    - world\n    - world_the_nether\n  scale-only-from-list: true\n  # Entities from this list, some entities can throw errors\n  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html\n  scale-list:\n    - SKELETON\n    - ZOMBIE\n    - IRON_GOLEM\n    - WOLF\n    - SPIDER\n    - OCELOT\n    - COW\n    - HORSE\n    - BEE\n    - WITHER\n  scale-all-reasons: false\n  # Spawn reasons from this list, warning, some spawn reasons can throw errors\n  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html\n  scale-spawn-reason:\n    - VILLAGE_DEFENSE\n    - VILLAGE_INVASION\n    - RAID\n    - TRIAL_SPAWNER\n    - EGG\n    - SPAWNER_EGG\n    - COMMAND\n    - SPAWNER\n    - BUILD_IRONGOLEM\n    - BUILD_SNOWMAN\n    - BUILD_WITHER\n    - BEEHIVE\n    - PATROL\n    - NATURAL\n    - CHUNK_GEN\n  # If you have problems with animals or certain entities it is because they\n  # are generated when the chunk is loaded and “CHUNK_GEN” is deprecated as SpawnReason.\n  # This onlly affects animals and only when spawning naturally, all other SpawnReasons (spawn eggs, mob spawners, etc..) should work.\n  # There may be some errors with Chunky since as it pregenerates the Chunks the entities (animals only) may not scaled correctly.\n  # This option is better on servers with high resources and good performance.\n  # If you wanna use the chunk loader system you need to put\n  # \"allow-chunk-load-listener\" to true and \"process-entities-on-load-new-chunks\" to true and then restart the server\n  allow-chunk-load-listener: false\n  process-entities-on-load-new-chunks: false\n\nScale:\n  min-scale: 0.5\n  max-scale: 1.5\n  # More or less hearts depending on size\n  life-per-scale: true\n  max-health-scale: 100.0\n  # More or less damage depending on size\n  damage-per-scale: true\n  max-damage-scale: 18.0\n  # More or less speed depending on size\n  speed-per-scale: true\n  max-speed-scale: 2.0\n\n\nDrops:\n  # This means that the larger the scale, the greater the number of objects given by the entity.\n  adjusts-drops: true\n  # The negative drop multiplier applies to the entity when the scale is less than 1.0\n  negative-drop-multiplier: 0.5\n  # The positive drop multiplier applies to the entity when the scale is greater than 1.0\n  positive-drop-multiplier: 1.3\n  custom-drops: true\n  # -- scale condition --\n  # example: >1.2 :: The item will be dropped if the scale is greater than 1.2\n  # example: <1.2 The item will be dropped if the scale is less than 1.2\n  # example: =1.2 The item will be dropped if the scale equals 1.2\n  # -- items --\n  # DIAMOND;1;0.2 -> ITEM;QUANTITY;PROBABILITY (DOUBLE) 0.2 = 20%\n  drops:\n    COW:\n      scale: \">1.2\"\n      items:\n        - FEATHER;1;0.2\n\nMessages:\n  no-permission: \"&cYou do not have permissions to use this, contact the administrators if you think this is an error.\"\n```\n![Smmary](https://cdn.modrinth.com/data/cached_images/6098184182fac59251c2ec23d8473d715e1840a9_0.webp)\n![bigchickennugget](https://cdn.modrinth.com/data/cached_images/2dbe75af62b50a2dc40f5d917fed7ba2b6b9c051_0.webp)",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 160,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

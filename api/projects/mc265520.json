@@ -1,0 +1,22 @@
+{
+  "id": "gkule2os",
+  "slug": "mc265520",
+  "title": "MC-265520 Patch",
+  "description": "Fabric mod which fixes MC-265520 in Minecraft versions <1.20.5",
+  "body": "## What does this mod do?\n\nThis is a fabric mod which fixes [MC-265520](https://bugs.mojang.com/browse/MC-265520) in Minecraft versions <1.20.5.\n\n## What is MC-265520 about?\n\n[MC-265520](https://bugs.mojang.com/browse/MC-265520) is about a race condition when switching between protocol states. The protocol states get switched while decoding packets and Minecraft expects the old protocol state when handling the switching packet on the main thread.\n\n## How does this mod solve the issue?\n\nThis mod moves the `FlowControlHandler` added because of [MC-265209](https://bugs.mojang.com/browse/MC-265209) in front of the handler which switches protocol states.\nThe mod also uses a custom `FlowControlHandler` (based on the [old, MIT-licensed `AutoReadHolderHandler` of Velocity](https://github.com/PaperMC/Velocity/blob/7ca40094cb208abdc29beaad3dcafeb9b3488618/proxy/src/main/java/com/velocitypowered/proxy/network/pipeline/AutoReadHolderHandler.java)) instead of changing how the entire networking pipeline works (as Mojang did in 1.20.5).",
+  "categories": [
+    "cursed",
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 680,
+  "followers": 0,
+  "game_versions": [
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

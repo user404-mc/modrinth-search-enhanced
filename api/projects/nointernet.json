@@ -1,0 +1,25 @@
+{
+  "id": "HGNJMfdQ",
+  "slug": "nointernet",
+  "title": "NoInternet",
+  "description": "Intercept non-whitelisted network requests during game startup to avoid unnecessary update checks and other factors that slow down startup speed.",
+  "body": "# NoInternet\n<details><summary>English</summary>\n\nThis description was translated using DeepL.\n\nYou can intercept non-whitelisted network requests during the game startup phase to avoid unnecessary update checks and other factors that slow down startup speed.\n\n> Reference: [NonUpdate Reloaded](https://modrinth.com/mod/non-update-reloaded)\n\n## Features\n\n- 🚫 Block non-whitelisted network requests during startup\n- ⚡ Accelerate game startup speed\n- 📋 Flexible whitelist config system\n- 📝 Optional interception log recording\n- 🔧 Configurable invalid proxy ports (used to block connections), randomly generated on first startup\n\n## Config\n\n### Config file location\n`config/nointernet.json` (automatically created on first startup)\n\n### Default Config\n```json\n{\n  “whitelist”: [\n    “$emojang.com”,\n    “$eminecraft.net”,\n    “$ctoriifind.json”,\n    “$clynn.json”\n  ],\n  “logBlockedRequests”: true,\n  “blockPort”: -1\n}\n```\n\n> Notes:\n> - Upon first startup, `blockPort` will be randomly generated between 20000–65535 (inclusive) and written to the configuration.\n> - You can also manually modify it to any valid port between 1–65535; if an invalid value is entered, it will be automatically regenerated and written back upon the next startup.\n> - The `toriifind.json` and `lynn.json` files are required by my other mod “ToriiFind”; if you don't need them, you can delete them.\n\n### Configuration Item Description\n\n| Configuration Item | Type | Description |\n|--------|------|------|\n| `whitelist` | String array | List of domains that will not be blocked |\n| `logBlockedRequests` | Boolean | Whether to log blocked requests (default: true) |\n| `blockPort` | Integer | Used to construct the local invalid proxy `localhost:blockPort` to block connections |\n\n### How to add URLs to the whitelist\n\nMultiple matching methods are supported, specified by prefix:\n\n#### Matching Methods\n\n| Prefix | Description | Example | Matching Result |\n|------|------|------|----------|\n| **$r** | Regular expression | `$r.+\\.mojang\\.com` | `sessionserver.mojang.com` |\n| **$e** | End match | `$emojang.com` | `sessionserver.mojang.com` |\n| **$s** | Prefix match | `$swww` | `www.mojang.com` |\n| **$c** | Contains match | `$cminecraft` | `minecraft.example.com` |\n| **No prefix** | Exact match | `hypixel.net` | `hypixel.net` |\n\n### Matching Rules\n\n- Matching checks the entire URL (domain + path + parameters)\n- Interception will automatically stop after entering the main interface (TitleScreen)\n- When the configuration file is invalid (missing `whitelist`), to avoid false positives, all requests will be allowed\n- Intercepted requests will be redirected to an invalid proxy at `localhost:blockPort` for quick failure, avoiding prolonged timeouts\n</details>\n\n<details><summary>中文</summary>\n\n可以在游戏启动阶段拦截非白名单的网络请求，避免不必要的更新检查等拖慢启动速度。\n\n> 参考自 [NonUpdate Reloaded](https://modrinth.com/mod/non-update-reloaded)\n\n## 功能\n\n- 🚫 拦截启动阶段的非白名单网络请求\n- ⚡ 加快游戏启动速度\n- 📋 灵活的白名单配置系统\n- 📝 可选的拦截日志记录\n- 🔧 可配置的无效代理端口（用于阻断连接），首次启动会随机生成\n\n## 配置\n\n### 配置文件位置\n`config/nointernet.json`（首次启动自动创建）\n\n### 默认配置\n```json\n{\n  \"whitelist\": [\n    \"$emojang.com\",\n    \"$eminecraft.net\",\n    \"$ctoriifind.json\",\n    \"$clynn.json\"\n  ],\n  \"logBlockedRequests\": true,\n  \"blockPort\": -1\n}\n```\n\n> 说明：\n> - 首次启动会在 20000–65535（含）之间随机生成 `blockPort` 并写入配置。\n> - 你也可以手动修改为任意 1–65535 的有效端口；若填写无效值，下一次启动会自动重新随机生成并写回。\n> - 其中的 toriifind.json 和 lynn.json 是我的另一个 Mod \"ToriiFind\" 需要的，你如果用不到，可以将其删除。\n\n### 配置项说明\n\n| 配置项 | 类型 | 说明 |\n|--------|------|------|\n| `whitelist` | 字符串数组 | 不会拦截的域名列表 |\n| `logBlockedRequests` | 布尔值 | 是否记录被拦截的请求（默认：true） |\n| `blockPort` | 整数 | 用于构造本地无效代理 `localhost:blockPort` 来阻断连接 |\n\n### 如何添加网址到白名单\n\n支持多种匹配方式，通过前缀指定：\n\n#### 匹配方式\n\n| 前缀 | 说明 | 示例 | 匹配结果 |\n|------|------|------|----------|\n| **$r** | 正则表达式 | `$r.+\\.mojang\\.com` | `sessionserver.mojang.com` |\n| **$e** | 结尾匹配 | `$emojang.com` | `sessionserver.mojang.com` |\n| **$s** | 开头匹配 | `$swww` | `www.mojang.com` |\n| **$c** | 包含匹配 | `$cminecraft` | `minecraft.example.com` |\n| **无前缀** | 精确匹配 | `hypixel.net` | `hypixel.net` |\n\n### 匹配与拦截规则\n\n- 匹配会检查完整的 URL（域名 + 路径 + 参数）\n- 进入主界面（TitleScreen）后，拦截将自动停止\n- 当配置文件无效（缺少 `whitelist`）时，为避免误伤，所有请求将被允许\n- 被拦截的请求将被重定向到 `localhost:blockPort` 的无效代理以快速失败，避免长时间超时\n</details>",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1178,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

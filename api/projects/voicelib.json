@@ -1,0 +1,22 @@
+{
+  "id": "ns91qQYT",
+  "slug": "voicelib",
+  "title": "VoiceLib",
+  "description": "Minecraft Voice Recognition Library",
+  "body": "# VoiceLib\n\nMinecraft text to speech library\n\n# Usage\n\nVoiceLibApi is the class for the API.\nThe following are the methods you will be using\n```\nVoiceLibApi.registerServerPlayerSpeechListener(Consumer<ServerPlayerTalkEvent> consumer)\nThis method registers a ServerPLayerTalkEvent Consumer. Whenever a player speaks,\nThis event will be fired. The ServerPlayerTalkEvent provides the player, and a string of what they said.\n\nVoiceLibApi.registerClientSpeechListener(Consumer<ClientTalkEvent> consumer)\nThis method registers a ClientTalkEvent Consumer. This method is only fired on the client.\nWhenever the user speaks, this will be fired.\n\nVoiceLibApi.setPrintToChat(boolean printToChat)\nThis is only on the client. This sets whether or not to \nprint client speak events to chat. (Default False)\n\nVoiceLibApi.setPrintToConsole(boolean printToConsole)\nSame as printToChat but for the console instead. (Default False)\n```\nAll methods have java docs for information on their usages.\n\n# Example\nThis method makes it so if any player on the server says \"ouch\" they light on fire\n```\nVoiceLibApi.registerServerPlayerSpeechListener((serverPlayerTalkEvent -> {\n    if (serverPlayerTalkEvent.getText().contains(\"ouch\"))\n        serverPlayerTalkEvent.getPlayer().igniteForSeconds(2);\n}));\n```\nYou can also see this in VoiceLibExample\n\n# Security\n\nThere are a few things to note with this mod,\n- The mod automatically downloads a vosk model from the internet on the first launch, it is about 40MB\n- This mod by default, constantly records and sends all text data to the server. This means a bad actor could listen in on your conversations (But only in text as audio is not sent to the server)\n- The push to talk key is inverted by default, this means pressing it turns OFF your microphone\n- Other mods can forcefully enable always on recording, they can also disable it (See VoiceLibClient)\n\n<p><a href=\"https://www.volcanobay.xyz\"><img src=\"https://file.garden/ZWUae22eyH6XVW5v/vbbanner.png\" alt=\"\" width=\"831\" height=\"277\" /></a></p>",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge",
+    "social"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 796,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

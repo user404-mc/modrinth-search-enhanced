@@ -1,0 +1,22 @@
+{
+  "id": "Qc3Wx1Hk",
+  "slug": "loot-patcher",
+  "title": "Loot Patcher",
+  "description": "Inject new loots into existing loot tables.",
+  "body": "## 🪄Introduction\n\nThis mod is mainly made for modpacks and is used to inject new loots into existing loot tables.\n\n## ⚙️Configuration\n\nBy default, this mod will not inject any loot tables.\n\n### `config/loot-patcher/*.json`\n\n```\n[\n  {\n    \"target_tables\": [...]\n    \"extra_tables\": [...]\n  }\n]\n```\n\n**Since version 1.2.0**, this mod will read all JSON files in the `config/loot-patcher/` directory as configs.\n\n### `config/loot-patcher.json`\n\n```\n{\n  \"patches\": [\n    {\n      \"target_tables\": [...]\n      \"extra_tables\": [...]\n    }\n  ]\n}\n```\n\nIf **Cloth Config** is installed, you can configure this mod via the `config/loot-patcher.json` file. \n\nThis mod is compatible with ModMenu, which you can install in order to configure the mod in-game via the configuration screen.\n\n### Reload\n\nAfter modifying the configs you will need to reload the datapack (in-game by typing the `/reload` command) to apply the changes.\n\n## 📜Example Usage\n\nIt is obvious that there should be no ellipses or comments in the JSON format file, and this case is only for the sake of explanation.\n\n### Configuration file:\n#### ```loot-patcher.json```\n\n```\n{\n  \"patches\": [\n    {\n      \"target_tables\": [\n        \"minecraft:chests/ancient_city\",\n        \"^(?!.*xxx).*entities.*\" //Support regular expressions.\n      ],\n      \"extra_tables\": [\n        \"xxx:entities/common_drop\",\n        \"xxx:entities/rare_drop\"\n      ]\n    },\n    {\n      \"target_tables\": ...\n      \"extra_tables\": ...\n    },\n    ...\n  ]\n}\n```\n\n### Consequence\n\nThe above configuration indicates that two loot pools will be added to the loot table with ID `minecraft:chests/ancient_city` and to all loot tables with IDs that contain `entities` but not `xxx`, with the only loot entry in the pools being those of the loot table type (`xxx:entities/ common_drop` and `xxx:entities/rare_drop`).\n\n## 🚨Warning\n\nYou should try to avoid infinite loops in the loot table during the configuration process.\n\n~~Even if you don't, there won't be any serious consequences...~~\n\n```\n{\n  \"target_tables\": [\".*\"],\n  \"extra_tables\": [\"minecraft:entities/zombie\"]\n}\n```\n\nIn this case, the target loot tables include the extra tables. If you kill a zombie, the zombie's loot table will attempt to drop itself, which causes infinite recursion.\n\n## ✉️Feedback\n\nIf there are any bugs or suggestions, please provide feedback to the issue page.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4640,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

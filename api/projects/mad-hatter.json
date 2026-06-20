@@ -1,0 +1,30 @@
+{
+  "id": "wGPzuGWg",
+  "slug": "mad-hatter",
+  "title": "Mad Hatter",
+  "description": "Over 30 cosmetic hats & an easy-to-use API",
+  "body": "### Warning! By default, Modrinth does not download the REQUIRED resource pack. You must go to the versions page and download it yourself!\n_If you have questions, issues, suggestions, or want your hats included in the pack (with credit), contact my discord @parax342_\n\n![mad hatter logo](https://cdn.modrinth.com/data/cached_images/9af1d019a4b0a937150ac3cfdf4096c4a81dfab6.png)\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/ZFTlv34g-8o\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## Information\nThis datapack adds 30+ unique cosmetic hats that you can apply to any helmet in your world. Any player will be able to see your hats so long as they have the resourcepack. Only the server needs to run the datapack.\n\nType `/trigger hat_menu` to pull up a click-menu in chat. Hold any helmet in your mainhand & select whatever hat you want. The helmet's defense stats, durability, etc. will all be unaffected by turning into a hat.\n\nThe resource pack is **REQUIRED**, even if you don't plan to use the built-in hats. If you don't want the built-in hats, you can remove them from the datapack . All players will need to download the resource pack (or you can make it a server resource pack), or else the hats will show up as missing models.\n\nMy main goal with this pack is to make it easy to add your own hats, a tutorial is further down. Any packs that are built off of this one must use it as a dependancy\n\nThis pack aims to be compatible with all/most mods & datapacks that add custom items. Any item in `#minecraft:head_armor` can be turned into a hat. When being turned into a hat, the item will back up any components the hat overrides, and then restore them when the hat is removed.\n\nThe components that get overridden are `minecraft:equippable`, `minecraft:item_model`, and `minecraft:enchantment_glint_override`. All of these components are purely cosmetic.\n\n## Making your own hats\nAny pack of custom hats consists of two parts, the resourcepack and the datapack. \n\nFor your resourcepack, you don't need to do anything special, just add your models.\n\nFor the datapack, the process is very simple:\n1. Create your hat registry (a regular mcfunction file in your datapack)\n2. Add the function to `#paraxs_hats:hat_registries`\n3. Add hats to your function (see below)\n\nTo add hats, there are two functions you can use:\n- `paraxs_hats:internal/register_hat` to add solo hats\n- `paraxs_hats:internal/register_hat_group` to add hats with variants\n\n`paraxs_hats:internal/register_hat` has two parameters - `model` and `name`. `model` is the path of the model inside the resource pack, and `name` is what the hat displays as in the menu.\n\n`paraxs_hats:internal/register_hat_group` also has two parameters - `name` and `hats`. `name` is still what the hat displays as in the menu, while `hats` is a stringified JSON array of hats with their own `model` and `name`. The `name` of each hat in the array appears as hovertext in the menu and should be used to denote the variant.\n\nPlacing either of the below examples into a hat registry would register a solo pirate hat or a football helmet with two colored variants respectively:\n- `function paraxs_hats:internal/register_hat with {\"name\":\"Pirate Hat\",\"model\":\"my_hats:pirate_hat\"}`\n- `function paraxs_hats:internal/register_hat_group with {\"name\":\"Football Helmet\",\"hats\":'[{\"name\":\"Red\",\"model\":\"my_hats:red_football_helmet\"},{\"name\":\"Blue\",\"model\":\"my_hats:blue_football_helmet\"}]'}`\n\n_Any packs that use this API **must** have this datapack & resourcepack as a dependency, or else they will **not** work!_\n_If you are having issues adding hats, contact me on discord @parax342_",
+  "categories": [
+    "datapack",
+    "decoration",
+    "equipment",
+    "game-mechanics",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1794,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

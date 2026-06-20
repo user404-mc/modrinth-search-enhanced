@@ -1,0 +1,34 @@
+{
+  "id": "6jCDxmNc",
+  "slug": "no-enderman-grief-2025",
+  "title": "No-Enderman-Grief",
+  "description": "Completely disables enderman block griefing while keeping all other mob behavior vanilla.",
+  "body": "# NoEndermanGrief\n\nA lightweight Paper/Spigot plugin that completely disables enderman block griefing while keeping all other mob behavior vanilla.\n\nEndermen can no longer pick up or place blocks, but creepers still explode, villagers still farm, and the `mobGriefing` gamerule remains under your control.\n\n---\n\n## Features\n\n- Prevents **only endermen** from changing blocks (both pickup and placement).\n- Does **not** modify the global `mobGriefing` gamerule.\n- Per-world enable/disable via `config.yml`.\n- Optional console logging with timestamps and coordinates whenever an enderman block change is cancelled.\n- Minimal surface area: one admin-only reload command, no changes for regular players.\n\n---\n\n## Requirements\n\n- **Server:** Paper or Spigot (Paper recommended)\n- **Minecraft:** 1.21+\n- **Java:** 21\n\nThis plugin is developed against the Paper 1.21 API with Mojang mappings.\n\n---\n\n## Configuration\n\n`plugins/NoEndermanGrief/config.yml`:\n\n```yaml\n# If a world is not listed under \"worlds\", this value decides\n# whether the plugin is enabled there by default.\ndefault-enabled: true\n\n# Per-world overrides.\n# Add world names and set them to true/false as needed.\n# Example:\n# worlds:\n#   world: true\n#   world_nether: false\n#   world_the_end: true\nworlds: {}\n\nlogging:\n  # If true, log whenever the plugin cancels an enderman block change.\n  enabled: false\n\n  # If true, include a timestamp inside the message itself\n  # (on top of the normal server log timestamp).\n  include-timestamp: true\n```\n\n## Per-world control\n\n - If a world is not listed under `worlds`, `default-enabled` determines whether the plugin is active there.\n - If a world is listed under `worlds`, that value overrides `default-enabled`:\n\n```yaml\nworlds:\n  world: true\n  world_nether: false\n  world_the_end: true\n```\n\nIn this example, the plugin is:\n\n - Enabled in `world` and `world_the_end`.\n - Disabled in `world_nether`.\n\n## Logging\n\n - `logging.enabled: true` – log a line each time an enderman block change is cancelled.\n - `logging.include-timestamp: true` – include an ISO-8601 timestamp in the log message.\n\nExample log entry:\n\n```text\n[NoEndermanGrief] [EndermanBlocked] 2025-01-01T12:34:56 - Cancelled enderman block change in world 'world' at (10, 64, -30)\n```\n\n## Commands\n\nReloads `config.yml` from disk (without restarting the world / server).\n\n - `/negreload`\n\n## Permission\nAllows use of `/negreload`.\n\n - `noendermangrief.reload`\n   - Default: `op`\n\n## Building from source\n\nThis project uses Maven.\n```bash\ngit clone https://github.com/<your-username>/NoEndermanGrief.git\ncd NoEndermanGrief\nmvn package\n```\n\nThe compiled plugin JAR will be located in the target/ directory:\n```text\ntarget/no-enderman-grief-1.0.0-SNAPSHOT.jar\n```\n\nCopy this JAR into your server’s plugins/ folder.\n\n## How it works (technical overview)\n\n - The plugin registers a listener for EntityChangeBlockEvent.\n - If the event’s entity type is ENDERMAN and the plugin is enabled in that world:\n    - The event is cancelled so the block change does not occur.\n    - If logging is enabled, a timestamped message with world and coordinates is written to the console.\n - No other entity types are modified, so creepers, villagers, and other mobs behave as in vanilla.\n\nThis makes the plugin safe to drop into existing survival worlds where you want to preserve terrain from enderman griefing without affecting any other mechanics.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "mobs",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 439,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

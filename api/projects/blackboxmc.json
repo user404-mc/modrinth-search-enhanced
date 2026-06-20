@@ -1,0 +1,21 @@
+{
+  "id": "Gybv6OZN",
+  "slug": "blackboxmc",
+  "title": "BlackboxMC",
+  "description": "A plugin that allows you to develop Spigot plugins using any language that can create shared libraries, allowing to use any compiled language other then Java.",
+  "body": "# BlackboxMC\nBlackboxMC is a plugin that allows you to develop Spigot plugins using any language that can create shared libraries, allowing to use anything other then Java (and other interpreted languages that people have made plugins for). It's really a plugin that makes automates the process of setting up JNI, but it also has a system for extending Java classes via native code, and also (seperately) allows you to create global functions that override those from the JavaPlugin class (note: this is not supported on Paper and relies on a feature that the devs have removed and have no interest in bringing back). It will soon have support for creating custom commands without using that system.\n\n**This plugin is made knowing why this hasn't been done before and why you might not want to do it.**\n\n- Distributing plugins made this way becomes much harder.\n- You technically lose performance since JNI calls are slow (...they take about 15ns on a good machine and this is a metric that's nearly 10 years old but this might matter in some scenarios)\n- You lose the ability to link to, and therefore create addons for, other plugins, unless you want to fork the repo and add support for the plugin in question (I am considering adding support in the helper library for the most popular plugins).\n\nIt's assumed that you don't care. This is for the people who are sick of Java, never want to work with Gradle or IntelliJ ever again, and just want to use a language that they actually like (assuming they dislike Java).\n\n**Usage**\n*Currently, only Windows and Linux are supported operating systems.*\n\nUsing it with a Spigot* server simply requires dropping the BlackBox plugin into your plugins folder. It will then load any .dll (Windows) or .so (Linux) files that you drop into the same plugins folder.\n\nCoding for it requires minimal knowledge of how to use JNI. It is developed alongside a Rust library (and a C++ library is planned) that mostly abstracts the messy process of using JNI, allowing you to focus more on plugin development, but said library has functions that take the JNIEnv pointer as an argument, and thus its still important that you have an idea of JNI works. JNI knowledge is also required if you want to use another language.\nThere is a getting started guide for using the library, and there are docs for it.\n\n*Certain features are unsupported under Paper due to a feature that the paper devs removed. If you use Paper, your plugin won't be treated as a separate plugin, which means you can't use the plugin's system of overriding functions like getCustomWorldGenerator or onCommand.",
+  "categories": [
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 192,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

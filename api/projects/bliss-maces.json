@@ -1,0 +1,32 @@
+{
+  "id": "SvsFJw9y",
+  "slug": "bliss-maces",
+  "title": "Bliss Maces",
+  "description": "The 3 maces and mega mace from bliss smp",
+  "body": "![Icon](https://cdn.modrinth.com/data/cached_images/df9f28a60cb059fb48c7af78015b042fe739548a.png)\n\n# BlissMaces\n\nA Paper plugin that turns the vanilla Mace into a server-wide mythic artifact. Built for the Bliss SMP — only **three** individual maces and one Mega Mace can ever exist on your server, gated behind a finite, craftable currency.\n\n## Overview\n\n- **3 individual maces** ever, server-wide. Persistent across restarts.\n- **24 Energy Tokens** ever, the sole resource that crafts maces.\n- **Mega Mace** assembled from all three — splits back to 3 on the holder's death.\n- **Cooldown + enchant restrictions** on individual maces.\n- **Storage lockdown** — restricted maces can't be hidden in chests, ender chests, shulker boxes, hoppers, etc.\n- **Indestructible** — unbreakable in hand, immune to fire / lava / explosions / void as a dropped item entity.\n\n## Recipes\n\nThe vanilla mace recipe is removed. Maces can only be crafted through this chain.\n\n### Energy Token\n\n![Energy Token Crafting](https://cdn.modrinth.com/data/cached_images/4a4b30efdb36b6c10f2976b6c94871e1b6647f83.png)\n\nYields 1 Energy Token — an Amethyst Shard with custom NBT, purple display name, and a subtle glow.\n\n### Individual Mace (numbered 1, 2, then 3)\n\n![Mace Crafting](https://cdn.modrinth.com/data/cached_images/9c8d8034d7118174718e4bae6a4072673a6ba5bc.png)\n\n8 Energy Tokens around 1 Heavy Core. The first craft produces Mace #1, the second Mace #2, the third Mace #3. Crafting after that fails — the cap is permanent.\n\n### Mega Mace\n\n![Mega Mace](https://cdn.modrinth.com/data/cached_images/25a74a40c26359c8ed6fc63a71c0e0c99d526249.png)\n\nPlace all three individual maces in any crafting grid (shapeless). One player must hold all three at once. Crafting a Mega Mace is broadcast server-wide.\n\n## Mace mechanics\n\n### Individual maces\n- **1-minute cooldown** between successful hits, per mace, persisted on the item.\n- **No damage enchantments** — Sharpness, Smite, Bane, Density, Breach, and Fire Aspect are stripped at the anvil and enchanting table, and re-scrubbed every time the mace is used.\n- Action-bar countdown shows on each blocked hit attempt.\n\n### Mega Mace\n- No cooldown, no enchantment restrictions.\n- Carries a permanent glow and `Unbreakable: true`.\n- On the holder's death, splits back into the three individual maces and drops as loot. Broadcasts to the server.\n\n### Indestructibility\nAll four mace variants are:\n- **Unbreakable** in hand — no durability decay.\n- **Damage-immune** as dropped item entities — fire, lava, cactus, explosions, and the void all cancel.\n- **Combust-immune** — they never visually catch fire.\n\n### Storage restriction\nRestricted maces may only enter these inventories:\n\n- Player inventory\n- 2×2 crafting grid + crafting table\n- Anvil\n- Enchanting table\n- Grindstone\n\nThey are blocked from chests, ender chests, shulker boxes, barrels, hoppers, droppers, dispensers, furnaces, brewing stands, and anything else. Click, drag, hopper transfer, and hopper pickup are all intercepted with a clear action-bar warning.\n\n## Commands\n\n| Command | Description |\n| --- | --- |\n| `/mace give <1\\|2\\|3\\|mega> [player]` | Spawn a tagged mace. |\n| `/mace token give <amount> [player]` | Spawn Energy Tokens (admin / testing). |\n| `/mace state` | Show current counters vs. hard caps. |\n| `/mace set <tokens\\|maces> <count>` | Override the persisted counters. |\n| `/mace fix [player\\|all]` | Re-issue tagged maces in inventories + ender chests using the current formatting. Preserves mace number and cooldown state. |\n| `/mace reload` | Reload `config.yml` and `state.yml`. |\n\nAll commands require `blissmaces.admin` (default: op).\n\n## Configuration\n\n`config.yml` keys, with defaults:\n\n```yaml\ncooldown-seconds: 60\nblocked-enchantments:\n  - sharpness\n  - smite\n  - bane_of_arthropods\n  - fire_aspect\n  - density\n  - breach\nmax-tokens: 24\nmax-individual-maces: 3\nindividual-name-format: \"&6Mace &e#{number}\"\nmega-mace-name: \"&5&lMega Mace\"\ncooldown-actionbar: \"&cMace cooldown: &e{seconds}s\"\nenchant-blocked-message: \"&cThat enchantment is not allowed on an individual mace.\"\nmega-craft-broadcast: \"&5&l{player} &dhas forged the &5&lMega Mace&d!\"\nmega-death-broadcast: \"&d{player} &7died holding the &5&lMega Mace&7 - it split back into 3 maces.\"\nindividual-craft-broadcast: \"&6{player} &eforged &6Mace #{number}&e!\"\n```\n\nPersistent state — `tokens-crafted` and `maces-crafted` — lives in `plugins/BlissMaces/state.yml`. Edit the file or use `/mace set` to reset.\n\n## Requirements\n\n- **Paper 1.21.x** (Purpur and other forks also fine; not Folia-compatible)\n- **Java 21**\n\n## Installation\n\n1. Drop `blissmaces-X.X.X.jar` into your server's `plugins/` folder.\n2. Restart the server.\n3. Defaults are production-ready. Tune `config.yml` if you want different caps, messages, or blocked enchants.\n\n## Notes\n\n- The plugin removes the vanilla `minecraft:mace` recipe and additionally voids any third-party recipe that would produce an untagged mace, so the token chain is the only path on your server.\n- Maces issued through `/give minecraft:mace ...` are plain vanilla maces and do not participate in the cooldown, enchant, or storage logic. Always use `/mace give` instead.\n- Caps are persistent. Once 24 tokens have been crafted, no more can ever be made (unless you reset `state.yml` or run `/mace set tokens 0`).",
+  "categories": [
+    "adventure",
+    "equipment",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 288,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

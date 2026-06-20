@@ -1,0 +1,29 @@
+{
+  "id": "TyHM2DUs",
+  "slug": "hide-coordinates",
+  "title": "Hide Coordinates",
+  "description": "Hide coordinates from players by offsetting all positions sent to the client",
+  "body": "Hide Coordinates\n================\nServer-side Fabric mod to prevent sending real coordinates to the client. Based on and partly copied from the Spigot version CoordinateOffset by [Joshua Prince](https://github.com/joshuaprince).\nCredit also goes to [Patbox](https://github.com/patbox) for a small sample of code I used from Polymer!\n\n\nFeatures\n---\n* Players' coordinates are offset so that the location they entered the current world (join, teleport, portal or respawn) is shown to them as 0, 0.\n* Admins can use `/coordoffset get` to find their own offset.\n* Admins can use `/coordoffset set [pos]` to change their own offset such that the specified pos is in the 0,0 chunk for them, or `/coordoffset set none` to disable the offset.\n* Any worldborder wall is only sent to players who can see it. This is to prevent client-side mods from instantly figuring out the offset from world border center information.\n\n\nWhy?\n---\nThe gamerule `reducedDebugInfo` hides coordinates from the debug screen, but this can be easily circumvented using a client-side mod. This mod hides the coordinates for real by offsetting all coordinates sent to the client.\nA server that wants to actually enforce the gamerule `reducedDebugInfo` without an honour system will need a mod like this. This is my attempt at an implementation :)\n\n\nDisclaimer\n---\nI'm a new modder. I needed this for a server I'm working on and made it as a learning opportunity. Therefore the mod doesn't have all the features, the code is quite messy, and there could be bugs or crashes. But I still figured it might be useful to some others. Feel free to use the code as you please, and improvement suggestions are welcome!\nKnown issues:\n* The main feature missing here from CoordinateOffset are the vast configuration options. Offsets are always set so you spawn in chunk 0,0 and this resets on death and dimension change.\n* Worldborder growing or shrinking looks really weird.\n* It's possible that I missed some packets that need the offset, let me know!",
+  "categories": [
+    "adventure",
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2551,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

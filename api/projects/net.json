@@ -1,0 +1,31 @@
+{
+  "id": "dfT2jGqO",
+  "slug": "net",
+  "title": "net",
+  "description": "Network communication library",
+  "body": "\n# Net\n\n**Features**\n\n*   Simplifies the network communication part in development, making development easier.\n*   Will provide network optimization and protection in the future.\n\n**How to use**\n\nFirst, insert `implementation \"dev.anye.mc:net:version\"` into the `dependencies` section of the `build.gradle` file, replacing version with the version you are actually using.\nThen create network communication according to the following code\n\n```java\n    //Create a DeferredRegister to store your NetHandle\n    public static final DeferredRegister<NetHandle> EASY_NET = DeferredRegister.create(NetReg.KEY, YourMod.MOD_ID);\n    //Register your NetHandle to the DeferredRegister above\n    public static final DeferredHolder<NetHandle, ExampleA> ExampleA = EASY_NET.register(\"example_a\",ExampleA::new);\n    public static final DeferredHolder<NetHandle, ExampleB> ExampleB = EASY_NET.register(\"example_b\",ExampleB::new);\n    //Create a DeferredRegister registration method and call it in the Mod main class\n    public static void reg(IEventBus eventBus){\n        EASY_NET.register(eventBus);\n    }\n\n    Use the methods in the NetCore class to send data\n    NetCore.sendToServer(NetPack.createClientPack(CompoundTag data, NetHandle));\n    NetCore.sendToEntity(NetPack.createServerPack(compoundTag,NetHandle), entity);\n\n\n\n\n  public class ExampleA extends NetHandle {\n    @Override\n    public void client(IPayloadContext context, CompoundTag dat) {\n    //Process data sent from the server here\n    }\n\n    @Override\n    public void server(IPayloadContext context, CompoundTag dat) {\n    //Process data sent from the client here\n    }\n}\n\n```\n",
+  "categories": [
+    "library",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 147,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "vNnk7JBf",
+  "slug": "orjusdeath",
+  "title": "OrjusDeath",
+  "description": "The plugin adds a downed state mechanic, allowing teammates to revive players within a set time instead of dying instantly.",
+  "body": "# OrjusDeath 2.0\n\nOrjusDeath is a highly customizable Minecraft plugin that introduces a \"downed\" state mechanic, similar to modern battle royale games. Instead of dying instantly, players enter a incapacitated state where they can be revived by teammates.\n\n## 🌟 Key Features\n\n- **Downed State**: Players fall to the ground instead of dying immediately.\n- **Crawling Mechanic**: Downed players can slowly crawl to safety.\n- **Revival System**: Teammates can revive downed players with a progress-based system.\n- **Customizable Penalties**: Adjust what happens when a player finally dies (item drop, inventory void, armor damage).\n- **Interactive GUI**: Full in-game configuration menu for administrators.\n- **Visual Effects**: Custom particles and screen effects (Darkness/Blindness) in the downed state.\n- **Advanced Logic**: Configure instant death causes (lava, void, etc.) and \"overkill\" damage thresholds.\n\n## 🛠 Commands\n\n| Command | Description | Aliases |\n|---------|-------------|---------|\n| `/od gui` | Opens the main settings GUI | `orjusdeath`, `revive` |\n| `/od reload` | Reloads the configuration and language files | |\n| `/od allowcmd <cmd>` | Allows a specific command while downed | |\n| `/od denycmd <cmd>` | Denies a specific command while downed | |\n\n## ⚙️ Configuration Overview\n<details>\n<summary>Spoiler</summary>\n```\n\n# language: ru or en\nlanguage: en\n\n# General Settings\nsettings:\n  down-time: 30             # Time before final death (sec)\n  suicide-hold-time: 5      # Shift hold time to give up (sec)\n  health-after-revive: 1.0  # HP after revival (1.0 = 0.5 hearts)\n  health-while-downed: 6.0  # HP while in downed state\n  crawl-speed-percent: 30   # Crawl speed (% of normal). 0 = still, 100 = walk.\n  survive-suicide-chance: 10.0 # Chance (%) to survive when attempting to give up (player stands up instead of dying)\n  survive-timer-chance: 5.0   # Chance (%) to survive when the downed timer expires (player stands up automatically)\n  instant-death-overkill: 10.0 # If damage > (hp + this value), player dies instantly\n  worlds: [\"world\", \"world_nether\", \"world_the_end\"]\n  allowed-commands: []      # Commands allowed while in downed state\n\n# List of death causes that kill instantly (player does not enter downed state)\ninstant-death-causes:\n  - LAVA\n  - VOID\n  - DROWNING\n  - SUFFOCATION\n\n# Revival Logic\nrevive-logic:\n  time-to-revive: 10.0      # Seconds required to revive\n  reset-on-stop: false      # Reset progress if the medic moves away?\n  regress-speed: 5          # Progress loss speed (% per sec) if not being revived\n  interrupt-on-damage: false # Interrupt revival if the medic takes damage?\n  max-distance: 3.0         # Maximum revival distance (blocks)\n\n\n# Inventory Penalties (Applied on final death)\ninventory-penalty:\n  armor-damage-pct: 20      # % of armor durability to lose\n  void-chance: 10           # Chance to destroy an item (Void)\n  drop-chance: 40           # Chance to drop an item on the ground (Drop)\n  # Remaining (100 - void - drop) = 50% are kept (Save)\n  \n  protected-items:          # Items that are always kept\n    - NETHERITE_SWORD\n  always-drop-items:        # Items that always drop\n    - DIAMOND\n\n# Effects (Applied while downed)\neffects:\n  darkness:\n    enabled: true\n    type: \"DARKNESS\"        # BLINDNESS or DARKNESS\n    amplifier: 0            # Effect strength\n\n# Particles\nparticles:\n  on-down:\n    type: \"BLOCK_CRACK\"\n    data: \"REDSTONE_BLOCK\"\n    count: 30\n    speed: 0.1\n  on-revive:\n    type: \"VILLAGER_HAPPY\"\n    count: 20\n    speed: 0.5\n  on-death:\n    type: \"SMOKE_LARGE\"\n    count: 100\n    speed: 0.1\n\n\n\n\n\n```\n</details>\n### General Settings\n- `down-time`: How many seconds a player stays downed before dying.\n- `suicide-hold-time`: How long to hold the Shift key to \"give up\" and die instantly.\n- `crawl-speed-percent`: Controls how fast players can move while downed.\n- `survive-timer-chance`: Chance to automatically stand up when the timer expires.\n\n### Revival Logic\n- `time-to-revive`: Time required to bring a teammate back to their feet.\n- `max-distance`: How far away the \"medic\" can be from the downed player.\n- `regress-speed`: How fast the revival progress is lost if the process is interrupted.\n\n### Inventory Penalties\n- `armor-damage-pct`: Percentage of durability lost on armor items upon death.\n- `void-chance`: Percentage chance for an item to be completely destroyed.\n- `drop-chance`: Percentage chance for an item to drop on the ground.\n- `protected-items`: List of items that will never be lost or dropped.\n\n## 🛡 Permissions\n\n- `orjusdeath.admin`: Grants access to all plugin commands and the configuration GUI.\n\n## 🎨 Visuals\nThe plugin uses:\n- **Darkness/Blindness**: To simulate the struggle of being downed.\n- **Action Bar**: Displays real-time timers for death and revival progress.\n- **Particles**: Customizable effects for falling, being revived, and final death.\n\n---\nDeveloped by **Orjus**\n",
+  "categories": [
+    "adventure",
+    "equipment",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 290,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

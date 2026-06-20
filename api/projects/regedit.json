@@ -1,0 +1,27 @@
+{
+  "id": "I0xC2oFl",
+  "slug": "regedit",
+  "title": "RegistryEdit",
+  "description": "Very small library to modify and replace assets in Registries",
+  "body": "A often unneeded, yet sometimes required feature, put into a library: Modifying registry elements at runtime. Not much explanation is needed for this library, other than if used improperly it can cause errors.\n\nHow to use:\n\n```java\nvoid Initialize() {\n    ...\n    //Note: do NOT use Registry.register(...) on the custom assets!\n    RegistryEditEvent.EVENT.register(manipulator -> {\n        // For native Minecraft elements (Item/Block)\n        var myCustomItem1 = new Item(new Item.Settings());\n        manipulator.Redirect(Registries.ITEM, Items.STICK, myCustomItem1);\n        // ++ Items.STICK = myCustomItem1\n        // -- Items.STICK = EXISTING_ITEM\n        // other elements (Any, so long as the field holding it is static final)\n        var myCustomItem2 = new Item(new Item.Settings());\n        manipulator.Redirect(MyItems.class, Registries.ITEM, MyItems.CUSTOM_ITEM, myCustomItem2);\n        // ++ MyItems.CUSTOM_ITEM = myCustomItem2\n        // -- MyItems.CUSTOM_ITEM = EXISTING_ITEM\n\n        // For removing elements entirely (VERY DANGEROUS UNLESS YOU KNOW WHAT YOU ARE DOING!)\n        manipulator.Unregister(Registries.ITEM, Items.ENDER_PEARL);\n\n        // If you are removing a block, ensure you replace the BlockItem associated with it!\n        manipulator.Unregister(Registries.BLOCK, Blocks.COBBLESTONE);\n        manipulator.Redirect(Registries.Item, Items.COBBLESTONE, new Item(new Item.Settings()));\n    });\n    \n    ...\n}\n```\n\n\nAssuming you are overriding an item in the Items / Blocks class (ie, where Items.STICK would be located) the registry edit will apply to that variable as well. If you need to modify an element that isn't in the Items / Blocks class, you can provide your holder class. ",
+  "categories": [
+    "cursed",
+    "fabric",
+    "library",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1381,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

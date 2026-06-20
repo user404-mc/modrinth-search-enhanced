@@ -1,0 +1,33 @@
+{
+  "id": "Y00RtANs",
+  "slug": "worldgen-profiling",
+  "title": "Worldgen profiling",
+  "description": "Adds custom JFR events to profile world generation",
+  "body": "## Creating a JFR report\n1. Launch Minecraft with [Fabric](https://fabricmc.net/use/).\n2. Download the latest release and add it in the `mods` folder.\n3. Start by running the `/jfr start` command and generate new terrain.\n4. Run `/jfr stop`. This will create a file at `.minecraft/debug/client-*.jfr`.\n\n## Analyzing the JFR report\n1. Download and install the [JDK Mission Control](https://adoptopenjdk.net/jmc) tool.\n2. In Mission Control, navigate to `File > Open File...` and select the JFR report.  \n![jmc_SuUZYxQXXM](https://user-images.githubusercontent.com/17352009/144514425-a71842e1-366c-4678-9465-beaed0a9e3af.png)\n3. Select the `Even Browser` Page in the Outline.  \n![jmc_rvRbBmPA1r](https://user-images.githubusercontent.com/17352009/144514569-9e50506b-1acf-45c5-aad5-d3427158ce6a.png)\n4. Find the `Minecraft > World Generation > Feature Placement` event type, and select it.\n5. Create a new page with just this event type.  \n![jmc_0pSlSrsXNA](https://user-images.githubusercontent.com/17352009/144514802-ca24340e-84f2-4213-9465-4a8fba4d9cf6.png)\n6. Because the JFR file has an event for each feature placement per chunk, it is useful to group events.  \n![jmc_di6ct6Eoin](https://user-images.githubusercontent.com/17352009/144514943-a6069315-49ad-4db7-88d7-6f1b10738361.png)\n![jmc_HvCkGq9xMT](https://user-images.githubusercontent.com/17352009/144515033-db20ffff-3171-43b1-b979-57164ea2007a.png)\n7. In this view, you can show average and total durations. It is now really easy to see which features are the bottlenecks.  \n![jmc_FwmZ5h4ZDg](https://user-images.githubusercontent.com/17352009/144515176-afe85862-ecd1-4e36-b5c9-9baf343a230c.png)\n![jmc_DxJRDkXVTw](https://user-images.githubusercontent.com/17352009/144515232-91e7f84f-c535-406f-936a-6d0973fefb71.png)\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1372,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

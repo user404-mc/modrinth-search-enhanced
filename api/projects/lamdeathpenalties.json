@@ -1,0 +1,34 @@
+{
+  "id": "mBuNUYFD",
+  "slug": "lamdeathpenalties",
+  "title": "LamDeathPenalties",
+  "description": "Soul-point death system. Die too often, soul drains, penalties scale from item drops to health loss. Paper/Folia 1.21+.",
+  "body": "Die too often and your soul drains. Each death costs a soul point, and the lower your soul gets, the harsher the penalties: item drops, lost hearts, lost money, custom commands. Points come back on their own, on wall-clock time or active playtime.\n\n## How it works\n\n1. Players start with 10 soul points (configurable).\n2. Death costs 1 point. The new tier's penalties apply immediately.\n3. Each tier (0–10) defines its own penalties.\n4. Points regenerate in real time or per hour of playtime.\n5. Tiers you leave undefined inherit from the next higher defined tier, so you only configure the levels you care about.\n\n![How it works](https://cdn.modrinth.com/data/cached_images/2058eba411ece3bef31c413ed1c234c85b2f40f1.png)\n\n## Per-tier penalties\n\n- **Item drops**: drop percentage per tier, with separate hotbar and armor exposure toggles\n- **Hearts**: remove hearts as punishment, or grant bonus hearts at high soul as a reward\n- **Vault money**: flat or percent loss. PvP deaths transfer the money to the killer (configurable 0–100%); natural deaths burn it\n- **Commands**: run anything console can dispatch at a tier — titles, sounds, kicks\n\n## PvP has a long-term cost\n\nEach player also has a personal *max* soul capacity. Killing another player lowers the killer's max, and it only regenerates back over time. Repeat killers walk around with a permanently shallow soul pool.\n\n## Commands\n\n| Command | Permission |\n|---|---|\n| `/lmdp` — your soul points | default |\n| `/lmdp check <player>` | `lmdp.check.others` |\n| `/lmdp preview` — penalty table for every tier | default |\n| `/lmdp set\\|give\\|take <player> <amount>` | `lmdp.admin` |\n| `/lmdp setmax\\|givemax\\|takemax <player> <amount>` | `lmdp.admin` |\n| `/lmdp reload` | `lmdp.admin` |\n\nAliases: `/dp`, `/deathpenalties`, `/soulpoints`. Players with `lmdp.bypass` skip all penalties.\n\n## PlaceholderAPI\n\nExpansion identifier is `soulpoints`:\n\n- `%soulpoints_current%` / `%soulpoints_max%` → `7` / `10`\n- `%soulpoints_progress_bar%` → `███████░░░`\n- `%soulpoints_recovery_time%` → `2h 15m 30s`\n\nFull placeholder list on [GitHub](https://github.com/LamaliaNetwork/LamDeathPenalties).\n\n## Developer API\n\nService-provider API via Bukkit's ServicesManager. `SoulPointsChangeEvent` is cancellable before the change; `SoulPointsChangedEvent` fires after. Examples on GitHub.\n\n## Requirements\n\n- Paper or Folia 1.21+, Java 21\n- [YskLib](https://github.com/YusakiDev/YskLib/releases) 1.8.0+ (required)\n- Vault (optional, money penalties) · PlaceholderAPI (optional)\n\nFull config reference and YAML examples on [GitHub](https://github.com/LamaliaNetwork/LamDeathPenalties).\n\nSupport: [Discord](https://discord.gg/AjEh3dMPfq) · [Issues](https://github.com/LamaliaNetwork/LamDeathPenalties/issues)\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 108,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

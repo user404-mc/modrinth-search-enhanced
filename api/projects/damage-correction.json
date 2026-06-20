@@ -1,0 +1,24 @@
+{
+  "id": "lhC6magG",
+  "slug": "damage-correction",
+  "title": "Damage Correction",
+  "description": "Smooths combat by compensating near-lethal damage, ensuring clean kills without altering core balance.",
+  "body": "# Damage Correction Mod\n\nWhen a single attack is already enough to decide the outcome, this mod automatically fills in the small remaining difference, delivering a cleaner and smoother combat experience.\n\n## Design Goals\n\nHave you ever charged up a powerful attack for ages, only to see the enemy left with a tiny sliver of health?\n\nOr lost the fight because a boss survived with just a bit of HP and turned the tables?\n\nThis mod exists exactly for those moments!\n\nIt evaluates the final damage result. If the damage dealt by the player is *almost* enough to kill a creature, the mod will make up the difference and finish the job.\n\nCombat. Feels. Good.\n\n## Mechanics\n\n### Calculation Logic\n\n* `finalDamage`: The final effective damage (after armor, enchantments, etc.)\n* `healthBefore`: The target’s health before taking damage\n\n```\nIF\nhealthBefore > finalDamage\nAND\nhealthBefore - finalDamage <= finalDamage * k\n```\n\nWhere:\n\n`k` determines how much remaining health (relative to the damage dealt) is considered close enough to trigger full damage correction.\n\n### Example\n\n* Monster health: 10\n* Final damage dealt: 8\n\nRemaining health: 2\n\nWith the default setting `k = 0.5`:\n\n`2 <= 8 * 0.5  → True`\n\n👉 An extra 2 damage is applied, instantly killing the monster.\n\nBut if the monster’s health is 20:\n\n```\n20 - 8 = 12\n12 > 8 * 0.5 → False\n```\n\n👉 No correction is applied; damage is handled normally.\n\n## Configuration\n\nThe following options can be modified in\n`damage_correction-common.toml` under the `config` folder.\n\n![this is a Mod config page image](https://cdn.modrinth.com/data/cached_images/0857c0ad766488df4adacd5f17ca5542f8105b38_0.webp)\n\n## License\n\nLicensed under the MIT License. Feel free to use it 😊\n",
+  "categories": [
+    "adventure",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 361,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.20.4",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "VepYPOdy",
+  "slug": "custom-portal-api-reforged",
+  "title": "Custom Portal API Reforged",
+  "description": "Forge port of Fabrics Custom Portal API, updated for newer versions of MC.",
+  "body": "<center>\n\n<font size=+4><b>Custom Portal API Reforged</font></b>\n\n<font size=+1>\nLibrary mod allowing developers to create portals to their custom dimensions easily. These custom portals will function exactly like nether portals, except being fully customizable. You can control the frame block, portal block, tinting, ignition source, destination, and more!\n</br></br>\n\n![Some example of portals](https://i.imgur.com/jqupA9K.png)\n\n<font size=+2><b>Usage</font></b>\n\nAdd the repository/mod to your build.gradle.\n</font>\n</center>\n\n```java\nrepositories {\n        maven {url 'https://maven.azuredoom.com/mods'}\n}\ndependencies {\n//1.20.1\n        implementation fg.deobf('net.kyrptonaught.customportalapi:customportalapi-reforged:MODVERSION')\n//1.20.2+\nimplementation fg.deobf(\"net.kyrptonaught.customportalapi:cpapireforged-neo-1.20.2:MODVERSION\")\n}\n```\n\n<center>\n\n<font size=+1>\n\nNow onto creating and registering the portal itself, this is simple thanks to the [CustomPortalBuilder](https://github.com/AzureDoom/customportalapi-reforged/blob/1.20.1/src/main/java/net/kyrptonaught/customportalapi/api/CustomPortalBuilder.java) class. We will make use of this in FMLCommonSetupEvent.\n\nThe following is a very simple portal that will take us to The End, and is lit by right-clicking the frame with an Eye of Ender:\n</center>\n\n```java\nCustomPortalBuilder.beginPortal()  \n        .frameBlock(Blocks.DIAMOND_BLOCK)  \n        .lightWithItem(Items.ENDER_EYE)  \n        .destDimID(new ResourceLocation(\"the_end\"))  \n        .tintColor(45,65,101)  \n        .registerPortal();\n  ```\n\nA Nether portal would be registered as follows: \n```java\nCustomPortalBuilder.beginPortal()  \n        .frameBlock(Blocks.OBSIDIAN)  \n        .destDimID(new ResourceLocation(\"the_nether\"))  \n        .tintColor(131, 66, 184)  \n        .registerPortal();\n  ```\n\n<center>\nCustomPortalBuilder is filled with plenty of methods to customize the functionality of your portal, all of which are documented in the class.\n\n</br></br>\nSome noteworthy methods to mention:\n</center>\n\n - lightWithWater/Item/Fluid - These allow you to control how the portal is lit. \n - onlyLightInOverworld - Only allow the portal to be used in the overworld to your destination of choice\n - flatPortal - Flat Portal similar to the End or the Twilight Forest portal.\n\n\n</br></br>\n<center>\n<font size=+2><b>Credits</font></b>\n\nBased off the main Fabric mod [HERE](https://github.com/kyrptonaught/customportalapi/) and an older ported mod [HERE](https://github.com/Mysticpasta1/customportalapi)\n</center>",
+  "categories": [
+    "forge",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 120410,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

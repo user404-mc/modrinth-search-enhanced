@@ -1,0 +1,32 @@
+{
+  "id": "1dy7kepT",
+  "slug": "footprint",
+  "title": "Footprint",
+  "description": "Server-side mod to keep world size down by not saving all chunks",
+  "body": "Footprint\n================\nFootprint is a server-side Fabric mod to help keep your world file size manageable when players explore lots of terrain quickly, especially using Elytra.\nServer admins often use (great) tools like [MCA Selector](https://github.com/Querz/mcaselector/) to prune chunks that have only been loaded for a very short time. Footprint simply makes this process automatic by not saving those chunks in the first place.\nThere may be reasons you want a chunk to be saved even though it wasn't loaded for long enough, the mod also has a few config options for that.\nFootprint does NOT delete chunks that have already been saved, so it will never decrease your world size. You can still prune old chunks manually.\n\n\nThanks [Magistermark](https://github.com/magistermaks/fabric-simplelibs) for a very easy to use config library.\n\nKnown Issue\n---\nIn the current version, there is an issue causing duplicate entities to spawn when chunks are generated multiple times. This is being worked on. \n\n\nFeatures\n---\n* Load the server once with the mod installed to generate the config file (`footprint_config.properties` in your server's `config` folder). This config allows you to set conditions for when a chunk should be saved.\n  * Every option is explained within the file itself.\n  * Restart the server to apply changes.\n* Options are:\n  * Chunks are only saved after they've been loaded by players for a specified amount of ticks (default: 1200, which is 60 seconds). This uses the `inhabitedTime` value tracked by the vanilla game for local difficulty.\n  * There are a bunch of actions you can turn on/off that will cause a chunk to be saved regardless of the `inhabitedTime`. Each of these can additionally specify a range of chunks around the event to also force save.\n    * Block placed by player (default: on, range 0)\n    * Block broken by player (default: on, range 0). Example: to prevent players from quickly grabbing a resource from the same chunk multiple times.\n    * Entity hurt (default: off, because entities get hurt naturally quite often)\n    * Item picked up by player (default: on, range 1)\n    * Item dropped by player (default: on, range 1). Example: to avoid loss of items dropped while flying over new terrain.\n\n\nDisclaimer\n---\nI'm a new modder. I needed this for a server I'm working on and made it as a learning opportunity. Therefore, it could be a little messy - use with caution. Make regular backups!! (This mod may even make that easier.)\nThere is a bit of a tradeoff here: chunk generation causes a lot of strain on the server, and chunks that aren't saved may need to be generated again later. So this mod is helpful if world size is your main issue, and not if you're having trouble with lag!\nFeel free to use the code as you please, and improvement suggestions are welcome! (-:\n",
+  "categories": [
+    "fabric",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7168,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "Q7dNt3PU",
+  "slug": "tfc-astikor-carts",
+  "title": "TFC Astikor Carts",
+  "description": "Adding compatibility between Astikor Carts and TerraFirmaCraft",
+  "body": "It works similarly to the main [Astikor Carts](https://modrinth.com/mod/astikorcarts-redux) mod, but adds new carts for each wood type present in [TerraFirmaCraft](https://modrinth.com/mod/terrafirmacraft). This compatibility mod also adds new mechanics to the plow cart, which can now be used to \"mow\" large quantities of shrubberies, loose rocks and more. This change also makes it possible to efficiently till soil blocks to farmland where there are a lot of plants.\n\n# General Config\n\nThese settings define how carts interact with animals, items, and players. They control what can be carried and how pulling speed is affected by nutrition, thirst, hunger, and cargo weight.\n\n## Animal Cart Settings\n- **`maxAnimalSize`**  \n  The maximum size (in blocks volume) of an animal that can be loaded into the animal cart. Larger animals above this threshold cannot be carried.  \n  *Default: 3.0*\n\n- **`maxPassengerCount`**  \n  The maximum number of animals the cart can carry simultaneously.  \n  *Default: 2*\n\n- **`canPushIntoPlayers`**  \n  If enabled, the animal cart can pick up players by being pushed into them.  \n  *Default: true*\n\n- **`canCarryWaterEntities`**  \n  If enabled, aquatic creatures (fish, dolphins, whales, etc.) can be picked up by the animal cart.  \n  *Default: true*\n\n## Supply Cart Settings\n- **`maxItemSize`**  \n  The largest item size (inclusive) that can be stored in a supply cart.  \n  Allowed values: `TINY`, `VERY_SMALL`, `SMALL`, `NORMAL`, `LARGE`, `VERY_LARGE`, `HUGE`  \n  *Default: VERY_LARGE*\n\n## Pulling Behavior\n- **`pullingDistanceModifier`**  \n  Adjusts the tolerance for how far a cart can be pulled before the connection breaks. Higher values allow greater pulling distance/threshold.  \n  *Default: 2.0*\n\n- **`toggleFoodSpeed`**  \n  Determines whether the player’s nutrition, thirst, and hunger affect cart pulling speed.  \n  - When enabled, pulling speed is scaled by the player’s average nutrition × thirst × hunger.  \n  - The formula produces a **health factor** that modifies speed between 25% (minimum) and 100% (maximum).  \n  - Example: A well-fed, hydrated player pulls carts faster; a starving, thirsty player pulls slower.  \n  *Default: true*\n\n# Cart Inventory Config\n\nThese settings control how carts behave in terms of **cargo weight limits** and **inventory size**. They let you fine‑tune the balance between realism and convenience.\n\n## Weight Thresholds\n\n### How Weight Thresholds Interact\nThe logic:\n- **Exhausted Threshold**: If cargo weight exceeds this value, the player gains the *Exhausted* effect.  \n- **Overburdened Threshold**: If cargo weight exceeds this higher value, the player gains the *Overburdened* effect.  \n- **Pinned Threshold**: If cargo weight exceeds this maximum, the player becomes *Pinned* and immobilized.  \n\nThe thresholds act as progressive stages of fatigue based on the estimated cargo mass.\n\n- **`exhaustedThreshold`**  \n  The mass (in kilograms) at which a player pulling a cart becomes *exhausted*. At this point, movement slows down significantly.  \n  *Default: 400 kg*\n\n- **`overburdenedThreshold`**  \n  The mass at which the player becomes *overburdened*. Movement is heavily restricted, but not yet immobilized.  \n  *Default: 1000 kg*\n\n- **`pinnedThreshold`**  \n  The mass at which the player becomes *pinned* and unable to move at all.  \n  *Default: 2000 kg*\n\n> *Example:* A VERY_HEAVY HUGE item might weigh ~280 kg. With a pinned threshold of 800 kg, carrying three such items would immobilize the cart puller.\n\n## Inventory Sizes\n- **Hand Cart Inventory**  \n  - Rows: `handCartInventoryHeight` (Default: 2)  \n  - Columns: `handCartInventoryWidth` (Default: 5)  \n  -> This defines a 2×5 grid (10 slots) for the hand cart.\n\n- **Supply Cart Inventory**  \n  - Rows: `supplyCartInventoryHeight` (Default: 5)  \n  - Columns: `supplyCartInventoryWidth` (Default: 9)  \n  -> This defines a 5×9 grid (45 slots) for the supply cart.\n\n## As of **version 1.2**\n\n_Relevant mostly for mod and modpack makers:_\n\n- Automatic item and entity registration of **any** wood types from enum classes that implements TFC's [RegistryWood](<https://github.com/TerraFirmaCraft/TerraFirmaCraft/blob/1.21.x/src/main/java/net/dries007/tfc/util/registry/RegistryWood.java>) interface! (_e.g.: supports mods like [ArborFirmaCraft](<https://www.curseforge.com/minecraft/mc-mods/arborfirmacraft>)_)\n- You **only** need to supply the relevant datapack files (_recipes, tags, tfc data, etc._) and assets (_textures, item models, lang, etc._)!",
+  "categories": [
+    "decoration",
+    "forge",
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "storage",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 89362,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

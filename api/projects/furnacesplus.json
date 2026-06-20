@@ -1,0 +1,43 @@
+{
+  "id": "OWIRCv7i",
+  "slug": "furnacesplus",
+  "title": "FurnacesPlus",
+  "description": "Advanced furnace speed enhancement plugin for Minecraft servers",
+  "body": "# 🔥 FurnacePlus\n\n**Advanced furnace speed enhancement plugin for Minecraft Paper servers**\n\nFurnacePlus is a powerful plugin that provides players with permission-based furnace smelting speed increases. The plugin offers server administrators maximum control through real-time permission updates and flexible configuration options.\n\n---\n\n## ✨ Features\n\n- 🚀 **Permission-Based Speed Control**: Flexible permission system with `furnaceenhanced.<number>` format\n- ⚡ **Speed Increase Support**: Fast furnace smelting with visible progress\n- 🔄 **Real-Time Updates**: Permission changes take effect immediately\n- ⚙️ **Flexible Configuration**: Detailed config file for complete control\n- 📊 **Statistics System**: Active furnace count and performance tracking\n- 🛠️ **Admin Commands**: Reload and information display commands\n- 🎯 **Optimization**: Low resource usage and high performance\n- 🔧 **Debug Mode**: Detailed logging system for developers\n\n---\n\n## 📥 Installation\n\n1. **Check Requirements:**\n   - Java 17+\n   - Paper 1.20+ server\n   - Maven (for compilation)\n\n2. **Compile the Plugin:**\n   ```bash\n   mvn clean package\n   ```\n\n3. **Upload JAR File to Server:**\n   - Copy `target/furnaceplus-1.0.0.jar` to your server's `plugins` folder\n\n4. **Start Server:**\n   - The plugin will automatically create config files when the server starts\n\n---\n\n## 🔑 Permission System\n\n### Permission Format\n```\nfurnaceenhanced.<value>\n```\n\n### Value Examples:\n- `furnaceenhanced.30` → 30% speed increase\n- `furnaceenhanced.50` → 50% speed increase\n- `furnaceenhanced.90` → 90% speed increase\n\n### Priority System:\n- If a player has multiple permissions, the **highest value** takes effect\n- Example: If player has `furnaceenhanced.20` and `furnaceenhanced.50`, 50% speed increase applies\n\n### Admin Permission:\n- `furnaceplus.admin` → Access to plugin commands\n\n---\n\n## 🎮 Commands\n\n| Command | Description | Permission |\n|---------|-------------|-----------|\n| `/furnaceplus help` | Display help menu | `furnaceplus.admin` |\n| `/furnaceplus reload` | Reload plugin configuration | `furnaceplus.admin` |\n| `/furnaceplus info` | Show plugin information | `furnaceplus.admin` |\n| `/furnaceplus stats` | Show furnace statistics | `furnaceplus.admin` |\n\n**Alternative:** `/fp` shortcut can be used\n\n---\n\n## ⚙️ Configuration\n\n### config.yml\n```yaml\n# Plugin Settings\nplugin:\n  debug: false                    # Enable debug messages\n  prefix: \"&8[&6FurnacePlus&8]&r\" # Plugin prefix\n\n# Furnace Enhancement Settings\nfurnace:\n  enabled: true                   # System enabled/disabled\n  max-speed-increase: 90          # Maximum speed increase %\n  update-interval: 2              # Update interval (ticks)\n  real-time-updates: true         # Real-time permission updates\n\n# Permission Settings\npermissions:\n  prefix: \"furnaceenhanced.\"      # Permission prefix\n  default-value: 0                # Default speed value\n\n# Messages (Color codes supported)\nmessages:\n  plugin-reloaded: \"&aFurnacePlus successfully reloaded!\"\n  no-permission: \"&cYou don't have permission to use this command!\"\n  furnace-enhanced: \"&aYour furnace cooking speed: &e{speed}%\"\n  error-occurred: \"&cAn error occurred while processing your request!\"\n  invalid-command: \"&cInvalid command usage! Use: /furnaceplus reload\"\n```\n\n---\n\n## 📋 Usage Examples\n\n### 1. Basic Permission Assignment\n```bash\n# Give player 30% speed increase\n/lp user player permission set furnaceenhanced.30 true\n\n# Give group 50% speed increase  \n/lp group vip permission set furnaceenhanced.50 true\n```\n\n### 2. Multiple Permission Management\n```bash\n# Multiple speed permissions (highest value takes effect)\n/lp user player permission set furnaceenhanced.20 true\n/lp user player permission set furnaceenhanced.50 true  # This will be effective\n```\n\n### 4. Server Group Examples\n```bash\n# Membership levels\n/lp group member permission set furnaceenhanced.10 true    # Member: 10% speed\n/lp group premium permission set furnaceenhanced.30 true   # Premium: 30% speed  \n/lp group vip permission set furnaceenhanced.50 true       # VIP: 50% speed\n/lp group mvp permission set furnaceenhanced.75 true       # MVP: 75% speed\n```\n\n---\n\n## 🔧 Advanced Settings\n\n### Update Interval Optimization\n```yaml\nfurnace:\n  update-interval: 10  # Default (recommended)\n  # 5  = More responsive, higher CPU usage\n  # 20 = Lower CPU, less responsive\n```\n\n### Debug Mode\n```yaml  \nplugin:\n  debug: true  # Prints detailed logs to console\n```\n\n### Speed Limits\n```yaml\nfurnace:\n  max-speed-increase: 90   # No speed increase above 90%\n```\n\n---\n\n## 🚨 Troubleshooting\n\n### 🔍 Common Issues\n\n#### Problem: Plugin not loading\n**Solution:**\n- Ensure you're using Java 17+\n- Use Paper 1.20+ server\n- Check console errors\n\n#### Problem: Permissions not working\n**Solution:**\n- Check permission format is correct: `furnaceenhanced.<positive_number>`\n- Only positive numbers are supported for speed increases\n- Ensure permission plugin like LuckPerms is active\n- Check settings with `/furnaceplus info`\n\n#### Problem: Furnace speed not changing\n**Solution:**\n- Check `furnace.enabled: true` in config\n- Try placing new items in furnace\n- Enable debug mode and check console logs\n\n#### Problem: Performance issues\n**Solution:**\n- Increase `update-interval` value (e.g., 20)\n- Set `real-time-updates: false`\n- Disable unnecessary debug mode\n\n### 📊 Debug Information\n\nTo enable debug mode:\n```yaml\nplugin:\n  debug: true\n```\n\nThis will print the following to console:\n- Player furnace interactions\n- Permission check results  \n- Speed calculation details\n- Performance metrics\n\n---\n\n## 📈 Performance Tips\n\n1. **Optimize Update Interval**: Very low values increase CPU usage\n2. **Clean Unused Permissions**: Remove unused permissions\n3. **Disable Debug in Production**: Only use during testing\n4. **Disable Real-time Updates if Not Needed**: Provides performance gains",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "magic",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 252,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

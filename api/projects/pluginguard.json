@@ -1,0 +1,39 @@
+{
+  "id": "PNPJsQNG",
+  "slug": "pluginguard",
+  "title": "PluginGuard",
+  "description": "Protect your server by hiding installed plugins from users (and more)",
+  "body": "# PluginGuard\n\n**Stop players from fingerprinting your server's plugin list.**\n\nPluginGuard is a lightweight, drop-in protection layer that intercepts the commands and protocol channels players use to discover which plugins you're running — `/plugins`, `/pl`, `/ver`, `bukkit:` and `minecraft:` prefixed commands, tab-completion probing, and server-list pings — and replaces the response with whatever you want them to see.\n\n---\n\n## Why it exists\n\nKnowing which plugins a server runs is the first step in attacking it. A player who knows you run a specific economy plugin, an outdated permissions plugin, or a known-vulnerable utility can target known CVEs or exploit-known quirks. Default Bukkit gives that information away to anyone who types `/pl`.\n\nPluginGuard closes every public surface that leaks plugin presence.\n\n---\n\n## Features\n\n- **Hide Mode** — choose how the server responds to probes:\n  - `unknown-command` — indistinguishable from a typo (most realistic)\n  - `empty` — `Plugins (0):`\n  - `fake-list` — return a list of plausible-looking decoy plugins\n  - `permission-denied` — pretend the player lacks permission\n- **Plugin spoofing** — return any configurable list of fake plugins. Make a hardened production server look like vanilla Paper with two utility plugins.\n- **`bukkit:` / `minecraft:` prefix protection** — block or redirect prefixed-command probing.\n- **Tab-completion hardening** — strip plugin commands from `/[tab]` so they can't be discovered by autocomplete.\n- **Common-plugin command blocklist** — `/essentials`, `/lp`, `/we`, `/co`, `/mv`, `/dynmap`, `/gp`, and friends all return \"Unknown command\" instead of \"You don't have permission\" — denying the existence/permission distinction attackers use to enumerate.\n- **Server-brand spoofing** — return `vanilla` (or anything you configure) in MOTD / server-list ping protocol responses.\n- **Aggressive mode** — block every plugin command by default; only players with the explicit `<command>.use` permission can use them.\n- **Probe logging & pattern detection** — record probe attempts and alert online admins when a player crosses a weighted-score threshold within a sliding window. Categories are weighted (high / medium / low) so a single `/help` does nothing but a `bukkit:`-prefixed probe plus two enumeration attempts will trip the detector.\n- **Honeypot commands** — list fake commands that no legitimate user would ever type. A single hit on a honeypot is enough to fire an alert — by definition, near-zero false positive rate.\n- **Bypass permission** — staff with `pluginguard.bypass` see the real server, untouched, and never trigger detection.\n- **Hot reload** — `/pluginguard reload` swaps the live config atomically.\n\n---\n\n## Compatibility\n\n| Property | Value |\n| --- | --- |\n| Minecraft | **1.21.x** and **26.x.x** |\n| Java | **21+** (1.21.x) / **25+** (26.x.x) |\n| Server software | Paper, Purpur, Pufferfish, Folia, Leaf, and other Paper forks |\n| Spigot / CraftBukkit | Loads cleanly; server-brand spoofing is disabled (Paper-only API) |\n| Folia | Supported — declared via `folia-supported: true`, fully lock-free, no scheduler use |\n\n---\n\n## Performance\n\nPluginGuard is built to be invisible to your TPS.\n\n- **Listener-driven** — no background threads. Schedulers are only touched on the cold path: file appends to `probes.log` and admin alerts are dispatched off the calling region thread via Paper / Folia's async and global-region schedulers, so the event handlers themselves stay cheap.\n- **Lock-free hot path** — config is held in an immutable snapshot behind a `@Volatile` reference; readers on every Folia region thread access it without contention.\n- **Minimal per-command work** — the command-preprocess listener slices the base command token by index and lowercases only that, so per-event CPU is bounded by the command name length, not the message length.\n- **No reflection at runtime** — only at startup, to detect Paper vs. Spigot.\n\n---\n\n## Configuration\n\nThe full `config.yml` ships with inline comments explaining every option. A taste:\n\n```yaml\n# How to respond when a player tries to enumerate plugins.\nhide-mode: \"unknown-command\"\n\n# Shown when hide-mode is \"fake-list\".\nfake-plugins:\n  - \"ServerCore\"\n  - \"WorldManager\"\n  - \"CoreProtect\"\n  - \"EveryoneChat\"\n\nbypass-permission: \"pluginguard.bypass\"\n\nprotected-commands: [pl, plugins, ver, version, \"?\", help, about, icanhasbukkit]\nblock-bukkit-commands: true\nredirect-bukkit-commands: false\n\nhide-tab-completion: true\nblock-unknown-commands: true\nblock-common-plugin-commands: true\n\nhide-server-brand: true\nfake-server-brand: \"vanilla\"\n\naggressive-mode: false\n\n# Probe logging & detection\nlogging:\n  log-to-file: false\n  log-individual-probes: false\n  detection:\n    enabled: true\n    score-threshold: 5\n    window-seconds: 60\n    alert-cooldown-seconds: 300\n    notify-permission: \"pluginguard.alerts\"\n\n# Honeypot commands — fake commands no legitimate user would type.\n# A single hit fires an immediate alert.\nhoneypot-commands:\n  - \"staffchat\"\n  - \"adminchat\"\n  - \"modchat\"\n  - \"opme\"\n```\n\n---\n\n## Probe-detector weights\n\n| Category | Weight | Examples |\n| --- | --- | --- |\n| Honeypot | 5 | Anything you list under `honeypot-commands` |\n| High | 3 | `bukkit:` / `minecraft:` prefixed probes, `/icanhasbukkit` |\n| Medium | 2 | `/pl`, `/plugins`, `/ver`, `/version`, `/about` |\n| Low | 1 | `/lp`, `/we`, `/co`, `/mv`, `/dynmap`, ... |\n\n`/help` and `/?` are deliberately never tracked — too commonly legitimate to be useful signal.\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/pluginguard reload` | Atomically reload the configuration | `pluginguard.reload` (default: op) |\n| `/pluginguard status` | Show current protection status | `pluginguard.reload` (default: op) |\n\nAlias: `/pg`\n\n---\n\n## Permissions\n\n| Node | Description | Default |\n| --- | --- | --- |\n| `pluginguard.bypass` | See the real plugin list and bypass all hiding | op |\n| `pluginguard.reload` | Reload PluginGuard configuration | op |\n| `pluginguard.alerts` | Receive in-game probe-detector alerts | op |\n\n---\n\n## Installation\n\n1. Drop `PluginGuard-<version>.jar` into your `plugins/` folder.\n2. Start the server once to generate `plugins/PluginGuard/config.yml`.\n3. Edit the config to taste and run `/pluginguard reload`.\n\nThat's it. No external dependencies. No database. No web dashboard.\n\n---\n\n## Source & support\n\n- **Source code & issues**: <https://github.com/darkstarworks/PluginGuard>\n- **Donate**: <https://ko-fi.com/darkstarworks>\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 197,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "Ni6pcdvl",
+  "slug": "damagesource-is-not-null",
+  "title": "DamageSource Is Not Null",
+  "description": "An attempt to fix \"NullPointerException: LivingDeathEvent.getSource() is null\"",
+  "body": "# ❌ No More NPE — `LivingDeathEvent.getSource() is null`\n\nTired of crashes caused by mods passing a null `DamageSource` into Minecraft's damage or death pipeline?\n\nIt adds runtime guards to several common damage/death paths so that **many** invalid `DamageSource` cases can be caught before they crash the game. It can also log useful information to help identify the offending mod.\n\n## Limitation\n**DamageSource Is Not Null is a defensive mitigation mod, not a guaranteed universal fix.**\n\nHowever, due to the nature of modded Minecraft, **it cannot guarantee protection in every case**. Some mods may bypass the guarded paths, override core methods, or crash earlier than this mod can intercept.\n\nThis mod is best understood as a **safety layer** that reduces crash risk and improves diagnostics — not as a promise that all such crashes are solved.\n\n\n***\n\n# 🆕 Version 2.0.0\n\nVersion **2.0.0+** significantly improves the internal safety guard and debugging tools.\n\nKey improvements include:\n\n*   🛠 **Improved command tools** for testing and diagnosing `DamageSource` issues\n*   🧱 **Multiple loopholes closed** in the original guard implementation\n\nThese changes make the protection **more reliable in large modpacks** and help modpack authors locate problematic mods more easily.\n\n⚠ **Upgrading to 2.0.0 is strongly recommended.**\n\nCurrently, 2.0.0 is only on 1.20.1 Forge. The improvements introduced in 2.0.0 will be **gradually backported to other supported versions** (Forge, Fabric, and additional Minecraft versions) over time.\n\n***\n\n## 🛡 What This Mod Does\n\nThis mod injects safety checks into:\n\n*   `LivingEntity#hurt`\n*   `LivingEntity#die`\n\nIf a mod incorrectly triggers damage or death with a **null DamageSource** (which should never happen), this mod will:\n\n*   Prevent many common NullPointerException crashes\n*   Replace the invalid source with a fallback generic DamageSource\n*   Print detailed logs to help modpack authors locate the culprit\n\n***\n\n## 🚨 Why This Exists\n\nWhile vanilla and NeoForge expect `DamageSource` to never be null,  \nsome mods still trigger events incorrectly and crash the entire game.\n\nNormally, this results in errors like:\n\n> `LivingDeathEvent.getSource() is null`\n\nWhich **kills servers and interrupt gameplay** for reasons outside the player's control.\n\nThis mod acts as a **runtime safety net** for such situations.\n\n***\n\n## ⚠ Important Notes\n\n*   ❗ This mod does **not fix the broken mod** — it only prevents crashes.\n*   ❗ This mod is a defensive mitigation mod, not a guaranteed universal fix.\n*   ⚠ If you see warnings in logs, you should still report them to the mod author.\n*   ✅ Safe to use on both **client and dedicated servers**.\n*   🧩 Designed to be lightweight and compatible with large modpacks.\n\n***\n\n## 📦 Modpack Friendly\n\nIf you're a modpack author or server owner, this mod can help:\n\n*   Prevent unexpected downtime\n*   Avoid corrupted worlds\n*   Collect useful crash info without stopping gameplay\n\nThink of it as a **circuit breaker** for bad damage events.\n\n***\n\n## 🧪 Environment\n\n### NeoForge\n\n*   1.21.1\n\n### Forge\n\n*   1.20.1\n*   1.19.2\n*   1.18.2\n\n### Fabric\n\n*   1.20.1\n\n***\n\n## 📜 License\n\nMIT License — free to use in any modpack.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 155,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

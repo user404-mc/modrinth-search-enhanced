@@ -1,0 +1,24 @@
+{
+  "id": "Lpd0Hkwt",
+  "slug": "dragonfightfix",
+  "title": "DragonFightFix",
+  "description": "Fix to issue where leaving game while Ender Dragon's respawn cycle is running leaves you stuck in the end when you return.",
+  "body": "# DragonFightFix\n\n![Screenshot](https://i.imgur.com/fF7165X.jpg)\n\nA simple mod to fix the issue where the dragon fight can get stuck if you quit the game while the Ender Dragon is making\nher dramatic entrance. Without this, you will get stuck in the end with no way out other than to jump into the void. Or\nif you had enough end crystals, you could reset the crystals to restart the sequence.\n\nThe core issue is that the code simply always writes false for isRespawning. Strangely, when the end fight is restored\nnext time, it does try to reset the dragon fight, but since the value is always false, it never does. I fixed this by\nnow saving the proper boolean value if the dragon is respawning, and also added code to reset the spike crystals when\nthe dragon fight starts again to start with a clean slate. Otherwise, they'd still be sitting there. It looks cleaner\nthis way.\n\nThe end result (pun intended) is that the dragon restarts the respawn cycle from the start once you rejoin. Ideally it \nwould be great if we could just remember where we left off, but that's a bunch of state to save, and I thought it was\noverkill for this small fix. ",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3900,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21"
+  ],
+  "date_updated": null
+}

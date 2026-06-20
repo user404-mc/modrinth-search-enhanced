@@ -1,0 +1,21 @@
+{
+  "id": "G3hLrTNX",
+  "slug": "vram_killer",
+  "title": "VRAM Killer",
+  "description": "A VRAM optimization mod for Minecraft.",
+  "body": "# VRAM Killer\n\nMinecraft Fabric mod for runtime VRAM optimization via **RGB5_A1 texture format conversion**.\n\n## License\n\n**CC0 1.0 Universal (Public Domain)**\n\nDedicated to the public domain. Free to use, modify, distribute without restrictions.\n\n## Features\n\n### RGBA5551 Texture Conversion (Core Feature)\n- Converts textures with **binary alpha** (all pixels α=0 or α=255) to **16-bit RGB5_A1 format**\n- **50% VRAM savings** per converted texture (32bpp → 16bpp)\n- Uses standard OpenGL `GL_RGB5_A1` format — fully compatible with MC 1.21+ GpuDevice\n- Automatic binary-alpha detection — skips textures with semi-transparent pixels\n- Inline conversion during texture upload — no async pipeline needed\n\n**Supported Texture Types:**\n- Block textures (atlas-based)\n- Item textures\n- Entity/Mob sprites (via `SpriteContents.uploadFirstFrame()` hook)\n- GUI elements with opaque/transparency-only regions\n- Environment textures (sky, end sky, etc.)\n- Particle textures\n\n**Excluded (correctly skipped):**\n- Textures with gradient/semi-transparent alpha (e.g., glass, stained glass)\n- Font glyphs\n- UI icons with anti-aliased edges\n\n### Texture Caching System\n- Pre-upload pixel caching via `TextureContentsMixin`\n- Multi-point sampling validation (512 sample points, <2% non-zero threshold)\n- Smart zero-pixel detection for top-transparent UI icons (edition.png, minecraft.png)\n- Sprite pixel capture at correct timing (`uploadFirstFrame` for async-loaded entities)\n\n### Texture Scheduling\n- Hot/Warm/Cold zone classification for textures\n- Path-based zone assignment (blocks/items → Hot, entities → Warm)\n- Dynamic eviction thresholds based on VRAM pressure\n- Grace period for newly loaded textures (30s default)\n\n### VRAM Monitoring\n- NVIDIA GPU support via `nvidia-smi` (Windows API)\n- AMD GPU support via `GL_ATI_meminfo`\n- Background monitoring with failure backoff\n\n### Leak Detection\n- Tracks texture creation and destruction\n- Identifies orphaned textures\n- Configurable detection thresholds (default: 300s interval)\n\n### Debug Overlay\n- **F3+V** to toggle VRAM stats panel in F3 debug screen\n- Shows:\n  - Converted/Skipped texture counts\n  - Total VRAM saved (MB)\n  - Conversion statistics\n\n### Compatibility\n- ✅ **Sodium** 0.8.9+ (automatic detection)\n- ✅ **Iris** shaders (shadow resolution optimization)\n- ✅ **MC 1.21+ GpuDevice** (Vulkan-like rendering pipeline)\n---\n\n*Public domain (CC0). No restrictions.*",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 575,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

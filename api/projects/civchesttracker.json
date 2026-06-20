@@ -1,0 +1,22 @@
+{
+  "id": "IB0pv8Mu",
+  "slug": "civchesttracker",
+  "title": "CivChestTracker",
+  "description": "Fork of Chest Tracker (Unofficial port) specifically for CivMC",
+  "body": "# CivChestTracker\n\nThis [CivianMod](https://modrinth.com/collection/vfxo29lK) is a 'fork' of [ChestTracker](https://modrinth.com/mod/chest-tracker-port) specifically for [CivMC](https://civmc.net).\n\n## Why?\n\nCivMC has some pretty strict rules regarding bots and mods. Mods that read ANY block information for ANY purpose (other than an approved exception) are automatically illegal and bannable. And since ChestTracker reads the container-block location and type, it is thus illegal. The admins have ignored requests to grant ChestTracker (and similar mods) an exception. As such, the only way forward is to fork ChestTracker to make it legal.\n\nYou **NEED** to have `/cti` enabled or otherwise CivChestTracker cannot function.\n\n## What is /cti?\n\nIt's a [Citadel](https://civmc.net/wiki/plugins/essential/citadel) command (short for `/ctinfo`) which tells you via system message what reinforcement, if any, is protecting the block you just interacted with. This message also include the block's location. Given that the message packet is sent prior to the inventory-open packet, CivChestTracker is thus able to reimplement block interactions.\n\n## Changes\n\nThese are changes that apply regardless of \"Civ mode\":\n\n- Integrity settings `removeOnPlayerBlockBreak` and `checkPeriodicallyForMissingBlocks` are now false by default. Similarly, tooltips have been added to their respective buttons to convey their illegality.\n\n- Added a block-selection screen, allowing you to 'pick' a block to be removed from ChestTracker's database.\n\n## Restrictions\n\nThese are changes that assume that \"Civ mode\" is enabled, which it is by default:\n\n- Block interactions are disregarded, instead relying on `/cti` metadata. Without `/cti` enabled, ChestTracker has no means to associate an inventory with a block location.\n\n- Block placements are disregarded. Placed chests will not automatically be added to ChestTracker's database.\n\n- Block breaks are disregarded. Breaking a chest will not remove it from ChestTracker's database.\n\n- Connected blocks are disregarded. Determining whether a container is one side of a double-chest requires reading block data, which is disallowed. Unfortunately this means ChestTracker will consider each side of a double-chest to be two distinct containers.",
+  "categories": [
+    "fabric",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 218,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

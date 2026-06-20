@@ -1,0 +1,21 @@
+{
+  "id": "45g5CJFm",
+  "slug": "wynnanimated",
+  "title": "WynnAnimated",
+  "description": "Character animations for Wynncraft",
+  "body": "# WynnAnimated\n\nWynnaimated adds animations to your character when connected to the Wynncraft server.\nThese animations include ability animations, and basic attack animations.\n\n<span style=\"color:#e03e2d\">Note:</span> the __1.21.4 versions__ of the mod are not compatible with shaders. Read more below.\n\n## Examples\n\n### Warrior\n![Warrior animations](https://i.imgur.com/QBwboSh.gif)\n\n### Archer\n![Archer animations](https://i.imgur.com/cKNV7BI.gif)\n\n### Mage\n![Mage animations](https://i.imgur.com/VyjQIlP.gif)\n\n\n## Other player animations\n\nYou can even animate other players.\n![Other player animations](https://i.imgur.com/ICvlaA6.gif)\n\n## Configurable\n\nControl animation speeds, and other options.\n![configuration screen](https://i.imgur.com/k9SziG1.png)\n\n\n# Limitations & known issues\n## Basic Attack Animation Speed\nThe first basic attack with a weapon plays the animation at the wrong speed. This is intended as WynnAnimated calculates the cooldown on the first swing, caches this information, and then uses it to determine the correct speed for subsequent attack animations.\n\n## Player Animation Constraints\nOther players are only animated with basic attack animations because there's no way (to my knowledge) to fetch information about other players' ability use.Instead, we intercept player hand swings locally and convert them into basic attack animations based on their class (fetched from the API). Archer is an exception as it doesn't perform a hand swing on attack.\n\nOther players that are Archers will only be animated if you're on the same channel (server) because we use a hacky method of listening for bow sounds to apply animations.\n\n## API Rate Limiting\nOnly some other players are animated, not all. This is due to API rate limiting for fetching character class information. In high-density areas, the rate limiter may activate and prevent animations for some players. Additionally, if a player has certain privacy settings enabled in their Wynncraft account, we won't be able to fetch their character class at all.\n\n## Character Swap Animation Issues\nOther players' animations may be incorrect after they swap to a different character. This is because we only refresh character information every 5 minutes (if within range).\n\n## Dependency on Wynntils\nWynntils is currently a required dependency for providing ability usage and player class information. Future updates might remove this dependency.\n\nAnimation Limitations in First Person View\nAttack animations can look strange when the character is looking up or down in first-person view due to limitations in the animation engine.\n\n## Known Issues\nIris Shader Incompatibility for minecraft 1.21.4 (**does not affect 1.21.11**)\nWhen shaders are enabled, the player model will fully render in first-person mode during attack animations, obscuring the screen.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "magic"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 6538,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

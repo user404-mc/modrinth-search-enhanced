@@ -1,0 +1,24 @@
+{
+  "id": "W7xRcWxh",
+  "slug": "afterimages",
+  "title": "Afterimages",
+  "description": "A lightweight, data-driven mod that adds visual afterimage trails to entities!",
+  "body": "![Afterimages logo](https://cdn.modrinth.com/data/cached_images/e8c5585ea8a638c8885ce96312d3ebd35d27d7d3.png)\n\nA lightweight, data-driven mod that adds visual afterimage trails to entities! You can configure which entities have afterimages, how they look, and when they appear—entirely through Resource Packs.\n\n### Features\n\n* **Data-Driven:** Every aspect of the afterimage (duration, color, triggers) is controlled via JSON files.\n* **Mod Compatible:** Built-in support for **Combat Roll** and other mods in the future, upon request.\n\n---\n\n### Global Configuration\n\nThis mod uses **Cloth Config** for global settings. You can access the config menu via Mod Menu (on Fabric) or the configured keybind.\n\n| Option | Default | Description |\n| --- | --- | --- |\n| **Step Size** | `0.25` | Controls the density of the afterimage trail. Lower values (e.g. `0.1`) create smoother, connected trails but may impact performance. Higher values create distinct \"snapshots\". |\n\n---\n\n### Entity Configuration\n\nTo add an afterimage to an entity, create a JSON file in your resource pack at:\n`assets/<namespace>/afterimages/entities/<entity_name>.json`\n\n#### Example: Standard Arrow Trail\n\n`assets/example/afterimages/entities/arrow.json`\n\n```json\n{\n  \"entity\": \"minecraft:arrow\",\n  \"speed_threshold\": 0.5,\n  \"duration\": 5,\n  \"color\": \"0xFFFFFF\",\n  \"start_alpha\": 0.6\n}\n\n```\n\n#### Example: Combat Roll Exclusive\n\n`assets/example/afterimages/entities/player.json`\n\n```json\n{\n  \"entity\": \"minecraft:player\",\n  \"combat_roll_only\": true,\n  \"duration\": 15,\n  \"start_alpha\": 0.8\n}\n```\n\n#### Configuration Fields\n\n| Field | Type | Default | Description                                                                                                                          |\n| --- | --- | --- |--------------------------------------------------------------------------------------------------------------------------------------|\n| `entity` | String | *Filename* | The entity ID (e.g. `minecraft:ender_pearl`). If omitted, the mod tries to guess based on the JSON filename.                         |\n| `speed_threshold` | Double | `0.5` | The minimum speed (blocks/tick) required to trigger the effect. Ignored if `combat_roll_only` is true.                               |\n| `duration` | Integer | `10` | How long the afterimage trail lasts in ticks.                                                                                        |\n| `color` | Hex String | `\"0xFFFFFF\"` | A hex color code to tint the afterimage.                                                                                             |\n| `start_alpha` | Float | `0.5` | The opacity of the afterimage when it first appears (0.0 to 1.0).                                                                    |\n| `overlay_only` | Boolean | `false` | If `true`, the afterimage will render *only* the overlay layer (e.g., skin outer layer, armor glint). Useful for ghost-like effects. |\n| `combat_roll_only` | Boolean | `false` | If `true`, afterimages will **only** appear when the entity is performing a Combat Roll (requires the **Combat Roll** mod).          |\n\n---\n\n### Mod Integration\n\n#### Combat Roll\n\nAfterimages has native support for the **[Combat Roll](https://modrinth.com/mod/combat-roll)** mod.\n\n* **Usage:** Set `\"combat_roll_only\": true` in your player configuration file to make trails appear exclusively during a roll dodge.\n\n---\n\n### License\n\nThis project is licensed under the **MIT License**.\n\n### Contributing\n\nContributions are welcome! If you find a bug or have a feature request, please open an issue or submit a pull request.",
+  "categories": [
+    "decoration",
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2854,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

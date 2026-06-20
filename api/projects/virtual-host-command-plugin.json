@@ -1,0 +1,35 @@
+{
+  "id": "GLqGwlxD",
+  "slug": "virtual-host-command-plugin",
+  "title": "Virtual Host Command Plugin",
+  "description": "Ever thought of having different domains/subdomains for the same Minecraft/Bukkit server and depending on the domain a player joins offer different settings? This plugin is a bit like apache virtual hosts, for Minecraft servers",
+  "body": "\n# Virtual Host Command Plugin for Bukkit/Minecraft\nEver thought of having different domains/subdomains for the same Minecraft/Bukkit server and depending on the domain a player joins offer different settings?\nThis plugin is a bit like apache virtual hosts, detecting the host name of the Minecraft server the player used (CNAMEs). You can configure what commands to run on joining the server depending on the host name. E.g. you can have a server with multiverse and subdomains hub.example.com and pvp.example.com and then send the player directly to the hub-world or the arena-world depending on the domain they used to connect to the server.\n> **Note:** Bedrock proxy with **geyser** does not supply the host name on join – so it's not working for vhosts. It only supplies the IP address, so you need a different IP address for each domain connecting via geyser/proxy.\n> **FIX** add the following to you geyser config.yml:\n \n      # Forward the hostname that the Bedrock client used to connect over to the Java server\n      # This is designed to be used for forced hosts on proxies\n      forward-hostname: true\n\n> **Note:** We heavily rely on the supplied hostname. This is not always given in PingServerList list event, so **motd** and **icon** per vhost does not always work on all server implementations. For paper-mc we added a workaround to get the hostname used for the ping.\n\nHere is an example of four vhosts running on the same server with the same IP address but accessed using different vhosts via different CNAMEs:\n\n![Example Minecraft Server List](docs/example-server-list.png?raw=true \"Example Minecraft Server List\")\n\n### Update 0.9.2\n - minor fixes, cleanup, housekeeping\n - added *ifInWorld* and *ifNotInWorld* conditions (see example config)\n\n### Update 0.9.3\n - small fixes\n - added *motd* and *icon* config for vhosts (see example config)\n\n## Example Config\nsee up2date file in *plugins/VirtualHostCommandPlugin/config.yml*\n\n    # Example config file for VirtualHostCommand bukkit plugin\n    # Location: plugins/VirtualHostCommandPlugin/config.yml\n\n    vhosts:\n      host_example:\n        # the hoostname is matched agains the joining hostname via starts-with, so parts work as well\n        # you can also add the port, sub.domain.com:port\n        # it's mandatory, and always case-insensitive\n        hostname: example.com\n        # (optional) only run if player joined this world(s) \n        ifInWorld: \"world_some_regex\"\n        # (optional) only run if player did not join this world(s)\n        # if ifInWorld and ifNotInWorld present, they must be both true\n        ifNotInWorld: \"world_some_regex\"\n        # (optional) MOTD for this vhost\n        # NOTE: this only works if you server implementation returns a hostname in the ping event, many don't :(\n        #       for  paper-mc we have added a workaround to fetch the vhost hostname pinged via reflection.\n        motd: \"some colorfull MOTD server message\\nmultiline if you like!\"\n        # (optional) server icon filename, format like server-icon.png, same root directory\n        # NOTE: same restrictions as for 'motd' config option apply \n        icon: server-icon-example.png \n        # List of commands to be executed if joining via this hostname    \n        commands:\n          # he following placeholders are allowd:\n          # %player% , %hostname% and %port%\n          - some command ...\n          - another cmmand with %player% to replace with player name\n          - msg %player% haha it works from %hostname%\n    \n      host_example2:\n        # example with an IP\n        hostname: \"123.45.67.89\"\n        commands:\n          - some command ...\n          - another cmmand with %player% to replace with player name\n          - msg %player% haha it works\n    \n      host_hub:\n        hostname: hub.myworld.com\n        ifNotInWorld: \"^world_hub\"\n        commands:\n          - gamemode %player% survival\n          - msg %player% crazy shit\n          - mv tp %player% world_hub\n    \nsee https://github.com/cgaffga/mc-vhost/tree/main/docs\n\n\n## Source\nSource code can be found at https://github.com/cgaffga/mc-vhost/\n\n## Download\n* Builds in https://github.com/cgaffga/mc-vhost/tree/main/dist/\n* Spigot https://www.spigotmc.org/resources/virtualhostcommandplugin.113311/\n* Bukkit https://legacy.curseforge.com/minecraft/bukkit-plugins/virtualhostcommandplugin\n* Modrinth https://modrinth.com/mod/virtual-host-command-plugin\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 206,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

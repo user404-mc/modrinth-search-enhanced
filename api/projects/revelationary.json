@@ -1,0 +1,38 @@
+{
+  "id": "eXrl5E3G",
+  "slug": "revelationary",
+  "title": "Revelationary",
+  "description": "Data Driven Block and Item Revelation system. Discover as you go!",
+  "body": "## Overview\nData Driven Block and Item Revelation system. Discover as you go!\n\nRevelationary adds a way to gate the discovery of new blocks in the world via data pack, or API (for other mods).\nUsing Revelationary, you can design your packs / mods progression in a way the player does not feel overwhelmed when starting a new playthrough. They can only perceive these worldgen blocks when they unlocked a specific advancement, making the block visible for them.\n\nExample:\nThe player sees a specific ore as stone. As they defeat the enderdragon they can now see and mine your ore in the world - it was always there from the start. Individual for each player and very performant.\n\n## Revelations\n\"[a] revelation is the revealing or disclosing of some form of truth or knowledge\"\n\nIf you are the designer of a progression based mod or modpack you have come to the right place.\n\nWith Revelationary, you are able to use Data Packs or the Revelation API to gradually reveal blocks in the world as the player progresses. A plain stone filled cleft might be revealed as bursting with life and ore as the player defeats a boss or reaches an important milestone.\n\nAs long as a player does not have the necessary progress the blocks and items you register with Revelationary via API or Data Pack will just have cryptic names and in case of blocks in the world, will drop the same drops as the block it is disguised as, giving the player a seamless experience without getting flooded with unknown resources that they are not able to use at the start. Instead you can introduce resources just as they are needed.\n\n## Limitations\nBesides visuals and drops, disguised blocks retain all the properties of the original block: Hitbox, if light passes through and everything else. Keep that in mind when searching for fitting candidates. A perfect disguise for your Ore would be stone or deepslate, since these share a lot of similarities. Similarly you could disguise your elusive plant with a poppy: Both have a small hitbox and players can walk through them.\n\nIf you are a programmer you can use the Revelation API to dynamically change your blocks properties depending on if they are visible to the player, or not. This way you could even disguise your flower as air: Giving it an empty hitbox when disguised, your players might not even know it is there until they can see them!\n\n\nFind lots of examples for data packs & the API in Revelationary's wiki: https://github.com/DaFuqs/Revelationary/wiki\n\n## Registering Revelations via Data Pack\nHave to be placed in the folder `resources/data/<<mod_id>>/revelations`\n\n```json\n{\n  \"advancement\": \"spectrum:milestones/reveal_quitoxic_reeds\",\n  \"block_states\": {\n    \"minecraft:grass\": \"minecraft:beacon\",\n    \"minecraft:tall_grass\": \"minecraft:obsidian\",\n    \"minecraft:tall_grass[half=upper]\": \"minecraft:netherite_block\"\n  },\n  \"items\": {\n    \"minecraft:nether_star\": \"minecraft:gunpowder\"\n  }\n}\n```\n\n## Registering a \"revelation aware\" block or item\n\n```java\npublic class CloakedItem extends Item implements RevelationAware {\n\t\n\tIdentifier cloakAdvancementIdentifier;\n\tItem cloakItem;\n\t\n\tpublic CloakedItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {\n\t\tsuper(settings);\n\t\tthis.cloakAdvancementIdentifier = cloakAdvancementIdentifier;\n\t\tthis.cloakItem = cloakItem;\n\t\t\n\t\tregisterCloak();\n\t}\n\t\n\t@Override\n\tpublic Identifier getCloakAdvancementIdentifier() {\n\t\treturn cloakAdvancementIdentifier;\n\t}\n\t\n\t@Override\n\tpublic Hashtable<BlockState, BlockState> getBlockStateCloaks() {\n\t\treturn new Hashtable<>();\n\t}\n\t\n\t@Override\n\tpublic Pair<Item, Item> getItemCloak() {\n\t\treturn new Pair<>(this, cloakItem);\n\t}\n\t\n\t@Override\n\tpublic void onCloak() { }\n\t\n\t@Override\n\tpublic void onUncloak() { }\n\t\n}\n```\n\n## Registering a Callback when Revelations happen\n\n```java\nRevelationHolder.registerRevelationCallback(new RevelationHolder.UncloakCallback() {\n    @Override\n    public void trigger(List<Identifier> advancements, List<Block> blocks, List<Item> items) {\n        for(Block block : blocks) {\n            if(Registry.BLOCK.getId(block).getNamespace().equals(MOD_ID)) {\n                ...\n                <I dunno. Like show a popup or something. You tell me>\n                ...\n                break\n            }\n        }\n    }\n});\n```\n\n# Discord\nYou will find a lot of helpful people on Spectrum's Discord. There always are friendly and helpful people around. Swing around too, if you like!\n\nhttps://discord.com/invite/EXU9XFXT8a",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 482392,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "26.1",
+    "26.1.1"
+  ],
+  "date_updated": null
+}

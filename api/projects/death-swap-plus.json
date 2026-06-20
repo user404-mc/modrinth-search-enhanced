@@ -1,0 +1,35 @@
+{
+  "id": "NQdDYBMg",
+  "slug": "death-swap-plus",
+  "title": "Death Swap Plus",
+  "description": "A customizable Death Swap plugin for Spigot and Paper featuring an optional random long-distance spawn at the start, adding a strategic twist to the classic Death Swap experience.",
+  "body": "# Death Swap Plus\n\nA DeathSwap minigame plugin for Minecraft **1.21**.\n\nIn DeathSwap, everyone plays in survival and the plugin will periodically **swap players’ positions**. Your goal is to **make other players die** (traps, lava, fall damage, mobs, etc.).  \nIf you die, you become a **spectator**.  \n**Last player alive wins.**\n\n---\n\n## Quick Start\n\n1. Put the plugin jar into your server’s `plugins/` folder.\n2. Start the server once (this creates `plugins/DeathSwap/config.yml`).\n3. (Optional) Configure the plugin with `/dssettings`.\n4. Start a game:\n   - **Ready-up start (recommended):** everyone runs `/dsready`, then someone runs `/dsready start`\n   - **Admin start:** `/dsstart`\n\n---\n\n## How The Game Works\n\n- When a game starts, all online players are put into **SURVIVAL** and added to the match.\n- Players get optional starting items:\n  - `GiveFood=true` → **20 cooked porkchops**\n  - `GiveWaterBucket=true` → **1 water bucket**\n- The plugin shows **health in the TAB list** (scoreboard objective `showhealth`).\n- Swaps happen after a random delay between `MinTimer` and `MaxTimer` (ticks).\n- A big title warning **always** appears **10 seconds** before a swap (200 ticks):  \n  **“SWAP INCOMING!”**\n- During the match, eliminated players are set to **SPECTATOR**.\n- The game ends automatically when only **one** player remains.\n\n---\n\n## Commands\n\n### `/dsready [get|start]`\n\nPlayer-only. Used to ready-up before starting.  \nOnly works when **no game is active**.\n\n| Command | Description |\n|------|-------------|\n| `/dsready` | Toggles your ready status and broadcasts `[ready/online]`. |\n| `/dsready get` | Shows whether you are currently marked as ready. |\n| `/dsready start` | Starts the game **only if everyone online is ready**. |\n\n---\n\n### `/dsstart`\n\nRequires permission: `ds.start`\n\n| Command | Description |\n|------|-------------|\n| `/dsstart` | Force-starts a new game (only if no game is active). |\n| `/dsstart true` | Starts the game in **dev mode** (testing mode). |\n\n**Dev mode notes:**\n- Allows starting with only **1 player** online.\n- Sends extra debug info to OPs (teleport order / pair listings).\n- **Stats are not written** while dev mode is enabled.\n\n---\n\n### `/dsstop`\n\nRequires permission: `ds.stop`\n\n| Command | Description |\n|------|-------------|\n| `/dsstop` | Force-stops the current game (only if a game is active). |\n\n---\n\n### `/dssettings <set|get|help> ...`\n\nRequires permission: `ds.settings`\n\n| Command | Description |\n|------|-------------|\n| `/dssettings get` | Prints all settings and their current values in one line. |\n| `/dssettings help` | Shows help pages. |\n| `/dssettings set <Setting> <Value>` | Changes a specific setting. |\n\n**Time values are in ticks**\n- `20 ticks = 1 second`\n- `1200 ticks = 1 minute`\n\n**Examples**\n- `/dssettings set MinTimer 2400` (2 minutes)\n- `/dssettings set MaxTimer 6000` (5 minutes)\n- `/dssettings set Warning 200` (10 seconds)\n- `/dssettings set Safe 60` (3 seconds of invincibility)\n- `/dssettings set TeleportMode pairs`\n\n---\n\n### `/dstp <player>`\n\nPlayer-only. Spectator utility.\n\n| Command | Description |\n|------|-------------|\n| `/dstp <player>` | Teleports you to a target **alive** player. |\n\n**Notes**\n- Works only if a game is active.\n- You must be spectating (not in the alive player list).\n- Tab completion suggests alive players.\n\n---\n\n### `/dskill`\n\nPlayer-only.\n\n| Command | Description |\n|------|-------------|\n| `/dskill` | Instantly kills you during a game (sets health to 0). |\n\nUseful if you want to forfeit and spectate.\n\n---\n\n### `/dsstats [player]`\n\nPlayer-only.\n\n| Command | Description |\n|------|-------------|\n| `/dsstats` | Shows your own stats. |\n| `/dsstats <player>` | Shows stats for another player (offline data supported). |\n\n**Tracked stats**\n- Games\n- Wins\n- Swaps\n- Deaths\n- Disconnected\n- Time played\n\n---\n\n### `/dsinfo`\n\n| Command | Description |\n|------|-------------|\n| `/dsinfo` | Shows plugin info (creator, inspiration, version). |\n\n---\n\n## Settings Reference\n\nSettings can be changed via `/dssettings set ...` or directly in  \n`plugins/DeathSwap/config.yml`.\n\n---\n\n### Swap Timing\n\n| Setting | Description |\n|------|-------------|\n| `MinTimer` | Minimum time before the next swap (ticks). |\n| `MaxTimer` | Maximum time before the next swap (ticks). |\n| `Warning` | Action-bar countdown when time until swap ≤ this value. |\n| `Safe` | Resistance duration after swaps and at game start. |\n\n---\n\n### TeleportMode\n\nControls how player locations are swapped.\n\n| Mode | Description |\n|------|-------------|\n| `random` | Each player is teleported to a random other player every swap. Falls back to circle if no valid mapping is found after 500 tries. |\n| `circle` | Players swap in a circular order randomized at game start. |\n| `random_circle` | Same as `circle`, but reshuffles after each swap. |\n| `fixed_circle` | Circle order is fixed and never shuffled. |\n| `pairs` | Players swap in pairs; odd counts create one 3-player rotation. Pairings are generated at game start. |\n\n---\n\n### World / Start Options\n\n| Setting | Description |\n|------|-------------|\n| `World` | World used for spawning and teleporting. Falls back if invalid. |\n| `RandomSpawn` | Randomizes player spawn positions at game start. |\n| `GiveFood` | Gives starting food if enabled. |\n| `GiveWaterBucket` | Gives a water bucket if enabled. |\n\n---\n\n### Swap Cleanup\n\n| Setting | Description |\n|------|-------------|\n| `KillPearls` | Removes all ender pearls at the moment of a swap. |\n| `SendChunks` | Present as a setting, but chunks are already preloaded regardless. |\n\n---\n\n### Language\n\n| Setting | Description |\n|------|-------------|\n| `Language` | Controls broadcast messages and settings text (`en`, `hu`, `de`, `es`). |\n\n---\n\n## Notes & Tips\n\n- Joining while a game is running puts you into **SPECTATOR**.\n- Dead players can spectate alive players using `/dstp <player>`.\n- Player stats are stored in  \n  `plugins/DeathSwap/PlayerDatabase/<uuid>.yml`.\n",
+  "categories": [
+    "adventure",
+    "equipment",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 314,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

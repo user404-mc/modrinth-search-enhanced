@@ -1,0 +1,28 @@
+{
+  "id": "dhLcoQk3",
+  "slug": "minescript-hud-addon",
+  "title": "Minescript HUD Addon",
+  "description": "This mod adds the ability to draw custom HUD elements in Minescript.",
+  "body": "# Minescript HUD Addon\n\nThis mod adds the ability to draw custom HUD elements in [Minescript](https://modrinth.com/mod/minescript).\n\nDocumentation can be found in the [wiki](https://maksymiblue12.github.io/Minescript-Hud-Addon/).\n\n# Bugs/Features\n### If you have any suggestions, or found any bugs, please [fill out this google form](https://docs.google.com/forms/d/e/1FAIpQLSdu7E3htzYRKgDzWqmLsKmJvipLt042Wlo777EFCwW-H2KP1Q/viewform).\ncurrently working on adding interactions such as hover and click events\n\n<br></br>\n## Features\n - Draw ***text*** on the HUD\n - Draw ***rectangles*** and gradient rectangles\n - Render ***items***\n - Render ***textures***\n - Render ***custom shapes***\n - ***Animate*** all element properties\n - ***Detect*** mouse hover and click events\n - Control ***display duration*** and ***render layers***\n<br></br>\n## Installation\n1. Install [Minescript](https://modrinth.com/mod/minescript).\n2. Place this addon in your `mods` folder.\n3. Launch the game.\n<br></br>\n## Example\n```python\nfrom hud_renderer import *\n\nadd_text(\"Hello World\",x=10,y=10,color=argb(255,255,255,255),shadow=True,display_duration=5)\n```\n<br></br>\n## Animations\nAll HUD elements can be animated using animation functions.\n```python\nfrom hud_renderer import *\n\ndef move(text:TextObject):\n    text.x+=1\n\n_id=add_text(\"I can MOVE!\",x=10,y=10,color=Colors.WHITE,shadow=True,display_duration=5)\n\nanimate_text(_id,move)\n```\n<br></br>\n## Mouse Events\nAll objects can detect mouse hover and click events.\n```python\nfrom minescript import echo\nfrom hud_renderer import *\n\ndef hover(text:TextObject,mouse:MouseObject,exited:bool):\n    if (exited):\n        text.color=Colors.WHITE\n    else:\n        text.color=Colors.GREEN\n\ndef click(text:TextObject,mouse:MouseObject):\n    echo(\"Clicked!\")\n\n_id=add_text(\"Click me!\",x=10,y=10,color=Colors.WHITE,shadow=True,display_duration=10)\n\nadd_mouse_callbacks_and_wait(_id,on_hover=hover,on_click=click)\n```\n<br></br>\n## Layer System\nElements are rendered in layers.\nElements with higher layer values render above elements with lower layers.\n<br></br>\n## API Overview\n> A more detailed API can be found on the [wiki](https://maksymiblue12.github.io/Minescript-Hud-Addon/).\n### Text\n - `add_text(...)`\n - `add_text_with_background(...)`\n - `add_advanced_text(...)`\n - `add_advanced_text_with_background(...)`\n - `animate_text(...)`\n - `animate_text_with_background(...)`\n\n### Rectangles\n - `add_rectangle(...)`\n - `add_rectangle_from_corners(...)`\n - `add_gradient_rectangle(...)`\n - `add_stroked_rectangle(...)`\n - `animate_rectangle(...)`\n\n### Items\n - `add_item(...)`\n - `add_advanced_item(...)`\n - `animate_item(...)`\n\n### Textures\n> **Note:** Custom textures must be added by a resource pack in the `assets/minescripthud/textures/gui/sprites/` folder.\n - `add_texture(...)`\n - `add_advanced_texture(...)`\n - `animate_texture(...)`\n\n### Shapes\n - `add_shape(...)`\n - `add_advanced_shape(...)`\n - `animate_shape(...)`\n - `add_line(...)`\n - `add_multiline(...)`\n - `add_triangle(...)`\n - `add_quad(...)`\n - `add_circle(...)`\n - `add_ellipse(...)`\n\n### Utility functions\n - `argb(...)`\n - `argb_to_int(...)`\n - `alpha_from_int(...)`\n - `add_async_mouse_callbacks(...)`\n - `add_mouse_callbacks_and_wait(...)`\n - `wait_until_removed(...)`\n - `remove_element(...)`\n - `clear()`\n - `suppress_done_message()`",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1241,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

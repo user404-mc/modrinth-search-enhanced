@@ -1,0 +1,34 @@
+{
+  "id": "BJmsYTVT",
+  "slug": "sleepycpu",
+  "title": "SleepyCPU",
+  "description": "Reduces server cpu usage when the server is empty by introducing intentional delays",
+  "body": "# SleepyCPU\n\nReduce server CPU usage automatically when your Minecraft server is empty.\n\nSleepyCPU detects when no players are online and temporarily slows down server activity. It optionally unloads chunks and nudges the JVM to free memory. As soon as a player joins, normal operation resumes.\n\n## Features\n- Automatically enters a low-CPU mode when the server is empty\n- Configurable delay between server ticks while idle (sleepTicks)\n- Optional chunk unloading (unloadChunks) with save-on-unload toggle\n- Configurable cleanup interval to control how often chunk unload + GC occurs\n- Lightweight: no dependencies and single permission node\n\n## How it works\nWhen the player count reaches 0, SleepyCPU:\n1. Saves all worlds safely using region-aware scheduling\n2. Sleeps between tick cycles by a configurable number of ticks\n3. Periodically (configurable interval) unloads chunks per world and triggers a GC hint\n\nWhen a player joins, counters reset and the server resumes normal throughput.\n\n## Configuration\n- Location: server-root/sleepycpu.yml\n- Keys:\n  - settings.enabled: Master switch for low-CPU mode (true/false)\n  - settings.sleepTicks: Delay between idle cycles in ticks (1 tick = 50ms)\n  - settings.unloadChunks: Unload chunks while idle (true/false)\n  - settings.saveChunksOnUnload: Save chunks when unloading (true/false)\n  - settings.cleanupIntervalTicks: Idle cycles between chunk unload + GC\n- After editing, run /sleepycpu reload or restart the server\n\n## Commands\n- /sleepycpu help — Show command info\n- /sleepycpu toggle — Enable/disable low-CPU mode\n- /sleepycpu status — Display current status and settings\n- /sleepycpu reload — Reload configuration from disk\n- /sleepycpu delay <ticks> — Set sleepTicks\n- /sleepycpu cleanupinterval <ticks> — Set cleanupIntervalTicks\n- /sleepycpu unloadchunks <true|false> — Toggle unloadChunks\n- /sleepycpu saveonunload <true|false> — Toggle saveChunksOnUnload\n\nAlias: /scpu\n\n## Permissions\n- sleepycpu.admin — Access to all SleepyCPU commands (default: OP)\n",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 384,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

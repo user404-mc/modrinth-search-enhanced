@@ -1,0 +1,26 @@
+{
+  "id": "R8TytBGA",
+  "slug": "elementelum",
+  "title": "Elementelum",
+  "description": "Unique and visually stunning elemental weapons.",
+  "body": "## Elementelum, name born from the combination of \"Element\" and \"Weapon\"...\n \nOf course, this project is mostly about Elemental Weapons, but there's much more.\n\nIf you want a great overview of the added content, check out the youtube review:\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/d-sjiKnZP3o\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# `vred's DP Lib` IS REQUIRED!!\nhttps://modrinth.com/datapack/vreds-dp-lib\n\nThis project adds:\n- new and exciting weapons that have different tiers (pale -> stoichite -> elemental). Each tier has more abilities than the previous one;\n- built-in Iron's Spells and Spellbooks compat, where each ability will now use mana.\n- forging system;\n- datadriven augment system;\n- fully configurable stats for weapons and augments.\n\n\n## Technical side\n\n\n<details>\n<summary>\nUseful commands\n</summary>\n\n\n```\n/function elementelum:get_materials\n```\nTo get all materials and augments!\n\n```\n/function elementelum:get_weapons\n```\nTo get every weapon!\n\n</details>\n\n\n\n<details>\n<summary>How to add custom augments</summary>\n \nIn order to make a custom augment you need:\n  - 3 item modifiers;\n  - item with specific custom data;\n  - 1 or 2 functions;\n- 1 enchant (if you want).\n\n**Item modfiers**\n#\n```# data/<namespace>/item_modifier/augments/<augment>/normal.json```\nWill be applied when hitting the yellow part in the forging minigame.\n\n```# data/<namespace>/item_modifier/augments/<augment>/perfect.json```\nWill be applied when hitting the red part in the forging minigame.\n\n```# data/<namespace>/item_modifier/augments/<augment>/remove.json```\nWill be applied when augment is removed.\n\n`<namespace>` and `<augment>` are defined into the item itself.\n\nhere's an example:\n\n```\ngive @s raw_cod[custom_data={vred_lib:{augment:fish,namespace:example, item_type:augment}}]\n```\n\n```\n# data/example/item_modifier/augments/fish/normal.json\n# data/example/item_modifier/augments/fish/perfect.json\n# data/example/item_modifier/augments/fish/remove.json\n```\n\n**Functions**\n# \nA function is needed to add custom text when the augment is put in the Esoteric Anvil. To add something similar to the text of other augments, it's better to look at the orignal code. \nThe function needs to be in the `#elementelum:augment/desc` function tag.\n\n```\ndata modify storage elementelum:augment text.<namespace>.<augment>.normal set value '[...]'\ndata modify storage elementelum:augment text.<namespace>.<augment>.perfect set value '[...]'\n```\n\nIf you want to use the same behavior to change the level based on quantity of augment in your inventory, just use `function elementelum:augments/calc/base {namespace:<namespace>,augment:<augment>}`\n\nHowever, it will require a custom enchantment with the id \"`<namespace>:<augment>`\".\n\n`<namespace>` and `<augment>` are the same from the item as before.\n</details>\n\n<details>\n<summary>Configurable values for weapons</summary>\n\nIf you want to configure some of the abilites of the weapons, such as:\n- cooldown \n- damage \n- duration.\n\nYou need to check the item itself and use `/scoreboard` to modify the values.\n\nFor example, we want to edit the base damage of **Thalassurge**.\nWe need to know the internal item id (which may not always be the same as the display name)\n\nFirst of all, we take a copy of said item and hold it in our main hand.\nThen we run this command:\n```\ndata get entity @s SelectedItem.components.minecraft:custom_data.vred_lib\n```\n\nAfter that, try to find the value of \"weapon_id\" in the command result. In this case it's `anchor` (yes, I still haven't changed it 💔).\n\nUnzip the datapack and find this function: \n```\ndata/elementelum/function/<weapon_id>/config/base.mcfunction\n```\n(it will be `data/elementelum/function/anchor/config/base.mcfunction`)\n\nIn that function will be all the values of the config, you can tinker around with them using `/scoreboard` to modify them.\n\nWe wanted to edit the base damage of Thalassurge, now we know we can do it using this command:\n```scoreboard players set $anchor.atk.dmg elementelum.config 5```\n\nIf you want to reset the values, just \n```\n/function elementelum:<weapon_id>/config/reset\n```\n(It will be `/function elementelum:anchor/config/reset`)\n\n</details>\n\n",
+  "categories": [
+    "adventure",
+    "datapack",
+    "equipment",
+    "fabric",
+    "forge",
+    "magic",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 713,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

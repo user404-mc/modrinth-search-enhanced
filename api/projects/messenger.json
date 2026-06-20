@@ -1,0 +1,33 @@
+{
+  "id": "xYLsesji",
+  "slug": "messenger",
+  "title": "Messenger",
+  "description": "A plugin to send MiniMessage formatted rotating messages in chat on a scheduled interval.",
+  "body": "# Messenger\n\nA plugin to send\n[MiniMessage](https://docs.advntr.dev/minimessage/format.html) formatted\nrotating messages in chat on a scheduled interval.\n\n## Configuration\n\n- `duration`: integer\n    - Seconds between each message being sent in chat\n    - Default: `300` (5 minutes)\n- `message-format`: string\n    - Format of the messages to be displayed to the user in chat.  This\n      is used for adding a prefix or suffix to the message\n    - Supports [MiniMessage](https://docs.advntr.dev/minimessage/format.html)\n    - Default: `<gray>[<red>+</red>]</gray> %message%` (renders to `[+] %message%`)\n- `debug-logging`: boolean\n    - Whether verbose logging should be printed to the console\n    - Default: `false`\n\n## Commands\n\n- `/messenger <add|reload>`\n    - Main command for Messenger\n    - `/messenger add` - Open an editor to add a new rotating message to\n      the chat.\n    - `/messenger add <message>` - Add a message into the chat directly\n    - `/messenger reload` - Reload the plugin's configuration and\n      messages from the `messages.json` file.\n\n## Permissions\n\n- `messenger.command.messenger`\n    - Ability to run the `/messenger` command\n    - Default: `op`\n\n## Data\n\nThe plugin currently only handles two files: `config.yml` and\n`messages.json`.\n\nThe `config.yml` holds the configuration for the plugin, see\n[Configuration](#configuration) for more details\n\nThe `messages.json` holds each message to be printed into chat.\nRemoving/Adding a message from this list will remove/add it from/to the\ngame (After `/messenger reload` or server restart).\n\n## Message Format\n\nA message can be formatted using\n[MiniMessage](https://docs.advntr.dev/minimessage/format.html).  If\n`%player%` is included in the message, it will be replaced with the\nplayer's username.\n\n## API\n\nThe plugin offers a simple API which allows for adding new messages.\n\nTo add it as a dependency if using maven, add the following to your pom.xml:\n\n```xml\n<repository>\n    <id>jitpack.io</id>\n    <url>https://jitpack.io</url>\n</repository>\n\n<dependency>\n    <groupId>com.github.funnyboy-roks</groupId>\n    <artifactId>Messenger</artifactId>\n    <version>Tag</version>\n</dependency>\n```\n\nOtherwise, checkout the [jitpack repo](https://jitpack.io/#funnyboy-roks/Messenger/1.0) for other systems\n\n### Usage example\n\n```java\n// construct a new message that says \"hello \" + playername\n// and is sent to all players\nMessage msg = new Message(\n    p -> Component.text(\"hello \").append(p.displayName()),\n    p -> true\n);\n\n// Add a message to the list\nMessenger.api().addMessage(msg);\n```\n\n## Future To-Do\n\n- [ ] PAPI support - If there is interest\n- [ ] More configuration options\n\nI'm always looking for ideas, if you have any, please create an issue\nand let me know!",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 242,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

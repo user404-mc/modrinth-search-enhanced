@@ -1,0 +1,22 @@
+{
+  "id": "ndZabVeH",
+  "slug": "pfu",
+  "title": "Polymer Font Utils",
+  "description": "API for generating font files",
+  "body": "# Polymer Font Utils\n\nAPI for generating font files. Uses polymer resource pack api.\n\n# Example\n\n```groovy\nrepositories {\n    maven { url \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n    modImplementation include(\"maven.modrinth:pfu:0.2.3+1.21.4\")\n}\n```\n\n```java\npublic class PolymerFontUtilsTest implements ModInitializer {\n    public static FontResourceManager manager;\n    public static FontResource resource;\n    public static TextResource text;\n    public static BitmapGlyph glyph;\n\n    @Override\n    public void onInitialize() {\n        PolymerResourcePackUtils.addModAssets(\"pfut\");\n\n        manager = FontResourceManager.create(\"pfut\");\n        resource = manager.requestFont(\"test\");\n        text = manager.requestText(-20); // Font identifier: pfut:text/default_-20\n        glyph = resource.requestGlyph(\"font/icon.png\", 128, 32);\n\n        FontSpaceUtils.requestAdvance(-256);\n        FontSpaceUtils.requestAdvances(-128, 1, 3);\n        FontSpaceUtils.requestRange(2, 19);\n    }\n}\n```\n\nYou can get list of all bitmaps from manager using command `/pfu pfut:test`\n\n![Example](https://cdn.modrinth.com/data/cached_images/7b5072dcfef25fed385a3415f413730532a2ace4.png)\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1713,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

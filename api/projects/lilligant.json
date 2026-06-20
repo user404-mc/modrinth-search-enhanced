@@ -1,0 +1,20 @@
+{
+  "id": "y7ACoOzz",
+  "slug": "lilligant",
+  "title": "Lilligant",
+  "description": "A bunch of utility mixins",
+  "body": "# Lilligant\n\nThis is my utility mod.\n\n## Features\n\n### Sweet Berry Bushes no longer slow\n\nSweet berry bushes will never slow the player anymore.\n\n### Enchantments\n\nLilligant adds a new `Aerial Affinity` enchantment which can be placed\non a helmet to reduce the normal on-ground speed penalty that you get\nwhen mining. This can be disabled in the configuration.\n\nLilligant hooks into how enchantment levels are calculated, allowing you\nto pretend like a player or an item has an enchantment (when they really\ndon\\'t). Implement `EnchantmentEffectInterceptor` and register it with\nsaid interface in your mod initialiser.\n\nLilligant includes a default enchantment interceptor that allows certain\nenchantments to be simulated if you have a status effect that is in a\nspecific `mob_effect` tag.\n\n-   `lilligant:gives_aqua_affinity` - Acts as if you have the Aqua\n    Affinity enchantment effect. By default, this contains the Water\n    Breathing status effect.\n-   `lilligant:gives_frost_walker` - Acts as if you have the Frost\n    Walker enchantment effect. This has no default tag entries.\n-   `lilligant:gives_aerial_affinity` - Acts as if you have the Aerial\n    Affinity enchantment effect. By default, this contains the Slow\n    Falling status effect and the Levitation status effect.\n\n### Entity Blocking\n\nLilligant blocks entities from spawning at the lowest level - the entity\nmanager - meaning that entities are well and truly unable to spawn. This\nis configurable in the `entity_blocker.toml` configuration file.\n\n### Sniffer Cooldown Adjustment\n\nThe `snifferCooldown` parameter in the content configuration can be used\nto customise how many ticks a Sniffer will be on cooldown after sniffing\nsomething up, making it easier to make Sniffer farms for e.g.\ntorchflowers.\n\n### Portal Blocking\n\nLilligant adds a small API that can prevent portals from forming based\non overworld conditions. It also includes a built-in handler that stops\nportals from working based on height (disabled by default). See the\n`NetherPortalFormationInterceptor` class for more information.\n\n### Narrator Error Suppression\n\nLilligant automatically suppresses the log on startup caused by a\nmissing `libflite.so`.\n\n### Peaceful Mode Enforcement\n\nLilligant adds a new configuration option to allow forcing peaceful\nmode. This locks the difficulty to Peaceful both in-game and during\nworld creation, and makes mob spawners automatically delete themselves\non tick as a small micro-optimisation.\n\nIn addition, Lilligant will disable the hunger bar from rendering in peaceful mode.\n\n### JVM Argument Checking\n\nLilligant adds a warning screen that warns the player if they\\'ve added\nuseless (-XX:+EnableG1GC) or harmful (-XX:MaxTenuringThreshold=1) JVM args.\n\n### Auto-Kill Ender Dragon\n\nOn peaceful mode, the ender dragon will be automatically killed. An end\nportal and end gateway will be generated like normal.\n\n### Wayland Fixes\n\nLilligant patches a handful of Blaze3D methods to support booting on\nWayland natively if a GLFW version built for Wayland is used (e.g.\n3.4.).\n\n### Lang Overriding\n\nLilligant adds an extremely late language overrider that will forcibly overwrite language keys for\nthe provided lang. Useful for when dynamic resources WON'T BEHAVE\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1152,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

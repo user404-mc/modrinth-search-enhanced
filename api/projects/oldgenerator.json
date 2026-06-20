@@ -1,0 +1,33 @@
+{
+  "id": "dYh1viUA",
+  "slug": "oldgenerator",
+  "title": "oldgenerator",
+  "description": "Generate beta 1.7.3 worlds for spigot/paper: overworld, nether, and skylands",
+  "body": "OldGenerator\n==\nSpigot/Paper/Folia plugin for adding Beta 1.7.3 generation to modern versions of\nMinecraft. This plugin can replace \n[173generator](https://github.com/Barteks2x/173generator) for modern versions (please\nsee the How to Use section for proper configuration).\n\n\n## Showcase\n### Seed `worstseedever`\n\n### Beta 1.7.3\n![Overworld Generation](https://raw.githubusercontent.com/Spottedleaf/OldGenerator/refs/heads/master/assests/AS4aeoK.png)\n![Nether Generation](https://raw.githubusercontent.com/Spottedleaf/OldGenerator/refs/heads/master/assests/7lOgLRC.png)\n\n### OldGenerator on Minecraft 1.16.4\n![Overworld Generation](https://raw.githubusercontent.com/Spottedleaf/OldGenerator/refs/heads/master/assests/0ycd5K0.png)\n![Nether Generation](https://raw.githubusercontent.com/Spottedleaf/OldGenerator/refs/heads/master/assests/u5OTgPZ.png)\n\n### Differences\n#### Overworld\nBlock physics are not applied to gravel OR sand when placing. So, the dungeon sand will\nnot immediately cave in upon logging in, but the dungeon is still there .\nMost chunks will look the exact same, but due to chunk generation order differences\nthe populators might fire differently and you'll get different results (however the general\nterrain will remain the same).\n\n#### Nether\nFire, glowstone, and even lava placement (excluding the lava oceans) will generally not mirror Beta 1.7.3. However, the terrain\nwill remain the same.\n\nWhy aren't fire/glowstone/lava correct? This is due to a technical bug in the old\nbeta populator code: The chunk seed is not setup when populating chunks! So the \nplacement is entirely dependent on chunk generation order (and a few other really technical details), \nwhich is completely different in modern Minecraft. \n\n\nThere's nothing I can do to match the old populator behavior, however I have modified the \npopulator code for nether to correctly setup a chunk seed per chunk - this means the results \nshould be consistent across world generations when using OldGenerator, but they still will not \nmatch Vanilla Beta 1.7.3.\n\n\n## How do I use?\n#### If you do NOT have a world management plugin\nAdd this to your bukkit.yml\n```yaml\nworlds:\n  worldname1:\n    generator: OldGenerator:b173\n  worldname2:\n    generator: OldGenerator:b173\n```\nThis will setup worldname1 and worldname2 to run OldGenerator as their generator. For example,\nyou can set worldname1 to `world` and worldname2 to `world_nether` to do exactly what you expect.\n`b173` can be replaced with `sb173` to get a [skylands](https://minecraft.gamepedia.com/Sky_dimension) world.\n\n#### If you have a world management plugin\nFollow the guide that world management plugin to setup custom generators. I don't\nuse any world management plugins, so I can't help you!\n\n## I want different old generators!\nIf enough people request other old generators, I can add them to this plugin. \n\n## License\nAll of the world generation code is directly copied from decompiled sources \nof the minecraft server jar (specifically, the beta 1.7.3 dedicated server jar), \nand then modified further. The original decompiled sources can be found here: \nhttps://github.com/Bukkit/mc-dev\n\nAs such, the world generation code is copyrighted by Mojang AB.\n\nEverything else is licensed under the MIT License, see the LICENSE.md file for license text.",
+  "categories": [
+    "bukkit",
+    "folia",
+    "paper",
+    "spigot",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 205,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

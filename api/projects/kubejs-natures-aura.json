@@ -1,0 +1,24 @@
+{
+  "id": "4UOGHCIr",
+  "slug": "kubejs-natures-aura",
+  "title": "KubeJS Nature's Aura",
+  "description": "KubeJS integration for Nature's Aura",
+  "body": "Adds support for Nature's Aura recipes, custom aura cache item, structure finder item, and custom or modify the aura type of dimension.\n\nExamples:\nAdd recipe: in server_scripts\n```js\nServerEvents.recipes((event) => {\n    const { naturesaura } = event.recipes\n\n    // Natural Altar (output，input，aura-optional，time-optional, catalyst-optional)\n    naturesaura.altar('bedrock', 'stone')\n    naturesaura.altar('bedrock', 'stone', 5000)\n    naturesaura.altar('bedrock', 'stone', 5000, 60)\n    naturesaura.altar('bedrock', 'stone', 5000, 60, 'naturesaura:conversion_catalyst')\n\n    // Altar of Birthing (entity，input，aura-optional，time-optional)\n    naturesaura.animal_spawner('creeper', ['gunpowder', 'green_dye'])\n    naturesaura.animal_spawner('creeper', ['gunpowder', 'green_dye'], 10000)\n    naturesaura.animal_spawner('creeper', ['gunpowder', 'green_dye'], 10000, 120)\n\n    // Offering Table (output，input，start-item)\n    naturesaura.offering('diamond', 'coal', 'bedrock')\n\n    // Tree Ritual（output，input，sapling-optional, time-optional）\n    naturesaura.tree_ritual('nether_star', ['blaze_powder', 'obsidian', 'diamond'])\n    naturesaura.tree_ritual('nether_star', ['blaze_powder', 'obsidian', 'diamond'], 'oak_sapling')\n    naturesaura.tree_ritual('nether_star', ['blaze_powder', 'obsidian', 'diamond'], 'oak_sapling', 200)\n})\n ```\n\nRegister items: in startup_scripts\n```js\nNaturesAuraEvents.init((event) => {\n    // custom aura type (aura type, dimension, aura colour, priority-optional)\n    event.custom('kubejs:aether', 'aether:the_aether', 0xb0c4de)\n\n    // modify the aura type of the dimension (dimension, aura type)\n    event.modify('minecraft:overworld', 'kubejs:aether')\n})\n ```\n\n Customize or modify the aura type of dimension: in startup_scripts\n ```js\nStartupEvents.registry('item', (event) => {\n    // custom aura cache (items that can store aura)\n    event.create('custom_aura_cache', 'naturesaura:aura_cache').setMaxAura(10000)\n\n    // custom item similar to the Eye of Ender (find the specified range of structure)\n    event\n        .create('custom_structure_finder', 'naturesaura:structure_finder')\n        .setStructure('minecraft:village_plains')\n        .setColor(0xba2800)\n        .setRadius(2048)\n})\n```\n\nOther features:\n```js\nBlockEvents.rightClicked((event) => {\n    const { block, item, level } = event\n \n    AuraBlock.getStoredAura(block.entity)\n    AuraBlock.drainAura(block.entity, 100000, false)\n    AuraBlock.storeAura(block.entity, 100000, false)\n \n    AuraItem.getStoredAura(item)\n    AuraItem.drainAura(item, 100000, false)\n    AuraItem.storeAura(item.entity, 100000, false)\n \n    AuraChunk.getAuraInArea(level, block.pos, 16)\n    AuraChunk.drainAura(level, block.pos, 100000)\n    AuraChunk.storeAura(level, block.pos, 100000)\n})\n```",
+  "categories": [
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4774,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.20.4",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

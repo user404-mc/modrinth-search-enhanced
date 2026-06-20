@@ -1,0 +1,19 @@
+{
+  "id": "x8K9GBuV",
+  "slug": "moire",
+  "title": "moire",
+  "description": "Kotlin DSL for polymer-virtual-entity",
+  "body": "# moire\n\n**moire** is a Kotlin library providing extension functions and a DSL\nfor [polymer-virtual-entity](https://github.com/Patbox/polymer). With moire, you can easily create and manage\n`ElementHolder` instance.\n\n> **Note:** The API is subject to change without backward compatibility until version 1.0.0. Please be aware of\n> potential changes.\n\n## Gradle Setup\n\n### Groovy\n\n```groovy\nrepositories {\n    maven { url 'https://maven.nucleoid.xyz/' }\n    maven { url 'https://api.modrinth.com/maven' }\n}\n\ndependencies {\n    modImplementation 'eu.pb4:polymer-virtual-entity:POLYMER_VERSION'\n    modImplementation 'maven.modrinth:moire:MOIRE_VERSION'\n}\n```\n\n### Kotlin DSL\n\n```kotlin\nrepositories {\n    maven(\"https://maven.nucleoid.xyz/\")\n    maven(\"https://api.modrinth.com/maven\")\n}\n\ndependencies {\n    modImplementation(\"eu.pb4:polymer-virtual-entity:POLYMER_VERSION\")\n    modImplementation(\"maven.modrinth:moire:MOIRE_VERSION\")\n}\n```\n\n## Usage\n\nHere is a simple example.\n\n```kotlin\nimport jp.fishmans.moire.elements.*\nimport jp.fishmans.moire.matrices.rotateLocalYDegrees\nimport net.minecraft.item.Items\n\nfun create() = elementHolder {\n    itemDisplayElement {\n        transformation {\n            scaleLocal(0.5f)\n        }\n\n        onTick {\n            transform {\n                rotateLocalYDegrees(11.25f)\n            }\n\n            startInterpolationIfDirty(1)\n        }\n\n        item = Items.TNT.defaultStack\n        teleportDuration = 1\n    }\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1778,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4"
+  ],
+  "date_updated": null
+}

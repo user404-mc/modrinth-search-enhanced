@@ -1,0 +1,40 @@
+{
+  "id": "fvKeMuw5",
+  "slug": "infinite-use",
+  "title": "Infinite Use",
+  "description": "Toggle any held item to be infinite — totems revive forever, blocks place endlessly, tools have no durability loss. One command, one tag, every item.",
+  "body": "# InfiniteUse\n\n<a href=\"https://youtube.com/channel/UCGrw0wd3fF-l-m3wfCLbFKw\"><img src=\"https://img.shields.io/badge/YouTube-MC_clip-red?style=for-the-badge&logo=youtube\" alt=\"YouTube\"></a>\n\n<a href=\"https://fabricmc.net/\"><img src=\"https://img.shields.io/badge/Available_on-Fabric-blue?style=for-the-badge\" alt=\"Fabric\"></a> <a href=\"https://modrinth.com/mod/fabric-api\"><img src=\"https://img.shields.io/badge/Requires-Fabric_API-green?style=for-the-badge\" alt=\"Fabric API\"></a>\n\nMake any item infinite with one command. Totems become unlimited. Blocks place forever. Tools never break.\n\n## Features\n\nA single command turns the item in your main hand into an **infinite** item:\n\n- **Stack count never decreases** — eat food, place blocks, throw splash potions, shoot arrows, fire ender pearls, drink potions, use buckets... the stack never goes down.\n- **Durability never decreases** — swords, pickaxes, shears, bows, fishing rods, crossbows, elytra... the bar stays full.\n- **Totems of Undying** — survive death as many times as you want from a single totem.\n- **End Crystals**, **Boats**, **Eggs**, **Snowballs**, **Splash Potions**, **all subclass items** — covered via a unified `ItemStack` dispatch hook.\n\nThe marker is stored as an NBT tag (1.16.5–1.20.4) or as a custom `DataComponent` (1.20.5+), so it persists across save/load and works on dedicated servers.\n\n### Move duplication is fixed\n\nEarlier naive implementations duplicate items when you shift-click them in inventories (the source stack doesn't decrement, but the destination still receives the items). InfiniteUse uses a **thread-local consume context**: cancellation only triggers when the stack is actually being *consumed* (use / place / eat / totem trigger), not during inventory transfers. Move freely without duplication.\n\n## Commands\n\nRequires OP permissions (level 2).\n\n| Command | Description |\n|--------|-------------|\n| `/infiniteuse` or `/iu` | Toggle InfiniteUse on the held item |\n| `/iu on` | Mark the held item as infinite |\n| `/iu off` | Remove the mark |\n| `/iu toggle` | Same as no argument |\n| `/iu status` | Show current state of the held item |\n\n## Requirements\n\n- Fabric Loader\n- Fabric API\n\nEach jar targets one Minecraft version. **Use the jar that exactly matches your Minecraft version.**\n\n### Jar / Minecraft compatibility table\n\n| Jar file | Compatible Minecraft version |\n|---|---|\n| `infiniteuse-mc1.16.5-1.0.0.jar` | 1.16.5 |\n| `infiniteuse-mc1.17.1-1.0.0.jar` | 1.17.1 |\n| `infiniteuse-mc1.18.2-1.0.0.jar` | 1.18.2 |\n| `infiniteuse-mc1.19.4-1.0.0.jar` | 1.19.4 |\n| `infiniteuse-mc1.20.1-1.0.0.jar` | 1.20.1 |\n| `infiniteuse-mc1.20.4-1.0.0.jar` | 1.20.2 / 1.20.3 / 1.20.4 |\n| `infiniteuse-mc1.20.6-1.0.0.jar` | 1.20.5 / 1.20.6 |\n| `infiniteuse-mc1.21.1-1.0.0.jar` | 1.21 / 1.21.1 |\n| `infiniteuse-mc1.21.2-1.0.0.jar` | 1.21.2 |\n| `infiniteuse-mc1.21.3-1.0.0.jar` | 1.21.3 |\n| `infiniteuse-mc1.21.4-1.0.0.jar` | 1.21.4 |\n| `infiniteuse-mc1.21.5-1.0.0.jar` | 1.21.5 |\n| `infiniteuse-mc1.21.6-1.0.0.jar` | 1.21.6 |\n| `infiniteuse-mc1.21.7-1.0.0.jar` | 1.21.7 |\n| `infiniteuse-mc1.21.8-1.0.0.jar` | 1.21.8 |\n| `infiniteuse-mc1.21.9-1.0.0.jar` | 1.21.9 |\n| `infiniteuse-mc1.21.10-1.0.0.jar` | 1.21.10 |\n| `infiniteuse-mc1.21.11-1.0.0.jar` | 1.21.11 |\n\nVersions not listed (1.16.0-1.16.4, 1.17.0, 1.18.0/1.18.1, 1.19.0-1.19.3, 1.20.0, etc.) are **not supported** — Minecraft's APIs differ enough between point releases that a mismatched jar will fail to load or crash.\n\n## How it works\n\nA Mixin on `ItemStack#decrement` and `ItemStack#setDamage` cancels the operation only when:\n1. The stack carries the InfiniteUse marker, AND\n2. We are inside a \"consume\" path (`Item#use`, `useOnBlock`, `finishUsing`, `onStoppedUsing`, or `LivingEntity#tryUseDeathProtector` / `tryUseTotem`).\n\nInventory operations (drag, shift-click, hopper transfer, drop) take place outside this context, so counts decrement normally — no duplication.\n\n## Links\n\n**YouTube:** [MC clip](https://youtube.com/channel/UCGrw0wd3fF-l-m3wfCLbFKw)\n\nSubscribe for updates and tutorials!\n\n---\n\n# 日本語\n\nコマンド一発でメインハンドのアイテムを **無限化** するFabric MOD。\n\n## 特徴\n\n- **スタック数が減らない** — 食べる・置く・スプラッシュポーション投擲・矢発射・エンダーパール・ポーション飲み・バケツ使用…全部減りません\n- **耐久値が減らない** — 剣・ピッケル・ハサミ・弓・釣竿・クロスボウ・エリトラ…バーは常に満タン\n- **トーテム・オブ・アンダイング無限** — 1個のトーテムで何度でも蘇生\n- **エンドクリスタル / ボート / 卵 / 雪玉 / スプラッシュポーション / その他サブクラス系アイテム** — `ItemStack` の統一エントリで全部カバー\n\nマーカーは NBT タグ（1.16.5〜1.20.4）または カスタム DataComponent（1.20.5以降）で保存。セーブ&ロードを跨いでも維持され、専用サーバでも動作します。\n\n### アイテム移動時の複製を解決済み\n\n素朴な実装だとシフトクリック移動時に「移動先には入る・移動元は減らない」で複製になります。本MODは **スレッドローカルの消費コンテキスト** を使い、実際にアイテムを *消費* する経路（使用/設置/食べる/トーテム発動）でのみキャンセルが発動します。インベントリ移動・ホッパー輸送・ドロップは通常通りに進むので複製しません。\n\n## コマンド\n\nOP権限（レベル2）が必要。\n\n| コマンド | 動作 |\n|---|---|\n| `/infiniteuse` または `/iu` | メインハンドのアイテムを無限化トグル |\n| `/iu on` | 無限化をON |\n| `/iu off` | 無限化をOFF |\n| `/iu toggle` | 引数なしと同じ |\n| `/iu status` | 現在の状態を表示 |\n\n## 対応バージョン\n\n各 jar は **1 つの Minecraft バージョン専用** です。お使いの Minecraft バージョンに合った jar を選んでください。\n\n### jar と対応 Minecraft バージョン対応表\n\n| jar ファイル | 対応 Minecraft バージョン |\n|---|---|\n| `infiniteuse-mc1.16.5-1.0.0.jar` | 1.16.5 |\n| `infiniteuse-mc1.17.1-1.0.0.jar` | 1.17.1 |\n| `infiniteuse-mc1.18.2-1.0.0.jar` | 1.18.2 |\n| `infiniteuse-mc1.19.4-1.0.0.jar` | 1.19.4 |\n| `infiniteuse-mc1.20.1-1.0.0.jar` | 1.20.1 |\n| `infiniteuse-mc1.20.4-1.0.0.jar` | 1.20.2 / 1.20.3 / 1.20.4 |\n| `infiniteuse-mc1.20.6-1.0.0.jar` | 1.20.5 / 1.20.6 |\n| `infiniteuse-mc1.21.1-1.0.0.jar` | 1.21 / 1.21.1 |\n| `infiniteuse-mc1.21.2-1.0.0.jar` | 1.21.2 |\n| `infiniteuse-mc1.21.3-1.0.0.jar` | 1.21.3 |\n| `infiniteuse-mc1.21.4-1.0.0.jar` | 1.21.4 |\n| `infiniteuse-mc1.21.5-1.0.0.jar` | 1.21.5 |\n| `infiniteuse-mc1.21.6-1.0.0.jar` | 1.21.6 |\n| `infiniteuse-mc1.21.7-1.0.0.jar` | 1.21.7 |\n| `infiniteuse-mc1.21.8-1.0.0.jar` | 1.21.8 |\n| `infiniteuse-mc1.21.9-1.0.0.jar` | 1.21.9 |\n| `infiniteuse-mc1.21.10-1.0.0.jar` | 1.21.10 |\n| `infiniteuse-mc1.21.11-1.0.0.jar` | 1.21.11 |\n\n上記に載っていないバージョン（1.16.0〜1.16.4、1.17.0、1.18.0/1.18.1、1.19.0〜1.19.3、1.20.0 など）は **非対応** です。Minecraft の API がポイントリリース間で十分に変化するため、合わない jar はロードに失敗するかクラッシュします。\n\n## 仕組み\n\n`ItemStack#decrement` と `ItemStack#setDamage` をMixinで横取りし、以下の条件を**両方**満たす場合にだけキャンセルします：\n1. 対象スタックに InfiniteUse マーカーが付いている\n2. 「消費パス」内（`Item#use` / `useOnBlock` / `finishUsing` / `onStoppedUsing` / `LivingEntity#tryUseDeathProtector` ・ `tryUseTotem`）\n\nインベントリ操作（ドラッグ・シフトクリック・ホッパー輸送・ドロップ）はこの条件外なので普通にスタックが減り、複製しません。\n\n## YouTube\n\n**チャンネル:** [MCクリップ](https://youtube.com/channel/UCGrw0wd3fF-l-m3wfCLbFKw)\n\nチャンネル登録よろしく！\n",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 339,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

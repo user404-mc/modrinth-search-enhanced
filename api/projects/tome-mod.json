@@ -1,0 +1,23 @@
+{
+  "id": "xA0HAXG9",
+  "slug": "tome-mod",
+  "title": "tome",
+  "description": "Library for creating server-side skills",
+  "body": "# tome\n\nA barebone library for creating server-side skills. Provides basic frameworks for skill casting, cooldowns, and\ncontainers. Does not include functional features like entity targeting.\n\n> Note: Until version 1.0.0, the API may change without prior notice.\n\n## Gradle Setup\n\n### Kotlin\n\n```kotlin\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    modImplementation(\"io.github.kouvali:tome:YOUR_VERSION\")\n}\n```\n\n### Groovy\n\n```groovy\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    modImplementation \"io.github.kouvali:tome:YOUR_VERSION\"\n}\n```\n\n## Usage\n\nHere's a quick example of skill creation:\n\n### Java\n\n```java\nSkill<Vec3> exampleSkill = Skill.<Vec3>builder()\n        .setStateFactory(\n                SkillStateFactory.alwaysOk(context ->\n                        context.getSource().getForward()\n                )\n        )\n        .setTickBehavior(instance -> {\n            instance.getSource().setDeltaMovement(instance.getState());\n            instance.getSource().hurtMarked = true;\n        })\n        .setCompleteBehavior(instance -> {\n            instance.getSource().setDeltaMovement(Vec3.ZERO);\n            instance.getSource().hurtMarked = true;\n        })\n        .setInterruptPredicate(instance ->\n                !instance.getSource().isInvulnerable()\n        )\n        .setDurationProvider(\n                SkillDurationProvider.constant(20)\n        )\n        .build();\n```\n\n### Kotlin\n\n```kotlin\nval exampleSkill: Skill<Vec3> = Skill {\n    alwaysOkStateFactory {\n        source.forward\n    }\n\n    tickBehavior {\n        source.deltaMovement = state\n        source.hurtMarked = true\n    }\n\n    completeBehavior {\n        source.deltaMovement = Vec3.ZERO\n        source.hurtMarked = true\n    }\n\n    interruptPredicate {\n        !source.isInvulnerable\n    }\n\n    constantDurationProvider(20)\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 146,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1-rc-2",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

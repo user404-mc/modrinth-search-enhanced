@@ -1,0 +1,39 @@
+{
+  "id": "ulufZYAG",
+  "slug": "daily-boss-more-bosses",
+  "title": "Daily Boss - More Bosses",
+  "description": "Add more bosses and config for Daily Boss",
+  "body": "# Daily Boss - More Bosses\n\n**Expand your daily challenges with support for bosses from multiple mods!**\n\nThis mod is an addon for [Daily Boss](https://www.curseforge.com/minecraft/mc-mods/daily-boss) that integrates bosses from various popular mods into the daily rotation system. It allows you to configure which bosses appear, their loot, and spawn conditions.\n\n### ⚠️ Important: Moved Content\nTo reduce the file size, some large mods have been moved to their own standalone addons. **Do not look for them in this mod.**\n\n| Mod | Link to Addon |\n| :--- | :--- |\n| **Bosses of Mass Destruction** | [Daily Boss x Bosses of Mass Destruction](https://modrinth.com/mod/daily-boss-x-bosses-of-mass-destruction) |\n| **Aquamirae** | [Daily Boss x Aquamirae](https://modrinth.com/mod/daily-boss-x-aquamirae) |\n| **L_Ender's Cataclysm** | [Daily Boss x L_Ender's Cataclysm](https://modrinth.com/mod/daily-boss-x-l-ender-s-cataclysm) |\n\n---\n\n## 🛠️ Features\n\n*   **Expanded Boss Roster:** Adds support for bosses from *Mowzie's Mobs*, *Twilight Forest*, *Souls Like Universe*, and many more.\n*   **Automatic Configuration:** Generates a `config/dailyboss_spawn_rules.json` file on first launch.\n*   **Granular Control:** Enable/disable specific bosses, or filter them by dimension and biome.\n*   **Custom Loot:** Maps bosses to high-value loot tables (e.g., Bastion Treasure) by default. You can customize this without datapacks!\n\n---\n\n## ⚙️ Configuration Guide\n\nConfiguration is handled in `config/dailyboss_spawn_rules.json`.\n\n### Global Settings\n```json\n\"global_settings\": {\n  \"default_enabled\": true,\n  \"auto_add_new_bosses\": true,\n  \"require_biome_match\": false\n}\n```\n*   `default_enabled`: If `true`, new or unconfigured bosses are allowed to spawn.\n*   `auto_add_new_bosses`: Automatically adds newly detected boss IDs to the config.\n*   `require_biome_match`: If `true`, the boss must match BOTH the allowed dimension AND biome. If `false`, matching either is sufficient.\n\n### Per-Boss Rules\nYou can define allow/deny lists for dimensions and biomes per boss.\n\n```json\n\"boss_rules\": {\n  \"cataclysm:ignis\": {\n    \"enabled\": true,\n    \"dimensions\": [\"minecraft:the_nether\"],\n    \"biomes\": [\"minecraft:nether_wastes\"],\n    \"blacklist_mode\": false\n  }\n}\n```\n*   `enabled`: Set to `false` to completely remove this boss from rotation.\n*   `blacklist_mode`: \n    *   `false` (Whitelist): Boss spawns ONLY in the listed dimensions/biomes.\n    *   `true` (Blacklist): Boss spawns ANYWHERE EXCEPT the listed dimensions/biomes.\n\n### 💰 Loot & Progression\nBy default, bosses drop high-tier loot so fighting them feels rewarding. You can change this in the `loot` section of the config:\n\n```json\n\"loot\": { \n  \"loot_tables\": [ \n    \"minecraft:chests/bastion_treasure\", \n    \"yourpack:custom/ignis_rewards\" \n  ], \n  \"append_defaults\": false \n}\n```\n*   `loot_tables`: A list of loot tables to use.\n*   `append_defaults`: If `true`, your custom loot is added *on top* of the default loot. If `false`, it *replaces* it.\n\n---\n\n## ⚔️ Supported Mods & Bosses\n\n### [Dungeons And Combat](https://www.curseforge.com/minecraft/mc-mods/dungeons-and-combat)\n*   Kamath\n*   Sunleia\n\n### [Souls Like Universe](https://www.curseforge.com/minecraft/mc-mods/souls-like-universe-weapons-armors)\n*   Ancient Warrior, Artorias, Aatrox, Abyss Watcher\n*   Beast Clergyman, Count Robert, Crucible Knight\n*   Darius, Dragon Slayer Armour, Elemer, Fallen Lord, Gael\n*   Godfrey, Godskin Apostole, Gundyr, Gwyndolin, Jax\n*   Looking Glass Knight, Malenia, Margit, Mohg\n*   Nameless King, Notch, Ornstein, Pantheon\n*   Radagon, Radahn, Soul of Cinder, Sun Wukong\n\n### [The Twilight Forest](https://www.curseforge.com/minecraft/mc-mods/the-twilight-forest)\n*   Naga, Hydra, Minoshroom, Ur-ghast\n*   Snow Queen, Twilight Lich, Knight Phantom\n\n### [Mowzie's Mobs](https://modrinth.com/mod/mowzies-mobs)\n*   Ferrous Wroughtnaut\n*   Frostmaw\n*   Umvuthi, the Sunbird\n*   Tongbi, the Sculptor\n\n### Other Horrors\n*   **[The Man From The Fog](https://modrinth.com/mod/the-man-from-the-fog)**: The Man From The Fog\n*   **[Siren Head: The Arrival](https://www.curseforge.com/minecraft/mc-mods/siren-head-the-arrival)**: Siren Head\n*   **[SCP-682](https://www.curseforge.com/minecraft/mc-mods/the-hard-to-destroy-reptile)**: The Hard To Destroy Reptile\n*   **[SCP-096](https://www.curseforge.com/minecraft/mc-mods/the-shy-guy)**: Shy Guy\n*   **[Extermination](https://www.curseforge.com/minecraft/mc-mods/extermination)**: Emperorpod\n*   **[Cracker's Wither Storm](https://www.curseforge.com/minecraft/mc-mods/crackers-wither-storm-mod)**: Wither Symbiont\n*   **[Born in Chaos](https://www.curseforge.com/minecraft/mc-mods/born-in-chaos)**: Lord Pumpkinhead\n\n### [Legendary Monsters](https://modrinth.com/mod/legendary-monsters)\n*   Skeletosaurus, Endersent, Shulker Mimic\n*   Frostbitten Golem, Overgrown Colossus, Withered Abomination\n*   Cloud Golem, Ancient Guardian, Posessed Paladin, Dune Sentinel\n\n---\n\n**Have a boss suggestion?** Leave it in the comments!\n\n[![Discord](https://img.shields.io/badge/Discord-Join%20Us-7289da?style=for-the-badge&logo=discord)](https://discord.gg/sZ64CgX3JN)\n",
+  "categories": [
+    "adventure",
+    "forge",
+    "management",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1890,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

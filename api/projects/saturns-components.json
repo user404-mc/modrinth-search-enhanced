@@ -1,0 +1,22 @@
+{
+  "id": "3qZ1zvYg",
+  "slug": "saturns-components",
+  "title": "Saturn's Components",
+  "description": "A small fabric mod which implements item components to allow for more flexibility when creating custom items with Datapacks.",
+  "body": "# Saturn's Components\n\nAdds some extra functionality to item components to allow for users to have more flexibility with their custom items.\n\nThe end goal for the mod is to allow for any item within the vanilla game to be recreated within any other item using only item components.\n\n### 23w12a\nMod became kinda redundant ATM because Mojang already added what this does. Maybe I'll add more componentns soon\n\n## Max Count\n`minecraft:max_count`<br>\nSets the maximum stack size an item can have, accepting a non-negative integer value.\n\n## Max Damage\n`minecraft:max_damage`<br>\nSets the total durability of an item, which affects non-tool items too! Accepts a non-negative integer value.\n\n## Rarity\n`minecraft:rarity`<br>\nSets the rarity of an item, determining the base color of it's display name. Accepts a valid string entry from the following list: `[\"common\", \"uncommon\", \"rare\", \"epic\"]`\n\n## Fireproof\n`minecraft:fireproof`<br>\nSets whether the item will be destroyed when coming into contact with a fire source. Accepts a boolean value.\n\n## Food Properties\n`minecraft:food_properties`<br>\nThis component completely removes any hard coding to how food items are introduced, meaning any item can now be edible with a quick command! This component is a large one and requires at minimum a hunger value to be specified. An example component can be seen as followed:\n```jsonc\n{\n  \"food_properties\": {\n    // A non-negative integer. Decides how much hunger to restore when consumed.\n    \"hunger\": 0,\n    // A positive float. Decides how much saturation to restore when consumed.\n    \"saturation_modifier\": 1.0,\n    // A positive integer. Decides how long it takes to consume the item.\n    \"time_to_eat\": 32,\n    // Decides the behavior of the food.\n    \"food_behavior\": {\n      // Whether wolves interact with the item.\n      \"is_meat\": false,\n      // Whether the item can be eaten regardless of a player's hunger value.\n      \"always_edible\": false,\n      // Whether the item is eaten in half the time.\n      \"is_snack\": false,\n      // Whether the item shows particles while being consumed.\n      \"is_drink\": false,\n      // Whether the item clears all the player's status effects after being consumed.\n      \"clear_effects\": false\n    },\n    // The resulting item a food object should give the player after being consumed.\n    \"result_item\": {\n      \"id\": \"minecraft:air\",\n      \"count\": 1\n    },\n    // A list of status effect objects that are applied to the player once they have consumed the item.\n    \"status_effects\": [\n      {\n        \"id\": \"minecraft:swiftness\",\n        \"duration\": 160,\n        \"amplifier\": 0,\n        \"ambient\": false,\n        \"show_particles\": true,\n        \"chance\": 1.0\n      }\n    ]\n  }\n}\n```",
+  "categories": [
+    "fabric",
+    "food",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 245,
+  "followers": 0,
+  "game_versions": [
+    "24w10a"
+  ],
+  "date_updated": null
+}

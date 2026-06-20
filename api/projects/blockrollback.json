@@ -1,0 +1,38 @@
+{
+  "id": "CVMwr53q",
+  "slug": "blockrollback",
+  "title": "BlockRollback",
+  "description": "You can roll back changes to blocks or the deletion of entities, and view the history.",
+  "body": "# BlockRollback\n\nBlockRollback is a lightweight audit and rollback plugin for Bukkit-family 1.21.x servers such as Paper, Spigot, and Purpur.  \nIt records player actions, some natural changes, and command-based edits into SQLite so they can later be inspected, looked up, and rolled back with `inspect`, `lookup`, and `rollback`.\n\nYou can use `/br` as an alias for `/blockrollback`.\n\n## Main Features\n\n- Records block placement and breaking, bucket actions, explosions, fire, fluid flow, and natural block updates\n- Records container item transactions and block click interactions\n- Records block placement and breaking, mob deaths, item despawns, and changes caused by `/fill` and `/kill`\n- Inspect mode lets you check the history of the clicked coordinates in place\n- Search logs by player name, special tags, time range, and radius\n- Supports rolling back block changes as well as restoring killed mobs and despawned items\n- Uses SQLite locally, so no external database server is required\n- Supports multilingual messages\n\n## Supported Environment\n\n- Bukkit-family 1.21.x\n- Based on the Paper API 1.21.4\n- Java 21\n- Paper, Spigot, Purpur, and compatible loaders\n\n## Commands\n\n| Command | Description |\n| --- | --- |\n| `/br inspect [on\\|off]` | Toggles Inspect mode. While it is on, clicking a block shows the history of that block position. |\n| `/br lookup <player\\|*\\|#Mobs\\|#DespawnItem> <time> [radius] [page]` | Searches logs that match the given conditions. `time` uses formats such as `30m`, `1h`, `1d`, `1w`, and `1y`. |\n| `/br rollback <player\\|*\\|#Mobs\\|#DespawnItem> <time> [radius]` | Applies rollbackable records that match the given conditions. |\n| `/br tp <world> <x> <y> <z>` | Teleports you to the coordinates from a lookup result. |\n| `/br cancel` | Cancels the currently running rollback. |\n| `/br status` | Shows database size, log count, write queue status, and rollback progress. |\n| `/br reload` | Reloads `config.yml`, `config.json`, and language files. |\n| `/br help` | Shows help. |\n\n### Examples\n\n- `/br inspect on`\n- `/br lookup Steve 1h 20`\n- `/br lookup #TNT 1d`\n- `/br rollback Steve 30m 20`\n- `/br rollback #Mobs 15m 30`\n- `/br rollback #DespawnItem 10m 20`\n\n## How Filters Work\n\n- A player name such as `Steve` targets block-related changes associated with that player\n- `*` targets every rollbackable record within the scope\n- `#Mobs` targets mob death records\n- `#DespawnItem` targets item despawn records\n- Special tags such as `#TNT`, `#Creeper`, `#Fire`, `#Fluid`, and `#Natural` can also be used for lookup and rollback\n\n## What Gets Logged\n\n### Rollbackable\n\n- Block placement and breaking\n- Bucket placement and pickup\n- Destruction caused by explosions\n- Burning caused by fire\n- Fluid flow\n- Natural block changes\n- Block changes caused by `/fill`\n- Mob deaths and mob removals caused by `/kill`\n- Item despawns\n\n### Audit Only\n\n- Putting items into containers and taking items out\n- Left-click and right-click interactions on blocks\n\n## Permissions\n\n| Permission | Description | Default |\n| --- | --- | --- |\n| `blockrollback.inspect` | Toggle Inspect mode | OP |\n| `blockrollback.lookup` | Run lookup and use `/br tp` | OP |\n| `blockrollback.rollback` | Run rollback and cancel | OP |\n| `blockrollback.admin` | Run status and reload | OP |\n\n## Configuration\n\n### `config.yml`\n\nMain settings:\n\n| Key | Description |\n| --- | --- |\n| `database-file` | SQLite file name |\n| `log.block-place-break` | Log block placement and breaking |\n| `log.buckets` | Log bucket actions |\n| `log.container-transactions` | Log container transactions |\n| `log.item-despawn` | Log item despawns |\n| `log.mob-kill` | Log mob deaths |\n| `log.interactions` | Log block clicks |\n| `log.explosions` | Log explosions |\n| `log.fire` | Log burning caused by fire |\n| `log.fluid-flow` | Log fluid flow |\n| `log.natural-block-updates` | Log natural block updates |\n| `inspect.use-adjacent-when-holding-block` | When holding a block and right-clicking, inspect the adjacent target position |\n| `rollback.default-radius` | Default radius used when a player omits the radius |\n| `rollback.max-radius` | Maximum rollback radius |\n| `rollback.max-records-per-run` | Maximum records processed in one rollback run |\n| `rollback.apply-per-tick` | Number of records applied per tick |\n| `command-tracking.fill` | Enable `/fill` tracking |\n| `command-tracking.fill-max-blocks` | Maximum number of blocks tracked for `/fill` |\n| `command-tracking.kill` | Enable `/kill` tracking |\n| `command-tracking.kill-max-entities` | Maximum number of entities tracked for `/kill` |\n| `command-tracking.console-world` | World name used for console-issued commands |\n| `command-tracking.notify-skip` | Notify when tracking is skipped because the target is too large |\n\n### `config.json`\n\n`config.json` is used to configure the language.\n\n```json\n{\n  \"configVersion\": 1,\n  \"language\": \"en_us \"\n}\n```\n\nSupported languages:\n\n- `ja_jp`\n- `en_us`\n- `de_de`\n- `fr_fr`\n- `ru_ru`\n- `zh_cn`\n\nThe default value on first launch is `en_us`.  \nYou can also edit the `.lang` files generated in `plugins/BlockRollback/lang/` to create your own translation.\n\n## Behavior Notes\n\n- Only one rollback can run at a time\n- For `lookup` and `rollback`, radius filtering uses the executor's current position when run by a player\n- Radius-based `lookup` cannot be used from the console\n- While Inspect mode is enabled, normal block interaction is cancelled so the click can be used for audit display\n- A record is skipped if the destination world does not exist or if the target entity is already present\n\n## Stored Data\n\n- Logs are stored as SQLite in `plugins/BlockRollback/<database-file>`\n- The table name is `action_logs`\n- Indexes are created for time, player name plus time, and location\n",
+  "categories": [
+    "bukkit",
+    "fabric",
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 193,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

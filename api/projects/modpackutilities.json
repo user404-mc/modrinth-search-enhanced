@@ -1,0 +1,21 @@
+{
+  "id": "2yPnwOjA",
+  "slug": "modpackutilities",
+  "title": "ModpackUtilities",
+  "description": "A (soon) multi-loader, multipurpose mod designed to address common annoyances when making a modpack!",
+  "body": "# About\nYou can think of **ModpackUtilities** as your toolbox as a modpack developer. Copy files & folders, execute commands on world join, and much more to come! A single, simple mod to help you make the modpack you've always dreamed of, one feature at a time!\n<br />\n<br />\n## Features\n### Copy files & folders\nKinda like [Configured Defaults](https://modrinth.com/mod/configured-defaults) or [Your Options Should Be Respected (YOSBR)](https://modrinth.com/mod/yosbr), this allows you to copy any file or folder you put inside the `copy` directory to the game's directory.\n<br />\n**Example:**\n<br />\n- If you want to copy the `options.txt` without overriding it, place it in `/config/modpackutilities/copy/options.txt` and it will end up in `/options.txt`, right where it should be!\n- Now let's say you want to overwrite the user's config even if he already has one. First set `overwriteOnCopy` to `true` in the config, then simply put your files and folders however you want them to be inside the user's game directory! It could look something like `/config/modpackutilities/copy/config/fancymenu` that will end up in `/config/fancymenu` for example.\n\nAnd there is no limit to the files and folders you can copy. It's up to your needs! Whatever you put will be copied.\n<br />\n<br />\n### Execute commands on world join\nAs the name suggests. In the config, `executionContext` will be from who the commands will be executed. `client` will make it as if the player typed the commands, and `server` will make it as if they were typed from the server's console. Keep in mind that permissions matter.\n**Example:**\n- If `executionContext` is set to `client`, if you try commands like /give that require administrator permission and the player isn't one, thne the command will silently fail.\n- If `executionContext` is set to `server`, the commands will be executed as an administrator, so /give commands and others will work. However, since you can't target the player via the classic @ parameters, you can use a special `@player` one instead to target the player.\n\n`executionFrequency` will run the commands either everytime the player joins the world, either once the first time, then never again. No example needed *I hope*.\n<br />\n<br />\n`commands` is where you actually type the commands. They will be executed from right to left, so keep that in mind if order matters.\n<br />\nThey have to start with a `/` and must be between double quotes, inside the already present square brackets.\n**Example:**\n- `\"commands\": [\"/give @s minecraft:diamond 64\", \"/tell @player Hello world!\"]` will first run the /tell command, then the /give command. You can note the use of @s and @player together.\n<br />\n<br />\n## How do I configure this mod?\nAlmost everything happens in `modpackutilities.json`, which is located at `/config/modpackutilities/modpackutilities.json`.\n<br />\nIn order, you'll find:\n- `overwriteOnCopy`: `true` or `false`\n- `executionContext`: `client` or `server`\n- `executionFrequency`: `once` or `everytime`\n- `commands`: any valid Minecraft commands. `@player` can be used to get the player's username\n\n<br />\n<br />\nEnjoy :)",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 157,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

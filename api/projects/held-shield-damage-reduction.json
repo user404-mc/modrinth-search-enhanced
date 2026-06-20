@@ -1,0 +1,41 @@
+{
+  "id": "cZOf9qLR",
+  "slug": "held-shield-damage-reduction",
+  "title": "Held Shield Damage Reduction",
+  "description": "Passive damage reduction for held shields, including modded ones, with configurable per-entity and per-item overrides.",
+  "body": "Held Shield DR adds passive damage reduction to shield type items inspired by the wonderful [Passive Shield](https://modrinth.com/mod/passive-shield) mod. **Modded shields are supported out of the box, no extra configuration needed!**\n\nBy default, players can gain damage reduction just by holding a shield. You can also extend that behavior to specific non-player entities, give certain entities their own custom values, or enable a fallback setting for other living entities if your pack needs it.\n\nThe mod also supports item specific overrides, so individual shields can use their own damage reduction values instead of the normal shared settings. That makes it easy to tune modded shields without changing the whole system.\n\nShield detection is flexible. It supports normal shield checks, common shield item behavior, and optional tooltip support (client needs it as well for it to show) so players can see what a shield is configured to do.\n\nNew in 1.1.2: shields can now optionally drain durability when passive DR is active, with configurable multiplier and cap options.\n\n\n## Example config\n\n\n<details>\n<summary>Spoiler</summary>\n\nThis example does a few different things at once:\n\n- Players get 33% passive shield damage reduction.\n- Players are allowed to use item specific shield overrides.\n- Touhou Little Maid maids are allowed to use passive shield DR.\n- They use a custom 65% value instead of the normal shared 33%.\n- Note: the entity IDs used here are from the 1.12.2 version of Touhou Little Maid. Other versions may use different IDs, for example 1.20.1 uses touhou_little_maid:maid instead of touhou_little_maid:entity.passive.maid. Always check the actual entity ID for your version.\n- Non-player entities not in the whitelist do not use passive shield DR by default.\n- If applyToAllEntities were enabled, those entities would use their own separate 33% fallback value.\n- A specific shield item can use its own custom DR.\n- Shield tooltips are enabled.\n- The extra item override suffix text is disabled.\n\n```\ngeneral {\n    B:enabled=true\n\n    B:applyToPlayers=true\n    B:playersUseItemOverrides=true\n    D:damageReductionPercent=33.0\n\n    B:applyToAllEntities=false\n    D:allEntitiesDamageReductionPercent=33.0\n\n    # Use entityWhitelist if you want an entity to use the normal shared damageReductionPercent value above.\n    S:entityWhitelist <\n        touhou_little_maid:entity.passive.maid\n     >\n\n    # Use entityDamageReductionOverrides if you want an entity to use its own custom value instead.\n    # If an entity is listed here, it does not need to also be in entityWhitelist.\n    # Overrides take priority over the shared whitelist value.\n    S:entityDamageReductionOverrides <\n        touhou_little_maid:entity.passive.maid;65.0\n     >\n\n    # If true, eligible non-player entities can also use itemDamageReductionOverrides.\n    # Entities with their own per-entity override ignore item overrides.\n    # Entities using entityWhitelist or applyToAllEntities keep the higher of their normal DR or the item override.\n    B:entitiesUseItemOverrides=false\n\n    S:itemDamageReductionOverrides <\n        basemetals:diamond_shield;90.0\n     >\n\n    B:showShieldTooltips=true\n    B:showItemOverrideText=false\n}\n```\n\n</details>\n\n\n",
+  "categories": [
+    "equipment",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 484,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.16.5",
+    "1.18.2",
+    "1.20",
+    "1.20.1",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

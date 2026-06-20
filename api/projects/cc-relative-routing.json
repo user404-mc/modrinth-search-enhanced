@@ -1,0 +1,21 @@
+{
+  "id": "f9u6cNVe",
+  "slug": "cc-relative-routing",
+  "title": "CC: Relative Routing",
+  "description": "Call peripherals using relative coordinates instead of ids",
+  "body": "# CC: Relative Routing\n\nCC: Relative Routing adds two ComputerCraft peripherals that lets you interact with the world using **relative coordinates** instead of peripheral IDs, making your programs portable and reproducible.\n\n---\n\n## Blocks\n\n### Redstone Router\n\nSend wireless redstone signals to relative coordinates and block faces.\n\nConnect a CC computer to the Redstone Router, then use the `redstone_router` peripheral:\n\n```lua\nlocal router = peripheral.find(\"redstone_router\")\n\n-- Power the north face of the block 3 east, 0 up, 2 north of the router\nrouter.setRedstone(3, 0, -2, \"north\", 15)\n\n-- Read redstone\nprint(router.getRedstone(3, 0, -2, \"north\"))  -- 15\n\n-- Remove all active signals\nrouter.clearAll()\n```\n\n**API**\n\n| Method | Description |\n|--------|-------------|\n| `setRedstone(x, y, z, side, power)` | Sets a redstone signal (power 0–15) on the given face of the target block. Power 0 removes the signal. |\n| `getRedstone(x, y, z, side)` | Returns the currently stored power for that offset + face. |\n| `clearAll()` | Removes all active signals from this router. |\n\n`side` is one of: `north` `south` `east` `west` `up` `down`\n\n---\n\n### Peripheral Router\n\nWrap any CC-compatible peripheral nearby using relative coordinates instead of a peripheral name or side. The peripheral can be used as if it was connected to the computer.\n\n```lua\nlocal router = peripheral.find(\"peripheral_router\")\n\n-- Wrap a monitor at offset (3, 0, 0)\nlocal mon = router.wrap(3, 0, 0)\nmon.setTextScale(1)\nmon.clear()\nmon.setCursorPos(1, 1)\nmon.write(\"Hello from relative routing!\")\n\n-- Check what's at an offset before wrapping\nif router.isPresent(0, 2, 0) then\n    print(router.getType(0, 2, 0))        -- e.g. \"monitor\"\n    print(router.getMethods(0, 2, 0))     -- list all methods\nend\n\n-- Call a single method without wrapping\nrouter.call(3, 0, 0, \"write\", \"Hello\")\n```\n\n**API**\n\n| Method | Description |\n|--------|-------------|\n| `wrap(x, y, z)` | Returns a proxy object with all the target peripheral's methods. Prefer this for interacting with peripherals. |\n| `isPresent(x, y, z)` | Returns `true` if a peripheral exists at the offset. |\n| `getType(x, y, z)` | Returns the peripheral type string, or `nil` if none. |\n| `getMethods(x, y, z)` | Returns a table of all method names on the peripheral. |\n| `call(x, y, z, method, ...)` | Calls a single named method. Note: may return `nil` for value-returning methods. Use `wrap()` when you need return values. |\n\n> Coordinates are relative to the Peripheral Router block itself. Works with any CC:Tweaked peripheral: monitors, speakers, disk drives, modems, and peripherals added by other mods.\n\n---\n\n## Target Wand\n\nThe **Target Wand** is a helper item that prints the correct relative coordinates for any block relative to a router, so you never have to count blocks manually.\n\n**Usage:**\n1. Right-click a **Redstone Router** or **Peripheral Router** to select it as the controller.\n2. Right-click any other block to print the relative coordinates and a ready-to-use Lua snippet in chat.\n\nFor Peripheral Router targets, it also detects what peripheral (if any) is at that position.\n\n---\n\n## Configuration\n\nThe config file is at `config/ccrelativerouting-common.toml`.\n\n| Option | Default | Description |\n|--------|---------|-------------|\n| `maxRange` | `128` | Maximum distance for Redstone Router offsets |\n| `peripheralMaxRange` | `128` | Maximum distance for Peripheral Router offsets |\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 257,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

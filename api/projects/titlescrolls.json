@@ -1,0 +1,27 @@
+{
+  "id": "yK7TUUWj",
+  "slug": "titlescrolls",
+  "title": "Title Scrolls",
+  "description": "A mod allowing players to have craftable titles",
+  "body": "# Title Scrolls\nThis mod is a near rewrite of [TitleScrolls](https://gitlab.com/repulica/title-scrolls) by [repulica](https://gitlab.com/repulica). Some code from the original was modified to suit the rewrite, so it remains under the original license. All textures are from the original.\n## Discription\nTitle Scrolls adds trinkets that display a title under player names. Common title scrolls can be crafted with two paper and two string and renamed in an anvil to set the title. All Titles are component-based, so adding one is as simple as customizing a give command.\n## Gameplay Images\n![A Player renaming a scroll to give it a custom title](https://raw.githubusercontent.com/cputnam-a11y/TitleScrolls/refs/heads/main/imgs/image.png)\n![A Custom Title Scroll](https://raw.githubusercontent.com/cputnam-a11y/TitleScrolls/refs/heads/main/imgs/image-2.png)\n![A Player with A Custom Title](https://raw.githubusercontent.com/cputnam-a11y/TitleScrolls/refs/heads/main/imgs/image-3.png)\n![A Player With a Command Generated Title](https://raw.githubusercontent.com/cputnam-a11y/TitleScrolls/refs/heads/main/imgs/image-4.png)\n## Modders\nAs all titles are component-based, adding a title to a mod is as simple as adding a new component to the title scroll item.\n```java\npublic class Demo implements ModInitializer {\n    @Override\n    public void onInitialize() {\n        ItemStack stack = new ItemStack(Items.BASE_TITLE_SCROLL);\n        stack.set(ComponentTypes.TITLE_TEXT, TitleTextComponet.of(Text.literal(\"Early Bird\")));\n        stack.set(ComponentTypes.SCROLL_LORE, ScrollLoreComponent.of(List.of(Text.literal(\"The Early Bird catches the worm\"))));\n        stack.set(ComponentTypes.RIBBON_COLOR, RibbonColorComponent.of(0x00FF00));\n        stack.set(ComponentTypes.RENDER_EFFECT, RenderEffectComponent.of(Identifier.of(\"modid\", \"demo\")));\n    }\n}\n```\nAdding a new Effect is as simple as creating a class implementing `titlescrolls.api.TitleEffect` and registering it with the `TitleEffects.INSTANCE#register(Identfier, TitleEffect)`.\n```java\npublic class Demo implements ModInitializer {\n    TitleEffect DEMO = new TitleEffect() {\n        @Override\n        public void render(ItemStack stack, SlotReference slot, MatrixStack matrixStack, \n                           VertexConsumerProvider vertexConsumer, int light,\n                           EntityModel<? extends LivingEntity> model, LivingEntity player,\n                           float headYaw, float headPitch) {\n            //Render your effect here\n        }\n    };\n    @Override\n    public void onInitialize() {\n        TitleEffects.INSTANCE.register(new Identifier(\"modid\", \"demo\"), DEMO);\n    }\n}\n```\n",
+  "categories": [
+    "adventure",
+    "decoration",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "library",
+    "management",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 908,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

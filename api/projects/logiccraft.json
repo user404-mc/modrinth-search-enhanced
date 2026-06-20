@@ -1,0 +1,36 @@
+{
+  "id": "DrCLi50H",
+  "slug": "logiccraft",
+  "title": "LogicCraft",
+  "description": "LogicCraft adds “vanilla+” enhancements focused on immersion and quality of life: dynamic lighting with items, smarter sand/gravel physics, XP fusion, biome titles, oxygen bottles, cave tremors, ambient drips, quick campfire cooking, door synchronization,",
+  "body": "\n![Logo](https://res.cloudinary.com/dhgdy73up/image/upload/v1774164949/ChatGPT_Image_22_mar_2026_01_35_19_a.m._e7yod4.png)\n\n# LogicCraft (Vanilla+ QoL & Immersion)\n\nLogicCraft is a modular “vanilla+” plugin that enhances immersion and QoL without changing the base gameplay: **dynamic lighting without shaders**, smarter physics for sand/gravel (if three blocks fall on you, you don’t suffocate), XP orb fusion to reduce lag, biome titles, oxygen bottles (an empty glass bottle can give you air underwater), cave quakes, ambient drips, quick campfire cooking (throw the item and it cooks), door synchronization (double doors now open with one click), hoe replanting (right/left click replants if you have seeds), and **Wet Boots** (wet footsteps + dripping).\n\n✅ **Everything is configurable** per module and per world.  \n⚡ Focused on being lightweight: tasks with `tick_period`, cooldowns, radii, and limits.\n\n---\n\n## ✨ Features (by module)\n\n### 🌍 `biome_title`\n\nShows a **Title** when changing biome, with:\n\n* Cooldown to avoid spam  \n* Configurable fade in/out  \n* Colors per biome  \n* Disabled worlds list  \n\n### 🔥 `dynamic_light`\n\nDynamic lighting when carrying items like torch/lantern/etc.\n\n* Configurable light level  \n* Place light at **FEET** or **HEAD**  \n* Respects torch particles (if enabled)  \n* Water attenuation + extinguish in water  \n\n### 🧱 `block_physics`\n\nImproved physics for sand/gravel:\n\n* **smart_suffocation**: prevents unfair deaths (breaks and drops if the column is small)  \n* **compaction**: compacts large stacks (gravel→cobble, sand→sandstone)  \n* **chain_collapse**: chain collapse with delay, max height, optional same material only  \n\n### ⭐ `xp_fusion`\n\nFuses nearby XP orbs:\n\n* Reduces lag from orb “spam”  \n* Glow threshold  \n* Optional particles on fusion  \n\n### ⚡ `fast_flow`\n\nInventory QoL:\n\n* **siphon**: quickly “pulls” items using shulker/ender chest item  \n* **quick_deposit**: right click to deposit quickly (optional: only items already in container)  \n\n### 🫧 `oxygen_bottles`\n\nOxygen bottles:\n\n* Converts a glass bottle into “air bubbles”  \n* Cooldown, fill delay, requires eyes underwater, consumes bottle  \n\n### 🪨 `cave_quake`\n\nUnderground tremors:\n\n* Gating by minimum height and cave size  \n* 2 phases: warning → impact  \n* Falling dripstone + optional gravel/sand fall  \n* Configurable camera shake  \n* Configurable audio  \n\n### 💧 `water_drip`\n\nCave ambience: dripping when underground\n\n* Upward check, radius, max_y, cooldown, volume  \n\n### 🔥 `campfire_cook`\n\nQuick cooking near campfire: drop the item and it cooks\n\n* Radius + cooking ticks  \n\n### 🚪 `door_sync`\n\nSynchronizes double doors\n\n* Optional: trapdoors and fence gates  \n\n### 🌱 `harvest_replant`\n\nAutomatically replants when harvesting (QoL survival style)  \n\n### 👢 `wet_boots`\n\nWhen leaving water, the player becomes “wet”:\n\n* Sound and dripping while walking  \n* Configurable duration  \n* Step cooldown  \n* Optional particles  \n* Can ignore if flying or not on ground  \n\n\nPerfect, here’s the missing module translated and integrated into the English documentation style so it matches the rest:\n\n---\n\n### 🍗 `food_hint`\n\nNow you can see your **saturation and hunger hints**, similar to AppleSkin but server-side:\n\n* **show_on_hold**: Displays hints when holding a food item  \n* **show_on_eat**: Displays hints when eating  \n* **tick_period**: Update frequency  \n* **hold_keep_ticks**: Persistence duration while holding  \n* **text**: Customizable template for display (food, saturation, bar, etc.)  \n\nExample config:\n\n```yml\n# ============================================================\n  food_hint:\n    enabled: true\n    show_on_hold: true                  \n    show_on_eat: true                  \n    force_config_text: true\n    debug_prefix: false\n    tick_period: 10      \n    hold_keep_ticks: 40  \n    text: \"&e{food}  &8|  {psat} {satbar}\" \n```\n---\n\n## ⚙️ Configuration\n\nEverything is controlled from `config.yml`:\n\n* `modules.<module>.enabled`: enable/disable modules  \n* `disabled_worlds`: list of worlds where the module won’t run  \n* `tick_period`, `cooldown_ticks`, `radius_blocks`, etc: performance and frequency  \n\nExample (summary):\n\n```yml\nmodules:\n  dynamic_light:\n    enabled: true\n    tick_period: 3\n    light_level: 15\n    place_at: \"FEET\"\n    water_extinguish: true\n    items: [TORCH, LANTERN, GLOWSTONE]\n\n  cave_quake:\n    enabled: true\n    tick_period: 60\n    cooldown_ticks: 1200\n    chance_per_check: 0.02\n```\n\n---\n\n## 🧠 Performance (tips)\n\nIf you want it more “lightweight”:\n\n* Increase `tick_period` (fewer checks)  \n* Increase `cooldown_ticks` (fewer events)  \n* Lower `chance_per_check`  \n* Lower radii (`radius_blocks`, `sample_radius`)  \n* Disable particles (`warning_particles`, `particle_on_merge`, `drip_particles`)  \n\n---\n\n## ✅ Compatibility\n\n* Designed for **Paper** (recommended).  \n* Should work on compatible forks (Purpur, etc).  \n\n> Note: if you use pure Spigot, some modern APIs may vary depending on build. Paper is the most stable for these kinds of features.  \n\n---\n\n## 📦 Installation\n\n1. Download the `.jar`  \n2. Place it in `/plugins`  \n3. Restart the server  \n4. Adjust `config.yml`  \n5. (Optional) `/logiccrafft reload` if you added a reload command (if applicable)  \n\n---\n\n## 🔧 Permissions / Commands\n\n/logiccrafft reload  \n* Permission: `logiccrafft.admin`  \n\n---\n\n## ❓ FAQ\n\n**Why do some modules “not always feel” active?**  \nBecause they use `chance_per_check` + `cooldown_ticks`. It’s not constant—intentionally immersive, not spammy.  \n\n**Can I disable things per world?**  \nYes: `disabled_worlds: [ world_nether, world_the_end ]` in each module.  \n\n**Can the quake last longer?**  \nYes: adjust in `screen_shake`:  \n\n* Longer duration: increase `shakes` and/or `interval_ticks`  \n* More intensity: increase `strength` (carefully)  \n\n---\n\n## 📝 Changelog (template)\n\n**v1.0**\n\n* Added: Wet Boots module  \n* Improved: Dynamic Light placement/behavior  \n* Tweaks: Cave Quake tuning & configs  \n* Fixes: general stability  \n\n---\n\n## 🧩 Credits\n\n* Inspired by “vanilla+” and QoL  \n* Thanks to the community for feedback/testing ❤️  \n\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 209,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

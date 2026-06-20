@@ -1,0 +1,41 @@
+{
+  "id": "EYexJtMn",
+  "slug": "shopgui+-dynashop",
+  "title": "ShopGUI+ DynaShop (Addon)",
+  "description": "A ShopGUI+ Addon to add dynamic shop",
+  "body": "# ShopGUI+ DynaShop - Dynamic Economy Addon\n\n*Transform your server's economy from static to fully dynamic! Prices fluctuate based on supply and demand, creating a realistic and engaging economic experience for your players.*\n\n*Works with [ShopGUI+](https://www.spigotmc.org/resources/6515/) version 1.78.0 and above (requires API version 3.0.0)*\n\n## ✨ Main Features\n\n- **Dynamic Pricing System**: Prices change based on buying/selling activity\n- **Stock Management**: Limited stock affecting prices in real-time\n- **Recipe-Based Pricing**: Auto-calculate prices from crafting recipes\n- **Web Dashboard**: Real-time price trends, market analysis and forecasting\n- **Tax System**: Apply configurable taxes to transactions\n- **Inflation System**: Simulate real economic conditions with time-based inflation\n- **Transaction Limits**: Set daily/weekly/monthly limits per player and item\n- **Advanced Placeholders**: Display dynamic prices, stock levels, limits, and more\n- **Performance-Optimized**: Configurable caching system for minimal server impact\n- **Multi-Version Support**: Compatible with 1.16 through 1.21+\n\n## DynaShop Types\n\nDynaShop offers five flexible modes to suit your server's needs:\n\n| Mode | Description |\n|------|-------------|\n| **DYNAMIC** | The price changes with each purchase or sale. Set min and max price boundaries. |\n| **STOCK** | Prices vary based on available stock. The less stock there is, the higher the price. |\n| **STATIC_STOCK** | Fixed prices with stock management (limited quantity). |\n| **RECIPE** | Automatically calculate prices based on the sum of ingredient costs (supports SHAPED, SHAPELESS, and FURNACE recipes). |\n| **LINK** | Items inherit prices and stock from other items for synchronized economies. |\n\n## Web Dashboard\n\nDynaShop includes a powerful web interface for monitoring your economy:\n\n- **Price Evolution Charts**: View buy/sell price history over time\n- **Volume Analysis**: Monitor transaction volumes and trends\n- **Technical Indicators**: RSI, MACD, Bollinger Bands, and moving averages\n- **Price Forecasting**: AI-powered price predictions based on historical data\n- **Support & Resistance Levels**: Automatically identify key price points\n- **Trading Signals**: Get notified of potential market opportunities\n- **Multilingual Support**: Available in English, French, German, Spanish, Italian and more\n- **Dark/Light Modes**: Customizable interface for your preference\n\n> See [Web Dashboard](https://dynashop.satyria.fr/)\n\n## Economic Simulation Features\n\n### Tax System\nCollect taxes on every transaction with configurable rates:\n```yaml\ntax:\n  enabled: true\n  mode: \"system\"  # \"player\", \"system\", or \"remove\"\n  receiver: \"ServerBank\"\n  buy-rate: 5.0    # 5% tax on purchases\n  sell-rate: 2.0   # 2% tax on sales\n```\n\n### Inflation System\nCreate a realistic economy with prices that evolve over time:\n```yaml\ninflation:\n  enabled: true\n  base-rate: 0.5   # Base inflation rate per day\n  # Configure different rates for various item categories\n  categories:\n    food: 0.3      # Food items inflate more slowly\n    minerals: 0.8  # Minerals inflate faster\n```\n\n## Commands & Permissions\n\n- **/dynashop reload** - Reload the plugin configuration (Permission: dynashop.reload)\n- **/dynashop limit [info|reset|resetall]** - Manage transaction limits (Permission: dynashop.admin.limit)\n- **/dynashop inflation [info|enable|disable|reset|update]** - Control inflation (Permission: dynashop.admin.inflation)\n\n## Placeholders\n\n(to use in the ShopGUI+ config file) *Works in shop, amount selection & bulk selection menus*\n\n- **%dynashop_current_buyPrice%** - Raw buy price\n- **%dynashop_current_sellPrice%** - Raw sell price\n- **%dynashop_current_buyMinPrice%** - Minimum buy price\n- **%dynashop_current_buyMaxPrice%** - Maximum buy price\n- **%dynashop_current_sellMinPrice%** - Minimum sell price\n- **%dynashop_current_sellMaxPrice%** - Maximum sell price\n- **%dynashop_current_buy%** - Formatted buy price with min/max\n- **%dynashop_current_sell%** - Formatted sell price with min/max\n- **%dynashop_current_stock%** - Current stock level\n- **%dynashop_current_maxstock%** - Maximum stock level\n- **%dynashop_current_stock_ratio%** - Stock ratio (current/max)\n- **%dynashop_current_colored_stock_ratio%** - Colored stock ratio\n- **%dynashop_current_buy_limit%** - Remaining buy limit\n- **%dynashop_current_sell_limit%** - Remaining sell limit\n- **%dynashop_current_buy_reset_time%** - Time until buy limit resets\n- **%dynashop_current_sell_reset_time%** - Time until sell limit resets\n\n## ⚙️ Easy Configuration\n\nSet up items with just a few lines in your ShopGUI+ shop config:\n```yaml\ndiamond:\n  type: item\n  item:\n    material: DIAMOND\n    quantity: 1\n  typeDynaShop: DYNAMIC\n  buyPrice: 1000\n  buyDynamic:\n    min: 800\n    max: 1200\n    growth: 1.01\n    decay: 0.99\n  sellPrice: 900\n  sellDynamic:\n    min: 700\n    max: 1100\n    growth: 1.01\n    decay: 0.99\n  slot: 0\n  page: 1\n```\n\n## Dependencies\n\n**Required:**\n- **[ShopGUI+](https://www.spigotmc.org/resources/6515/)** 1.78.0+ (API 3.0.0+)\n- **Vault** - For economy integration\n- **[NBTAPI](https://www.spigotmc.org/resources/7939/)** - For advanced item handling\n\n**Optional:**\n- **[PlaceholderAPI](https://www.spigotmc.org/resources/6245/)** - For additional placeholders in other plugins\n\n## Compatibility\n\n- Minecraft 1.16 - 1.21+\n- All economy plugins supported by Vault\n- ItemsAdder (supported for custom items)\n- Works on Paper, Spigot, and similar servers\n\n## Documentation\n\nComplete documentation is available on our wiki: [DynaShop Wiki](https://github.com/Tylwen/ShopGUIPlus-DynaShop/wiki)\n\n## Support\n\nJoin our Discord for support, suggestions, and updates: [Discord Server](https://discord.gg/XmgH6Q98wj)\n\n## Bug Reports\n\nReport issues on GitHub: [GitHub Issues](https://github.com/Tylwen/ShopGUIPlus-DynaShop/issues)\n\n---\n\n*Transform your server's economy today with ShopGUI+ DynaShop - the dynamic economy addon!*\n\n![bStats](https://bstats.org/signatures/bukkit/ShopGUIPlus%20DynaShop.svg)",
+  "categories": [
+    "bukkit",
+    "economy",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 11100,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

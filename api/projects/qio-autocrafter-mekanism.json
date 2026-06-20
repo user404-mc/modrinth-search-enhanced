@@ -1,0 +1,26 @@
+{
+  "id": "JWRNtiLD",
+  "slug": "qio-autocrafter-mekanism",
+  "title": "Mekanism: QIO Autocrafter",
+  "description": "Adds a Mekanism-integrated autocrafting machine that uses the QIO system as its only inventory, allowing fully automated crafting directly from your stored resources.",
+  "body": "## WORK-IN PROGRESS\n# QIO AutoCrafter\n\n**Autocrafting for Mekanism's QIO system — no cables, no interfaces, no pattern chests.**\n\nQIO AutoCrafter adds a single machine that plans and executes crafting recipes directly\nagainst a QIO frequency. Ask it for an item, and it figures out the whole recipe tree on\nits own: which intermediates to craft, how many of each, and whether your stored materials\nare enough — then crafts everything virtually, straight from and into your QIO storage.\n\n---\n\n##  Features\n\n- **Recursive auto-crafting** — request a deep Mekanism item (induction cells, control\n  circuits, energy cubes...) and the machine resolves the full recipe chain automatically.\n  No patterns to encode, ever.\n- **QIO-native** — materials are taken from the bound QIO frequency and results go back\n  into it. The machine itself stores nothing but energy.\n- **Smart planning** — runs asynchronously off the server thread, prefers materials you\n  already have, understands tag variants (any log → planks), and reports *exactly* which\n  base materials you're missing and how many.\n- **Missing Materials panel** — live side panel listing every missing item with its icon,\n  the amount needed and how much is already available, color-coded red/orange/green as you\n  restock.\n- **Job queue** — queue up to 24 requests; completed jobs clean themselves up, failed ones\n  tell you why, and cancelling returns every reserved material to the QIO.\n- **Safe by design** — materials are reserved before crafting and rolled back on any\n  failure. Chunk unloads and server restarts mid-craft don't dupe or void items.\n- **Multiplayer ready** — respects Mekanism frequency security (Public / Trusted /\n  Private): nobody can drain a private frequency through your machine.\n- **Upgrades** — supports Speed and Energy upgrades.\n\n---\n\n##  Interface\n\n![UI](https://cdn.modrinth.com/data/cached_images/0db2de70dc7325ec813afd37df8e27e0e25b60c5.png)\n\nSearch any craftable item, set the amount (up to 9,999,999), press **Start** and watch the\nqueue. The activity bar shows what the machine is doing at all times.\n\n![UIMissing](https://cdn.modrinth.com/data/cached_images/7e033bc1301e7b1d9e4db36395712ec7f953a339_0.webp)\n\nThe **Missing** button opens the side panel: every missing material with live availability\nfrom your QIO, updating as you restock.\n\n---\n\n## 🔧 Getting started\n\n1. **Craft the machine** (endgame recipe — see below).\n2. **Bind a frequency**: right-click the machine with a *Portable QIO Dashboard* that has\n   your frequency selected.\n3. **Power it** (any Forge Energy / Mekanism cable works).\n4. Right-click to open the GUI, search an item, set the amount and press **Start**.\n\n---\n\n##  Crafting recipe\n\n![Crafting](https://cdn.modrinth.com/data/cached_images/b95d79c6c0a7d296a16d1fb8681563fa4609a215.png)\n\n| | | |\n|---|---|---|\n| Ultimate Induction Provider | Supermassive QIO Drive | Ultimate Induction Provider |\n| Supermassive QIO Drive | **Robit** | Supermassive QIO Drive |\n| Ultimate Induction Provider | Supermassive QIO Drive | Ultimate Induction Provider |\n\nIt's meant to be a late-game reward — by the time you can afford four Supermassive QIO\nDrives, you *really* don't want to hand-craft induction matrices anymore.\n\n---\n\n##  Requirements\n\n| | |\n|---|---|\n| Minecraft | **1.20.1** (Forge 47.4+) |\n| Required | **Mekanism 10.4.16+** |\n| Sides | Client **and** server (same version on both) |\n\nWorks great alongside Mekanism Generators / Tools / Extras.\n\n---\n\n## ⚠️ Good to know ⚠️\n\n- If a recipe tree is too deep for the planning budget, the job fails with a clear message;\n  queue a simpler intermediate first and retry.\n- Frequency binding currently requires the Portable QIO Dashboard (no in-GUI frequency\n  selector yet).\n\n",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 158,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

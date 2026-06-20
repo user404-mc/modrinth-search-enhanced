@@ -1,0 +1,24 @@
+{
+  "id": "JdvOuRuL",
+  "slug": "locate-fixer",
+  "title": "Locate Fixer",
+  "description": "you ever get that annoying msg that says biome not found or structure not found? well this fixes that command and adds some features, also the locate command runs async which improve performance.",
+  "body": "# Locate Fixer\n\nLocate Fixer is a lightweight quality-of-life mod for NeoForge 1.21.1 that makes Minecraft's `/locate`, `/locate biome`, and `/tp` commands reliable for players, staff, and pack makers. The mod keeps searching long after vanilla would give up, streams progress back to chat, and makes teleporting to the result safe even on busy servers also on versions 2.1.1+ when telaporting in a hill biome or cave biome you should not get stuck in blocks anymore just be careful of lava if you do get stuck please make a issue report.\n\n## Highlights\n\n*   **Escalating search radii.** Locate rings climb from 6,400 blocks up to 256,000 blocks, so far-flung structures and modded biomes are actually discoverable.\n*   **Async locate workers.** Scans run in a background thread pool while the main server thread stays responsive and keeps players moving.\n*   **Smart caching.** Recently found structures and biomes are cached and instantly reused for nearby requests, saving repeated scans.\n*   **Safer teleports.** `/tp` to a locate result preloads the destination chunks, shows a 5‑second countdown, and only moves the player once everything is ready. also it uses raytracing to find a place to put you so you don't get stuck between blocks.\n*   **Schematic helpers.** `/locate schematic <name>` hooks into the WorldEdit `config/worldedit/schematics` folder so custom builds are easy to revisit.\n\n## Configuration\n\nLocate Fixer is configurable through the generated `config/locatefixer-server.toml` file.\n\n*   `locate.locateRings` — Ordered list of block radii to search. You can shrink or expand the search ceiling to fit your world size.\n*   `locate.locateThreadCount` — Number of async worker threads (1–8) that handle structure and biome scans.\n*   `locate.cacheDurationMinutes` — How long locate results stay cached before expiring.\n*   `locate.cacheChunkGranularity` — How broadly cached results can be reused around the original request.\n*   `locate.biomeSampleRadiusMultiplier` & `locate.biomeSampleStepMultiplier` — Tune biome sampling density for faster or more precise biome scans.\n*   `locate.enableNearestCommand` — Enables `/locate nearest structure|biome <count>`.\n*   `poi.poiSearchRadius` — Maximum radius used when scanning for points of interest.\n\n## Usage\n\n1.  Install Locate Fixer on the server (optional but recommended on clients for consistent chat messages).\n2.  Run `/locate` or `/locate biome` as usual. Progress messages show which radius is currently scanning.\n3.  Use `/tp` immediately after; the mod preloads the target area and teleports you safely once it’s chunk-loaded.\n4.  Drop `.schem` files into `config/worldedit/schematics/` to make them discoverable via `/locate schematic <name>`.\n5.  DEV only you can add your own structure thats generated not by datapacks and register it to the locate command using our api check the source code for api docs\n\n## Compatibility\n\n*   NeoForge 1.21.1\n*   No hard dependencies\n*   Designed to coexist with optimization mods and structure/worldgen content packs\n\nWhether you're hunting a single rare biome, confirming a structure generated, or guiding new players across a modded server, Locate Fixer keeps the locate workflow fast, chatty, and safe from start to finish.",
+  "categories": [
+    "decoration",
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 275,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "12wTPPg4",
+  "slug": "rapidban",
+  "title": "RapidBan",
+  "description": "A plugin has same functions as Litebans",
+  "body": "# RapidBan \n**Enterprise-Grade Minecraft Punishment Management System**\n\n**A high-performance, distributed punishment management plugin for Paper 1.21+.**\n\nCore Features\n\n🚀 High-Performance Architecture\n\n-   Asynchronous Database Operations - Uses HikariCP connection pool;\n    all I/O operations are executed asynchronously\n-   Thread-Safe Design - Dedicated thread pool for handling database\n    requests without impacting server TPS\n-   Local Cache - Active ban cache to reduce database queries\n\n🌐 Distributed Synchronization\n\n-   Multi-Server Support - Multiple servers share the same database\n-   Real-Time Sync - Ban/unban operations take effect instantly across\n    all servers\n-   Redis Support - Optional Redis Pub/Sub or database polling\n\n🎯 UUID-Based Ban System\n\n-   Based on UUID instead of player name\n-   Supports permanent bans, temporary bans, and silent bans\n-   Automatic unban upon expiration\n-   Complete undo system\n\n🔍 IP Association Detection\n\n-   Records players’ historical login IPs\n-   Automatically detects linked (alt) accounts\n-   Notifies administrators of suspicious logins\n-   Optional automatic linked-account banning\n\n🎨 Custom Kick Interface\n\n-   Supports MiniMessage format\n-   Variable placeholders (player name, reason, remaining time, etc.)\n-   Different templates for different punishment types\n\n📊 Web Management Panel\n\n-   REST API interface\n-   JWT authentication\n-   View punishment history\n-   Execute ban/unban operations\n-   Search players and linked accounts\n\nDatabase Options\n\nSQLite (Recommended for Single Server)\n\n-   ✅ No additional database installation required\n-   ✅ Simple configuration, ready to use out of the box\n-   ✅ Suitable for small servers\n-   ❌ Does not support multi-server synchronization\n\nConfiguration example:\n\n    database:\n      type: \"SQLITE\"\n      sqlite:\n        file: \"rapidban.db\"\n\nMySQL/MariaDB (Recommended for Multi-Server)\n\n-   ✅ Supports distributed multi-server synchronization\n-   ✅ High performance, suitable for large networks\n-   ✅ Centralized data management\n-   ❌ Requires a separate database server\n\nConfiguration example:\n\n    database:\n      type: \"MYSQL\"\n      mysql:\n        host: \"localhost\"\n        port: 3306\n        database: \"rapidban\"\n        username: \"root\"\n        password: \"password\"\n\nConfiguration\n\nconfig.yml\n\n    # Server identifier (used for distributed synchronization)\n    server-id: \"server-1\"\n\n    # Database configuration\n    database:\n      # Database type: MYSQL or SQLITE\n      type: \"MYSQL\"\n\n      # MySQL/MariaDB configuration\n      mysql:\n        host: \"localhost\"\n        port: 3306\n        database: \"rapidban\"\n        username: \"root\"\n        password: \"password\"\n\n      # SQLite configuration (file path relative to plugin data folder)\n      sqlite:\n        file: \"rapidban.db\"\n\n    # Synchronization system configuration\n    sync:\n      interval-seconds: 5\n      use-redis: false\n      redis:\n        host: \"localhost\"\n        port: 6379\n        password: \"\"\n\n    # IP association detection\n    ip-check:\n      enabled: true\n      auto-ban-alts: false\n      notify-staff: true\n\n    # Web management panel\n    web:\n      enabled: true\n      host: \"0.0.0.0\"\n      port: 8080\n      jwt-secret: \"change-this-to-a-random-secret-key\"\n      admin-username: \"admin\"\n      admin-password: \"admin123\"\n\nCommands\n\n  -------------------------------------------------------------------------------------------------\n  Command                                       Description               Permission\n  --------------------------------------------- ------------------------- -------------------------\n  /ban <player> <reason> [-t <duration>] [-s]   Ban a player              rapidban.ban\n\n  /unban <player>                               Unban a player            rapidban.unban\n\n  /history <player>                             View punishment history   rapidban.history\n\n  /punishundo <player> [reason]                 Undo all punishments      rapidban.undo\n  \n  -------------------------------------------------------------------------------------------------\n\nDuration Format\n\n-   s - Seconds\n-   m - Minutes\n-   h - Hours\n-   d - Days\n-   w - Weeks\n-   M - Months\n-   y - Years\n\nExamples:\n\n    /ban Player123 Cheating -t 7d\n    /ban Player456 Abusive language -t 3h -s\n    /ban Hacker999 Using hacks\n\nPermissions\n\n  Permission            Description\n  --------------------- --------------------------------------\n  rapidban.*            All permissions\n  rapidban.ban          Ban players\n  rapidban.unban        Unban players\n  rapidban.history      View history\n  rapidban.undo         Undo punishments\n  rapidban.notify       Receive punishment notifications\n  rapidban.notify.alt   Receive linked-account notifications\n\nWeb API\n\nAuthentication\n\n    POST /auth/login\n    Content-Type: application/json\n\n    {\n      \"username\": \"admin\",\n      \"password\": \"admin123\"\n    }\n\nResponse:\n\n    {\n      \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n      \"username\": \"admin\",\n      \"role\": \"ADMIN\"\n    }\n\nPerformance Optimization\n\n-   ✅ All database operations executed asynchronously\n-   ✅ HikariCP connection pool optimization\n-   ✅ Active ban local cache\n-   ✅ Dedicated thread pool for I/O processing\n-   ✅ Batch query optimization\n-   ✅ Automatic cleanup of expired data\n\nDevelopment\n\n    # Clone the project\n    git clone <repository>\n\n    # Build\n    ./gradlew shadowJar\n\n    # Output location\n    build/libs/RapidBan-1.0-Beta1.jar\n\nLicense\n\nThis project is licensed under the GNU General Public License v3.0.\n\nSupport\n\nIf you have any questions or suggestions, please submit an Issue.\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 118,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

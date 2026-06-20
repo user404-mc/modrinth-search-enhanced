@@ -1,0 +1,24 @@
+{
+  "id": "FQe0irLI",
+  "slug": "embers-log-filtering",
+  "title": "Ember's Log Filtering",
+  "description": "A highly configurable log filtering mod for Minecraft",
+  "body": "# LogFilter\n\nA highly configurable log filtering mod for Minecraft. Suppress noisy log messages, highlight important ones, and keep your console clean — all with hot-reloadable rules.\n\n## Features\n\n- **Regex message filtering** — Match and suppress log messages by content using regular expressions\n- **Logger name filtering** — Filter by exact logger name or regex pattern, with hierarchical matching\n- **Log level filtering** — Target specific log levels (DEBUG, INFO, WARN, ERROR)\n- **Filter actions** — DENY (suppress), ALLOW (force show), or NEUTRAL (pass through) per rule\n- **Per-rule enable/disable** — Toggle individual rules without removing them\n- **Hot-reload** — Edit `logfilter.json` and changes apply instantly, no restart needed\n- **Default rules included** — Ships with pre-made (disabled) rules for common log spam\n\n## Supported Platforms\n\n| Loader | Minecraft Version |\n|--------|-------------------|\n| Forge | 1.20.1 |\n| NeoForge | 1.21.1 |\n| Fabric | 1.20.1 |\n| Fabric | 1.21.1 |\n\n## Configuration\n\nLogFilter stores its config in `logfilter.json` in your Minecraft config directory. The file is created automatically on first launch with sensible defaults.\n\n### Example Config\n\n```json\n{\n  \"configVersion\": 1,\n  \"enabled\": true,\n  \"rules\": [\n    {\n      \"name\": \"Suppress OpenAL spam\",\n      \"enabled\": true,\n      \"type\": \"MESSAGE_REGEX\",\n      \"pattern\": \"(?i)openal\",\n      \"action\": \"DENY\",\n      \"level\": null\n    },\n    {\n      \"name\": \"Block debug logs from server level\",\n      \"enabled\": true,\n      \"type\": \"LOGGER_NAME\",\n      \"pattern\": \"net.minecraft.server.level\",\n      \"action\": \"DENY\",\n      \"level\": \"DEBUG\"\n    },\n    {\n      \"name\": \"Always show errors\",\n      \"enabled\": true,\n      \"type\": \"LEVEL\",\n      \"pattern\": \"ERROR\",\n      \"action\": \"ALLOW\",\n      \"level\": null\n    }\n  ]\n}\n```\n\n### Rule Types\n\n| Type | Description |\n|------|-------------|\n| `MESSAGE_REGEX` | Match the log message content against a regex pattern |\n| `LOGGER_NAME` | Match by exact logger name or prefix (hierarchical) |\n| `LOGGER_REGEX` | Match logger names using a regex pattern |\n| `LEVEL` | Match by log level (DEBUG, INFO, WARN, ERROR) |\n\n### Actions\n\n| Action | Description |\n|--------|-------------|\n| `DENY` | Suppress the log message |\n| `ALLOW` | Force the message through, regardless of other rules |\n| `NEUTRAL` | No effect — pass through to the next rule |\n\n### Optional Level Restriction\n\nAny rule can include a `level` field to restrict it to a specific log level. For example, a `LOGGER_NAME` rule with `\"level\": \"DEBUG\"` will only match debug messages from that logger.\n\n## Default Rules\n\nLogFilter ships with several pre-configured rules (disabled by default) to get you started:\n\n- Suppress OpenAL/LWJGL info spam\n- Suppress advancement loading messages\n- Suppress debug logs from `net.minecraft.server.level`\n- Suppress recipe loading messages\n- Always allow ERROR-level messages\n\nEnable them by setting `\"enabled\": true` in the config file.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 298,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

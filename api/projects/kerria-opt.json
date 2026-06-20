@@ -1,0 +1,35 @@
+{
+  "id": "f0ruQTF7",
+  "slug": "kerria-opt",
+  "title": "Kerria",
+  "description": "Faster texture animation",
+  "body": "# Kerria\n\n## Overview\n\nKerria is a mod that optimizes texture animations.\n\nIn vanilla Minecraft, texture animations are handled rather inefficiently. Each time a texture is updated, it is uploaded onto the atlas via the slow `glTexSubImage2D`, which involves CPU->GPU upload and may potentially incur a pipeline stall.\n\nThis mod adds two optimizations to reduce the performance impact of animated textures:\n\n- **Texture Animation Cache**. Instead of performing an upload each time, we can cache non-interpolated animated textures once they are uploaded to the GPU. When the texture is subsequently needed, it is applied with a very fast GPU-to-GPU copy.\n- **Fast Texture Upload**. Optimize texture upload performance with persistently mapped buffers and pixel buffer objects.\n\nThe optimizations can be configured through the Sodium/Embeddium video settings screen.\n\n## FAQs\n\n**Is this compatible with Sodium/Embeddium's \"Animate Only Visible Textures\" option?**\n\nYes. That option improves performance by skipping uploading animated textures that are invisible, while this mod actually speeds up the process of uploading animated textures.",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 247275,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

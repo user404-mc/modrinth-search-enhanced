@@ -1,0 +1,38 @@
+{
+  "id": "cSEEejKX",
+  "slug": "miss",
+  "title": "MISS",
+  "description": "A Mod that forward Minecraft connection on websocket",
+  "body": "# MISS\n\n[![Modrinth Downloads](https://img.shields.io/modrinth/dt/miss?color=4&label=Downloads&logo=modrinth)](https://modrinth.com/mod/miss)\n[![GitHub](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/LiterMC/MISS/)\n[![License](https://img.shields.io/badge/License-GPL3.0-green.svg)](LICENSE)\n![Minecraft Version](https://img.shields.io/badge/Minecraft-1.19%2B-blue?logo=minecraft)\n\nMISS uses WebSocket to forward your Minecraft connection.\n\n## Features\n\n- Support Websocket protocol on both client and server\n- Use same port on the server to detect WebSocket connection\n\n## Reqirements\n\n- Minecraft JE 1.19+\n- Nginx 1.18+ (optional)\n- SSL certificate (optional)\n- Java 17+\n\n## Install\n\n#### Server side\n\n1. Download from [Modrinth](https://modrinth.com/mod/miss/versions)\n2. Put the mod into `mods` folder\n3. Restart Minecraft server\n\n#### Client side\n\n1. Download from [Modrinth](https://modrinth.com/mod/miss/versions)\n2. Put the mod into `mods` folder\n3. Restart Minecraft client\n\n## Nginx Configuration\n\nExample:\n```nginx\nserver {\n    listen 443 ssl;\n    server_name mc.example.com;\n\n    ssl_certificate /path/to/fullchain.pem;\n    ssl_certificate_key /path/to/privkey.pem;\n\n    # You also can forward different paths to different servers\n    location / {\n        proxy_pass http://ip_or_hostname:25565;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"Upgrade\";\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\n```\n\n## How to connect\n\n1. Input `wss://mc.example.com` to the `Server Address` bar\n2. Join the server\n\n------\n\nMISS 用于通过 WebSocket 转发 Minecraft 连接。这使得你可以通过 WebSocket 协议连接到 Minecraft 服务器，提供了一种新的网络传输方式。\n\n## 功能特性\n\n- 通过 WebSocket 协议转发 Minecraft 连接。\n- 支持 Minecraft 客户端与服务器之间的双向通信。\n\n\n## 前置要求\n\n- Minecraft Java 版 1.19+\n- Nginx 1.18+ (可选)\n- 有效域名与SSL证书 (可选)\n- Java 17+\n\n## 模组安装\n\n#### 服务端\n\n1. 从 [Modrinth](https://modrinth.com/mod/miss/versions) 下载对应版本\n2. 将文件放入服务端 `mods` 目录\n3. 重启 Minecraft 服务器\n\n#### 客户端\n\n1. 从 [Modrinth](https://modrinth.com/mod/miss/versions) 下载对应版本\n2. 将文件放入客户端 `mods` 目录\n3. 启动 Minecraft 客户端\n\n## Nginx配置\n\n反向代理服务器配置示例：\n\n```nginx\n# 假设用户访问的域名是 mc.example.com，且已申请 SSL 证书\nserver {\n    listen 443 ssl;\n    server_name mc.example.com;\n\n    ssl_certificate /path/to/fullchain.pem;\n    ssl_certificate_key /path/to/privkey.pem;\n\n# 该 location 其实也可以使用不同的 path 转发到不同的服务器\n    location / {\n        proxy_pass http://ip:25565; # 转发 Minecraft 服务器的地址（可以是域名或IP）\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"Upgrade\";\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\n```\n\n请根据实际情况修改配置文件中的域名和证书路径。\n\n## 如何连接服务器\n\n1. 安装客户端 MOD 后\n2. 启动游戏\n3. 添加服务器并在地址栏输入：\n   `wss://mc.example.com`\n4. 点击\"加入服务器\"按钮\n\n## 注意事项\n\n- 确保443端口已打开，且你的服务器支持 WebSocket 协议。\n- 确保你的 Minecraft 服务器配置允许通过 WebSocket 连接。\n- 使用此模组时，请确保你的网络环境支持 WebSocket 协议。",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1334,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "JMloQIYA",
+  "slug": "explosion-control-rebalance",
+  "title": "Explosion Control & Rebalance",
+  "description": "Simple server-side mod (works in singleplayer as well) that gives you configurable control over explosions by allowing you to toggle griefing, add extra knockback, and/or modify damage for each source.",
+  "body": "# Explosion Control & Rebalance\nSimple server-side mod (works in singleplayer as well) that gives you configurable control over explosions by allowing you to toggle griefing, add extra knockback, and/or modify damage for each source.\n\n![gif](https://github.com/user-attachments/assets/809569af-e4d0-46eb-86a7-cb23bd56eda2)\n\n## Config\n\nThe mod is highly configurable allowing you to tweak aspects of the knockback and falloff as well as settings for each different type of explosion. You are also able to configure explosions from other mods using the `Explosions.Custom.Exploders` config option.\n\n<details>\n<summary>Click to see the default config file</summary>\n  \n```toml\n# Controls aspects of the added knockback\n[Knockback]\n\t# Strength of extra knockback caused by the explosion.\n\t# Default: 3.0\n\tKnockbackStrength = 3.0\n\t# Multiplier of extra knockback caused by the explosion to players.\n\t# Default: 0.9\n\tPlayerKnockbackMultiplier = 0.9\n\t# The amount of upward velocity added by the explosion as part of its knockback.\n\t# Default: 0.1\n\tUpwardsKnockback = 0.1\n\n# Controls the falloff used for knockback and damage\n[Falloff]\n\t# Exponent used for calculating the falloff.\n\t# Default: 2.0\n\tFalloffExponent = 2.0\n\t# Adds to the radius when calculating the falloff. Allows for entities near the edge of the explosion to still get some knockback\n\t# Default: 1.0\n\tFalloffExtension = 1.0\n\n# Controls aspects of different types of explosions\n[Explosions]\n\n\t[Explosions.Creeper]\n\t\t# Prevents creeper explosions from breaking blocks.\n\t\t# Default: true\n\t\tDisableCreeperGriefing = true\n\t\t# Enables extra knockback for creeper explosions.\n\t\t# Default: true\n\t\tEnableCreeperKnockback = true\n\t\t# Multiplier for extra knockback caused by creeper explosions.\n\t\t# Default: 1.0\n\t\tCreeperKnockbackMultiplier = 1.0\n\t\t# Multiplier for the total damage caused by creeper explosions.\n\t\t# Default: 1.0\n\t\tCreeperDamageMultiplier = 1.0\n\n\t[Explosions.EndCrystal]\n\t\t# Prevents end crystal explosions from breaking blocks and setting blocks on fire.\n\t\t# Default: false\n\t\tDisableEndCrystalGriefing = false\n\t\t# Enables extra knockback for end crystal explosions.\n\t\t# Default: true\n\t\tEnableEndCrystalKnockback = true\n\t\t# Multiplier for extra knockback caused by end crystal explosions.\n\t\t# Default: 0.75\n\t\tEndCrystalKnockbackMultiplier = 0.75\n\t\t# Multiplier for the total damage caused by end crystal explosions.\n\t\t# Default: 1.0\n\t\tEndCrystalDamageMultiplier = 1.0\n\n\t[Explosions.Fireball]\n\t\t# Prevents fireball explosions from breaking blocks and setting blocks on fire.\n\t\t# Default: false\n\t\tDisableFireballGriefing = false\n\t\t# Enables extra knockback for fireball explosions.\n\t\t# Default: true\n\t\tEnableFireballKnockback = true\n\t\t# Multiplier for extra knockback caused by fireball explosions.\n\t\t# Default: 0.75\n\t\tFireballKnockbackMultiplier = 0.75\n\t\t# Multiplier for the total damage caused by fireball explosions.\n\t\t# Default: 1.0\n\t\tFireballDamageMultiplier = 1.0\n\n\t[Explosions.TNT]\n\t\t# Prevents TNT explosions from breaking blocks.\n\t\t# Default: false\n\t\tDisableTNTGriefing = false\n\t\t# Enables extra knockback for TNT explosions.\n\t\t# Default: true\n\t\tEnableTNTKnockback = true\n\t\t# Multiplier for extra knockback caused by TNT explosions.\n\t\t# Default: 1.25\n\t\tTNTKnockbackMultiplier = 1.25\n\t\t# Multiplier for the total damage caused by TNT explosions.\n\t\t# Default: 1.0\n\t\tTNTDamageMultiplier = 1.0\n\n\t# Wither\n\t[Explosions.Wither]\n\n\t\t[Explosions.Wither.Spawn]\n\t\t\t# Prevents wither spawning explosions from breaking blocks.\n\t\t\t# Default: false\n\t\t\tDisableWitherGriefing = false\n\t\t\t# Enables extra knockback for wither spawning explosions.\n\t\t\t# Default: true\n\t\t\tEnableWitherKnockback = true\n\t\t\t# Multiplier for extra knockback caused by wither spawning explosions.\n\t\t\t# Default: 2.0\n\t\t\tWitherKnockbackMultiplier = 2.0\n\t\t\t# Multiplier for the total damage caused by wither spawning explosions.\n\t\t\t# Default: 1.0\n\t\t\tWitherDamageMultiplier = 1.0\n\n\t\t[Explosions.Wither.Skull]\n\t\t\t# Prevents wither skull explosions from breaking blocks.\n\t\t\t# Default: false\n\t\t\tDisableWitherSkullGriefing = false\n\t\t\t# Enables extra knockback for wither skull explosions.\n\t\t\t# Default: true\n\t\t\tEnableWitherSkullKnockback = true\n\t\t\t# Multiplier for extra knockback caused by wither skull explosions.\n\t\t\t# Default: 0.75\n\t\t\tWitherSkullKnockbackMultiplier = 0.75\n\t\t\t# Multiplier for the total damage caused by wither skull explosions.\n\t\t\t# Default: 1.0\n\t\t\tWitherSkullDamageMultiplier = 1.0\n\n\t[Explosions.Custom]\n\t\t# Allows for adding explosions from other mods.\n\t\t# Format: [EntityID, DisableGriefing, EnableKnockback, KnockbackMultiplier, DamageMultiplier]\n\t\t# Example: [[\"entity.minecraft.creeper\", true, true, 1.0, 1.0], [\"entity.minecraft.tnt\", false, true, 1.25, 1.0]]\n\t\tExploders = [[]]\n```\n</details>\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1359,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

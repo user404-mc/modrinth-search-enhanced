@@ -1,0 +1,39 @@
+{
+  "id": "ygCWx7VX",
+  "slug": "openeco",
+  "title": "OpenEco",
+  "description": "Fast, multi-currency economy plugin for Paper and Folia. Vault/VaultUnlocked, PlaceholderAPI, transaction history, and cross-server handoff built in.",
+  "body": "## OpenEco — Economy Plugin for Paper & Folia\n\nA clean, fast, multi-currency economy plugin built for modern servers. OpenEco keeps balances **in memory** for instant reads and writes, persists to your database of choice, and integrates with the full Vault/VaultUnlocked ecosystem — no compromises.\n\n---\n\n### ✦ Why OpenEco?\n\nMost economy plugins either ignore Folia entirely, bolt on multi-currency as an afterthought, or have no real transaction history. OpenEco was built from scratch to handle all three properly.\n\n---\n\n### Features\n\n**Currencies**\n- Define as many named currencies as you want (dollars, gems, tokens — anything)\n- Each currency has its own decimal precision, starting balance, and optional max balance cap\n- All commands, placeholders, and API calls accept an optional `[currency]` argument\n- Vault v1 and VaultUnlocked v2 both point at your default currency automatically\n\n**Storage**\n- SQLite (default, zero config)\n- H2 (embedded local)\n- MySQL / MariaDB / PostgreSQL (remote)\n- Switch backends by changing one line in config\n\n**Transaction History**\n- Full record of every deposit, withdrawal, transfer, and admin action\n- Per-player `/history [page] [currency]` command\n- Configurable retention — keep forever or auto-prune after N days\n\n**Admin Controls**\n- Freeze / unfreeze accounts\n- Rename account display names\n- Delete accounts and their full history\n- Reload config without restart\n\n**PlaceholderAPI**\n- `%openeco_balance%`, `%openeco_balance_formatted%`, `%openeco_rank%`\n- Leaderboard placeholders: `%openeco_top_1_name%`, `%openeco_top_3_balance_formatted%`, etc.\n- Full currency-aware variants for every placeholder\n\n**Cross-Server (optional)**\n- Enable shared MySQL/MariaDB/PostgreSQL across multiple backend servers\n- Velocity proxy addon handles player handoff sync so accounts stay consistent when players switch backends\n- Disabled by default — single-server setups need no extra config\n\n---\n\n### Enhancements Addon *(optional, included)*\n\nExtra mechanics layered on top without touching the core:\n\n| Feature | Description |\n|---|---|\n| Interest | Periodic balance interest, configurable per currency |\n| Pay limits | Cap how much a player can send in a time window |\n| Permission balance caps | Different max balances per permission group |\n| Currency exchange | `/exchange <amount> <from> <to>` at configured rates |\n\n---\n\n### For Developers\n\nOpenEco exposes a full service API via Bukkit's `ServicesManager`:\n\n```java\nOpenEcoApi api = Bukkit.getServicesManager()\n        .getRegistration(OpenEcoApi.class)\n        .getProvider();\n```\n\nCovers accounts, balance reads/writes, transfers, freeze state, history, leaderboard, and all currency-aware overloads. Full docs in the [API guide](https://github.com/Alexteens24/OpenEco/blob/main/docs/api.md).\n\n---\n\n### Requirements\n\n| Requirement | Notes |\n|---|---|\n| Paper 1.20.5+ or Folia 1.21+ | Both supported |\n| [VaultUnlocked](https://github.com/TheNewEconomy/VaultUnlocked) | Required |\n| [Vault](https://www.spigotmc.org/resources/vault.34315/) | Also supported |\n| [PlaceholderAPI](https://placeholderapi.com/) | Optional |\n\n---\n\n### Quick Start\n\n1. Drop `OpenEco.jar` and `VaultUnlocked.jar` into `plugins/`\n2. Start the server once — config generates automatically\n3. Edit `plugins/OpenEco/config.yml` to set your currency name and storage backend\n4. `/eco reload` — done\n\n---\n\n## Statistics\n\n[![bStats](https://bstats.org/signatures/bukkit/SimpleEco.svg)](https://bstats.org/plugin/bukkit/SimpleEco)\n\n*[Documentation](https://github.com/Alexteens24/OpenEco) · [Issue Tracker](https://github.com/Alexteens24/OpenEco/issues) · [Source Code](https://github.com/Alexteens24/OpenEco)*",
+  "categories": [
+    "economy",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 121,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

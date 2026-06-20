@@ -1,0 +1,35 @@
+{
+  "id": "9sOFJCqT",
+  "slug": "xpmerge",
+  "title": "XPMerge",
+  "description": "This is a Folia-compatible plugin for Minecraft that merges nearby experience orbs into one to reduce lag.",
+  "body": "# ✨ XpMerge\n\n> **Less orbs. More frames. Same XP.**  \n> Automatically merges nearby experience orbs into one — silently, safely, and without ever duping a drop.\n\n---\n\n## 📖 Overview\n\n**XpMerge** is a lean, Folia-native XP orb merging plugin built for servers that care about performance. Every configured interval, it sweeps all loaded chunks, finds clusters of experience orbs in close proximity, and collapses them into a single orb — no XP lost, no exploits, no drama.\n\nMassive mob farms, XP grinders, and enchanting setups can spawn hundreds of orbs in seconds. XpMerge kills that lag at the source by reducing entity count without touching collection logic. Players never notice it's running — they just notice the server feels smoother.\n\n---\n\n## ✨ Features\n\n- 🔁 **Interval-based sweeping** — merges fire on a configurable tick schedule, not every frame\n- 📐 **Radius-based clustering** — orbs within a set block radius collapse into one, preserving total XP\n- 🧵 **Folia-native threading** — uses `RegionScheduler` per 8×8 chunk region, meaning all entity reads and writes happen on the correct regional thread with zero unsafe cross-region access\n- 🔒 **Dupe-safe design** — re-validates orbs immediately before removal to handle race conditions from collection events mid-sweep\n- 🌍 **Multi-world support** — sweeps every loaded world simultaneously\n- 🛠️ **Live reload** — update config without restarting via `/xpmerge reload`\n- 📊 **Status command** — inspect current settings and lifetime merge count at a glance\n- 🐛 **Debug mode** — optional per-merge console logging for diagnostics, off by default\n\n---\n\n## 🔒 Dupe Safety & Bottled XP Compatibility\n\nXpMerge was rigorously tested against plugins that bottle, extract, or otherwise manipulate XP orb entities — a category of plugins that are particularly vulnerable to dupe exploits when combined with orb merging.\n\nThe key safeguard: **XpMerge re-validates every orb immediately before removal.** If a player or plugin has already collected an orb between the sweep scan and the merge execution, that orb is skipped entirely. XP is never double-counted or awarded twice.\n\nTested and confirmed dupe-free with:\n\n| Plugin | Repository |\n|---|---|\n| **Experience Manager (XPM)** by FruitLoopin | [github.com/jwkerr/XPManager](https://github.com/jwkerr/XPManager) |\n| **BottleEXP** by Mooshlol304 | [github.com/Mooshlol304/BottleEXP-1.21.5](https://github.com/Mooshlol304/BottleEXP-1.21.5/tree/main) |\n| **XP Bottling** by HoneyBerries | [github.com/HoneyBerries/XPBottling](https://github.com/HoneyBerries/XPBottling) |\n\n> XP values are accumulated as a `long` internally before being written back as an `int`, preventing overflow edge cases on large orb clusters. The final value is clamped to `Integer.MAX_VALUE` as a hard ceiling.\n\n---\n\n## 🖥️ Compatibility\n\n| Platform | Supported Versions |\n|---|---|\n| **Paper** | 1.21.10 — 1.21.11 *(1.21.x broadly supported)* |\n| **Folia** | 1.21.10 — 1.21.11 *(natively threaded)* |\n\n> ⚠️ Spigot/Bukkit are **not** supported. Paper or Folia is required.  \n> Folia support is first-class — the sweep architecture was designed around `RegionScheduler` from the ground up, not bolted on after.\n\n---\n\n## 🔧 Commands & Permissions\n\n| Command | Description | Permission |\n|---|---|---|\n| `/xpmerge status` | Shows current interval, radius, debug state, and total orbs merged | `xpmerge.admin` |\n| `/xpmerge reload` | Hot-reloads config and restarts the merge task | `xpmerge.admin` |\n\n> `xpmerge.admin` defaults to **OP only**.\n\n---\n\n## ⚙️ Configuration\n\nThe config file is located at:\n\n```\nplugins/XpMerge/config.yml\n```\n\nBelow is the full default configuration:\n\n```yaml\n# How many ticks between each merge sweep. 20 ticks = 1 second.\n# Lower = more aggressive merging, slightly more CPU. Minimum: 1.\nmerge-interval: 5\n\n# Block radius within which orbs are merged together.\n# All orbs within this distance of each other collapse into one.\nmerge-radius: 20.00\n\n# Print a line to console every time orbs are merged. Turn off in production.\ndebug: false\n```\n\n### Config Breakdown\n\n- **`merge-interval`** — How often the sweep fires, in ticks. `5` = every quarter second. Lower values merge more aggressively at the cost of slightly more CPU overhead. Hard minimum of `1`.\n- **`merge-radius`** — The block radius used to cluster nearby orbs. `20.0` casts a wide net, ideal for large farms and high-density XP setups.\n- **`debug`** — When enabled, logs every individual merge to console including location, orb count, and total XP. Useful for testing — leave it off in production.\n\n---\n\n## 📦 Installation\n\n1. Download the latest `.jar` from the releases section\n2. Drop it into your `/plugins` folder\n3. Restart your server *(not `/reload`)*\n4. Edit `plugins/XpMerge/config.yml` to your liking\n5. Use `/xpmerge reload` to apply config changes live\n\n---\n\n## 📜 License\n\nXpMerge is open-source and distributed under the **MIT License**.  \nContributions, issues, and pull requests are welcome on the project repository.\n\n---\n\n*Built for servers that don't want to choose between XP farms and good performance.*",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 122,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

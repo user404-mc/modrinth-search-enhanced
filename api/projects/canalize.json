@@ -1,0 +1,22 @@
+{
+  "id": "CcUWumzC",
+  "slug": "canalize",
+  "title": "Canalize",
+  "description": "Canalize breaks the terrain generation framework of the original Minecraft, offloads the core heightmap calculations down to the C++ layer, and bridges them back to the Java game",
+  "body": "# Canalize\n\nHave you ever thought that Minecraft's world could be taller, grander, and more realistic?\n\nThe vanilla Overworld caps out at 384 blocks. Mountains peak within a few dozen blocks — you reach the top in minutes. That's not a mountain range. That's a hill model.\n\n**Canalize** breaks that ceiling.\n\n---\n\n## What It Is\n\nCanalize is a NeoForge mod that completely rewrites Minecraft's Overworld terrain generation. It doesn't reskin the vanilla terrain or tweak parameters — it replaces the vanilla `ChunkGenerator` from scratch with an independent C++ noise engine, bridged back to the game via JNI.\n\nThe resulting world stretches from −64 all the way up to **1744** — a full **1808 blocks** of vertical space. That's **4.7× taller** than vanilla.\n\n---\n\n## What the World Looks Like\n\nPicture a mountain whose base is carved by erosion into gorges and riverbeds, whose slopes are layered rocky formations, whose summit is bare stone above the treeline — and whose peak nearly pierces the cloud layer.\n\nCanalize's terrain is built from three layered noise systems:\n\n- **Ridged FBM** — builds the skeleton of mountain ranges: sharp, continuous, directional\n- **Domain Warping** — simulates hydraulic erosion, carving valleys and riverbeds\n- **Worley Cellular Noise** — blends rock texture into mountain peaks\n\nBiome transitions use `smoothstep` interpolation — no hard edges between ocean, plain, and mountain.\n\n---\n\n## Why C++\n\nAt 1808 blocks, noise computation multiplies dramatically. Canalize's noise kernel is written in **C++17** with **AVX2 SIMD** optimization — 8 floats per instruction, stateless, fully thread-safe.\n\nThe goal: an 1808-block world that generates with no perceptible slowdown compared to vanilla.\n\n---\n\n## Technical Summary\n\n|  |  |\n|---|---|\n|  World Height | −64 ~ 1744 (1808 blocks) |\n|  Noise Stack | Simplex OS2S → Ridged FBM → Domain Warping + Worley |\n|  Acceleration | C++17 + AVX2 SIMD via JNI |\n|  Platforms | Windows / Linux / macOS (x86_64 + Apple Silicon) |\n|  Loader | NeoForge 21.1.219 |\n|  License | [Mulan PubL v2](http://license.coscl.org.cn/MulanPubL-2.0) |\n\n---\n\n>  **Early development.** Once enabled in a world save, that save **permanently** depends on this mod's terrain generator. Use only in dedicated test worlds.\n>\n> Requires a CPU with **AVX2** support (most CPUs from 2013+).\n\n---\n\n*中文说明详见 [GitHub](https://github.com/FORGE24/Canalize)*",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "optimization",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 186,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

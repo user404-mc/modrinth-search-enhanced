@@ -1,0 +1,19 @@
+{
+  "id": "3GPiEYzr",
+  "slug": "markchat",
+  "title": "MarkChat",
+  "description": "A server-side mod that allows Markdown to be used in the chat, as well as other various places.",
+  "body": "# MarkChat\n\n## About\n\nWhen I started my SMP, I noticed that I was consistently using \\*markdown syntax* to write chat messages. Although Minecraft doesn't format chat messages sent by players, the client does have the functionality to *display* formatted chat messages, should it receive them from the server.\n\nThis mod parses chat messages as [Markdown](https://commonmark.org/help/), formats them, and sends the formatted version to clients. This allows players to write in **bold** and *italics* like a boss, with the same syntax used by Discord and various other messaging apps. It also prevents chat reporting, so that's nice, I guess.\n\n## Books\n\nIn addition to chat formatting, MarkChat includes an additional module that allows markdown files to be uploaded as written books. To use this, hold a book and quill and type `/book upload <title>`. This will prompt you to upload a markdown file to Filebin, where it will be downloaded by the server. You can also user `/book download <title> (url|filebin) <address>` to download a book directly. Keep in mind that written books permit a small amount of characters per page, and although page breaks are automatically inserted, it's best to keep paragraphs brief.\n\nThis module can be disabled in the settings.\n\n## Config\n\n`config/markchat.json`\n\n- `formatting` (object): Various settings regarding format style.\n  \n  - `ulPrefix` (string): Prefix to use for unordered (bullet) lists.\n  \n  - `olPrefix` (string): Prefix to use for ordered (numbered) lists. Use `%d` to indicate list index.\n  \n  - `headingColors` (list): A list of strings, formatted the same way as `linkColor`, indicating the colors to use for each heading tag. Heading tags with an index greater than the length of the list will use the last element in the list.\n  \n  - `linkColor` (string): The color to use for links. May be one of Minecraft's [color names](https://minecraft.wiki/w/Formatting_codes#Color_codes) or a hex code.\n\n- `allowLinks` (string): Whether links should be allowed in chat and books. One of `NEVER`, `ADMINS` or `ALWAYS`.\n\n- `enableBooks` (boolean): Whether the book upload module should be enabled. If false, this mod's functionality will be restricted to chat only.\n\n- `filebinUrl` (string): The base URL of [Filebin](https://filebin.net/about), used for uploading markdown files.\n\n- `commandPrefix` (string): The prefix of the `book` command. Change this if `/book` conflicts with another mod.\n\n## Supported Markdown Elements\n\nThe current implementation uses the [CommonMark specification](https://commonmark.org/).\n\n| Element         | Support                                 |\n| --------------- | --------------------------------------- |\n| Headings        | Only in books                           |\n| Bold            | Yes                                     |\n| Italic          | Yes                                     |\n| Blockquote      | Only in books                           |\n| Code            | No                                      |\n| Horizontal rule | Only in books (becomes new page)        |\n| Link            | Only if enabled (see [config](#config)) |\n| Image           | No                                      |\n| Strikethrough   | Planned                                 |",
+  "categories": [
+    "fabric",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 255,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2"
+  ],
+  "date_updated": null
+}

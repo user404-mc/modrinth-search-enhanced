@@ -1,0 +1,20 @@
+{
+  "id": "w6x8nHjH",
+  "slug": "configurationsbackport",
+  "title": "ConfigurationsBackport",
+  "description": "Brings back the Config annotation system from forge 1.12.x to 1.8.9.",
+  "body": "## ConfigurationsBackport\nBrings back the 1.12.2 forge's Config annotation system to 1.8.9 using mixins.\nIts documentation is present at: https://docs.minecraftforge.net/en/1.12.x/config/annotations/\n\n## How to use?\nYou would use the Config annotations exactly the same way as u did in 1.12.2.\nBut instead of net.minecraftforge.common.config.ConfigManager, its now my_life_is_bad.configurationsbackport.common.config.ConfigManager.\n\n## Example:\n\n```java\npackage my_life_is_bad.configurationsbackport;\n\nimport net.minecraftforge.fml.common.Mod;\nimport net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;\nimport net.minecraftforge.fml.common.eventhandler.SubscribeEvent;\nimport net.minecraftforge.fml.common.event.FMLConstructionEvent;\nimport net.minecraftforge.common.MinecraftForge;\nimport net.minecraftforge.fml.common.Mod.EventHandler;\nimport my_life_is_bad.configurationsbackport.common.config.ConfigManager;\nimport my_life_is_bad.configurationsbackport.common.config.Config;\n\n@Mod(modid = ConfigurationsBackport.MODID, version = ConfigurationsBackport.VERSION)\n\npublic class ConfigurationsBackport {\n    public static final String MODID = \"configurationsbackport\";\n    public static final String VERSION = \"1.1\";\n\n\n    @Config(modid = MODID)\n    public static class Configuration {\n        @Config.Comment(\"String Entry: \")\n        public static String stringEntry = \"I am a string :D\";\n\n        @Config.Comment(\"Int Entry (Slider): \")\n        @Config.RangeInt(min = 1, max = 16)\n        @Config.SlidingOption()\n        public static int intSlider = 100;\n\n        @Config.Comment(\"Int Entry: \")\n        @Config.RangeInt(min = 1, max = 16)\n        public static int intEntry = 100;\n\n        @Config.Comment(\"Double Entry: \")\n        @Config.RangeDouble(min = 0.1D, max = 1.6D)\n        public static double doubleEntry = 0.1D;\n\n        @Config.Comment(\"Double Entry (Slider): \")\n        @Config.RangeDouble(min = 0.1D, max = 1.6D)\n        @Config.SlidingOption()\n        public static double doubleSlider = 0.1D;\n    }\n\n\n    @EventHandler\n\tpublic void onFMLConstructionEvent(FMLConstructionEvent event) {\n\t\tMinecraftForge.EVENT_BUS.register(this);\n\t}\n\n    @SubscribeEvent\n\tpublic void onConfigChangedEvent(OnConfigChangedEvent event) {\n\t\tif (event.modID.equals(MODID)) {\n\t\t\tConfigManager.sync(MODID, Config.Type.INSTANCE);\n\t\t}\n\t}\n}~~~~\n```\n\n![ConfigurationsBackport](https://cdn.modrinth.com/data/cached_images/bd6edd62a85869a125338b122047ec008a8b6186.png)\n",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 10486,
+  "followers": 0,
+  "game_versions": [
+    "1.8.9"
+  ],
+  "date_updated": null
+}

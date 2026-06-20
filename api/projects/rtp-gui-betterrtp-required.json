@@ -1,0 +1,40 @@
+{
+  "id": "8fW0q2Yg",
+  "slug": "rtp-gui-betterrtp-required",
+  "title": "Rtp GUI [BetterRTP Required]",
+  "description": "Interactive RTP GUI with BetterRTP for smooth multi-world teleportation.",
+  "body": "RTP GUI – Clean & Simple World Teleportation for BetterRTP\nRTP GUI adds a smooth, intuitive menu for random teleportation using the BetterRTP plugin. Instead of typing commands, players simply open a polished GUI and select the world they want to RTP to. It’s fast, clean, and designed to fit any server.\n\n✨ Features\nBeautiful RTP Menu\nUse /rtp to open a streamlined GUI with icons for each available world.\n\nUp to 6 Worlds Supported\nAdd custom worlds in the config. Choose exactly which worlds appear in the menu.\n\nEnable/Disable Worlds\nQuickly toggle worlds on or off so players can only RTP where you want them to.\n\nSet Custom Materials In-Game\nUse the built-in command to assign any material to a world’s GUI icon—perfect for quick adjustments without restarting.\n\nReload Command\nRefresh your config instantly with /rtpgui reload.\n\nFully Configurable\nEdit item slots, materials, names, lores, sounds, commands, GUI size, title, and more via config.yml.\n\nWorks With BetterRTP\nRTP GUI only handles the visual layer, it automatically executes your BetterRTP commands behind the scenes.\n⚠️ Requirements\nYou must have BetterRTP installed.\nDownload it on Spigot: https://www.spigotmc.org/resources/betterrtp-random-wild-teleport.36081/\n\n📦 Installation\nDownload BetterRTP and RTP GUI.\n\nDrop both jars into your /plugins/ folder.\n\nStart or reload your server.\n\nEdit plugins/Rtpgui/config.yml to customize the menu.\n\nUse /rtp in-game to open the GUI.\n🔧 Default Command Mapping\nOverworld: betterrtp player %player% world\n\nNether: betterrtp player %player% world_nether\n\nEnd: betterrtp player %player% world_the_end\nAll commands can be replaced or customized for custom world names or different RTP setups.\n\n⚙️ Config.yml\n\n```\ngui:\n  size: 27\n  title: '&8ʀᴛᴘᴍᴇɴᴜ'\n  fill-background: false\n  background-material: GRAY_STAINED_GLASS_PANE\n\n# enable/disable base world buttons\noverworld-rtp: true\nnether-rtp: true\nend-rtp: true\n\n# base worlds configuration\nworlds:\n  overworld:\n    material: GRASS_BLOCK\n    display-name: <#00FF00>🌍 Overworld RTP\n    lore:\n      - '&f&l| <#00FF00>Teleport &fto a random'\n      - '&f&l| &flocation in <#00FF00>The Overworld'\n      - '&f&l| &fClick to <#00FF00>teleport &fnow!'\n    command: betterrtp player %player% world\n  nether:\n    material: NETHERRACK\n    display-name: <#FF5500>🔥 Nether RTP\n    lore:\n      - '&f&l| <#FF5500>Teleport &fto a random'\n      - '&f&l| &flocation in <#FF5500>The Nether'\n      - '&f&l| &fClick to <#FF5500>teleport &fnow!'\n    command: betterrtp player %player% world_nether\n  end:\n    material: END_STONE\n    display-name: <#F7E07A>🪨 The End RTP\n    lore:\n      - '&f&l| <#F7E07A>Teleport &fto a random'\n      - '&f&l| &flocation in the <#F7E07A>The End'\n      - '&f&l| &fClick to <#F7E07A>teleport &fnow!'\n    command: betterrtp player %player% world_the_end\n\n# custom worlds (disabled by default)\n# their command is set to: betterrtp player %player% <world_name>\n# plugin will replace <world_name> with the customworld key or the world-name value if set.\ncustomworlds:\n  customworld1:\n    enabled: false\n    slot: 0\n    item-material: DIAMOND\n    item-display-name: <#FF00FF>Custom 1\n    item-lore:\n      - Click to run custom command 1\n    command: betterrtp player %player% <world_name>\n    # optional: world-name: \"my_custom_world_name\"\n  customworld2:\n    enabled: false\n    slot: 1\n    item-material: EMERALD\n    item-display-name: <#00FFFF>Custom 2\n    item-lore:\n      - Click to run custom command 2\n    command: betterrtp player %player% <world_name>\n  customworld3:\n    enabled: false\n    slot: 2\n    item-material: GOLD_INGOT\n    item-display-name: <#FFD700>Custom 3\n    item-lore:\n      - Click to run custom command 3\n    command: betterrtp player %player% <world_name>\n  customworld4:\n    enabled: false\n    slot: 3\n    item-material: REDSTONE\n    item-display-name: <#FF0000>Custom 4\n    item-lore:\n      - Click to run custom command 4\n    command: betterrtp player %player% <world_name>\n  customworld5:\n    enabled: false\n    slot: 4\n    item-material: LAPIS_LAZULI\n    item-display-name: <#0000FF>Custom 5\n    item-lore:\n      - Click to run custom command 5\n    command: betterrtp player %player% <world_name>\n  customworld6:\n    enabled: false\n    slot: 5\n    item-material: QUARTZ\n    item-display-name: <#FFFFFF>Custom 6\n    item-lore:\n      - Click to run custom command 6\n    command: betterrtp player %player% <world_name>\n\n# material picker options\nmaterial-picker:\n  filler: GRAY_STAINED_GLASS_PANE\n\n# messages\nmessages:\n  material-picker-title: <#00AAFF>Choose material for %world%\n  material-saved: '&aSaved material for %world%!'\n  material-removed: '&cRemoved material for %world%!'\n  reloaded: '&aRtpGUI config reloaded.'\n  no-perm: '&cYou don''t have permission to do that.'\n  usage: '&cUsage: /rtpgui <reload|material>'\n  usage-material: '&cUsage: /rtpgui material <overworld|nether|end|customworld1|customworld2|customworld3|customworld4|customworld5|customworld6>'\n  invalid-world: '&cInvalid world key.'\n\n# sound when clicking (we use ENTITY_EXPERIENCE_ORB_PICKUP)\nclick-sound: ENTITY_EXPERIENCE_ORB_PICKUP\n```\n\n\n\n📸 Visual Representation\n\n![gui](https://cdn.modrinth.com/data/cached_images/aa25232b5c2926732e1fc38098e1cc81733b83a5_0.webp)![overworld](https://cdn.modrinth.com/data/cached_images/6d9496263ca0470b9cde08541f9ea1dbbcd3e757_0.webp)![nether](https://cdn.modrinth.com/data/cached_images/d35dd68c70801b14d4b50352fcf91f9ddbcf0971_0.webp)![end](https://cdn.modrinth.com/data/cached_images/9268f93fbb26dec770d261fb144e21654b325190_0.webp)",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "transportation",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20452,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

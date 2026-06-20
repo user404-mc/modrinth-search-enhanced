@@ -1,0 +1,32 @@
+{
+  "id": "Ynklgl8X",
+  "slug": "tiny-multiblock-lib",
+  "title": "Tiny Multiblock Lib",
+  "description": "A tiny jar-in-jar lib for simple creation of multiblocks",
+  "body": "### A Tiny Lib for simple creation of Multiblocks\nMeant as blocks that that contain multiple blocks of itself, but still act like 1 block (for example a bed, door etc...) **not to be confused with multiblock structures!!**\n\n(Since it's a lib, there's no point to download it by itself)\n\n## Features\n### Super simple\ncreating a multiblock of any size can be done just by overriding a single method and adding a block entity. All breaking and placing logic is done for you.\n### Jar-in-Jar -able\nBecause I hate dowloading thousands of dependencies for each mod, the whole lib is intended as a jar-in-jar, meaning it gets included in your mod jar and players won't have to download any extra dependencies\n### Multiblock Previews\nAllows devs to enable placement previews for specific multiblocks. When a player holds that multiblock in hand, it renders a transparent client-side preview of the multiblock (see the picture in gallery). This can be disabled with client config on forge and neoforge\n### Shared Blockstates\nAllows registering blockstates that automatically sync across the whole multiblock when updated, great for mod compatibility \n### Support\nIf you're a developer and have some issues / suggestions, just dm me on discord (nikdo53) or github and I pinky promise to get back to you as soon as I can (unless you live in the USA and it's like 3AM for me😬) \n\n## Installation instructions\n\nFirst, get the [modrinth maven repository url](https://support.modrinth.com/en/articles/8801191-modrinth-maven) and put into your build.gradle repository block.\n\n```\nrepositories {\n    //some other repositories you might have\n    \n    exclusiveContent {\n        forRepository {\n            maven {\n                name = \"Modrinth\"\n                url = \"https://api.modrinth.com/maven\"\n            }\n        }\n       // forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line\n        filter {\n            includeGroup \"maven.modrinth\"\n        }\n    }\n}\n```\n\nThen add the following to your gradle.properties:\n```\n# this example is for neoforge 1.21.1\n# replace with the newest version for your mc version and loader!\ntiny_multiblock_lib_version=neo-1.21.1-3.0\n```\n\nLastly, add the dependecy to your build.gradle based on your loader / gradle plugin\n\n### Neoforge MDG or NG\n\n```\njarJar(implementation(\"maven.modrinth:tiny-multiblock-lib:${tiny_multiblock_lib_version}\"))\n```\n\n### Forge FG\n1. enable jarjar by adding ```jarJar.enable()``` anywhere before your minecraft block\n2. add this line into dependencies:\n```\nimplementation(fg.deobf(jarJar(\"maven.modrinth:tiny-multiblock-lib:${tiny_multiblock_lib_version}\")))\n```\n\n\n### Forge MDGL\n\n\n```\njarJar(modImplementation(\"maven.modrinth:tiny-multiblock-lib:${tiny_multiblock_lib_version}\"))\n```\n\n### Fabric\n\n\n```\nmodImplementation(include(\"maven.modrinth:tiny-multiblock-lib:${tiny_multiblock_lib_version}\"))\n```\n\n### Multiloader\nThe whole lib is coded in multiloader and anything you'd want to reference is common, meaning you can just add any version as a common dependency, then add the jar in jar into each loader separately\n\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2230,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

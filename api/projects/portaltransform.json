@@ -1,0 +1,33 @@
+{
+  "id": "HeFr4Yf2",
+  "slug": "portaltransform",
+  "title": "PortalTransform",
+  "description": "Added a new portal recipe.",
+  "body": "# PortalTransform Recipe\n\n![Example GUI](https://image.qihuang02.cn/file/1750413747416_PixPin_2025-06-20_18-02-02.png)\n\n**Portal Transmutation** - When players hurl items into portals, they undergo elemental conversion with possible byproducts. Full datapack extensibility! Design custom transmutation chains through JSON configurations.\n\nThis JSON file should be placed in the following directory: /`data`/`portaltransform`/`recipe`/\n\n```json\n{\n        \"type\": \"portaltransform:portal_transform\",\n        \"input\": {\n            \"item\": \"minecraft:diamond\",\n        },\n        \"result\": {\n            \"id\": \"minecraft:emerald\"\n        },\n        // Optional: Dimension constraints\n        // \"current_dimension\": \"minecraft:overworld\",\n        // \"target_dimension\": \"minecraft:the_nether\",\n        \"byproducts\": [\n            {\n                \"byproduct\": { \"id\": \"minecraft:lapis_lazuli\" },\n                \"chance\": 0.9,\n                \"counts\": {\n                    \"min\": 1,\n                    \"max\": 3\n                }\n            }\n        ]\n    }\n\n```\n\n```js\nServerEvents.recipes((event) => {\n    event.recipes.portaltransform.item_transform(\n        \"minecraft:cobblestone\",\n        \"minecraft:prismarine\",\n        [\n                 Byproduct.of(\"minecraft:redstone\", 0.8, 1, 4)\n        ],\n        {\n            current: \"minecraft:overworld\",\n            target: \"minecraft:the_nether\"\n        },\n        \"any\", // It can be \"any\", \"clear\", \"rain\", \"thunder\"\n        0.1\n    );\n})\n```\n\nIf you find errors according to the code on this page, you may need to check [here](https://github.com/QiHuang02/PortalTransform/blob/2101-neo/runs/client/kubejs/server_scripts/example.js).",
+  "categories": [
+    "adventure",
+    "forge",
+    "game-mechanics",
+    "magic",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1440,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

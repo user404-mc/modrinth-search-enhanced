@@ -1,0 +1,20 @@
+{
+  "id": "lOA6jWUO",
+  "slug": "ageingcheckcache",
+  "title": "AgeingCheckCache",
+  "description": "Cache the iteration results of Ageing Spawner codes for better performance",
+  "body": "# AgeingCheckCache\nThis is an addon of [Ageing Spawner](https://www.curseforge.com/minecraft/mc-mods/ageing-spawners) that optimizes its code by cache.\n### How Does It Work\n```\nI've noticed a point about List#contains (checking if a list contains a specific element). \nMany mod authors open up blacklists or whitelists in config files to achieve higher configurability. \nHowever, if the list contains too many elements (whether they are default configurations or user-added ones), iterating through List#contains calls can become quite expensive, affecting the game's performance in specific situations \n(Embeddium Extras significantly improved FPS after addressing this performance issue). The solution I've come up with is to transform it into checking the properties of the List#contains target, perform the check only once, and directly call the cached boolean value obtained from this initial check. \nThis avoids repeatedly traversing the array. \nThe initial check's location and method might vary depending on the properties of the check target. \nFor example, if the check target is EntityType, you could create an ExtendedEntityType interface, implement it using a mixin with EntityType, and include a boolean value for \"is included in the configuration file\" within the mixin. \nThen, in certain places (such as FMLCommonSetupEvent), you can directly use the configuration file's array to check all EntityType instances using ForgeRegistries and mark whether they are included in the array. \nIn practical applications, instead of using List#contains, you can use ((ExtendedEntityType)entityType).isInConfig() (check speed goes brrrrrrrrrr).\n```\n### Why Don't You Send A Pull Request To Ageing Spawner?\n1.I have created an issue for this (See [here](https://github.com/Mrbysco/AgeingSpawners/issues/5)) but the author just did the basic caching in 1.20 version, while this mod is for 1.16.5\n\n2.I'm lazy.\n\nBtw you can do this by yourself as this mod is in public domain.\n### Will Ageing Spawner's Behavior Change After Using This Mod?\nYes. \n\nInitially, Ageing Spawner will track all vanilla & modded spawners (like the Land Spawner in [BrassAmber BattleTowers](https://www.curseforge.com/minecraft/mc-mods/brassamberbattletowers) (In short, babt)). This mod has an additional patch that defaultly blacklists the modded spawners. \n\nThis improves compatibility with babt so your tower's advancement will not be completely blocked due to the spawners disappear :)\n\nIf you want a modded spawner block to be affected by Ageing Spawner, you can write the block's registry name down in config/ageingcheckcache-common.toml\n### Logo Credit\nThanks to [reereeq](https://legacy.curseforge.com/members/reereeq)!\n### Misc\n[![image](https://www.bisecthosting.com/partners/custom-banners/75401fe6-76e7-471c-89e5-1edd37a950ad.webp)](https://bisecthosting.com/kasualix)",
+  "categories": [
+    "forge",
+    "mobs",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1613,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5"
+  ],
+  "date_updated": null
+}

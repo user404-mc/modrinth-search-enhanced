@@ -1,0 +1,28 @@
+{
+  "id": "VYOvHxMm",
+  "slug": "preventbuild",
+  "title": "PreventBuild",
+  "description": "A simple but flexible mod that prevents unwanted player actions described in the custom configs",
+  "body": "<img src=\"https://cdn.modrinth.com/data/cached_images/45dbf9384e4b5cab665388eed65141b7fa8a4238.png\" width=\"180\" alt=\"logo\"/>\n\n# PreventBuild\n\nAdds control to prevent the player from performing certain actions that are set in configs. Configs, in turn, have a very flexible structure that allows you to build complex logical conditions describing what actions the mod should prevent.\n\nOriginal purpose of creating this mod was enhancing experience of hand-building map-arts without using any printers and easy-place mode. But now it's more than just preventing placing and breaking: you can prevent any right- or left-click actions, just make sure there is a suitable condition.\n\nThis mod is just cancelling the player's actions, so it's fully client-side.\n\n## How to use the mod\n\nIt's almost necessary to visit the [Wiki](https://github.com/Redheris/PreventBuild/wiki) to understand how to write a config, because there is no other way to write it except by hand.\n\nThere are a few files in config/preventbuild/:\n- `conditions/` - contains config .cfg files\n- `condition_configs.json` - defines which configurations are active by its individual name\n- `ore_dictionaries.json` - defines custom ore dictionary lists for using in configs\n\nOnce you have created/updated your configs, you should update configs in the game using commands. Also configs are updating automatically when the player joins a world.\n\n*(For developers) Also you can find out how to create and register [your own conditions](https://github.com/Redheris/PreventBuild/wiki/(For-deveolpers)-Condition-Registry) that you will be able to use in the same config files.*\n\n## Commands\n- `/pb config list` - display a list of configs with their status\n- `/pb config switch` <name> - enable/disable config by name\n- `/pb config update` - reload all configs\n\n## Server restrictions of the conditions\nSince I'm trying to keep gameplay fair and rules-friendly, I decided to give server owners the ability to restrict\nsome conditions that they can consider as \"cheating-like\" actions.\n\nFor now, there's only a few of such restrictions. To use them, you need to add the following strings to the plugin\nmessage via the `\"preventbuild:restrictions\"` channel and send it to players on `PlayerRegisterChannelEvent`:\n\n`NoItemDamage` - Disables all the \"Item Damage\" and \"Item Durability\" conditions\n\n`NoBlockState` - Disables the \"Block State\" condition\n\n`NoAgeBlockState` - Disables only the use of the \"age\" state in the \"Block State\" condition\n\n`ResetAll` - Resets all restrictions\n\nExample:\n\n```java\n@EventHandler\npublic void onRegisterChannelJoin(PlayerRegisterChannelEvent event) {\n\tif (event.getChannel().equals(\"preventbuild:restrictions\")) {\n\t\tPlayer player = event.getPlayer();\n\t\tByteArrayDataOutput out = ByteStreams.newDataOutput();\n\t\tout.writeUTF(\"NoItemDamage NoAgeState\");\n\t\tplayer.sendPluginMessage(this, event.getChannel(), out.toByteArray());\n\t}\n}\n```\n\n## Contacts\nIf you have some issues with the mod, any questions or just want to leave feedback, you are always welcome:\n- GitHub: https://github.com/Redheris/PreventBuild/issues\n- Discord: [Server](https://discord.gg/QTykTF8D5p) or @redheris\n\n### Note\n\nWell, this is my first relatively serious mod and especially the first one for public use. Thanks for visiting :)",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 777,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

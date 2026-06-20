@@ -1,0 +1,21 @@
+{
+  "id": "pP4YDHgy",
+  "slug": "stockkeeping",
+  "title": "Stockkeeping",
+  "description": "Adds a redstone component that reads the amount of a specific item in an inventory.",
+  "body": "Adds a comparator-like block that reads the amount of an item in the inventory it faces.\n\nThe filtered comparator can be placed in any direction, and outputs an analogue redstone signal like a comparator facing the inventory-containing block (or, inventory-containing minecart on a detector rail) - but the filtered comparator only counts the item in it's filter slot.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/qnXYHMEPiRo\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n### Performance\n- To avoid constantly checking each inventory every tick, the Filtered Comparator only updates upon a comparator update from the block it's facing. \n  - (This may cause edge cases with inventories that don't output comparator updates, or upon placement facing a chest minecart with no detector rail.)\n\n### Compatibility\n- Supports drag and drop for setting filters by EMI.\n- The Serial Port from TIS-3D can read the exact number of detected items (provided it fits in a short, that is.)\n- Functions as an InRed device for YTTR's WIP Cuprosteel wires, providing a range from 0-63 that doesn't attenuate.\n\n### ...And lack thereof\n- Whilst I'm unsure, I believe this will not function with Modern Industrialization machines, as from what I recall, those do not output Comparator Updates. \n- If an inventory cannot be seen by an *unmodified* vanilla hopper, then the Filtered Comparator will be unable to read it.\n\n### Mixins\n- `AbstractBlockStateMixin`: injects at the head of `isOf` to return `true` if a Filtered Comparator is checked if it's a regular comparator.\n- `World`: injects at the head of `updateComparators` to also update vertically, but only for Filtered Comparators.\n- Several mixins to itself for adding conditional compatibility for YTTR when both mods are loaded.",
+  "categories": [
+    "fabric",
+    "quilt",
+    "storage",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 169,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

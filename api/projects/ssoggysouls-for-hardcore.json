@@ -1,0 +1,41 @@
+{
+  "id": "Pb03qu6T",
+  "slug": "ssoggysouls-for-hardcore",
+  "title": "SSoggySouls for Hardcore",
+  "description": "Plugin that improves Hardcore experience in various ways (cross server, lives, reviving)",
+  "body": "# SSoggySouls\n\n![Artwork](https://cdn.modrinth.com/data/Pb03qu6T/images/48a03bf24103dde408dbbcad653a3936b5f5255a.png)\n\n\nSpigot/Paper/Purpur plugin for Minecraft 1.21.1 that adds a lives system to a Velocity proxy network. When players lose all their lives, they get sent to a Limbo server until teammates revive them.\n\n**Visit wiki for more detailed information: [wiki](https://ssoggy-group.github.io/SSoggySouls-for-Hardcore/)** (wiki is most up to date)\n\n## How It Works\n\nThe plugin runs on two backend servers behind a Velocity (might work on BungeeCord/Waterfall, not tetsted yet, if you manage to test it out, please make a issue in GitHub) proxy: **Main** (survival) and **Limbo** (purgatory). Both share a MySQL database.\n\n- Players start with configurable lives (default: 2)\n- Each death costs one life; optional grace period for new players\n- At 0 lives, dead players enter spectator briefly, then get sent to Limbo\n- Teammates revive dead players via the ritual structure, `/revive`, or the Revive Skull\n- Revived players get sent back to Main automatically\n- Alive players can visit Limbo with `/limbo` and return with `/leavelimbo`\n\n## Death Modes\n\n| Mode | Behavior |\n|------|----------|\n| **`hybrid`** (default) | Spectator for a time window, then transferred to Limbo. Teammates can revive during the window. Reconnecting while dead skips the spectator window and sends straight to Limbo. |\n| **`spectator`** | Dead players stay on Main as spectators permanently until revived. |\n| **`limbo`** | Dead players are immediately transferred to Limbo. |\n\nAll modes support reviving via the Hardcore Revive Mode, Revive Skull, and `/revive`.\n\n## Built-in HRM Features\n(credits to https://modrinth.com/plugin/hardcore-revive-mod)\n### Player Head Drops\nOn final death, the player's head drops at their death location. They also get a message with their death coords.\n\n### Revival Ritual Structure\n3x3x3 structure to revive dead players:\n\n- **Bottom layer (3x3):** 4 Soul Sand corners, 4 Stair edges, 1 ore block center\n- **Middle layer:** 4 Wither Roses on the soul sand, 1 Fence on the ore\n- **Top:** Place the dead player's head on the fence\n  \n  **Check the original page for more details https://modrinth.com/plugin/hardcore-revive-mod**\n\n \n### Craftable Items\n\n**Revive Skull** Right-click to open a menu of dead players and receive their head for the ritual.\n\n| | | |\n|---|---|---|\n| Obsidian | Ghast Tear | Obsidian |\n| Totem of Undying | Any Skull | Totem of Undying |\n| Obsidian | Ghast Tear | Obsidian |\n\n **Check the original page for more details https://modrinth.com/plugin/hardcore-revive-mod**\n\n**Extra Life** Right-click to gain +1 life. Recipe is fully configurable in `config.yml` (only on main).\n\n### \"Limbo\" Visiting\nAlive players can visit Limbo using `/limbo` to interact with dead players. Use `/leavelimbo` to return. Dead players cannot leave until revived.\n\n## Requirements\n\n- Minecraft 1.21.X (Spigot or Paper)\n- Velocity proxy \n- MySQL database (you can share one with another plugin like CoreProtect)\n- Java 21+\n- Two backend servers: Main + \"Limbo\" (Limbo optional in `spectator` mode)\n\n> **Note:** You do **not** need `hardcore=true` in `server.properties`. Leave it as `false` on both servers. If you do have it enabled, the plugin will NOT work.\n\n## Proxy / Backend installation\n\n- Do NOT install PolarSouls on your proxy (Velocity/BungeeCord/Waterfall). Install the plugin only on your backend Spigot/Paper/Purpur servers (Main and Limbo).\n- Ensure the proxy forwards player information to the backends so UUIDs and addresses remain consistent:\n  - Velocity: set `player-info-forwarding-mode: MODERN` in `velocity.toml`.\n  - BungeeCord/Waterfall: enable IP forwarding and set the appropriate `bungeecord`/proxy options in `spigot.yml`/`paper.yml`.\n- Make sure both backend servers can reach the shared MySQL database and any messaging channels you use.\n- After configuring forwarding, test a full flow: death on Main → transfer to Limbo → revive and return to Main.\n(might work on BungeeCord/Waterfall, not tetsted yet, if you manage to test it out, please make a issue in GitHub)\n\n## Installation\n\n1. Place `SSoggySouls-X.X.X.jar` in the `plugins/` folder of **both** servers\n2. Start both servers to generate `config.yml`\n3. Configure the MySQL database connection (same credentials on both)\n4. On the Limbo server, set `is-limbo-server: true`\n5. Set the spawn in-game with `/setlimbospawn`\n6. Configure the rest in the config.yml, the guide in the config is pretty simple, so just follow it. If you need help, feel free to reach out in GitHub.\n7. Restart both servers\n\n## Configuration\n\nSee the generated `config.yml` for all options. Key settings:\n\n```yaml\nis-limbo-server: false           # true on Limbo server only\n\ndatabase:\n  host: localhost\n  port: 3306\n  name: polarsouls\n  username: root\n  password: password\n\nlives:\n  default: 2\n  max-lives: 5\n  on-revive: 1\n  grace-period-hours: 24\n  revive-cooldown-seconds: 30\n\nmain:\n  death-mode: \"hybrid\"           # hybrid | spectator | limbo\n  hybrid-timeout-seconds: 300\n\nhrm:\n  enabled: true\n  drop-heads: true\n  structure-revive: true\n  head-wearing-effects: true\n  revive-skull-recipe: true\n\nextra-life:\n  enabled: true\n    recipe:\n    row1: \"DED\"\n    row2: \"INI\"\n    row3: \"GEG\"\n    # Letter-to-material mapping\n    ingredients:\n      G: \"GOLD_BLOCK\"\n      E: \"EMERALD_BLOCK\"\n      N: \"NETHER_STAR\"\n      D: \"DIAMOND_BLOCK\"\n      I: \"NETHERITE_INGOT\"\n```\n*(to edit this, change one of the letters in the rows to another one, and set the block for that letter under ingredients. A customized example is shown above)*\n```\nmain-server-name: \"main\"\nlimbo-server-name: \"limbo\"\n```\n*(change this to the names that are in velocity.toml)*\n\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/psadmin <sub> [args]` | Admin commands (lives, grace, kill, revive, reset, info, reload) | `polarsouls.admin` |\n| `/revive <player>` | Revive a dead player | `polarsouls.revive` |\n| `/pstatus [player]` | Check lives and status | `polarsouls.status` |\n| `/psetlives <player> <n>` | Set a player's lives | `polarsouls.admin` |\n| `/setlimbospawn` | Set the Limbo spawn point | `polarsouls.admin` |\n| `/limbo` | Visit the Limbo server | `polarsouls.visit` |\n| `/leavelimbo` | Return from Limbo to Main | `polarsouls.visit` |\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `polarsouls.admin` | Full admin access | op |\n| `polarsouls.revive` | Can revive dead players | op |\n| `polarsouls.status` | Can check player status | true |\n| `polarsouls.visit` | Can visit Limbo as a living player | true |\n| `polarsouls.bypass` | Bypass all death mechanics | false |\n\n\n## License\n\nGPL3",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "paper",
+    "purpur",
+    "quilt",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 754,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

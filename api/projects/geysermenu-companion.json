@@ -1,0 +1,39 @@
+{
+  "id": "CXrfbCPD",
+  "slug": "geysermenu-companion",
+  "title": "GeyserMenu-Companion",
+  "description": "Server-side companion plugin for GeyserMenu — register buttons, send Bedrock forms, and handle player events via a simple API on Spigot/Paper or Velocity.",
+  "body": "# GeyserMenu Companion\n\nThe server-side half of the [GeyserMenu](https://modrinth.com/plugin/geysermenu) stack. \nConnects to the GeyserMenu Geyser extension over TCP and exposes a clean Java API for \nregistering menu buttons, sending native Bedrock forms, and listening to Bedrock player events — \non both Spigot/Paper and Velocity.\n\n## How It Works\n\nOnce connected to the GeyserMenu extension, your plugins use the companion API to register \nbuttons that appear in the Bedrock menu. When a player clicks a button, the event is \nforwarded to your plugin's handler. You can also send forms directly to any Bedrock player \nat any time.\n\n## Features\n\n- **Button registration API** — register buttons with icons, priorities, and click handlers\n- **Form builder API** — send simple, modal, and custom forms to Bedrock players\n- **Permission-based visibility** — conditionally show buttons based on player permissions\n- **Bedrock player events** — listen for Bedrock join/leave, check if a player is Bedrock\n- **Multi-platform** — supports Spigot/Paper and Velocity from a single codebase\n- **Auto-reconnect** — automatically reconnects to the GeyserMenu extension on disconnect\n- **Command buttons** — register buttons that execute commands without writing click handlers\n\n## Requirements\n\n- Spigot/Paper **1.20.4+** or Velocity **3.3.0+**\n- Java **21+**\n- Floodgate\n- [GeyserMenu](https://modrinth.com/plugin/geysermenu) extension running on Geyser\n\n## Installation\n\n1. Download the JAR for your platform — `Spigot` or `Velocity`\n2. Place it in your `plugins/` folder\n3. Start the server once to generate `config.yml`\n4. Set the `host`, `port`, and `secret-key` to match your GeyserMenu extension config\n5. Restart — the plugin will connect and sync buttons automatically\n\n## Configuration\n```yaml\nextension:\n  host: \"localhost\"\n  port: 19133\n  secret-key: \"your-secret-key-here\"\n\nconnection:\n  auto-reconnect: true\n  reconnect-delay: 5\n\nserver:\n  identifier: \"lobby\"\n```\n\n## Quick API Example\n```java\nGeyserMenuAPI api = GeyserMenuAPI.getInstance();\n\napi.registerButton(MenuButton.builder()\n    .id(\"myplugin-main\")\n    .text(\"My Plugin\")\n    .imageUrl(\"https://example.com/icon.png\")\n    .priority(50)\n    .onClick((player, session) -> openMenu((Player) player))\n    .build());\n```\n\nFull API documentation is available on the [GitHub repository](https://github.com/dronzer-tb/geyser-menu-companion).\n\n## Links\n\n- [GeyserMenu Extension](https://modrinth.com/plugin/geysermenu)\n- [GitHub](https://github.com/dronzer-tb/geyser-menu-companion)\n- [Report Issues](https://github.com/dronzer-tb/geyser-menu-companion/issues)",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 141,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

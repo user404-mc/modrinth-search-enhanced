@@ -1,0 +1,33 @@
+{
+  "id": "9Nbhg9jF",
+  "slug": "custom_light",
+  "title": "Custom Light",
+  "description": "You can customize the light level of all blocks.",
+  "body": "![NeoForge](https://img.shields.io/badge/NeoForge-21.X-blue)\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21.X-green)\n# Custom Light\n\n### Overview\nCustom Light allows players/server administrators to customize the light emission levels of in-game blocks. The light level of any block can be modified through a simple configuration file without altering core game files, supporting both client and server environments.\n### Configuration File Generation\nThe mod automatically generates corresponding configuration files based on the running environment, located as follows:\n| Environment | File Path | File Name |\n|------------------------|--------------------------|--------------------|\n| Client (when launching the game) | Game root directory/config | custom_light_Client.toml |\n| Server (when starting the server) | Server root directory/config | custom_light_Server.toml |\n### Configuration Synchronization\nWhen a client joins a server with this mod installed, it will automatically synchronize the server's `custom_light_Server.toml` configuration file to ensure consistent block lighting effects between the client and server.\n### Configuration File Instructions\nThe default configuration files for the client and server are identical. Below is the default configuration example and format explanation:\n```toml\n# Custom Light config\n# 格式: [light] 下方的 \"命名空间:方块ID\" = 亮度(0-15)\n# Format: Under [light], \"namespace:block ID\" = light level (0-15)\n[light]\n\"minecraft:torch\" = 15\n\"minecraft:wall_torch\" = 15\n```\n### Format Rules\n1. Configuration items must be written under the `[light]` node;\n2. Each line follows the format: `\"namespace:block ID\" = light level`;\n3. The light level ranges from 0 to 15 (0 = no light, 15 = maximum light);\n4. In theory supports all vanilla Minecraft blocks and mod-added blocks (correct namespace and block ID must be provided);\n### Notes\n1. After modifying the configuration file, restart the client/server for changes to take effect;\n2. Server configuration takes priority over client configuration, and the client configuration will be overwritten when joining the server;\n3. Do not fill in invalid block IDs, as this may cause configuration failure or game errors;\n4. Due to the limitations of Minecraft's save file format, light levels greater than 15 may have unknown consequences, so do not attempt to set light levels above 15.\n",
+  "categories": [
+    "cursed",
+    "decoration",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 250,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

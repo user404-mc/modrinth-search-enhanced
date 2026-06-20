@@ -1,0 +1,43 @@
+{
+  "id": "b313lC4Y",
+  "slug": "mod-sets",
+  "title": "Mod Sets",
+  "description": "Control mods loading with gui. Useful for modpack and server with optional function. And also for geeks want to control mods without file operating.",
+  "body": "# Mod Sets\n\n[![Modrinth Downloads](https://img.shields.io/modrinth/dt/mod-sets?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/mod-sets) [![Modrinth Version](https://img.shields.io/modrinth/v/mod-sets?style=for-the-badge&logo=modrinth&label=Latest)](https://modrinth.com/mod/mod-sets/versions) [![Modrinth Game Versions](https://img.shields.io/modrinth/game-versions/mod-sets?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/mod-sets/versions)\n[![](https://cf.way2muchnoise.eu/full_890349_Downloads.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/mod-sets) [![](https://cf.way2muchnoise.eu/versions/890349.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/mod-sets)\n[![GitHub](https://img.shields.io/github/license/SettingDust/ModSets?style=for-the-badge&logo=github)](https://github.com/SettingDust/ModSets) [![GitHub issues](https://img.shields.io/github/issues-raw/SettingDust/ModSets?style=for-the-badge&logo=github)](https://github.com/SettingDust/ModSets/issues)\n[![Discord](https://img.shields.io/discord/1134045695020642334?style=for-the-badge&logo=discord&label=Discord)](https://discord.gg/exzXHb4aQj)\n\nThis project heavily inspired by [ThatOrThis](https://github.com/EZForever/ThatOrThis)\nThe mod is using for Minecraft Fabric/Quilt/Forge for managing mod loading in game.\nAnd useful for modpack developer\n\n## Feature\n\n- Enable/Disable mods in game with defined mod sets/subdirectory name/mod id(Need restart)\n- Using https://github.com/isXander/YetAnotherConfigLib for config screen\n- Custom mod loading rules for modpack developer to make the pack with more user defined options\n\n## Usage\n\nThe rules files should be json in `config/modsets/rules`.\nAdd rule and enter the config screen through Mod Menu\nFull example: https://github.com/SettingDust/ModSets/blob/main/example_rules.json\n\n## Mod Set\n\nMod set is entry defined in `config/modsets/modsets.json` that is string to set of mod id map.\nSpecifically, sub folder name in `mods` folder will be mod sets the mods in it. And mod id will be the mod set only\ncontains itself.\nNotice, the defined mod sets by config will override the folder/mod id with the same name.\nExample:\n```json\n{\n    // The `sodium` will target the two mods here.\n  // If disable this mod set, the mod in list won't load if it is exist\n  \"sodium\": {\n    \"text\": \"Sodium\",\n    \"description\": \"Performance: +++++\",\n    \"mods\": [\n      \"sodium\",\n      \"indium\"\n    ]\n  }\n}\n```\n\n## Rule\n![img_1.png](https://github.com/SettingDust/ModSets/raw/main/img_1.png)\nEvery rule hold a text and description for displaying the info you want.\nAnd a controller for YACL user interface\nExample:\n\n```json\n{\n  \"text\": {\n    \"text\": \"My first rule set\",\n    \"bold\": true,\n    \"color\": \"green\"\n  },\n  \"description\": \"Awwww\",\n  \"rules\": [\n    {\n      \"text\": \"text\",\n      \"description\": \"description\",\n      \"controller\": {\n        \"type\": \"type\" // Notice, this isn't valid type of controller. Take the type from controllers below\n      }\n    }\n  ]\n}\n```\n\n## Controllers\n\n### Label\n\nFor displaying text on screen\nExample:\n\n```json\n{\n  \"text\": \"The label\",\n  \"description\": \"Text Text\",\n  \"controller\": {\n    \"type\": \"label\"\n  }\n}\n```\n\n### Boolean\n\nFor switching a single mod set on/off\nExample:\n```json\n{\n  \"text\": \"The boolean\",\n  \"description\": \"Text Text\",\n  \"controller\": {\n    \"type\": \"boolean\",\n      \"id\": \"sodium\"\n  }\n}\n```\n\n### Cycling\n\nFor switching between mod sets in a list.\nUseful when there is conflicting mods such as sodium and optifabric. Or switching the pack difficult\nExample:\n```json\n{\n  \"text\": \"The cycling\",\n  \"description\": \"Text Text\",\n  \"controller\": {\n    \"type\": \"cycling\",\n      \"ids\": [\n          // Don't empty\n      \"sodium\",\n      \"optifabric\"\n    ]\n  }\n}\n```\n\n### Mods Group\nAssign a simple boolean controller option to every mods in the mod sets.\nExample:\n\n```json\n{\n  \"text\": \"The mods group\",\n  \"description\": \"Text Text\",\n  \"controller\": {\n    \"type\": \"mods_group\",\n    // Default is true\n    \"collapsed\": false,\n      \"ids\": [\n          // Don't empty\n      \"sodium\",\n      \"optifabric\"\n    ]\n  }\n}\n```\n### Rules Group\nGroup the rules so that it's able to collapse the rules\nExample:\n\n```json\n{\n  \"text\": \"The rules group\",\n  \"description\": \"Text Text\",\n  \"controller\": {\n    \"type\": \"rules_group\",\n    // Default is true\n    \"collapsed\": true,\n    \"rules\": [ // Don't empty\n      {\n        \"text\": \"text\",\n        \"description\": \"description\",\n        \"controller\": {\n          \"type\": \"label\"\n        }\n      },\n      {\n        \"text\": \"text\",\n        \"description\": \"description\",\n        \"controller\": {\n          \"type\": \"boolean\",\n            \"id\": \"sodium\"\n        }\n      }\n    ]\n  }\n}\n```\n\nNotice: Every text and description is text raw json.\nUsing https://www.minecraftjson.com/ for generating text.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 157967,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "rd4cVVMM",
+  "slug": "realsize",
+  "title": "RealSize",
+  "description": "Configurable server-side Fabric mob scaling with version-specific jars for 1.21.1-1.21.11 and 26.1.2.",
+  "body": "# RealSize\n\n**Scales Minecraft mobs to configurable real-world proportions.**\n\nRealSize is a server-side Fabric mod that applies the native scale attribute to mobs, keeps small mobs visible by raising tracking distance when needed, and boosts step height for large scaled mobs.\n\n## Builds in this repo\n\nThis branch now builds **two Fabric jars from shared configurable logic**:\n\n| Module | Target |\n|---|---|\n| `mc121` | Minecraft `1.21.1` build intended for `1.21.1` through `1.21.11` |\n| `mc2612` | Minecraft `26.1.2` / `1.26.1.2` build |\n| `common` | Shared config + sizing logic + unit tests |\n\nBoth platform jars include the shared `common` classes in the final mod jar.\n\n## Features\n\n- JSON config at `config/realsize.json`\n- Shared data-driven entity scale table keyed by registry ID\n- Small-mob tracking range boost driven by config thresholds\n- Large-mob step-height boost driven by config thresholds\n- 1.21.11-only mob compatibility on the 1.21 build via registry-ID lookup (`minecraft:nautilus`, `minecraft:zombie_nautilus`) instead of compile-time entity constants\n\n## Configuration\n\nRealSize writes `config/realsize.json` on first launch.\n\n### How to use the config\n\n1. Start the game or server once with the mod installed.\n2. Open `config/realsize.json`.\n3. Change the global limits or add/edit entries in `entityScales`.\n4. Restart the game or server to apply the new values.\n\n### What each field does\n\n- `floor` — minimum allowed scale after config values are read. Anything lower gets clamped up to this value.\n- `cap` — maximum allowed scale. Anything higher gets clamped down to this value.\n- `trackingRangeThreshold` — if a mob ends up below this scale, RealSize boosts tracking so it stays visible from farther away.\n- `minTrackingRangeChunks` — minimum chunk-based tracking range used for tiny mobs.\n- `minTrackingDistanceBlocks` — hard minimum block distance used for tiny-mob tracking.\n- `stepHeightBoostThreshold` — if a mob is at or above this scale, RealSize adds extra step height.\n- `stepHeightBoostAmount` — how much extra step height large mobs get.\n- `entityScales` — per-entity scale overrides keyed by registry ID such as `minecraft:bee`.\n\n### Example\n\n```json\n{\n  \"floor\": 0.22,\n  \"cap\": 1.45,\n  \"trackingRangeThreshold\": 0.6,\n  \"minTrackingRangeChunks\": 10,\n  \"minTrackingDistanceBlocks\": 128,\n  \"stepHeightBoostThreshold\": 1.1,\n  \"stepHeightBoostAmount\": 0.5,\n  \"entityScales\": {\n    \"minecraft:bee\": 0.25,\n    \"minecraft:horse\": 1.05,\n    \"minecraft:nautilus\": 0.4,\n    \"minecraft:zombie_nautilus\": 0.4\n  }\n}\n```\n\n### Practical examples\n\n- Make bees easier to see without changing anything else: lower only `minecraft:bee` in `entityScales`.\n- Keep extremely small mobs from disappearing too early: raise `minTrackingDistanceBlocks` or `minTrackingRangeChunks`.\n- Stop giant mobs from getting too large: lower `cap`.\n- Help oversized mobs walk over terrain more naturally: lower `stepHeightBoostThreshold` or raise `stepHeightBoostAmount`.\n\n## Building\n\nFrom the repository root:\n\n```bash\n./gradlew :common:test :mc121:build :mc2612:build\n```\n\nArtifacts:\n\n- `mc121/build/libs/realsize-mc121-<version>.jar`\n- `mc2612/build/libs/realsize-mc2612-<version>.jar`\n\n## Installation\n\n1. Pick the jar for your Minecraft version:\n   - `realsize-mc121-<version>.jar` for Minecraft `1.21.1` through `1.21.11`\n   - `realsize-mc2612-<version>.jar` for Minecraft `26.1.2` / `1.26.1.2`\n2. Drop that one jar into `mods/` with the matching Fabric Loader and Fabric API modules.\n3. Start once to generate `config/realsize.json`.\n4. Edit config if desired and restart.\n",
+  "categories": [
+    "fabric",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 443,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ElIX3DJO",
+  "slug": "backpack-display",
+  "title": "Backpack Display",
+  "description": "A mod to show what's in your backpacks, drawers, or any similar containers",
+  "body": "# BackpackDisplay\nAdds a tooltip to show what's in your backpack, shulker box or other container item.  \nConfigurable of how to get contents for the container item.  \nThe mod has out-of-the-box support for vanilla shulker boxes, storage drawers drawers, and forestry backpacks. You can add support to more items by writing custom rules in the mod's config.  \n\nConfigurable options(See the mod's config): \n- The items that the mod's tooltip should be shown for  \n- Position and color of the tooltip  \n- Optional hold or release a keybind to show the tooltip  \n\n## Config Format\n`displayRules` is the main config of the mod. It lets you to add new container  items to display the backpack tooltip, with the following format:  \nFormat: `<modID>:<itemID>[:meta]#<rule type>#<rule definition>`  \n\nmeta is a comma-separated list for meta-values to match.  \nFor example,`1,2,5-8` allows tooltip to show on the item with metadata 1,2,5,6,7,8.  \nWhen meta is absent, tooltip to show on the item ignoring meta.  \n\nRule definition is according to the rule type selected.  \n\n### Paths\nPath is commonly used in the rules, and have a format like `path.to.the.item`.  \nFor example, in this NBT structure: \n```\n{\"list\":[{\"key1\":\"value\"},{\"key2\":\"item\"}]}\n```\nThe path `list.1.key2` will get the tag \"item\" from it.\n\n### List rule\nRule type: `list`  \n\nIn this rule, items are all under a NBTTagList or a NBTTagCompound.  \n\nRule definition:`path.to.the.list[;path.to.the.itemstack[;path.to.the.counts]]`  \nThe last 2 paths is relative to the tag item in the list. \nIf the counts is absent, the count in the itemstack is used instead.\n\nExample: Show contents when hovering a purple shulker box  \n```\nminecraft:purple_shulker_box#list#BlockEntityTag.Items\n```\n### Single rule\nRule type: `single`  \n\nIn this rule, an item is under a fixed path, with an optional external count value.  \n\nRule definition:`path.to.the.itemstack[;path.to.the.counts[;calculations for the counts]]`  \nIf the counts is absent, the count in the itemstack is used instead.  \n\nExample: Show content for every basic drawers in storage drawers mod\n```\nstoragedrawers:basicdrawers:0#single#BlockEntityTag.Drawers.0.Item;BlockEntityTag.Drawers.0.Count\nstoragedrawers:basicdrawers:1,3#single#BlockEntityTag.Drawers.0.Item;BlockEntityTag.Drawers.0.Count\nstoragedrawers:basicdrawers:1,3#single#BlockEntityTag.Drawers.1.Item;BlockEntityTag.Drawers.1.Count\nstoragedrawers:basicdrawers:2,4#single#BlockEntityTag.Drawers.0.Item;BlockEntityTag.Drawers.0.Count\nstoragedrawers:basicdrawers:2,4#single#BlockEntityTag.Drawers.1.Item;BlockEntityTag.Drawers.1.Count\nstoragedrawers:basicdrawers:2,4#single#BlockEntityTag.Drawers.2.Item;BlockEntityTag.Drawers.2.Count\nstoragedrawers:basicdrawers:2,4#single#BlockEntityTag.Drawers.3.Item;BlockEntityTag.Drawers.3.Count\n```\n\nThis rule supports further calculation to get the real item count if it's not in the tag directly but can be calculated from the values in the tag.  \nCalculations are a string starting with a operator in `+-*/^%` and followed by a path. The order of calculation is like that on a basic calculator that cannot input expressions.  \nAll calculations is done in integer.\n\nExample: Show content for compact drawers in storage drawers mod  \n```\nstoragedrawers:compdrawers#single#BlockEntityTag.Drawers.Items.0.Item;BlockEntityTag.Drawers.Count;/BlockEntityTag.Drawers.Items.0.Conv\nstoragedrawers:compdrawers#single#BlockEntityTag.Drawers.Items.1.Item;BlockEntityTag.Drawers.Count;/BlockEntityTag.Drawers.Items.1.Conv\nstoragedrawers:compdrawers#single#BlockEntityTag.Drawers.Items.2.Item;BlockEntityTag.Drawers.Count;/BlockEntityTag.Drawers.Items.2.Conv\n```\n\n### ",
+  "categories": [
+    "fabric",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 8797,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

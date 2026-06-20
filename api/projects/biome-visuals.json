@@ -1,0 +1,25 @@
+{
+  "id": "pV75jLOd",
+  "slug": "biome-visuals",
+  "title": "BiomeVisuals",
+  "description": "A plugin that allows server owners to override sent biome to clients.",
+  "body": "**ONLY SUPPORTS 1.19**\n\nThere are no dependencies needed for this plugin.\nPlease go to [Owen1212055/BiomeVisuals](https://github.com/owen1212055/biomevisuals) for the advanced documentation.\nNeed help? See: [discord](https://discord.com/invite/apazk9tvkw)\n![https://user-images.githubusercontent.com/23108066/147176650-2585395b-6ab0-4936-9815-6af428354689.png](https://user-images.githubusercontent.com/23108066/147176650-2585395b-6ab0-4936-9815-6af428354689.png)\n\nFile Importing\nThe plugin will automatically try to import overrides that are defined in the **overrides** directory located in the plugin directory. (**BiomeVisuals/overrides**)\nIn order to add an override, you must first define the registry type that you are overriding. This is in case if any new overrides are added in the future.\n\nCurrently, the supported override types are: **worldgen/biome**.\n\nThen, you will add the JSON object for an override, which is:\n```\n{\n  \"key\": \"minecraft:plains\",\n  \"override\": {},\n  \"condition\": {\n    \"type\": \"\",\n  }\n}\n```\nThe **key** represents the key of the item being overwritten.\nThis usually represents the namespace of something, in this case, a biome.\nThe **override** field represents all fields that will be replaced in the original object.\nSee [https://minecraft.fandom.com/wiki/Biome/JSON_format](https://minecraft.fandom.com/wiki/Biome/JSON_format) for fields that can be replaced.\nFor converting colors, I recommend using [http://www.shodor.org/stella2java/rgbint.html](http://www.shodor.org/stella2java/rgbint.html).\nThe **condition** field represents a predicate, there is a chance that this may change in the future but my goal was to be able to assign \"holidays\" for example.\n\nCurrent valid conditions\n```\n\"condition\": {\n        \"type\": \"biomevisuals:static\",\n        \"value\": true\n}\n```\n Value will always return as defined in the value field, in this case ``true``.\n```\n\"condition\": {\n        \"type\": \"biomevisuals:date_range\",\n        \"min_date\": \"2021-12-20\",\n        \"max_date\": \"2021-12-31\",\n        \"ignore_year\": true\n      }\n```\n Value will return true if the current date is within the range of the two given dates.\n Ignore year causes the year in the min/max date field to be ignored, useful for re-occuring dates.\n\n\nJSON Example\n```\n{\n  \"minecraft:worldgen/biome\": [\n    {\n      \"key\": \"minecraft:plains\",\n      \"override\": {\n        \"effects\": {\n          \"sky_color\": 1\n        }\n      },\n      \"condition\": {\n        \"type\": \"biomevisuals:static\",\n        \"value\": true\n      }\n    },\n    {\n      \"key\": \"minecraft:forest\",\n      \"override\": {\n        \"effects\": {\n          \"sky_color\": 15138811,\n          \"foliage_color\": 13434879,\n          \"grass_color\": 13434879,\n          \"particle\": {\n            \"options\": {\n              \"type\": \"minecraft:snowflake\"\n            },\n            \"probability\": 0.01428\n          }\n        }\n      },\n      \"condition\": {\n        \"type\": \"biomevisuals:date_range\",\n        \"min_date\": \"2021-12-20\",\n        \"max_date\": \"2021-12-31\",\n        \"ignore_year\": true\n      }\n    }\n  ]\n}\n```",
+  "categories": [
+    "decoration",
+    "library",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 447,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

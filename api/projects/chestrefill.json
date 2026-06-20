@@ -1,0 +1,22 @@
+{
+  "id": "sv1q6VzG",
+  "slug": "chestrefill",
+  "title": "Chest Refill",
+  "description": "A serverside mod that refills loot containers.",
+  "body": "# ChestRefill\nA serverside mod that refills loot containers.\n\n### How-to\n1. Put the mod in your `mods/` folder.\n2. Restart the game / server.\n   1. Tweak the config if you need, then use `/chestrefill reload`\n3. Generate / create **new** loot chests.\n4. Loot them, wait for given time (default: 4 hours) and reloot them again with another account!\n\n## Features\n* configurable (time, max fills, reset loot seed ...)\n* permission support (`chestrefill.allowReloot`)\n* works on any container extending `RandomizableContainerBlockEntity`\n\n## Permissions\n\n* `chestrefill.allowReloot` - allows relooting chest\n* `chestrefill.config`\n  * `chestrefill.config.edit` - allows in-game config editing\n  * `chestrefill.config.reload` - allows reloading config\n \n## Config\n\nYou can use an in-game `/chestrefill` command to edit the config in game.\nAvailable options:\n```toml\n# Whether to randomize loot table seed.\"\n# This ensures that regenerated loot is different each time.\n# (default = true)\nrandomize_loot_seed = true\n\n# Whether to allow players to reloot containers\n# even if they don't have `chestrefill.allowReloot` permission.\n# (default = false)\nallow_reloot_without_permission = false\n\n# Max refills per container, inclusive. -1 for unlimited.\n# (default = 5)\nmax_refills = 5\n\n# Whether to add loot even if container has some items already.\n# (default = false)\nrefill_non_empty = false\n\n# Minimum wait time to refill the loot, in seconds.\n# (default = 14400 (=4 hours))\nmin_wait_time = 14400\n```\n\n## Per-loot-table customization\n\nYou can also set custom values for specified loot tables.\nDo you want the end city loot table refilled more times than default?\nSet the following options.\n\n```json\n{\n  \"...\": \"\",\n  \"// Map to override above config for certain loot tables only.\": \"\",\n  \"lootModifierMap\": {\n    \"minecraft:chests/end_city_treasure\": {\n      \"randomize_loot_seed\": true,\n      \"allow_reloot_without_permission\": true,\n      \"max_refills\": 100,\n      \"refill_non_empty\": false,\n      \"min_wait_time\": 60\n    },\n    \"sample_mod:chests/custom_loot_table\": {\n      \"randomize_loot_seed\": true,\n      \"allow_reloot_without_permission\": false,\n      \"max_refills\": 5,\n      \"refill_non_empty\": false,\n      \"min_wait_time\": 14400\n    }\n  }\n}\n```\n\nThis will cause the `minecraft:chests/end_city_treasure` to be\n* relootable by same players\n* refillable `100` times\n* refilled each `60` seconds\n\n\n## Per-container customization\n\nYou can customize a chest using the `NBT` tags. These will override\nthe both config defaults and loot table overrides.\n\n```nbtt\n\n    ChestRefill: {\n            RefillCounter: 0,\n            SavedLootTable: \"minecraft:chests/igloo_chest\",\n            CustomValues: {\n                AllowReloot: 1b\n                MaxRefills: -1\n                MinWaitTime: 60\n            }\n    }\n\n```\n(`RandomizeLootSeed` and `RefillNonEmpty` custom values are also available.)\n\nThe command would look like the following:\n```brigadier\n/setblock ~ ~ ~ minecraft:chest{ChestRefill: {RefillCounter: 0, SavedLootTable: \"minecraft:chests/igloo_chest\", CustomValues: {AllowReloot: 1b, MaxRefills: -1, MinWaitTime: 60}}}\n```\n\nThis will create a lootable container that can be\n* relooted by same players\n* refilled infinitely\n* refilled every 60 seconds\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1794,
+  "followers": 0,
+  "game_versions": [
+    "1.17.1",
+    "1.18.1",
+    "1.19"
+  ],
+  "date_updated": null
+}

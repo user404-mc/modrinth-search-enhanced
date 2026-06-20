@@ -1,0 +1,32 @@
+{
+  "id": "ouTHMGaI",
+  "slug": "rtpqueue-advance",
+  "title": "RtpQueue Advance",
+  "description": "A powerful Minecraft plugin for random teleportation with queue-based matchmaking. Players can join a queue and wait for opponents before being teleported together to a random location.",
+  "body": "# RtpQueue Advance\n## `ᴡʜᴇɴ ᴛᴇꜱᴛɪɴɢ ᴘʟᴜɢɪɴ ꜰᴇᴀᴛᴜʀᴇꜱ, ᴘʟᴇᴀꜱᴇ ᴅᴇ-ᴏᴘ ʏᴏᴜʀꜱᴇʟꜰ ꜰɪʀꜱᴛ ᴀɴᴅ ᴛʜᴇɴ ᴛᴇꜱᴛ ᴛʜᴇ ꜱᴇʀᴠᴇʀ ᴀꜱ ᴀ ɴᴏʀᴍᴀʟ ᴘʟᴀʏᴇʀ. ᴘʟᴜɢɪɴ ꜰᴇᴀᴛᴜʀᴇꜱ ᴅᴏ ɴᴏᴛ ᴡᴏʀᴋ ᴄᴏʀʀᴇᴄᴛʟʏ ᴡʜᴇɴ ᴛʜᴇ ᴘʟᴀʏᴇʀ ʜᴀꜱ ᴏᴘᴇʀᴀᴛᴏʀ (ᴏᴘ) ᴘᴇʀᴍɪꜱꜱɪᴏɴꜱ, ꜱᴏ ᴛᴇꜱᴛɪɴɢ ᴀꜱ ᴏᴘ ᴍᴀʏ ɢɪᴠᴇ ɪɴᴄᴏʀʀᴇᴄᴛ ʀᴇꜱᴜʟᴛꜱ`.\n##  ‎ \nA powerful Minecraft plugin for random teleportation with queue-based matchmaking. Players can join a queue and wait for opponents before being teleported together to a random location.\n\n[ ![logo](https://cdn.modrinth.com/data/cached_images/b6a8613305c7a7d68abbf1d9fab01d39bb48ecc3_0.webp)\n](https://www.gtxgaming.co.uk/)\n\n## Features\n\n- **World Selection GUI** - Beautiful interface to select which world to queue for\n- **Queue System** - Wait for other players before teleporting together\n- **Multi-World Support** - Configure multiple worlds with custom settings\n- **Safe Teleportation** - Finds safe locations avoiding lava, fire, water, and dangerous blocks\n- **Customizable Messages** - Full control over all plugin messages with color codes\n- **Action Bar Display** - Persistent action bar showing queue status until player is found\n- **Title Notifications** - On-screen titles when joining queue and finding opponents\n- **Broadcast System** - Announce to all players when someone joins the queue\n- **Bypass Permission** - Allow staff to skip the queue and teleport instantly\n\n## Commands\n\n| Command | Aliases | Description | Permission |\n|---------|---------|-------------|------------|\n| `/rtpqueue` | `/rtpq` | Opens the world selection GUI to join a queue | `rtpqueue.use` |\n| `/rtpqueueleave` | `/rtpleave`, `/leavequeue` | Leave your current queue | `rtpqueue.use` |\n| `/rtpqueuereload` | - | Reload the plugin configuration | `rtpqueue.admin` |\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `rtpqueue.use` | Allows players to use the RTP queue system | `true` (all players) |\n| `rtpqueue.admin` | Allows reloading the plugin configuration | `op` |\n| `rtpqueue.bypass` | Skip the queue and teleport instantly | `op` |\n\n## Configuration\n\n### Queue Settings\n\n```yaml\nqueue:\n  min-players: 2           # Minimum players needed to start teleport\n  countdown-seconds: 3     # Countdown before teleport (3-2-1)\n  teleport-together: true  # Teleport all queued players together\n```\n\n### GUI Settings\n\n```yaml\ngui:\n  title: \"&6&lRTP Queue &8| &fWorld Selection\"\n  size: 27  # Options: 9, 18, 27, 36, 45, 54\n```\n\n### Action Bar Settings\n\n```yaml\nactionbar:\n  enabled: true\n  message: \"&7Waiting for a &aplayer &7in &a/rtpqueue &7(%current%/%max%)\"\n  interval: 20  # Ticks between refresh (20 = 1 second, keeps visible until found)\n```\n\n### Title Settings\n\n```yaml\ntitle:\n  enabled: true\n  join-title: \"&a&l+\"\n  join-subtitle: \"&aJoined &e&lRTPQueue&a!\"\n  found-title: \"&a&l✓\"\n  found-subtitle: \"&aOpponent found!\"\n  fade-in: 10\n  stay: 40\n  fade-out: 10\n```\n\n### Broadcast Settings\n\n```yaml\nbroadcast:\n  enabled: true\n  header: \"&a✦ &a&lRTPQUEUE &a✦\"\n  lines:\n    - \"&e%player% &7is waiting for\"\n    - \"&7an opponent to fight!\"\n  footer: \"&a+ /rtpqueue +\"\n```\n\n### World Configuration\n\nEach world can be configured individually:\n\n```yaml\nworlds:\n  world:\n    enabled: true\n    display-name: \"&a&lOVERWORLD\"\n    description: \"&7Classic survival world\"\n    material: GRASS_BLOCK\n    slot: 11\n    spawn-range:\n      min: 100    # Minimum distance from center\n      max: 5000   # Maximum distance from center\n    center:\n      x: 0\n      z: 0\n```\n\n### Messages\n\nAll messages are fully customizable with color code support:\n\n```yaml\nmessages:\n  prefix: \"&aRTPQUEUE &8» &r\"\n  joined-queue: \"&aYou joined the queue for &e%world%&a! &7(%current%/%max% players)\"\n  left-queue: \"&cYou left the queue for &e%world%&c.\"\n  opponent-found: \"&aOpponent found, you will be teleported!\"\n  teleportation-countdown: \"&eTeleportation in &c%seconds%s\"\n  teleported: \"&aYou have been teleported!\"\n  already-in-queue: \"&cYou are already in a queue!\"\n  not-in-queue: \"&cYou are not in any queue!\"\n  world-not-found: \"&cWorld not found!\"\n  no-permission: \"&cYou don't have permission to use this!\"\n  config-reloaded: \"&aConfiguration reloaded successfully!\"\n```\n\n## Placeholders\n\n| Placeholder | Description |\n|-------------|-------------|\n| `%player%` | Player's name |\n| `%world%` | World display name |\n| `%current%` | Current players in queue |\n| `%max%` | Minimum players needed |\n| `%seconds%` | Countdown seconds remaining |\n\n## How It Works\n\n1. Player runs `/rtpqueue` to open the world selection GUI\n2. Player clicks on a world to join that world's queue\n3. Action bar shows waiting status (persists until opponent found)\n4. When enough players join (default: 2), countdown begins\n5. All queued players are teleported together to a safe random location\n6. Players can leave queue anytime with `/rtpqueueleave`\n\n## Safe Location Finding\n\nThe plugin automatically finds safe teleport locations by:\n- Checking for solid ground (no lava, fire, water, etc.)\n- Ensuring 2 blocks of air space for the player\n- Avoiding dangerous blocks nearby (lava, fire, cactus, magma)\n- Multiple attempts to find the perfect spot\n\n## Installation\n\n1. Download the plugin JAR file\n2. Place it in your server's `plugins` folder\n3. Restart or reload your server\n4. Configure the plugin in `plugins/RtpQueueAdvance/config.yml`\n5. Use `/rtpqueuereload` to apply changes\n\n## Requirements\n\n- Minecraft Server: Paper/Spigot 1.21+\n- Java: 21+\n\n## Author\n\nCreated by **YourSenior**\n\n## Version\n\n1.0.0\n",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 751,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

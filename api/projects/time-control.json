@@ -1,0 +1,31 @@
+{
+  "id": "Mksh0eV4",
+  "slug": "time-control",
+  "title": "Time Control",
+  "description": "Want longer or shorter in-game days/nights? So did I.",
+  "body": "![](http://cf.way2muchnoise.eu/versions/303570.svg)\n\n[![](http://cf.way2muchnoise.eu/title/303570.svg)](https://www.curseforge.com/minecraft/mc-mods/time-control)\n[![](https://static.unixkitty.com/icons/modrinth_long_color_24.svg)](https://modrinth.com/mod/time-control)\n[![](https://static.unixkitty.com/icons/discord_long_color_24.svg)](https://discord.unixkitty.com)\n\nSince 1.20.1 there is also a version for **Fabric**!\n\nControl Minecraft’s day-night cycle using a simple config file, choosing either:\n\n- Set length for day and night in minutes (can be configured independently)\n- Or sync in-game time with system clock\n\nNo base classes are modified, no ASM/mixin transformations (on the Forge version) and no touching tick lengths.\n\nFor years when playing the game I couldn't stand vanilla day length.\n\nNo other mod that tried to implement a similar feature satisfied me, either due to breaking other mods or having unnecessary features.\n\nThis is my simplistic, non-invasive implementation that relies on the vanilla \"doDaylightCycle\" gamerule being off.\nThe mod will set it to false on it's own during world startup.\n\n/time command works, sleeping works (sleep should be mostly handled by vanilla)\n\nThere is also compatibility with Comforts and Vampirism's day sleeping\n\n![](https://static.unixkitty.com/demo/timecontrol/live_change.gif)\n![](https://static.unixkitty.com/demo/timecontrol/separate_values.gif)\n\n### Configuration\n\n#### File:\n\nStarting with **1.20.1** on **Forge** configuration is saved per-world (serverside config):\n\n`.minecraft/saves/{world}/serverconfig/timecontrol-server.toml`\n\nOn **Fabric** **1.20.1**+:\n\n`.minecraft/config/timecontrol.json`\n\nIf you're using **Forge**, on Minecraft versions up to and including **1.19.4** you can find it at:\n\n`.minecraft/config/timecontrol-common.toml`\n\n```toml\n[system_time]\n\t#Synchronize game world time with system time\n\tsync_to_system_time = true\n\t#Sync time every n ticks\n\t#Range: 1 ~ 864000\n\tsync_to_system_time_rate = 20\n\n[arbitrary_time]\n\t#How long daytime lasts (0 - 12000)\n\t#Range: 1 ~ 178956\n\tday_length_minutes = 30\n\t#How long nighttime lasts (12000 - 24000)\n\t#Range: 1 ~ 178956\n\tnight_length_minutes = 25\n\n[miscellaneous]\n\tdebug = true\n```\n\nThe Fabric version json does not have comments, so you can refer to the above example.\n\n#### Commands:\n\nThere is also an in-game command:\n\nIn 1.20+\n\n```\n/timecontrol day_length_minutes [<value>]\n/timecontrol night_length_minutes [<value>]\n/timecontrol sync_to_system_time_rate [<value>]\n/timecontrol sync_to_system_time [<value>]\n```\n\nUp to 1.19.4:\n\n```\n/timecontrol get < sync_to_system_time | night_length_minutes | day_length_minutes >\n/timecontrol set < night_length_minutes | day_length_minutes > <value>\n```\n\n___\n\nAt this time it works with both multiplayer and singleplayer (must be installed on both), but on Dedicated Servers due to possible ping and ticks per second discrepancies slight skybox jitter may be noticeable.\n\n#### FAQ\n\n**Q**: Forge?\n\n**A**: Forge, and since 1.20.1 - Fabric.\n\n**Q**: Can I include your mod in a video?\n\n**A**: As long as you include a link to the mod/modpack (if it happens to be in one), absolutely\n\n**Q**: Can I add your mod to a modpack?\n\n**A**: CurseForge/Modrinth modpacks are cool.\n\n#### P.S.\n\nIf you don't feel confident enough about my mod and may have also become distrustful of all the previously existing mods attempting to give control to daylight cycle length:\n\nI've been using it myself since 1.12.2, always in heavily modded packs (200+ mods), (usually) on a multiplayer server. This should be a vanilla feature in my opinion.\n\nThe mod also doesn't have any permanent effects on the game or save, so if you install/remove it without worry.",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 205017,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.15.2",
+    "1.16.5",
+    "1.17.1",
+    "1.18.1",
+    "1.18.2",
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "qmVRzDCY",
+  "slug": "portable-crafting",
+  "title": "Portable Crafting",
+  "description": "Use crafting stations (tables, smithing, anvils, stonecutters, etc) directly from your inventory.",
+  "body": "<!--suppress HtmlDeprecatedTag, XmlDeprecatedElement -->\n<center>\n  <img src=\"https://cdn.modrinth.com/data/qmVRzDCY/images/cbe8676bda07c29d468b5d7a78b7f4e04bb4ea55.gif\" alt=\"portable crafting preview\"/><br/>\n  Open crafting screens from your inventory.<br/>\n  Works server-side, with extra polish when installed on the client.<br/>\n  Requires <a href=\"https://modrinth.com/mod/connector\">Connector</a> and <a href=\"https://modrinth.com/mod/forgified-fabric-api\">FFAPI</a> on (neo)forge.<br/>\n</center>\n\n---\n\n### Server Features\n\n - Open workstation blocks by right-clicking them in the inventory (or using them from the hotbar)\n - Supports crafting, smithing, stonecutting, grinding, looms, cartography tables, and anvils by default\n - Supports all vanilla and most modded non-container workstations via the config (see below)\n\n### Mixed-Side Features\n - Opening workstations is seamless, with no ping-dependent \"ghost pickup\" while the screen is loading\n - Quickly open your crafting table via a hotkey (Default: `v`)\n - Swap to portable workstations using [Inventory Tabs](https://modrinth.com/mod/inventory-tabs)\n> ![tabs preview](https://cdn.modrinth.com/data/qmVRzDCY/images/bba889be1d361cb9464db547c216367223c93707.png)\n\n## Modpack Configuration\n\nYou add and change which workstations are portable via `config/portable_crafting.toml`.<br/>\nBlocks _must_ open the specified screen handler on use, or this will not work.\n\n```toml\n[blockItemScreens]\n\t\"minecraft:crafting_table\" = \"minecraft:crafting\"\n\t\"...block_item\" = \"...screen_handler\"\n\n[blockItemTags]\n\t\"c:player_workstations/crafting_tables\" = \"minecraft:crafting_table\"\n\t\"...item_tag\" = \"...block_item_from_above\"\n```\n\nModded non-container workstations that use vanilla code conventions will work. Others crash, so test as you go.<br/>\nThe config is synchronised to the client when mixed-side to display tabs and apply seam-hiding changes.\n\n#### Incompatible Blocks\n\nDon't file issues for modded workstations! We can't fix them on our side.<br/>\nTo function as portable workstations, blocks must:\n- Have no state/container, i.e. items cannot be left in them\n- Override `getMenuProvider` / `createScreenHandlerFactory` to open their screen\n- Have a screen that doesn't rely on the existence of a block at the position provided at any time\n- Have a screen that can be uniquely identified by a screen handler type\n\n## Afterword\n\nAll mods are built on the work of many others.\n\nThis mod specifically is inspired by a similar feature from Svenhjol's Charm - one of the few implementations of portable crafting grids that didn't introduce new items at the time.\n\nWe made this mod for [Tinkerer's Quilt](https://modrinth.com/modpack/tinkerers-quilt) - our modpack about ease of play and vanilla content.\n\n---\n\n<center>\n<b>Tinkerer's:</b> <a href=\"https://modrinth.com/modpack/tinkerers-quilt\">Quilt</a> - <a href=\"https://modrinth.com/mod/tinkerers-smithing\">Smithing</a> - <a href=\"https://modrinth.com/mod/origins-minus\">Origins</a> - <a href=\"https://modrinth.com/mod/tinkerers-statures\">Statures</a> - <a href=\"https://modrinth.com/mod/picohud\">HUD</a><br/>\n<b>Loveletters:</b> <a href=\"https://modrinth.com/mod/inventory-tabs\">Tabs</a> - <a href=\"https://modrinth.com/mod/antique-atlas-4\">Atlas</a> - <i>Portable Crafting</i> - <a href=\"https://modrinth.com/mod/drogstyle\">Drogstyle</a><br/>\n<b>Others:</b> <a href=\"https://modrinth.com/mod/switchy\">Switchy</a> - <a href=\"https://modrinth.com/mod/crunchy-crunchy-advancements\">Crunchy</a> - <a href=\"https://modrinth.com/mod/starcaller\">Starcaller</a><br/>\n</center>\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 669912,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

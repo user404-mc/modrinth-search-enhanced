@@ -1,0 +1,30 @@
+{
+  "id": "vI3MQVTo",
+  "slug": "safeserver",
+  "title": "safeserver",
+  "description": "A mod to secure servers using a password-based login system.",
+  "body": "# Safeserver\n\nA simple Fabric mod for Minecraft that adds mandatory password authentication to your server, enhancing security.\n\nMade for online-mode off / cracked servers.\n\n## Features\n\n*   **Password Protection:** Players must set a password on their first join and log in on subsequent joins.\n*   **Interaction Blocking:** Prevents unauthenticated players from breaking/placing blocks, using items/entities, or interacting with the world.\n*   **Command Restriction:** Blocks all commands except `/login` and `/setpassword` until the player is authenticated.\n*   **Secure Storage:** Passwords are securely hashed (SHA-256) and stored in a JSON file (`config/safeserver/passwords.json`).\n*   **OP Safety:**\n    *   Temporarily removes OP status from players upon joining until they authenticate.\n    *   Removes OP status from players upon disconnecting as a safety measure.\n    *   Restores OP status after successful authentication if the player was originally OP.\n*   **Position Freeze & Safety:** Players are placed in Spectator mode and teleported to a safe, fixed location (0, calculated surface Y, 0) upon joining if authentication is needed. They are kept at this location until authenticated, preventing coordinate leakage. Their original position is restored upon successful login.\n\n## Commands\n\n*   `/setpassword <password> <password>`\n    *   Sets your initial password upon first joining the server.\n    *   Requires typing the password twice for confirmation.\n    *   Only usable when required (first join).\n*   `/login <password>`\n    *   Logs you into the server with your existing password.\n    *   Only usable when required (subsequent joins).\n*   `/changepassword <oldPassword> <newPassword> <newPassword>`\n    *   Allows an authenticated player to change their own password.\n    *   Requires the old password and confirmation of the new password.\n*   `/resetpassword <playerName>`\n    *   **OP Only (Level 2+):** Resets the password for the specified player.\n    *   Forces the target player to set a new password using `/setpassword` on their next join (or immediately if they are currently online).\n\n## Installation\n\n1.  Ensure you have the [Fabric Loader](https://fabricmc.net/use/) installed.\n2.  Download the `Safeserver` mod JAR file.\n3.  Place the JAR file into your server's `mods` folder.\n4.  Restart your server.\n\nThe mod will automatically generate the necessary configuration file upon first load. ",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6011,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.11",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,40 @@
+{
+  "id": "4qS27kGx",
+  "slug": "custom-mojang-auth",
+  "title": "Custom-Mojang-Auth",
+  "description": "A small library that allows your mod to automatically sign in to your custom server using the players mojang account",
+  "body": "# custom-mojang-auth\nA small library that allows your mod to automatically sign in to your custom server using the players mojang account. \nWorks for any minecraft version.\nThis mod allows a server to reliably identify a player and helps enforcing bans and prevents identity theft.\nMCSR Ranked uses this library.\n## Usage\n### Client\n\nIn your mod initialize the Authenticator:\n```java\nString accessToken;\nUUID uuid;\njava.net.Proxy proxy;\nString messagePrefix //optional\nClientAuth.initialize(accessToken, uuid, proxy, messagePrefix);\n```\nThe way accessToken, uuid and proxy are obtained depends on the Minecraft Version.\nObtaining the uuid of the player is pretty trivial, it can usually be found this way:\n```java\nUUID uuid = net.minecraft.client.MinecraftClient.getInstance().getSession().getProfile().getId(); //1.16.1\n```\nor\n```java\nUUID uuid = net.minecraft.client.MinecraftClient.getInstance().getSession().getUuidOrNull(); //1.20.2\n```\nObtaining the accessToken is relatively easy as well:\n```java\nString accessToken= net.minecraft.client.MinecraftClient.getInstance().getSession().getAccessToken();\n```\nObtaining the proxy can be a bit more difficult.\nIn every version that I know of it is initialized in net.minecraft.client.mainmMian.main(String args[]). Just follow the Proxy object from here,\nusually it's given to the net.minecraft.client.MinecraftClient constructor, and find a place where you can easily obtain it either via a method call, reflection, a mixin etc\nIn 1.20.2 the proxy can be obtained this way:\n```java\nField field =net.minecraft.client.MinecraftClient.class.getField(\"authenticationService\");\nfield.setAccessible(true);\njava.net.Proxy proxy =((com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService)field.get(net.minecraft.client.MinecraftClient.getInstance())).getProxy();\n```\nIn 1.16.1 the proxy can be obtained this way:\n```java\njava.net.Proxy proxy = ((com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService)net.minecraft.client.MinecraftClient.getInstance().getSessionService()).getAuthenticationService().getProxy();\n```\nIf you need help locating any of the fields for your version, feel free to dm me on discord: void_x_walker\n### Server\nInstall the library:\n```\nnpm install custom-mojang-auth  \n```\nuse the following function to verify that a payload has been signed by the client.\n```javascript\nfunction isValid(uuid, randomLong, data, date, publicKeyString, signatureBytes, payload)\n```\nwhere payload is an array.\n## Privacy\nThe client simply signs messages using its private key, which can then be send to a server. No login information, or other compromising information ever leaves the client's machine.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 970,
+  "followers": 0,
+  "game_versions": [
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

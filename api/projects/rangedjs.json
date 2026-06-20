@@ -1,0 +1,29 @@
+{
+  "id": "tz15f1Mv",
+  "slug": "rangedjs",
+  "title": "RangedJS",
+  "description": "A kubejs addon to add/modify bows and crossbows",
+  "body": "A KubeJS addon for pack dev to easily create custom bows and modify existing bows/crossbows. Please feel free to request modded ranged weapon support in comments.\n\nUpdate August 6th 2025 - Add compat with Archery Expansion.\n\nExample codes can be found on the [wiki page](https://github.com/vomiter-scp-zh/RangedJS/wiki).\n\n<span><iframe src=\"https://www.youtube.com/embed/PGyJwQTI4RA\" width=\"560\" height=\"314\" allowfullscreen=\"allowfullscreen\"></iframe></span>\n\n<span><iframe src=\"https://www.youtube.com/embed/MSPBJp4Y9eA\" width=\"560\" height=\"314\" allowfullscreen=\"allowfullscreen\"></iframe></span>\n\nYou can also create vanilla-like bow model with client script:\n\n```\nClientEvents.highPriorityAssets(event => {\n    event.easyBowModel(\"kubejs:bow_golden\")\n})\n```\n\nYou just need to put texture pictures in `kuebjs/assets/kubejs/textures/item/` The texture file names should be `bow_golden.png`, `bow_golden_pulling_0.png`, `bow_golden_pulling_1.png`, `bow_golden_pulling_2.png`\n\nYou can also modify existing bows with `ItemEvents.modification` like this:\n\n```\nItemEvents.modification(event => {\n    const $BowItem = Java.loadClass(\"net.minecraft.world.item.BowItem\")\n    event.modify(\"minecraft:bow\", item => {if(item instanceof $BowItem){\n        item.bow(bow => {\n            bow\n            .onArrowHit(arrow => {arrow.hitBlock(event => {\n                event.arrow.block.createEntity(\"lightning_bolt\").spawn()\n            })})\n            .modifyBow(attributes => {\n                attributes.fullChargeTick(15).baseDamage(6)\n            })\n        })\n    }})\n})\n```",
+  "categories": [
+    "equipment",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 474,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

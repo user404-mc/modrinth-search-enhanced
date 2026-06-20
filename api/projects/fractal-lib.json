@@ -1,0 +1,39 @@
+{
+  "id": "osYR3F5j",
+  "slug": "fractal-lib",
+  "title": "Fractal",
+  "description": "Library for item subgroups for the creative menu",
+  "body": "# About Fractal\nThis repo is a fork of [lib39/fractal](https://git.sleeping.town/unascribed-mods/Lib39) by unascribed, with added support for styled groups. I will take care of this repo while unascribed is busy.\n\nFractal introduces item **subgroups for the creative menu**.\n\n### Why Fractal?\n- Fractals Subgroups are very condensed, allowing you to add up to 12 subgroups for each of your tabs\n- Creating a new ItemSubGroup only takes one line of code and no changes in the way you assign your items to groups. Just pass them the ItemSubGroup instead of your main item group\n\n### Limitations\n- More than 12 subgroups per item group, while fully functional, will look weird.\n- The tiny font used for the labels does not support full unicode\n\n## Examples\n\n### Vanilla Style Subgroups\n\n![Screenshots of the Creative Tabs](https://cdn.modrinth.com/data/osYR3F5j/images/4b63cee264cd8d210d4b0e995076d9affc0d06e3.png)\n\n```java\npublic static final Identifier GROUP_ID = new Identifier(\"mymod\", \"main\");\n\npublic static final ItemGroup MAIN = FabricItemGroup.builder()\n\t\t.icon(() -> new ItemStack(Blocks.REDSTONE_BLOCK))\n\t\t.entries((displayContext, entries) -> entries.add(Items.APPLE))\n\t\t.displayName(Text.translatable(\"mymod.1\"))\n\t\t.noRenderedName()\n\t\t.build();\n\npublic static final ItemGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.equipment\")).entries((displayContext, entries) -> entries.add(Items.APPLE)).build();\npublic static final ItemGroup FUNCTIONAL = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.functional\")).styled(STYLE).entries((displayContext, entries) -> entries.add(Items.BAKED_POTATO)).build();\npublic static final ItemGroup CUISINE = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.cuisine\")).entries((displayContext, entries) -> entries.add(Items.CACTUS)).build();\npublic static final ItemGroup RESOURCES = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.resources\")).styled(STYLE).entries((displayContext, entries) -> entries.add(Items.DANDELION)).build();\n\n@Override\npublic void onInitialize() {\n    Registry.register(Registries.ITEM_GROUP, GROUP_ID, MAIN);\n}\n```\n\n### Applying a custom style\nYou are also able to apply a style to your ItemSubGroups, by supplying custom background, tab, subtab and scrollbar textures. You can even mix and match!\nIn this example, the first two ItemSubGroups use a custom style by supplying texture files that are being shipped with your mod. The latter two tabs use the vanilla style.\n\n![Screenshots of the Creative Tabs](https://cdn.modrinth.com/data/osYR3F5j/images/efc6f5e8ba2e95fdf11eefcf19bb461ba8ac3e7b.png)\n\n```java\n// Texture (put into \\resources\\assets\\fractal\\textures\\gui\\container\\creative_inventory)\npublic static final Identifier BACKGROUND_TEXTURE = new Identifier(\"fractal\", \"textures/gui/container/creative_inventory/custom_background.png\");\n\n// Sprites (put into \\resources\\assets\\fractal\\textures\\gui\\sprites\\container\\creative_inventory)\npublic static final Identifier SCROLLBAR_ENABLED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_scrollbar_enabled\");\npublic static final Identifier SCROLLBAR_DISABLED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_scrollbar_disabled\");\n\npublic static final Identifier SUBTAB_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_subtab_selected\");\npublic static final Identifier SUBTAB_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_subtab_unselected\");\n\npublic static final Identifier TAB_TOP_FIRST_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_top_first_selected\");\npublic static final Identifier TAB_TOP_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_top_selected\");\npublic static final Identifier TAB_TOP_LAST_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_top_last_selected\");\npublic static final Identifier TAB_TOP_FIRST_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_top_first_unselected\");\npublic static final Identifier TAB_TOP_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_top_unselected\");\npublic static final Identifier TAB_TOP_LAST_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_top_last_unselected\");\npublic static final Identifier TAB_BOTTOM_FIRST_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_bottom_first_selected\");\npublic static final Identifier TAB_BOTTOM_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_bottom_selected\");\npublic static final Identifier TAB_BOTTOM_LAST_SELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_bottom_last_selected\");\npublic static final Identifier TAB_BOTTOM_FIRST_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_bottom_first_unselected\");\npublic static final Identifier TAB_BOTTOM_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_bottom_unselected\");\npublic static final Identifier TAB_BOTTOM_LAST_UNSELECTED_TEXTURE = new Identifier(\"fractal\", \"container/creative_inventory/custom_tab_bottom_last_unselected\");\n\npublic static final ItemSubGroup.Style STYLE = new ItemSubGroup.Style.Builder()\n        .background(BACKGROUND_TEXTURE)\n        .scrollbar(SCROLLBAR_ENABLED_TEXTURE, SCROLLBAR_DISABLED_TEXTURE)\n        .subtab(SUBTAB_SELECTED_TEXTURE, SUBTAB_UNSELECTED_TEXTURE)\n        .tab(TAB_TOP_FIRST_SELECTED_TEXTURE, TAB_TOP_SELECTED_TEXTURE, TAB_TOP_LAST_SELECTED_TEXTURE, TAB_TOP_FIRST_UNSELECTED_TEXTURE, TAB_TOP_UNSELECTED_TEXTURE, TAB_TOP_LAST_UNSELECTED_TEXTURE,\n                TAB_BOTTOM_FIRST_SELECTED_TEXTURE, TAB_BOTTOM_SELECTED_TEXTURE, TAB_BOTTOM_LAST_SELECTED_TEXTURE, TAB_BOTTOM_FIRST_UNSELECTED_TEXTURE, TAB_BOTTOM_UNSELECTED_TEXTURE, TAB_BOTTOM_LAST_UNSELECTED_TEXTURE)\n        .build();\n\npublic static final ItemGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.equipment\")).styled(STYLE).entries((displayContext, entries) -> entries.add(Items.APPLE)).build();\npublic static final ItemGroup FUNCTIONAL = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.functional\")).styled(STYLE).entries((displayContext, entries) -> entries.add(Items.BAKED_POTATO)).build();\npublic static final ItemGroup CUISINE = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.cuisine\")).entries((displayContext, entries) -> entries.add(Items.CACTUS)).build();\npublic static final ItemGroup RESOURCES = new ItemSubGroup.Builder(MAIN, Text.translatable(\"itemGroup.mymod.resources\")).entries((displayContext, entries) -> entries.add(Items.DANDELION)).build();\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 8238,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

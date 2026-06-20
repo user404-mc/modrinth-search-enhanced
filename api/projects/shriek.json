@@ -1,0 +1,33 @@
+{
+  "id": "rv4M6sT7",
+  "slug": "shriek",
+  "title": "Shriek",
+  "description": "A Minecraft speech to text library; detect what your players say!",
+  "body": "# Shriek\n### A maintained version of [VoiceLib by Volcano Bay Studios](https://modrinth.com/mod/voicelib)\n\n[![Requires Architectury API](https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/cozy/requires/architectury-api_64h.png 'Architectury API')](https://modrinth.com/mod/architectury-api)\n\nA speech to text library that can listen to your microphone and understand what you're saying! Using the power of Vosk, you can speak into your microphone and get an output, and even use multiple languages!\n\n# Implementation\n\n```java\nrepositories {\n    maven {\n        name = \"Modrinth\"\n        url = \"https://api.modrinth.com/maven\"\n    }\n}\n\ndependencies {\n    modImplementation \"maven.modrinth:shriek:1.1.01+fabric\"\n}\n```\n\n# Usage\n\nShriekApi is the class for the API.\nThe following are the methods you will be using\n```java\nimport com.pryzmm.client.event.EventHandler;\nEventHandler.setModel();\n// This will set the language model, defined in https://alphacephei.com/vosk/models\n// Language models vary in size; the default is vosk-model-small-en-us-0.15, which is ~40 MB compressed, while others like vosk-model-ru-0.10 are ~2.5GB compressed\n// Changing models will restart a restart to download, or a call from EventHandler.getOrCreatePath();\n\nShriekApi.registerServerPlayerSpeechListener(Consumer<ServerPlayerTalkEvent> consumer)\n// This method registers a ServerPLayerTalkEvent Consumer. Whenever a player speaks,\n// This event will be fired. The ServerPlayerTalkEvent provides the player, and a string of what they said.\n\nShriekApi.registerClientSpeechListener(Consumer<ClientTalkEvent> consumer)\n// This method registers a ClientTalkEvent Consumer. This method is only fired on the client.\n// Whenever the user speaks, this will be fired.\n\nShriekApi.setPrintToChat(boolean printToChat)\n// This is only on the client. This sets whether or not to \n// print client speak events to chat. (Default False)\n\nShriekApi.setPrintToConsole(boolean printToConsole)\n// Same as printToChat but for the console instead. (Default False)\n```\n\n# Example\nThis method makes it so if any player on the server says \"ouch\" they light on fire\n```java\nShriekApi.registerServerPlayerSpeechListener((serverPlayerTalkEvent -> {\n    if (serverPlayerTalkEvent.getText().contains(\"ouch\"))\n        serverPlayerTalkEvent.getPlayer().igniteForSeconds(2);\n}));\n```\nYou can also see this in ShriekExample through GitHub\n\n# Security\n\nThere are a few things to note with this mod:\n- The mod automatically downloads a vosk model from the internet on the first launch. The default model is ~40MB compressed and may freeze your game for a couple seconds while setting up the model.\n- This mod by default, constantly records and sends all text data to the server. This means if a server modification has set up their mod to, they can listen into your conversation. Please be weary of this.\n- The push to mute key will turn OFF your microphone whilst held\n- Other mods have the ability to toggle recording on/off\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 9094,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

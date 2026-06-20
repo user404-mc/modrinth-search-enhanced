@@ -1,0 +1,42 @@
+{
+  "id": "99DmylBB",
+  "slug": "nothunt",
+  "title": "NotHunt - No Compass Manhunt!",
+  "description": "Minecraft Manhunt, Tracker over all dimensions (even The End), Alerts, Multiple runners, Numerous Objectives, Tweaks, WHAT ELSE DO YOU WANT?",
+  "body": "# NotHunt Datapack\n\nA comprehensive Minecraft manhunt datapack with extensive customization options, multiple game modes, and advanced tracking features.\n\n---\n\n## 📥 Installation\n\n1. Download the datapack\n2. Navigate to your Minecraft world's datapacks folder:\n   - `.minecraft/saves/[Your World Name]/datapacks/`\n3. Place the `NotHunt` folder into the datapacks directory\n4. Load or reload your world\n\n### Loading the Datapack\n\nIf the world is already running, reload the datapack using:\n```\n/reload\n```\n\nYou'll see a yellow message in chat: \"NotHunt Loaded. Click to open settings menu and start another game!\"\n\n---\n\n## ⚙️ Configuration & Settings\n\n### Opening the Settings Menu\n\nOnly operators (OPs) can configure the datapack. To open the settings menu:\n```\n/function nothunt:settings\n```\n\nThis will display an interactive menu in chat where you can configure all game settings by clicking on options.\n\n---\n\n## 🎮 Game Settings Overview\n\n### **Runners Objective**\nChoose what the runners must accomplish to win:\n\n- **Kill the Ender Dragon** *(Default)* - Classic manhunt where runners must defeat the Ender Dragon\n- **Get a Diamond** - Runners win when one player obtains a diamond\n- **Go to the Nether** - Runners win when one player enters the Nether\n- **Survivor** - Runners must survive for a set amount of time\n\n### **Game Timer**\nSet a time limit for completing objectives (except Survivor mode):\n- **Disabled** - No time limit\n- **5, 10, 20, 30, 45, 60, 90, 120, or 180 minutes**\n\nIf runners don't complete their objective within the time limit, hunters win.\n\n*Note: In Survivor mode, this setting determines how long runners must survive.*\n\n### **Choose Runners Randomly**\nAutomatically select runners at the start of the game:\n- **Disabled** - Manually choose runners\n- **1-20 runners** - Randomly select this many players to be runners\n\n### **Glow Hunters When They're Close**\n- **Enabled**: Hunters glow (visible through walls) when within 15 blocks of a runner\n- **Disabled**: No glowing effect\n\n### **Alert Runners When Hunters Are Close**\n- **Enabled**: Runners receive a chat alert when hunters are within 20 blocks\n- **Disabled**: No alerts\n\n### **Hunters Boost**\nGive hunters a permanent effect throughout the game:\n- None\n- Fast Swimming (Dolphin's Grace)\n- Fire Resistance\n- Haste (faster mining)\n- Invisibility\n- Jump Boost\n- Night Vision\n- Water Breathing\n- Double Hearts (40 hearts instead of 20)\n- Speed Boost\n\n### **Runners Boost**\nGive runners a permanent effect throughout the game (same options as Hunters Boost)\n\n### **Hunters Countdown**\nFreeze hunters at the start to give runners a head start:\n- **Disabled** - Hunters can move immediately\n- **15 seconds, 30 seconds, 1 minute, 5 minutes, or 10 minutes**\n\n### **Runners Lives**\nNumber of times each runner can die before being eliminated:\n- **1-5 lives**\n\n---\n\n## 👥 Managing Players\n\n### Adding Players to the Match\n\n#### **Automatic Selection**\nIf \"Choose Runners Randomly\" is enabled in settings, runners will be selected automatically when the match starts.\n\n#### **Manual Selection**\n\n1. After configuring settings, click **[Done]** in the settings menu\n2. The game will enter preparation mode\n3. Players can join as runners using the trigger command:\n   ```\n   /trigger JoinRunners\n   ```\n\n4. **Operators** can manually add players as runners:\n   ```\n   /execute as <PlayerName> run trigger JoinRunners\n   ```\n   Example:\n   ```\n   /execute as Steve run trigger JoinRunners\n   ```\n\n5. Once all runners are selected, start the match:\n   ```\n   /function nothunt:preparation/start\n   ```\n\n### Team Assignment\n\n- **Runners** - Players who must complete the objective\n- **Hunters** - All other players who joined the match (not selected as runners)\n- **Spectators** - Players who join after the match starts or were not added to the match\n\n### Removing Players\n\nTo remove a runner during preparation phase, they can use:\n```\n/execute as PlayerName run function nothunt:preparation/leaverunners\n```\nThis toggles their runner status.\n\n---\n\n## 🧭 In-Game Compasses (Hunter Tracking)\n\nHunters have access to a powerful tracking system to locate runners.\n\n### **How to Use Tracking**\n\nHunters can track specific runners using the compass system:\n\n1. **Open tracking menu**:\n   ```\n   /trigger Track\n   ```\n\n2. **Select a runner** - Click on a runner's name in chat to track them\n\n3. **Switch targets** - Use `/trigger Track` again to change which runner you're tracking\n\n### **Toggle HUD**\n\nRunners can toggle their HUD on/off:\n```\n/trigger Hud\n```\n\n---\n\n## 🏁 Ending a Match\n\n### **Manual End**\n\nOperators can manually end the match at any time:\n```\n/function nothunt:endmatch\n```\n\n### **Automatic Win Conditions**\n\nThe match ends automatically when:\n\n**Runners Win:**\n- All runners complete the objective (Kill Dragon/Get Diamond/Enter Nether)\n- Runners survive the timer in Survivor mode\n- In timed modes, if at least one runner is alive when time runs out (unless objective-specific)\n\n**Hunters Win:**\n- All runners are eliminated (die more times than their life count)\n- Time runs out before runners complete their objective (in timed modes)\n\n---\n\n## 🔧 Troubleshooting\n\n### The datapack isn't working\n1. Make sure you have operator permissions\n2. Run `/reload` to reload the datapack\n3. Check that the datapack is in the correct folder\n\n### Players can't join as runners\n1. Ensure the match hasn't started yet\n2. Make sure players have the trigger permission enabled\n3. Try using the manual command: `/execute as <Player> run trigger JoinRunners`\n\n### Compass not working\n1. Make sure you're a hunter (not a runner or spectator)\n2. Use `/trigger Track` to initialize tracking\n3. Ensure there are runners in the match\n\n### Game won't start\n1. Ensure at least one runner is selected\n2. Run `/function nothunt:preparation/start` after selecting runners\n3. Check that you completed the settings configuration\n\n---\n\n## 📝 Commands Reference\n\n| Command | Who Can Use | Description |\n|---------|------------|-------------|\n| `/function nothunt:settings` | OPs only | Open settings menu |\n| `/reload` | OPs only | Reload the datapack |\n| `/trigger JoinRunners` | All players | Join runners team (preparation phase) |\n| `/trigger Track` | Hunters | Open runner tracking menu |\n| `/trigger Hud` | Runners | Toggle HUD display |\n| `/function nothunt:preparation/start` | OPs only | Start the match |\n| `/function nothunt:endmatch` | OPs only | End the current match |\n",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "minigame",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 385,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

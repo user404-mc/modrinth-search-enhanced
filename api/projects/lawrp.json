@@ -1,0 +1,36 @@
+{
+  "id": "gch2qGq2",
+  "slug": "lawrp",
+  "title": "LawRP",
+  "description": "A plugin for fines, police systems, documents, notifications, and calls via Discord",
+  "body": "# LawRPPlugin\n\nAll-in-one RP plugin for **Paper/Folia 1.21.1 - 1.21.11** in one JAR.\n\nLawRPPlugin combines:\n- handcuffs + restrain system\n- fines system\n- emergency/service calls\n- document registration and document showing\n- Discord webhook embeds with separate channels\n- multilingual support (`ru_RU`, `en_US`, `de_DE`, `fr_FR`)\n\n## Main Features\n\n- Handcuffs and restrain with configurable RP restrictions.\n- Follow/escort logic for restrained players.\n- Attach restrained players to fences/bars/chains-like blocks from config.\n- Escape mechanic with configurable difficulty and progress.\n- Fine issuing/removal/checking with persistent storage and reminders.\n- Service call command with cooldown and customizable service name.\n- Document system:\n  - passport\n  - residence permit\n  - third department ID\n  - request/accept/decline flow for showing documents\n- RP chat output in radius using `/me` and `/do` text lines (commands are not created by plugin).\n\n## Discord Webhooks (Separate Channels)\n\nEach system can use its own webhook URL:\n- Fines: `webhook.channels.fines.url`\n- Service calls: `webhook.channels.calls.url`\n- Documents registration: `webhook.channels.documents.url`\n- Actions/logs: `webhook.channels.actions.url` (if empty, calls channel is used)\n\nRole mention supports both formats:\n- `123456789012345678`\n- `{123456789012345678}`\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/lawrp help` | Show plugin help |\n| `/lawrp reload` | Reload all configs and language |\n| `/handcuffs <player>` | Handcuff player |\n| `/restrain <player>` or `/restrain` | Restrain player |\n| `/attach <player>` | Attach/detach restrained player to block |\n| `/unhandcuff <player>` | Remove handcuffs/restrain |\n| `/callpolice <reason>` | Send service call |\n| `/fine <player> <amount> <reason>` | Issue fine |\n| `/unfine <player\\|uuid>` | Remove fine |\n| `/checkfines` | Check your active fine |\n| `/passport <player>` | Request to show passport |\n| `/residence <player> [page]` | Request to show residence permit |\n| `/third <player> [page]` | Request to show third department ID |\n| `/createpassport ...` | Register passport |\n| `/createresidence ...` | Register residence permit |\n| `/createthird ...` | Register third department ID |\n| `/doc-accept <request-id>` | Accept document request |\n| `/doc-decline <request-id>` | Decline document request |\n\n## Config Structure\n\nThe plugin uses split configs in:\n`plugins/LawRPPlugin/configs/`\n\nFiles:\n- `language.yml`\n- `handcuffs.yml`\n- `calls.yml`\n- `fines.yml`\n- `documents.yml`\n- `webhook.yml`\n\n## Storage Files\n\n- Fines: `plugins/LawRPPlugin/fines.json`\n- Documents: `plugins/LawRPPlugin/documents.yml`\n\n## Installation\n\n1. Stop server.\n2. Put plugin JAR into `plugins/`.\n3. Start server once (generate configs), then stop.\n4. Configure files in `plugins/LawRPPlugin/configs/`.\n5. Start server and run `/lawrp reload` after changes.\n\n## Author\n\n- **niquitosius**\n- https://discord.gg/sem5cWTTDQ\n\n---\n\n# LawRPPlugin (Русский)\n\nУниверсальный RP-плагин для **Paper/Folia 1.21.1 - 1.21.11** в одном JAR.\n\nLawRPPlugin объединяет:\n- систему наручников и залома\n- систему штрафов\n- вызов службы\n- регистрацию и показ документов\n- Discord webhook embeds с раздельными каналами\n- мультиязык (`ru_RU`, `en_US`, `de_DE`, `fr_FR`)\n\n## Основные возможности\n\n- Наручники и залом с настраиваемыми RP-ограничениями.\n- Логика сопровождения/ведения задержанного.\n- Прикрепление задержанных к заборам/решёткам/цепям-подобным блокам из конфига.\n- Система побега с настраиваемой сложностью.\n- Штрафы: выдача/снятие/проверка, сохранение и напоминания.\n- Вызовы службы с кулдауном и настраиваемым названием службы.\n- Система документов:\n  - паспорт\n  - ВНЖ\n  - удостоверение III отделения\n  - запрос/принятие/отклонение показа документов\n- RP-вывод в радиусе строками `/me` и `/do` (команды не создаются плагином).\n\n## Discord Webhooks (раздельные каналы)\n\nДля каждой системы можно указать отдельный webhook:\n- Штрафы: `webhook.channels.fines.url`\n- Вызовы службы: `webhook.channels.calls.url`\n- Регистрация документов: `webhook.channels.documents.url`\n- Действия/логи: `webhook.channels.actions.url` (если пусто, используется канал вызовов)\n\nID роли для пинга можно писать так:\n- `123456789012345678`\n- `{123456789012345678}`\n\n## Команды\n\n| Команда | Описание |\n|---|---|\n| `/lawrp help` | Показать справку |\n| `/lawrp reload` | Перезагрузить все конфиги и язык |\n| `/handcuffs <игрок>` | Заковать игрока |\n| `/restrain <игрок>` или `/restrain` | Заломать игрока |\n| `/attach <игрок>` | Прицепить/отцепить задержанного к блоку |\n| `/unhandcuff <игрок>` | Снять наручники/залом |\n| `/callpolice <причина>` | Отправить вызов службы |\n| `/fine <игрок> <сумма> <причина>` | Выписать штраф |\n| `/unfine <игрок\\|uuid>` | Снять штраф |\n| `/checkfines` | Проверить свой активный штраф |\n| `/passport <игрок>` | Запросить показ паспорта |\n| `/residence <игрок> [страница]` | Запросить показ ВНЖ |\n| `/third <игрок> [страница]` | Запросить показ удостоверения III отделения |\n| `/createpassport ...` | Зарегистрировать паспорт |\n| `/createresidence ...` | Зарегистрировать ВНЖ |\n| `/createthird ...` | Зарегистрировать удостоверение III отделения |\n| `/doc-accept <request-id>` | Принять запрос документа |\n| `/doc-decline <request-id>` | Отклонить запрос документа |\n\n## Структура конфигов\n\nПлагин использует разделённые конфиги в:\n`plugins/LawRPPlugin/configs/`\n\nФайлы:\n- `language.yml`\n- `handcuffs.yml`\n- `calls.yml`\n- `fines.yml`\n- `documents.yml`\n- `webhook.yml`\n\n## Файлы данных\n\n- Штрафы: `plugins/LawRPPlugin/fines.json`\n- Документы: `plugins/LawRPPlugin/documents.yml`\n\n## Установка\n\n1. Остановите сервер.\n2. Поместите JAR плагина в `plugins/`.\n3. Запустите сервер 1 раз (создаст конфиги), затем остановите.\n4. Настройте файлы в `plugins/LawRPPlugin/configs/`.\n5. Запустите сервер и используйте `/lawrp reload` после изменений.\n\n## Автор\n\n- **niquitosius**\n- https://discord.gg/sem5cWTTDQ\n",
+  "categories": [
+    "adventure",
+    "economy",
+    "equipment",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 158,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

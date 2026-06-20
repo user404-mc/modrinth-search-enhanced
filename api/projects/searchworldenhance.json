@@ -1,0 +1,36 @@
+{
+  "id": "Lhphbi7h",
+  "slug": "searchworldenhance",
+  "title": "SearchWorldEnhance",
+  "description": "Add a “Search World” box for MC pre-1.13 || Enhance the searching behaviour",
+  "body": "# Mod Synopsis\nThis is a lightweight mod run on client-side, which brings a “Search World” box to world selection screens(prior MC 1.13) and enhance the searching behaviour by using key-value pair arguments.\n# How to Use This Mod\nThis mod adds a “Search World” box to the world select screen(prior MC 1.13), and the searching behaviour is now like this:  \n`worlddirname-=foo` - Search for worlds whose directory names contain `foo`, case-sensitive  \n`worldname/=\"^New World$\"` - Search for worlds whose names exactly are `New World`, case-insensitive  \n`gamemode=S,commands=true` - Search for worlds whose default game modes are Survival and commands are enabled\n# Format of Arguments\nEach two key-value pairs are separated by `,`(which means `&&`(`and`), and trailing `,` is allowed once). In contrast, a key-value pair is like this: `<key_name><relationship_symbol><value>`.  \nFor regex keys, available relationship symbols are:\n* `=` - left contains right, case-insensitive\n* `!=` - left does not contain right, case-insensitive\n* `-=` - left contains right, case-sensitive\n* `!-=` - left does not contain right, case-sensitive\n* `/=` - left matches right, case-insensitive\n* `!/=` - left does not match right, case-insensitive\n* `/-=` - left matches right, case-sensitive\n* `!/-=` - left does not match right, case-sensitive\n\nValues are strings like this:\n* `foo` - resolved as `foo`\n* `\"Foo Bar\"` - resolved as `Foo Bar`\n* `\"One says \\\"\\\\s are useful\\\"\"` - resolved as `One says \"\\s are useful\"`\n\nFor long keys, available relationship symbols are:\n* `=` and `==` - left equals right\n* `<` - left is less than right\n* `<=` - left is less than or equal to right\n* `>` - left is greater than right\n* `>=` - left is greater than or equal to right\n* `!=` - left does not equal right\n\nValues are long integers like this:\n* `0`\n* `1234567`\n* `-98765432109999`\n\nFor enum keys, available relationship symbols are:\n* `=` - left is right\n* `!=` - left is not right\n\nValues are all enums defined by the enum class and `null`.\n\nFor boolean keys, there is only one available relationship symbol `=`(means left is right).\n\nValues are like this:\n* `true`, `t`, `yes`, `y`, `1` - for true\n* `false`, `f`, `no`, `n`, `0` - for false\n\nIf the format of arguments is valid, expected search result will be shown. Note that results of original search behaviour will be shown together, e.g. if there is a world named `gamemode=C` whose default gamemode is Survival, when you type `gamemode=C` in the box, this world will still be shown as a part of the result. If you want to avoid this, you can type `worldname!=\"gamemode=C\",gamemode=C` in the box.\n# All Key-value Pair Parameters Added by This Mod\n`worldname`(Regex) - Match world names  \n`worlddirname`(Regex) - Match world directory names  \n`lastplayed`(Long) - Match last played time  \n`gamemode`(Enum made up by `S`, `C`, `A`, `SP`) - Match default game modes  \n`commands`(Boolean) - Match commands enabling statuses  \n`hardcore`(Boolean) - Match whether the worlds are hardcore\n# I Want to Add My Key-value Pair Parameters!\nThere is a class `rege.rege.minecraftmod.searchworldenhance.util.SearchKeyRegistry` in this mod, you should register yours using this class's static methods. All valid keys are non-empty strings without `-`, ` `, `=`, `!`, `>`, `<`, `,`, `/`, `\"`, `\\`. An example is in the `static` block of `rege.rege.minecraftmod.searchworldenhance.SearchWorldEnhanceMain`'s source code.",
+  "categories": [
+    "legacy-fabric",
+    "library",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 810,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10",
+    "1.8",
+    "1.8.1",
+    "1.8.2",
+    "1.8.3",
+    "1.8.4",
+    "1.8.5",
+    "1.8.6",
+    "1.8.7",
+    "1.8.8",
+    "1.8.9",
+    "1.9.4",
+    "1.10.2",
+    "1.11.2",
+    "1.12.2"
+  ],
+  "date_updated": null
+}

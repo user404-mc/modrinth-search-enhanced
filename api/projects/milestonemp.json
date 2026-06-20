@@ -1,0 +1,35 @@
+{
+  "id": "kjlOU7Xq",
+  "slug": "milestonemp",
+  "title": "MilestoneMP",
+  "description": "Unlock Your Path, Not Just Rewards.",
+  "body": "# MilestoneMP\n\n**Unlock Your Path, Not Just Rewards.**\n\nA unique Minecraft server plugin that brings a progression tree system where players can choose their own rewards when reaching milestones.\n\n---\n\n## Features\n\n- **Progression Tree GUI** - Visual milestone system with locked, available, and claimed states\n- **Choice-Based Rewards** - Players choose from multiple reward options\n- **Multiple Milestone Types**\n  - `PLAYTIME` - Play time tracking\n  - `BLOCK_BREAK` - Blocks broken\n  - `BLOCK_PLACE` - Blocks placed\n  - `MOB_KILL` - Mobs killed\n  - `PLAYER_KILL` - PvP kills\n  - `JOIN` - Login streak\n  - `COMMUNITY_PLAYTIME` - Total server playtime\n- **SQLite & MySQL Support** - Flexible database options\n- **PlaceholderAPI Integration** - Display progress anywhere\n- **Console Command Rewards** - Commands executed via console sender\n\n---\n\n## Commands\n\n| Command | Description |\n|---------|-------------|\n| `/milestone` | Open milestone GUI |\n| `/milestone open` | Open milestone GUI |\n| `/milestone check` | Check current progress |\n| `/milestone claim <id>` | Claim specific milestone |\n| `/milestone help` | Show help menu |\n| `/milestone reload` | Reload configuration (admin) |\n\n**Aliases:** `/ms`, `/mp`\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `milestonemp.open` | Open milestone GUI | true |\n| `milestonemp.claim` | Claim milestones | true |\n| `milestonemp.check` | Check progress | true |\n| `milestonemp.admin` | Admin commands | op |\n\n---\n\n## Placeholders\n\n| Placeholder | Description |\n|------------|-------------|\n| `%milestone_mp_current%` | Current milestone ID |\n| `%milestone_mp_next%` | Next available milestone |\n| `%milestone_mp_progress%` | Progress percentage |\n| `%milestone_mp_playtime%` | Player playtime (Xh Ym) |\n| `%milestone_mp_blocks_broken%` | Blocks broken |\n| `%milestone_mp_blocks_placed%` | Blocks placed |\n| `%milestone_mp_mobs_killed%` | Mobs killed |\n| `%milestone_mp_players_killed%` | PvP kills |\n| `%milestone_mp_join_days%` | Login streak days |\n| `%milestone_mp_community_playtime%` | Total server playtime |\n| `%milestone_mp_can_claim%` | Can claim (Yes/No) |\n\n---\n\n## Configuration\n\nExample `config.yml`:\n\n```yaml\ndatabase:\n  type: sqlite\n  host: localhost\n  port: 3306\n  database: milestoneMP\n  username: root\n  password: \"\"\n\nsettings:\n  check-interval: 60\n  community-reward-broadcast: true\n\nmessages:\n  prefix: \"&8[&6Milestone&8] \"\n  milestone-available: \"&aMilestone available! Click to claim.\"\n  milestone-locked: \"&cThis milestone is still locked.\"\n  milestone-claimed: \"&eReward claimed: %reward%\"\n  no-milestone: \"&cNo milestone available.\"\n  no-permission: \"&cYou don't have permission.\"\n  already-claimed: \"&cThis milestone has already been claimed.\"\n\ngui:\n  title: \"&8Progression Tree\"\n  available-color: \"&a\"\n  locked-color: \"&7\"\n  claimed-color: \"&e\"\n  claim-button: \"&aClick to Claim\"\n  choose-button: \"&eChoose Reward\"\n  milestone-slots:\n    - 10\n    - 11\n    - 12\n    - 13\n    - 14\n    - 15\n    - 16\n    - 19\n    - 21\n    - 23\n    - 25\n    - 28\n    - 30\n    - 32\n    - 34\n\nmilestones:\n  beginner:\n    type: PLAYTIME\n    amount: 3600\n    icon: CLOCK\n    color: \"&6\"\n    choices:\n      - id: reward_fly\n        name: \"&bElytra Rental (1 Hour)\"\n        command: \"give {player} elytra 1\"\n      - id: reward_money\n        name: \"&61000 Server Money\"\n        command: \"eco give {player} 1000\"\n\n  miner:\n    type: BLOCK_BREAK\n    amount: 100\n    icon: DIAMOND_PICKAXE\n    color: \"&e\"\n    choices:\n      - id: reward_pickaxe\n        name: \"&eDiamond Pickaxe\"\n        command: \"give {player} diamond_pickaxe 1\"\n\n  hunter:\n    type: MOB_KILL\n    amount: 50\n    icon: DIAMOND_SWORD\n    color: \"&c\"\n    choices:\n      - id: reward_sword\n        name: \"&cEnchanted Sword\"\n        command: \"give {player} diamond_sword{Enchantments:[{id:sharpness,lvl:5}]} 1\"\n```\n\n---\n\n## Reward System\n\nRewards are executed as **console commands**. Use `{player}` as placeholder for player name.\n\n**Examples:**\n```yaml\ncommand: \"give {player} diamond 10\"\ncommand: \"eco give {player} 5000\"\ncommand: \"xp give {player} 50 levels\"\ncommand: \"tokens give {player} 100\"\n```\n\n---\n\n## GUI Preview\n\nThe GUI features:\n- Progress bar visual: `[████████░░] 80%`\n- Color-coded items by milestone type\n- Empty slots filled with glass panes for clean look\n- Clear status indicators (Locked, Available, Claimed)\n- Choice selection GUI for multiple reward options\n\n---\n\n## Installation\n\n1. Download the plugin JAR file\n2. Place it in your server's `plugins` folder\n3. Start the server\n4. Configure `config.yml` to your needs\n5. Use `/milestone reload` to reload config after changes\n\n---\n\n## Support\n\n- Issues: [GitHub Issues](https://github.com/Syaaddd/MilestoneMP/issues)\n\n---\n\n**License:** MIT  \n**Version:** 1.0.7\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 158,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

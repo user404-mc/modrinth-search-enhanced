@@ -1,0 +1,27 @@
+{
+  "id": "6NZYNcOV",
+  "slug": "client-paintings",
+  "title": "Client Paintings",
+  "description": "A mod that adds fully client side custom paintings without replacing vanilla ones.",
+  "body": "# Client Paintings <img src=\"https://cdn.modrinth.com/data/6NZYNcOV/cc2a2bad8d0d7c7333af00f82ca7e8c80c159359.png\" align=\"right\" width=\"50\">\n\nClient Paintings is a simple, *fully client-side* mod to add \nnew paintings via resource packs while keeping the vanilla paintings intact.\nIt achieves this by looking at the UUID of the painting entity and\napplying a pseudo-random algorithm to it to determine which painting to render.\n\nThis mod uses a custom resource pack format to add new paintings,\nyou can use the [Client Paintings Pack Generator](https://enjarai.dev/#/tools/client-paintings-generator) on my website\nto generate such a pack easily. Alternatively, see the resource pack format section below for technical instructions.\n\n### Features\n\n- Add multiple new sets of paintings via resource packs\n- Keep the vanilla paintings intact\n- When a vanilla painting is shown, it will match the vanilla painting seen by players without the mod\n- Custom paintings shown will match the custom paintings seen by other players with the mod\n- Custom paintings are fully persistent between relogs and server restarts\n\n### Caveats\n\n- Custom paintings will only match up between players if they both use the exact same painting sets\n- Painting sets have to be added via a custom resource pack format, see below for details\n\n## Example\n\nWith the included default resource pack:\n\n<img src=\"https://cdn.modrinth.com/data/6NZYNcOV/images/18ed311ec6686c0e50beb715a89a5e0470db09da.png\" width=\"512\"/>\n\nWhat vanilla players see:\n\n<img src=\"https://cdn.modrinth.com/data/6NZYNcOV/images/be67923c3ded57c4b82a47daccab9e86e1bbdec0.png\" width=\"512\"/>\n\n## Resource pack format\n\nThe resource pack format is very simple. It consists of a single `client_paintings` folder\nlocated in the root of your resource pack namespace (e.g. `assets/<namespace>/client_paintings`).\nInside this folder, you can place any number of json files, each representing a custom painting.\n\nEach json file must have the following structure:\n\n```json\n{\n  \"texture\": \"<namespace>:client_paintings/painting_texture\",\n  \"back\": \"<namespace>:client_paintings/painting_back_texture\",\n  \"size\": [2, 1]\n}\n```\n\n- `texture` is the texture of the painting, it must be a png image with a ratio matching the `size` field, \n  with width and height both being a multiple of 16. The texture has to be located within \n  the `assets/<namespace>/textures/client_paintings` folder.\n- `back` is the texture of the back of the painting, it must be a square png image with similarly, a width and height\n  being a multiple of 16.\n- `size` is the size of the painting in blocks, the first value is the width, the second value is the height.\n  Do note only 1x1, 1x2, 2x1, 2x2, 4x2, 4x4, and 4x3 size paintings are supported due to the need to replace\n  a vanilla painting.\n\nAn example resource pack structure would look as follows:\n\n```text\npack.mcmeta\nassets\n└── namespace\n    ├── textures\n    │   └── client_paintings\n    │       ├── painting1.png\n    │       ├── painting2.png\n    │       ├── painting3.png\n    │       └── backs\n    │           ├── back1.png\n    │           └── back2.png\n    └── client_paintings\n        ├── painting1.json\n        ├── painting2.json\n        └── painting3.json\n```\n\nThe source for the default included pack can be easily browsed \n[here](https://github.com/enjarai/client-paintings/tree/master/src/main/resources/resourcepacks/default).\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2384,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

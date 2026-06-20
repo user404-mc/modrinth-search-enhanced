@@ -1,0 +1,30 @@
+{
+  "id": "VdFbuicg",
+  "slug": "leaderboard",
+  "title": "Leaderboard",
+  "description": "Create leaderboards for any data",
+  "body": "# **Mitra Leaderboards**  \nA **flexible and high-performance leaderboard system** for Fabric servers. It computes and publishes leaderboards from **placeholders** (e.g. blocks mined, play time, kills, etc.), with optional **MongoDB** support to store and display **offline players**.\n\n---\n\n## ✨ Features\n- **Multiple leaderboards**: define as many *holders* as you want (e.g. `blocks_mined`, `time_played`, `kills`…).\n- **Native placeholders (pb4/Patbox)**: exposes values for **TAB**, HUDs, holograms, or any plugin/mod that reads placeholders.\n- **Per-holder update scheduling** (configurable in seconds).\n- **Online or offline mode**:  \n  - *Online-only*: TOP is computed with currently connected players (no DB).  \n  - *Offline tracking*: saves and queries from **MongoDB** for global TOPs.\n- **Asynchronous execution**: safe capture on the server thread, heavy work in async workers.\n- **Optimized for thousands of players**: efficient **TOP-K** selection, minimal I/O and CPU.\n- **Robust placeholder evaluation**: cleans values and prevents crashes if a placeholder fails.\n\n---\n\n## ✅ Requirements\n- **Fabric Loader** + **Fabric API** (server).  \n- **pb4 Placeholders (Patbox)** for placeholder resolution/registration.  \n- **MongoDB** *(requerid)*\n\n---\n\n## 📦 Installation\n1. Download **Mitra Leaderboards** and its requirements.  \n2. Place the `.jar` files in the `mods/` folder of the **server** (and client if you want HUDs).  \n3. Start the server to generate the config folders.  \n4. Configure `leaderboard.yml` (and `mongo.yml` if you plan to use offline tracking).  \n5. Restart.\n\n---\n\n## ⚙️ Configuration\n\n### `leaderboard.yml`\n\n```yml\nholders:\n  blocks_mined:\n    valueCheck: \"%mitra:mined_total%\"\n    update: 20\n    top: 10\n    trackOffline: false\n\n  time_played:\n    valueCheck: \"%mitra:play_time%\"\n    update: 30\n    top: 15\n    trackOffline: true\n```\n\n---\n\n# 🧩 Placeholders\n\nFor a **holder** named `blocks_mined`:\n\n---\n\n## 📏 Size and timers\n\n- `%mitra:leaderboard blocks_mined_size%` → number of entries.  \n- `%mitra:leaderboard blocks_mined_update_in_s%` → seconds until the next update.  \n- `%mitra:leaderboard blocks_mined_update_in_hms%` → remaining time in `HH:MM:SS`.  \n\n---\n\n## 🏆 TOP by position (N ≥ 1)\n\n- `%mitra:leaderboard blocks_mined_value_N%` → numeric value.  \n- `%mitra:leaderboard blocks_mined_player_N%` → player name.  \n- `%mitra:leaderboard blocks_mined_uuid_N%` → player UUID.  \n\n- `#1 %mitra:leaderboard blocks_mined_player_1%` — %mitra:leaderboard blocks_mined_value_1%\n- `#2 %mitra:leaderboard blocks_mined_player_2%` — %mitra:leaderboard blocks_mined_value_2%\n- `#3 %mitra:leaderboard blocks_mined_player_3%` — %mitra:leaderboard blocks_mined_value_3%\n\n---\n\n## 📜 Commands\n\n> *(Base command may differ depending on your setup; examples use `/lb`)*\n\n- **`/lb reload`**  \n  Reloads the `leaderboard.yml` configuration and reschedules all tasks.  \n  Useful when you change values in the config without restarting the server.\n\n- **`/lb recompute <holder>`**  \n  Forces an immediate recompute of the specified holder.  \n  Example: `/lb recompute blocks_mined` will update the ranking for the `blocks_mined` leaderboard instantly.\n\n- **`/lb list`**  \n  Displays a list of all currently active holders.  \n  Example output:  \n\n---\n\n## 👨‍💻 Authors & Credits\n- **Developer:** `srmast3r_` (SrMaster)  \n- **Twitter/X:** [@_SrMaster_](https://twitter.com/_SrMaster_)  \n- **Credits:** pb4 **Placeholders** by [Patbox](https://modrinth.com/user/Patbox)  \n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1144,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

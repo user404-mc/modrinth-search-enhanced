@@ -1,0 +1,25 @@
+{
+  "id": "Qqd7ogyY",
+  "slug": "0xai",
+  "title": "0xAI",
+  "description": "Minecraft mod that adds AI chat via Ollama. Type `@ai` in chat to ask questions.",
+  "body": "# 0xAI\n\n0xAI is a Fabric client mod that adds an Ollama-powered chat companion to Minecraft. Type `@ai` in chat and the mod sends the prompt to your local Ollama server, then replies in chat.\n\n## Support\n\n- Mod version: `0.1.5`\n- Minecraft: `26.1.x`\n- Fabric Loader: `0.17.3+`\n- Fabric API: required\n- Java: `25+`\n- Mod Menu: optional, supported\n\nMod Menu adds an in-game config screen for the same settings stored in `config/oxai.json`.\n\n## Install\n\n1. Install Fabric Loader and Fabric API for Minecraft `26.1.x`.\n2. Put the 0xAI JAR in your `mods` folder.\n3. Optional: install [Mod Menu](https://modrinth.com/mod/modmenu) to configure 0xAI in-game.\n4. Start Ollama:\n\n```sh\nollama pull llama3.2\nollama serve\n```\n\n5. Launch Minecraft.\n\n## Usage\n\nIn chat:\n\n```text\n@ai how do i find diamonds\n@ai what's the best food\n@ai how do i make a nether portal\n```\n\nThe default trigger is `@ai`. You can change it in Mod Menu or in `config/oxai.json`.\n\n## Configuration\n\nWith Mod Menu installed:\n\n1. Open Mods.\n2. Select 0xAI.\n3. Open the config screen.\n4. Change settings and press Done.\n\nWithout Mod Menu, edit `config/oxai.json`:\n\n```json\n{\n  \"enabled\": true,\n  \"trigger\": \"@ai\",\n  \"ollamaUrl\": \"http://localhost:11434\",\n  \"model\": \"llama3.2:3b\",\n  \"systemPrompt\": \"You are a helpful AI assistant in a Minecraft server. Keep responses concise and friendly.\",\n  \"maxTokens\": 150,\n  \"temperature\": 0.7,\n  \"responsePrefix\": \"[AI] \",\n  \"maxMessageLength\": 256,\n  \"showErrors\": true,\n  \"requestTimeout\": 60000,\n  \"contextMessages\": 5\n}\n```\n\n| Option | What it does |\n| --- | --- |\n| `enabled` | Turns AI replies on or off |\n| `trigger` | Chat text that triggers the AI |\n| `ollamaUrl` | Ollama server address |\n| `model` | Ollama model name |\n| `systemPrompt` | System message sent with each request |\n| `maxTokens` | Maximum generated response length |\n| `temperature` | Response randomness from `0.0` to `1.0` |\n| `responsePrefix` | Prefix added before AI chat messages |\n| `maxMessageLength` | Maximum characters per chat line |\n| `showErrors` | Shows request errors in chat |\n| `requestTimeout` | Ollama request timeout in milliseconds |\n| `contextMessages` | Number of recent chat turns to keep as context |\n\n## Models\n\n0xAI works with any Ollama chat model. Common choices:\n\n- `llama3.2:3b`\n- `llama3.2:1b`\n- `mistral`\n- `phi3`\n\nUse smaller models for faster replies or lower-end hardware.\n\n## Build\n\nInstall JDK `25+`, then build with Gradle:\n\n```sh\n./gradlew build\n```\n\nOn Windows PowerShell, if the Unix wrapper script is not executable, run:\n\n```powershell\njava -classpath gradle\\wrapper\\gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build\n```\n\nThe built JAR is written to `build/libs/`.\n\n## Troubleshooting\n\n**Build says `release version 25 not supported`**\n\nGradle is using an older JDK. Install JDK 25 and make sure `JAVA_HOME` or your IDE Gradle JVM points to it.\n\n**The mod does not respond**\n\n- Make sure 0xAI is enabled in Mod Menu or `config/oxai.json`.\n- Check that Ollama is running with `ollama serve`.\n- Check that the configured model is installed with `ollama list`.\n- Verify that your message contains the configured trigger.\n\n**Replies are slow**\n\n- Use a smaller model such as `llama3.2:1b`.\n- Lower `maxTokens`.\n- Lower `contextMessages`.\n\n**Connection refused**\n\n- Check `ollamaUrl`.\n- Make sure Ollama is running on the configured host and port.\n",
+  "categories": [
+    "fabric",
+    "quilt",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 344,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

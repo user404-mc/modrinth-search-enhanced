@@ -1,0 +1,22 @@
+{
+  "id": "VP30qlGU",
+  "slug": "elytra-render-fix",
+  "title": "ElytraRenderFix",
+  "description": "This mod fixes a bug in Minecraft's code that causes elytras to have a missingno texture when an item renders a trimmed armor piece AND an elytra via resource pack and minecraft:equippable component.",
+  "body": "# ElytraRenderFix\n\n\nWith the `minecraft:equippable` component, it is possible to determine the layers that an item renders when it is equipped. This mod fixes a bug that occurs when rendering a chestplate layer and an elytra together. If the chestplate has a trim, the Elytra has a missingno texture because Minecraft's rendering code tries to apply the trim to the Elytra layer. This mod fixes this bug by simply preventing the trims from being rendered on the Elytra layer (wings). This ensures that the chestplate, trim, and Elytra are rendered correctly. \n\nPlease note that mods requiring trims to render on top of the elytra (like Elytra Trim mods) might be incompatible with this one, since it skips part of the elytra rendering process.\nIf you experience issues, try removing this mod first — that might already fix it.\n\nFor example, the following JSON code is an equipment model (see [Minecraft Wiki](https://minecraft.wiki/w/Equipment)). This specifies that any item with the corrosponding asset_id in the item component minecraft:equippable (see [Minecraft Wiki](https://minecraft.wiki/w/Data_component_format#equippable)) should render normal netherite armor on the humanoid and humanoid_leggings layers (armor layers for helmet, chestplate, leggings, and boots) and, in addition, an elytra on the wings layer (using the player's cape if available).\n\n`netherite_armor_with_elytra.json:`\n```\n{\n  \"layers\": {\n    \"humanoid\": [\n      {\n        \"texture\": \"minecraft:netherite\"\n      }\n    ],\n    \"humanoid_leggings\": [\n      {\n        \"texture\": \"minecraft:netherite\"\n      }\n    ],\n\t\"wings\": [\n      {\n        \"texture\": \"minecraft:elytra\",\n        \"use_player_texture\": true\n      }\n    ]\n  }\n}\n```\n\n`minecraft:equippable` component of the item (here a netherite chestplate):\n```\n{\n  \"slot\": \"chest\",\n  \"asset_id\": \"mynamespace:netherite_armor_with_elytra\"\n}\n```\nIf this item now has an armor trim, Minecraft attempts to render the trim over the normal armor layer (humanoid / humanoid_leggings) as well as over the wings layer. However, since the wings layer cannot accept a trim, it receives a missingno texture in its entirety. \n\nThis mod does nothing more than prevent trims from being rendered on the wings layer. This way, armor with trim also works with such a resource pack. (See below for example)\n\n\n\n| ![An image of the player wearing a chestplate like the one described while using the mod.](https://cdn.modrinth.com/data/cached_images/6c9bd0a20ca9d6ee3eec8b5e97c34684efe78c4d.png)         | ![An image of the player wearing a chestplate like the one described while NOT using the mod.](https://cdn.modrinth.com/data/cached_images/e2d451509f3c04eb00cbff5f4c4fe4556edf1ba4.png)             |\n|--------------|-----------------|\n| With the mod | Without the Mod |\n\n*(I had to create a new repository because I needed to set up a brand-new project for the major version update to 26.1, Click [here](https://github.com/Jojo56627/ElytraRenderFix) for the old repo, the new one is linked via modrinth)*",
+  "categories": [
+    "equipment",
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1009,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "zbPvI2b0",
+  "slug": "essentialutils",
+  "title": "EssentialUtils",
+  "description": "tree chopping, vein mining, and auto-farming.",
+  "body": "# Essential Utils\n\n![Java](https://img.shields.io/badge/Java-21-orange) ![Gradle](https://img.shields.io/badge/Gradle-Build-brightgreen) ![PaperMC](https://img.shields.io/badge/PaperMC-1.21.8-blue) ![Folia](https://img.shields.io/badge/Folia-Supported-success)\n\n> A **Folia-optimized survival convenience plugin** for Paper/Folia 1.21.8.  \n> Adds smooth, lag-free mechanics like tree chopping, vein mining, and auto-farming.\n\n---\n\n## ✨ Features\n\n- **🌲 Tree Assist (axe)**\n  - Incrementally chops connected logs with **per-block delay** (smooth, no spikes).\n  - **Leaf checks** to avoid cutting adjacent trees.\n  - **Optional auto-replant** (saplings/propagules), retries with cooldown until successful.\n  - Durability decreases **once per N blocks**, not per block.\n\n- **⛏ Vein Mine (pickaxe)**\n  - Incrementally mines connected ore veins.\n  - Enforces **Minecraft tool tier rules**:\n    - If tier too low → **no break**, **alert shown** (rate-limited).\n  - Delay per block scales with vein size.\n  - Durability decreases once per N blocks.\n\n- **🌾 Auto Farm (hoe)**\n  - Harvests **only mature crops** in a radius.\n  - No auto-replant (intentional).\n  - Optimized for local chunk scans.\n\n- **⚙ Activation**\n  - **Hold Shift for 5 seconds** → arms tool (progress bar shown).\n  - Once armed, stays armed even after releasing Shift.\n  - **Deactivates only when item is changed** or player quits.\n\n- **🛡 Safety**\n  - Respects protections (future: WorldGuard/GriefDefender hooks).\n  - Requires loaded chunks.\n  - Folia region-safe scheduling only (no async hacks).\n\n- **📊 Performance**\n  - Centralized per-player tick budget.\n  - Strict per-feature caps.\n  - Smooth staggered breaking.\n\n---\n\n## 📂 Project Structure\n\n```\nsrc/main/java/net/ppekkungz/essentialUtils/\n├── EssentialUtils.java\n├── config/PluginConfig.java\n├── state/StateManager.java\n├── listener/ActivationListener.java\n├── work/\n│   ├── WorkService.java\n│   ├── WorkItem.java\n│   └── WorkQueue.java\n├── features/\n│   ├── Feature.java\n│   ├── tree/TreeAssistFeature.java\n│   ├── vein/VeinMineFeature.java\n│   └── farm/AutoFarmFeature.java\n├── util/\n│   ├── HarvestUtil.java\n│   ├── Materials.java\n│   └── Ores.java\n└── indicator/\n    ├── BossBarIndicator.java\n    └── ActionBarIndicator.java\n```\n\n---\n\n## ⚡ Usage\n\n1. Drop `EssentialUtils-x.x.x.jar` into your `plugins/` folder.\n2. Run with **Paper 1.21.8+** and **Folia**.\n3. Config (`config.yml`) is generated on first run.\n\n### Commands\n```bash\n/eutils reload   # reloads config.yml\n```\n\n### Permission\n```\nessentialutils.admin   # required for /eutils reload (default: op)\n```\n\n---\n\n## ⚙ Config Highlights\n\n```yaml\nactivation:\n  holdSneakSeconds: 5\n  requireToolWhileHold: true\n\nfeatures:\n  treeAssist:\n    breakDelayTicks: 2\n    durabilityPerNBlocks: 8\n    replant:\n      enabled: true\n      retryCooldownTicks: 5\n      maxRetries: 10\n\n  veinMine:\n    breakDelayBaseTicks: 1\n    breakDelayExtraPer16: 1\n    durabilityPerNBlocks: 10\n    alertOnInsufficientTier: true\n\n  autoFarm:\n    replant: false\n```\n\n---\n\n## 🛠 Build\n\nRequires:\n- JDK **21**\n- Gradle (wrapper included)\n\nBuild with:\n```bash\n./gradlew build\n```\n\nJar output:  \n```\nbuild/libs/essential-utils-<version>.jar\n```\n\n---\n\n## ✅ TODO / Roadmap\n\n- [x] Tree Assist (incremental, replant, durability-per-N)\n- [x] Vein Mine (incremental, tier alerts, delay scaling, durability-per-N)\n- [x] Auto Farm (mature crops only, no replant)\n- [x] Activation (Shift-hold progress, persists armed, deactivates on item change)\n- [x] Config reload (`/eutils reload`)\n- [x] Folia-safe scheduling\n- [x] Strict per-feature caps\n- [ ] Protection hooks (WorldGuard/GriefDefender)\n- [ ] BossBar indicators during ACTIVE\n- [ ] Configurable durability rules per tool type\n- [ ] Additional auto-farm crops (bamboo, sugarcane, kelp)\n- [ ] Multi-language messages\n- [ ] Metrics toggle (bStats)\n- [ ] Per-player toggle commands (enable/disable features individually)\n\n---\n\n## 📜 License\n\nMIT © 2025 ppekkungz\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "folia",
+    "optimization",
+    "paper",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 220,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

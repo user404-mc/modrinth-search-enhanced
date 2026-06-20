@@ -1,0 +1,33 @@
+{
+  "id": "ybJDMjY1",
+  "slug": "playerpassport",
+  "title": "PlayerPassport",
+  "description": "Passport GUI for players: birth date & age, city, role, gender & marriage integration, city lock system, view requests with accept/deny.",
+  "body": "# PlayerPassport\n\n**PlayerPassport** adds a stylized in-game **Passport GUI** for every player and a **privacy-friendly viewing system** (request → accept/deny).  \nPlayers can set a **birth date** (age is calculated automatically) and join **cities** through a controlled invite system.  \nThe plugin also supports **City Guests** (guest invites with accept/deny).\n\n---\n\n## Key Features\n\n- **Passport GUI** with player head/skin and structured info\n- **Privacy system**: regular players must **request** access; target can **accept/deny**\n- **Staff bypass**: staff can view instantly (no request, no distance)\n- **City system**: only **Admin/OP** can create cities and assign a **Mayor**\n- **Mayors** can invite residents; players can accept/deny or leave\n- **City Guests**: any city member can invite a player to become a guest (accept/deny required)\n- **City locks**: admins can lock a city for a duration + per-player exemptions\n- **Birthday reward**: if birth date is set and today is the player’s birthday → reward (once per year)\n- **Localization**: English (default), Ukrainian, French (configurable)\n- **Optional integrations**\n  - **Marriageyou**: automatically shows **Gender** and **Marriage partner**\n  - **Origins (+ PlaceholderAPI)**: shows **Race** (hidden automatically if missing)\n\n---\n\n## Commands\n\n### Players\n- `/passport` — open your passport\n- `/passport setbirth <YYYY-MM-DD>` — set birth date\n- `/passport clearbirth` — clear birth date\n\n### View Requests (privacy)\n- `/passport request <player>` — request to view someone’s passport *(distance + timeout configurable)*\n- `/passport accept <player>` — accept a view request *(opens passport for requester)*\n- `/passport deny <player>` — deny a view request\n\n### Cities (residents, invite-only)\n- `/passport city accept` — accept city invite (become a resident)\n- `/passport city deny` — deny city invite\n- `/passport city leave` — leave your city *(blocked if your city is locked)*\n\n### City Guests\n- `/passport city guest add <player>` — invite an online player to become a **guest** of your city *(any city member can use it)*\n- `/passport city guest accept` — accept a guest invite\n- `/passport city guest deny` — deny a guest invite\n- `/passport city guest leave` — leave the city as a guest (remove yourself from guest list)\n- `/passport city guest remove <player>` — remove a guest from your city *(any city member can use it)*\n- `/passport city guests` — list guests of your city\n\n### Mayor\n- `/passport city invite <player>` — invite player to your city (resident invite)\n- `/passport city members` — list members of your city\n- `/passport city kick <player>` — kick a member from your city\n\n### Admin\n- `/passport city create <city> <mayor>` — create city and set mayor\n- `/passport city delete <city>` — delete city\n- `/passport city setmayor <city> <player>` — change mayor\n- `/passport city list` — list all cities\n- `/passport city members <city>` — view members of a city\n- `/passport citylock add <city> <duration> [reason]` — lock city (30m/12h/7d/1w…)\n- `/passport citylock remove <city>` — remove lock\n- `/passport citylock list` — list locks\n- `/passport citylock exempt add <player> <city>` — add exemption\n- `/passport citylock exempt remove <player> <city>` — remove exemption\n- `/passport citylock exempt list <player>` — list exemptions\n- `/passport reload` — reload config/languages/data\n\n---\n\n## PlaceholderAPI Placeholders\n\n### City (resident)\n- `%playerpassport_city%` — your city display name (empty if not in a city)\n- `%playerpassport_city_key%` — your city key (empty if not in a city)\n\n### City checks\n- `%playerpassport_is_in_city%` — `true/false`\n- `%playerpassport_is_in_city_<city>%` — `true/false` for a specific city  \n  Examples: `%playerpassport_is_in_city_kyiv%`, `%playerpassport_is_in_city_New_York%`\n\n### Guests\n- `%playerpassport_is_guest_anywhere%` — `true/false`\n- `%playerpassport_is_guest_in_<city>%` — `true/false` for a specific city  \n  Examples: `%playerpassport_is_guest_in_kyiv%`, `%playerpassport_is_guest_in_Red_City%`\n- `%playerpassport_guest_city%` — guest city key (empty if not a guest)\n- `%playerpassport_guest_city_name%` — guest city display name (empty if not a guest)\n\n### Lists\n- `%playerpassport_city_citizens%` — comma-separated list of residents in your city\n- `%playerpassport_city_guests%` — comma-separated list of guests in your city\n- `%playerpassport_city_citizens_<city>%` — residents list for a specific city\n- `%playerpassport_city_guests_<city>%` — guests list for a specific city\n\n### City locks\n- `%playerpassport_city_locked%` — `true/false` for your city\n- `%playerpassport_city_locked_<city>%` — `true/false` for a specific city\n- `%playerpassport_city_lock_remaining%` — remaining lock time for your city (e.g. `7d 3h`) or empty\n- `%playerpassport_city_lock_remaining_<city>%` — remaining lock time for a specific city\n\n---\n\n## Permissions\n\n### Player\n- `passport.use`\n- `passport.edit`\n- `passport.view.other`\n\n### Staff\n- `passport.view.bypass`\n\n### Admin\n- `passport.city.admin`\n- `passport.admin.citylock`\n- `passport.admin.exempt`\n- `passport.citylock.bypass`\n- `passport.admin.reload`\n\n---\n\n## Notes\n- Language placeholders in messages use `{city}` format (not `%city%`).\n- Requires **Paper** (1.21.x). PlaceholderAPI is optional (only needed for placeholders).",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 106,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

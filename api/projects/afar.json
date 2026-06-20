@@ -1,0 +1,23 @@
+{
+  "id": "3IYYniVg",
+  "slug": "afar",
+  "title": "Afar",
+  "description": "A faster, lighter minecraft chunk caching solution",
+  "body": "# Afar\n\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n\n**Afar** is a faster, lighter chunk caching solution for minecraft, allowing you to see far beyond the server's view distance.\n\n## How It Works\n\nInstead of modifying the complex rendering engine, Afar operates at lower level. It works directly on the client's network connection.\n\n1.  **Cache (Save):** It silently listens to and saves all the chunk data packets the server sends to your client into a local database.\n2.  **Load (Read):** When you move around and need chunks that are within your *client's* view distance but beyond the *server's*, Afar seamlessly loads that previously saved data from your cache instead of waiting for the server to send it.\n\n## Key Features\n\n### 🚀 **Performance**\n-   Utilizes **SQLite** as the storage backend, offering significantly faster read/write speeds and smaller file sizes compared to serializing NBT data to files.\n\n### 🔧 **Compatibility**\n-   Works **purely at the network connection level**, intercepting and forging packets. It makes **zero changes** to the game's rendering code.\n-   This makes it **theoretically 100% compatible** with any rendering optimization mods like **Optifine**, **Sodium**, **Iris**, and any mod that affects chunk rendering or visual aesthetics.\n\n## Dependence      \n- Minecraft SQLite JDBC [(modrinth)](https://modrinth.com/plugin/minecraft-sqlite-jdbc/version/3.49.1.0+2025-07-12)\n- World ID Provider such as VoxelMap and JourneyMap ( Xaero's Map compatibility is still in production.)\n\n## Usage\n- You can find Afar config button in the settings menu or the mod list menu. All configuration items have corresponding explanations.\n- Here are some client-side command you can use\n\n```\n/afar dataInfo    //Show database infomation\n/afar runVacuum   //Run database vacuum, which will optimize the size and read/write speed of the database\n/afar doDrop      //Delete all chunk data\n/afar deleteOld <float:hours>  // Delete all records before the specified database running time. You can check the running time using /afar dataInfo\n```\n\n\n## Disclaimer \n- This mod simply re-uses data the server has already sent you. It **does not hack the server to get more data**. Your client's performance when rendering a larger view distance is dependent on your own PC's capabilities.",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 452,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

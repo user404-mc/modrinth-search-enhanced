@@ -1,0 +1,24 @@
+{
+  "id": "aig7sODy",
+  "slug": "prums-survival",
+  "title": "Prum's Survival",
+  "description": "Prum's survival experinece and quality of life improvments for my server. The server is currently private.",
+  "body": "# **This is currently only used on a private server**\n# Intoduction\nA survival experinece modpack with QoL changes. Focused on the administration ease of the server.\nThis is a perfect starting modpack to build upon for new admins coming from bukkit wanting vanilla mechanics.\n\nClient-side requires no special instructions.\n\n## Optionals\n- This modpack doesn't include a claims mod. You might need it if you wish to make your server public.\n- You might not want to add teleportions to your server. You can disable it on the server-side. However you can tie it into your economy by consuming items to use it.\n- Also trinkets and elytra trinket which allow the combination of the elytra and chestplate. If you remove it and Wraith's Waystones the modpack will be server-sided only.\n- You might not like the modification of villagers trades max uses added by `uncapped-villager-levels`. Which allows the villagers to levelup endlessly, increase their trades' max uses and refilling them on leveling up. You can disable it on the server-side.\n- [Since the villagers only remember the last player to cure them from their zombified state](https://bugs.mojang.com/browse/MC-251583). You make all players share the discount of the villager. If you wish to remove it, you can do so by removing [Our Villager Discounts](https://modrinth.com/mod/our-villager-discounts) from the server-side.\n\n## Server-side installaion\n### Requirements\nA SQL database isn't requied but generally recommended to improve the performace of Ledgar. And can be used by LuckPerms to enable proxy mode.\n\n### Ledger (Greifing Logging)\nIf you have chosen to use a SQL database refer to [Ledger's wiki](https://www.quiltservertools.net/Ledger/latest/install/#other-databases)\n\n### Proxy Support\nYou can have the server behind a proxy like BungeeCord, Waterfall and Velocity.\n\nFor BungeeCord-like proxies use [Fabric-Bungeecord-Proxy](https://github.com/disymayufei/Fabric-Bungeecord-Proxy)\nFor Velocity use [FabricProxy-Lite](https://github.com/OKTW-Network/FabricProxy-Lite) and refer to the [note](https://github.com/OKTW-Network/FabricProxy-Lite?tab=readme-ov-file#important) regarding LuckPerms in order to support it proxy wide.\n\nAnd you need to change `server.properties` with the following:\n```\nnetwork-compression-threshold=-1\nonline-mode=false\nprevent-proxy-connections=false\nenforce-secure-profile=false\n```\n\n### Simple Voice Chat with Proxy Support\nIf you wish to install Simple Voice Chat while behind a proxy like BungeeCord, Waterfall and Velocity.\n\n- Download and install the plugin on the proxy.\n- Open a port on the proxy server for the plugin. (24454 UDP) Can be anything.\n- Download and install the mod/plugin on each backend server, For each open a port or set the port to -1 which runs on top of minecraft tcp port. Not recommended though, I recommend opening a port and binding it to a local ip or the ip in the proxy configuration for the backend server:\n  ```\n  port=30303 # Random port\n  bind_address=10.0.0.1 # Or whatever is the current ip for the server which can only be accessed by the proxy. \n  # For Pterodactyl this is whatever the container ip which usually starts with 172.XXX.XXX.XXX. \n  # In my case I changed the default network range to a subnet in 10.0.0.0/8\n  ```\n\n### Optimizations\nThis modpack also include Chunky to pre generate the world. I recommend a starting world size of at least 4000.\n  \n  ```\n  chunky world overworld\n  chunky spawn\n  chunky radius 4000\n  chunky shape circle\n  chunky start \n  ```\nDisabling `sync-chunk-writes` to allow using a different thread to save the world\n  `server.properties`\n  ```\n  sync-chunk-writes=false\n  ```\n\n## Credits\n- [Sakura Ryoko's Servux](https://github.com/sakura-ryoko/Servux). [License](https://github.com/sakura-ryoko/servux/blob/fabric_1.21/LICENSE.txt)\n- [Wraith Waystones](https://github.com/IxPrumxI/FabricWaystones/). [License](https://github.com/IxPrumxI/FabricWaystones/blob/master/LICENSE)",
+  "categories": [
+    "adventure",
+    "fabric",
+    "multiplayer",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1115,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

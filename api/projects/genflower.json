@@ -1,0 +1,25 @@
+{
+  "id": "bSA7rnCt",
+  "slug": "genflower",
+  "title": "Genflower",
+  "description": "World gen & loot utils library for datapacks and mods.",
+  "body": "A small worldgen and loot utility library for mods and datapacks\n\n## What does it add?\n\nGenflower adds two new structure processors and a loot function to help speed up the development of datapacks,\nallowing one to do things that weren't possible, were difficult or tedious before with vanilla's processors.\n\n### Loot Functions\n\n#### Set Random Potion `genflower:set_random_potion`\n\nA potion randomiser function for potions found in brewing stands and chests.\n\n- `potions`: A potion->weight map expressed in one of two ways:\n\t- Map of ID to Weight: `{\"minecraft:luck\": 1}`\n\t- Object-in-List: `[{\"data\":\"minecraft:luck\",\"weight\":1}]`\n\nThe `weight` field is optional and defaults to 1 when using the object-in-list notation.\n\n<details><summary>Example JSON file</summary>\n\n```json5\n// data/useyourname/loot_tables/chests/your_loot.json -> /pools[]\n{\n\t\"entries\": [\n\t\t{\n\t\t\t\"type\": \"minecraft:item\",\n\t\t\t\"functions\": [\n\t\t\t\t{\n\t\t\t\t\t\"function\": \"genflower:set_random_potion\",\n\t\t\t\t\t\"potions\": {\n\t\t\t\t\t\t\"minecraft:long_invisibility\": 1,\n\t\t\t\t\t\t\"minecraft:invisibility\": 5\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"name\": \"minecraft:potion\"\n\t\t},\n\t\t{\n\t\t\t\"type\": \"minecraft:item\",\n\t\t\t\"functions\": [\n\t\t\t\t{\n\t\t\t\t\t\"function\": \"genflower:set_random_potion\",\n\t\t\t\t\t\"potions\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"data\": \"minecraft:long_invisibility\",\n\t\t\t\t\t\t\t\"weight\": 1\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"data\": \"minecraft:invisibility\",\n\t\t\t\t\t\t\t\"weight\": 5\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"name\": \"minecraft:splash_potion\"\n\t\t}\n\t]\n}\n```\n\n</details>\n\n### Structure Processors\n\n#### Block Map `genflower:block_map`\n\nA block to blocks mapping to reduce the verbosity of structure processors.\n\n- `block_map`: A block to list of blocks map used for replacing blocks.\n- `probability`: The likelihood of a block being replaced with a new one.\n\t- Scale of 0-1, defaults to 1.\n\n<details><summary>Example JSON file</summary>\n\n```json5\n// data/useyourname/worldgen/processor_list/your_processor.json\n{\n\t\"processors\": [\n\t\t{\n\t\t\t\"processor_type\": \"genflower:block_map\",\n\t\t\t\"block_map\": {\n\t\t\t\t\"minecraft:cobweb\": [\"minecraft:air\"],\n\t\t\t\t\"supplementaries:ash\": [\"minecraft:air\"]\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"processor_type\": \"genflower:block_map\",\n\t\t\t\"block_map\": {\n\t\t\t\t\"minecraft:deepslate_bricks\": [\n\t\t\t\t\t\"minecraft:cobbled_deepslate\",\n\t\t\t\t\t\"minecraft:deepslate_brick_stairs\",\n\t\t\t\t\t\"minecraft:deepslate_brick_slab\"\n\t\t\t\t],\n\t\t\t\t\"minecraft:lantern\": [\"wilderwild:display_lantern\"],\n\t\t\t\t\"minecraft:deepslate_brick_stairs\": [\n\t\t\t\t\t\"minecraft:deepslate_brick_slab\"\n\t\t\t\t],\n\t\t\t\t\"minecraft:mangrove_stairs\": [\n\t\t\t\t\t\"minecraft:mangrove_slab\",\n\t\t\t\t\t\"minecraft:cobweb\"\n\t\t\t\t],\n\t\t\t\t\"minecraft:anvil\": [\n\t\t\t\t\t\"minecraft:chipped_anvil\",\n\t\t\t\t\t\"minecraft:damaged_anvil\"\n\t\t\t\t]\n\t\t\t},\n\t\t\t\"probability\": 0.25\n\t\t}\n\t]\n}\n```\n\n</details>\n\n#### Loot `genflower:loot`\n\nA worldgen-time loot applicator for blocks that have inventories but don't support the `LootTable` NBT tag.\n\n- `loot_table`: A loot table to apply to given blocks\n- `blocks`: An allowed list of blocks to inject loot into.\n- `slots`: How many slots the block normally supports.\n- `probability`: The likelihood of a block having the loot table applied.\n\t- Scale of 0-1, defaults to 1.\n\n<details><summary>Example JSON file</summary>\n\n```json5\n// data/useyourname/worldgen/processor_list/your_processor.json\n{\n\t\"processors\": [\n\t\t{\n\t\t\t\"processor_type\": \"genflower:loot\",\n\t\t\t\"loot_table\": \"useyourname:chests/library_bookshelves\",\n\t\t\t\"blocks\": [\"minecraft:chiseled_bookshelf\"],\n\t\t\t\"slots\": 6,\n\t\t\t\"probability\": 0.8\n\t\t},\n\t\t{\n\t\t\t\"processor_type\": \"genflower:loot\",\n\t\t\t\"loot_table\": \"useyourname:chests/library_brewing_stands\",\n\t\t\t\"blocks\": [\"minecraft:brewing_stand\"],\n\t\t\t\"slots\": 3\n\t\t}\n\t]\n}\n```\n\n</details>",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "quilt",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1915,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "1keAhoAI",
+  "slug": "addonapi",
+  "title": "Moff's AddonAPI-DynLoad",
+  "description": "A library mod that provides an API for dynamically loading objects in addon mods based on the mods loaded by Forge.",
+  "body": "# AddonAPI\n\n**AddonAPI** is a library mod that provides an API for dynamically loading objects in addon mods based on the mods loaded by Forge. If a target mod is not loaded, only the extension elements related to that mod are excluded, allowing Minecraft to launch safely.\n\n## Supported Version\n- Forge for Minecraft 1.20.1\n\n## Main Features\n- Dynamically loads registered modules according to the ModList.\n- Adds a `compat` section to addon configs, which can be configured per target mod.\n- Provides a recipe condition that determines whether to load a recipe based on the `compat` config.\n- Includes a template Mixin plugin for detecting mod load status.\n\n## Creating Modules\n1. Create a module class by extending `AddonModule`.\n2. Create a module provider by extending `AddonModuleProvider` and calling `addRawModules()` within the `registerRawModules()` method.\n3. Call `AddonModuleRegistry.INSTANCE.LoadModule()` in the **constructor of your addon**.\n\n## Using `compat` Settings\nIn data pack recipes, use the following format:\n\n```json\n{\n  \"type\": \"YOUR_RECIPE_TYPE\",\n  \"conditions\": [\n      {\n        \"type\": \"addonlib:mods_available\",\n        \"required_raw_module\": \"YOUR_RAW_ADDON_MODULE_NAME\"\n      }\n    ],\n    ...\n}\n```",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 186354,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

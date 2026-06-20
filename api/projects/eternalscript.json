@@ -1,0 +1,22 @@
+{
+  "id": "qcSpvUov",
+  "slug": "eternalscript",
+  "title": "EternalScript",
+  "description": "A scripting plugin for Minecraft Paper servers that dynamically loads and unloads Kotlin scripts at runtime.",
+  "body": "## EternalScript: A Kotlin Scripting Plugin for Minecraft Paper Servers\n\nEternalScript allows you to dynamically load and manage code at runtime on your Minecraft Paper server without requiring restarts. It supports diverse customization features like script lifecycle management, event handling, and custom commands.\n\n### Commands\n\nHere are the available commands for EternalScript:\n\n* `/es compile`: Compiles and loads all scripts within the configured script folder.\n* `/es clear`: Unloads all currently loaded scripts.\n* `/es config`: Reloads the plugin configuration.\n* `/es call [script] [function]`: Calls a function within a specified script.\n* `/es load [script]`: Loads a specific script file (e.g., `/es load \"/hello.kt\"`).\n* `/es unload [script]`: Unloads a specific script file (e.g., `/es unload \"/hello.kt\"`).\n* `/es list`: Lists all currently loaded scripts.\n\n### Script Lifecycle\n\nControl how your scripts behave, including performing initial setup when loaded and cleaning up resources when unloaded.\n\n```kotlin\nenable {\n    // This code runs when the script is loaded/enabled.\n    Bukkit.broadcastMessage(\"Eternal Script: Script loaded!\")\n}\n\ndisable {\n    // This code runs when the script is unloaded/disabled.\n    Bukkit.broadcastMessage(\"Eternal Script: Script unloaded!\")\n}\n```\n\n### Event Handling\n\nEasily register and handle events directly within your scripts to add custom logic.\n\n```kotlin\nimport org.bukkit.Bukkit\nimport org.bukkit.event.player.PlayerJoinEvent\nimport org.bukkit.event.player.PlayerQuitEvent\n\nevent<PlayerJoinEvent> { event ->\n    Bukkit.broadcastMessage(\"${event.player.name} joined the server!\")\n}\n\nevent<PlayerQuitEvent> { event ->\n    Bukkit.broadcastMessage(\"${event.player.name} left the server.\")\n}\n```\n\n### Custom Commands\n\nDefine and register your own in-game commands directly from your scripts.\n\n```kotlin\nimport org.bukkit.Bukkit\n\ncommand(\"test-command\") {\n    // Players need this permission to execute the command.\n    permission = \"eternals.command.test\"\n    executor = { sender, label, args ->\n        // This code runs when the command is executed.\n        Bukkit.broadcastMessage(\"Command executed by: ${sender.name}\")\n    }\n}\n```\n\n### Script Inclusion/Exclusion Rules\n\nControl which scripts the plugin processes.\n\n* `*.kt | *.kts`: Includes all Kotlin files (`.kt`) and Kotlin script files (`.kts`).\n* `-*/ *.kt | -*.kt`: Ignores specific folders or files (e.g., excludes scripts in subfolders or specific files).\n* `!*/* .kt | !*.kt`: Loads specific folders or files synchronously (e.g., processes them before other scripts at server startup).\n\n### Installation\n\nIt's quick and easy to get EternalScript up and running on your server:\n\n1.  Download the latest version of **EternalScript** from [Modrinth](https://modrinth.com/plugin/eternalscript).\n2.  Upload the downloaded file to your Minecraft server's `plugins` folder.\n3.  Start or restart your server to load EternalScript.\n\n### Getting Started\n\nExperience the power of EternalScript by writing and running your first Kotlin script:\n\n1.  After installation, a `plugins/EternalScript/scripts/` folder will be created.\n2.  Write your Kotlin script file with a `.kt` extension inside this `scripts` folder.\n3.  From the server console, you can use the `/es load \"/[script].kt\"` command to load a specific script, or `/es compile` to load all scripts within the folder.\n\n### Simple \"Hello World\" Example\n\nCreate a `hello.kt` file in the `plugins/EternalScript/scripts/` folder and enter the following content:\n\n```kotlin\n// plugins/EternalScript/scripts/hello.kt\n\nenable {\n    Bukkit.broadcastMessage(\"Hello, world!\")\n}\n```\n\nThen, execute `/es load \"/hello.kt\"` from the server console, and you'll see the message appear in the game chat.",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 141,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

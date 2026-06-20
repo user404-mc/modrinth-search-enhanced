@@ -1,0 +1,35 @@
+{
+  "id": "wslWWn2c",
+  "slug": "hwid",
+  "title": "HWID (Anti-Alts)",
+  "description": "Stop annoying players from circumventing your bans by checking for alts based on hardware IDs",
+  "body": "Are you running a server and occasionally meet some players you want to get rid of, but they keep coming back using alt accounts and a VPN? Well, now you've got the chance to identify their accounts based on a hardware ID instead of unreliable IPs, skins or behaviour!\n\n---\n\n### What this mod does\n- This mod is registering an empty argument, making it required on clients if your server has it installed. Players who try to remove it from their modpack can't join your server.\n- When players join your server, the client calculates a semi-unique hash value based on the player's hardware, which is then stored by the server (`<server root>/config/hwid`), along with the account UUID.\n\n### What this mod doesn't do\n- Automatically ban people based on hardware IDs\n- Provide an easy way to find hardware IDs with multiple players in-game\n\n### How to use it then?\nCheck some example scripts further down below, I don't want to bury the following two points under codeblocks as they're quite important to read.\n\n---\n\n### Privacy\nWhile a hardware ID sounds invasive, it's way less confidental information than an IP address. The hardware ID is being calculated on the client using the SHA-256 algorithm, which is irreversible and therefore gives server operators no information on what hardware is being used. The hardware ID can only be used to tell unique hardware configurations apart.\n\n### Limitations\n- Hardware IDs are semi-unique. If players upgrade their computer or replace it entirely, it will change. Players can also have the same hardware ID, if they coincidentally have the same computer, for example a common pre-built. Serial numbers (if existing) are included during the hash calculation to minimize this occurence.\n- Dedicated troublemakers with knowledge of Java can decompile this mod and create an evil twin, sending a random or specific hardware ID every time they join.\n\n---\n\n### Bash\n```\n#!/bin/bash\n\ndestination_path=\"/home/minecraftserver/config/hwid\"\nfor file in \"$destination_path\"/*\ndo\n    line_count=$(wc -l <\"$file\")  # Count the number of lines in the file\n    if [ \"$line_count\" -gt 1 ]  # Check if the line count is greater than 1\n    then\n        echo \"\"; echo \"$(basename \"$file\")\"  # Print an empty line and the filename\n        while IFS= read -r line  # Read each line from the file\n        do\n            uuid=${line}  # Assign the line to the variable 'uuid'\n            response=$(curl -s https://sessionserver.mojang.com/session/minecraft/profile/${uuid})  # Send a request to the Mojang API to get the profile information\n            name=$(echo \"$response\" | jq -r '.name')  # Extract the 'name' field from the API response using jq\n            echo \"${uuid} - ${name}\"  # Print the UUID and the corresponding name\n        done < \"$file\"  # Read from the file\n    fi\ndone\n```\n\n### Python 3\n```\nimport os, json, requests\n\nsearch = \"\"  # Set the search term, eg. username, UUID or parts of either\n\nfor filename in os.listdir(\"/home/minecraftserver/config/hwid\"):  # Iterate over each file in the specified directory\n    with open(f\"/home/minecraftserver/config/hwid/{filename}\", \"r\") as file:  # Open each file in read mode\n        lines = file.readlines()  # Read all lines from the file\n        if len(lines) > 1:  # Check if there are more than one line in the file\n            result = \"\"  # Initialize the result string\n            for line in lines:\n                uuid = line.strip()  # Get the UUID from each line\n                response = requests.get(f\"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}\")  # Send a GET request to Mojang API to get player profile\n                name = json.loads(response.text)['name']  # Extract the player name from the response\n                result += f\"{uuid} - {name}\\n\"  # Append UUID and name to the result string\n            if search in result:  # Check if the search string is present in the result\n                print(result)  # Print the result\n```",
+  "categories": [
+    "forge",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 36839,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,38 @@
+{
+  "id": "G910JipR",
+  "slug": "iss",
+  "title": "ISS",
+  "description": "This Datapack adds an easy way Save and Load player inventories.",
+  "body": "## How to use\n### Valid IDs\nThe ID can generally be any character although using special characters is not recommended as this can lead to unpredictable behavior\n\n### Loading a Layout\nThis can be done by running `iss:functions/load/ {id:<your id>}`\nIf the player doesn't have a saved Layout tied to the ID it will try to run the defined fallback function(see \"**Defining a fallback function**\") if there is no fallback function defined for that ID it will fail\n\nYou can also load the defined fallback function directly by running `iss:functions/load/fallback {id:<your id>}`\n\n### Saving\nYou can save a Layout by running `iss:functions/save {id:<your id>}`, this will save the Inventory of the player who is executing it to the specified id\n\n### Deleting Layouts\nTo delete a Layout of a spesific player run `iss:functions/delete/ {id:<your id>}` as the player.\nTo delete _All_ Layouts associated with a certain id run `iss:functions/delete/all {id:<your id>}`\n\n### Defining a fallback function\n\nTo add a fallback function to an id run `data modify storage iss data.<your id>.fallback set value \"<your function path>\"` \nI Would Highly Recommend that you put the command in your load function as deleting _All_ Layouts will also remove the fallback function data(subject to change)\n<details>\n<summary> How to use [old pre 2.0.0]</summary>\n\n\n## Inventory Types\n\n### Global Inventories\nGlobal inventories serve as a backup for **personal inventories**, operating independently from individual player data.\n\n### Personal Inventories\nPersonal inventories are linked to individual players. They were originally designed for those who wanted to customize their kits differently from the default options, but they can be used for any purpose. If a player attempts to load a personal inventory that hasn't been saved yet, the corresponding **global inventory** will be loaded instead.\n\n---\n\n\n## Saving and Loading Inventories\n\n## Inventory Ids\nTo save or load an inventory, you must always provide the inventory's ID. Note that certain characters are **not allowed** in the inventory ID, including:\n\n- Spaces\n- Periods (`.`)\n- Square brackets (`[]`)\n- Parentheses (`()`)\n\n---\n\n## Saving & Loading\nThese commands are designed to store and restore the inventory of the player who executes them.\n\n### Saving\n\n1. **Global Inventory**  \n   Use the `save_default` function to save a global inventory, including the desired ID as an argument.\n\n   **Example:**\n   ``` \n   /function iss:functions/save_default {id:\"starter_kit\"}\n   ```\n\n2. **Personal Inventory**  \n   To save a personal inventory, use the `save_custom_layout` function with the ID argument.\n\n   **Example:**\n   ```\n   /function iss:functions/save_custom_layout {id:\"starter_kit\"}\n   ```\n\n### Loading\nLoading commands replace the player's entire inventory.\n\n1. **Global Inventory**  \n   Use the `load_default` function to load a global inventory, specifying the ID.\n\n   **Example:**\n   ```\n   /function iss:functions/load_default {id:\"starter_kit\"}\n   ```\n\n2. **Personal Inventory**  \n   To load a personal inventory, use the `load_custom_layout` function with the ID argument.\n\n   **Example:**\n   ```\n   /function iss:functions/load_custom_layout {id:\"starter_kit\"}\n   ```\n ### Resetting Personal Inventories \n- To reset a player's personal inventory, use the `reset_custom_layout` function. This will clear and reset the personal inventory of the executing player.\n\n   **Example:**\n   ```\n   /function iss:functions/reset_custom_layout {id:\"starter_kit\"}\n   ```",
+  "categories": [
+    "datapack",
+    "equipment",
+    "library",
+    "management",
+    "optimization",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 322,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ISyuxaXK",
+  "slug": "mannequin-swing",
+  "title": "Mannequin Swing",
+  "description": "This mod adds support for swing animations on mannequins.",
+  "body": "# Mannequin Swing\n\nThis mod adds support for swing animations on mannequins. It does not add any new way to cause a swing animation, such as the `/swing` command from the 26.1 snapshots.\n\n## Technical details\n\n`LivingEntity` has a method `updateSwingTime` that needs to be called both on the client and on the server to allow an entity to swing its arms. However, it is only used by `Player`s and monsters. This mod adds a call in `Mannequin`s' `aiStep` function, through the technique of submixins.\n\n```java\n@Mixin(LivingEntity.class)\npublic class LivingEntityMixin {\n\t@Shadow\n\tprotected void updateSwingTime() {};\n\n\t@WrapMethod(method = \"aiStep\")\n\tpublic void overrideAiStep(Operation<Void> original) {\n\t\toriginal.call();\n\t}\n}\n\n@Mixin(Mannequin.class)\npublic class MannequinSubMixin extends LivingEntityMixin {\n\t@Override\n\tpublic void overrideAiStep(Operation<Void> original) {\n\t\tsuper.overrideAiStep(original);\n\t\tupdateSwingTime();\n\t}\n}\n```\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "mobs",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 174,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

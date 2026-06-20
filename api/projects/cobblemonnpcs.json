@@ -1,0 +1,27 @@
+{
+  "id": "Vp8Qj4qr",
+  "slug": "cobblemonnpcs",
+  "title": "CobblemonNPCs",
+  "description": "CobblemonNPC's is an open source side mod enabling NPC management for server owners inside a config file. This mod was built using https://player.games/create",
+  "body": "# Cobblemon NPCs\n\nPublishd on behalf of one of our users.\n\nBuilt using https://player.games/create\n\n## Features\n\n- **Configurable Trainers**: Define trainers via YAML configuration with custom names, dialogue, Pokémon teams, and rewards\n- **Trainer Spawning**: Spawn trainer NPCs in-game using commands\n- **Battle System**: Interact with trainers to initiate Pokémon battles using Cobblemon's battle system\n- **Rewards System**: Configure item rewards and command execution upon defeating trainers\n- **Cooldown System**: Set per-trainer cooldowns to prevent repeated battles\n- **Custom Skins**: Apply custom player skins to trainer NPCs\n- **NPC Protection**: Trainers are invulnerable, persistent, and protected from damage/death\n\n## Requirements\n\n- Minecraft 1.21.1\n- Fabric Loader 0.16.10+\n- Fabric API 0.116.5+\n- Cobblemon 1.7.0+\n- Java 21+\n\n## Installation\n\n1. Download the latest release JAR file\n2. Place it in your server's `mods` directory\n3. Restart your server\n4. The configuration file will be generated at `config/cobblemonnpcs/trainers.yml`\n\n## Configuration\n\nThe mod generates a default configuration file at `config/cobblemonnpcs/trainers.yml`. Edit this file to define your trainers:\n\n```yaml\ntrainers:\n  - trainer_id: \"electric_master\"\n    trainer_name: \"Sora\"\n    battle_dialogue: \"Think you can withstand pure voltage?\"\n    defeat_dialogue: \"You really overpowered me!\"\n    cooldown_hours: 12\n    skin: \"Sora\"\n    pokemon_team:\n      - species: \"cobblemon:raichu\"\n        level: 55\n      - species: \"cobblemon:jolteon\"\n        level: 54\n    rewards:\n      items:\n        - item: \"minecraft:diamond\"\n          count: 2\n      commands:\n        - \"say {player} conquered {trainer}\"\n```\n\n### Configuration Fields\n\n- **trainer_id**: Unique identifier for the trainer (lowercase, no spaces)\n- **trainer_name**: Display name shown above the NPC\n- **battle_dialogue**: Dialogue shown when interacting with the trainer\n- **defeat_dialogue**: Message sent to player upon defeating the trainer\n- **cooldown_hours**: Hours before a player can battle this trainer again (default: 12)\n- **skin**: Optional Minecraft username to use as the NPC's skin\n- **pokemon_team**: List of Pokémon species and levels\n  - **species**: Pokémon species ID (e.g., `cobblemon:pikachu` or `pikachu`)\n  - **level**: Pokémon level (default: 5)\n- **rewards**: Rewards given upon victory\n  - **items**: List of items to give\n    - **item**: Item ID (e.g., `minecraft:diamond`)\n    - **count**: Number of items (default: 1)\n  - **commands**: List of commands to execute (supports `{player}` and `{trainer}` placeholders)\n\n## Commands\n\nAll commands require OP level 2 (or equivalent permission).\n\n### `/spawntrainer <trainer_id>`\nSpawns a trainer NPC at your location.\n\n**Example:**\n```\n/spawntrainer electric_master\n```\n\n### `/trainerskin <trainer_id> <skin_name>`\nUpdates the skin for all existing instances of a trainer. Use `default`, `clear`, `off`, or `none` to remove the custom skin.\n\n**Examples:**\n```\n/trainerskin electric_master Notch\n/trainerskin electric_master clear\n```\n\n### `/trainerconfig reload`\nReloads the trainer configuration from `trainers.yml` without restarting the server.\n\n## Usage\n\n1. **Configure Trainers**: Edit `config/cobblemonnpcs/trainers.yml` to define your trainers\n2. **Reload Config**: Run `/trainerconfig reload` to load your changes\n3. **Spawn Trainers**: Use `/spawntrainer <trainer_id>` to spawn trainers in-game\n4. **Interact**: Right-click on a trainer NPC to open the battle dialogue\n5. **Battle**: Select \"Battle!\" to start a Pokémon battle\n6. **Rewards**: Upon victory, players receive configured rewards and must wait for the cooldown before battling again\n\n## Building\n\nTo build from source:\n\n```bash\n./gradlew build\n```\n\nThe compiled JAR will be in `build/libs/`.\n\n## Technical Details\n\n- **Mod ID**: `cobblemonnpcs`\n- **Environment**: Server-side only\n- **Dependencies**: Fabric Loader, Fabric API, Cobblemon\n- **Configuration**: YAML-based via SnakeYAML\n- **NPC Tracking**: Maintains UUID-based tracking of spawned trainer NPCs\n- **Cooldown Storage**: Per-player, per-trainer cooldown tracking\n\n## License\n\nAll Rights Reserved - PlayerGames LLC\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4569,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

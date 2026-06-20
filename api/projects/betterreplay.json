@@ -1,0 +1,36 @@
+{
+  "id": "Q9s9vyrt",
+  "slug": "betterreplay",
+  "title": "BetterReplay",
+  "description": "Packet Based Player Recorder.\nBetterReplay is a server-side replay plugin for Paper and Folia-style scheduling. It records player and nearby entity activity on the server, saves the timeline, and replays it for viewers in-game.",
+  "body": "# BetterReplay\n\nBetterReplay is a server-side replay plugin for Paper and Folia-style scheduling.\nIt records player and nearby entity activity on the server, saves the timeline, and replays it for viewers in-game.\n\n## What this project is\n\n- Server plugin written in Java\n- Targets modern Paper APIs\n- Uses PacketEvents and FoliaLib for packet handling and scheduling\n- Supports two storage backends:\n  - local JSON files\n  - MySQL\n\n## How this differs from client-side replay mods\n\nBetterReplay is not a client recording mod.\n\nServer-side approach (this project):\n- Runs entirely on the server\n- No replay mod required on player clients\n- Captures server-observed gameplay state and events\n- Plays back by spawning and updating replay entities for a viewer\n- Good for moderation, event review, and server-side tooling\n\nTypical client-side replay mod approach:\n- Records from a specific client perspective\n- Usually requires modded client setup\n- Often includes advanced free-camera/cinematic editing features\n- Playback is usually local to the client recording\n\nIn short: BetterReplay focuses on server-managed replay workflows and API-driven integration.\n\n## Features\n\n- Start and stop recordings\n- Save recordings to file or MySQL\n- List and delete stored replays\n- Replay sessions for viewers\n- API-first integration support for other plugins\n- Optional Floodgate soft dependency support\n\nBase command:\n- /replay\n\nSubcommands:\n- start\n- stop\n- play\n- list\n- delete\n\nPermissions:\n- replay.start\n- replay.stop\n- replay.play\n- replay.list\n- replay.delete\n- replay.*\n\n\n### Storage-Type options\n\nValid values for `General.Storage-Type` are:\n\n- `file`\n  - Stores replay data as JSON files under the plugin data folder.\n- `mysql`\n  - Stores replay data in a MySQL table (`replays`) using the configured `General.MySQL.*` values.\n\nThese values should be lowercase as shown above.\n\n### File storage example\n\n```yaml\nGeneral:\n  Check-Update: true\n  Storage-Type: file\n```\n\n### MySQL storage example\n\n```yaml\nGeneral:\n  Check-Update: true\n  Storage-Type: mysql\n  MySQL:\n    host: 127.0.0.1\n    port: 3306\n    database: betterreplay\n    user: replay_user\n    password: change-me\n```\n\nAdditional key used by command pagination:\n\n```yaml\nlist-page-size: 10\n```\n\nNotes:\n- If Storage-Type is invalid, plugin falls back to file storage.\n- MySQL replay names are stored in a VARCHAR(64) primary key column.\n\n\n## API\n\nBetterReplay provides a public API for other plugins to start/stop recordings, manage replays, and listen for lifecycle events.\n\nQuick example:\n\n```java\nReplayManager manager = ReplayAPI.get();\nmanager.startRecording(\"demo-session\", List.of(player), 120);\nmanager.stopRecording(\"demo-session\", true);\nmanager.startReplay(\"demo-session\", viewerPlayer);\n```\n\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 496,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "KUgDBCtM",
+  "slug": "server-plugin-updater",
+  "title": "Plugin Updater",
+  "description": "Automatically checks for and downloads plugin updates from Modrinth.",
+  "body": "![Banner Image Plugin Updater](https://cdn.modrinth.com/data/cached_images/8a0e823c6264dfa4700c772ae63df202decb8a72_0.webp)\n<div align=\"center\">\n\n# PluginUpdater\n\n[![Java CI](https://img.shields.io/badge/Java-21-orange?style=flat-square&logo=java&logoColor=white)](https://openjdk.org/projects/jdk/21/)\n[![Version](https://img.shields.io/badge/Version-1.0.1--SNAPSHOT-blue?style=flat-square)](https://github.com/minekarta/PluginUpdater)\n[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)\n[![Platform](https://img.shields.io/badge/Platform-Paper_%7C_Folia_%7C_Purpur-5D57F7?style=flat-square)](https://papermc.io)\n\n**The ultimate automated plugin management solution for modern Minecraft servers.**  \n*Developed by Minekarta Studio*\n\n[Report Bug](https://github.com/minekarta/PluginUpdater/issues) • [Request Feature](https://github.com/minekarta/PluginUpdater/issues) • [Discord](https://discord.gg/minekarta)\n\n</div>\n\n---\n\n## 🔥 Overview\n\n**PluginUpdater** is a next-generation plugin utility designed for **PaperMC 1.21+** and **Folia** servers. It seamlessly integrates with the **Modrinth API** to keep your plugins up-to-date automatically, featuring a robust backup and restore system to ensure server stability.\n\n> [!IMPORTANT]\n> **Folia Support:** This plugin is fully compatible with Folia's region threading system!\n\n## ✨ Key Features\n\n| Core | Advanced |\n| :--- | :--- |\n| 🚀 **Auto-Update Check**<br>Checks for updates on startup instantly. | 📦 **Safe Downloads**<br>Auto-backup before every update. |\n| 🔍 **Modrinth Powered**<br>Uses the massive Modrinth database. | ↩️ **Restore System**<br>Rollback if an update breaks things. |\n| ⚡ **Async Architecture**<br>Zero lag. All operations are non-blocking. | 📊 **Smart Versioning**<br>Semver-compliant update detection. |\n| 🌐 **Modern Messaging**<br>Beautiful gradients and MiniMessage support. | 🔄 **Multi-Platform**<br>Works on Paper, Folia, Purpur, Spigot. |\n\n---\n\n## 📥 Installation\n\n1. **Download**: Grab the latest JAR from [Releases](https://github.com/minekarta/PluginUpdater/releases).\n2. **Install**: Drop `PluginUpdater-1.0.1-SNAPSHOT.jar` into your `plugins/` folder.\n3. **Restart**: Start your server.\n4. **Verify**: Look for the startup message:\n   ```log\n   [PluginUpdater] PluginUpdater v1.0.1-SNAPSHOT enabled!\n   [PluginUpdater] Checking for plugin updates from Modrinth...\n   ```\n\n---\n\n## 📖 User Guide\n\n<details>\n<summary><b>🛠️ Commands & Usage</b> (Click to Expand)</summary>\n\n### Main Commands\n\n| Command | Permission | Description |\n| :--- | :--- | :--- |\n| `/pluginupdate check [plugin]` | `pluginupdater.use` | Check for updates for all or specific plugins. |\n| `/pluginupdate update <plugin\\|all>` | `pluginupdater.download.update` | Download updates. **Requires restart to apply.** |\n| `/pluginupdate backup [plugin]` | `pluginupdater.download.backup` | Manually backup a plugin. |\n| `/pluginupdate restore <plugin> <time>` | `pluginupdater.download.restore` | Restore a plugin from a specific backup. |\n| `/pluginupdate list-backups <plugin>` | `pluginupdater.download.backup` | See available backups for a plugin. |\n| `/pluginupdate help` | `pluginupdater.use` | Show the help menu. |\n\n> [!TIP]\n> You can use aliases like `/pu`, `/uc`, or `/updates` for quicker access!\n\n</details>\n\n<details>\n<summary><b>🛡️ Permissions</b> (Click to Expand)</summary>\n\n| Node | Default | Description |\n| :--- | :--- | :--- |\n| `pluginupdater.use` | OP | Basic check commands. |\n| `pluginupdater.download.*` | OP | Full access to download/backup features. |\n| `pluginupdater.reload` | OP | Reload config files. |\n| `pluginupdater.*` | OP | Wildcard for all permissions. |\n\n</details>\n\n<details>\n<summary><b>⚙️ Configuration</b> (Click to Expand)</summary>\n\nCustomize `plugins/PluginUpdater/config.yml` to fit your needs.\n\n```yaml\nsettings:\n  minecraft-version: '1.21'\n  loader: 'paper' # options: paper, purpur, spigot, bukkit\n  check-on-startup: true\n  \n  # Prevent annoying spam?\n  periodic-check:\n    enabled: false\n    interval-minutes: 60\n\n  # Skip these plugins\n  ignored-plugins:\n    - 'MyCustomPrivatePlugin'\n\n  download:\n    require-backup: true    # Highly recommended!\n    max-file-size-mb: 100\n    timeout-seconds: 60\n```\n\n</details>\n\n---\n\n## ❓ Troubleshooting\n\n<details>\n<summary><b>Click to view common issues</b></summary>\n\n### ❌ Plugin Not Found\n*   **Cause**: The plugin isn't on Modrinth or uses a weird name.\n*   **Fix**: Check Modrinth for the exact slug or add to `ignored-plugins`.\n\n### ⚠️ No Compatible Version\n*   **Cause**: The developer hasn't marked the version as compatible with 1.21 yet.\n*   **Fix**: Check your `minecraft-version` in `config.yml`.\n\n### 🚫 Permission Denied\n*   **Cause**: You aren't OP or lack nodes.\n*   **Fix**: Check your permission plugin (e.g., LuckPerms).\n\n</details>\n\n---\n\n## 👨‍💻 For Developers\n\nBuild from source to contribute or modify.\n\n```bash\ngit clone https://github.com/minekarta/PluginUpdater.git\ncd PluginUpdater\nmvn clean package\n```\n\n**Artifact:** `target/PluginUpdater-1.0.1-SNAPSHOT.jar`\n\n---\n\n<div align=\"center\">\n\n**Made with ❤️ by Minekarta Studio**  \n*Part of the Minekarta Server Indonesia Ecosystem*\n\n</div>\n",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 291,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

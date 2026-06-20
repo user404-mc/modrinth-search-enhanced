@@ -1,0 +1,34 @@
+{
+  "id": "xLhGWnHf",
+  "slug": "no-death",
+  "title": "No Death",
+  "description": "NoDeath is a Fabric server-first mod that controls the death rules of specific mobs and players.",
+  "body": "# NoDeath\n\n`NoDeath` is a Fabric server-first mod that controls the death rules of specific mobs and players.\n\nThe goal is intentionally narrow:\n\n- Any mob renamed to `NoDeath` with a name tag cannot die until it is renamed again\n- Protected players cannot die from normal causes\n- Protected players can only die through command kill or by falling into the void\n\n## Contents\n\n- [Overview](#overview)\n- [Behavior Rules](#behavior-rules)\n- [Compatibility](#compatibility)\n- [Dependencies](#dependencies)\n- [Installation](#installation)\n- [Commands](#commands)\n- [Configuration](#configuration)\n- [Data Storage](#data-storage)\n- [Development and Build](#development-and-build)\n\n## Overview\n\n- Mobs named `NoDeath` do not die\n- Renaming the mob immediately removes the protection\n- Supports protecting a single player through commands\n- Supports protecting all players through commands\n- Protected players cannot die from combat, environmental damage, or other normal causes\n- Protected players can still die through vanilla `/kill` or by falling into the void\n- Protection settings are persisted to a config file\n- Core logic runs on the server, so multiplayer clients usually do not need the mod installed\n\n## Behavior Rules\n\n### Mob Rules\n\n- Protection is enabled only when the mob custom name is exactly `NoDeath`\n- The rule applies to vanilla mobs and mobs added by other mods, as long as they can be named\n- The protection blocks the final death step without relying on client-side logic\n- Renaming the mob to any other value removes the protection immediately\n\n### Player Rules\n\n- Protected players do not die from normal causes\n- Death is still allowed in exactly two cases:\n  - vanilla command kill such as `/kill`\n  - falling into the void\n- When global protection is enabled, the same rule applies to all players\n\n## Compatibility\n\n| Item | Requirement |\n| --- | --- |\n| Minecraft | `1.21` to `1.21.11` |\n| Fabric Loader | `0.16.0+` |\n| Java | `21+` |\n| Fabric API | Required |\n| Fabric Language Kotlin | Required |\n\nThe project currently targets `Minecraft 1.21.11`.\n\n## Dependencies\n\nInstall the following dependencies into the target `mods` directory together with this mod:\n\n| Dependency | Required | Notes |\n| --- | --- | --- |\n| Fabric API | Yes | Provides Fabric events, commands, and runtime APIs |\n| Fabric Language Kotlin | Yes | Required because this mod is written in Kotlin |\n\n## Installation\n\n### Server-first Usage\n\nThis mod is designed primarily as a server-side mod:\n\n- Dedicated server: normally only the server needs this mod and its dependencies\n- Singleplayer: local installation is still required because singleplayer uses an integrated server\n\n## Commands\n\nAll commands require administrator permission by default.\n\n| Command | Description |\n| --- | --- |\n| `/nodeath` | Show the current protection overview |\n| `/nodeath list` | Show the current protection overview |\n| `/nodeath reload` | Reload the config file |\n| `/nodeath all <true|false>` | Enable or disable protection for all players |\n| `/nodeath player <player> <true|false>` | Set protection for a specific player |\n| `/nodeath status <player>` | Show whether a player is currently protected |\n\nNotes:\n\n- Use vanilla `/kill` when you intentionally want to kill a protected player\n- Command-based configuration only applies to players, not to the `NoDeath` name-tag rule\n\n## Configuration\n\nConfig file path:\n\n```text\nconfig/no-death.json\n```\n\nDefault config:\n\n```json\n{\n  \"protectAllPlayers\": false,\n  \"protectedPlayers\": []\n}\n```\n\n| Field | Default | Description |\n| --- | --- | --- |\n| `protectAllPlayers` | `false` | Enables protection for all players |\n| `protectedPlayers` | `[]` | UUID list of individually protected players |\n\n## Data Storage\n\nConfiguration and protection data are stored in:\n\n```text\nconfig/no-death.json\n```\n\nData characteristics:\n\n- Player protection is persisted\n- Individual protection uses UUIDs, so it survives name changes\n- Global protection is stored as a separate boolean flag\n\n## 中文\n\n`NoDeath` 是一个 Fabric 服务端优先模组，用于控制特定生物和玩家的死亡规则。\n\n核心目标很简单：\n\n- 任何被命名牌命名为 `NoDeath` 的生物都不会死亡，直到被改名\n- 被管理员保护的玩家不会因普通方式死亡\n- 被保护玩家只能通过命令击杀或掉入虚空死亡\n\n## 目录\n\n- [功能概览](#功能概览)\n- [行为规则](#行为规则)\n- [兼容性](#兼容性)\n- [依赖](#依赖)\n- [安装方式](#安装方式)\n- [命令说明](#命令说明)\n- [配置说明](#配置说明)\n- [数据存储](#数据存储)\n- [开发与构建](#开发与构建)\n\n## 功能概览\n\n- 命名为 `NoDeath` 的生物不会死亡\n- 生物一旦被改成其他名字，保护立即失效\n- 支持通过命令保护单个玩家\n- 支持通过命令保护所有玩家\n- 被保护玩家不会因普通战斗、环境伤害或其他常规方式死亡\n- 被保护玩家仍然允许通过原版 `/kill` 或掉入虚空死亡\n- 保护配置持久化保存到配置文件\n- 主逻辑在服务端运行，多人服务器通常只需服务端安装\n\n## 行为规则\n\n### 生物规则\n\n- 仅当生物的自定义名称严格等于 `NoDeath` 时启用保护\n- 该规则对原版生物和模组新增生物都生效，只要它们可以被命名\n- 保护会阻止最终死亡，而不要求客户端安装模组\n- 如果把名字改成其他内容，保护立即移除\n\n### 玩家规则\n\n- 被保护玩家不会因普通方式死亡\n- 以下两种情况仍然允许死亡：\n  - 原版命令击杀，例如 `/kill`\n  - 掉入虚空\n- 开启“全体玩家保护”后，以上规则会应用到所有玩家\n\n## 兼容性\n\n| 项目 | 要求 |\n| --- | --- |\n| Minecraft | `1.21` 到 `1.21.11` |\n| Fabric Loader | `0.16.0+` |\n| Java | `21+` |\n| Fabric API | 必需 |\n| Fabric Language Kotlin | 必需 |\n\n当前工程以 `Minecraft 1.21.11` 为主目标版本。\n\n## 依赖\n\n请确保以下依赖与本模组一起安装到对应环境的 `mods` 目录：\n\n| 依赖 | 是否必需 | 说明 |\n| --- | --- | --- |\n| Fabric API | 必需 | 提供 Fabric 事件、命令和运行时 API |\n| Fabric Language Kotlin | 必需 | 本模组使用 Kotlin 编写，缺失时无法加载 |\n\n## 安装方式\n\n### 服务端优先\n\n本模组优先按服务端模组使用：\n\n- 专用服务器：通常只需服务端安装本模组和依赖，客户端不需要安装\n- 单人游戏：仍需本地安装，因为单人模式本质上运行的是内置服务器\n\n## 命令说明\n\n所有命令默认要求管理员权限。\n\n| 命令 | 说明 |\n| --- | --- |\n| `/nodeath` | 查看当前保护概览 |\n| `/nodeath list` | 查看当前保护概览 |\n| `/nodeath reload` | 重新加载配置文件 |\n| `/nodeath all <true|false>` | 开启或关闭全体玩家保护 |\n| `/nodeath player <玩家> <true|false>` | 设置指定玩家是否受保护 |\n| `/nodeath status <玩家>` | 查看指定玩家当前是否受保护 |\n\n说明：\n\n- 如需有意杀死受保护玩家，建议直接使用原版 `/kill`\n- 命令配置只控制玩家保护，不控制命名生物规则\n\n## 配置说明\n\n配置文件路径：\n\n```text\nconfig/no-death.json\n```\n\n默认配置：\n\n```json\n{\n  \"protectAllPlayers\": false,\n  \"protectedPlayers\": []\n}\n```\n\n| 字段 | 默认值 | 说明 |\n| --- | --- | --- |\n| `protectAllPlayers` | `false` | 是否让所有玩家进入保护状态 |\n| `protectedPlayers` | `[]` | 单独受保护玩家的 UUID 列表 |\n\n## 数据存储\n\n配置和保护数据保存在：\n\n```text\nconfig/no-death.json\n```\n\n数据特点：\n\n- 玩家保护状态会持久化保存\n- 单独保护使用 UUID 保存，避免玩家改名后失效\n- 全体保护使用单独布尔开关控制\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "minigame",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 242,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

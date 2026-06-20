@@ -1,0 +1,35 @@
+{
+  "id": "fzjAR8aA",
+  "slug": "bounty-redux",
+  "title": "Bounty Redux",
+  "description": "A free, open-source bounty plugin for Paper servers. Inspired by the DonutSMP Bounty Plugin.",
+  "body": "# 🏴‍☠️ Bounty Redux\n> A free, open-source bounty plugin for Paper servers. Inspired by the DonutSMP Bounty Plugin.\n\n---\n\n## ⚡ Features\n\n- Smooth bounty GUI with paginated player head display\n- Add bounties on any player via command or GUI\n- Confirmation menu to prevent accidental placements\n- Cooldowns to prevent bounty spam\n- Sort bounties by amount or name\n- Search bounties by player name\n- Vault economy integration\n- Fully customizable messages via `config.yml`\n- Tab completion on all commands\n- SQLite persistence — bounties survive restarts\n- **🔓 Full offline-mode server support** — player skulls render correctly for all players, even when offline, even with SkinRestorer\n\n---\n\n## 📦 Dependencies\n\n| Dependency | Link |\n|---|---|\n| Vault | [SpigotMC](https://www.spigotmc.org/resources/vault.34315/) |\n| EssentialsX *(optional)* | [SpigotMC](https://www.spigotmc.org/resources/essentialsx.9089/) |\n| SkinRestorer *(optional, recommended for offline-mode servers)* | [SpigotMC](https://www.spigotmc.org/resources/skinsrestorer.2124/) |\n\n---\n\n## 🔓 Offline Mode Server Support\n\nMost bounty plugins render player skulls using Bukkit's offline player cache — which means skulls break the moment a player logs off, and offline-authenticated players never render at all.\n\nThis plugin fixes that properly:\n\n- On every join, the player's skin texture (including SkinRestorer-injected skins) is cached directly into the local SQLite database\n- Skulls are rendered from this texture cache — no dependency on whether the player is currently online\n- Works out of the box with SkinRestorer — no extra configuration needed\n\n---\n\n## 🔧 Commands & Permissions\n\n| Command | Description | Permission |\n|---|---|---|\n| `/bounty` | Opens the bounty menu | `bountyredux.use` |\n| `/bounty add <player> <amount>` | Add a bounty | `bountyredux.add` |\n| `/bounty search <player>` | View a player's bounties | `bountyredux.search` |\n| `/bounty track <player>` | Track player | `bountyredux.track` |\n| `/bounty clear <player>` | Clear a player's bounties | `bountyredux.clear` |\n| `/bounty reload` | Reload config | `bountyredux.reload` |\n\n**Permission nodes:**\n- `bountyredux.add` — place bounties\n- `bountyredux.reload` — reload config\n- `bountyredux.clear` — clear bounties\n- `bountyredux.admin` — full admin access\n- `bountyredux.*` — all permissions\n\n---\n\n## 🚀 Installation\n\n1. Download the latest `.jar` from Releases\n2. Drop it in your server's `/plugins` folder\n3. Restart the server\n4. Edit `plugins/BountyRedux/config.yml` if needed\n\n---\n\n## ⚙️ Configuration\n\nDefault `config.yml`:\n```yaml\n# ============================================\n#   Bounty Redux Plugin — GPLv3\n# ============================================\n\nsettings:\n  # Minimum bounty amount a player can place\n  min-bounty: 10\n  # Maximum bounty amount a player can place\n  max-bounty: 1000000\n  # Cooldown in seconds between placing bounties\n  add-cooldown: 60\n  # GUI title\n  gui-title: \"§6§lBounty Menu\"\n\ntracking:\n  # Cost mode: 'fixed' or 'percentage'\n  cost-mode: percentage\n  # Fixed cost in currency (e.g. 500 = $500)\n  fixed-cost: 500\n  # Percentage of the target's total bounty (e.g. 5 = 5%)\n  percentage-cost: 5\n  # Duration in seconds (default 300 = 5 minutes)\n  duration: 300\n\nmessages:\n  prefix: \"§8[§6Bounty§8] §r\"\n  bounty-placed: \"§aYou placed a bounty of §6${amount} §aon §e{target}§a!\"\n  bounty-collected: \"§6{killer} §acollected the bounty of §6${amount} §aon §e{target}§a!\"\n  bounty-cleared: \"§cThe bounty on §e{target} §chas been cleared.\"\n  bounty-not-found: \"§cNo bounty found for that player.\"\n  no-permission: \"§cYou don't have permission to do that.\"\n  not-enough-money: \"§cYou don't have enough money! You need §6${amount}§c.\"\n  on-cooldown: \"§cYou're on cooldown! Wait §e{seconds}s §cbefore placing another bounty.\"\n  invalid-amount: \"§cInvalid amount. Must be between §6${min} §cand §6${max}§c.\"\n  cannot-bounty-self: \"§cYou can't place a bounty on yourself!\"\n  player-not-found: \"§cPlayer not found.\"\n  plugin-reloaded: \"§aPlugin reloaded successfully.\"\n  bounty-confirmed: \"§aYou confirmed a bounty of §6${amount} §aon §e{target}§a.\"\n  bounty-cancelled: \"§cBounty placement cancelled.\"\n  no-bounties: \"§cThis player has no bounties.\"\n```\n\n**Available placeholders:**\n\n| Placeholder | Description |\n|---|---|\n| `{amount}` | The bounty amount |\n| `{target}` | The target player's name |\n| `{killer}` | The killer's name |\n| `{seconds}` | Remaining cooldown seconds |\n| `{min}` | Minimum bounty amount |\n| `{max}` | Maximum bounty amount |\n\n---\n\n## 🛠️ Building from Source\n```bash\ngit clone https://github.com/LightNabz/BountyRedux.git\ncd bounties\nmvn clean package\n```\n\nThe built jar will be in `/target/BountyRedux-{version}.jar`.\n\n---\n\n## 📜 License\n\nThis project is licensed under the **GNU General Public License v3.0**.  \nSee [LICENSE](LICENSE) for details.",
+  "categories": [
+    "economy",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 204,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

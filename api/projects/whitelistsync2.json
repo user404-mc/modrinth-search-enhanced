@@ -1,0 +1,42 @@
+{
+  "id": "DcCsQ8S5",
+  "slug": "whitelistsync2",
+  "title": "Whitelist Sync 2",
+  "description": "A mod that allows you to sync the whitelists, ops list, banned players (Web only), and banned IPs (Web only) from multiple Minecraft servers together using one MySQL db, SQLite db, or our NEW Whitelist Sync Web service!",
+  "body": "_Are you a server owner who is sick of adding individual players to each of your 100 forge servers? Wait you only have 2 forge servers? Well this mod can help you still!_\n\nIntroducing Whitelist Sync!\n===========================\n\n\n### A mod that allows you to sync the whitelists, ops list, banned players (Web only), and banned IPs (Web only) from multiple Minecraft servers together using one MySQL db, SQLite db, or the NEW [Whitelist Sync Web](https://whitelistsync.com/getting-started) service!\nThis mod listens for whitelist, op, ban, and ban-ip changes (using the normal Minecraft commands) on all of your servers and will update all other forge servers connected to the same database.\n\n## Whitelist Sync Web\nWhitelist Sync Web is a new service that allows you to sync your whitelist, ops, banned players, and banned IPs across all of your servers in real-time. This service is a paid service, but it does have a free tier for you to try out. This service is the easiest way to sync your servers and requires no setup on your end other than installing the mod and setting the API key. Interested in learning more? [Click here](https://whitelistsync.com/getting-started).\n\n## Support the project\nIf you like this project and want to support it, consider donating [using this link](https://whitelistsync.com/supporters). Any amount is appreciated!\n\n## Download\nAll releases can be found on the [Modrinth](https://modrinth.com/mod/wlsync2) page or on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/whitelistsync2).\n\n## Support/Questions/Feedback\nFor issues with the mod please open an issue on [GitHub](https://github.com/rmnaderdev/Whitelist-Sync-2/issues). For other support requests, feature requests, or other general discussion. Please join the [Discord Server](https://discord.gg/7FMJN4kurr).\n\n## Supported Forge Versions\n- 1.21.3\n- 1.21.1\n- 1.21\n- 1.20.6\n- 1.20.2\n- 1.20.1\n- 1.19.2\n- 1.19\n- 1.18.2\n- 1.16.5\n- ~~1.12.2~~ (no longer supported, may come back in the future)\n\n## Supported Fabric Versions\n- 26.1.2\n- 1.21.11\n- 1.21.10\n- 1.21.8\n- 1.21.7\n- 1.21.6\n- 1.21.5\n- 1.21.4\n- 1.21.3\n- 1.21.2\n- 1.21.1\n- 1.21\n- 1.20.1\n\n## Supported NeoForge Versions\n- 26.1.2\n- 1.21.11\n- 1.21.10\n- 1.21.9\n- 1.21.8\n- 1.21.5\n- 1.21.4\n- 1.21.3\n- 1.21.1\n- 1.21\n\n*Versions not listed above **and before 1.16.5** can be requested as an issue. I will try my best to accommodate. Whitelist Sync Web subscribers take priority.*\n\n## Installation\n\n*Note: This mod does not support servers running in offline mode.*\n\n#### For Web Sync (Recommended, easiest setup):\n- See the Whitelist Sync Web setup on the [dedicated page](https://whitelistsync.com/getting-started)\n\n#### For SQLite database config (Requires self-hosted SQLite database):\n- Download this mod and add it to your mods folder.\n- Run your server once and set up the config (whitelistsync.cfg/whitelistsync-common.toml located in the config folder) and configure your database settings and timers.\n- NOTE: Be sure to make the database path the same for all the servers you want to link together!\n- When the server runs it is going to make a new database unless one already exists. If you want to push your current whitelist to the new database use \"/wl copyServerToDatabase\" then you can start all of your other servers and they will sync to the database.\n\n#### For MySQL database (Requires self-hosted MySQL database):\n- Download this mod and add it to your mods folder.\n- Run your server once and set up the config (whitelistsync.cfg/whitelistsync-common.toml located in the config folder) and configure your database settings and timers.\n- Set up your mySQL database IP, port, and authentication as well as the Sync Timer.\n- Run server and make sure the database connects. **Note:** Mod will make its own database and table for you or connect to an existing one.\n- Push your existing whitelist to the server (/wl copyServerToDatabase) or pull changes from your database (/wl sync).\n- Enjoy!\n\n## Commands\n- /wl sync [whitelist|ops|banned-players|banned-ips] | Refreshes local synced data from database.\n- /wl push [whitelist|ops|banned-players|banned-ips] | Pushes local server data to the database. Use this if you want to update the database with the current server data.\n- /wl restart | Restarts the sync thread. Useful if the sync thread stops or has issues.\n\n## Legacy Commands (For v2.6.0 and below ONLY!)\n\n#### Whitelist Control\n- /wl add &lt;player&gt; | Adds a specified player to whitelist. (**Use this instead of /whitelist add**)\n- /wl remove &lt;player&gt; | Removes a specified player from the whitelist. (**Use this instead of /whitelist remove**)\n- /wl list | Lists users whitelisted across all servers.\n- /wl sync | Pulls whitelist from the database and updates the local server whitelist.\n- /wl push | Pushes local server whitelist to the database and merges them in. (Versions before v1.5.0 use /wl copyServerToDatabase)\n\n#### Op Control\n- /wlop op &lt;player&gt; | Ops a specified player. (**Use this instead of /op**)\n- /wlop deop &lt;player&gt; | De-ops a specified player. (**Use this instead of /deop**)\n- /wlop list | Lists users who are ops across all servers.\n- /wlop sync | Pulls list of ops from the database and updates local server ops.\n- /wlop push | Pushes local server ops to database and merges them in. (Versions before v1.5.0 use /wlop copyServerToDatabase)\n\nThe mod uses polling to check for changes in the self-hosted databases and will update the local server whitelist and ops list accordingly. The polling interval can be set in the config file.\n\nPlease post your bugs to [GitHub](https://github.com/rmnaderdev/Whitelist-Sync-2/issues \"GitHub\") or better yet make a pull request!",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3542,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.16.5",
+    "1.18.2",
+    "1.19",
+    "1.19.2",
+    "1.20.1",
+    "1.20.2",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

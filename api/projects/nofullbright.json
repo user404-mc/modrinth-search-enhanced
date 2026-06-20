@@ -1,0 +1,33 @@
+{
+  "id": "xQcpRrCs",
+  "slug": "nofullbright",
+  "title": "NoFullBright",
+  "description": "Paper plugin which executes a command when it detects a player using full bright texture pack",
+  "body": "# NoFullBright\n\nNoFullBright is a small Paper/Spigot plugin that detects likely client-side \"fullbright\" use in configured worlds and runs a configurable command when a player exceeds the warning threshold.\n\n## Features\n\n- Periodic server-side checks for low-light conditions where players should not be able to see clearly.\n- Configurable list of worlds where the checks are active.\n- Configurable command executed when a player is detected repeatedly in suspicious conditions (supports placeholders).\n- Lightweight and minimal: no commands or extra listeners by default.\n\n## How it works\n\nEvery scheduled interval (default: 200 ticks initial delay and 200 ticks between runs) the plugin scans all players in the configured worlds and evaluates each player:\n\n- The player is considered \"in the dark\" if the block light level at the player's feet is less than 2 and the player's Y is below 40.\n- If the player does not have Night Vision or Glowing potion effects and is not holding a torch in either hand, the plugin increments a per-player internal warning counter.\n\nNote: players are only checked when they are in Survival game mode. Players in Creative or Spectator mode are ignored by the checks.\n- When the warning counter reaches the configured threshold (default 5), the plugin executes the configured `report-command` (with the `%player%` and `%world%` placeholders) and resets that player's counter.\n- If the player moves back to a safe state, the warning counter is decremented over time until it reaches 0.\n\nThis approach attempts to reduce false positives by requiring repeated detections before taking action.\n\n## Configuration (`config.yml`)\n\nDefault `config.yml` created by the plugin:\n\n```yaml\n# NoFullBright configuration\n# worlds: list of world names where the anti-fullbright check runs\n# report-command: command executed on violation. You can use %player% and %world% placeholders.\n\nworlds:\n  - hardcore\n\nreport-command: 'report %player% utilizzo della fullbright in %world%'\n```\n\n- `worlds` (list) — exact world names where checks will run. Modify this list to include all worlds where you want the anti-fullbright check active.\n- `report-command` (string) — the command executed by the server console when a player reaches the warning threshold. The plugin replaces `%player%` and `%world%` with the player's name and world name respectively. Make sure the command exists on your server (for example a moderation/reporting plugin). If the command is not available, nothing fatal will happen but no useful action will be taken.\n\n## Placeholders\n\n- `%player%` — replaced with the player's name.\n- `%world%` — replaced with the world name.\n\n## Recommendations & tuning\n\n- If your world names vary (for example `hardcore_1`, `hardcore_2`) update `worlds` accordingly.\n- If you want a different sensitivity, I can add configurable options for:\n  - `light-threshold` (default 2)\n  - `y-limit` (default 40)\n  - `warning-count` (default 5)\n  - `tick-interval` (scheduler delay/period)\n\n## Troubleshooting\n\n- No action occurs on violation: ensure the command set in `report-command` actually exists and is executable by the server console (e.g., a `report` command provided by another plugin).\n- Too many false positives: tell me in the issues page\n- Plugin not shown in `/plugins`: confirm the JAR filename is correct and server logs show it loaded; check `server.log` for startup errors.\n\n## License\n\nUse as you wish. No warranty provided.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 152,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

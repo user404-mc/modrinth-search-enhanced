@@ -1,0 +1,23 @@
+{
+  "id": "jqG0vDwE",
+  "slug": "blocking-overhaul",
+  "title": "Blocking Overhaul",
+  "description": "Overhauls blocking attacks by adding a parry mechanic and changing several mechanics to be entity attribute - driven.",
+  "body": "# Blocking Overhaul\n\nOverhauls blocking attacks by adding a parry mechanic and changing several mechanics to be entity attribute - driven.\n\nWhen blocking is started just before a hit, the attack is parried. The length (in ticks) of that time window is determined by the \"blockingoverhaul:parry_window\" entity attribute.\n\n## Changes to knockback on blocking/parrying\n\nBlocking/parrying an attack no longer applies a hardcoded amount of knockback to the attacker.\n\nInstead, the knockback is more dynamic, where knockback amount and affected entity (attacker or defender) are determined by several factors.\n\n- \"blockingoverhaul:block_force\" entity attribute of the defender\n- \"blockingoverhaul:parry_multiplier\" entity attribute of the defender. This multiplier can be disabled by the server config and/or the item used for blocking.\n- \"minecraft:attack_knockback\" entity attribute of the defender\n- an \"additional_attack_knockback\", which is 0 by default. Other mods that use Blocking Overhaul (like Overhauled Damage) can use this value to modify the calculation\n- a \"total_applied_blocking_knockback_multiplier\", which is a server config option\n\n> ((defender_block_force * defender_parry_multiplier) - (attacker_attack_knockback + additional_attack_knockback)) * total_applied_blocking_knockback_multiplier\n\nIf the result of the calculation is negative, the knockback is applied to the defender. If it's positive, the knockback is applied to the attacker.\n\n## Changes to blocked damage amount\n\nParrying can also apply the multiplier determined by the \"blockingoverhaul:parry_multiplier\" entity attribute to the amount of blocked damage. This can be disabled by the server config and/or the item used for blocking.\n\n## Technical details\n\nThis data component needs to be present on an item stack for parrying to work.\n\nParrying has several conditions:\n\n- the item used for blocking has to have the \"blockingoverhaul:parries_attacks\" data component\n  - there is currently no easy way to apply this component to existing items (like the vanilla shield) by default\n  - using third-party mods like \"Default Components\" is recommended\n- the entity (type) that tries to parry has to be in the \"blockingoverhaul:can_parry\" entity type tag\n\n## Stamina Attributes integration\n\nBlocking Overhaul has integration for [Stamina Attributes](https://modrinth.com/mod/stamina-attributes), parrying an attack has a different stamina cost than regular blocking, determined by the \"blockingoverhaul:parry_stamina_cost\" entity attribute.",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 279,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

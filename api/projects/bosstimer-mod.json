@@ -1,0 +1,31 @@
+{
+  "id": "2ZaKmhOd",
+  "slug": "bosstimer-mod",
+  "title": "BossTimer-Mod",
+  "description": "BossTimer-Mod is a Fabric server-side Minecraft mod that lets admins create and run configurable countdown timers displayed via boss bars, with optional messages, triggers, and commands before and after the timer ends.",
+  "body": "**BossTimer** is a lightweight, server-side Fabric mod that lets server owners create and run **configurable countdown timers** displayed using Minecraft’s boss bar.\n\n## What it does\n\nBossTimer allows you to define named timers in a simple JSON config and start them with commands. Each timer:\n\n* Displays a live countdown in a boss bar\n* Updates text and progress in real time\n* Can run commands before and after the timer ends\n* Supports trigger messages at specific remaining times (for example, “10 seconds left”)\n* Automatically syncs to players who join while a timer is already running\n\n## Why download it\n\nThis mod is ideal for:\n\n* Server restart warnings\n* Event countdowns\n* Scheduled announcements\n* Any situation where players need a clear, visible timer\n\nIt’s fully server-side, requires no client mods, and integrates with permission systems like LuckPerms.\n\n## Important info before downloading\n\n* **Fabric loader + Fabric API required**\n* Server-side only (players do not need to install anything)\n* Timers are defined in `config/bosstimer_commands.json`\n* Active timers are canceled on config reload for safety\n\nSimple to configure, reliable for players, and designed for real-world server use.\n\n## Example Config\n\n```\n{\n  \"restart\": {\n    \"duration\": 60,\n    \"bossbar_message\": \"⏳ Restart in %s seconds\",\n    \"before\": [\n      \"tellraw @a {\\\"text\\\":\\\"[ALERT] \\\",\\\"color\\\":\\\"red\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"An unplanned server restart is about to take place. Please plan accordingly.\\\",\\\"color\\\":\\\"yellow\\\"}]}\",\n      \"title @a title {\\\"text\\\":\\\"Restart Incoming!\\\",\\\"color\\\":\\\"gold\\\"}\"\n    ],\n    \"after\": [\n      \"tellraw @a {\\\"text\\\":\\\"[ALERT] \\\",\\\"color\\\":\\\"yellow\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"The server is restarting soon.\\\",\\\"color\\\":\\\"yellow\\\"}]}\"\n    ],\n    \"triggers\": {\n      \"30\": {\n        \"message\": \"⏳ 30 seconds remaining.\"\n      },\n      \"10\": {\n        \"message\": \"⏰ 10 seconds!\"\n      },\n      \"5\": {\n        \"message\": \"⚠️ Restarting soon...\"\n      }\n    }\n  },\n  \"scheduledrestart\": {\n    \"duration\": 300,\n    \"bossbar_message\": \"Scheduled Restart in %s seconds\",\n    \"before\": [\n      \"tellraw @a {\\\"text\\\":\\\"[ALERT] \\\",\\\"color\\\":\\\"red\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"A scheduled server restart is about to take place. Please plan accordingly.\\\",\\\"color\\\":\\\"yellow\\\"}]}\",\n      \"title @a title {\\\"text\\\":\\\"Restarting Soon!\\\",\\\"color\\\":\\\"gold\\\"}\"\n    ],\n    \"after\": [\n      \"tellraw @a {\\\"text\\\":\\\"[ALERT] \\\",\\\"color\\\":\\\"yellow\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"The server is restarting soon.\\\",\\\"color\\\":\\\"yellow\\\"}]}\"\n    ],\n    \"triggers\": {\n      \"180\": {\n        \"message\": \"⏳ 3 minutes until restart!\"\n      },\n      \"60\": {\n        \"message\": \"⚠️ Restart in 60 seconds!\"\n      },\n      \"10\": {\n        \"message\": \"⏰ 10 seconds!\"\n      }\n    }\n  },\n  \"reload\": {\n    \"duration\": 45,\n    \"bossbar_message\": \"🔁 Reload in %s seconds\",\n    \"before\": [\n      \"tellraw @a {\\\"text\\\":\\\"[ALERT] \\\",\\\"color\\\":\\\"red\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"An unplanned server reload is about to take place. Please plan accordingly.\\\",\\\"color\\\":\\\"yellow\\\"}]}\",\n      \"title @a title {\\\"text\\\":\\\"Reload Incoming!\\\",\\\"color\\\":\\\"gold\\\"}\"\n    ],\n    \"after\": [\n      \"tellraw @a {\\\"text\\\":\\\"[ALERT] \\\",\\\"color\\\":\\\"red\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"The server is now reloading.\\\",\\\"color\\\":\\\"yellow\\\"}]}\",\n      \"reload\"\n    ],\n    \"triggers\": {\n      \"20\": {\n        \"message\": \"⏳ 20 seconds left before reload.\"\n      },\n      \"10\": {\n        \"message\": \"⏰ Final 10 seconds!\"\n      },\n      \"5\": {\n        \"message\": \"⚠️ Reload incoming...\"\n      }\n    }\n  },\n  \"dropparty\": {\n    \"duration\": 300,\n    \"bossbar_message\": \"🎉 Drop Party in %s seconds\",\n    \"before\": [\n      \"tellraw @a {\\\"text\\\":\\\"[EVENT] \\\",\\\"color\\\":\\\"aqua\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"A drop party is starting soon at \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"/warp dropparty\\\",\\\"color\\\":\\\"yellow\\\",\\\"underlined\\\":true}]}\",\n      \"title @a title {\\\"text\\\":\\\"🎁 Drop Party Incoming!\\\",\\\"color\\\":\\\"aqua\\\"}\"\n    ],\n    \"after\": [\n      \"tellraw @a {\\\"text\\\":\\\"[EVENT] \\\",\\\"color\\\":\\\"aqua\\\",\\\"bold\\\":true,\\\"extra\\\":[{\\\"text\\\":\\\"The drop party has begun at \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"/warp dropparty\\\",\\\"color\\\":\\\"yellow\\\",\\\"underlined\\\":true}]}\",\n      \"title @a title {\\\"text\\\":\\\"🎁 Drop Party Started!\\\",\\\"color\\\":\\\"aqua\\\"}\"\n    ],\n    \"triggers\": {\n      \"180\": {\n        \"message\": \"⏳ 3 minutes until drop party at /warp dropparty!\"\n      },\n      \"60\": {\n        \"message\": \"⏰ 1 minute left! Prepare for the drop at /warp dropparty!\"\n      },\n      \"10\": {\n        \"message\": \"🎁 Drop party starting any moment now! Use /warp dropparty!\"\n      }\n    }\n  }\n}\n```\n",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 249,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

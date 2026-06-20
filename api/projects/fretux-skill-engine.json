@@ -1,0 +1,19 @@
+{
+  "id": "BuykRwOK",
+  "slug": "fretux-skill-engine",
+  "title": "Fretux's Skill Engine",
+  "description": "A framework for making skilltrees",
+  "body": "# **Skill Engine**\n\n**Skill Engine** is **not** a standalone progression mod.  \nIt does **not** add gameplay, attributes, or abilities by itself.\n\nInstead, **Skill Engine is a framework** designed to let other mods create their own **highly customizable skill trees**, complete with:\n\n*   Node unlocking\n*   Attribute requirements\n*   Custom icons\n*   Skill point handling\n*   Server synchronization\n*   Requirements & tooltips\n*   Interaction with other progression systems (like Ascend)\n\nIf you're looking for a mod that _adds_ skills, this is **not** it.  \nIf you are a developer who wants to **add skill trees to your mod without reinventing everything**, Skill Engine is exactly what you need.\n\n***\n\n## **Features**\n\n### JSON-driven Skill Tree System\n\nMods can register their own skill nodes simply by adding JSON files under:\n\n```\ndata/<yourmodid>/skillnodes/*.json\n```\n\n### Automatic Node Rendering\n\nNodes are positioned, displayed, zoomed, panned, and drawn automatically in the Skill Tree GUI.\n\n### Icons Support\n\nUse **your own textures** or **vanilla item textures** as node icons.\n\n### Requirements System\n\nNodes can specify:\n\n*   Linked nodes\n*   Prerequisite attributes\n*   Skill costs\n*   Custom tags\n\nThe UI automatically displays requirements in tooltips and overlays.\n\n### Unlock Logic & Sync\n\nUnlocking is fully handled server-side and synced to the client.\n\n### Full API Support\n\nSkill Engine includes a public API class that allows other mods to:\n\n*   Give skill points\n*   Unlock skill nodes\n*   Check unlock state\n*   Access player skill data\n*   Register or reference nodes\n\n***\n\n## **How to Use Skill Engine in Your Mod**\n\nSkill Engine is designed to be extremely easy to integrate.\n\n**1\\. Add Skill Engine as a Dependency**\n\nIn your `mods.toml`:\n\n```toml\n[[dependencies.yourmodid]]\n    modId=\"skillengine\"\n    type=\"required\"\n    versionRange=\"[1.0.0,)\"\n```\n\nIn your Gradle build:\n\n```gradle\nimplementation fg.deobf(\"net.fretux.skillengine:SkillEngine:<version>\")\n```\n\n***\n**2\\. Create Your Skill Nodes (JSON)**\n\nExample:\n\n```json\n{\n  \"title\": \"Basic Strength\",\n  \"description\": \"You feel your muscles tighten.\",\n  \"cost\": 1,\n  \"position\": { \"x\": -150.0, \"y\": -50.0 },\n  \"links\": [\"skillengine:welcome\"],\n  \"tags\": [\"yourmodid:strength_1\"],\n  \"icons\": \"minecraft:textures/item/iron_sword.png\",\n  \"prerequisites\": {\n    \"strength\": 10,\n    \"agility\": 5\n  }\n}\n```\n\nPlace this in:\n\n```\ndata/yourmodid/skillnodes/basic_strength.json\n```\n\nSkill Engine will automatically detect it and add it to the tree.\n\n***\n\n**3\\. Use the API in Your Code**\n\nSkill Engine exposes a simple API:\n\n```java\nSkillEngineAPI.unlockNode(player, SkillEngineAPI.rl(\"yourmodid\", \"basic_strength\"));\nSkillEngineAPI.addSkillPoints(player, 3);\nboolean unlocked = SkillEngineAPI.isUnlocked(player, SkillEngineAPI.id(\"welcome\"));\n```\n\nYou can interact with the system without touching internal classes.\n\n***\n\nSkill Engine **does nothing by itself**.  \nIt does _not_ add a skill tree or abilities on its own.\n\nYou only need this mod if:\n\n*   A mod you play **depends** on Skill Engine\n*   You want to install addons that create skill trees",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 492,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

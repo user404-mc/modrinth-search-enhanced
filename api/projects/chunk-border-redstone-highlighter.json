@@ -1,0 +1,21 @@
+{
+  "id": "GuDOdfg2",
+  "slug": "chunk-border-redstone-highlighter",
+  "title": "Chunk Border Redstone Highlighter",
+  "description": "A client-side performance debugging tool that highlights redstone components sitting on chunk borders — the #1 cause of server lag. Toggle with one keypress (O).",
+  "body": "# Chunk Border Redstone Highlighter\n\n**One of the biggest causes of lag on high-performance servers: redstone circuits placed across chunk borders.** This client-side mod highlights those risky blocks around you with a red wireframe box, letting you spot chunk-boundary issues before they hurt your TPS.\n\n## Why Are Chunk-Border Redstone Components Bad?\n\nMinecraft splits the world into 16x16 chunks. Each chunk is loaded, saved, and ticked independently. When a redstone signal crosses a chunk boundary:\n\n- Both chunks need to be updated every tick\n- Observers, pistons, and hoppers trigger extra chunk load/save cycles\n- Paper, Purpur, and Folia suffer the most because of their async chunk systems\n- Synchronization locks are held across the boundary on async chunk implementations\n\n## Features\n\n- **One-key toggle** — default `O` (rebindable in Options > Controls)\n- **32-block radius scan** around the player — finds every risky block nearby\n- **Smart boundary detection** — uses `localX == 0 || localX == 15 || localZ == 0 || localZ == 15` math (works correctly on negative coordinates too)\n- **Detected blocks:**\n  - Redstone\n  - Repeater\n  - Comparator\n  - Observer\n  - Piston (normal + sticky)\n  - Hopper\n- **Minimal performance impact** — scans every 10 ticks, only inspects border columns\n- **Uses 1.21.11's new Gizmo render API** — clean, bug-free rendering\n- **No server-side install needed** — client-only, works on any server\n\n## Usage\n\n1. Download this mod and [Fabric API](https://modrinth.com/mod/fabric-api)\n2. Drop both into your `.minecraft/mods/` folder\n3. Join a world or server\n4. Press **O** — nearby chunk-border redstone components get wrapped in a red wireframe\n5. Press **O** again to disable\n\n## Compatibility\n\n| Feature | Support |\n|---------|---------|\n| Minecraft | **1.21.11** |\n| Mod Loader | **Fabric** (Loader 0.18.0+) |\n| Fabric API | Required |\n| Java | 21+ |\n| Side | Client-only |\n\n## Untested\n\n- **Quilt:** Not tested, but should work since Quilt supports Fabric mods\n- **Forge/NeoForge:** Not supported",
+  "categories": [
+    "fabric",
+    "optimization",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 106,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

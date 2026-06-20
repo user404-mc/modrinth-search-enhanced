@@ -1,0 +1,21 @@
+{
+  "id": "PtJIWRcG",
+  "slug": "cannot-remove-from-team-workaround",
+  "title": "\"Cannot remove from team\" workaround",
+  "description": "Eliminate lag spikes on render thread caused by IllegalStateException thrown in Scoreboard.removeScoreHolderFromTeam().",
+  "body": "# \"Cannot remove from team\" workaround\n[MC-270728](https://bugs.mojang.com/browse/MC-270728)\n\nOn some buggy servers you may have noticeable lag spikes caused by `Error executing task on client`:\n```text\nnet.minecraft.class_148: Main thread packet handler\n\tat net.minecraft.class_2600.method_11072(class_2600.java:33) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_1255.method_18859(class_1255.java:156) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_4093.method_18859(class_4093.java:23) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_1255.method_16075(class_1255.java:130) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_1255.method_5383(class_1255.java:115) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_310.method_1523(class_310.java:1283) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_310.method_1514(class_310.java:888) ~[client-intermediary.jar:?]\n\tat net.minecraft.client.main.Main.main(Main.java:265) ~[Fabric%201.20.4.jar:?]\n\tat net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:470) ~[fabric-loader-0.15.7.jar:?]\n\tat net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74) ~[fabric-loader-0.15.7.jar:?]\n\tat net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23) ~[fabric-loader-0.15.7.jar:?]\nCaused by: java.lang.IllegalStateException: Player is either on another team or not on any team. Cannot remove from team 'Z/Sta/517631'.\n\tat net.minecraft.class_269.method_1157(class_269.java:307) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_634.method_11099(class_634.java:2029) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_5900.method_34173(class_5900.java:129) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_5900.method_11054(class_5900.java:14) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_2600.method_11072(class_2600.java:24) ~[client-intermediary.jar:?]\n\t... 10 more\n```\n\nOne thing this mod does is it replaces `IllegalStateException` throwing with `LOGGER.warn()`.\n\nDefault `net.minecraft.scoreboard.Scoreboard.removeScoreHolderFromTeam()` (`class_269.method_1157()`) implementation:\n```java\npublic void removeScoreHolderFromTeam(String scoreHolderName, Team team) {\n    if (this.getScoreHolderTeam(scoreHolderName) != team) {\n        throw new IllegalStateException(\"Player is either on another team or not on any team. Cannot remove from team '\" + team.getName() + \"'.\");\n    } else {\n        this.teamsByScoreHolder.remove(scoreHolderName);\n        team.getPlayerList().remove(scoreHolderName);\n    }\n}\n```\n\nThough I'm not a Java coding guru, I don't understand why the exception is thrown on render thread.",
+  "categories": [
+    "cursed",
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 871,
+  "followers": 0,
+  "game_versions": [
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

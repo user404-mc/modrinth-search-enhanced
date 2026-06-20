@@ -1,0 +1,32 @@
+{
+  "id": "HQpcCFZg",
+  "slug": "night-auto-config",
+  "title": "Night Auto Config",
+  "description": "Serialize everything! Night Config integration for Auto Config.",
+  "body": "# Night Auto Config\n\nSerialize everything! **Night Auto Config** is a **[Night Config](https://github.com/TheElectronWill/Night-Config)** integration for **[Auto Config (now embedded in Cloth Config).](https://modrinth.com/mod/cloth-config)**\n\n## Implementation\n\n**Night Auto Config** introduces a `NightConfigSerializer` to satisfy **Auto Config**'s requirement of a serializer's implementation. You can choose from all the available config formats of **Night Config,** and use the serializer just as other common serializers, even along with a `PartitioningSerializer`.\n\n### Add to Your Project\n\nIt is recommended to use **[JitPack](https://jitpack.io/#KessokuTeaTime/Night-Auto-Config)** to implement **Night Auto Config** into your project.\n\n<details>\n\n<summary>Groovy</summary>\n\n<h6 align=\"right\">build.gradle</h6>\n\n```groovy\nrepositories {\n\tmaven { url \"https://jitpack.io\" }\n}\n\ndependencies {\n\tmodApi \"com.github.KessokuTeaTime:Night-Auto-Config:${project.nightautoconfig_version}\"\n\t// You'll need to implement Cloth Config API here.\n}\n```\n\n<h6 align=\"right\">gradle.properties</h6>\n\n```\nnightautoconfig_version={latest}\n```\n\n</details>\n\n<details>\n\n<summary>Kotlin DSL</summary>\n\n<h6 align=\"right\">build.gradle.kts</h6>\n\n```kotlin\nrepositories {\n\tmaven { url = uri(\"https://jitpack.io\") }\n}\n\ndependencies {\n\tmodApi(\"com.github.KessokuTeaTime:Night-Auto-Config:${project.nightautoconfig_version}\")\n\t// You'll need to implement Cloth Config API here.\n}\n```\n\n<h6 align=\"right\">gradle.properties</h6>\n\n```\nnightautoconfig_version={latest}\n```\n\n</details>\n\n> You should replace `{latest}` with the latest [`tag name`](https://github.com/KessokuTeaTime/Night-Auto-Config/tags) of **Night Auto Config.**\n\n### Reference as Dependency\n\nDon't forget to reference **Night Auto Config** as dependency in your mod's metadata.\n\n<h6 align=\"right\">fabric.mod.json / quilt.mod.json</h6>\n\n```json\n{\n\t\"depends\": {\n\t\t\"nightautoconfig\": \"*\"\n\t}\n}\n```\n\n## Usage\n\nThe serializer implementation is at [`band.kessokuteatime.nightautoconfig.config.NightConfigSerializer`](https://github.com/KessokuTeaTime/Night-Auto-Config/blob/fabric/1.21/src/main/java/band/kessokuteatime/nightautoconfig/config/NightConfigSerializer.java).\n\nHere's a brief example:\n\n`MyConfig.java`\n```java\n// Use annotations provided by Night Auto Config to define serializer providers and deserializer providers at runtime!\n@SerializerProvider(MyClassSerializerProvider.class)\n@Config(name = \"my_config\")\npublic class MyConfig implements ConfigData {\n    // Something...\n    \n    private transient final Supplier<String> someStringProvider = () -> \"default\";\n    \n    // All Night Config annotations are available\n    @SerdeDefault(provider = \"someStringProvider\")\n    public String someString = someStringProvider.get();\n    \n    // Night Auto Config provides some interfaces for convenience implementations\n    // For example, `UnifiedSerializerProvider<T, R>` satisfies both `ValueSerializer<T, R>` and `ValueSerializerProvider<T, R>`\n    public static class MyClassSerializerProvider implements UnifiedSerializerProvider<MyClass, String> {\n        // ...\n    }\n    \n    // A custom serializer provider for `MyClass` is already specified at type definition\n    public MyClass someInstance = new MyClass();\n}\n```\n\n`MyMod.java`\n```java\npublic class MyMod implements ModInitializer {\n    @Override\n    public void onInitialize() {\n        // Don't remember to register into Auto Config at initialize\n        AutoConfig.register(NightExampleConfig.class, ConfigType.DEFAULT_COMMENTED::fileWatcherSerializer);\n    }\n}\n```\n\nFor runtime examples, checkout [this package.](https://github.com/KessokuTeaTime/Night-Auto-Config/blob/fabric/1.21/src/main/java/band/kessokuteatime/nightautoconfig/example/config)\n\n> Please annotate your fields with [`com.electronwill.nightconfig.core.serde.annotations.SerdeDefault`](https://github.com/TheElectronWill/night-config/blob/master/core/src/main/java/com/electronwill/nightconfig/core/serde/annotations/SerdeDefault.java) for basic compatibilities! Otherwise, serialization exceptions may happen casually.",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 190273,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

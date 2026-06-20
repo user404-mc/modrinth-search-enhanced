@@ -1,0 +1,28 @@
+{
+  "id": "qlXnlZLG",
+  "slug": "jsonpatcher",
+  "title": "JsonPatcher",
+  "description": "A tool for patching minecrafts json files, without overrding them, using a custom DSL",
+  "body": "# JsonPatcher\n[![Badge showing the amount of downloads on modrinth](https://img.shields.io/badge/dynamic/json?color=2d2d2d&colorA=5da545&label=&suffix=%20downloads%20&query=downloads&url=https://api.modrinth.com/v2/project/qlXnlZLG&style=flat&logo=modrinth&logoColor=2d2d2d)](https://modrinth.com/mod/jsonpatcher)\n[![Badge showing the amount of downloads on curseforge](https://img.shields.io/badge/dynamic/json?query=value&url=https://img.shields.io/curseforge/dt/936929.json&label=&logo=curseforge&color=2d2d2d&style=flat&labelColor=F16436&logoColor=2d2d2d&suffix=%20downloads)](https://www.curseforge.com/minecraft/mc-mods/jsonpatcher)\n[![Badge linking to issues on github](https://img.shields.io/badge/dynamic/json?query=value&url=https://img.shields.io/github/issues-raw/mattidragon/jsonpatcher.json&label=&logo=github&color=2d2d2d&style=flat&labelColor=6e5494&logoColor=2d2d2d&suffix=%20issues)](https://github.com/MattiDragon/jsonpatcher/issues)\n[![Badge linking to support on discord](https://img.shields.io/discord/760524772189798431?label=&logo=discord&color=2d2d2d&style=flat&labelColor=5865f2&logoColor=2d2d2d)](https://discord.gg/26T5KK2PBv)\n\nJsonPatcher is a mod that allows you to modify json files in datapacks and resourcepacks without overriding them.\nThis is primarily useful for mod developers and pack makers, but can also be used by players to modify their own packs.\n\n## V2 Disclaimer\nJsonPatcher v2 is currently in beta. V2 introduces a bunch of new features including global patches for mods and modpacks.\nDocumentation for v2 is available at [jsonpatcher-docs.mattidragon.dev](https://jsonpatcher-docs.mattidragon.dev/).\nThe documentation is however quite incomplete and partially outdated. \nFor some cases it might be best to consult the old wiki instead.\n\n## Usage\n<details>\n<summary>Gradle dependency (for mod developers)</summary>\n\nYou can add jsonpatcher to your mods buildscript like this:\n```groovy\nrepositories {\n    maven {\n        url 'https://jitpack.io'\n    }\n}\n\ndependencies {\n    modImplementation(include(\"com.github.mattidragon:jsonpatcher:${jsonpatcher_version}\"))\n}\n```\n\n</details>\n\nTo begin using jsonpatcher, just create a file with the `.jsonpatch` extension \nin the `data/<namespace>/jsonpatch` directory of your datapack \nor `assets/<namespace>/jsonpatch` directory of your resourcepack.\n\nYou'll want to begin your patch with a `@version` meta tag like this. \nThis will let jsonpatcher know that your patch will work with this version. \nIn the future you may be able to select a version in more ways.\n```\n@version \"1\"\n```\n\nNext you'll want to select the files you want to patch. \nThis is done with the `@target` meta tag. All meta tags follow a json format.\nYou can either select a single file with a string, use an object for broader selections, \nor use an array for multiple selections. If any selector in the array matches, the patch will apply.\n\nNow you can begin modifying the target file. The patch files use a c-like syntax. \nYou can access the target files contents with `$`. It can be used like a variable,\nor you can put the property you want to access directly after it.\n\nFor more info on the language, see [the wiki](https://github.com/MattiDragon/JsonPatch/wiki).\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 11232,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3-pre2",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

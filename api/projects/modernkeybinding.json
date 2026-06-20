@@ -1,0 +1,30 @@
+{
+  "id": "rQszQPD2",
+  "slug": "modernkeybinding",
+  "title": "Modern KeyBinding",
+  "description": "Port KeyModifier && KeyConflictContext back to Fabric & Early Forge",
+  "body": "# Modern KeyBinding\n\nThe mod ported the newer version's KeyModifier && KeyConflictContext back to Fabric & Early Forge.\n\n### Features\n\nYou can now define a keybinding's activation key with key modifiers. Like \"Ctrl + G\" or \"Alt + S\";\n\nThe keybindings with the same activation key but different key conflict contexts no longer conflict.\n\n\"Non-conflict keys\" (disabled by default): The keybindings with the same key will all be activated if the key is pressed.\n\n### Attention:\n\nThe mod will crash with NEI. Use [NEI Unofficial](https://www.curseforge.com/minecraft/mc-mods/notenoughitems-gtnh)(Dependencies: [CodeChickenCore](https://github.com/GTNewHorizons/CodeChickenCore/releases) | [CodeChickenLib](https://github.com/GTNewHorizons/CodeChickenLib/releases)) by GTNH instead.\n\n### Import as a Gradle dependency\n\n```groovy\nrepositories {\n    //...\n    maven {\n        url \"https://maven.nova-committee.cn/releases\"\n    }\n}\n```\n\n```groovy\ndependencies {\n    //...\n    // Forge\n    implementation \"committee.nova.mkb.forge:mkb-${mc_version}:${mod_version}\"\n    // Fabric\n    modImplementation \"committee.nova.mkb.fabric:mkb-${mc_version}:${mod_version}\"\n}\n```\n\n### Register a keybinding\n\nRegister a keybinding that:\n\n- Activates when Alt and C are pressed;\n\n- Only available in GUI.\n\nClientProxy.java\n\n```java\npublic class ClientProxy {\n    public void init(final FMLInitializationEvent event) {\n        //...\n        yourKeyBinding = KeyBindingRegistry.INSTANCE.registerKeyBinding(\"key.exampleKey\", KeyConflictContext.GUI, KeyModifier.ALT, Keyboard.KEY_C, \"key.categories.example\");\n    }\n}\n```\n\n### Change the properties of an existing keybinding\n\nClientProxy.java\n\n```java\npublic class ClientProxy {\n    //...\n    public void postInit(final FMLPostInitializationEvent event) {\n        final IKeyBinding extended = (IKeyBinding) yourKeyBinding;\n        // Change the key's keyCode and modifier, as their default values.\n        extended.setInitialKeyModifierAndCode(KeyModifier.ALT, Keyboard.KEY_E);\n        // Change the key's keyCode and modifier.\n        extended.setKeyModifierAndCode(KeyModifier.ALT, Keyboard.KEY_E);\n        // Change the key's conflict context.\n        extended.setKeyConflictContext(KeyConflictContext.IN_GAME);\n    }\n}\n```\n\n\n",
+  "categories": [
+    "cursed",
+    "fabric",
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 578385,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10",
+    "1.8.9",
+    "1.16.5",
+    "1.18.2",
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

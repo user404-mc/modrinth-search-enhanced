@@ -1,0 +1,35 @@
+{
+  "id": "WN0lXpUc",
+  "slug": "raytraceantifreecam",
+  "title": "RayTraceAntiFreeCam",
+  "description": "RayTraceAntiFreeCam prevents illegitimate block interactions on Minecraft servers by validating line-of-sight and reach before allowing players to click, use, or break blocks.",
+  "body": "# About\n**RayTraceAntiFreeCam** is a lightweight anti-freecam protection plugin that prevents players from interacting with blocks they should not be able to reach or “see” legitimately.\n\n## Important Note\nThis plugin **does not detect** or prevent the client from moving its camera (freecam movement itself).\nInstead, it blocks **illegitimate block interactions** (opening, clicking, breaking, placing, etc.) by validating that the target block is actually interactable from the player’s eye position using a ray-trace / line-of-sight style check.\n\n## Features\n- Blocks “through-wall” interactions\n  - Prevents opening containers (chests, barrels, shulkers, etc.) through blocks.\n  - Prevents using buttons, levers, doors, trapdoors, etc. through walls.\n- Prevents illegitimate block breaking\n  - If the block is not realistically reachable/visible, breaking is cancelled.\n- Prevents illegitimate building/placing via interaction filtering\n  - Placement attempts that rely on clicking blocks through obstacles are denied (handled via click validation).\n- Reach-aware\n  - Uses the player’s real interaction range attribute (when available) and applies configurable limits.\n- Optimized for stability\n  - Avoids “random” false positives caused by yaw/pitch desync by not relying on the player’s exact view direction.\n  - Uses short-term caching to keep decisions consistent while mining/holding clicks.\n\n## Permissions\n`raytraceantifreecam.bypass` - Bypasses all checks. Default: OP.\n\n## Config (config.yml)\n```\n# Maximum allowed interaction distance (hard cap).\n# Type: double | Typical: 5.0–6.0\nmax-reach: 6.0\n\n# Extra tolerance added to reach to reduce edge-case false blocks (corners/close range/desync).\n# Type: double | Typical: 0.25–1.0\nextra-reach: 0.75\n\n# Cache duration (ms) for the last player+block decision to prevent flickering while mining/holding click.\n# Type: long | Typical: 100–250\ncache-ttl-ms: 175\n\ncheck:\n  # Validate block interactions (right/left click on blocks: open/use/activate).\n  # Type: boolean\n  interact: true\n\n  # Validate block breaking (mining).\n  # Type: boolean\n  break: true\n```",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 252,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

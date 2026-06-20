@@ -1,0 +1,25 @@
+{
+  "id": "hmJnmIp3",
+  "slug": "panoramic-screenshot",
+  "title": "Power Screenshot",
+  "description": "Add a client command: /screenshot, allows you to take high resolution normal/panoramic/skybox/gif screenshots.",
+  "body": "![Panoramic Screenshot Demo](https://cdn.modrinth.com/data/hmJnmIp3/images/5b58341dabe80d0d38d41d90e786cf589e2da627.png)\n![gif Demo](https://cdn.modrinth.com/data/hmJnmIp3/images/48ea0e68596b3a11d28abe8244b4e8a7aa4ac028.gif)\n\n# Panoramic Screenshot\n\n![Discord](https://img.shields.io/discord/1370807259495534663?style=flat-square&logo=discord&label=xkball's%20mods&link=https%3A%2F%2Fdiscord.gg%2FS9DBXWHNsc)\n![GitHub License](https://img.shields.io/github/license/xkball/PanoramicScreenshot?style=flat-square)\n\nA client mod, allows you to take high resolution normal/panoramic/skybox screenshots.\n\nUse `/screenshot` to take a specified type of screenshot. Also supports set a shortcut key to take panoramic or skybox screenshots.\n\n## Feature Details\n\n### `/screenshot normal <width> <height>`\nTake a normal screenshot with the specified resolution. Max to 16384 * 16384.\n\n### `/screenshot panoramic <mode>`\nShoter form of the command below, will use default parameters.\nThis is what the shortcut key actually calls.\nDefault parameters are:\n- `height`: your current screen height\n- `fov`: your current FOV\n- `yaw_start`: 0\n- `frame_delay`: 0\n\n### `/screenshot panoramic <mode> <height> <fov> <yaw_start> <frame_delay>`\nTake a panoramic screenshot that around yourself, like the title image.\n\nImplementation method is to rotate the perspective 360° and take screenshots repeatedly, and stitch them.\n\nTo prevent scene changes during filming, the mod will try to pause game client. Bus run `/tick freeze` before this is still recommended.\n\nParameters:\n- `mode`: one of `FAST` and `PRECISE`, `FAST` will take 360 screenshots while `PRECISE` take one screenshot each column of pixels.\n`FAST` mode have some flaws when fov larger than 60°. So `PRECISE` mode is recommended.\n- `height`: height of the final screenshot, in pixels, the width will be calculated by `height/fov * 360`.\n- `fov`: field of view when taking screenshots, in degrees.\n- `yaw_start`: the starting yaw when taking screenshots, in degrees. 0 means facing south, 90 means facing west.\n- `frame_delay`: delay between each screenshot, in frames.\n\n### `/screenshot skybox <name> <size>`\nTake a skybox screenshot, which is a 6-face cubemap. Like Minecraft title screen background.\n\nIn fact you can custom title screen with those skybox screenshots.\n\nParameters:\n- `name`: the file name of screenshots, form `<name>_0.png` to `<name>_5.png`.\n- `size`: the width and height, in pixels.\n\n### `/screenshot gif <start|end|fix_time> <frame_rate>`\nRecord screen as gif file and save it in `screenshots` folder.\n\nYou can run `/screenshot gif` directly to record a short gif with default parameters (`2` seconds, `10` fps).\n\nParameters:\n- `start`: start recording with the given frame rate, and keep recording until run `/screenshot gif end`.\n- `end`: finish the recording started by `start` and save it.\n- `fix_time <time_second> <frame_rate>`: record for a fixed duration and save automatically.\n- `frame_rate`: how many frames to capture each second.\n\n\n### Custom Title Screen Background\n\n![Custom Title Screen Background Demo](https://cdn.modrinth.com/data/hmJnmIp3/images/1ed802378f32b90a29c37068a7674e9e34ac4bcd.png)\n\n#### Prue Vanilla Resource Pack\nJust put skybox screenshots in `minecraft/textures/gui/title/background` and name them `panorama_0.png` to `panorama_5.png`.\n\n#### With this mod\nThis mod allows multiple skyboxes exist, and load one randomly at a time.\n\nPut skybox screenshot in `{namespace}/textures/gui/title/background`, and create a metadata file named `{name}.json` in the same folder, with content like this:\n```json\n{\n  \"name\": \"{name}\",\n  \"weight\": 1\n}\n```\nThe directory should looks like:\n```\n  \\{namespace}\n    \\textures\n      \\gui\n        \\title\n          \\background\n            {name}_0.png\n            {name}_1.png\n            {name}_2.png\n            {name}_3.png\n            {name}_4.png\n            {name}_5.png\n            {name}.json\n```\nMod will load all metadata and pick one randomly by the weight each time.\n\n",
+  "categories": [
+    "cursed",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2285,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.21.1",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

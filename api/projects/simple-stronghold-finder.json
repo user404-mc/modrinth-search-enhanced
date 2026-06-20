@@ -1,0 +1,30 @@
+{
+  "id": "7Ij9nCnE",
+  "slug": "simple-stronghold-finder",
+  "title": "Simple Stronghold Finder",
+  "description": "A client-side fabric mod which allows you to find stronghold with only one Eye of Ender.",
+  "body": "# One eye stronghold finder\nA client-side fabric mod which allows you to find stronghold with only one Eye of Ender.\n\nFork of [Hopper4et Mod](https://github.com/Hopper4et/one-eye-stronghold-finder)\n\n# Fixes\n- 1.21.x support\n- Displaying coordinats in the nether world\n\n\n## Overview\n\nThis tool leverages the behavior of the Eye of Ender in Minecraft Java Edition to locate strongholds efficiently with only one throw of the Eye of Ender. Strongholds in Minecraft generate in rings around the world origin (X=0, Z=0). The locations follow a specific pattern, with a fixed number of strongholds per ring and distributed roughly evenly around the ring.\n\n### Stronghold Generation Rings\n\n![image](https://github.com/user-attachments/assets/01dbf039-3e2d-4ddf-8d5c-4140c4823df8)\n\n\nThere are 8 rings containing a total of 128 strongholds. Below is a breakdown of the stronghold distribution:\n\n| Ring | Number of Strongholds | Distance from Origin (blocks) |\n| ---- | --------------------- | ----------------------------- |\n| 1    | 3                     | 1,280–2,816                   |\n| 2    | 6                     | 4,352–5,888                   |\n| 3    | 10                    | 7,424–8,960                   |\n| 4    | 15                    | 10,496–12,032                 |\n| 5    | 21                    | 13,568–15,104                 |\n| 6    | 28                    | 16,640–18,176                 |\n| 7    | 36                    | 19,712–21,248                 |\n| 8    | 9                     | 22,784–24,320                 |\n\n### Key Stronghold Properties\n\n1. Strongholds are placed at equal angles from the origin within each ring.\n2. Strongholds do not generate partially above ground. If any part would extend above sea level, it is replaced with air.\n3. Occasionally, strongholds generate in oceans, usually covered by terrain.\n\n## How It Works\n\nThis implementation calculates the intersection of the Eye of Ender’s trajectory with the stronghold rings using simple geometric principles. Here is how the process works:\n\n1. **Recording Eye Movement:**\n\n   - The program captures two positions (`pos1` and `pos2`) of the Eye of Ender during its flight. These positions are recorded with a delay to ensure that the trajectory is properly traced.\n   - If the Eye travels strictly along one axis (indicating a degenerate case), the calculation is aborted.\n\n2. **Adjusting Coordinates:**\n\n   - To simplify calculations, the coordinate system may be swapped (X becomes Z, and vice versa) depending on which axis the Eye traveled farther along. This ensures the slope of the line remains manageable.\n\n3. **Calculating the Trajectory:**\n\n   - Using the two recorded points, the slope of the trajectory is determined:\n   - This slope is used to predict where the trajectory intersects with the Minecraft world grid.\n\n4. **Finding the Ring:**\n\n   - The tool calculates the radial distance of each potential intersection point from the origin\n   - It checks whether the distance falls within one of the predefined stronghold rings. The distance ranges for each ring are carefully defined.\n\n5. **Aligning to Minecraft Grid:**\n\n   - Since strongholds are aligned to a 16x16 grid, the calculated coordinates are snapped to the nearest grid point\n\n6. **Evaluating Accuracy:**\n\n   - For each potential stronghold location, an accuracy score is calculated based on how closely the Eye’s trajectory aligns with the grid point. Higher accuracy indicates a higher likelihood of a stronghold being present.\n\n7. **Sorting and Displaying Results:**\n\n   - The mod ranks the identified stronghold locations by accuracy. Up to 5 of the best candidates are displayed in the in-game chat, showing:\n     - Overworld coordinates (X, Z)\n     - Nether coordinates (X/8, Z/8)\n     - Accuracy score\n\n## Example Output\n\nUpon running the program, the following information is displayed in the in-game chat:\n\n```\n=== One Eye Stronghold Finder ===\nX: 1234   Z: 5678   (Nether: X: 154   Z: 710)   accuracy: 95\nX: 1240   Z: 5680   (Nether: X: 155   Z: 710)   accuracy: 90\n```\n\n- **Overworld Coordinates:** X: 1234, Z: 5678\n- **Nether Coordinates:** X: 154, Z: 710\n- **Accuracy:** A numerical value indicating the likelihood of a stronghold being at this location.\n\n## Usage\n\n1. Equip an Eye of Ender.\n2. Throw the Eye and wait for the results to appear in the chat.\n3. Travel to the provided coordinates to locate the stronghold.\n   \n![demo](https://github.com/user-attachments/assets/1e0b2afb-9917-4131-83bc-c7aefae849a4)\n\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 9632,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

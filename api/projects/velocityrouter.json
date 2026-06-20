@@ -1,0 +1,31 @@
+{
+  "id": "jAWr5mpK",
+  "slug": "velocityrouter",
+  "title": "VelocityRouter",
+  "description": "Route players across your Minecraft network dynamically based on their permissions and the hostname they connect to.",
+  "body": "# VelocityRouter\n\n> Route players across your Minecraft network dynamically based on their permissions and the hostname they connect to.\n\n---\n\n## Overview\n\n**VelocityRouter** is a powerful routing plugin for Velocity proxy servers that directs players to specific backend servers based on:\n\n* The hostname they joined with,\n* Their permissions,\n* And fallback default servers when no permissions match or servers are offline.\n\nThis allows you to create complex routing rules for different player groups like VIPs, staff, or general users with ease.\n\n---\n\n## Features\n\n*  **Permission-Based Routing**\n  Direct players to different servers depending on their assigned permissions.\n\n*  **Hostname-Based Routing**\n  Configure routing rules specific to the hostname or domain players connect with.\n\n*  **Fallback Servers**\n  Specify default servers for each hostname if no permission route matches or if the target server is offline.\n\n*  **Custom Deny Messages**\n  Display personalized messages to players who lack permission to access certain servers.\n\n*  **Wildcard Support**\n  Use a wildcard (`*`) hostname to define global fallback routing rules.\n\n---\n\n## Example Configuration\n\n```yaml\nroutes:\n  # Route 1: Default general access\n  - hostname: \"play.example.com\"\n    defaultServer: \"lobby\"\n    permissionRoutes: []  # No special permission routing for this hostname\n\n  # Route 2: VIP access\n  - hostname: \"vip.example.com\"\n    defaultServer: \"vip_lobby\"  # Fallback if no permission matches or VIP server is offline\n    permissionRoutes:\n      - permission: \"velocity.vip.access\"\n        targetServer: \"vip_server\"\n        denyMessage: \"<red>You need VIP rank to access this server.\"\n\n  # Route 3: Staff access\n  - hostname: \"staff.example.com\"\n    defaultServer: \"admin_lobby\"  # Fallback if no permission matches\n    permissionRoutes:\n      - permission: \"velocity.staff.access\"\n        targetServer: \"staff_server\"\n        denyMessage: \"<red>You do not have staff access.\"\n\n  # Route 4: Global fallback (wildcard hostname)\n  - hostname: \"*\"  # Matches any hostname not explicitly configured above\n    defaultServer: \"lobby\"\n    permissionRoutes: []\n```\n\n---\n\n## How It Works\n\n1. When a player connects, **VelocityRouter** checks the hostname they used.\n2. It looks for a matching route configuration.\n3. Within that route, it checks for any permission-based routes the player qualifies for.\n4. If a matching permission route is found and the target server is online, the player is forwarded there.\n5. If no permission matches or the server is offline, the player is sent to the route's `defaultServer`.\n6. If the player lacks permission for a matched permission route, the configured `denyMessage` is shown.",
+  "categories": [
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 115,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Z8pAzvfg",
+  "slug": "easy-auto-restart",
+  "title": "Easy Auto Restart",
+  "description": "Adds auto restarting to Minecraft servers.",
+  "body": "# Easy Auto Restart\n\nEasy Auto Restart is a lightweight Fabric mod designed to add simple automatic restarting capabilities to your Minecraft server. It focuses on doing one thing well: managing restarts and executing your start script when the server stops.\n\n## Commands\n\nAll commands require Operator (OP) permissions.\n\n*   `/restart`\n    *   Stops the server immediately and triggers the restart script.\n*   `/cancelrestart`\n    *   Cancels any currently running restart countdown.\n*   `/easyautorestart restart`\n    *   Initiates a restart sequence with a 1-minute countdown.\n*   `/easyautorestart add <HH:mm>`\n    *   Adds a new daily auto-restart time (e.g., `/easyautorestart add 04:00`).\n*   `/easyautorestart remove <HH:mm>`\n    *   Removes an existing daily restart time.\n*   `/easyautorestart list`\n    *   Displays all currently scheduled daily restart times.\n\n## Configuration\n\n The configuration file is generated at `config/easy-auto-restart.json`. You can edit this file directly or use the in-game commands to manage schedules.\n\n```json\n{\n  \"dailyRestartTimes\": [\n    \"04:00\",\n    \"16:00\"\n  ],\n  \"scriptPath\": \"./start.sh\",\n  \"executeScript\": true\n}\n```\n\n*   **dailyRestartTimes**: A list of times (24-hour format) when the server should automatically restart.\n*   **scriptPath**: The path to the script that launches your server.\n    *   *Windows users should point this to their `.bat` file (e.g., `./start.bat`).*\n    *   *Linux users should point this to their `.sh` file (e.g., `./start.sh`).*\n*   **executeScript**: If set to `true`, the mod attempts to run the file at `scriptPath` when the server stops. Set to `false` if you only want the mod to stop the server (e.g., if you use an external wrapper like Pterodactyl or Docker).\n\n## Installation & Setup\n\n1.  Move the `.jar` file into your server's `mods` folder.\n2.  Start the server once to generate the config.\n3.  **Important**: Ensure you have a valid start script (`start.bat` or `start.sh`) in your server's root directory. The mod relies on this script to bring the server back up after it stops.\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 425,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

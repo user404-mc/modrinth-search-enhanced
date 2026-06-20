@@ -1,0 +1,43 @@
+{
+  "id": "G1ckZuWK",
+  "slug": "mixinbooter",
+  "title": "MixinBooter",
+  "description": "The Mixin Library for 1.8 - 1.12.2.",
+  "body": "# MixinBooter\n### Allows any mixins that work on mods to work effortlessly on 1.8 - 1.12.2\n\n- Current Mixin Version: [UniMix 0.15.3 forked by CleanroomMC, derived from 0.8.7 branch by LegacyModdingMC](https://github.com/CleanroomMC/UniMix)\n\n- Current MixinExtra Version: [0.5.0](https://github.com/LlamaLad7/MixinExtras)\n\n### For Developers:\n\n- Add CleanroomMC's repository and depend on MixinBooter's maven entry:\n\n```groovy\nrepositories {\n    maven {\n        url 'https://maven.cleanroommc.com'\n    }\n}\n\ndependencies {\n\n    // Common:\n    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'\n    annotationProcessor 'com.google.guava:guava:32.1.2-jre'\n    annotationProcessor 'com.google.code.gson:gson:2.8.9'\n\n    // ForgeGradle:\n    implementation ('zone.rong:mixinbooter:10.7') {\n        transitive = false\n    }\n    annotationProcessor ('zone.rong:mixinbooter:10.7') {\n        transitive = false\n    }\n    \n    // RetroFuturaGradle:\n    String mixinBooter = modUtils.enableMixins('zone.rong:mixinbooter:107')\n    // modUtils.enableMixins('zone.rong:mixinbooter:10.7', 'mod_id.mixins.refmap.json') << add refmap name as 2nd arg (optional)\n    api (mixinBooter) {\n        transitive = false\n    }\n    annotationProcessor (mixinBooter) {\n        transitive = false\n    }\n}\n```\n\n### Pseudo-Changelog:\n\n- As of 4.2, MixinBooter's API has changed and ***all mods*** that uses mixins are encouraged to depend on MixinBooter, even those that mixin into vanilla/forge/library classes. To avoid mixin version mismatches with mods crashing trying to implement modded mixins (looking at you VanillaFix). Thanks to [@embeddedt](https://github.com/embeddedt) recommending and helping me introduce this change!\n\n- As of 5.0, [MixinExtras by @LlamaLad7](https://github.com/LlamaLad7/MixinExtras) is shaded. Available for developers to use.\n\n- As of 8.0, MixinBooter will now work from 1.8 - 1.12.2. One single build works with all these versions! (TODO: LiteLoader support?)\n\n- As of 8.4, MixinBooter actively attempts to be compatible with [SpongeForge](https://github.com/SpongePowered/SpongeForge)\n\n- As of 9.2, MixinBooter reinstates the older MixinLoader annotation for 1.8.x usages.\n\n- As of 10.0, MixinBooter follows Mixin 0.8.7\n\n### Tidbits:\n\n- Consult `IEarlyMixinLoader` for mixins that affects vanilla, forge, or any classes that is passed to the classloader extremely early (e.g. Guava).\n- Consult `ILateMixinLoader` for mixins that affects mods.\n- `@MixinLoader` annotation's ~~, as of 4.2, deprecated. The~~ functionality is akin to `ILateMixinLoader`. Both can be used at the same time, especially for 1.8.x versions where it is needed.\n",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1396678,
+  "followers": 0,
+  "game_versions": [
+    "1.8",
+    "1.8.1",
+    "1.8.2",
+    "1.8.3",
+    "1.8.4",
+    "1.8.5",
+    "1.8.6",
+    "1.8.7",
+    "1.8.8",
+    "1.8.9",
+    "1.9",
+    "1.9.1",
+    "1.9.2",
+    "1.9.3",
+    "1.9.4",
+    "1.10",
+    "1.10.1",
+    "1.10.2",
+    "1.11",
+    "1.11.1",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2"
+  ],
+  "date_updated": null
+}

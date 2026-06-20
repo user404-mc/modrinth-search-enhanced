@@ -1,0 +1,30 @@
+{
+  "id": "R6X6Kbvu",
+  "slug": "vanilla-entity-shader-effects",
+  "title": "Vanilla Entity Shader Effects",
+  "description": "This resource pack allows for the creation of animated entity textures, with effect such as glowing, flowing fluids, end-portal stars, and others!\n\nAlso includes a demo pack that applies the end portal shader to endermen and dragon wings!",
+  "body": "# Showcase\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/N9FZcBMQzm4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# Overview\nThis resource pack allows entities to have animated shader effects baked into their texture. In many ways, it's a vanilla-friendly version of the [Entity Texture Features](https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric) mod.\n\nThis pack is designed to be used in conjunction with other resource packs that add textures with animated effects. Shader data is embedded into a texture file, and when the VESE shader reads that texture file, it will display the encoded effects. Because of the nature of the encoding, texture files can have a static fallback texture that can be displayed to the user if they opt not to turn on VESE.\n\nFor example, the textures below are for a resource pack that adds _void cows_. The resource pack that adds void cows to the game shows the texture on the left if the player does not have VESE enabled, while it shows the texture on the right if it is:  \n![A side by side comparison showing a fallback texture.](https://cdn.modrinth.com/data/cached_images/7bf025cf59b42380d1d0452b4fb16bd1750bbc0d.png)\n\nVESE also works with player skins! If you update your skin to use VESE effects, it will still render as a normal skin to other players without VESE enabled, but will show the effects to anyone who does have it enabled.\n\n# Texture Editor Webapp\nShader effects can be added to textues with the with the [Texture Animator](https://dqwertyc.github.io/animated-entities/) webapp. To show how it works, I'll be creating an animated Cheshire Cat texture with glowing eyes and a body that fades to black from tail to head.\n\nTo begin, upload the base texture that you want displayed to users that don't have VESE enabled. The webapp will detect the texture size and provide a list of options for texture types. If the specific entity isn't listed in the available options, selecte the 'other' option for the given texture size: \n![Texture size selection screen](https://cdn.modrinth.com/data/cached_images/5ab896e107ae4c8beb5a587d9bf5fab1c23781d4.png)\nClick 'Start Animating' to open the editor. The editor has three main regions - the Color Palette on the left, the Program Palette on the right, and the main texture in the center.\n\nClick a pixel in the Color Palette to edit its color. These colors can be referenced later on by programs in the Program Palette:  \n![Color palette editor](https://cdn.modrinth.com/data/cached_images/ba167693a4e3b4b289347d4f71d9fa757b1200a1.png)\n\nFor most entities, you have access to 31 colors, though players have access to 63. As you edit the colors, you should see them appearing on the texture in an unused region. The upper left color in the palette is not editable, and tells the program to use the base color from the texture.\n\nDouble click a pixel in the Program Palette to edit its program. These programs can later be applied to any pixel in the texture. The first program we'll create is for the glowing eyes. By selecting 'constant' as the program type and checking the box that says \"Glow A\", we'll create a program that does nothing but make the existing color glow:  \n![A simple program to make pixels glow](https://cdn.modrinth.com/data/cached_images/fc8904ad2db926e6214bf34093fb6087e12b3d88.png)\n\nClick 'OK' to finalize the program, then click pixels on the main texture to apply the program. Use the upper left pixel in the program palette to clear programs from the texture.\n\nOur second program will periodically fade between our fallback color and solid black. Double click the first program pixel on the second row. For this program, we'll select 'Sine Wave' and 'Normal Speed', then for color B select the solid black from our color palette. Set pause to '3' and leave offset at '0'. The resulting color code should be '#00016430'. Copy this value, then click 'OK'. The preview beneath the program editor should show a grid of colors fading to and from black.  \n![Fade to black program and preview](https://cdn.modrinth.com/data/cached_images/b0bcfde6dcfb3df4735a0c0a80dd8beda4c59b87.png)\n\nEdit the rest of the programs in the row, incrementing the offset each time. This will cause the fade on the program to start slightly later for each subsequent program.\n\nNow, starting with the tail, add the programs to the pixels. Because of the length of the cat, we'll apply the same program to every 4 pixels. The end result should look something like this:\n![The final, edited texture](https://cdn.modrinth.com/data/cached_images/d3e2bd603f31bcbb9d6eab023c811a67406f50d9.png)\nIf you want, click the eye in the lower right corner to get a view of what the actual texture will look like without the program overlay. Download the texture with the download button in the lower right corner.\n\nLoading the new texture into our world, we can see what it looks like with and without VESE enabled:\n![Side by side comparison of Cheshire cat ](https://cdn.modrinth.com/data/cached_images/d443a0aa86db0008fb1878a2baecb523d878d6b4.png)",
+  "categories": [
+    "16x",
+    "core-shaders",
+    "decoration",
+    "entities",
+    "minecraft"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2076,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6-pre3",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.2"
+  ],
+  "date_updated": null
+}

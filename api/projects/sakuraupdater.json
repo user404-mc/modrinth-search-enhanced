@@ -1,0 +1,38 @@
+{
+  "id": "1dzlx6Br",
+  "slug": "sakuraupdater",
+  "title": "Sakura Updater",
+  "description": "Sakura Updater — a lightweight auto-sync mod with one-click updates, mirror/push sync, and a visual update UI.\nSakura Updater — 是一个轻量级的自动同步mod，具有一键更新，镜像/推送同步和视觉更新UI",
+  "body": "<div align=\"center\">\n<img src=\"https://cdn.modrinth.com/data/cached_images/70dd9957c64faabb83f74c2e63aec47ec7e6667a_0.webp\" width=\"128\" alt=\"SakuraUpdater\">\n<h1>Sakura Updater</h1>\n</div>\n\n*([中文版请向下滚动 | Scroll down for Chinese version](#sakuraupdater-中文))*\n## Introduction\n\n\nSakuraUpdater is a NeoForge Minecraft mod that enables automatic synchronization of mod files between a server and clients, allowing players to receive server updates automatically, similar to other games.\n\n<div align=\"center\">\n<img src=\"https://cdn.modrinth.com/data/cached_images/88842b78bc279efe842791df9c5849e042db5a6c_0.webp\" width=\"500\" alt=\"SakuraUpdater\">\n</div>\n\n## Features\n\n- [x] 🔄 Automatic server update checks\n- [x] 🕒 Display update logs in the update UI\n- [x] 📁 Multiple sync modes supported (mirror, push, ignore)\n- [x] 🎮 Graphical update UI\n- [x] ⚙️ Configurable client and server settings\n- [x] 🚀 The server can run independently\n\n## Installation\n\n### Server-side installation\n\n1. Place `sakuraupdater-[version].jar` into the server's `mods` folder.\n2. Start the server. Configuration files will be generated on first run.\n3. Edit the server configuration file at `config/sakuraupdater-server.toml`.\n\n### Client-side installation\n\n1. Place `sakuraupdater-[version].jar` into the client's `mods` folder.\n2. Start the game. Configuration files will be generated on first run.\n3. Edit the client configuration file at `config/sakuraupdater-client.toml`.\n\n### Server-side independent operation\n\n1. Place `sakuraupdater-[version].jar` into a separate folder.\n2. Run the server independently with `java -jar sakuraupdater-[version].jar`.\n3. Edit the client configuration file at `sakuraupdater-client.toml`.\n\n## Configuration\n\n### Server configuration (`sakuraupdater-server.toml`)\n\n```toml\n# File server port\nport = 25564\n\n# Sync directory configuration, format: [\"target_dir:mode:source_dir:extra_source_dir:...\"]\n# Mode explanations:\n# - mirror: mirror mode, fully synchronize source directory to the target directory\n# - push: push mode, push server files to clients\n# - pull: pull mode, pull files from clients to the server\n# - ignore: ignore mode, ignore files matching the regex. Since the path is included, \".*filename$\" is recommended.\nSYNC_DIR = [\n    \"mods:mirror\",                           # synchronize the mods folder\n    \"config:push:clientconfig:config\",       # push config and clientconfig to the client\n    \"resourcepacks:mirror\",                  # synchronize resourcepacks folder\n    \"mods:ignore:.*abc\\.jar$\"                # ignore files in mods ending with 'abc.jar'\n]\n```\n\n### Client configuration (`sakuraupdater-client.toml`)\n\n```toml\n# Server host address\nhost = \"localhost\"\n\n# Server port (should match the sakuraupdater-server.toml configuration, especially if using frp or other proxies)\nport = 25564\n\n# Current client version (managed automatically; do not edit manually)\nnow_version = \"\"\n```\n\n## Usage\n\n### 1. Server administrator operations\n\n> ### When using the independent server, remove the /sakuraupdater command prefix and use the commit and data commands directly\n\n#### Create a release/commit\n\n`/sakuraupdater commit <version> <description-or-path-to-description-file>`\n\n**Example:**\n`/sakuraupdater commit v1.0.1 Fixed item duplication bug\\nAdded new enchantments`\n\n**Or using a text file (minimal markdown supported):**\n`/sakuraupdater commit v1.0.1 description.md`\n\n#### Manage data versions\n\n```shell\n# List all versions\n/sakuraupdater data list\n\n# Show details for a specific version\n/sakuraupdater data show v1.0.1\n\n# Edit version description\n/sakuraupdater data edit v1.0.1 \"Updated version description\"\n\n# Delete a version\n/sakuraupdater data delete v1.0.1\n\n# Clear all version data\n/sakuraupdater data clear\n```\n\n### 2. Client player operations\n\n#### Automatic update check\n\nWhen a player joins the game, the client will automatically check whether the server has a newer version and will open the update UI if an update is available.\n\n---\n\n# SakuraUpdater (中文)\n\n## 简介\n\nSakuraUpdater 是一个 Minecraft NeoForge 模组，用于自动更新服务器的 mod 文件，让玩家能够像其他游戏一样自动获取服务器更新。\n\n<div align=\"center\">\n<img src=\"https://cdn.modrinth.com/data/cached_images/897e0b9888c34fffccbf283523ab9f1e540e5b8e_0.webp\" width=\"500\" alt=\"SakuraUpdater\">\n</div>\n\n## 功能特性\n\n- [x] 🔄 自动检查服务器更新\n- [x] 🕒 在更新界面显示更新日志\n- [x] 📁 支持多种文件同步模式（mirror、push、ignore）\n- [x] 🎮 图形化更新界面\n- [x] ⚙️ 可配置的客户端和服务器设置\n- [x] 🚀 服务端可独立运行\n\n## 安装步骤\n\n### 服务器端安装\n\n1. 将 `sakuraupdater-[version].jar` 放入服务器的 `mods` 文件夹。\n2. 启动服务器，首次运行会生成配置文件。\n3. 编辑 `config/sakuraupdater-server.toml` 配置文件。\n\n### 客户端安装\n\n1. 将 `sakuraupdater-[version].jar` 放入客户端的 `mods` 文件夹。\n2. 启动游戏，首次运行会生成配置文件。\n3. 编辑 `config/sakuraupdater-client.toml` 配置文件。\n\n### 服务端独立运行\n\n1. 将 `sakuraupdater-[version].jar` 放入单独文件夹。\n2. 直接 `java -jar sakuraupdater-[version].jar` 即可运行服务端。\n3. 编辑 `sakuraupdater-client.toml` 配置文件。\n\n## 配置说明\n\n### 服务器配置 (`sakuraupdater-server.toml`)\n\n```toml\n# 文件服务器端口\nport = 25564\n\n# 同步目录配置，格式: [\"目标目录:模式:源目录:额外的源目录:...\"]\n# 模式说明:\n# - mirror: 镜像模式，完全同步源目录到目标目录\n# - push: 推送模式，将服务器文件推送到客户端\n# - pull: 拉取模式，从客户端拉取文件到服务器\n# - ignore: 忽略模式，使用正则匹配忽略文件。匹配时前面带路径，推荐用 \".*文件名$\" 格式。\nSYNC_DIR = [\n    \"mods:mirror\",                           # 同步 mods 文件夹\n    \"config:push:clientconfig:config\",       # 将 config 和 clientconfig 推送到客户端\n    \"resourcepacks:mirror\",                  # 同步资源包文件夹\n    \"mods:ignore:.*abc\\.jar$\"                # 忽略以 abc.jar 结尾的文件\n]\n```\n\n### 客户端配置 (`sakuraupdater-client.toml`)\n\n```toml\n# 服务器主机地址\nhost = \"localhost\"\n\n# 服务器端口（需与sakuraupdater-server.toml配置一致，如使用frp等代理后的端口）\nport = 25564\n\n# 当前客户端版本（自动管理，请勿手动修改）\nnow_version = \"\"\n```\n\n## 使用方法\n\n### 1. 服务器管理员操作\n\n> ### 在使用独立服务端时，需去除 /sakuraupdater 命令前缀，直接使用 commit、data 命令\n\n#### 创建更新版本\n\n`/sakuraupdater commit <版本号> <描述信息/描述文件路径>`\n\n**例如:**\n`/sakuraupdater commit v1.0.1 修复了物品复制bug\\n添加了新的附魔`\n\n**或使用文本文件(极少的md格式支持):**\n`/sakuraupdater commit v1.0.1 description.md`\n\n#### 管理数据版本\n\n```shell\n# 查看所有版本\n/sakuraupdater data list\n\n# 查看特定版本详情\n/sakuraupdater data show v1.0.1\n\n# 编辑版本描述\n/sakuraupdater data edit v1.0.1 \"更新了版本描述\"\n\n# 删除版本\n/sakuraupdater data delete v1.0.1\n\n# 清空所有版本数据\n/sakuraupdater data clear\n```\n\n### 2. 客户端玩家操作\n\n#### 自动检查更新\n\n当玩家进入游戏时，如果检测到服务器有新版本，会自动弹出更新界面。\n",
+  "categories": [
+    "forge",
+    "management",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1803,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

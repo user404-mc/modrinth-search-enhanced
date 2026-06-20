@@ -1,0 +1,36 @@
+{
+  "id": "ctV8T1ZK",
+  "slug": "justenoughbackups-jeb",
+  "title": "Just Enough Backups (JEB)",
+  "description": "Just Enough Backups is a Fabric mod that adds server-side world backups with a usable in-game workflow.",
+  "body": "![Just Enough Backups Banner](https://cdn.modrinth.com/data/cached_images/a9b74e1a966f7e327014c42a28ee0425e3e3d620_0.webp)\n\nJust Enough Backups is a Fabric mod that adds server-side world backups with a usable in-game workflow.\n\nIt supports:\n\n- full, partial, and differential backups\n- manual backups through commands and UI\n- automatic scheduled backups\n- configurable public backup/restore announcements\n- retention by backup count\n- retention by total backup size per world\n- restore preparation from the backup browser\n- a configurable client HUD popup with live preview\n- optional Mod Menu integration\n\nThe mod is designed to keep the actual backup logic on the server side while exposing management and configuration through a client UI.\n\n## Features\n\n### Backup types\n\n- **Full**: stores a complete snapshot of the world.\n- **Partial**: stores changes relative to a base backup.\n- **Differential**: stores changes relative to a base backup, while keeping a separate retention bucket from partial backups.\n\nDependencies between backups are tracked. Retention and delete operations respect those dependencies, so required base backups are preserved when newer partial or differential backups still depend on them.\n\n### Automatic backups\n\nAutomatic backups are driven by the scheduler and can be configured to:\n\n- run every `X` minutes (60 by default)\n- send one optional public warning before an automatic backup starts\n- pause when no players have been online since the last backup\n- run on server start\n- run on server stop\n\nPublic announcements can be sent to chat, sent to the action bar, or disabled.\n\n### Retention policy\n\nRetention can be configured in two ways at the same time:\n\n- **count-based retention**\n  - keep the newest `X` full backups\n  - keep the newest `X` partial backups\n  - keep the newest `X` differential backups\n- **size cap per world**\n  - optional hard cap for the total size of a world's backup folder\n  - applied to the final published backup set\n  - respects dependency chains\n\nIf a new backup would exceed the configured space cap even after deleting every backup that is allowed to be removed, creation fails instead of publishing an invalid final state.\n\n### Backup management UI\n\nThe backup browser includes:\n\n- refresh\n- create backup\n- rename backup\n- delete backup\n- restore backup\n- dependency-aware inline details\n- search/filtering\n\nManual backup creation supports a custom file name from both the command line and the UI.\n\n### Config UI and popup preview\n\nThe config screen exposes:\n\n- backup mode and scheduler options\n- retention rules\n- permission level\n- integrity mode\n- backup directory\n- popup text, colors, channels, and layout\n\nThe popup preview screen lets you move and preview the HUD state before saving.\n\n## Commands\n\nThe root command is:\n\n```text\n/jeb\n```\n\nAvailable commands:\n\n```text\n/jeb now\n/jeb now <name>\n\n/jeb create full\n/jeb create full <name>\n/jeb create partial\n/jeb create partial <name>\n/jeb create differential\n/jeb create differential <name>\n\n/jeb list\n/jeb next\n/jeb restore <backup>\n/jeb config reload\n```\n\nNotes:\n\n- `<name>` is optional and becomes the real `.zip` file name after sanitization.\n- `<backup>` is the visible backup name, with or without the `.zip` suffix. Tab completion suggests the visible name.\n- restore is prepared asynchronously and then the server shuts down so the restore can be applied safely on the next startup.\n- command access follows the configured permission level.\n\n## Default keybindings\n\nClient-side keybindings:\n\n- `B`: open backup management\n- `N`: open config screen\n\nThese are regular Minecraft keybindings and can be changed in Controls.\n\n## Configuration\n\nThe mod writes its config file to:\n\n```text\nconfig/justenoughbackups.json\n```\n\nMain config areas:\n\n- `backupMode`\n- `automaticBackupsEnabled`\n- `pauseAutomaticBackupsWithoutPlayers`\n- `backupOnServerStart`\n- `backupOnServerStop`\n- `automaticIntervalMinutes`\n- `automaticBackupWarningEnabled`\n- `automaticBackupWarningMinutes`\n- `commandPermissionLevel`\n- `messageChannel`\n- `integrityMode`\n- `backupDirectory`\n- `retention`\n  - `full`\n  - `incremental`\n  - `differential`\n  - `maxTotalSizeMb`\n- `popup`\n\n`backupDirectory` may be relative to the game directory or an absolute path.\n\n\nBefore creating a backup, the mod also checks free disk space on the backup destination filesystem. The check is conservative and requires:\n\n```text\n(current world size * 2) + minimumFreeSpaceReserveMb\n```\n\nIf that space is not available, backup creation is aborted before the temporary ZIP is written.\n\n## Backup naming\n\nManual backups support custom names:\n\n- from commands: `/jeb now My backup`\n- from the create dialog in the backup UI\n\nIf no custom name is provided, the mod uses the automatic naming scheme based on type and timestamp.\n\nRename uses the same sanitization rules as manual creation to keep naming behavior consistent.\n\n\n## Optional:\n\n- [Mod Menu](https://modrinth.com/mod/modmenu) for a cleaner config entry point\n\n## License\n\nThis project is licensed under the [MIT License](LICENSE).",
+  "categories": [
+    "fabric",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 734,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

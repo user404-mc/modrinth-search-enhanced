@@ -1,0 +1,36 @@
+{
+  "id": "4OeutdDa",
+  "slug": "lite2edit",
+  "title": "Lite2Edit",
+  "description": "Lite2Edit is a small Fabric mod that lets WorldEdit open Litematica schematic files (.litematic / .ltc). In short: if you have a schematic created with Litematica, Lite2Edit helps WorldEdit read it so you can paste or edit it in Minecraft",
+  "body": "[![CI](https://github.com/Erik-Donath/Lite2Edit/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Erik-Donath/Lite2Edit/actions/workflows/ci.yml)\n[![Automatic Dependency Submission](https://github.com/Erik-Donath/Lite2Edit/actions/workflows/dependency-graph/auto-submission/badge.svg)](https://github.com/Erik-Donath/Lite2Edit/actions/workflows/dependency-graph/auto-submission)\n[![Build and Publish Release](https://github.com/Erik-Donath/Lite2Edit/actions/workflows/publish.yml/badge.svg)](https://github.com/Erik-Donath/Lite2Edit/actions/workflows/publish.yml)\n\n# Lite2Edit\n\nLite2Edit is a small Fabric mod that lets WorldEdit open Litematica schematic files (.litematic).\n\n---\n\n## Mod on Modrinth and Github\nYou can download the mod from Modrinth via: [https://modrinth.com/mod/lite2edit](https://modrinth.com/mod/lite2edit)<br>\nYou can see the source code via: [https://github.com/Erik-Donath/lite2edit](https://github.com/Erik-Donath/lite2edit)\n\n## Quick introduction\n\n- What it does: Converts Litematica `.litematic` schematics into a WorldEdit clipboard that you can paste or manipulate.\n- Who it's for: Players and server admins who use Fabric + WorldEdit and want to import Litematica files easily.\n- Simple install: drop the mod JAR into your Fabric `mods/` folder (alongside WorldEdit and required Fabric components).\n\n---\n\n## How to use\n\n1. Put the Lite2Edit mod JAR into your Fabric `mods/` folder.\n2. Make sure [Fabric Loader](https://fabricmc.net/), [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin), and [WorldEdit (Fabric build)](https://modrinth.com/plugin/worldedit) are installed.\n3. Start Minecraft (client or server).\n4. Load a `.litematic` file with ```//schematic load \"...\"```. The schematic will load as a clipboard you can paste and edit.\n5. Save a WorldEdit clipboard back to a `.litematic` file with ```//schematic save -f litematica \"...\"```.\n\nIf you prefer building from source, run:\n```bash\ngit clone https://github.com/Erik-Donath/Lite2Edit.git\n./gradlew build\n# copy the generated JAR from build/libs/ into your mods/ folder\n```\n\n---\n\n## How it works\n\nThis section explains what the mod does behind the scenes:\n\n- Litematica files store world pieces as NBT data (a structured binary format Minecraft uses). Schematics contain regions made of blocks, a palette that lists unique block types used, tile-entity data (for chests, signs, furnaces, etc.), and optionally entities.\n\n- Lite2Edit reads the Litematica file and parses the NBT structure. It understands:\n  - The schematic metadata (name, author, timestamps).\n  - One or more regions, each with a position and size.\n  - The block palette (a list of block names and property sets).\n  - The block data as a compact, bit-packed list of palette indexes.\n  - Tile entities and entities stored with their coordinates and NBT.\n\n- Block conversion:\n  - The mod maps each palette entry (for example \"minecraft:oak_log\" with properties like facing) to a WorldEdit BlockState. When possible it preserves block properties (like rotation or waterlogged state) so the pasted structure looks correct.\n  - The bit-packed block data is decoded to determine which palette entry belongs at each block position.\n\n- Tile entities and entities:\n  - Tile-entity NBT (chest contents, sign text, custom block data) is converted into the format WorldEdit expects and attached to the corresponding block when the clipboard is created, so chests and other NBT-bearing blocks keep their data where possible.\n\n- Regions and negative sizes:\n  - Litematica can store multiple named regions in a single file. Lite2Edit can combine multiple regions into a single WorldEdit clipboard by computing a bounding box that contains all regions.\n  - Some regions are defined with negative dimensions; the mod normalizes these so blocks end up in the correct positions in the clipboard.\n\n- What’s not done yet:\n  - Full entity conversion (living mobs and some entity types are not converted; tile entities are supported).\n  - Multi-region export: when saving a clipboard, all blocks are written into a single region named “Unnamed” - the original region names and boundaries are not preserved.\n\n---\n\n## Practical notes & limits\n\n- Most blocks and common properties are converted correctly; very unusual custom blocks or modded blocks might not map perfectly and could be skipped or logged.\n- If a block type is unknown to WorldEdit, the mod will warn in the logs and skip that block.\n- Tile entities are converted when possible, but very complex or mod-specific NBT may not round-trip perfectly.\n- Check Minecraft logs when troubleshooting imports; conversion warnings and errors are recorded there. Please report any issues you encounter on the [Issue Page](https://github.com/Erik-Donath/Lite2Edit/issues).\n\n---\n\n## License & contributing\n\n- License: MIT see [LICENSE.txt](https://github.com/Erik-Donath/Lite2Edit/blob/master/LICENSE.txt) in this repository.\n- Contributions: Pull requests and issues are welcome. If you want to:\n  - Add the `.litematic` writer (export support), include an example schematic to validate round-trip correctness.\n  - Improve block/property mapping or tile-entity handling, keep changes small and document behavior differences.\n\nTo contribute:\n1. Fork the repository.\n2. Create a feature branch.\n3. Submit a pull request describing your change and any testing you performed.\n\nThank you for using Lite2Edit. If you run into problems or want a feature, open an issue on [GitHub](https://github.com/Erik-Donath/Lite2Edit/issues).",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "optimization",
+    "technology",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 4713,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "ir4jp4Ug",
+  "slug": "vbc",
+  "title": "Villager Brain Configuration",
+  "description": "A highly optimized server-sided mod that allows full configuration of villager pathfinding malus",
+  "body": "# Villager Brain Config\n\nA lightweight, highly optimized mod that makes villager pathfinding behavior fully configurable\n\n## Features\n\n- **Per-block malus control**  \n   Customize how villagers treat different blocks in pathfinding. Blocks are configurable to any malus, block and item tags supported\n\n- **Profession-based malus**  \n   Configure different path preferences per villager profession.\n\n- **Global block penalty caching**  \n   Pathfinding results are cached for maximum efficiency across multiple villagers\n\n- **Native modded support**\n  The config file supports any modded blocks or professions\n\n---\n\n## Example Use Cases\n\n- Prevent villagers from walking into trap blocks like campfires or magma\n- Make water paths viable for fishermen only\n- Design custom village layouts with optimized navigation paths\n- Prevent villagers from wandering off paths\n- Add personality to each profession type\n\n## Pathfinding Visualizations\n**<center>Smart villager takes the short path to get to his job site</center>**\n\n![Smart villager takes the short path to get to his job site](https://drive.google.com/thumbnail?id=12EYXr2I2spYvB1EIyqYqIuXF8PCHIlkr&sz=s800)\n\n---\n\n**<center>Stupid villager walks off the screen to get to his job site</center>**\n\n![Stupid villager walks off the screen to get to his job site](https://drive.google.com/thumbnail?id=1JTPeOKFArVBhIZSzLnHEVtvYeTZsyMFH&sz=s800)\n\n\n## Planned features\n\n- Per-villager-type rules (eg. plains villagers, taiga villagers)\n\n<details>\n<summary>Performance</summary>\n\nVillager Brain Config is designed to be almost **invisible in impact** or even **faster than vanilla**\n\n### Test case\n- 250 villagers  \n- Each pathing to a unique workstation in a grid  \n- Compared vanilla to modded using Spark profiler\n\n### Results \n**Vanilla Logic**\n\n![Vanilla: VillagerEntity.tick(): 7.42](https://cdn.modrinth.com/data/cached_images/68e8d67ad2335bcc9541648158bea0b27f0f4f11.png)\n\n**Modded Logic**\n\n![Modded: VillagerEntity.tick(): 5.68](https://cdn.modrinth.com/data/cached_images/332f2ac99ce85e307cd130f9e3046ffb7a7e6c9d.png)\n\n**Mod total**\n\n![villager-bran-config: 1.75ms](https://cdn.modrinth.com/data/cached_images/450410b455d526c021c05052d35ecf5f93240d02.png)\n\n\n</details>\n\n\n<details>\n<summary>Configuration</summary>\n\nAll settings are in a `villager-brain-config.json` file in the config folder.\n\n```json\n{\n  \"walk_on_block_penalties\": {\n    \"minecraft:grass_block\": 4.0,\n    \"minecraft:dirt_path\": 0.0,\n    \"default\": 5.0\n  },\n  \"walk_through_block_penalties\": {\n    \"minecraft:lava\": -1.0,\n    \"minecraft:tall_grass\": 20,\n    \"default\": 0.0\n  },\n  \"actions_penalties\": {\n    \"jump\": 10.0\n  },\n  \"professions\": {\n    \"minecraft:farmer\": {\n      \"walk_on_block_penalties\": {\n        \"minecraft:farmland\": 0.0,\n        \"minecraft:grass_block\": 2.0\n      }\n    },\n    \"minecraft:fisherman\": {\n      \"walk_on_block_penalties\": {\n        \"minecraft:water\": 0.0\n      },\n      \"walk_through_block_penalties\": {\n        \"minecraft:water\": 0.0\n      }\n    }\n  },\n  \"avoids\": [\n    {\n      \"block\": \"minecraft:lava\",\n      \"radius\": 3,\n      \"penalty\": -1.0\n    }\n  ]\n}",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3227,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

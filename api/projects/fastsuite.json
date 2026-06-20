@@ -1,0 +1,22 @@
+{
+  "id": "roccmqou",
+  "slug": "fastsuite",
+  "title": "FastSuite",
+  "description": "Optimizations for the entire recipe system!",
+  "body": "# About\n\nFastSuite improves recipe matching performance for every mod that uses the JSON recipe system, rather than a specific subset of recipes. Its approach has changed across major versions — the current implementation (7.0.0+) uses an index-based algorithm.\n\n# Approaches\n\nFastSuite has used three different strategies over its lifetime:\n\n**List Reordering (4.0.0 and older)** — Recipes were stored in a move-to-front list, so frequently-accessed recipes migrated toward the front and became cheaper to find on subsequent lookups. First access matched vanilla speed; later accesses to deep recipes improved by >95%, with little impact on recipes already near the front.\n\n**Concurrent Matching (4.1.0 – 6.x)** — For any recipe type with more than 100 recipes, matching was spread across multiple threads instead of one. This produced a 10x–12x speedup in All The Mods 8, and was more compatible and less brittle than the reordering model (e.g. it worked with Polymorph and on the first match).\n\n**Indexed Matching (7.0.0+)** — The current approach drops concurrency entirely in favor of an index-based algorithm. Recipes are indexed so that only viable candidates are tested, rather than scanning the full list. This matches all recipes for an input roughly 2x–4.5x faster than vanilla, with no threading and no per-match data writes:\n\n\\[Indexed\\] - Took an average of 93541.68 ns to match all recipes for acacia planks  \n\\[Vanilla\\] - Took an average of 416312.28 ns to match all recipes for acacia planks  \n\\[Indexed\\] - Took an average of 203072.3 ns to match all recipes for sticks  \n\\[Vanilla\\] - Took an average of 523836.38 ns to match all recipes for sticks  \n\\[Indexed\\] - Took an average of 104967.54 ns to match all recipes for crafting table  \n\\[Vanilla\\] - Took an average of 236834.45 ns to match all recipes for crafting table  \n\\[Indexed\\] - Took an average of 212810.42 ns to match all recipes for black shulker box  \n\\[Vanilla\\] - Took an average of 453240.12 ns to match all recipes for black shulker box  \n\\[Indexed\\] - Took an average of 243105.69 ns to match all recipes for failed match  \n\\[Vanilla\\] - Took an average of 918821.25 ns to match all recipes for failed match \n\nIf you're thinking \"hey wait those numbers from 4.0.0 - 6.0.0 sound better\", well, changes in vanilla diminished those to the point where concurrent matching was almost equivalent to single-threaded matching. The baseline is much faster now, but indexing can still do quite a bit better.\n\n# Compatibility\n\nThis mod is made to be non-intrusive and should work with all other mods, short of another mod also replacing the recipe manager. It is compatible with recipe modification mods such as KubeJS and CraftTweaker, and causes no issues with JEI.\n\nFastSuite does not replace FastWorkbench or FastFurnace, though their benefits will be lessened if it is installed, since some of the work is offloaded to FastSuite. For maximum recipe performance I still advise installing all three.\n\n# Support Me\n\n[![](https://i.imgur.com/4D6zgZt.png)](https://discord.com/servers/shadows-mods-613010559532531713)\n\n## Contact\n\nDiscord: [https://discord.shadowsoffire.dev](https://discord.shadowsoffire.dev/)",
+  "categories": [
+    "forge",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 247,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

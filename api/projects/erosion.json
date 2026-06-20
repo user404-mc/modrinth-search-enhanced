@@ -1,0 +1,21 @@
+{
+  "id": "WC654je6",
+  "slug": "erosion",
+  "title": "Erosion",
+  "description": "Configurable mod that causes blocks to change into other blocks when under water and other conditions",
+  "body": "Certain blocks will erode when there is water above them.\n\nWhen under flowing water, stone will become gravel, dirt will become sand, and undyed hardened clay will become red sand.\n\nWhen under still water, sand will become clay.\n\nAlso, Cobblestone and Stone Bricks will grow moss when adjacent to water.\n\nAs of 2.2, rain will turn hardened clay soft, and the sun will bake soft clay into hardened clay.\n\nThe original purpose of this mod was to add a renewable source of sand and gravel. It has since been expanded with powerful configuration options.\n\nNote: because of the way this mod is programmed, no erosion will occur until the erosion is triggered. Erosion will never trigger if there are no players nearby. Once erosion is triggered, it will spread to adjacent blocks.\n\nNew in 2.2: Configuration expanded with weather, light, and multiple-block requirements.\n\nConfiguration\n---\n\nThis mod can be configured to erode any block into any other block.\n\nTo add a new erosion type to this mod, it must be added to the register list in the main section. It can be named what ever you want, but the name must match the section we're about to create.\n\nTo create a new section, it's best to copy and paste one of the existing sections and edit it. Change the name to match the name you added to the register list. Each section has six fields.\n\n- condition is what condition will trigger the block to erode. These must be defined in the erosion_conditions.cfg file.\n- fromBlock is the block we are eroding from. This must be a valid resource location.\n- fromMeta A comma-separated list of acceptable metadata values. If you prepend it with an exclamation point, it will blacklist these values instead. Set to \"any\" or \"-1\" to mean any metadata value.\n- intoBlock is the block we are eroding into. Again this must be a valid resource location.\n- intoMeta is the metadata of the block we are eroding into. Must be between 0 and 15.\n- time is how many game ticks it takes to erode the block.\n\n\nDefining custom erosion conditions works exactly the same way, but with these 3 fields instead:\n\n- conditionBlock the block that will cause erosion. This is usually a liquid, but it can be any block.\n- conditionMeta A comma-separated list of acceptable metadata values. Uses the same syntax as the fromMeta field above.\n- checkPositions A list of relative positions that will be checked for the condition block. If the condition block is found in any of these positions, then erosion will occur.\n\n\nVersion 2.2 adds some new configuration options.\n\nFirst of all, erosion conditions can now depend on the weather and light.\n\nrequireLight takes an operator(< or >) and a number. For example, >12 means require a light level greater than 12. It can also be set to just a number to require exactly that light level.\n\nrequireWeather can be set to any, clear, rain, snow, or thunder. Any weather other than \"any\" will require sky access. If set to thunder, then a lightning bolt will be summoned when the erosion occurs.\n\nFinally, you can now require that a certain number of positions match the conditions using the checksRequired option (previously only one of the locations needed to match).\n\nIn the position list, a fourth argument can now be used to require a different type of block. A fifth argument can be used to specify the meta of the required block.\n",
+  "categories": [
+    "forge",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 442,
+  "followers": 0,
+  "game_versions": [
+    "1.10.2",
+    "1.11.2",
+    "1.12"
+  ],
+  "date_updated": null
+}

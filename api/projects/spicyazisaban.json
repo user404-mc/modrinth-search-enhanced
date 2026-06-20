@@ -1,0 +1,42 @@
+{
+  "id": "uNdLgwFJ",
+  "slug": "spicyazisaban",
+  "title": "SpicyAzisaBan",
+  "description": "An all-in-one punishment system",
+  "body": "# 🚫SpicyAzisaBan\n\n[![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.azisaba.net%2Frepository%2Fmaven-public%2Fnet%2Fazisaba%2Fspicyazisaban%2Fcommon%2Fmaven-metadata.xml)](https://repo.azisaba.net/#browse/browse:maven-public:net%2Fazisaba%2Fspicyazisaban%2Fcommon)\n\n## 📖Description\n\nSpicyAzisaBan is an all-in-one punishment system for Velocity. (Heavily inspired by AdvancedBan)\n\nIt supports various types of punishments, following are the types of punishments supported by SpicyAzisaBan:\n- Ban\n- Temp ban\n- IP ban\n- Temp IP ban\n- Mute\n- Temp mute\n- IP mute\n- Temp IP mute\n- Warning\n- Caution\n- Kick\n- Note\n\nSpicyAzisaBan also supports multiple servers (such as multiple instances of Velocity), so you can use it in a network environment.\n\n## ✨Features\n\n- Ban, Mute, Warn, Caution, Kick, Note players\n- Discord webhook support\n- Support multiple instances of Velocity\n- Pre-defined reasons for each server/type of punishment\n- Customizable messages\n- Ban all alt accounts at once\n- Lockdown mode (prevent new players from joining the server)\n- Punishment automation via external API (see below for more information)\n\n## ❗️Requirements\n\n- Java 17 or later\n- Internet connection (for fetching dependencies)\n- MySQL or MySQL-compatible (e.g. MariaDB) database\n  - We recommend using supported versions of MariaDB\n\n## 💻Installation\n\n1. Download the plugin from [Modrinth](https://modrinth.com/plugin/spicyazisaban/versions) and place it in your server's `plugins` folder.\n2. Start the server once to generate the configuration file. (Or you can just create the file manually)\n3. Configure the plugin in `plugins/SpicyAzisaBan/config.yml`.\n4. Restart the server.\n5. Do `/sab info` to see if the plugin is working correctly.\n\n## 📝Configuration\n\n```yml\n# SpicyAzisaBan config\n#\n# Important: If you are running from CLI, you only need to configure database settings, and you can just ignore\n# anything else.\n\n# Command prefix\n# ----------\n# You will be able to run command with: /${prefix}command\n# So if you set this to \"/\", you can run command with //command\nprefix: \"\"\n\n# Database settings\n# ----------\n# MySQL or MySQL-compatible (e.g. MariaDB) database is required to run SpicyAzisaBan.\ndatabase:\n  host: localhost\n  name: spicyazisaban\n  user: spicyazisaban\n  password: p@55w0rd\n  verifyServerCertificate: false\n  useSSL: true\n  # If true, the plugin will prevent players from joining the server if database is inaccessible.\n  failsafe: true\n\nwarning:\n  # Don't set to 1s, it's too terrible because we fetch the punishments from database every time we check for warnings\n  sendTitleEvery: 10s\n  titleStayTime: 5s\n\n# These settings below are reloadable by doing /sab reload\n\nserverNames:\n  # \"server\" (key) must not contain UPPERCASE character.\n  server: FriendlyServerName\ndefaultReasons:\n  # valid types: ban, temp_ban, ip_ban, temp_ip_ban, mute, temp_mute, ip_mute, temp_ip_mute, warning, caution, kick, note\n  # invalid types are ignored\n  ban:\n    # <server/group/global>: reasons list\n    global:\n      - \"ban reason (global) 1\"\n      - \"ban reason (global) 2\"\n    lobby:\n      - \"ban reason (lobby) 1\"\n      - \"ban reason (lobby) 2\"\n# a player wouldn't be able to bypass with eg /minecraft:tell\nblockedCommandsWhenMuted:\n  # server: Array<String>\n  # \"global\" would affect all servers\n  global:\n    - tell\n    - r\n    - me\n  life:\n    - rpc\n    - me\nbanOnWarning:\n  # if warning count hits 3, 4, 5..., the player would be banned with specified reason\n  # this feature will be disabled if you set this value to <= 0\n  threshold: 3\n  time: \"1mo\"\n  # Available variables: %PREFIX%, %COUNT& (current warnings count), %TIME% (above), %ORIGINAL_REASON% (reason used for /warn)\n  reason: \"You've got %COUNT% warnings and you've been banned for %TIME%. (Original reason: %ORIGINAL_REASON%)\"\ncustomBannedMessage:\n  # usually configured via messages.yml, but you can set the message per server here\n  # key = server\n  # value = message\n  rpg:\n    - \"&cA player has been deleted from the server.\"\n\n# Discord webhook URLs\n# If you don't need this feature, simply uncomment the line below.\n#webhookURLs: { __fallback__: {} }\n# and comment out the lines below.\nwebhookURLs:\n  __fallback__:\n    default: \"https://discord.com/api/webhooks/123456/secret\"\n  server1:\n    default: \"https://discord.com/api/webhooks/123456/secret\"\n  global:\n    default: \"https://discord.com/api/webhooks/123456/secret\"\n    ban: \"https://discord.com/api/webhooks/789012/secret\"\n```\n\n## Non-exhaustive list of permissions\n\nWe recommend using [LuckPerms](https://luckperms.net) for permission management.\n\n- `sab.command.spicyazisaban`\n- `sab.command.spicyazisaban.creategroup`\n- `sab.command.spicyazisaban.deletegroup`\n- `sab.command.spicyazisaban.group`\n- `sab.command.spicyazisaban.info`\n- `sab.command.spicyazisaban.debug`\n- `sab.command.spicyazisaban.reload`\n- `sab.command.spicyazisaban.deletepunishmenthistory`\n- `sab.command.spicyazisaban.deletepunishment`\n- `sab.command.spicyazisaban.link`\n- `sab.command.spicyazisaban.unlink`\n- `sab.check`\n- `sab.history`\n- `sab.seen`\n- `sab.banlist`\n- `sab.proofs`\n- `sab.delproof`\n- `sab.addproof`\n- `sab.changereason`\n- `sab.unban`\n- `sab.unmute`\n- `sab.unpunish`\n- `sab.punish.global`\n- `sab.punish.group.<groupName>`\n- `sab.punish.server.<serverName>`\n- `sab.ban.perm`\n- `sab.ban.temp`\n- `sab.ipban.perm`\n- `sab.ipban.temp`\n- `sab.mute.perm`\n- `sab.mute.temp`\n- `sab.ipmute.perm`\n- `sab.ipmute.temp`\n- `sab.warning`\n- `sab.caution`\n- `sab.kick`\n- `sab.note`\n- `sab.notify.ban`\n- `sab.notify.tempban`\n- `sab.notify.ipban`\n- `sab.notify.tempipban`\n- `sab.notify.mute`\n- `sab.notify.tempmute`\n- `sab.notify.ipmute`\n- `sab.notify.tempipmute`\n- `sab.notify.warn`\n- `sab.notify.caution`\n- `sab.notify.kick`\n- `sab.notify.note`\n- `sab.exempt.mute`\n- `sab.exempt.temp_mute`\n- `sab.exempt.ip_mute`\n- `sab.exempt.temp_ip_mute`\n\n## 🔧Developer API\n\nUnfortunately, SpicyAzisaBan itself does not provide helpful APIs for developers to use. (There are a lot of internal APIs that are not intended to be used by other plugins.)\nIf you do rely on internal API, you should be aware that it may change without notice.\n\nIf you need to automate the punishment system (but not unpunish) from backend Spigot/Paper server, you can use the API provided by [AziPluginMessaging](https://github.com/AzisabaNetwork/AziPluginMessaging).\nThis is one of our internal plugins, but we provide the API for developers who want to use it.\nYou need to install the plugin on both the backend (Spigot/Paper) server and the proxy (Velocity) server.\n\nYou can see the example of using the API in [PunishCommand.java](https://github.com/AzisabaNetwork/AziPluginMessaging/blob/main/spigot/src/main/java/net/azisaba/azipluginmessaging/spigot/commands/PunishCommand.java).\n\n## 🛟Support\n\nSupport is provided via our [Discord server](https://azisaba.dev).\n\n## 📜License\n\nThis project is licensed under the GNU General Public License v3.0.\n",
+  "categories": [
+    "management",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 298,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

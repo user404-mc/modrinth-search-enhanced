@@ -1,0 +1,23 @@
+{
+  "id": "Kszzuq4a",
+  "slug": "furnace-xp-storage",
+  "title": "Furnace XP Storage",
+  "description": "Allows furnaces to store XP like in MC 1.13+",
+  "body": "Furnaces in MC 1.12.2 and before do not store XP. Instead, players get XP when they extract the smelted items out of the furnace.\n\nDue to this behavior, breaking furnaces does not drop XP. And when you funnel out the output items with a hopper, you also do not get any XP.\n\nThis lightweight mod backports the behavior from Minecraft 1.13 and later, where furnaces store the XP from smelting inside the block. Breaking the furnace will spawn XP orbs. And even when funneling smelted items out of the furnace the smelted XP will stay inside the furnace. Players can extract that XP by locking the hopper and extracting one smelted item, or by simply breaking the furnace.\n\nv1.2.0+: Works for a lot of modded furnaces. If you find one that isn't supported, tell me!\n\nv1.3.0+: Thanks to roidrole the stored xp inside furnaces can be turned into any fluid (Essence of Knowledge / Luiqid XP etc) via config\n\nv1.3.1+: mod developers can register their modded Furnaces to store xp and treat it as fluid (if config enabled) via\n\nfurnacexpstorage.compat.CompatHandler.addModHandler(\"yourmodid\", () -> tile -> tile instanceof YourFurnaceTileEntity);\n\nif their TileEntity has its own copy of smeltItem() they will need to add the following line into that method\n\nfurnacexpstorage.util.SmeltItemHelper.storeXpFromSmelting(inputStack, cookedStack, this.getTileData());\n\nRequired dependency: FermiumBooter",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 161,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

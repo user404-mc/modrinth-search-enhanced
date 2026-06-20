@@ -1,0 +1,26 @@
+{
+  "id": "9NcniRI3",
+  "slug": "chatmsglib",
+  "title": "Chat Message Library",
+  "description": "A StringBuilder for Text, useful for commands and command-line tools.",
+  "body": "# Deprecation Notice\nI will no longer be actively supporting this mod, please use the [Fabric and NeoForge Adventure API port](https://docs.advntr.dev/platform/modded.html), create your own implementation, or fork it on Github to continue using it.\n\n# Chat Message Library\n\nI was annoyed that there was no [`java.lang.StringBuilder`](https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html) equivalent for `net.minecraft.text.Text`, so I decided to build my own.\n\n## For Users;\n\nThis is a library mod, and does not add anything to the game on its own.\\\nDownload the mod and drop it in your `.minecraft/mods/` folder.\\\nThis mod also requires [Fabric API](https://modrinth.com/mod/fabric-api) to work.\n\n## For Developers;\n\nTo use the library, add this to your `build.gradle`, `gradle.properties`, and your mod's `ModInitializer` class respectively:\n\n`build.gradle`:\n```groovy\nrepositories {\n    maven { url = \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n    modApi include(\"maven.modrinth:chatmsglib:${project.cml_version}\")\n}\n```\n`gradle.properties`:\n```properties\n# This may be out of date!!\ncml_version=1.1\n```\nYour `ModInitializer`:\n```java\npublic class YourMod implements ModInitializer {\n    \n    public static final ChatMessage CML = new ChatMessage();\n    \n    /*\n    * This text is generated at startup and is held until server stop\n    * To send it, use \"msg::send\", \"msg.send(PlayerEntity)\", or \"msg.send(CommandContext)\"\n    * You can also modify it on the fly by adding more text\n    */\n    private static final ChatMessage msg = CML\n            .header(\"This is always be displayed at the top of the message\", Formatting.AQUA)\n            .footer(\"This is always be displayed at the bottom of the message\", Formatting.BOLD, Formatting.BLUE)\n            .literal(\"Just a literal string, nothing special\", Formatting.BLUE)\n            .literal(\"Option for an \\\"on\\\" statement as well\",\n                    new ClickEvent(ClickEvent.Action.RUN_COMMAND, \"/help\"))\n            .object(\n                    // A List<Integer> turned into Text form\n                    new IntList(yourInts)\n                            // No spaces are added for Prefixes and Suffixes and must be added manually!\n                            .prefix(\"What comes before the number is printed \")\n                            .suffix(\" What comes after the number is printed\")\n                            .create())\n            .object(\n                    // A JsonObject turned into Text form\n                    new JsonList(yourJson)\n                            .prefix(\"- \")\n                            .indent(1)\n                            .create()\n            )\n            .object(\n                    // All text added to this object will display on the same line\n                    new Singleton()\n                            .add(Text.literal(\"Singletons are used to display text in one line only\"))\n                            .add(\n                                    Text.literal(\"Also, commands in-line as well\")\n                                        .styled(style -> style.withClickEvent(\n                                                new ClickEvent(ClickEvent.Action.RUN_COMMAND, \"/help\")\n                                        ))\n                            )\n                            .create()\n            )\n            .object(\n                    /*\n                    * You can create your own lists by extending xyz.blurple.chatmsglib.list.ChatList\n                    * It has to output List<Text>, everything else is your choice!\n                    */\n                    new YourList(yourInput)\n                            .prefix(\"= \")\n                            .create()\n            );\n\n    @Override\n    public void onInitialize() {\n        \n        // This command simply prints out msg with the formatting you chose\n        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->\n            dispatcher.register(\n                CommandManager.literal(\"your_command\")\n                    .executes(msg::send)\n            )\n        );\n    }\n}\n```\n\nIf you have a request or issue with the library, make an issue, and I'll take a shot at adding it.\\\nFeel free to do anything you like with this code; fork, learn, whatever you like.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 430,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

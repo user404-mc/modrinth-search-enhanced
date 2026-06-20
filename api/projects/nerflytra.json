@@ -1,0 +1,25 @@
+{
+  "id": "RQRvFljr",
+  "slug": "nerflytra",
+  "title": "Nerflytra - Nerf elytra boosting",
+  "description": "Disable or discourage using rockets while flying, performant and configurable.",
+  "body": "# Nerflytra - Make rockets burn elytras\n\nThis performant datapack stops/discourages players from using rockets to fly long distances by breaking their elytra or reducing its durability by 10% every time they do.\n\nThis pack is configurable, you can configure whether players elytras are damaged or entirely broken when they rocket, how often the pack checks (for the performance paranoid out there), and whether to allow some players to be excluded from this datapack's elytra-burning proclivities. See the **How to** section for guidance.\n\n## How to\n\n### Damage instead of destroy the elytra\n\nRun `/function nerflytra:toggle_damaging_instead_of_destroying_elytra`.\nWhen toggled on, this will make the datapack reduce the durability by 10% (instead of setting it directly to 1%) every time they use a rocket. Since this only occurs once per rocket-usage, players can use longer-lasting rockets to fly for longer.\n\nIf you want this to do even less damage, you can make the datapack check less frequently as described below. Note that this will make fireworks do far less damage.\nTo change this manually, you can edit the `damage` number in the file `/data/item_modifier/lower_durability.json`, this is a percentage between `1.00` and `0.00`.\n\n### Allow certain players to use rockets\n\nYou can exclude players from this datapack by giving them the scoreboard objective `nerflytra.can_rocket` with the value 1. Setting this to the value 0 will stop them from using rockets again. \nThe command to do this will look like `/scoreboard players set PLAYERNAME nerflytra.can_rocket 1`.\n\n### Make the datapack check less frequently\n\nBy default the datapack checks for flying players twice per second, and is very perfomant. If you don't need that precision or are extra cautious about performance, you can make this datapack check even less frequently with the function `/function nerflytra:toggle_frequency`. Note that if you've also configured this pack to only damage elytras instead of destroy them, this will make the elytra take significantly slower damage. \n\n## How it works\n\nIf a player is flying with an elytra in their chest slot when the datapack checks, and they have used firework rockets since the last check, their chest slot is damaged.\nThe datapack checks twice per second by default, but you can change this like described in the **How to** section.\nIf you set the option to not break the elytra but instead damage it, the elytras durability is reduced instead of destroyed, only half the sound effects play, and no message is shown.\nIf you've set this option but want it to do even less damage than usual, you can make the datapack check less frequently as described in the **How to** section.\n\n## License\n\nThis work is licensed under GPLv3.  You can think of it as allowing you to do anything with this code, as long as what you do with it also uses the GPLv3 license, and is shared for free.\nIf you have code suggestions you can reach out via bio and I can update the datapack, or potentially open a git repository for collaboration.\n\n",
+  "categories": [
+    "adventure",
+    "cursed",
+    "datapack",
+    "equipment",
+    "game-mechanics",
+    "optimization",
+    "transportation"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 226,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

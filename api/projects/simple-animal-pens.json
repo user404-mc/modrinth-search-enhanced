@@ -1,0 +1,34 @@
+{
+  "id": "jOfXHoyr",
+  "slug": "simple-animal-pens",
+  "title": "Simple Animal Pens",
+  "description": "A simple datapack that allows to store many animals in one block to reduce lag on the server",
+  "body": "Simple Animal Pens is a datapack that let players store infinte amounts of mobs in a single block. The pack strive to full support of all vanilla features as well as compatibility with other packs (and even mods in some cases).\n\nPlease report bugs on this project github page or my discord server\n\nFabric loader requires fabric API\n\nSupport [Ponder lib](https://modrinth.com/datapack/ponder-lib) \n\nUses [Smithed conventions](https://docs.smithed.dev/conventions/) for compatability\n\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/nhsLDNRMm8U\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n### items:\n\n- Animal jar.\n>the animal jar let you collect and store the animals into it.\n   \n- Animal pen.\n>the pen is block that let you place the jar in the world. in order to do that first collect some animals in your jar then right click on empty pen \n\n### Commands:\nGive jar:\n```\nloot give @p loot sap:animal_jar\n```\nGive pen:\n\n```\nloot give @p loot sap:animal_pen\n```\nChanging pack settings: \n```\ndialog show @s sap:settings\n```\n\n\n\n<details>\n<summary>Technical details to modifiy the pack behavior </summary>\nIf you want to add support for new mobs that not supported by default, this section will guide you \nkeep in mind you must use the same namespaces for it to work.\n> NOTE : when you see `ENTITY` inside function or tag you need to put the entity name without the namespace instead e.g. \"minecraft:cow\" -> \"cow\"\n\n## 1-adding mob\n\nadding the mob into the entity tag `#sap:fit_in_jar`\nyou can edit the whole tag if you want to remove animal, or you can just addon top of it with replace : false\n```\n  {\n    \"replace\": false,\n    \"values\": [\n        \"minecraft:cow\",\n        \"minecraft:pig\",\n        \"minecraft:sheep\",\n        \"minecraft:chicken\",\n        \"minecraft:turtle\",\n        \"minecraft:bee\",\n        \"minecraft:rabbit\"\n    ]\n}\n```\n### 2-adding right click functions\n\ncreate new item tag inside sap named `used_on_ENTITY` and specify what items can be used on this mob\n\nthen create new function named `interact_with_ENTITY` in \n```\nsap:click_functions/loot/\n```\ninside the function you can run whatever you want. you can split the function into 2 or more if you want more than 1 click function or diffrent tools \nthe default file for bee looks like that \n```\nexecute if items entity @p[tag=this] weapon.mainhand *[minecraft:custom_data~{smithed:{ignore:{functionality:1b}}}] run return fail\n\nscoreboard players set @s sap.function_cooldown 12000\nscoreboard players operation @s sap.function_cooldown -= @s sap.entity_count\nscoreboard players add @s sap.function_cooldown 100\n\nexecute as @p[tag=this] run function sap:click_functions/loot/specific/collect_honey\n```\ninside the specific function you can add sounds,clear items,give items,particals etc\n\n### 3-breeding\nto add viable food for breeding create(or use the vanila one) item tag under the MINECRAFT namespace called `ENTITY_food`\n### 4-Tool for breaking\ntool needed to break the farm controlled by the item tag sap:tool_to_break\n\n### 5-Tool for killing\ntool needed to kill entity in the farm controlled by the item tag sap:tool_to_kill\n\n\n\n</details>\n\n\n",
+  "categories": [
+    "datapack",
+    "fabric",
+    "food",
+    "forge",
+    "mobs",
+    "neoforge",
+    "optimization",
+    "quilt",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 781,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

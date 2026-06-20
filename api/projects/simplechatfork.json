@@ -1,0 +1,27 @@
+{
+  "id": "O2DN3m2D",
+  "slug": "simplechatfork",
+  "title": "SimpleChat (fork)",
+  "description": "A small mod for a customizable chat, with the most simple settings. Integration with LuckPerms and FTB Teams.",
+  "body": "# SimpleChat (fork)\n\n![Modrinth downloads badge](https://img.shields.io/modrinth/dt/O2DN3m2D)\n![Modrinth versions badge](https://img.shields.io/modrinth/game-versions/O2DN3m2D)\n![issues badge](https://img.shields.io/github/issues/stanlystark/SimpleChat)\n![java 17 badge](https://img.shields.io/badge/java-17+-orange?logo=java)\n\n### This fork was created because the main project is [no longer maintained](https://github.com/cayennemc/SimpleChat/issues/11).\n\n_A simple chat mod for your server._\n\nWorks even in a single player game.\n\nJust use `!<message>` for global chat or `#<message>` for world chat!\n\n![Example image showing formatted chat messages](https://i.imgur.com/0DPfadW.png)\n## Features\n- FTB Teams integration _(tested 2001.1.4)_\n- LuckPerms integration _(tested 5.4.25)_\n- Global, world and local chat (you can turn it off)\n- Color chat (you can turn it off)\n- Reloading the configuration with the command\n- Support [PlacehoderAPI](https://placeholders.pb4.eu/user/general/) (From 1.19.4)\n- Added support color tags _(<bold><red>Example</bold>)_  (From 1.19.4)\n\n- For developers: Player chat event\n\n## Configuration\nThe configuration is located in `<game or server directory>/config/simplechat.json`.\n| Name | Description | Type |\n|-|-|-|\n| enable_chat_mod | Enables (true) or disables (false) chat handling by the mod. | boolean |\n| enable_global_chat | Enables (true) or disables (false) the global chat. | boolean |\n| enable_world_chat | Enables (true) or disables (false) the world chat. | boolean |\n| enable_chat_colors | Enables (true) or disables (false) the use of color codes in the chat. | boolean |\n| local_chat_format | Defines the appearance of the local chat. | String |\n| global_chat_format | Defines the appearance of the global chat. | String |\n| no_players_nearby_text | Defines a message for local chat when there are no players nearby. | String |\n| no_players_nearby_message | Enables (true) or disables (false) message. | boolean |\n| no_players_nearby_action_bar | Enables (true) or disables (false) action bar message. | boolean |\n| chat_range | Specifies the distance after which local chat messages will not be visible (if global chat is enabled). | int |\n\n```json\n{\n  \"enable_chat_mod\": true,\n  \"enable_global_chat\": true,\n  \"enable_world_chat\": false,\n  \"enable_chat_colors\": false,\n  \"local_chat_format\": \"%player%&7:&r &7%message%\",\n  \"global_chat_format\": \"&8[&2G&8] &r%player%&7:&r &e%message%\",\n  \"world_chat_format\": \"&8[&9W&8] &r%player%&7:&r &e%message%\",\n  \"no_players_nearby_text\": \"&fNo players nearby. Please use &e!<message> &ffor global chat.\",\n  \"no_players_nearby_message\": true,\n  \"no_players_nearby_action_bar\": true,\n  \"chat_range\": 100\n}\n```\nYou can use the placeholder `%player%` to specify the player's nickname and the placeholder `%message%` to specify their message in the chat.\n\n- `%ftbteam%` FTB Team integration - display your party in chat.\n- `%lp_group%` LuckPerms - display player group.\n- `%lp_prefix%` LuckPerms - display player prefix.\n- `%lp_suffix%` LuckPerms - display player suffix.\n\nYou can reload the configuration without restarting the server or the game using the `/simplechat` command (requires [permission level](https://minecraft.fandom.com/wiki/Server.properties#op-permission-level) 1 or more).\n\n## API\nIf you are a developer, you can use an event called when a player writes something to the chat.\n\nLook [`me.vetustus.server.simplechat.api.event.PlayerChatCallback`](src/main/java/me/vetustus/server/simplechat/api/event/PlayerChatCallback.java). \nTo control the behavior, use the [ChatMessage](src/main/java/me/vetustus/server/simplechat/api/event/PlayerChatCallback.java#L47) subclass, which can be used to cancel sending a message or change it.\n\n*Example:*\n```java\n/**\n * Prohibits players from writing messages by canceling an event.\n */\nPlayerChatCallback.EVENT.register((player, message) -> {\n  PlayerChatCallback.ChatMessage chatMessage = new PlayerChatCallback.ChatMessage(player, message);\n  chatMessage.setCancelled(true);\n  return chatMessage;\n});\n```\n## License\nThe MIT license is used.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2963,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

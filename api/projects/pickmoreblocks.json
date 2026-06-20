@@ -1,0 +1,23 @@
+{
+  "id": "Yyt4WQU9",
+  "slug": "pickmoreblocks",
+  "title": "PickMoreBlocks",
+  "description": "Expands the middle mouse click action to fix some vanilla pet peeves! [ARCHIVED: MIGHT GET REMADE IN THE FUTURE!]",
+  "body": "# Hi there! Thank you for checking out PickMoreBlocks!\n\n<strong>PickMoreBlocks</strong> is a client-side [Fabric](https://fabricmc.net) mod that attempts to fix what I believe to be small gaps in the vanilla middle mouse click functionality, making the creative and survival experience _that little bit smoother_! Currently, it affects the behaviour of falling blocks, TNT, fire, nether portals and liquids, with more to come in the future!\n***\n\n### Getting Started\nDue to the use of `BlockPickInteractionAware` and `EntityPickInteractionAware` interfaces to make this mod compact, you will need to download [Fabric API](https://github.com/FabricMC/fabric) in order to use it. Once you have, simply drag both the Fabric API and <strong>PickMoreBlocks</strong> into your mods folder.\n\nThere is no configuration menu at this stage, since I don't deem the features of this mod to be obvious nor plentiful enough for you to want to disable them. However, if you play on a server, consider contacting your server admin to make sure they don't consider this mod to be a cheat.\n***\n\n### Feature List\n#### TNT & Gravity-Affected Blocks\nIn vanilla, gravity-affected blocks like sand can only be pickblocked when they are stationary, in block form. <strong>PickMoreBlocks</strong> fixes this to work with fallingBlock entities too!\n\nFor the sake of inclusion, TNT has also been fixed in the same way. I'd imagine this is only really useful for technical players who work with TNT, a group far larger than 0 these days!\n#### Water & Lava\nEver since this mod released, I have wanted to add this feature! If you're aiming your crosshair at a liquid without selecting a block behind it, you will be given the bucket that corresponds to the liquid--a water bucket for water, and a lava bucket for lava.  \n#### Fire & Portals\nIn <strong>PickMoreBlocks</strong>, Fire and portals can give you flint and steel when middle-mouse clicked. The reason why this is so complicated is because flint and steel is not the only way to start a fire in Minecraft, so if the game cannot find flint and steel in your inventory but it _can_ find a fire charge, it will give that to you instead!\n\nIf you have neither flint and steel nor a fire charge in your creative mode inventory, you will be given a fully repaired flint and steel.\n<details>\n  <summary>\n    <h4>For the nerds who want to know how the code for this works, click here!</h4>\n  </summary>\n  <blockquote>\n\n    public class CustomPickLogic {\n\n        public static ItemStack onPickFire(PlayerEntity player) {\n            for (int i = 0; i < player.getInventory().size(); i++) {\n                ItemStack getStackAtSlot = player.getInventory().getStack(i);\nIteratively check every slot in the player's inventory.\n\n                if (getStackAtSlot.isOf(Items.FLINT_AND_STEEL) || getStackAtSlot.isOf(Items.FIRE_CHARGE))\n                    return getStackAtSlot;\nIf the slot contains flint and steel or (at a lower priority) a fire charge, swap it with the mainhand slot...\n\n            }\n            return new ItemStack(Items.FLINT_AND_STEEL);\n...or if neither can be found, try to give the player a new flint and steel (fails outside of creative mode)!\n\n        }\n\n    }\n  </blockquote>\n</details>",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 6532,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "B3pb093D",
+  "slug": "rpl",
+  "title": "Ritchie's Projectile Library",
+  "description": "A Minecraft modding library for better projectiles.",
+  "body": "# Ritchie's Projectile Library\n\nCode reused in multiple projects by rbasamoyai.\n\nAdds the following features:\n- `#ritchiesprojectilelib:precise_motion`: an entity type tag that sends more\n  detailed movement and position data to clients.\n- A configurable chunkloading system oriented towards modded long-range and\n  fast projectiles.\n  - Unloads forceloaded chunks that are no longer in use\n  - Loads a portion of forceloaded chunks at a time to reduce performance\n    impact while still allowing for many long distance projectiles\n- Screen shake effect for mods, particularly those focused on firearms and\n  artillery\n- Projectile bursts, for effective simulation of things like fragmentation\n  explosions, shotgun pellets, and shrapnel shells without having to rely on\n  large amounts of entities\n\n---\n\n## Depending on RPL\n\nFirst, add the following maven to your `repositories` block:\n```gradle\nrepositories {\n    //...\n    maven { // Ritchie's Projectile Library\n        url = \"https://maven.realrobotix.me/master/\"\n        content {\n            includeGroup(\"com.rbasamoyai\") // THIS IS IMPORTANT\n        }\n    }\n}\n```\n\nRPL artefacts are formatted as follows:\n```\nritchiesprojectilelib-<rpl_version>+mc.<minecraft_version>-<rpl_platform>-build.<rpl_build_number>\n```\nwhere `rpl_version` is the version of Ritchie's Projectile Library,\n`minecraft_version` is the Minecraft version, `platform` is the modloader\nplatform, of which `forge`, `fabric`, and `common` JARs are provided, and\n`build_number` is the build number.\n\nThe latest build can be found in the GitHub actions history:\nhttps://github.com/Wagers-of-Industrial-Warfare/RitchiesProjectileLib/actions\n\nDepending on your `build.gradle` setup, add one of the following to your\n`dependencies` block:\n\n__ForgeGradle (1.18.2-1.20.1)__\n```gradle\nimplementation fg.deobf(\"com.rbasamoyai:ritchiesprojectilelib:<rpl_version>+mc.<minecraft_version>-forge-build.<rpl_build_number>\") { transitive = false }\n```\n\n__Loom (Fabric/Architectury)__\n```gradle\nmodImplementation(\"com.rbasamoyai:ritchiesprojectilelib:<rpl_version>+mc.<minecraft_version>-<rpl_platform>-build.<rpl_build_number>\") { transitive = false }\n```\n`rpl_platform` should either be `common`, `forge`, or `fabric` depending on\nthe Architectury subproject you add the mod to. For Fabric, only use `fabric`.",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1821724,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

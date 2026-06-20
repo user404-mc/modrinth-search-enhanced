@@ -1,0 +1,25 @@
+{
+  "id": "DGaH8Rh0",
+  "slug": "apothic-attributes",
+  "title": "Apothic Attributes",
+  "description": "A library that adds the Attributes GUI, alongside a suite of new attributes to work with",
+  "body": "# Description\n\nApothic Attributes is a library mod that provides a variety of attributes and attribute-related utilities, which makes interacting with, debugging,\nand using attributes much easier. The current list of Attributes is [available\nhere](https://github.com/Shadows-of-Fire/Apothic-Attributes/blob/1.20/src/main/java/dev/shadowsoffire/attributeslib/api/ALObjects.java#L26). Most\nof the features are developer-facing, but there are a few user-facing components:\n\n# The Attributes GUI\n\nApothic Attributes provides an Attributes GUI, accessible via the sword button in your inventory. This GUI shows all attributes that are attached\nto your player. You can filter the displayed attributes to only show modified attributes, and hovering an attribute will show a description and\ndetailed information.\n\n![Attributes GUI](https://i.imgur.com/stOm5Tk.png)\n\n# Armor Calculations\n\nTo support the addition of Armor Pierce, Armor Shred, Protection Pierce, and Protection Shred, Apothic Attributes changes the way that damage\nreduction calculations are done, for both Armor and Protection.\n\n[In vanilla](https://minecraft.wiki/w/Armor#Mechanics), armor reduces damage based on your armor toughness value and the incoming damage value.\nWith [Apothic Attributes](https://github.com/Shadows-of-Fire/Apothic-Attributes/blob/1.20/src/main/java/dev/shadowsoffire/attributeslib/api/ALCombatRules.java#L92), only armor reduces incoming damage, and armor toughness reduces the effectiveness of enemy Armor Shred and Armor Pierce. For\nspecifics on damage formulas, [see\nhere.](https://github.com/Shadows-of-Fire/Apothic-Attributes/blob/1.20/src/main/java/dev/shadowsoffire/attributeslib/api/ALCombatRules.java#L71)\n\nThe changes in damage taken as a result of this can be seen in the following chart, where \"New Apoth\" is the formula currently used by Apothic\nAttributes. This chart does not take protection calculations into account. The changes to protection are described\n[here](https://github.com/Shadows-of-Fire/Apothic-Attributes/blob/1.20/src/main/java/dev/shadowsoffire/attributeslib/api/ALCombatRules.java#L48).\n\n![](https://i.imgur.com/j2iRIPV.png)\n\n# Potion Tooltips\n\nAnother player-facing feature is the changes to potion tooltips. Descriptions will be added to potion items that are not simple attribute\nmodifiers, and these descriptions (as well as the attribute modifiers) will be shown when hovering your active effects in the inventory.\n\n![](https://i.imgur.com/faMtfdW.png)\n\n# Attribute Formatting\n\nApothic Attributes allows attributes to format their own tooltips. The most notable example of attributes with custom formatting are Percent-Based\nAttributes, which always display their values in percentage form, regardless of their modifier type. The vanilla attributes **Speed** and\n**Knockback Resistance** are displayed in Percent-Based mode.\n\nPart of this feature is the additional tooltip information. When advanced tooltips (f3+h) are enabled, additional information about the modifier\ntype and the underlying value will be shown.\n\n![](https://i.imgur.com/Ku74Yn8.png)\n\n## Advanced Tooltip Info Reference\n\nAddition modifiers will show text similar to **[+100]**\n\nMultiply Base modifiers will show text similar to **[+20x]**\n\nMultiply Total modifiers will show text similar to **[x10]**\n\nNote that Multiply Total values have their underlying value offset by +1, even in the advanced tooltip display. This is due to how they are applied\n(a multiply total modifier causes the final value to be multiplied by 1+value).\n\n# Developing\n\nApothic Attributes depends on Placebo, and is available via maven:\n\n```gradle\nmaven {\n  // Shadows_of_Fire's Maven\n  url \"https://maven.shadowsoffire.dev/releases\"\n}\n\ndependencies {\n  implementation fg.deobf(\"dev.shadowsoffire:Placebo:${mcVersion}-${placeboVersion}\")\n  implementation fg.deobf(\"dev.shadowsoffire:ApothicAttributes:${mcVersion}-${attributesLibVersion}\")\n}\n```\n\nThe API package (https://github.com/Shadows-of-Fire/Apothic-Attributes/tree/1.20/src/main/java/dev/shadowsoffire/attributeslib/api) of Apothic\nAttributes contains everything you should need to interface with from the mod.\n\n# Support Me\n\n[![](https://i.imgur.com/4D6zgZt.png)](https://discord.com/servers/shadows-mods-613010559532531713)\n[![](https://i.imgur.com/2kmJdLg.png)](https://www.akliz.net/shadows)\n\n## Contact\n\nDiscord: <https://discord.shadowsoffire.dev/landing>",
+  "categories": [
+    "adventure",
+    "equipment",
+    "forge",
+    "game-mechanics",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 391,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

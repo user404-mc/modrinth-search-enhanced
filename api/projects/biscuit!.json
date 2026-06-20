@@ -1,0 +1,40 @@
+{
+  "id": "fRCaJmPG",
+  "slug": "biscuit!",
+  "title": "Biscuit!",
+  "description": "A simple API for working with 1.20.5 cookies and transfers in an easy and secure way!",
+  "body": "[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)\n[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)\n\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G4DZF4D)\n\n<img src=\"https://raw.githubusercontent.com/MrNavaStar/Biscuit/master/src/main/resources/assets/biscuit/biscuit.png\" width=\"300\" height=\"300\">\n\n\n# Biscuit!\n\nA simple API for working with 1.20.5 cookies and transfers in an easy and secure way!\n\n## Features\n\n- [x] Cookies as POJOs\n- [x] Injected interfaces on many networking classes\n- [x] Cookie Signing for tamper detection\n- [x] Event system\n- [ ] Automatic identifier generation (May not be possbile)\n- [ ] Encryption\n- [ ] Spreading large data across many cookies\n\n# Setup\nIn your build.gradle include:\n``` gradle\nrepositories {\n    maven { url \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n  modImplementation(\"maven.modrinth:biscuit!:1.1.0\")\n}\n```\n\n## Dev\n\n```java\n// Make a class to represent your cookie\npublic static class TestCookie {\n\n    private final String data;\n    \n    public TestCookie(String data) {\n        this.data = data;\n    }\n\n    @Override\n    public String toString() {\n        return data;\n    }\n}\n\n// Register the cookie:\nBiscuit.register(new Identifier(\"test\", \"cookie\"), TestCookie.class);\n\n// Register the cookie with a secret for tamper detection. The secret must be the same on all servers requesting this cookie:\nBiscuit.register(new Identifier(\"test\", \"cookie\"), TestCookie.class).setSecret(\"my_secret\");\n\n// Set/Get the cookie from the ServerPlayerEntity, ClientConnection, or any of the network handlers (Not handshake)\nTestCookie cookie = new TestCookie(\"whoohoo!\");\nplayer.setCookie(cookie);\n\nplayer.getCookie(TestCookie.class).whenComplete((cookie, throwable) -> {\n    System.out.println(cookie);\n});\n```\n\nSet a cookie before your mod (or another mod/the transfer command) transfers the player:\n```java\nBiscuitEvents.PRE_TRANSFER.register((packet, profile, cookieJar, ci) -> {\n    cookieJar.setCookie(cookie);\n});\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "quilt",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1268,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

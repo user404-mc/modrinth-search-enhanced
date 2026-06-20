@@ -1,0 +1,26 @@
+{
+  "id": "tusgSpOV",
+  "slug": "worldoptimiser",
+  "title": "WorldOptimiser",
+  "description": "A Minecraft Forge mod that automatically optimizes worlds when mod changes are detected, specifically designed to solve ReplayMod block ID mismatch issues.",
+  "body": "# WorldOptimiser\n\n**Automatic World Optimization for ReplayMod Compatibility**\n\nA Minecraft Forge mod that automatically optimizes worlds when mod changes are detected, specifically designed to solve ReplayMod block ID mismatch issues.\n\n## 🎯 Purpose\n\nThis mod was created to solve a critical issue with [ReforgedPlay Mod](https://www.curseforge.com/minecraft/mc-mods/reforgedplay-mod) (version 0.3.1) where adding or removing mods that contain blocks, models, or textures causes ReplayMod to display incorrect textures and models in replay recordings.\n\n### The Problem\n- **ReplayMod works perfectly** when a world is generated with a fixed set of mods\n- **Issues arise** when you add or remove mods containing blocks, models, or textures\n- This changes the reference ID list, causing ReplayMod to jumble block IDs\n- **Previous manual fix**: Download world → Open in singleplayer → Manually optimize → Re-upload\n- **This was tedious and risky** for server environments where mods need to be changed on-the-fly\n\n### The Solution\nWorldOptimiser automatically detects mod list changes and triggers the world optimization process that you would normally do manually through the \"Optimize World\" button in singleplayer. This recalibrates the ID mappings and fixes ReplayMod compatibility issues.\n\n## ✨ Features\n\n- **Automatic Detection**: Monitors for mod additions, removals, and version changes\n- **Smart Optimization**: Only runs when actual mod changes are detected\n- **Server-Side**: Works on both dedicated servers and integrated servers\n- **Non-Intrusive**: Runs seamlessly in the background during world startup\n- **Replay-Safe**: Ensures your ReplayMod recordings display correctly after mod changes\n\n## 🔧 How It Works\n\n1. **Startup Check**: When a world loads, the mod reads the saved mod list from `level.dat`\n2. **Comparison**: Compares the saved mod list with currently loaded mods\n3. **Detection**: Identifies any additions, removals, or version changes\n4. **Optimization**: Automatically runs the world optimization process if changes are detected\n5. **Completion**: World starts normally with updated ID mappings\n\n## 📋 Requirements\n\n- **Minecraft**: 1.20.1\n- **Forge**: 47.4.0 or higher\n- **Java**: 17+\n\n## 📦 Installation\n\n1. Download the latest release from the releases page\n2. Place `worldoptimiser-1.0.jar` in your `mods` folder\n3. Start your server/world - the mod will automatically handle optimization when needed\n\n## 🎮 Usage\n\nNo configuration required! The mod works automatically:\n\n- Install the mod\n- Add/remove other mods as needed\n- Start your world - optimization happens automatically if mod changes are detected\n- Your ReplayMod recordings will now display correctly\n\n## 📝 Log Output\n\nWhen the mod detects changes, you'll see messages like:\n```\n[Server thread/WARN] [worldoptimiser]: Detected new mods world will be optimised on startup\n[Server thread/INFO] [worldoptimiser/worldupgrader]: World will be optimised it may take a while, please wait...\n[Server thread/INFO] [worldoptimiser/worldupgrader]: World optimisation complete\n```\n\n## 🐛 Known Issues\n\n- World optimization can take some time for large worlds\n- The process blocks world startup until completion (this is necessary for proper ID remapping)\n\n## 👨‍💻 Created For\n\nThis mod was specifically created for **[@protagnst](https://youtube.com/@protagnst)** to solve ReplayMod compatibility issues in their content creation workflow.\n\n## 💼 Custom Development\n\nNeed a custom mod solution for your specific use case? I'm available for hire for custom Minecraft mod development and similar technical solutions.\n\n**Contact**: Available for custom development work - reach out if you have similar issues that need solving!\n\n## 📄 Technical Details\n\n- **Mod ID**: `worldoptimiser`\n- **Version**: 1.0\n- **Author**: Pelotrio\n- **License**: All Rights Reserved\n\n### Compatibility Note\nThis issue was specific to ReforgedPlay Mod v0.3.1 on Forge 1.20.1. Previous versions (Forge 1.16.5 and Fabric versions) handled ID changes automatically, but this functionality was lost in the 1.20.1 Forge version.\n\n## 🔧 For Developers\n\nThe mod hooks into Forge's mod loading events and world startup to:\n- Detect mod list changes via `ModMismatchEvent`\n- Read/compare mod lists stored in world NBT data\n- Trigger Minecraft's built-in `WorldUpgrader` when needed\n- Ensure compatibility with ReplayMod's block ID system\n\n---\n\n*This mod solves a specific technical issue with ReplayMod compatibility. If you're experiencing similar block ID or texture mapping issues after mod changes, this tool automates the manual optimization process that was previously required.*\n",
+  "categories": [
+    "forge",
+    "management",
+    "optimization",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2422,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

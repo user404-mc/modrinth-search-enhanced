@@ -1,0 +1,23 @@
+{
+  "id": "bgUHPLzW",
+  "slug": "luadatapack",
+  "title": "LuaDatapack",
+  "description": "A simple mod that allows lua to be included in datapacks",
+  "body": "![Logo](https://raw.githubusercontent.com/kinderhead/LuaDatapack/master/logo.png)\n\n[![Releases](https://img.shields.io/github/v/release/kinderhead/LuaDatapack?include_prereleases&sort=semver)](https://github.com/kinderhead/LuaDatapack/releases)\n[![Downloads](https://img.shields.io/modrinth/dt/bgUHPLzW)](https://modrinth.com/mod/luadatapack)\n\n# LuaDatapack\n\nAllows lua scripts to be ran in Minecraft.\n\nNote: LuaDatapack is in beta, so the api is subject to change.\n\nI currently don't plan on working on this project much more. Instead I've been making a dedicated programming language that compiles to Minecraft commands called [Amethyst](https://github.com/kinderhead/Amethyst/). It's more useful than this because it doesn't require a dedicated mod.\n\n## Usage\n\nCreate a new datapack with the `lua` subfolder. For example: `data/foo/lua/bar.lua`.\n\n## Features\n\n* Uses [Cobalt](https://github.com/SquidDev/Cobalt) under the hood, which gives fast execution times\n* Scripts can be included from datapacks using `require` and use Minecraft's namespaced id system\n* [TypeScriptToLua](https://typescripttolua.github.io/) support\n* Supports a few common utility libraries\n    * [json.lua](https://github.com/rxi/json.lua)\n    * [class.lua](https://github.com/jonstoler/class.lua)\n\n## Commands\n\n### `/lua`\n\nUsage: `/lua <name> [<args>]`\n\nExample, to run `data/foo/lua/bar.lua`: `/lua foo:bar`\n\nArguments can be accessed via an array called `args` in the lua script.\n\n## Api\n\nThe api reference can be found [here](https://kinderhead.github.io/LuaDatapack/).\n\n## Standard library\n\nA few utility libraries are included by default.\n\n|Library|Path|\n|---|---|\n|[json.lua](https://github.com/rxi/json.lua)|`std:json`|\n|[class.lua](https://github.com/jonstoler/class.lua)|`std:class`|\n|Standard lua library|`std:math`|\n|Standard lua library|`std:string`|\n|Standard lua library|`std:bit32`|\n|Standard lua library|`std:utf8`|\n|Commands library|`std:commands`|\n|Storage library|`std:storage`|\n|Configuration utilities library|`std:config`|\n\nNote: If you prefer a different OOP library, you can simply add one to your datapack.\n\n## Project system\n\nThere is a simple project system which allows for customization of which scripts can be executed and imported by external projects (scripts not in the same namespace).\n\nTo customize your project, add a `_project.lua` file to your namespace. For example if the namespace was `foo` then you would make a `foo:_project.lua`:\n\n``` lua\nreturn {\n    scripts = {\"foo:bar\"},\n    exports = {\"foo:baz\"},\n    depends = {\"hello\"},\n\n    load = {\"foo:load\"},\n    tick = {\"foo:tick\"}\n}\n```\n\nIn the above example `foo:bar` is a script to be ran via `/lua`, `foo:baz` is a script that any file can `require`, and it requires the `hello` project to function. Scripts can import any script in the same namespace, even if it is not included in the `exports` array. If a project does not include a `_project.lua`, then the default `std:_default_datapack` is used instead:\n``` lua\nlocal config = require(\"std:config\")\n\nreturn {\n    scripts = config.without_underscore(),\n    exports = {}\n}\n```\n\nNote: not all fields need to be explicitly defined.\n\nIf a project fails to load, all scripts in it are unable to load.\n\n## Contributing\n\nBuilding this repo is the same as any other Fabric mod. There may be issues with libraries (Cobalt, Apache commons-io, etc) not loading when starting the game, but running the game though the VSCode debugger works for some reason.\n\n### Things to do\n\n* Optimize lua api\n* Add more api features\n* Use commands less internally\n\n## Planned features\n\n* More commands\n* Development tools with [TypeScriptToLua](https://typescripttolua.github.io/)\n\n## Links\n\nSource: https://github.com/kinderhead/LuaDatapack\n\nModrinth: https://modrinth.com/mod/luadatapack\n\nApi reference: https://kinderhead.github.io/LuaDatapack\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1396,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

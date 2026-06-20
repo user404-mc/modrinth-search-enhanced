@@ -1,0 +1,27 @@
+{
+  "id": "V0msTysK",
+  "slug": "devs-directional-movement-based-textures-template",
+  "title": "Dev's Directional Movement Based Textures Template",
+  "description": "A template resource pack used to make textures that change based on the players movement.",
+  "body": "# 🎮 Dev's Directional Movement Based Textures Template (Minecraft Resource Pack)\n\nThis is a **template resource pack** for Minecraft that allows item textures to dynamically change based on **player key input** — such as movement keys or sneaking.  \nIt leverages Minecraft’s **model predicate system** (`minecraft:condition` and `keybind_down`) introduced in 1.20.5+ snapshots.\n\n---\n <summary><strong>📁 Directory Structure</strong></summary>\n\n<pre>assets/\n└── minecraft/\n    ├── items/\n    │   └── bucket.json                         <- Main model that loads conditionally\n    ├── models/\n    │   └── custom_item_models/\n    │       └── bucket/\n    │           ├── forwards.json\n    │           ├── backwards.json\n    │           ├── left.json\n    │           ├── right.json\n    │           ├── sprinting.json\n    │           ├── sneaking.json\n    │           └── still.json                 <- Sub-models per movement key\n    └── textures/\n        └── item/\n            └── custom_item_textures/\n                └── bucket/\n                    ├── forwards.png\n                    ├── backwards.png\n                    ├── left.png\n                    ├── right.png\n                    ├── sprinting.png\n                    ├── sneaking.png\n                    └── still.png             <- Custom textures linked to sub-models\n </pre>\n</details>\n\n\n---\n\n## 🛠 How It Works\n\n- The `item/bucket.json` model is the **entry point**, rename this to whatever item you want to edit.\n- It uses nested `minecraft:condition` logic to detect **active keybinds** like:\n  - `key.forward`, `key.back`, `key.left`, `key.right`, and `key.sneak`.\n- Based on the key pressed, it loads a different model from `custom_item_models/bucket/`, which links to a texture in `custom_item_textures/bucket/`.\n- It can detect the sneak key, the sprint key and the directional keys.\n- The sneak texture overwrites all others then the sprint texture overwrites the rest followed up by the cardinal directions.\n\n---\n\n## ✏️ How to Customize\n\n1. **Use a Different Item**  \n   - Copy and rename `bucket.json` to another item path (e.g. `carrot_on_a_stick.json`).\n   - Update paths inside the file to match your new model/texture folder.\n\n2. **Add More Folders for Modular Support**  \n   - Create new folders under `custom_item_models/` for each item type (e.g., `sword/`, `shield/`).\n   - Each folder can contain unique movement-based sub-models.\n\n3. **Link Your Own Textures**  \n   - Change the `textures.layer0` property in each sub-model (`left.json`, `right.json`, etc.) to use your custom textures.\n\n4. **Add More Conditions**  \n   - Include additional states like `key.use`, `key.jump`, etc., by expanding the logic tree in the main `.json`.\n\n5. **Use Misode's Item Generator**  \n   - (https://misode.github.io/assets/item/).\n   - Copy and paste the contents of `bucket.json` to the bottom right of the website and easily edit the json.\n   - Donate to Misode cause they're cool. (https://ko-fi.com/misode)\n\n---\n\n## ⚠️ Limitations\n\n- **Experimental Feature**:  \n  This uses features only available in Minecraft **1.20.5+**.\n\n- **Client-Side Only**:  \n  It works based on local **keybind inputs**, not actual movement, velocity, or server-side conditions.\n\n- **One Input at a Time**:  \n  The system processes inputs **sequentially**, so combining multiple simultaneous key presses is complex without deep nesting.\n\n- **Keybinds Only**:  \n  Only supports detecting keys like:\n  - `key.forward`, `key.back`, `key.left`, `key.right`, `key.jump`, `key.sneak`etc.\n  - It does **not** detect mouse movement or other conditions.\n\n---\n\n## ✅ Great For\n\n- Tools that visually indicate player movement.\n- Gadgets or accessories with reactive visuals.\n- Animated HUD-style items (compass-like behavior, indicators, etc.).\n\n---\n\n## 📌 License\n\nYou may use this template freely. Attribution is required unless otherwise stated.\n\n---\n\n## 🔗 Links\n\n\n1. **My other packs**  \n   - CurseForge (https://www.curseforge.com/members/theonetruedev/projects)\n   - Modrinth (https://modrinth.com/dashboard/projects)\n\n1. **Donations <3**  \n   - <3 (https://buymeacoffee.com/theonetruedev)\n---\n",
+  "categories": [
+    "minecraft",
+    "models",
+    "tweaks",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 115,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

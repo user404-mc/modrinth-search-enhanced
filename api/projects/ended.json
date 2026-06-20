@@ -1,0 +1,30 @@
+{
+  "id": "NtlsPMR3",
+  "slug": "ended",
+  "title": "Endrous Edibles",
+  "description": "A teleportation engine with built-in consumable support",
+  "body": "Inspired by **[Dimensional Edibles](https://www.curseforge.com/minecraft/mc-mods/dimensional-edibles)**, this mod is the perfect solution for data pack creators and mod authors alike for transporting players to preset locations or dimensions via food.\n\nWant to make potatoes teleport you to the End? Sure, here's the JSON file:\n\n```json\n{\n  \"edible\": {\n    \"item\": \"minecraft:potato\"\n  },\n  \"rules\": [\n    {\n      \"from\": [\n        \"!minecraft:the_end\"\n      ],\n      \"destinations\": {\n        \"fountain\": {\n          \"pos\": [0, 100, 0],\n          \"world\": \"minecraft:the_end\"\n        }\n      }\n    }\n  ]\n}\n```\n\nOh, you want to use code instead? I got you:\n\n```java\nEdible edible = EdibleBuilder.create()\n        .edible(Ingredient.ofItems(Items.POTATO))\n        .addRule(RuleBuilder.create()\n                .addSource(new Identifier(\"minecraft:the_end\"), false)\n                .addDestination(\"fountain\", DestinationBuilder.create()\n                        .world(World.END)\n                        .location(0, 100, 0)\n                        .build())\n                .build())\n        .build(new Identifier(\"example:end_potato\"));\n\nEndrousEdiblesAPI.registerEdible(edible);\n```\n\n## Notes\n\n- You don't have to use this for food. At its core, this is a teleportation engine. There are both API methods and a command for retrieving and triggering edibles on players.\n- This example is very straightforward, but edibles' control flow can quickly become complex. I recommend [reading the wiki](https://github.com/acikek/endrous-edibles/wiki)—don't worry, it's light—before creating anything.\n- This mod was created for [Atlas Greece](https://modrinth.com/datapack/atlas-greece).\n\n## License\n\nMIT © 2022 spadeteam\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "food",
+    "game-mechanics",
+    "library",
+    "quilt",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3418,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

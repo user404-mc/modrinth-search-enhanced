@@ -1,0 +1,33 @@
+{
+  "id": "F40XC56C",
+  "slug": "blockys-fixes",
+  "title": "Blocky's Fixes",
+  "description": "A plugin with a few fixes for your server! Like a completely custom Timeout Function and a Maintendance Mode!",
+  "body": "This Plugin adds a suite of features you could maybe use on your Server.\n\n# ✅ Features\n**Attention:** Please notice that currently none of the features are enabled by default. Everything is opt in and can be configured using the config file and for some options using the plugins commands. See below.\n\n## ⏰ Timeout\nThe Plugin contains a custom Timeout function. Moderators will be able to timeout Players meaning limiting their ability to participate on the server while not kicking them from the server.\n\nPlayers will be prevented from doing the following actions (depending on config):\n- Move around\n- Place/Break Blocks\n- Send chat messages\n- Run command\n\nThe strictness of those blockings can be personalized. For example allowing specific commands or resticting the area to move within.\n\n## 🔧 Maintenance mode\nThe maintenance leaves players of the server with a customizable message.\nThis feature is useful for test on whitelist server to keep the playes out and the admins in.\n\n## 🔨 Fixed anvil costs\nA way to fix the max anvil costs to a specific value.\nThis feature is purely configured in the plugins configuration file.\n\n# ❓ Usage\nGenerally interaction with this plugin is done via. commands and the plugins config folder. The Settings or configuration commands will also modify the conofig. So the config it the main point of configuration of this project.\n\n## ⏰ Timeout Commands\nThe `/timeout` commands requires the player to have the `blockysfixes.timeout` permission.\n\n`/timeout <player> <seconds>` Timeouts the selected player for the selected amount of seconds.\n\nIf `0` seconds are specified, the timeout is being cleared.\n\nIf `-1` seconds are specified, the timeout time is infinite.\n\nThe `/timeoutarea` commands requires the player to have the `blockysfixes.timeoutarea` permission.\n`/timeoutarea <option>` Adjust the settings of the Timeoutarea.\n\n`/timeoutarea toggle` Toggles the Timeoutarea.\n\n`/timeoutarea pos1 <x> <y> <z>` Set the first edge of the timeout area. If no position is specified it uses the current player position.\n\n`/timeoutarea pos2 <x> <y> <z>` Set the second edge of the timeout area. If no position is specified it uses the current player position.\n\n`/timeoutarea togglespawn` Toggles the automatic teleport to the timeout area.\n\n`/timeoutarea setspawn <x> <y> <z>` Set the position of the timeout area spawn. If no position is specified it uses the current player position. The spawn needs to be inside the timeout area.\n\n## 🔧 Maintenance commands\nThe `/maintenance` commands requires the player to have the `blockysfixes.maintenance` permission.\n\n`/maintenance` prints the current maintenance status\n`/maintenance on` turns on maintenance mode (kicking not whitelisted players off the server.\n`/maintenance off` turns off maintendance mode.\n\n### The whitelist\nThe whitelist can be edited like the minecraft whitelist command:\n`/maintenance whitelist list` lists the currently whitelisted players.\n`/maintenance whitelist add <player>` adds the specified player to the whitelist.\n`/maintenance whitelist remove <player>` removes the specified player from the whitelist.\n\nAdditionally there is a permission to whitelist players using `blockysfixes.maintenance.bypass`\n**Attention:** in order for this permission to work you need to have it set using the [LuckPerms](https://luckperms.net/) plugin. Currently no other way is supported but feel free to request somethign.\n\n### Maintenance modes\nThere are multiple modes how the maintenance can be activated. All of them can be activated by attaching the specific mode to the end of the maintenance command for example. `/maintenance on normal`\n#### normal\nwill kick players not whitelisted and notify everybody whitelisted that the maintenance mode has beed activated.\n#### silent\nwill kick player not whitelisted. No notification of other players.\n#### no_kick\nwill not kick players and notify everybody whitelisted that the maintenance mode has beed activated.\n#### keep_online_players\nwill not kick players and notify everybody whitelisted that the maintenance mode has beed activated.\nAdditionally it will allow players online at the time of activation to rejoin even if they lost connection. But not anymore if the server restarts.\n\n### Maintenance motd\nYou can also change the servers motd while the maintenance mode is active to let players know before they try to connect.\nPlease take a look at the config example for information how to configure it.\n\n\n# Default Config:\nHere a default Config with some descriptions:\n\n```\ntimeout:\n  allow-commands: false\n  allowed-commands: # Only works is allow_commands = false\n  #  - \"/help\"\n  area:\n    enabled: false\n    spawn:\n      enabled: false\n      x: 0\n      y: 0\n      z: 0\n    world: world\n    pos1:\n      x: 0\n      y: 0\n      z: 0\n    pos2:\n      x: 0\n      y: 0\n      z: 0\nmaintenance:\n  enabled: false\n  # Kick message in mini message Format. This message is show to the player as when they try to join the server.\n  message: \"<red>Maintenance Mode active.</red>\"\n  # Custom modt that is shown while the maintenance mode is active. You can format it in the Minimessage format.\n  custom_motd_active: false\n  custom_motd: \"<red>Maintenance mode is active.</red> <white>Please try again later.</white>\"\n\nanvil-repair-cost:\n  enabled: false\n  max-cost: 10 # Maximum amount of xplevels repairing an item will cost\n  blacklist: # Items excluded from the costlimit\n    #- 'ELYTRA'\n```",
+  "categories": [
+    "management",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 164,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

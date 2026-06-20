@@ -1,0 +1,25 @@
+{
+  "id": "ja9dG9KW",
+  "slug": "multiview",
+  "title": "MultiView - Flashback Addon",
+  "description": "Merges multiple Flashback replays from the same session into a single unified replay — an “omniscient observer” view combining the union of chunks, players, and events seen from each POV.",
+  "body": "# MultiView — merge multi-player Flashback replays\n\n**MultiView** is a Fabric add-on for [Flashback](https://modrinth.com/mod/flashback). Each player records their own POV with Flashback; MultiView fuses those recordings into **one unified replay** that behaves as if a single omniscient observer had captured the whole session.\n\n- ✅ Every chunk explored by any POV is included\n- ✅ Every recording player is visible at the same time\n- ✅ Every entity and event seen by at least one POV is kept\n- ✅ Free camera or Spectate Player on the merged replay\n- ✅ Tick-perfect time alignment, atomic rollback on failure\n\n## Who is this for?\n\n- **Content creators** — SMP recaps, PvP tournaments, machinima with multi-angle coverage from a single replay file.\n- **Server staff** — multi-angle review of incidents, anti-cheat investigations from every involved player's POV.\n- **Cinematographers** — free camera through a multiplayer scene with no information loss.\n\n## How to merge two replays\n\n1. Each player records their POV with Flashback during the same session.\n2. Drop the resulting `.zip` files into `<gameDir>/flashback/replays/`.\n3. Launch Minecraft with **Flashback + MultiView** installed.\n4. Click the camera icon → **Select Replay**.\n5. Tick the checkbox to the right of each replay (minimum two).\n6. Click **Merge N Replays** in the top-right corner.\n7. The merged replay `merged_<timestamp>.zip` appears in the list once the progress screen finishes.\n\n## Compatibility\n\n| Minecraft | Flashback | MultiView |\n| --- | --- | --- |\n| 1.21.9 / 1.21.10 | 0.39.x | `0.3.2+mc1.21.9` |\n| 1.21.11 | 0.39.4 | `0.3.2+mc1.21.11` |\n| 26.1 / 26.1.1 / 26.1.2 | 0.40.0 | `0.3.2+mc26.1` |\n\nRequires Fabric API. Java 21 on 1.21.x, Java 25 on 26.1+.\n\n## Features\n\n- **N-way merge** — works from 2 up to many POVs.\n- **Tick-perfect alignment** via `ClientboundSetTimePacket` with metadata fallback.\n- **Cross-source deduplication** — chunks (SHA-256 128-bit content hash), player info, system chat by visible text, entity moves.\n- **Multi-dimension** — secondary POV dimension changes preserved as markers.\n- **Aggregated markers** from every POV on a single timeline.\n- **Atomic write** — `.part` file + atomic rename; a failed merge never destroys an existing replay.\n- **Bounded memory** — LRU-capped chat dedup, cryptographic chunk hashing, safe on multi-hour sessions.\n- **i18n** — French and English.\n\n## Known limitations\n\n- Secondary POVs appear as **regular player entities** (Flashback only supports one local player; the camera follows the first POV to start recording).\n- 4+ POV merges may produce minor visual artefacts in zones where conflicting chunk versions overlap.\n- Full technical limitations and roadmap in [`SPEC.md`](https://github.com/Zeffut/MultiView/blob/main/SPEC.md).\n\n## Links\n\n- 🔗 [GitHub repository](https://github.com/Zeffut/MultiView)\n- 🐛 [Report an issue](https://github.com/Zeffut/MultiView/issues)\n- 📜 [Full changelog](https://github.com/Zeffut/MultiView/blob/main/CHANGELOG.md)\n\n## License\n\nMIT — free to use, modify and redistribute. Flashback remains under its proprietary license by Moulberry; MultiView is a fully independent add-on and does not redistribute any Flashback code.\n",
+  "categories": [
+    "fabric",
+    "multiplayer",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2300,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

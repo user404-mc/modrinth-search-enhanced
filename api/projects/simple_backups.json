@@ -1,0 +1,30 @@
+{
+  "id": "dv7rPmU8",
+  "slug": "simple_backups",
+  "title": "Simple Backups",
+  "description": "A simple async world backup mod for neoforge which is compactible with sable (create & addons + aeronautics) c2me, scalableLux",
+  "body": "# World Backup\n\nSimple, reliable world backups at the press of a key — or the tip of a command.\n\nEver had your world corrupted by a rogue mod, a power outage, or just a bad decision with WorldEdit? **World Backup** lets you create instant, compressed zip backups of your entire world folder with a single command. Backups run asynchronously so your server never freezes, and automatic rotation keeps your disk from filling up.\n\n---\n\n## ✨ Features\n\n- **Instant backups** — Create a full `.zip` backup of your world with `/backup <name>`\n- **Non-blocking** — Backups run on a separate thread; your server stays responsive\n- **Automatic rotation** — Old backups are pruned automatically based on a configurable limit\n- **Configurable** — Set your backup limit via command or JSON config file\n- **Safe by default** — Name validation prevents path traversal attacks\n- **Conflict-friendly** — Copies your world to a temp directory first, then zips from the clean copy. Files locked by other mods (Sable, etc.) are retried automatically with increasing backoff.\n- **Server-wide broadcast** — All players see backup progress and completion messages\n\n---\n\n## 📋 Commands\n\n| Command | Description |\n|---|---|\n| `/backup <name>` | Creates a timestamped zip backup with the given name |\n| `/backuplimit <number>` | Sets the maximum number of backups to keep (1–1000) |\n\n**Examples:**\n\n```\n/backup before-portal          →  before-portal_2025-06-03_21-30-00.zip\n/backup vanilla-test           →  vanilla-test_2025-06-03_21-31-15.zip\n/backuplimit 25                →  Sets the rotation limit to 25 backups\n```\n\nAll players can use these commands by default — no operator permissions required.\n\n---\n\n## ⚙️ Configuration\n\nThe backup limit is stored in `backup/backup_config.json` inside your server directory. It is created automatically on first use and can be edited directly:\n\n```json\n{\n  \"backupLimit\": 10\n}\n```\n\nThe limit can also be changed in-game with `/backuplimit <number>`.\n\n---\n\n## 📁 Where are backups stored?\n\nBackups are saved to the `backup/` folder inside your server directory (next to your world folders). Each backup is a compressed `.zip` file named in the format:\n\n```\n<name>_<YYYY-MM-DD_HH-mm-ss>.zip\n```\n\n---\n\n## 🔄 Compatibility\n\nWorld Backup is designed to coexist peacefully with other mods:\n\n- **Sable** — Fully compatible. World files are copied to a temporary directory before zipping, so Sable's file locks don't interfere. Retried up to 5 times with increasing backoff.\n- **Ice and Fire, Dread Land, and other dimension mods** — All sub-levels and custom dimensions are backed up.\n- **Any file-locking mod** — The copy-first strategy combined with retry logic handles files locked by other mods without skipping data.\n- **Any world type** — Works with vanilla, modded, and custom world formats.\n\n---\n\n## 🛠 Technical Details\n\n- **Copy-first strategy** — World folder is copied to a temp directory using `Files.copy` (path-to-path), which on Windows uses the `CopyFileEx` API to handle locked files\n- Backups flush all chunks to disk before copying (`saveAllChunks`)\n- Asynchronous execution via `CompletableFuture` — no server tick lag\n- Automatic retry with backoff (up to 5 attempts) for temporarily locked files\n- Temp directory is cleaned up automatically after backup completes (even on failure)\n- Backup rotation deletes the oldest files first by modification time\n- Safe filename validation: only letters, numbers, hyphens, and underscores allowed\n\n---\n\n## 📦 Installation\n\n1. Install NeoForge for Minecraft 1.21.1+\n2. Drop `worldbackup-1.0.0.jar` into your `mods/` folder\n3. Start the server — backups are ready to go\n\nNo configuration needed to get started. Just `/backup my-backup` and you're set.",
+  "categories": [
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 126,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

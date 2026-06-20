@@ -1,0 +1,19 @@
+{
+  "id": "OG9bmqj4",
+  "slug": "bedrockcameralib",
+  "title": "NaKeR's Bedrock Camera Lib",
+  "description": "A library replicating Minecraft Bedrock's ScriptAPI Camera APIs",
+  "body": "**NaKeR's Bedrock Camera Lib** is a library for Minecraft Java (Fabric), which replicates **Minecraft Bedrock's Script API Camera APIs**\n\n**This mod is a *library*. It does not add/do anything on it's own.**\n\nThis library adds similar camera APIs to the ones in bedrock!\nCurrently, supports `setCamera` and `fade`.\n\nThis library was written in Kotlin, so FLK is a dependency.\nThe library contains a bunch of easings for you to make transitions!\n\n## Installation (for developers)\nAdd JitPack to your repositories:\n```groovy\nmaven { url 'https://jitpack.io' }\n```\nAnd add Bedrock Camera Lib to your dependencies:\n```groovy\nmodImplementation 'com.github.NaKeRNarolino:BECamera:<LIB_VERSION>-<MINECRAFT_VERSION>r'\n```\n\nExamples in both languages(Java and Kotlin).\n\n**Java**\n```java\nCameraManager.INSTANCE.setCamera(\n    new CameraData(\n            new Vec3d(30, 30, 30), // Camera location\n            new Vec3d(15, 15, 15), // The position the camera will be looking at\n            new EaseOptions(\n                    Easings.INSTANCE::easeInOutBack, // Easing function for the transition\n                    2500 // duration in ms\n            )\n        )\n); // Setting a custom camera\n                \nCameraManager.INSTANCE.fade(new CameraFadeOptions(\n    Colors.WHITE, // Color (ARGB)\n    1500, // Fade in time, ms\n    2000, // Hold time, ms\n    1500 // Fade out time, ms\n)); // Fading the camera\n```\n\n**Kotlin**\n```kotlin\nCameraManager.setCamera(\n\tCameraData(\n        location = Vec3d(30.0, 30.0, 30.0),\n        targetLocation = Vec3d(15.0, 15.0, 15.0),\n        easeOptions = EaseOptions(\n            easing = Easings::easeInOutBack,\n            duration = 2500\n        )\n    )\n) // Setting a custom camera\n\nCameraManager.fade(\n    CameraFadeOptions(\n        fadeColor = Colors.WHITE,\n        fadeInTime = 1500,\n        holdTime = 2000,\n        fadeOutTime = 1500\n    )\n) // Fading the camera\n```\n\n> You can also use `CameraManager.clear()` or `CameraManager.INSTANCE.clear()` to bring back player's camera state to the default one. Note that this does not affect fades.\n\nHere's a video showcasing `setCamera` and `fade`.\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/sW0_cMx_YKc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 150,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

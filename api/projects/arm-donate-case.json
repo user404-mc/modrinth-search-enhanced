@@ -1,0 +1,31 @@
+{
+  "id": "T6DJwDJL",
+  "slug": "arm-donate-case",
+  "title": "ARM-Donate Case",
+  "description": "Donation case plugin with extensive customization",
+  "body": "**ARM‑DonateCase** — a functional plugin for Minecraft servers that lets you set up a donation case system with flexible configuration of rewards, drop rates, and time periods. Ideal for server monetization and increasing player engagement.\n\n_Donation case setup:_\ndefining a list of rewards (items, currency, privileges);\nsetting individual drop rates for each reward;\nspecifying time periods (e.g., 30 / 90 / 180 days) for reward activation.\n\n_Flexible interface configuration:_\nselecting blocks for the case spinning animation;\ncustomizing text messages (welcome messages, opening results, notifications).\n\n_Donation points management:_\nmanually granting or withdrawing donation points from players;\nsetting exact point amounts;\nchecking a player’s current balance.\n\n**Commands:**\n- /armdonatecase add <username> <amount> — Grant the specified number of donation points to a player.\n- /armdonatecase remove <username> <amount> — Withdraw the specified number of donation points from a player.\n- /armdonatecase set <username> <amount> — Set an exact number of donation points for a player.\n- /armdonatecase get <username> — Check a player’s current donation points balance.\n\n<details>\n<summary>config</summary>\n\ncase:\n  world: world\n  x: -0.5\n  y: 50\n  z: -0.5\n  openx: -1\n  openy: 50\n  openz: -1\n  block: ENDER_CHEST\n  to_block: BARRIER\n  donatecase: donatecase\n  rotate: true\n  lines: # List of lines for the hologram (supports color codes '&')\n    - \"&x&0&0&F&F&8&9«&x&0&5&F&F&7&DDon&x&0&A&F&F&7&0a&x&0&F&F&F&6&4t&x&1&4&F&F&5&7-&x&1&9&F&F&4&BC&x&1&E&F&F&3&Ee&x&2&3&F&F&3&2y&x&2&8&F&F&2&5s&x&2&D&F&F&1&9»\"\nparticle:\n  type: \"SOUL_FIRE_FLAME\"\n  time: 3\n\nmenu:\n  title: \"Donation Case - /donate\"\n  size: 45  # must be divisible by 9\n  items:\n    # Normal case\n    normal_key:\n      slot: 22\n      material: TRIAL_KEY\n      display_name: \" &x&1&1&F&D&B&6&l▶ &x&3&3&F&D&A&4&lO&x&4&4&F&E&9&A&lp&x&5&5&F&E&9&1&le&x&6&6&F&E&8&8&ln&x&7&7&F&E&7&F&ly&x&8&8&F&E&7&6&lt&x&9&9&F&E&6&D&ls&x&B&B&F&F&5&A&le&x&C&C&F&F&5&1&ls&x&D&D&F&F&4&8&l\"\n      lore:\n        - \" \"\n        - \" &x&0&0&F&D&B&F▪&f Number of cases: &x&0&0&F&D&B&F{cases}\"\n        - \" \"\n        - \" &x&0&0&F&D&B&F&n▌&f By opening this case, you are guaranteed\"\n        - \" &x&1&8&F&D&B&2&n▌&f to receive a privilege. We have no\"\n        - \" &x&3&0&F&D&A&5▌&f rigging, just regular randomness.\"\n        - \" \"\n        - \" &x&4&7&F&E&9&9▪&f Privileges drop from the case\"\n        - \"   &ffor &x&5&F&F&E&8&C1 month, 3 months, and 6 months.\"\n        - \" &x&4&7&F&E&9&9▪&f After opening, the last dropped privilege\"\n        - \"   &fis saved.\"\n        - \" \"\n        - \" &x&8&F&F&E&7&2☄&f Spin type: &x&8&F&F&E&7&2Normal\"\n        - \" \"\n        - \" &x&A&7&F&E&6&5&n▌&f This spin type is classic,\"\n        - \" &x&B&E&F&F&5&9▌&f you can see which donations are spinning.\"\ndonate:\n  item1:\n    don: \"vip\"\n    shulk: WHITE_SHULKER_BOX\n    group: \"vip\"\n    chance: 30  # 30%\n  item2:\n    don: \"vip+\"\n    shulk: GREEN_SHULKER_BOX\n    group: \"vip+\"\n    chance: 20  # 20%\n#############\n  item9:\n    don: \"&x&B&5&B&5&B&5«&x&A&4&A&4&A&4?&x&9&3&9&3&9&3?&x&8&1&8&1&8&1?&x&7&0&7&0&7&0»\"\n    shulk: LIGHT_GRAY_SHULKER_BOX\n    group: \"zero\"\n    chance: 1\n\n  item10:\n    don: \"&x&B&5&B&5&B&5«&x&A&4&A&4&A&4?&x&9&3&9&3&9&3?&x&8&1&8&1&8&1?&x&7&0&7&0&7&0»\"\n    shulk: GRAY_SHULKER_BOX\n    group: \"zero\"\n    chance: 1\n\nrewards:\n  probabilities:\n    180d: 10\n    90d:  25\n    30d:  65\n  commands:\n    setdefault: \"lp user {player} parent set default\"\n    addtemp:    \"lp user {player} parent addtemp {group} {duration}\"\n  messages:\n    title_long: \"{prize} &fYou have it for &7({duration_human})\"\n    no_cases: \"&x&E&F&1&0&1&0«✖&x&E&F&1&0&1&0»&f You don't have any available donation cases.\"\n    opening:  \"&x&E&F&1&0&1&0«✖&x&E&F&1&0&1&0»&f The donation case is opening... please wait.\"\n    broadcast:\n      - \"\"\n      - \"&x&0&0&F&D&B&F&n▲&f\"\n      - \"&x&2&8&F&D&A&A&n▌&f Player &2&8&F&D&A&A{player} &fwon {prize} &ffor &7({duration_human}),\"\n      - \"&x&7&7&F&E&7&F&n▌&f from &x&0&0&F&F&8&9«&x&0&5&F&F&7&DD&x&0&A&F&F&7&0o&x&0&F&F&F&6&4n&x&1&4&F&F&5&7a&x&1&9&F&F&4&Bt&x&1&E&F&F&3&E-&x&2&3&F&F&3&2C&x&2&8&F&F&2&5a&x&2&D&F&F&1&9s&x&3&2&F&F&0&Ce&x&3&7&F&F&0&0»,&f congratulations!\"\n      - \"\"\n  duration_human:\n    30d:  \"1 mo.\"\n    90d:  \"3 mo.\"\n    180d: \"6 mo.\"\nmessage:\n  cancel: \"&x&E&F&1&0&1&0«✖&x&E&F&1&0&1&0»&f The donation case is opening... please wait.\"\n  nocase: \"&x&E&F&1&0&1&0«✖&x&E&F&1&0&1&0»&f You don't have any available donation cases.\"\n\n\n</details>\n\n",
+  "categories": [
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 113,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

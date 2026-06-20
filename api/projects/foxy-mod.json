@@ -1,0 +1,19 @@
+{
+  "id": "KvhLwws0",
+  "slug": "foxy-mod",
+  "title": "Foxy",
+  "description": "Loads Voxy on NeoForge.",
+  "body": "# Foxy\n\n**Loads Voxy on NeoForge.**\n\nVoxy is a Fabric LoD rendering mod. Foxy makes it run on NeoForge without modifying\nVoxy itself: it reads the unmodified Voxy jar at runtime and bridges the Fabric APIs\nit uses over to NeoForge equivalents.\n\n## How it works\n\n- Reads `fabric.mod.json` from the Voxy jar and generates a synthetic `neoforge.mods.toml`\n(name, description, authors, icon, mixin configs, version) so FML loads it.\n- Extracts Voxy's bundled `META-INF/jars` (RocksDB, LWJGL zstd/lmdb, lz4, xz, jedis) as\ngame libraries.\n- Applies Voxy's `voxy.accesswidener` live as a class processor, plus a small supplement\nfor NeoForge-only access gaps.\n- Ships minimal `net.fabricmc.*` stubs so Voxy's bytecode links; `FabricLoader` delegates\nto `ModList` / `FMLEnvironment`.\n- Reimplements the `/voxy` command against NeoForge's command system.\n- Adds a Chunky auto-ingest mixin targeting NeoForge's `NeoForgeWorld`.\n\nNothing about Voxy is hardcoded. Metadata, mixins, access wideners, and bundled jars are\nall read from whatever Voxy jar is present, so Voxy updates do not require Foxy changes.\n\n## Requirements\n\n- Minecraft 26.1.2\n- NeoForge\n- Sodium\n- Voxy 0.2.16-beta (placed in the mods folder)\n\n## License\n\nMIT. This does not relicense Voxy; Voxy remains All Rights Reserved and is not redistributed.",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 1191,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

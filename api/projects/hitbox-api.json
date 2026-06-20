@@ -1,0 +1,22 @@
+{
+  "id": "wNLZV9jI",
+  "slug": "hitbox-api",
+  "title": "Hitbox Api",
+  "description": "Add more colliders for Minecraft",
+  "body": "# Hitbox API\n\n**Adding more common collider for Minecraft**\n\n- Oriented Bounding Box (OBB)\n- Sphere\n- Capsule\n- Ray\n- Compound\n  - Multiple collider can be combined into one.\n  - Composite collider can be nested.\n\n### How to Use\n\nIn any place where collision detection is needed, create a collider object and use the methods in ColliderUtil to determine if a collider has occurred.\n\nFor entities (Entity), you can achieve collider box caching by attaching **HitboxDataAttachments#COLLISION**. The cached collider can be rendered by pressing **F3 + B**. Note that this Data does not have a persistence implementation.\n\n### Performance\n\nTesting Method\n- JMH Benchmark\n\nTesting Environment\n- CPU: AMD R5 5600G\n- Memory: 32GB\n- JDK: Microsoft OpenJDK 21.0\n\nTesting Settings\n- Warm-up Rounds: 5\n- Test Rounds: 5\n\nTesting Items\n- Collision detection of the same type of collider\n\n|           Collider            |     Score      |     Error     | Unit  |\n|:-----------------------------:|:--------------:|:-------------:|:-----:|\n|   Axis-Aligned Bounding Box   | 3561837865.930 | 157982649.213 | ops/s |\n|            Capsule            |  22350681.198  |  238993.658   | ops/s |\n|        Rotated Capsule        |  16842309.523  |  103959.918   | ops/s |\n|     Oriented Bounding Box     |  5528493.224   |   64548.996   | ops/s |\n| Rotated Oriented Bounding Box |  4648963.750   |  111369.535   | ops/s |\n|            Sphere             | 119556589.705  |  1711146.560  | ops/s |\n\nNote: Higher scores indicate better performance. **Rotated** means the collider is rotated and the relevant vectors are recalculated.\n\n![add collider for entity](https://cdn.modrinth.com/data/wNLZV9jI/images/67223aa85d60c5de0dbd85548559ce0c03c41d2a.png)",
+  "categories": [
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 624,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3"
+  ],
+  "date_updated": null
+}

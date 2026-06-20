@@ -1,0 +1,20 @@
+{
+  "id": "UsGc71LY",
+  "slug": "fix-cobblemon-pokemon-experience",
+  "title": "Fix Cobblemon Pokemon Experience",
+  "description": "A Fabric/NeoForge mod that fixes the experience gain system in Cobblemon to work like the mainline Pokemon games.",
+  "body": "# Fix Cobblemon Pokemon Experience\n\nA Fabric/NeoForge mod that fixes the experience gain system in Cobblemon to work like the mainline Pokemon games.\n\n## Downloads\n\n[![CurseForge](https://cf.way2muchnoise.eu/full_1435842_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/fix-cobblemon-pokemon-experience/files/all?page=1&pageSize=20&showAlphaFiles=show)\n[![Modrinth Downloads](https://img.shields.io/modrinth/dt/UsGc71LY?style=for-the-badge&logo=modrinth&logoColor=white&labelColor=1AAB89)](https://modrinth.com/mod/UsGc71LY/versions)\n\n## The Problem\n\nIn Cobblemon, experience points (XP) are only awarded at the **end of a battle**. This works fine for wild Pokemon encounters (1v1), but becomes problematic when using trainer mods like [Radical Cobblemon Trainers (RCT)](https://modrinth.com/mod/rctmod).\n\nIn trainer battles with multiple Pokemon, you only receive XP after defeating **all** of the trainer's Pokemon, instead of after each knockout.\n\n## The Fix\n\nThis mod changes the XP system to award experience **immediately after each Pokemon is knocked out**, just like in the official Pokemon games.\n\n**Features:**\n- XP is awarded instantly when you KO a Pokemon\n- Works with Exp Share items (same behavior as vanilla Cobblemon)\n- Compatible with trainer mods like RCT\n- No configuration needed\n\n## How It Works\n\n1. Listens to Cobblemon's `BATTLE_FAINTED` event\n2. Awards XP to your Pokemon immediately when an opponent faints\n3. Blocks the default XP distribution at the end of battle (to prevent double XP)\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/) or [NeoForge](https://neoforged.net/) for Minecraft 1.21.1\n2. Install [Cobblemon](https://cobblemon.com/) 1.7.0+\n3. Download the mod JAR and place it in your `mods` folder\n\n## Compatibility\n\n- Minecraft: 1.21.1\n- Cobblemon: 1.7.0+\n- Fabric Loader: 0.18.4+ / NeoForge: 21.1.172+\n- Works with: Radical Cobblemon Trainers (RCT) and other trainer mods\n\n## FAQ / Known Limitations\n\n### My Pokemon leveled up during battle but the stats in combat didn't change?\n\n**This is a known limitation.** When your Pokemon levels up mid-battle:\n- A level up message is displayed in the battle chat\n- The Pokemon's data is updated on the server (level, stats, etc.)\n- The party overlay and summary screen show the correct new level\n\n**However**, the battle stats (HP, Attack, Defense, etc.) used for damage calculations remain those from the start of the battle. This is because Cobblemon uses [Pokemon Showdown](https://pokemonshowdown.com/) as its battle simulator, and Showdown calculates stats once at the beginning of the battle with no built-in way to update them mid-combat.\n\n**Workaround:** If you need the new stats to take effect during the battle, you can switch out your Pokemon and switch it back in. The stats will be recalculated when it re-enters battle.\n\nThis behavior is consistent with how some official Pokemon games handle mid-battle level ups (stats update after the battle or upon switching).\n\n## License\n\nLGPLv3 License - See [LICENSE](LICENSE) file.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5155,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

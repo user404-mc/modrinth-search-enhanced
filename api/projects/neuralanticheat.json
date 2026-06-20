@@ -1,0 +1,36 @@
+{
+  "id": "8zisXSWr",
+  "slug": "neuralanticheat",
+  "title": "NeuralAntiCheat",
+  "description": "This anti-cheat uses neural networks; it automatically detects cheaters and studies their mistakes and kicks. It can be trained. The plugin requires ProtocolLib.",
+  "body": "**_NeuralAntiCheat_**\nA self-learning, packet-based anticheat plugin for Paper 1.21.1\n\n**Overview**\nNeuralAntiCheat is a modern anticheat plugin built from the ground up for Paper 1.21.1. Unlike traditional anticheats that rely on simple threshold checks, NeuralAntiCheat combines real-time packet interception with a built-in neural network that learns from every player session — getting smarter over time.\nThe plugin requires ProtocolLib to intercept raw client packets before they are processed by the server. All checks run on a dedicated async thread pool, meaning zero TPS impact on your main server thread regardless of player count.\n\n**Core Features**\n\nPacket-Based Analysis — Intercepts raw client→server packets via ProtocolLib. Checks analyze actual network data, not just Bukkit events, giving far more accurate detection with less overhead.\nFully Asynchronous — Every check runs on a dedicated NeuralAC-Check thread pool that scales to CPU core count. The main server thread is never touched during check execution.\nLag Compensation — Dynamic ping buffer on Reach checks. Players above 300ms ping are excluded from movement checks entirely. Violation weight is scaled down for laggy connections.\nNeural Engine (MLP 16→32→16→2) — A pure-Java multilayer perceptron trained on 800 synthetic sessions. Analyzes 16 behavioral features per player. Score near 1.0 = legitimate, near 0.0 = cheating.\nPredictive Movement — FlightCheck and SpeedCheck simulate vanilla Minecraft physics each tick: gravity (0.08/tick), drag (0.98), potion modifiers, surface friction. Flags deviation from predicted trajectory rather than a raw threshold.\n\n\n**Checks** (16 total)\nCombat\nKillAura — detects auto-attack hacks by analyzing attack angles (flags if consistently above 75°), multi-target switching patterns, and inhuman CPS with near-zero variance.\nReach — flags hits beyond 3.05 blocks. Dynamically adds a ping buffer so high-latency players don't get false flagged.\nAutoArmor — detects instant 0-tick armor equipping that no human hand can physically perform.\nFastBow — flags bows released in under 3 ticks, which is physically impossible with a real bowstring draw.\nAntiKnockback — detects near-zero velocity after receiving a hit, meaning the client is silently ignoring knockback packets.Movement\nFlight — a predictive physics engine simulates vanilla gravity every single tick. If the player's actual Y position deviates more than 0.5 blocks above the predicted trajectory, it flags. No more false positives from jumps or hills.\nSpeed — calculates the exact allowed horizontal speed based on sprint state, active potions, and surface type. Flags anything more than 15% above that.\nJesus — flags players standing on water for more than 12 consecutive ticks without sinking, which is impossible in vanilla.\nSpider — detects wall-climbing by requiring three conditions simultaneously: upward motion, near-zero horizontal speed (so jumping next to a wall doesn't count), and adjacency to a solid wall for 5+ consecutive ticks.\nNoFall — tracks what percentage of falls over 4 blocks actually result in damage. Flags if the player takes damage less than 25% of the time.\nPhase — detects Noclip and Phase hacks by checking if the player is inside a solid block for 3 or more consecutive ticks.\nTimer — measures how fast movement packets arrive. Flags if packets come in more than 15% faster than the vanilla standard of 50ms per tick.Player\nFastPlace — uses a rolling 1-second window. Vanilla holding RMB places about 14–16 blocks per second. The check allows up to 16 and flags at 17+, so normal building never triggers it.\nFastBreak — flags more than 25 block breaks per second, which is above the maximum achievable with Efficiency V and Haste II combined.\nScaffold — detects auto-bridging by flagging if more than 70% of block placements happen while moving at high speed without looking down.\nInventoryMove — flags movement faster than 0.5 m/s while the inventory screen is open, which is impossible in the vanilla client.\n\n**Commands**\n/nac info nac.admin Plugin status, neural engine state\n/nac flags <player> nac.admin View violations and neural score\n/nac whitelist <player> nac.adminToggle check bypass\n/nac train cheat|legit <player> nac.adminManually correct the neural network\n/nac reload nac.adminReload config without restart\n/nac alerts nac.alertsToggle alert visibility for yourself\n\n**Installation**\n\n1. Place ProtocolLib 5.3.0 in your plugins/ folder\n2. Place NeuralAntiCheat-2.0.0.jar in your plugins/ folder\n3. Start the server — neural engine pre-trains automatically on first launch\n4. Updating from v1.x: delete plugins/NeuralAntiCheat/neural/model.dat before starting\n\n**Requires**: Paper 1.21.1 · Java 21 · ProtocolLib 5.3.0",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 228,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

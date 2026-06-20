@@ -1,0 +1,40 @@
+{
+  "id": "cXkl8eug",
+  "slug": "worthify",
+  "title": "Worthify",
+  "description": "Fast, modern item worth & pricing system for Minecraft servers",
+  "body": "Worthify\n\nWorthify is a lightweight Paper plugin that assigns a configurable worth to items and lets players sell items for in-game currency.\n\n## Features\n\n- Sell items from your hand or sell all sellable items\n- Configurable item worth values (`prices.yml`)\n- Sell history GUI (`/sellhistory`)\n- Player-to-player payments (`/pay`)\n- Optional client-side item tooltip worth line (requires ProtocolLib)\n- Optional Vault integration (uses your server economy if available)\n- Standalone internal economy fallback if Vault isn’t installed (`balances.yml`)\n- Worth multiplier system (global + category + per-material overrides)\n- Multiplier GUI (`/multiplier`) to view/edit category multipliers (only works when enabled)\n- SellTools:\n  - SellWand: sell container contents by right/left click (configurable)\n  - SellAxe: sell container contents and optionally destroy the container (configurable)\n  - Offline expiry (absolute timestamps) + anti-duplication registry\n  - Optional usage-limited wands (no expiry shown in lore)\n\n## Commands\n\n- `/sell [hand|all]`\n  - Permission: `worthify.sell`\n- `/pay <player> <amount>`\n  - Permission: `worthify.sell`\n- `/worth [page]`\n  - Permission: `worthify.sell`\n- `/sellhistory [page]`\n  - Permission: `worthify.sell`\n- `/multiplier` (alias: `/mult`)\n  - Permission: `worthify.sell`\n  - Notes: Only opens when `worth_multiplier.enabled: true`. Everyone can view, but editing requires `worthify.admin`.\n- `/setworth <number>`\n  - Permission: `worthify.admin`\n- `/worthify reload`\n  - Permission: `worthify.admin`\n\n- `/sellwand usage <uses> [player]`\n  - Permission: `worthify.selltools.give`\n- `/sellwand selfdestruction <time> <unit> [player]`\n  - Permission: `worthify.selltools.give`\n- `/sellaxe <time> <unit> [player]`\n  - Permission: `worthify.selltools.give`\n\n## Permissions\n\n- `worthify.sell`\n  - Default: true\n- `worthify.admin`\n  - Default: op\n\n## Dependencies\n\n- Required: none\n- Optional:\n  - Vault (to use an external economy provider such as EssentialsX Economy)\n  - ProtocolLib (to display a client-side `Worth: $X` tooltip line on items without breaking stacking )\n\n## Configuration\n\nWorthify writes config files into `plugins/Worthify/`.\n\n- `config.yml`\n  - `economy.internal.enabled`: enable internal economy fallback when Vault is missing\n  - `economy.internal.starting_balance`: default balance for players not in `balances.yml`\n  - `worth_lore.enabled`: enable worth tooltip injection (requires ProtocolLib)\n  - `worth_lore.line`: format line (supports `{worth}` or `${worth}`)\n  - `worth_multiplier.enabled`: enables worth multiplier logic and the multiplier GUI\n  - `worth_multiplier.value`: global multiplier applied to all items\n  - `worth_multiplier.categories.*`: category multipliers (ores/food/seeds)\n  - `worth_multiplier.materials.*`: per-material multiplier overrides\n- `prices.yml`\n  - Stores per-material prices under `prices.<MATERIAL_NAME>`\n- `sellhistory.yml`\n  - Stores per-player sell history entries\n- `balances.yml`\n  - Stores per-player balances when using internal economy\n\n- `selltools.yml`\n  - SellTools templates and behavior (activation mode, allowed containers, self-destruction on expiry, uses)\n- `gui/multiplier.yml`\n  - Customize the multiplier GUI\n\n## Placeholders (PlaceholderAPI)\n\n- `%worthify_balance%`\n- `%worthify_balance_plain%`\n- `%worthify_balance_short%`\n\n## Notes\n\n- If Vault is installed and an economy provider is available, Worthify will use it.\n- If Vault is not installed, Worthify will fall back to its internal economy automatically (if enabled in config).\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "economy",
+    "folia",
+    "game-mechanics",
+    "magic",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 196,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

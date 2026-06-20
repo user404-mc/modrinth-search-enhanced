@@ -1,0 +1,24 @@
+{
+  "id": "Ex0KqI5C",
+  "slug": "requests",
+  "title": "Requests",
+  "description": "API for your minecraft server",
+  "body": "# Requests - A REST API for Minecraft Servers\n\nRequests is a PaperMC plugin that provides a RESTful API for Minecraft servers. With Requests, server admins can easily query and interact with their servers using simple REST semantics.\n\n## Features\n\n- RESTful API for Minecraft servers\n- Query server information such as player count and server status\n- Send commands to the server\n- Authenticate requests using API keys\n- Easy to use and integrate\n## Usage\n\nRequests exposes a RESTful API that can be accessed using HTTP requests. The base URL for the API is `http://localhost:5000` and can be configured in `config.toml`.\n\n```toml\n[plugin]\nsalt = \"change this\"\nprefix = \"<light_purple>[requests]<reset> \"\n\n[database]\ntokens = \"tokens.db\"\nplayers = \"players.db\"\n\n[api]\nport = 5000\nvault = false\nluckperms = false\n```\n\n### Authentication\n\nRequests uses API keys to authenticate requests. To generate an master API key, use the following command in the server console:\n\n```bash\n/api generate-key <name>\n```\n\nThe `<name>` parameter is optional and can be used to give the key a custom name. The generated API key will be displayed in the console.\n\nTo generate an player API key, use the following command in game:\n\n```bash\n/api token new\n```\n\nTo authenticate a request, include the API key in the `Authorization` header of the HTTP request:\n\n```bash\nAuthorization: Bearer <api_key>\n```\n\n### API Endpoints\n\nRequests provides the following API endpoints:\n\n#### GET `/server`\n\nReturns the status of the Minecraft server.\n\n#### GET `/players`\n\nReturns a list of online players on the Minecraft server.\n\n#### GET `/player/<uniqueId>`\n\nReturns the information of a player.\n\n#### POST `/command`\n\nSends a command to the Minecraft server. This route can be used by admin token only, and is disabled by default.\n\n### Example Requests\n\n#### Get server status\n\n```bash\nGET /server HTTP/.1\nAuthorization: Bearer <api_key>\nUser-Agent: Example Agent/0.0.1\n```\n\n#### Get player profile\n\n```bash\nGET /player/<uniqueId> HTTP/1.1\nAuthorization: Bearer <api_key>\nUser-Agent: Example Agent/0.0.1\n```\n\n#### Send command\n\n```bash\nPOST /command HTTP/1.1\nAuthorization: Bearer <api_key>\nContent-Type: application/json; charset=utf-8\nUser-Agent: Example Agent/0.0.1\nContent-Length: 31\n\n{\"command\":\"say Hello, World!\"}\n```\n\n## Build\n\nTo build Requests from source, follow these steps:\n\n1. Clone the repository: `git clone https://github.com/theMackabu/requests.git`\n2. Navigate to the cloned repository: `cd requests`\n3. Build the plugin using Gradle: `./gradlew shadowJar`\n4. The built JAR file will be located at `build/libs/requests-<version>-all.jar`.\n\n## License\n\nRequests is licensed under the [GPL-3 License](https://github.com/themackabu/requests/blob/master/LICENSE.md).",
+  "categories": [
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 215,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

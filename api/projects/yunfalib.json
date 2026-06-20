@@ -1,0 +1,19 @@
+{
+  "id": "TxSXNq1I",
+  "slug": "yunfalib",
+  "title": "yunfalib",
+  "description": "A library that adds config, math, events, modules, and more.",
+  "body": "# yunfaLib\nA library for Minecraft using the Fabric API that adds config, math, events, modules, and more.\n\n## Setup\n\n##### build.gradle\n```groovy\nrepositories {\n    maven { url \"https://jitpack.io\" }\n}\n\ndependencies {\n    modImplementation \"com.github.yunfachi:yunfaLib:${project.yunfalib_version}\"\n}\n```\n##### gradle.properties\n```properties\nyunfalib_version=0.1.0\n```\n\n## Features\n\n### Config\n<details>\n<summary>Example Java: The values are stored in the <b>inner class</b></summary>\n\n```java\nimport moe.yunfachi.yunfalib.config.Config;\nimport java.io.File;\n\npublic class Example {\n    private static class ConfigKeys {\n        String truth = \"this value is immediately saved to a file\";\n    }\n    \n    public Example() {\n        final Config<ConfigKeys> config = new Config<>(\n                new File(\"./modid/config.yml\"), \n                new ConfigKeys()\n        );\n        \n        config.get().truth = \"this value will be written after config.save()\";\n        config.save();\n    }\n}\n```\n</details>\n<details>\n<summary>Example Java: The values are stored in the <b>nested class</b></summary>\n\n```java\nimport moe.yunfachi.yunfalib.config.Config;\nimport java.io.File;\n\npublic class Example {\n    public Example() {\n        final Config<ConfigKeys> config = new Config<>(\n                new File(\"./modid/config.yml\"), \n                new ConfigKeys()\n        );\n        \n        config.get().truth = \"this value will be written after config.save()\";\n        config.save();\n    }\n}\n\nclass ConfigKeys {\n    String truth = \"this value is immediately saved to a file\";\n}\n```\n</details>\n<br>\n<details>\n<summary>Example Kotlin: The values are stored in the <b>inner class</b></summary>\n\n```kotlin\nimport moe.yunfachi.yunfalib.config.Config\nimport java.io.File\n\nclass Example {\n    init {\n        class ConfigKeys {\n            var truth = \"this value is immediately saved to a file\"\n        }\n\n        val config = Config(\n            File(\"./modid/config.yml\"),\n            ConfigKeys()\n        )\n        \n        config.get().truth = \"this value will be written after config.save()\"\n        config.save()\n    }\n}\n```\n</details>\n<details>\n<summary>Example Kotlin: The values are stored in an <b>anonymous object</b></summary>\n\n```kotlin\nimport moe.yunfachi.yunfalib.config.Config\nimport java.io.File\n\nclass Example {\n    init {\n        val config = Config(\n            File(\"./modid/config.yml\"),\n            object {\n                var truth: String = \"this value is immediately saved to a file\"\n            }\n        )\n\n        config.get().truth = \"this value will be written after config.save()\"\n        config.save()\n    }\n}\n```\n</details>\n\n## Thanks\n\n| Project                                            | Author                                      | Description                        |\n|----------------------------------------------------|---------------------------------------------|------------------------------------|\n| [Annotaml](https://github.com/WiIIiam278/Annotaml) | [WiIIiam278](https://github.com/WiIIiam278) | library for generating YAML files  |\n\n## Stats\n\n![Alt](https://repobeats.axiom.co/api/embed/321da4fd0a3bf68fb4f40ef705be5c7da467e646.svg \"Repobeats analytics image\")\n",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 453,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "7RmyWIhV",
+  "slug": "wanted-players",
+  "title": "Wanted Players",
+  "description": "Add wanted stars like gta based on killstreak and gain money depends of your wanted level",
+  "body": "![Logo](https://cdn.modrinth.com/data/cached_images/b3b42fdb5cfc136d7bd9da2f2274a2ec31f44487.png)\n\nWantedPlayers is a Paper plugin that adds a **Wanted Level system** based on player killstreaks.  \nIt rewards bounty hunters with **money via Vault** and displays Wanted stars using PlaceholderAPI.  \n\n---\n\n## 🔌 Dependencies\n\n- [Vault](https://www.spigotmc.org/resources/vault.34315/) – economy api\n- [EssentialsX](https://essentialsx.net/) or other economy plugin\n- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) – placeholders \n- [LuckPerms](https://luckperms.net/) – groups and permissions  (optionnal)\n- [PvPStats Plugin](https://www.spigotmc.org/resources/pvpstats-plugin.69984/) – or other killstreak tracking plugin for plugin version 1.2+\n- [MythicMobs](https://modrinth.com/plugin/mythicmobs) - for MythicMobs reward sources (optional)\n\n---\n\n## ⚙️ Configuration (`config.yml`)\n\n```yaml\n# ============================\n# WantedPlayers Configuration\n# ============================\n\n# Killstreak placeholder used to get player killstreak.\n# Change it with a valid killstreak placeholder from any plugin or expansion.\nkillstreak-placeholder: \"%pvpstats_killstreak%\"\n\n# Killstreak thresholds for each Wanted level.\n# Example: level 1 requires 1 killstreak, level 2 requires 3, etc.\nwanted-levels:\n  1: 1\n  2: 3\n  3: 5\n  4: 10\n  5: 20\n\n# Symbols used to display stars in placeholders or messages.\nstars:\n  full: \"★\"   # Full star for achieved level\n  empty: \"☆\"  # Empty star for levels not reached\n\nrewards:\n  # Base reward ranges for each Wanted level.\n  # A random value between min and max will be chosen.\n  ranges:\n    1:\n      min: 5\n      max: 10\n    2:\n      min: 10\n      max: 20\n    3:\n      min: 20\n      max: 40\n    4:\n      min: 40\n      max: 80\n    5:\n      min: 80\n      max: 150\n\n  # Reward sources for entities.\n  # Add a mob here to make it give a reward.\n  # Example: killing a player multiplies reward by 3.\n  # Multiplier is optional, defaults is 1.\n  reward-sources:\n    player: 3\n    zombie: 1\n    iron_golem: 2\n    # fire_dragon: 5  #Example MythicMobs entity reward source\n\n\n  # Multipliers applied based on Wanted level.\n  # Example: level 3 multiplies the base reward by 2.0.\n  level-multipliers:\n    1: 1.0\n    2: 1.5\n    3: 2.0\n    4: 2.5\n    5: 3.0\n\n  # Multipliers applied based on LuckPerms primary group.\n  # Example: vip group multiplies the reward by 2.5.\n  group-multipliers:\n    default: 1.0\n    vip: 2.5\n    vip_plus: 3\n\n  #Reward commands\n  #Available placeholders are: %player% -> return player username, %amount% -> return reward amount in decimal.\n  #Add as many as you want !\n  reward-command:\n    - 'eco give %player% %amount%'\n\nmessages:\n  # Message sent to the killer when they receive coins.\n  # Placeholders:\n  #   %amount% = final reward amount\n  #   %stars%  = star display for Wanted level\n  #   %group%  = LuckPerms group name\n  kill-reward: \"&aYou earned %amount% coins thanks to your Wanted level (%stars%) and your group (%group%)!\"\n\n  # Message sent when the config is reloaded with /wantedreload.\n  reload: \"&aConfig reloaded successfully.\"\n```\n\n---\n\n## 📜 Commands\n\n- `/wantedreload` → reloads the configuration (`config.yml`)  \n  - Permission: `wanted.reload`  \n\n---\n\n## 🪧 Placeholders (via PlaceholderAPI)\n### 1.0 and 1.1\n- `%wanted_level%` → current Wanted level (1–5)  \n- `%wanted_stars%` → star display (★/☆)  \n- `%wanted_multiplier%` → total multiplier (Wanted × group)\n\n### 1.1.1+\n- `%wantedplayers_level%` → current Wanted level (1–5)  \n- `%wantedplayers_stars%` → star display (★/☆)  \n- `%wantedplayers_multiplier%` → total multiplier (Wanted × group)  \n\n---\n\n## 🎮 How it works\n\n1. Each kill increases your **killstreak** (via PvPStats Plugin).  \n2. Your **Wanted level** is calculated based on thresholds.  \n3. On each kill, you receive a random reward (min–max) × Wanted multiplier × group multiplier.  \n4. Coins are added directly to your balance via Vault.  \n5. A custom message is sent with the amount, stars, and group.  \n\n",
+  "categories": [
+    "economy",
+    "game-mechanics",
+    "minigame",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 152,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

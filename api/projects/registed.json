@@ -1,0 +1,23 @@
+{
+  "id": "TQwJPHrY",
+  "slug": "registed",
+  "title": "Registed",
+  "description": "A library that brings you annotated registries!",
+  "body": "# Registed\n\n## Implementation\n\nFirst, implement **Registed** through gradle:\n\n<details>\n\n<summary>Using <b>Groovy</b></summary>\n\n###### build.gradle\n\n```groovy\nrepositories {\n\tmaven { url \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n\tmodApi \"maven.modrinth:registed:$project.registed_version\"\n}\n```\n\n###### gradle.properties\n\n```\nregisted_version=?\n```\n\n> Replace `?` with the latest [`tag name`](https://github.com/HO-Artisan/Registed/tags) of **Registed.**\n\n</details>\n\n<details>\n\n<summary>Using <b>Kotlin</b></summary>\n\n###### build.gradle.kts\n\n```kotlin\nrepositories {\n\tmaven(\"https://api.modrinth.com/maven\")\n}\n\ndependencies {\n\tmodApi(\"maven.modrinth:registed:${property(\"registedVersion\")}\")\n}\n```\n\n###### gradle.properties\n\n```\nregistedVersion=?\n```\n\n> Replace `?` with the latest [`tag name`](https://github.com/HO-Artisan/Registed/tags) of **Registed.**\n\n</details>\n\nNext, reference **Registed** into your `fabric.mod.json` as a dependency:\n\n<h6 align=\"right\">fabric.mod.json</h6>\n\n```json5\n{\n  // Other contents\n\n  \"depends\": {\n    \"registed\": \"*\"\n  },\n\n  // Other contents\n}\n```\n\n\n> **Registed** **should not** be nested in your project. You should always treat **Registed** as a standalone mod.\n\n## Usage\n\nTo register an object, do:\n\n###### full.path.to.ClassName.java\n\n```java\n@RegistryId(\"modid\")\npublic class ClassName {\n\t@ho.artisan.registed.annotation.registries.Item\n\tpublic static final Item ITEM = ...;\n}\n```\n\nYou must annotate your registration class with `@RegistryID`[^@RegistryID_classpath] to tell **Registed** which namespace to use.\n\n[^@RegistryID_Classpath]: `ho.artisan.registed.annotation.RegistryID`\n\nAfter that, remember to reference this class in your `fabric.mod.json`:\n\n###### fabric.mod.json\n\n```json5\n{\n  // Other contents\n\n  \"entrypoints\": {\n    \"registed\": [\n      \"full.path.to.ClassName\"\n    ]\n  },\n\n  // Other contents\n}\n```\n\n**Registed** supports all `Registry<?>` types inside class `Registries`[^Registries_classpath]. You should convert the target registry type name from **UPPER_SNAKE_CASE** to **CamelCase** to find the desired annotation, for example, `Registries.LOOT_NBT_PROVIDER_TYPE` has a representing annotation `@LootNBTProviderType`.\n\n[^Registries_classpath]: `net.minecraft.registry.Registries`\n\n> All available annotations for registered objects are under package `ho.artisan.registed.annotation.registries`.\n\n> These annotations can only be applied on fields, and you should always make sure your registered objects are `static` and `final` fields.\n\nBy default, the registered objects will use their field names in **snake_case** as their in-game identifier paths, for example, field `MY_EXAMPLE_ITEM` will have the identifier path of `my_example_item`. We suggest using **UPPER_SNAKE_CASE** to name your fields, as they should be `static` and `final` and only in snake cases will **Registed** preserve the underscores.\n\nTo customize a registered object's in-game identifier path, you can apply annotation `@RegistryID`[^@RegistryID_classpath] to the target field:\n\n```java\n@RegistryID(\"my_item\")\n@ho.artisan.registed.annotation.registries.Item\npublic static final Item ITEM = ...;\n```\n\n> The identifier path provided by `@RegistryID`[@^RegistryID_classpath] will be consumed as raw without any further processing.",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 681,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

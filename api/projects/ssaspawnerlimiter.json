@@ -1,0 +1,35 @@
+{
+  "id": "JF5xsqCk",
+  "slug": "ssaspawnerlimiter",
+  "title": "SSAddon SpawnerLimiter",
+  "description": "SmartSpawner Addon allows you to set spawner placement limits per chunk and per player.",
+  "body": "# SSAddon SpawnerLimiter\n\nSSAddon (SmartSpawner Addon) that limits spawner placement per chunk and per player based on spawner stacks, with Folia support!\n\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21+-green.svg)](https://www.minecraft.net/)\n[![Paper](https://img.shields.io/badge/Server-Paper%20%7C%20Folia-blue.svg)](https://papermc.io/)\n[![Java](https://img.shields.io/badge/Java-21+-orange.svg)](https://www.oracle.com/java/)\n\n## How It Works\n\nSSASpawnerLimiter provides **two independent limit systems**:\n\n### Chunk-Based Limit\n\n<img width=\"549\" height=\"70\" alt=\"{948DB322-3CD5-4420-A4E7-C63D9DB89547}\" src=\"https://github.com/user-attachments/assets/ecaf6c4d-5250-46bd-a1d9-8537073c83d9\" />\n\nLimits spawner stacks per chunk to prevent chunk overloading:\n- 1 spawner block with 64 stacks = **64 count**\n- 1 spawner block with 6 stacks = **6 count**\n- **Total in chunk**: 70 count\n- Default: 100 spawners per chunk\n\n### Per-Player Limit\n\n<img width=\"525\" height=\"66\" alt=\"{0E84EBA1-B007-4303-B85C-83019086C482}\" src=\"https://github.com/user-attachments/assets/3db751ab-6fce-4733-9153-7533ee41c627\" />\n\nLimits total spawner stacks a player can place globally:\n- Tracks all spawners placed by each player across the entire server\n- Default: 1000 spawners per player\n- Can be increased via permission nodes (1500, 2000, 5000, etc.)\n- Bypass permission for unlimited spawners\n\n**Both systems can be enabled/disabled independently in `config.yml`:**\n```yaml\nenable_chunk_limit: true      # Enable chunk-based limiting\nenable_player_limit: true     # Enable per-player limiting\n```\n\n### Stack Counting Example\n- Player places 1 spawner with stack size 10 → **Adds 10** to both chunk and player count\n- Player breaks that spawner → **Removes 10** from both counts\n- Player stacks spawner from 10 to 20 → **Adds 10** more to both counts\n- Counts never go below 0 (zero-floor protection)\n\nThis ensures fair limiting based on actual spawner capacity, not just physical blocks.\n\n## Installation\n\n1. Install [SmartSpawner](https://modrinth.com/plugin/smart-spawner-plugin) plugin\n2. Download SSASpawnerLimiter\n3. Place the `.jar` file in your `plugins` folder\n4. Restart the server\n5. Configure settings in `plugins/SSASpawnerLimiter/config.yml`\n\n## Commands\n\n| Command | Description | Aliases |\n|---------|-------------|---------|\n| `/ssaspawnerlimiter reload` | Reload plugin configuration | `/ssalimiter reload` |\n| `/ssaspawnerlimiter info` | Check spawner count in current chunk | `/ssalimiter info` |\n| `/ssaspawnerlimiter check <player>` | Check spawner limit for player's chunk | `/ssalimiter check <player>` |\n| `/ssaspawnerlimiter checkplayer <player>` | Check player's global spawner count | `/ssalimiter checkplayer <player>` |\n| `/ssaspawnerlimiter stats` | View plugin statistics | `/ssalimiter stats` |\n\n## Permissions\n\n### Bypass Permissions\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `ssaspawnerlimiter.bypass` | Bypass spawner chunk limit | `false` |\n| `ssaspawnerlimiter.perplayer.bypass` | Bypass per-player spawner limit (unlimited) | `false` |\n\n### Per-Player Limit Tiers\nYou can create **custom limit tiers** using the permission pattern: `ssaspawnerlimiter.perplayer.<number>`\n\n**Examples:**\n- `ssaspawnerlimiter.perplayer.1500` → Allows 1500 spawners globally\n- `ssaspawnerlimiter.perplayer.2000` → Allows 2000 spawners globally\n- `ssaspawnerlimiter.perplayer.5000` → Allows 5000 spawners globally\n- `ssaspawnerlimiter.perplayer.10000` → Allows 10000 spawners globally\n- Any number you want!\n\n> **Note:** Players with multiple tier permissions will get the highest value. Default limit is configured in `config.yml` as `max_spawners_per_player`.\n\n### Command Permissions\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `ssaspawnerlimiter.command.use` | Base permission for all commands | `op` |\n| `ssaspawnerlimiter.command.reload` | Use reload command | `op` |\n| `ssaspawnerlimiter.command.info` | Use info command | `op` |\n| `ssaspawnerlimiter.command.check` | Use check command | `op` |\n| `ssaspawnerlimiter.command.checkplayer` | Use checkplayer command | `op` |\n| `ssaspawnerlimiter.command.stats` | Use stats command | `op` |\n\n## Database\n\nThe plugin uses SQLite to store spawner data in two tables:\n- `spawner_chunks` - Chunk spawner counts\n- `player_spawners` - Per-player spawner counts\n\n**[SQLite Viewer](https://sqliteviewer.app/)** - Free online tool to view and edit SQLite databases\n\nDatabase location: `plugins/SSASpawnerLimiter/spawner_limits.db`\n",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 282,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

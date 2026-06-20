@@ -1,0 +1,22 @@
+{
+  "id": "21uAPDKt",
+  "slug": "parkour-generator",
+  "title": "Parkour Generator",
+  "description": "Simple parkour generator for lobbies of Minecraft Servers",
+  "body": "A simple parkour generator, that was originally written for the lobby on `azingo.world`\n\n## Command\n/start-parkour <position> <length>\n> `position` Specify a position either absolute with coordinates or relative with `~` (Optional Argument)   \n> If `position` isnt specified the command will use the current location of whoever executed it.\n> \n> `length` Specify a length as a whole number (Optional Argument)\n> If not specified it will use a value in between `parkour.MaxRandomLength` and `parkour.MinRandomLength`\n\n## Tips\nUse a wide open area to give your parkour as much variation as possible\n\n## Config\n\n```yaml\nparkour:\n  MaxRandomLength: 40  # Maximum length of the parkour (Only applies if length is blank)\n  MinRandomLength: 20  # Minimum length of the parkour (Same here)\n  # The chance a jump will be considered 'Hard'.\n  # Will spawn a glass pane instead of full block.\n  HardChance: 0.3\n  NewBlockSound: minecraft:block.note_block.pling # Sound made when new block appears\n  WinSound: minecraft:block.note_block.bit # Sound made when player wins\n  # Sound made when player loses (plays when player is 3 blocks under the lowest block)\n  LoseSound: minecraft:item.mace.smash_ground\n  \nui:\n  # Title of the BossBar displayed when playing the parkour (Supports minimessage)\n  BarTitle: <gold>Parkour <b><current-jump>/<total-jumps></b></gold>\n  # Color of the BossBar\n  BarColor: YELLOW\n  # Type of the BossBar\n  BarOverlay: PROGRESS\n\nfunctions:\n  # Command executed upon win/lose\n  # For datapack functions use `function pack:function_name`\n  win: xp add <player> <total-jumps>0 points\n  lose: ''\n  \nexperimental:\n  # Will ignore the clear area requirement, could lead to blocks being placed in walls\n  # Generally not recommended, but might be useful for tight spaces\n  ForcePlacement: false\n```\n\n### Placeholders\n\nAll placeholders can be used in `functions` and `BarTitle`\n\n> <player>        The Players Name\n> <current-jump>  The jump the player is currently on\n> <total-jumps>   The total amount of jumps the parkour has (length)\n\n",
+  "categories": [
+    "bukkit",
+    "minigame",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 173,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5"
+  ],
+  "date_updated": null
+}

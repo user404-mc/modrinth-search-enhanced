@@ -1,0 +1,22 @@
+{
+  "id": "dRqcdWrI",
+  "slug": "gpuland",
+  "title": "GPU Land",
+  "description": "My attempt at worldgen on the gpu",
+  "body": "\n## **WARNING: Alpha Software**: Currently under heavy development. Expect crashes in combination w/ and w/o other mods.\n\nThis mod is my attempt to do worldgen using compute shaders on gpu.\nThe mod currently uses vulkan api to execute compute shaders. \n\n**Does the mod change world generation?** Yes ofc, it's just a single compute shader.\nI don't even know much about noise and vanilla world generation.\n\n**Can I customise the worldgen?** Yes ofc, its one of the goals of the mod. Just compile a glsl shader into spv and put it into a datapack. I will write the specifics on how to do that later. For now, just check the [Source Code](https://codeberg.org/ZenXArch/gpuland) to figure stuff out.\nSpecifically [Built in shader](https://codeberg.org/ZenXArch/gpuland/src/branch/stable/src/main/resources/assets/compute.comp.glsl) and [Built in datapack](https://codeberg.org/ZenXArch/gpuland/src/branch/stable/src/main/generated)\n\n**Can I use it on dedicated server** No, At least for now, you can manually add lwjgl libraries to classpath. It will crash if the mod crashes, because the crash code is dependent on client code. Hope it makes sense.\n\n<center>\n  \n  [![Available on codeberg](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/codeberg_vector.svg)](https://codeberg.org/ZenXArch/gpuland)  [![Available on modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/gpuland) [![Support me on Ko-Fi](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/kofi-singular_vector.svg)](https://ko-fi.com/I2I31KW58I)\n\n</center>\n\n## Requirements\n\n- Vulkan 1.4\n- GL_EXT_shader_explicit_arithmetic_types_int8\n- GL_EXT_shader_8bit_storage\n\n## Currently implemented\n- Single shader-pass to translate each blockpos to a index in a pre-determined block palette of max size 256\n- Minimal multithreading (use c2me mod to take full advantage)\n- Loading shaders from datapacks\n\n## Planned\n- Multi-pass shaders, to modify biomes and blocks, and generate intermediary textures\n- Datapack reload support\n- Repacking of chunk sections in manner similiar to vanilla, instead of simple memory copy from gpu using static block palette\n- Allow reusing shaders via push constants\n- Allow running on dedicated server\n\n## Socials\n\n- If you are shader/worldgen dev, and have used the mod, please contact me with your work.\n\n<center>\n\n[![Chat with us on discord](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_vector.svg)](https://discord.gg/RFSmd7debX) [![Chat with me on mastodon](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/mastodon-singular_vector.svg)](https://mastodon.social/@ZenXArch) [![Chat with us on Gitter](https://raw.githubusercontent.com/offbeat-stuff/devins-badges/refs/heads/v3/assets/cozy/social/gitter_vector.svg)](https://matrix.to/#/#zenxarchs-modding-server:gitter.im)\n\n</center>",
+  "categories": [
+    "cursed",
+    "fabric",
+    "quilt",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 238,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2-snapshot-3"
+  ],
+  "date_updated": null
+}

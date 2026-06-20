@@ -1,0 +1,23 @@
+{
+  "id": "nQIOXgCN",
+  "slug": "spark-web-api",
+  "title": "Spark Web API",
+  "description": "A Web API for Spark",
+  "body": "# Spark Web API\n\nA small plugin that will host a Web API for Spark.\n\nThis plugin is made for Paper. You are free to fork \nthis on GitHub and port this to other mod loaders.\n\nThis README is a simplified version of the Project's GitHub README.\n\n## Installation\nFirst, Install Spark to your Paper server.\nEven though Paper servers for Minecraft 1.21 and up\nhas Spark built-in, a standalone plugin version is \nrequired for this plugin.\n\nThen, Install Spark Web API. You generally would download\nthe JAR with -all at the end of the file name.\n\nWhen starting your server, Please remember to set the \n`paper.preferSparkPlugin` system property to `true`\n\nHere's an example on how to do so:\n```\njava -Dpaper.preferSparkPlugin=true -jar paper-1.21-129.jar\n```\n\n## Configuration\nWhen starting the server for the first time with the \nplugin, The plugin will generate a config file.\nThe config file allows you to change the port of the \nserver, which routes are enabled, and add additional \nheaders to responses.\n\n```yaml\nport: 3000\nroutes:\n  tps: true\n  mspt: true\n  sys_cpu: false\n  proc_cpu: false\n  gc: false\nheaders:\n  enabled: false\n```\n\n## API paths\n### /api/tps\nReturn the TPS of the past 10 seconds, 1 minute, \n5 minutes, and 15 minutes.\n\nExample Response:\n```json\n{\n  \"tenSeconds\": 19.999926688268733,\n  \"oneMinute\": 20.000035730063832,\n  \"fiveMinutes\": 20.00000458740105,\n  \"fifteenMinutes\": 19.94021043987079\n}\n```\n\nThis route will return 500 Internal Server Error if Spark \ncannot get the TPS of the server.\n\n### /api/mspt\nReturns the MSPT value for the past 10 seconds and \n1 minute.\n\nExample Response:\n```json\n{\n  \"tenSeconds\": {\n    \"min\": 6.523605,\n    \"max\": 2692.747083,\n    \"mean\": 66.92731750515465,\n    \"median\": 23.108289\n  },\n  \"oneMinute\": {\n    \"min\": 6.523605,\n    \"max\": 2692.747083,\n    \"mean\": 66.92731750515465,\n    \"median\": 23.108289\n  }\n}\n```\n\nThis route will return 500 Internal Server Error if Spark \ncannot get the MSPT of the server.\n\n### /api/gc\n\nReturns the information about the Garbage Collector.\n\nExample Response:\n```json\n{\n  \"G1 Young Generation\": {\n    \"name\": \"G1 Young Generation\",\n    \"frequency\": 22328,\n    \"avgTime\": 81,\n    \"totalCollections\": 3,\n    \"totalTime\": 243\n  },\n  \"G1 Old Generation\": {\n    \"name\": \"G1 Old Generation\",\n    \"frequency\": 0,\n    \"avgTime\": 0,\n    \"totalCollections\": 0,\n    \"totalTime\": 0\n  }\n}\n```\n\n### /api/cpu/sys\n\nReturns the system CPU usage in percentage.\n\nExample Response:\n```json\n{\n  \"tenSeconds\": 0.20461582280862525,\n  \"oneMinute\": 0.31800215079510524,\n  \"fifteenMinutes\": 0.39118254849183964\n}\n```\n\n### /api/cpu/proc\n\nReturns the Minecraft process CPU usage in percentage.\n\nExample Response:\n```json\n{\n  \"tenSeconds\": 0.025064927938294894,\n  \"oneMinute\": 0.030417615615548597,\n  \"fifteenMinutes\": 0.06684861042724896\n}\n```\n\n## License\nThis plugin is licensed under the MIT License.\n",
+  "categories": [
+    "library",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1488,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

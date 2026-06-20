@@ -1,0 +1,43 @@
+{
+  "id": "lpvE0cEb",
+  "slug": "treasury",
+  "title": "Treasury",
+  "description": "An bridge layer to provide economy and points implementations",
+  "body": "# Treasury\nA simple economy & points API for Minecraft mods.  \nInspired by the Bukkit [Vault](https://github.com/MilkBowl/Vault) plugin.  \nIt is **not an economy implementation**.  \nInstead, like Vault, other mods provide economy/points implementations, and Treasury acts as a bridge layer.\n\n***We need a good logo lmao, my art sucks —— the author***\n\n## What can it do?\n* Hold server economy (multi-currency supported)\n* Access points / premium currency\n* Allow mods to interact economy system without depending on specific implementations\n\n## How it works\nTreasury defines two main provider types:\n\n* `EconomyProvider` for normal currency\n* `PointsProvider` for points (most for premium currency)\n\nOther mods register their implementation, and other developers who use the API can get them.\nSee more below.\n\n## Registry\n### Economy\n* Stored in `EconomyServiceRegistry`\n* Supports multiple providers\n* One provider is selected as primary\n\nSelection rules:\n\n1. Using `primaryEconomy` which defined in config if specified\n2. Otherwise, use the first registered provider\n\n### Points\n* Stored in `PointsServiceRegistry`\n* Only one provider allowed\n\nRegistering another provider will throw an exception.\n\n## Register Providers\n### Economy\n```java\nTreasury.economy().register(new ExampleEconomyProvider());\n```\n\n### Points\n```java\nTreasury.points().register(new ExamplePointsProvider());\n```\n\nNotes:\n* Only one points provider allowed\n* Please register during mod initialization\n\n### Fabric Entrypoints\nTreasury supports register providers via Fabric entrypoints:\n\n* `treasury-economy`\n* `treasury-points`\n\nExample:\n\n```json\n{\n  \"entrypoints\": {\n    \"treasury-economy\": [\n      \"com.example.mod.ExampleEconomyProvider\"\n    ],\n    \"treasury-points\": [\n      \"com.example.mod.ExamplePointsProvider\"\n    ]\n  }\n}\n```\n\n## Usage\n\n### Economy\n```java\nif (Treasury.economy().hasPrimary()) {\n    EconomyProvider economy = Treasury.economy().getPrimary();\n    double balance = economy.getBalance(playerUuid);\n}\n```\n\n### Points\n```java\nif (Treasury.points().isRegistered()) {\n    PointsProvider points = Treasury.points().get();\n    int balance = points.getBalance(playerUuid);\n}\n```\n\n## Commands\n* `/treasury info`\n* `/treasury balance <player>`\n\nRequired permission level: `2`\n\n## Requirements\n* Fabric: Minecraft `1.20.1+`, any Fabric version, Fabric API is not required\n* NeoForge: Minecraft `1.20.4+`, any NeoForge version\n* Java: `17` or higher\n\n*Don't ask for Forge!*\n\n## Build\n```bash\n./gradlew build\n```\n\n## Import\n```kotlin\ndependencies {\n    compileOnly(\"io.github.lijinhong11:treasury:VERSION\")\n}\n```",
+  "categories": [
+    "economy",
+    "fabric",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 105,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

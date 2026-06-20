@@ -1,0 +1,22 @@
+{
+  "id": "P7tBjBML",
+  "slug": "trainerattributeslib",
+  "title": "[Cobblemon] TrainerAttributesLib",
+  "description": "Integrates Minecraft's attributes with Cobblemon.",
+  "body": "Integrates Minecraft's attribute system with Cobblemon.\n\nThings such as catch chance, shiny chance, and experience earned per battle can be modified.\n\nMostly intended for use with Accessories or Curios, though the attributes do apply when on pieces of armor. (but not tools)\n\nIf I ever truly decide to stop being lazy I'll port it over to forge as well.\n\nFree for use whereva.\n\n# Features\nCurrent Attributes Supported:\n- Pokemon Experience Boost (+ Various types)\n- Catch Chance Boost (+ Various Types)\n- Shiny Chance Boost (+ Various Types)\n- Hidden Ability Chance Boost (+ Various Types)\n- Crit Catch Chance Boost (+ Various types)\n- Spawn Chance Boost (+ Various Types)\n- Bonus IVs (+ Various Types / For Specific Stats)\n\n# Example\n```kt\nclass MudkipCharm() : AccessoryItem(\n    Item.Settings().component(\n        DataComponentTypes.ATTRIBUTE_MODIFIERS as ComponentType<AttributeModifiersComponent>,\n        AttributeModifiersComponent.builder()\n            .add(\n                Registries.ATTRIBUTE.getEntry(TrainerAttributes.TYPED_SPAWN_CHANCE_ATTRIBUTE.getAttributeOfType(\n                    ElementalTypes.FIRE\n                )),\n                EntityAttributeModifier(\n                    TrainerAttributes.TYPED_SPAWN_CHANCE_ATTRIBUTE.getIdentifierOfTypedAttribute(ElementalTypes.FIRE),\n                    5.50,\n                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE\n                ),\n                AttributeModifierSlot.ANY\n            )\n            .add(\n                Registries.ATTRIBUTE.getEntry(TrainerAttributes.TYPED_BONUS_IVS_ATTRIBUTE.getAttributeOfType(\n                    ElementalTypes.WATER\n                )),\n                EntityAttributeModifier(\n                    TrainerAttributes.TYPED_BONUS_IVS_ATTRIBUTE.getIdentifierOfTypedAttribute(ElementalTypes.WATER),\n                    5.0,\n                    EntityAttributeModifier.Operation.ADD_VALUE\n                ),\n                AttributeModifierSlot.ANY\n            )\n            .add(\n                Registries.ATTRIBUTE.getEntry(TrainerAttributes.STAT_BONUS_IVS_ATTRIBUTE.getAttributeOfStat(Stats.HP)),\n                EntityAttributeModifier(\n                    TrainerAttributes.STAT_BONUS_IVS_ATTRIBUTE.getIdentifierOfStatAttribute(Stats.HP),\n                    5.0,\n                    EntityAttributeModifier.Operation.ADD_VALUE\n                ),\n                AttributeModifierSlot.ANY\n            )\n            .add(\n                Registries.ATTRIBUTE.getEntry(TrainerAttributes.BONUS_IVS_ATTRIBUTE),\n                EntityAttributeModifier(\n                    TrainerAttributesLib.getIdentifier(\"bonus_ivs\"),\n                    5.0,\n                    EntityAttributeModifier.Operation.ADD_VALUE\n                ),\n                AttributeModifierSlot.ANY\n            )\n            .add(\n                Registries.ATTRIBUTE.getEntry(TrainerAttributes.CATCH_CHANCE_BOOST_ATTRIBUTE),\n                EntityAttributeModifier(\n                    TrainerAttributesLib.getIdentifier(\"catch_chance_boost\"),\n                    0.05,\n                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE\n                ),\n                AttributeModifierSlot.ANY\n            )\n            .add(\n                Registries.ATTRIBUTE.getEntry(\n                    TrainerAttributes.TYPED_CATCH_CHANCE_BOOST_ATTRIBUTE.getAttributeOfType(ElementalTypes.WATER)\n                ),\n                EntityAttributeModifier(\n                    TrainerAttributes.TYPED_CATCH_CHANCE_BOOST_ATTRIBUTE.getIdentifierOfTypedAttribute(ElementalTypes.WATER),\n                    0.10,\n                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE\n                ),\n                AttributeModifierSlot.ANY\n            )\n            .build()\n    )\n) {\n}\n```",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2317,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

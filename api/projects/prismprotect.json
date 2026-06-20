@@ -1,0 +1,24 @@
+{
+  "id": "FIpr9lji",
+  "slug": "prismprotect",
+  "title": "PrismProtect",
+  "description": "Adds protect functionality for servers(like coreprotect). \nHas rollback, lookup + lookup client highlight, etc.",
+  "body": "# PrismProtect — protect your modded Minecraft server\n\n## Requires Architectury API\n\n**PrismProtect is a server-side(and client for hightlighting) Architectury mod for Minecraft 1.20.1–1.20.4 that brings CoreProtect-like logging and rollback to modded servers — no plugins required, built for performance.**\n\n---\n\n## Features\n\n- Logs block break/place/replace with full BlockEntity NBT support\n- Tracks explosions (TNT, creepers, vanilla explosion pipeline)  \n  **Note:** some mods with fully custom explosion logic may bypass vanilla hooks and not be logged\n- Logs entity deaths with full NBT snapshots for accurate restoration\n- Records container and inventory changes with menu open/close diff tracking\n- Logs item drops from broken blocks and crafting outputs for item rollback\n- Supports blocks/entities from **any mod** (namespaced IDs are stored as-is)\n- Uses optimized SQLite storage with WAL journaling and thread-safe writes\n- Includes inspect mode to view block history in-game\n\n---\n\n## Commands\n\n```bash\n/pp inspect\n```\nToggle inspect mode and click blocks to view history.\n\n```bash\n/pp lookup [u:<name>] [t:<time>] [r:<radius>] [a:block|entity|container]\n```\nSearch logged actions using filters (`a:block` by default).\n\n```bash\n/pp rollback [u:<name>] [t:<time>] [r:<radius>] [a:entity]\n```\nRollback changes in the selected scope.  \nWithout `a:entity`, rolls back block/container/item changes.\n\n```bash\n/pp highlight [off] [u:<name>] [t:<time>] [r:<radius>] [w:<world>] [d:<sec>] [l:<limit>] [p:<page>]\n```\nHighlights matched block changes with in-world colored outlines for visual investigation.  \nUse `off` to clear active highlights immediately.  \nRunning `/pp highlight ...` again replaces the previous highlight set for that player.\n\n```bash\n/pp restore [u:<name>] [t:<time>] [r:<radius>]\n```\nRestore previously rolled-back block/container/item changes.\n\n```bash\n/pp purge t:<time>\n```\nDelete old log data (requires OP level 4).\n\n```bash\n/pp status\n```\nShow database counters and runtime status.\n\n---\n\n## Time Format\n\nSupports `s`, `m`, `h`, `d`, `w`  \nExamples: `30m`, `1h30m`, `2d`, `1w`\n\n---\n\n## Highlight Mode\n\nUse `/pp highlight` to render outline markers for matched block changes in-world.  \nColors indicate action type, and `/pp highlight off` clears active highlights immediately.\n\n## Entity Rollback\n\nEntity rollback is a separate scope: add `a:entity` to rollback commands.  \nPrismProtect respawns entities at original coordinates using full NBT snapshots captured at death.\n\n---\n\n## Item Rollback\n\nPrismProtect logs:\n- item drops from broken blocks\n- crafting outputs taken from result slots\n\nDuring `/pp rollback`, it restores affected blocks and tries to remove logged items from the original player inventory.  \nIf items are missing there, it also checks nearby ground drops around the original position.\n\n---\n\n## Storage\n\nPrismProtect uses bundled **SQLite** (no external DB required).  \nDatabase path: `config/prismprotect/prismprotect.db`  \nWAL journaling provides safe concurrent access under active server load.\n\n---\n\n## Version Support\n\n| Minecraft | Loader | Status |\n|-----------|--------|--------|\n| 1.20.1–1.20.4 | Forge 47.2.0+ | ✅ Supported |\n| 1.20.1–1.20.4 | Fabric Loader 0.14.25+ + Fabric API 0.92.2+1.20.1 | ✅ Supported |\n| 1.20.5+ / 1.21.x | Other builds | ⚠️ Not working(Will be added soon) |\n\n> Server-side and optional client side. Clients do **not** need PrismProtect installed to join.\n```",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 400,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

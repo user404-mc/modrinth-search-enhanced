@@ -1,0 +1,40 @@
+{
+  "id": "g8XCro6n",
+  "slug": "announcer-plus",
+  "title": "Announcer Plus",
+  "description": "Custom Join/Quit messages and auto-broadcasts! Text animations, Boss Bars, Titles. and much more!",
+  "body": "![AnnouncerPlus Logo](https://i.imgur.com/C46OmJ6.png)\n\n[![Jenkins Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.jpenilla.xyz%2Fjob%2FAnnouncerPlus%2F&label=Jenkins%20build&style=for-the-badge)](https://jenkins.jpenilla.xyz/job/AnnouncerPlus/)\n\n## Overview\n\n- **Custom Join and Quit Messages**, assigned by permission:\n  - Custom join MotD messages\n  - Custom broadcasts on player join/quit\n  - Custom commands on player join/quit\n  - Sounds on player join/quit\n  - Custom Titles/Subtitles and Action/Boss Bars on player join\n  - Custom Toast/Achievements on player join\n\n- **Automatic Messages/Broadcasts** on timers, assigned by permissions:\n  - Randomize the order of messages\n  - Play sounds\n  - Show Titles\n  - Show Boss Bars\n  - Show Action Bars\n  - Show custom Toast/Achievements\n\n- **Send/Broadcast Messages, Titles, Action Bars, Boss Bars, and Toasts** to worlds or players using commands.\n\n- **Animations Support** for Titles, Subtitles, Boss Bars, and Action Bars. See the [wiki page](https://github.com/jpenilla/AnnouncerPlus/wiki/Text-Animations) for more info.\n\n- **MiniMessage parsing** for all messages.\n  - Built in gradients, hex colors, shadow colors, and more\n  - [MiniMessage docs](https://docs.advntr.dev/minimessage/format)\n  - [MiniMessage viewer](https://webui.advntr.dev/)\n\n[PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) is a *highly recommended*, but optional dependency. You may use any PlaceholderAPI placeholders in messages. [Vault](https://dev.bukkit.org/projects/vault) is a required dependency.\n\n## Feature Summary\n\n### Custom Join and Quit Messages\n- Configs stored in `plugins/AnnouncerPlus/joinquit/`\n- Optional first join config (different messages, titles, commands, etc. for a player's first join)\n- Create multiple Join/Quit message configs and assign them by permission\n- Assign groups of Join/Quit configs and randomly select one on join/quit\n- Supports Titles, Subtitles, Action Bars, Boss Bars, Sounds, Commands, and Toasts/Achievements\n\n![Example Join](https://i.ibb.co/3BXJXNv/ap.gif)\n\n### Custom Broadcast Messages\n- Configs stored in `plugins/AnnouncerPlus/messages/`\n- Create multiple broadcast configs and assign them by permission\n- Supports Titles, Subtitles, Action Bars, Boss Bars, Sounds, Commands, and Toasts/Achievements\n\n![Example Broadcast](https://i.imgur.com/v3jyu75.png)\n\n### Chat Color Support\n- Full vanilla and hex color codes\n\n```xml\n<color:#ff00ff>Colored text!</color:#ff00ff>\n<red>Red Text <yellow>Yellow text</yellow> <bold>Red and BOLD text</red></bold>\n<rainbow>|||||||||||||||||||||||||</rainbow>\n<gradient:#00DCFF:#FFAC00>||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n<gradient:light_purple:blue>||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n```\n\n![Chat Color Example](https://i.imgur.com/4a5YwrL.png)\n\n### Hover Text and Click Options\n\n- [Hover Actions](https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/HoverEvent.Action.html)\n- [Click Actions](https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/net/md_5/bungee/api/chat/ClickEvent.Action.html)\n\nExample:\n```xml\n<click:run_command:/spawn><hover:show_text:'<green><italic>Click to run!'><rainbow>/spawn</rainbow></hover></click>\n```\n![Hover Click Example](https://i.imgur.com/iUmbfE9.png)\n\n### Text Animations\n\nDocumentation for Text Animations: [here](https://github.com/jpenilla/AnnouncerPlus/wiki/Text-Animations)\n\n![Animation Example](https://i.ibb.co/cwz0dDH/brrrr2.gif)\n![Another Animation Example](https://i.imgur.com/x1sQJza.gif)\n\n### PlaceholderAPI Support\n- Join/Quit messages and all broadcasts parsed for [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) placeholders\n- [Available Placeholders](https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders)\n\nExample:\n```xml\nHello, %essentials_nickname%<reset>! You have $<green>%vault_eco_balance_commas%\n```\n![Placeholder Example](https://i.imgur.com/ClkhpqN.png)\n\n### Syntax/Formatting\n\n- See the [Message Syntax Documentation](https://github.com/jpenilla/AnnouncerPlus/wiki/Message-Syntax)\n- Includes:\n  - Centering text\n  - Full syntax documentation\n\n### Miscellaneous Features\n- Tab-complete support for commands\n- Support for vanish (SuperVanish, ProtocolVanish, EssentialsX Vanish, etc.)\n  - No join/quit broadcasts for vanished players\n\n\n## Permissions\n\n### Join/Quit Messages\n- To assign join/quit messages to a player/group use the `announcerplus.join.configname` and `announcerplus.quit.configname` permissions\n  - For example to assign the default included join/quit messages to everyone, give the default group the `announcerplus.join.default` and `announcerplus.quit.default` permissions.\n- For random Join/Quit config selection, groups of join/quit configs may be created in `main.conf` and then assigned by the `announcerplus.raindomjoin.groupname` and `announcerplus.raindomquit.groupname` permissions. There is more detail in `main.conf`\n- A common mistake is that players with OP will have duplicate join/quit messages. To solve this make sure to negate the permissions you don't want them to have using your permissions plugin.\n\n### Auto-announcements\n- To set a player/group to receive broadcasts from a message config, use the `announcerplus.messages.configname` permission\n  - For example to make everyone receive the demo messages, give the default group the `announcerplus.messages.demo` permission\n- To stop a player from receiving broadcasts while AFK use the `announcerplus.messages.configname.afk` permission\n  - For example to make no one get the demo messages while they are AFK give the default group the `announcerplus.messages.demo.afk` permission\n\n## Commands\n\n| Command | Permission | Description |\n|:---|:---|:---|\n| `/announcerplus reload` | `announcerplus.reload` | Reloads all config files |\n| `/announcerplus broadcast` | `announcerplus.broadcast` | Manually broadcast a message |\n| `/announcerplus send` | `announcerplus.send` | Manually send a message to players |\n| `/announcerplus parse` | `announcerplus.parse` | Test parsing a message |\n| `/announcerplus parseanimation` | `announcerplus.parseanimation` | Test parsing text with animations |\n| `/announcerplus list` | `announcerplus.list` | List messages of a message config |\n| `/announcerplus help` | *No permission required* | Display help for commands |\n\n> **Note:** Similar broadcast/send commands exist for Toasts, Titles, etc., with permissions like `announcerplus.broadcasttoast`, `announcerplus.sendtoast`, etc.\n\n## Additional Information\n\n- Check out the [AnnouncerPlus Wiki](https://github.com/jpenilla/AnnouncerPlus/wiki) for more information\n- You can assign Join/Quit messages and announcements per world using [LuckPerms contexts](https://luckperms.net/wiki/Context)\n- Toast/Achievement messages work only in Minecraft 1.12+\n- When using older servers (like 1.8.8) with ViaVersion, 1.16+ clients will still receive RGB text!\n",
+  "categories": [
+    "decoration",
+    "folia",
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7614,
+  "followers": 0,
+  "game_versions": [
+    "1.8.8",
+    "1.8.9",
+    "1.9.4",
+    "1.10.2",
+    "1.11.2",
+    "1.12.2",
+    "1.13.2",
+    "1.14.4",
+    "1.15.2",
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20.6",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

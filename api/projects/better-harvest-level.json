@@ -1,0 +1,24 @@
+{
+  "id": "z9ZHPD94",
+  "slug": "better-harvest-level",
+  "title": "Better Harvest Level",
+  "description": "A config-driven tool progression mod for modpack developers",
+  "body": "# BetterHarvestLevel\n\nTake full control of your modpack's mining progression. BetterHarvestLevel lets you define custom tool tiers, override harvest levels for any block or tool, and unify cross-mod progression — all through simple JSON config files.\n\n---\n\n## Features\n\n### Custom Tier Definitions\nDefine your own mining tiers beyond vanilla's wood/stone/iron/diamond/netherite hierarchy. Each tier supports:\n- Custom name, display name, and color\n- Numeric level for ordering\n- Configurable icon item (shown in Jade tooltips)\n- Insertion point (`after`/`before`) for precise tier ordering\n\n### Block & Tool Overrides\nOverride which tier is required to mine any block, or what tier any tool belongs to. Target overrides by:\n- **Individual ID** — `minecraft:obsidian`, `create:brass_block`\n- **Tag** — `#minecraft:needs_iron_tool`\n- **Mod namespace** — `create:*` (all blocks/items from a mod)\n- **Regex** — pattern-match across the entire registry\n\n### Tier Equivalence Groups\nGroup tiers that should be treated as equivalent for mining purposes. Useful for mods that add parallel progression paths (e.g., making a modded alloy tier equivalent to iron).\n\n### Config Layering\nSplit your overrides across multiple files for organization. Use `blocks.json`, `blocks_create.json`, `blocks_thermal.json`, etc. — BetterHarvestLevel merges them all automatically in alphabetical order. Keep per-mod configs clean and separate.\n\n### Jade/WAILA Integration\nBlocks with BHL overrides display their required tier in the Jade tooltip, complete with:\n- Tier name in its configured color\n- A harvestability indicator (green checkmark or red X) based on your held tool\n- The tier's icon item\n\n### In-Game Commands\n- `/bhl check held` — Show the BHL tier of your held tool\n- `/bhl check looking` — Show the required tier of the block you're looking at\n- `/bhl info` — List all registered tiers and override counts\n- `/bhl reload` — Hot-reload all config files without restarting\n\n### Mod Ignore List\nExclude entire mods from override resolution so their blocks and tools are left untouched.\n\n---\n\n## Supported Versions\n\n| Loader | Minecraft Version |\n|---|---|\n| Forge | 1.20.1 |\n| Fabric | 1.20.1 |\n| NeoForge | 1.21.1 |\n| Fabric | 1.21.1 |\n\n---\n\n## Getting Started\n\n1. Install the mod and launch the game once. Config files are generated in `.minecraft/config/betterharvestlevel/`.\n2. Edit `tiers.json` to define your tier hierarchy.\n3. Add block overrides in `blocks.json` (or create per-mod files like `blocks_create.json`).\n4. Add tool overrides in `tools.json` (or per-mod files like `tools_thermal.json`).\n5. Optionally define equivalence groups in `equivalences.json`.\n6. Use `/bhl reload` in-game to apply changes instantly.\n\n### Example: Adding a custom tier and overriding a block\n\n**tiers.json** — Add a \"copper\" tier between stone and iron:\n```json\n{\n  \"tiers\": [\n    { \"name\": \"wood\", \"level\": 0, \"displayName\": \"Wood\", \"color\": \"#A0522D\", \"builtIn\": true },\n    { \"name\": \"stone\", \"level\": 1, \"displayName\": \"Stone\", \"color\": \"#AAAAAA\", \"builtIn\": true },\n    { \"name\": \"copper\", \"level\": 2, \"displayName\": \"Copper\", \"color\": \"#E8851C\", \"builtIn\": false, \"iconItem\": \"minecraft:copper_ingot\" },\n    { \"name\": \"iron\", \"level\": 3, \"displayName\": \"Iron\", \"color\": \"#FFFFFF\", \"builtIn\": true },\n    { \"name\": \"diamond\", \"level\": 4, \"displayName\": \"Diamond\", \"color\": \"#55FFFF\", \"builtIn\": true },\n    { \"name\": \"netherite\", \"level\": 5, \"displayName\": \"Netherite\", \"color\": \"#555555\", \"builtIn\": true }\n  ]\n}\n```\n\n**blocks.json** — Require the copper tier to mine lapis ore:\n```json\n{\n  \"overrides\": [\n    { \"target\": \"minecraft:lapis_ore\", \"type\": \"block\", \"requiredTier\": \"copper\" },\n    { \"target\": \"minecraft:deepslate_lapis_ore\", \"type\": \"block\", \"requiredTier\": \"copper\" }\n  ]\n}\n```\n\n---\n\n## For Modpack Developers\n\nBetterHarvestLevel is built specifically for modpack developers who need granular control over mining progression. Ship your tier and override configs with your modpack — no end-user configuration needed. The layered config system means you can organize overrides per-mod and easily add or remove mod-specific files as your modpack evolves.",
+  "categories": [
+    "equipment",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 402,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

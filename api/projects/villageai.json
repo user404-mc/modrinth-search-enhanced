@@ -1,0 +1,37 @@
+{
+  "id": "QkbM4VXn",
+  "slug": "villageai",
+  "title": "VillageAI",
+  "description": "Intelligent village defense system. Villages centered on bells automatically detect nearby villagers. Friendly players gain reputation by trading. Hostile players lose reputation by attacking villagers. When hostile players are nearby reputation drops belo",
+  "body": "# VillageAI Plugin\n\n**Version:** 3.3.2  \n**API:** Paper 1.21 / Java 21  \n**Author:** Duong2012G\n\nVillageAI transforms vanilla Minecraft villages into living, reactive communities.\nVillages defend themselves, manage their own supply-and-demand economy, issue quests,\nand dynamically react to player reputation — all without any external dependencies.\n\n---\n\n## Features\n\n| System | Description |\n|---|---|\n| **State machine** | Villages cycle through SAFE → ALERT → DEFENDING → NIGHT / RAID automatically |\n| **Spatial bell index** | O(1) village lookups via ChunkCoord index — no full-scan on chunk events |\n| **Economy** | Supply/demand pricing with per-player reputation multipliers (−50 % to +50 %) |\n| **Raids** | Configurable multi-wave raids with mob variety and emerald rewards |\n| **Upgrades** | WALL · WATCHTOWER · GRANARY · FORGE — each adds tangible gameplay effects |\n| **Quests** | 24-hour DeliveryQuest cycle with deadlines; reward on villager interaction |\n| **Trade GUI** | 54-slot chest GUI with live price display and discount/markup indicators |\n| **Villager names** | Custom name tags per villager showing profession and health |\n| **Async storage** | Atomic file save (write-temp → rename) with automatic backup |\n\n---\n\n## Installation\n\n1. Ensure you are running **Paper 1.21** (or a compatible fork) with **Java 21**.\n2. Drop `VillageAI-3.3.2.jar` into your server's `plugins/` folder.\n3. Start (or restart) the server — do **not** use `/reload`.\n4. Configuration files are generated in `plugins/VillageAI/` on first run.\n\n> **Note:** PlugMan hot-reload is not officially supported.  Always use a full server restart when updating the plugin.\n\n---\n\n## Building from Source\n\n```bash\n# Clone / unzip the source, then:\nmvn clean package -DskipTests\n\n# The shaded jar will be at:\ntarget/VillageAI-3.3.2.jar\n```\n\nRequirements: Java 21, Maven 3.8+.\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/villageai info` | `villageai.info` | Show status of the nearest village |\n| `/villageai list` | `villageai.admin` | List all loaded villages |\n| `/villageai reload` | `villageai.admin` | Reload config (hot) |\n| `/villageai debug` | `villageai.admin` | Toggle debug output |\n| `/villageai raid start` | `villageai.admin` | Force-start a raid |\n| `/villageai raid stop` | `villageai.admin` | Force-stop a raid |\n| `/vtrade` | `villageai.trade` | Open trade GUI for the nearest village |\n| `/vtrade buy <item> [qty]` | `villageai.trade` | Buy directly via command |\n| `/vtrade sell <item> [qty]` | `villageai.trade` | Sell directly via command |\n| `/vquest list` | `villageai.quest` | View active quests |\n| `/vquest accept <id>` | `villageai.quest` | Accept a quest |\n\n---\n\n## Permissions\n\n```yaml\nvillageai.info:    true       # All players\nvillageai.trade:   true       # All players\nvillageai.quest:   true       # All players\nvillageai.admin:   op         # Operators only\n```\n\n---\n\n## Configuration Overview\n\nKey settings in `config.yml`:\n\n```yaml\nvillage:\n  check_radius: 64            # Hostile-player detection radius (blocks)\n  door_radius: 8              # Door-scan radius for night/alert\n  tick_interval: 40           # Village tick rate (ticks, default 2 s)\n\ndefense:\n  max_golems: 2               # Max iron golems per village\n  alert_to_defense_delay: 10000  # ms before spawning golems\n  bell_sound_cooldown: 15000  # ms between bell rings\n\nreputation:\n  hostile_threshold: -30      # Rep below this triggers golem targeting\n  interact_reward: 2          # Rep gained per villager right-click\n  damage_penalty: -25         # Rep lost per villager attack\n\nraid:\n  max_waves: 5\n  wave_interval_seconds: 60\n  reward_per_wave: 64         # Emeralds per completed wave\n\nnight:\n  enabled: true\n  close_doors_at_night: true\n```\n\n---\n\n## Bug Fixes in 3.3.2\n\nSix bugs were resolved in this release — see [CHANGELOG.md](CHANGELOG.md) for full details:\n\n- **[Critical]** `TradeService.executeTrade()` validated trades but never transferred items\n- **[Critical]** Double-spend possible via rapid double-click in Trade GUI\n- **[Medium]** `getNearestVillage()` crashed with `IllegalArgumentException` on multi-world servers\n- **[Medium]** `tradeHistory` list grew without bound — memory leak on long-running servers\n- **[Medium]** Quest duplicates generated when 24-hour timer fired with identical quest active\n- **[Performance]** `onEntityDeath` O(n) village scan replaced with O(1) reverse-lookup map\n- **[Performance]** `closeAllDoors()` block scan replaced with cached door list\n\n---\n\n## Data Storage\n\nVillage data is saved to `plugins/VillageAI/villages/` as YAML, one file per village.\nSaves are performed asynchronously using an atomic write pattern (write to `.tmp` →\nrename to final file) to prevent data corruption on crash.  A `.bak` backup of the\nprevious save is kept alongside each file.\n\n---\n\n## License\n\nThis plugin is provided as-is for educational and server-operator use.  \nRedistribution or resale without permission from the author is not permitted.\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 308,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

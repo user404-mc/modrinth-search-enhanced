@@ -1,0 +1,23 @@
+{
+  "id": "qi2EJ3Hz",
+  "slug": "tc-battle-growth",
+  "title": "TC Battle Growth",
+  "description": "Gain experience immediately while fighting, instead of the old experience gain logic.",
+  "body": "Configuration:\nAll EXP rates are fully customizable via config/battlegrowth.json, which is automatically generated with sensible defaults on first launch and self-updates if new config keys are added in future versions.\nRequirements: Must be installed on both client and server.\nHow it works:\nEvery time a Pokémon lands a hit, dodges an attack, uses a buff or debuff move, or performs a support action, it earns EXP immediately. Knocking out an opponent rewards a bonus EXP payout on top. When enough experience is accumulated, the Pokémon levels up instantly mid-battle — HP bar and stats update on the spot without waiting for the fight to conclude.\nGameplay balance:\n\n| Factor / Action               | EXP Gain Rate / Mechanism                           | Notes                                                                 |\n| ----------------------------- | --------------------------------------------------- | --------------------------------------------------------------------- |\n| **Calculation Anchor**        | Based on the `expToNext` of the lower-level Pokémon | Used as the base reference for all calculations below.                |\n| **Base Hit**                  | `5% - 15%`                                          | Randomly generated within this range.                                 |\n| **Combo Hit**                 | `Base Hit + 1%`                                     | Triggered when consecutive hits land without defeating the opponent.  |\n| **Miss / Dodge**              | `2%`                                                | Rewarded to the defending Pokémon for successfully dodging an attack. |\n| **Buff (Stat Increase)**      | `1.5%`                                              | Using moves that benefit the user.                                    |\n| **Debuff (Stat Reduction)**   | `1%`                                                | Using moves that negatively affect the opponent.                      |\n| **Support / Misc**            | `0.5%`                                              | Includes healing, weather changes, terrain setup, etc.                |\n| **Faint Bonus**               | `10% - 20%`                                         | Large bonus awarded for delivering the finishing blow.                |\n| **Damage-Based Distribution** | **Attacker:** Based on `% of opponent HP lost`      | More effective attacks grant a higher share of EXP.                   |\n|                               | **Defender:** Based on `% of own HP remaining`      | Better survivability grants a higher share of EXP.                    |\n| **Level Difference Scaling**  | `± 10%` for every `10 level` difference             | Differences below `10 levels` do not affect EXP.                      |\n| **Budget System**             | Starts at `2 to 4 times expToNext`                  | Limits the total EXP obtainable in a battle.                          |\n|                               | When depleted: Grants a fixed `10 EXP`              | Anti-abuse system to prevent infinite EXP farming through move spam.  |\n~~~~\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 158,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

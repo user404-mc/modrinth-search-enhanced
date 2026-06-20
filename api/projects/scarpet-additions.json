@@ -1,0 +1,40 @@
+{
+  "id": "vXQQF1r2",
+  "slug": "scarpet-additions",
+  "title": "Scarpet additions",
+  "description": "Adds some miscellaneous new functions like http requests to the scarpet language",
+  "body": "# scarpet-additions\n\n[<img alt=\"Available for fabric\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2.8.0/assets/cozy/supported/fabric_vector.svg\">](https://fabricmc.net/)\n[<img alt=\"See me on GitHub\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2.8.0/assets/cozy/social/github-singular_vector.svg\">](https://github.com/replaceitem)\n[<img alt=\"Available on Modrinth\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2.8.0/assets/cozy/available/modrinth_vector.svg\">](https://modrinth.com/mod/scarpet-additions)\n[<img alt=\"Chat on Discord\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2.8.0/assets/cozy/social/discord-singular_vector.svg\">](https://discord.gg/etTDQAVSgt)\n\n![scarpet-additions](https://raw.githubusercontent.com/replaceitem/scarpet-additions/master/src/main/resources/assets/scarpet-additions/icon.png)\n\n## A [Carpet mod](https://modrinth.com/mod/carpet) extension for some additional [scarpet](https://github.com/gnembon/fabric-carpet/wiki/Scarpet) functions\n\n**Reqires [Carpet mod](https://modrinth.com/mod/carpet)**\n\n## Functions\n\n### `convert_color(color,model,output)`\n\nConverts a color from one `model` to another.\n\n`color` -> List: Depending on specified `model`\n\n`model` -> String: Input color model, can be `RGB`, `RGBA` or `HSB`\n\n* RGB: List of a red, green and blue value\n* RGBA: List of a red, green, blue and alpha value\n* HSB: List of a hue, saturation and brightnes value\n\n`output` -> String: Output color model, can be `RGB`, `RGBA`, `HEX` or `NUM`\n\n* RGB: List of a red, green and blue value\n* RGBA: List of a red, green, blue and alpha value\n* HEX: String of hex characters (without leading '#') Can be used for `format()`\n* NUM: Number representing the color as 4 bytes: 0xRRGGBBAA. Can be used for `'color'` parameter in `draw_shape()`\n\nExamples:\n\n`convert_color([255,128,0],'rgb','hex');` -> `'FF8000'`\n\n`convert_color([255,128,0],'rgb','num');` -> `0xff7f00ff`\n\n`convert_color([0,255,255],'hsb','hex');` -> `'FF0000'`\n\n`convert_color([120,255,255],'hsb','hex');` -> `'00FF00'`\n\nExample:\n\n```py\n__on_tick() -> (\n    if((tick_time() % 2) == 0,\n        headerHue = tick_time()%360;\n        headerGlossIndex = (floor(tick_time()/3)%40)-10;\n        header = [];\n        title = 'MinecraftServer';\n        for(range(length(title)),\n            if(abs(_-headerGlossIndex) < 3,\n                c = convert_color([headerHue,abs(_-headerGlossIndex)/3*255,255],'hsb','hex');\n            ,\n                if(_ < 7,\n                    c = convert_color([headerHue,255,190],'hsb','hex');\n                ,\n                    c = convert_color([headerHue,255,255],'hsb','hex');\n                );\n            );\n            put(header,null,str('b#%s %s',c,slice(title,_,_+1)));\n        );\n        header = format(header);\n        footer = format('r to the server!');\n        set_tab_text(header,footer);\n  )\n);\n```\n\n### `http_request(options)`\n\nPerforms a http request specified by the given `options`.\n\nThis call is blocking, so you should use it in a `task()`!\n\nThe `options` parameter is a map value with the following keys:\n\n* `uri` (String): The URI to request from\n* `method` (String, optional): The http request method. For example `GET`, `POST`, `DELETE`,... Defaults to `GET`\n* `headers` (Map, optional): Each map entry is a string key pointing to a string, or list of strings\n* `body` (String): The body for `POST` or other requests\n\nThe function returns a map with the following entries:\n\n* `status_code` (number): The status code of the request\n* `body` (String): The body returned from the request\n* `headers` (Map: string -> [strings]): The received response headers\n* `uri` (String): The originally requested URI\n\nNote that the response body is not parsed as json or html escaped.\nUse the `escape_html` and `unescape_html` functions,\nas well as the scarpet-builtins `encode_json` and `decode_json`.\n\n\nExample usage:\n\n```js\n// simple get request and parsing\n\nresponse = http_request({\n    'uri'->'https://opentdb.com/api.php?amount=1'\n});\n\nprint('Response: ' + response);\n\nif(response:'status_code' != 200,\n    print('Request failed: ' + response:'status_code');\n,\n    body = decode_json(response:'body');\n    print('\\n\\nBody: ' + body);\n\n    question_data = body:'results':0;\n    question = unescape_html(question_data:'question');\n    answer = unescape_html(question_data:'correct_answer');\n\n    print('\\n\\n\\n' + question + '\\n' + answer);\n);\n```\n\n### `escape_html(html)`\n\nReturns the escaped html string (e.g. `\"` -> `&quot;`)\n\n### `unescape_html(html)`\n\nReturns the unescaped html string (e.g. `&quot;` -> `\"`)\n\n### `list_text(header, footer, player?)`\n\nSets header and footer in tab menu of all players, or changes it for one player if `player?` is given.\n\n### `set_motd(motd)`\n\nSets the message of the day of the server.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4237,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

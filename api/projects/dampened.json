@@ -1,0 +1,23 @@
+{
+  "id": "B2QvfvaH",
+  "slug": "dampened",
+  "title": "Dampened",
+  "description": "A library for Palladium that adds various interactions for power dampening.",
+  "body": "![Image](https://cdn.modrinth.com/data/cached_images/e071fc56a89fd137b7d829db69aed1c73c210bc9.png)\n\n### A Palladium addon adding items and effects related to power dampening.\n\nDampened is an addon for Palladium that adds blocks, effects, and interactions that will allow addonpack developers to allow for cross-pack power dampening. The hope is to make the process of dampening powers to be as streamlined as possible with this addon.\n\nInstructions for how to properly add compatibility with Dampened to your addon, or integrate Dampened into your addon will be coming soon!\n\nOriginally built for Arrzee's Enhanced SMP. Watch now!\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/ceNyPo3lzvI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# Features\n## Dampening Blocks\n- Dampener Block (Dark Matter)\n- EMP Jammer (Technology)\n- Magic Rune (Magic)\n- Creative Dampening Block\n\n## Targeted Dampening\n- Dampening Handcuffs (Dark Matter)\n- Kryptonite-Gold Handcuffs\n- Magic-Dampening Handcuffs\n- Tech-Dampening Belt\n- Dampening Collar (Mutant)\n\n\n# Compatibility\n\n## Option 1: Optional Dependency\nIf you'd like Dampened to be an OPTIONAL dependency for your addon, then take the following steps.\n\n### Part 1: Custom Condition\nTo add Dampened compatibility to your addon, first you need to add a custom power condition.\nThis can be done by placing the following contents into a file located at `addon/<YOUR_NAMESPACE>/kubejs_scripts/safe_player_has_effect.js`.\n\nATTENTION: Replace <YOUR_NAMESPACE> with your mod's namespace!\n\n```js\n/*\n    @author Hertz\n    @version 2.0\n*/\n\nvar BuiltInRegistries = Java.loadClass(\"net.minecraft.core.registries.BuiltInRegistries\")\n\nfunction resolveAllegedBooleanFromObject(thing) {\n    if (thing.toString() == 'true') { return true; }\n    if (thing.toString() == 'false') { return false; }\n    return null\n}\n\nStartupEvents.registry('palladium:condition_serializer', (event) => {\n    event.create('<YOUR_NAMESPACE>:dampened_by')\n    .addProperty(\"effect\", \"string\", \"minecraft:health_boost\", \"Effect to search for\")\n    .test((entity, props) => {\n        let targetEffect = props.get(\"effect\")\n        var toReturn = false\n        \n        try {\n            var fetchedEffect = BuiltInRegistries.MOB_EFFECT.get(targetEffect)\n            if (fetchedEffect == null) {\n                // throw new Error(`Target effect ${targetEffect} not found!`)\n                toReturn = false\n            } else {\n                toReturn = entity.hasEffect(targetEffect)\n            }\n        } catch (err) {\n            console.log(err)\n        }\n        \n        return !toReturn\n    })\n});\n```\n\n### Part 2: Implementation\n\nAdding the custom condition is as simple as slotting it into a power's `unlocking` condition. However, to use powers you want to make sure you are **not** being dampened, so you need to wrap your custom `safe_player_has_effect` in a `palladium:not` condition. Below is a snippet of the power JSON file.\n\n```json\n\"conditions\": {\n  \"unlocking\": [\n    {\n      \"type\": \"<YOUR_NAMESPACE>:dampened_by\",\n      \"effect\": \"dampened:genetic\"\n    }\n  ]\n}\n```\n\nFeel free to switch out the effect that dampens your powers, and you're good to go!\n\n\n\n## Option 2: Required Dependency\nIf you'd like Dampened to be a required dependency for your addon (as it is with Arrzee's Multiverse), you can use Palladium's built in `palladium:has_effect` condition in place of the custom condition.\n\n```json\n\"conditions\": {\n  \"unlocking\": [\n    {\n      \"type\": \"palladium:has_effect\",\n      \"effect\": \"dampened:genetic\"\n    }\n  ]\n}\n```\n\nYou'll want to reflect Dampened as a dependency in your addon's `pack.mcmeta` or mod's `META_INF/mods.toml`.",
+  "categories": [
+    "equipment",
+    "forge",
+    "game-mechanics",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 37726,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

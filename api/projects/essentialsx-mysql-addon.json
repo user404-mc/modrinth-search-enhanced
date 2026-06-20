@@ -1,0 +1,31 @@
+{
+  "id": "ULHOjPTF",
+  "slug": "essentialsx-mysql-addon",
+  "title": "EssentialsX MySQL Addon",
+  "description": "Synchronize EssentialsX player data with a MySQL database in real-time. Lightweight, resilient, and network-ready.",
+  "body": "# EssentialsX MySQL \n\nSeamlessly synchronize your **EssentialsX** player data with a **MySQL database** across single or multiple servers.  \nSupports **Minecraft 1.21.4+**, fully automatic, resilient, and configurable.  \n\n🔗 Website: [secvers.org/plugins/essentials-mysql](https://secvers.org/plugins/essentials-mysql) \n\n---\n\n## What’s New\n\n- 🌐 **Multi-Server Network Sync** – balances, homes, inventories, and profiles sync seamlessly across servers  \n- ⚡ **Smart Auto-Sync** – decides at join whether DB or Player data should be trusted  \n- 🛠️ **Dedicated Workers**:  \n  - `PlayerDataWorker` → XP, health, hunger, inventories, potion effects  \n  - `HomeDataWorker` → Homes synced instantly when set, deleted, or renamed  \n  - `EssentialsXDataWorker` → Balances, groups, and last-locations  \n- 🔒 **Only-if-newer Guards** – prevents overwriting fresh data with stale states  \n- 📡 **Telemetry & Update Checker** – optional, minimal data (plugin version, OS, server name)  \n\n---\n\n## Features\n\n✔ Real-time MySQL sync  \n✔ Multi-server awareness  \n✔ Async DB I/O, dirty-flagged flushing  \n✔ Safe imports/exports at join  \n✔ Debug-friendly logging & metrics  \n\n---\n\n## ⚙️ Configuration Example\n\n```yaml\n# EssentialsX MySQL Sync config.yml\n# ──────────────────────────────\n# Database Connection Settings\n# ──────────────────────────────\nmysql:\n  # Database hostname or IP\n  host: \"localhost\"\n\n  # Port number of the database\n  port: 3306\n\n  # Name of the database schema\n  database: \"essentials\"\n\n  # MySQL or MariaDB user credentials\n  user: \"minecraft\"\n  password: \"yourPassword\"\n\n  # SSL usage (true/false)\n  enableSSL: false\n\n  # Whether to use autocommit for statements\n  autoCommit: false\n\n\n# ──────────────────────────────\n# Server Identification\n# ──────────────────────────────\n# This name is stored with per-server profile data\n# and must be unique across your network.\nserverName: \"default\"\n\n\n# ──────────────────────────────\n# Telemetry\n# ──────────────────────────────\n# We only collect minimal info (plugin version, OS, server name).\ntelemetry:\n  enabled: true                  # set to false to opt-out\n  send_interval_seconds: 3600    # how often telemetry pings are sent\n\n\n# ──────────────────────────────\n# Update Checker\n# ──────────────────────────────\ncheckUpdate: true\n\n\n# ──────────────────────────────\n# Worker Settings\n# ──────────────────────────────\nplayerdata: #experimantal\n  enabled: false\n  flush_interval_seconds: 20\n\nhomes:\n  # How often homes are flushed to DB\n  flush_interval_seconds: 20\n  # Debounce delay in ticks after sethome/delhome/renamehome before writing\n  debounce_ticks: 10\n\nessx:\n  # If true, this server writes global balances back to DB.\n  # If false, balances are imported from DB but never exported.\n  balance_write_enabled: true\n  # How often EssentialsX profile data (balance, group, last location) is flushed\n  flush_interval_seconds: 20\n  \n#experimantal do not enable only for testing\ndupeProtection: \n  enabled: false\n  action: \"LOG\"\n  auditLog: true\n  suppressMsAfterImport: 1500\n  rescanSeconds: 60\n  embedUidForShulkersOnly: true\n  cleanupOldUidsOnStart: true\n\n",
+  "categories": [
+    "management",
+    "paper",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 245,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

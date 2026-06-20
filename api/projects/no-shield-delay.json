@@ -1,0 +1,40 @@
+{
+  "id": "pOf4Y6Oo",
+  "slug": "no-shield-delay",
+  "title": "No Shield Delay",
+  "description": "A recreation of Revvilo's Responsive Shields in Fabric.",
+  "body": "## No Shield Delay\n### Configurable reduction of the delay in Minecraft's blocking system for Fabric based off of Revvilo's Responsive Shields\n\nEver notice a strange occurrence where you try to block and attack and it hits you anyway? Even though your shield was definitely up by then? Well, it isn't in your head! That delay is very much real and this mod removes it!\n\nWhen holding use on an item, there is a base 'use time' which is stored and then decremented every tick while it's being held.\n\nMinecraft will only block an attack after the shield has been raised for more than 5 ticks.\nIt checks this by looking at the difference between the current use time countdown and the base use time of the item.\n\n(from LivingEntity's isBlocking() method)\n\n> `return item.getMaxUseTime(this.activeItemStack) - this.itemUseTimeLeft >= 5;`\n\nThis mod bypasses this by using mixin to alter the `5` constant, allowing comparison between any given integer 0 thorough 5.\n\nThis mod is supposed to be an alternative to [Revvilo's Responsive Shields](https://github.com/Revvilo/Responsive-Shields). Because of this, if Revvilo ever makes a Fabric port of their own, I will cease maintaining this project. \nGive it a look if you need a Forge equivalent.\n\n----------\n## 🧰 Setup\n\nThis mod should work with 1.17+. It possibly could work with versions older than that, but I don't feel like testing it.\n\nThis mod is only necessary server side. Installing on the client as well will not yield any benefit.\n\nThe Fabric API is not needed for this mod. Only the Fabric Loader.\n\n----------\n## ⚙ Configs\n### Files and contents:\n#### no-shield-delay.toml\n\n>`RaiseTime`\n>> (From 0 to 5. default: 0) The amount of time, in ticks, from when you right-click before the game will block attacks.\n\n>`Enabled`\n>> (Default: true) Whether or not the effect of the mod is enabled.\n\n\n### Info:\n- Setting Raise Time to 0 makes shields capable of blocking immediately\n\n- The client-side raise animation takes roughly one tick to complete. So setting Raise Time to 1 is a decent balance between responsiveness and not being able to blockhit as easily.\n\n## 📜 License\n\nCopyright 2022 Quplet, Apache License 2.0. Please credit if you use or distribute my work.\n\n[![Kinetic Server Hosting Banner](https://i.imgur.com/8BYsb46.png)](https://tinyurl.com/qupletkineticlink)",
+  "categories": [
+    "equipment",
+    "fabric",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 196244,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

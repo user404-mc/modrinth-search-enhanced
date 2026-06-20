@@ -1,0 +1,33 @@
+{
+  "id": "nyJoB1vO",
+  "slug": "commandgui",
+  "title": "CommandGUI",
+  "description": "Customizable Command GUI for Spigot/Paper",
+  "body": "# **CommandGUI Plugin**\n\n## **Overview**\nCommandGUI is a Minecraft Spigot plugin that provides players with a custom GUI to execute commands as the player interacting with the GUI. The GUI is fully configurable, allowing you to define items, commands, and layout. Players can also receive a custom item that opens the GUI when used.\n\n---\n\n## **Features**\n- **Custom GUI**: A player-friendly interface to execute commands with a click.\n- **Configurable Items**: Define items, their appearance, and the commands they execute in the GUI via the configuration file.\n- **Dynamic Inventory Sizing**: Automatically adjusts the GUI size based on the number of items.\n- **Customisable Tool**: Players can use a custom tool to open the GUI.\n- **Command Reload**: Easily reload the plugin's configuration with `/commandgui reload`.\n\n---\n\n## **Commands**\n### `/commandgui`\n- **Description:** Opens the Command GUI for the player.\n- **Aliases:** `/cg`\n\n### `/commandgui tool`\n- **Description:** Gives the player a tool that opens the Command GUI when used.\n- **Aliases:** `/cg tool`\n\n### `/commandgui give <player>`\n- **Description:** Gives the specified player the Command GUI Tool.\n- **Aliases:** `/cg give <player>`\n\n### `/commandgui help`\n- **Description:** Displays all the plugin's commands.\n- **Aliases:** `/cg help`\n\n### `/commandgui reload`\n- **Description:** Reloads the plugin's configuration.\n- **Aliases:** `/cg reload`\n\n---\n\n## **Permissions**\n| Permission          | Description                          | Default |\n|---------------------|--------------------------------------|---------|\n| `commandgui.use`    | Allows player to open the GUI.       | OP      |\n| `commandgui.bypass` | Allows player to bypass cooldowns.   | OP      |\n| `commandgui.tool`   | Gives player a tool to open the GUI. | OP      |\n| `commandgui.give`   | Gives another player the GUI Tool.   | OP      |\n| `commandgui.reload` | Allows reloading the plugin config.  | OP      |\n\n---\n\n## **Installation**\n1. Download the CommandGUI plugin `.jar` file.\n2. Place the `.jar` file in your server's `plugins` directory.\n3. Start the server to generate the default configuration file.\n4. Configure the plugin by editing `plugins/CommandGUI/config.yml`.\n5. Reload the plugin with `/commandgui reload` or restart the server.\n\n---\n\n## **Configuration**\nThe `config.yml` file allows you to customize the items in the GUI.\n\n```yaml\n# General settings\nlanguage-file: \"en_us.yml\"  # Default language file. Changing languages will break existing CommandGUI tools!\nverbose-mode: false # Set to true to enable verbose messages globally for all items (default fallback)\ngui-size-mode: \"dynamic\" # Options: \"dynamic\", \"fixed\"\ngui-tool: \"COMPASS\" # This is the item used to open the GUI given by \"/cg tool\"\n\ngui-items:\n  - slot: 0\n    name: \"&aGo to Spawn\"\n    command: \"spawn\"\n    item: \"COMPASS\"\n    run-as-player: true\n    cooldown: 0 # No cooldown\n    verbose: true # Always log interaction for this item\n    lore:\n      - \"&7Click to teleport to spawn\"\n\n  - slot: 1\n    name: \"&cHeal\"\n    command: \"heal\"\n    item: \"GOLDEN_APPLE\"\n    run-as-player: true\n    cooldown: 30 # 30 seconds cooldown\n    verbose: false # Never log interaction for this item\n    lore:\n      - \"&7Click to heal yourself\"\n\n  - slot: 2\n    name: \"&bDiamonds\"\n    command: \"give %player% diamond 1\"\n    item: \"DIAMOND\"\n    run-as-player: false\n    cooldown: 60 # 60 seconds cooldown\n    # No verbose field; falls back to global verbose-mode\n    lore:\n      - \"&bReceive a diamond!\"\n      - \"&3This is a server reward.\"\n```\n\n### Configuration Options\n\n#### General Settings\n- **`language-file`**: The language file to use (default: `en_us.yml`).\n- **`verbose-mode`**: If `true`, displays verbose messages for item interactions globally (default: `false`).\n- **`gui-size-mode`**: Determines the size of the GUI. Options:\n   - `\"dynamic\"`: Adjusts the inventory size based on the number of items.\n   - `\"fixed\"`: Sets the GUI size to a fixed double chest (54 slots).\n- **`gui-tool`**: Sets the tool used to open the GUI.\n\n#### GUI Items\nEach item in the GUI has the following options:\n\n- **`name`**: The display name of the item in the GUI, with color codes supported (e.g., `&aGo to Spawn`).\n- **`command`**: The command executed when the item is clicked (e.g., `spawn` or `give %player% diamond 1`).\n- **`item`**: The item's material (e.g., `DIAMOND`, `GOLDEN_APPLE`, `COMPASS`).\n- **`slot`**: The inventory slot for the item (optional, auto-increment if not provided).\n- **`lore`**: A list of text lines displayed as the item's lore (optional, supports color codes).\n- **`run-as-player`**: If `true`, the command will run as the player. If `false`, the command will run as the console (default: `false`).\n- **`cooldown`**: The cooldown in seconds before the item can be used again (default: `0` for no cooldown).\n- **`verbose`**: If `true`, overrides the global `verbose-mode` and enables verbose logging for this item (optional).\n\n---\n\n## **Usage**\n1. **Opening the GUI**:\n   - Use the `/commandgui` command to open the GUI.\n   - Alternatively, use the tool provided with `/commandgui tool`.\n\n2. **Adding Items**:\n   - Edit the `config.yml` file to add or modify items in the GUI.\n   - Reload the configuration with `/commandgui reload`.\n\n---\n\n## **Contributing**\nContributions are welcome! Please fork the repository, make your changes, and submit a pull request.\n\n---\n\n## **License**\nThis plugin is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).\n\n--- \n\n### **Thanks for using CommandGUI**",
+  "categories": [
+    "bukkit",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 769,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

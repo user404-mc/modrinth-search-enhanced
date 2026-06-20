@@ -1,0 +1,21 @@
+{
+  "id": "vRH38oNm",
+  "slug": "rt-lib",
+  "title": "RadiusToolLib",
+  "description": "Lib for creating radius tools",
+  "body": "# RadiusToolLib\nLib for creating radius tools\n\n# Adding the dependency\n\n```gradle\nrepositories {\n    maven {\n        url = \"https://api.modrinth.com/maven\"\n    }\n}\n\ndependencies {\n    // Option 1: Include Ducky Updater to project for it available within your own jar (additional ~20kb)\n    include(modImplementation(\"maven.modrinth:rt-lib:<mod-version>\"))\n    \n    // Option 2: Depend on Ducky Updater, but require that users install it manually\n    modImplementation(\"maven.modrinth:rt-lib:<mod-version>\")\n}\n```\n\n```json\n\"depends\": {\n    \"fabricloader\": \"*\",\n    ...\n    \"rt-lib\": \"*\"\n},\n```\n\n# Usage\n\n```java\npublic class ModName implements ModInitializer {\n                                                                          //Material           //Damage&Speed                   //Radius\n    public static final RadiusPickaxe RADIUS_PICKAXE = new RadiusPickaxe(ToolMaterials.NETHERITE, 4, 1.0f, new FabricItemSettings(), 1);\n    // For the tool to dig 3x3 - range: 1, 5x5 - range: 2; And so on...\n    @Override\n    public void onInitialize() {\n        Registry.register(Registries.ITEM, new Identifier(\"your_mod_id\", \"radius_pickaxe\"), RADIUS_PICKAXE);\n    }\n}\n```",
+  "categories": [
+    "equipment",
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 366,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4"
+  ],
+  "date_updated": null
+}

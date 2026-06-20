@@ -1,0 +1,31 @@
+{
+  "id": "p6qtbq7q",
+  "slug": "tc-portals",
+  "title": "TC Portals",
+  "description": "TrainCarts-Addon for cross-server teleporting of trains (BungeeCord)",
+  "body": "# TC-Portals\n#### Requires: [TrainCarts](https://modrinth.com/plugin/traincarts), [CTCommons](https://modrinth.com/plugin/ctcommons) and a MySQL-Database\n**Java-Version:** 17 or above  \n**Minecraft-Version:** 1.17.1 or above  \n\nTC-Portals is a plugin for Minecraft servers using [SpigotMC](https://www.spigotmc.org), [PaperMC](https://papermc.io) or forks of these projects.  \nIt serves as an add-on for the [TrainCarts](https://modrinth.com/plugin/traincarts) plugin which adds ActionSigns, supporting cross-server teleporting of trains in a BungeeCord network.   \nIt is very lightweight as database queries and network connections run asynchronously where possible.\n\nThis plugin was developed for the [CraftTogetherMC](https://github.com/CraftTogetherMC) Minecraft server, see also: [TC-Destinations](https://modrinth.com/plugin/tc-destinations)!\n\n### A big thank you and lots of love go out to [TeamBergerhealer](https://github.com/bergerhealer)\nAlso, a lot of appreciation goes to the people behind [Cloud](https://github.com/Incendo/cloud) and [Adventure](https://github.com/KyoriPowered/adventure)!  \n  \n#### Dev-Builds: [See here](https://ci.craft-together-mc.de/job/TC%20Destinations/)  \n  \n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/8XCvmY8EPtk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## ActionSigns\n\nThe signs behave like ordinary traincarts signs.  \nYou can de/activate them with redstone, alter trigger-directions, etc.  \n\nA portal exit behaves like a [spawn sign](https://wiki.traincarts.net/p/TrainCarts/Signs/Spawner), so you must set a direction for it like you do with the spawn sign.  \nThe spawn direction can be set by specifying trigger directions.  \nFor example: `[train:left]` or `[train:right]`. If none is set, the train is spawned based on what side is powered by redstone.  \n  \nIf you use `[cart]` instead of `[train]`, a train will be spawned at the exit cart by cart.  \n\n### Signs\n|                                      |                                                                                                                                                                                                                                                 |\n|:-------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| ![](https://i.imgur.com/EPwpDDO.png) | **Bidirectional Portal**<br/><br/>This sign represents a portal entrance and exit at the same time.<br/>A pair of these signs that have the same channel name can be passed from either side.<br/>The other sign acts as a portal exit.         |\n| ![](https://i.imgur.com/Aevpead.png) | **Directional Portal** *(Entrance)*<br/><br/>This sign represents a portal entrance.<br/>A portal of this type requires a `portal-out`-sign that has the same channel name.<br/>Any number of `portal-in`-signs can be created for one channel. |\n| ![](https://i.imgur.com/VJEQ2fP.png) | **Directional Portal** *(Exit)*<br/><br/>This sign represents a portal exit.<br/>Signs of this type can only exist once per channel name.                                                                                                       |\n\n### Flags\nThere are some flags you can use on the fourth line of a portal-sign to control whether items and mobs are transported.  \nYou can use them at the entrance as well as at the exit or both.\n- `!mobs` means mobs are killed\n- `!items` means items are killed\n- `-mobs` means mobs are ejected\n- `-items` means items are dropped\n\n## Pathfinding across servers (BungeeCord)\nWith a little extra work, it is possible to reach destinations on another server.\n\nFor example, if you want to drive from server1 to a destination on server2,\nyou need to create a [destination](https://wiki.traincarts.net/p/TrainCarts/Signs/Destination) on server1 that leads to the portal, which leads to server2.  \nLet's name it server2 as well.  \n  \nNow you create a [route](https://wiki.traincarts.net/p/TrainCarts/PathFinding#Route_Manager) for the train, which first contain the destination: `server2` and then afterwards,  \nthe destination you want to reach.\n  \nThats it!\n  \nIf you use [TC-Destinations](https://modrinth.com/plugin/tc-destinations) to manage your destinations, it will do the routing part for you.\n\n## Libraries used\n- [CTCommons](https://modrinth.com/plugin/ctcommons) (CraftTogether's plugin library)\n- [BKCommonLib](https://modrinth.com/plugin/bkcommonlib) (Extensive plugin library)\n- [Adventure](https://docs.adventure.kyori.net) (Very neat UI-Framework for Bukkit/Bungeecord and more)\n- [MiniMessage](https://docs.adventure.kyori.net/minimessage) (Text format to represent chat components)\n- [HikariCP](https://github.com/brettwooldridge/HikariCP) (High-performance, JDBC connection pool)\n- [MariaDB Connector/J](https://mariadb.com/kb/en/about-mariadb-connector-j/) (JDBC-Driver)\n",
+  "categories": [
+    "mobs",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 366,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3"
+  ],
+  "date_updated": null
+}

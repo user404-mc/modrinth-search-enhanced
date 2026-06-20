@@ -1,0 +1,25 @@
+{
+  "id": "Slc6GcNQ",
+  "slug": "serverofflineauth",
+  "title": "ServerOfflineAuth",
+  "description": "Provide password verification functionality for offline players on the server.",
+  "body": "# ServerOfflineAuth\n## Introduction\n\n------\n\nProvides password authentication for offline players on the server.\n\n### Features\n\n- Built-in encrypted data storage\n- Json and MySQL support\n- Token verification password-free login\n- The server-side tokens are stored in the `server_offline_auth_tokens.json` file under the `config/` folder.\n\n### Configuration\n\nWhen ServerOfflineAuth is first started, it creates the `server_offline_auth-common.toml` file in the `config/` directory with the following content:\n\n```toml\n\n#Server Offline Auth Configuration\n[general]\n    #Login timeout (seconds), set to 0 to disable\n    #Range: 0 ~ 3600\n    loginTimeout = 30\n    #Salt length (log rounds). Default 10, range 4-30.\n    #Range: 4 ~ 30\n    passwordHashWorkFactor = 10\n    #Player data file name (only effective when storage type is json)\n    dataFileName = \"server_offline_auth_data.json\"\n    #Whether to send a prompt when a player joins\n    joinMessageEnabled = true\n\n[storage]\n    #Data storage type: json or mysql\n    storageType = \"json\"\n    #MySQL host address\n    mysqlHost = \"localhost\"\n    #MySQL port\n    #Range: 1 ~ 65535\n    mysqlPort = 3306\n    #MySQL database name\n    mysqlDatabase = \"ServerOfflineAuth\"\n    #MySQL username\n    mysqlUsername = \"root\"\n    #MySQL password\n    mysqlPassword = \"password\"\n    #MySQL table name\n    mysqlTable = \"auth_players\"\n    #Token validity days (0 means never expires)\n    #Range: 0 ~ 3650\n    tokenExpiryDays = 3\n\n[storage.migration]\n    #Set this to perform data migration (e.g., \"mysql\" or \"json\"). After successful migration, this value will be automatically cleared, and storageType will be updated.\n    migrateTo = \"\"\n        \n```\n- If the data storage mode is JSON, a file named `server_offline_auth_data.json` will be created in the server root directory to store player data.\n- If the data storage mode is MySQL, you need to ensure that the MySQL server is properly configured and running, and that the provided connection information is correct.\n\n### Player Commands\n\n- `/register <passwd> <passwd>` Register\n- `/login <passwd>` Login\n- `/logout` Logout\n\n### Admin Commands\n\n- `/serverofflineauth admin login <player_ID>` Force login\n- `/serverofflineauth admin logout <player_ID>` Force logout\n\n\n\n## Requirements\n\n------\n\n### Server Requirements\n\nThis mod is developed based on Minecraft Forge 1.20.1; its effectiveness on other versions has not been verified.\n\n\n\n## Precautions\n\n------\n\n**This mod is in an early testing stage, with more features under development. Do not use test versions in important environments.**\n\n**If you encounter bugs during use, please submit an issue on GitHub.**\n\n\n\n## Contributors\n\n------\n\n### Team Members: ttwlwlbb51522, ChaosException, Archiveorigin\n",
+  "categories": [
+    "forge",
+    "management",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 360,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

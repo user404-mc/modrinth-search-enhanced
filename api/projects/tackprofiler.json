@@ -1,0 +1,27 @@
+{
+  "id": "aXHqRm2N",
+  "slug": "tackprofiler",
+  "title": "TackProfiler",
+  "description": "Patches TickProfiler to use a local copy of its libraries, instead of downloading them at startup.",
+  "body": "[TickProfiler](https://www.curseforge.com/minecraft/mc-mods/tickprofiler) is a popular TPS-measurement mod from back in the day. It's in [a lot of 1.10-1.12 modpacks](https://legacy.curseforge.com/minecraft/mc-mods/tickprofiler/relations/dependents).\n\nMost TickProfiler versions try to download additional dependencies from https://jcenter.bintray.com/ at game startup, using a library called LibLoader. This *usually* works, but if you're offline, using an old version of Java that doesn't have the right HTTPS root certificates, or if JCenter is down - the download will fail and the game will crash.\n\nTo fix this, TackProfiler bundles a copy of all libraries TickProfiler wants to download, and patches TickProfiler's library-downloading code to use my local copies instead of attempting Internet connections.\n\nCouple things to note:\n\n* TackProfiler has an unusual filename (it starts with \"# #TackProfiler\"). Do not rename the file. The pound-signs are necessary to make Forge load TackProfiler before LibLoader so I can patch it.\n* TackProfiler does not appear in the in-game mod list. This is normal. Watch the log for \"TackProfiler initializing\".\n\nQuestions? Comments? Just lonely? Join me on Discord: https://highlysuspect.agency/discord/",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 362,
+  "followers": 0,
+  "game_versions": [
+    "1.10",
+    "1.10.1",
+    "1.10.2",
+    "1.11",
+    "1.11.1",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2"
+  ],
+  "date_updated": null
+}

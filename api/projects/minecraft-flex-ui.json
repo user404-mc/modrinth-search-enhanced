@@ -1,0 +1,23 @@
+{
+  "id": "J9xCf3zC",
+  "slug": "minecraft-flex-ui",
+  "title": "Minecraft Flex UI",
+  "description": "Implement a Flex layout-based Minecraft GUI framework based on facebook's open source Yoga layout engine.",
+  "body": "# Minecraft Flex UI\n\n# For ordinary players do not download the mod\nIn most cases the module is used by other module developers and is included in their mod Jar package\n\n# Description\nBased on `facebook` open source `Yoga` layout engine implements the `Minecraft` GUI framework based on the `Flex` layout.\n\nA subset of the `Flex` standard is implemented on top of `Yoga` and most of the `CSS` properties are implemented as well.\n\nThe design concept of `MVC` is adopted to realize the one-way and two-way data binding.\n\nDevelopers can design and implement complex UI interfaces on top of this, and this project can be used as `Yoga` engine embedded in the game as a non-exhaustive reference implementation of the game layout engine.\n\n# Example\n\n![example](https://github.com/moheng233/MFUI/raw/master/doc/example.gif)\n\n```java\npublic class WidgetTestScreen extends WidgetScreen {\n\tprotected StringBuilderObservable text = new StringBuilderObservable();\n\n\tpublic WidgetTestScreen() {\n\t\tsuper(Text.of(\"test\"));\n\t}\n\n\t@Override\n\tpublic void widget(ScreenWidget root) {\n\t\troot.flexDirection.set(WidgetFlexDirection.Row)\n\t\t\t\t.justifyContent.set(WidgetJustify.Center)\n\t\t\t\t.alignItems.set(WidgetAlign.Center)\n\t\t\t\t.child(new BoxWidget()\n\t\t\t\t\t\t.background.set(RectDrawable.LIGHT_PANEL)\n\t\t\t\t\t\t.child(new LabelWidget()\n\t\t\t\t\t\t\t\t.text.binding(text.computed((StringBuilderObservable text) -> Text.of(text.getString())))\n\t\t\t\t\t\t\t\t.margin(WidgetEdge.All, 4))\n\t\t\t\t\t\t.child(new TextBoxWidget()\n\t\t\t\t\t\t\t\t.text.binding(text))\n\t\t\t\t\t\t.child(new ButtonWidget()\n\t\t\t\t\t\t\t\t.click.on((mouse) -> close())\n\t\t\t\t\t\t\t\t.child(new LabelWidget()\n\t\t\t\t\t\t\t\t\t\t.text.set(Text.of(\"取消\"))))\n\t\t\t\t);\n\t}\n}\n\n```\n\n# Data Binding\nBy default all bindings from `non-computed binding sources` are `bi-directional bindings`.\n> Setting values for `computed binding sources` is ignored\n\n**But most components will only operate `one-way` on bound values**",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 269,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3"
+  ],
+  "date_updated": null
+}

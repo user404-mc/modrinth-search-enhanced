@@ -1,0 +1,35 @@
+{
+  "id": "VcL43RP3",
+  "slug": "cobbleregions",
+  "title": "CobbleRegions",
+  "description": "Server-side Cobblemon sidemod that adds region-based level caps with per-player progression.",
+  "body": "# CobbleRegions\n\nServer-side Cobblemon sidemod that adds region-based level caps with per-player progression.\n\nEach Minecraft world/dimension is assigned to a Region. Every Region has its own ordered cap track\n(for example: 14 -> 22 -> 28). Players can travel freely, but a Pokemon can never level past the\ncap currently unlocked in its origin Region.\n\n## Core Behavior\n\n- The player's current Region is based on their dimension/world.\n- The active cap is the current unlocked cap of that Region.\n- Each Pokemon has a persistent Origin Region (caught/hatched/received).\n- EXP is blocked so Pokemon cannot exceed their Origin Region cap, even in higher-cap Regions.\n\n## Config\n\nConfig is stored at `config/cobbleregions.json` on the server.\n\nExample:\n\n```json\n{\n  \"battleDisallowOverCapSendOut\": true,\n  \"battleOverCapSendOutMessage\": \"<red>Over-cap Pokemon cannot be sent out in battle: {pokemon_list}</red>\",\n  \"battleInsufficientCapPokemonMessage\": \"<red>Battle canceled: you need at least {required} non-fainted Pokemon within your current cap.</red>\",\n  \"battleInsufficientCapPokemonReason\": \"<red>Not enough cap-legal Pokemon are available to start this battle.</red>\",\n  \"regions\": [\n    {\n      \"id\": \"region_a\",\n      \"dimensions\": [\"minecraft:overworld\"],\n      \"caps\": [14, 22, 28, 40],\n      \"capMessages\": {\n        \"14\": \"Level cap reached for this region.\",\n        \"22\": \"Another cap reached.\"\n      }\n    },\n    {\n      \"id\": \"region_b\",\n      \"prerequisite\": \"region_a\",\n      \"prerequisiteMessage\": \"Complete {prerequisite} before leveling in {region}.\",\n      \"dimensions\": [\"minecraft:the_nether\"],\n      \"caps\": [14]\n    }\n  ]\n}\n```\n\nIf a Region has no caps configured, it is treated as unlimited.\n\n`battleDisallowOverCapSendOut` defaults to `false`. When `true`, CobbleRegions removes over-cap Pokemon from player battle rosters at battle start. If that leaves too few non-fainted Pokemon for the format, the battle is canceled.\n\nBattle enforcement messages are configurable with MiniMessage:\n- `battleOverCapSendOutMessage` uses `{pokemon_list}`.\n- `battleInsufficientCapPokemonMessage` uses `{required}`.\n- `battleInsufficientCapPokemonReason` uses `{required}`.\n\n## Commands\n\nCommand access uses permission node `cobbleregions.command.regions` (defaults to permission level 2).\nOptional progress commands use permission node `cobbleregions.command.regions.progress`.\n\n- `/regions` opens the admin UI for region management.\n- `/regions progress get <player> <region>` shows a player's cap for the region.\n- `/regions progress set <player> <region> <cap>` sets a player's cap value for the region.\n- `/regions progress advance <player> <region>` advances to the next cap.\n- `/regions progress reset <player> <region>` resets to the first cap.\n- `/regions progress complete <player> <region>` sets progress to the final cap.\n\n## API\n\nThe `RegionProgressApi` class provides programmatic progress control for other mods or integrations.\n\nNotes:\n- Caps must be strictly increasing.\n- Origin Region is set automatically when a Pokemon is captured, hatched, or gained.\n- Progress set requires a cap value that exists in the region's caps list.\n- A region can define a prerequisite; players cannot gain XP in that region until the prerequisite region is completed.\n- Messages support MiniMessage formatting and `{cap}`, `{region}`, `{prerequisite}`, `{pokemon}` placeholders.\n- The admin UI opens a region list; use Create to enter an id in chat, left-click to edit, right-click to delete.\n- The region edit screen manages dimensions, caps, cap messages, and player progress.\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "optimization",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 472,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

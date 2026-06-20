@@ -1,0 +1,24 @@
+{
+  "id": "rQf7vUve",
+  "slug": "player-skills",
+  "title": "Player Skills",
+  "description": "Create and manage a wide range of skills both from other mods as well as KubeJS with a flexible system that can be adapted for many purposes.",
+  "body": "# Player Skills\n\nA library mod that provides a baseline implementation of player-specific skills. On its own, this does very little as it\nis meant to be as un-opinionated as possible.\n\nLike GameStages and GamePhases, this provides a registry for tracking possible skills as well what skills a given player\ncurrently possesses. Unlike the other mods, skills are added to a player immediately and leverage ability checking via\nSkill Types.\n\n[![MIT license](https://img.shields.io/github/license/impleri/player-skills?color=bcdeb7&label=Source&logo=github&style=flat)](https://github.com/impleri/player-skills)\n[![Discord](https://img.shields.io/discord/1093178610950623233?color=096765&label=Community&logo=discord&logoColor=bcdeb7&style=plastic)](https://discord.com/invite/avxJgbaUmG)\n[![1.19.2](https://img.shields.io/maven-metadata/v?label=1.19.2&color=096765&metadataUrl=https%3A%2F%2Fmaven.impleri.org%2Fminecraft%2Fnet%2Fimpleri%2Fplayer-skills-1.19.2%2Fmaven-metadata.xml&style=flat)](https://github.com/impleri/player-skills/tree/1.19.2#developers)\n[![1.18.2](https://img.shields.io/maven-metadata/v?label=1.18.2&color=096765&metadataUrl=https%3A%2F%2Fmaven.impleri.org%2Fminecraft%2Fnet%2Fimpleri%2Fplayer-skills-1.18.2%2Fmaven-metadata.xml&style=flat)](https://github.com/impleri/player-skills/tree/1.18.2#developers)\n\n### xSkills Mods\n\n[Player Skills](https://modrinth.com/mod/player-skills)\n| [Block Skills](https://modrinth.com/mod/block-skills)\n| [Dimension Skills](https://modrinth.com/mod/dimension-skills)\n| [Fluid Skills](https://modrinth.com/mod/fluid-skills)\n| [Item Skills](https://modrinth.com/mod/item-skills)\n| [Mob Skills](https://modrinth.com/mod/mob-skills)\n\n## Concepts\n\nThis mod provides two entities that can be extended: Skill Types and Skills.\n\n### Skill Type\n\nA skill type handles all logic around managing skills tied to its type. That includes providing a way to (de)serialize\nthe skill into a persistent format. More advanced use cases can leverage the skill type for determining if a skill is of\na sufficient threshold. Because of this nature, skill types cannot be created via KubeJS.\n\n#### Builtin Types\n\n1. `Basic` provides a simple boolean `true`/`false`. Great for simple skills such as \"can read.\"\n2. `Numeric` provides an integer value (0, 1, 2, etc). Great for skills or attributes which can be improved such as \"\n   strength.\"\n3. `Tiered` are specialized version of `Numeric` in that strings can be used. One example could be \"education\"\n   education (crude/primary, basic/secondary, intermediate/university, advanced/postgraduate, top/doctorate).\n4. `Specialization` provide a skill which allows one or more specializations out of a list. An example is \"magic type\" (\n   red, black, white, green, blue).\n\n### Skill\n\nA skill tracks the data needed for SKill Types to calculate if a player _can_ perform a skill-based action. Skills get\nserialized and persisted in player-specific NBT data. Skills are exposed via KubeJS for modpack authors to manipulate as\nthey see fit. This mod provides no built-in skills, as we want to encourage modpacks and other mods to provide that\nshape.\n\n### Restriction\n\nA restrictions handles the logic for determining if a player has an ability based on the set condition, current\ndimension, and current biome. It may also provide a replacement to the target resource. Like Skills, we provide no\nrestrictions here. The other xSkills mods implements restrictions for many vanilla elements.\n\n\n## More Information\n\nDocumentation, examples, and more can be found in the [readme on Github](https://github.com/impleri/player-skills).\n\n## Modpacks\n\nWant to use this in a modpack? Great! This waBecause os designed with modpack developers in mind. No need to ask.\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 5936,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.3"
+  ],
+  "date_updated": null
+}

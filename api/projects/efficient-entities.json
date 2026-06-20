@@ -1,0 +1,19 @@
+{
+  "id": "A67229Zz",
+  "slug": "efficient-entities",
+  "title": "Efficient Entities",
+  "description": "This 1.12.2 mod speeds up mob rendering by batching an entity's geometry into one GPU draw call instead of many.",
+  "body": "Efficient Entities speeds up Minecraft by reducing the CPU overhead of rendering mobs, collecting each entity's geometry into a persistent GPU buffer and submitting it in one draw call instead of dozens of small ones.\n\n![mobs](https://cdn.modrinth.com/data/cached_images/81289d2f31197c40b91fe7446310b2ca3036167c.png)\n\n**Requirements:** [MixinBooter](https://www.curseforge.com/minecraft/mc-mods/mixin-booter)\n\n**Detailed Explanation:**\n\nVanilla Minecraft renders entity models using OpenGL display lists one per body part, per mob, per frame. Each part triggers its own GL draw call along with matrix pushes, pops, and state changes. With many mobs on screen this adds up to thousands of individual GPU submissions every frame, which becomes a significant CPU bottleneck.\n\nEfficient Entities fixes this by intercepting the rendering pipeline at two levels before the game even starts. An ASM transformer scans entity model classes at load time and injects batch markers around their render calls. A Mixin then redirects geometry output away from the display list path and into a persistent buffer mapped directly into GPU memory, so the CPU can write vertex data without any allocation or copying overhead.\n\nWhen a mob renders, each body part's bone transforms rotation points, angles, offsets are accumulated in a Java-side matrix stack rather than going through OpenGL's matrix calls. The transformed vertex positions and packed normals are written directly into the mapped buffer via `Unsafe` memory operations. Once the whole model is done, everything is submitted in a single `glDrawArrays` call instead of one per part.\n\nTo prevent the CPU from writing into memory the GPU is still reading, the buffer is split into three rotating slices with fence syncs between them. The mod also handles render calls that bypass the normal entity model path the player's hand, held items, and armour pieces by detecting them and wrapping each in its own mini-batch automatically so nothing is missed.\n\n**Every 200 rendered frames the mod writes one summary line:**\n\nIn an empty world with just your hand visible:\n```\n[EfficientEntities] Last 200 frames: 12 batches, 84 cubes, 200 auto-wrapped.\n```\n\nNear a group of mobs:\n```\n[EfficientEntities] Last 200 frames: 840 batches, 6120 cubes, 0 auto-wrapped.\n```\n\nNear armoured entities:\n```\n[EfficientEntities] Last 200 frames: 15000 batches, 90000 cubes, 400 auto-wrapped.\n```\n\n**What each number means:**\n- **Batches** - number of entity model render calls processed through the VBO path that period. One model render call equals one batch; a complex entity like a horse may produce several.\n- **Cubes** - total geometry processed. Grows with both the number of mobs and how complex their models are.\n- **Auto-wrapped** - render calls caught by the fallback path (hand, held items, armour pieces). Roughly 2 per frame when both hand slots are occupied.",
+  "categories": [
+    "forge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 368,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

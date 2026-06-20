@@ -1,0 +1,23 @@
+{
+  "id": "q64SYEpx",
+  "slug": "ununennium",
+  "title": "Ununennium",
+  "description": "Ununennium, a future optimisation, like the placeholder element.",
+  "body": "# Ununennium\n\nCache selectors in commands to let Minecraft go brr\n\nUnunennium caches selectors (predicates) you can use when executing Minecraft brigadier commands.\nThe mod may greatly improve the performance of function datapacks that execute many commands in one tick because the selectors are cached and don't have to be evaluated a bajillion times in a tick.\n\n## FAQ\n- **Q: Will anything break?**\n  - **A:** It depends. In rare cases, caching may cause unexpected behavior if you rely on selector results changing within the same tick. For example:\n    ```mcfunction\n    # This will now load it into the cache\n    execute as @e[tag=nice_tag] run say hello\n\n    # We'll add a tag here\n    tag @p add nice_tag\n\n    # We'll try to execute this here and it will just not do it because of the cache.\n    # If it was executed next tick it would've worked because of the refreshed cache!\n    execute as @e[tag=nice_tag] run say THIS WILL ONLY BE VISIBLE AT THE NEXT EXECUTION\n    ```\n    This only affects commands run within the same tick. On the next tick, the cache refreshes and the command will work as expected.\n\n- **Q: Will this change my datapacks or world?**\n  - **A:** No, the mod does not touch any files nor does it modify your datapacks/world.\n\n- **Q: Datapack XY doesn't work, what to do?**\n  - **A:** Please [create an issue](https://github.com/Onako2/Ununennium/issues) so it is easier to track and fix!\n\n## Contributing\nContributions, bug reports, and suggestions are welcome! Please open an issue or pull request on [GitHub](https://github.com/Onako2/Ununennium).\n\n## License\nThis project is licensed under the terms of the MIT License. See [LICENSE](https://github.com/Onako2/Ununennium/blob/master/LICENSE) for details.\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 539,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

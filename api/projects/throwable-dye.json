@@ -1,0 +1,29 @@
+{
+  "id": "bjoZhxHA",
+  "slug": "throwable-dye",
+  "title": "Throwable Dye",
+  "description": "This mod allows you to throw dyes!",
+  "body": "## Overview\n\nThis is a mod that allows you to throw dyes!\n\nThrowing it at a block with a colored variant (eg. concrete) will dye the block the color of the dye you threw. This should work with every vanilla block.\n\nThis will also work with modded blocks, however, there are some exceptions which will need to be added to the config manually.\n\n\n## Config\n\n### Technical Overview\n\nThe way this mod works is when the thrown dye hits a block, it will get the block's id.\n\nThen it will check if the block id starts or ends with a dye color. If it does, it will replace the color in the block id, with the thrown dye color.\n\nIf a color is not found in the block id, the it will try appending the thrown dye color to the beginning of the block id.\n\nFinally, if that fails, it will fall back to the config file, and check if there is a colored block variant mapped to the default block.\n\n\n### Adding to the config\n\nOn the event that a some blocks do not work, you can add it into the config.\n\nThe config is called `throwabledye.json`. The syntax is as follows:\n\n```json\n\"somemod:block_id\": \"{color}_block_id\"\n```\n\nA working example of this would be:\n\n```json\n\"minecraft:glass\": \"{color}_stained_glass\"\n```\n\nSome blocks have a base, or un-dyed, variant, such as glass or terracotta. Unlike terracotta, dyed glass does not keep the same `color + blockid` format, it has an extra word, \"stained\", which is not referenced in the base variant, so the base variant needs to be mapped to the colored variant.\n\nThis is done by making the base block id the key. Then taking the colored block id, putting `{color}` where the color name would be, and making it the value. Then the mod can replace `{color}` with the thrown dye color.\n\n\n\n",
+  "categories": [
+    "decoration",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 4196,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

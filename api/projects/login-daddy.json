@@ -1,0 +1,20 @@
+{
+  "id": "Eqa79iIC",
+  "slug": "login-daddy",
+  "title": "Login Daddy",
+  "description": "Login Daddy is a Fabric mod for private friend servers(Mainly Offline-Mode servers). Requires players to have the mod installed on their client, be on the whitelist and authenticate with a password before they can play.",
+  "body": "# Login Daddy\nA Fabric mod for private friend servers (Mainly Offline-Mode servers). Requires players to have the mod installed on their client, be on the whitelist of this mod (not the server whitelist) and authenticate with a password before they can play.\n\n## How it works\n1. Player connects → sent to an invisible limbo dimension\n2. Server checks if the client has LoginDaddy installed (handshake). No mod = kicked\n3. Client is prompted to enter the server key (if one is configured). Wrong key = kicked\n4. Server checks if the player is whitelisted. Not whitelisted = kicked\n5. If the player has a valid session (logged in within the last 48 hours from the same IP), they are released automatically\n6. Otherwise, player registers or logs in with a password\n7. Player is teleported back to where they joined from\n\nJoin/leave messages and tab list are hidden until authentication is complete.\n\n## Requirements\n- Minecraft 1.21.11\n- Fabric Loader 0.18.2+\n- Fabric API\n\n## Setup\n### Server\n1. Drop the mod jar into your `mods/` folder\n2. Start the server once to generate `config/LoginDaddy/logindaddy.properties`\n3. Edit `logindaddy.properties` with your database credentials and optionally a server key\n4. Add players to the whitelist (see commands below)\n\n### Client\nPlayers need the same mod jar in their `mods/` folder. On first join to a server with a key configured, a prompt will appear to enter the key. The key is saved automatically and reused on future joins.\n\n## Configuration\n`config/LoginDaddy/logindaddy.properties` is generated on first launch.\n\n```properties\n# sqlite (local file) or mysql\ndatabase.type=sqlite\n\n# MySQL only — ignored if using sqlite\nmysql.host=localhost\nmysql.port=3306\nmysql.database=logindaddy\nmysql.username=root\nmysql.password=\n\n# Optional server key — leave empty to disable\n# Players will be prompted to enter this key on first join\nserver.key=\n```\n\n> <h3>⚠️ Never share your <code>logindaddy.properties</code> file with anyone.</h3><h3><b>It contains your database credentials and server key.</b></h3>\n\n## Data Files\nAll mod data is stored under `config/LoginDaddy/`:\n\n| File | Description |\n|---|---|\n| `logindaddy.properties` | Server configuration |\n| `logindaddy.db` | SQLite database (only if using SQLite) |\n| `sessions.json` | Active login sessions (server-side) |\n\n**Client-side** data is stored under the client's `config/LoginDaddy/`:\n\n| File | Description |\n|---|---|\n| `serverlist.json` | Saved server keys per server address |\n\n## Commands\nAdmin commands require operator permission or the server console.\n\n| Command | Description |\n|---|---|\n| `logindaddy whitelist add <username>` | Add a player to the whitelist |\n| `logindaddy whitelist remove <username>` | Remove a player from the whitelist |\n| `logindaddy whitelist list` | List all whitelisted players |\n| `resetpassword <username> <newpassword>` | Reset a player's password |\n\nPlayer commands (in-game, only usable during authentication):\n\n| Command | Description |\n|---|---|\n| `/register <password>` | Register with a password (first time only) |\n| `/login <password>` | Log in with your password |\n| `/changepassword <old> <new>` | Change your password (must be logged in) |\n\n## License\nMIT",
+  "categories": [
+    "fabric",
+    "management",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 298,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

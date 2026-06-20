@@ -1,0 +1,31 @@
+{
+  "id": "xHnFripR",
+  "slug": "algrim-chat",
+  "title": "Algrim Chat",
+  "description": "A chat styling fabric mod for clients",
+  "body": "# Algrim Chat\n\nAlgrim Chat is a chat styling fabric mod for clients.\n\n## About\n\nThe mod applies custom styling to server messages through use of \"patterns\". These patterns tell the mod which messages\nshould be styled, and how to style them.\n\n## Dependencies\n\nDependencies are listed with each release.\n\n## Configuration\n\nConfig GUI can be opened with `R,C`, by default.\n\n## Patterns\n\nPatterns consist of three components:\n\n- ### Literal\n\n  Literal pattern parts are the simplest. They match characters exactly (with a few exceptions).\n\n  #### Example Patterns:\n  | Pattern           | Message            | Matches |\n  |-------------------|--------------------|:-------:|\n  | `You leveled up!` | \"You leveled up!\"  |    ✅    |\n  | `<Player6> Hello` | \"\\<Player6> Hello\" |    ✅    |\n  | `<Player6> Hello` | \"\\<Player6> Bye\"   |    ❌    |\n  | `<Player6> Hello` | \"\\<Player2> Hello\" |    ❌    |\n\n  They're great for matching static messages that don't change, but not too useful on their own in terms of\n  chat on a server where player names and message content change.\n  <br><br>\n  Some special characters may also be mistaken as other pattern parts, avoid this by escaping them with `\\​`\n\n- ### Regex\n\n  Regex pattern parts are denoted by a `/` at the beginning and end.\n\n  #### Example Patterns:\n  | Pattern             | Message            | Matches | Note                                                                        |\n  |---------------------|--------------------|:-------:|-----------------------------------------------------------------------------|\n  | `/You leveled up!/` | \"You leveled up!\"  |    ✅    | While regex can match static messages, it's often simpler to use a Literal. |\n  | `/.*/`              | \"\\<Player6> Hello\" |    ✅    | Will technically match all messages.                                        |\n  | `</\\\\w+/> /.*/`     | \"\\<Player6> Bye\"   |    ✅    | Here we are using a combination of Literal \"<\" and \"> \", and Regex parts.   |\n\n- ### Style\n\n  Style pattern parts apply style to messages (**Finally!!!**) and are split into two\n  sections: `[Style, Overrides]` and `(Content)`\n  <br><br>\n    - [**Style Overrides**](#style-overrides) are a comma separated list of styles.\n    - **Content** consists of Literal or Regex components.\n\n  #### Example Patterns:\n\n  | Pattern                               | Message             | Matches | Note                                                        |\n  |---------------------------------------|---------------------|:-------:|-------------------------------------------------------------|\n  | `[green](You leveled up!)`            | \"You leveled up!\"   |    ✅    | Styles the message green.                                   |\n  | `<[#00FFFF](/\\\\w+/)> [white,i](/.*/)` | \"\\<Player6> Hello\"  |    ✅    | Styles the player's name in aqua and their message *white*. |\n\n## Style Overrides\n\n#### The valid Style Overrides are:\n\n|                                    | Override Name(s)      |\n|:----------------------------------:|-----------------------|\n|              **Bold**              | `bold`, `b`           |\n|             *Italics*              | `italic`, `it`, `i`   |\n|       <ins>Underlined</ins>        | `underline`, `u`      |\n|         ~~Strikethrough~~          | `strikethrough`, `s`  |\n|       ͅO͆b̼f̧u̺s̓c͠a̿t̝e̿d̮͒       | `obfuscate`, `o`      |\n| <font color=\"yellow\">Colour</font> | `#<hex>`, `<mc name>` |\n\nStyles can be removed by prefixing `!` to the Override Name. `!` on its own will strip all styles.  \nex: `[!bold](/.*/)` remove bold.  \nor: `[!](/.*/)` remove all styling.\n",
+  "categories": [
+    "fabric",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 612,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

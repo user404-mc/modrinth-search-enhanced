@@ -1,0 +1,26 @@
+{
+  "id": "qS8U15sj",
+  "slug": "locki",
+  "title": "Locki",
+  "description": "A library for controlling access to the player's inventory",
+  "body": "# Locki\n\n![Example](https://github.com/Ladysnake/Locki/raw/4f2927aba5f23fca8016456e10ef5af001b7f02b/res/demo.png)\n\nA [Quilt](https://quiltmc.org) library handling player inventory locking. Can also be used as a standalone mod, through the `/locki` command.\n\nThis mod must be installed on both server and client to work properly.\n\n## Overview\n\nLocki represents slots using *inventory nodes*. Inventory nodes are structured as a tree, allowing commands\nor mods to quickly lock or unlock entire sections while retaining controls over finer units.\nInventory nodes are represented as a dot-separated path, from least specific ancestor to most specific child node.\nFor example `inventory` describes the entirety of the player's inventory, while `inventory.armor.chest`\ndescribes the chestplate slot of the inventory.\n\nWhen an inventory node gets locked, descendant nodes can still be unlocked, allowing you to exclude specific slots\nfrom a broad access ban. For example, locking `inventory` then unlocking `inventory.armor.chest` will prevent the player\nfrom touching any item in their inventory except their chestplate.\n\n### Commands\nLocki adds the `/locki` command, allowing server operators and mapmakers to interact with the API through\ncommands.\n- `/locki lock <node> [<targets>] [<lock>]` : locks the inventories of one or more players\n    - `<node>` : a full path describing a known *inventory node*.\n    - `[<targets>]` (optional) : If specified, must be either a player's username or a target selector. If unspecified, defaults to the player using the command. When used in a command block, player is not optional.\n    - `[<lock>]` (optional) : If specified, must be a valid identifier referencing a registered lock. If unspecified, defaults to the generic \"command\" lock.\n- `/locki unlock <node> [<targets>] [<lock>]` : unlocks the inventories of one or more players\n    - `[<targets>]` (optional) : If specified, must be either a player's username or a target selector. If unspecified, defaults to the player using the command. When used in a command block, player is not optional.\n    - `[<lock>]` (optional) : If specified, must be a valid identifier that was previously used as a lock to affect the players' inventories. If left unspecified, defaults to the generic \"command\" lock.\n\n#### Permissions\nIf you have LuckPerms installed, the above commands can be used by players with the `locki.command.lock` permission.\nIf you only grant `locki.command.lock.self`, players will only be able to use the commands on themselves.\n\n## Developer information\n\nFor more information on how to add it to your development environment and how to use it, see [the project's readme](https://github.com/Ladysnake/Locki#readme).\n",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "quilt",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1297,
+  "followers": 0,
+  "game_versions": [
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.4",
+    "1.21"
+  ],
+  "date_updated": null
+}

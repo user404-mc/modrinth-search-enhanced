@@ -1,0 +1,40 @@
+{
+  "id": "MnavVAzj",
+  "slug": "sgtveinminer",
+  "title": "Veinminer",
+  "description": "Veinminer is a configurable mining mod that lets you break entire veins with a single block break. It keeps the grind down while giving server owners clear controls, limits, and permissions.",
+  "body": "# ⛏ Veinminer\n\n**Veinminer** is a configurable mining mod that lets you break entire veins with a single block break. It keeps the grind down while giving server owners clear controls, limits, and permissions.\n\n---\n\n## ⚙️ Key Features\n\n- 🧱 **Vein Mining** — mines adjacent matching blocks with TPS-aware block caps.\n- 🛠️ **Activation Choices** — crouch or hotkey; hold or toggle modes per player.\n- 🙌 **Empty-Hand Support** — trigger without holding a tool (optional).\n- 🧰 **Flexible Block Lists** — global and per-tool lists can be whitelist or blacklist.\n- 🪓 **Per-Tool Rules** — different block sets per tool; seeded defaults.\n- ⚡ **Fortune/Silk & Durability Safety** — honors enchants; optional durability guard.\n- 🔁 **Cooldown & Limits** — optional cooldown; static or dynamic max blocks.\n- ✴️ **Particles/Outline** — server-driven outline with color + duration controls.\n- 🔐 **LuckPerms Toggle** — optional integration for permissions.\n- 🧪 **/veinminer test** — quick command to verify behavior and responses.\n- 🔄 **Live Reloads** — `/veinminer reload` with file/line reporting on errors.\n\n> Works server-side out of the box. Optional client mod adds the hotkey (default **V**).\n\n---\n\n## 🔧 Configuration & Commands\n\n### Command quick reference\n\n| Command | Description |\n| --- | --- |\n| `/veinminer help` | List commands. |\n| `/veinminer reload` | Reload config without restart (errors show file/line). |\n| `/veinminer test` | Run a quick behavior check. |\n| `/veinminer toggle` | Toggle Veinminer for yourself. |\n| `/veinminer blocks add/remove/list <block>` | Manage global block list (whitelist/blacklist). |\n| `/veinminer tools add/remove/list <item>` | Manage allowed tools. |\n| `/veinminer settings blockpertool` | Toggle per-tool block logic. |\n| `/veinminer settings cooldown enable|disable` | Turn cooldown on or off. |\n| `/veinminer settings cooldown set <seconds>` | Set cooldown time. |\n| `/veinminer settings maxblocks <number>` | Set hard cap per activation. |\n| `/veinminer settings luckperms enable|disable` | Toggle LuckPerms integration. |\n| `/veinminer blockpertool blocks <tool> add/remove/list <block>` | Per-tool block lists. |\n| `/veinminer blockpertool tool add/remove/list <tool>` | Manage tools in per-tool mode. |\n| `/veinminer particles enable|disable` | Toggle vein outline particles. |\n| `/veinminer particles setcolor <r> <g> <b>` | RGB color for outline. |\n| `/veinminer particles setduration <ticks>` | Outline lifetime. |\n| `/veinminer togglemessages permission|disabled|cooldown` | Toggle specific chat tips. |\n\n---\n\n### Config files\n\nWritten to `config/Veinminer/` (TOML) on first run.\n\n<details>\n<summary>Spoiler</summary>\n\n- **GeneralConfig.toml**\n  - `veinminerEnabled` true\n  - `requireCrouch` true\n  - `checkToolDurability` true, `durabilityCap` 1, `durabilityThreshold` `ABSOLUTE`\n  - `cooldownEnabled` false, `cooldownSeconds` 5\n  - `dynamicMaxBlocks` false, `maxBlocks` 64, `minBlocks` 16, `maxDynamicBlocks` 64 (TPS-aware)\n  - `enableParticleOutline` true, `particleDurationTicks` 60, `particleRed` 255, `particleGreen` 0, `particleBlue` 0\n  - `autoLuckPerms` false\n  - `blocksPerTool` false\n  - `whitelistMode` true/false for global and per-tool lists\n  - `activationMode` crouch/keybind with hold/toggle options\n  - `emptyHandEnabled` false\n\n- **AllowedTools.toml**\n  - Defaults: all pickaxes (wood → netherite).\n\n- **AllowedBlocks.toml**\n  - Defaults: overworld ores, deepslate variants, nether gold/quartz/gilded blackstone/ancient debris.\n\n- **AllowedBlocksPerTool.toml**\n  - Populated when per-tool mode is enabled, seeded from defaults.\n\n</details>\n\n---\n\n## 🛡️ Permissions\n\n<details>\n<summary>Spoiler</summary>\n\n### General\n- `veinminer.use`\n- `veinminer.reload`\n- `veinminer.settings.manage`\n- `veinminer.*`\n\n### Blocks\n- `veinminer.blocks.manage`\n- `veinminer.blocks.add`\n- `veinminer.blocks.remove`\n- `veinminer.blocks.list`\n- `veinminer.blocks.*`\n\n### Tools\n- `veinminer.tools.manage`\n- `veinminer.tools.add`\n- `veinminer.tools.remove`\n- `veinminer.tools.list`\n- `veinminer.tools.*`\n\n### Per-Tool\n- `veinminer.blockpertool.manage`\n- `veinminer.blockpertool.blocks.add|remove|list`\n- `veinminer.blockpertool.tools.add|remove|list`\n- `veinminer.blockpertool.blocks.*`, `veinminer.blockpertool.tools.*`\n\n### Particles\n- `veinminer.particles.manage`\n- `veinminer.particles.enable`, `veinminer.particles.disable`\n- `veinminer.particles.setcolor`, `veinminer.particles.setduration`\n\n</details>\n\n---\n\n## 🧱 Compatibility\n\n- ✅ Minecraft 1.20.x, 1.21.x  \n- ✅ Fabric builds available  \n- ✅ NeoForge builds available  \n- ✅ Works on dedicated servers and single-player (integrated server)  \n- ❌ No Forge builds planned.  \n\n---\n\n## 🖥️ Client Optional\n\nInstalling the client build enables the hotkey and sends key state to the server. Default key: **V**. Without the client, crouch-to-activate is available via `requireCrouch` for a vanilla-only experience.\n\n---\n\n## 📌 Planned\n\n- 🌐 Translations  \n- ✨ Veinminer enchantment  \n\n---\n\n## 🤔 Considering\n\n- 🕹️ Client-side visual cues  \n- 📊 Mining stats  \n\n---\n\n## 📥 Installation\n\n1. Download the latest build for your platform.  \n2. Drop the jar in `/mods`.  \n3. Restart the server or client.  \n4. Configure with commands or edit the TOML files.  \n\n---\n\n## 💬 Support\n\nDiscord: https://discord.gg/43nu6wSWRC  \n\n---\n\n## 🧰 Other Projects\n\n- [🔨 Hammer Mining](https://modrinth.com/mod/hammer-mining-enchantment) — 3×3 breaking via enchant.\n",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 378400,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

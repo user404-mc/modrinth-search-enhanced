@@ -1,0 +1,28 @@
+{
+  "id": "ogIYwD2F",
+  "slug": "class-loader-fixer",
+  "title": "Class Loader Fixer",
+  "description": "Fixes the Class Loader in legacy Minecraft Forge",
+  "body": "## Summary\n\nThis mod fixes the Class Loader in legacy versions of Minecraft.\n\n## Details\n\nThis is a simple **jar-mod** which adds the `CodeSource` to each loaded class in FML.  \nThat is actually everything this mod does (well, besides fixing a few more bugs on even older versions of Forge).  \nThis mod just ships a backported `RelaunchClassLoader` which overwrites the built-in version (from FML) and allows mods to read the file source of classes.\n\n### Why is this needed in some cases?\n\nFor example, [Block Helper](https://modrinth.com/mod/block-helper) is able to show you in the item tooltips which mod a given item is from.  \nThis procedure relies on the `CodeSource` object of the `ProtectionDomain`s of the loaded classes.  \nOld versions of FML do not set this `CodeSource`, which leads Block Helper into thinking that everything is a Vanilla item.\n\n## Installation\n\n### As a ModLoaderMP / Forge mod\n\nThis mod needs to be installed as a **jar-mod**. That means, you have to...\n1. Be sure to back up your `minecraft.jar`!\n2. Extract the content of the mod zip into the `minecraft.jar` file\n3. Delete the `META-INF` folder in there\n4. Overwrite any existing files when doing so!\n5. ???\n6. Profit!\n\n### As a Fabric mod\n\nI do not have any Fabric versions available. However, the fix is incorporated directly into [Fabricated Legacy Forge](https://github.com/FabricCompatibilityLayers/Fabricated-Legacy-Forge). Hence, you do not need to install it separately!\n\n## Unsupported mods\n\n- ObsidiPlates 1.4.2 was incompatible with v1. This is fixed in v2.\n\nPlease let me know about any incompatibilities! :)",
+  "categories": [
+    "forge",
+    "library",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 770,
+  "followers": 0,
+  "game_versions": [
+    "1.3.1",
+    "1.3.2",
+    "1.4",
+    "1.4.1",
+    "1.4.2",
+    "1.4.3",
+    "1.4.4",
+    "1.4.5"
+  ],
+  "date_updated": null
+}

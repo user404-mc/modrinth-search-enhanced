@@ -1,0 +1,35 @@
+{
+  "id": "j2IRvAZ2",
+  "slug": "papyrus",
+  "title": "Papyrus",
+  "description": "A mod that provides various named mappings to the Fabric loader MappingResolver",
+  "body": "Papyrus\n=======\n\nPapyrus provides various named mappings to the Fabric loader MappingResolver. This allows for more developer friendly\naccess to mappings at runtime for example for using named classes in reflection instead of intermediary.\nPapyrus downloads mappings on the first run on any given version and stores cached mappings in tiny v2 format at\n${game_dir}/cache/papyrus/${mapping}_${version}.tiny\n\n# Using Papyrus\nTo use Papyrus just add the maven repository which hosts Papyrus to your gradle build script:\n``` kotlin\n# Kotlin DSL\nrepositories {\n    maven(\"https://maven.nelind.dk/releases\") {\n        name = \"Nelind Maven\"\n    }\n}\n\n# Groovy DSL\nrepositories {\n    maven {\n        name 'Nelind Maven'\n        url 'https://maven.nelind.dk/releases'\n    }\n}\n```\nand then include Papyrus JIJ with the standard loom \"include\" gradle configuration:\n``` kotlin\n# Kotlin DSL\nmodRuntimeOnly(include(\"dk.nelind:papyrus:(version)\")!!)\n\n# Groovy DSL\nmodRuntimeOnly include(\"dk.nelind:papyrus:(version)\")\n```\nYou can also choose to not include Papyrus JIJ in that case make sure to manually add Papyrus as a dependency in your\n`fabric.mod.json`. If you need to access Papyrus internals you can also add Papyrus with the `modApi` configuration instead of the\n`modRuntimeOnly` configuration.\n\nThen in your `fabric.mod.json` you need to tell Papyrus what mappings you need access to and the version thereof:\n```json\n{\n  ...\n  \"custom\": {\n    \"papyrus\": {\n      \"mappings\": [\n        \"mojmap\",\n        \"yarn:build.1\"\n      ]\n    }\n  }\n}\n```\n\nThen get and use the `MappingResolver` with any of the added mapping namespaces:\n```java\nMappingResolver mappingResolver = FabricLoader.getInstance().getMappingResolver();\nString runtimeClassNameFromYarnName = mappingResolver.mapClassName(\"yarn:build.1\", yarnClassName);\nString runtimeClassNameFromMojmapName = mappingResolver.mapClassname(\"mojmap\", mojmapClassName);\n```\n\n### Usage notes:\n- Papyrus injects the added mappings at `preLaunch` so you should only use Papyrus at some point after that.\n  If the here and there talks about possible future fabric loader plugins go somewhere where it makes sense for\n  Papyrus to become a loader plugin it will. Hopefully making extra mappings available at `preLaunch`\n\n- Mojmap handles inherited class members differently from Intermediary and Yarn!\nIntermediary and Yarn only give mappings for members defined directly in a class in said classes mapping\ndefinition whereas Mojmap gives names for all members a class has, inherited or not. In practice this means that if you\nask the mapping resolver for a Mojmap method name in a class where the class has inherited the method while the runtime\nmappings are either Intermediary or Yarn you'll get `null` because the resolver *can* find that name (in Mojmap) but\nthere is no defined name for that method in the runtime mapping. ***What does this mean for you?*** If you're using\nMojmap names as the input to the mapping resolver *you should use the class name of the class a method or field is\ndeclared on not the class you want to modify*. Alternatively you can have a null check and programmatically find the\nclass's super class and ask the mapping resolver for the member name with that class as the owning class.\n\n## Provided mappings\n\n|    Mappings     | Namespace used in mapping resolver |\n|:---------------:|:----------------------------------:|\n| Mojang Mappings |               mojmap               |\n|      Yarn       |                yarn                |\n\n## Note on versioning\nSince Papyrus is almost entirely independent of the version of the game itself. The mod version indicates the java\nversion said build was built against. For example Papyrus x.y.z+java.17 is built against java 17 and as such supports\nany game version that's also built against java 17 (that being any version from 1.18 to 1.20.4 inclusively).\n",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 2245,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

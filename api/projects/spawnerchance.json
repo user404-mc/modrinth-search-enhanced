@@ -1,0 +1,38 @@
+{
+  "id": "bEd7sINe",
+  "slug": "spawnerchance",
+  "title": "SpawnerChance",
+  "description": "Allows you to give players a chance to drop a spawner through permissions.",
+  "body": "# SpawnerChance\n\nA plugin for managing spawners with three main features:\n1) Chance of a spawner dropping when broken (via permissions)\n2) Granting a temporary drop chance to a player (via command)\n3) Restricting which mobs can be placed in spawners (via config)\n\n## Optional Dependencies:\n- [LuckPerms](https://modrinth.com/plugin/luckperms) - for granting temporary permissions\n- [PlaceholderAPI](https://modrinth.com/plugin/placeholderapi) - for placeholders\n\n## Features\n\n### 🎯 Spawner Drop Chance\n- Configurable chance for a spawner to drop when broken\n- Preserves mob type and all spawner settings\n- Permissions system for different drop chances: `spawner.dropchance.`\n- Informative messages for players\n\n### 🎯 Temporary Spawner Drop Chance\n- Requires `LuckPerms` for this feature\n- Command `/spawnerchance tempchance <player> <chance>` grants a player a temporary drop chance when breaking a spawner\n- Duration (in minutes) for the temporary drop chance is set in `temp-chance-duration` in the config\n- Cleanup interval (in seconds) for expired temporary permissions is set in `cleanup-interval`\n\n### 🚫 Mob Restrictions for Spawners (via spawn eggs)\n- Whitelist of allowed mobs is set in the config: `allowed-spawner-mobs: []`\n- Prevents placing forbidden mobs in spawners\n- Admins can bypass restrictions\n- Mob names in messages can be localized\n\n## Configuration\n\n```yaml\n# format: language_COUNTRY\n# changing this will load default material names for the server\nlanguage: en_US\n\n# Duration (in minutes) for temporary drop chance\ntemp-chance-duration: 15\n# Interval (in seconds) to clean up expired temporary permissions\ncleanup-interval: 10\n\n# Main plugin messages\nmessages:\n  # Spawner drop messages\n  empty-spawner-name: \"<gray>Empty\"\n  drop-success: \"<green>Luck! {spawner} dropped ({chance}%)\"\n  drop-failure: \"<red>Spawner did not drop ({chance}%)\"\n...\n\n# List of allowed mobs for spawners (add only mobs that can be placed in spawners)\n# Leave empty to allow all mobs\nallowed-spawner-mobs: []\n#  - BLAZE\n#  - PIGLIN\n#  - COW\n```\n\n## Placeholders\n\n'%spawnerchance_chance%' - shows the current chance of spawner failure.\n\n## Permissions\n\n### Spawner Drop Chances:\n- `spawner.dropchance.<number>` - drop chance in percent\n  - Example: `spawner.dropchance.50` - 50% chance\n  - The highest available chance for the player is used\n\n### Bypass Restrictions:\n- `spawner.bypass` - allows placing any mobs in spawners\n\n### Command Access:\n- `spawner.command.use` - allows using plugin commands\n\n## Usage Examples\n\n### Spawner Drop:\n```text\n⚔️ Player breaks a Zombie Spawner\n🎯 Check drop chance (e.g., 30%)\n✅ On success: \"Luck! Zombie Spawner dropped (30%)\"\n❌ On failure: \"Spawner did not drop (30%)\"\n```\n\n### Mob Restrictions:\n```text\n🔧 Player tries to use a Villager egg on a spawner\n🚫 If mob is not whitelisted: \"Error: Villager Egg cannot be placed in a spawner!\"\n✅ If mob is allowed: \"You placed a spawner for: Zombie\"\n```\n\n## Features\n\n- **Data Preservation**: Dropped spawners retain all original settings\n- **Localization Friendly**: All messages and mob names support any language\n- **Flexible Configuration**: Easily add or remove mobs from the whitelist\n\n## Installation\n\n1. Download the **latest release**\n2. Place it in the `/plugins` folder\n3. Restart the server\n4. Configure `config.yml` if needed and run `/spawnerchance reload`",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 111,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

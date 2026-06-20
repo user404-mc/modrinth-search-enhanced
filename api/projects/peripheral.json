@@ -1,0 +1,35 @@
+{
+  "id": "82mPJ1Mh",
+  "slug": "peripheral",
+  "title": "Peripheral",
+  "description": "Control Minecraft with Python scripts. Automate tasks, build HUDs, and create custom GUIs — no server required.",
+  "body": "# Peripheral\n\n**Script Minecraft with Python.**\n\nWrite `.py` scripts that read live game data, control your player, build custom GUIs, and render always-on HUD overlays — all without touching Java. Drop a script in a folder, hit run, and watch it go.\n\n---\n\n## What it does\n\nPeripheral runs a lightweight HTTP server inside Minecraft (`localhost:25585`) and injects a helper module called `mc` into every script. Scripts run in the background as you play — reading your health, sending chat messages, drawing on your screen, or moving with scripts.\n\nNo extra dependencies. No config files to hand-edit. Everything is managed through a clean in-game GUI (press **G**).\n\n---\n\n## Features\n\n### Python scripting\n- Scripts live in `config/peripheral/scripts/` — edit them in any text editor or in-game\n- The `mc` module is injected automatically. Just `from mc import *` and go.\n- Scripts run in the background — start several at once, stop them independently\n\n### AI script builder\nOpen the **Build** tab, type a script name, describe what you want, and the AI writes it directly to the file. Uses your own Claude or OpenAI API key. Chat history is saved so you can pick up where you left off, fix errors by sending logs back to the AI, and manage multiple scripts from the sessions menu.\n\n### Player control\n`say()` · `look()` · `use_item()` · `equip()` · `jump()` · `sprint()` · `sneak()` · `move()` · `click_block()` · `attack()` · `drop_item()`\n\n### Game data\n`state()` · `pos()` · `health()` · `inventory()` · `chat_log()`\n\n### HUD overlays\nRender persistent elements directly on the game screen while you play:\n- **Labels** — text with color and shadow\n- **Bars** — progress bars (health, durability, XP, anything)\n- **Rects** — background panels with optional border\n- **Item sprites** — render any Minecraft item icon by ID\n- Anchored to any screen corner or center — positions scale with resolution\n\n### Custom in-game screens\n`open_gui()` builds real Minecraft screens from Python — buttons, text fields, labels, sliders, checkboxes. Press **H** in-game to show/hide. Scripts keep data live while the screen is open.\n\n  `![An example of custom GUI.](https://cdn.modrinth.com/data/cached_images/fced7a1fc5776daf21d9e6f06e99c0821fa6e287.jpeg)\n\n### Navigation\n`goto(x, z)` · `nav_status()`\n\n### HTTP API\nEvery endpoint the `mc` module uses is also available externally on `localhost:25585`. Wire up a browser dashboard or a local tool — all without touching the game.\n\n---\n\n## Included example scripts\n\n![](https://cdn.modrinth.com/data/cached_images/64b967d0550c52821dad29c7358a6a5b0cab1cfd.png)\n\n| Script | What it does |\n|---|---|\n| `hello_world.py` | Shows position, health, nearby entities — verify everything works |\n| `armor_hud.py` | Vertical item-icon + durability HUD on the right side of the screen |\n| `auto_eat.py` | Automatically eats food when hunger drops |\n| `auto_mine.py` | Scripts the player to mine a target ore automatically |\n| `welcome_bot.py` | Greets players when they join |\n| `follow_on_command.py` | Follows a player when they say \"follow me\" in chat |\n| `custom_gui.py` | Full interactive GUI example — buttons, inputs, live updates |\n| `api_server.py` | Starts a local HTTP server so external apps can read game state |\n| `openai_chat.py` | Players whisper questions to a configured AI API, it answers in chat |\n| `server_status.py` | Pings Minecraft servers and shows player counts and MOTD |\n| `weather_display.py` | Fetches real-world weather and displays it in-game |\n| `web_dashboard.py` | Browser dashboard — view game state from any tab on your local network |\n| `clickable_links.py` | Shows how to send rich messages with clickable URLs and hover text |\n\n---\n\n## Still in development\n\nThis mod is actively being worked on. If you run into any bugs, issues, or have suggestions, please open an issue at **[github.com/Sl0oth/peripheral/issues](https://github.com/Sl0oth/peripheral/issues)**.\n\n---\n\n## Getting started\n\n1. Install the mod (Fabric, 1.21.11 - 26.1)\n2. Launch Minecraft — example scripts and `PERIPHERAL_API.md` are written to `config/peripheral/scripts/` automatically\n3. Press **G** to open the Peripheral panel\n4. Hit **Run** next to any example script\n5. To build your own with AI: open the **Build** tab, type a script name, and start chatting\n\n---\n\n## External connections\n\nPeripheral's HTTP server only listens on `localhost` and never connects to any remote server on its own. The Build tab sends messages to the Anthropic or OpenAI API using your own key — nothing is sent without you initiating it. Some example scripts make outbound HTTP requests to third-party APIs; this only happens when you explicitly run them, and the endpoints are clearly visible in the script source.\n\n---\n\n## Multiplayer\n\nPeripheral gives you tools that can automate player actions. **It is your responsibility to ensure any scripts you run comply with the rules of the server you are playing on.** Many servers prohibit automation mods. When in doubt, check with the server owner before running automation scripts in multiplayer.\n\n---\n\n## Requirements\n\n- **Minecraft** 1.21.11 - 26.1\n- **Fabric Loader** 0.18.4+\n- **Fabric API**\n\n---\n\n## Client-side only\n\nPeripheral runs entirely on the client. No server installation needed. Works on singleplayer, multiplayer, and Realms.\n\n---\n\n## Disclaimer\n\nThis mod is provided as-is with no warranty. The author is not liable for loss of items or game progress, save file corruption, server bans, damages caused by scripts you write or run, or any consequences from connecting the mod to external services. You are solely responsible for any scripts you create or execute. Use of this mod on multiplayer servers is at your own risk — always check server rules first. Full terms at [github.com/Sl0oth/peripheral](https://github.com/Sl0oth/peripheral/blob/main/TERMS.md).\n\n---\n\n*100% of the mod code was written by [Claude Code](https://claude.ai/code) (Anthropic's AI coding assistant), directed by Sl0oth.*",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 135,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

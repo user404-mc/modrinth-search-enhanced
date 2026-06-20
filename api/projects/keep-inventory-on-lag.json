@@ -1,0 +1,38 @@
+{
+  "id": "pr6amva1",
+  "slug": "keep-inventory-on-lag",
+  "title": "Keep Inventory on LAG",
+  "description": "keep inventory when server lag or player's ping is high only",
+  "body": "This plugin keep inventory during lag from either low tps or high ping for specific player when they die.\n\nSo for example if set tps is 15 in config and server tps was lagging and low on 12tps and a player dies then their inventory is kept and will not drop.\n\nSame thing for the ping, however keep in mind players may abuse this like using programs to raise their ping to escape combat logging.\n\nAs this plugin will mostly IGNORE combat drop and will keep it regardless.\nAnd will mostly try to ignore any custom inventory plugins and will keep regardless when conditions met.\n\nthis was tested on combatlogx and indeed it kept player's inventory when player's ping is high when they logged out\nso disable this option if your worried about this.\n\nThere is also a grace period after lag \"can be configured\" this mostly to prevent players dying after lag ends as because players die after lag.\n\n\nThis plugin is recommended as it will reduce frustrations of players especially when your sever lags even if you enabled only TPS inventory protection.\n\nNotes/ Keep in mind.\n1 Works from 1.16 up to latest version tested 1.21.4, 1.21.1, 1.18.2, 1.17, 1.16\n\n2 The plugin is generally lightweight than other plugins like combat plugins\n\n3 However the more people in server die the more resources it will take, here are some estimations calculations of resources\n\n4 the plugin works below 1.16 but not properly and maybe buggy (not recommended)\n\n\nPaper 1.20.4 server with 4GB RAM and a 4-core CPU as an example\nPerformance vs Player Count\nPlayers CPU Usage (Avg) Memory Usage Death Events/Min Notes\n20 0.5-1% 2-5MB 5-10 Barely noticeable\n50 1-2% 5-10MB 15-30 Minimal impact\n100 2-3% 10-15MB 30-60 Starts showing in timings\n200 4-5% 20-25MB 60-120 same thing as above, however will be noted in next versions for optimizations\n\nConfig.yml\n\n```\n# Configuration for InventoryProtect\n\n# TPS threshold (1m average) below which inventory is kept\ntps-threshold: 15.0\n\n# Ping threshold (ms) above which inventory is kept\nping-threshold: 400\n\n# Grace period in seconds after recovery\n# time after that inventory will still be saved even after lag\n# this to prevent players get jump scared after lag, most players usually die after lag\ngrace-period: 7\n\n# Enable protection types\n# whenever keep inventory based either tps or ping, you can disable one or both of them\nenable-tps-protection: true\nenable-ping-protection: true\n\n# Ignore other plugins when\n# this will try to ignore most plugins that manage inventory and will keep it regardless of what\n# however players may abuse this and rise their ping during combat to escape and combat log them selfs if so disable ignore-other-plugins-on-ping\nignore-other-plugins-on-tps: true\nignore-other-plugins-on-ping: true\n# disable ignore-other-plugins-on-ping if you worry that players may abuse this to survive combat logging and save their stuff, by using programs to raise their ping.\n\n# XP Protection Settings\nxp-protection:\n  enabled: true\n  prevent-duplication: true  # Extra safety check\n# keep this enabled to prevent xp duplication exploit that may be abused from this plugin, you can disable it if you want.\n```\n\n\n\n-----------------------------------------------------------------\nplease don't reclaim this plugin as yours\n\nplease download this plugin only from here\n\nIf your modifying plugin dont remove my name from it\n\n-----------------------------------------------------------------\nNext goals:\noptimize for more players in server\nadd a /reload function for this",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 217,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

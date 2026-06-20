@@ -1,0 +1,38 @@
+{
+  "id": "ZgJK10wS",
+  "slug": "dangerlog",
+  "title": "Danger Log",
+  "description": "Best Combat System for SMP's to use to prevent logging out mid fight! We use advanced methods that really help owners and other players to have a fun experience in server fights.",
+  "body": "# ⚔️ Danger Log\n\n> **Combat logging protection for Minecraft Paper 1.21+ servers**\n\n---\n\n## 📖 Overview\n\n**Danger Log** is a powerful combat logging protection plugin that prevents players from escaping PvP situations by disconnecting. When a player logs out during combat, a zombie NPC spawns in their place — if the zombie dies, so does the player!\n\n---\n\n## ✨ Features\n\n### 🎯 **Combat Timer System**\n- Players within a configurable radius receive a combat timer in their action bar\n- Timer displays as `20/20` and stays at max while enemies are nearby\n- Timer counts down when players leave combat range\n- Logging out with an active timer = **combat logging**\n\n### 🧟 **Combat Log Protection**\n| Mode | Description |\n|------|-------------|\n| **ZOMBIE** | Spawns a zombie NPC with the player's name. If killed, drops all loot. |\n| **INSTANT** | Immediately kills the player upon combat logging. |\n\n### 🤝 **Ally System**\n- Team up with friends to avoid triggering each other's combat timers\n- Clickable invite system with expiration\n- Configurable max allies per player\n\n### 💾 **Persistence**\n- Zombies survive server restarts\n- Player inventories are safely stored\n- All data saved to files\n\n### 🚫 **Combat Restrictions**\n- **Disable Tridents** (Riptide) while in combat — no flying away!\n- **Disable Elytras** while in combat — stay and fight!\n- **Disable/Cooldown Ender Pearls** — configurable cooldown or full disable\n- **Disable/Cooldown Firework Rockets** — prevent elytra boosting\n\n### 🎮 **Smart Detection**\n- Only affects **Survival** mode players\n- Creative, Spectator, and Adventure players are ignored\n- Bypass permission available for staff\n\n---\n\n## 📋 Commands\n\n### 🔧 Admin Commands\n*Requires `dangerlog.admin` permission (default: OP)*\n\n| Command | Description |\n|:--------|:------------|\n| `/dangerlog on` | Enable the plugin |\n| `/dangerlog off` | Disable the plugin |\n| `/dangerlog reload` | Reload configuration |\n\n### 👥 Ally Commands\n*Available to all players*\n\n| Command | Description |\n|:--------|:------------|\n| `/ally invite <player>` | Send an ally request |\n| `/ally accept [player]` | Accept a pending invite |\n| `/ally remove <player>` | Remove an ally |\n| `/ally list` | View your allies |\n\n---\n\n## 🔑 Permissions\n\n| Permission | Description | Default |\n|:-----------|:------------|:--------|\n| `dangerlog.admin` | Access admin commands | **OP** |\n| `dangerlog.bypass` | Bypass combat log system | **false** |\n\n---\n\n## ⚙️ Configuration\n\n```yaml\n# ===========================================\n#         DANGER LOG CONFIGURATION\n# ===========================================\n\n# Combat detection radius (in blocks)\nradius: 50\n\n# Combat timer duration (seconds)\ntimer-duration: 45\n\n# ------ DEATH TYPE ------\n# ZOMBIE = Spawns NPC zombie\n# INSTANT = Kills player immediately\ndeath-type: ZOMBIE\n\n# ------ ZOMBIE SETTINGS ------\n# How long before zombie auto-expires (-1 or 0 = never)\n# Minimum: 10 seconds\nzombie-log-timer-max: -1\n\n# ------ ALLY SYSTEM ------\n# Enable/disable allies\nallow-allies: true\n\n# Max allies per player (-1 or 0 = unlimited)\nmax-allies: 6\n\n# Ally invite duration (seconds)\ninvite-duration: 120\n\n# ------ COMBAT RESTRICTIONS ------\n# Disable tridents (Riptide) while in combat\ndisable-tridents: true\n\n# Trident cooldown in combat (seconds, 0 = no cooldown)\n# Only applies if disable-tridents is false\ntrident-cooldown: 10\n\n# Disable elytras while in combat\ndisable-elytras: true\n\n# Disable ender pearls while in combat\ndisable-pearls: false\n\n# Disable firework rockets while in combat\ndisable-fireworks: false\n\n# Pearl cooldown in combat (seconds, 0 = no cooldown)\npearl-cooldown: 10\n\n# Firework cooldown in combat (seconds, 0 = no cooldown)\nfirework-cooldown: 10\n\n# ------ GENERAL ------\n# Plugin enabled state\nenabled: true\n```\n\n---\n\n## 🎬 How It Works\n\n```\n1️⃣  Two players enter combat range (30 blocks)\n         ↓\n2️⃣  Both see combat timer: [20/20]\n         ↓\n3️⃣  Timer stays at max while in range\n         ↓\n4️⃣  Player leaves range → timer counts down\n         ↓\n5️⃣  Player logs out with active timer\n         ↓\n    ┌─────────────────────────────────────┐\n    │  ⚠️ COMBAT LOG DETECTED!            │\n    │  Zombie spawns at logout location   │\n    │  Chat: \"Player has logged out in    │\n    │         combat.\"                    │\n    └─────────────────────────────────────┘\n         ↓\n6️⃣  If zombie is killed → loot drops\n         ↓\n7️⃣  Player rejoins → DEATH SCREEN\n```\n\n---\n\n## 🧟 Zombie NPC Details\n\n| Property | Value |\n|:---------|:------|\n| **Name** | Player's name (bold red) |\n| **AI** | Disabled |\n| **Burns in Sun** | No |\n| **Health** | Same as player at logout |\n| **Drops** | Player's full inventory |\n| **Despawns** | Never (unless configured) |\n\n---\n\n## 📁 Data Files\n\n| File | Purpose |\n|:-----|:--------|\n| `config.yml` | Plugin configuration |\n| `allies.yml` | Stored ally relationships |\n| `zombies.yml` | Active combat log zombies |\n\n---\n\n## 💡 Tips\n\n- **For SMP servers:** Set `zombie-log-timer-max` to `-1` so zombies stay forever\n- **For minigames:** Use `INSTANT` death-type for immediate punishment\n- **For teams:** Enable allies with a reasonable `max-allies` limit\n- **For staff:** Give `dangerlog.bypass` permission to moderators\n- **Anti-escape:** Keep tridents and elytras disabled to prevent flying away\n- **Pearl cooldown:** Set `pearl-cooldown` to 10+ seconds to limit pearl spam\n\n---\n\n## 📞 Support\n\nHaving issues? Contact the developer!\n\n---\n\n**Made with ❤️ by CrystalPT**\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "economy",
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 277,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

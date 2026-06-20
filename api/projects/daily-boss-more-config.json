@@ -1,0 +1,40 @@
+{
+  "id": "nizGDEfS",
+  "slug": "daily-boss-more-config",
+  "title": "Daily Boss - More Config",
+  "description": "Add more config for Daily Boss",
+  "body": "# DBMBC (Daily Boss More Boss Config)\n\n**Requires [Daily Boss](https://modrinth.com/mod/daily-boss) to work.**\n\n## ⚠️ Important Information\n\n> [!IMPORTANT]\n> **THIS VERSION ADDS CONFIGURATION ONLY.** It does **NOT** include any boss entities. It allows you to configure bosses provided by datapacks.\n> \n> 🛑 **DO NOT USE WITH [DAILY BOSS - MORE BOSSES](https://modrinth.com/mod/daily-boss-more-bosses)** 🛑 They share the same logic but are separated to give you granular control over your modbucket. Using both will cause conflicts.\n\nDBMBC adds support for bosses from multiple boss-focused mods and lets you decide **which ones** appear in the rotation, and **where** (Dimension / Biome).\n\nConfiguration is automatic and handled through a single file generated on first launch: `config/dailyboss_spawn_rules.json`\n\n***\n\n## ⚙️ Configuration\n\n### Global Settings\n\nControl the default behavior for the mod.\n\n```json\n\"global_settings\": {\n  \"default_enabled\": true,\n  \"auto_add_new_bosses\": true,\n  \"require_biome_match\": false\n}\n```\n\n*   **`default_enabled`**: New or unconfigured bosses are allowed by default.\n*   **`auto_add_new_bosses`**: Newly detected boss IDs are automatically appended to the config file.\n*   **`require_biome_match`**:\n    *   `true`: Boss spawns only if **both** Dimension AND Biome match the rules.\n    *   `false`: Boss spawns if **either** checks pass (or if lists are empty).\n\n### Per-Boss Rules\n\nConfigure specific rules for each boss ID.\n\n```json\n\"boss_rules\": {\n  \"cataclysm:ignis\": {\n    \"enabled\": true,\n    \"dimensions\": [\"minecraft:the_nether\"],\n    \"biomes\": [\"minecraft:nether_wastes\"],\n    \"blacklist_mode\": false\n  }\n}\n```\n\n*   **`enabled`**: Force inclusion (`true`) or exclusion (`false`) from the rotation.\n*   **`dimensions` / `biomes`**: Lists of Allowed (Whitelist) or Forbidden (Blacklist) locations.\n*   **`blacklist_mode`**:\n    *   `false` (Whitelist): The location **must** match at least one entry in the lists.\n    *   `true` (Blacklist): The location **must not** match any entry.\n\n### 📋 Evaluation Logic\n\n1.  **Boss Existence**: The boss entity must be registered in the game.\n2.  **Enabled Check**: If `enabled = false`, the boss is skipped immediately.\n3.  **Blacklist Mode**:\n    *   If `false` (Whitelist): At least one condition must match.\n    *   If `true` (Blacklist): No conditions may match.\n4.  **Strictness**:\n    *   If `require_biome_match = true`, **both** Dimension and Biome checks must pass.\n\n### Examples\n\n**1. Disable a specific boss completely:**\n\n```json\n\"cataclysm:maledictus\": { \"enabled\": false }\n```\n\n_(Note: Removing a boss entry restores it to global defaults. Explicitly setting `false` ensures it stays disabled.)_\n\n**2. Allow only in Badlands:**\n\n```json\n\"dungeons_and_combat:sunleia\": {\n  \"enabled\": true,\n  \"biomes\": [\"minecraft:badlands\"],\n  \"blacklist_mode\": false\n}\n```\n\n**3. Allow anywhere EXCEPT the Nether:**\n\n```json\n\"cataclysm:ancient_remnant\": {\n  \"enabled\": true,\n  \"dimensions\": [\"minecraft:the_nether\"],\n  \"blacklist_mode\": true\n}\n```\n\n***\n\n## 💎 Loot & Progression\n\nEvery boss definition can map to high-value loot tables (e.g., Bastion Treasure) so victories feel meaningful without breaking early progression.\n\nYou can customize loot per boss in the JSON config **without editing datapacks**:\n\n```json\n\"loot\": {\n  \"loot_tables\": [\n    \"minecraft:chests/bastion_treasure\",\n    \"yourpack:custom/ignis_rewards\"\n  ],\n  \"append_defaults\": false\n}\n```\n\n*   **`loot_tables`**: A list of loot tables to generate when the boss is defeated. (Replaces default loot).\n*   **`append_defaults`**:\n    *   `true`: **Adds** your custom loot on top of the original drops.\n    *   `false`: **Replaces** the original loot entirely with your selection.\n*   _Leaving the `loot` section empty preserves the original datapack loot._\n\nThis layered system ensures non-destructive editing: `Addon Loot` → `(Optional) Appended Defaults` → `Underlying Datapack Rewards`\n\n***\n\n[![Discord](https://img.shields.io/badge/Discord-Join_Us-7289da?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/sZ64CgX3JN)\n",
+  "categories": [
+    "adventure",
+    "forge",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 461,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

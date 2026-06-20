@@ -1,0 +1,23 @@
+{
+  "id": "Nv2cS2gY",
+  "slug": "inlineheads",
+  "title": "InlineHeads",
+  "description": "Display player heads in a single line of text!",
+  "body": "# InlineHeads\n\n[![JitPack](https://jitpack.io/v/BertTowne/InlineHeads.svg)](https://jitpack.io/#BertTowne/InlineHeads)\n![GitHub repo size](https://img.shields.io/github/repo-size/BertTowne/InlineHeads)\n![GitHub issues](https://img.shields.io/github/issues-raw/BertTowne/InlineHeads)\n![CodeFactor grade](https://img.shields.io/codefactor/grade/github/BertTowne/InlineHeads)\n---\n## Requirements\n- Java 21+\n- Paper or Folia 1.21.4+\n\n**WARNING:** This plugin REQUIRES a resource pack to be installed on the client. If the resource pack is not installed, the client will not be able to connect to the server. With the default configuration the resource pack will be automatically downloaded, but it can also be found [here](https://github.com/BertTowne/Pixelized) for more advanced users.\n\n---\n\n## Description\n\nInlineHeads simply enables the use of player heads in chat or anywhere else that supports text components, such as scoreboards, action bars, and titles.\n\nHere is an example of how it looks in chat:\n\n![](https://i.gyazo.com/2d4a9e4fc810b5d4991e42a72a1fed78.png)\n\nSee that head next to my name? That's my capybara skin's head, in full resolution, in a single line of chat.\n\n---\n\n## Getting Started (Server Admins)\n\nThis plugin will not provide any functionality without the use of [MiniPlaceholders](https://modrinth.com/plugin/miniplaceholders). Install MiniPlaceholders and InlineHeads by placing the jar files in your server's plugins folder and restarting the server.\n\nTo use a player's head in text, use the following placeholder format: `<player_head:[player name]>`,\nwhere `[player name]` is the name of the player whose head you want to display. For example, to display my head like in the image above, you would use `<player_head:BlameBert>`.\n\nThe plugin will automatically download the resource pack and install it for you.\nThe resource pack is compatible for use with other server-enforced resource packs, so you can use InlineHeads alongside other plugins that require a resource pack.\n\n---\n\n## Getting Started (Developers)\n\n### Maven Users:\nRepository:\n```xml\n<repositories>\n    <repository>\n        <id>jitpack.io</id>\n        <url>https://jitpack.io</url>\n    </repository>\n</repositories>\n```\n\nDependency:\n```xml\n<dependency>\n    <groupId>com.github.BertTowne</groupId>\n    <artifactId>InlineHeads</artifactId>\n    <version>v1.1.1</version>\n</dependency>\n```\n\n### Gradle Users:\nRepository:\n```groovy\ndependencyResolutionManagement {\n    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)\n    repositories {\n        mavenCentral()\n        maven { url 'https://jitpack.io' }\n    }\n}\n```\n\nDependency:\n```groovy\ndependencies {\n    implementation 'com.github.BertTowne:InlineHeads:v1.1.1'\n}\n```\n\nInlineHeads uses Google's [Guice](https://github.com/google/guice) dependency injection system so to get an instance of the InlineHeadsService, you can place the following code where you define your class variables:\n```java\n@Inject private InlineHeadsService inlineHeadsService;\n```\n\nThen you can use the service to get a Component that contains a player's head:\n```java\nComponent head = inlineHeadsService.getHead(playerName);\n```\n**WARNING:** This method accesses the Minotar API, so it is recommended to use it sparingly and MUST BE DONE ASYNCHRONOUSLY to avoid blocking the main thread.\n\nThe images retrieved from the Minotar API are cached for 10 minutes after their last time being accessed, so if you need to get the same head multiple times, it will not make multiple requests to the API.\n\n---\n\n## How does it work?\n\nInlineHeads uses a couple of custom fonts to achieve this effect:\n- [Pixelized](https://github.com/BertTowne/Pixelized), a font created by me specifically for this plugin that provides the individual pixels required to render the heads.\n- [NegativeSpaceFont](https://github.com/AmberWat/NegativeSpaceFont), a font created by AmberWat that provides the spacing required to organize the pixels into player heads.\n\nWhile the plugin places the pixels in the correct order, it colors them based on the player's skin according to the [Minotar API](https://minotar.net/).\n\n---",
+  "categories": [
+    "decoration",
+    "folia",
+    "library",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 289,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

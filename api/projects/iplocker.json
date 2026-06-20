@@ -1,0 +1,25 @@
+{
+  "id": "G37Mnsq5",
+  "slug": "iplocker",
+  "title": "IPLocker",
+  "description": "IPLock is a plugin designed for Minecraft servers running on Paper 1.21.1, aimed at enhancing player account security by binding accounts to a specific IP address.",
+  "body": "IPLock is a plugin designed for Minecraft servers running on Paper 1.21.1, aimed at enhancing player account security by binding accounts to a specific IP address. The plugin restricts account access to only the registered IP, helping to prevent unauthorized logins in case an account is compromised. All messages are fully customizable via a language file, making it adaptable for servers with diverse language preferences.\n\nPlugin Functionality\nAutomatic IP Binding:\nUpon a player's first login to the server, their UUID (unique identifier) and IP address are automatically stored in the ipdata.yml file.\nThis ensures seamless IP registration without requiring any action from the player.\nIP Verification on Login:\nEach time a player logs in, the plugin compares their current IP address with the one stored in ipdata.yml.\nIf the IP does not match, the login is denied, and the player receives a customizable error message (default: \"§cYour IP does not match the registered IP for this account!\").\nThis protects accounts from being accessed from unrecognized devices or networks.\nIP Unbinding Command:\nThe plugin provides the /ipdel <player_name> command, accessible only to server operators.\nThis command removes the IP binding for the specified player, allowing them to log in from a new IP on their next attempt.\nCommand-related messages (e.g., success, error, or no binding found) are fully customizable.\nCustomizable Messages:\nAll plugin messages are stored in the lang.yml file, which is generated in the plugins/IPLock/ folder on first startup.\nMessages support Minecraft color codes (§) and placeholders (e.g., {player} for the player’s name, {error} for error details).\nExamples of customizable messages:\nLogin error: \"§cYour IP does not match the registered IP for this account!\".\nSuccessful unbinding: \"§aIP binding for {player} has been removed!\".\nCommand error: \"§cUsage: /ipdel <player>\".\nAdministrators can edit lang.yml to modify text, language, or style without rebuilding the plugin.\nData Storage:\nIP binding data is stored in ipdata.yml in the format UUID: IP.\nThe file is automatically created and updated during player logins or when the /ipdel command is used.\nYAML usage ensures readability and reliable data persistence.\nSecurity and Performance:\nThe plugin uses UUIDs instead of player names to avoid issues with name changes.\nIP checks are performed only during login, minimizing server load.\nThe language file is loaded once at startup, ensuring no performance impact during operation.\nUsage\nFor Players:\nNo action is required — IP binding happens automatically on first login.\nIf a player’s IP changes (e.g., due to a dynamic IP), they won’t be able to log in until an operator removes the old binding with /ipdel.\nFor Administrators:\nUse /ipdel <player_name> to reset a player’s IP binding.\nCustomize messages in lang.yml to match the server’s style (e.g., translate to another language or add a unique prefix).\nCheck ipdata.yml to view current IP bindings (useful for debugging).\nExample Workflow\nPlayer Steve logs in for the first time from IP 192.168.1.1:\nThe plugin saves to ipdata.yml: Steve_UUID: 192.168.1.1.\nSteve tries to log in from IP 192.168.1.2:\nThe plugin denies the login and displays: \"§cYour IP does not match the registered IP for this account!\".\nAn operator runs /ipdel Steve:\nThe plugin removes the binding from ipdata.yml and sends: \"§aIP binding for Steve has been removed!\".\nSteve logs in again from the new IP, and the binding process repeats.\nTechnical Details\nCompatibility: Paper 1.21.1.\nDependencies: Maven, Paper API (included in pom.xml).\nPlugin Files:\nIPLock.java — main code (package org.example.iplock.iplock).\nplugin.yml — plugin configuration.\nipdata.yml — IP binding storage.\nlang.yml — customizable messages.\nBuild: Uses Maven (mvn clean install).\nLimitations:\nOnly one IP per account is supported. Dynamic IPs require manual unbinding via /ipdel.\nNo built-in support for reloading lang.yml without a server restart (can be added if needed).\nSummary\nIPLock is a straightforward yet effective tool for securing player accounts on Minecraft servers. It combines automatic IP binding, operator-controlled unbinding, and fully customizable messages, making it user-friendly for both players and administrators. The plugin is ideal for servers prioritizing account security, with its flexible message system allowing seamless integration into any server’s branding or language.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 525,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

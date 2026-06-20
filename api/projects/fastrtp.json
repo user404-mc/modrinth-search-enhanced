@@ -1,0 +1,42 @@
+{
+  "id": "YWmj2r1d",
+  "slug": "fastrtp",
+  "title": "FastRTP | Random Teleport",
+  "description": "A fast random teleport command that doesn't cause lagspikes.",
+  "body": "# Fast RTP\n\nA fast random teleport command that doesn't cause lagspikes.\n\n### Commands\n- `/rtp` - Teleports the player to a random location.\n- `/rtpback` - Teleports the player back to their last random teleport location.\n- `/rtp <player> <args>` - Teleports the specified player to a random location. Requires permissions.\n- `/rtp reload` - Reloads the configuration.\n\n### Permissions\n- `fast-rtp.command.root` - Allows the player to use the `/rtp` command when `requirePermission` is set to `true`\n- `fast-rtp.command.advanced` - Allows you to rtp other players, specify dimension, radius, etc.\n- `fast-rtp.command.reload` - Reloads the configuration.\n- `fast-rtp.bypass.cooldown` - Allows the player to bypass the RTP cooldown.\n\n### Configuration\nThe configuration file can be found in `/config/fast-rtp.json`\n\n```json5\n{\n  // Whether using /rtp requires the player to have the permission \"fast-rtp.command.root\"\n  \"requirePermission\": false,\n  // Whether /rtp should use the current world of the player. \n  // If false, the default world will be used if the dimension is not specified in the command.\n  \"useCurrentWorld\": false,\n  // Adds strict targeting / movement checks to prevent players from using the command to escape dangerous situations.\n  \"useStrictTeleportCheck\": false,\n  // The default dimension to use for /rtp.\n  \"defaultDimension\": \"minecraft:overworld\",\n  // The maximum radius from the world center to search for a safe location.\n  // If set to -1, the radius will go as far as the worldborder.\n  \"radius\": -1,\n  // The minimum radius from the world center to search for a safe location.\n  \"minRadius\": 0,\n  // The radius of blocks to check for dangerous surrounding blocks. This doesn't go higher than 4.\n  \"safetyCheckRadius\": 1,\n  // Cooldown in seconds applied after using /rtp.\n  \"cooldown\": 30,\n  // Specific biome identifiers that can be skipped by the location finder.\n  // These can also be used to skip expensive chunk loads, significantly speeding up location finding.\n  \"blackListedBiomes\": [\n    \"minecraft:small_end_islands\",\n    \"minecraft:the_end\",\n    \"minecraft:the_void\"\n  ],\n  // Biome tags that can be skipped by the location finder.\n  \"blackListedBiomeTags\": [\n    \"minecraft:is_beach\",\n    \"minecraft:is_ocean\",\n    \"minecraft:is_deep_ocean\",\n    \"minecraft:is_river\"\n  ],\n  // Command messages. Text formatting is done using https://placeholders.pb4.eu/user/text-format/.\n  \"messages\": {\n    \"rtpStartSearch\": \"<yellow>Searching for a safe location...\",\n    \"rtpLocFound\": \"<yellow>Found a safe location in ${seconds} seconds\",\n    \"rtpTeleportPlayer\": \"<dark_aqua>Teleported to <green>${x} ${y} ${z} <dark_aqua>in <green>${world}\",\n    \"rtpLocNotFound\": \"<red>[✖] Could not find a safe location!\",\n    \"rtpOnCooldown\": \"<red>[✖] <gold>Please wait <yellow>${seconds} <gold>seconds before using the RTP again!\",\n    \"preventedRtp\": \"<red>[✖] Could not start random teleport.\\nReason: ${reason}\",\n    \"rtpBackSuccess\": \"<dark_aqua>Teleported back to your last random teleport!\",\n    \"rtpBackLocNotFound\": \"<red>[✖] You don't have any recent random teleports.\",\n    \"preventedRtpBack\": \"<red>[✖] Unable to teleport back to your last RTP location.\\nReason: ${reason}\",\n    \"tpSecondsLeft\": \"<yellow>Teleporting in ${seconds} seconds...\",\n    \"tpCancelled\": \"<red>[✖] Teleportation was cancelled.\"\n  }\n}\n```",
+  "categories": [
+    "adventure",
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 27216,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

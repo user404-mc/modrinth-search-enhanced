@@ -1,0 +1,24 @@
+{
+  "id": "fMB3RxAq",
+  "slug": "eventslib",
+  "title": "EventsLib",
+  "description": "An events library adding in missing event listeners",
+  "body": "This library is intended to be used along side some of my mods that require more specific events for effects.  This mod adds in no items or changes the game in any way.  It has no beneficial use for players unless there is another mod that requires it and utilizes the additional events.\n\n \n\nIt adds in an event called MobEffectTickEvent which provides the modder with an interface to get the percentage left of the duration of the effect, as well as the effect instance and entity should you need any of those.\n\n```\n// Example for MobEffectTickEvent\n    @SubscribeEvent\n    public static void onMobEffectTick(MobEffectTickEvent event) {\n        float percentageLeft = event.getPercentageLeft();\n        String entityName = event.getEntity().getName().getString();\n        String effectName = event.getEffectInstance().getEffect().value().toString();\n        \n        System.out.println(\"Entity: \" + entityName\n                + \" is affected by: \" + effectName\n                + \" with \" + percentageLeft + \"% duration remaining.\");\n        \n        if (percentageLeft == 50.0f) {\n            System.out.println(\"Effect on \" + entityName + \" is at 50% duration for effect: \" + effectName);\n        }\n        if (percentageLeft == 20.0f) {\n            System.out.println(\"Effect on \" + entityName + \" is at 20% duration for effect: \" + effectName);\n        }\n    }\n```\n\n \n\nIt also adds in a method that is run once when the effect wears off.  In my Fargo's Talismans mod, I use this to remove the attributes that are added to the player by the pedestal, rather than by running a PlayerTick method.\n\n```\n    // Example for onEffectRemoved (In a MobEffectEndEffect extended class)\n    @Override\n    public void onEffectRemoved(LivingEntity entity, int amplifier) {\n        super.onEffectRemoved(entity, amplifier);\n        if (entity instanceof Player) {\n            System.out.println(\"Effect has worn off.\");\n        }\n    }\n```",
+  "categories": [
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 32828,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,38 @@
+{
+  "id": "SogAQPw4",
+  "slug": "server-market",
+  "title": "Server Market",
+  "description": "Currency and Market Mod for Minecraft Server",
+  "body": "**Server Market** is a Fabric server-side mod that brings a complete player-driven economy and marketplace to your server. Players can check their balance, send money to others (even offline players), and review their transaction history — all through simple commands or an intuitive GUI. The mod features both a player market and a system shop where items can be listed, bought, and sold with full NBT variant support. It also supports purchase orders with parcel station delivery, so buyers can place requests and sellers can fulfill them without needing to meet face-to-face. Administrators can optionally introduce physical currency items, set up system shop prices, manage player balances directly, and configure the economy to suit their needs. Storage defaults to SQLite for zero-setup operation, but can be switched to MySQL with optional [XConomy](https://www.spigotmc.org/resources/xconomy.75669/) record mirroring for shared database environments. For server owners running 1.21.9 or newer, the mod bundles Placeholder API support out of the box. Developers can hook into the exposed API and event system to query balances, process transfers, intercept purchases, or integrate the economy into their own mods.\n\n## Requirements\n\nRequired:\n- **[Fabric API](https://modrinth.com/mod/fabric-api)** (version matched to your MC version)\n- **[Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)** **1.13.8+kotlin.2.3.0**\n- **[Fabric Permissions API](https://modrinth.com/mod/fabric-permissions-api)** **0.5.0**\n\nOptional:\n- **[LuckPerms](https://modrinth.com/mod/luckperms)** (recommended) for permission management\n- **[Placeholder API](https://modrinth.com/mod/placeholder-api)** (1.21.9+ JAR only)\n\n## Commands\n\nPlayer:\n```bash\n/svm\n/svm menu\n\n/svm money\n/svm balance\n/svm pay <player> <amount>\n/svm history [page]\n\n/svm sell <price>\n/svm restock <quantity>\n/svm pull\n\n/svm list\n/svm search <keyword>\n\n/svm buy <quantity> <item> [seller]\n\n/svm cash <value> <quantity>\n/svm exchange <amount>\n\n/svm order <price> <amount>\n/svm supply <quantity>\n```\n\nAdmin:\n```bash\n/svm admin balance <player>\n/svm admin set <player> <amount>\n/svm admin add <player> <amount>\n/svm admin remove <player> <amount>\n/svm admin rank\n/svm admin history <player> [page]\n\n/svm admin price <price> [limit]\n/svm admin pull\n/svm admin purchase <price> [limit]\n\n/svm admin cash <value>\n/svm admin cash get\n/svm admin cash del\n/svm admin cash list [item]\n\n/svm admin reload\n```\n\n## Updates\n\n- Command wording updated:\n  - purchase order: `/svm purchase` -> `/svm order`\n  - sell to buyer: `/svm selltopurchase` -> `/svm supply`\n- Removed command group: `/svm edit` (admin commands are now under `/svm admin`).\n- Deprecated: `/svm admin lang`\n\n## Placeholder API\n\nAvailable in the **1.21.9+ JAR only** when Placeholder API is installed:\n\n- `%server-market:balance%`\n- `%server-market:balance_short%`\n- `%server-market:parcel_count%`\n- `%server-market:player_name%`\n- `%server-market:top_name:<rank>%` (rank 1–10)\n- `%server-market:top_balance:<rank>%` (rank 1–10)\n- `%server-market:top_balance_short:<rank>%` (rank 1–10)\n\n## Integration API\n\nEntry point: `asagiribeta.serverMarket.api.ServerMarketApiProvider`\n\n- `getBalance`, `hasEnough`, `getParcelCount`\n- `addBalance`, `withdraw`, `setBalance`, `transfer`\n- `getTopBalances`, `getHistory`, `format`, `openMenu`, `getModVersion`\n\nEconomyProvider (Vault-style): `asagiribeta.serverMarket.api.economy.EconomyProviderRegistry`\n\n- `withdraw`, `format`\n\nEvents:\n- `ServerMarketEvents.BALANCE_CHANGED`\n- `ServerMarketEvents.PRE_PURCHASE` (return false to cancel)\n- `ServerMarketEvents.POST_PURCHASE`\n\n## Configuration / Storage\n\nConfig file: `config/server-market/config.properties`\n\nReload in-game: `/svm admin reload`\n\n### Economy\n\n| Key | Default | Description |\n|-----|---------|-------------|\n| `initial_player_balance` | `100.0` | Balance for first-time joiners |\n| `max_transfer_amount` | `1000000.0` | Max amount per `/svm pay` |\n| `enable_transaction_history` | `true` | Record transactions |\n| `max_history_records` | `10000` | Auto-prune oldest records |\n| `enable_tax` | `false` | Tax on player shop sales |\n| `market_tax_rate` | `0.05` | Tax rate (0.0–1.0) |\n\n### Storage (SQLite — default)\n\n| Key | Default | Description |\n|-----|---------|-------------|\n| `storage_type` | `sqlite` | `sqlite` or `mysql` |\n| `sqlite_path` | `market.db` | Database file path |\n\n### Storage (MySQL / [XConomy](https://www.spigotmc.org/resources/xconomy.75669/))\n\nSet `storage_type=mysql` and configure `mysql_host`, `mysql_port`, `mysql_database`, `mysql_user`, `mysql_password`, `mysql_use_ssl`, `mysql_jdbc_params`.\n\n[XConomy](https://www.spigotmc.org/resources/xconomy.75669/) table names (when sharing an existing database):\n\n| Key | Default |\n|-----|---------|\n| `xconomy_player_table` | `xconomy` |\n| `xconomy_non_player_table` | `xconomynon` |\n| `xconomy_record_table` | `xconomyrecord` |\n| `xconomy_login_table` | `xconomylogin` |\n| `xconomy_system_account` | `SERVER` |\n| `xconomy_write_record` | `false` |\n\nSet `xconomy_write_record=true` to mirror transactions into [XConomy](https://www.spigotmc.org/resources/xconomy.75669/)'s record table (MySQL only).\n\n### Debug\n\n| Key | Default | Description |\n|-----|---------|-------------|\n| `enable_debug_logging` | `false` | Verbose debug logs |",
+  "categories": [
+    "economy",
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3033,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "9s7vCvdT",
+  "slug": "kesseractjs",
+  "title": "KesseractJS",
+  "description": "A fork of the 1.16.5 version of KubeJS, maintained and extended",
+  "body": "# KesseractJS\n### Welcome to the 4th dimension.\n\n[![cf](https://cf.way2muchnoise.eu/full_kesseractjs_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/kesseractjs)\n[![actions](https://github.com/hellish-mods/kesseractjs/actions/workflows/build_1605.yml/badge.svg)](https://github.com/hellish-mods/kesseractjs)\n\n[![logo](https://media.forgecdn.net/avatars/1002/899/638523320288453902.gif)](https://www.curseforge.com/minecraft/mc-mods/kesseractjs)\n\n**KesseractJS** is a fork of [KubeJS](https://kubejs.com/), continuing its development for 1.16.5. It backport a lot of different features from the newer versions, and even adds some that are not present at all in the original mod. The latter are documented [on a dedicated wiki](https://wiki.modernmodpacks.site/wiki/hellish-mods/kesseractjs), and support for those are offered on [our discord server](https://discord.modernmodpacks.site), so don't be afraid to ask there.\n\nThis mod depends on a modified fork of the Rhino JS parser called [Rhizo](https://curseforge.com/minecraft/mc-mods/rhizo), please install it before use. We also highly recommend you use [ProbeJS Legacy](https://curseforge.com/minecraft/mc-mods/probejs-legacy) during script development for better IDE support.\n\nThis project was made as a collaboration between [Hellish Mods](https://github.com/Hellish-Mods), [ZZZank](https://github.com/zzzank), and [MundM2007](https://github.com/mundm2007), with the occasional help from [Team Potato](https://github.com/MCTeamPotato). Thank you guys <3\n\n## Feature showcase\n\n* Fake mod registration\n\n```js\n// In startup_scripts\nPlatform.registerFakeMod(\"notarealmodid\").displayName(\"Hello World!\")\nonEvent('item.registry', event => {\n\tevent.create('notarealmodid:thing')\n})\n```\n\n![screenshot](https://raw.githubusercontent.com/Hellish-Mods/KesseractJS/refs/heads/main/assets/fakemod.png)\n\n* Backports\n\n```js\n// Welcome to the future babyyyy\n\n// Falling block type\nonEvent('block.registry', event => {\n    event.create('metal_pipe').material('falling')\n})\n// Custom music discs (https://github.com/KubeJS-Mods/KubeJS/issues/491)\nonEvent('item.registry', event => {\n    event.create('disc_14').song('jamiroquai:vitrual_insanity')\n})\n// thickTexture/thinTexture and textureThick/textureThin intercompatibility\nonEvent('fluid.registry', event => {\n  event.create('you_dont_want_to_know')\n    .thickTexture(0xFF0000)\n    .textureThick(0xFF0000) // Both methods work!\n})\n// JsonIO\nlet data = JsonIO.read('kubejs/data.json')\nJsonIO.write('kubejs/data.json', {recursion: data})\n\n// + more!\n```\n\n* Fixes. Lots of 'em.\n\n![screenshot](https://raw.githubusercontent.com/Hellish-Mods/KesseractJS/refs/heads/main/assets/jjjank.png)\n\n* Full drag-and-drop compatability with old Kube scripts\n* Continuous updates. More in the future!\n\n---\n\n[![MMLogo](https://raw.githubusercontent.com/Modern-Modpacks/assets/main/big_logo.png)](https://modernmodpacks.site)\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "library",
+    "management",
+    "quilt",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 799,
+  "followers": 0,
+  "game_versions": [
+    "1.16.4",
+    "1.16.5"
+  ],
+  "date_updated": null
+}

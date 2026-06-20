@@ -1,0 +1,19 @@
+{
+  "id": "X3JsdcbI",
+  "slug": "xylene",
+  "title": "Xylene",
+  "description": "A Small Optimization Mod that will help boost your FPS. Won't be massive but its noticeable.",
+  "body": "![XyleneOptimal](https://cdn.modrinth.com/data/cached_images/26a4c5aef662d4b0bed748f802b5158cf331de49.png)\n\n# Working Features!\n\n### Faster Maths\nMinecraft uses sin() and cos() math functions constantly (lighting, rendering, entity movement, etc.). Normally these are calculated fresh every time. Xylene pre-calculates all 65,536 possible answers and stores them in a table. When the game needs sin/cos, it just looks up the answer instantly instead of doing the math.\n\n### Faster Data Storage\nMinecraft stores a LOT of data in things called HashMaps (think of them like dictionaries). Xylene swaps out the default Java ones for specially optimized ones that are faster for the types of data Minecraft uses (NBT data, entity tracking, etc.)\n\n### Entity Tick Culling\nEvery tick (20 times per second), Minecraft updates every single entity — zombies, cows, item frames, everything. Xylene skips updating entities that are more than 48 blocks away from any player. They're too far away for you to notice anyway. (Bosses and players are never skipped.)\n\n### Collision Skipping\nMinecraft constantly checks if entities are colliding with things. Xylene tracks whether an entity has actually moved. If it hasn't moved, it skips the collision check entirely — no point rechecking something that's standing still.\n\n### Faster Network Encoding\nWhen your game talks to the server, numbers are encoded in a special format called \"VarInt.\" Xylene replaces the encoding loop with a faster hand-written version.\n\n### Xylene Settings\nIt shows all the toggle switches for every Xylene optimization category, so you can turn individual optimizations on/off.\n\n## The Following Features are still in Beta! (Only Availible on Beta Versions.)\n\n### Tick Interpolation\nsmooth entity/player motion between ticks at any framerate.\n\n### Async Chunk Mesh Building \nchunk geometry compiled off the main thread.\n\n### Shader Warm-up\nGL shaders pre-compiled on startup to kill first-use stutter.\n\n### Resource Pack Async Loading\npack switching no longer freezes the game.\n\n### Smooth Lighting Cache\nAO values cached, recomputed only when blocks change.\n\n### Crowd Simulation\nsimplified pathfinding for densely packed entities.\n\n### Client-Side Prediction Smoothing\nblends out small server position corrections.\n\n### Packet Processing Throttle\ncaps packet drain time per frame to protect the render thread.\n\n### Rubber Band Reducer\ninterpolates small server snaps; large ones still apply instantly.\n\n### Ping Jitter Buffer\nshort buffer that absorbs brief ping spikes.\n\n![Xylene](https://cdn.modrinth.com/data/cached_images/77aa1d30bd2fbc4d8d11d8d185417c3e13e40e8e.png)\n\n# What's \"Planned But Not Active\"\n\nAbout 40+ other mixins are registered but are currently empty placeholders, things like hopper optimization, redstone optimization, lighting improvements, chunk loading tweaks, etc. The framework is there but the actual optimization code hasn't been filled in yet. They load harmlessly and do nothing.",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1671,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "r018adCw",
+  "slug": "create-sifting",
+  "title": "Create Sifting",
+  "description": "A sifter block for the amazing Create mod",
+  "body": "# Create Sifting\n\nA simple sifter for the amazing Create mod.\nThis mod it's meant to be used in modpacks.\n\nHeavily inspired on ex nihilo sieve.\n\n## [Dedicated wiki](https://wiki.mechanicalmods.net/mods/create-sifter/)\n\n## 1.21.1-2.x Version Requires Mechanicals Lib \n- [Modrinth](https://modrinth.com/mod/mechanicals-lib\")\n\n## Version support & documentation\n- 1.21.1: Supported. Documentation refers to this version.\n- 1.20.1: Only critical issues [1.20.x Documentation](https://github.com/oierbravo/createsifter/tree/mc1.20.1/dev)\n- 1.19.x: Unsupported: [1.19.x Documentation](https://github.com/oierbravo/createsifter/tree/mc1.19/dev) \n- 1.18.x: Unsupported: [1.18.x Documentation](https://github.com/oierbravo/createsifter/tree/mc1.18/dev)\n\n## Meshes\n> Works with the sifter or in hand (like create sandpaper)\n- String, Andesite, Brass, Sturdy\n- Advanced meshes only work with the brass sifter.\n- Configurable mesh durability.\n  - By default, only applies to hand sifting.\n  - Enchantable with *Unbreaking*\n- Added zinc mesh for modpacks.\n\n## Sifter\n> Automated sifting. Based on the Millstone block works more or less in the same way. You can toss items on top or feed it with any item automated way (hoppers, funnels, chute...)\n- Right Click with a mesh to add it.\n- Right Click with empty hand to clear inventories.\n  1. Output\n  2. Input\n  3. Shift + right click: Mesh\n\n## Brass Sifter\n- `High` redstone disables processing\n- Output filter.\n- 8x processing per cycle, configurable.\n- Bigger output capaticy, configurable.\n\n\n## Recipes\n\n### Waterlogged feature (optional)\n- `\"waterlogged\":\"true\"`\n- Sifters can be waterlogged to get different output.\n- In hand meshes act as waterlogged when the player is in a LiquidBlock\n\n### Advanced sifter per recipe (optional)\n- `\"advancedSifter\":\"true\"`\n- Recipes can require brass sifter for normal meshes too.\n\n### Compact recipes.\n- Recipes with same mesh and input block gets merged allowing easier compat.\n- Current mods:\n  - EnderIO\n  - Ars nouveau\n  - AE2\n\n### Recipes examples\n- See [Included recipes](https://github.com/oierbravo/createsifter/tree/mc1.21.1/dev/src/generated/resources/data/createsifter/recipe/sifting \"Included recipes\")\n\n### KubeJS\n- Remove al Sifting recipes.\n```js\nServerEvents.recipes(event => {\n  event.remove({ type: 'createsifter:sifting' })\n})\n```\n- Chanced output (binding)\n```js\nOutput.of('minecraft:clay', 0.5)\n```\n- Add recipes\n```js\nServerEvents.recipes(event => {\n  /** \n    createsifter.sifting(Output[] result, Ingredient ingredient, ItemStack mesh)\n    .processingTime(int time) // optional, default: 500\n    .waterlogged(true) //optional, default: false\n    .advancedSifter(true) //optional, default: false\n  **/\n  event.recipes.createsifter.sifting([Output.of('minecraft:clay',0.5),Output.of('minecraft:redstone')],'minecraft:sand',\"createsifter:andesite_mesh\")\n})\n```\n- Custom meshes\n  - Texture location (for this examples): `kubejs/assets/kubejs/textures/item/diamond_mesh.png`\n```js\nStartupEvents.registry('item', event => {\n    \n    //Basic mesh\n\tevent.create('diamond_mesh','createsifter:mesh')\n      .displayName('Diamond Mesh')\n      .parentModel(\"createsifter:block/meshes/mesh\")\n      .texture(\"mesh\",\"kubejs:item/diamond_mesh\")\n      .maxDamage(77) //Mesh durability\n\t\n\t//Advanced mesh\n\tevent.create('advanced_diamond_mesh','createsifter:advanced_mesh')\n      .displayName('Advanced Diamond Mesh')\n      .parentModel(\"createsifter:block/meshes/mesh\")\n      .texture(\"mesh\",\"kubejs:item/diamond_mesh\")\n      .texture(\"frame\",\"micraft:block/diamond_block\")\n      .maxDamage(200) //Mesh durability\n\t\n})\n```\n\n\n**Thanks to the Creators of Create.**",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 722835,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

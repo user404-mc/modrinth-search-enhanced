@@ -1,0 +1,23 @@
+{
+  "id": "2V1YydKU",
+  "slug": "unlimited-stacks-mod",
+  "title": "Unlimited Stacks Mod",
+  "description": "Raises the item stack limit from 99 to 1,073,741,823. Stacks persist through relog. No config required.",
+  "body": "# Unlimited Stacks\n\n**Vanilla caps item stacks at 99. This mod raises that to 1,073,741,823.**\n\nNo config. No commands. No GUI. Install it and forget about it.\n\n---\n\n## The Problem With Vanilla\n\nMinecraft enforces the stack limit in three separate places. Most mods that claim to remove the cap only fix one or two of them, which means stacks above 99 either:\n\n- Display in-game but silently **delete themselves on world save/reload**\n- Show the right count but **can't be placed into containers**\n- Work fine until you **relog**, then vanish\n\nThis mod fixes all three.\n\n---\n\n## What It Actually Changes\n\n**1. Item stack limit**\nOverrides `getMaxStackSize()` on all non-damageable items at the item level. This is what controls how high a stack can grow in your inventory.\n\n**2. Container slot limit**\nOverrides `getMaxStackSize()` at the container interface level. Without this, slots silently clamp stacks back to the old limit when you move items between inventories.\n\n**3. Codec range patch**\nThis is the fix most mods miss. Vanilla bakes a `intRange(1, 99)` validation codec directly into `ItemStack.MAP_CODEC` at class-load time. Any stack count above 99 fails this validation and is **silently discarded** when the world saves. This mod intercepts that codec call and expands the accepted range to match the new limit.\n\nWithout the codec patch, stacks above 99 disappear when the world saves.\n\n---\n\n## Damageable Items\n\nTools, weapons, and armour are intentionally excluded. They can't be stacked regardless, and setting a stack size on them triggers Minecraft's internal \"item cannot be both damageable and stackable\" error. Everything else gets the full limit: blocks, food, materials, misc items.\n\n---\n\n## Stack Limit\n\nThe limit is set to `Integer.MAX_VALUE / 2` = **1,073,741,823**.\n\nThis value is used consistently across all three patches so there are no mismatches between what the item allows, what the container allows, and what the save codec accepts.\n\n---\n\n## Use Cases\n\n- Survival or SMP servers running drop multiplier mods\n- Creative or admin worlds where large item counts are needed\n- Any setup where vanilla's 99-item cap is a bottleneck\n\n---\n\n## Compatibility\n\n| | |\n|---|---|\n| **Minecraft** | 26.1.2 |\n| **Loader** | Fabric 0.19.2+ |\n| **API** | Fabric API required |\n| **Side** | Required on both client and server |\n| **Java** | 25+ |\n\nBoth client and server need the mod installed. The codec patch runs at class-load time on both sides. A server-only install will cause the client to show wrong stack counts.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1109,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

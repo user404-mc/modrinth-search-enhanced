@@ -1,0 +1,24 @@
+{
+  "id": "eIkjkWqV",
+  "slug": "properer-ping",
+  "title": "Properer Ping",
+  "description": "A Fabric mod that tracks and provides access to packet latency measurements between the client and server.",
+  "body": "# Properer Ping\n\nA Fabric mod that tracks and provides access to packet latency measurements between the client and server.\n\nBest paired with a mod like [Ping View](https://modrinth.com/mod/ping-view) or [Better Ping Display](https://modrinth.com/mod/better-ping-display-fabric) (whenever it gets updated).\n## Features\n\n- Tracks latency for the last 5 packets sent between client and server\n- Measures latency in milliseconds with nanosecond precision\n- Thread-safe implementation using concurrent collections\n\n## How It Works\n\nThe mod uses mixins to intercept Minecraft's query ping/pong packets to measure round-trip time (RTT):\n\n1. **Client sends QueryPingC2SPacket**: Contains a timestamp and requests server information\n2. **Server responds with PingResultS2CPacket**: Echoes back the original timestamp\n3. **ClientPlayNetworkHandlerMixin**: Intercepts the pong response\n4. **PacketLatencyTracker**: Calculates latency as (response time - request time)\n\nRTT is measured as the time between sending a query ping and receiving the pong response.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 507,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

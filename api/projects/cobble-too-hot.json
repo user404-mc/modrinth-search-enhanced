@@ -1,0 +1,20 @@
+{
+  "id": "gh3Ljc1f",
+  "slug": "cobble-too-hot",
+  "title": "Cobble Too-Hot",
+  "description": "CobbleTooHot makes nearby mons influence your Tough As Nails body temperature, so a Charizard can feel hotter than a Charmander. Configure per-mon/type",
+  "body": "# CobbleTooHot\n\nCobbleTooHot is a tiny “bridge” mod that lets Cobblemon Pokémon affect **Tough As Nails** temperature when they’re near a player.\n\nWant a Charizard to feel hotter than a Charmander? Or an Articuno to chill the air more than an Abomasnow? This mod lets you do that with a simple config.\n\n## What It Does\n\n- Scans for nearby Cobblemon `PokemonEntity` around each player.\n- Applies a temperature influence based on either:\n  - **Per-species** config (`perPokemon`), or\n  - Optional **per-type** fallback (`perType`) if a species isn’t listed.\n- Feeds into Tough As Nails’ **player temperature modifiers** system.\n\nTAN temperature is still **discrete** (`ICY`, `COLD`, `NEUTRAL`, `WARM`, `HOT`) and still changes over time (TAN’s delays/configs still apply).\n\n## Requirements\n\n- Minecraft `1.21.1`\n- Tough As Nails (required)\n- Cobblemon (optional, but you’ll want it for… Pokémon)\n\n## Config\n\nConfig path:\n\n- `config/CobbleTooHot/config.json`\n\nExample:\n\n```json\n{\n  \"enabled\": true,\n  \"radiusBlocks\": 8.0,\n  \"maxTotalShift\": 4,\n  \"updateIntervalTicks\": 20,\n  \"perPokemon\": {\n    \"cobblemon:charizard\": \"HOT\",\n    \"cobblemon:charmander\": \"WARM\",\n    \"cobblemon:articuno\": \"ICY\",\n    \"cobblemon:abomasnow\": \"COLD\"\n  },\n  \"perType\": {\n    \"fire\": \"HOT\",\n    \"ice\": \"ICY\"\n  }\n}\n```\n\nNotes:\n\n- `perPokemon` values are TAN levels: `ICY | COLD | NEUTRAL | WARM | HOT`\n- `perType` is optional. Keys are Cobblemon type showdown IDs (e.g. `fire`, `ice`, `water`).\n- Dual-types use an average between the two type deltas (so Fire+Ice tends toward neutral unless you tune your `perType` mapping).\n- `maxTotalShift` caps how strong the combined effect can be (prevents “stack 30 Pokémon” situations).\n- `updateIntervalTicks` throttles scans (default `20` = once per second).\n\n## Messages (Optional)\n\nMessages path:\n\n- `config/CobbleTooHot/messages.json`\n\nThis controls the **text around** placeholders. Some placeholders are intentionally hard-colored in code (so the temperature label stays consistent).\n\nDefault keys:\n\n- `reloadSuccess`\n- `statusTemp` (uses `{temperature}`)\n- `statusLocate` (uses `{count}`)\n- `statusLocateLine` (uses `{species}`, `{count}`, `{temperature}`)\n\nColor codes supported in messages:\n\n- Legacy `&` codes (ex: `&a`, `&e`, `&l`, `&r`)\n- Hex colors: `&#RRGGBB`\n- Escape a literal ampersand with `&&`\n\n## Commands\n\n- `/cobbletoohot status`\n  - Shows your current TAN temperature and nearby configured Pokémon influences.\n- `/cobbletoohot reload` (perm 2)\n  - Reloads `config.json` + `messages.json`.\n- `/cobbletoohot debug` (perm 2)\n  - Extra info for troubleshooting (registration, computed shifts, etc.).\n\n## Performance\n\nThis mod does an entity query in a radius around each player, then reflects species/type info from nearby Pokémon.\n\nIf you expect a lot of Pokémon around players, keep `radiusBlocks` modest and increase `updateIntervalTicks` (e.g. 20–40).",
+  "categories": [
+    "fabric",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1097,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

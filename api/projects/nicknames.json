@@ -1,0 +1,39 @@
+{
+  "id": "HKgCPKRq",
+  "slug": "nicknames",
+  "title": "Nicknames",
+  "description": "Simple nickname system with cross-platform sync",
+  "body": "# Nicknames\n\nA Minecraft mod/plugin that adds a simple nickname system. Players can change their display name once; server admins can manage nicknames freely.\n\nSupports Forge (1.20.1), Fabric (1.21.1), and Bukkit/Paper/Purpur (1.21.1).\n\n## Features\n\n- `/nick <name>` — set your own nickname (one-time use per player)\n- `/nick set <player> <name>` — admin: set a player's nickname\n- `/nick reset <player>` — admin: reset a player's nickname\n- `/nick list` — admin: list all nicknames with status\n- Nicknames appear in chat, TAB list, and above player heads\n- Nicknames sync to clients for proper nameplate rendering\n- Mod is **optional on the client** — server works standalone, client just gets nameplate sync\n- Localization support (English, Russian)\n- Nickname data persists in `config/nicknames/nicknames.json` (Forge/Fabric) or `plugins/Nicknames/nicknames.json` (Bukkit)\n\n## Client-Server Architecture\n\nThe mod uses a custom `nicknames:sync` channel to synchronize nicknames between server and clients.\n\n**Server** stores all nicknames and is the source of truth. When a nickname changes or a player joins, the server sends a full nickname map (UUID -> display name) to all connected clients.\n\n**Client** (optional) receives the sync packet and caches nicknames locally. This cache is used to render nicknames above player heads (nameplates). Without the client mod, players still see nicknames in chat and TAB list — those are handled server-side.\n\nThis works across platforms: a Bukkit/Purpur server can sync nicknames to Forge or Fabric clients via Plugin Messaging.\n\n| Server | Client | Chat | TAB | Nameplates |\n|--------|--------|------|-----|------------|\n| Forge | Forge | yes | yes | yes |\n| Fabric | Fabric | yes | yes | yes |\n| Bukkit | Forge/Fabric | yes | yes | yes |\n| Any | Vanilla | yes | yes | no |\n\n## Project Structure\n\n```\nnicknames-mod/\n  common/    — shared code (NicknameStore, NicknameProtocol, NicknameEntry)\n  forge/     — Forge 1.20.1 mod (client+server)\n  fabric/    — Fabric 1.21.1 mod (client+server)\n  bukkit/    — Bukkit/Paper/Purpur 1.21.1 plugin (server-only)\n```\n\n## Installation\n\n### Forge (1.20.1)\nDrop `nicknames-mod-x.x.x.jar` from `forge/build/libs/` into the `mods/` folder (server and optionally client).\n\n### Fabric (1.21.1)\nDrop `fabric-x.x.x.jar` from `fabric/build/libs/` into the `mods/` folder. Requires Fabric API.\n\n### Bukkit/Paper/Purpur (1.21.1)\nDrop `nicknames-bukkit-x.x.x.jar` from `bukkit/build/libs/` into the `plugins/` folder.\n\n## Building\n\n```\n./gradlew build\n```\n\nBuild all modules at once, or target a specific one:\n\n```\n./gradlew :forge:build\n./gradlew :fabric:build\n./gradlew :bukkit:build\n```\n\nRequires Java 21.\n\n## License\n\nMIT\n",
+  "categories": [
+    "bukkit",
+    "bungeecord",
+    "decoration",
+    "fabric",
+    "forge",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1417,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

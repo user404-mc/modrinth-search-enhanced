@@ -1,0 +1,36 @@
+{
+  "id": "qeqmEZpg",
+  "slug": "qbanhammers",
+  "title": "Qbanhammers",
+  "description": "Adds hammers that can be used to punish players and more!",
+  "body": "\n# **Qbanhammers**\nIs a banhammer plugin used to improve the staff experience with punishing people, remove the need to type a boring command everytime they want to punish a player, to just having to hit him with a hammer.\n\n## **features:**\n- Configurable hammers\n- Custom texturepack support\n- Anti accidents system\n- Game crasher\n- Strike whitelist\n- custom sounds\n- 4 example hammers\n- support for multiple ban systems(litebans, AdvancedbanX, etc...)\n\n### **Commands**\n- /qbanhammer givehammer {hammer} to get the hammer you want.\n- /qbanhammer reload to reload in the new hammers added.\n\n### **Permissions**\n- qbanhammer.use to use the command\n- qbanhammer.reload to be able to reload the config\n- qbanhammer.hammer.\"hammername\" makes the permissions to be able to use each hammer made from the config\n- qbanhammer.admin gives you permission for all the commands and hammers\n- qbanhammer.togglegamecrasher gives you permission to use the game crasher\n\nExample Usage:\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/HEf9ICtrXLc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\nfor support please refer to our [Discord Server.](https://discord.gg/parrotmc)\n\n\n```yaml\n# This is the main config of the Qbannhamers plugin.\n#the internal placeholders for the plugin are {attacker} {attacked} {hammer} (used in there right place)\n# if you have any questions, please contact the developer on discord: https://discord.gg/rnqu8ks7Er\n\n\nprefix: \"&4[&c&lQBH&4] \"\n# The prefix of the plugin, used in messages.\nExecuteWithConsole: false\n# If true, the plugin will execute strike with the console instead of the player.\n\nStrikeWhitelist:\n  - \"Player1\"\n  - \"Player2\"\n# A list of players that are whitelisted from being struck by the hammers.\n\nTimeOutDuration: 3.0\n\n# The duration in seconds before a strike confirmation times out.\n\nGameCrasher: true\n# If true, the plugin will attempt to crash the attacked player's game client(doesn't work on bedrock players).\n\nhammers:\n  \"kickhammer\":\n    name: \"&#303030&lB&#3F3F3F&lA&#4E4E4E&lN &#6C6C6C&lH&#7B7B7B&lA&#686868&lM&#565656&lM&#434343&lE&#303030&lR &f[Kick]\"\n    lore:\n      - \"&f\"\n      - \"&7Kick hammer. Click on a player\"\n      - \"&7to kick them from the server.\"\n      - \"\"\n      - \"&#303030&l | &#7B7B7BLeft-Click to ban a player!\"\n    strike-msg: \"&c{attacked} has been struck by the Ban Hammer.\"\n    execution-delay: 0.5 # delay in seconds before the command is executed (20 ticks = 1 second)\n    command: \"kick {attacked} You have been kicked by the {attacker}\"\n    lightning-strike: true\n    sound:\n      enabled: true\n      name: \"ENTITY_WITHER_SPAWN\"\n      volume: 1.0\n      pitch: 1.0\n    modeldata: 0\n\n  \"xrayhammer\":\n    strike-msg: \"&c{attacked} has been struck by the Ban Hammer.\"\n    name: \"&#A87406&lB&#B98412&lA&#CB941E&lN &#EEB337&lH&#FFC343&lA&#E9AF34&lM&#D49C25&lM&#BE8815&lE&#A87406&lR &f[XRAY]\"\n    lore:\n      - \"&f\"\n      - \"&7Xray ban hammer. Click on a player\"\n      - \"&7to ban them for xray use.\"\n      - \"\"\n      - \"&#A87406&l | &#FFC343Left-Click to ban a player!\"\n    command: \"ban {attacked} 30d xraying\"\n    lightning-strike: true\n    execution-delay: 0.5\n    sound:\n      enabled: true\n      sound-name: \"ENTITY_WITHER_SPAWN\"\n      volume: 1.0\n      pitch: 1.0\n    modeldata: 0\n\n  \"cheatinghammer\":\n    strike-msg: \"&c{attacked} has been struck by the Ban Hammer.\"\n    name: \"&#A80606&lB&#B91212&lA&#CB1E1E&lN &#EE3737&lH&#FF4343&lA&#E93434&lM&#D42525&lM&#BE1515&lE&#A80606&lR &f[Cheaters]\"\n    lore:\n      - \"&f\"\n      - \"&7ban hammer for cheaters. Click on a player\"\n      - \"&7to ban them for hacking on the server.\"\n      - \"\"\n      - \"&#A80606&l | &#FF4343Left-Click to ban a player!\"\n    lightning-strike: true\n    command: \"ban {attacked} 30d cheating\"\n    execution-delay: 0.5\n    sound:\n      enabled: true\n      sound-name: \"ENTITY_WITHER_SPAWN\"\n      volume: 1.0\n      pitch: 1.0\n    modeldata: 0\n\n  \"permahammer\":\n    strike-msg: \"&c{attacked} has been struck by the Ban Hammer.\"\n    name: \"&#37169C&lB&#3E19B0&lA&#451CC4&lN &#5221EB&lH&#5924FF&lA&#5121E6&lM&#481DCE&lM&#401AB5&lE&#37169C&lR &f[Perma]\"\n    lore:\n      - \"&f\"\n      - \"&7Permanent ban hammer. Click on a player\"\n      - \"&7to ban them permenently from the server.\"\n      - \"\"\n      - \"&#37169C&l | &#5924FFLeft-Click to ban a player!\"\n    command: \"banip {attacked} Ban evading\"\n    lightning-strike: true\n    execution-delay: 0.5\n    sound:\n        enabled: true\n        sound-name: \"ENTITY_WITHER_SPAWN\"\n        volume: 1.0\n        pitch: 1.0\n    modeldata: 0\n\n\n# messages\nInvalid-Subcommand: \"&cInvalid subcommand.\"\nNo-Subcommand: \"&cYou must specify a subcommand.\"\nConsole-Gethammer: \"&cThis can only be executed by players.\"\nHammer-Notspecified: \"&cYou must specify a hammer.\"\nHammer-NoPermission: \"&cYou do not have permission to use this hammer.\"\nInvalid-Hammer: \"&cInvalid hammer.\"\nHammer-recieved: \"&eYou have received a {hammer}&e!.\"\nNo-Permission: \"&cYou do not have permission to use this hammer.\"\nWhitelisted-Player: \"&c{damaged} is immune to Ban Hammers.\"\nConfirmation-Message: \"&eYou are about to strike {attacked} with a {hammer}. Click again to confirm.\"\nConfirmation-Timeout: \"&cConfirmation timed out.\"\nModelData-Error: \"&cInvalid model data for {hammer}.\"\nGamerCrasher-NoPermission: \"&cYou don't have permission use the game crasher.\"\nGameCrasher-Toggled: \"&eGame Crasher option has been {status}&e.\"\nGameCrasher-Disabled: \"&eGame Crasher is disabled from the config.\"\nConfig-Reloaded: \"&aConfiguration reloaded successfully.\"\n```\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "magic",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 208,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

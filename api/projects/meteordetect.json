@@ -1,0 +1,19 @@
+{
+  "id": "Vd5gFiHh",
+  "slug": "meteordetect",
+  "title": "MeteorDetect",
+  "description": "Fully server-side mod that detects meteor client on the client.",
+  "body": "This is a simple server-side mod that will detect meteor client on the client by utilizing [this](https://github.com/MeteorDevelopment/meteor-client/issues/5864) issue. It works very similarly to DonutSMP's detection. \n\nDISCLAIMER: I am ashamed, but not afraid to admit that **this code is 100% made by AI** (Claude, Opus 4.6). I did not write this code. Feel free to do whatever you want with this code; it's not mine.\n\nOnce meteorclient patches this issue, or if a better alternative to this mod becomes available, I will make this project unlisted. \n\n**How to use**\n\nBy default, this mod will ban any player who joins the server with meteorclient installed. A check will force-exit any container-gui that the player may be interacting with, so that is something to keep in mind.\n\n**Config Options**\n\n1. action — What happens if meteorclient is detected. KICK disconnects them, BAN runs /ban, ALERT notifies ops.\n2. checkOnJoin — Run a check when players join. This can be true or false.\n3. joinCheckDelayMin / joinCheckDelayMax — Random delay range in seconds before the check fires after join.\n4. periodicCheck — Check players periodically while online. true or false.\n5. periodicCheckIntervalSeconds — How often periodic checks run in seconds.\n6. checkTimeoutSeconds — How long to wait for a response before giving up.\n7. kickMessage — Message shown to kicked players. %player% replaced with their name.\n8. banMessage — Reason used in /ban command. %player% replaced with their name.\n9. staffAlertMessage — Alert sent to online players on detection. %player% replaced.\n10. staffOpLevel — Does literally nothing.\n11. detectionKeys — Translation key to test. You cannot test more than 1 right now.\n\nA recommended config is below. This will **immediately** ban a player with meteorclient when they attempt to join. It also won't mess with exiting container gui's because the check is immediate. Since players are checked upon joining, there is no need to periodically check players again.\n\n\n```\n{\n  \"action\": \"BAN\",\n  \"checkOnJoin\": false,\n  \"joinCheckDelayMin\": 1,\n  \"joinCheckDelayMax\": 1,\n  \"periodicCheck\": false,\n  \"periodicCheckIntervalSeconds\":3600,\n  \"checkTimeoutSeconds\": 7200,\n  \"kickMessage\": \"Disconnected: You have been kicked for the following reason: Cheating. Do not cheat again, or you will be permanently banned.\",\n  \"banMessage\": \"Disconnected: You have been banned for the following reason: Cheating.\",\n  \"staffAlertMessage\": \"%player% was flagged for using a modified client.\",\n  \"staffOpLevel\": 2,\n  \"detectionKeys\": [\n    \"key.meteor-client.open-gui\"\n]\n```\n",
+  "categories": [
+    "fabric",
+    "management"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1031,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "eNYGqJbG",
+  "slug": "mc-server-auto-closer",
+  "title": "MC Server Auto Closer",
+  "description": "Automatically closes the server when there are no players left",
+  "body": "# MC Server Auto Closer\n\nThis is a mod that automatically shuts down the Minecraft server if it remains unattended for a set period of time.\n\nMinecraftサーバーが無人状態で一定時間経過した場合に、自動でサーバーを停止させるMODです。\n\n## Dependencies / 依存関係\n\n- Minecraft 1.20.1\n- Architectury API 9.2.14\n- Additional dependencies per mod loader below / 以下のMODローダーごとの追加依存\n\n### Fabric\n\n- Fabric API 0.92.7+1.20.1\n- Fabric Language Kotlin 1.13.9+kotlin.2.3.10\n\n### Forge\n\n- Forge 1.20.1-47.4.16\n- Kotlin for Forge 4.11.0\n\n## Configuration / 設定\n\nConfiguration file is `config/mc_server_auto_closer.json`.\n\n設定ファイルは`config/mc_server_auto_closer.json`です。\n\n### `waitTime`\n\nThe time to wait after becoming unmanned until stopping.\\\nThe unit is milliseconds.\\\nThe initial value is `900000` ms (=15 minutes).\n\n無人状態になってから停止させるまで待機する時間です。\\\n単位はmsです。\\\n初期値は`900000`ms(=15分)です。\n\n### `enableTimeStart`/`enableTimeEnd`\n\nSpecify the time to enable automatic stop.\\\nSpecify in `HH:MM:SS` format.\\\nThe default values are `02:00:00` and `08:00:00` respectively.\n\nFor example, if `waitTime` is 15 minutes, and the last player leaves 14 minutes before `enableTimeEnd`, automatic stop\nwill not activate as it will be outside the enabled time by the time `waitTime` expires.\\\nIf you wish to initiate the automatic stop wait check until that time, specify that time plus `waitTime` as\n`enableTimeEnd`.\n\n自動停止を有効化する時間を指定します。\\\n`HH:MM:SS`で指定します。\\\n初期値はそれぞれ`02:00:00`/`08:00:00`です。\n\n例えば、`waitTime`が15分だとした時、`enableTimeEnd`の14分前に最後のプレイヤーが抜けた場合、`waitTime`\nが満了する頃には有効化時間外であるため自動停止は働きません。\\\n「その時間まで自動停止待機開始判定をさせたい」場合には、その時間+`waitTime`を`enableTimeEnd`に指定してください。\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 149,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

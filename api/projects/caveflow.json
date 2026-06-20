@@ -1,0 +1,23 @@
+{
+  "id": "I2BnQw1Q",
+  "slug": "caveflow",
+  "title": "CaveFlow",
+  "description": "Caves that breathe — a client-side Fabric mod that simulates underground airflow with a BFS flood-fill and renders dust particles that drift along the computed vectors.",
+  "body": "# CaveFlow\n\nA client-side Fabric mod. Every air block underground has a direction the air wants to go. CaveFlow computes that direction via a BFS flood-fill from sky openings and renders dust particles that drift along the result.\n\n## What it does\n\n- **Airflow simulation** — BFS seeds from every sky-exposed opening, propagates flow vectors through the cave network, runs on background threads so it doesn't spike frame time.\n- **Dust particles** — spawn from underground air cells and travel along the computed vectors. Biome-aware: standard caves, lush caves, and sculk/deep dark each get a distinct particle variant.\n- **Explored vs. unexplored density** — cells you've been near get a lower density multiplier. Returning to a known cave feels quieter; virgin caves feel more alive.\n- **Settled dust** — in dead-end pockets where airflow stalls, particles slow down and sit low.\n- **Depth and Y-level scaling** — flow builds up deeper underground.\n- **Disk cache** — computed flow is saved per world/server and reloaded on reconnect so it doesn't recompute every session.\n- **Debug overlay** — `/caveflow debug` or the config toggle renders 3D flow arrows in-world.\n\n## How to use\n\nJust load a world. No commands needed — flow computation starts when chunks load and particles appear automatically underground.\n\n- `/caveflow debug` — toggle the 3D flow arrow overlay.\n- ModMenu → CaveFlow → ⚙ for the config screen.\n\n## Configuration\n\nFour tabs in the config screen:\n\n- **General** — master toggle.\n- **Airflow** — particle density, flow speed, detection range, explored/unexplored multipliers, depth and Y-level scaling.\n- **Effects** — visual variants. Some options here aren't implemented yet (heat shimmer, cold-air particles, drafts, tunnel currents) — they're in the menu but don't do anything.\n- **Advanced** — background threads, BFS budget per tick, queue size, min/max cave depth, FPS throttle and pause thresholds, disk cache path, eviction interval, fast-move threshold, debug overlay radius and stride.\n\n## Requirements\n\n| Minecraft | Loader | Fabric API | YACL |\n|---|---|---|---|\n| 1.21.11 | Fabric 0.19.2+ | any 1.21.x build | 3.8.2+ |\n\n**Optional:** ModMenu — adds the config-screen button.\n\nClient-side only. Does not need to be on the server.\n\n## Notes\n\n- Performance defaults are tuned for a mid-range CPU (~0.5 ms/tick BFS). Drop `BFS Budget` and `Background Threads` in the config if needed.\n- The fast-move threshold pauses distant BFS work above a set speed — useful with elytra so computation isn't wasted on terrain flying past.\n- **Automatic FPS protection** — BFS work throttles automatically when frame rate drops. Below the throttle threshold (default 60 FPS) the budget scales down linearly; below the pause threshold (default 30 FPS) the BFS pauses entirely and a chat message is shown. Both thresholds are configurable. When the game window loses focus BFS pauses silently — no message is sent.",
+  "categories": [
+    "adventure",
+    "decoration",
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 267,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

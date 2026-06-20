@@ -1,0 +1,34 @@
+{
+  "id": "Rr2H5Qk4",
+  "slug": "bedrockheightguards",
+  "title": "BedrockHeightGuard",
+  "description": "per/Spigot plugin designed for Geyser + Floodgate servers. It prevents Bedrock players from going above (or below) configurable height limits (e.g. 320 / 512).",
+  "body": "**BedrockHeightGuard**\n\nA server-side height enforcement plugin for Paper and Spigot servers running Geyser with Floodgate. BedrockHeightGuard intercepts movement, block placement, and block breaking events for Bedrock-connected players, clamping their effective Y range to a configurable threshold while leaving Java Edition players completely unaffected. The plugin was designed with BuildTheEarth-style environments in mind, where extended build heights above the standard 320-block limit are common and Bedrock client rendering constraints become a practical problem.\n\n**How it works**\n\nBedrock clients connected through Geyser are detected at runtime via the Floodgate API using a reflection-based hook, avoiding a hard compile-time dependency. When a Bedrock player exceeds the configured maximum Y or drops below the configured minimum Y, the plugin intercepts the corresponding event and either redirects the player to a safe position or cancels the action entirely, depending on the configured behavior. All enforcement logic is skipped for Java players, operators holding the bypass permission, or players in non-enforced game modes.\n\n**Feature set**\n\n- Per-world height limits with global fallback values for both maximum and minimum Y boundaries\n- Movement clamping on PlayerMoveEvent and PlayerTeleportEvent with head-rotation optimization to avoid unnecessary processing\n- Block placement and block break cancellation above or below the configured range\n- Configurable proximity warning sent before the hard limit is reached\n- Chat and action bar delivery modes for all player-facing messages\n- Per-session first-violation title display\n- Staff notification system with a dedicated permission node\n- Per-player statistics tracked in memory and persisted to disk across restarts, including limit hits, blocked build actions, and highest Y coordinate reached\n- Permission-based bypass for trusted players or staff\n- Game mode filtering to exclude specific modes from enforcement\n- Optional teleport-on-violation to a fixed safe location instead of position clamping\n- Position correction on join if a player logs in outside the permitted Y range\n- Full tab-completed administrative command set: reload, info, check, stats, togglewarnings\n- Console logging for violation events\n\n**Requirements**\n\n- Paper 1.21.x or a compatible fork\n- Floodgate 2.x alongside Geyser for Bedrock player detection\n\n**Compatibility**\n\nTested on Paper and Purpur. Folia compatibility is not guaranteed; scheduled task handling has not been adapted for regionized threading.\n\n**Permissions**\n\n| Node | Default | Description |\n|---|---|---|\n| bteheightfix.admin | op | Access to all administrative subcommands |\n| bteheightfix.reload | op | Permission to reload the configuration |\n| bteheightfix.bypass | op | Exempts the holder from all height enforcement |\n| bteheightfix.notify | op | Receives staff notifications on player violations |\n\n---\n\n*Not affiliated with the BuildTheEarth project.*",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 184,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

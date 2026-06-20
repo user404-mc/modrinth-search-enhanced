@@ -1,0 +1,24 @@
+{
+  "id": "ubmgmYs9",
+  "slug": "script-blocks",
+  "title": "Script Blocks",
+  "description": "Adds various blocks and mechanics which assist map makers and dungeon builders.",
+  "body": "# Script Blocks\n\nThis mod adds multiple blocks designed to help building adventure maps and dungeons.\n\n## Important\nThis mod is currently in its alpha stage, which means:\n- Not all features are implemented.\n- Existing features may not be in their final form.\n- Breaking changes can happen.\n- Existing features may be removed.\n- Expect bugs and crashes.\n- Documentation is very minimal.\n- Back up your worlds when using this mod.\n\n## Features\n\nThis mod implements a lot of different features, I will give a short and incomplete overview here.\\\nAll details will be explained in the wiki (not yet written).\n\n### Script Blocks\nThe basic idea is to build a \"script\" outside the visible parts of the dungeon.\n\nThere are blocks that can detect a player, interactable blocks, etc., which all \"trigger\" a configurable block position.\\\nThen there are blocks which have functionality when they are \"triggered\", like mob spawners, blocks which change state, message sender, jigsaw placer, advancement giver, etc.\nThere are also utility blocks like counter, delay and relay blocks.\n\nThe blocks are designed to be used in jigsaw structures.\nThey are configurable via an in game UI, like the existing jigsaw blocks.\n\n### Dialogues\nDialogues are data driven and can be referenced via the 'dialogue block'.\\\nEach dialogue is a list of strings and a list of answers. When the player chooses an answer, several things can happen:\n- another dialogue opens\n- an advancement is granted\n- a loot table is generated and the items given to the player\n- a message is send to the player\n- a block at a configurable position is triggered (refer to Script Blocks)\n- a block at a configurable position is interacted with (similar to a right-click)\nAn answer can be (un)locked via an advancement and can have an item cost.\n\n### Shops\nShops are data driven and can be referenced via special blocks.\\\nA shop can have multiple deals, which can be (un)locked via advancements.\nA deal has an item stack as offer and a list of item stacks as price.\n\n### Use Relay Blocks\nWhen interacting with these blocks, they relay the interaction to another block.\\\nFor now they come in the form of all existing doors and trapdoors.\n\n### Teleporter blocks and locations\nTeleporter blocks can teleport the player and optionally the players party to a position in a dimension.\nThe position can be configured:\n- the players spawn point or the world spawn.\n- a specific position in a specific dimension set by another teleporter block.\n- a 'location'.\n\nLocations are data driven. They reference a structure and a 'control block position'.\nThe structure must be configured, so that the block at the 'control block position' is a 'location control block'.\nThe 'location control block' tells the teleporter the teleport target position.\n\nLocations can be (un)locked by advancements and can have an item cost.\nThey can either be public or player specific.\\\nPublic locations are located in the overworld. Private locations are located in a 'player_locations_dimension'. Each player has one, they are dynamically generated for each player entering the world.\n\n### Housing\nA housing block has an owner and an area of influence (AOI).\\\nIn the AOI only the owner can place, break or interact with blocks. Even players in adventure mode can break or place blocks here.\\\nThe owner can add other players to different lists, which grants them various rights in the AOI, like placing, breaking or interacting with blocks.\n\nHousing blocks have two different modi to determine their owner. \n- Interaction, the owner can be set by interacting with the housing block. The owner can revoke ownership of the housing block.\n- Dimension, when the housing block is placed in a 'player_locations_dimension', the player owning the dimension also owns the housing block",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "library",
+    "minigame",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1085,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

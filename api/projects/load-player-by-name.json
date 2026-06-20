@@ -1,0 +1,24 @@
+{
+  "id": "KdMVGQVs",
+  "slug": "load-player-by-name",
+  "title": "LoadPlayerByName",
+  "description": "Makes switching between online mode and offline mode much easier!",
+  "body": "# Load Player By Name\n\nMinecraft stores the player data by their UUIDs, but the UUIDs in online mode servers  (provided by Mojang's official API) are different with the one generated offline.\n\nThis cause issues when you want to change online/offline mode while not affecting your players' data\n\n## How This Plugin Works\n\n<details>\n<summary>I guess you don't care about this</summary>\n\n1. It stores an name to UUID association table\n2. When a player joins:\n    - We receive an UUID of the player (new ID)\n    - Look the player name in the table and get the old ID\n    - If not present, try getting the Mojang official UUID as old ID\n    - If even the official ID isn't present\n        - It's a new offline player, ignore\n    - Try to move the player data from old ID to new ID\n        - If succeeded, it will kick the player once, and prompt them to rejoin immediately\n3. When a player quits:\n    - Update the association table\n</details>\n\n## Cases\n\n- Server was online mode, plugin not installed\n  > You can switch to offline mode with this plugin installed now\n\n- Plugin installed\n  > You can switch between modes with ease, without player data lossing\n\n## Notes\n\n- I don't know what will happen if you switch between modes and a player change their username at the same time\n- I sometimes spell the plugin `LoadByPlayerName`, well, doesn't matter I guess",
+  "categories": [
+    "bukkit",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 487,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

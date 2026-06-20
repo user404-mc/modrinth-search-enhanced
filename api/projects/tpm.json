@@ -1,0 +1,34 @@
+{
+  "id": "F0TwrciR",
+  "slug": "tpm",
+  "title": "[TPM] TeleportManager",
+  "description": "A mod that grants regular players TP (Teleportation) permissions in the server, without allowing them to freely teleport to others.",
+  "body": "## Welcom\n\nA mod that grants regular players TP (Teleportation) permissions in the server, without allowing them to freely teleport to others.\n\n一个用于在服务器中给予普通玩家 TP 权限，但不至于让玩家随意 TP 别人的模组。\n\n理论上其它版本也可以使用，如果有人测试发现某个版本可用的话，可以在 Github 中提交 issue。\n\n## 指令\n\n参数解释（尖括号`<>`表示必填，方括号`[]`表示可选）：\n\n+ `level`: 维度名称（比如：`minecraft:overworld`）\n+ `pos`: 坐标（比如：`1 5 6`）\n+ `player`: 玩家名称\n+ `force`: 是否强制请求（可选值：`true`/`false`）\n\n指令列表：\n\n+ `tphelp`: 获取帮助信息\n+ `tpp`: 传送到当前世界的主城/出生点\n+ `tpp <level>`: 传送到指定世界的主城/出生点\n+ `tpp <pos>`: 传送到当前世界的指定坐标\n+ `tpp <level> <pos>`: 传送到指定世界的指定坐标\n+ `tpa <player> [force]`: 请求传送到指定玩家，`force` 为 `true` 时自动取消已发起的传送请求\n+ `tphere <player> [force]`: 请求将指定玩家传送到自己，`force` 为 `true` 时自动取消已发起的传送请求\n+ `tphome`: 传送到家\n+ `tpspawn`: 传送到重生点\n+ `tpconfig set`: 调整设置\n+ `tpconfig get`: 读取设置\n+ `tpm set`: 修改服务器指定设置\n+ `tpm get`: 读取服务器指定设置\n+ `tpm set person <player>`: 修改指定玩家的指定配置（要求 3 级管理员）\n+ `tpm reload`: 重新加载配置文件\n+ `tpaccept [player]`: 接受指定玩家/所有人发起的传送请求（对于 `tphere`，必须携带 `player` 参数）\n+ `tpreject [player]`: 拒绝指定玩具/所有人发起的传送请求\n\n普通用户可调参数列表（通过 `tpconfig` 调整）：\n\n+ `home`: 用于设置家的坐标<br/>\n    调用方式：`tpconfig set home`\n+ `auto_reject`: 用于开启或关闭自动拒绝传送请求的功能<br/>\n    调用方式：`tpconfig set auto_reject true/false`\n+ `auto_accept`: 用于开启或关闭自动接受传送请求的功能<br/>\n    调用方式：`tpconfig set auto_accept true/false`<br/>\n    注：不支持自动接受 `tphere` 发起的传送请求\n\n管理员可调参数列表（通过`tpm`）\n\n+ `main`: 用于设置指定世界的主城坐标<br/>\n  调用方式：`tpm set main [level] [pos]`<br/>\n  注：`level` 和 `pos` 要么都填，要么都不填，不填表示设置到当前位置\n\n## 配置文件\n\n配置存储在 `/config/tpm.json` 文件中，若文件不存在将会自动生成，其中会包含一个格式范例（建议修改时将其删除），配置文件示例如下：\n\n```json\n{\n  \"version\": 1,\n  \"default\": {\n    \"auto_accept\": [\n      {\n        \"regex\": \"^bot_\",\n        \"value\": true\n      }\n    ],\n    \"auto_reject\": [\n      {\n        \"regex\": \".*\",\n        \"value\": false\n      }\n    ],\n    \"home\": [\n      {\n        \"regex\": \".*\",\n        \"value\": [\"minecraft:overworld\", 114514, 75.3, 415411]\n      }\n    ]\n  }\n}\n```\n\n其中每一项数组中越靠前的优先级越大，`regex` 使用正则表达式匹配玩家名称。如果一个玩家 `auto_reject` 和 `auto_accept` 均为 `true`，则 `auto_reject` 生效。\n\n所有布尔类型的全局缺省值均为 `false`，非基本类型的全局缺省值均为 `null`。上述 `json` 仅为范例，实际使用中建议删除与全局缺省值相同的配置（会影响性能）。",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5989,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

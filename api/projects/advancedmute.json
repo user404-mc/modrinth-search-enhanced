@@ -1,0 +1,38 @@
+{
+  "id": "TGbeuwJr",
+  "slug": "advancedmute",
+  "title": "AdvancedMute",
+  "description": "AdvancedMute is a Minecraft plugin that detects banned words and mutes players. It can also send logs to Discord and has support for AdvancedBans and LiteBans.",
+  "body": "---\n\n# General Description\n\n- AdvancedMute is a Minecraft Bukkit/Paper plugin. Its purpose is:\n\n- Filtering players’ chat messages\n\n- Automatically muting players who use banned words\n\n- Sending logs to Discord\n\n- Working compatibly with other mute systems such as AdvancedBans or LiteBans\n\n\n## Command\n\nThe plugin has only one command: /advancedmute reload.\nJust like in many other plugins, this command allows you to reload the config without restarting the server.\n\n\n## Mute System\n\nThe plugin does not handle the mute by itself.\nIf the option for AdvancedBans or LiteBans is set to true in the config:\n\n```\nAdvancedBans: \n  enabled: true # Set to true if you are using AdvancedBans\n  command: \"tempmute %player% %duration% %reason%\"\n\nLiteBans:\n  enabled: false # Set to true if you are using LiteBans\n  command: \"mute %player% %duration% %reason%\"\n```\nThe plugin will run the command written under command: in the console.\n\n## WebHook System\n\nFor each mute the plugin issues, it sends a message to the Discord webhook you set here:\n```\ndiscord-log-webhook-url: \"PUT_WEBHOOK_HERE\"\n```\nThis makes moderation easier by logging mute actions to Discord.\n\nConfig File\n```\ndiscord-log-webhook-url: \"PUT_WEBHOOK_HERE\" # Sends a Discord notification when a player is muted\n\nAdvancedBans: \n  enabled: false # Set to true if you are using AdvancedBans\n  command: \"mute %player% %duration% %reason%\" # Do NOT put \"/\" at the beginning!\n\nLiteBans:\n  enabled: false # Set to true if you are using LiteBans\n  command: \"mute %player% %duration% %reason%\" # Do NOT put \"/\" at the beginning!\n\nBannedWords:\n  Ailevi:\n    Words:\n      - \"examplebadword1\"\n      - \"examplebadword2\"\n    Duration:\n      Value: 2\n      Unit: h # time units: m = minutes, h = hours, d = days\n    Color: 16711680\n    Reason: \"Family-related profanity\"\n\n  Slang:\n    Words:\n      - \"exampleslang1\"\n    Duration:\n      Value: 30\n      Unit: m # m = minutes, h = hours, d = days\n    Color: 16776960\n    Reason: \"Use of slang word\"\n```\nAs already explained, the Discord log, AdvancedBans, and LiteBans parts are straightforward.\nNow let’s talk about the BannedWords section — the most important part of the plugin.\n\nIn this section you create categories for banned-word groups.\nFor example:\n```\nFamily:\n    Words:\n      - \"examplebadword1\"\n      - \"examplebadword2\"\n    Duration:\n      Value: 2\n      Unit: h\n    Color: 16711680\n    Reason: \"Family-related profanity\"\n```\nHere, a category named Family is created, and the banned words inside this category are listed under Words:.\nWhenever a player types any of the words in this list, the plugin triggers and applies a mute based on the duration settings.\n\nPermissions\n\nadvancedmute.bypass -> Allows the player to use banned words without being muted\n\nadvancedmute.reload -> Allows the player to use the reload command\n\nIf you want to ask something, suggest ideas, or report bugs, you can contact me on Discord: nadir_aksolotl\n\nThis is my second plugin — I’d appreciate hearing your thoughts!\n\n--------------\n\n# Genel Tanım\n- AdvancedMute bir Minecraft Bukkit/Paper pluginidir. Amacı:\n- Oyuncuların chat mesajlarını filtrelemek.\n- Yasaklı kelime kullanan oyuncuları otomatik olarak mute etmek.\n- Discord’a log göndermek.\n- AdvancedBans veya LiteBans gibi başka mutelerle uyumlu çalışmak.\n\n## Komut\n- Pluginde sadece /advancedmute reload komutu bulunmaktadır bu komut diğer her pluginde olduğu gibi configi sunucuya restart atmanız gerekmeden yeniden yüklemenizi sağlar\n\n## Mute İşlemi\n\nPlugin, mute işlemini kendi başına yapmaz.\nEğer configde AdvancedBans veya LiteBans seçeneği true ise \n\n```\nAdvancedBans: \n  enabled: true # Eğer AdvancedBans kullanıyorsanız true yapın\n  command: \"tempmute %player% %duration% %reason%\"\n\nLiteBans:\n  enabled: false # Eğer LiteBans kullanıyorsanız true yapın\n  command: \"mute %player% %duration% %reason%\"\n```\naltında yazan command: kısmındaki komutu console da çalıştırır\n\n## WebHook Sistemi\n\nPlugin, attığı her muteyi sizin\n\n```\ndiscord-log-webhook-url: \"BURAYA_WEBHOOK\"\n```\nconfigdeki bu kısma yazdığınız webhook ile mesaj olarak discorda gönderir böylece denetleme kolaylaşır\n\n## Config Dosyası\n\n\n```\ndiscord-log-webhook-url: \"BURAYA_WEBHOOK\" # Oyuncular mutelenince bildirim olarak discorda gönderir\n\nAdvancedBans: \n  enabled: false # Eğer AdvancedBans kullanıyorsanız true yapın\n  command: \"mute %player% %duration% %reason%\" # başına \"/\" koyarsanız çalışmaz!\n\nLiteBans:\n  enabled: false # Eğer LiteBans kullanıyorsanız true yapın\n  command: \"mute %player% %duration% %reason%\" # başına \"/\" koyarsanız çalışmaz!\n\nBannedWords:\n  Ailevi:\n    Words:\n      - \"örnekküfür1\"\n      - \"örnekküfür2\"\n    Duration:\n      Value: 2\n      Unit: h # zaman birimi m = dakika h = saat d = gün\n    Color: 16711680\n    Reason: \"Ailevi küfür kullanımı\"\n    \n  Argo:\n    Words:\n      - \"örnekargo1\"\n    Duration:\n      Value: 30\n      Unit: m # zaman birimi m = dakika h = saat d = gün\n    Color: 16776960\n    Reason: \"Argo kelime kullanımı\"\n```\n\nzaten discord log, advancedbans ve litebans kısmını anlatmıştım gelelim diğer kısımlara,\nBannedWords kısmı işte pluginin en önemli yerlerinden. Burada önce bir yasaklı kelime sınıfı oluşturursunuz configde olduğu gibi;\n\n\n```\n  Ailevi:\n    Words:\n      - \"örnekküfür1\"\n      - \"örnekküfür2\"\n    Duration:\n      Value: 2\n      Unit: h # zaman birimi m = dakika h = saat d = gün\n    Color: 16711680\n    Reason: \"Ailevi küfür kullanımı\"\n```\nmesela burada olduğu gibi ailevi sınıfı oluşturulmuş ve bu sınıfa giren kelimeler Words Kısmına yazılmış bu words de yazan kelimeleri oyuncular yazdığında plugin tetikleniyor ve duration kısmında yazan bilgilerle mute artar.\n\n## Permissionlar\n\n\n```\nadvancedmute.bypass -> yasaklı kelimeleri kullanma izni verir\n\nadvancedmute.reload -> reload komutunu kullanma izni verir\n```\n\n\nAnlamadığınız yerleri sormak, öneride bulunmak ve ya hata bildirmek için discordum: nadir_aksolotl.\n\nbu 2. yaptığım pluginim düşüncelerinizi belirtirseniz sevinirim.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 132,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

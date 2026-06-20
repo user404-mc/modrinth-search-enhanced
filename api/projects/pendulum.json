@@ -1,0 +1,26 @@
+{
+  "id": "xjMYT7RL",
+  "slug": "pendulum",
+  "title": "Pendulum",
+  "description": "Client side script executor for Minecraft.",
+  "body": "# Pendulum\n\n**Client-side JavaScript executor for Minecraft.** Automate player actions — movement, construction, combat, inventory,\nworld queries, and `Baritone` supported. Designed for both human players and AI agents.\n\nThis mod is partly inspired by `Playwright.js`, which allows agents to control web browsers via JavaScript. Pendulum\nbrings that same power to Minecraft, enabling complex automation and AI integration through a simple JS API.\n\n## Version Support\n\n| Minecraft | Fabric | Forge | NeoForge | Status          |\n|-----------|--------|-------|----------|-----------------|\n| 1.20.1    | ✅      | ✅     |          | Fully Supported |\n| 1.21.1    | ✅      | ❌     | ✅        | Fully Supported |\n| 26.1.2    | 🔨     | ❌     | 🔨       | In development  |\n\n## Features\n\nFor detailed documentation, see the [Documentation](https://docs.iafenvoy.com/docs/mod/pendulum/)\n\n### 🧑 For Players\n\n- **`/pendulum execute`** — run JavaScript inline in chat\n- **`/pendulum file`** — run `.js` scripts from `.minecraft/pendulum/`\n- **`mc.*`** — 80+ API functions: `mc.player.forward()`, `mc.world.findBlocks()`, `mc.inv.hasItem()`, `mc.gui.click()`, and more. Log via `pendulum.log()`, `pendulum.warn()`, `pendulum.error()`.\n- **`br.*`** — 45 Baritone functions: pathfinding, mining, farming, building schematics\n\n### 🤖 For AI Agents \n\n- **MCP JSON-RPC 2.0 over TCP** — native AI agent integration\n- **`script/eval`** — execute arbitrary JS and return results\n- **`script/status`** / **`script/abort`** — manage script state\n- **`gui/enumerateWidgets`** — full recursive widget tree\n- **`gui/guiElements`** — read all visible GUI controls\n- **`gui/screenshot`** — capture the game view\n- **`simulate/click`** / **`gui/clickButton`** — click GUI elements\n- **`simulate/typeText`** / **`simulate/pressKey`** — keyboard input\n- Compatible with VS Code Copilot, Claude Desktop, and any MCP client\n\n## Quick Start\n\n```js\n// Walk forward 1 second\n/pendulum execute mc.player.forward(20)\n\n// Mine all pumpkins nearby\n/pendulum execute for(let p of mc.world.findBlocks('minecraft:pumpkin',8)){ mc.player.breakBlockAt(p.x,p.y,p.z) }\n\n// Run a script file\n/pendulum file farm.js\n\n// AI Agent workflow: screenshot + click\ngui/screenshot  →  gui/clickButton(\"Done\")  →  simulate/typeText(\"Hello\", true)\n```\n\n## MCP Server\n\nStart the MCP server for AI agent access:\n\n```\n/pendulum mcp start      # default port 25566\n/pendulum mcp stop       # stop the server\n/pendulum mcp status     # check if running\n```\n\nConfigure your MCP client to connect to `localhost:25566` (default).\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 363,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

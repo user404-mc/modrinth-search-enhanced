@@ -1,0 +1,22 @@
+{
+  "id": "C1IfE0GJ",
+  "slug": "hide!",
+  "title": "HIDE!",
+  "description": "Server-side only mod, you can hide your own presence (player model and Tab list)",
+  "body": "# hide (Fabric 1.21.11)\n\nA server-side only Fabric mod providing admin invisibility control:\n\n- `/hide <player> enable`\n- `/hide <player> disable`\n\n## Core Features\n\nAfter hiding is enabled (`enable`):\n\n- The player is removed from other players' tab lists\n- The player becomes invisible to other players in the world (including main hand, off-hand, and equipment visibility)\n- The player is removed from the waypoint/locator bar (introduced in 1.21.11)\n\nAfter hiding is disabled (`disable`):\n\n- Visibility and player information are resynchronized, making the player reappear for others\n\n## Permissions & Scope\n\n- Command permission: Admin only (`Permissions.COMMANDS_ADMIN`)\n- Scope of effect: Hidden state is persisted to the world directory; **hidden state is preserved after server restart**\n- Visibility semantics: Hidden players are invisible to other players; hidden players can still see themselves\n\n## Message & Behavior Suppression\n\nFor hidden players, the following visibility-related outputs are currently suppressed:\n\n- Advancement/achievement completion messages (at system broadcast level)\n- Join and quit game messages (at system broadcast level)\n\nNote: Hidden state no longer intercepts chat or command input, so as not to interfere with command execution chains.\n\n## Important Notes (Server-Only Capability Boundaries)\n\nThis mod is a pure server-side implementation and works with vanilla clients; however, it does **not** equate to \"completely traceless admin invisibility\". The following signals may still require additional handling:\n\n- Sounds, collisions, and information exposed through other mods/plugins' extra channels\n- Temporary display anomalies caused by client-side resources/caching\n\n## Troubleshooting Suggestions\n\nIf occasional display desynchronization, protocol errors, or short-term anomalies after dimension crossing occur:\n\n1. First execute `/hide <player> disable` and then `enable` to force a resynchronization\n2. Reproduce the issue using two clients (A observing B) and confirm whether it only happens in specific dimensions or with specific clients\n3. Check for conflicts with other mods that modify packets, the protocol layer, or UI-related mods",
+  "categories": [
+    "cursed",
+    "decoration",
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 109,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

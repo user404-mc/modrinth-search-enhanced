@@ -1,0 +1,34 @@
+{
+  "id": "mXGdmmjY",
+  "slug": "beacon-flight-2",
+  "title": "Beacon Flight 2",
+  "description": "Beacons can now allow players to fly!",
+  "body": "# BeaconFlight\n\n![BeaconFlight icon](src/main/resources/assets/beaconflight/icon-medium.png?raw=true)\n\nBeaconFlight lets active beacons grant creative-style flight when configurable conditions are met.\n\nThe gameplay logic is server-side, so it works on dedicated servers with unmodded clients. The same jar can also be used in singleplayer. If you install Mod Menu and Cloth Config on the client, the mod exposes an in-game config screen as well.\n\n## Compatibility\n\n- Minecraft `1.21` through `1.21.11`\n- Fabric Loader `0.15.11+`\n- Java `21+`\n- Fabric API required\n- Mod Menu optional\n- Cloth Config optional\n\n## How It Works\n\n- The beacon must be active and have a primary effect selected.\n- By default, BeaconFlight requires a level 4 beacon and the `minecraft:end/elytra` advancement.\n- While the player stays in range and meets all configured requirements, flight is allowed.\n- When the player leaves range, flight can linger for a configurable amount of time.\n- When flight is removed while the player is airborne, Slow Falling can be applied automatically.\n\n## Installation\n\n1. Install Fabric Loader and Fabric API for your target Minecraft version.\n2. Place the BeaconFlight jar in the `mods` folder.\n3. On a dedicated server, only the server needs the mod for flight to work.\n4. In singleplayer, install the jar normally on the client.\n5. Start the game or server once to generate the config file.\n\nThe config file is created at:\n\n`config/beaconflight_config.json`\n\n## Configuration\n\nYou can edit the JSON file directly, or use the Mod Menu config screen if Mod Menu and Cloth Config are installed.\n\nAvailable options:\n\n- `minBeaconLevel`: minimum beacon pyramid level required. Valid values are `1` to `4`.\n- `mainHandItem`: required item in the player's main hand, or `null`.\n- `offHandItem`: required item in the player's off hand, or `null`.\n- `anyHandItem`: required item in either hand, or `null`.\n- `headItem`: required helmet item, or `null`.\n- `chestItem`: required chest item, or `null`.\n- `legsItem`: required leggings item, or `null`.\n- `feetItem`: required boots item, or `null`.\n- `advancementsRequired`: list of advancement ids the player must have completed.\n- `xpDrainRate`: XP drained per second of active flight. Use `0.0` to disable XP drain.\n- `flightLingerTime`: custom linger duration in ticks after the player leaves beacon range. Use `0` to reuse the normal beacon effect duration.\n- `slowFallingTime`: Slow Falling duration in seconds after flight is lost.\n- `logLevel`: BeaconFlight log level. Useful values are `INFO`, `DEBUG`, `TRACE`, `ALL`, and `OFF`.\n\nNotes:\n\n- Item fields must use item ids such as `minecraft:diamond_chestplate`.\n- Advancement fields must use advancement ids such as `minecraft:end/elytra`.\n- Resetting the config returns the default requirements, which are not a minimal test setup.\n\nDefault config:\n\n```json\n{\n  \"minBeaconLevel\": 4,\n  \"mainHandItem\": null,\n  \"offHandItem\": null,\n  \"anyHandItem\": null,\n  \"headItem\": null,\n  \"chestItem\": null,\n  \"legsItem\": null,\n  \"feetItem\": null,\n  \"advancementsRequired\": [\n    \"minecraft:end/elytra\"\n  ],\n  \"xpDrainRate\": 0.0,\n  \"flightLingerTime\": 0,\n  \"slowFallingTime\": 10,\n  \"logLevel\": \"INFO\"\n}\n```\n\nMinimal config for testing:\n\n```json\n{\n  \"minBeaconLevel\": 1,\n  \"mainHandItem\": null,\n  \"offHandItem\": null,\n  \"anyHandItem\": null,\n  \"headItem\": null,\n  \"chestItem\": null,\n  \"legsItem\": null,\n  \"feetItem\": null,\n  \"advancementsRequired\": [],\n  \"xpDrainRate\": 0.0,\n  \"flightLingerTime\": 0,\n  \"slowFallingTime\": 10,\n  \"logLevel\": \"ALL\"\n}\n```\n\n## Troubleshooting\n\n- If flight does not activate, make sure the beacon is actually active and has a primary effect selected.\n- If you used \"reset\" in the config UI, remember that the defaults still require a level 4 beacon and the Elytra advancement.\n- Set `logLevel` to `ALL` to get grant and deny messages in the game log.\n- If you want a clean test, remove all item requirements, clear `advancementsRequired`, and set `minBeaconLevel` to match your beacon.\n\n## Building From Source\n\nUse the Gradle wrapper:\n\n```powershell\n.\\gradlew.bat build\n```\n\nThe built jar is written to:\n\n`build/libs/`\n\n## Credits\n\n- Original mod: [ExtraCrafTX/BeaconFlight](https://github.com/ExtraCrafTX/BeaconFlight)\n- Original author: [ExtraCrafTX](https://github.com/ExtraCrafTX)\n- Thanks to [@xAlicatt](https://minecraft.curseforge.com/members/xalicatt) for the original idea, commissioning the mod, and testing.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 308,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "irp22K8O",
+  "slug": "hearty",
+  "title": "Hearty",
+  "description": "A client-sided mod that changes how hearts are rendered, and allows other mods to customize what gets rendered without stepping on each others' toes.",
+  "body": "# Hearty\n  \nA NeoForge mod that provides several features that change how health is displayed in Minecraft.\n\n## For modders\n### Adding to existing Gradle project\nInsert the following block inside your `build.gradle` or `build.gradle.kts`'s `repositories` block.\n\n```groovy\nmaven {\n    name = \"GPR for Hearty\"\n    url = uri(\"https://maven.pkg.github.com/zygzaggaming/hearty\")\n    credentials {\n        username = project.findProperty(\"gpr.user\") ?: System.getenv(\"GITHUB_ACTOR\")\n        password = project.findProperty(\"gpr.key\") ?: System.getenv(\"GITHUB_TOKEN\")\n    }\n}\n```\nThen, configure the `gpr.user` and `gpr.key` Gradle properties to your GitHub username and a personal access token with `read:packages` access.\nIt is HIGHLY recommended to keep these properties in your global `gradle.properties` file (`<user>\\.gradle\\gradle.properties`) rather than your project's `gradle.properties`.\n\nIf you use GitHub Actions to build your mod, the fallback `GITHUB_ACTOR` and `GITHUB_TOKEN` environment variables are already set, so don't worry about remote builds failing from lack of authentication.\n\nThen, in the same `build.gradle(.kts)`, add the following line in your `dependencies` block:\n```groovy\nlocalRuntime(variantOf(libs.hearty) { classifier(\"all\") })\n```\nAnd in your `gradle\\libs.versions.toml`:\n```toml\n[versions]\nhearty = { strictly = \"[<min-version>,<max-version>)\", prefer = \"latest.release\" }\n\n[libraries]\nhearty = { id = \"io.github.zygzaggaming.hearty.mod\", name = \"hearty\", version.ref = \"hearty\" }\n```\n\n### Using the API directly\nImporting the Hearty mod directly also imports the API by extension. However, if you want your mod to interact with Hearty without packaging it as a dependency, you'll need to import the API directly.\n\nTo import the API, add this block in the same place as above:\n```groovy\nmaven {\n    name = \"GPR for Hearty\"\n    url = uri(\"https://maven.pkg.github.com/zygzaggaming/hearty\")\n    credentials {\n        username = project.findProperty(\"gpr.user\") ?: System.getenv(\"GITHUB_ACTOR\")\n        password = project.findProperty(\"gpr.key\") ?: System.getenv(\"GITHUB_TOKEN\")\n    }\n}\n```\nAnywhere top-level in your `build.gradle(.kts)` add the line `jarJar.enable()` to enable Jar-in-Jar to package the API into your mod when it's built.\n`build.gradle(.kts)` `dependencies`:\n```groovy\njarJar(group: 'io.github.zygzaggaming.hearty.api', name: 'hearty-api', version: '[<min-version>, <max-version>)') {\n    jarJar.pin(it, '<chosen-version>')\n}\nimplementation libs.hearty.api\n```\n`gradle\\libs.versions.toml`:\n```toml\n[versions]\nhearty-api = { strictly = \"[<min-version>,<max-version>)\", prefer = \"latest.release\" }\n\n[libraries]\nhearty-api = { id = \"io.github.zygzaggaming.hearty.api\", name = \"hearty-api\", version.ref = \"hearty-api\" }\n```",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 585,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.21.1",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

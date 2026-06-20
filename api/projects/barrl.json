@@ -1,0 +1,24 @@
+{
+  "id": "HcLVcdRU",
+  "slug": "barrl",
+  "title": "barrl",
+  "description": "Barrl is a fabric rendering specialized in 3D for minecraft 1.21.x",
+  "body": "# barrl\nBarrl is a fabric rendering library targeted towards minecraft 1.21.x\n\n# API\nHow to use it as an api for your own mod.<br>\nFirst we'll need to add the JitPack repository so we can actually pull from\n### `build.gradle`\n```gradle\nrepositories {\n    mavenCentral()\n\tmaven \"https://jitpack.io\"\n}\n```\nNow we head over to the [JitPack Builds](https://jitpack.io/#Synnerz/barrl) where you can go into `Branches` and get the one you need, once you have located the correct one for you, you need to click on the `Get It` button.\n\n### What now?\nBelow you can scroll in the page, it'll show you how to \"import\" it, basically we need to edit the `build.gradle` file once more\n\n```gradle\ndependencies {\n\t// To change the versions see the gradle.properties file\n\tminecraft \"com.mojang:minecraft:${project.minecraft_version}\"\n\tmappings \"net.fabricmc:yarn:${project.yarn_mappings}:v2\"\n\tmodImplementation \"net.fabricmc:fabric-loader:${project.loader_version}\"\n\n\t// Fabric API. This is technically optional, but you probably want it anyway.\n\tmodImplementation \"net.fabricmc.fabric-api:fabric-api:${project.fabric_version}\"\n\tmodImplementation \"net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}\"\n\n\t// Adding Barrl library\n\tmodImplementation \"com.github.Synnerz:barrl:1.21.5-SNAPSHOT\"\n}\n```\n\nYou need to add it here, you get the link (`\"com.github.Synnerz:barrl:1.21.5-SNAPSHOT\"`) in the same page that was linked above.\n\n# How To Use\nBarrl implements its own `Events` and `Context`, this `Context` class is the most important one since everything is basically in there.\n\n## `Context`\nThis class holds reference to a few things that are required for rendering, as well as providing some helpful helper methods for you to render in the world.\n\n### `Context.Immediate`\n`Immediate` is a `static` field that will basically act as the \"global\" `Context` instance in order for you to be able to use it inside other contexts (even if they don't come from `Barrl`)<br>\nNOTE: This mode requires you to use it at the _almost_ end of a rendering, for example:\n```kt\nWorldRenderEvents.LAST.register {\n    Context.Immediate?.renderWaypoint(-5.0, -61.0, -3.0, phase = true, color = Color.CYAN)\n}\n```\nIf you use `START` instead it will throw error/not work\n\n## `Context` dot\nThese are the helper methods that are added inside of `Context`\n* `renderFilledShape`\n* `renderFilledBox`\n* `renderBoxShape`\n* `renderBox`\n* `renderString`\n* `renderBeam`\n* `renderWaypoint`\n\n## `WorldRenderEvent`\nWe also add our own events since it's easier to handle a library like this that way<br>\nThese events are used as regular `Fabric` events are used.\n\n### Types\n* `START`\n* `LAST`\n\n# License\nBarrl is licensed under the [AGPL 3.0 License](https://github.com/Synnerz/barrl/blob/main/LICENSE)",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1276,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

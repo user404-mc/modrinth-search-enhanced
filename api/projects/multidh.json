@@ -1,0 +1,28 @@
+{
+  "id": "WRBJBTJ1",
+  "slug": "multidh",
+  "title": "MultiDH",
+  "description": "Addon for DecentHolograms to create multiple copies of a hologram to synchronize on change.",
+  "body": "## What is MultiDH?\n\nMultiDH is an addon for the plugin [DecentHolograms](https://modrinth.com/plugin/decentholograms).  \nIt allows you to create copies of a pre-existing hologram that get updated whenever you update the original hologram via `/dh reload` (You may also do `/multidh reload` to force a reload on MultiDH's end).\n\nThis should allow you an easy way to update multiple holograms displaying the same info, without having to edit `n` individual ones.\n\n### How does it work?\n\nTo use MultiDH, you first open the `config.yml` located within `plugins/MultiDH/`. In this file should you find two settings: `holograms` and `initDelay`.\n\nFor our purpose is only `holograms` relevant. To add copies of an existing hologram, add a new entry that looks similar to the following:  \n```yaml\nholograms:\n  - name: 'myhologram'\n    locations:\n      - 'world:0.500:100.0:0.500'\n```\n`name` is the name of the original Hologram used in DecentHolograms and `locations` would be a list of locations matching the format DecentHolograms uses (`<world>:<x>:<y>:<z>`).\n\nAfter you've set the hologram(s) and the locations of their copies, save the file and run `/multidh reload`.  \nYou should now have holograms appear at the specified locations displaying the same content as the original. Any changes made to the original will be reflected on the copies as soon as `/dh reload` is executed.\n\n**Notes:**\n\n- The Hologram copies are non-persistent, meaning they do not create a file and won't reappear after a server restart without the plugin.\n- The Hologram copies use the name format `<name>_multidh_<index>` (i.e. `example_multidh_0`). While unlikely, make sure no other holograms on the server share this name pattern.\n\n### Known issues and limitations\n\nThere are a few known issues and limitations that the plugin has to work its way around.\n\n#### Hologram Copies disappear and reappear on reload\n\nDue to a bug/glitch in DecentHolograms that causes holograms to be duplicated rather than updated does MultiDH delete all previous holograms it made and re-creates them to update their data.\n\n#### Plugin reports it can't load holograms at startup\n\n> **NOTE:**  \n> This is only an issue if you're using DecentHolograms 2.9.5 or older, and/or MultiDH 0.1.0.  \n> Newer versions of both provide and support Events for Hologram (un)loading, removing the need of the below mentioned workaround.\n\nDue to a lack of a Hologram-related event can MultiDH not know when a Hologram is loaded by DecentHolograms.  \nIn addition is DecentHolograms loading its holograms after the server completed its startup. This causes a race condition where MultiDH tries to load holograms before DecentHologram has even started loading them.\n\nTo avoid this issue does MultiDH intentionally delay its loading for a few seconds after the server is done loading. The default delay is 3 seconds and cannot be set lower. Depending on the number of Holograms in DecentHolograms and the server's overall performance will you need to increase the delay in the `initDelay` setting.",
+  "categories": [
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 147,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

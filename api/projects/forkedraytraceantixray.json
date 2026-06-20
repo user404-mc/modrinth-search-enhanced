@@ -1,0 +1,23 @@
+{
+  "id": "9eBJnGrb",
+  "slug": "forkedraytraceantixray",
+  "title": "RayTraceAntiXray (fork)",
+  "description": "Paper/Folia plugin which extends Paper Anti-Xray mode 1, but using packetevents instead of ProtocolLib.",
+  "body": "## RayTraceAntiXray\n\n**RayTraceAntiXray** is a **Paper / Folia server-side plugin** that extends [Paper Anti-Xray](https://docs.papermc.io/paper/anti-xray/) when using **`engine-mode: 1`**.\n\nPaper’s Anti-Xray hides ores based on whether nearby blocks are considered “exposed.” Ores that are **open to air** (e.g. in caves or on exposed faces) may **not** be treated as hidden the same way. This plugin adds **server-side ray tracing** so visibility can be evaluated more tightly for those cases, while still working **with** Paper’s obfuscation pipeline—not against it.\n\n### Requirements\n\n| Requirement | Notes |\n|-------------|--------|\n| **Paper** (or **Folia**) | 1.21.11 and 26.1.2, open an issue on github if you want a build for another minecraft version |\n| **Anti-Xray `engine-mode: 1`** | Required for the integration model this plugin uses. |\n| **[PacketEvents](https://modrinth.com/plugin/packetevents)** | Must be installed on the server; this fork hooks outgoing chunk-related traffic via PacketEvents (not Protocollib). |\n\n### Installation (recommended order)\n\n1. Install and run a compatible **Paper** (or **Folia**) version.\n2. Configure **Paper Anti-Xray** with [[engine-mode: 1]](https://docs.papermc.io/paper/anti-xray/#engine-mode-1) and restart so settings apply.\n3. Install **PacketEvents**.\n4. Install **RayTraceAntiXray** and edit `plugins/RayTraceAntiXray/config.yml`.\n  ```yaml\n  settings:\n    anti-xray:\n      update-ticks: 1\n      ms-per-ray-trace-tick: 50\n      # Adjust to available (ideally unused) CPU threads.\n      ray-trace-threads: 2\n  world-settings:\n    default:\n      anti-xray:\n        ray-trace: true\n        # Be aware that this is about three times as resource intensive.\n        ray-trace-third-person: true\n        ray-trace-distance: 80.0\n        rehide-blocks: true\n        rehide-distance: 76.0\n        max-ray-trace-block-count-per-chunk: 60\n        ray-trace-blocks:\n        # You can add further blocks here,\n        # but the max-ray-trace-block-count-per-chunk setting may need to be adjusted.\n        - chest\n        - diamond_ore\n        - deepslate_diamond_ore\n        - emerald_ore\n        - deepslate_emerald_ore\n        - gold_ore\n        - deepslate_gold_ore\n        - lapis_ore\n        - deepslate_lapis_ore\n        - mossy_cobblestone\n        - spawner\n    # Adjust world name.\n    world_nether:\n      anti-xray:\n        # Note that ancient_debris never generates naturally exposed to air.\n        # Normal engine-mode: 1 is sufficient, disable ray tracing in the nether.\n        ray-trace: false\n    # Adjust world name.\n    world_the_end:\n      anti-xray:\n        ray-trace: false\n  ```\nThen **Restart** the server after changes.\n\n### Configuration recommendations\n\n- You can find the Recommended RayTraceAntiXray settings by stonar96 (the orginal plugin owner) [here](https://gist.github.com/stonar96/69ca0311392188b7ac2ece226286147f).\n\n### Performance notes\n\n- Work scales with **player count**, **view/radius settings**, and **how busy chunk sending is**. Treat CPU usage as **normal** for this class of plugin.\n- Start with **conservative** ray-trace distance / tick settings and increase only if your hardware and tick times allow it.\n\n### Limitations (honest expectations)\n\n- The visibility / culling logic is **not** a perfect Minecraft client simulation; it trades some accuracy for server performance (same general idea as upstream documentation).\n- **Reloading** this plugin on the fly is **partially** supported — plan for **full restarts** when updating configuration or the jar.\n\n### License\n\nSource is covered by the project **`LICENSE`** (typically MIT for upstream code). Third-party downloads must comply with that license and any notices required by its terms.\n\n## Statistics\n\n[![bStats](https://bstats.org/signatures/bukkit/forkedraytraceantixray.svg)](https://bstats.org/plugin/bukkit/forkedraytraceantixray)\n\n### Credits\n\nOriginal plugin by **[stonar96](https://github.com/stonar96)** — upstream repository: [stonar96/RayTraceAntiXray](https://github.com/stonar96/RayTraceAntiXray).",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 351,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

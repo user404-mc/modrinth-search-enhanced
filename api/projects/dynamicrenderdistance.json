@@ -1,0 +1,30 @@
+{
+  "id": "iRY0NHSh",
+  "slug": "dynamicrenderdistance",
+  "title": "DynamicRenderDistance",
+  "description": "Automatically changes your render distance based on your frame rate (FPS). Fully configurable, client-side only.",
+  "body": "[![JOIN OUR DISCORD](https://img.shields.io/badge/JOIN%20OUR%20DISCORD-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/4XUPywnEyE)\n\nFully client-side mod that automatically scales your view distance up or down in real-time based on your current frame rate.\n\nIt keeps your game running smoothly in heavy areas and lets you see further when performance allows it.\n\n### Features\n- **100% Client-Side:** Install it only on your client. No server-side installation is required, meaning you can use it on any vanilla or modded server.\n- **Smart Scaling:** Automatically increases or decreases render distance to stay within your desired FPS range.\n- **One-Click Presets:** Apply a tuned **Quality**, **Balanced**, or **Performance** profile instantly from the config screen or with `/drd preset`. Presets only change performance settings and keep your toggles.\n- **Optional On-Screen HUD:** A compact overlay showing your current render distance and FPS, color-coded by status (grey = off, red = below your min FPS, green = above your max FPS, yellow = in range). Automatically hidden while the F3 debug screen is open.\n- **Configurable Limits:** You set the minimum and maximum chunks — it will never drop below or rise above the limits you define.\n- **Anti-Oscillation Cooldowns:** Includes smart cooldown timers so your screen doesn't constantly flicker between distances.\n- **Rebindable Keybinds:** Open the settings (default `F8`), toggle the mod on/off, or toggle the HUD — all rebindable in **Options → Controls**.\n- **In-Game UI & Commands:** Fully configurable via an in-game settings screen or chat commands.\n\n**Please report any bugs, errors, or feature suggestions on Discord:** https://discord.gg/4XUPywnEyE\n\n### How It Works\n\nThe mod samples your current FPS every second and maintains an average window. Based on your `Check Interval` (default: 5 seconds), it makes a decision:\n\n1. **FPS is too low?** If your average FPS drops below your `Min FPS` threshold, the mod reduces your render distance.\n2. **FPS is high?** If your average FPS rises above your `Max FPS` threshold, it increases your render distance.\n3. **Cooldown:** After any adjustment, a cooldown timer prevents further changes to ensure stability and prevent visual jittering.\n\nBy default, the mod decreases render distance *faster* than it increases it. This prioritizes game stability immediately when you enter a laggy area, and gracefully restores your view distance once performance stabilizes.\n\nEach adjustment is applied in a **single step**. Minecraft rebuilds chunk rendering whenever the render distance changes, so the mod never changes it gradually — that would only trigger the rebuild (and its brief flicker) several times in a row. One change = one rebuild.\n\n## Configuration & Controls\n\nYou have complete control over how aggressive or relaxed the mod should be.\n\nPress **`F8`** in-game (rebindable) or use the command `/drd open` to access the settings menu.\n\n### Available Settings\n| Setting | Default | Description |\n| :--- | :--- | :--- |\n| **Enabled** | ON | Toggle the mod entirely. |\n| **Show Messages** | ON | Display a small action bar notification when render distance changes. |\n| **Show HUD** | OFF | Show a small top-left overlay with the current render distance and FPS. |\n| **Min FPS** | `45` | If average FPS drops below this, reduce render distance. |\n| **Max FPS** | `75` | If average FPS rises above this, increase render distance. |\n| **Min RD** | `6` | Minimum allowed render distance (in chunks). |\n| **Max RD** | `32` | Maximum allowed render distance (in chunks). |\n| **Decrease Step** | `2` | How many chunks to remove per lag spike. |\n| **Increase Step** | `1` | How many chunks to add when performance is good. |\n| **Check Interval** | `5.0s` | How often to check the average FPS. |\n| **Cooldown** | `10.0s` | How long to wait after a change before adjusting again. |\n\nThe config screen also has **Quality / Balanced / Performance** preset buttons that fill in all of the above at once.\n\n### Keybinds\nAll keybinds can be changed in **Options → Controls** (category *Dynamic Render Distance*):\n- **Open config** — default `F8`.\n- **Toggle the mod on/off** — unbound by default.\n- **Toggle the HUD** — unbound by default.\n\n### Commands\nYou can tweak settings directly from the chat using `/dynamicrenderdistance` (or `/drd` for short).\n*Examples:*\n- `/drd status` *(shows current stats)*\n- `/drd preset performance` *(apply a preset)*\n- `/drd minFps 60`\n- `/drd showHud true`\n- `/drd cooldown 15`\n\n## For Modpack Creators\n\nDynamic Render Distance is highly optimized for inclusion in modpacks.\n\n- **Configuration File:** All settings are saved locally to `config/dynamicrenderdistance.json`. You can easily pre-configure this JSON file and ship it with your modpack to provide players with a standardized \"performance mode\" out of the box.\n- **Localization:** The mod ships translated into 10 languages (`en_us`, `ru_ru`, `es_es`, `de_de`, etc.). You can override any UI string or chat message via a standard resource pack targeting `assets/dynamicrenderdistance/lang/`.",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1897,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

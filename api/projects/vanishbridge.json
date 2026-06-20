@@ -1,0 +1,30 @@
+{
+  "id": "VZ1ffjxt",
+  "slug": "vanishbridge",
+  "title": "VanishBridge",
+  "description": "A simple plugin providing information of vanished players across the network on a proxy level.",
+  "body": "# VanishBridge\n![](https://repo.loapu.dev/api/badge/latest/releases/dev/loapu/vanishbridge/vanishbridge-api?color=40c14a&name=API&prefix=v)\n\nVanishBridge is a simple plugin that provides information about vanished players on a proxy level. It is designed to be used by other plugins to provide a better experience for players.\n\nCurrently, VanishBridge supports the following proxy software:\n- [Velocity](https://velocitypowered.com/)\n\nAnd the following backend server software:\n- [Paper](https://papermc.io/)\n\nIf you miss your proxy or backend server software, feel free to open an issue or create a pull request.\n\n## For Server Owners\n\n### Installation\nThe installation of VanishBridge could not be easier. \n\n1. Download the version required for your proxy software (e.g. Velocity) from the [releases page](https://modrinth.com/plugin/vanishbridge/versions?l=velocity).\n2. Drop the downloaded jar into your proxy's `plugins` folder.\n3. Restart your proxy.\n4. Download the version required for your backend server software (e.g. Paper) from the [releases page](https://modrinth.com/plugin/vanishbridge/versions?l=paper).\n5. Drop the downloaded jar into every server's `plugins` folder.\n6. Restart your server's.\n7. Enjoy!\n\n### Configuration\nNo configuration needed!\n\n## For Developers\n\n> ⚠️ The repository is currently not available. It will be available again later in January.\n\n### Installation\n\n#### Maven\n```xml\n<repository>\n    <id>loapu-releases</id>\n    <name>Loapu Maven Repository</name>\n    <url>https://maven.loapu.dev/releases</url>\n</repository>\n\n<dependency>\n    <groupId>dev.loapu.vanishbridge</groupId>\n    <artifactId>vanishbridge-api</artifactId>\n    <version>1.0</version>\n</dependency>\n```\n\n#### Gradle\n```\nrepositories {\n    maven(\"https://repo.loapu.dev/releases\")\n}\ndependencies {\n    implementation(\"dev.loapu.vanishbridge:vanishbridge-api:VERSION\")e\n}\n```\n\n### [JavaDocs](https://repo.loapu.dev/javadoc/releases/dev/loapu/vanishbridge/vanishbridge-api/latest)\n\n\n### Usage\n\n#### Checking if VanishBridge is installed (Velocity)\n\n```java\n@Plugin(\n    id = \"velocityexample\",\n    name = \"VelocityExample\",\n    version = \"1.0.0\",\n    dependencies = {\n        @Dependency(id = \"vanishbridge\", optional = true)\n    }\n)\npublic class VelocityExample\n{\n    // Make sure to add this to your plugin class if you declared VanishBridge as optional\n    public boolean isVanishBridgeInstalled() \n    {\n        return proxyServer.getPluginManager().isLoaded(\"vanishbridge\");\n    }\n\t\n    // Now you can use VanishBridge\n    public void example()\n    {\n\t    if (!isVanishBridgeInstalled()) return;\n\t    VanishBridge vanishBridge = VanishBridgeProvider.get();\n    }\n}\n```\n\n#### Getting a list of vanished players\n```java\nimport dev.loapu.vanishbridge.api.VanishBridge;\nimport dev.loapu.vanishbridge.api.model.VanishBridgePlayer;\nimport dev.loapu.vanishbridge.api.VanishBridgeProvider;\n\npublic class Example {\n    // It's really that easy\n    public List<VanishBridgePlayer> vanishedPlayers = VanishBridgeProvider.get().vanishedPlayers();\n}\n```\n\nThat's it! You can now use VanishBridge in your plugin.",
+  "categories": [
+    "library",
+    "paper",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 320,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

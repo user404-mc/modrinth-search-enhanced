@@ -1,0 +1,41 @@
+{
+  "id": "QgPMZJP2",
+  "slug": "advancedreplay",
+  "title": "AdvancedReplay",
+  "description": "Minecraft Replay Plugin to record players on your server",
+  "body": "![AdvancedReplay plugin banner](https://cdn.modrinth.com/data/cached_images/00a686ba17d84c720baec09b0d1852c6f5622e3a_0.webp)\n# AdvancedReplay\nAdvancedReplay is a Replay system for Spigot 1.8 & 1.21.\nIt can record players on your Server and save the recorded data to a file or database, so you can watch the replays at any time. Currently it records almost every action a player does and can be easily controlled with the commands.\n\n⚠️ This Plugin needs ProtocolLib to run.  \n- [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/)  \n- [ProtocolLib Dev Builds](https://ci.dmulloy2.net/job/ProtocolLib/lastSuccessfulBuild/)\n\n## Features  \n\n\n**Replaying**: When watching a replay you have a variety of tools to control the replay. For example, you can pause it, change the speed, teleport to one of the players and more.\n\n**Easy to use API**: AdvancedReplay comes with a lot of possibilities for customization with the api, including a way to change how replays are saved and a possibility to add and replay your own data.\nFor more details take look at the API section.\n\n**Recorded Data:**\n\nAdvancedReplay is currently able to record players, living entities, items and Projectiles.\n- Player movements\n- Player actions (Eating, Arm animations & more)\n- Inventory changes\n- Metadata updates\n- Projectiles\n- Dropped Items\n- Block changes by players\n- Chat messages\n\nIf you encounter any bugs please report them in Github.\n\n## Configuration\nIn the config.yml you can configure some general settings about the plugin and the recorded data If you want to use a database you also need to set up the mysql.yml.\nIf you want to disable a notification or message just leave it empty.\n\n<details>\n<summary>Spoiler</summary>\n\n\n```yml\n# General plugin settings\ngeneral:\n\n  # Maximum length of a replay in seconds\n  max_length: 3600\n\n  # Create a new recording on startup\n  # save_on_stop and add_new_players should be enabled\n  record_on_startup: false\n\n  # Should the Replay be saved on shutdown/when the maximum length is exceeded?\n  save_on_stop: false\n\n  # Should the plugin save the Replays to a mysql database?\n  # If enabled you need to configure the mysql.yml\n  use_mysql: false\n\n  # Save the Replays to an S3 compatible Storage\n  # If enabled you need to configure s3.yml\n  use_s3: false\n\n  # If enabled in offline mode, the plugin will fetch the skin data from Mojang\n  # Can slow down the server when recording a lot of players\n  use_offline_skins: true\n \n  # Change how detailed movement is recorded. Better quality results in larger replays\n  # Options: high, medium, low\n  quality: high\n\n  # Automatically delete replays after a specific amount of time (days)\n  # Use -1 to disable\n  cleanup_replays: -1\n\n  # Hide all players that are not participating in a replay\n  hide_players: false\n\n  # Should players when they join after a recording started be added to all running recordings\n  add_new_players: false\n\n  # Should AdvancedReplay check for new updates?\n  update_notifications: true\n \n  # This message is displayed when a player dies\n  death_message: '&6{name} &7died.'\n \n  # This message is displayed when a player leaves the game\n  quit_message: '&6{name} &7left the game.'\n\n  # This message is displayed when a player joins the game\n  join_message: '&6{name} &7joined the game.'\n\n# Configuration of the replaying settings\nreplaying:\n  world:\n    # Reset block changes after watching a replay?\n    reset_changes: false\n\n  # How should the replay progress be displayed\n  # Options: action_bar, xp_bar, none\n  progress_display: action_bar\n\n# Configuration of the recording data\nrecording:\n  blocks:\n \n    # Enable recording of block changes?\n    enabled: true\n \n    # Use real block changes when replaying?\n    real_changes: true\n \n  entities:\n    # Enable recording of all living entities?\n    enabled: true\n    items:\n \n      # Enable recording of items?\n      enabled: true\n  chat:\n \n    # Enable recording of chat messages?\n    enabled: true\n    # Format of recorded chat messages\n    format:  '&r<{name}> {message}'\n```\n\n\n</details>\n\n## Videos\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/XWoN9svMvng\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## Commands/Permissions\n_/replay_ - Overview of all commands  \n_/replay start [Name]:[Duration] [<Players ...>]_ - Starts recording a new Replay  \n_/replay stop <Name> [-nosave|-force]_ - Stops and saves a Replay  \n_/replay play <Name>_ - Starts a recorded Replay  \n_/replay jump <Time>_ - Jump to a specific moment  \n_/replay leave_ - Leave your Replay  \n_/replay info <Name>_ - Information about a Replay  \n_/replay delete <Name>_ - Deletes an existing Replay  \n_/replay list [Page]_ - Lists all available Replays  \n_/replay reload_ - Reloads the configuration  \n\n_replay.command.<Command>_ - Permission for the specific command\n\n\n## API Examples\n\n<details>\n<summary>Register a custom ReplaySaver</summary>\n\n```java\nReplayAPI.getInstance().registerReplaySaver(new IReplaySaver() {\n \n    @Override\n    public void saveReplay(Replay replay) {\n        ReplayData data = replay.getData();\n        // Will be called to save a new replay\n \n    }\n\n    @Override\n    public boolean replayExists(String replayName) {\n        // Return true if the replay exists\n        return false;\n    }\n\n    @Override\n    public void loadReplay(String replayName, Consumer<Replay> consumer) {\n\n        // Load the ReplayData and return a new replay to the consumer\n        consumer.accept(new Replay(replayName, new ReplayData()));\n    }\n\n    @Override\n    public void deleteReplay(String replayName) {\n        // Will be called to delete an existing replay\n \n    }\n\n    @Override\n    public List<String> getReplays() {\n        // Return all available replays\n        return null;\n    }\n});\n```\n\n</details>\n\n<details>\n<summary>Register your own ReplayHook</summary>\n\n```java\n        ReplayAPI.getInstance().registerHook(new IReplayHook() {\n    \n            @Override\n            public PacketData onRecord(String playerName) {\n                /*\n                 * Will be called every tick for every player that is being recorded.\n                 * Return a PacketData containing the data that you want to add.\n                 */\n        \n                return null;\n            }\n    \n            @Override\n            public void onPlay(ActionData data, Replayer replayer) {\n                String name = data.getName();\n                PacketData packetData = data.getPacketData();\n                // Will be called whenever a previous recorded action should be played\n        \n            }\n        });\n```\n\n</details>\n\n<details>\n<summary>Replay Events</summary>\n\n```java\npublic void onReplayFinished(ReplaySessionFinishEvent e) {\n    Player player = e.getPlayer();\n    Replay replay = e.getReplay();\n```\n\n</details>\n\n",
+  "categories": [
+    "bukkit",
+    "library",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3494,
+  "followers": 0,
+  "game_versions": [
+    "1.8.8",
+    "1.8.9",
+    "1.19.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

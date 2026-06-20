@@ -1,0 +1,35 @@
+{
+  "id": "FMg8aS6R",
+  "slug": "mapengine-mediaext",
+  "title": "MapEngine Media Extension",
+  "description": "FFmpeg Media Extension library for MapEngine",
+  "body": "# MapEngine Media Extension\n\n<img src=\"https://i.imgur.com/7YyUEBQ.png\" alt=\"logo\" width=\"200\">\n\n[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/MinceraftMC/MapEngine-MediaExtension?style=flat-square)](#)\n[![AGPLv3 License](https://img.shields.io/badge/License-AGPL%20v3-yellow.svg?style=flat-square)](https://opensource.org/license/agpl-v3/)\n[![Status Beta](https://img.shields.io/badge/Status-Beta-orange?style=flat-square)](#)\n\n## Description\n\nMapEngine Media Extension is an extension library for [MapEngine](https://modrinth.com/plugin/mapengine). \nIt provides an additional API for playing video and streaming live content using MapEngine.\n\nThe Extension uses [bytedeco/javacv's](https://github.com/bytedeco/javacv) FFmpeg implementation for decode media.\nJavaCV, JavaCPP and FFmpeg will be downloaded on server startup and loaded into the classpath.\nThis plugin downloads only the currently needed libraries for the current operating system and architecture.\n\n## Features\n\n- Runtime dependency downloader\n- FFmpeg based media decoding\n\n<details>\n<summary><strong>Downloading native libraries</strong></summary>\n\nThis is an example of native libraries being downloaded on server startup.\n\n![RuntimeDependencyLoading](https://i.imgur.com/GMWH9NW.gif)\n\n</details>\n\n\n<details>\n<summary><strong>Live streaming via RTMP on maps</strong></summary>\nThis is an example of a live stream on a map. The stream is played on a 7x4 map array.\nThe Stream source is 1920x1080@20 streamed with OBS.\n\n&nbsp;\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/5tg_DX84eLw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n</details>\n\n## Usage\n\n`MapMediaExt` has to be added as a dependency to the `plugin.yml` regardless of the build system used.\n\n<details>\n<summary><strong>Maven</strong></summary>\n\n```xml\n<repositories>\n    <repository>\n        <id>minceraft</id>\n        <url>https://repo.minceraft.dev/releases/</url>\n    </repository>\n</repositories>\n```\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>de.pianoman911</groupId>\n        <artifactId>mapengine-mediaext</artifactId>\n        <version>1.1.2</version>\n        <scope>provided</scope>\n    </dependency>\n</dependencies>\n```\n</details>\n\n\n<details>\n<summary><strong>Gradle (groovy)</strong></summary>\n\n```groovy\nrepositories {\n    maven {\n        url = 'https://repo.minceraft.dev/releases/'\n        name = 'minceraft'\n    }\n}\n\ndependencies {\n    compileOnly 'de.pianoman911:mapengine-mediaext:1.1.2'\n}\n```\n\n</details>\n\n<details>\n<summary><strong>Gradle (kotlin)</strong></summary>\n\n```kotlin\nrepositories {\n    maven(\"https://repo.minceraft.dev/releases/\") {\n        name = \"minceraft\"\n    }\n}\n\ndependencies {\n    compileOnly(\"de.pianoman911:mapengine-mediaext:1.1.2\")\n}\n```\n\n</details>\n\n### Example\n\n```java\npublic class Bar {\n\n    public void foo(IMapDisplay display, URI streamUri) {\n        // create a drawing space for the display\n        IDrawingSpace space = plugin.mapEngine().pipeline().drawingSpace(display);\n        \n        // add all online players as receivers\n        space.ctx().receivers().addAll(Bukkit.getOnlinePlayers());\n\n        // create a new frame source with a 10 frame buffer and rescaling enabled\n        FFmpegFrameSource source = new FFmpegFrameSource(streamUri, 10, space, true);\n        \n        // start the decoding process\n        source.start(); \n    }\n}\n```\n\nMore detailed examples can be found in the [MinceraftMC/MapEngineExamples](https://github.com/MinceraftMC/MapEngineExamples) repository.\n\n## Building\n\n1. Clone the project (`git clone https://github.com/MinceraftMC/MapEngine-MediaExtension.git`)\n2. Go to the cloned directory (`cd MapEngine-MediaExtension`)\n3. Build the Jar (`./gradlew build` on Linux/MacOS, `gradlew build` on Windows)\n\nThe plugin jar can be found in the `build` → `libs` directory.\n",
+  "categories": [
+    "library",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2110,
+  "followers": 0,
+  "game_versions": [
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

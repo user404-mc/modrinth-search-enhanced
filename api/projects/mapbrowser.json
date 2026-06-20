@@ -1,0 +1,39 @@
+{
+  "id": "EuTLENTf",
+  "slug": "mapbrowser",
+  "title": "MapBrowser",
+  "description": "A powerful plugin that brings the power of a modern web browser into Minecraft using maps and the JCEF.",
+  "body": "# MapBrowser\n\n![License](https://img.shields.io/badge/License-AGPL%20v3-blue.svg) ![Minecraft Version](https://img.shields.io/badge/Minecraft-1.20+-green.svg) ![Status](https://img.shields.io/badge/Status-beta-orange.svg)\n\nA powerful Spigot/Paper plugin that brings a modern web browser into Minecraft using maps and the Java Chromium Embedded Framework (JCEF). Interact with any website, watch videos, and even play Minecraft in Minecraft!\n\n---\n\n## ✨ Features\n*   **Dynamic Browser Creation**: Create interactive browser screens of any size, anywhere in your world.\n*   **Real-time Web Rendering**: Powered by the Chromium engine, it renders modern websites with full CSS and JavaScript support.\n*   **Fully Interactive**: Click, type, and send key presses (like Enter, Shift) to interact with web pages just like a real browser.\n*   **In-Game Developer Tools**: Toggle Chromium DevTools in real-time to debug web layouts and performance on the fly.\n*   **Highly Configurable**: Enable remote debugging, set a custom user agent, change user data paths, and add custom CEF arguments via `config.yml`.\n\n---\n\n## ❗ Dependencies\nThis plugin **requires** the [**MapEngine**](https://modrinth.com/plugin/mapengine) API to function. Please install it on your server before installing MapBrowser.\n\n---\n\n## ⚙️ Installation\n1.  Download and install [**MapEngine**](https://modrinth.com/plugin/mapengine) on your server.\n2.  Download the latest `MapBrowser-*-all.jar` from the [**Releases Page**](https://github.com/Steve3184/MapBrowser/releases) or the \"Versions\" tab.\n3.  Place the downloaded `.jar` file into your server's `plugins` directory.\n4.  Restart your server.\n\n**⚠️ Important First-Time Setup:**\nOn its first launch, MapBrowser will automatically download the necessary Chromium Embedded Framework (JCEF) binaries. This process can take several minutes and requires a stable internet connection. Please monitor your console for progress.\n\n---\n\n<details>\n<summary><strong>📜 Commands & Permissions</strong></summary>\n\n| Command         | Description                                                              | Usage                                           | Permission                     |\n|-----------------|--------------------------------------------------------------------------|-------------------------------------------------|--------------------------------|\n| `/mb create`    | Creates a new browser screen at the specified location.                  | `/mb create <x> <y> <z> <url> [width] [height]` | `mapbrowser.command.create`    |\n| `/mb list`      | Lists all currently active browser screens.                              | `/mb list`                                      | `mapbrowser.command.list`      |\n| `/mb remove`    | Removes a specified browser screen.                                      | `/mb remove <id>`                               | `mapbrowser.command.remove`    |\n| `/mb modify`    | Modifies the properties of an existing screen.                           | `/mb modify <id> <prop> [values...]`            | `mapbrowser.command.modify`    |\n| `├ url`         | Changes the URL loaded by the screen.                                    | `/mb modify <id> url <new_url>`                 |                                |\n| `├ devtools`    | Toggles the developer tools on or off.                                   | `/mb modify <id> devtools <on\\|off>`            |                                |\n| `├ pos`         | Moves the browser screen.                                                | `/mb modify <id> pos <x> <y> <z>`               |                                |\n| `├ size`        | Changes the size of the browser screen.                                  | `/mb modify <id> size <width> <height>`         |                                |\n| `└ refresh`     | Refreshes the browser page.                                              | `/mb modify <id> refresh`                       |                                |\n| `└ scale`       | Setting the scale of browser page.                                       | `/mb modify <id> scale <newScale>`              |                                |\n| `/mb input`     | Sends text input to the specified screen.                                | `/mb input <id> <text...>`                      | `mapbrowser.command.input`     |\n| `/mb keys`      | Sends a key event to the specified screen.                               | `/mb keys <id> <key> <action>`                  | `mapbrowser.command.keys`      |\n| `/mb executeJs` | Executes custom JS code or a JS snippet in the specified browser screen. | `/mb executeJs <id> <jsCode\\|snippet.js>`       | `mapbrowser.command.executejs` |\n| `/mb near`      | Lists the ID of the nearest browser screen.                              | `/mb near`                                      | `mapbrowser.command.near`      |\n\n</details>\n\n<details>\n<summary><strong>🔧 Configuration (config.yml)</strong></summary>\n\nThe configuration file is generated at `plugins/MapBrowser/config.yml` on the first run.\n\n```yaml\n# --------------------------------------------------- #\n#             MapBrowser Configuration                #\n# --------------------------------------------------- #\n\njcef:\n  # Your custom JCEF binaries path (leave blank to disable)\n  # Default: (plugins)/MapBrowser/jcef-bundle\n  custom-install-path: \"\"\n  # Custom jcef-maven download mirror (for custom-builds)\n  mirror: \"https://github.com/Steve3184/mb_jcefbuild/releases/download/v1/\"\n  # Should jcef-maven check the JCEF binaries at startup?\n  skip-download: false\n\nbrowser:\n  # Should we enable the sound (default is false)\n  enable-sound: false\n  # CEF's user data directory\n  # Default: (plugins)/MapBrowser/userdata\n  user-data-dir: \"userdata\"\n  # CEF's remote debugging\n  remote-debugging:\n    enabled: false\n    # Should we enable it? (default is false)\n    port: 9222\n    # Remote Debugging Port (default is 9222)\n  # CEF's User-Agent\n  user-agent: \"\"\n  # Where should CEF output the log\n  # 'file' -> write to (plugins)/MapBrowser/cef.log\n  # 'console' -> write to console\n  chrome-log-output: \"file\"\n  # Extra CEF startup args\n  custom-chrome-args:\n    - \"--disable-gpu-compositing\"\n    - \"--disable-gpu-vsync\"\n```\n</details>\n\n---\n\n## 🔗 Links & Credits\n*   **Source Code**: [GitHub Repository](https://github.com/Steve3184/MapBrowser)\n*   **License**: `GNU AGPL v3`\n*   **Acknowledgements**:\n    *   **pianoman911** for the powerful [MapEngine](https://github.com/FroglightNET/MapEngine) library.\n    *   **CinemaMod** for their pre-built [JCEF binaries](https://github.com/CinemaMod/java-cef) which greatly simplify development.\n\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 429,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

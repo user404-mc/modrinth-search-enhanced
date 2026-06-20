@@ -1,0 +1,29 @@
+{
+  "id": "KBJ4Btza",
+  "slug": "cobblelib",
+  "title": "CobbleLib",
+  "description": "CobbleSuite Library By WhosLucid",
+  "body": "# CobbleLib\n\nA core utility library for Cobblemon NeoForge mods providing virtual economy (Cobbletokens), permissions, UI framework, and Pokemon helpers.\n\n## Requirements\n\n- Minecraft 1.21.1\n- NeoForge 21.1.90+\n- Cobblemon 1.7.2+\n- Java 21+\n\n## Features\n\n### Economy(Cobbletokens)\n\nA simple virtual currency system with balances stored in `economy.json`:\n- Virtual balances tracked per player\n- Easy `/cobbletokens` command for players to manage their tokens\n- Admin commands for server operators\n- Transfer tokens between players\n\n### Permission System\n\nIntegrates with **FTB Ranks** for permission checks with automatic fallback to vanilla op levels.\n\n```java\nPermissionApi.hasPermission(player, \"permission.node\", opLevel);\n```\n\n### UI Components\n\nGooeyLibs-based GUI utilities:\n- `ConfirmMenu` - Confirmation dialogs\n- `PartyPcMenu` - Party/PC Pokemon selection interface\n\n### Utilities\n\n- `AdventureTranslator` - Convert legacy color codes (`&a`, `&l`) and hex (`&#RRGGBB`) to Components\n- `PlayerUtils` - Chat, actionbar, and broadcast messaging\n- `PokemonUtils` - Placeholder replacement and stat helpers\n- `ItemModel` - ItemStack builder with display name, lore, NBT support\n\n## Commands\n\n### Token Commands (`/cobbletokens`)\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/cobbletokens` | `cobblelib.tokens` | Check your balance |\n| `/cobbletokens balance [player]` | `cobblelib.tokens` / `cobblelib.tokens.admin` | Check balance (admin for others) |\n| `/cobbletokens send <player> <amount>` | `cobblelib.tokens` | Send tokens to another player |\n| `/cobbletokens pay <player> <amount>` | `cobblelib.tokens` | Alias for send |\n| `/cobbletokens give <player> <amount>` | `cobblelib.tokens.admin` | Give tokens to a player |\n| `/cobbletokens take <player> <amount>` | `cobblelib.tokens.admin` | Take tokens from a player |\n| `/cobbletokens set <player> <amount>` | `cobblelib.tokens.admin` | Set a player's balance |\n\n### Admin Commands (`/cobblelib`)\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/cobblelib reload` | `cobblelib.reload` | Reload all configs |\n| `/cobblelib info` | `cobblelib.base` | Display mod info |\n\n## Configuration\n\nConfig files are located at `config/cobblelib/`\n\n### config.json\n\n```json\n{\n  \"debug\": false,\n  \"useDefault\": true,\n  \"economySymbol\": \"Cobbletokens\"\n}\n```\n\n### Language Files\n\nLocated at `config/cobblelib/lang/en.json`\n\n## API Usage\n\n### Economy API\n\n```java\nimport com.whoslucid.cobblelib.api.EconomyApi;\n\n// Check balance\nBigDecimal balance = EconomyApi.getBalance(playerUUID, null);\n\n// Add money\nEconomyApi.addMoney(playerUUID, BigDecimal.valueOf(100), null);\n\n// Remove money\nEconomyApi.removeMoney(playerUUID, BigDecimal.valueOf(50), null);\n\n// Transfer between players\nEconomyApi.transfer(fromUUID, toUUID, 100);\n\n// Check and deduct\nboolean success = EconomyApi.hasEnoughMoney(playerUUID, BigDecimal.valueOf(100), null, true);\n\n// Get currency symbol\nString symbol = EconomyApi.getSymbol(null);\n```\n\n### Permission API\n\n```java\nimport com.whoslucid.cobblelib.api.PermissionApi;\n\n// Check permission with op fallback\nboolean allowed = PermissionApi.hasPermission(player, \"your.permission\", 2);\n```\n\n### Color Codes\n\n```java\nimport com.whoslucid.cobblelib.util.AdventureTranslator;\n\nComponent text = AdventureTranslator.toComponent(\"&aGreen &lBold &#FF5555Custom Hex\");\n```\n\n## Building\n\n```bash\n./gradlew build\n```\n\nOutput: `build/libs/cobblelib-1.0.0.jar`\n\n## License\n\nAll rights reserved.\n",
+  "categories": [
+    "library",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 147,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

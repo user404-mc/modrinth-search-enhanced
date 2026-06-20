@@ -1,0 +1,40 @@
+{
+  "id": "zJ4gyF5J",
+  "slug": "x-backup",
+  "title": "X Backup",
+  "description": "The advanced backup mod for fabric",
+  "body": "# X Backup\n\n[简体中文](https://github.com/zly2006/x-backup/blob/stonecutter/README_zh.md) | English\n\nThe advanced backup mod for fabric.\n\n## Advantages\n\n- ⚡️Lightning-Fast Speeds: Utilizes multithreading technology for rapid backup processes, completing tasks in a fraction of the time, **speeding up to 50 times faster**. [^1]\n- 💾Space-Efficient: Implements incremental backups and automatically compresses large files, minimizing storage usage.\n- 🔄Seamless Restoring: Automatically restarts the server after restoring, allowing for a seamless experience.\n- ✨Regional Restoring: Restore only the chunks within a specified range, **Players outside the range will not be affected**.\n- 🛡️Flexible Support: Designed to support both servers and clients, providing a versatile solution for all your backup needs.\n- ☁️Automatic Cloud Backup: Effortlessly back up your data to the cloud, with support for Microsoft OneDrive, ensuring your information is safe and accessible from anywhere.\n\n## Usage\n\n### Creating a Backup\n\nYou can use the `/xb create` command to create a new backup. This command saves the current state of the game so you can restore it later. If you want to add a note to the backup, you can add it after the command, for example:\n\n```\n/xb create This is my first backup\n```\n\nThis way, you create a backup with a note.\n\n### Viewing Created Backups\n\nIf you want to view the backups you have created, you can use the `/xb list` command. This command lists all the backups and displays the number, creation time, and note of each backup. For example:\n\n```\n/xb list\n```\n\nThis command displays the last 6 backups. If you have many backups, you can click the gray font button to view more backups.\n\n### Restoring a Backup\n\nIf you want to restore to a specific backup, you can use the `/xb restore <id>` command, where `<id>` is the number of the backup. For example:\n\n```\n/xb restore 1\n```\n\nThis command restores the game to the state of backup number 1. If you want to restore a specific range, you can use the `--chunk` parameter to specify the coordinates from which to which, for example:\n\n```\n/xb restore 1 --chunk 0 0 10 10\n```\n\n> [!TIP]\n> These are the x/z coordinates of the blocks, do not confuse them with chunk coordinates.\n\nThis will restore the game to backup 1, but only restore the area from block coordinates (0, 0) to (10, 10).\n### Scheduled Backup Configuration\n\nYou can set the automatic backup interval using the `/xb backup-interval <seconds>` command. For example, if you want to automatically back up every 3 hours, you can set it like this:\n\n```\n/xb backup-interval 10800\n```\n\nThis command sets the automatic backup interval to 10,800 seconds (i.e., 3 hours).\n\n### Mirror Server Configuration\n\nIf you are using a mirror server, you can use the `/mirror` command to synchronize the latest backup from the main server. For example:\n\nFirst, you need to create a backup on the main server:\n\n```\n/xb create\n```\n\nThen, in the mirror server configuration, set the main server's file path (the one containing `server.properties`) and `blob_path`, and enable mirror mode:\n\n```json\n{\n  \"mirror_mode\": true,   \n  \"mirror_from\": \"C:\\\\MinecraftServer\\\\My-Server\",\n  \"blob_path\": \"C:\\\\MinecraftServer\\\\My-Server\\\\blob\"\n}\n```\n\nAfter that, execute the `/mirror` command. This command will synchronize the latest backup state from the main server to the mirror server. You can also add the `id` parameter to specify the backup number to synchronize:\n\n```\n/mirror 1\n```\n\nIf you want to stop the server and restore the backup, you can use the `--stop` parameter:\n\n```\n/mirror --stop\n```\n\n### Cleaning Up Unnecessary Backups\n\nThe mod also provides an automatic cleanup feature for old backups. You can set the `keep_policy` in the configuration file, for example:\n\n```json\n{\n  \"prune\": {\n    \"enabled\": false,\n    \"keep_policy\": {\n      \"1d\": \"30m\",\n      \"1w\": \"6h\",\n      \"1M\": \"1d\",\n      \"1y\": \"1w\",\n      \"2y\": \"1M\"\n    }\n  }\n}\n```\n\nThis configuration means:\n- Keep backups every 30 minutes for the last 1 day\n- Keep backups every 6 hours for the last 1 week\n- Keep daily backups for the last 1 month\n- Keep weekly backups for the last 1 year\n- Keep monthly backups for the last 2 years\n\nYou can adjust these settings according to your needs.\n\nWhen `enabled` is `true`, the mod will automatically clean up backups that do not meet the retention policy. Alternatively, you can manually clean up unnecessary backups using the `/xb prune` command.\n\n### Viewing Backup Information\n\nIf you want to view detailed information about a specific backup, you can use the `/xb info <id>` command, for example:\n\n```\n/xb info 1\n```\n\nThis command will display detailed information about backup #1, including backup time, notes, size, etc.\n\n## Credits\n\nSome part (GUI) of this mod is based on BackupManager by CreeperHost LTD.\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 19704,
+  "followers": 0,
+  "game_versions": [
+    "1.18.1",
+    "1.18.2",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

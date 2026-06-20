@@ -1,0 +1,42 @@
+{
+  "id": "bEmV8Hhn",
+  "slug": "nilloadersdk",
+  "title": "NilLoaderSDK API",
+  "description": "Utilities and helper SDK for NilLoader mod development.\nThe purpose is to make developing older versions of Minecraft easier.",
+  "body": "# NilLoaderSDK\n\nNilLoaderSDK is a Java 8 utility SDK for NilLoader-based Minecraft mods (legacy versions).\n\nIt provides:\n- metadata helpers for NilLoader + KDL\n- runtime bootstrap for KDL-only mods\n- reflection/remapping helpers\n- event bus and lifecycle events\n- NIO networking utilities\n\n---\n\n## Why NilLoaderSDK?\n\nNilLoaderSDK is not only metadata tooling. It is a practical utility layer for legacy NilLoader mod development, with reusable APIs that reduce boilerplate and speed up feature development.\n\nUse it when you want a single toolkit for lifecycle dispatching, reflection/remapping, networking, event handling, and modernized metadata support.\n\n---\n\n## Key Features\n\n- **Lifecycle + Entrypoint system**\n  - `premain` / `hijack` dispatching via ServiceLoader, JVM properties, and properties file\n  - Default SDK modules for centralized startup flow\n- **Event bus for mod architecture**\n  - Lightweight event system with cancellable events and priority ordering\n  - Lifecycle events for pre/post entrypoint dispatch hooks\n- **Networking stack (Java NIO)**\n  - Client/server implementations with packet registry and codec\n  - Optional auto-network bridge for fast integration\n- **Reflection + remapping helpers**\n  - Utilities for interacting with obfuscated legacy internals safely and repeatedly\n- **Metadata bridge (CSS + KDL)**\n  - Supports `.nilmod.css` and `.nilsdkmod.kdl`\n  - KDL-only runtime bootstrap for SDK-aware mods when root CSS is absent\n  - Dependency policy support (`requires`, `safeload`, load order hints)\n- **Diagnostics for pack/mod developers**\n  - Verbose bootstrap pipeline logs\n  - Loaded-mod table output:\n    - `ID | Name | Version | Authors | License`\n\n<div style=\"text-align: center;\">\n  <img src=\"https://cdn.modrinth.com/data/bEmV8Hhn/images/c5e2b50b4d78a9eebc5e3b3e74631b373339f15e.png\">\n</div>\n\n---\n\n## Metadata Example (`.nilsdkmod.kdl`)\n\n```kdl\nnilmod {\n  name \"My Mod\"\n  description \"Example mod\"\n  authors \"Author\"\n  version \"1.0.0\"\n}\n\nentrypoints {\n  premain \"com.example.MyPremain\"\n  hijack \"com.example.MyHijack\"\n}\n\nnilloadersdk {\n  requires \"nilloader\" \"nilloadersdk\"\n  load_after \"nilloadersdk\"\n  icon \"assets/mymod/icon.png\"\n  modurl \"https://modrinth.com/mod/my-mod\"\n  sourceurl \"https://github.com/example/my-mod\"\n  license \"MIT\"\n  credits \"Author\"\n}\n```\n\n---\n\n## Dependency (Gradle)\n\n```gradle\nrepositories {\n  maven { url \"https://repo.tamkungz.me\" }\n}\n\ndependencies {\n  implementation \"me.tamkungz.nilloadersdk:nilloadersdk:2.0.1\"\n}\n```\n\nRepository: [https://repo.tamkungz.me](https://repo.tamkungz.me)\n\n---\n\n## Keywords (for search)\n\nNilLoader, NilLoaderSDK, Minecraft 1.4.7, legacy Minecraft modding, Java 8 modding, entrypoint framework, event bus, NIO networking, reflection helper, remapping tools, KDL metadata, nilmod SDK.\n\n---\n\n## License\n\nLicensed under **LGPL-3.0-or-later**.\n\n---\n\n## Credits\n\n- [NilLoader (official)](https://git.sleeping.town/Nil/NilLoader)\n- [NilLoader (mirror)](https://github.com/exaskye/NilLoader)\n",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "management",
+    "nilloader",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 107,
+  "followers": 0,
+  "game_versions": [
+    "1.3.1",
+    "1.3.2",
+    "1.4.2",
+    "1.4.4",
+    "1.4.5",
+    "1.4.6",
+    "1.4.7",
+    "1.5.1",
+    "1.5.2",
+    "1.6.1",
+    "1.6.2",
+    "1.6.4",
+    "1.7.2",
+    "1.7.3",
+    "1.7.4",
+    "1.7.5",
+    "1.7.6",
+    "1.7.7",
+    "1.7.8",
+    "1.7.9",
+    "1.7.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "ThJBmy1K",
+  "slug": "restricted-inventory",
+  "title": "Restricted Inventory",
+  "description": "Restrict player inventory slots to specific items or item tags. Configure which slots accept which items via JSON config — server-wide or per-client. Restricted slots display a visual preview of what belongs there.",
+  "body": "# Restricted Inventory\n\n**Lock player inventory slots to specific items or item tags.**\n\nEver wanted to keep a dedicated slot for your sword, always have slot 0 as your torch, or enforce item organization across your server? Restricted Inventory lets you do exactly that — configure any inventory slot (0–35) to only accept a specific item or item tag, server-wide or per player.\n\n## Features\n\n- **Slot restrictions** — Lock any hotbar or inventory slot to a specific item (e.g. `minecraft:torch`) or an entire item tag (e.g. `#minecraft:swords`)\n- **Server or per-client mode** — Apply the same rules to all players from the server config, or let each player define their own restrictions in their client config\n- **Visual feedback** — Restricted slots display a ghost preview of the required item so players always know what goes where\n- **Slot index overlay** — Hold **Tab** in any inventory screen to reveal each slot's index number, making config setup a breeze\n- **Smart item routing** — Picked-up items automatically go to their designated slots first before filling unrestricted ones\n\n## Commands\n\nAll commands use the `/restrictedinventory` prefix.\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/restrictedinventory config` | Opens the Restriction Config Screen | Admin (OP level 4), or any player when `useClientRestriction` is enabled |\n\n### Permission rules\n\n- When `useClientRestriction` is **false** (server-wide mode): only server operators (OP level 4) can open the config screen.\n- When `useClientRestriction` is **true** (per-client mode): every player can open their own config screen.\n\n## Restriction Config Screen\n\nThe config screen is the in-game GUI for editing slot restrictions. Open it with `/restrictedinventory config`.\n\n### Item / Tag picker (top panel)\n\n- **Items tab** — lists every registered item at ¾ scale. Hover for the item name and registry ID. Click to select.\n- **Tags tab** — lists every registered item tag. Each tag cycles through its members as a live preview. Hover for the tag ID. Click to select.\n- Scroll with the mouse wheel or drag the scrollbar on the right.\n\n### Slot grid (middle panel)\n\n- Displays all 36 player inventory slots (0–35) laid out in the standard inventory arrangement.\n- Each slot shows a cycling preview of its current restriction, or is empty if unrestricted.\n- Left-Click a slot to **select** it (highlighted in white). The selected slot will receive the item or tag chosen in the picker.\n- Right-Click a slot to remove the item or tag chosen.\n- Hover a slot to see its current restriction value as a tooltip.\n\n## Configuration\n\nRestrictions are defined in a simple JSON config file. Both specific items and item tags are supported.\n\n```json\n{\n  \"useClientRestriction\": false,\n  \"restrictedSlots\": {\n    \"0\": \"minecraft:torch\",\n    \"1\": \"#minecraft:swords\",\n    \"8\": \"minecraft:totem_of_undying\"\n  }\n}\n```\n\n| Slot range | Location |\n|------------|----------|\n| 0–8 | Hotbar (survival mode only) |\n| 9–35 | Main inventory |\n\n> **Note:** Slot indices 0–8 correspond to the hotbar in survival mode. In creative mode, the hotbar uses a different inventory layout and slot restrictions will **not** apply there.\n\n## Compatibility Note\n\nThis mod hooks into vanilla's slot placement and item pickup logic via Mixin. Mods or block entities that insert items directly into the player inventory (bypassing standard slot logic) may not respect the restrictions. Mods that also modify `Slot`, `Inventory`, or `AbstractContainerScreen` may conflict.",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 160,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "hai00gwx",
+  "slug": "simply-tents-blacklist",
+  "title": "Simply Tents BlackList",
+  "description": "Simple BlackList For Simply Tents.",
+  "body": "# Simply Tents Blacklist\n\n**A simple blacklist addon for Simply Tents mod**\n\n---\n\n## Overview\n\nSimply Tents Blacklist is a lightweight addon mod for [Simply Tents](https://www.curseforge.com/minecraft/mc-mods/simply-tents) that allows server administrators and players to configure which blocks, items, and entities should **not** be picked up by tents. This provides fine-grained control over tent behavior, preventing valuable or restricted content from being moved.\n\n---\n\n## Features\n\n- **Block Blacklist** - Prevent specific blocks from being picked up by tents (supports block registry names)\n- **Item Blacklist** - Prevent entities or block entities containing specific items from being picked up\n- **Tag Support** - Use block tags and item tags for flexible, category-based blacklisting\n- **Recursive Item Detection** - Deep scans entity and block entity NBT data to detect blacklisted items\n- **Server-Side Config** - All settings are configurable via server config file\n\n---\n\n## Configuration\n\nThe mod generates a config file at `config/simplytentsblacklist-common.toml`:\n\n```toml\n[blacklist]\n\t# List of block registry names that should not be picked up by tents.\n\t# Format: modid:block_name (e.g., \"minecraft:chest\", \"minecraft:diamond_block\")\n\tblacklistBlocks = []\n\t\n\t# List of item registry names that should prevent entities/block entities from being picked up.\n\t# If an entity or block entity contains any of these items, it will not be picked up.\n\t# Format: modid:item_name (e.g., \"minecraft:diamond\", \"minecraft:emerald\")\n\tblacklistItems = []\n\t\n\t# List of block tag names that should not be picked up by tents.\n\t# Format: #modid:tag_name (e.g., \"#minecraft:logs\", \"#forge:ores\")\n\tblacklistBlockTags = []\n\t\n\t# List of item tag names that should prevent entities/block entities from being picked up.\n\t# If an entity or block entity contains any items with these tags, it will not be picked up.\n\t# Format: #modid:tag_name (e.g., \"#minecraft:logs\", \"#forge:gems\")\n\tblacklistItemTags = []\n```\n\n### Example Configuration\n\n```toml\n[blacklist]\n\tblacklistBlocks = [\"minecraft:chest\", \"minecraft:ender_chest\", \"minecraft:spawner\"]\n\tblacklistItems = [\"minecraft:diamond\", \"minecraft:netherite_ingot\"]\n\tblacklistBlockTags = [\"#minecraft:doors\", \"#forge:ores\"]\n\tblacklistItemTags = [\"#forge:gems\", \"#forge:ingots/gold\"]\n```\n\n---\n\n## How It Works\n\nWhen a player attempts to pick up an area with a tent:\n\n1. **Block Check** - If the block is in the block blacklist or matches a blacklisted block tag, it remains in the world\n2. **Item Check** - If an entity or block entity contains any blacklisted items (or items matching blacklisted tags), it remains in the world\n3. **Safe Pickup** - Only non-blacklisted blocks and entities are packed into the tent\n\n---\n\n## Installation\n\n1. Install **Minecraft Forge** for Minecraft 1.20.1\n2. Download and install **GeckoLib** (required dependency)\n3. Download and install **Simply Tents**\n4. Place this mod's `.jar` file into your `mods` folder\n5. Launch the game and configure the blacklist in `config/simplytentsblacklist-common.toml`\n\n---\n\n## Compatibility\n\n- **Server-Side**: This mod is required on the server to function properly\n- **Client-Side**: Optional on client (for singleplayer worlds, install on both sides)\n\n---\n\n## License\n\nThis mod is licensed under the [MIT License](https://opensource.org/licenses/MIT).\n\n---\n\n## Credits\n\n- **Author**: Shinonome Shakusora\n- **Thanks**: The Simply Tents team for creating the original mod\n",
+  "categories": [
+    "adventure",
+    "forge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 106,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

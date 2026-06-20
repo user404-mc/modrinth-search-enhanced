@@ -1,0 +1,32 @@
+{
+  "id": "l4N6FnhK",
+  "slug": "keyallz",
+  "title": "KeyAllZ",
+  "description": "A keyall plugin to keep players engaged with timed rewards",
+  "body": "# KeyAllZ – Automated Key Distribution\n\nAutomate server-wide rewards with flexible timers, commands, and fully customizable effects.\n\n---\n\n## Features\n\n* Create multiple KeyAll types such as vote keys, donor keys, event rewards, or any custom reward\n* Run timed events that execute commands for all online players\n* Use fixed or randomized intervals for consistent or dynamic rewards\n* Execute commands per player or globally from the console\n* Fully customizable chat messages, action bars, titles, sounds, and particle effects\n* Built-in repeating reminders for players\n* PlaceholderAPI integration with live countdown placeholders\n* Optional Redis support for multi-server synced timers\n* Optimized and lightweight with minimal performance impact, even on large networks\n\n---\n\n## Recommended Dependency\n\n**PlaceholderAPI**\n[https://www.spigotmc.org/resources/placeholderapi.6245/](https://www.spigotmc.org/resources/placeholderapi.6245/)\n\nPlaceholderAPI is required for countdown and time-based placeholders.\n\nDocumentation is available on the Wiki:\n[https://zentari-studio.gitbook.io/keyallz](https://zentari-studio.gitbook.io/keyallz)\n\n---\n\n## Installation\n\n1. Download `KeyAllZ.jar` (v3.x.x)\n2. Place the jar file into the `/plugins` directory\n3. Restart the server\n4. Edit `config.yml` to your needs\n5. Run `/keyallz reload` to apply changes\n\n---\n\n## Redis (Optional Multi-Server Support)\n\nKeyAllZ can sync timers across multiple servers using Redis.\n\nWhen enabled:\n\n* Timers stay in sync across your entire network\n* Players cannot claim rewards multiple times by switching servers\n* Each server handles its own online players without duplication\n* Timers recover automatically after restarts or server failures\n\n### Configuration\n\n```yaml\nredis:\n  enabled: false\n  host: \"localhost\"\n  port: 6379\n  password: \"\"\n  database: 0\n  # Key prefix for all Redis keys. Change this if you share Redis with other plugins.\n  key-prefix: \"keyallz\"\n  # Unique ID for this server in the cluster. Leave empty to auto-generate.\n  server-id: \"\"\n```\n\nSet `enabled` to true and configure your Redis connection.\n\nAll servers must use:\n\n* The same Redis connection\n* The same KeyAll definition names\n\nRewards can differ per server.\n\n---\n\n## Configuration Example\n\n```yaml\nkeyalls:\n  example:\n    title: \"<green>You received a KeyAll reward!\"\n    actionbar: \"<yellow>Enjoy your free key!\"\n    chat: \"<gray>[KeyAll] <aqua>Congrats %player%, you got a reward!\"\n    sound: \"minecraft:entity.player.levelup\"\n    sound-volume: 1.0\n    sound-pitch: 1.0\n\n    player-commands:\n      - \"warp crates\"\n      - \"say I just got a key!\"\n\n    console-commands:\n      - \"PLAYER: crate key give %player% test 1\"\n\n    permission: \"keyall.receive.example\"\n\n    reminders:\n      enabled: true\n      interval: 600\n      message: \"<yellow>Don't forget to claim your KeyAll! Time left: %remaining-time%\"\n```\n\n---\n\n## PlaceholderAPI Placeholders\n\n* `%keyallz_timer_<name>%` shows the full remaining time (for example: `1d 2h 10m 5s`)\n* `%keyallz_days_<name>%` shows remaining days\n* `%keyallz_hours_<name>%` shows remaining hours\n* `%keyallz_minutes_<name>%` shows remaining minutes\n* `%keyallz_secs_<name>%` or `%keyallz_seconds_<name>%` shows remaining seconds\n* `%keyallz_time_short_<name>%` shows time in `HH:mm:ss` format\n* `%keyallz_remaining_<name>%` shows a condensed remaining time such as `10m 30s`\n\n---\n\n## Commands\n\n* `/keyallz start <definition> <seconds> [loop]` starts a timer and optionally enables looping\n* `/keyallz stop <definition>` stops a running timer\n* `/keyallz loop <definition> <true|false>` enables or disables looping\n* `/keyallz remind <definition> <intervalSeconds>` sets a repeating reminder interval\n* `/keyallz list` shows all active timers with remaining time\n* `/keyallz reload` reloads the configuration and stops all timers\n\n---\n\n## Usage Examples\n\n* `/keyallz start votekey 300 true` starts the votekey timer for 5 minutes and loops it\n* `/keyallz stop votekey` stops the votekey timer\n* `/keyallz loop donorkey false` disables looping for donorkey\n* `/keyallz remind example 30` sends reminders every 30 seconds\n* `/keyallz list` displays all active timers\n* `/keyallz reload` reloads the plugin configuration\n\n---\n\n## Notes\n\n* Console commands with the `PLAYER:` prefix are executed individually for each online player\n* Both player commands and console commands are executed when a timer finishes\n* Looping timers automatically restart after completion\n* Reminders notify players at the configured interval\n* Use `/keyallz list` to monitor running timers\n\n---\n\n## Permissions\n\n* `keyallz.admin` grants access to all KeyAllZ commands\n\n---\n\n## Support and Feedback\n\nJoin the Discord server for support and updates:\n[https://discord.gg/e6uXVjp4MX](https://discord.gg/e6uXVjp4MX)",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1668,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

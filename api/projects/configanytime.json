@@ -1,0 +1,20 @@
+{
+  "id": "Bnsrfd1o",
+  "slug": "configanytime",
+  "title": "ConfigAnytime",
+  "description": "Allows Forge configurations to be setup at any point in time. Especially for developers that use Forge's configuration system during coremod/tweaker's loading stage.",
+  "body": "## ConfigAnytime\n\n#### Allows Forge configurations to be setup at any point in time. Especially for developers that use Forge's configuration system during coremod/tweaker's loading stage.\n\n\n### Dev Usage:\n\n- Add CleanroomMC's repository and depend on ConfigAnytime's maven entry:\n```groovy\nrepositories {\n    maven {\n        url 'https://maven.cleanroommc.com'\n    }\n}\n\ndependencies {\n    implementation 'com.cleanroommc:configanytime:3.0'\n}\n```\n\n- Example API Usage:\n\n```java\n@Config(modid = \"configanytime\")\npublic class ConfigClass {\n    \n    public static boolean configBooleanProperty = true;\n    public static int configIntProperty = 42;\n    \n    public static final InnerClass INNER_CLASS = new InnerClass(); // Inner access via this member, this is processed automatically by ConfigManager\n    \n    public static class InnerClass {\n        \n        public boolean innerProperty = false; // Must be non-static, referenced via the member field in the outer class\n        \n    }\n    \n    // Static initializers go after the properties!\n    // This will run automatically when you retrieve any properties from this config class\n    static {\n        ConfigAnytime.register(ConfigClass.class);\n    }\n    \n}\n```",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 219295,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

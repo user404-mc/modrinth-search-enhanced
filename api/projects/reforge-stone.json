@@ -1,0 +1,23 @@
+{
+  "id": "NyQ35wXb",
+  "slug": "reforge-stone",
+  "title": "Reforge Stone",
+  "description": "Add data-driven reforge stone system",
+  "body": "# Reforge Stone\n\nThis is a mod to add reforge stones, which can combine with other items and improve values.\n\nBy default, this mod don't add any reforge stones, you need to define by yourself.\n\n## Define A Reforge Stone\n\nCreate a file in `data/<datapack id>/reforge_stone/stone_type/` folder, then write following contents:\n\n```json5\n{\n  //Translate in tooltip\n  \"translate\": \"block.minecraft.tnt\",\n  //combine with which item in anvil to obtain\n  \"ingredients\": [\n    //item or tag\n    \"minecraft:tnt\"\n  ],\n  //which item can obtain this\n  \"targets\": [\n    //item or tag\n    \"#minecraft:enchantable/sharp_weapon\"\n  ],\n  //the effects after obtain this\n  \"modifiers\": [\n    //modifiers, see below\n  ]\n}\n```\n\n### All Available Modifiers\n\n#### Attribute Modifier\n\n```json5\n{\n  \"type\": \"reforge_stone:attribute\",\n  //target attribute\n  \"attribute\": \"minecraft:generic.movement_speed\",\n  //modify value\n  \"value\": \"1\",\n  \"operation\": \"ADDITION / MULTIPLY_BASE / MULTIPLY_TOTAL\"\n}\n```\n\n#### Glint Modifier\n\n```json5\n{\n  \"type\": \"reforge_stone:glint\",\n  //color, current available: red, yellow, blue, orange, green, purple, white, pink ,aqua\n  \"color\": \"red\",\n  //(optional) always show or only enchanted\n  \"always\": true,\n}\n```\n\n#### Max Damage Modifier\n\n```json5\n{\n  \"type\": \"reforge_stone:max_damage\",\n  //durability increment\n  \"color\": \"addition\"\n}\n```\n\n#### Name Modifier\n\n```json5\n{\n  \"type\": \"reforge_stone:name\",\n  //(optional) predix of item name\n  \"prefix\": \"\",\n  //(optional) suffix of item name\n  \"suffix\": \"\",\n  //(optional) color of item name in 0xAARRGGBB format\n  \"color\": -1\n}\n```\n\n## Additional Function\n\nThere are 2 keys to control glint rendering.\n\n- `reforge_stone:glint`: Control the color. Available colors:\n  [GlintManager.java](https://github.com/CodeOfArdonia/ReforgeStone/blob/master/common/src/main/java/com/iafenvoy/reforgestone/render/GlintManager.java)\n- `reforge_stone:glint_always`: Whether it should always render glint\n\nFor example,a diamond sword with red glint:\n`/give @s diamond_sword{\"reforge_stone:glint\":\"red\",\"reforge_stone:glint_always\":true}`\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2013,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

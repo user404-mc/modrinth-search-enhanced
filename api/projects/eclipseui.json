@@ -1,0 +1,31 @@
+{
+  "id": "99cGtHRy",
+  "slug": "eclipseui",
+  "title": "EclipseUI",
+  "description": "A modern config and config UI lib.",
+  "body": "# EclipseUI\n\nA lightweight, themeable config screen library for Minecraft mods.\n\n## Features\n\n- **Fabric & NeoForge** support.\n- **Two themes**: Faithful (vanilla style) & Modern (flat design)\n- **Rich widgets**: toggles, sliders, dropdowns, color pickers, text fields\n- **ModMenu** integration out of the box\n\n## Installation\n\n### For Mod Developers\n\nAdd EclipseUI to your mod by following the [Usage Guide](USAGE.md).\n\n**Quick dependency setup:**\n\n```kotlin\nrepositories {\n    maven(\"https://jitpack.io\")\n}\n\ndependencies {\n    // Fabric\n    modImplementation(\"com.github.coredex-source.EclipseUI:EclipseUI-fabric:v1.0.2\")\n    \n    // NeoForge\n    implementation(\"com.github.coredex-source.EclipseUI:EclipseUI-neoforge:v1.0.2\")\n}\n```\n\nSee the full [Usage Guide](USAGE.md) for complete setup instructions and examples.\n\n## Quick Start\n\n```java\nEclipseUI.configScreen()\n    .title(Component.literal(\"My Mod Config\"))\n    .parent(parent)\n    .theme(Theme.MODERN)\n    .category(cat -> cat\n        .name(Component.literal(\"General\"))\n        .toggle(t -> t\n            .name(Component.literal(\"Enable Feature\"))\n            .binding(() -> config.enabled, v -> config.enabled = v)\n            .defaultValue(true)\n        )\n        .slider(s -> s\n            .name(Component.literal(\"Range\"))\n            .range(0, 100, 1)\n            .bindingInt(() -> config.range, v -> config.range = v)\n            .defaultValue(50)\n        )\n    )\n    .build();\n```\n\n## Documentation\n\n- [Usage Guide](USAGE.md) - Complete guide on integrating EclipseUI into your mod\n- [GitHub Issues](https://github.com/coredex-source/EclipseUI/issues) - Report bugs or request features\n\n## License\n\nMIT License\n",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 4973,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.2-snapshot-1",
+    "26.1.2",
+    "26.2-snapshot-2",
+    "26.2-snapshot-3",
+    "26.2-snapshot-4",
+    "26.2-snapshot-5",
+    "26.2-pre-4",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

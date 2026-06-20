@@ -1,0 +1,32 @@
+{
+  "id": "RxHteTtW",
+  "slug": "oraxen-ore-drops",
+  "title": "Oraxen Ore Drops",
+  "description": "Add Oraxen item drops to any type of block with drop chances",
+  "body": "# OraxenOreDrops\n\n[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)\n[![Minecraft](https://img.shields.io/badge/minecraft-1.21+-green.svg)](https://www.minecraft.net/)\n[![Paper](https://img.shields.io/badge/paper-required-red.svg)](https://papermc.io/)\n\nAdvanced custom ore drops plugin for Minecraft servers using [Oraxen](https://www.spigotmc.org/resources/oraxen.72448/). Features intelligent Fortune/Looting scaling with three different drop mechanics to ensure balanced gameplay.\n\n## ✨ Features\n\n- 🎯 **Custom Block Drops** - Configure any block to drop custom Oraxen items\n- 📊 **Smart Fortune Scaling** - Three different methods to balance rare drops\n- 🔧 **VeinMiner Support** - Automatic detection and reduced drops during VeinMiner usage\n- 💎 **AdvancedEnchantments Integration** - Support for custom Fortune/Looting enchantments\n- 🚫 **Silk Touch Prevention** - No custom drops when using Silk Touch\n- ⚡ **Performance Optimized** - Async cleanup tasks and efficient caching\n- 🐛 **Debug Mode** - Detailed logging for testing drop rates\n\n## 📋 Requirements\n\n- **Server**: Paper/Purpur/Pufferfish 1.21+\n- **Dependencies**:\n    - [Oraxen](https://www.spigotmc.org/resources/oraxen.72448/) (required)\n    - [AdvancedEnchantments](https://www.spigotmc.org/resources/advancedenchantments.43058/) (optional)\n- **Java**: 21+\n\n## 📥 Installation\n\n1. Download the latest release from [Modrinth](https://modrinth.com/)\n2. Place the JAR file in your `plugins/` folder\n3. Install Oraxen if not already installed\n4. Restart your server\n5. Configure drops in `plugins/OraxenOreDrops/config.yml`\n\n## ⚙️ Configuration\n\n### Basic Example\n\n```yaml\ndebug-mode: false\n\ndrop-mechanics:\n  method: HYBRID  # DIMINISHING, BONUS_ROLLS, or HYBRID\n\nblock-drops:\n  DIAMOND_ORE:\n    drop1:\n      oraxen-item: \"diamond_shard\"\n      chance: 25.0        # 25% base chance\n      min-amount: 1\n      max-amount: 3\n    drop2:\n      oraxen-item: \"rare_gem\"\n      chance: 0.5         # 0.5% rare drop\n      min-amount: 1\n      max-amount: 1\n```\n\n### Drop Mechanics Methods\n\n#### HYBRID (Recommended)\nBalances both chance increase and bonus rolls based on rarity:\n- **Common drops (>50%)**: Mainly chance increase\n- **Rare drops (<1%)**: Mainly bonus rolls\n- Best overall balance for mixed drop tables\n\n#### DIMINISHING\nUses logarithmic scaling for rare items:\n- Fortune I on 0.1% drop: ~0.13% (+0.03%)\n- Fortune III on 0.1% drop: ~0.117% (+0.017%)\n- Best for ultra-rare drops that should stay rare\n\n#### BONUS_ROLLS\nAdditional drop attempts instead of increasing chance:\n- Fortune I on 0.1% drop: 2 rolls = ~0.2%\n- Fortune III on 0.1% drop: 4 rolls = ~0.4%\n- Most predictable and balanced\n\n### Drop Chance Guidelines\n\n| Rarity | Chance Range | Description | Fortune Bonus |\n|--------|-------------|-------------|---------------|\n| Common | 50-100% | Frequent drops | Full (+1% per level) |\n| Uncommon | 10-50% | Regular drops | Reduced (+0.5% per level) |\n| Rare | 1-10% | Occasional drops | Logarithmic |\n| Very Rare | 0.1-1% | Seldom drops | Square root |\n| Legendary | <0.1% | Extremely rare | Minimal |\n\n## 🎮 Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/oraxenoredrops reload` | `oraxenoredrops.reload` | Reload configuration |\n| `/oraxenoredrops debug <on\\|off>` | `oraxenoredrops.debug` | Toggle debug mode |\n| `/oraxenoredrops info` | `oraxenoredrops.info` | Show plugin info |\n\n## 🔧 Permissions\n\n| Permission | Default | Description |\n|-----------|---------|-------------|\n| `oraxenoredrops.use` | op | Use plugin commands |\n| `oraxenoredrops.reload` | op | Reload config |\n| `oraxenoredrops.debug` | op | Toggle debug mode |\n| `oraxenoredrops.info` | true | View plugin info |\n\n## 🎯 Features in Detail\n\n### VeinMiner Detection\nAutomatically detects VeinMiner usage and reduces Fortune level by 5 to prevent excessive drops. Only processes every 5th block in a vein mine session.\n\n### AdvancedEnchantments Support\nSeamlessly integrates with AdvancedEnchantments custom enchantments:\n- Custom Fortune/Luck enchantments\n- Custom Looting enchantments\n- Custom Silk Touch enchantments\n\n### Smart Fortune Scaling\nDrop chances scale intelligently based on rarity:\n- Common items get full Fortune bonus\n- Rare items get reduced Fortune bonus\n- Ultra-rare items stay rare even with Fortune X\n\n### Example Calculations\n\n**Common Drop (50% chance)**\n- Fortune 0: 50%\n- Fortune III: 53%\n- Fortune X: 60%\n\n**Rare Drop (1% chance)**\n- Fortune 0: 1%\n- Fortune III: 1.12%\n- Fortune X: 1.35%\n\n**Ultra-Rare Drop (0.1% chance)**\n- Fortune 0: 0.1%\n- Fortune III: 0.117%\n- Fortune X: 0.133%\n\n## 🏗️ Building from Source\n\n```bash\ngit clone https://github.com/yourusername/OraxenOreDrops.git\ncd OraxenOreDrops\nmvn clean package\n```\n\nThe compiled JAR will be in `target/OraxenOreDrops-1.0.jar`\n\n## 🐛 Bug Reports & Feature Requests\n\nPlease use the [GitHub Issues](https://github.com/yourusername/OraxenOreDrops/issues) page to report bugs or request features.\n\n## 📜 License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n\n## 🤝 Contributing\n\nContributions are welcome! Please feel free to submit a Pull Request.\n\n1. Fork the repository\n2. Create your feature branch (`git checkout -b feature/AmazingFeature`)\n3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)\n4. Push to the branch (`git push origin feature/AmazingFeature`)\n5. Open a Pull Request\n\n## 💖 Credits\n\n- **Oraxen** by [Th0rgal](https://github.com/Th0rgal)\n- **AdvancedEnchantments** by [N1KN](https://www.spigotmc.org/resources/advancedenchantments.43058/)\n\n---\n\nMade with ❤️ for the Minecraft community",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 205,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

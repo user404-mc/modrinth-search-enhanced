@@ -1,0 +1,32 @@
+{
+  "id": "KCR6bnbY",
+  "slug": "free-camera-api",
+  "title": "Free camera API",
+  "description": "Free camera mode and modify camera state flexible",
+  "body": "# Free camera API V5\n![Logo](https://cdn.modrinth.com/data/KCR6bnbY/images/41d032a0a6bcfcf92ae30d7c2fa8d68f92ad752c.png)\n## Free camera mode\nSince version 3.2.0, the mod has included a built-in free camera feature, as many players were attracted by the mod's name only to discover that such functionality was not actually present.\n\nBy default, this feature is **_not bound_** to a key mapping and requires manual setup. Block collision detection is **_enabled by default_** and can be disabled via the configuration interface. If the mod is not installed on the server, it will be **_force-enabled_**; otherwise, it will follow the server's settings.\n## What are the advantages?\n- Decouples from camera internals, reducing complexity.\n- Simple and flexible usage.\n- Supports loading chunks beyond the player's view range (with expansion).​\n## How to Register and Use the Plugin\n\n1. Create the plugin class\n    ```\n    @Plugin(value = \"example\", priority = ModifierPriority.LOWEST)\n    public class ExamplePlugin implements CameraPlugin {\n        // ...\n    }\n    ```\n   value: Plugin unique identifier (string)  \n   priority: Priority setting (ModifierPriority.HIGH/LOWEST etc.)\n\n2. Initialization\n    ```\n    public ExamplePlugin(CameraModifier modifier) {\n        modifier.disable()\n                .enablePos()\n                .enableFov()\n                .enableGlobalMode();\n    }\n    ```\n\n3. Update camera data every frame\n    ```\n    modifier\n                .enablePos() // Enable position modification\n                .enableRotation() // Enable rotation modification\n                .enableFov() // Enable FOV modification\n                .setPos(1, 2, 3) // Set camera position to (1,2,3), default is local coordinates centered on player\n                .addPos(1, 2, 3)\n                .setRotationYXZ(90f, 15f, 25f) // Set camera rotation to (90f, 15f, 25f)\n                .move(0, 0, -5) // Move camera based on current rotation\n                .enableGlobalMode() // Enable global mode, all coordinates and rotations will be modified according to world coordinates\n                .enableChunkLoader() // Enable chunk loader, load chunks around the camera. An additional Free Camera API Addition mod needs to be installed to enable this feature, otherwise it will have no effect\n                .enableObstacle() // Enable collision detection\n    ```\n## Gallery\n![Dolly zoom](https://cdn.modrinth.com/data/KCR6bnbY/images/0fd9ede2dfc1818fbb4638bbbf3bd6a0598df4bd.gif)\n![Roll](https://cdn.modrinth.com/data/KCR6bnbY/images/ee51dcdae13dc4714e8f6f1faa7a5e127b2abba1.gif)\n",
+  "categories": [
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 29448,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

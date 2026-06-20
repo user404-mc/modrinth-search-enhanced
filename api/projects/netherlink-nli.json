@@ -1,0 +1,26 @@
+{
+  "id": "hi5xan9q",
+  "slug": "netherlink-nli",
+  "title": "NetherLink(NLI)",
+  "description": "Minecraft Java Edition mod for friend list and P2P server presence integration",
+  "body": "# NetherLink\n\nMinecraft 26.2-snapshot-7 introduced P2P networking and friend-list support. This project aims to enhance this feature.\n\n## Client Features\n\n- (For Minecraft 26.1.2 or older) This mod just adds full official P2P feature :)\n- Add an Integrated Server sharing mode for single-player worlds.\n- Stop Minecraft from broadcasting presence status except \"In a joinable world\" to avoid conflicts with server features.\n\n## Server Features\n\n- Link a dedicated server with a Microsoft/Minecraft account.\n- Publish dedicated server availability to the owner's Minecraft friend list.\n\n## How to use\n\n### Client\n\n1. Install NetherLink on the client.\n2. Launch the game and open a single-player world.\n3. Open the multiplayer sharing screen.\n4. Select **Integrated Server** as the sharing mode.\n\nWhen this mode is active, friends in your Minecraft friend list can join the\nworld without a manual approval prompt. The world is still hosted by the\nintegrated server in your client, so it closes when you leave the world or stop\nsharing it.\n\nNetherLink also suppresses normal client presence updates for accounts that are\nconfigured as hosted server accounts. This keeps the hosted server presence from\nbeing overwritten by the same account playing on a client.\n\n### Server\n\n1. Install NetherLink on the server.\n2. [Optional] If you want to use your own `APP ID` used for authentication, set it with environment variable\n   `NETHERLINK_CLIENT_ID`.\n3. Start the server and run:\n\n   ```mcfunction\n   /nli add\n   ```\n\n4. Open the login URL shown in chat or the server console, complete Microsoft\n   authentication, and wait for NetherLink to store the Minecraft account.\n5. Check configured accounts:\n\n   ```mcfunction\n   /nli list\n   ```\n\n6. Publish the server to the account owner's Minecraft friend list:\n\n   ```mcfunction\n   /nli publish\n   ```\n\nAfter publishing, friends of the linked account should see it as a joinable\nhosted world. Incoming P2P join requests are accepted by NetherLink and routed\ninto the running server.\n\n### Server Commands\n\n- `/nli add` or `/netherlink add`: add a Microsoft/Minecraft account through\n  device-code login.\n- `/nli list`: show configured accounts and token status.\n- `/nli refresh [all|<name>]`: refresh stored account tokens.\n- `/nli publish [all|<name>]`: publish server presence and start accepting P2P\n  joins.\n- `/nli revoke [all|<name>]`: revoke server presence and stop accepting P2P\n  joins for the account.\n- `/nli toggle <name>`: enable or disable an account.\n- `/nli remove <name>`: remove a stored account.\n\nAccount data is stored under `netherlink/accounts`. Treat these files as\ncredentials; do not share them publicly.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 203,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

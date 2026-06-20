@@ -1,0 +1,22 @@
+{
+  "id": "LNn9Bbwq",
+  "slug": "s3-backup-mod",
+  "title": "S3 Backup Mod",
+  "description": "Server-only Fabric mod for Minecraft 1.21.8 that automatically zips your world and uploads it to Amazon S3 on a schedule.",
+  "body": "# S3 Backup Mod (Fabric • Server-Only)\n\n![Green Minecraft Bucket](https://cdn.modrinth.com/data/cached_images/1ef5ba6809f320f0dd9adc8857a28bb8b813ae28.png)\n\nBack up your Minecraft server world to Amazon S3 on a schedule — with an in-game setup wizard, a manual `/backupnow` command, and automatic pruning to **keep only the newest N backups**.\n\n> ⚠️ **Pricing & Liability**  \n> By downloading, installing, or using this mod, **you accept that the author is not liable for any AWS/S3 charges** (storage, requests, data transfer, etc.).  \n> **Set your retention!** Configure `keepLastNS3` to avoid unlimited growth and surprise bills.\n\n---\n\n## Requirements\n\n- **Minecraft:** Java Edition server **1.21.8**  \n- **Fabric Loader** and **Fabric API (required)**  \n- **Java 21**  \n- **AWS account** with access to an S3 bucket (see **IAM Permissions** at the bottom)\n\n---\n\n## Features\n\n- **Automatic scheduled backups** (default every 10 minutes)\n- **Manual backups** via `/backupnow`\n- **In-game setup wizard** to configure region, bucket, prefix, credentials, and retention\n- **Retention control**: keep only the latest **N** backups in S3 (default **5**)\n- **Non-blocking**: save occurs on the main thread; zipping & upload run on a background thread\n- **Server-only**: no client entrypoint or client mixins\n\n---\n\n## Configuration\n\nA non-secret config file is generated at:\n\n```\n  config/s3-backup-mod.json\n```\n```json\n  {\n    \"backupIntervalMinutes\": 30,\n    \"s3Bucket\": \"YOUR_BUCKET\",\n    \"s3Prefix\": \"YOUR_PREFIX\",\n    \"awsRegion\": \"us-east-1\",\n    \"zipBaseName\": \"world-backup\",\n    \"excludeGlobs\": [\"logs/**\", \"crash-reports/**\", \"backups/**\", \"*.log\", \"**/session.lock\"],\n    \"keepLastNS3\": 5,\n    \"keepLatestLocal\": false,\n    \"deleteLocalAfterUpload\": true,\n    \"multipartThresholdMB\": 64,\n    \"multipartPartSizeMB\": 256,\n    \"multipartParallelism\": 4\n  }\n```\n\n## Usage\n\nIn-game commands to run with admin permissions:\n\n```\n/s3setup set name YOUR_WORLD_NAME //Optional\n/s3setup set interval 30          //Default is 30 minutes\n/s3setup set bucket YOUR_BUCKET\n/s3setup set prefix YOUR_PREFIX\n/s3setup set region us-east-1\n/s3setup set multipartThresholdMB 64\n/s3setup set multipartPartSizeMB 512\n/s3setup set multipartParallelism 4\n/s3setup set keep 5\n```\nExtra commands:\n\n```\n/backupnow - Backs up the world to S3 when ran\n/s3setup show - Shows configuration for mod in-game\n```\n\n## IAM Permissions\nEnsure your credentials/role can write to the bucket and manage objects for pruning:\n\n```json\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"ListOnlyWithinPrefix\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\"s3:ListBucket\"],\n      \"Resource\": \"arn:aws:s3:::YOUR_BUCKET\",\n      \"Condition\": {\n        \"StringLike\": { \"s3:prefix\": [\"YOUR_PREFIX/*\"] }\n      }\n    },\n    {\n      \"Sid\": \"WriteReadMPUForBackups\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:PutObject\",\n        \"s3:DeleteObject\",\n        \"s3:CreateMultipartUpload\",\n        \"s3:UploadPart\",\n        \"s3:CompleteMultipartUpload\",\n        \"s3:AbortMultipartUpload\"\n      ],\n      \"Resource\": \"arn:aws:s3:::YOUR_BUCKET/YOUR_PREFIX/*\"\n    }\n  ]\n}\n\n\n```",
+  "categories": [
+    "fabric",
+    "management",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 140,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

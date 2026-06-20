@@ -1,0 +1,31 @@
+{
+  "id": "PLvyplaR",
+  "slug": "player-weight",
+  "title": "Player Weight",
+  "description": "Have you ever felt that being able to hold entire cubic meters of material in your inventory was just a smidge too unrealistic?",
+  "body": "# Player Weight\nPlayer Weight is a Minecraft fabric mod that adds weight values to all items, along with configurable penalties for breaching weight thresholds.\n\nPlayer Weight is required on the server, and optionally the client.\n\n## Configuration\nPlayer Weight is config-driven; you can change all (reasonable) aspects of the mod using the config.\nFor example, you could make every item with 'dirt' in its name completely weightless, by adding an entry to the config.\nThe config has support for ModMenu, allowing in-game modification as well as being more user-friendly.\nBy default, the config adjusts the weight of some obvious items to a predetermined value to save you time setting the mod up, however you are free to remove the preset values if you like.\n\nBelow is the config entry that prevents air from adding weight to the user's inventory.\n\n```json\n{\n  \"text\": \"Air\",\n  \"modifier\": 0.0,\n  \"type\": \"PLAIN\"\n}\n```\n\nNote: setting the `weightModifiersAreMultiplicative` true/false value in the config to false will **not** prevent this entry, specifically, from having its weight set to zero.\n\nIn each config entry, there are three fields:\n- `text`: This is the text that the mod will use to determine if a given item should have its weight modified\n- `modifier`: By default, this value will multiply an item's weight by this amount. However, should `weightModifiersAreMultiplicative` be false, this will add to the item's weight instead\n- `type`: This specifies how the mod should use the `text` field in checking if an item is valid for the modifier. It has four possible values: `PLAIN`, where the mod will simply check if `text` is contained within the item's ID, `REGEX`, where the mod will compile `text` as a regular expression and check if the item's ID matches, `ITEM`, where the mod will check if the item's ID matches text exactly, and finally, `TAG`, where it will check if an item is contained within a given tag.\n\nFor example, if I wanted only `another_mod:sludgeball` to have 1/10th of the weight it normally would, I would create an entry like this:\n```json\n{\n  \"text\": \"another_mod:sludgeball\",\n  \"modifier\": 0.1,\n  \"type\": \"ITEM\"\n}\n```\n\n`weightPunishments` is another list of entries inside the config file.\nA punishment entry looks something like this:\n```json\n{\n  \"type\": \"SPEED\",\n  \"value\": 0.9,\n  \"begin\": 0.8,\n  \"scaleWithWeight\": true\n}\n```\nThis entry sets a player's speed to 90% of their original speed when their weight exceeds 80% of their maximum. The `scaleWithWeight` true/false value makes the effect become more and more pronounced the more weight the player tacks on.",
+  "categories": [
+    "adventure",
+    "cursed",
+    "fabric",
+    "game-mechanics",
+    "quilt",
+    "transportation"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 2325,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

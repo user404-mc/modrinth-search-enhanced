@@ -1,0 +1,26 @@
+{
+  "id": "PkhtCPsD",
+  "slug": "hexoverpowered",
+  "title": "HexOverpowered",
+  "description": "as the name reveals, this mod contains some OP stuff for Hex Casting",
+  "body": "# Hex Overpowered\n\n[![Curseforge](https://badges.moddingx.org/curseforge/versions/1173074) ![CurseForge](https://badges.moddingx.org/curseforge/downloads/1173074)](https://www.curseforge.com/minecraft/mc-mods/hexoverpowered)  \n[![Modrinth](https://badges.moddingx.org/modrinth/versions/PkhtCPsD) ![Modrinth](https://badges.moddingx.org/modrinth/downloads/PkhtCPsD)](https://modrinth.com/mod/hexoverpowered)\n\nas the name reveals, this mod contains some OP stuff for Hex Casting\n\n[<img src=\"https://github.com/SamsTheNerd/HexGloop/blob/73ea39b3becd/externalassets/hexdoc-badgecozy.svg?raw=true\" alt=\"A badge for hexdoc in the style of Devins Badges\" width=180>](https://yukkuric.github.io/HexOverpowered)\n[<img src=\"https://github.com/SamsTheNerd/HexGloop/blob/73ea39b3becd/externalassets/addon-badge-cozy.svg?raw=true\" alt=\"A badge for addons.hexxy.media in the style of Devins Badges\" width=160>](https://addons.hexxy.media)\n\n### WARNING: All features enabled by default, turn off those unwanted before playing, or create feature request issues [HERE](https://github.com/YukkuriC/HexOverpowered/issues) if not configurable\n\n## General\n\n_note: all features that currently can't be turned off are marked with `☆`_  \n_note 2: features which are controlled by `hexoverpowered-mixin.ini` rather than `hexoverpowered-common.toml` are marked with `△`, editing which requires a full restart for changes to apply_\n\n- displays spell inside casting items (ItemPackagedHex)\n- disables item dropping of certain mishaps\n- re-enable TP for various limited entities\n- Player entity iota (true name) keeps valid even if the player not inside current dimension\n- a set of spells manipulating player's staff environment (mind stack)\n    - pushing/poping iota between current context and mind stack\n    - getting the size of mind stack\n    - getting all patterns drawn inside the staff canvas\n- extra player mana(media) bar\n    - `☆` has max priority\n    - `☆` a pair of patterns to query player's current/max personal media amount\n    - configurable max value & regeneration\n    - attribute driven, can be adjusted by modifiers, commands, etc.\n    - active after player is enlightened, or any time, depends on config\n    - fake players don't regenerate media by default; can be turned on\n    - triggers events when consuming/regenerating personal media pool\n        - event handlers inside class `io.yukkuric.hexop.personal_mana.PersonalManaEvents`\n        - also registered as global access `PersonalManaEvents` & `PersonalMediaEvents` inside startup & server script scopes if `KubeJS` installed\n        - a simple example using these events in `KubeJS`: [HERE](https://github.com/YukkuriC/hex_playground/blob/main/server_scripts/HexOP_TrainingPersonalMedia.js)\n- (1.20 exclusive) amethyst budding crystal growth accelerator circle\n    - configurable cost, required base media & max accelerate power\n\n---\n\n- OP spells:\n    - schedule code to be called in certain ticks later\n\n- OP great spells:\n    - `YJSP's Charge Media`: recharges casting item / circle / wisp / personal media pool to 114514 dust\n        - (id: `hexoverpowered:yjsp_media`, could be set forbidden in base Hex's config)\n    - `Factor Cut`: a pattern to factorize enemy's health as integer with input number, with higher efficiency using prime factors\n        - Usage 1: `living -> int` reads a living entity's health as an integer to be factorized and divided\n            - with no cost `:3`\n            - health values too high will be limited to `2147483647`\n        - Usage 2: `living, int -> int` divides it's health with given factor and returns the divided result, with various edge cases\n            - specially destroys target with `<= 1` health for free\n            - if input 1, attack 1 like a brainsweep mishap with cost without program flow break\n            - prime divisor has constant cost while non-prime has linear scaled cost\n        - Also works on targets with registered in [`EntityHealthAccessors`](https://github.com/YukkuriC/HexOverpowered/blob/main/common/src/main/java/io/yukkuric/hexop/helpers/attack/EntityHealthAccessors.kt), with an example implementation of boats/minecarts\n\n---\n\n- Hexcellular interop\n    - executable PropertyIota\n- Hexal interop\n    - item handler for mote nexus\n        - supports interaction with hoppers, AE/RS, etc.\n        - `△` optional GUI to display (first 6x9) mote entries\n- HexParse interop\n    - makes artifacts read/writeable via HexParse methods\n\n## Forge Exclusive\n\n- Mekanism interop\n    - use MekaSuit's battery as media provider\n",
+  "categories": [
+    "cursed",
+    "fabric",
+    "forge",
+    "magic",
+    "neoforge",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 9608,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

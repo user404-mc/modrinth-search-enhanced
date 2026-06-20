@@ -1,0 +1,30 @@
+{
+  "id": "Ouottd0o",
+  "slug": "piglintrades",
+  "title": "Piglintrades",
+  "description": "Spawn special Piglins or optionally regular ones that trade on your rules. Offer items to trigger configurable, weighted reward pools that drop loot or run console commands; Piglins admire items in their off-hand, and you get an in-game admin GUI plus a si",
+  "body": "# PiglinTrades\n\nA lightweight Spigot/Paper 1.21+ plugin that lets both **special Piglins** and (optionally) **regular Piglins** trade via fully configurable, weighted reward pools. Players “offer” an item, the Piglin admires it for a short cooldown (shows it in **off-hand** so weapons aren’t lost), then drops a reward based on your config. Supports item rewards (incl. potions & enchanted books) and console **command** rewards — with optional PlaceholderAPI placeholders.\n\n---\n\n## Highlights\n- **Special Piglins**: Invulnerable, don’t despawn, show the offered item while “thinking,” then pay out.\n- **Regular Piglins (toggle)**: Keep **vanilla bartering** or switch them to **PiglinTrades** via config.\n- **Off-hand admire**: Offered item appears in off-hand so Piglins keep their main-hand weapon.\n- **Item-keyed pools**: Each pool is keyed by the **MATERIAL** the player offers (e.g., `GOLD_INGOT`).\n- **Weighted rewards**: Per-entry `weight` controls odds; amounts can be fixed or ranges.\n- **Reward types**:\n  - **Item** (supports enchants; potions via base `PotionType`; tipped arrows)\n  - **Enchanted books** (stored enchants)\n  - **Command** (runs from console; supports `{player}` and PlaceholderAPI)\n- **Admin GUI & tools**: Add/edit pools and rewards in-game; simulator to test odds.\n\n---\n\n## Requirements\n- **Server**: Spigot/Paper **1.21+**\n- **Java**: 21+\n- **Optional**: PlaceholderAPI (for placeholders in command rewards)\n\n---\n\n## Installation\n1. Drop `PiglinTrades.jar` into `/plugins`.\n2. (Optional) Install **PlaceholderAPI** if you want placeholders in command rewards.\n3. Restart to generate `config.yml` and `rewards.yml`.\n4. Customize settings, then run `/pt reload`.\n\n---\n\n## Quick Start\n1. `/pt spawn` to place a **Special Piglin**.\n2. In `rewards.yml`, create a pool keyed by the item players will offer (e.g., `GOLD_INGOT`).\n3. Offer the item by **right-clicking** the Piglin or **dropping** it near them (consumes 1).\n4. After the **cooldown**, a reward from the matching pool appears.\n\n> Want **regular Piglins** to use the plugin too? See the config toggle below.\n\n---\n\n## Configuration\n\n### `config.yml`\n- **`cooldown-seconds`** — Seconds a Piglin “admires” the item before payout (default: `3`).\n- **`allow-vanilla-piglin-barter`** — If `true`, **regular** Piglins keep vanilla bartering. Special Piglins always use PiglinTrades.\n- **`regular-piglins-use-plugin-trades`** — If `true`, **regular** Piglins also trade via PiglinTrades.\n\nThese two booleans are **mutually exclusive**. If both are `true`, the plugin logs a **warning** and **disables vanilla bartering**, making regular Piglins use PiglinTrades.\n\nExample:\n~~~yaml\ncooldown-seconds: 3\nallow-vanilla-piglin-barter: false\nregular-piglins-use-plugin-trades: false\n~~~\n\n### `rewards.yml` (concept)\n- **Pools** are keyed by **MATERIAL names** (e.g., `GOLD_INGOT`).\n- Each pool has entries with:\n  - `type`: `item` | `enchanted_book` | `command`\n  - `weight`: higher = more likely\n  - For **items**: `material`, `amount` (number or `min-max`), optional `enchants`, optional `potion`\n  - For **enchanted books**: `stored_enchants`, `amount`\n  - For **commands**: `command` (console), supports `{player}` and PlaceholderAPI\n\n> Tip: `/pt simulate <POOL_KEY> <COUNT>` to preview outcome distribution.\n\n---\n\n## Commands & Permissions\n- **Base**: `/piglintrades` (alias `/pt`)\n- **Perm**: `piglintrades.admin` (default: OP)\n\nSubcommands:\n- `/pt spawn` — Spawn a Special Piglin.\n- `/pt reload` — Reload configs.\n- `/pt simulate <POOL_KEY> <COUNT>` — Test weighted outcomes.\n- `/pt kill <all|nearest>` — Remove Special Piglins.\n- `/pt gui` — Open the admin GUI.\n\n---\n\n## How players use it\n- **Special Piglins**: Right-click or drop a configured item; wait the cooldown; collect reward.\n- **Regular Piglins**:\n  - If `allow-vanilla-piglin-barter: true` → they behave **vanilla**.\n  - If `regular-piglins-use-plugin-trades: true` → they use the **same** PiglinTrades flow as specials.\n\n---\n\n## Notes\n- Offered items show in the Piglin’s **off-hand** while admiring (main-hand gear stays intact).\n- If a pool has no valid entries or only non-positive weights, it won’t select a reward.\n- Validate MATERIAL names and enchant keys against Spigot enums.\n\n---\n\n## Troubleshooting\n- **Regular Piglin still barters vanilla** → Set `allow-vanilla-piglin-barter: false` and `regular-piglins-use-plugin-trades: true`, then `/pt reload`. Check console for the mutual-exclusivity warning if both were `true`.\n- **“Unknown pool”** in `/pt simulate` → Verify the exact MATERIAL key.\n- **No rewards dropping** → Check entry `type`, weights, and fields.\n- **Placeholders not applied** → Install PlaceholderAPI and required expansions.\n",
+  "categories": [
+    "game-mechanics",
+    "mobs",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 123,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

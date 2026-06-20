@@ -1,0 +1,18 @@
+{
+  "id": "2T1pRWkr",
+  "slug": "dodge-cruel-death",
+  "title": "Dodge Cruel Death",
+  "description": "Extend live of items dropped on death",
+  "body": "This code is written in Java and is a mixin for modifying the behavior of Minecraft, a popular sandbox game. The mixin is specifically designed to modify the `dropItem` method in a Minecraft class, changing how items are handled when an entity drops them. Let's break it down step by step:\n\n### Annotations\n\n- `@Inject(method = \"dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;\", at = @At(\"RETURN\"))`: This annotation specifies that the mixin should inject code into the `dropItem` method. The `method` parameter specifies the signature of the method, including its name (`dropItem`), its parameters (`Lnet/minecraft/item/ItemStack;ZZ`), and its return type (`Lnet/minecraft/entity/ItemEntity`). The `at` parameter specifies where in the method to inject the code. In this case, it's injected at the `RETURN` point, meaning right before the method returns.\n\n### Method Signature\n\n```java\nprotected void onDropItem(final ItemStack stack, final boolean throwRandomly, final boolean retainOwnership, final CallbackInfoReturnable<ItemEntity> cir)\n```\n\n- `protected void onDropItem`: This is the method being injected into the original `dropItem` method. It has the `protected` access modifier and returns `void`.\n- `final ItemStack stack`: The first parameter, `stack`, represents the item stack being dropped.\n- `final boolean throwRandomly`: The second parameter indicates whether the item should be thrown randomly.\n- `final boolean retainOwnership`: The third parameter indicates whether the entity should retain ownership of the item.\n- `final CallbackInfoReturnable<ItemEntity> cir`: This is a special parameter provided by mixin to get information about the method call, including its return value.\n\n### Method Body\n\n1. **Check if the entity is alive:**\n\n   ```java\n   if (this.isAlive()) return;\n   ```\n\n   If the entity that dropped the item is still alive, the method returns immediately and does nothing. This ensures that the rest of the code only executes if the entity is not alive.\n\n2. **Get the dropped item entity:**\n\n   ```java\n   final var entity = (ItemEntityAccessor) cir.getReturnValue();\n   if (entity == null) return;\n   ```\n\n   The code retrieves the returned `ItemEntity` object from the original `dropItem` method using `cir.getReturnValue()`. If the returned entity is `null`, the method returns immediately and does nothing.\n\n3. **Set the item age:**\n\n   ```java\n   entity.setItemAge(Short.MIN_VALUE + 1);\n   ```\n\n   If the entity is valid, its age is set to `Short.MIN_VALUE + 1`. In Minecraft, setting an item's age to `Short.MIN_VALUE` causes it to live indefinitely. By adding 1, it avoids the exact `MIN_VALUE` but still sets a very low age, effectively making the item last a very long time.\n\n### Summary\n\nThis mixin modifies the behavior of the `dropItem` method in Minecraft so that when an entity drops an item and the entity is not alive, the dropped item's age is set to a very low value, making the item live almost indefinitely. This is done by injecting code at the point where the original method returns, ensuring the modification happens only after the item has been successfully created and returned.",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 153,
+  "followers": 0,
+  "game_versions": [
+    "1.21"
+  ],
+  "date_updated": null
+}

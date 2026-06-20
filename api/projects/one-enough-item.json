@@ -1,0 +1,38 @@
+{
+  "id": "7pCNymxz",
+  "slug": "one-enough-item",
+  "title": "One Enough Item",
+  "description": "With OEI, you can effortlessly replace duplicate items with a single designated representative item.",
+  "body": "# OneEnoughItem (OEI)\n\nThis mod was developed to resolve the issue of duplicated item dictionaries in modpacks – three types of silver, four types of lead, five types of tomatoes, six types of corn – each with distinct recipes.\n\nWith OEI, you can effortlessly replace duplicate items with unique designated representatives.\n\n### Typical Cases\n\n![e7b458ea](https://resource-api.xyeidc.com/client/pics/e7b458ea)  \n**17 types of tomatoes in a modpack**\n\n![304e2a74](https://resource-api.xyeidc.com/client/pics/304e2a74)  \n**Six types of silver ore in a modpack**\n\nAll with independent recipes!  \n\nThose days are now over. With OEI, items are replaced with their designated representatives immediately upon creation!\n\n### Usage\n\nOEI is datapack-driven and supports hot reloading. Configure replacements at `data/oei/replacements` using this simple syntax:\n\n```JSON\n[\n    {\n        \"matchItems\": [\n            \"#forge:ore\",\n            \"minecraft:potato\",\n            \"minecraft:carrot\"\n        ],\n        \"resultItems\": \"minecraft:egg\"\n    }\n]\n```\nList item IDs to replace under `matchItems`, and specify the designated representative in `resultItems`.\n\n**Warning: Never replace an item with itself – this may cause critical bugs!**\n\n**KubeJS Integration:**\n```JavaScript\nServerEvents.highPriorityData(event => {\n    event.addJson(\"oei:replacements/raw_materials.json\", [\n        {\n            \"matchItems\": [\"#forge:raw_materials/silver\"],\n            \"resultItems\": \"thermal:raw_silver\"\n        }\n    ]);\n});\n```\n\nOEI supports tag matching. If tag-based replacements require game reloads, use raw item IDs instead (likely due to mod conflicts).\n\n**Built-in Editor (v1.0.3+):**  \nPress `CTRL+R` to open the GUI editor for codeless replacement configuration!  \nThe editor includes recipe deduplication – see [official documentation](https://doc.sighs.cc/docs/OneEnoughItem/editor).\n\n### Effects\n\nOEI replaces items at the earliest possible stage – not by scanning player inventories.  \n\n**Example:** Replacing all items with eggs instantly transforms the creative inventory:  \n![CreativeModeTabs](https://cdn.modrinth.com/data/cached_images/0fbec0ea7e25a9c8d23d1c8ed29d5b55bab356a3_0.webp)  \n\nRecipes automatically adapt. Here, iron ingots → eggs in a furnace recipe:  \n![Crafting](https://cdn.modrinth.com/data/cached_images/137eb46def4a6736229a1239cd31f01a1d9251da.png)  \n\n**All recipes are automatically processed**, including JEI displays:  \n![JEI](https://cdn.modrinth.com/data/cached_images/d9538dde6984f1852c38f78bb0d6fa205f8e462a_0.webp)  \n\nWorks with trades, advancements, and nearly all non-hardcoded recipes.\n\nAdditionally, replacing items with air will completely remove them. However, for compatibility reasons, such changes will not take effect in the Creative Mode inventory or JEI displays.\n\n### Deep Replacement\n\nEnable in config to extend replacements to item interaction contexts (e.g., healing iron golems with eggs after replacing iron ingots).  \n\nUse when standard recipe replacement fails for specific mods.  \n*Note: Only affects item detection – does not fully inherit original item functionality.*\n\n### Roadmap\n- **Properties Stripping**: Remove properties of replaced items (e.g., food properties to exclude them from Spice of Life handbooks). Configurable.\n- **Tag Inheritance**: Make representatives inherit all tags from replaced items.\n- **Tag Removal**: Completely strip tags from replaced items to eliminate them from recipes.",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 481656,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

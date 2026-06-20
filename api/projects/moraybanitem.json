@@ -1,0 +1,43 @@
+{
+  "id": "Wp4HE1Jr",
+  "slug": "moraybanitem",
+  "title": "MorayBanItem Plugin",
+  "description": "一个封禁物品的插件，提供日志查询，全服广播等功能。/ A plugin for banning items, providing features such as log queries and server-wide broadcasts.",
+  "body": "# MorayBanItem - 物品封禁与反非法插件 / Item Ban & Anti-Illegal Plugin\n\n![Java](https://img.shields.io/badge/java-17%2B-orange)\n![Bukkit](https://img.shields.io/badge/bukkit-1.20+-blue)\n![License](https://img.shields.io/badge/license-MIT-green)\n![Modrinth](https://img.shields.io/badge/modrinth-MorayBanItem-brightgreen)\n\n---\n\n## 插件介绍 / Introduction\n\n**MorayBanItem** 是一个轻量级但功能强大的 Bukkit 物品封禁插件。它允许服务器管理员灵活地封禁特定物品，支持纯材质封禁和精确 NBT 封禁，并能自动检测并处理非法物品（如 32k 附魔、数量异常等），有效维护服务器经济与平衡。\n\n**MorayBanItem** is a lightweight yet powerful Bukkit item banning plugin. It allows server administrators to flexibly ban specific items, supports pure material banning and precise NBT-based banning, and automatically detects and handles illegal items (such as 32k enchants, abnormal stack sizes, etc.), effectively maintaining server economy and balance.\n\n> **混合端友好**：针对 Youer 混合端做了特别优化，支持模组物品的封禁与补全。  \n> **Hybrid server friendly**: Specially optimized for Youer hybrid servers, supporting mod item banning and tab completion.\n\n---\n\n## 功能特性 / Features\n\n### 智能封禁系统 / Smart Ban System\n- **纯材质封禁**：封禁所有同材质的物品（如 `minecraft:tnt`）  \n  **Pure material ban**: Ban all items of the same material (e.g., `minecraft:tnt`)\n- **NBT 原型封禁**：仅封禁带有特定 NBT 数据的物品（通过 `/mbi addhand` 添加手中物品）  \n  **NBT prototype ban**: Ban only items with specific NBT data (add via `/mbi addhand`)\n- 封禁列表独立存储于 `items.yml`，与主配置分离，便于管理  \n  Ban list stored separately in `items.yml`, independent from main config\n\n### 非法物品检测 / Illegal Item Detection\n- 自动检测并处理异常物品：  \n  Automatically detects and handles abnormal items:\n  - 超高附魔等级（可自定义阈值） / Excessive enchantment levels (customizable threshold)\n  - 数量异常（超过最大堆叠或 ≤0） / Abnormal stack sizes (exceeding max stack or ≤0)\n  - 无法破坏标签 / Unbreakable tag\n- 可配置处理方式：**删除**（没收）或仅**取消事件**  \n  Configurable action: **delete** (confiscate) or just **cancel** the event\n- 检测到非法物品时，支持全局广播和日志记录  \n  Supports global broadcast and logging when illegal items are detected\n\n### 便捷管理命令 / Easy Management Commands\n- 提供完整的命令集，轻松管理封禁列表  \n  Full command set for managing ban list\n- Tab 补全智能适配服务端类型（原版 Bukkit 使用注册表，Youer 使用反射获取所有物品）  \n  Smart tab completion adapts to server type (uses registry for vanilla Bukkit, reflection for Youer to include all items)\n\n### 实时监控与日志 / Real-time Monitoring & Logging\n- 所有违规事件（非法或封禁物品）均记录到 `logs/violations.log`，包含玩家 UUID、物品 ID、数量及 NBT 提示  \n  All violations (illegal or banned items) are logged to `logs/violations.log`, including player UUID, item ID, amount, and NBT hint\n- 可自定义全局广播消息  \n  Customizable global broadcast messages\n\n### 高性能设计 / High Performance\n- 事件监听器轻量高效，仅检查必要属性  \n  Lightweight event listeners, only check necessary properties\n- 配置缓存机制，减少磁盘 I/O  \n  Config caching reduces disk I/O\n\n---\n\n## 命令列表 / Commands\n\n| 命令 / Command | 说明 / Description |\n|----------------|-------------------|\n| `/mbi help` | 显示帮助信息 / Show help information |\n| `/mbi reload` | 重载配置文件（config.yml, message.yml, items.yml） / Reload config files |\n| `/mbi info` | 显示插件信息 / Display plugin information |\n| `/mbi list` | 列出所有被封禁的物品（含材质封禁和原型封禁） / List all banned items |\n| `/mbi add <物品ID>` | 添加纯材质封禁（支持命名空间ID，如 `minecraft:tnt`） / Add a pure material ban |\n| `/mbi addhand` | 将手中物品作为 NBT 原型加入封禁列表 / Add held item as NBT prototype ban |\n| `/mbi remove <物品ID>` | 移除纯材质封禁 / Remove a pure material ban |\n| `/mbi removehand` | 移除与手中物品匹配的封禁项（含材质和原型） / Remove ban entry matching held item |\n\n---\n\n## 权限节点 / Permissions\n\n| 权限节点 / Permission | 说明 / Description | 默认 / Default |\n|-----------------------|-------------------|----------------|\n| `moraybanitem.bypass` | 绕过所有物品检查 / Bypass all item checks | op |\n| `moraybanitem.command.reload` | 重载插件配置 / Reload plugin config | op |\n| `moraybanitem.command.info` | 查看插件信息 / View plugin info | true |\n| `moraybanitem.command.help` | 查看帮助 / View help | true |\n| `moraybanitem.command.list` | 查看封禁列表 / View ban list | op |\n| `moraybanitem.command.add` | 添加材质封禁 / Add material ban | op |\n| `moraybanitem.command.addhand` | 添加手中物品 / Add held item | op |\n| `moraybanitem.command.remove` | 移除材质封禁 / Remove material ban | op |\n| `moraybanitem.command.removehand` | 移除手中物品对应的封禁 / Remove ban for held item | op |\n\n---\n\n## 配置文件 / Config Files\n\n- **config.yml**：主配置文件，包含消息、非法检测开关及广播设置  \n  Main config file, containing messages, illegal detection toggle, and broadcast settings\n- **items.yml**：独立封禁物品列表（使用命名空间ID作为键）  \n  Separate ban list file (uses namespaced keys)\n- **message.yml**：语言文件，可自定义所有提示消息  \n  Language file, all messages customizable\n\n---\n\n## 适用版本 / Supported Versions\n\n- Bukkit / Spigot / Paper 1.20+\n- 混合端：Youer（特别优化） / Hybrid server: Youer (specially optimized)\n\n---\n\n> 由 Morpe14514 开发 | 工作室QQ群：1081434103  \n> Developed by Morpe14514 | Studio QQ Group: 1081434103",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 123,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

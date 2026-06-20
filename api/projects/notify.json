@@ -1,0 +1,31 @@
+{
+  "id": "yCwUglk6",
+  "slug": "notify",
+  "title": "Notify",
+  "description": "You don't want to create mixins for each project over and over again for the same events.",
+  "body": "# 🔔Notify\n\nYou don't want to create mixins for each project over and over again for the same events you could just use in the good old paper days.\nThis is why we created this spectacular library/mod, where we just have to add the events once and can use them in every other project!\n\nFor this we use [alert](https://github.com/mooziii/alert), a blazing fast event listening utility.\nSee [alert's documentation](https://github.com/mooziii/alert#tutorial) on how to listen to events.\n\n<details>\n\n<summary>\n\n### How to use\n\n</summary>\n\nAdd the following to your mod's `build.gradle.kts` file:\n```gradle\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    // ...\n    \n    modImplementation(\"de.hglabor:notify:1.1.3\")\n}\n```\nThen put the built jar file of notify into your mods folder. You should be able to subscribe to the events like this:\n```kotlin\n// (On the server)\nsubscribeToEvent<PlayerJoinEvent> {\n    logger.info(\"Player ${it.player.name.string} joined\")\n}\n```\n\n\n</details>\n\n### Events currently implemented\nSubscribing to events on the client is not tested! (server/common events **should work on the server**)\n<details open>\n\n<summary>Common</summary>\n\n- `PlayerAttackEntityEvent`\n- `PlayerHungerChangeEvent`\n- `PlayerItemPickupEvent`\n- `PlayerPlaceBlockEvent`\n- `PlayerSlotClickEvent`\n\n</details>\n\n<details open>\n<summary>Server</summary>\n\n- `PlayerBreakBlockEvent`\n- `PlayerDeathEvent`\n- `PlayerInteractItemEvent`\n- `PlayerInteractBlockEvent`\n- `PlayerItemDropEvent`: called _when_ a player attempts to drop an item\n- `PlayerItemDroppedEvent`: called _after_ an item was dropped\n- `PrePlayerJoinEvent`: called _before_ a player joins the server\n- `PlayerJoinEvent`: called _when_ a player joins the server. Allows modification of the join message\n- `PostPlayerJoinEvent`: called _after_ a player joins the server\n- `PlayerRemoveEvent`: called _after_ a player got removed from the player list\n- `PlayerQuitEvent`: called _when_ a player quits the server. Allows modification of the quit message\n- `PlayerSwapHandItemsEvent`\n- `PlayerTickEvent`\n- `PlayerSetSettingsEvent`: called e.g. when player changes client language\n- `EntitySpawnEvent`\n- `ProjectileHitEvent`: called when a projectile hits another entity\n\n</details>\n\n<details open>\n<summary>Client</summary>\nsoon™\n</details>\n\nFor more, read our [github readme](https://github.com/HGLabor/notify/blob/main/README.md)",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1384,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

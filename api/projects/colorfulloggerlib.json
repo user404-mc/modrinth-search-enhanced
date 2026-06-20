@@ -1,0 +1,42 @@
+{
+  "id": "q4npqcjz",
+  "slug": "colorfulloggerlib",
+  "title": "Colorful Logger Lib",
+  "description": "This library is designed to simplify a specific aspect of Minecraft Modding workflows by making it easy to add ANSI color to your Logger calls.",
+  "body": "![banner](https://cdn.modrinth.com/data/cached_images/1c11d867a553e023759f46a39c77d260d144cafb.png)\n\n[ko-fi]:https://ko-fi.com/handsomesteve\n[modrinth]:https://modrinth.com/user/handsome-steve\n\n<br><br>\n\n[<img src=\"https://maven.handsomesteve.net/data/images/buttons/github-buttons-kofi-trans.png?v15-08-2024\" width=\"185em\" />][ko-fi]\n[<img src=\"https://maven.handsomesteve.net/data/images/buttons/github-buttons-modrinth-trans.png?v15-08-2024\" width=\"185em\" />][modrinth]\n\n<br><br>\n\n**Ever wanted to add some color to your LOGGER during the development of your minecraft mods in a simple, yet functional manner?**\n\nWell look no further, Handsome Steve has you covered! This simple library allows you to do just that by utilizing a wide range of pre-defined ANSI codes.\n\n**EDIT: Please prioritize the [Handsome Steve Maven](https://maven.handsomesteve.net/) as this also serves the Jar's Sources file.** Alternatively, the installation code below has been updated to reflect [Modrinth Maven](https://support.modrinth.com/en/articles/8801191-modrinth-maven) incase the maven is ever offline, apologies in for any inconveniences.\n<br><br>\n## FAQ\n**Q: Is this a mod?**\n<br>Techinally, no. This is a library, so it's only really used when developing a mod, however, it may be required as a dependency when the dependent mod is being installed on a client/server depending on what platform the dependent mod is targeting and how the mod developer is utilising the library.\n<br><br>\n**Q: Can I use this library as a dependency in my project?**\n<br> Absolutely, go nuts!\n<br><br>\n**Q: Does this library require a specific Fabric Version?**\n<br> Nope, it's now standalone, so as long as your modding platform uses `org.slf4j.Logger`, it will work regardless of the version.\n<br><br>\n\n## Current Version\nPlease note that the current version only has the `Logger.info()` method colorized, the rest will be added in future updates, such as `Logger.error()` etc.\n<br><br>\n\n## Installation\nAdd the required Maven Repositories to your `build.gradle` in the *repositories* section:\n```groovy\n    repositories {\n        // Initial Maven Repository\n        // Priority\n        exclusiveContent {\n            forRepository {\n                maven {\n                    name = \"Handsome Steve's Maven\"\n                    url = \"https://maven.handsomesteve.net/releases\"\n                }\n            }\n            filter {\n                includeGroup \"net.handsomesteve\"\n            }\n        }\n        \n        // Modrinth Fallback Maven\n        // Optional, but strongly recommended\n        exclusiveContent {\n            forRepository {\n                maven {\n                    name = \"Modrinth\"\n                    url = \"https://api.modrinth.com/maven\"\n                }\n            }\n            filter {\n                includeGroup \"maven.modrinth\"\n            }\n        }\n    }\n```\n\n<br>Add an implementation to your `build.gradle` in the dependencies section:\n\n```groovy\n    dependencies {\n        //Handsome Steve's Colorful Logger // This automatically downloads the sources file as well.\n        implementation include(\"net.handsomesteve:colorfulloggerlib:${project.hs_colorful_logger}\")\n        \n        // Modrinth Fallback (De-comment if preferred maven is down).\n        //implementation include (\"maven.modrinth:colorfulloggerlib:${project.hs_colorful_logger}\")\n        // SOURCES FILE NEEDS MANUAL DOWNLOAD, SEE BOTTOM OF PAGE (if using fallback maven).\n    }\n```\n\n<br>Add the version variable to your `gradle.properties` and replace `{version}` by the desired available library version of your choice:\n```groovy\n    hs_colorful_logger={version}\n```\n\n## Implementation\nCreate a `public static final` instance of the `ColorfulLogger` class. This instance will allow you to utilize the internal reference of `org.slf4j.Logger` from the `ColorfulLogger` class throughout your project.\n\n```java\n    import net.handsomesteve.api.ColorfulLogger;\n    import net.handsomesteve.api.ansi.AnsiColorBackground;\n    import net.handsomesteve.api.ansi.AnsiColorText;\n    \n    public class FabricMod implements ModInitializer {\n        public static final String MOD_ID = \"your-mod-id\";\n        public static final ColorfulLogger LOGGER = ColorfulLogger.getInstance(\"your-mod-id\", false);\n \n       @Override\n       public void onInitialize() {\n           LOGGER.info(\">>> This is a plain message without any colouring\");\n           LOGGER.info(\">>> I want some green text\", AnsiColorText.ANSI_BRIGHT_GREEN);\n           LOGGER.info(\">>> I want some red text with a black background\", AnsiColorText.ANSI_BRIGHT_RED, AnsiColorBackground.ANSI_BLACK_BACK);\n       }\n    }\n```\n<p>If required, the `Logger` can be interfaced with by calling it as follows:</p>\n\n```java\n    LOGGER.getLogger(); // Returns the Logger to be interfaced with.\n```\n\n<p>This will, however, not implement the ANSI color coding to your output if accessed this way.</p>\n\n\n> **NOTE:** A `ColorfulLogger` variable can be declared anywhere in the project. It is recommended, however, ***to only ever declare this once as it is a singleton***.\n> <br><br>\n> To import the declared variable as a *static import* when referencing the variable:\n> ```java\n> import static com.packagename.FabricMod.LOGGER;\n> ```\n\n> **ALTERNATIVELY:** `ColorfulLogger` can be instantiated anywhere in the project as follows if required after the singleton is declared:\n> ```java\n> public class References {\n>       private static final ColorfulLogger LOGGER = ColorfulLogger.getInstance();\n> \n>       public static ColorfulLogger getLogger() {\n>           return LOGGER;\n>       }\n> }\n> ```\n> Then accessed:\n> ```java\n> import static com.package.References.getLogger;\n> \n> public class MyClass {\n>       References.getLogger();\n> }\n> ```\n\n<br>\n\n## Sources\n### [Only if using Modrinth Maven as a dependency]\n*<p>There is a sources file available in the versions download.</p>*\n<p>This is a well define sources file where all variables, methods and constructors are well-defined as well as the class itself.\nYou should download and add this file in the folder path:</p>\n\n```\n.gradle/loom-cache/remapped_mods/net_fabricmc_yarn{version}/maven/colorfulloggerlib/{hs_colorful_logger_version}/\n```\n> **Note:** Replace curly-braced text with current versions etc.",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 365,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6"
+  ],
+  "date_updated": null
+}

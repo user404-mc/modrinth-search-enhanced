@@ -1,0 +1,26 @@
+{
+  "id": "rvt61wur",
+  "slug": "mob-money",
+  "title": "Mob Money",
+  "description": "A simple, configurable Fabric mod that awards players money for killing mobs. Economy support using the Common Economy API",
+  "body": "# Mob Money\n\nA simple, configurable Fabric mod that awards players money for killing mobs. Built to demonstrate integration with the [Common Economy API](https://github.com/Patbox/common-economy-api) made by Patbox.\n\n## Features\n\n*   **Earn Money**: Get paid for hunting down hostile mobs.\n*   **Configurable**:\n    *   Set custom reward amounts per mob type (e.g., Zombies, Creepers, Ender Dragon).\n    *   **Economy Provider Support**: Configure which economy mod to use (e.g., Savs Common Economy, Fuji, etc.).\n*   **Common Economy API**: Works with any economy mod that implements the Common Economy API.\n\n## Installation\n\n1.  Install **Fabric Loader** and **Fabric API**.\n2.  Install an economy mod that supports the Common Economy API (e.g., [Savs Common Economy](https://modrinth.com/mod/savs-common-economy)).\n3.  Drop `mob-money-1.0.0.jar` into your `mods` folder.\n\n## Configuration\n\nThe config file is located at `config/mob-money.json`. It will be generated upon first launch.\n\n```json\n{\n  \"economyProvider\": \"savs_common_economy\",\n  \"currencyId\": \"dollar\",\n  \"notificationMode\": \"CHAT\",\n  \"mobPrices\": {\n    \"minecraft:zombie\": 5.0,\n    \"minecraft:skeleton\": 5.0,\n    \"minecraft:creeper\": 10.0,\n    \"minecraft:spider\": 5.0,\n    \"minecraft:ender_dragon\": 1000.0,\n    \"minecraft:wither\": 500.0\n  },\n  \"maxEarningsPerPeriod\": 100.0,\n  \"earningPeriodDuration\": 1200,\n  \"overflowMode\": \"DROP\"\n}\n```\n\n### Settings\n\n*   `economyProvider`: The ID of the economy provider to use (e.g., `savs_common_economy`, `fuji`).\n*   `currencyId`: The ID of the currency to award (e.g., `dollar`, `gold`).\n*   `notificationMode`: How to notify players of earnings. Options: `CHAT`, `ACTION_BAR`, `NONE` (default: `CHAT`).\n*   `mobPrices`: A **whitelist** of mobs and their reward values.\n    *   **Only mobs listed here will award money.**\n    *   Use the full entity ID (e.g., `minecraft:zombie`).\n*   `maxEarningsPerPeriod`: The maximum amount a player can earn within the defined period. **Set to 0 to disable.** (Default: 100.0)\n*   `earningPeriodDuration`: The length of the earning period in seconds. (Default: 1200 - 20 minutes)\n*   `overflowMode`: Defines behavior when a kill exceeds the cap. Options:\n    *   `DROP` (Default): If a kill pushes you over the cap, you get $0 for that kill.\n    *   `PARTIAL`: You get the remaining amount up to the cap.\n    *   `ALLOW`: If you are under the cap, you get the full reward (even if it exceeds the limit). Future kills give $0.\n\n## Troubleshooting\n\nIf you are not receiving money:\n1.  Check the server console/logs for messages starting with `[mob-money]`.\n2.  Ensure you have an economy mod installed.\n3.  Verify that `economyProvider` and `currencyId` in the config match the provider you are using.\n    *   For **Savs Common Economy**: Provider `savs_common_economy`, Currency `dollar`.\n    *   For **Fuji**: Provider `fuji`, Currency `gold` (or whatever is configured).\n",
+  "categories": [
+    "economy",
+    "fabric",
+    "game-mechanics",
+    "mobs"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 684,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "FRrF51ps",
+  "slug": "limboauth-clientmod",
+  "title": "LimboAuth Client Mod",
+  "description": "Implement auto-login with the LimboAuth plugin, the client mod and optionally using a custom launcher",
+  "body": "<img src=\"https://elytrium.net/src/img/elytrium.webp\" alt=\"Elytrium\" align=\"right\">\n\n# LimboAuth Client Mod\n\n[![Join our Discord](https://img.shields.io/discord/775778822334709780.svg?logo=discord&label=Discord)](https://ely.su/discord)\n\nA client mod for [LimboAuth](https://github.com/Elytrium/LimboAuth) \\\nTest server: [``ely.su``](https://hotmc.ru/minecraft-server-203216)\n\n## Mod dependencies\n\n- Architectury API\n\n## Features of LimboAuth Client Mod\n\n- Saves session tokens to the config file (`.minecraft/config/limboauth.yml`)\n- You can set your own session token via the custom launcher\n\n### How does session token work\n\n1) The server makes a token - a struct that contains an issue timestamp\n2) The server signs this token with a private verify key (which you can see in the LimboAuth config)\n3) The server sends the token to the client, the client saves it to the config file\n4) When player joins the server, servers asks client if he has a session token\n5) If the player has a session token, it sends it to the server\n6) The server verifies the token via the private verify key\n\n### How to generate a session token\n\nPseudocode\n```py\n# This key must be the same in the plugin config and in the server hash issuer\nverify_key = \"testkey123\"\nissue_timestamp = unix_timestamp_millis()\nplayer_username = \"TestPlayer123\"\n\nusername_bytes = utf8.string_to_bytes(lower(player_username))\ntimestamp_bytes = big_endian.long_to_bytes(issue_timestamp)\n\n# siphash 2-4 (default siphash) is used here\ntokenhash = siphash.hash(verify_key, byte_concat(username_bytes, timestamp_bytes))\nhash_bytes = big_endian.long_to_bytes(tokenhash)\n\ntoken = base64.encode_to_string(byte_concat(timestamp_bytes, hash_bytes))\n```\n\n### When does the token expire?\n\n- The token expires if the player changes his password\n- See ISSUEDTIME database field\n\n## Donation\n\nYour donations are really appreciated. Donations wallets/links/cards:\n\n- MasterCard Debit Card (Tinkoff Bank): ``5536 9140 0599 1975``\n- Qiwi Wallet: ``PFORG`` or [this link](https://my.qiwi.com/form/Petr-YSpyiLt9c6)\n- YooMoney Wallet: ``4100 1721 8467 044`` or [this link](https://yoomoney.ru/quickpay/shop-widget?writer=seller&targets=Donation&targets-hint=&default-sum=&button-text=11&payment-type-choice=on&mobile-payment-type-choice=on&hint=&successURL=&quickpay=shop&account=410017218467044)\n- Monero (XMR): 86VQyCz68ApebfFgrzRFAuYLdvd3qG8iT9RHcru9moQkJR9W2Q89Gt3ecFQcFu6wncGwGJsMS9E8Bfr9brztBNbX7Q2rfYS",
+  "categories": [
+    "fabric",
+    "forge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1875,
+  "followers": 0,
+  "game_versions": [
+    "1.14.4",
+    "1.15",
+    "1.15.1",
+    "1.15.2",
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "c06eQQoj",
+  "slug": "partial-keepinventory",
+  "title": "Partial Keepinventory",
+  "description": "Only drop a configured percentage of items or experience. ",
+  "body": "# Partial Keepinventory\n### <span style=\"color:red\">NOTE: This mod is still in alpha, and I am just one person. Bugs are bound to happen.</span>\nA fabric mod for changing the behaviour of keep inventory.\n\nFor more information on what I'm planning and working on see [the Roadmap](https://github.com/atiedebee/Partial-Keepinventory/wiki/Roadmap).\n\n \n## GUI\nOpen the GUI using ``/pki-gui``. This requires you to have the mod installed on the client side.\n\n## Expressions\nExpressions are a way to dynamically change how items are dropped. This can be done with a simple formula that uses given variables. The value returned by the invExpression is clamped between 0 and 1.\n A list of variables can be found in the provided table:\n\n### Base\n\n| Variable                             | Meaning                                                                           |\n|--------------------------------------|-----------------------------------------------------------------------------------|\n| spawnDistance                        | The distance from the player to their spawnpoint                                  |\n| spawnX, spawnY, spawnZ               | The player's spawn position                                                       |\n| playerX, playerY, playerZ            | The player's position                                                             |\n\n### Inventory\n\n| Variable                             | Meaning                                                                           |\n|--------------------------------------|-----------------------------------------------------------------------------------|\n| isCommon, isUncommon, isRare, isEpic | Whether an item has a certain rarity, These are 1.0 when true and 0.0 when false. |\n| rarityPercent                        | The configured droprate of the item's rarity.                                     |\n| dropPercent                          | The static inventory droprate                                                     |\n\n### Experience\n\n| Variable    | Meaning                   |\n|-------------|---------------------------|\n| xpPoints    | Player's XP point amount. |\n| xpLevel     | Player's XP level.        |\n\n\n### Expression presets:\n\n#### Distance falloff\nChange DISTANCE_IN_BLOCKS to the distance from spawn where you stop dropping items (the droprate decreases linearly).\n> abs(1-(spawnDistance/DISTANCE_IN_BLOCKS))\n\n---\n\n## Commands\n\nEnable/disable the mod\n> /pki [enable|disable]\n\nSet the drop behaviour\n> /pki inv mode [vanilla / static / rarity / custom]\n\nSet droprate for the inventory/rarities (0-100)\n> /pki inv droprate [static / common / uncommon / rare / epic] <percentage>\n\nList players who will get the normal keepinventory behaviour\n> /pki inv savedPlayers list\n\nRemove/add players who get normal keepinventory behaviour\n> /pki inv savedPlayers [add / remove] <name>\n\nSet the custom droprate formula\n> /pki inv invExpression set [invExpression]\n\n## Experience Droprate\nThere's currently 2 variables that change how XP is dropped:\n- Loss percentage (How much experience is lost) \n- Drop percentage (How much of that experience is dropped)\n\n> /pki xp droprate [drop / loss] <percentage>\n\nThere's also 2 \"modes\" in which these variables can operate.\n- Based on levels\n- Based on experience points\n\nLevels take increasingly more experience to get, which makes that mode increasingly more punishing when you're on a higher level.\n> /pki xp mode [vanilla / static-level / static-points / custom-level / custom-points]\n\n\n---\n[License](https://github.com/atiedebee/partial-keepinventory/blob/master/LICENSE)\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1009,
+  "followers": 0,
+  "game_versions": [
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

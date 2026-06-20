@@ -1,0 +1,25 @@
+{
+  "id": "uf8bbGA3",
+  "slug": "tag-exclusion",
+  "title": "Tag Exclusion",
+  "description": "Library & utility for removing entries from tags",
+  "body": "**This library is now obsolete on 26.1+, as [Fabric API](https://github.com/FabricMC/fabric-api/pull/5365) and [Neoforge](https://docs.neoforged.net/docs/resources/server/tags/#tag-file-format) now both contain ways to remove entries from tag files.**\n\n---\n\nA library & utility to allow removing entries from tags, to avoid having to use `\"replace\": true` in datapacks.\n\n## Syntax\n\nThere is now an abbreviated syntax for tag entries. You can add a `?` at the end of an entry to mark it as optional and \na `!` at the beginning of an entry to mark it as an exclusion entry.\n\nExclusion entries will be removed from the tag, including from previous entries in the same tag file and from entries\nin lower packs.\n\nExample:\n\n```json5\n{\n  \"values\": [\n    \n    \"#minecraft:doors\",\n    // Add all doors\n    \"!minecraft:spruce_door\",\n    // Except the spruce door\n    \n    \"#minecraft:logs\",\n    // Add all logs\n    \"!#minecraft:logs_that_burn\",\n    // But not the ones that burn\n    \n    \"create:brass_casing?\",\n    // Add create brass casing, if it's installed\n    \n    \"!#enderscape:veiled_logs?\"\n    // Remove enderscape veiled logs, if it's installed\n    \n  ]\n}\n```\n\nThe standard expanded format is also extended.\n\n```json\n{\n  \"values\": [\n    \"#minecraft:logs\",\n    {\n      \"id\": \"#minecraft:logs_that_burn\",\n      \"tagex:exclude\": true\n    }\n  ]\n}\n```\n\n## Depending on Tag Exclusion\n\nCurrently, it is recommended to use JitPack to add the mod in Gradle and to jar-in-jar it.\n\n```groovy\nrepositories {\n    maven { url 'https://jitpack.io' }\n}\n\ndependencies {\n    modImplementation include(\"com.github.ThePotatoArchivist:TagExclusion:${project.tagex_version}\")\n}\n```\n\nNote: For some reason, JitPack cannot have `+` in version names, so when specifying the version in Gradle you must use\n`-` instead, e.g. `1.0.0-mc1.21.11`. The version in the mod metadata still uses `+`, only the maven version uses `-`.\n\n## Data Generation\n\nTo add tag exclusions in data generation, use the extension methods to `TagAppender`.\n\n```java\nvalueLookupBuilder(ItemTags.ANVIL)\n        .tagex_exclude(Items.CHIPPED_ANVIL);\n\nvalueLookupBuilder(ItemTags.LOGS_THAT_BURN)\n        .tagex_forceExcludeTag(ItemTags.DARK_OAK_LOGS);\n```\n\nIf you're using Kotlin, there are also extension functions that don't have `tagex_` in the name.\n\n```kotlin\nwith (valueLookupBuilder(ItemTags.ANVIL)) {\n    exclude(Items.CHIPPED_ANVIL)\n}\n```\n\nTo avoid messing with datagen when it's not supposed to, datagen will only produce tag entries in abbreviated form if\nthe generating mod has specified its mod id for datagen and declares a hard dependency on `tagex`.\n\nIn `build.gradle`:\n\n```groovy\nfabricApi {\n    configureDataGeneration {\n        // ...\n        modId = \"testmod\"\n    }\n}\n```\n\nYou may need to regenerate your IDE run configurations.\n\nIn `fabric.mod.json`:\n\n```json5\n{\n  // ...\n  \"depends\": {\n    // ...\n    \"tagex\": \"^1.0.0\"\n  }\n}\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 188,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "L4u8Yt14",
+  "slug": "hold-that-chunk-v2",
+  "title": "Hold That Chunk V2",
+  "description": "Delays client chunk unloading",
+  "body": "# Hold That Chunk V2\nA clean, from-scratch re-implementation of the original idea behind [Hold That Chunk](https://modrinth.com/mod/hold-that-chunk) updated for **Minecraft 1.21+** with some extra configuration options.\n\nInstead of dropping terrain the instant the server says “unload,” this mod keeps already-rendered chunks around and lets go of them later under your control: **chunks are held and only removed later based on configurable rules**. Great for keeping what you’ve already seen on screen—like your **base** on low render-distance servers.\n\n> Credit & inspiration: the original **Hold That Chunk** (created to help ice boat racing).  \n> For **1.18–1.20.6**, use the original: https://modrinth.com/mod/hold-that-chunk\n\n---\n\n## ✨ Features\n\n- **Enable Hold That Chunk** — master toggle.  \n  *Note: changes take effect when switching worlds or reconnecting.*\n\n- **Ignore Server’s Render Distance**  \n  - **True:** your render distance can exceed the server’s render distance (vanilla fog may sit far out).  \n  - **False:** your maximum render distance is capped to the server’s render distance.  \n  *Note: changes take effect when switching worlds or reconnecting.*\n  \n\n- **Respect Server’s Render Distance** — always honor server unloads immediately (no holding).\n\n- **Link to Render Distance** — uses your render distance as the hold limit.\n\n- **Hold Distance (2–256)** — set a custom limit if you don’t want to link to render distance.\n\n- **Ignore Empty Chunks (keep visuals)** — when the server sends a clear/empty chunkdata packet for a chunk you already have rendered, the client can ignore it and keep your current visuals.\n\n- **Ignore Empty Chunks Distance (2–256)** — if you’re farther than this disance, empty chunkdata is ignored (visuals kept). If you’re closer, the clear is allowed.\n\n- **Restore Empty Chunks Distance (2–256)** — once you move within this distance, any previously ignored “clear” for that chunk is applied so you don’t carry stale terrain up close.\n\n- **Server Render Distance readout** — see the server-reported distance in the config screen.\n\n---\n\n## 🧠 How it works\n\n- When an **unload** packet arrives for a chunk you already rendered, the client **holds** it instead of removing it instantly.  \n- Every tick the mod decides whether each held chunk **should be removed** (based on your settings).  \n- Empty/clear chunkdata handling: if the server sends a “clear/empty” full-chunk packet for a chunk you already have rendered, the mod can ignore the clear and keep visuals if you’re farther than Ignore Empty Chunks Distance (and the chunk is currently loaded). Queue that clear and apply it later when you move within Restore Empty Chunks Distance, or when the chunk gets real updates, so nearby terrain doesn’t look stale.\n- You can **ignore** the server’s distance (keep more of what you’ve seen) or **cap** yourself to it so **fog** matches.\n\n> This does **not** force the server to send new chunks or raise its view distance. It only changes how long the **client** keeps chunks you’ve already rendered.\n\n---\n\n## 🧩 In-game Configuration (Mod Menu + Cloth Config)\n\nIf you have **Mod Menu** and **Cloth Config** installed, this mod exposes a full settings screen:\n- Open **Mods** → **Hold That Chunk V2** → **Configure** (Mod Menu button).\n- All options (enable toggle, ignore/cap server distance, link to render distance, hold distance, ignore empty chunks, ignore empty chunks distance, restore empty chunks distance) can be adjusted in-game.\n\n> Don’t have them? Install **Mod Menu** and **Cloth Config** to access the in-game UI. Otherwise, you can edit the JSON config file manually.\n\n---\n\n## 🔎 Notes & limitations\n\n- Client-side only; does **not** increase server view distance or generate new data.  \n- Holding more chunks can use additional memory—tune **Hold Distance** to your preference.  \n- Options that change the client/server distance relationship (ignore/cap) typically apply **after a world switch or reconnect** because the server distance is negotiated on join.\n- The mod does not work in Singleplayer (same limitation as the original).  \n- On pure vanilla servers the client may not receive the unload/forget-chunk packets this mod relies on, so the mod may appear inactive.\n\n---\n\n## 🙏 Credits\n\n- Original mod: **Hold That Chunk** — by **dlee13** (Modrinth) / **The_TermiGator** (CurseForge)  \n  Modrinth: https://modrinth.com/mod/hold-that-chunk  \n  CurseForge: https://www.curseforge.com/minecraft/mc-mods/hold-that-chunk\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 57870,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

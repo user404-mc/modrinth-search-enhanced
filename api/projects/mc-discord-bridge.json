@@ -1,0 +1,21 @@
+{
+  "id": "3gHjSMhK",
+  "slug": "mc-discord-bridge",
+  "title": "MC-DC Bridge",
+  "description": "Clientside MC-DC Bridge lets you link Minecraft chat with Discord for seamless communication.",
+  "body": "### 1. Create a Bridge Instance\n\n1. Go to https://mc-dc.powerdata.dk\n2. Create a Discord bot at https://discord.com/developers/applications\n3. Enable \"Message Content Intent\" in bot settings\n4. Get your bot token and invite it to your server'\n5. Fill out the form with:\n   - Bridge name (e.g., \"myserver\")\n   - Discord bot token\n   - Initial Discord channel ID\n6. **IMPORTANT:** Save the endpoint URL - this is the only time you'll see it!\n\n1. Install the mod in your Fabric 1.21.4 server/client\n2. In-game, run `/link <bridge-name>` with just the bridge name from step 2 (e.g., `/link myserver`)\n3. Discord, run `/link <user>` with the name of the minecraft user\n4. In-game, run `/confirm` or `/deny` to confirm or deny the discord user linking to your minecraft account\n5. Use `/dc <message>` to send messages to Discord\n\n### 2. Discord Configuration\n\nYour Discord bot will automatically have these slash commands:\n- `/setchannel <channel>` - Change which channel to bridge\n- `/bridgeinfo` - Show current bridge configuration and ping settings\n- `/pingconfig [users] [roles] [everyone] [here]` - Configure what pings are allowed from\n- `/link <minecraft_username>` - link to discord user to send chats to discord\nMinecraft\n- `/pingsettings` - View current ping configuration\n- `/blacklistuser <user> <add/remove>` - Add or remove users from ping blacklist\n- `/blacklistrole <role> <add/remove>` - Add or remove roles from ping blacklist\n- `/blacklistview` - View all blacklisted users and roles\n- `/link` - Send link to discord\n\n## Usage\n\n- Discord messages from the configured channel appear in Minecraft chat as `[Discord] Username: Message`\n- Minecraft players can send messages to Discord using `/dc <message>`\n- Messages from Minecraft are automatically sanitized based on ping settings\n\n## Ping Control\n\nBy default, new bridges allow user pings but block role pings, @everyone, and @here. Use Discord slash commands to customize:\n\n- **User Pings** (@username): Individual user mentions\n- **Role Pings** (@role): Role mentions \n- **@everyone**: Pings all server members\n- **@here**: Pings all online members\n\n### Basic Configuration Examples:\n- `/pingconfig users:true roles:false everyone:false here:false` - Only allow user pings (default)\n- `/pingconfig users:true roles:true everyone:true here:true` - Allow all pings\n- `/pingconfig users:false roles:false everyone:false here:false` - Block all pings\n\n### Blacklist System\n\nEven when user/role pings are enabled, you can blacklist specific users or roles:\n\n- **User Blacklist**: Specific users who can't be pinged from Minecraft\n- **Role Blacklist**: Specific roles that can't be pinged from Minecraft\n\n### Blacklist Examples:\n- `/blacklistuser @Admin add` - Prevent pinging the Admin user\n- `/blacklistrole @Moderators add` - Prevent pinging the Moderators role\n- `/blacklistuser @Admin remove` - Allow pinging Admin again\n- `/blacklistview` - See all blacklisted users and roles\n\n**Note**: Blacklisted users/roles are blocked even if their type (user/role) is generally allowed.\n\n## Configuration\n\nThe mod configuration file (`config/mcdiscordbridge.json`) includes:\n- `serverUrl`: The endpoint URL for your specific bridge instance\n- `checkIntervalTicks`: How often to check for new messages (default: 40 ticks = 2 seconds)\n\nYou can update the bridge in-game using `/link <bridge-name>` (e.g., `/link myserver`)",
+  "categories": [
+    "fabric",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 198,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6"
+  ],
+  "date_updated": null
+}

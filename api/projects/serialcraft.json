@@ -1,0 +1,23 @@
+{
+  "id": "hLV9sPrg",
+  "slug": "serialcraft",
+  "title": "SerialCraft",
+  "description": "Bring Redstone to life! A simple mod to connect Arduino and Minecraft via serial port. No complications, just plug and play.",
+  "body": "# SerialCraft 📦 v0.3.6\n\n> **The Bridge Between Worlds**\n>\n> Connect your Arduino to Minecraft Java (Fabric 1.21.10) and bring electronics into Survival mode.\n\n[![Fabric](https://img.shields.io/badge/Loader-Fabric-bea67e?style=for-the-badge)](https://fabricmc.net/)\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.10-2d8528?style=for-the-badge)](https://www.minecraft.net/)\n[![License](https://img.shields.io/badge/License-CC0_1.0-blue?style=for-the-badge)](LICENSE)\n\n---\n\n## 📚 Documentation\n\n**Full Guide & Wiki:** [https://leonardoaliaga.github.io/SerialCraft/](https://leonardoaliaga.github.io/SerialCraft/)\n\n---\n\n## What is SerialCraft?\n\n**SerialCraft** is a mod that breaks the fourth wall, allowing real-time bidirectional communication between the game and external electronic devices (Arduino, ESP32, Raspberry Pi Pico, etc.).\n\nUnlike other technical mods, SerialCraft is designed to integrate organically into the **Survival experience**. No magic commands—you build the hardware, you configure the connections, and you craft the logic.\n\n## ✨ Key Features\n\n* **🔌 Plug & Play:** Compatible with any Serial/USB board.\n* **💻 In-Game UI:** Simple graphical interface to select ports and baud rates without editing config files.\n* **⚡ Bidirectional:**\n    * **Input (Physical -> Game):** Use real sensors (light, sound, buttons) to trigger Redstone.\n    * **Output (Game -> Physical):** Use Redstone to turn on real LEDs, motors, or buzzers.\n* **🧠 Logic Gates:** The blocks include internal logic (AND, OR, XOR) for advanced circuit safety.\n\n## 📦 Blocks & Recipes\n![Models](https://cdn.modrinth.com/data/cached_images/4aea9efd4686b3adf8ea97550df78b0240142c49.png)\n\n### 1. The Connector Block (Laptop)\nThe brain of the operation. It handles the USB connection to your real-world device.\n\n* **Usage:** Right-click to open the UI. Select your **Port** and **Baud Rate** (must match your Arduino code, e.g., 9600).\n* **Settings:** You can adjust the \"Read Speed\" (Fast, Normal, Low) to prevent lag if your board sends too much data.\n\n![UI Connector Block](https://cdn.modrinth.com/data/cached_images/2a06adbdf536890ecd23076067815f49d6f7f704_0.webp)\n\n#### Crafting Recipe\n![Connector Block Recipe](https://cdn.modrinth.com/data/cached_images/0796082c1617ad4cd6d1c4f3beb989fc89878192_0.webp)\n\n---\n\n### 2. The IO Block (Arduino IO)\nThe physical bridge. This block connects to the Laptop wirelessly (logic-wise) and interacts with Redstone.\n\n* **Pin System:**\n    * **Right Click** on a side connector: Sets pin to **IN (Green)**. Reads Redstone.\n    * **Shift + Right Click** on a side connector: Sets pin to **OUT (Red)**. Emits Redstone.\n* **Configuration:** Right-click the block to set the `Target ID` (e.g., `LED_1` or `SENSOR_A`) and the signal type (Analog vs Digital).\n\n![IOBlock UI](https://cdn.modrinth.com/data/cached_images/151ab59e0b022613135ae530b89378e60e3b8231_0.webp)\n![IOBlock Model](https://cdn.modrinth.com/data/cached_images/c20ed9d2c7fe7a3a5a28704394c6a64a6cc2839b.png)\n\n#### Crafting Recipe\n![IOBlock Recipe](https://cdn.modrinth.com/data/cached_images/07d93e2ac7612058dcfb25f2161efcc182ec78a8_0.webp)\n\n---\n\n## 🚀 Quick Start (Protocol)\n\nCommunication is text-based using `KEY:VALUE` format ending with a newline (`\\n`).\n\n**Arduino Example:**\n```cpp\nvoid setup() {\n  Serial.begin(9600); // Matches the Laptop Block settings\n}\n\nvoid loop() {\n  // Send data to Minecraft (Block ID \"btn_1\", Value 15)\n  Serial.println(\"btn_1:15\"); \n  delay(50);\n}\n```\n\n## 🤝 Community & Support\n\n* **Issues:** [Report Bugs Here](https://github.com/leonardoaliaga/serialcraft/issues)\n* **Author:** Leonardo Aliaga",
+  "categories": [
+    "cursed",
+    "fabric",
+    "game-mechanics",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 126,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

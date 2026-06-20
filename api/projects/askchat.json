@@ -1,0 +1,34 @@
+{
+  "id": "LjVeDMMV",
+  "slug": "askchat",
+  "title": "AskChat",
+  "description": "A Minecraft plugin that lets players ask questions in chat and get answers from AI",
+  "body": "# AskChat\n\nAn AI chat assistant for servers. Players ask questions in chat with `!ask <question>` and a configurable AI persona (\"Notch\" by default) answers, optionally calling tools to fetch live information.\n\nSupports three providers — **Gemini** (default), **Ollama** (local or cloud), and **NVIDIA NIM** — with agentic tool use for **web search** (Brave) and the **Minecraft Wiki**.\n\n## Examples\n\n![Screenshot 2024-08-08 014911](https://github.com/user-attachments/assets/d4030652-42b9-4b1a-9b22-ccbef5f28932)\n\n![Screenshot 2024-08-08 015430](https://github.com/user-attachments/assets/94ad5277-029a-4a00-93e3-c13411f22cc9)\n\n## Features\n\n* **Chat-Based Interface:** Ask questions and receive answers without leaving your Minecraft world.\n* **Configurable:**\n    * Customize the AI's prompt to guide its responses.\n    * Change the bot's name in chat.\n    * Optionally broadcast both the question and the answer to the server.\n* **Lightweight:** Designed to minimize impact on server performance.\n\n## Installation\n\n1. Drop the matching jar into your server's `plugins/` directory.\n2. Start the server once to generate `plugins/AiChatBuddy/config.yml`.\n3. Stop the server, edit `config.yml` (see below), and start again — or edit live and run `/aichat reload`.\n\n---\n\n## Configuration\n\nDefault `config.yml`:\n\n```yaml\nprovider: gemini          # gemini | ollama | nvidia\n\nbot-name: \"Notch\"\nprivate-questions: false  # true = whisper replies, false = broadcast\nmax-history: 8            # rolling per-player message history; 0 = stateless\nagent-max-steps: 8        # max tool-calling iterations before forcing a best-effort answer\n\nprompt-template: |\n  You are Notch — the ancient architect and silent overseer ...\n  (full Notch persona, see config.yml)\n\nproviders:\n  gemini:\n    api-key: \"\"\n    api-url: \"https://generativelanguage.googleapis.com/v1beta/models/gemma-4-31b-it:generateContent\"\n    temperature: 0.5\n    top-p: 0.99\n  ollama:\n    base-url: \"http://localhost:11434\"   # or https://ollama.com for cloud\n    api-key: \"\"                          # cloud only\n    model: \"gpt-oss:20b\"\n    temperature: 0.7\n  nvidia:\n    base-url: \"https://integrate.api.nvidia.com\"\n    api-key: \"\"                          # must start with nvapi-\n    model: \"meta/llama-3.3-70b-instruct\"\n    temperature: 0.5\n\ntools:\n  web-search:\n    enabled: true\n    api-key: \"\"           # Brave Search API key; tool is hidden from the LLM if blank\n    max-results: 3\n  minecraft-wiki:\n    enabled: true\n    max-results: 3\n```\n\nYou only need to fill in the api-keys for the provider(s) and tool(s) you want to use. Unconfigured providers/tools are simply skipped.\n\n---\n\n## Getting API keys\n\n### Gemini (default, free tier available)\n\n1. Go to <https://aistudio.google.com/apikey>.\n2. Sign in with a Google account.\n3. Click **Create API key**.\n4. Copy the key (starts with `AIza…`) into `providers.gemini.api-key`.\n\nSwitch models by editing `providers.gemini.api-url` — the URL contains the model name. Defaults to `gemma-4-31b-it` (function-calling capable, fast, free). Other good choices:\n\n- `gemini-2.5-flash` — fast, low-cost, strong tool use.\n- `gemini-2.5-pro` — better quality, slower.\n- `gemma-4-26b-a4b-it` — bigger context window, only ~4B active params per token.\n\n### Brave Search (for the `web_search` tool)\n\n1. Go to <https://brave.com/search/api/>.\n2. Click **Get Started** and sign up.\n3. Subscribe to the **Free** plan (1 query/sec, 2k queries/month).\n4. In the dashboard, create an API key under **API Keys**.\n5. Paste it into `tools.web-search.api-key`. Leave blank to disable web search.\n\n### NVIDIA NIM (free tier)\n\n1. Go to <https://build.nvidia.com/>.\n2. Sign in with NVIDIA Developer credentials.\n3. Open any model (e.g. <https://build.nvidia.com/meta/llama-3_3-70b-instruct>).\n4. Click **Get API Key** in the top right.\n5. Copy the key (starts with `nvapi-`) into `providers.nvidia.api-key`.\n\nRecommended models for `providers.nvidia.model`:\n- `meta/llama-3.3-70b-instruct` (default)\n- `nvidia/llama-3.1-nemotron-70b-instruct`\n- `mistralai/mixtral-8x22b-instruct-v0.1`\n\n### Ollama\n\nYou can run Ollama **locally** (free, private) or use Ollama cloud.\n\n**Local:**\n1. Install Ollama from <https://ollama.com/download>.\n2. Pull a model that supports tool calls, e.g. `ollama pull llama3.1` or `ollama pull qwen2.5`.\n3. In `config.yml`:\n   - `providers.ollama.base-url: \"http://localhost:11434\"`\n   - `providers.ollama.api-key: \"\"` (not needed locally)\n   - `providers.ollama.model: \"llama3.1\"` (or whichever you pulled)\n\n**Cloud :**\n1. Sign up at <https://ollama.com/>.\n2. Generate an API key under your account settings.\n3. In `config.yml`:\n   - `providers.ollama.base-url: \"https://ollama.com\"`\n   - `providers.ollama.api-key: \"<your-key-key>\"`\n   - `providers.ollama.model: \"gpt-oss:20b\"` (or `gpt-oss:120b`, `qwen3-coder:480b`, `deepseek-v3.1:671b`, `glm-4.7`, `kimi-k2.6`, etc.)\n\nSwitch providers at any time by editing `provider:` and running `/aichat reload`.\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n| ------- | ---------- | ----------- |\n| `!ask <question>` | `aichatbuddy.ask` (default: everyone) | Ask the AI in chat. |\n| `/aichat reload` | `aichatbuddy.reload` (default: op) | Reload `config.yml` and clear in-memory history. |\n| `/aichat forget` | `aichatbuddy.forget.self` (default: everyone) | Clear your own conversation history. |\n| `/aichat forget <player>` | `aichatbuddy.forget.others` (default: op) | Clear another player's history. |\n\n---\n\n## Usage\n\nType `!ask` followed by your question in the chat, e.g., `!ask How do I make a crafting table?`. The AI will respond with an answer.\n\n## Support & Feedback\n\nIf you have any questions, issues, or feature requests, please open an issue on [GitHub]([link-to-your-github-repo](https://github.com/mrgucci1/AiChatBuddy).\n\n## Contributing\n\nContributions are welcome! Please feel free to fork this repository and submit pull requests.\n\n## License\n\nThis project is licensed under the [MIT License](LICENSE).\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 227,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

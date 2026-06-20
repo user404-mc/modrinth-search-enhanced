@@ -1,0 +1,19 @@
+{
+  "id": "zvkKyJfr",
+  "slug": "toasty-mod",
+  "title": "Toasty",
+  "description": "Display toasts to players after certain events happen",
+  "body": "# Toasty\n\nToasty is a Minecraft Mod that allows you to display toasts after certain events happen in game.\n\n![icon.png](https://raw.githubusercontent.com/Witixin1512/Toasty/refs/heads/main/images/icon.PNG)\n\nToasty is fully clientside.\n\n## Adding custom toasts\n\nA custom toast can be added using a resourcepack and placing a JSON file under `assets/<namespace>/toasts`.\n\nA toast file looks like this:\n\n```json5\n{\n  \"toast\": {\n    \"factory\": {\n      //optional, defaults to true\n      \"display_once\": true,\n      //optional, defaults to 5000, or 5 secs\n      \"display_time_in_milliseconds\" : 5000,\n      //The item to display on the left corner\n      \"item\": \"minecraft:bread\",\n      \n      //Text and title are required Component fields. This means they can be translated,\n      //colored and styled just like any other text you can see in game.\n      \"text\": \"Display toasts after certain actions are performed. Fully clientside!\",\n      \"title\": \"Toasty helps customising your pack!\"\n    },\n    //As of now, only this factory exists\n    \"toast_factory\": \"toasty:simple\"\n  },\n  //A toast source is the way through which a player sees the Toast.\n  //A toast source's targets are heavily dependant on the source.\n  \"toast_source\": [\n    {\n      \"source_id\": \"toasty:on_login\",\n      \"targets\": [\"toasty:on_login\"]\n    }\n  ]\n}\n```\n\n### Toast Factories\nAs of now, the only type of factory enabled is `toasty:simple`.\n\n### Toast Sources\n\n- `toasty:on_login` - Displays the toast when logging into a world. Requires a non-empty `targets` list. \n- `toasty:item_pickup` - Displays the toast after picking up an item in the world. A target is the ResourceLocation that identifies the item. For example, `minecraft:iron_pickaxe`.\n- `toasty:entity_kill` - Displays the toast after killing a certain entity type. A target is the ResourceLocation that identifies the entity type. For example, `minecraft:chicken`.\n\n## Saved locations\n\nToasty is fully clientside and uses the `toasty` folder at the root of your minecraft instance to keep \ntrack of the toasts you have seen throughout your playthrough.\n\n## Future plans\n\n- A screen to create toasts in game.\n- CraftTweaker support",
+  "categories": [
+    "fabric",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 289,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

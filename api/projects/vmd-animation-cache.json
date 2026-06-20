@@ -1,0 +1,19 @@
+{
+  "id": "ilGMXraK",
+  "slug": "vmd-animation-cache",
+  "title": "VMD Animation Cache",
+  "description": "Per-frame cache for SlashBlade MMD animation",
+  "body": "<h2>Overview</h2>\n\n<p><strong>VMD Animation Cache</strong> eliminates redundant MMD motion computation in SlashBlade Resharped, giving you <strong>~3.8x FPS improvement</strong> (50 → 190 FPS) when SlashBlade entities are on screen.</p>\n\n<p>When SlashBlade renders MMD-based blade animations, <code>VmdAnimation.setupAnim()</code> is called <strong>60–120 times per entity per frame</strong> — once for every bone, every time a transform is queried. But the tick and partialTick don't change within a frame. All 120 calls produce identical results, wasting ~20% of the render thread.</p>\n\n<p>This mod adds a tiny per-frame cache: if <code>setupAnim</code> is called again with the same tick and partialTick, the entire MMD pipeline is skipped. <strong>120 calls → 1 call</strong> per entity per frame.</p>\n\n<h2>Performance</h2>\n\n<table>\n<tr><th>Scenario</th><th>Before</th><th>After</th></tr>\n<tr><td>Third-person FPS (SlashBlade visible)</td><td>~50</td><td>~190</td></tr>\n</table>\n\n<p><em>Tested on Minecraft 1.20.1, Forge 47, SlashBlade Resharped 1.9.65. Single SlashBlade entity in view.</em></p>\n\n<h2>Requirements</h2>\n\n<ul>\n<li>Minecraft <strong>1.20.1</strong></li>\n<li>Forge <strong>47+</strong></li>\n<li><a href=\"https://www.curseforge.com/minecraft/mc-mods/slashblade-resharped\">SlashBlade Resharped</a> <strong>1.9.65</strong></li>\n</ul>\n\n<h2>Installation</h2>\n\n<ol>\n<li>Download the jar and drop it into your <code>mods/</code> folder</li>\n<li>Launch the game</li>\n</ol>\n\n<h2>Compatibility</h2>\n\n<p><strong>Do not use with AntiEntropyCore</strong> — both mods inject into the same Mixin target (<code>VmdAnimation</code>) and will conflict.</p>\n\n<h2>How It Works</h2>\n\n<p>A single Mixin injects at the head of <code>VmdAnimation.setupAnim()</code>. It remembers the last <code>(currentTick, partialTick)</code> pair. Cache hit → method cancelled. Cache miss → update cache, run normally.</p>\n\n<p>Only 32 lines of code. Client-side only. No coremod hacks.</p>\n\n<h2>Links</h2>\n\n<ul>\n<li>Source: <a href=\"https://github.com/Elten-huanghuang/vmd-animation-cache\">GitHub</a></li>\n<li>License: MIT</li>\n</ul>\n",
+  "categories": [
+    "forge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 534,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

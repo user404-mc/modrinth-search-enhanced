@@ -1,0 +1,21 @@
+{
+  "id": "UzrnOikr",
+  "slug": "francium-optimization",
+  "title": "Francium",
+  "description": "Replace traditional Random with ThreadLocalRandom in minecraft codes for better performance and higher fps.",
+  "body": "# Francium\nFrancium is a Forge optimization mod that replaces some `Random` fields with `ThreadLocalRandom` for better performance and higher fps.\n\nThis is inspired by [Faster Random](https://modrinth.com/mod/faster-random) \n(But Francium doesn't change world generation or other stuff that makes huge difference from vanilla. \nThe only difference so far is the speed of squid tentacle movement speed initialization lol). \nHowever, Francium's implementation is wider and more rooted.\n\nThreadLocalRandom has a property: its `setSeed` method is not a supported operation, Thus, as long as a Random field is not calling `setSeed`, Francium can replace it with ThreadLocalRandom.\n\nClient side: Optional\n\nServer side: Optional\n# Benchmark Info\n```\nThe below benchmark is outdated due to the security improvement in 1.0.0.\n```\n\n```\nDetails: In Francium 1.0.0, To completely avoid the UnsupportedOperationException crash (and this is the only crash Francium may cause) of `ThreadLocalRandom#setSeed`, I did some security improvement so that if a Random field is setSeed, next it will no longer call ThreadLocalRandom. \n```\n\n```\nFor players, this security brings down performance improvement for a little bit, in my test my fps improvement dropped to 100 from 150.\n```\n\nMinecraft version: 1.16.5\n\nJava version: Azul Zulu Java 17 (highly recommended, check out [ModernFix's wiki](https://github.com/embeddedt/ModernFix/wiki/1.16---required-arguments-for-Java-17)!)\n\nWeather: None\n\nDifficulty: Peaceful\n\nSeed: -963323667424106092\n\nPosition: -139.746 102.0 -658.997\n\nModList:\n![img.png](https://github.com/MCTeamPotato/Francium/blob/1165/images/modlist.png?raw=true)\n\nEntities and item entities have been cleared by [Cuneiform](https://www.curseforge.com/minecraft/mc-mods/cuneiform) commands /killall and /killitems\n\nYou can see my play time is 4:29 below, and in these 269 seconds, I have never moved or change my mouse too much (almost completely still).\n\nThis has been tested for three times, and the images below are from the third test.\n## With Francium Installed\nAverage FPS: 780 ~ 800\n![img.png](https://github.com/MCTeamPotato/Francium/blob/1165/images/francium.png?raw=true)\n## Without Francium Installed\nAverage FPS: 630 ~ 650\n![img.png](https://github.com/MCTeamPotato/Francium/blob/1165/images/vanilla.png?raw=true)\n\n# 1.19.2 ~ 1.20.1?\nNot currently. \n\nIn 1.19.2+, Mojang overhauled random number generation from Java's own Random to a custom RandomSource class. \n\nSo if Francium is to support higher versions, it may only be able to undergo simple replacements (Also, the new effects from this replacement is not at all guaranteed to be consistent with vanilla, which is what Francium didn't want.) in specific classes much like Faster Random, and may not be conducive to fundamental reforms like it be in 1.16.5 and 1.18.2, optimization will also be much less effective.\n\n# Misc\nJoin Our discord: https://discord.gg/g8q3UHTpCP!\n\n[![image](https://www.bisecthosting.com/partners/custom-banners/75401fe6-76e7-471c-89e5-1edd37a950ad.webp)](https://bisecthosting.com/kasualix)",
+  "categories": [
+    "forge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 41691,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.18.2"
+  ],
+  "date_updated": null
+}

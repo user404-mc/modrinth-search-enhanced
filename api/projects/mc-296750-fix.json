@@ -1,0 +1,19 @@
+{
+  "id": "lrkPr5JS",
+  "slug": "mc-296750-fix",
+  "title": "MC-296750 Fix",
+  "description": "Fixes startup crash on AMD Mesa drivers on Linux for 25w16a.",
+  "body": "# MC-296750 fix\n\nThis fixes the startup crash on AMD GPUs with Linux.\n\nThis mod increases the minimum size of UBO offset alignment to a minimum 256 (or larger if your system asks for it), which is typical on Windows.\nOn Mesa Linux, the minimum size is 4.\n\nThe unofficial word from Dinnerbone is:\n> Somewhere I must have a UBO be too small and it's being masked by the giant alignment rules on windows\n> If you want to try to mod it better, there's a method in GLDevice that returns this value. Change it to 256 (or 8 or 16 or whatever, lower is better but 256 works for sure) \n\nThis mod does precisely that.\n\nThis gets the game to launch, and not crash, BUT there are severe rendering artifacts in-game.\n\n## How to use\n\n```kt\ndependencies {\n    modRuntimeOnly(\"dev.isxander:mc296750-fix:1.0.0\")\n}\n```\n\nThis will allow you to port your mods to the new snapshots and test them.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 183,
+  "followers": 0,
+  "game_versions": [
+    "25w16a"
+  ],
+  "date_updated": null
+}

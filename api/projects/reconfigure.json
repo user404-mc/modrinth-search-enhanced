@@ -1,0 +1,31 @@
+{
+  "id": "QHmQeeNt",
+  "slug": "reconfigure",
+  "title": "reconfigure",
+  "description": "Configuration library for my mods",
+  "body": "# reconfigure\n\nA config library for my mods\n\n[<img alt=\"Documentation\" height=\"56\" src=\"https://badges.penpow.dev/badges/documentation/generic/cozy.svg\">](https://replaceitem.github.io/reconfigure/)\n[<img alt=\"Available for fabric\" height=\"56\" src=\"https://badges.penpow.dev/badges/supported/fabric/cozy.svg\">](https://fabricmc.net/)\n[<img alt=\"Requires fabric api\" height=\"56\" src=\"https://badges.penpow.dev/badges/requires/fabric-api/cozy.svg\">](https://modrinth.com/mod/fabric-api)\n[<img alt=\"Available on Modrinth\" height=\"56\" src=\"https://badges.penpow.dev/badges/available/modrinth/cozy.svg\">](https://modrinth.com/mod/reconfigure)\n[<img alt=\"See me on GitHub\" height=\"56\" src=\"https://badges.penpow.dev/badges/social/github-singular/cozy.svg\">](https://github.com/replaceitem)\n[<img alt=\"Chat on Discord\" height=\"56\" src=\"https://badges.penpow.dev/badges/social/discord-singular/cozy.svg\">](https://discord.gg/etTDQAVSgt)\n\n## Design goals\n\n* Uses the builder pattern so all options autocomplete. Just start with `Config.builder()` and autocompletion will guide you through the whole process of creating a configuration\n* Designed to be used in the field initializers of a config class\n* Does not use annotations for flexibility at runtime\n\n## Preview\n\n![Basic widgets](https://github.com/replaceitem/reconfigure/blob/main/widgets-1.png?raw=true)\n![Advanced widgets](https://github.com/replaceitem/reconfigure/blob/main/widgets-2.png?raw=true)\n\n## Example definition\n\n```java\nclass DemoConfig {\n    public final Config CONFIG = Config.builder(\"reconfigure-test\")\n            .serializer(Serializers.JSON)\n            .build();\n    public final ConfigTab DEMO_TAB = CONFIG.createTab(\"demo\").build();\n    Void HEADLINE = DEMO_TAB.createHeadline(\"headline\");\n    public final Property<String> STRING = DEMO_TAB.createStringProperty(\"string\").defaultValue(\"Hello world\")\n            .asTextField().placeholder(\"Enter something\").build();\n    public final Property<Boolean> CHECKBOX = DEMO_TAB.createBooleanProperty(\"checkbox\").defaultValue(true)\n            .asCheckbox().build();\n    public final Property<Boolean> TOGGLE_BUTTON = DEMO_TAB.createBooleanProperty(\"toggle_button\")\n            .asToggleButton().build();\n    public final Property<Integer> SLIDER = DEMO_TAB.createIntegerProperty(\"slider\").defaultValue(4).range(1,10)\n            .asSlider().build();\n\n    public final Property<DayOfWeek> CYCLE_BUTTON = DEMO_TAB\n            .createEnumProperty(\"cycle_button\", DayOfWeek.class)\n            .defaultValue(DayOfWeek.MONDAY)\n            .asCyclingButton()\n            .build();\n\n    public final Property<Integer> COLOR = DEMO_TAB.createIntegerProperty(\"color\").asColorPicker().build();\n    public final Property<String> EDIT_BOX = DEMO_TAB.createStringProperty(\"box\").asEditBox().build();\n    public final Property<List<String>> CHIP_LIST = DEMO_TAB.createListProperty(\"chiplist\")\n            .asChipList()\n            .build();\n}\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "management"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 3014,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

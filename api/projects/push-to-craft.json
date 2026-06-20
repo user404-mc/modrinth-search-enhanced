@@ -1,0 +1,30 @@
+{
+  "id": "1qLDInq5",
+  "slug": "push-to-craft",
+  "title": "Push To Craft",
+  "description": "Allows you to add alternative items to existing recipes in bulk",
+  "body": "## Usage\nThis mod adds a new data type called `push_to_craft`. Put the files into a `push_to_craft` directory in your datapack or `data` folder of your mod (beneath the `recipes` or `tags` directories).\n\nA valid json file is built like this:\n- `additions`: _Array_ - Defines all items or tags that you want to add to the targets\n    - Entries are item ids as _Strings_. You can use tags by prepending a `#`.\n- `targets`: _Array_ or _String_ - Defines which items and tags to target in the recipes\n    - Entries are item ids or tags as _Strings_.\n- `recipes`: _Object_ - Gives conditions for which items to choose\n    - `types`: _Array_ - __optional__ - Defines which recipe serializers to target\n        - Entries are recipe serializer ids as _Strings_\n    - `ids`: _Array_ - __optional__ - Defines which recipes to target\n        - Entries are _Strings_ that are either of these:\n            - Exact recipe ids à la `minecraft:anvil`\n            - Namespace specific regular expression that only mark the last part of the id as regex à la `minecraft:.*`\n            - A complete regular expression beginning and ending with a forward slash à la `/.*craft:.*/`\n            \n## Example\nThis allows you to use blackstone in favor of cobblestone everywhere:\n```json\n{\n    \"additions\": [\n        \"minecraft:blackstone\"\n    ],\n    \"targets\": [\n        \"minecraft:cobblestone\"\n    ],\n    \"recipes\": {}\n}\n```\n\nThis allows you to use emeralds and all kinds of planks as alternatives to diamonds and iron ores in crafting and smelting recipes:\n```json\n{\n\t\"additions\": [\n\t\t\"minecraft:emerald\",\n\t\t\"#minecraft:planks\"\n\t],\n\t\"targets\": [\n\t\t\"minecraft:diamond\",\n\t\t\"minecraft:iron_ore\"\n\t],\n\t\"recipes\": {\n\t\t\"types\": [\n\t\t\t\"crafting_shaped\",\n\t\t\t\"crafting_shapeless\",\n\t\t\t\"blasting\"\n\t\t],\n\t\t\"ids\": [\n\t\t\t\"minecraft:/.*/\"\n\t\t]\n\t}\n}\n```\n\n## Modders\nIf you're a modder and like to use this in your projects you can do so using my maven:\n\n```groovy\nrepositories {\n    maven {\n        name \"Siphalor's Maven\"\n        url \"https://maven.siphalor.de\"\n    }\n}\n\ndependencies {\n    modCompile \"de.siphalor:pushtocraft-1.15:+\"\n    // Optionally you can include this mod into your jar\n    include \"de.siphalor:pushtocraft-1.15:+\"\n}\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1409,
+  "followers": 0,
+  "game_versions": [
+    "1.15",
+    "1.15.1",
+    "1.15.2",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18.2",
+    "1.19.2"
+  ],
+  "date_updated": null
+}

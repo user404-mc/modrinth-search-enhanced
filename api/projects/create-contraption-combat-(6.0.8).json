@@ -1,0 +1,19 @@
+{
+  "id": "O04Mflkr",
+  "slug": "create-contraption-combat-(6.0.8)",
+  "title": "Create: Contraption Combat (6.0.8)",
+  "description": "A universal compatibility mod that fixes crashes when placing block entities from various mods on Create 6.0.8 contraptions.",
+  "body": "# Create: Contraption (VirtualWorld) Compat\n\nA universal compatibility mod that fixes crashes when placing block entities from various mods on Create contraptions.\n\n## The Problem\n\nIn **Create 6.0.8**, placing certain block entities on contraptions causes the game to crash with:\n\n```\njava.lang.UnsupportedOperationException: VirtualRenderWorld doesn't maintain a chunk array.\n    at com.simibubi.create.content.contraptions.render.VirtualRenderWorld.getChunk(VirtualRenderWorld.java:69)\n```\n\nThis occurs because Create 6.0.8 introduced a change where block entities are loaded into a `VirtualRenderWorld` before their NBT data is processed. When block entities call `setChanged()` during initialization, it triggers `Level.blockEntityChanged()` which tries to mark chunks as unsaved - but `VirtualRenderWorld` is a lightweight render-only world that doesn't support chunk operations.\n\nAnd is solved in Create 6.0.9\n\n## The Solution\n\nThis mod uses a Mixin to intercept calls to `Level.blockEntityChanged()` and cancels them when the level is a `VirtualRenderWorld`. Since `VirtualRenderWorld` is temporary and never persists, marking chunks as unsaved is unnecessary and can be safely skipped.\n\n```\n@Mixin(value = Level.class)\npublic class VirtualRenderWorldMixin {\n    @Inject(method = \"blockEntityChanged\", at = @At(\"HEAD\"), cancellable = true)\n    public void preventBlockEntityChangedInVirtualWorld(BlockPos pos, CallbackInfo ci) {\n        if ((Object) this instanceof VirtualRenderWorld) {\n            ci.cancel();\n        }\n    }\n}\n```\n\n### Compatibility\nAffected Mods\nThis fix is **universal** and works with any mod where block entities call `setChanged()` during loading:\n\n\n### Requirements\n- **Minecraft**: 1.21.1\n- **NeoForge**: 21.1.209+\n- **Create**: 6.0.8+ (the issue doesn't exist in 6.0.6 and earlier)\n- **Flywheel**: 1.0.5+\n\n\n## Credits\n- **Create Team** - For the amazing Create mod\n- **NeoForge Team** - For the modding framework",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 225,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

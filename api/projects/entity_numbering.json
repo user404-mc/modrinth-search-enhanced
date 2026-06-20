@@ -1,0 +1,21 @@
+{
+  "id": "zl0e8ZO7",
+  "slug": "entity_numbering",
+  "title": "Entity Numbering",
+  "description": "adds cumulative numbering to entities in Minecraft by species and provides death message broadcasting functionality.",
+  "body": "# Entity Numbering Mod\n\nRepository: [https://github.com/sch246/entity_numbering](https://github.com/sch246/entity_numbering)\n\n## Overview\n\nEntity Numbering Mod is a Fabric mod that adds cumulative numbering to entities in Minecraft by species and provides death message broadcasting functionality.\n\n![https://cdn.modrinth.com/data/zl0e8ZO7/images/6e587b61fddaa7a47fa2012c3dc4699a61151330.png](https://cdn.modrinth.com/data/zl0e8ZO7/images/6e587b61fddaa7a47fa2012c3dc4699a61151330.png)\n\n## Features\n\n- Adds unique numbering to entities in the game (can be disabled)\n  - Named entities will have the tag: `entity_numbering.named`, which can also be used to prevent entities from being named\n- Broadcasts entity death messages (can be disabled)\n- Customizable death message broadcast range\n- Customizable separator between entity name and number\n- Special handling for zombies infecting villagers and creeper explosions\n- Added the `resetname` command to clear names\n\n\n## Known Issues\n\n- It affects all unnamed living entities in the world, as I currently don't know how to distinguish between pre-existing entities and newly spawned ones\n\n## Installation\n\n1. Make sure you have fabric-api and Fabric loader installed, with loader version >=0.16.0\n2. Download the .jar file of this mod\n3. Place the downloaded .jar file into your Minecraft `mods` folder\n4. Launch the game!\n\n## Configuration\n\nThe mod's configuration file should be located at `.minecraft/config/entity_numbering.json`. You can modify the following settings as needed:\n\n```json\n{\n  \"enableNumbering\": true,\n  \"enableDeathMessages\": true,\n  \"boardcastNeedName\": true,\n  \"boardcastDistance\": 128,\n  \"nameSeparator\": \" #\"\n}\n```\n\n- `enableNumbering`: Whether to enable entity numbering feature\n- `enableDeathMessages`: Whether to enable death message broadcasting\n- `boardcastNeedName`: Whether to broadcast death messages only for named entities\n- `boardcastDistance`: The range of death message broadcasting (in blocks)\n- `nameSeparator`: The separator between entity name and number\n\nFor debugging purposes, you can open `/saves/<world_name>/data/entity_counter.json` to modify the current number count for each type of entity\n\n## Uninstallation\n\n- Modify `.minecraft/config/entity_numbering.json` and set `enableNumbering` to `false`\n- Run `/resetname @e[tag=entity_numbering.named]`, make sure all named entities are affected (some entities might be in unloaded chunks)\n- Run `/execute as @e[tag=entity_numbering.named] unless data entity @s CustomName run tag @s remove entity_numbering.named` to remove the tag from entities without a custom name\n- Close the game\n- Delete the `entity_numbering-x.x.x.jar` file from the `mods` folder\n\n## Compatibility\n\nThis mod is compatible with Minecraft version 1.21-1.21.1.\n\nOther versions have not been tested.\n\n## Contributions\n\nIssues and pull requests are welcome.\n\n## License\n\nThis project is licensed under the [MIT](./LICENSE) License.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 199,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

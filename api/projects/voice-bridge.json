@@ -1,0 +1,36 @@
+{
+  "id": "SrRXlijh",
+  "slug": "voice-bridge",
+  "title": "Voice Bridge",
+  "description": "Bridges Plasmo Voice and Simple Voice Chat on the server side",
+  "body": "# Voice Bridge\n\nA server-side [Paper](https://papermc.io/) plugin that bridges proximity voice chat\nbetween [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat)\nand [Plasmo Voice](https://modrinth.com/plugin/plasmo-voice), allowing players using different voice mods to hear each\nother.\n\n## How it works\n\nBoth Simple Voice Chat (SVC) and Plasmo Voice (PV) encode audio with Opus at 48 kHz, mono, 20 ms frames. Voice Bridge\nintercepts audio packets from each mod's API and relays them to the other — no transcoding required. The result is\nlow-latency, cross-mod proximity voice chat with minimal CPU overhead.\n\n```\nSVC Player ──► SVC API ──► Voice Bridge ──► PV API ──► PV Player\nPV Player  ──► PV API  ──► Voice Bridge ──► SVC API ──► SVC Player\n```\n\n## Requirements\n\n- Paper 1.21.4+ (or Folia)\n- Java 21+\n- [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) (server-side plugin)\n- [Plasmo Voice](https://modrinth.com/plugin/plasmo-voice) (server-side plugin)\n\n## Installation\n\n1. Install both Simple Voice Chat and Plasmo Voice on your Paper server\n2. Download `voice-bridge-<version>.jar`\n3. Place it in your server's `plugins/` directory\n4. Restart the server\n\n## Building from source\n\n```shell\n./gradlew build\n```\n\nThe plugin jar will be in `build/libs/`.\n\n### Running a dev server\n\n```shell\n# With Mojang mappings (for debugging)\n./gradlew runDevBundleServer\n\n# With obfuscation (production-like)\n./gradlew runServer\n```\n\n## Configuration\n\nA `config.yml` is generated on first run in `plugins/voice-bridge/`:\n\n```yaml\nbridge:\n  enabled: true       # Enable/disable the bridge\n  debug: false        # Enable debug logging\n\nproximity:\n  default-distance: 48.0      # Default voice range in blocks\n  whisper-multiplier: 0.33    # Whisper range = distance * multiplier\n  max-distance: 128.0         # Maximum allowed voice distance\n\naudio:\n  passthrough: true            # Opus passthrough (recommended)\n  force-transcode: false       # Force transcoding (not yet implemented)\n```\n\n### Per-world distance overrides\n\nYou can override the default voice distance for specific worlds:\n\n```yaml\nproximity:\n  world-overrides:\n    world_nether: 24.0\n    world_the_end: 64.0\n```\n\n## Commands\n\n| Command                        | Description                             |\n|--------------------------------|-----------------------------------------|\n| `/voicebridge status`          | Show bridge status, metrics, and config |\n| `/voicebridge players`         | List active bridged sessions            |\n| `/voicebridge reload`          | Reload configuration                    |\n| `/voicebridge debug [on\\|off]` | Toggle debug logging                    |\n\nAlias: `/vb`\n\nPermission: `voicebridge.admin` (default: op)\n\n## Architecture\n\n```\n┌────────────────────────────────────────────────┐\n│              VoiceBridgePlugin                 │\n├───────────┬───────────┬────────────┬───────────┤\n│ SvcAdapter│ PvAdapter │ AudioRelay │  Session  │\n│           │           │            │  Manager  │\n├───────────┴───────────┴────────────┴───────────┤\n│  SpatialMapper │ BridgeConfig │ BridgeMetrics  │\n└────────────────────────────────────────────────┘\n```\n\n- **SvcAdapter** — integrates with Simple Voice Chat via `VoicechatPlugin`\n- **PvAdapter** — integrates with Plasmo Voice via `@Addon` / `AddonInitializer`\n- **AudioRelay** — central router that forwards audio frames between adapters\n- **SessionManager** — tracks which mod each player is using\n- **SpatialMapper** — converts between SVC float distances and PV short distances\n\n## Known limitations\n\n- Group/channel bridging is not supported (proximity chat only)\n- Transcoding mode is not yet implemented (passthrough only)\n- SVC-only players may not receive audio from PV players in some edge cases\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 422,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

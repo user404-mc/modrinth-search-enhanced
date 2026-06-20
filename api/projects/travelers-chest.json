@@ -1,0 +1,27 @@
+{
+  "id": "kyPrxCKR",
+  "slug": "travelers-chest",
+  "title": "Traveler's Chest",
+  "description": "Part of the Traveler's Series; This mod helps server administrators create chests that refresh after a cooldown period has completed. \n\nThis mod was designed for the GBTI Network SMP to help regulate adventure based POIs.",
+  "body": "# Traveler's Chest\n\nA Minecraft mod that enables administrators to manage refillable chests dynamically. Designed for multiplayer servers using Fabric for Minecraft 1.21.1, the mod provides control over chest content, cooldowns, and interactions.\n\n## Features\n\n- Refillable chests with customizable cooldowns\n- Administrator tools for creating, editing, and destroying refillable chests\n- Protected chests to prevent unauthorized modifications or destruction\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/use/) and [Fabric API](https://modrinth.com/mod/fabric-api).\n2. Download the latest version of Traveler's Chest from the [releases page](https://github.com/gbti-network/minecraft-mod-travelers-chest/releases).\n3. Place the `.jar` file in your server's `mods` folder.\n4. Start your server to generate configuration files.\n\n## Configuration\n\n### Config Files\n\n- `config/travelers-chest/travelers_chest_config.txt`\n  - **Example Contents**:\n    ```properties\n    debug_logging=false\n    ```\n  - Enables or disables debug logging for detailed troubleshooting.\n\n- `config/travelers-chest/travelers_chests.json`\n  - Stores data about all managed chests, including their cooldowns, items, and positions.\n\n## Usage\n\n### Commands\nAdministrators can manage chests using commands:\n\n1. **Create a Traveler's Chest**:\n   - Command: `/travelers_chest create [cooldown_in_seconds]`\n   - Default cooldown: 30 minutes (1800 seconds)\n   - Example: `/travelers_chest create 600` creates a chest with a 10-minute cooldown.\n\n2. **Edit a Traveler's Chest**:\n   - Command: `/travelers_chest edit [new_cooldown_in_seconds]`\n   - Updates the cooldown of an existing chest.\n   - Example: `/travelers_chest edit 1200` sets the cooldown to 20 minutes.\n\n3. **Destroy a Traveler's Chest**:\n   - Command: `/travelers_chest destroy`\n   - Removes a Traveler's Chest and its data.\n\n### Chest Functionality\n\n- **Protected Chests**: Players without sufficient permissions cannot break or modify these chests.\n- **Refill Mechanism**: Automatically replenishes chest contents based on saved configurations after the cooldown period expires.\n- **Double Chest Support**: Handles single and double chests seamlessly.\n\n### Debug Logging\n\nEnable debug logging in `travelers_chest_config.txt` for detailed logs of mod operations, such as chest refills and command execution:\n```properties\ndebug_logging=true\n```\n\nLogs are output to the server console.\n\n## JSON Structure\n\nChests are stored in `travelers_chests.json` with the following schema:\n- **lastRefreshed**: Timestamp of the last refill\n- **chestCooldown**: Cooldown in seconds\n- **worldKey**: World identifier\n- **items**: List of stored items\n- **itemPositions**: Item slot positions\n\nExample:\n```json\n{\n  \"123456789\": {\n    \"lastRefreshed\": 12345678,\n    \"chestCooldown\": 1800,\n    \"worldKey\": \"minecraft:overworld\",\n    \"items\": [{\"nbt\": \"{id:\\\"minecraft:diamond\\\",Count:1b}\"}],\n    \"itemPositions\": [0]\n  }\n}\n```\n\n## Support\n\nTo support the development of Traveler's Chest, please join the [GBTI Network](https://gbti.network/) for access to:\n-  Exclusive tools and resources\n-  Development support\n-  Private Minecraft Server\n\n### Other Ways to Contribute\n\n- Star the project on [GitHub](https://github.com/gbti-network/minecraft-mod-travelers-chest)\n- Report issues via the [Issue Tracker](https://github.com/gbti-network/minecraft-mod-travelers-chest/issues)\n- Submit improvements via [Pull Requests](https://github.com/gbti-network/minecraft-mod-travelers-chest/pulls)\n\n## License\n\nThis project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.",
+  "categories": [
+    "adventure",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1078,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

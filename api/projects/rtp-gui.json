@@ -1,0 +1,37 @@
+{
+  "id": "xmG9d1OY",
+  "slug": "rtp-gui",
+  "title": "RTP",
+  "description": "Very simple /rtp plugin inspired by DonutSMP",
+  "body": "# 🎲 RTP: The Ultimate Random Teleport Plugin\n\n**Tired of spawn camping? Need a quick escape to the unknown?**\n\n**RTP** (Random Teleport) is the sleek, powerful plugin that instantly throws players into a new, safe, and completely random location—even across dimensions! Forget clunky commands; our **customizable GUI** makes exploration effortless and fun. **RTP supports custom worlds/multiple worlds _but you will have to install a separate world manager plugin for this to work (Worlds, Multiverse, World Manager)_**\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/QOBY1lRtmV4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n---\n\n### ✨ Key Features That Redefine Adventure\n\n* **⚡ Instant, Safe Teleportation:** Use the simple **/rtp** command to open a beautiful GUI and launch your players into the wild.\n* **🌍 World Hopping (or Not!):** Players can choose to be teleported randomly within the **Overworld, Nether, or The End**. You have full control to **enable or disable any world** through the config.\n* **🚫 Respects World Borders:** Never worry about players glitching out! The plugin intelligently selects a random location that **respects the World Border** of the target world.\n* **🎯 Beautiful & Simple GUI:** Your players will love the clean, easy-to-use interface. All item materials, names, slots, and lore are **fully customizable**.\n\n---\n\n### ⚙️ Total Control & Customization\n\nThe **RTP** plugin gives server owners and administrators comprehensive control over the player experience.\n\n* **⏱️ Advanced Rank-Based Cooldowns:** Implement a tiered cooldown system using permissions. Give your VIP ranks (e.g., `rtp.cooldown.rank1`) shorter cooldowns to reward them!\n* **📜 Custom Messages & Sounds:** Customize every single message, from the teleport countdown to cancellation notices, ensuring the plugin perfectly fits your server's style.\n* **🛡️ Safety & Immersion:** Configure teleport settings like a customizable countdown timer, and easily enable/disable movement or damage cancellation.\n* **🎉 Visual Flair:** Enhance the experience with configurable teleport sounds and particle effects (like `PORTAL`) to make every warp feel special.\n\n---\n\n### 💻 Commands & Permissions\n\n| Command | Description | Permission | Default |\n| :--- | :--- | :--- | :--- |\n| **`/rtp`** | Opens the World Selection GUI for random teleportation. | `rtp.use` | True |\n| **`/rtpreload`** | Reloads the plugin configuration. | `rtp.reload` | OP |\n\n#### Cooldown Permissions\n\nCooldowns are customizable in the config, allowing you to set different timers for different player ranks using permissions like this:\n\n| Permission Example | Effect |\n| :--- | :--- |\n| `rtp.cooldown.rank1` | Uses the custom cooldown time set for rank1 (120s in example). |\n| `rtp.cooldown.vip` | **(Create your own!)** Set a shorter time for VIPs! |\n\n<details>\n  <summary>⚙️ Config Example</summary>\n\n```yaml\n# === RTP GUI Plugin Configuration ===\n# CUSTOM WORLDS ARE NOT SUPPORTED NATIVELY!!!\n# If you want custom world support, please download\n# a plugin for initializing worlds such as Worlds,\n# Multiverse, World Manager, etc.\n\n# GUI Settings\ngui:\n  title: \"<gradient:green:yellow>Select a World to Teleport</gradient>\"\n  size: 9 # 9 per row. 2 rows = 18, 3 rows = 27, and so on\n  open-sound: \"UI_BUTTON_CLICK\"\n  click-sound: \"BLOCK_NOTE_BLOCK_PLING\"\n  disabled-sound: \"ENTITY_VILLAGER_NO\"\n  items:\n    overworld:\n      world-name: \"world\"\n      min-radius: 0\n      max-radius: 0 # Leave this 0 to just teleport based on world-border\n      enabled: true\n      slot: 2\n      material: GRASS_BLOCK\n      name: \"<green>Overworld\"\n      lore:\n        - \"<gray>Click to teleport randomly in the Overworld!\"\n    nether:\n      world-name: \"world_nether\"\n      # The logic for this does not teleport you to coordinates 10,000 to 11,000. It uses a mathematical calculation\n      # that converts this to a circular band instead of a square.\n      min-radius: 10000\n      max-radius: 11000\n      enabled: false\n      slot: 4\n      material: NETHERRACK\n      name: \"<red>Nether\"\n      lore:\n        - \"<gray>Click to teleport randomly in the Nether!\"\n    end:\n      world-name: \"world_the_end\"\n      min-radius: 0\n      max-radius: 0\n      enabled: false\n      slot: 6\n      material: END_STONE\n      name: \"<yellow>The End\"\n      lore:\n        - \"<gray>Click to teleport randomly in the End!\"\n\ncooldown:\n  default:\n    cooldown: 180\n    # This is the default cooldown if players don't\n    # have any rtp.cooldown.<rankname> permissions.\n  rank1:\n    permission: \"rank1\" # rtp.cooldown.rank1\n    cooldown: 120\n  rank2:\n    permission: \"rank2\" # rtp.cooldown.rank2\n    cooldown: 60\n\nteleport:\n  # I strongly suggest not increasing max-attempts from 100 as it might cause massive tps drops or server crashes.\n  max-attempts: 100    # maximum # of attempts to find a safe location to teleport to\n  countdown: 5         # seconds before teleport happens\n  move-cancel: true    # cancel teleport if player moves\n  damage-cancel: true  # cancel teleport if player takes damage\n  countdown-sound: \"UI_BUTTON_CLICK\"\n\n# Teleportation effects\neffects:\n  teleport-sound: \"ENTITY_ENDERMAN_TELEPORT\"\n  teleport-particle: \"PORTAL\"\n  particle-count: 40\n\n# Blacklisted blocks (blocks a player won't teleport on).\nblacklist-blocks:\n  - \"LAVA\"\n  - \"FIRE\"\n  - \"CACTUS\"\n  - \"MAGMA_BLOCK\"\n  - \"CAMPFIRE\"\n  - \"SOUL_CAMPFIRE\"\n  - \"SOUL_FIRE\"\n  - \"WATER\"\n\n# Messages\nmessages:\n  teleported: \"<green>Teleported to a random location in the %world%<green>!\"\n  cooldown: \"<red>You must wait <yellow>%time%s</yellow> before using RTP again!\"\n  countdown: \"<yellow>Teleporting in %countdown%s...\"\n  cancel-move: \"<red>Teleport cancelled because you moved!\"\n  cancel-damage: \"<red>Teleport cancelled because you took damage!\"\n  no-permission: \"<red>You have no permission to use /rtp reload!\"\n  scanning: \"<aqua>Scanning for a safe teleport location. <gray>(Attempt#%attempt%)\"\n```\n\n</details>\n\n\n\n**Ready to give your players the gift of the unknown? Install RTP today!**",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 30407,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

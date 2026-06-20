@@ -1,0 +1,39 @@
+{
+  "id": "Nie8wO7y",
+  "slug": "endless-inventory",
+  "title": "Endless Inventory",
+  "description": "An infinite player extended inventory and an easy storage way.",
+  "body": "**Endless Inventory**\n=========\n![ModIcon](https://cdn.modrinth.com/data/Nie8wO7y/27032e97adabaafd2ecae8217cdf4ab3f4a1b040_96.webp)  \nEndless Inventory is a Minecraft mod providing an RPG like, infinite space inventory.\n\n# Versions\n\n+ In readme/repo\n+ + v 1.1.0-SNAPSHOTs-Sep25\n+ Forge\n+ + 1.20.1 1.1.0-Pre1\n+ Fabric\n+ + 1.20.1 1.1.0-SNAPSHOT2\n+ Neoforge\n+ + 1.21.1 1.0.4\n\n*Neoforge-1.21 is the version when I started this project.* \n\n# Features\n\n## Dedicated Menu\n\n+ Open your endless inventory using a designated item (EndInv Accessor | `endless_inventory:test_endinv`) or press specific key `I`.\n### Togglable inner Crafting menu\nClick Crafter button to toggle inner crafting menu and\n**\\[FORGE\\]** it supports Jei's recipe transfer.!\n#### Click priority\n- `shift-click` To crafter>inventory>page\n- `ctrl-click` To page>inventory>crafter\n\n## Attached Item Page\n\n+ Paginated GUI with category filters and advanced sorting and searching.\n+ ctrl-click to quick move items\n\n## Operations\nWith attached endInv page screen:\n+ `I` in gui: open `EndlessInventoryMenu`\n+ `ctrl+Left Click` in menu: quick move item from menu to endInv.\n+ `A` in page area: add item to bookmark\n+ `A` in bookmark page area: remove item from bookmark\n\n## Configurable\nclient and server config.toml to customize the behavior of EndInv to suit specific needs. See Configuration part.\n\n# Mod Instructions\n\n## Configuration\n\nThis mod provides both client and server-side configurations:\n+ config/endless_inventory-server.toml: Server behavior and inventory mode.\n+ config/endless_inventory-client.toml: UI layout, sorting preferences, and GUI toggles.\n\n### client config\n\n+ Texture mode - Help to change the texture of attached screen\n  \n    <table>\n        <thead>\n            <tr>\n                <th>Mode</th>\n                <th>Description</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td>FromResource</td>\n                <td>Vanilla menu background texture clipped</td>\n            </tr>\n            <tr>\n                <td>Transparent</td>\n                <td>Render transparent background</td>\n            </tr>\n            <tr>\n                <td>DedicatedLocation</td>\n                <td>Allow to define dedicated texture. (See Texture config part)</td>\n            </tr>\n        </tbody>\n    </table>\n\n+ attachingMenuScreen, determine whether to attach endInv with menu screens.\n+ rows, of Endless Inventory Screen and Attached Screen\n+ columns, of attached screen\n+ auto_suit_column, adjust column count if the gui size is too big to contain menu and AS.\n+ enable_debug, open screen debug that shows gui info. (see screen debug)\n+ max_page_bars, the max count showing side of page.\n+ *\\[Experimental\\]* enable pages\n\n### server config\n\n+ *\\[Experimental\\]* autoPickUtility, auto send mob and mine loot or picked up dropped item to EndInv. This may cause bugs, typically with other mods.\n+ TransferMode, internal item transfer mode between server and client\n+ + ALL, transfer all items of an EndInv to client\n+ + PART, firstly compute items' filter and sort and send to client, low network pressure but may cause bugs (lack of test).\n+ creationMode, how to handle it when there is no EndInv\n+ + CREATE_PER_PLAYER, create EndInv for every player who has not an EndInv (no valid UUID).\n+ + USE_GLOBAL_SHARED, only create a new EndInv if no valid EndInv exists, players use a shared EndInv.\n+ + NONE, do not create a new EndInv, this can be used when you don't like players get EndInv without any conditions.\n+ convert_empty_tag: in some situations some item cannot be taken out of Page as the tags may be {} and same item in SourceInv which tag is null.\n+ itemCapacity *\\[Experimental and lack of test\\]*\n+ + maxStackSize: max count one item can stack to. Note that all item is same even it is a tool.\n\nCommands\n--------\n`/endinv`\n- `backup` : backup `endless_inventories.dat` file\n- `new` : create a new Endless Inventory\n- - `public`/`restricted`/`private` : Accessibility of new EndInv default to `public`\n- `ofIndex` :\n- - `<no arg>` : get player's current endInv index in `levelEndInvs`\n- - `<index>`  : get endinv by index in `levelEndInvs`\n- - - `open` : open endinv, anyone can run this, but only the accessible players or ops can open.\n- - - `setDefault` : set player's default endInv in opening menu.\n- - - `setOwner`: set endinv's owner to executor player.\n- - - `addWhiteList` : add executor player to endinv's allowlist.\n- - - `removeWhiteList` : remove executor player from endinv's allowlist.\n- - - `setAccessibility <public/restricted/private>`: set endinv's accessibility.\n- - - `remove`: remove current endinv from level endinv data, before this a backup file will be created.\n- - - - `<forceRemove>: boolean` : this will force remove endinv though backup failed.\n\nInstallation\n-------\n+ Make sure NeoForge is installed and compatible with your Minecraft version.\n+ Download the latest release of the Endless Inventory mod from the Releases page.\n+ Place the `.jar` file in your `mods` folder.\n+ Launch the game and enjoy your new inventory system!\n\n## DEDICATED_LOCATION\nDEDICATED_LOCATION allows using custom texture in resource packs, to use refer such locations:  \nIn `assets/endless_inventory/textures/gui/*`:\n- `item_grid.png` for common pages, derived from chest menu's generic54.png\n- `tabs.png` for page switch tabs, derived from achievements gui sprites\n- `item_entry.png` for item entry display (enchantment book classify page), derived from generic54 by removing vertical rules to form row strips\n- - the process is to fill each row of the grid with a long strip, in FromResource mode, `renderBg` method of `ItemEntryDisplay.class` does it so X).",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17838,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.4",
+    "1.21.8",
+    "1.21.11",
+    "26.1",
+    "26.1.1-rc-1",
+    "26.1.1",
+    "26w14a",
+    "26.2-snapshot-1",
+    "26.1.2-rc-1",
+    "26.1.2",
+    "26.2-snapshot-2",
+    "26.2-snapshot-3",
+    "26.2-snapshot-4"
+  ],
+  "date_updated": null
+}

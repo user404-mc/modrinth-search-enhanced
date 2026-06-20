@@ -1,0 +1,43 @@
+{
+  "id": "nT8BgIrU",
+  "slug": "dimension-leak-fix",
+  "title": "Dimension Leak Fix",
+  "description": "Fixes memory leaks when switching dimensions. Mods like Collective, AmbientSounds and Create retain old worlds in RAM - this mod cleans them up automatically, recovering 2-4 GB per transition.",
+  "body": "Every time you travel between the Overworld, Nether, and End, your client creates a new `ClientWorld`. The old world _should_ be garbage-collected, but several popular mods accidentally hold references to it - causing it to stay in memory forever.\n\nAfter just a few dimension changes, this can eat **4-8 GB of RAM**, leading to lag spikes, stuttering, and eventually crashes.\n\n**Dimension Leak Fix** automatically detects dimension transitions and surgically breaks these retention chains, recovering 2-4 GB of memory per transition.\n\n### What it fixes\n\nSource | Problem | Impact\n---|---|---\n**Entity references** | Entities in the old world hold a `.level` field pointing back to it | ~200 MB per transition\n**Collective** | `BlockEntityData.cachedBlockEntities` retains old worlds through nested WeakHashMaps | ~1.2 GB per transition\n**AmbientSounds** | AirPocketScanner thread holds thousands of ChunkSections as a GC root | ~1.4 GB per transition\n**Create** | Renderer caches hold references to old world data | Variable\n**Chunk storage** | Old world's ChunkManager retains all loaded chunks in memory | ~1-3 GB per transition\n\n### How it works\n\nThe mod uses a two-phase approach:\n\n- **Phase A** (instant): When you change dimension, the mod immediately detaches entity references, flushes Collective caches, stops the AmbientSounds scanner thread, detaches Spark command senders, and invalidates Create's renderer.\n- **Phase B** (3 seconds later): The mod clears the old world's chunk storage array and entity sets. This is delayed to avoid interfering with the renderer during the transition.\n\n### Compatibility\n\n- Client-side only - does not need to be installed on the server\n- Works with or without any of the mods listed above - the mod detects what's installed and only applies relevant fixes\n- Tested with 200+ mods including Iris, Sodium, Distant Horizons, Create, Collective, AmbientSounds\n\n### Log output\n\nThe mod logs everything it does. Example output after a dimension change:\n\n    [DimensionLeakFix] Dimension change detected, cleaning up old world...\n    [DimensionLeakFix]   Entities: 131 world references detached\n    [DimensionLeakFix]   Collective: 1 cache(s) flushed in cachedBlockEntities\n    [DimensionLeakFix]   AmbientSounds: scanner stopped (3 fields cleared)\n    [DimensionLeakFix]   Create: renderer cache invalidated\n    [DimensionLeakFix] Phase A complete (137 operations)\n    [DimensionLeakFix] Phase B scheduled (3s delay)\n    [DimensionLeakFix] Phase B: releasing old world data...\n    [DimensionLeakFix]   Chunks: 2809 slots released\n    [DimensionLeakFix]   loadedChunks: 2809 entries cleared\n    [DimensionLeakFix] Phase B complete (2810 references released, ~3706 MB freed)\n\nUsed in the [Legends Reborn: Medieval](https://www.curseforge.com/minecraft/modpacks/legends-reborn-medieval) modpack.\n",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 8005,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

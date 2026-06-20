@@ -1,0 +1,36 @@
+{
+  "id": "1QZbMb72",
+  "slug": "keepinventory-individual",
+  "title": "KeepInventory Individual",
+  "description": "A plugin that makes KeepInventory individual to players.",
+  "body": "![About](https://imgur.com/Dr1ccRs.png)\nKeepInventory Individual allows you to set KeepInventory for players individually.\n\nThis plugin supports MySQL, so that it can save the list of players with KeepInventory enabled, into the Database.\n\nIf MySQL is disabled, or no connection is established to it, then the plugin will temporarely store the list into a YAML file, until the connection to a MySQL database is established.\n\nOnce connection is established, the plugin will then move the list from the YAML file into the database automatically.\n\nYou can also blacklist certain death causes, if you do not want the player to keep their inventory for falling into the void for example.\nMore info about it in the Configs section.\n\nThis plugin also has an API, allowing you to use some of it's features in your own projects! [Learn more](https://app.gitbook.com/o/TALdBMlyaTMjSl1ZY9nI/s/COFyNCzAUI6kydlC9reh/keepinvapi)\n\n![Commands](https://imgur.com/Kko6HvL.png)\n### Usage: /keepinventory <on/off/reload> (player)\n\nThe command itself can only be used by opped players, or players with the appropriate permissions assigned to them.\n| Command|Description\n|:----------------------------:|:----------------------------:|\n| /keepinventory on (player)| Enables KeepInventory for you or the player mentioned.|\n| /keepinventory off (player)| Disables KeepInventory for you or the player mentioned.|\n| /keepinventory reload| Reloads the config files.|\n| /keepinventory list | Shows a list of players with KeepInventory enabled.|\n| /keepinventory help | Shows a list of commands for this plugin.|\n\n![Permissions](https://imgur.com/kjthbJx.png)\nThese are the permission nodes used for the commands.\n|Permission|Usage|Default|\n|:----------:|:-----:|:------:|\n|ki.admin.cmd.on|Used for /keepinventory on|Opped Players|\n|ki.admin.cmd.off|Used for /keepinventory off|Opped Players|\n|ki.admin.cmd.other|Used for /keepinventory on/off (Player)|Opped Players|\n|ki.admin.cmd.reload|Used for /keepinventory reload|Opped Players|\n|ki.admin.cmd.list|Used for /keepinventory list|Opped Players|\n|ki.admin.cmd.help|Used for /keepinventory help|Opped Players|\n|ki.keepxp|Players with this permission will keep their experience upon death.|Opped Players|\n|ki.onjoin.on|Players will have KeepInventory enabled by default as soon as they join. Blacklisted worlds will cancel it.|Opped Players|\n|ki.onjoin.off|Players will have KeepInventory disabled by default as soon as they join.|Opped Players|\n\n![Configs](https://imgur.com/vfqEP7k.png)\n## config.yml\n```\n# NOTE: When using the blacklist, please make sure to write the causes in caps like this:\n# blacklist:\n# - VOID\n# - EXPLOSION\n# ----------------------------------------------------------------------------------------\n# If you want to leave the list empty, please enter the list like this:\n# blacklist: []\n# ----------------------------------------------------------------------------------------\n# You can find a list of all damage causes here:\n# https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html\n# ----------------------------------------------------------------------------------------\n\nworld-blacklist:\n  enabled: false\n  blacklist: []\ndeathcause-blacklist:\n  enabled: false\n  blacklist: []\nmysql:\n  enabled: false\n  host: HOST NAME\n  port: PORT\n  database: DATABASE NAME\n  user: USERNAME\n  password: PASSWORD\ndebug:\n  send-on-join-notification: false\n  enabled: false\n```\n\n## messages.yml\n```\ninfo:\n  on-join:\n    enabled: '&7KeepInventory has been enabled for you by default!'\n    disabled: '&7KeepInventory has been disabled for you by default!'\n    blacklisted: '&7KeepInventory disabled, because you''re in a blacklisted world!'\n  enabled: '&7Successfully enabled KeepInventory for &e{player}&7!'\n  disabled: '&7Successfully disabled KeepInventory for &e{player}&7!'\n  reload:\n    process: '&7Reloading configurations...'\n    success: '&7Configurations were successfully reloaded!'\nerror:\n  no-permission: '&cYou do not have permission to use this command!'\n  no-such-player: '&cPlayer &e{player} &cdoes not exist.'\n  invalid-arguments: '&cInvalid arguments. Usage: &e/keepinventory <on/off/reload>\n    (player)'\n  not-enough-arguments: '&cNot enough arguments. Usage: &e/keepinventory <on/off/reload>\n    (player)'\n  already-enabled: '&cIt is already enabled for &e{player} &c.'\n  already-disabled: '&cIt is already disabled for &e{player}.'\n  empty-list: '&cThe list is empty.'\n  must-be-number: '&cThe argument must be a number!'\n  page-out-of-bounds: '&cThe list only goes up to {number} pages.'\n```\n\n![Support](https://imgur.com/igZsk62.png)\n### You don't know how to set something up or found some issues?\nYou can reach out to me here:\n- [Github Issue Tracker](https://github.com/Niestrat99/Keep-Inv-Individual/issues)\n- [Discord](https://discord.gg/9ecMsm6Xgj)",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4494,
+  "followers": 0,
+  "game_versions": [
+    "1.2.1",
+    "1.2.2",
+    "1.2.3",
+    "1.2.4",
+    "1.2.5",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

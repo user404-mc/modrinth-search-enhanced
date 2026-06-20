@@ -1,0 +1,30 @@
+{
+  "id": "OSGNJlhi",
+  "slug": "recolorfulmap",
+  "title": "ReColorfulMap",
+  "description": "ReColorfulMap is a plugin that converts images into image maps, which can be hung on item frames to add decoration.",
+  "body": "<div align=\"center\">\n\n# ReColorfulMap\n\n<img src=\"https://ssl.lunadeer.cn:14437/i/2024/02/21/65d5e0d10b7d5.png\" alt=\"\" width=\"70%\">\n\n[![GitHub Repository](https://img.shields.io/badge/SourceCode-GitHub-blue?logo=github)](https://github.com/ColdeZhang/ReColorfulMap)\n[![bStats](https://img.shields.io/badge/bStats-Statistics-eacd76?logo=google-analytics)](https://bstats.org/plugin/bukkit/ColorfulMap/21443)\n[![Latest Build](https://img.shields.io/github/v/release/ColdeZhang/ReColorfulMap?label=LatestBuild&logo=github&color=0aa344)](https://github.com/ColdeZhang/ReColorfulMap/releases/latest)\n\n</div>\n\n## Description\n\nReColorfulMap is a plugin that converts images into image maps, which can be hung on item frames to add decoration.\n\nThis is a remake of the original ColorfulMap plugin. The original plugin leaves a lot of images cache in plugins folder,\nand need to reload them every time the server starts. Which also increases the server startup time and management\ndifficulty.\n\nBoth ColorfulMap and ReColorfulMap's idea are from [ImageFrame](https://github.com/LOOHP/ImageFrame)\nand [ImageMaps](https://github.com/SydMontague/ImageMaps).\nYou can think it is a simplified version of ImageFrame and a high version remake of ImageMaps. Thanks for their great\nwork.\n\n## Features\n\n- Convert images into image maps;\n- Image scaling;\n- Automatic placement to item frame matrix;\n- Support for consuming money to generate map paintings (requires Vault dependency);\n- Automatic get back maps from item matrix **(new feature)**;\n\n## Version Support\n\n- 1.20.1+ (Paper、Folia)\n\n## Usage\n\n1. First, you need to upload the image you want to convert to the [image bed](https://ssl.lunadeer.cn:14437/),\n   so that this plugin can read the image content from the network. After uploading,\n   you will get an url of the image, copy this address.\n\n2. In the game, enter the command: `/tomap <url-you-just-got>` to get a map:\n\n   ![](https://github.com/ColdeZhang/ReColorfulMap/blob/master/images/01.png?raw=true)\n\n   Because one map can only hold an image at the most of 128 x 128 pixels, so ReColorfulMap will split your image into\n   tiles automatically.\n   Don't worry about handling the tiles, ReColorfulMap will tell you how many item frames you need to place this image\n   maps\n   and place them in the correct order automatically too.\n\n   For this image shown above, it shows 8 x 13, which means you prepare a matrix of item frames 8 in width and 13 in\n   height to place this image.\n\n3. Place the map in the **bottom-left corner** of the item frame matrix, then the corresponding maps will be placed in\n   the remaining item frames on the wall automatically.\n\n   ![](https://github.com/ColdeZhang/ReColorfulMap/blob/master/images/02.png?raw=true)\n\n4. If the image is too large or too small, you can try to add a scaling parameter after the command,\n   for example, `/tomap <url-you-just-got> 0.3` means rendering at 30% of the original size.\n   If you want to fill the image without leaving any white space at the edges of all the maps,\n   you need to ensure that the resolution of your image is a multiple of **128**.\n\n   ![](https://github.com/ColdeZhang/ReColorfulMap/blob/master/images/03.png?raw=true)\n\n## For Server Owners\n\n### Commands & Permissions\n\n> The angle brackets `<>` in the following commands indicate required parameters, and the square brackets `[]` indicate\n> optional parameters.\n\n| Function    | Command                         | Permission Node     | Default |\n|-------------|---------------------------------|---------------------|---------|\n| Generate    | `/tomap <image-url> [scalling]` | recolorfulmap.tomap | true    |\n| Reload      | `/reloadColorfulMap`            | recolorfulmap.admin | op      |\n| Clean Cache | `/cleanColorfulMap`             | recolorfulmap.admin | op      |\n\nNOTICE: Don't run `/cleanColorfulMap` frequently, it will delete all the images generated but not placed.\n\n### Configuration Reference\n\n```yaml\n# Do not modify this value.\nversion: 2\n# The maximum size of item frame matrix.\n# 32 x 18 means image can not be larger than 4096 x 2304 pixels.\n# Don't set this value too large, it may cause lag.\nmax-frame-x: 32\nmax-frame-y: 18\n# Language of the plugin, see others in the plugins/FurnitureCore/languages folder.\nlanguage: en_us\n# Enable economy system. (Require Vault and an economy plugin)\n# If true, players need to pay for each map they create.\n# This may prevent players from abusing usage of the plugin.\neconomy:\n   enable: false\n   cost-per-map: 100.0\n# The whitelist of image url address, use this to prevent players from using inappropriate images.\n# Leave it empty to allow all addresses.\naddress-white-list:\n   - ''\n# Debug mode, if report bugs turn this on.\ndebug: true\n```\n\n## Support\n\nMail: [zhangyuheng@lunadeer.cn](mailto:zhangyuheng@lunadeer.cn)\n\nGitHub: [Issues](https://github.com/ColdeZhang/ReColorfulMap/issues)\n\nQQ群：309428300\n\n## bStats\n\n![bstats](https://bstats.org/signatures/bukkit/ColorfulMap.svg)",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "folia",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 510,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

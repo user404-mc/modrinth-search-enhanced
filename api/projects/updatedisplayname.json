@@ -1,0 +1,36 @@
+{
+  "id": "qgh1tNOY",
+  "slug": "updatedisplayname",
+  "title": "UpdateDisplayName",
+  "description": "Updates the player displaynames and tablist names to a specified format.\nSupports MiniMessage, Luckperms, Vault, PlaceholderAPI.\nDeveloper API available.",
+  "body": "# UpdateDisplayNames\n## Overview\nUpdateDisplayNames is a Paper plugin which automatically updates the display name and tablist name of the players to a specified format.\n## Features\n- Supports LuckPerms, Vault and PlaceholderAPI\n- Supports both MiniMessage and legacy color codes in placeholders\n- Has an API which allows to exclude specific players from the display name updates\n## How to install\nTo install this plugin, download the plugin for the correct minecraft version from the releases page and put it into your plugins directory.\n## Commands\n| Command | Description | Permission |\n|--|--|--|\n| `/updatedisplayname reload` | Config reload | `updatedisplayname.command` |\n| `/updatedisplayname update` | Updates names of all players | `updatedisplayname.command` |\n| `/updatedisplayname enable [true\\|false]` | Enable/disable the plugin's functionality | `updatedisplayname.command` |\n| `/updatedisplayname playerlist` | Shows the exclude list | `updatedisplayname.command` |\n## Configuration\nThe plugin should work out of the box without any configuration needed.  \nBut if you want to change something, here are the config values:\n| Option | Default | Description |\n|--|--|--|\n| `displayname --> enable` | `true` | If the plugin should update the player's display name. |\n| `displayname --> format` | `<luckperms:prefix><player><luckperms:suffix>` | The player display name format. |\n| `tablist --> enable` | `true` | If the plugin should update the player's tablist name. |\n| `tablist --> format` | `<luckperms:prefix><player><luckperms:suffix>` | The player tablist name format. |\n| `update_interval` | `60` | The inverval the names should be updated in seconds. |\n## Using the API\n### Import\nUsing gradle:\n```kotlin\nrepositories {\n    maven(\"https://maven.chaossquad.net/releases\")\n}\n\ndependencies {\n    compileOnly(\"net.jandie1505:UpdateDisplayName:1.0-RELEASE\")\n}\n```\n\nUsing maven:\n```xml\n<repository>\n  <id>ChaosSquad-Repository-releases</id>\n  <name>ChaosSquad Repository</name>\n  <url>https://maven.chaossquad.net/releases</url>\n</repository>\n```\n```xml\n<dependency>\n  <groupId>net.jandie1505</groupId>\n  <artifactId>UpdateDisplayName</artifactId>\n  <version>1.0-RELEASE</version>\n  <scope>provided</scope>\n</dependency>\n```\n\n### Usage\n```java\n// General features\npublic void ApiExample() {\n    UDNApi api = UpdateDisplayName.getApi();\n\n    Player player = Bukkit.getPlayer(\"playername\")\n        \n    boolean updatesEnabled = this.updatesEnabled; // Get plugin functionality status\n    api.setUpdatesEnabled(false); // Disable plugin functionality\n        \n    api.updatePlayers(); // Update display names of all players\n    api.updatePlayer(player); // Update display name of the specified player\n        \n    Set<UUID> excludedPlayers = api.getExcludedPlayers(); // Get excluded players\n    boolean excluded = api.isPlayerExcluded(player); // Check if a player is excluded\n        \n    DataStorage config = api.getPluginConfig(); // Get plugin config\n    \n    // Get config values\n    boolean enableDisplaynameUpdate = config.optBoolean(UpdateDisplayname.CONFIG_ENABLE_DISPLAYNAME, false);\n    String displayNameFormat = config.optString(UpdateDisplayName.CONFIG_FORMAT_DISPLAYNAME, null);\n    boolean enableTablistName = config.optString(UpdateDisplayName.CONFIG_ENABLE_TABLIST_NAME, false);\n    String tablistFormat = config.optString(UpdateDisplayName.CONFIG_TABLIST_FORMAT, null);\n    int updateInterval = config.optInt(UpdateDisplayName.CONFIG_UPDATE_INTERVAL, 60);\n\n    // Set config values\n    config.set(UpdateDisplayName.CONFIG_ENABLE_DISPLAYNAME, true);\n    config.set(UpdateDisplayName.CONFIG_FORMAT_DISPLAYNAME, \"<luckperms:prefix><player><luckperms:suffix>\");\n    config.set(UpdateDisplayName.CONFIG_ENABLE_TABLIST_NAME, true);\n    config.set(UpdateDisplayName.CONFIG_TABLIST_FORMAT, \"<luckperms:prefix><player><luckperms:suffix>\");\n    config.set(UpdateDisplayName.CONFIG_UPDATE_INTERVAL, 60);\n}\n\n// Event for updated display name\n@EventHandler\npublic void onDisplayNameUpdated(DisplayNameUpdatedEvent event) {\n\n    if (event.getPlayer().getName().equals(\"forbiddenName\")) {\n        event.setCancelled(true)\n        return;\n    }\n\n    if (event.getUpdatedDisplayName() == null) {\n        Bukkit.broadcast(Component.text(\"Display name of \" + event.getPlayer().getName() + \" has been reset\"))\n        return;\n    ]\n\n    Bukkit.broadcast(Component.empty()\n            .append(Component.text(\"Updated display name of player \" + event.getPlayer().getName() + \": \"))\n            .append(event.getUpdatedDisplayName())\n    );\n\n}\n\n// Event for updated tablist name\n@EventHandler\npublic void onDisplayNameUpdated(TablistNameUpdatedEvent event) {\n\n    if (event.getPlayer().getName().equals(\"PleaseDontGiveMeATablistName\")) {\n        event.setCancelled(true)\n        return;\n    }\n\n    if (event.getUpdatedTablistName() == null) {\n        Bukkit.broadcast(Component.text(\"Tablist name of \" + event.getPlayer().getName() + \" has been reset\"))\n        return;\n    ]\n\n    Bukkit.broadcast(Component.empty()\n            .append(Component.text(\"Updated tablist name of player \" + event.getPlayer().getName() + \": \"))\n            .append(event.getUpdatedTablistName())\n    );\n\n}\n```\n\n### JavaDocs\nClick [here](https://jandie1505.github.io/UpdateDisplayName/) to get to the JavaDocs.\n",
+  "categories": [
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 383,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

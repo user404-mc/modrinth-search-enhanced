@@ -1,0 +1,24 @@
+{
+  "id": "gycZJL9N",
+  "slug": "equal-loot",
+  "title": "Equal Loot",
+  "description": "Adds a configurable per player mob loot system",
+  "body": "<p align=\"center\">\n    <a href=\"https://neoforged.net/\">\n        <img alt=\"neoforge\" height=\"56\" src=\"https://raw.githubusercontent.com/intergrav/devins-badges/8494ec1ac495cfb481dc7e458356325510933eb0/assets/cozy/supported/neoforge_vector.svg\">\n    </a>\n    <a href=\"https://fabricmc.net/\">\n        <img alt=\"fabric\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg\">\n    </a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/8Cx26tfWNs\">\n    <img alt=\"discord-singular\" width=\"148\" height=\"40\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-singular_vector.svg\">\n  </a>\n  <a href=\"https://ko-fi.com/flemmli97\">\n    <img alt=\"kofi-singular-alt\" width=\"140\" height=\"40\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/kofi-singular-alt_vector.svg\">\n  </a>\n  <a href=\"https://www.patreon.com/Flemmli97\">\n    <img alt=\"patreon-singular\" width=\"140\" height=\"40\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/patreon-singular_vector.svg\">\n  </a>\n</p>\n\n## Equal Loot\n\nEqual loot is a simple mod that allows mobs to drop their loot multiple times for each player that assisted in its kill. \nOnly the player the drop it's for can see and pickup the items.\n\nAdditionally, the mod offers various configuration to change the behaviour of this system.\n\nBy default, player based loot is only enabled for bosses (mobs in the `c:bosses` tag).  \nA maximum of 5 players that hit the boss within the last 15 seconds and dealt at least 5% of the mobs health receive the loot (sorted by the damage done).  \nNote that the player who killed the mob is not guaranteed to also receive its loot. \nIf they do not meet the requirements they will only receive the mobs loot if the maximum player amount is not reached.\n\n## ⚙️ Configuration\n\nThe configuration of this mod is data-driven meaning you would need to create a datapack to change the behaviour.\n\nA config is defined via a file under `data/<namespace>/equal_loot/entity`\nand have the following format:\n```json\n{\n  \"include\": <Holder>, // A tag or list of entities that apply to this config\n  \"exclude\": <Holder>, // A tag or list of entities that are excluded from this config\n  \"max_players\": <integer>, // The amount of players that can receive the loot at max. Set to 0 to have no limit\n  \"min_damage\": <float>, // The minimum damage a player needs to do to count\n  \"percentage\": <true | false>, // If true min_damage is treated as a percentage value based on the mobs max health. Otherwise min_damage is the flat amount of damage required\n  \"damaged_within\": <integer>, // Time in ticks the player needed to hit the mobs within to count. So if the player hasnt hit the mob in this time they wont receive the loot\n  \"killer_handling\": <\"always\" | \"fill\" | \"requirements\">, // How the loot of the killing player should be handled. See below\n  \"priority\": <integer>, // Only relevant if a config overlaps with another. This defines which config will take precedence then\n}\n```\n\n\nKiller Handling:  \n`always`: The killing player always receives the loot  \n`fill`: If the killing player does not meet the requirement (dealing enough damage or hit the mob since x ticks) they only receive the loot if `max_players` is not reached  \n`requirements`: If the killing player does not meet the requirements they do not receive the loot  \n\n### Example:\n\nThe following is the configuration the mod ships with\n```json\n{\n  \"damaged_within\": 300,\n  \"exclude\": [],\n  \"include\": \"#c:bosses\",\n  \"max_players\": 5,\n  \"min_damage\": 0.05,\n  \"percentage\": true,\n  \"priority\": 10\n}\n```",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 185,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

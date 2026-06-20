@@ -1,0 +1,23 @@
+{
+  "id": "SXktzrGl",
+  "slug": "log-filter",
+  "title": "Log Filter",
+  "description": "Filters configured messages from the log and console in a performant way.",
+  "body": "# Log Filter\n\nFilters configured messages from the log and console in a performant way.\n**This is intended to be used by pack creators. Consider NOT send modified logs to mod creators if you're reporting bugs.**\n\n### Usage\nBelow is a commented config file (\"log_filter.json\") to remove all logging of datapack loading failure. This can be useful if a datapack removes recipes by e.g. replacing them with empty files. To use this, you need to remove the comments!\n```json\n{\n  \"logEvents\": \"NONE\", //Setting this to \"INFO\" will change ALL messages logged into a format useful to configure this mod (see below)\n  \"rules\": [ // Array of rules. If a rule matches, the message will not be logged\n    {\n      \"level\": [ // Array of levels. These are combined by AND within a rule.\n        {\n          \"relation\": \"EQUAL\", // Relation (Supports EQUAL, NOT_EQUAL, GREATER_THAN, etc.)\n          \"value\": \"ERROR\" // Value must be a valid level\n        }\n      ],\n      \"loggerName\": [ // Array of logger names\n        {\n          \"relation\": \"MATCH\", // Relation\n          \"value\": \"net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener\" // Class\n        }\n      ],\n      \"formatMessage\": [ // The message with formatting not applied (with the placeholders instead of values)\n        {\n          \"relation\": \"MATCH\",\n          \"value\": \"Couldn't parse data file {} from {}\"\n        }\n      ],\n      \"parameterClasses\": [ // Types of parameters/placeholders\n        {\n          \"0\": { // First placeholder\n            \"relation\": \"MATCH\",\n            \"value\": \"net.minecraft.resources.ResourceLocation\"\n          },\n          \"1\": { // Second placeholder\n            \"relation\": \"MATCH\",\n            \"value\": \"net.minecraft.resources.ResourceLocation\"\n          },\n          \"2\": { // Etc.\n            \"relation\": \"MATCH\",\n            \"value\": \"com.google.gson.JsonParseException\"\n          }\n        }\n      ]\n    }\n  ]\n}\n```\n\nIf \"logEvents\" is set, all log messages will be transformed:\n```\n[20:18:10] [modloading-worker-0/INFO] [Log Filter/]: Logging event:\n    - Level: INFO\n    - Logger name: mezz.jei.library.load.PluginCaller\n    - Thread name: modloading-worker-0\n    - Throwable class: null\n    - Message: Sending ConfigManager...\n    - Format message: {}...\n    - Parameter classes: [java.lang.String]\n```",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1552,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

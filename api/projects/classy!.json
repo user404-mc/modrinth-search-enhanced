@@ -1,0 +1,20 @@
+{
+  "id": "x7weRgiQ",
+  "slug": "classy!",
+  "title": "Classy!",
+  "description": "A simple class and ability library!",
+  "body": "# Classy\n**Classy is a library for highly customizable access to a class and ability system. All it contains are methods for registering classes and abilities, casting interactions, and equipping classes. All else is done by the developer using this dependency.**\n\n## Classes\nClasses are designed to be expandable for every use case. Multiple classes may be equipped at one, but depending on your selection code, you can restrict the maximum number of equipped classes.\n\n### Registering a Class\nRegistering a class is extremely simple, and can be done like registering any other object. Just do the following:\n```java\nprivate static final DeferredRegister<PlayerClass> CLASSES = DeferredRegister.create(MOD_ID, PlayerClass.PLAYER_CLASS);\n\nprivate static final RegistrySupplier<PlayerClass> EXAMPLE_CLASS = registerClass(CLASSES, () -> new PlayerClass(\n    ResourceLocation.fromNamespaceAndPath(MOD_ID, \"example\"),\n    List.of(\n        // This is where the abilities are added.\n    )\n));\n\npublic static void init() {\n    CLASSES.register();\n}\n```\nClassy has a command built-in to the mod to allow quickly equipping a class to test it. Simply just run `/classy class [id]` and it will equip or unequip the class.\n\n## Abilities\nAbilities are very simple, not including cooldowns or a mana bar. Abilities only act as a system that are connected to a class. Choosing the ability to cast is also decided by your own code, allowing casting from index or identifier. Creating the rest of the ability is where it becomes more complicated.\n\nAn extremely basic ability can be done like this:\n```java\npublic class ExampleAbility extends PlayerAbility {\n    public ExampleAbility() {\n        super(ResourceLocation.fromNamespaceAndPath(MOD_ID, \"example\"));\n    }\n\n    @Override\n    public void serverCast(ServerPlayer player) {\n        player.hurt(player.damageSources().cactus(), 1f);\n    }\n\n    @Override\n    public boolean canCast(Player player) {\n        return true;\n    }\n}\n```\nAll this ability will do is apply half a heart of cactus damage to the casting player.\n\nIf you would like more complicated interactions, such as triggering clientside player animations or having a held ability, you can use the following methods and fields:\n```java\n// An ability that plays your cool player animation when cast.\npublic class ClientAnimationAbility extends PlayerAbility {\n    public ClientAnimationAbility() {\n        super(ResourceLocation.fromNamespaceAndPath(MOD_ID, \"cooler_example\"));\n    }\n\n    @Override\n    public void clientCast(LocalPlayer player) {\n        AnimationHandler.playCoolAnimation(player);\n    }\n\n    @Override\n    public boolean canCast(Player player) {\n        return true;\n    }\n}\n\n// A held ability that charges up, and then gives you Speed I equivalent to how long you held for.\npublic class HeldAbility extends PlayerAbility {\n    public HeldAbility() {\n        super(ResourceLocation.fromNamespaceAndPath(MOD_ID, \"coolest_example\"));\n    }\n\n    int heldTimer = 0;\n\n    @Override\n    public void serverCast(ServerPlayer player) {\n        heldTimer = 0;\n        this.setActive(true);\n    }\n\n    @Override\n    public void serverTick(ServerPlayer player) {\n        heldTimer++;\n        this.setActive(player.classy$isCasting()); // deactivate when no longer casting the ability\n    }\n\n    @Override\n    public void serverEnd(ServerPlayer player) {\n        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, heldTimer, 0));\n    }\n\n    @Override\n    public boolean canCast(Player player) {\n        return true;\n    }\n}\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 144,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

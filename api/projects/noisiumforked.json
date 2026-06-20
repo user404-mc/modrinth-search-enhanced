@@ -1,0 +1,38 @@
+{
+  "id": "hasdd01q",
+  "slug": "noisiumforked",
+  "title": "NoisiumForked",
+  "description": "Optimises worldgen performance for a better gameplay experience.",
+  "body": "![Noisium icon](https://raw.githubusercontent.com/coredex-source/noisium/24de632923c03864d65568a2cb5ce1e2cee0a304/docs/assets/icon/icon_128x128.png)\n\n# Noisium Forked\n\nThis mod is a fork of the orignal and now unmaintained mod [Noisium](https://github.com/Steveplays28/noisium).\nThe fork intends to maintain compatibility with future Minecraft versions.\n\nOptimises worldgen performance for a better gameplay experience.\n\n# Noisium - Discontinuation Notice.\n- Noisium will be discontinued starting 26.3 as [FastNoise](https://modrinth.com/mod/zfastnoise) exists as a better and more optimized version of the same.\n- I recommend using FastNoise for all recent and upcoming versions. \n\n----\nNoisium changes some world generation functions that other mods don't touch, to fill in the gaps left by other performance optimisation\nmods.\nMost notably, `NoiseChunkGenerator#populateNoise` is optimised to speed up block state placement when generating new chunks.  \nSetting the block state via abstractions/built-in functions is bypassed. Instead, the block states are set directly in the palette storage,\nthus bypassing calculations Minecraft does that are normally useful when block states are set, but when generating the world only slow it\ndown.  \nThere are also 3 other optimisations, that increase biome population speed, block state sampling speed and chunk unlocking speed (Minecraft\n1.21 and up) during world generation.\n\nNoisium has full 1:1 parity with vanilla Minecraft world generation (world generation without Noisium).\n\nThe performance difference is variable, between a few seconds to a few dozen seconds faster depending on the amount of chunks generated.  \nSee the below Spark profiles for the differences in performance:\n\n- [Vanilla](https://github.com/coredex-source/noisium/blob/1.21.9/docs/benchmarks/vanilla_minecraft_1_20_1.sparkprofile)\n- [With Noisium](https://github.com/coredex-source/noisium/blob/1.21.9/docs/benchmarks/noisium_minecraft_1_20_1.sparkprofile)\n\n## Dependencies\n\n### Required\n\nNone. \n\n## Compatibility info\n\n### Compatible mods\n\nNoisium should be compatible with most, if not all, of the popular optimisation mods currently on Modrinth/CurseForge for\nNoisium's supported Minecraft versions, since Noisium aims to fill in the gaps in performance optimisation left by other mods.\nThis includes (but is not limited to) C2ME, Lithium, Nvidium, and Sodium.\n\n- C2ME: every world generation thread runs faster. The biome population multithreading is also done in a much better/more performant way in\n  C2ME, so it's been removed from Noisium since `v1.0.2`. It's suggested to run C2ME alongside Noisium for even better world generation\n  performance.\n- Distant Horizons: Noisium speeds up LOD world generation threads, since LOD generation depends on Minecraft's world generation speed.\n- ReTerraForged: RTF has built-in compatibility with Noisium, to fully utilize the optimisations during RTF world generation.\n\n### Incompatibilities\n\nSee the [issue tracker](https://github.com/coredex-source/noisium/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Acompatibility) for\na list of incompatibilities.\n\nSee the version info in the filename for the supported Minecraft versions.  \nMade for the Fabric, Quilt, and NeoForge modloaders.  \nServer-side.\n\n## FAQ\n\n- Q: Will you be backporting this mod to lower Minecraft versions?  \n  A: No.\n\n- Q: Does this mod work in multiplayer?  \n  A: Yes, but it'll only improve performance on the server.\n\n- Q: Does only the server need this mod or does the client need it too?  \n  A: Only the server needs this mod (but it works on the client too if you're going to host LAN or play singleplayer).\n\n## Attribution\n\n- Thank you to [Steveplays28](https://github.com/Steveplays28) for the orignal mod.\n- Thank you to [Builderb0y](https://modrinth.com/user/Builderb0y) for giving great starting points and helping with issues\n- Thank you to [ishland](https://github.com/ishland) for helping with C2ME compatibility and benchmarking performance\n- Thank you to [Uniter](https://github.com/Uniter343) and [raccoonman2](https://github.com/racoonman2) for benchmarking performance\n\n## License\n\nThis project is licensed under LGPLv3, see [LICENSE](https://github.com/coredex-source/noisium/blob/main/LICENSE).\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "neoforge",
+    "optimization",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1404587,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1-pre-2",
+    "26.1-pre-3",
+    "26.1-rc-1",
+    "26.1-rc-2",
+    "26.1-rc-3",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

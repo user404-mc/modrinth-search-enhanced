@@ -1,0 +1,38 @@
+{
+  "id": "qr7VQIiR",
+  "slug": "stackable-shulkers-fix",
+  "title": "Stackable Shulkers Fix",
+  "description": "Fixes issues with stackable shulker boxes in Carpet on 1.20.5+",
+  "body": "# Stackable shulkers fix\nA simple addon to the [Carpet mod](https://www.curseforge.com/minecraft/mc-mods/carpet) that fixes the 1.20.5+ behaviour of stacked shulker boxes to be the same as in older versions, as well as some optional features.\n\n## Features\n> **NOTE**  \nFeatures marked as `intrusive` are modifying the standard behaviour in their default state. This is done to maintain compatibility with older versions of the mod.\n\n### Fixed hopper transfers\nPrevents hoppers from stacking shulker boxes, even if the max count is >1.  \n*Setting this rule to `false` enables the functionality of this mod by preventing shulkers from being stacked by hoppers.*\n\n- Name: `hopperShulkerStacking`\n- Type: `boolean`\n- Default: `false`\n- Categories: `shulkerfix`, `bugfix`, `intrusive`\n- Since: `1.5`\n\n### Fixed comparator output\nChanges how stacked shulker boxes affect comparator output:\n1. `true`: Shulkers have signal strength of unstackable items, allowing output up to 897 (AKA OSS/HSS);\n2. `false`: Shulkers have signal strength of stackable items, reaching 15 when all slots are full (hoppers won't be able to fill over SS1);\n3. `capped`: Shulkers have signal strength of unstackable items, but the resulting output is capped at 15. This implementation preserves overstacked item filters.\n4. `normalized`: Any amount of shulkers in a slot is counted as a single unstackable item. This limits the output to signal strength 15 and patches overstacked item filters.\n\n- Name: `overstackedShulkerSignalStrength`\n- Type: `string`\n- Default: `true`\n- Options: `true`, `false`, `capped`, `normalized`\n- Categories: `shulkerfix`, `bugfix`, `intrusive`\n- Since: `1.7.1`\n\n### Legacy shulker item merging\nReintroduces the logic for merging shulker box items before 1.20.5.\nThe implementation allows partial item merging\n*(normally the game doesn't merge item stacks if the total amount is more than the max size)*\nand resets the entity age, allowing faster merging.\n*(Both were bugs in Carpet, but no one complained, so now we're reintroducing the bugs huh)*\n\n- Name: `legacyShulkerItemMerging`\n- Type: `boolean`\n- Default: `false`\n- Categories: `shulkerfix`, `experimental`\n- Since: `1.6`\n\n### Hopper collection\nMakes hoppers pick up one shulker at a time from an entity stack.\nNote that this has a risk of breaking contraptions.\n\n- Name: `hopperCollectSingleShulkers`\n- Type: `boolean`\n- Default: `false`\n- Categories: `shulkerfix`, `feature`, `experimental`\n- Since: `1.5`\n\n### Hopper minecart collection\nMakes minecarts pick up one shulker at a time from an entity stack.\nNote that this has a risk of breaking contraptions.\n\n- Name: `minecartCollectSingleShulkers`\n- Type: `boolean`\n- Default: `false`\n- Categories: `shulkerfix`, `feature`, `experimental`\n- Since: `1.5`\n\n### Minecart slowdown\nDisables the additional slowdown caused by overstacked minecarts.\nThe implementation makes shulker boxes count as 64-stackable when calculating the minecart slowdown. However if `overstackedShulkerSignalStrength` is enabled, reading the fill level will still output the overstacked value.  \n*Setting this rule to `false` enables the functionality of this mod by removing the additional slowdown.*\n\n- Name: `overstackedMinecartSlowdown`\n- Type: `boolean`\n- Default: `true`\n- Categories: `shulkerfix`, `feature`, `experimental`\n- Since: `1.5`\n\n### Client count fix\nFixes [Carpet issue #1899](https://github.com/gnembon/fabric-carpet/issues/1899),\nwhere vanilla clients see stacked shulker boxes as single items inside containers.\n- Name: `clientShulkerSync`\n- Type: `boolean`\n- Default: `false`\n- Categories: `shulkerfix`, `bugfix`, `experimental`\n- Since: `1.4`",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19945,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

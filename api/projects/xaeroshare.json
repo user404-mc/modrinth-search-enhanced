@@ -1,0 +1,36 @@
+{
+  "id": "tFFdBvRj",
+  "slug": "xaeroshare",
+  "title": "XaeroShare",
+  "description": "Allows you to share xaeros minimap waypoints with individual players",
+  "body": "![A rant about the recent acquisition.](https://cdn.modrinth.com/data/cached_images/fd105662b4df93d1e3eb327ce14dad56338e3d64.webp)\n\n![A banner with the mod logo and the text \"XaeroShare\"](https://cdn.modrinth.com/data/cached_images/ed184b8f91c38a4f67280c29707c1bd9f8a7800c_0.webp)\nA simple client side mod **or** server-side plugin (only one side needs it) that allows you to share [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) waypoints to specific players instead of being forced into sharing it with all players currently online the server.\n\n# Mod (Fabric)\nThis is the client side variant of this mod, you install it on your client and you can use it on any server even if that server 100% vanilla* since we piggyback on how waypoints are shared via chat.<br/>\n*: [Note 1]\n\n## Usage\nCurrently the mod can be activated using the default hotkey (`Right Alt`); however, this can always be changed via settings.\n\n## Current features\n* Sharing waypoints with single and or multiple players\n* Automatic delay between sending waypoints to avoid spamming commands\n* Commands to share location / waypoints\n\n## Demo\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/ODDVGBN9yrA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## Detection\nThe mod has no way of detecting it when it's just passively installed in the background (excluding exploits such as sign translation) but when it sends waypoints it uses the `/msg` command which on it's own is a good enough sign that the waypoints aren't being sent manually as the waypoint share format is too messy to type out manually (and there's no docs); however, when xaeroshare sends a waypoint it'll automatically add `:xaeroshare` on the end allowing for servers to detect them for whatever use (this is what the plugin uses to ignore messages from the mod)\n\n# Commands\n## `/locationshare`\nSyntax: `/locationshare \"Location Name\" \"minecraft:overworld\" 1 2 3 Player1 Player2 Player3 [...]`\n\n## `/waypointshare`\nSyntax: `/waypointshare \"Waypoint Name\" \"minecraft:overworld\" Player1 Player2 Player3 [...]`\n\n# Plugin (PaperMC & Forks)\nThe mod has a server side version where the plugin can be installed on the server and anybody on the server (even if they don't have the mod installed) can select the players who they want to share their waypoint with.\n\n## Usage\nThe plugin intercepts the regular Xaero's Minimap share messages and pops up a screen for the player using [Paper's Dialog API](https://docs.papermc.io/paper/dev/dialogs/) with a list of players that the user can then select and submit or they can choose to ignore the menu entirely and continue with the vanilla sending behaviour.\n\n## Current features\n* Sharing waypoints with single and or multiple players\n* Automatic interception of Xaero's Minimap messages\n* Transparent (Appears to clients as if the message was never intercepted[Note 1])\n* 100% data preservation (The share format isn't documented so I had to make some assumptions that may turn out to be wrong, but the plugin just copies the mods output directly)\n\n## Demo\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/sPkLPngw62w\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# Notes\n1: Since we are pretty much lying to the server and clients about what / who is sending the message chat reporting and messaging signing might have some issues with it. If you encounter issues try (or ask the server admin to try) disabling `enforce-secure-profile` in `server.properties`.",
+  "categories": [
+    "adventure",
+    "fabric",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 23654,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

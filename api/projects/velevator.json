@@ -1,0 +1,43 @@
+{
+  "id": "SADOK1JE",
+  "slug": "velevator",
+  "title": "V Elevator",
+  "description": "V-Elevator - Press Space to go up, Shift to go down!",
+  "body": "\n# 🛗 V-Elevator\n\n> Simple vertical transportation for Paper 1.21.1+ servers\n\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-blue.svg)](https://papermc.io)\n[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net)\n\n## ✨ Features\n\n- 🏗️ **Simple Crafting** - White Wool + Ender Pearl = Elevator Block\n- ⬆️ **Jump to Go Up** - Stand on elevator and press Space\n- ⬇️ **Sneak to Go Down** - Press Shift to descend\n- 🏢 **Unlimited Floors** - Stack as many as you need\n- ⚡ **Zero Lag** - Async operations, minimal footprint\n- 🎨 **Fully Configurable** - Materials, messages, particles, recipes\n- 🌍 **World Blacklist** - Disable in specific worlds\n- 🔒 **Permission Support** - Control who can use/craft/admin\n\n## 📦 Installation\n\n1. Download `V-Elevator.jar` \n2. Drop into `plugins/` folder\n3. Restart server\n4. Edit `plugins/V-Elevator/config.yml` to customize\n\n## 🎮 Usage\n\n### Crafting Recipe\n```\nW W W\nW E W  →  1x Elevator Block\nW W W\n\nW = White Wool, E = Ender Pearl\n```\n\n### Creating Elevators\n1. Place Elevator Blocks directly above each other (same X, Z)\n2. Stand **on top** of the block (not inside)\n3. **Jump** → travel up | **Sneak** → travel down\n\n## 📋 Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/elevator reload` | Reload configuration | `elevator.admin` |\n| `/elevator give [player] [amount]` | Give elevator blocks | `elevator.admin` |\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|-----------|---------|-------------|\n| `elevator.use` | Everyone | Use elevator blocks |\n| `elevator.craft` | Everyone | Craft elevator blocks |\n| `elevator.admin` | OP | Access to commands |\n\n## ⚙️ Configuration\n<details>\n  <summary> ⚙️ Config.yml </summary>\n\n  ```yaml\n# config.yml highlights\n# ============================================\n#         V-Elevator - Config\n#         Plugin Version: 1.0.6\n#         MC Version: 1.21.1 (Paper)\n# ============================================\n\n# ---------------------\n# Elevator Item Settings\n# ---------------------\nelevator-item:\n  # Material for the elevator block item\n  # Must be a valid Bukkit Material name\n  material: WHITE_WOOL\n\n  # Display name of the elevator block item\n  # Supports & color codes\n  display-name: \"&bElevator Block\"\n\n  # Lore lines shown on the item\n  lore:\n    - \"&7Place this block to create an elevator.\"\n    - \"&7Stand on it, press &eSpace &7to go up.\"\n    - \"&7Press &eShift &7to go down.\"\n\n# ---------------------\n# Crafting Recipe\n# ---------------------\ncrafting:\n  # Set to false to disable the crafting recipe\n  enabled: true\n\n  # The result count when crafting\n  result-amount: 1\n\n  # Recipe shape (3x3 grid)\n  # W = Wool ingredient | E = Ender Pearl ingredient\n  # Use letters defined in 'ingredients' below\n  shape:\n    - \"WWW\"\n    - \"WEW\"\n    - \"WWW\"\n\n  # Ingredient materials\n  # Key must match letters used in shape above\n  ingredients:\n    W: WHITE_WOOL\n    E: ENDER_PEARL\n\n# ---------------------\n# Elevator Behavior\n# ---------------------\nelevator:\n  # Maximum distance (in blocks) the elevator will scan up/down for another elevator block\n  max-floor-distance: 50\n\n  # Teleport sound when moving floors\n  # Set to '' (empty) to disable\n  teleport-sound: \"ENTITY_ENDERMAN_TELEPORT\"\n\n  # Volume of the teleport sound (0.0 - 1.0)\n  sound-volume: 0.5\n\n  # Pitch of the teleport sound\n  sound-pitch: 1.0\n\n# ---------------------\n# Particles\n# ---------------------\nparticles:\n  # Enable/disable particles\n  enabled: true\n\n  # Particle type (must be a valid Bukkit Particle name)\n  type: PORTAL\n\n  # Number of particles to spawn\n  count: 20\n\n  # Spread/offset of particles\n  offset-x: 0.3\n  offset-y: 0.5\n  offset-z: 0.3\n\n  # Speed of particles\n  speed: 0.05\n\n# ---------------------\n# Messages (ActionBar / Title)\n# ---------------------\nmessages:\n  # Show actionbar message when using elevator\n  actionbar-enabled: true\n  actionbar-up: \"&a▲ ɢᴏɪɴɢ ᴜᴘ ▲\"\n  actionbar-down: \"&c▼ ɢᴏɪɴɢ ᴅᴏᴡɴ ▼\"\n  actionbar-no-floor: \"&eɴᴏ ꜰʟᴏᴏʀ ꜰᴏᴜɴᴅ ɪɴ ᴛʜᴀᴛ ᴅɪʀᴇᴄᴛɪᴏɴ!\"\n\n  # Show title message when using elevator\n  title-enabled: false\n  title-up: \"&aꜰʟᴏᴏʀ ᴜᴘ\"\n  title-subtitle-up: \"&7ᴍᴏᴠɪɴɢ ᴛᴏ ᴛʜᴇ ɴᴇxᴛ ꜰʟᴏᴏʀ...\"\n  title-down: \"&cꜰʟᴏᴏʀ ᴅᴏᴡɴ\"\n  title-subtitle-down: \"&7ᴍᴏᴠɪɴɢ ᴛᴏ ᴛʜᴇ ꜰʟᴏᴏʀ ʙᴇʟᴏᴡ...\"\n\n  # General messages\n  prefix: \"&8[&bᴇʟᴇᴠᴀᴛᴏʀ&8] &r\"\n  reload-success: \"&aᴄᴏɴꜰɪɢᴜʀᴀᴛɪᴏɴ ʀᴇʟᴏᴀᴅᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!\"\n  give-success: \"&aɢᴀᴠᴇ &e{amount} &aᴇʟᴇᴠᴀᴛᴏʀ(s) ᴛᴏ &e{player}&a.\"\n  no-permission: \"&cʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛᴏ ᴅᴏ ᴛʜᴀᴛ.\"\n  player-not-found: \"&cᴘʟᴀʏᴇʀ ɴᴏᴛ ꜰᴏᴜɴᴅ.\"\n\n# ---------------------\n# Blocked Worlds\n# ---------------------\n# Elevators will NOT work in these worlds\n# Players cannot place or use elevators here\nblocked-worlds:\n  - world_example_1\n  - world_example_2\n\n# ---------------------\n# Debug Mode\n# ---------------------\ndebug: false\n\n```\n</details>\n\n\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 108,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

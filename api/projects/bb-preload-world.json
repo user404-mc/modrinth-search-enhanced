@@ -1,0 +1,20 @@
+{
+  "id": "aJ7RAd6d",
+  "slug": "bb-preload-world",
+  "title": "BB Preload World",
+  "description": "A crude way to preload the Distant Horizons chunks, for single player and multiplayer",
+  "body": "# BB Preload World\n\n# _Modern versions of Distant Horizons now have chunk loading over multiplayer, so if you are using a new version you may not need this mod_\n\nThis mod can be used in single-player or multi-player to load chunks for the use of [Distant Horizons](https://modrinth.com/mod/distanthorizons/versions)\n\nIn multi-player, DH can only cache chunks the player has visited, this mod puts the player into spectator mode and files them around the map so the client can cache these chunks.\n\nAs an added bonus, client-side mini-map mods will also get loaded in when doing this.\n\n# How to use\n\n*The mod must be installed on the client and server.*\n\nIf playing in single-player, it is recommended to set \"Enable distant generation\" to false in DH settings while running the routine.\n\nYou can also set the \"CPU Load\" in DH settings to one of the higher profiles (remember to set it back to a lower one after!).\n\nTo load the surrounding area, players can use the command `/bb_preload_world_start`\n\nTo cancel the process before it has completed on its own, use `/bb_preload_world_stop`\n\n(Running the stop command before the routine finishes may lead to corrupt chunk caches)\n\nAt a radius of 30 chunks, it can take 30+ minutes to complete, at 60 chunks it could take multiple hours. \n\n# Settings\n\nSettings are managed via game-rules.\n\n`/gamerule bb_preload_radius 30` sets the radius (in chunks) that will be loaded around the player.\n\n`/gamerule bb_preload_world_start_requires_opp true` will make `/bb_preload_world_start` require OP to use.\n\n`/gamerule bb_preload_world_stop_requires_opp true` will make `/bb_preload_world_stop` require OP to use.\n\n# How it works\n\nWhen starting a preload routine, the server-side part of the mod keeps track of which chunk the player has got to.\n\nThe client sends packets to the server saying when a chunk has been cached at LOD levels 0 - 6, when the server has received this packet it will move the player on to the next chunk.\n\nThe client also tells the server if \"Queued chunk updates\" is too high, or when there are any \"Update propagator tasks\" in the queue or being processed. If either of these are true, the routine is paused to allow chunks to finish processing before continuing.\n\nThis is because in my testing if the client moves away from a chunk that has started processing but not finished, it can leave that chunk cache in a corrupt state.\n\n# Contact\n\n[Discord](https://discord.gg/MX8gxZSJYm)\n\n[GitLab](https://gitlab.com/billyg270/bb-preload-world)\n\nFor questions Discord is preferred, for issues GitLab is preferred.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 4854,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

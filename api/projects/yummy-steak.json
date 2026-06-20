@@ -1,0 +1,29 @@
+{
+  "id": "Kf0VM42G",
+  "slug": "yummy-steak",
+  "title": "Yummy Steak",
+  "description": "Sprinkle steak with stardust for a filling meal.\n\nAdds a Filling Steak with saturation effect, which can be enchanted to never run out of steak.",
+  "body": "# Yummy Steak\nSprinkle steak with stardust for a filling meal.\n\n## Content\n- Craft _Filling Steak_ with 8 _Steak_ and 1 _Nether Star_ (center), which applies the saturation effect for an hour when eaten.  \n  ![Crafting Recipe: 8 Steak + 1 Nether Start = 8 Filling Steak](https://raw.githubusercontent.com/lukasstorck/yummy-steak/refs/heads/main/docs/media/crafting.png)\n- Adds level 30 enchantment _Yummy_ to never run out of steak (can only be applied on the _Filling Steak_).\n\n\n## Technical Concept\nBesides the gameplay functionality the goal was to provide these custom features without using the global tick function to check for changes in the player's inventory.\n\n- saturation effect is applied via [`consumable` data component](https://minecraft.wiki/w/Data_component_format#consumable) (added in MC 1.21.2)\n- not consuming the item is handled via the [`use_remainder` data component](https://minecraft.wiki/w/Data_component_format#use_remainder) (added in MC 1.21.2)\n- as use_remainder would need a recursive definition to be infinitly reuseable, a dummy-item is used, which then is swapped out for the actual food item\n- instead of constantly checking whether a dummy item exists and is in need of replacement, the [enchantment effect component `minecraft:tick`](https://minecraft.wiki/w/Enchantment_definition#Components_with_entity_effects) with the [entity effect `run_function`](https://minecraft.wiki/w/Enchantment_definition#run_function) (added in MC 1.21) is used to change the dummy item (only executed for one tick, when the item is first held, so more resource efficient).",
+  "categories": [
+    "datapack",
+    "fabric",
+    "food",
+    "forge",
+    "magic",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 510,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

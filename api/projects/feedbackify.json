@@ -1,0 +1,26 @@
+{
+  "id": "Z4ZN71OH",
+  "slug": "feedbackify",
+  "title": "Feedbackify",
+  "description": "In-game feedback system for your minecraft server where players can report bugs, suggestions, or have nice comments about your server!",
+  "body": "## This plugin is archived until further notice. Do not worry, we are not abandoning this plugin!\n\n**Feedbackify** is a comprehensive system for managing player feedback on Paper servers. It enables players to submit feedback via intuitive GUIs while providing administrators with robust tools to review, manage, and respond to feedback. The plugin integrates with Discord to send notifications about new feedback, status changes, and more. All messages sent by the plugin are automatically prefixed with a configurable string.\n\n---\n\n## Features\n\n### Player Feedback Submission\n\n- **Feedback GUI**  \n  Players use the `/feedback` command to open a GUI that lets them:\n  - Select a feedback category.\n  - Enter feedback text (automatically split into lines based on a configurable length).\n  - See a unique feedback ID (with copy-to-clipboard functionality).\n  - Toggle whether the feedback is public.\n  - Confirm and submit their feedback.\n\n- **Open Feedback Limits & Cooldown**  \n  - The maximum number of open (pending) feedback tickets per player is configurable (set to `-1` for no limit).\n  - A configurable cooldown (in minutes) prevents spamming of new feedback submissions.\n  - Players with the permission `feedback.cooldownbypass` can bypass the cooldown.\n\n### Administrator Tools\n\n- **Analytics & Logs**  \n  - Admins can open a paginated analytics GUI with `/feedback analytics` to view all submitted feedback.\n  - The `/feedback logs <player>` command shows detailed feedback logs for a specific player.\n  - The `/feedback view <feedbackID>` command (with tab-complete for feedback IDs) opens a detailed admin view for a specific feedback entry.\n\n- **Detailed Feedback Management**  \n  - Admins can change the status (cycling between \"Pending\", \"Reviewed\", and \"Resolved\").\n  - They can add admin replies.\n  - They can lock or unlock feedback.\n  - They can permanently delete feedback (which erases all associated data, including replies).\n\n- **Feedback History**  \n  - Both players and admins can view a paginated history of feedback entries via `/feedback history`.\n  - Admins may open a detailed view from the history GUI for further management.\n\n### Community Feedback\n\n- **Community GUI**  \n  Public feedback entries are displayed in a separate community GUI visible to all players.\n  - Players can view feedback, see replies, and interact via upvotes and downvotes.\n  - There is a dedicated paginated replies GUI for detailed reply viewing.\n\n### Notifications\n\n- **In-Game Notifications**  \n  - Players receive notifications when their feedback is replied to, when its status changes, or when it is locked/unlocked.\n  - Notifications are delivered immediately if the player is online; if offline, they are stored and delivered upon next login.\n  - Players can toggle notifications with `/feedback togglenotifications`.\n\n\n---\n\n## Configuration (`config.yml`)\n\n```yaml\nfeedback:\n  debug: false\n  dataFile: \"feedbacks.yml\"\n  autoSaveInterval: 300\n  guiSize: 27\n  guiItemSpacing:\n    nextPage: 53\n    previousPage: 45\n  itemFormats:\n    category: \"&eCategory: %category%\"\n    status: \"&bStatus: %status%\"\n  lineLength: 20\n\n  maxOpenFeedback: 3         # Maximum open feedback tickets per player (-1 for no limit)\n  cooldown: 5                # Cooldown in minutes (-1 for no cooldown)\n\n```\n\n\n## Commands\n/feedback\nOpens the feedback creation GUI.\n\n/feedback analytics\nOpens the admin analytics GUI listing all feedback entries (requires feedback.analytics).\n\n/feedback logs <player>\nDisplays detailed feedback logs for the specified player (requires feedback.logs).\n\n/feedback view <feedbackID>\nOpens the detailed admin view for a specific feedback (admins only; tab-complete shows available feedback IDs).\n\n/feedback history\nOpens a paginated history GUI of your submitted feedback.\n\n/feedback community\nOpens the public community feedback GUI.\n\n/feedback togglenotifications\nToggles in-game feedback notifications on or off.\n\n/feedback reload\nReloads the plugin configuration (requires feedback.manage).\n\n/feedback blacklist <player> [time] / /feedback unblacklist <player>\nManage the blacklist for feedback submissions (requires feedback.blacklist).\n\n## Permissions\n\nfeedback.manage\nAllows managing the feedback system (enable/disable/reload).\n\nfeedback.logs\nPermits viewing detailed feedback logs.\n\nfeedback.blacklist\nPermits managing the blacklist for feedback submissions.\n\nfeedback.cooldownbypass\nAllows bypassing the cooldown for submitting new feedback.\n\nfeedback.analytics\nGrants access to the analytics GUI.\n\n\n\nReport any bugs on the discord server. (Link on side)\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 138,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

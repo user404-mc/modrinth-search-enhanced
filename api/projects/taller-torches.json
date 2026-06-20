@@ -1,0 +1,23 @@
+{
+  "id": "F1f952hr",
+  "slug": "taller-torches",
+  "title": "Taller Torches: Hitbox & Particle Fix",
+  "description": "A micro-mod that resizes torch collision/outline boxes and moves their flame particles so tall torch textures finally look right.",
+  "body": "[![License: LGPL v3 or later](https://img.shields.io/badge/License-LGPL%20v3%2B-blue.svg)](https://github.com/Hand-Lock/studded-armor/blob/master/LICENSE)\n\n# Taller Torches: Hitbox & Particle Fix\n\n*A micro-mod that resizes torch collision/outline boxes **and** moves their flame particles so tall torch textures finally look right.*\n\n---\n\n## 🔥 Why This Exists\n\nResource-packs that restore the **Indev-era 13 px torch** (or any taller design) look gorgeous—until the flame spawns halfway down the stick and you end up smacking your mouse while trying to break the torch. **Taller Torches** fixes both issues for **torches, soul torches *and* redstone torches (floor & wall variants)**:\n\n* **Particle origin** lifted to match the real top of the sprite.\n* **Hit-box & outline** stretched so you can target the torch where it visibly is.\n\n![Animation showing the problem of using a torch.png with a different height than vanilla, and the mod's fix](https://cdn.modrinth.com/data/cached_images/caaa1fa8dd6c4946171a9405f70ebc8109dbc7e0.gif)\n\nNo more flames stuck inside the stem or mis-aligned outlines—just pretty, tiki torches!\n\n---\n\n## 📏 How It Works\n\nAt load-time the mod reads a single JSON file:\n\n```jsonc\n// config/tallertorches.json\n{\n  \"torch_height_px\": 13,   // 10 = vanilla, 13 = Indev (default)\n  \"include_redstone\": true // toggle: also adjust redstone torches\n}\n```\n\n1. **torch\\_height\\_px** — height of your *torch.png* in pixels.\n2. **include\\_redstone** — when *true*, applies the same adjustments to redstone torches & wall redstone torches; set *false* to keep their vanilla shape.\n3. Everything else (collision, outline, flame/smoke offsets, wall side-shift) is computed automatically.\n\n---\n\n## ⚙️ Installation & Dependencies\n\n| Loader                        | Version            | Notes                          |\n| ----------------------------- | ------------------ | ------------------------------ |\n| **Fabric**                    | ≥ 0.16.14 (1.20.1) | **Fabric-API *not* required**  |\n| **Forge (Sinytra Connector)** | (1.20.1)             | Works flawlessly               |\n| **Quilt**                     | Untested           | Expected to behave like Fabric |\n\n*Built against Yarn mappings; only **four tiny mixins** (`TorchBlock`, `WallTorchBlock`, `RedstoneTorchBlock`, `WallRedstoneTorchBlock`).*\n\n---\n\n## 🧰 Lightweight by Design\n\n* ≈ 23 kB JAR\n* No mixin GUIs, no runtime reflection\n* Mixins run only when a torch’s shape or particle spawns\n\n---\n\n## 🖼️ Example Heights\n\n| Torch sprite     | `torch_height_px` | Result                                              |\n| ---------------- | ----------------- | --------------------------------------------------- |\n| **Vanilla**      | 10                | Unchanged (particles & hit-box remain vanilla)      |\n| **Indev**        | 13 *(default)*    | Flame sits neatly on the tip; hit-box ≈ 30 % taller |\n| **Custom 16 px** | 16                | Ultra-tall torches? Just set 16 and restart!         |\n\n*(Values beyond 16 px are supported but may clip ceilings in cramped builds.)*\n\n*(Values below 10px are also supported, the minimum is 2px.)*\n\n---\n\n## 🖇️ Credits\n\n* **Code & idea:** *HandLock\\_*\n* **Inspiration:** Mojang’s forgotten Indev textures – see the [Wiki archive](https://minecraft.wiki/w/Java_Edition_history_of_textures/Blocks#/media/File:Torch_%28texture%29_JE1.png).\n\n> *“A taller torch deserves a taller flame.”*\n",
+  "categories": [
+    "cursed",
+    "decoration",
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 240,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

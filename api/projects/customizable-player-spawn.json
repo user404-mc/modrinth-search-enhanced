@@ -1,0 +1,21 @@
+{
+  "id": "eYBmMoG7",
+  "slug": "customizable-player-spawn",
+  "title": "Customizable Player Spawn",
+  "description": "Customizable Player Spawn lets you control where players first appear in the world. It supports .nbt structures, marker-based spawn points, external templates, and direct spawning in another dimension without placing a structure.",
+  "body": "Customizable Player Spawn is a config-driven spawn control mod for Forge, NeoForge and Fabric.\n\nIt is made for worlds and modpacks where the first spawn should happen in a prepared place: a starter ruin, house, island, lobby, intro area, or any other `.nbt` structure. The mod can place that structure, find the real spawn point inside it, save the result, and keep using the same assigned spawn later.\n\n### What it can do\n\n- place structures from mod resources, datapacks, other mods, world files, or loose `.nbt` files in `config/customizableplayerspawn/structures`\n- use a marker block, a vanilla `DATA` structure marker, a relative position, or the structure center as the spawn anchor\n- create one shared spawn for everyone or separate per-player spawn structures\n- choose the target dimension and allowed biomes\n- search by heightmap, by smart surface validation, or by fixed Y level\n- check the structure footprint, dangerous blocks, fluids, tree overlap, and surface height difference\n- clear the placement volume, fill support gaps, refresh lighting, and process markers after placement\n- optionally protect generated spawn structures from blocks, placement, containers, explosions, fire, and fluids\n\n### Profiles\n\nThe recommended setup is a profile file:\n`config/customizableplayerspawn/profiles/<profile>.toml`\n\nLoose structure files go here:\n`config/customizableplayerspawn/structures/<structure>.nbt`\n\nMinimal example:\n```toml\nschemaVersion = 2\nid = \"starter_ruin\"\nenabled = true\npriority = 100\ndimension = \"minecraft:overworld\"\nstructure = \"config:starter_ruin.nbt\"\n\n[anchor]\nmode = \"MARKER_BLOCK\"\nmarkerBlock = \"customizableplayerspawn:player_spawn_marker\"\nremoveMarkerBlock = true\noffsetX = 0\noffsetY = 0\noffsetZ = 0\nangle = 0\nfallback = \"SAFE_NEARBY\"\n\n[placement]\nstrategy = \"FLAT_FOOTPRINT\"\nsurfaceSearchMode = \"SMART\"\nsearchRadius = 2048\nsearchAttempts = 128\nmaxSurfaceStep = 3\nallowFluidsBelow = false\nallowReplaceableAtFeet = true\nallowReplaceableAtHead = true\nforbiddenSurfaceBlocks = [\"minecraft:lava\", \"minecraft:magma_block\"]\n```\n\nIssues and suggestions: https://github.com/mayorovyf/CustomizablePlayerSpawn/issues\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 231,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

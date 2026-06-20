@@ -1,0 +1,18 @@
+{
+  "id": "AR7tLpwK",
+  "slug": "classjs",
+  "title": "ClassJS",
+  "description": "A KubeJS addon to create Java classes",
+  "body": "ClassJS is a mod to create Java classes in KubeJS.\n\n## Basic Example\n\nYou may operate Java byte code to build your own methods.\n\n**Note:** Some instructions that interacts with classes (`getstatic`, `invokestatic`, `new`, etc.) is protected under KubeJS's class filters. You may not use them to access classes that is not allowed by KubeJS or its other addons. Neither can you extend or implement them.\n\n```javascript\nlet ExampleClass = ClassCreator.create(\"ExampleClass\")\n    .toPublic()           // Set the class to public\n    .defaultConstructor() // Add a default constructor\n    .createMethod(\"exampleMethod\", [], \"java.lang.String\") // Method name, parameter types, and return type\n        .toPublic()\n        .code(builder => {\n            builder.pushString(\"Hello, ClassJS!\")   // Push a string reference to the operand stack\n                .returnObject();                    // Returns the string\n        })\n    .defineClass();     // Define the class\n\nconsole.info((new ExampleClass()).exampleMethod());\n```\n\nEquivalent Java code:\n\n```java\npublic class ExampleClass {\n\n    public ExampleClass() {\n        super();\n    }\n\n    public String exampleMethod() {\n        return \"Hello, ClassJS!\";\n    }\n\n}\n```\n\n## Code in JavaScript\n\nIf you do not want to learn Java byte code, you can create methods using JavaScript functions.\n\n```javascript\nlet ExampleClass = ClassCreator.create(\"ExampleClass\")\n    .toPublic()\n    .createMethod(\"exampleMethod\", [\"int\", \"int\"], \"int\")\n        .toPublic().toStatic()\n        .codeJS((num1, num2) => {\n            return num1 + num2;\n        })\n    .defineClass();\n\nconsole.info(ExampleClass.exampleMethod(1, 2));\n// Output in startup.log\n// 3.0\n```\n\nEquivalent Java code:\n\n```java\npublic ExampleClass {\n    \n    // Note: This class do not even have a constructor,\n    //         as the JavaScript above did not call `defaultConstructor`,\n    //         neither did it created any other constructors.\n\n    public static int exampleMethod(int i1, int i2) {\n        return i1 + i2;\n    }\n\n}\n```\n\n## Load a Created Class\n\nClasses can be only defined in *startup* scripts.\nIf you want to use them in other scripts, you can use `ClassJSUtils.loadClass` method.\n\n```javascript\nClassCreator.create(\"SomeClass\")\n    /** Do some operations to add content to this class */\n    .defineClass();\n\n// In other scripts:\n\nlet SomeClass = ClassJSUtils.loadClass(\"SomeClass\");\n// Then you can use `SomeClass`\n```\n",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 868,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

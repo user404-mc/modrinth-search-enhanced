@@ -1,0 +1,26 @@
+{
+  "id": "JdoLDo8L",
+  "slug": "paperui",
+  "title": "PaperUI",
+  "description": "A Java/Kotlin library for creating user interfaces on Paper servers",
+  "body": "# PaperUI\nA Java/Kotlin library for creating user interfaces on Paper servers\n\n\n## How to use\nEither: Add PaperUI as a plugin to your Paper server and add PaperUI to your dependencies in `plugin.yml` or `paper-plugin.yml`\\\nOr: Include PaperUI in your plugin\n\n### Maven\n```xml\n<repositories>\n    <repository>\n        <id>DiruptioPublic</id>\n        <url>https://repo.diruptio.de/repository/maven-public</url>\n    </repository>\n</repositories>\n```\n```xml\n<dependencies>\n    <dependency>\n        <groupId>de.fabiexe</groupId>\n        <artifactId>PaperUI</artifactId>\n        <version>VERSION</version>\n    </dependency>\n</dependencies>\n```\n\n### Gradle\n```kotlin\nrepositories {\n    maven(\"https://repo.diruptio.de/repository/maven-public\")\n}\n```\n```kotlin\ndependencies {\n    compileOnly(\"de.fabiexe:PaperUI:VERSION\")\n}\n```\n\n\n## DialogUI\nA dialog user interface can have properties/inputs, buttons and action buttons.\nExample:\\\n<img src=\".github/assets/OrderPizzaUI.png\" alt=\"OrderPizzaUI\">\n\n### Kotlin\n```kotlin\nenum class PizzaType {\n    MARGHERITA, FUNGHI, PROSCIUTTO\n}\n\nfun create(audience: Audience) = DialogUI(audience).apply {\n    title(\"Order a Pizza\")\n    val type by enumProperty(\"Type\", PizzaType::class.java)\n    val extraCheese by booleanProperty(\"Add Extra Cheese\")\n    val radius by doubleProperty(\"Radius (cm)\", 15.0, 20.0)\n    val amount by integerProperty(\"Amount\", 1, 10, 1)\n    val address by stringProperty(\"Address\")\n\n    actionButton(\"Order\") {\n        var pizza = \"$type with radius ${radius}cm\"\n        if (extraCheese.get()) {\n            pizza += \" with extra cheese\"\n        }\n        val message = \"We will deliver $amount $pizza to $address\"\n        audience.sendMessage(Component.text(message))\n    }\n    actionButton(\"Cancel\")\n}\n```\n```kotlin\nfun doSomething() {\n    create(player).open()\n}\n```\n\n\n### Java (short)\n```java\npublic class OrderDrugsUI {\n    public static DialogUI<Audience> create(@NotNull Audience audience) {\n        DialogUI<Audience> ui = new DialogUI<>(audience);\n\n        ui.title(\"Order drugs\");\n\n        Property<DrugType> type = ui.enumProperty(\"Type\", DrugType.class);\n        Property<Double> dosis = ui.doubleProperty(\"Dosis (%)\", 50, 120, 100);\n        Property<Integer> amount = ui.integerProperty(\"Amount\", 1, 10);\n        Property<String> address = ui.stringProperty(\"Address\");\n\n        ui.actionButton(\"Order\", () -> {\n            String drug = type.get() + \" with dosis \" + dosis.get() + \"%\";\n            String message = \"We will deliver \" + amount.get() + \" \" + drug + \" to \" + address.get();\n            audience.sendMessage(Component.text(message));\n        });\n        ui.actionButton(\"Cancel\");\n\n        return ui;\n    }\n\n    private enum DrugType {\n        CANNABIS, COCAINE, HEROIN, FENTANYL\n    }\n}\n```\n```java\npublic void doSomething() {\n    OrderDrugsUI.create(player).open();\n}\n```\n\n### Java (long)\n```java\npublic class OrderCoffeeUI extends DialogUI<Audience> {\n    private final Property<CoffeeType> type;\n    private final Property<Double> size;\n    private final Property<Boolean> milk;\n    private final Property<Integer> amount;\n    private final Property<String> address;\n\n    public OrderCoffeeUI(@NotNull Audience audience) {\n        super(audience);\n\n        title(\"Order a Coffee\");\n        type = enumProperty(\"Type\", CoffeeType.class);\n        size = doubleProperty(\"Size (liters)\", 0.25, 1, 0.33);\n        milk = booleanProperty(\"Add milk\");\n        amount = integerProperty(\"Amount\", 1, 10);\n        address = stringProperty(\"Address\");\n\n        actionButton(\"Order\", this::order);\n        actionButton(\"Cancel\");\n    }\n\n    private void order() {\n        String coffee = type.get() + \" with size \" + size.get() + \"l\";\n        if (milk.get()) {\n            coffee += \" with milk\";\n        }\n        String message = \"We will deliver \" + amount.get() + \" \" + coffee + \" to \" + address.get();\n        audience.sendMessage(Component.text(message));\n    }\n\n    private enum CoffeeType {\n        COFFEE, ESPRESSO, CHOCOLATE_COFFEE, DOUBLE_CHOCOLATE_COFFEE\n    }\n}\n```\n```java\npublic void doSomething() {\n    new OrderCoffeUI(player).open();\n}\n```\n",
+  "categories": [
+    "library",
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 419,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

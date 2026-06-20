@@ -1,0 +1,36 @@
+{
+  "id": "YqtlitXg",
+  "slug": "projectpotassium",
+  "title": "Potassium",
+  "description": "A platform-aware performance optimisation mod for Minecraft",
+  "body": "# Potassium\n\nPotassium is a lightweight Fabric optimisation mod focused on improving Minecraft's client-side rendering, UI responsiveness, shader compatibility, and frame pacing without replacing the renderer or changing gameplay.\n\nInstead of rewriting large systems, Potassium targets small but frequent rendering costs: HUD updates, text layout, map rendering, particles, entity animation, shader/cache safety, and platform-aware rendering paths.\n\nIt is designed to work alongside popular optimisation mods such as Sodium, Lithium, FerriteCore, Entity Culling, C2ME, ModernFix, and Iris.\n\n---\n\n## Features\n\n### HUD Render State Throttle\n\nReduces redundant HUD processing when player state has not changed.\n\n- Health, hunger, display health, status effects, and tick state are checked before rebuilding HUD render state.\n- Prevents unnecessary UI recalculation while preserving vanilla gameplay feedback.\n- Includes safeguards to avoid GUI flashing or stale UI state.\n\n### Entity Animation LOD\n\nAdds distance-based cosmetic animation reduction for living entities.\n\n- Distant mobs reduce walk-animation updates beyond normal viewing range.\n- Movement, AI, hitboxes, combat, damage, and server behaviour are unaffected.\n- Only cosmetic animation work is reduced.\n\n### Particle Optimisations\n\nImproves particle-heavy scenes while protecting gameplay-critical feedback.\n\n- Particle update throttling is conservative and density-aware.\n- Critical particles such as block breaking, redstone, portal, potion/status, vibration, sculk, and interaction feedback stay protected.\n- Helps stabilize frame pacing during explosions, campfires, effects, and busy scenes.\n\n### Text And Layout Caching\n\nCaches repeated UI text measurements and layout work.\n\n- Reduces repeated font width calculations.\n- Helps menus, chat, scoreboards, overlays, and Mod Menu screens feel smoother.\n- Cache sizes are bounded to avoid long-session memory growth.\n\n### Map Rendering Safety And Throttling\n\nOptimises map render-state updates while preserving correctness.\n\n- Reduces redundant map texture/state refreshes.\n- Keeps item-frame maps safe by avoiding throttling before map textures are initialized.\n- Fixes crashes related to filled maps in item frames.\n\n### Shader Compatibility Fixes\n\nImproves compatibility with Iris shader packs and large render modpacks.\n\n- Fixed rare cases where players, mobs, item frames, held items, or maps could render black.\n- Disabled unsafe entity packed-light caching to preserve vanilla and Iris lighting correctness.\n- Adds Iris safety gates so Potassium avoids interfering with shader framebuffer, sampler, and program state.\n- Tested against shader-heavy scenarios including Complementary and Solas-style setups.\n\n\n### Dedicated Potassium Shader Cache Folder\n\nAdds a dedicated Potassium cache location:\n\n```text\n.minecraft/potassium/shader-cache\n```\n\n- Stores bounded shader environment metadata for safer future shader warm-up and cache validation.\n- Keeps Potassium cache data separate from Iris' own shader cache.\n- Includes automatic pruning so cache data does not grow indefinitely.\n- Does not currently claim full GPU program-binary reuse; this is safe groundwork for future shader-cache improvements.\n\n### Super Resolution UI\n\nAdds in-game super-resolution configuration through Mod Menu.\n\n- Provides selectable upscaling modes and status information.\n- Shows whether each backend is available, fallback-only, or unavailable.\n- Includes descriptions for Potassium Spatial, FSR-style paths, SGSR-style paths, DLSS, and XeSS.\n- Frame generation defaults to disabled for safety.\n\nImportant: full native DLSS, XeSS, and FSR3 frame generation are not fully delivered yet. Unsupported native paths remain fallback-safe instead of crashing or pretending to work.\n\n### Platform-Aware Rendering Support\n\nPotassium includes platform-aware checks for safer optimisation decisions.\n\n- Apple Silicon safeguards disable fragile framebuffer upscaling paths that can affect water, transparency, or first-person item depth.\n- OpenGL/Vulkan backend detection groundwork is included for newer Minecraft versions.\n- Experimental 26.2-pre-2 support is conservative while Minecraft's Vulkan path settles.\n\n## Performance Philosophy\n\nPotassium focuses on micro-optimisations that add up:\n\n- Reduce redundant UI processing.\n- Lower repeated text/layout work.\n- Keep particle-heavy scenes smoother.\n- Avoid unsafe render shortcuts that break visuals.\n- Prefer compatibility and vanilla correctness over risky FPS gains.\n\nThe goal is smoother frame pacing and lower CPU/GPU overhead without changing world generation, AI, combat, redstone, or server logic.\n\n---\n\n## Compatibility\n\nPotassium is designed to work alongside major Fabric optimisation and rendering mods.\n\n## Requirements\n\n### Minecraft 1.21.11\n\n- Fabric Loader 0.18.4+\n- Fabric API compatible with Minecraft 1.21.11\n- Java 21+\n\n### Minecraft 26.1-26.1.2\n\n- Fabric Loader 0.18.4+\n- Fabric API compatible with Minecraft 26.1.x\n- Java 25+\n\n### Minecraft 26.2-pre-4 Experimental\n\n- Fabric Loader 0.19.2+\n- Fabric API 0.150.1+26.2\n- Java 25+\n\n---\n\n### **EXPECT BUGS**\n### Reporting Issues\nPlease use the issue tracker linked at the top of the page to report bugs, crashes, and other issues. \nInclude a description of the issue, Minecraft version, mod version, log files, and any other information if possible. \n\n<a href=\"https://modrinth.com/mod/projectpotassium/\">\n  <img alt=\"modrinth\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg\">\n</a>\n<a href=\"https://modrinth.com/mod/fabric-api\">\n  <img alt=\"fabric-api\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg\">\n</a>\n<a href=\"https://github.com/topluci/potassium\">\n  <img alt=\"github\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg\">\n</a>\n<a href=\"https://www.curseforge.com/minecraft/mc-mods/potassium-mod\">\n  <img alt=\"curseforge\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_64h.png\">",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 8531,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2-pre-2",
+    "26.2-pre-4",
+    "26.2"
+  ],
+  "date_updated": null
+}

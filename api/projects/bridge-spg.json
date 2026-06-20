@@ -1,0 +1,23 @@
+{
+  "id": "JgIUgZdd",
+  "slug": "bridge-spg",
+  "title": "BridgeSPG",
+  "description": "Lightweight plugin to update RealisticPlantGrowth's configuration with the current season in RealisticSeasons",
+  "body": "# BridgeSPG\nBridgeSPG is a lightweight plugin that, using PlaceholderAPI, changes [Realistic Plant Growth](https://modrinth.com/plugin/realistic-plant-growth)'s configuration on start-up; based on [RealisticSeasons](https://www.spigotmc.org/resources/realisticseasons-1-16-3-1-21-5-seasons-in-your-minecraft-world-with-temperature-and-calendar.93275/)' current season. It only takes effect after a restart, though.\n\n## Configuration\n<details>\n<summary>Example Config</summary>\n\n```yaml\nworld: \"world\"\nfilepaths:\n  growth: \"plugins/RealisticPlantGrowth/GrowthModifiers.yml\" # Relative to the root directory of the Minecraft server\n  test: \"plugins/TestPlugin/config.yml\" # Example of a second plugin configuration\n\ndefault:\n  growth: \"seasons/default.yml\" # Relative to the BridgeSPG data folder\n  test: \"seasons/default_test.yml\"\n\nseasons:\n  Fall:\n    - weight: 1\n      files:\n        growth: \"seasons/fall/default.yml\"\n        test: \"seasons/fall/test.yml\"\n  Winter:\n    - weight: 1\n      files:\n        growth: \"seasons/winter/default.yml\"\n        test: \"seasons/winter/test.yml\"\n    - weight: 1\n      files:\n        growth: \"seasons/winter/cropfailure.yml\"\n        test: \"seasons/winter/test_failure.yml\"\n  Spring:\n    - weight: 1\n      files:\n        growth: \"seasons/fall/default.yml\"\n        test: \"seasons/spring/test.yml\"\n  Summer:\n    - weight: 5\n      files:\n        growth: \"seasons/summer/default.yml\"\n        test: \"seasons/summer/test.yml\"\n    - weight: 4\n      files:\n        growth: \"seasons/summer/heatwave.yml\"\n        test: \"seasons/summer/test_heatwave.yml\"\n```\n      \n</details>\n\nPer season, you can set it to choose between a list of files with \"weights\"/biases. It only updates the plugin configurations once each season though.\nThese configurations are tied to eachother per set, and not including one will make it go to the global \"default\"\n\n## Dependencies\nThis plugin only requires [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) and [RealisticSeasons](https://www.spigotmc.org/resources/realisticseasons-1-16-3-1-21-5-seasons-in-your-minecraft-world-with-temperature-and-calendar.93275/) to work.",
+  "categories": [
+    "game-mechanics",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 118,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

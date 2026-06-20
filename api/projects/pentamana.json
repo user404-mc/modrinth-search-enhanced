@@ -1,0 +1,22 @@
+{
+  "id": "UgFKzdOy",
+  "slug": "pentamana",
+  "title": "Pentamana",
+  "description": "A mana API providing mana calculation hooks and mana rendering.",
+  "body": "# Pentamana\n\nPentamana is a library adds non-registered mana status for living entities.\n\n![Compound](https://github.com/CookedSeafood/nbtsheet/raw/0cfc19cc5644a82c921d39f9c40729aca3dea33d/compound.png) **data**: Parent tag.  \n&ensp;|- ![Float](https://github.com/CookedSeafood/nbtsheet/raw/0cfc19cc5644a82c921d39f9c40729aca3dea33d/float.png) **mana**: Any  \n&ensp;\\\\- ![Float](https://github.com/CookedSeafood/nbtsheet/raw/0cfc19cc5644a82c921d39f9c40729aca3dea33d/float.png) **mana_capacity**: Any\n\n![Manabar.png](https://cdn.modrinth.com/data/UgFKzdOy/images/f3cd7c3f727aa816cea812bd654485bc743dda71.png)\n\n## Configuration\n\n`config/pentamana/server.json`:\n\n```json\n{\n  \"manaCapacityBase\": 20.0,\n  \"manaRegenerationBase\": 0.0625\n}\n```\n\n`config/pentamana/client.json`:\n\n```json\n{\n  \"manaBarOffsetX\": 0,\n  \"manaBarOffsetY\": -69,\n  \"manaBarDirection\": \"right\",\n  \"manaBarAlignment\": \"middle\",\n  \"manaBarMaxStars\": 20\n}\n```\n\n## Command\n\n### Server Command\n\nThe commands below require premission level 2 to execute.\n\n- `/mana get` Print mana supply. Returns mana supply in point.\n- `/mana set` Set mana supply. Returns modified mana supply in point.\n- `/mana add` Add mana supply. Returns modified mana supply in point.\n- `/mana subtract` Subtract mana supply. Returns modified mana supply in point.\n- `/pentamana reload` Reload server config file.\n- `/pentamana set ... <...>` Set server config and save to config file.\n- `/pentamana reset [...]` Set server config to default and save to config file.\n\n### Client Command\n\n- `/manabar set ... <...>` Set manabar config and save to config file.\n- `/manabar reset [...]` Set manabar config to default and save to config file.\n\n## Tutorial\n\nCodes in this tutorial are licenced under CC-0.\n\n### Installation\n\n`gradle.properties`:\n\n```properties\npentamana_version=2.0.0-beta.14\n```\n\n`build.gradle`:\n\n```gradle\nrepositories {\n    exclusiveContent {\n        forRepository {\n            maven {\n                name = \"Modrinth\"\n                url = \"https://api.modrinth.com/maven\"\n            }\n        }\n        filter {\n            includeGroup \"maven.modrinth\"\n        }\n    }\n}\n\ndependencies {\n    implementation \"maven.modrinth:pentamana:${project.pentamana_version}\"\n}\n```\n\n### Consume mana\n\n```java\nlivingEntity.consumeMana(1.234f) // Return true if successful.\n```\n\n### Change how mana capacity is calculated\n\n```java\nManaEvents.CALCULATE_CAPACITY.register((livingEntity, capacity) -> {\n    float f = capacity.floatValue() // Base value.\n    // TO-DO: Do your modifies to f.\n    capacity.setValue(f);\n    return InteractionResult.PASS;\n})\n```\n\n- `ManaEvents.CALCULATE_CAPACITY`\n- `ManaEvents.CALCULATE_REGENERATION`\n- `ManaEvents.CALCULATE_CONSUMPTION`\n- `ManaEvents.CALCULATE_DAMAGE`\n\n[Pentamana Extra](https://modrinth.com/mod/pentamana-extra) uses this.\n\n### Get Casting Damage\n\n```java\nlivingEntity.getCastingDamageAgainst(entity, 1.234f)\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "magic"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1363,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

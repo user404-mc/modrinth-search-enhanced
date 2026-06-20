@@ -1,0 +1,36 @@
+{
+  "id": "chMMWrGM",
+  "slug": "keep-inventory-plus",
+  "title": "Keep Inventory Plus",
+  "description": "Nerfed keep inventory in minecraft. Modifications to how experience, hunger and items are handled upon death",
+  "body": "# KeepInvPlus\n\nA highly configurable death penalty plugin for Paper servers that adds meaningful \nconsequences on top of the `keepInventory` gamerule — without taking everything away.\n\n## Overview\nVanilla `keepInventory` is all-or-nothing. KeepInvPlus lets server admins define \nnuanced death penalties across three attributes: **XP levels**, **hunger**, and **items** — \nall configurable live via commands with no server restart required.\n\nEvery attribute shares the same powerful two-tier logic:\n\n**Tier 1 — Conditions:** All active conditions must pass for the default outcome to apply.  \n**Tier 2 — Exceptions:** If any condition fails, exceptions are checked in the order they \nwere added. The last matching exception wins. If no exception matches, the penalty applies.  \nIf all conditions pass, exceptions are skipped entirely.\n\n---\n\n## Features\n\n### ⚔️ XP Penalties\nStack multiple penalties applied in the order they were added:\n- `SUBTRACT` — lose a configurable number of levels (negative values *grant* levels)\n- `HALVE` — levels cut in half\n- `REMOVE_ALL` — lose all levels\n- `PERCENTAGE` — lose a configurable percentage of current levels\n  - Negative percentage grants levels on death\n  - Values over 100% can push levels into the negative\n  - Optional `zero_cap` prevents levels from going below 0\n\n### 🍖 Hunger System\nRather than punishing death, KeepInvPlus **rewards good play**. Players respawn with \ntheir pre-death hunger unless they meet all configured replenishment conditions:\n- `TIME_ALIVE` — must have survived a minimum number of seconds\n- `BAR_CONSUMED` — must have consumed at least one hunger bar before dying\n\n### 🎒 Item Penalties\n- `GAMBLE` — each non-gear item has a configurable chance of being lost on death\n- `LOSE_NON_GEAR` — lose all items except tools and armor\n\n### 🔀 Exceptions (XP, Hunger & Items)\nAll three attributes support a shared exception system as a fallback when conditions fail:\n\n**XP & Items exceptions** (`APPLY` / `SKIP`):\n- `PVP_DEATH` — trigger when killed by another player\n- `SUICIDE` — trigger when the player kills themselves\n\n**Hunger exceptions** (`REPLENISH` / `DENY`):\n- `PVP_DEATH` — being killed by another player can force full replenishment\n- `SUICIDE` — self-kills can force hunger denial regardless of other results\n\nExceptions are evaluated in the order they were added — **last matching exception wins**, \ngiving server admins fine-grained control over edge cases.\n\n---\n\n## Example Configurations\n\n**Hardcore economy server:** Subtract 10 levels on death, skip penalty if killed by a player.\n```\n/kip set xp enabled true\n/kip set xp type add SUBTRACT\n/kip set xp subtract_amount 10\n/kip set xp exception add PVP_DEATH SKIP\n```\n\n**PvP event server:** Grant levels on death to incentivise fighting.\n```\n/kip set xp enabled true\n/kip set xp type add SUBTRACT\n/kip set xp subtract_amount -5\n```\n\n**Survival server:** Replenish hunger only if you survived long enough and ate well.\n```\n/kip set hunger enabled true\n/kip set hunger condition add TIME_ALIVE\n/kip set hunger condition add BAR_CONSUMED\n/kip set hunger min_seconds_alive 120\n/kip set hunger exception add PVP_DEATH REPLENISH\n/kip set hunger exception add SUICIDE DENY\n```\n\n---\n\n## Commands\n```\n/kip set xp enabled <true|false>\n/kip set xp type add <SUBTRACT|HALVE|REMOVE_ALL|PERCENTAGE>\n/kip set xp type remove <SUBTRACT|HALVE|REMOVE_ALL|PERCENTAGE>\n/kip set xp subtract_amount <number>\n/kip set xp percentage <number>\n/kip set xp zero_cap <true|false>\n/kip set xp exception add <PVP_DEATH|SUICIDE> <APPLY|SKIP>\n/kip set xp exception remove <PVP_DEATH|SUICIDE>\n\n/kip set hunger enabled <true|false>\n/kip set hunger condition add <TIME_ALIVE|BAR_CONSUMED>\n/kip set hunger condition remove <TIME_ALIVE|BAR_CONSUMED>\n/kip set hunger min_seconds_alive <seconds>\n/kip set hunger exception add <PVP_DEATH|SUICIDE> <REPLENISH|DENY>\n/kip set hunger exception remove <PVP_DEATH|SUICIDE>\n\n/kip set items enabled <true|false>\n/kip set items type <NONE|GAMBLE|LOSE_NON_GEAR>\n/kip set items gamble_chance <0.0-1.0>\n/kip set items exception add <PVP_DEATH|SUICIDE> <APPLY|SKIP>\n/kip set items exception remove <PVP_DEATH|SUICIDE>\n\n/kip get <xp|hunger|items|all>\n/kip reload\n```\n\n## Permissions\n| Permission | Description | Default |\n|---|---|---|\n| `keepinvplus.admin` | Access to all /kip commands | OP |\n\n## Requirements\n- Paper 1.21+\n- Java 21+\n- `keepInventory` gamerule must be enabled (`/gamerule keepInventory true`)\n\n## Additional remarks\n- Plugin tested on Paper server 1.21.11\n- COULD be compatible with Spigot/Bukkit/Other platforms mentioned but try at your own risk\n- Have fun :)",
+  "categories": [
+    "bukkit",
+    "folia",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 348,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

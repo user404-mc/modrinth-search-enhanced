@@ -1,0 +1,38 @@
+{
+  "id": "NCyXBceY",
+  "slug": "paojiao134s-airdrop",
+  "title": "Paojiao134's Airdrop",
+  "description": "Within the game, you can summon drop-offs by using commands and customize the contents of the drop-offs.",
+  "body": "# Airdrop Mod\n\n**English** | **[中文](./README.md)**\n\n> **Version**: 1.0  \n> **Minecraft Version**: 1.20.1  \n> **Mod Loader**: Forge 47+  \n> **Author**: Alku\n\n---\n\n## Introduction\n\nAirdrop is a server-oriented Minecraft mod that adds an exciting airdrop system. Players can summon airdrop crates using flare guns, which slowly descend from the sky bringing valuable supplies. The mod supports custom loot pools, scheduled airdrops, range restrictions, and more.\n\n---\n\n## Items\n\n### Flare Gun\n\n- **Rarity**: Epic (EPIC)\n- **Max Stack**: 1\n- **Function**: Right-click to summon an airdrop crate at the player's current position\n- **Cooldown**: 100 ticks (5 seconds)\n- **Durability**: Unlimited uses\n\n### Disposable Flare Gun\n\n- **Rarity**: Common (COMMON)\n- **Max Stack**: 16\n- **Function**: Right-click to summon an airdrop crate at the player's current position\n- **Cooldown**: 20 ticks (1 second)\n- **Feature**: Consumes one item on use, all players receive coordinate notification\n\n### Range Limiter\n\n- **Max Stack**: 1\n- **Function**: Set the area where airdrops can randomly spawn\n- **Usage**:\n  1. Right-click the first block → Set point A\n  2. Right-click the second block → Set point B, area defined\n  3. **Sneak + Right-click** → Clear range restriction\n\n---\n\n## Airdrop Entity\n\n### Airdrop Crate Properties\n\n| Property | Description |\n|----------|-------------|\n| Inventory Size | 27 slots (equivalent to a large chest) |\n| Drop Height | Y = 300 |\n| Drop Duration | Approximately 2 minutes |\n| Drop Speed | 0.0983 blocks/tick |\n\n### Descent Process\n\n1. Airdrop crate starts descending from Y=300\n2. Produces **flame** and **smoke** particle trails during descent\n3. Triggers server-wide notification upon landing\n\n### Landing Effects\n\n- **Chat Message**: `[Alert] Airdrop landed! Coordinates: [X, Y, Z]`\n- **Screen Title**: Large text displaying \"Airdrop Landed!\" + coordinate subtitle\n- **Sound Effect**: Plays challenge complete sound\n- **Particle Effects**:\n  - Light beam from ground to sky (soul flame + glow particles)\n  - Tall campfire signal smoke\n  - Flame and large smoke at the base\n\n### Interaction\n\n- Right-click the airdrop crate to open inventory\n- Survival mode players' first open marks it as \"claimed\"\n\n---\n\n## Command System\n\nAll commands require **OP level 2** or higher permission.\n\n### Basic Commands\n\n| Command | Description |\n|---------|-------------|\n| `/airdrop summon` | Summon an airdrop crate at a random location |\n\n### Loot Pool Management\n\n| Command | Description |\n|---------|-------------|\n| `/airdrop edit <name>` | Open GUI to edit specified loot pool |\n| `/airdrop delete <name>` | Delete specified loot pool |\n\n### Config Import/Export\n\n| Command | Description |\n|---------|-------------|\n| `/airdrop export <name>` | Export single loot pool to JSON file |\n| `/airdrop import <filename>` | Import loot pool from JSON file |\n| `/airdrop exportall [filename]` | Export all loot pools (default filename: airdrop_all) |\n| `/airdrop importall <filename>` | Import all loot pools from JSON file |\n\n### Scheduled Airdrops\n\n| Command | Description |\n|---------|-------------|\n| `/airdrop schedule list` | List all scheduled airdrop tasks |\n| `/airdrop schedule add <name> <time> <chance>` | Add scheduled airdrop task |\n| `/airdrop schedule remove <name>` | Remove scheduled airdrop task |\n\n**Parameter Description**:\n- `time`: Minecraft in-game time (0-24000)\n- `chance`: Trigger probability (0.0-1.0, e.g., 0.5 means 50%)\n\n### Other\n\n| Command | Description |\n|---------|-------------|\n| `/airdrop particles` | Toggle airdrop particle effect display (client-side) |\n\n---\n\n## Scheduled Airdrop System\n\nScheduled airdrops allow the server to automatically generate airdrops at specific times.\n\n### Configuration Example\n\n```\n/airdrop schedule add morning 6000 0.3\n```\n\nThis will trigger a 30% chance of airdrop at game time 6000 (noon).\n\n### How It Works\n\n- The system checks all scheduled airdrop tasks every game day\n- When game time matches, it decides whether to trigger based on set probability\n- When triggered, airdrop spawns randomly within configured range\n\n---\n\n## Airdrop Range System\n\n### Range Priority\n\n1. **World Border Integration** (if border_weaver mod is installed)\n2. **Manually Set Range** (via Range Limiter)\n3. **Random Around Player** (default: player position ±100 blocks)\n\n### World Border Support\n\nThe mod automatically detects world borders, ensuring airdrops always spawn within bounds.\n\n---\n\n## Configuration Files\n\nConfiguration files located at: `config/airdrop/`\n\n### Main Config (Forge Config)\n\n```toml\n# Whether to log the dirt block\nlogDirtBlock = true\n\n# Magic number\nmagicNumber = 42\n\n# Magic number introduction\nmagicNumberIntroduction = \"The magic number is... \"\n\n# Item list\nitems = [\"minecraft:iron_ingot\"]\n```\n\n---\n\n## Loot Pool System\n\n### Loot Pool Concept\n\nLoot pools are the random source for items in airdrop crates. Each loot pool contains 27 item slots, and a random pool is selected when an airdrop spawns.\n\n### Creating Loot Pools\n\n1. Use command `/airdrop edit <name>` to open edit interface\n2. Place items in the opened chest interface\n3. Close interface to auto-save\n\n### Loot Pool Files\n\nLoot pool configurations are saved in world data and can be backed up or shared via export functionality.\n\n---\n\n## Mod Compatibility\n\n| Mod | Compatibility |\n|-----|---------------|\n| border_weaver | Optional dependency, provides world border integration |\n\n---\n\n## Installation\n\n1. Ensure Forge 47+ is installed (Minecraft 1.20.1)\n2. Place mod JAR file in `mods` folder\n3. Launch the game\n\n---\n\n## Development Info\n\n- **Mod ID**: `airdrop`\n- **License**: All Rights Reserved\n- **Source Code**: Java 17+\n\n---\n\n## FAQ\n\n### Q: Airdrops don't generate items?\n\nA: Make sure at least one loot pool is created. Use `/airdrop edit <name>` to create one.\n\n### Q: How to modify airdrop descent speed?\n\nA: Current descent speed is fixed at approximately 2 minutes. To modify, you need to edit `AirdropEntity.java` in the source code.\n\n### Q: Can airdrops be set in specific biomes?\n\nA: Not currently supported, but similar effect can be achieved using the Range Limiter.\n\n---\n\n## Changelog\n\n### 1.0\n- Initial release\n- Basic airdrop system\n- Flare gun items\n- Scheduled airdrop feature\n- Loot pool management\n- Config import/export\n",
+  "categories": [
+    "forge",
+    "minigame",
+    "neoforge",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 564,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "kNqmYxKh",
+  "slug": "mclista-plugin",
+  "title": "MclistaPlugin",
+  "description": "Official plugin Minecraft server list mclista.pl",
+  "body": "<p align=\"center\">\n  <img src=\"https://i.imgur.com/ngXnPK7.png\" width=\"500\" height=\"400\">\n</p>\n\n[![Release](https://img.shields.io/github/v/release/kerpsondev/mclista-plugin.svg)](https://github.com/kerpsondev/mclista-plugin/releases)\n\nOfficial plugin created for mclista.pl website.\n<br>\nSimple configuration, very fast and reliable.\n<br>\n\n## ⚙️ Requirements \n\n- Paper engine (1.8 - 1.21.8)\n- Server on website [mclista.pl](https://mclista.pl)\n- OPTIONAL: Database mysql/mariadb/mongodb\n\n## 💛 API module\n\nApi may add to project maven/gradle\n<br>\nCurrently supported platforms:\n- bukkit\n- velocity (in feature)\n\n### Maven\n\n```xml\n<repositories>\n  <repository>\n    <id>mclista-repository-releases</id>\n    <name>Repozytorium McLista</name>\n    <url>https://repository.mclista.pl/releases</url>\n  </repository>\n</repositories>\n\n<dependencies>\n  <dependency>\n    <groupId>pl.mclista</groupId>\n    <artifactId>mclista-{platform}-api</artifactId>\n    <version>1.1.0-beta2</version>\n  </dependency>\n</dependencies>\n```\n\n### Gradle\n```gradle\nmaven {\n    name = \"mclistaRepositoryReleases\"\n    url = uri(\"https://repository.mclista.pl/releases\")\n}\n\nimplementation(\"pl.mclista:mclista-{platform}-api:1.1.0-beta2\")\n```\n<br>\n\n## 🤖 API usage\n\nIn first order i recommend get class DeveloperService by registry.\n<br>\nExample for bukkit api:\n\n```java\nRegisteredServiceProvider<DeveloperService> provider = Bukkit.getServicesManager().getRegistration(DeveloperService.class);\nif (provider != null) {\n  DeveloperService developerService = provider.getProvider();\n}\n```\n\nDeveloperService returns two objects, UserService and RewardApiClient.\n<br>\nEvery action that returns object will return DeveloperService:\n```java\n  @NotNull RESULT getResult();\n\n  @Nullable Optional<Throwable> getThrowable();\n```\n\n### Event handling\n\nPlugin currently has 2 events:\n- PostRewardReceiveEvent (Event calling after receive reward)\n- PreRewardReceiveEvent (Event calling beforce receive reward, is cancellable)\n\nEvent for every module has prefix {platform}, e.g.:\nBukkitPreRewardReceiveEvent.\n<br>\n\n### UserService\n\nClass UserService allows to operate on users, include offline users.\n<br>\nIt gives you complete freedom in managing users.\n\n```java\n  void addUser(@NotNull User user);\n\n  void removeUser(@NotNull UUID uuid);\n\n  Optional<User> getUser(@NotNull UUID uuid);\n\n  @NotNull CompletableFuture<DeveloperAction<User>> loadUser(@NotNull UUID uuid);\n\n  @NotNull CompletableFuture<DeveloperAction<User>> modifyUser(@NotNull UUID uuid, @NotNull Consumer<User> userConsumer);\n\n  @NotNull CompletableFuture<DeveloperAction<Boolean>> saveUser(@NotNull User user);\n\n  @NotNull Set<User> getUsers();\n\n  @NotNull CompletableFuture<DeveloperAction<Set<User>>> loadUsers();\n```\n\n### RewardApiClient\n\nThis object allows you to send a query to the API and receive a response indicating whether the player has voted on the list on our server or not.\n<br>\nTo check whether the user has received a reward today, you need to compare the delay with the current time from the [User](#userservice) object.\n<br>\nAlternatively, you can also set your own delay—the choice is yours!\n\n### 💛 Project status\n![Alt](https://repobeats.axiom.co/api/embed/70650ca5fb9b12b8f5921304cf89af4fc8861c42.svg \"Repobeats analytics image\")\n",
+  "categories": [
+    "bukkit",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 129,
+  "followers": 0,
+  "game_versions": [
+    "1.8.8",
+    "1.8.9",
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

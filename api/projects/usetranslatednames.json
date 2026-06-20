@@ -1,0 +1,41 @@
+{
+  "id": "tX0NzIEh",
+  "slug": "usetranslatednames",
+  "title": "useTranslatedNames",
+  "description": "用于翻译 CoreProtect 物品名称消息的插件",
+  "body": "## useTranslatedNames\nJSON string replacement plugin with built-in translation name fetch function, which can be used for message replacement and translation of CoreProtect and other plugins.\n\n![](https://github.com/ApliNi/useTranslatedNames/blob/main/_img/%E6%95%88%E6%9E%9C%E5%9B%BE.png?raw=true)\n\ndownload: https://modrinth.com/plugin/usetranslatednames\n\n---\n\n## Functions and commands\n- `/utn` Show plugin information and statistics\n    - `/utn json <JSON>`    - Test JSON string\n    - `/utn reload`         - Reload configuration\n    - `/utn debug [Level]`  - debug mode\n\nThe plug-in will capture the corresponding server message according to the configuration, then replace the item name in it and resend the message. For details, please refer to the \"Configuration\" section.\n\n\n### Config\n```yaml\n\n# 更新插件后, 需要手动修改配置版本号, 才能使用一些具有较大改动的功能\n# 更新发布页面会显示版本号和新功能示例\nconfigVersion: 4\n\ndev:\n  # 选择解析消息的方式, 修改这部分以调整兼容性\n  # ChatComponents  = 支持 1.20.4 和 ProtocolLib 5.2.0\n  # GetStrings      = 支持 1.20.2 及以下版本\n  parser: ChatComponents\n  # 是否对输入的 JSON 进行序列化, 修改它可能影响现有的配置\n  # CreatePacket        = 使用 protocolLib 创建新数据包再解析, 这没有意义\n  # ComponentSerializer = 这会使 JSON 内部的顺序发生变化, 并可能丢失部分原版消息\n  # NONE                = 不进行序列化\n  serializedInput: NONE\n  # 将玩家消息转换为系统消息\n  # Convert       = 转换消息并进行替换\n  # ConvertBypass = 转换消息并绕过替换\n  # NONE          = 禁用此功能\n  convertPlayerMessages: NONE\n\nlist: # 替换列表\n\n  # 翻译实体名 :: 24.03/m 前 #**苦力怕** 破坏 草方块\n  - inspectLength: [240, 1024]\n    get: '\\{\"text\":\"#([a-z0-9_]+)§f([^\"]+)\",\"color\":\"#31B0E8\"\\}'\n    set: >-\n      {\"text\":\"§8#\"},\n      {\"translate\":\"_$1:TranslatedName_\",\"color\":\"#31b0e8\"},\n      {\"text\":\"§f_$2_\",\"color\":\"#31B0E8\"}\n    inherit: LINK\n\n  # 翻译物品 :: 24.03/m 前 #苦力怕 破坏 **草方块**\n  - inspectLength: [240, 1024]\n    get: '\\{\"text\":\"(?:§m)?([a-z0-9_]+)(?:§f.{0,3})?\"(?:,\"strikethrough\":true)?,\"color\":\"#31B0E8\"\\}'\n    set: >-\n      {\"extra\":[\n        {\"translate\":\"_$1:TranslatedName_\"},\n        {\"text\":\" §8_$1_\",\n          \"hoverEvent\":{\n            \"action\":\"show_text\",\n            \"contents\":{\"text\":\"§7点击复制ID\\n§8minecraft:_$1_\"}\n          },\n        \"clickEvent\":{\"action\":\"copy_to_clipboard\",\"value\":\"_$1_\"}\n        }\n      ],\"color\":\"#31b0e8\",\"text\":\"\"}\n\n    # [示例] 所有可用配置\n    # [可选] 仅对拥有该权限的玩家处理这条消息, 默认所有玩家\n  - permission: 'minecraft.command'\n    # [必选] 检查消息长度是否在此区间内\n    # [50, 64]  = 大于等于 50 且小于等于 64\n    # [64]      = 等于 64\n    inspectLength: [50, 64]\n    # [必选] 使用正则表达式匹配\n    get: '^\\{\"text\":\"\",\"extra\":\\[\"Missing required argument (\\d+)\"\\]\\}$'\n    # [必选] 将消息替换为\n    # _$1_    = 正则匹配到的变量 1, 也可以是 _$2_ (第 2 个变量)...\n    # _$1:ItemType_   = 将 _$1_ 用于获取物品类型, 提供给 JSON hoverEvent 使用的物品类型 show_entity, show_item(block)\n    # _$1:TranslatedName_   = 将 _$1_ 用于名称翻译, 返回与语言路径对应的 KEY, 例如 `entity.minecraft.allay`\n    # _$1:Words:组名_   = 将 _$1_ 用于词替换, 需要配置 words.yml\n    # 其他示例:\n    # set: >- # YAML 语法中使用 `>-` 可以编写换行的文本, 效果如上\n    # set: '' # 如果为空, 则取消发送这条消息\n    # set: _USE_GET_ # 将 get 匹配到的消息原封不动的搬下来\n    set: '{\"text\":\"§bIpacEL §f> §b此指令需要至少§a_$1:Words:中文数字_个参数\"}'\n    # [可选] 修改消息显示位置\n    # ACTION_BAR  = 这条消息将会显示在操作栏\n    displayPlace: ACTION_BAR\n    # [可选] 修改消息显示对象\n    # _$1_    = 正则变量, 消息仅发送给匹配到的玩家名称, 其他玩家不会收到消息\n    # ALL     = 将自己收到的消息广播给所有玩家\n    # EXCLUDE = 将自己收到的消息广播给所有玩家, 但不包括自己\n    # CONSOLE = 将消息转发到控制台, 自己不会收到\n    # COPY_TO_CONSOLE = 将消息复制到控制台\n    displayObject: ''\n    # [可选] 继承和其他配置. 将多个配置合并为组, 同时处理来提高性能\n    # LINK     = 与下一条配置合并为组, 将此配置处理完毕的内容传递给下一条配置, 请确保存在下一条配置\n    # LINK_SER = 使 LINK 传递序列化后的 JSON 文本, 需要开启序列化功能\n    # CLOSE    = 如果匹配, 则停止处理这条消息, 可用于排除一些被高频发送的消息\n    inherit: ''\n\n```\n\n```yaml\n# 词替换配置文件\nwords:\n  # 创建一个组, 组名不应包含下划线 \"_\"\n  中文数字:\n    # 添加一个词替换\n    # 如果多个词的配置重复, 将会被忽略\n    - get: '1' # [必选] 需要匹配的词\n      set: '一' # [必选] 替换为\n      lang: 'zh_cn' # [可选, 默认直接替换] 当客户端语言与其匹配时进行替换\n\n    - get: '2'\n      set: '二'\n      lang: 'zh_cn'\n\n    - get: '3'\n      set: '三'\n      lang: 'zh_cn'\n\n```\n\n### depend\n- ProtocolLib\n",
+  "categories": [
+    "decoration",
+    "folia",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5742,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

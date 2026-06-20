@@ -1,0 +1,37 @@
+{
+  "id": "QsS6k1xF",
+  "slug": "weguardian",
+  "title": "WeGuardian",
+  "description": "WeGuardian is a modern punishment plugin for single servers and server networks, offering reliable ban, mute, and kick management with a clear and customizable punishment system.",
+  "body": "# 🛡️ WeGuardian\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/Minecraft-1.21+-brightgreen\" alt=\"Minecraft Version\">\n  <img src=\"https://img.shields.io/badge/Java-21+-orange\" alt=\"Java Version\">\n  <img src=\"https://img.shields.io/badge/Paper-Supported-blue\" alt=\"Paper Support\">\n  <img src=\"https://img.shields.io/badge/Folia-Supported-purple\" alt=\"Folia Support\">\n  <img src=\"https://img.shields.io/badge/Version-2.0-red\" alt=\"Plugin Version\">\n</p>\n\n<p align=\"center\">\n  <b>Professional Punishment Management System for Minecraft Servers</b><br>\n  <i>by WeThink</i>\n</p>\n\n---\n\n## ✨ Features\n\n### 🔨 Punishment System\n- **Ban & TempBan** - Permanently or temporarily ban players\n- **IP Ban & TempIP Ban** - Ban players by IP address with automatic IP resolution\n- **Mute & TempMute** - Silence players permanently or temporarily\n- **IP Mute & TempIP Mute** - IP-based muting system\n- **Kick** - Instantly remove players from the server\n\n### 🎮 Interactive GUI\n- **Punishment GUI** - Beautiful and intuitive punishment selection interface\n- **Duration Selector** - Easy-to-use duration selection with presets\n- **History Viewer** - Browse punishment history with pagination\n\n### 📊 Database Support\n- **SQLite** - Zero-configuration local storage (default)\n- **MySQL** - Scale to larger servers with MySQL support\n- **HikariCP** - High-performance connection pooling\n- **Caffeine Caching** - Lightning-fast data retrieval\n\n### 🌐 Web Dashboard\n- Built-in web panel for remote management\n- REST API for custom integrations\n- Configurable branding and appearance\n\n### 🔗 Discord Integration\n- Webhook logging for all punishments\n- Batched messages to avoid rate limits\n- Beautiful embed formatting\n\n### ⚡ Performance\n- **Folia Support** - Full compatibility with Folia servers\n- **Async Operations** - Non-blocking database operations\n- **Lazy GUI Initialization** - Optimized GUI performance\n\n---\n\n## 📥 Installation\n\n1. Download the latest `WeGuardian.jar`\n2. Place it in your server's `plugins` folder\n3. Restart your server\n4. Configure `plugins/WeGuardian/config.yml`\n\n---\n\n## 📝 Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/ban <player> [reason]` | Permanently ban a player | `weguardian.ban` |\n| `/tempban <player> <duration> [reason]` | Temporarily ban a player | `weguardian.tempban` |\n| `/unban <player>` | Unban a player | `weguardian.unban` |\n| `/banip <player> [reason]` | IP ban a player | `weguardian.banip` |\n| `/tempbanip <player> <duration> [reason]` | Temp IP ban a player | `weguardian.tempbanip` |\n| `/unbanip <player>` | Unban a player's IP | `weguardian.unbanip` |\n| `/mute <player> [reason]` | Permanently mute a player | `weguardian.mute` |\n| `/tempmute <player> <duration> [reason]` | Temporarily mute a player | `weguardian.tempmute` |\n| `/unmute <player>` | Unmute a player | `weguardian.unmute` |\n| `/muteip <player> [reason]` | IP mute a player | `weguardian.muteip` |\n| `/tempmuteip <player> <duration> [reason]` | Temp IP mute a player | `weguardian.tempmuteip` |\n| `/unmuteip <player>` | Unmute a player's IP | `weguardian.unmuteip` |\n| `/kick <player> [reason]` | Kick a player | `weguardian.kick` |\n| `/punish <player>` | Open punishment GUI | `weguardian.punish` |\n| `/history <player>` | View punishment history | `weguardian.history` |\n| `/weguardian reload` | Reload configuration | `weguardian.admin` |\n\n---\n\n## 🔑 Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `weguardian.staff` | All staff permissions | OP |\n| `weguardian.admin` | Admin commands (reload) | OP |\n| `weguardian.bypass` | Bypass all punishments | false |\n\n---\n\n## ⏱️ Duration Format\n\nDurations support the following formats:\n\n| Unit | Example | Description |\n|------|---------|-------------|\n| `s` | `30s` | Seconds |\n| `m` | `30m` | Minutes |\n| `h` | `6h` | Hours |\n| `d` | `7d` | Days |\n| `w` | `2w` | Weeks |\n| `M` | `1M` | Months |\n| `y` | `1y` | Years |\n\n**Examples:** `1h`, `6h`, `1d`, `7d`, `30d`, `90d`\n\n---\n\n## ⚙️ Configuration\n\n### Database (SQLite - Default)\n```yaml\ndatabase:\n  type: \"sqlite\"\n  sqlite:\n    file: \"punishments.db\"\n```\n\n### Database (MySQL)\n```yaml\ndatabase:\n  type: \"mysql\"\n  mysql:\n    host: \"localhost\"\n    port: 3306\n    database: \"weguardian\"\n    username: \"root\"\n    password: \"password\"\n```\n\n### Discord Webhook\n```yaml\ndiscord:\n  enabled: true\n  webhook-url: \"YOUR_WEBHOOK_URL\"\n  batch-interval-seconds: 5\n```\n\n### Web Dashboard\n```yaml\nweb-dashboard:\n  enabled: true\n  host: \"0.0.0.0\"\n  port: 8080\n  admin-api-key: \"YOUR_SECURE_KEY\"\n```\n\n---\n\n## 🛠️ Requirements\n\n- **Minecraft Server:** Paper 1.21+ or Folia\n- **Java:** 21 or higher\n\n---\n\n## 📚 Dependencies\n\n- [Paper API](https://papermc.io/) - Server API\n- [FoliaLib](https://github.com/TechnicallyCoded/FoliaLib) - Folia compatibility\n- [Caffeine](https://github.com/ben-manes/caffeine) - Caching\n- [HikariCP](https://github.com/brettwooldridge/HikariCP) - Connection pooling\n- [ACF](https://github.com/aikar/commands) - Command framework\n- [FastInv](https://github.com/MrMicky-FR/FastInv) - GUI framework\n- [bStats](https://bstats.org/) - Plugin metrics\n- [Javalin](https://javalin.io/) - Web framework\n\n---\n\n## 📞 Support\n\nFor support and questions, join our Discord or open an issue on GitHub.\n\n---\n\n## 📄 License\n\nThis project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.\n\n---\n\n<p align=\"center\">\n  Made with ❤️ by <b>WeThink</b>\n</p>\n\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "folia",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 765,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

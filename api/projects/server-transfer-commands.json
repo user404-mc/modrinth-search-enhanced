@@ -1,0 +1,21 @@
+{
+  "id": "K8gM0Bbz",
+  "slug": "server-transfer-commands",
+  "title": "Server Transfer Commands",
+  "description": "Adds proxy-style commands like /server and /send using the new transfer packet.",
+  "body": "# Server Transfer Commands\nThis mod adds commands to transfer yourself or another player to a different server using the new transfer packet added in 24w03a. The commands and config are loosely based on BungeeCord, so they should be familiar if you've used it or a similar proxy before.\n\nThis mod does not expose an API for transferring players or setting/getting cookies; it just sends the packet. This is something that may be added in the near future, though.\n\n## Commands\n\nCurrently, the following commands are implemented:\n\n- `/server <server>`: Go to a configured server that isn't restricted or you have permission to access.\n- `/send <players> <server>`: Sends one or more players to a configured server. Restrictions are not considered.\n- `/send-ip <players> <hostname> [<port>]`: Sends one or more players to the specified hostname and port. If no port is specified, it defaults to 25565.\n\nCommands that would query the servers like `/glist` and `/find` have not been added yet but are in progress.\n\n## Permissions\n\nPermissions can be set with groups in the config file or with any mod that supports the [Fabric Permissions API](https://github.com/lucko/fabric-permissions-api). If you would like to disable a command entirely, you can add it to the `disabled_commands` list in the config.\n\n- `server-transfer-commands.command.server`\n- `server-transfer-commands.command.send`\n- `server-transfer-commands.command.send-ip`\n- `server-transfer-commands.server.<server>`: Permission to use `/server` to go to a server that has `restricted` enabled. `/send` and `/send-ip` do not consider this.\n\n## Config\n\nThe commented default config is as follows:\n\n```yaml\n# The list of servers that can be accessed with /server or /send.\n# If \"restricted\" is true, the \"server-transfer-commands.server.<server>\" permission is required to access it with /server.\nservers:\n  lobby:\n    address: localhost:25565\n    restricted: false\n  survival:\n    address: localhost:25564\n    restricted: false\n\n# A server that should show \"You are already connected to this server!\" when you attempt to transfer to it.\nthis_server: lobby\n\n# Commands that should not be registered.\ndisabled_commands:\n  - disabledcommandhere\n\n# Permission groups for assigning to players or permission levels.\npermissions:\n  default:\n    - server-transfer-commands.command.server\n  admin:\n    - server-transfer-commands.command.send\n    - server-transfer-commands.command.send-ip\n\n# Permission groups assigned to specific players.\ngroups:\n  4win:\n    - admin\n\n# Permission groups assigned to Minecraft permission levels, normally from 1 to 4.\n# Level 3 is what allows use of multiplayer management commands such as /kick.\nlevel_groups:\n  3:\n    - admin\n```",
+  "categories": [
+    "fabric",
+    "management",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 147,
+  "followers": 0,
+  "game_versions": [
+    "24w03b"
+  ],
+  "date_updated": null
+}

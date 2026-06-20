@@ -1,0 +1,41 @@
+{
+  "id": "GlLle7gr",
+  "slug": "cookiegui",
+  "title": "CookieGUI",
+  "description": "An Free and simple GUI maker plugin that supports Placeholderapi, color codes and so on (Also includes in game gui editor)",
+  "body": "# CookieGUI\n\n**Version:** 1.2.5\n\nCookieGUI is a simple GUI plugin made for making GUIs kinda easy to make while not paying for a plugin. CookieGUI supports PlaceholderAPI, Color Codes, and much more you can add actions to things, and you can make multiple GUIs and a lot more\n\n## Features\n\n- **In-game GUI Creation**: Create and edit GUIs without editing any config files\n- **Multiple Actions**: Assign multiple actions to GUI items\n- **Dynamic Content**: Use PlaceholderAPI variables to create dynamic GUIs\n- **Conditional Logic**: Create complex behavior with if statements\n- **Material Placeholders**: Use placeholders for materials that can change dynamically\n- **Built-in Placeholders**: Multiple built-in placeholders for player information (as also stated in Dynamic Content)\n- **Color Code Support**: Add color to your GUI titles and messages\n- **Multiple Action Types**: Console commands, player commands, messages, broadcasts, sounds, and more\n- **Hot Reload**: Reload GUI configurations without restarting the server\n\n## Dependencies\n\n- **Optional**: PlaceholderAPI (for using placeholders in GUIs)\n\n## Commands\n\n### Main Commands\n\n- `/gui create <name> <title> [size]` - Create a new GUI\n- `/gui edit <name>` - Edit an existing GUI\n- `/gui delete <name>` - Delete a GUI\n- `/gui list` - List all available GUIs\n- `/gui reload` - Reload all GUI configurations from disk\n- `/gui show <name>` - Shows a GUI (also called opening a GUI) \n\n### Editing Commands\n\n- `/gui edit <name> <slot> item <material>` - Set an item in a slot\n- `/gui edit <name> <slot> name <display_name>` - Set the display name of an item\n- `/gui edit <name> <slot> lore add <text>` - Add a line of lore to an item\n- `/gui edit <name> <slot> lore set <line> <text>` - Set a specific line of lore\n- `/gui edit <name> <slot> lore clear` - Clear all lore from an item\n- `/gui edit <name> <slot> action add <type> <value>` - Add an action to an item\n- `/gui edit <name> <slot> action remove <type|line>` - Remove an action from an item\n- `/gui edit <name> <slot> action list` - List all actions on an item\n- `/gui edit <name> <slot> clear` - Clear a slot\n\n## Action Types\n\n- **console**: Run a command as console\n  - Example: `/gui edit test 0 action add console give [player] diamond 64`\n\n- **player**: Run a command as the player\n  - Example: `/gui edit test 0 action add player spawn`\n\n- **message**: Send a message to the player\n  - Example: `/gui edit test 0 action add message &aWelcome to the server!`\n\n- **broadcast**: Broadcast a message to all players\n  - Example: `/gui edit test 0 action add broadcast &e[player] used a special item!`\n\n- **sound**: Play a sound to the player\n  - Example: `/gui edit test 0 action add sound ENTITY_PLAYER_LEVELUP:1.0:1.0`\n\n- **close**: Close the inventory\n  - Example: `/gui edit test 0 action add close`\n\n- **open**: Open another GUI\n  - Example: `/gui edit test 0 action add open other_menu`\n  - Open for another player: `/gui edit test 0 action add open other_menu:Steve`\n\n- **if**: Conditional action based on variables\n  - Format: `if:<variable>:<operator>:<value>:<then_action>:[<else_action>]`\n  - Example: `/gui edit test 0 action add if permission equals vip.access console give [player] diamond message You need VIP!`\n\n## Operators for If Statements\n\n- **equals** or **==**: Check if values are equal\n- **!equals** or **!=**: Check if values are not equal\n- **contains**: Check if one value contains another\n- **!contains**: Check if one value does not contain another\n- **startswith**: Check if a value starts with another\n- **endswith**: Check if a value ends with another\n- **>**: Greater than (numeric comparison)\n- **<**: Less than (numeric comparison)\n- **>=**: Greater than or equal (numeric comparison)\n- **<=**: Less than or equal (numeric comparison)\n\n## Special Values\n\n- **[player]**: Automatically replaced with the player's name\n- **&** color codes: Used for colored text (e.g., &a for green)\n- **%placeholder%**: Any PlaceholderAPI placeholder\n\n## Example\n\n**Create dynamic items with PlaceholderAPI**:\n   ```\n   /gui create stats &8Stats 54\n   /gui edit stats 0 item player_head\n   /gui edit stats 0 name &e%player_name%'s Stats\n   /gui edit stats 0 lore add &7Kills: &f%statistic_player_kills%\n   /gui edit stats 0 lore add &7Deaths: &f%statistic_deaths%\n   /gui edit stats 0 lore add &7K/D Ratio: &f%math_kills_div_deaths%\n   ```\n\n## Permissions\n\n- **cookiegui.command**: Access to the base /gui command (default: op)\n- **cookiegui.admin**: Full access to all plugin commands and features (default: op)\n  - Includes all permissions below\n- **cookiegui.create**: Permission to create new GUIs (default: op)\n- **cookiegui.edit**: Permission to edit existing GUIs (default: op)\n- **cookiegui.delete**: Permission to delete GUIs (default: op)\n- **cookiegui.list**: Permission to list all available GUIs (default: op)\n- **cookiegui.show**: Permission to show GUIs to yourself (default: op)\n- **cookiegui.show.others**: Permission to show GUIs to other players (default: op)\n- **cookiegui.reload**: Permission to reload GUI configurations from disk (default: op)\n\n## In game GUI editor\n![The editing gui when youve done /gui edit <n>](https://cdn.modrinth.com/data/cached_images/86cf5dcce6f350acd6bc6ea531b6ba4a1ef1d352.png)\n![Right when you clicked on a slot in the editing menu](https://cdn.modrinth.com/data/cached_images/33d22f1037ad2bfdb974b029d0e56a818f545e0d.png)\n![Action types available to use](https://cdn.modrinth.com/data/cached_images/b1eccb73da903ccaa8a3c1b8dbdcdd9b14bfaca4.png)\n![Great sorting of lines of lore/actions aswell](https://cdn.modrinth.com/data/cached_images/2a9e07a52a3b199b7ff0f3ccc09fce6a89aa2d7b.png)",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "library",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 247,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

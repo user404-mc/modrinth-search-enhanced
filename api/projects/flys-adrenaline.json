@@ -1,0 +1,25 @@
+{
+  "id": "ZOetjTKq",
+  "slug": "flys-adrenaline",
+  "title": "Adrenaline",
+  "description": "Generation multithreading, but better",
+  "body": "# Adrenaline\n\n**Adrenaline is a server-side (singleplayer compatible) performance mod for Minecraft 1.20.1 (Forge) that accelerates chunk generation by parallelizing work that vanilla runs on a single thread.**\n\n---\n\nVanilla chunk generation runs almost entirely on a single dedicated worldgen thread. Your other CPU cores sit idle while that one thread processes chunks one at a time. Adrenaline replaces the single-threaded worldgen mailbox with a concurrent job scheduler that runs multiple chunk generation tasks in parallel across all available cores, while still preserving correctness for stages that write across chunk boundaries.\n\n<img src=\"https://cdn.modrinth.com/data/cached_images/de76a6583c0ad529c4838a64d236679e2d8c10ac.gif\" \n     alt=\"Vanilla generation (slow)\" \n     width=\"300px\"> <img src=\"https://cdn.modrinth.com/data/cached_images/ea86d1ec66b0d4275953a620d52006488bdc30af.gif\" \n     alt=\"With Adrenaline (fast)\" \n     width=\"300px\">\n---\n\n### How it works\n\nChunk generation in vanilla goes through a series of stages (noise fill, surface placement, cave carving, feature decoration, etc.). Most of these stages write only to the chunk they are generating and are safe to run in parallel. The one exception is the FEATURES stage, which can write blocks into the immediate neighbors of the chunk being processed.\n\nAdrenaline tracks a \"footprint\" for each chunk job — the set of chunk positions the job may write to. Before dispatching a job, the scheduler checks whether any position in its footprint is currently being written by another active job. If not, the job runs immediately on the thread pool. If there is a conflict, it waits. This gives maximum parallelism without ever letting two jobs race on the same chunk.\n\nThe scheduler uses a reverse wait index so that when a job finishes and frees its footprint, only the jobs actually blocked by those positions are rechecked — not the entire queue.\n\nAdditional optimizations included:\n\n- BIOMES and NOISE stages normally dispatch their inner work via CompletableFuture.supplyAsync to a ForkJoinPool, adding scheduling overhead. Adrenaline inlines that work directly since the outer job is already running on the thread pool.\n- LegacyRandomSource uses an AtomicLong internally, which causes unnecessary memory contention when many chunk jobs run concurrently. Adrenaline replaces it with a plain long for per-chunk random instances that are never shared between threads.\n- Block.isShapeFullBlock uses a shared Guava LoadingCache that becomes a contention point under parallel chunk gen. Adrenaline replaces it with a ThreadLocal cache per worker thread.\n- StructureTemplate.Palette uses a plain HashMap for its block cache. Adrenaline replaces it with a ConcurrentHashMap so concurrent reads during structure placement do not race.\n\n---\n\n### Configuration\n\nA config file is generated at `config/adrenaline.json` on first launch.\n\n- `workerThreads` — number of threads used for chunk generation. Defaults to 0, which uses all available logical processors.\n- `stageBlacklist` — list of chunk generation stage names to skip parallelization for, in case a mod has a conflicting stage.\n- `featureBlacklist` — list of feature registry names to exclude from parallel execution.\n\n---\n\n### Compatibility\n\n- Server-side only. Clients do not need the mod installed.\n- Requires Forge 1.20.1.\n- Mods that add custom chunk generation stages or write to neighbor chunks outside of the FEATURES stage may need their stage added to `stageBlacklist`.\n- The world seed and chunk layout are identical to vanilla. Adrenaline does not change generation output, only the order and threading of how chunks are computed.\n\n<details>\n  <summary>Boring stats</summary>\n\n  - **0.0.1** - 120-140 cps / 2:07 spt\n\n</details>\n\n## P. S. I am not responsible for corrupting your world lil bro\n",
+  "categories": [
+    "forge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 308,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

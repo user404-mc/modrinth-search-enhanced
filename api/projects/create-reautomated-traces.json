@@ -1,0 +1,20 @@
+{
+  "id": "3BTcgJjC",
+  "slug": "create-reautomated-traces",
+  "title": "Create ReAutomated: Traces",
+  "description": "A NeoForge 1.21.1 add-on for Create ReAutomated that scatters small ore outcrops on the surface above buried Ore Nodes",
+  "body": "A NeoForge 1.21.1 add-on for **Create ReAutomated** that scatters small ore outcrops on the surface above buried Ore Nodes. The point is simple: give you something to spot at world level, a hint that there's a Node worth digging for underneath, the way real ore deposits leave traces on the ground.\n\n---\n\n## What it does\n\nWhenever a chunk generates with an Ore Node in it, the mod looks for a flat patch of ground above the Node and stamps a small surface outcrop, a \"trace\".\nThe trace is built from the Node's host stone (matching the deepslate, stone, or whatever the Node is buried in) studded with a configurable accent block on top. Cobblestone and cobbled deepslate are smoothed back to their natural variants, so traces look like exposed deposits rather than a pile of mining drops.\n\n## Works with custom Nodes (KubeJS, datapacks, sibling mods)\n\nThe mod doesn't care who registered a Node. As long as:\n\n1. The block extends `createreautomated:ore_node` (with its `baseStone(...)` set so the host material is correct).\n2. The block carries the `createreautomated:ore_nodes` tag.\n3. There's an entry in the `createreautomatedtraces:trace_block_for_node` data map mapping the Node block id to the surface accent block.\n\n## Biome coverage\n\nBy default traces are added to `#minecraft:is_overworld` and `#minecraft:is_nether` via the `createreautomatedtraces:has_traces` biome tag. To extend coverage to modded biomes (e.g. custom dimensions), add the biome or its parent tag to `data/createreautomatedtraces/tags/worldgen/biome/has_traces.json` in a datapack.\n\n## Notes\n\nDetection runs only on freshly generated chunks. Existing worlds won't be retrofitted, and Nodes placed by hand or commands after worldgen won't trigger trace placement either.\n\n⚠️Using this mod with the default Create ReAutomated Node generation settings could result in a lot of traces. We recommend reducing the tries per chunk; you can do so by downloading this datapack (or use the 0.5x version to halve the number of nodes generated). Here is an example:\n![alt text](https://i.imgur.com/VZGpL61.png)",
+  "categories": [
+    "adventure",
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 154,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

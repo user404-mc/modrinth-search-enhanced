@@ -1,0 +1,25 @@
+{
+  "id": "PHMZEiGl",
+  "slug": "configurable-data-fixers",
+  "title": "Configurable Data Fixers",
+  "description": "Allows to create custom data fixers through a config",
+  "body": "THIS MOD IS DEPRECATED, PLEASE VISIT THE NEW MOD [HERE](https://modrinth.com/mod/configurable-everything)\n\nThis mod provides a config in which one can convert registered IDs.\n\nThis mod works with vanilla registries as well as modded registries added through Fabric's registry API.\nCan be useful for modpacks as mods are often changed.\n\nA more advanced \"schema\" format is available with the types `block`, `biome`, `entity`, and `item`, however it is recommended to use registry fixers for items. Using the item schema fixer can result in items being removed from containers.\n\nHere is the config format:\n```\n{\n  \"dataVersion\": 0,\n  \"schemas\": [\n    {\n      \"version\": 1,\n      \"fixers\": [\n        {\n          \"type\": \"biome\",\n          \"fixers\": [\n            {\n              \"old_id\": \"examplemod:example_biome\",\n              \"new_id\": \"newmod:new_biome\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"registryFixers\": [\n    {\n      \"registry_key\": \"minecraft:block\",\n      \"fixers\": [\n        {\n          \"old_id\": \"examplemod:example_block\",\n          \"new_id\": \"newmod:new_block\"\n        }\n      ]\n    },\n    {\n      \"registry_key\": \"minecraft:item\",\n      \"fixers\": [\n        {\n          \"old_id\": \"examplemod:example_item\",\n          \"new_id\": \"newmod:new_item\"\n        }\n      ]\n    }\n  ]\n}\n\n```\n\nThe config file can be found at `./config/configurabledatafixers.json`\nThe config file will have examples set up for you.\n\nNote: Entries in the config will only convert if the `old_id` is not found in the game. Ex: If you have `old_id` set to `minecraft:grass_block` and `new_id` set to `minecraft:stone`, grass blocks will stay the same.\n\nThis mod was made possible by [FrozenLib](https://github.com/FrozenBlock/FrozenLib)'s config library.",
+  "categories": [
+    "fabric",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 7678,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.3",
+    "23w07a",
+    "1.19.4-pre3",
+    "1.19.4",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

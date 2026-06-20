@@ -1,0 +1,22 @@
+{
+  "id": "Kj4PAgwb",
+  "slug": "questlines",
+  "title": "Questlines",
+  "description": "Adds data-driven quest lines to the game.",
+  "body": "[![Bisect Hosting Promotion Banner](https://www.bisecthosting.com/partners/custom-banners/ee9630c7-c981-45f9-9862-3a1d71a628bf.webp)](https://redirect.daqem.com?to=https%3A%2F%2Fbisecthosting.com%2FDAQEM%3Fr%3DQuestlinesModrinth)\n\n[![Ko-fi Promotion Banner](https://i.imgur.com/SU7HhbO.png)](https://ko-fi.com/daqem)\n\n<br>\n\n### NOTE: THIS MOD IS STILL IN EARLY DEVELOPMENT AND THE API MIGHT CHANGE.\n\nQuestlines is a data driven Minecraft mod that adds - you guessed it - quest lines to the game. These quest lines can be created using data packs. This making crating quest lines very easy for people who don't know how to code. \n\n## Structure\nA quest line consisits of multiple quests. These quest can just be consecutive or they can brach out into multiple quest branches. Each quest contains on or more objectives. When all objectives have been completed, the quest will also be marked as complete and all its child quests will become available.\n\n## Arc Lib\nQuestlines uses a library mod called Arc Lib (which is also made by DAQEM Studios) to register the objective player actions. Arc Lib makes it extremely easy to define player actions. All you have to do it tell Arc Lib which objective the action is for, descrive the conditions of the action and set the reward to an 'objective occurance' reward.\n\n## Example\nIn this example, the objective is to mine 10 Grass Blocks with a reward of 10 Stone blocks.\n\n### Questline\nFile: `data/namespace/questlines/questlines/questline_name.json`\n```json\n{\n  \"is_unlocked_by_default\": true\n}\n```\n### Quest  \nFile: `data/namespace/questlines/quests/quest_name.json`\n```json\n{\n  \"questline\": \"namespace:questline_name\",\n  \"objectives\": [\n    {\n      \"id\": \"objective_name\",\n      \"goal\": 10\n    }\n  ],\n  \"rewards\": [\n    {\n      \"type\": \"arc:item\",\n      \"item\": \"minecraft:stone\",\n      \"amount\": 10\n    }\n  ]\n}\n```\n### Objective Actions (Arc Lib)\nFile: `data/namespace/arc/quest_name/objective_name.json`\n```json\n{\n  \"holder\": {\n    \"type\": \"questlines:objective\",\n    \"id\": \"namespace:quest_name/objective_name\"\n  },\n  \"type\": \"arc:on_break_block\",\n  \"conditions\": [\n    {\n      \"type\": \"arc:block\",\n      \"block\": \"minecraft:grass_block\"\n    }\n  ],\n  \"rewards\": [\n    {\n      \"type\": \"questlines:objective_occurrence\"\n    }\n  ]\n}\n```\n### Language\nFile: `assets/namespace/lang/en_us.json`\n```json\n{\n  \"questlines.questline.namespace.questline_name\": \"The Best Quest Line Name!\",\n  \"questlines.quest.namespace.quest_name\": \"Touch Grass\",\n  \"questlines.quest.namespace.quest_name.description\": \"Break 10 Blocks of Grass and recieve 10 Stone.\",\n  \"questlines.objective.namespace.quest_name.objective_name.description\": \"Break Grass Block\"\n}\n```",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3261,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

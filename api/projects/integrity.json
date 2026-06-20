@@ -1,0 +1,21 @@
+{
+  "id": "sKbzIeh1",
+  "slug": "integrity",
+  "title": "Integrity",
+  "description": "Make sure the client contains only the mods that the server want when it connects to a server",
+  "body": "You have created a modpack and a modded server, and you want to make sure that your friend\nconnects with the right mods, that he has not altered them.\nFor example, he could delete some of them or add the xray.jar mod. Something you don't want of course.\n\nWhen you create the modpack and the modded server, you will also have to create\na file called integrity.json, this file will contain the names of the jar files\nas well as their respective hash for the mods you put in the original modpack.\nThis file will have to be copied in the config folder of the server inside the \nfolder called Integrity (If the Integrity folder doesn't exist, you can start\nthe server once with the Integrity mod, it will then be created)\n\nconcerning the hash of the files, be sure to use the SHA-256 algorithm and that the hash is in lower case\n\ncheck this video to understand how it works -> https://youtu.be/HDsvAae6k78\nalso a sample file integrity.json can be found here https://github.com/AmibeSkyfy16/Integrity/blob/master/samples/version%200.0.2/integrity.json\n\n### How does it work internally ?\n\nWhen you connect to the server, you send at the same time data in json format\nrepresenting the names of the mods in the modpack and their hashes.\nWhen the server receives the data, it compares it with its own data\nfrom the configuration files (integrity.json). If the data you sent\nmatches the integrity.json file, then you will be allowed to play\non the server. Otherwise, you will be disconnected.\n\n\n-------------- OLD DESCRIPTION TO DELETE --------------\n\nThis mod allows to check the mods present on the client, when it connects to a server.\nThe server has a file called modpack-mods-list.json which contains the mods that must be\npresent on the client (You have to manually configure this either by putting the mods you want the client to have when it connects). When the client connects to the server, the client sends the names\nof the .jar files for each mods present in the mods folder. The server then checks if the mods\nsent match the list. If it does, the player will not be disconnected.\n\nIMPORTANT: the fileHash has to use the SHA-256 algorithm\n\ncheck this video to understand how it works -> https://youtu.be/HDsvAae6k78",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 586,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20.1",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

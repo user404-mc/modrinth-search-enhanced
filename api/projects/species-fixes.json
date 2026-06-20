@@ -1,0 +1,19 @@
+{
+  "id": "xK33HYsB",
+  "slug": "species-fixes",
+  "title": "Mob Smasher Extended And Species Fixes",
+  "description": "Extend Mob Smasher from MobGrindingUtils And Fixes a few bugs from Species.",
+  "body": "# Mob Smasher Damage Extension and Species Fixes\n\nTweaks how the Mob Grinding Utils **Saw / Mob Smasher** interacts with some “hard” mobs and fixes a couple of issues in **Species**.\n\n---\n\n## Fixes\n\n### 1. Screen shake crash (Species – NPE)\n\n**Problem:** In some situations (e.g. during loading or in certain modpack setups), Species’ screen shake runs when the camera entity is null, causing a crash.\n\n**Fix:** A null-check is applied before using the camera entity. When the camera is null, the shake degree is forced to 0 so the game does not crash.\n\n**Config:** `screenShakeFix` (default: `true`)\n\n---\n\n### 2. Mob Smasher vs hard mobs (Quake, Limpet, Grottol, …)\n\n**Problem:** Some mobs are effectively immune to the Mob Grinding Utils Saw / Mob Smasher because of custom damage logic (parry, deflect, “only pickaxe damage”, etc.). Examples: **Quake** and **Limpet** from Species, **Grottol** from Mowzie’s Mobs.\n\n**Fix:** When the Saw’s **FakePlayer** hits one of the configured entities, the mob is killed immediately and the normal `hurt` logic is skipped. This lets the Saw/Mob Smasher work reliably on those targets.\n\n**Config:** the list of affected entities is fully configurable via `sawKillEntities` (see below).\n\n---\n\n## New Feathures\n\n### Soul Inhibitor (Forbidden Arcanus – Lost Soul spawn prevention)\n\nAdds a new block: **Soul Inhibitor**.\n\n- When placed and **ON**, it prevents **Forbidden Arcanus** `lost_soul` spawns in a configurable radius.\n- The block has two states: **ON/OFF**. Default is **ON**.\n- Toggle with **right click** or with a **redstone pulse**.\n- The crafting recipe is only loaded when `forbidden_arcanus` is present.\n\n**Config:** `soulInhibitorEnabled`, `soulInhibitorRadius`\n\n---\n\n## Configuration\n\nConfig file: `config/species_fix-common.toml`\n\n- **screenShakeFix** (default: true) – Prevents crash when camera is null during Species screen shake.\n- **sawKillEntities** (list of strings, default: `[\"species:quake\", \"species:limpet\", \"mowziesmobs:grottol\"]`) – Entity IDs (modid:entity) that the Saw’s FakePlayer should kill instantly, bypassing their custom immunity.\n- **soulInhibitorEnabled** (default: true) – Enables Soul Inhibitor spawn blocking behavior.\n- **soulInhibitorRadius** (default: 16) – Radius (in blocks) checked around Soul Inhibitor blocks.\n\nTo disable the screen shake fix, set `screenShakeFix = false`.\nTo change which mobs are affected by the Mob Smasher, edit the `sawKillEntities` list and restart the game (or reload the config).\n",
+  "categories": [
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 314,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

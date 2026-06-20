@@ -1,0 +1,32 @@
+{
+  "id": "ZootlZ8S",
+  "slug": "partialkeepinv",
+  "title": "partialkeepinv",
+  "description": "Keeps shulker boxes, container items (ender chests, bundles) and all non-stackable gear (tools, weapons, armour, elytra, etc.) on death while everything else drops normally. Adds configurable 1–5 level XP loss and light armour durability damage on each dea",
+  "body": "## partialkeepinv\n\n**Partial Keep Inventory** introduces a softer alternative to `/gamerule keepInventory` for Paper 1.21.x servers (tested on 1.21.11).  \nInstead of keeping *everything* or dropping *everything*, it selectively protects valuable items while still punishing deaths.\n\n### Core features\n- **Selective item keeping**\n  - Keeps all **shulker boxes** (any colour).\n  - Keeps all **non-stackable items** – tools, weapons, armour, elytra, etc. (anything with max stack size 1).\n  - Keeps extra **container-like items** such as **ender chests** and **bundles** (and anything else you add to the whitelist in `config.yml`).\n  - All other items (blocks, food, stackables) **drop normally** on death.\n\n- **Inventory position preserved**\n  - Kept items are restored to their **original inventory slots** (hotbar and main inventory).\n  - Off-hand item is restored to the off-hand slot when possible.\n  - If a slot is already occupied (because of other plugins or edge cases), the item is added to the inventory and dropped at the player’s feet if there’s no space.\n\n- **Armour handling**\n  - Armour is **kept and re-equipped** automatically on respawn.\n  - Each death applies extra durability damage to each worn armour piece (default ~3% of max durability, configurable).\n  - Items won’t be instantly destroyed by the death penalty (at least 1 durability is preserved).\n\n- **XP penalty**\n  - On every death the player loses a configurable number of XP levels (default **1–5**, never below level 0).\n  - No XP orbs are dropped; the plugin directly sets the new level on respawn.\n\n### Configuration\n- `keep.shulkers`, `keep.non_stackable_items`, `keep.containers` – toggle what types of items are protected.\n- `containers.material_whitelist` – list extra container-like materials to always keep (default: `ENDER_CHEST`, `BUNDLE`).\n- `xp_loss.enabled`, `xp_loss.min_levels`, `xp_loss.max_levels` – control how many levels are lost on death.\n- `armor_damage.enabled`, `armor_damage.percent` – control whether and how much armour durability is lost per death.\n\n### Requirements\n- Server: **Paper 1.21.11+** (should work on other 1.21.x builds).\n- Java: **21+**\n- Make sure in each relevant world:\n  ```mcfunction\n  /gamerule keepInventory false\n",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 212,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

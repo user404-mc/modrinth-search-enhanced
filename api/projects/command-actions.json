@@ -1,0 +1,22 @@
+{
+  "id": "6VLhucvq",
+  "slug": "command-actions",
+  "title": "Command Actions",
+  "description": "Allows mcfunction files to be executed on various events",
+  "body": "![Created for ModFest: Singularity](https://blob.jortage.com/blobs/5/d4d/5d4d14d96db2e2024d87cf5606cb7ce6421633a002e328947f85d210ba250ecb9f86de8df210dd031be2d4eafb0980494e7a1e8e99590a550abaa42d82768b9f)\n\nCommand Actions provides an interface to automatically run `.mcfunction` files at particular events. They are loaded from the filesystem on every event call, ensuring that they are as up to date as they can be.\n\n## How to run functions?\n- Open / create the `.minecraft/config/command-actions/functions` folder\n- Add function files or folders containing function files with the proper event names\n    - Functions are detected either without an extension or with the `.mcfunction` extension.\n    - All files in subdirectories are detected regardless of extension (or lack thereof)\n    - Subdirectories are recursed to find functions\n\n## Current capabilities\nSome preprocessing occurs on the input. All preprocessing directives are preceded with a hash (`#`),\nand any line preceded with a hash that is not a preprocessor is marked as a comment.\n\nPreprocessing directives:\n- `if`, `elif`, `else`, `endif` - check if a given macro evaluates to `true` or `1`, if a number is nonzero, if an equation results in a nonzero answer, or if two values are equal or unequal\n- `define` - define a replacement to be replaced later. Not recursive\n- `undef` - remove the definition of an already defined macro. This also works for system-provided macros.\n\n## Current events\n\nBuilt-in macros are listed, and all builtins (including those provided by other mods) are preceded with `C_`\n\n- `server-ready` - called after the server reports it's ready for players\n    - `serverName`\n    - `isSinglePlayer`\n    - `online`\n    - `motd`\n- `player-join` - called when a player is placed into the server\n    - All macros provided by `server-ready`\n    - `playerName` and `player` as shorthand\n    - `playerUUID`\n    - `auth`\n    - `firstJoin`\n",
+  "categories": [
+    "cursed",
+    "library",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1218,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2"
+  ],
+  "date_updated": null
+}

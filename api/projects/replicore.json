@@ -1,0 +1,22 @@
+{
+  "id": "IthNsxGH",
+  "slug": "replicore",
+  "title": "RepliCore",
+  "description": "Provides a method for item replication",
+  "body": "## Basic Gameplay\n\n1. Added replication cores of **different qualities** to copy items under various conditions.\n2. Defeating the **Ender Dragon** automatically grants **all nearby players** materials to craft replication cores: **Dragon Soul Crystal**. Drops **3** on the first kill and **1** on subsequent kills (configurable in the settings file).\n3. Replicating items requires a **Replication Table**. Each replication consumes **experience levels**, calculated based on the **item count** and **number/levels of enchantments** (configurable in the configuration file).\n4. **Experience cost formula**: `Final Cost (rounded up) = Item Count × Item Cost + Sum of (Enchantment Level × Enchantment Cost)`\n\n---\n\n## Screenshots\n\n![Preview](https://github.com/iMoonDay/RepliCore/raw/main/screenshots/en_us.png)\n\n---\n\n## Configuration Guide\n\n```json5\n{\n  // Enable whitelist\n  \"whitelistEnabled\": false,\n  // Replication whitelist\n  \"whitelist\": [\n    // \"Item ID / #Item Tag / @Mod ID / $Regex\"\n    \"item_id\",\n    \"#item_tag\",\n    \"@minecraft\",\n    \"$minecraft:.*_sword\"\n  ],\n  // Enable blacklist\n  \"blacklistEnabled\": false,\n  // Replication blacklist\n  \"blacklist\": [\n    // \"Item ID / #Item Tag / @Mod ID / $Regex\"\n    \"item_id\",\n    \"#item_tag\",\n    \"@minecraft\",\n    \"$minecraft:.*_sword\"\n  ],\n  // Copying replication cores is prohibited\n  \"forbidReplicatingCores\": true,\n  // Dragon Soul Crystal drop count\n  \"crystalDroppingCount\": 1,\n  // Dragon Soul Crystal drop count (first kill)\n  \"firstCrystalDroppingCount\": 3,\n  // Max drop range for crystals (blocks)\n  \"maxDropDistance\": 256,\n  // Cost settings\n  \"costConfig\": {\n    // Default item cost\n    \"defaultCost\": 0.25,\n    // Custom item costs\n    \"customCosts\": {\n      // \"Item ID\": Cost\n      \"item_id\": 0.5,\n      \"item_id2\": 1.0\n    },\n    // Enable enchantment cost calculation\n    \"calculateEnchantmentCosts\": true,\n    // Default enchantment cost\n    \"defaultEnchantmentCost\": 2.0,\n    // Ignore cursed enchantments\n    \"ignoreCurses\": true,\n    // Custom enchantment costs\n    \"customEnchantmentCosts\": {\n      // \"Enchantment ID\": Cost\n      \"enchantment_id\": 1.0,\n      \"enchantment_id2\": 1.5\n    },\n    // Default container config\n    \"defaultContainerConfig\": {\n      // Whether to calculate the cost of items in the container\n      \"enabled\": true,\n      // Whether to recursively calculate the cost of items in the container\n      \"recursive\": true,\n      // Whether to exclude the original cost of container\n      \"excludeOriginalCost\": false,\n      // The NBT tag path of container to parse items and use '.' to split\n      // The last element must be the list type data\n      \"tag\": \"BlockEntityTag.Items\"\n    },\n    // Customize container config, fields are the same as above\n    \"customContainerConfigs\": {\n      // \"Item ID\": Config\n      \"minecraft:bundle\": {\n        \"enabled\": true,\n        \"recursive\": true,\n        \"excludeOriginalCost\": false,\n        \"tag\": \"Items\"\n      }\n    }\n  }\n}\n```",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2034,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

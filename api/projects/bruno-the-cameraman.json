@@ -1,0 +1,25 @@
+{
+  "id": "evjszb1L",
+  "slug": "bruno-the-cameraman",
+  "title": "Bruno the CameraMan",
+  "description": "Bruno is a cinematic camera api for ingame interactions or cutscenes!",
+  "body": "<p>Bruno is a cinematic camera manager that can be used for interactions or cinematic scenes</p>\n<p>&nbsp;</p>\n<p>To create a custom camera you need to register a CustomPoint</p>\n<p>Here is an example how to register a CameraPoint</p>\n<pre><code>// registration\n@Mod.EventBusSubscriber(modid = YourMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)\npublic class register {\n    public static CameraPointAccessor POINT;\n\n    @SubscribeEvent\n    public static void onCameraManagerSetup(CameraManagerSetupEvent event) {\n        POINT = event.manager.registerPoint(\"point\", CameraPoint.of(\n                new Vec3(\n                        0,              // x\n                        100,            // y\n                        0               // z\n                ),\n                0,                      // yaw\n                0,                      // pitch\n                0.5f,                   // fov\n                1000,                   // duration\n                Easing::easeInOutQuad,  // Easing function\n                false                   // renderPlayer\n        ));\n    }\n}</code></pre>\n<p><br><br></p>\n<p>as soon as the CameraPoint is registered you can transition to the point on client like this</p>\n<pre><code>com.smibii.cameraman.listeners.Camera.manager.transitionToPoint(POINT_NAME)</code></pre>\n<p>and on server like this</p>\n<pre><code>com.smibii.cameraman.network.NetworkHandler.sendToClient(\n       new CameraToPointPacket(POINT_NAME),\n       player);</code></pre>\n<p>&nbsp;</p>\n<p>If you want to get back to the player can eather transition back to the player</p>\n<pre><code>// Client\ncom.smibii.cameraman.listeners.Camera.manager.transitionToPlayer()\n\n// Server\nNetworkHandler.sendToClient(\n       new CameraToPlayerPacket(),\n       player);</code></pre>\n<p>or abruptly&nbsp;exit the camera with</p>\n<pre><code>// Client\ncom.smibii.cameraman.listeners.Camera.manager.setInUse(false);\n\n// Server\nNetworkHandler.sendToClient(\n       new CameraSetInUsePacket(false),\n       player);</code></pre>\n<p>&nbsp;</p>\n<p>Feel free to use the api in ur mod, modpack or modify it BUT make sure to mention me.&nbsp;</p>\n<p>Thanks.</p>\n<p>&nbsp;</p>",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 257,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

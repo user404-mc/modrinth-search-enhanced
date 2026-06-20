@@ -1,0 +1,29 @@
+{
+  "id": "CsuHS0Rf",
+  "slug": "cobbleoregenerator",
+  "title": "CobbleOreGenerator",
+  "description": "Cobblestone generator generates ores",
+  "body": "# CobbleOre Generator - Fabric 1.21.1\n\nA Minecraft Fabric mod for version 1.21.1 that makes cobblestone generators generate ores! Based on the original mod by [OffsetMods538](https://github.com/OffsetMods538/CobbleOre-Generator).\n\n## Features\n\n- **25% Chance for Ores**: When cobblestone is generated, there's a 25% chance it becomes an ore instead\n- **Fully Configurable**: JSON config file lets you control which blocks spawn and their weights\n- **Modded Support**: Works with any mod that adds ores - just add them to the config!\n- **Balanced by Default**: Comes with sensible default weights for all vanilla ores\n\n## How It Works\n\nWhen lava and water interact to create cobblestone in a generator, this mod has a 25% chance to replace that cobblestone with a random ore based on weighted probabilities defined in your config file.\n\n## Configuration\n\nThe config file is located at `.minecraft/config/cog.json`\n\n### Default Configuration\n\nThe mod comes with these default ore weights:\n\n| Ore | Weight | Rarity |\n|-----|--------|--------|\n| Coal (both variants) | 30 each | Common |\n| Iron (both variants) | 25 each | Common |\n| Copper (both variants) | 20 each | Common |\n| Redstone (both variants) | 15 each | Uncommon |\n| Lapis (both variants) | 12 each | Uncommon |\n| Gold (both variants) | 10 each | Uncommon |\n| Diamond (both variants) | 3 each | Rare |\n| Emerald (both variants) | 2 each | Very Rare |\n\n### Config Format\n\nThe config uses a simple weight-based system. Higher weight = more common.\n\n```json\n{\n  \"generatableBlocks\": {\n    \"minecraft:cobblestone\": 30,\n    \"minecraft:diamond_ore\": 3,\n    \"minecraft:emerald_ore\": 2\n  }\n}\n```\n\n**Weight Examples:**\n- 2 blocks with weight 1 each = 50/50 chance\n- Block A with weight 30, Block B with weight 1 = ~97% vs ~3%\n\n### Adding Modded Ores\n\nJust add the block ID and weight to the config:\n\n```json\n{\n  \"generatableBlocks\": {\n    \"minecraft:diamond_ore\": 3,\n    \"create:zinc_ore\": 15,\n    \"thermal:silver_ore\": 10,\n    \"mekanism:osmium_ore\": 12\n  }\n}\n```\n\n### Fun Configurations\n\n**Chaos Mode** - Generate ANY block:\n```json\n{\n  \"generatableBlocks\": {\n    \"minecraft:diamond_block\": 1,\n    \"minecraft:tnt\": 1,\n    \"minecraft:cake\": 10\n  }\n}\n```\n\n**Easy Mode** - More valuable ores:\n```json\n{\n  \"generatableBlocks\": {\n    \"minecraft:diamond_ore\": 30,\n    \"minecraft:emerald_ore\": 20,\n    \"minecraft:gold_ore\": 50\n  }\n}\n```\n\n## Installation\n\n### For Players:\n\n1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft 1.21.1\n2. Download [Fabric API](https://modrinth.com/mod/fabric-api) for 1.21.1\n3. Place both Fabric API and this mod's `.jar` file in your `.minecraft/mods` folder\n4. Launch Minecraft with the Fabric profile\n5. (Optional) Edit the config at `.minecraft/config/cog.json`\n\n### For Developers:\n\n#### First Time Setup\n\nBefore building, you need to set up the Gradle wrapper:\n\n**Option 1: Using the download script (easiest)**\n```bash\n# Linux/Mac\nchmod +x download-wrapper.sh\n./download-wrapper.sh\n\n# Windows\ndownload-wrapper.bat\n```\n\n**Option 2: If you have Gradle installed**\n```bash\ngradle wrapper\n```\n\n**Option 3: Manual download**\nDownload `gradle-wrapper.jar` from:\nhttps://raw.githubusercontent.com/gradle/gradle/v8.8.0/gradle/wrapper/gradle-wrapper.jar\n\nPlace it in: `gradle/wrapper/gradle-wrapper.jar`\n\n#### Building the Mod\n\nOnce the wrapper is set up:\n\n```bash\n# Linux/Mac\n./gradlew build\n\n# Windows\ngradlew.bat build\n```\n\nThe compiled `.jar` file will be located in `build/libs/`\n\n## Requirements\n\n- Minecraft 1.21.1\n- Fabric Loader 0.16.0 or higher\n- Fabric API 0.102.0+1.21.1 or higher\n- Java 21 or higher\n\n## Compatibility\n\nThis mod should be compatible with most other mods. It only modifies the cobblestone generation behavior and uses mixins to hook into fluid interactions.\n\n## FAQ\n\n**Q: Does this work with modded ores?**  \nA: Yes! Just add them to the config file with their block ID and desired weight.\n\n**Q: Can I make it generate blocks other than ores?**  \nA: Absolutely! You can use any block ID in the config. Want cake generators? Go for it!\n\n**Q: The ores aren't generating!**  \nA: Make sure you have a proper cobblestone generator (lava + water creating cobblestone). Stone generators won't work. Also remember it's only a 25% chance.\n\n**Q: Can I change the 25% chance?**  \nA: The percentage is hardcoded in the mod, but you can adjust the relative frequencies using weights in the config.\n\n**Q: Will this work on servers?**  \nA: Yes! Just install it on the server like any other Fabric mod.\n\n## Credits\n\n- Original concept and mod by [OffsetMods538](https://github.com/OffsetMods538/CobbleOre-Generator)\n- Adapted for Minecraft 1.21.1\n\n## License\n\nThis mod is available under the MIT license.\n\n## Links\n\n- Original mod: https://github.com/OffsetMods538/CobbleOre-Generator\n- Original Modrinth page: https://modrinth.com/mod/cog\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 906,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

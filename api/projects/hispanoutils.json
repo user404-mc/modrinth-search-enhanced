@@ -1,0 +1,21 @@
+{
+  "id": "ECR3mEpT",
+  "slug": "hispanoutils",
+  "title": "HispanoUtils",
+  "description": "Utils for events of HispanoStudio and affiliates",
+  "body": "# HispanoUtils\n\n[![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21.11-blue.svg)](https://www.minecraft.net/)\n\n**HispanoUtils** is a client-side Fabric mod built for Paper servers: it receives data from the server and renders fullscreen transitions, animations (including GIFs), and an optional team HUD. The server pushes events via plugin channels; heavy visuals run on the client without adding gameplay load on the vanilla server world logic.\n\n---\n\n## ✨ What you can do\n\n- **Fullscreen transitions**: cubes, fades, slides, zoom, diagonal sweep, and more — with customizable colors and timings.\n- **Server-driven animations**: the companion plugin can trigger animations for one player or everyone at once.\n- **Team HUD** (`/hteams`): shows team information on the client when the server requests it (PvP events, minigames, etc.).\n- **Maps and events**: great for intros, zone changes, win/lose moments, or guided visuals on themed servers.\n\n*(The Paper plugin also adds chest refill commands and loot table management — that is pure server-side logic and does not require this mod on the client.)*\n\n---\n\n## 🔄 How it works\n\nThe **HispanoUtils Paper plugin** sends custom payloads to clients (plugin messaging). The **Fabric mod** parses them and draws the UI: screen-covering transitions, animations, and team HUD updates. World gameplay (inventory, blocks, entities) stays vanilla on the server; what you see as “cinematic” is a visual layer on the client.\n\n---\n\n## ⚙️ Requirements\n\n- **Minecraft**: 1.21.11 (adjust the badge if you ship another version line).\n- **Fabric Loader** and **Fabric API** matching your game version.\n- **Client mod**: HispanoUtils (this project).\n- **Recommended for the full experience**: the [HispanoUtils Paper plugin](https://github.com/dysthy/hispanoutils) on your server — commands `/transition`, `/animation`, `/hteams`, etc.\n\n> Without the plugin, the mod has nothing to consume for typical map/event setups — install both if you control the server.\n\n---\n\n## 🔧 For developers (Paper)\n\nOther plugins can integrate through the public server API:\n\n```java\nimport com.dysthy.hispanoutils.plugin.api.HispanoUtilsAPI;\n\nHispanoUtilsAPI api = HispanoUtilsAPI.getInstance();\nif (api != null && api.isAvailable()) {\n    api.sendTransition(player, \"cube\", \"in=40 hold=10 out=30 color=#FF0000\");\n}\n```\n\nServer commands: `/transition`, `/transitionall`, `/animation`, `/animationall`, `/hteams`.\n\n---\n\nMIT License ",
+  "categories": [
+    "fabric",
+    "management",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 177,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

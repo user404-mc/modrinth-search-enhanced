@@ -1,0 +1,29 @@
+{
+  "id": "5kRS9LYk",
+  "slug": "tactical-fishing",
+  "title": "Tactical Fishing",
+  "description": "A new way of getting fish into buckets",
+  "body": "![TL;DR Gif](https://imgur.com/kVti8pF.gif)\nMakes it possible to get Buckets of Fish via a different way; by fishing with a water bucket in your off-hand!\nThis mod also automatically supports modded fish, *as long as they follow the minecraft naming style.*\n\nThe mod uses dynamically written recipes and is compatible with [JEI](https://modrinth.com/mod/jei) if you want to see what things you can fishing-craft!<br>\n![JEI preview](https://imgur.com/dqkPezc.png)\n\n <br>\n<details>\n<summary><b>Technical Notes for Modders</b></summary>\n\nYour fish should be handled automatically as long as you follow the minecraft naming style ( \"***[modid]:[fish]***\", \"***[modid]:[fish]_bucket***\" ), I also included a \"***[modid]:raw_[fish]***\" as a fallback in case you are still using old naming.\n~~However there might be cases where you would not want something to be auto-gen'd for your item. Fish recipes won't be created if the following data path already exists in any directory \"***data.tactical_fishing.recipes.inbuilt.fishing_[modid]_[fish]_bucket.json***\".~~\n\nYour rods should also be handled automatically as long as they extend \"***net.minecraft.item.FishingRodItem***\", and it should work as long as your fishing hook projectile uses the \"***net.minecraftforge.event.entity.player.ItemFishedEvent***\" Forge Event.\nHowever if your rod is a custom item for whichever reason you can include it in the \"***tactical_fishing:fishing_rods***\" item tag.\n\n\nIf you wish to create new fishing recipes for your mod here is the syntax:\n```\n{\n    \"type\": \"tactical_fishing:fishing\",\n    \"group\": \"\", //This is optional like in default recipes; if you want to make this recipe count for the \"Advanced Tactics\" advancement add \"tactical_fishing:fish_buckets\" here.\n    \"rod\": {}, //Ingredient syntax, this specifies the rod needed for the recipe, if you want any rod to count use the \"tactical_fishing:fishing_rods\" tag\n    \"ingredient\": {}, //Ingredient syntax, this specifies what else you need to hold for the recipe\n    \"catch\": {}, //Ingredient syntax, this specifies what needs to be caught to finalize the recipe\n    \"result\": {} //ItemStack syntax, this specifies what is created from the recipe\n}\n```\n\nHere is a template from the auto-gen'd recipes\n```\n{\n    \"type\": \"tactical_fishing:fishing\",\n    \"group\": \"tactical_fishing:fish_buckets\",\n    \"rod\": {\n         \"tag\": \"tactical_fishing:fishing_rods\"\n    },\n    \"ingredient\": {\n         \"item\": \"minecraft:water_bucket\"\n    },\n    \"catch\": {\n         \"item\": \"minecraft:cod\"\n    },\n    \"result\": {\n         \"item\": \"minecraft:cod_bucket\"\n    },\n    \"conditions\": [\n        {\n              \"type\": \"forge:mod_loaded\",\n              \"modid\": \"minecraft\"\n         }\n    ]\n}\n```\n\n</details>\n\n<details>\n<summary><b>Technical Notes for Modpack Makers</b></summary>\n\nYou can suppress certain features via the config, like disabling the auto-gen'd fish recipes altogether.\n\nIf you wish to create new fishing recipes for your mod here is the syntax:\n```\n{\n    \"type\": \"tactical_fishing:fishing\",\n    \"group\": \"\", //This is optional like in default recipes; if you want to make this recipe count for the \"Advanced Tactics\" advancement add \"tactical_fishing:fish_buckets\" here.\n    \"rod\": {}, //Ingredient syntax, this specifies the rod needed for the recipe, if you want any rod to count use the \"tactical_fishing:fishing_rods\" tag\n    \"ingredient\": {}, //Ingredient syntax, this specifies what else you need to hold for the recipe\n    \"catch\": {}, //Ingredient syntax, this specifies what needs to be caught to finalize the recipe\n    \"result\": {} //ItemStack syntax, this specifies what is created from the recipe\n}\n```\n\nHere is a template from the auto-gen'd recipes\n```\n{\n    \"type\": \"tactical_fishing:fishing\",\n    \"group\": \"tactical_fishing:fish_buckets\",\n    \"rod\": {\n         \"tag\": \"tactical_fishing:fishing_rods\"\n    },\n    \"ingredient\": {\n         \"item\": \"minecraft:water_bucket\"\n    },\n    \"catch\": {\n         \"item\": \"minecraft:cod\"\n    },\n    \"result\": {\n         \"item\": \"minecraft:cod_bucket\"\n    },\n    \"conditions\": [\n        {\n              \"type\": \"forge:mod_loaded\",\n              \"modid\": \"minecraft\"\n         }\n    ]\n}\n```\n\n</details>",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 11577,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

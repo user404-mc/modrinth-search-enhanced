@@ -1,0 +1,38 @@
+{
+  "id": "5OXjBr93",
+  "slug": "vshards",
+  "title": "V Shards",
+  "description": "V-Shards - It adds a custom in-game currency called Shards that players can earn, spend, and trade.",
+  "body": "# 💎 V-Shards \n\n> Simple vertical transportation for Paper 1.21.1+ servers\n\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-blue.svg)](https://papermc.io)\n[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net)\n\n---\n\n## ✨ Features\n\n- 🏦 **UUID-based economy** — Balances survive name changes\n- 🛒 **GUI Shop System** — Fully customizable buy/sell interface\n- 🎯 **PlaceholderAPI Support** — Display balances anywhere\n- 📊 **Leaderboards** — Top shard holders with pagination\n- ⚡ **Zero Lag Design** — Dirty-tracking saves only modified data\n- 🎨 **MiniMessage Formatting** — Modern color gradients & styling\n- 🔒 **Secure** — Locked GUI prevents item manipulation\n- ⬆️ **Auto-save** — Configurable intervals (default: 5 min)\n\n---\n\n## 📦 Installation\n\n1. Download `V-Shards.jar` \n2. Drop into `plugins/` folder\n3. Restart server\n4. Edit `plugins/V-Shards/config.yml` to customize\n\n---\n\n## PlaceholderAPI\n\n| Placeholder | Returns |\n|---|---|\n| `%vshards_amount%` | The requesting player's shard balance |\n| `%vshards_amount_<player>%` | A named player's shard balance |\n\nBalances are formatted using the same K / M / B abbreviation system as in-game (e.g. `10K`, `2.5M`, `1B`).\n\n---\n\n## Number Formatting\n\nAll balance and price values across commands, messages, and placeholders are automatically abbreviated:\n\n| Raw Value | Displayed As |\n|---|---|\n| 500 | `500` |\n| 1,000 | `1K` |\n| 10,000 | `10K` |\n| 10,500 | `10.5K` |\n| 1,000,000 | `1M` |\n| 2,500,000 | `2.5M` |\n| 1,000,000,000 | `1B` |\n\nWhole numbers never show a decimal (e.g. `10K` not `10.0K`). Decimals only appear when meaningful (e.g. `10.5K`).\n\n---\n\n## ⌨️ Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/shards` | `vshards.balance` | Check your balance |\n| `/shards <player>` | `vshards.balance.others` | Check another player's balance |\n| `/shards pay <player> <amount>` | `vshards.pay` | Send shards to another player |\n| `/shards give <player> <amount>` | `vshards.admin.give` | Give shards to a player |\n| `/shards take <player> <amount>` | `vshards.admin.take` | Remove shards from a player |\n| `/shards set <player> <amount>` | `vshards.admin.set` | Set exact balance |\n| `/shards top [page]` | `vshards.top` | View leaderboard |\n| `/shards shop` | `vshards.shop` | Open shop GUI |\n| `/shards reload` | `vshards.admin.reload` | Reload all configs |\n\n**Aliases:** `/shard`\n\n---\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `vshards.balance` | Everyone | Check own balance |\n| `vshards.pay` | Everyone | Send shards to another player |\n| `vshards.top` | Everyone | View leaderboard |\n| `vshards.shop` | Everyone | Access shop GUI |\n| `vshards.balance.others` | OP | Check others' balances |\n| `vshards.admin.*` | OP | All admin commands |\n\n---\n\n### 🛠️ shop.yml #preview\n\nDefines the GUI layout and all shop items. Reloads with `/shards reload` — no restart needed.\n\n```yaml\nmenu_title: '&dꜱʜᴀʀᴅꜱ ꜱʜᴏᴘ'\nsize: 27\n\nitems:\n\n  # Top decorative border\n  border:\n    material: GRAY_STAINED_GLASS_PANE\n    slot: 18, 19, 20, 21, 22, 23, 24, 25, 26\n    type: decoration\n    display_name: '&r'\n    lore: []\n\n  # Shop items\n  pig_spawner_buy:\n    material: SPAWNER\n    slot: 0\n    type: buy\n    price: 5000\n    amount: 1\n    display_name: '&d&lᴘɪɢ ꜱᴘᴀᴡɴᴇʀ'\n    lore:\n      - '&8&m                    '\n      - '&l&8| &f1x ᴘɪɢ ꜱᴘᴀᴡɴᴇʀ'\n      - '&l&8| &7ᴄᴏꜱᴛ: &d5,000 ꜱʜᴀʀᴅꜱ'\n      - '&8&m                    '\n      - '&l&8| &7ᴄʟɪᴄᴋ ᴛᴏ ʙᴜʏ!'\n```\n\n#### 🛠️ Item field reference\n\n| Field | Required | Notes |\n|---|---|---|\n| `material` | ✅ | Any valid Bukkit `Material` name (e.g. `DIAMOND`, `SPAWNER`) |\n| `slot` | ✅ | Inventory slot index, `0` to `size - 1` |\n| `type` | ✅ | `buy`, `sell`, `close`, or `decoration` |\n| `price` | buy / sell | Shards deducted (buy) or rewarded (sell) |\n| `amount` | buy / sell | Items given/taken. Use `0` alongside `command-console` / `command-player` |\n| `command-console` | optional | List of commands run as console. Supports `%player%` |\n| `command-player` | optional | List of commands run as the player. Supports `%player%` |\n| `display_name` | ✅ | Supports `&` color codes |\n| `lore` | optional | List of lore lines. Supports `&` color codes |\n\n> **Tip:** Slots are 0-indexed. For a 54-slot inventory (6 rows), valid slots are `0`–`53`. Two items sharing the same slot will cause one to silently overwrite the other.\n\n---",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "decoration",
+    "economy",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 147,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

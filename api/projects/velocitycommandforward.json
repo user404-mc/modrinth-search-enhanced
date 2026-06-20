@@ -1,0 +1,29 @@
+{
+  "id": "ywdK1mL3",
+  "slug": "velocitycommandforward",
+  "title": "VelocityCommandForward",
+  "description": "Forward commands from backend to proxy!",
+  "body": "# VelocityCommandForward\n\n**Forward commands from backend to proxy!**\n\n## ✨ Features\n* Custom command.\n* Custom message.\n* Customize commands to be sent silently (without sending messages or console logs).\n* Players and console can execute proxy commands (sends a packet to the proxy to execute either as player or console).\n\n## 📥 How to install? / Installation / Setup\nVery simple, download both Velocity and Paper plugin and upload to their designed servers (proxy/backend).\n\n1. Turn off your proxy (Velocity) and backend (Paper) server.\n2. Download Velocity and Paper version plugin.\n3. Drop both plugin files (for your server version) into the `plugins` folder.\n4. Start your server.\n\n## 💡 Notes\n* Configuration only generates for backend server!\n\n## ❓ Use case for this?\n* My use case was very niche, I have a discord command that can run minecraft commands (if player is online) and\nthe issue was that the discord bot was running on backend server, and so I decided to make a plugin to run proxy\ncommands, such as `/skin`.\n* Another common use case is when you install the TAB plugin on Velocity and need to send commands from the backend server to the proxy server, such as `/btab scoreboard` to toggle TAB's scoreboard. While executing it manually works fine, if you use custom items from other plugins that are bound to this command, the command may fail to execute. In such cases, simply relying on this plugin's commands can resolve the issue of TAB commands not working.\n\n## 🕹️ Command usage\nCommand name can be changed in the backend plugin configuration:\n\n```yaml\ncustom-command: proxyexec\n```\n\n| command                | description                                                                                          | permission                        |\n|------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------|\n| `/proxyexec reload`    | Used to reload plugin config. Changing `custom-command` requires a server restart.                   | velocitycommandforward.admin (op) |\n| `/proxyexec <command>` | Forward commands to the proxy. Example: `/proxyexec tab reload` executes `/tab reload` on the proxy. | velocitycommandforward.send       |\n\nIn the examples I changed the command to `proxy`, I didn't set it as default because I was worried that some other plugin could use this command already.\n\n<img width=\"900\" height=\"230\" alt=\"PixPin_2025-08-11_01-42-47\" src=\"https://github.com/user-attachments/assets/456e0029-ac56-4b4f-9df8-03102123fa5c\" />\n\n## Executing in console\nIf you execute the command in the console, you won't get any output, and instead it's going to show up in the proxy server logs.\nThere must be at least one online player to be able to send command packet to the proxy (that's how plugin messaging channels work between backend and proxy).\n\nBackend server.\n\n<img width=\"1300\" height=\"100\" alt=\"PixPin_2025-08-11_01-43-40\" src=\"https://github.com/user-attachments/assets/32f065ae-9b73-4988-8c72-b7e6d6a244df\" />\n\nProxy server.\n\n<img width=\"1300\" height=\"75\" alt=\"PixPin_2025-08-11_01-44-22\" src=\"https://github.com/user-attachments/assets/6e407eaa-9c59-4389-a03f-21472732198b\" />\n\n## 📄 Default configuration\nChanging `custom-command` requires a server restart.\n```yaml\n# VelocityCommandForward\n\n# Command for forwarding commands to proxy.\n# You need to restart the server for the changes to apply.\ncustom-command: proxyexec\n\n# Here you can specify root commands that will not send log and message.\nfiltered-commands:\n  - example_command\n\n# {command} = The command that was sent by the sender\n# {sender} = The player who sent the command\n# If set to '', no message will be sent.\nmessages:\n  reload: '&aPlugin messages and filters have been reloaded!'\n  command-sent-as-player: '&2Command sent to proxy &7=> &a/{command}'\n  command-sent-as-console: '&2Command sent as console to proxy &7=> &a/{command}'\n  no-online-player: '&cThere must be at least 1 online player to be able to execute proxy console commands!'\n  console-log: '[{sender}] Sending command packet to proxy => /{command}'\n  velocity-log: '[{sender}] Received proxy command packet => /{command}'\n```\n\n## ✅ Requirements\n* Velocity plugin was built with `Java 17` and Paper plugin is `Java 21`.\n* Compatible with versions 1.20.6 and above. Since the plugin uses Brigadier (added in 1.20.6) to build commands, servers running lower versions will encounter errors.\n",
+  "categories": [
+    "paper",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1302,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "EXflZ9CL",
+  "slug": "enderpearlpatch",
+  "title": "EnderPearlPatch",
+  "description": "Fixes ender pearl behavior on player logout or death by preserving and restoring them. Includes admin commands to manage saved pearls.",
+  "body": "# 🧩 EnderPearlPatch\n\nA plugin that prevents Ender Pearls from disappearing when players log out or die.  \nIt stores all active pearls and restores them after the player rejoins or respawns — even on servers using AuthMe or similar login systems that temporarily remove players from the world.\n\n---\n\n## 📝 Description\n\nThis plugin fixes a common issue where Ender Pearls vanish when a player logs out or dies — especially on servers using AuthMe or similar login systems, where players are temporarily removed from the world.  \nInstead of letting pearls disappear, this plugin **saves** them and **restores** them after the player logs back in or respawns.  \nIt also provides useful admin commands to list, delete, add, and create saved pearls manually.\n\n---\n\n## ⚙️ Features\n- Prevents ender pearls from vanishing on logout or death\n- Restores pearls with correct location and velocity after login or respawn\n- Compatible with AuthMe and other login-delay plugins\n- `/pearls list`, `add`, `del`, `create` commands for full pearl management\n- Configurable behavior through `config.yml`\n- Only accessible by OPs (or players with `enderpearlpatch.admin` permission)\n\n---\n\n## 📂 Configuration (`config.yml`)\n\n```yaml\nenabled: true\nrespawn-mode: login_and_respawn\n```\n\n### 🔧 Parameters\n\n| Key | Type | Default | Description |\n|-----|------|----------|-------------|\n| `enabled` | boolean | `true` | Enables or disables the plugin entirely. If set to `false`, all listeners and restoration logic are disabled. |\n| `respawn-mode` | string | `login_and_respawn` | Defines when pearls should be restored:<br>• `login` → only when the player logs in<br>• `login_and_respawn` → when logging in **and** after respawning |\n\n---\n\n## 🧭 Commands Overview\n> These commands are available to OPs or players with the `enderpearlpatch.admin` permission.\n\n### 🔄 `/enderpearlpatch reload`\nReloads the plugin and configuration.  \nAll data and settings are refreshed from disk.\n\n**Permission:** `enderpearlpatch.admin`\n\n---\n\n### ⚙️ `/enderpearlpatch mode <login|login_and_respawn>`\nChanges the pearl restoration mode directly from in-game.  \nUpdates `config.yml` and applies changes immediately.\n\n**Examples:**\n```\n/enderpearlpatch mode login\n/enderpearlpatch mode login_and_respawn\n```\n\n**Permission:** `enderpearlpatch.admin`\n\n---\n\n## 💠 `/pearls` Subcommands\n\n### 📋 `/pearls list`\nLists all currently saved ender pearls for all players, showing their world and coordinates.\n\n**Example Output:**\n```text\nPlayer: JanekDev\n  #0 → world 123 64 456\n  #1 → world_nether -23 70 40\n```\n\n---\n\n### ❌ `/pearls del <player> <id>`\nDeletes a specific saved pearl by its index (`id`) from the specified player's list.\n\n**Example:**\n```\n/pearls del JanekDev 0\n```\n\n**Output:**\n```\n§aPearl #0 deleted for JanekDev\n```\n\n---\n\n### ➕ `/pearls add <player> <x> <y> <z> <world> [vx vy vz]`\nAdds a saved pearl for a player at the specified coordinates, with optional velocity.  \nIt will be restored automatically when the player rejoins.\n\n**Example:**\n```\n/pearls add JanekDev 100.5 64 200 world 0 0.5 0\n```\n→ Adds a pearl at `(100.5, 64, 200)` in `world` with slight upward velocity.\n\n---\n\n### ✨ `/pearls create <player> <x> <y> <z> <world> [vx vy vz]`\nImmediately spawns a live Ender Pearl in the world for the specified player.\n\n**Example:**\n```\n/pearls create JanekDev 50 70 50 world 1 0 0\n```\n→ Spawns a pearl moving east at `(50, 70, 50)` for `JanekDev`.\n\n---\n\n## 🧰 Permissions\n\n| Permission | Default | Description |\n|-------------|----------|-------------|\n| `enderpearlpatch.admin` | `op` | Allows use of `/enderpearlpatch` and `/pearls` commands |\n\n---\n\n## 👤 Author\n**JanekDev** — Developer",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 880,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

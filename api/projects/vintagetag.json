@@ -1,0 +1,18 @@
+{
+  "id": "XPb2IWGi",
+  "slug": "vintagetag",
+  "title": "VintageTag",
+  "description": "VintageTag is a lightweight tag system mod (primarily compatible with 1.12.2) that brings functionality similar to the official tag system of Minecraft 1.13+ to older game versions.",
+  "body": "# VintageTag\n\nVintageTag adds a simple tag system to Minecraft 1.12.2, supporting item, fluid, and block tags.\n\n## Registering Tags\n\nDuring the `FMLLoadCompleteEvent` phase, the tag system performs the following steps sequentially:\n\n1. Synchronize ore dictionary data  \n2. Load tags from all mods (`src/main/resources/data/tags/<type>/`)  \n3. Load tags from configuration files (`config/tags/<type>/`)  \n\nHere, `<type>` can be one of `item`, `fluid`, or `block`.\n\nThe JSON format is similar to the official 1.13+ tag system. For details, see [**TagLoader**](https://github.com/gardenevery/VintageTag/blob/master/src/main/java/com/gardenevery/vintagetag/TagLoader.java#L35).\n\n## Command System\n\n```\n/tag info       // Display tag statistics (requires permission level 1)\n/tag reload     // Reload tags (requires permission level 2)\n```\n\n## Tooltip\n\nHold Shift to view tag information for items, fluids, and blocks. For example:\n\n- Holding Shift on a water bucket will show the bucket's item tags and water's fluid tags.\n- Holding Shift on stone (an item that has a block form) will show the stone's item tags and block tags (block tags do not distinguish metadata).\n\nTag types are color-coded:\n\n- White: item tags  \n- Blue: fluid tags  \n- Yellow: block tags  \n\nIf the item contains no tags of any type, a \"No tags\" message will appear.\n\n## Network Synchronization\n\nWhen a player logs in or uses the `/tag reload` command, the server's data is immediately synchronized to the client.\n\n## Configuration Options\n\n```ini\n// Enable scanning tags in configuration files\nB:enableConfigScanner=true\n\n// Enable scanning tags in mods\nB:enableModScanner=true\n\n// Enable synchronizing tags from the ore dictionary\nB:enableOreSync=true\n\n// Enable tag tooltips\nB:enableTooltip=true\n```",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 179,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

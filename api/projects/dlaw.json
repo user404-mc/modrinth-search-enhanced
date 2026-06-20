@@ -1,0 +1,36 @@
+{
+  "id": "oSSHuM5z",
+  "slug": "dlaw",
+  "title": "DLAW",
+  "description": "Discord Login and Webhooks lets you use cloud synced links and user bans with your own Discord Bot allowing chat integration and a more personalised look and feel on your server.",
+  "body": "# DLAW\n\nSpigot plugin for Discord based whitelisting over a custom discord bot\n\n> IMPORTANT !!! > You can request an AUTH TOKEN from me directly via the discord server [https://discord.gg/pgmupvqvsm](https://discord.gg/pgmupvqvsm). The signup and management page is still very much beta. Auth Token lets you have /verify and /unverify commands working.\n\n> ACCOUNT LINKING ISSUES? Please join support discord [https://discord.gg/pgmupvqvsm](https://discord.gg/pgmupvqvsm) and explain your issue! Most llikley is that you have lost access to the older discord account and still want to play on your server. I can unlink your accounts manually for now\n\n### Features\n\n- Cloud synced account linking\n- Direct server integration (join, leave, death, advancements, player chat)\n- On death cords DM\n- Customisable colors for embeds\n- Player count in bot status\n- HTTP REST API (for web developers)\n\n#### Discord Slash Commands\n\nThese are all the available discord commands:\n\n- `/verify` Links a Minecraft Java account to a Discord account\n- `/unverify` Removes the existing account link\n- `/ip` Returns the server IP (from `config.yml`)\n- `/lookup` Allows you to find a Discord account from a Minecraft username\n- `/rcon` Executes a command on the server\n- `/seed` Returns the world seed\n- `/status` Displays current online players and server version\n\n#### HTTP Endpoints\n\nThis feature is very useful for integration data and status from your minecraft server on your webpage. For general\nusers this feature might not be needed\n\n> The web server can be enabled or disabled in `config.yml` based on your needs\n\n- `GET /api/status` Complete server status\n- `GET /api/status/players` Online player list\n- `GET /api/status/plugins` List of plugins\n- `GET /api/status/world` World information\n- `GET /api/players` List of all players who joined the server\n- `GET /api/players/<uuid>` Get player from server by UUID (useful for details page)\n- `GET /api/user/<uuid>` Discord account information from Minecraft account UUID\n- `GET /api/auth/<uuid>` Authenticate player (exposes same auth logic as when player joins the server itself for needs of other plugins/servers)\n\n> Endpoint `/api/auth` exposes the same authentiticaion process during player login for use in other plugins or other servers. If you want to use this type of login auth on multiple servers but keep DLAW (ex. You have a test server or one in another region) you can use the plugin [DasherLink via GitHub](https://github.com/Pequla/DasherLink).\n\n> If you develop an extension (ex. web page) or a custom plugin that uses DLAW please notify me on Discord for me to feature it here\n\n### Setup\n\nDownload the latest version from [releases](https://github.com/Pequla/DLAW/releases/latest) and put it in your plugins\nfolder.\n\nMake sure to start the minecraft server once, after so go to `/plugins/DLAW/config.yml` and edit the lines corresponding\nto your settings\n\nIn order to create a Discord Bot and get its token you need to go [here](https://discord.com/developers/applications).\nAfter creating the application also create the bot, copy the token to clipboard for later use in configs. Make sure to\nenable all privileged intentions like PRESENCE_UPDATE, GUILD_MEMBERS and MESSAGE_CONTENT. After that go and generate the\ninvite url with scopes `bot` and `application.commands`. For permission, you can choose Administrator since it's your\nprivate bot\n\n#### Configuration example\n\n```yaml\ndiscord:\n  token: token-goes-here\n  guild: 553568657410883604\n  channel:\n    chat: 1024426048932302878\n  role:\n    join:\n      enabled: true # Toggles if role auth is in use\n      id: 553568657410883604 # Role ID of the required role to join the server\n    staff: 707598912768442489\n    verified: 1221230313271853086\n  dm-death-cords: true\n  include-global-bans: true\napi:\n  enable: true\n  port: 8010\nminecraft:\n  address: play.beocraft.net\ncolor:\n  system: 65535\n  join: 65280\n  leave: 16711680\n  death: 16749128\n  advancement: 16751104\n```",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 205,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

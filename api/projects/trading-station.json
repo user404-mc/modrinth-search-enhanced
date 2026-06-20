@@ -1,0 +1,23 @@
+{
+  "id": "q1tc5eV5",
+  "slug": "trading-station",
+  "title": "Trading station",
+  "description": "Item trading machine.",
+  "body": "# Trading Station\n- Item trading machine. \n- Made for modpacks. __It doesn't add any recipe.__\n\n## [Dedicated wiki](https://wiki.mechanicalmods.net/mods/trading-station/)\n\n## 1.21.1-1.x Version Requires Mechanicals Lib\n- [Modrinth](https://modrinth.com/mod/mechanicals-lib \"Modrinth\")\n\n## Features\n- Basic station with no power requirements.\n- Powered station with RF power requirements.\n- Custom *Trading recipe*\n- Custom recipe requirements per recipe.\n- Indestructible variant for each station.\n- Configurable consumption & progress.\n- Mechanical (Create Addon) station available with companion mod.[Link](https://modrinth.com/mod/mechanical-trading-station)\n\n## Trading recipe\n- `\"type\": \"trading_station:trading\"`\n- `result`:Output item. Item `components` allowed.\n- `ingredients`: Required items.\n- `processingTime`: Required time in ticks.\n- `recipeRequirements`: Custom recipe requirements. [WIKI](https://wiki.mechanicalmods.net/mods/mechanicals-lib/recipe-requirements/)\n### Example (One ingredient)\n```json\n{\n\t\"type\": \"trading_station:trading\",\n\t\"result\": {\n\t\t\"id\": \"minecraft:diamond\",\n\t\t\"count\": 5\n\t},\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"ingredient\": {\n\t\t\t\t\"item\": \"minecraft:emerald\"\n\t\t\t},\n\t\t\t\"count\": 5\n\t\t}\n\t]\n}\n```\n### Example (Two ingredients)\n```json\n{\n  \"type\": \"trading_station:trading\",\n  \"result\": {\n    \"id\": \"minecraft:gold_block\",\n    \"count\": 5\n  },\n  \"ingredients\": [\n    {\n      \"ingredient\": {\n        \"item\": \"minecraft:oak_log\"\n      },\n      \"count\": 5\n    },\n    {\n      \"ingredient\": {\n        \"item\": \"minecraft:birch_log\"\n      },\n      \"count\": 10\n    }\n  ],\n  \"processingTime\": 250\n}\n```\n### Example (Enchanted book)\n```json\n{\n\t\"type\": \"trading_station:trading\",\n\t\"result\": {\n\t\t\"id\": \"minecraft:enchanted_book\",\n\t\t\"count\": 1,\n\t\t\"components\": {\n\t\t\t\"minecraft:stored_enchantments\": {\n\t\t\t\t\"levels\": {\n\t\t\t\t\t\"minecraft:density\": 3\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t},\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"ingredient\": {\n\t\t\t\t\"item\": \"minecraft:diamond\"\n\t\t\t},\n\t\t\t\"count\": 5\n\t\t}\n\t],\n\t\"processingTime\": 100\n}\n```\n## Example (Machine Requirement)\n```json\n{\n\t\"type\": \"trading_station:trading\",\n\t\"result\": {\n\t\t\"id\": \"minecraft:emerald_block\",\n\t\t\"count\": 1\n\t},\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"ingredient\": {\n\t\t\t\t\"item\": \"minecraft:diamond\"\n\t\t\t},\n\t\t\t\"count\": 5\n\t\t}\n\t],\n\t\"processingTime\": 100,\n\t\"requirements\": [\n\t\t{\n\t\t\t\"value\": [\n\t\t\t\t\"powered\",\n\t\t\t\t\"mechanical\"\n\t\t\t],\n\t\t\t\"type\": \"trading_station:machine_id\"\n\t\t}\n\t]\n}\n```\n## KubeJS\n### Some examples\n```js\n// Processing time\nevent.recipes.trading_station.trading(Item.of('minecraft:gold_block', 5),[Item.of(\"5x minecraft:oak_log\"),Item.of(\"10x minecraft:birch_log\")]).processingTime(250);\n\n//Enchanted book result\nevent.recipes.trading_station.trading(Item.of('minecraft:enchanted_book[stored_enchantments={levels:{\"minecraft:unbreaking\":3}}]', 1),[Item.of(\"minecraft:diamond\", 5)]).processingTime(100);\n\n//With machine requirement\nevent.recipes.trading_station.trading(Item.of('minecraft:emerald_block'),[Item.of(\"5x minecraft:diamond\")]).processingTime(100).requirements(MachineId.of([\"powered\",\"mechanical\"]));\n```\n### Machine ID (binding)\n```js\nMachineId.of([\"powered\",\"mechanical\"])\n```",
+  "categories": [
+    "economy",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2175,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

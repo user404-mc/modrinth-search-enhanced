@@ -1,0 +1,23 @@
+{
+  "id": "bFe2rvv4",
+  "slug": "progressive-mechanics-library",
+  "title": "Progressive Mechanics Library",
+  "description": "Library mod for my mods and other people who which to have great control over damage mechanics in the game\nCan work with First Aid Mod",
+  "body": "This is a library mod aimed to allow my mods and other mods have great control over damage and some combat mechanics\nBy default this mod does this\nModifies damage type done when landing a critical strike, allowing mods to easily track down if an attack is a critical hit. Damage type is \"pml:player_critical\"\nModifies damage type done when dealing a sweeping attack. Damage type is \"pml:sweeping_damage\".\n\nFor Mod developers\nIt adds a new way to register and add damage bonuses and reductions alongside making this work with First Aid Mod to allow control over damaged bodyparts\n\nThe DamageControl class is a core component. It provides a structured way to modify, control, and calculate damage values before they are applied in the game.\n\nThis system allows for multiple modifiers, including flat bonuses, percentage-based bonuses, and reductions from armor, enchantments, and special mechanics.\n\n🔧 How It Works:\nThe system starts with raw base damage.\n\nIt applies weapon-specific scaling (reducing damage before further calculations).\n\nBase bonuses are applied first (flat and percentage-based).\n\nAdditional bonuses are applied next (flat and percentage-based).\n\nThe system calculates reductions (armor, enchantments, special reductions).\n\nThe final damage is stored and can be retrieved or modified in LivingDamageEvent.\n\n📊 Breakdown of Variables:\n🛠️ Modifiers for Increasing Damage\nVariable\tDescription\nbaseFlatBonus\tFlat bonus added before percentage multipliers (e.g., +10 damage).\nbasePercentBonus\tPercentage-based increase applied before other calculations (e.g., 1.2 multiplier).\nflatBonus\tFlat bonus added after base bonuses (e.g., +5 damage).\npercentBonus\tPercentage-based increase applied after base calculations.\n🛡️ Modifiers for Reducing Damage\nVariable\tDescription\nweapondamagecontrol\tControls weapon-based scaling before all calculations.\narmorReduction\tDamage reduced due to armor (handled separately).\nenchReduction\tDamage reduced due to enchantments (handled separately).\nspecialReduction\tDirectly reduces final damage, so it must be used carefully.\n📌 Original Values for Reference\n \n\nVariable\tDescription\noriginalDamage\tStores the final damage after all calculations, ready for LivingDamageEvent.\noriginalAbsorption\tStores the absorption value before modifications.\n \n\n🛠️ Key Methods\n✔️ Adding Bonuses\n🛡️ getArmorReduction() \n✅ Returns: The amount of damage reduction due to armor.\n💡 Usage: This value is set by setArmorReduction(float value) and represents the amount of damage blocked by armor-based mechanics(e.g., vanilla armor calculations or custom armor effects from other mods).\n🔮 getEnchantmentReduction()\n✅ Returns: The amount of damage reduction caused by enchantments.\n💡 Usage: This tracks how much defensive enchantments (such as Protection or custom enchantments) reduce the final damage. Mods can use this to balance enchantment effects or display them in tooltips.\n⚠️ getSpecialReduction()\n✅ Returns: The amount of direct damage reduction applied through special mechanics.\n💡 Usage: This is the most powerful form of damage reduction, as it is subtracted at the very end of the damage calculation. Mods should use this carefully because it can completely negate damage if too high.\n\n📌 First Aid Mod Compatibility System\nThis system integrates with the First Aid mod, which modifies how damage is handled by introducing body-part-specific injuries. The following code helps track which body part was damaged when using the First Aid mod and ensures compatibility with the DamageControl system.\n\n \n\n \n\n \n\n🛠️ Key Methods\n🔍 getDamagedBodyPart(Player player)\n\n✅ Purpose: Retrieves the body part that was damaged. Returns a EquipmentSlot var corresponding to the bodypart damaged.\n💡 Usage:\n\nThis method should only be used during LivingDamageEvent and when First Aid is present.\n\nIf the player isn't mapped, it returns null.\n\n\n\n\nOne example of use is inside the mod Just a lot more Enchantments.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 122750,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3"
+  ],
+  "date_updated": null
+}

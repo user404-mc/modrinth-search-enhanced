@@ -1,0 +1,23 @@
+{
+  "id": "L8k0OwM0",
+  "slug": "iplogger",
+  "title": "IpLogger",
+  "description": "Stores username-IP pairs",
+  "body": "# Introduction\nIpLogger is a server-side mod for Fabric.\nIt's main purpose is storing all IP addresses that players use to log on from. The data is stored on the server under config/iplogger/IpLoggerData.json. Commands are only available for OPs on the server.\nExamples of use-cases could be to identify players that try to log in as other players (for offline servers, note that piracy is not acceptable), or finding players with multiple accounts as these will share the same IP. \n\nRemember that a simple VPN would result in storing the incorrect IP of a player. This mod makes no attempt to check if a player uses a VPN or to tunnel back to their home-IP - it only stores the IP available in the console logs.\n\nAll IPs are by default available in the server console logs, but reading through them to find necessary information (for whatever usecase you might have) is tedious. This mod will make this process simple.\nIn other words: this mod does not give a server administrator any information they don't already have access to, it just makes it more easily accessible.\n\n## Declaration from developer\nThis mod can in theory be used by the developer to collect public IPs. It is the declaration of the developer that the mod does not send your server's playernames or IPs outside to external sources without your explicit actions (such as by invoking the _/iplogger geolocate_ command)\n\n# Installation\nPut on server in \\mods folder. No client side mod is necessary.\n\n# Commands\n-  _/iplogger buildFromPastLogs_ - Recommended to run the first time you install the mod. Will read through all past logs file on the server to extract all users' IPs and add them to the database. If this command is not run, only users and IPs from the point of installation forward will be available. After running once, there is no need to run this command ever again.\n- _/iplogger getIPs [username]_ - Gives all the IPs that the given username has used to log in to the server from.\n- _/iplogger getUsers [IP]_ - Gives all the users that have ever logged in to the server using this IP.\n- _/iplogger removeIpFromUser [username] [IP]_ - Removes the IP address from the user.\n- _/iplogger getDuplicateIPs_ - Will give a list of all players that have signed in using the same IP address. Typical reasons for sharing an IP is either living in the same household or being alt-accounts of the same person.\n- _/iplogger geolocate [IP]_ - Uses the iplocation.net free API to give the country in which the given IP resides. \n- _/iplogger toggleDebugMode_ - Turns on more verbose logging in server console. Mostly useful for the mod dev to troubleshoot... Always sets back to debugMode=false on server startup/restart.",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 919,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

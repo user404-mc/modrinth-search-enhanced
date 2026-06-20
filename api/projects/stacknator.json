@@ -1,0 +1,35 @@
+{
+  "id": "p1gQoY1Q",
+  "slug": "stacknator",
+  "title": "Stacknator",
+  "description": "Properly configurable stack sizes for any vanilla or modded items",
+  "body": "# Stacknator\n\nStacknator is a lightweight Minecraft mod for Fabric that lets you customize the maximum stack size of any vanilla or modded item via a simple configuration file. By modifying item data components during game initialization, Stacknator delivers a clean, efficient solution without performance overhead or hacky workarounds.\n\n## Compatibility\n\n- **Required:** [Fabric API](https://modrinth.com/mod/fabric-api)\n- **Vanilla Items:** Fully compatible.\n- **Modded Items:** Generally compatible with most mods.\n\n> **Tags:** Supported through the Filler feature.\n\n> **Tip:** To find an item's identifier, enable Advanced Tooltips in-game by pressing F3 + H, then hover over the item.\n\n## Installation\n\n1. Drop the Stacknator `.jar` into your `mods` folder.\n2. Start the server or load into a world.\n3. Edit the stacknator.json config file to set your desired stack sizes.\n4. Enjoy!\n\n> Required only on the server side for a `survival` gameplay, however it's recommended to have it on the client side as well to be fully compatible with some screens (e.g. creative screen).\n\n## Documentation\n\n- **enabled**:<br>\n  Enables or disables the mod.<br>\n  Type: `boolean` Default: `true`\n- **log_modified_items**:<br>\n  Toggles logging of successful stack size changes (other logs always show).<br>\n  Type: `boolean` Default: `true`\n- **checks**:<br>\n  Defines the checks to be performed.<br>\n  Type: `object` Default:<br>\n    - **enable_checks**:<br>\n      Enables or disables all checks.<br>\n      Type: `boolean` Default: `true`<br>\n    - **check_damageable**:<br>\n      Enables or disables the damageable check.<br>\n      Type: `boolean` Default: `true`<br>\n    - **check_stackable**:<br>\n      Enables or disables the stackable check.<br>\n      Type: `boolean` Default: `false`<br>\n    - **check_minimum_stack_size**:<br>\n      Enables or disables the minimum stack size check.<br>\n      Type: `boolean` Default: `true`<br>\n    - **check_maximum_stack_size**:<br>\n      Enables or disables the maximum stack size check.<br>\n      Type: `boolean` Default: `true`<br>\n- **remove_defaults**:<br>\n  Removes all item entries that match the default stack size.<br>\n  Type: `boolean` Default: `false`<br>\n- **filler**:<br>\n  Defines the filler settings.<br>\n  Type: `object` Default: `{}`<br>\n    - **enable_filler**:<br>\n      Enables or disables the filler. When enabled, the mod will iterate all registered items and apply the filler rules to each item while enforcing the configured checks.<br>\n      Type: `boolean` Default: `false`<br>\n    - **reset_stacks**:<br>\n      Enables or disables resetting of stack sizes to the default values, overriding any defined custom stack size.<br>\n      Type: `boolean` Default: `false`<br>\n    - **run_once**:<br>\n      Disables the filler after one run.<br>\n      Type: `boolean` Default: `true`<br>\n    - **tag_priority**:<br>\n      Enables or disables prioritizing tags over item entries when applying the filler.<br>\n      Type: `boolean` Default: `true`<br>\n    - **tags**:<br>\n      Defines tag identifiers and their custom stack sizes.<br>\n      Type: `object` Default: `{}`<br>\n- **sort_items**:<br>\n  Enables or disabled sorting the item entries alphabetically by their keys.<br>\n  Type: `boolean` Default: `true`<br>\n- **items**:<br>\n  Defines item identifiers and their custom stack sizes.<br>\n  Type: `object` Default: `{}`<br>\n\n## Checks\n\nStacknator performs the following checks for each item/tag entry in the config file:\n\n- **Entry Key Format**:<br>\n  Verifies if the entry key follows the `namespace:item` format.<br>\n  **On Failure**: Skips the entry.\n- **Item Damageable**:<br>\n  Ensures the item is not damageable (e.g. tools, weapons and armor).<br>\n  **On Failure**: Skips the entry.\n- **Item Stackable**:<br>\n  Confirms the item is stackable (default maximum stack above 1).<br>\n  **On Failure**: Skips the entry.\n- **Entry Value Below 1**:<br>\n  Checks if the stack size is less than 1.<br>\n  **On Failure**: Skips the entry.\n- **Entry Value Above 99**:<br>\n  Checks if the stack size exceeds 99.<br>\n  **On Failure**: Adjusts to 99.\n\n## Full Configuration Example\n\n```json\n{\n  \"enabled\": true,\n  \"log_modified_items\": true,\n  \"checks\": {\n    \"enable_checks\": true,\n    \"check_damageable\": true,\n    \"check_stackable\": false,\n    \"check_minimum_stack_size\": true,\n    \"check_maximum_stack_size\": true\n  },\n  \"remove_defaults\": false,\n  \"filler\": {\n    \"enable_filler\": false,\n    \"reset_stacks\": false,\n    \"run_once\": true,\n    \"tag_priority\": true,\n    \"tags\": {\n        \"#minecraft:logs\": 16,\n        \"#minecraft:planks\": 32\n    }\n  },\n  \"sort_items\": true,\n  \"items\": {\n    \"minecraft:egg\": 64,\n    \"minecraft:red_bed\": 16,\n    \"minecraft:ender_pearl\": 32,\n    \"minecraft:tnt\": 1\n  }\n}",
+  "categories": [
+    "fabric",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1485,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

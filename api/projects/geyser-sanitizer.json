@@ -1,0 +1,21 @@
+{
+  "id": "cLguFHzU",
+  "slug": "geyser-sanitizer",
+  "title": "Geyser Sanitizer",
+  "description": "GeyserSanitizer is a Spigot/Paper plugin designed to sanitize text components sent to Bedrock players, preventing client display issues could be caused.",
+  "body": "## Description\n\nGeyserSanitizer is a Spigot/Paper plugin designed to sanitize text components sent to Bedrock players, preventing client crashes or display issues that can arise from certain unsupported text features. It specifically targets and modifies chat messages, system messages, and team-related text (nametags, prefixes, suffixes) to ensure compatibility with Bedrock clients connected via GeyserMC/Floodgate.\n\n## Features\n\n- **Chat Message Sanitization**: Intercepts and sanitizes outgoing chat messages.\n- **System Message Sanitization**: Intercepts and sanitizes outgoing system messages.\n- **Team Text Sanitization**: Cleans nametags, prefixes, and suffixes sent as part of team updates.\n- **Bedrock Player Detection**: Utilizes Floodgate API to selectively apply sanitization only to Bedrock players.\n- **Icon/Head Icon Removal**: Removes JSON components containing 'atlas', 'sprite', 'hat', or 'player' keys, which are known to cause issues on Bedrock clients.\n\n## Dependencies\n\nThis plugin requires the following to function correctly:\n\n- **PacketEvents**: Used for intercepting and modifying network packets.\n- **Floodgate**: Used to identify Bedrock players.\n\n## How It Works\n\nThe plugin registers a `PacketInterceptor` listener with PacketEvents. When a server sends certain packets (`CHAT_MESSAGE`, `SYSTEM_CHAT_MESSAGE`, `TEAMS`), the interceptor checks if the recipient is a Bedrock player (using Floodgate). If so, it sanitizes the `net.kyori.adventure.text.Component` messages by removing JSON structures that contain problematic keys (like \"atlas\", \"sprite\", \"hat\", \"player\") before the packet is sent to the client. This prevents unsupported features from reaching the Bedrock client and causing issues.",
+  "categories": [
+    "library",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 138,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,43 @@
+{
+  "id": "sxLqaqZP",
+  "slug": "moderntags",
+  "title": "ModernTags",
+  "description": "Highly customizable nametags above players for all client versions",
+  "body": "![preview](https://i.imgur.com/WQJI6hO.png)\n\n<details>\n<summary>Text description</summary>\n\n# ModernTags 2.0\n**A modern plugin for displaying custom tags above player heads**\n \n---\n \n## ✨ Features\n \n| | |\n|---|---|\n| 🎨 **Full Customization** | Configure tag appearance: color, shadows, transparency, alignment, size and more |\n| 🎬 **Animated Tags** | Support for multiple frames with configurable animation speed |\n| 🖥️ **Dual Renderer** | Text Display entities for 1.19.4+ clients, Scoreboard Teams for older ones — picked automatically per viewer |\n| 🔀 **Condition System** | `owner-conditions` and `viewer-conditions` let you select the right tag group with arbitrary logic |\n| 🏆 **Priority System** | Tag groups and entries are sorted by priority; the highest-priority match wins |\n| 👁️ **Viewer-Aware Placeholders** | `{owner:key}` and `{viewer:key}` let you show different content depending on who is looking |\n| 📌 **PlaceholderAPI** | Any PAPI placeholder works out of the box |\n| 👑 **Vault Integration** | Automatic insertion of prefixes and suffixes from permission systems |\n| 🫥 **Sneak Dimming** | Tags fade for crouching players on 1.19.4+ clients, matching vanilla behavior |\n| 🔗 **TAB Compatibility** | ModernTags manages Scoreboard Teams internally — no need to disable TAB's nametag display |\n \n---\n \n## ⚡ Technical Advantages\n \nThe plugin is built on **PacketEvents** — all rendering is done through packets, not Bukkit APIs.  \nComponent building via **GikyMessage** reduces allocations and speeds up placeholder replacement.  \nFully supports **Folia** and all Paper forks (Paper, Purpur, etc.).\n \n---\n \n## 🔧 Configuration Example\n \n```yaml\n# config.yml\ntags:\n  - priority: 0\n    entries:\n      - priority: 0\n        modern: tags/default.yml:<root>\n        legacy: tags/default-legacy.yml:<root>\n \n  - priority: 1\n    owner-conditions: \"hasPermission('moderntags.tag.vip')\"\n    entries:\n      - priority: 0\n        modern: tags/vip.yml:modern\n        legacy: tags/vip.yml:legacy\n```\n \n```yaml\n# tags/default.yml (modern — Text Display, 1.19.4+)\nframe-update-rate: -1\nplaceholders-update-rate: 10\nframes:\n  - text: |-\n      {owner:prefix}&r{owner:name}{owner:suffix}\n      &c❤&f{owner:health}\n    shadowed: true\n    y-offset: 0.15\n    background-color: \"#00000000\"\n```\n \n```yaml\n# tags/default-legacy.yml (legacy — Scoreboard Teams, below 1.19.4)\nframe-update-rate: -1\nplaceholders-update-rate: 10\npreserve-player-name-color: true\nframes:\n  - prefix: \"{owner:prefix}\"\n    name-color: \"white\"\n    suffix: \"{owner:suffix}\"\n```\n \n---\n \n## 💬 Commands & Permissions\n \n**Commands**\n- `/moderntags reload` — reload plugin configuration\n**Permissions**\n- `moderntags.see.own` — visibility of own tag\n- `moderntags.reload` — access to reload command\n---\n \n## 📦 Dependencies\n \n**Required:**\n- [PacketEvents](https://modrinth.com/plugin/packetevents) 2.0+\n**Optional:**\n- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)\n- [Vault](https://www.spigotmc.org/resources/vault.34315/)\n\n</details>\n\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 170,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "N4BDDxB2",
+  "slug": "incontrolmob",
+  "title": "InControlMob",
+  "description": "Rule-driven mob control plugin for Paper 1.21",
+  "body": "### Overview\n**InControlMob** is a Spigot/Paper plugin for **Minecraft 1.21** that gives server admins a powerful, rule‑driven system to control mob spawning, spawner behavior, summoned entities, loot, and experience. Rules are plain JSON files stored in `config/incontrolmob/`, hot‑reloadable, and validated on load so you can safely customize server behavior without code changes.\n\n---\n\n### Key Features\n- Rule‑driven control for spawn, spawner, summon, loot, and experience events  \n- JSON rules with schema validation and clear error reporting  \n- Hot reload with `/incontrolmob reload` — no server restart required  \n- Rich conditions: entity type, world, biome, light level, spawn reason, time of day, difficulty, nearby players, NBT match, WorldGuard region checks, and more  \n- Powerful actions: allow/deny spawn, change health, set equipment, add potion effects, replace entity type, modify drops and XP, set entity flags (noGravity, invulnerable, glowing, persistent), velocity/passenger changes  \n- Priority and control: rule `priority`, `enabled` flag, `continueOnMatch` option, and file order semantics  \n- Safe and performant: asynchronous rule loading, atomic swap of rule sets, caching and indexing by entityType/spawnReason, debug logging controlled by config  \n- Optional WorldGuard integration: region checks when WorldGuard is present; graceful degradation when absent  \n- Admin tools: list rules, test rules, and export rules for sharing  \n\n---\n\n### Installation\n1. Place the compiled `InControlMob.jar` into your server `plugins/` folder for Paper 1.21  \n2. Start the server once to generate the `config/incontrolmob/` folder and sample JSON files  \n3. Edit the JSON files to define your rules  \n4. Use `/incontrolmob reload` to apply changes instantly  \n\n**Default config.yml**\n```yaml\nenabled: true\ndebug: false\ndefault-action: allow\nmax-rule-load-time-ms: 5000\nrule-cache-size: 1024\n```\n\n---\n\n### Commands\n- `/incontrolmob reload` — reload all JSON rules and report errors  \n- `/incontrolmob rules list` — list loaded rules with id, priority, and enabled state  \n- `/incontrolmob rule test <ruleId> <entityType>` — simulate rule evaluation at your location  \n- `/incontrolmob export` — export current loaded rules to a single archive  \n\n**Permissions**\n- `incontrolmob.reload` — allow reload  \n- `incontrolmob.manage` — manage rules and export  \n- `incontrolmob.test` — run rule tests  \n\n---\n\n### Examples\n- **Block pigs**: add `deny_pigs_global` to `spawn.json`, reload, pigs will no longer spawn  \n- **Strong zombies**: add `strong_zombies_plains_night`, reload, zombies in Plains at night spawn with 40 HP, iron sword, and speed effect  \n- **Spawner replacement**: add a `spawner.json` rule to replace zombies with skeletons  \n\n---\n\n### Troubleshooting\n- Enable `debug: true` in `config.yml` for detailed logs  \n- On reload, check console for schema validation errors; invalid rules are skipped and reported  \n- If WorldGuard checks fail, confirm WorldGuard is installed and compatible  \n- For performance, ensure `rule-cache-size` is reasonable and avoid overly broad rules  \n\n---\n\n### Credits\nThis plugin was inspired by the [In Control! Mod](https://modrinth.com/mod/in-control).  \n**InControlMob** is an independent server‑side plugin built for Paper/Spigot, bringing similar rule‑based mob control features to multiplayer servers.\n\n---\n\n### License\nReleased under the **Creative Study Lab License.** (MIT‑style permissive). See the **[License](https://github.com/mahadimdinfo-rgb/InControlMob/blob/main/LICENSE)** file for details.\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 345,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

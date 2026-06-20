@@ -1,0 +1,21 @@
+{
+  "id": "LQ4RxyeE",
+  "slug": "randomjs",
+  "title": "RandomJS",
+  "description": "Added a new category of block presets to KubeJS, allowing players to set custom survival rules for created blocks.",
+  "body": "Added a new category of block presets to KubeJS, allowing players to set custom survival rules for created blocks. (More features coming soon)\n\n## Currently added kinds:\n\n- Determination of the bottom block\n- Determination of whether the immediate neighboring faces are complete or not\n\n## The full list of methods is below:\n\n- customSurviveRule( Json ) (use json to customize the survival rule)\n- surviveType( String ) (select a preset rule for surviving blocks, see below for details)\n- catchAllDirection( Boolean ) (enable full face all match mode)\n\n##  Optional json statement:\n\n- \"setFaceSturdy\" : String[] \n  - (set a list of directions, make the blocks detect if the neighboring faces of the directions in the list are all faces, if any direction meets the condition, all matches need to enable all-face-match mode) \n  - (optional values: \"up\" \"down\" \"east\" \"west\" \"south\" \"north\")\n- \"setBelowBlock\" : String[] \n  - (set a list of blocks so that blocks must be placed on the blocks in the list) \n  - (optional: full block id, e.g. \"minecraft:stone\", no way to match blockstate yet because it's not done yet)\n\n## Future plans:\n\n- More survival rules with preset types\n- Custom HUD\n- Custom GUI\n##  Usage examples:\n\n```\nStartupEvents.registry (\"block\", e=> {\n    e.create (\"block_name\", \"super_block\")\n        .surviveType (\"custom\")\n        .customSurviveRule (\n            {\n                \"setFaceSturdy\" : [\"up\", \"down\"],\n                \"setBelowBlock\" : [\"minecraft:stone\", \"minecraft:oak_log\", \"minecraft:campfire\"]\n            })\n         .catchAllDirection (false)\n})\n```",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 290,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

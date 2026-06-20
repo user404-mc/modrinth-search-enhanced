@@ -1,0 +1,25 @@
+{
+  "id": "1oFTujWR",
+  "slug": "melter",
+  "title": "Melter",
+  "description": "Simple block melter",
+  "body": "# Melter\n\nA simple melter block that turn blocks into liquid.\n\nIntended for modpacks. Use as you see fit.\n\nNot providing any recipe at the moment.\n\nDesigned to work with create but it's optional.\n\nHigh tier heat sources are from Create.\n\n## Heat sources.\n- None (0)\n- Torch (1)\n- Campfire (2)\n- Lava (4)\n- Blaze burner Inactive (8)\n- Blaze burner Active (10)\n- Blaze burner SuperHeated (16)\n\n## Recipe example:\n```\n{\n  \"type\": \"melter:melting\",\n  \"input\": {\n    \"tag\": \"forge:cobblestone\",\n    \"count\": 1\n  },\n  \"output\": {\n    \"fluid\": \"minecraft:lava\",\n    \"amount\": 250\n  },\n  \"processingTime\": 500\n}\n```\n\n### with Minimum Heat\n```\n{\n  \"type\": \"melter:melting\",\n  \"input\": {\n    \"tag\": \"forge:cobblestone\",\n    \"count\": 1\n  },\n  \"output\": {\n    \"fluid\": \"minecraft:lava\",\n    \"amount\": 250\n  },\n  \"processingTime\": 500,\n  \"minimumHeat\": 8\n}\n```\n\n## KubeJS Integration\n```\n//.melterMelting(OUTPUT_FLUID,INPUT_BLOCK).processingTime(INT);\n//.minimumHeat(INT) OPTIONAL\nevent.recipes.melterMelting(Fluid.of('minecraft:water', 200),\"#minecraft:leaves\").processingTime(200); //Water generator\nevent.recipes.melterMelting(Fluid.of('minecraft:lava', 250),\"#forge:cobblestone\").processingTime(1000); //Lava generator\nevent.recipes.melterMelting(Fluid.of('minecraft:lava', 250),\"#forge:cobblestone\").processingTime(1000).minimumHeat(8); //Lava generator\n```\n\n## CraftTweaker Integration (1.19.2, 1.20.1)\n```\n\n//addRecipe(String name, FluidStack outputFluid,Item inputItem, int processingTime, int minimumHeat)\n\n<recipetype:melter:melting>.addRecipe(\"test_recipe\",<fluid:minecraft:water> * 500,<item:minecraft:gravel>, 1000,8);\n<recipetype:melter:melting>.addRecipe(\"test_recipe_2\",<fluid:minecraft:lava> * 500,<item:minecraft:sand>, 200,2);\n\n```",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3224,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

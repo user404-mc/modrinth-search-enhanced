@@ -1,0 +1,21 @@
+{
+  "id": "ltcxjqfb",
+  "slug": "nativeloader",
+  "title": "NativeLoader",
+  "description": "A Fabric mod which allows you to use native code (like C++, C# NativeAOT) to modify the game, using JNA and JNI",
+  "body": "[English](#English)|[简体中文](#简体中文)\n\n# English\n\nNativeLoader is a compatibility-layer Fabric mod designed to modify game content in languages that can be compiled to native code except Java or Kotlin. It interacts with native code via JNI and JNA, giving native code enough flexibility and minimizing performance overhead.\n\n# Use\n\nNativeLoader itself is only responsible for calling native code and providing wrapper classes, and does not modify the game content, you need to use other languages that can be compiled to native code and publish them as dll/so/dylib to actually modify the game\n\n> It is often necessary to use third-party libraries when writing code, which can avoid causing Invalid Memory Access by allowing users to interact directly with JNI\n\n> Although this is not necessary, we recommend that libraries in other languages provide corresponding Java class bindings to provide a similar programming experience to Java\n\n> The currently available library is [Mliybs.Minecraft.Fabric](https://github.com/Mliybs/Mliybs.Minecraft.Fabric) for C# NativeAOT\n\n## Load your code\n\nAssuming you have made a dll, you need to create a valid resource package in the nativepacks folder of the game directory (if it doesn't exist, the game will automatically create it when it starts running), and place your dll in the assets/arbitrary namespace ID/natives/ directory, for example:\n\n![dll example](https://cdn.modrinth.com/data/cached_images/1becbdf4fe1aedf7210d54249ed659f235d46e3a.png)\n\n> It is important to note that the path and file name must be valid identifiers and can only contain lowercase letters, numbers, and ,.-_ characters\n\nOnce done, launch the game and the game will automatically load all dll/so/dylib in the natives path in all namespaces（the resource pack will also be loaded）\n\nIf your dll contains code to modify the game, you should be able to see the changes in the game\n\n> If your dll is coming from someone else, make sure it's safe\n\n# P.S\n\nNativeLoader is currently in the development phase, but the basic functionality is complete\n\nWe expect that Mixin is unlikely to add support in the future, but reflection in Java is not limited to this (called directly via JNI functions)\n\nNativeLoader needs more people to help improve it, contributions are welcome!\n\n# 简体中文\n\nNativeLoader是一个兼容层Fabric Mod，旨在通过除Java Kotlin以外的能编译成原生代码的其他语言修改游戏内容。它通过JNI和JNA与原生代码交互，不仅给了原生代码足够的灵活程度还尽可能减少了性能开销。\n\n# 使用\n\nNativeLoader本身只负责调用本机的原生代码以及提供包装类，并不会修改游戏内容，你需要使用其他能够编译成原生代码的语言并将它们发布成dll/so/dylib才能真正修改游戏\n\n> 在编写代码的时候往往需要使用第三方库，这能够避免让用户直接与JNI交互导致Invalid Memory Access\n\n> 尽管这不是必要的，但我们建议其他语言的库提供相对应的Java类绑定，尽力提供与Java相似的编程体验\n\n> 目前的可用库有 [Mliybs.Minecraft.Fabric](https://github.com/Mliybs/Mliybs.Minecraft.Fabric)，用于C# NativeAOT\n\n## 调用你的代码\n\n假设你已经制作好了一个dll，你需要在游戏目录下的nativepacks文件夹（若不存在则游戏在开始运行时会自动创建）中创建一个合法的资源包（这个资源包后续也会用来存放资源），在assets/任意命名空间ID/natives/目录中放置你的dll，例如：\n\n![dll example](https://cdn.modrinth.com/data/cached_images/1becbdf4fe1aedf7210d54249ed659f235d46e3a.png)\n\n> 需要注意的是，路径和文件名必须是合法的标识符，只能包含小写字母，数字，以及,.-_几个字符\n\n完成后，启动游戏，游戏就会自动加载所有命名空间中natives路径下的所有dll/so/dylib（资源包也会被强制加载）\n\n如果你的dll中包含了修改游戏的代码，你应该就能在游戏中看到它的更改了\n\n> 如果你的dll来自其他人，请确保它是安全的\n\n# 附言\n\nNativeLoader目前还处于开发阶段，但基本功能已完成\n\n我们预计将来Mixin不太可能添加支持，但Java中的反射不受此限制（直接通过JNI函数进行调用）\n\nNativeLoader需要更多人来帮助完善，欢迎所有人的贡献！",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 265,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

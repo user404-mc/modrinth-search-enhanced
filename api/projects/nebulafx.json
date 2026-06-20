@@ -1,0 +1,22 @@
+{
+  "id": "B1TAstLY",
+  "slug": "nebulafx",
+  "title": "NebulaFX",
+  "description": "A particle mod powered by a high-performance GPU-instanced rendering engine and optimized NBL streaming for fluid, large-scale animations.",
+  "body": "![Banner](https://cdn.modrinth.com/data/cached_images/f337eaf8df241f37b8987fb15eaea5d718edfe4d_0.webp)\n\n# Nebula FX\n\n![License](https://img.shields.io/badge/LICENSE-GPL_v3-green?style=for-the-badge)\n![OpenGL](https://img.shields.io/badge/OpenGL-4.4%2B-blue?style=for-the-badge&logo=opengl&logoColor=white)\n![Mac Compatibility](https://img.shields.io/badge/MAC-UNSUPPORTED-red?style=for-the-badge&logo=apple)\n\n**Nebula** is a particle mod powered by a high-performance GPU-instanced rendering engine and optimized NBL streaming for fluid, large-scale animations.\n\n\n## Core Features:\n\n### High-Performance Rendering\n\n* **GPU Driven:** Built on **OpenGL 4.4+ Compute Shaders** and **SSBO** technology.\n* **Zero-Allocation:** Logically ensures no object allocation during runtime, completely eliminating GC pressure.\n* **PMB (Persistent Mapped Buffer):** Utilizes persistent mapped buffer technology to achieve zero-copy data transfer from CPU to GPU.\n* **OIT (Order Independent Transparency):** Supports weighted-blended OIT to perfectly resolve sorting issues during particle overlapping.\n\n### Advanced Architectural Design\n\n* **Multi-threaded Streaming:** `NblStreamer` performs Zstd decompression and state calculation in a background thread, ensuring the main rendering thread is never blocked.\n* **Resource Reference Counting:** Intelligent `TextureCacheSystem` manages VRAM resources, supporting multi-instance reuse and automatic garbage collection.\n* **Immutable Snapshots:** Uses `TextureAtlasMap` to guarantee absolute thread safety in multi-threaded environments.\n\n### Compatibility\n\n* Seamlessly compatible with **Iris Shaders**.\n* Supports **ReplayMod** recording and rendering.\n\n### .nbl File Format\n\nNebula uses a custom `.nbl` binary format specifically engineered for streaming:\n\n* **Zstd Compression:** High compression ratios coupled with ultra-fast decompression speeds.\n* **SoA Layout:** Data is organized in memory using a **Structure of Arrays** layout to maximize CPU cache hit rates.\n* **I/P Frame Structure:** Similar to video encoding; utilizes Keyframes (I-Frames) and Predicted Frames (P-Frames) to drastically reduce file size.\n\nFor more information about the nbl format, please click [here](https://github.com/atemukesu/Nebula/blob/main/docs/nbl_format_en.md).\n\nAlso, you can use the [Blender Addon](https://github.com/atemukesu/Nebula/releases) to export a Blender animation as a .nbl particle animation.\n\n##  Installation & Usage\n\n### Prerequisites\n\n* Minecraft 1.20.1 (Fabric)\n* Fabric API\n* ThreatenGL\n* ModMenu\n* Yet Another Config Lib\n* GPU with OpenGL 4.4+ support\n\n### Resource Paths\n\n* **Animation Files:** `.minecraft/nebula/animations/*.nbl`\n\n### Play Animations\n\nYou can use this command to play NBL Animations.\n\n```\n/nebula play <animation_name> [origin_x] [origin_y] [origin_z]\n```\n\n## Thanks\n* [MadParticle](https://github.com/USS-Shenzhou/MadParticle) for the inspiration and reference implementation.\n\n## Contributing\n\nContributions of any kind are welcome! You can participate by:\n\n* **Submitting Issues**: Report bugs, suggest new features, or provide feedback.\n* **Submitting Pull Requests**: Fix known issues, optimize code, or improve documentation.\n* **Localization**: Help us translate the mod into more languages.\n\nPlease ensure your code follows the project's coding style before submitting a PR.\n\n## License\nThis project is licensed under the [GPL-v3 License]([LICENSE](https://github.com/atemukesu/Nebula/blob/main/LICENSE)).\n\n---\n\nMade by Atemukesu with ❤️",
+  "categories": [
+    "decoration",
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 911,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

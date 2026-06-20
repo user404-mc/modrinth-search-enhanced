@@ -1,0 +1,31 @@
+{
+  "id": "rDPwXXZ4",
+  "slug": "suggestionproviderfix",
+  "title": "Suggestion Provider Fix",
+  "description": "Small fix to the commands suggestion provider so modded resources are auto-filled.",
+  "body": "A minor change to Minecraft's suggestion provider so that it auto-completes resource locations for all mod namespaces.\n\nWhilst this is a very tiny change, if you use commands a lot in modded it is likely to save you a lot of time.\n\nNote that this mod does not need to be installed on a dedicated server to work, though doing so is advisable so that the client and server mod list match.\n\n## Usage example\nLet's say you want to use `/give` to spawn yourself an `oak_seed` from Dynamic Trees. With vanilla, you may begin to type `/give @p oak_seed`. However, no auto-complete suggestions come up, as it expects you to type  the fully qualified `dynamictrees:oak_seed` name:\n\n![](https://github.com/harleyoc1/SuggestionProviderFix/blob/1.16.5/without.gif?raw=true)\n\nWhen Suggestion Provider Fix is installed, beginning to type `oak_seed` will suggest any items with that name, regardless of which mod adds it. So, the oak seed from Dynamic Trees will be suggested:\n\n![](https://github.com/harleyoc1/SuggestionProviderFix/blob/1.16.5/with.gif?raw=true)\n\nThis also works with other registries that use resource locations, including blocks, biomes, and even custom registries from other mods. \n\n## Licensing\nPermission is hereby granted to use this mod in ANY mod pack or server. Attribution would be nice but isn't required.\n\n## Technical description\nThis mod uses a Mixin to overwrite `SharedSuggestionProvider#filterResources(Iterable, String, Function, Consumer)`, doing exactly the same thing but negating a check on whether or not the namespace of the `ResourceLocation` is equal to `minecraft` (since this is the default when a path is typed without a namespace). This means that suggestion providers for `ResourceLocation` objects will suggest all paths matching the input string if no namespace was entered, instead of only those from Minecraft itself.\n",
+  "categories": [
+    "forge",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 375078,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.21"
+  ],
+  "date_updated": null
+}

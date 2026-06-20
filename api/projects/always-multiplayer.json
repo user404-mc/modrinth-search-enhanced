@@ -1,0 +1,32 @@
+{
+  "id": "AwpvUwLx",
+  "slug": "always-multiplayer",
+  "title": "Always Multiplayer",
+  "description": "Lightweight mod that automatically publishes singleplayer worlds for online play. Allows your friends to join without always having to remember to enable multiplayer first.",
+  "body": "# Key Features\n* Publish singleplayer worlds automatically when loading the world.\n* Restrict access to friends only.\n* Use native server commands like /whitelist and /ban.\n* Set default gamemode and commands for other players.\n\n\n# Config\nGlobal settings can be added in `config/alwaysmultiplayer.json`. These settings can also be found under the Minecraft main menu `Options...` -> `Online...` -> `Always Multiplayer Config...`\n\n| Setting | Default | Description |\n| ------- | ------- | ----------- |\n| `multiplayer` | `LAN` | Set to `LAN` to open all singleplayer worlds to LAN by default (or to the internet with port forwarding or other mods). Turn `OFF` to stay in singleplayer by default. |\n| `access` | `FRIENDS` | Who can join your multiplayer worlds. <br> `FRIENDS`: allow Minecraft friends (and whitelisted players). <br> `WHITELIST`: only allow whitelisted players. <br> `OPEN`: allow all connections. |\n| `gamemode` | `null` (Auto) | The default game mode for other players that join your worlds. Set `null` to follow the world setting, or set to `SURVIVAL`, `CREATIVE`, `ADVENTURE`, or `SPECTATOR` to assign a global default. |\n| `commands` | `null` (Auto) | The default commands for other players that join your worlds. Set `null` to follow the world setting, or set to `true` or `false` to assign a global default. |\n| `port` | `null` (Auto) | The default port number for LAN worlds only. Set `null` to auto assign a free port each time, or enter a number between 1024 and 65535. |\n\n\n# Commands\nAll the built in server commands are made available, including /ban /whitelist and /op. These commands create json files at the root of your profile folder (not specific to any world). I.e. the same location as your usercache.json. See example [whitelist.json](https://minecraft.wiki/w/Server#Whitelist).\n\n| Command | Description | Example | Operator Level |\n| ------- | ----------- | ------- | -------- |\n| [/whitelist](https://minecraft.wiki/w/Commands/whitelist) | White-list a player to allow them to join when the Access setting is FRIENDS or WHITELIST. | `/whitelist add Player123` | 3 (Admin) |\n| [/ban](https://minecraft.wiki/w/Commands/ban) | Ban a player from joining any of your worlds. Also includes /ban-ip and /banlist. | `/ban Player123` | 3 (Admin) |\n| [/pardon](https://minecraft.wiki/w/Commands/pardon) | Unbans a player so they can join all of your worlds. | `/pardon Player123` | 3 (Admin) |\n| [/op](https://minecraft.wiki/w/Commands/op) | Makes a player a level 2 Operator (the same permissions that enabling 'Commands' gives by default). | `/op Player123` | 3 (Admin) |\n| [/deop](https://minecraft.wiki/w/Commands/deop) | Removes a players Operator permissions (unless 'Commands' are enabled for other players by default). | `/deop Player123` | 3 (Admin) |\n| [/perf](https://minecraft.wiki/w/Commands/perf) | Starts the performance profiler. | `/perf start` | 4 (Owner) |\n| [/save-all](https://minecraft.wiki/w/Commands/save-all) | Saves the world. Also includes /save-off and /save-on. | `/save-all` | 4 (Owner) |\n| [/stop](https://minecraft.wiki/w/Commands/stop) | Stops the server and disconnects all players (alternatively use /unpublish). | `/stop` | 4 (Owner) |\n\n\n# Opening LAN worlds to the internet\nP2P has been removed from the 26.2 update (for now), and with it the 'Online' multiplayer option for singleplayer worlds. While this does make it harder to connect with friends, it's still possible using the 'LAN' multiplayer option and some additional setup.  \n\n* Create a port forwarding rule on your home router to forward a specific port to your computer, and get your friends to join using [your public IP address](https://whatismyipaddress.com/) + the port number, e.g. `10.1.1.1:5555`.\n* Or, use mods like [e4mc](https://modrinth.com/mod/e4mc) which assigns a unique public domain each time you open your world to LAN.\n\n_Make sure to use whitelist or access restrictions if you want to prevent unexpected connections._",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 245,
+  "followers": 0,
+  "game_versions": [
+    "26.2-snapshot-7",
+    "26.2-snapshot-8",
+    "26.2-pre-1",
+    "26.2-pre-2",
+    "26.2-pre-3",
+    "26.2-pre-4",
+    "26.2-pre-5",
+    "26.2-pre-6",
+    "26.2-rc-1",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

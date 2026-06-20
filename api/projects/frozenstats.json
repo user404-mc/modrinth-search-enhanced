@@ -1,0 +1,32 @@
+{
+  "id": "4WrEKmfv",
+  "slug": "frozenstats",
+  "title": "FrozenStats",
+  "description": "The ultimate replica of DonutSMP Stats",
+  "body": "> # FrozenStats ❄️\n\nA stats GUI plugin for Minecraft — styled like DonutSMP Stats.  \nBuilt with **Maven**, using the exact same architecture as the original DonutStats source.\n\n---\n\n## Supported Versions\n- Minecraft **1.21 – 1.21.11**\n\n## Supported Server Software\n| Software | Supported |\n|----------|-----------|\n| Paper    | ✅ |\n| Spigot   | ✅ |\n| Purpur   | ✅ |\n| Folia    | ✅ (`folia-supported: true`) |\n\n---\n\n## Features\n- Stats GUI identical to DonutSMP (Money, Total Money Paid, Kills, Deaths, Playtime, Blocks, Mobs, Shop stats)\n- **Shards replaced with \"Total Money Paid\"** — tracks the lifetime total of all Vault deposits made to the player\n- Full `&#RRGGBB` hex colour support in all config text\n- PlaceholderAPI support — every lore line runs through PAPI\n- Configurable sounds (all keys are registry-safe for 1.21)\n- `/stats`, `/stats <player>`, `/stats reload`\n- Offline player support + tab completion with offline player cache\n\n---\n\n## Commands & Permissions\n\n| Command | Permission | Default |\n|---------|-----------|---------|\n| `/stats` | `stats.use` | `true` |\n| `/stats <player>` | `stats.other` | `op` |\n| `/stats reload` | `stats.reload` | `op` |\n\n---\n\n## Soft Dependencies\n- **PlaceholderAPI** — for all `%holorams_*%`, `%donutshop_*%`, `%donutsell_*%`, and `%frozenstats_*%` placeholders\n- **Vault** — for current balance display and lifetime total-paid tracking\n\n---\n\n## Total Money Paid — How it Works\n\nFrozenStats tracks the **cumulative total money ever paid/deposited** to each player via Vault.\n\nData is stored in `plugins/FrozenStats/data/totalpaid.yml` (UUID → double).\n\n### PlaceholderAPI placeholders\n| Placeholder | Description |\n|-------------|-------------|\n| `%frozenstats_total_paid%` | Vault-formatted total (e.g. `$1,234.56`) |\n| `%frozenstats_total_paid_short%` | Short form (e.g. `1.2k`, `3.4M`) |\n| `%frozenstats_total_paid_raw%` | Raw double value |\n\n### Recording payments from another plugin\nIf you have a custom shop or reward plugin, call FrozenStats' API to record each payment:\n\n```java\nPlugin fs = Bukkit.getPluginManager().getPlugin(\"FrozenStats\");\nif (fs instanceof FrozenStats frozenStats) {\n    frozenStats.recordPayment(player.getUniqueId(), amount);\n}\n```\n\n\n## Config Files\n\n| File | Purpose |\n|------|---------|\n| `config.yml` | Messages & sound keys |\n| `gui.yml` | All GUI items (rows, title, slots, materials, names, lore) |\n| `data/totalpaid.yml` | Auto-generated — stores lifetime payment data per UUID |\n",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 291,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

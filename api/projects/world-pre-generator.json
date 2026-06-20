@@ -1,0 +1,40 @@
+{
+  "id": "daLkM863",
+  "slug": "world-pre-generator",
+  "title": "World Pre Generator",
+  "description": "Provides a pre-generator for Minecraft worlds.",
+  "body": "## Version 5.X.X  \nFor older versions of the mod, check the [wiki](https://github.com/GeheimagentNr1/WorldPreGenerator/wiki).  \n\nThis Mod can pre generate the Minecraft dimensions per command.  \nThe Mod is only needed on the server side, but can also be used on the client side.  \n\n---\n\nYou need a server to play with friends? You don't know how to set up one? Just rent an already configured server!  \n\n![BisectHosting Promotion Banner](https://raw.githubusercontent.com/GeheimagentNr1/Online_Mod_Data/master/images/bisect_hosting_banner.png)  \n\nClick on the picture above, select a plan (with recommended at least 6 GB),  \nuse my code **[agent](https://bisecthosting.com/agent)** to get **25%** off your first month and enjoy playing with your friends!  \n\n---\n\n## Support  \n![Supported Versions Image](https://raw.githubusercontent.com/GeheimagentNr1/Online_Mod_Data/master/Supported_Versions.png)  \nMinecraft versions, for which the mod is not released, are not supported.  \nYou can find a text version [here](https://github.com/GeheimagentNr1/Online_Mod_Data/wiki/Supported-Versions).  \n\n## Hints  \nThe pre generation tasks are executed one after the other.  \nThe pre generations are continued after restarts.  \nChunks already generated are skipped on pre-generation, if the forced flag is not true.  \nIf you run semi-parallel pre generation, you should set \"max-tick-time\" in the \"server.properties\"-file to -1 to prevent crashes, because the tick time gets too long.  \nIn semi-parallel pre generation mode, multiple tasks for pre generation are started in parallel, but the execution is done the Minecraft way. As of 1.20.1, this means, that only one chunk can be generated at a time.  \n\n## Server Config  \nThe config file can be found in the \"serverconfig\" folder in the \"world\" folder and is named \"world\\_pre\\_generator-server.toml\". The name of the world folder is set for servers in the \"server.properties\" file and for clients it is the name of the world/save game in the world list, and it can be found in the \"saves\" folder in the \".minecraft\" folder.  \n\n* **send\\_feedback**  \nShall a pre generation feedback send to all online players?\n* **generation**  \nParameters for generation\n  * **type**  \n  Type of generation  \n  SERIAL: Every chunk one after another is generated.  \n  SEMI\\_PARALLEL: Multiple chunk generation tasks are created, but the generation is still serial (speed up the chunk generation).\n  * **semi\\_parallel\\_task\\_count**  \n  How many chunk generation tasks shall be start in parallel?  \n  If the value is \"0\", the number of processor cores is used.\n* **delays**  \nDelays of the print and save tasks\n  * **print**  \n  Time between 2 status prints\n  * **save**  \n  Time between 2 saving events\n\n## Commands  \n* `/pregen list` - Lists all running pre generation tasks.\n* `/pregen gen <dimension> start <block|chunk> <center> <radius> [<force>]` - Creates a pre generation task with the specified centre, radius and dimension. Optional, the force flag (true, false) can be set. If it is set to true, all chunks are loaded. If it is set to false, already generated chunks are skipped. If the force flag is absent, it is set to false.\n  * **block**: The center coordinates and the radius are in blocks.  \n  If you want to generate a 4000x4000 (2000 in the positive and negative direction) from the center of the world, the command would be:  \n  `/pregen gen minecraft:overworld start block 0 0 2000`  \n  If you want to generate a 4002x4002 (2001 in the positive and negative direction) from x = 100, z = 150 of the world, the command would be:  \n  `/pregen gen minecraft:overworld start block 100 150 2001`  \n  Hint: In the pregeneration list it will show up, with the following center and radius data, because the block data are calculated to chunk data and back:  \n  x = \"round down\"(100 / 16) \\* 16 = 96  \n  z = \"round down\"(150 / 16) \\* 16 = 144  \n  radius = \"round up\"(2001 / 16) \\* 16 = 2016\n  * **chunk**: The center coordinates and the radius are in chunks.  \n  If you want to generate a 4000x4000 (2000 in the positive and negative direction) from the center of the world, the command would be:  \n  `/pregen gen minecraft:overworld start chunk 0 0 125`  \n  If you want to generate a 4002x4002 (2001 in the positive and negative direction) from x = 100, z = 150 of the world.  \n  \"chunk x\" = \"round down\"(100 / 16) = 6  \n  \"chunk z\" = \"round down\"(150 / 16) = 9  \n  \"chunk radius\" = \"round up\"(2001 / 16) = 126  \n  The command would be:  \n  `/pregen gen minecraft:overworld start chunk 6 9 126`\n* `/pregen gen <dimension> resume` - Resumes the pre generation task of the dimension.\n* `/pregen gen <dimension> pause` - Pauses the pre generation task of the dimension.\n* `/pregen gen <dimension> cancel` - Cancels the pre generation task of the dimension.\n* `/pregen clear` - Cancels all pre generation tasks.\n* `/pregen sendFeedback` - Shows, if the progression feedback is enabled or disabled.\n* `/pregen sendFeedback <isFeedbackEnabled>` - Enables or disables progression feedback depending on isFeedbackEnabled. Generation start and finish feedback are not affected of that.\n\n## Progression State  \nThe progress state computed is in chunks.  \nYou get the following information in the generation messages: \"A B/C (D%) E chunks/s\"  \n* **Dimension (A)**\n* **Chunk generated (B)**\n* **Total chunks to generate (C)**\n* **Percentage of chunks for which generation is finished (D)**\n* **Rate of Chunks per second generated between this and the last message (E)**\n\n---\n\nThanks for the logo to Muse31.  \nYou can use this mod in non-commercial modpacks without asking.  \nYou can find more mods from me on [CurseForge](https://www.curseforge.com/members/geheimagentnr1/projects) and [Modrinth](https://modrinth.com/user/GeheimagentNr1).  \n\n![This is a Forge mod only until 1.21.1. This is a NeoForge mod only starting 1.21.1. There will be no Fabric version. It will not be backported.](https://raw.githubusercontent.com/GeheimagentNr1/Online_Mod_Data/master/images/mod_loader_banner.png)  ",
+  "categories": [
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 17695,
+  "followers": 0,
+  "game_versions": [
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

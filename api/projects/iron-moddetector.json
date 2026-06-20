@@ -1,0 +1,37 @@
+{
+  "id": "7uU42k71",
+  "slug": "iron-moddetector",
+  "title": "ModDetector",
+  "description": "A Simple ModDetector Paper Plugin (Folia Supported) wich detects mods and kicks player if they have those mods.",
+  "body": "# ModDetector\n\n> Packet-level cheat mod detection for Minecraft servers. Identifies disallowed client modifications using a translation key exploit — without any client-side agent.\n\n![PacketEvents](https://img.shields.io/badge/PacketEvents-required-brightgreen)\n![Paper/Spigot](https://img.shields.io/badge/Paper%20%2F%20Spigot-1.19%2B-brightgreen)\n![Java](https://img.shields.io/badge/Java-21%2B-orange)\n\n---\n\n## How it works\n\nThe plugin exploits Minecraft's sign editing flow to probe the client's translation table. If a mod is installed, it replaces translation keys with its own strings — betraying its presence.\n\n**Detection flow (at connection time):**\n\n1. A `BlockUpdatePacket` is sent to place a virtual sign near the player\n2. An `OpenSignEditorPacket` is sent, opening the sign editor on the client\n3. A `SignUpdatePacket` is sent containing the mod's translation key as the sign text\n4. The client echoes the sign content back — if the value differs from the default fallback, the mod is present\n\n> The entire handshake is invisible to the player and occurs silently at connection time. No GUI is shown, no chat messages are sent during detection.\n\n---\n\n## Detected mods\n\nThe following mods are blocked out of the box. You can extend the list in `config.yml`.\n\n| Mod | Translation Key |\n|-----|----------------|\n| Meteor Client | `key.meteor-client.open-gui` |\n| Item Scroller | `itemscroller.gui.button.config_gui.generic` |\n| Freecam | `key.freecam.toggle` |\n| Accurate Block Placement | `text.autoconfig.accurateblockplacement.title` |\n\n---\n\n## Configuration\n\nAll settings live in `plugins/ModDetector/config.yml`.\n\n```yaml\n# Fallback value used to detect mod presence\ndefault: \"fallb\"\n\n# Message shown to the player on detection\n# Supports MiniMessage, modern & legacy ampersand codes\nkick-message:\n  - \"&cYou are using a cheat mod that is not allowed on [Your Server] (%mod%!), if you join\"\n  - \"with this again you will be banned!\"\n\n# Mod translation keys to detect\ndisallowed-mods:\n  \"Meteor\": \"key.meteor-client.open-gui\"\n  \"Item Scroller\": \"itemscroller.gui.button.config_gui.generic\"\n  \"Freecam\": \"key.freecam.toggle\"\n  \"Accurate Block Placement\": \"text.autoconfig.accurateblockplacement.title\"\n\n# Enable packet & result logging for debugging\ndebug: false\n```\n\n### Color code support\n\nThe `kick-message` field supports all three Minecraft color systems:\n\n- **MiniMessage** — `<red>`, `<#ff4455>`\n- **Modern ampersand** — `&c`, `&#ff4455`\n- **Legacy ampersand** — `&c`, `&x&f&f&4&4&5&5`\n\n---\n\n## Adding custom mods\n\nAny mod that registers Minecraft translation keys can be detected. Find the key in the mod's language files (usually in `assets/<modid>/lang/en_us.json`) and add it to `disallowed-mods`:\n\n```yaml\ndisallowed-mods:\n  \"Your Mod Name\": \"your.mod.translation.key\"\n```\n\n> **Note:** The `default` field must be set to a string that is *never* a valid translation output — the default `\"fallb\"` is safe for vanilla clients. Do not change it unless you understand the detection logic.\n\n---\n\n## Requirements\n\n| Requirement | Version |\n|-------------|---------|\n| Paper / Spigot | 1.19+ |\n| [PacketEvents](https://github.com/retrooper/packetevents) | Latest |\n| Java | 17+ |\n\n---\n\n## Installation\n\n1. Download and place `ModDetector.jar` into your `plugins/` folder\n2. Download [PacketEvents](https://github.com/retrooper/packetevents/releases) and place it in `plugins/` as well\n3. Start the server — `config.yml` will be generated automatically\n4. Edit `config.yml` to configure your kick message and disallowed mods\n5. Reload with `/reload` or restart the server\n\n---\n\n*Inspired by PvPClub's detection approach. *",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 131,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

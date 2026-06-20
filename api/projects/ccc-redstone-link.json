@@ -1,0 +1,30 @@
+{
+  "id": "zDWcAhSD",
+  "slug": "ccc-redstone-link",
+  "title": "CC: Create Redstone Link",
+  "description": "This mod connects Create Redstone Link networks with CC:Tweaked computers.",
+  "body": "# CC: Create Redstone Link\n\nBased on <https://modrinth.com/mod/cc-redstone-link-bridge>. I would have simply contributed the additional feature of adding color support there, but unfortunately that mod is not source available (despite the MIT license on its page).\n\nThis mod connects **Create Redstone Link networks** with **CC:Tweaked computers**. It adds a single block, the **CC Redstone Link Bridge**, which can be placed in the world and then used as a ComputerCraft peripheral.\n\nThis mod requires **Create** and **CC:Tweaked**.\n\n## What the Mod Does\n\nThe bridge acts as a small adapter between two systems:\n\n- **Create** provides the Redstone Link network.\n- **CC:Tweaked** provides Lua control from computers.\n\nWith the bridge block in the world, a connected computer can:\n\n- read the current signal strength of any Redstone Link frequency pair\n- send a signal strength to any Redstone Link frequency pair\n- optionally tag either frequency slot with a 24-bit RGB dye color\n\nThe mod is intentionally minimal. The Lua interface only exposes the operations required for direct network interaction.\n\n## How It Works\n\nWhen the peripheral is used from Lua:\n\n- `getLinkSignal(freq1, freq2)` looks up the current strength for that frequency pair.\n- `sendLinkSignal(freq1, freq2, strength)` sets the target frequency pair and transmits the chosen strength.\n\nBoth functions accept two optional trailing arguments, `color1` and `color2`, which apply a dye color to the corresponding frequency slot.\nThe frequency values are item IDs written as strings. For example, `minecraft:iron_ingot` and `minecraft:oak_sapling` form one valid pair.\n\n## Crafting Recipe\n\n![The recipe is a 3×3 shaped craft with Redstone Links in all four corners, a Wireless Modem in the center, and Cobblestone in the bottom-middle slot. The three remaining middle-edge slots (top-middle, middle-left, and middle-right) are filled with Create transmitters.](https://cdn.modrinth.com/data/cached_images/488b831109d9f8042ce81cb0868cbf9e4d71264b_0.webp)\n\n## Lua API\n\nPeripheral type:\n\n- `redstone_link_bridge`\n\nMethods:\n\n- `getLinkSignal(freq1, freq2 [, color1 [, color2]])` -> `number`\n- `sendLinkSignal(freq1, freq2, strength [, color1 [, color2]])`\n\n### Frequency Values\n\n`freq1` and `freq2` must be item IDs as strings.\n\nExamples:\n\n- `\"minecraft:iron_ingot\"`\n- `\"minecraft:oak_sapling\"`\n- `\"minecraft:redstone\"`\n\nUse an empty string (`\"\"`) if you want to represent an empty frequency value.\n\n### Frequency Colors\n\n`color1` and `color2` are optional 24-bit RGB integers in the form `0xRRGGBB`. They are only meaningful when the corresponding frequency item supports Minecraft's `DYED_COLOR` data component, which is only leather armor and leather horse armor in vanilla. A colored slot is on a different Redstone Link network from an uncolored slot of the same item, and different colors produce different networks.\n\nThe Minecraft Wiki Dye page lists the RGB value each of the 16 standard dyes produces when applied to leather armor in Java Edition. Useful values:\n\n- `0xB02E26` -- Red Dye\n- `0x3C44AA` -- Blue Dye\n- `0xFED83D` -- Yellow Dye\n- `0x5E7C16` -- Green Dye\n- `0x1D1D21` -- Black Dye\n- `0xF9FFFE` -- White Dye\n\nPass `nil` (or simply omit the argument) for a slot that should remain uncolored. To color only the second slot, pass `nil` for the first.\n\n## Example\n\n```lua\nlocal bridge = peripheral.find(\"redstone_link_bridge\")\nassert(bridge, \"No redstone_link_bridge found\")\n\n-- Read an existing frequency pair\nlocal current = bridge.getLinkSignal(\"minecraft:diamond\", \"minecraft:redstone\")\nprint(\"Current signal:\", current)\n\n-- Send a signal to a frequency pair\nbridge.sendLinkSignal(\"minecraft:diamond\", \"minecraft:redstone\", 7)\n\n-- Send on a color-tagged channel. This matches a physical Redstone Link\n-- whose leather-armor slots were dyed with one Red Dye and one Blue Dye.\nbridge.sendLinkSignal(\n    \"minecraft:leather_chestplate\",\n    \"minecraft:leather_helmet\",\n    15,\n    0xB02E26,   -- Red Dye\n    0x3C44AA)   -- Blue Dye\n\n-- Only the second slot is colored\nbridge.sendLinkSignal(\n    \"minecraft:leather_chestplate\",\n    \"minecraft:leather_helmet\",\n    15,\n    nil,\n    0x3C44AA)   -- Blue Dye\n```\n",
+  "categories": [
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2105,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

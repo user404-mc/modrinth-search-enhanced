@@ -1,0 +1,25 @@
+{
+  "id": "kbYX74kg",
+  "slug": "blame",
+  "title": "Blame",
+  "description": "Placing blame on broken mods!",
+  "body": "# Ready to find who to Blame?\n\n&nbsp;\n\n**Blame is a diagnosis to be put on if you are having strange worldgen crashes or commands that break without any stacktrace. But when you have Blame on, it will attempt to gather far more infomation and print the stacktrace to the latest.log file in the logs folder above the mods folder. A much more convenient place with all the info you will need! Keep in mind, Blame only works on singleplayer or on servers. Not on clients connecting to a server.**\n\n&nbsp;\n\n&nbsp;\n\n### Here's the current list of functionalities that Blame has!\n\n&nbsp;\n\n<details>\n\n&bull; Prints out the stacktrace for commands that crashed when used. (Normally, modded commands do not print anything to logs when they crash)\n\n&nbsp;\n\n&bull; Will detect and print out all broken commands when starting up a world. (This will find commands that called an .executes() outside a .then() call because they won't work)\n\n&nbsp;\n\n&bull; Prints extra detail for features or structures that crashes during worldgen.\n\n&nbsp;\n\n&bull; Logs all ConfiguredFeatures, ConfiguredStructures, ConfiguredCarvers that are not registered. (Mods that don't register the stuff will cause other mod's stuff to break and not spawn during worldgen)\n\n&nbsp;\n\n&bull; Detect if DynamicRegistry is loaded way too early by another mod. (Doing so causes all other mod's registered worldgen stuff to blow up such as \"Unknown Biome ID\" issues)\n\n&nbsp;\n\n&bull; Logs out exactly which worldgen JSON file is broken from any mod or datapack and shows its JSON too.\n\n&nbsp;\n\n&bull; Logs out any missing loot table when the loot is attempted to be generated! Check logs if a chest is empty and this mod might catch why.\n\n&nbsp;\n\n&bull; Prints out the name of the crashing structure that has its spacing value set to 0 or if it's separation value is equal to or greater than the spacing value. (Either one of these condition being true will crash the game.)\n\n&nbsp;\n\n&bull; Prints out exactly which structure crashed a custom/flat ChunkGenerator because it wasn't added to FlatGenerationSettings.STRUCTURES\n\n&nbsp;\n\n&bull; Condense broken Recipe and Loot Table parsing so you can share logs easier and see errors easier.\n\n&nbsp;\n\n&bull; Fixes MC-190122 bug so that the actual true number of recipes loaded and stated in logs is correct to help debugging recipes. https://bugs.mojang.com/browse/MC-190122\n\n&nbsp;\n\n&bull; Will print to logs if a Jigsaw Structure attempts to access a non-existent template pool so you know when a structure is not fully generating.\n\n&nbsp;\n\n&bull; Will log out if a mod or datapack tries to access a non-existent nbt file for easier debugging\n\n&nbsp;\n\n&bull; Will print out what block and its nbt that crashed a structure processor during structure generation.\n\n</details>\n\n&nbsp;\n\n## FOR MODDERS: USING BLAME IN Fabric/Quilt DEV ENVIRONMENT\n\n&nbsp;\n\n**In your build.gradle file, add this maven repository. This is where gradle will look for Blame's jar.**\n<blockquote>repositories {\n\n  maven {\n\n    url \"https://nexus.resourcefulbees.com/repository/maven-public/\"\n\n  }\n\n}</blockquote>\n\n&nbsp;\n\n**Now add this to the dependency block. Replace <version> with the Blame version you want to use such as `1.16.5-3.0.1-fabric`. Check the Modrinth page for what the latest version is.**\n<blockquote>dependencies {\n\n   ...\n\n   modImplementation \"com.telepathicgrunt:Blame-Forge:5.0.0+1.18.2\"\n\n}</blockquote>\n\n&nbsp;\n\n**Launch the game and Blame should be running! You can tell as Blame will print something like this to the IDE console and latest.log file:**\n\n<blockquote>[18:25:48] [main/ERROR] (Blame) Blame 1.18.2-5.0.0-forge initialized</blockquote>\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3820,
+  "followers": 0,
+  "game_versions": [
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1"
+  ],
+  "date_updated": null
+}

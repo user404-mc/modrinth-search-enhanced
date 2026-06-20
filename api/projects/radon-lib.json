@@ -1,0 +1,30 @@
+{
+  "id": "noYvmR5y",
+  "slug": "radon-lib",
+  "title": "Radon",
+  "description": "A configuration library which is super easy to use",
+  "body": "# Radon\n\n![time](https://hackatime-badge.hackclub.com/U09C7CEA4JJ/Radon?label=Polokalap)\n![Time](https://hackatime-badge.hackclub.com/U0922GMGGTU/Radon?label=JGJ52)\n\n![Downloads](https://img.shields.io/modrinth/dt/radon-lib?color=darkgreen)\n\nThis mod is a very easily usable configuration library.\n\n**Here's how to use it**:\n- Add the Modrinth Maven repository to your project:\n```groovy\nrepositories {\n    maven {\n        url = \"https://api.modrinth.com/maven\"\n    }  \n}     \n```\n- Add Radon to the dependencies of your mod:\n```groovy\ndependencies {\n    modImplementation \"maven.modrinth:radon-lib:FIND_THE_LATEST_VERSION_ON_MODRINTH\"  \n}\n```\n- Create a class which extends ConfigScreen:\n```java\npackage your.mod;\n\nimport me.kitty.radon.api.*;\n\npublic class MyConfig extends ConfigScreen {\n    @Override\n    public String getScreenTitle() {\n        return \"your screen's title\";\n    }\n    \n    @Override\n    protected void radon() {\n        // you need tabs to create rows\n        Tab tab = tab(\"tab's name\");\n        Tab otherTab = tab(\"second tab\");\n        // you can also create sections\n        Section section = section(otherTab, \"name\");\n        // this is where we create our options\n        // if you want a boolean or an enum\n        // then you want to use ButtonRow\n        enum myEnum {\n            RADON,\n            CONFIG\n        }\n        ButtonRow buttonRow = buttonRow(\n                tab,\n                key(\"button_row\"), // key of the row: Radon will save the content of the row to the disk with this key\n                \"Label of the row\",\n                List.of(\"Tooltip\", \"shows when you\", \"hover the row\", \"with your mouse\"),\n                myEnum.RADON // either an option of your enum or true or false\n        );\n        // you sometimes want to run code, if the button's value is changed\n        // it's very simple to do that:\n        buttonRow.subscribe(newValue -> {\n           // newValue is an object\n           // but you can cast it into\n           (boolean) newValue\n           // or\n           (myEnum) newValue\n           // this will probably be made easier \n        });\n        // now, comes the slider row\n        // use this if you want a number\n        SliderRow sliderRow = sliderRow(\n                section, // here you can use a section instead of the tab\n                key(\"slider_key\"),\n                \"Label of the row\",\n                List.of(\"Tooltip again\"),\n                80, // initial value\n                50, // minimum value\n                100 // maximum value\n        );\n        // here subscribe gives you a long as newValue\n        // you can also run code, if Radon loaded the saved value of the option\n        sliderRow.onInit(() -> {\n            long value = sliderRow.getValue();\n        });\n        // and if you need a string value, use InputRow\n        InputRow inputRow = inputRow(\n                tab,\n                key(\"input\"),\n                \"Label of the row\",\n                List.of(\"Tooltip\"),\n                \"Placeholder\",\n                16 // limit how many characters it can be\n        );\n        // subscribe gives newValue as String here\n    }\n}\n```\n- Add your class to ``fabric.mod.json`` as an entrypoint:\n```json\n{\n  \"entrypoints\": {\n    \"radon\": [\"your.mod.MyConfig\"]\n  }\n}\n```\nIt's that easy!",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1292,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

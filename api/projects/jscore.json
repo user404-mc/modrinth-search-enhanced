@@ -1,0 +1,33 @@
+{
+  "id": "VIo5vWHt",
+  "slug": "jscore",
+  "title": "JSCore",
+  "description": "Extend your game with JavaScript, create and publish commands, menus, toggles and much more!",
+  "body": "<center><h3>BEFORE DOWNLOADING</h1>Read the <a href=\"https://jscore.siri.ws\"><b>JSCore Player Guide</b></a> and <a href=\"https://discord.gg/GnGw655GNb\"><b>Join Discord</b></a></center>\n\n# FabricMC + JavaScript = JSCore\n\nJSCore is a thin wrapper around FabricMC.\n\n## What does this mod do?\n\nThis mod provides full JavaScript support for Minecraft modding, you can create or use community modules to customise your game.\n\nIn short, JSCore can do\n- Everything a typical JS runtime, such as KubeJS, can do.\n- Everything in FabricMC that does not use Mixins*\n- Interact with other mods.\n\n\\*Mixins support depends on whether one guy on Discord can get it to work or not.\n\n## How to use it?\n\nJust download the mod and run the game!\n\nRead the [Quickstart Guide](https://jscore.siri.ws/player/quickstart.html).\n\n## How is it different from KubeJS/JSMacros?\n\n### Access to Minecraft Internals\n\nJSCore allows access to classes in the **net.minecraft** package - anything that FabricMC can do (except Mixins), JSCore can also do it.\n\n```js\n// client: net.minecraft.client.MinecraftClient\nlet client = net.minecraft.client.MinecraftClient.getInstance();\n// player: net.minecraft.client.network.ClientPlayerEntity\nlet player = client.player;\n// position: net.minecraft.util.math.BlockPos\nlet position = player.getBlockPos();\n```\n\n### Module System Similar to Node.js\n\nThe module system from Node.js allows complex game mechanics to be built from small and managable chunks, so we brought it to JSCore.\n\n```js\n// init.js\nlet savePlayers = require(\"./savePlayers\");\nsavePlayers();\n```\n\n```js\n// savePlayers.js\nlet fs = require(\"fs\");\nlet { getPlayers } = require(\"./getPlayers\");\n\nfunction savePlayers() {\n    let players = getPlayers();\n    let content = JSON.stringify(players);\n    fs.writeFileSync(\"./playerList.json\", content);\n}\n\nmodule.exports = savePlayers;\n```\n\n## What features does this mod have?\n\nThis mod runs **init.js** on start.\n\nAdditional features are provided by third-party modules, such as\n- **Rinode**: provide Node.js features such as `console.log` and `fs`.\n- **Command**: Declarative Minecraft command registration.\n- **Pully**: package manager for JSCore.\n\nA list of package can be found in the [package repository](https://github.com/FabricCore/jscore-openrepo?tab=readme-ov-file#all-packages), anyone can publish packages to this repository.\n\n## How does this mod work?\n\nThe Minecraft code is obfuscated and cannot be referred to by their real name. This mod uses Yarnwrap, which wraps all **net.minecraft** classes so their real name can be used instead of their obfuscated name.\n\nThis mod is still in its early stages, please join [**Discord**](https://discord.gg/XfSZ5tc7Sk) for support or to sway its development.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1399,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

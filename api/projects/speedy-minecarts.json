@@ -1,0 +1,33 @@
+{
+  "id": "H2kh1Bg4",
+  "slug": "speedy-minecarts",
+  "title": "Speedy Minecarts",
+  "description": "A lightweight plugin that lets you configure minecart speed globally, per type, or per world — no client mods or resource packs needed.",
+  "body": "# SpeedyMinecarts\n\nA lightweight Paper plugin that lets you configure minecart speed globally, per type, or per world — no client mods or resource packs needed.\n\n## Requirements\n\n- Paper 1.21+ (or Purpur)\n- Java 21+\n\n## Installation\n\n1. Drop `SpeedyMinecarts.jar` into your `plugins/` folder.\n2. Restart the server.\n3. Edit `plugins/SpeedyMinecarts/config.yml`.\n4. Run `/smc reload` to apply changes without restarting.\n\n## Configuration\n\n```yaml\n# Vanilla default max speed is 0.4 blocks/tick (~8 blocks/second).\n# Practical maximum is ~1.0 — above that minecarts can skip rails.\n\n# Applied to all minecart types unless overridden below.\ndefault-speed: 0.8\n\n# Whether empty minecarts slow down (vanilla behaviour: true).\nslow-when-empty: true\n\n# Per-type overrides.\ntypes:\n  rideable: 0.8   # Cart players sit in\n  chest:    0.6   # Chest minecart\n  hopper:   0.6   # Hopper minecart\n  tnt:      0.8   # TNT minecart\n  furnace:  0.8   # Furnace minecart\n  command:  0.8   # Command block minecart\n\n# Per-world overrides. Worlds not listed use the top-level defaults.\nworlds:\n  world_nether:\n    default-speed: 1.0\n    types:\n      rideable: 1.0\n```\n\n### Speed Reference\n\n| Speed (blocks/tick) | Blocks/second | Notes |\n|---|---|---|\n| `0.4` | ~8 | Vanilla default |\n| `0.8` | ~16 | Plugin default — noticeably faster |\n| `1.0` | ~20 | Practical maximum before rail-skipping |\n\n## Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/smc status` | `speedyminecarts.admin` | Show current speed settings |\n| `/smc reload` | `speedyminecarts.admin` | Reload config and apply to all loaded minecarts |\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `speedyminecarts.admin` | op | Access to `/smc` commands |\n\n## Notes\n\n- Speed is applied when a minecart spawns and when its chunk loads. `/smc reload` applies the new speed to every minecart currently loaded across all worlds.\n- Speed values are in **blocks per tick** (20 ticks/second). Multiply by 20 for blocks/second.\n- Values above `1.0` are possible but minecarts may clip through rail connections at high speeds.\n- Works with data packs and other plugins — no special API needed.",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 185,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

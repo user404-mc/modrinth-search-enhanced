@@ -1,0 +1,21 @@
+{
+  "id": "gQOt7U6i",
+  "slug": "better-blur",
+  "title": "Better Blur",
+  "description": "Improved blur algorithm for 24w09a's new GUI",
+  "body": "## Not required in 24w11a and above!\n\n**Note: This resource pack requires a full game restart to load correctly. A restart is also required after disabling the pack.**\n\nImproves the blur algorithm used in 24w09a's new GUI.\n\nThe vanilla blur algorithm uses an unweighted average of surrounding pixels, which produces a blocky appearance (especially look around the hotbar):\n\n![Vanilla blur](https://i.imgur.com/wHSvtvx.png)\n\nThis resource pack slightly modifies the algorithm to reduce the weight of further away pixels, which produces a much nicer blur effect:\n\n![Better blur](https://i.imgur.com/94qZlux.png)\n\nThis is the entire patch to the vanilla blur shader:\n\n<details>\n<summary>Code</summary>\n\n```diff\n--- vanilla/assets/minecraft/shaders/program/blur.fsh    2024-02-28 12:37:42.000000000 +0000\n+++ betterblur/assets/minecraft/shaders/program/blur.fsh    2024-02-28 18:44:39.232389841 +0000\n@@ -28,7 +28,7 @@\n         // Accumulate smoothed blur\n         float strength = 1.0 - abs(r / Radius);\n         totalStrength = totalStrength + strength;\n-        blurred = blurred + sampleValue;\n+        blurred = blurred + (sampleValue * strength);\n     }\n-    fragColor = vec4(blurred.rgb / (Radius * 2.0 + 1.0), totalAlpha);\n+    fragColor = vec4(blurred.rgb / totalStrength, totalAlpha);\n }\n```\n\nGiven the `strength` and `totalStrength` variables are already in the vanilla shader but are unused, it seems possible that the blur algorithm was originally intended to be more similar to this resource pack.\n</details>\n\nI release this under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/), although it probably isn't substantial enough to be eligible for copyright anyway.",
+  "categories": [
+    "core-shaders",
+    "minecraft",
+    "tweaks",
+    "vanilla-like"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 728,
+  "followers": 0,
+  "game_versions": [
+    "24w09a"
+  ],
+  "date_updated": null
+}

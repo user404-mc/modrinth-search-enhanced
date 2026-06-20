@@ -1,0 +1,26 @@
+{
+  "id": "QZ0QTOns",
+  "slug": "quantumchunks",
+  "title": "QuantumChunks",
+  "description": "Multi-core, region-aware chunk loading for large modded servers",
+  "body": "# **QuantumChunks** ⚡\n\n**Multi-core, region-aware chunk loading for busy Forge servers.**\n\nWhen many players explore, vanilla tends to pile chunk work onto a **single thread**. **QuantumChunks** routes chunk preparation and parts of generation onto a **smart worker pool**, parallelizing across **CPU cores** while serializing work inside the same **32×32** region to keep worlds safe and stable.\n\n# 📈Statistics:\n![performance](https://cdn.modrinth.com/data/cached_images/404fbf312d115026856a5722efbcbceb190e8789.png)\n\n# 🧠 How it works (**in plain English**)\n\n>    Minecraft often asks for a “background executor” to run chunk tasks.\n\n>    QuantumChunks swaps those calls to a dedicated worker pool.\n\n>    Each task is tagged with its 32×32 chunk region:\n\n>     Same region → processed one at a time (no races)\n\n>     Different regions → processed in parallel across your cores\n\nResult: smoother TPS and fewer MSPT spikes when many players move at once.\n\n\n\n# 🔧 **Config** (server)\n\nconfig/quantumchunks-server.toml\n\n![config](https://i.imgur.com/SO8WorO.png)\n\n\n# 📊 **Verifying improvements**\n\nUse your favorite profiler (e.g., Spark):\n\n/quantumchunks - CPU average usage, chunks loaded for 10 secs/1 minute\n\n/spark tps — watch MSPT during exploration\n\n/spark profiler --timeout 60 — look for chunk work on worker threads\nYou should see higher total CPU usage (multiple cores active) and fewer >50ms ticks during chunk storms.\n![stats](https://i.imgur.com/6ACzH9P.png)",
+  "categories": [
+    "forge",
+    "management",
+    "optimization",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5288,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

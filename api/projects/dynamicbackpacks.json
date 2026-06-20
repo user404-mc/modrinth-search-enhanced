@@ -1,0 +1,35 @@
+{
+  "id": "Xk3GodX1",
+  "slug": "dynamicbackpacks",
+  "title": "DynamicBackpacks",
+  "description": "A complete, fully configurable progression-based backpack plugin for Paper and Spigot 1.21 - 1.21.11.",
+  "body": "\nTired of players being overburdened every five minutes? DynamicBackpacks adds a full backpack system with six upgradeable tiers, two different ways to use them, and zero jank. Everything saves to SQLite so no one loses their stuff on a restart.\n\n---\n\n## How it works\n\nThere are two types of backpacks and you can run both at the same time (or just one, or neither, it's all in the config).\n\n**Item backpacks** are physical items. Craft one, throw it in your hotbar, right-click it and a chest GUI opens. The backpack is tied to a unique ID behind the scenes so even if you somehow lose the item, an admin can restore it with `/dbp restore <uuid> <player>` and all your items come back. You can also just right-click it while it's sitting in any inventory slot, doesn't have to be in your hand.\n\n**Command backpacks** are more like private storage lockers. Run `/bp 1` and it opens your slot 1, `/bp 2` opens slot 2, and so on up to 10 slots. No item required, nothing to lose. These are great for donor ranks or just giving players a reliable off-hand storage option.\n\n---\n\n## The six tiers\n\nEach tier is one extra row of storage. You start small and work your way up, and every upgrade recipe requires the previous tier backpack as the center ingredient, so it's a proper progression, not just a flat crafting grid.\n\n| Tier | Storage | Main material |\n|------|---------|---------------|\n| 1 | 9 slots | Leather + Chest |\n| 2 | 18 slots | Iron Ingots + T1 Backpack |\n| 3 | 27 slots | Gold Ingots + T2 Backpack |\n| 4 | 36 slots | Diamonds + T3 Backpack |\n| 5 | 45 slots | Emeralds + T4 Backpack |\n| 6 | 54 slots | Netherite Ingots + T5 Backpack |\n\nWhen you craft an upgrade, your items automatically carry over. You don't lose anything.\n\n---\n\n## Admin stuff\n\n```\n/dbp give <player> <tier>       give a player an item backpack\n/dbp restore <uuid> <player>    restore a lost backpack with its contents intact\n/dbp reload                     reload configs without restarting\n/bp view <player> <slot>        open and edit any player's command backpack\n```\n\nReload is a full reload, it closes any open backpacks, rereads both config files, and reregisters all recipes live.\n\n---\n\n## A few things worth knowing\n\nYou can find backpacks in loot chests across the world (dungeons, bastions, end city, trial chambers, etc.) but this is off by default. Toggle `loot.enabled: true` in config.yml and then tune the per-tier chances in backpacks.yml however you like. Higher tiers have very low default chances on purpose.\n\nShulker boxes inside backpacks are blocked by default. You can allow them with `inventory.allow-shulker-boxes: true`.\n\nPlayers can't wear backpacks as helmets. They also can't put a backpack inside another backpack. The same backpack can't be opened by two people at once. These aren't configurable because they're anti-dupe measures.\n\nIndividual tiers can be fully disabled with `enabled: false` in backpacks.yml. Takes effect after `/dbp reload`.\n\n---\n\n## Permissions (quick reference)\n\n```\ndynamicbackpacks.use.item.tier.<1-6>     open item backpacks of that tier\ndynamicbackpacks.craft.tier.<1-6>        craft that tier\ndynamicbackpacks.command.bp.use          use the /bp command at all\ndynamicbackpacks.command.bp.<1-10>       access that command backpack slot\ndynamicbackpacks.admin                   all admin commands\n```\n\n\n---\n\nReport any bugs on the discord.",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 113,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

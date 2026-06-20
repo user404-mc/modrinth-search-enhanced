@@ -1,0 +1,21 @@
+{
+  "id": "kzUL6iWJ",
+  "slug": "shins-tensura-race-models",
+  "title": "Shin's Tensura Race Models",
+  "description": "A library addon for Tensura Reincarnated which allows others to add models to their races",
+  "body": "Shin's Tensura Race Models allows others to add their own custom models to Tensura: Reincarnated races.\n\nCurrently built for T:R 1.0.2.5, Forge version 43.5.0\n\nHOW TO USE\n\nUsing it is simple. First, add it to your addon as a dependency using CurseMaven or any other method\nFollowing that, the race you wish to give a model to needs to implement the IModeledRaces class. Doing so will add several new functions which need to be filled in within the race, such as the class name of the model the race will use, the size of its shadow, and the eye height. \n\nAdditionally, 2 functions need to be created. The first is on the client event bus, and looks as follows:\n\n@SubscribeEvent\npublic static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {\n    event.registerLayerDefinition(ExampleModel.LAYER_LOCATION, ExampleModel::createBodyLayer);\n}\n\n\n\nreplacing ExampleModel with the model you are using. And the second one is that you need to mixin into the TensuraRacesRenderer file's init function and add your race to the list, as is done in the example below:\n\n@Mixin(TensuraRacesRenderer.class)\npublic abstract class AddRaceMixin<T extends LivingEntity, M extends EntityModel<T>> {\n\n    @Shadow\n    @Final\n    @Mutable\n    private List<HierarchicalModel<T>> models;\n\n    @Inject(method = \"<init>\", at = @At(\"TAIL\"))\n    private void onInit(RenderLayerParent parent, CallbackInfo ci) {\n        List<HierarchicalModel<T>> newModels = new ArrayList<>(this.models);\n\n        EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();\n        newModels.add(new ExampleModel<>(modelSet.bakeLayer(ExampleModel.LAYER_LOCATION)));\n\n        this.models = List.copyOf(newModels);\n    }\n}\n\n\n\nThe model file itself also needs several edits, however a working example model is included within the mod itself which you are free to look at to edit your entities code to match it. \n\nThat should be all you need to do, only other things to note would be that, even though the model is using the Hierarchical format, i have not yet finished allowing you to use hierarchical animations properly. There is a partially implemented crouch and running keyframe start however i am unsure if it fully works yet. \n\nADDITIONAL INFO\n\nTensura addons that started it:\n\nTensura: KumoDesu\nTensura: Bleach\n\nThis mod is fine to be used to utilise when making addons provided the addon is used and the code is not simply copied exactly and taken to be used within your mod itself.",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3762,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.3",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "K9k9gNxR",
+  "slug": "accessory-api",
+  "title": "Accessory API",
+  "description": "Provides an Accessory API for b1.7.3 in the Babric toolchain",
+  "body": "## Side note:\n[Aether for Station API](https://github.com/matthewperiut/aether-fabric-b1.7.3/releases/tag/a1.0.0) utilizes this mod!\n# Accessory API\nUsing [Babric](https://babric.github.io/) in b1.7.3, this mod provides an API to add additional slots for various items similar to the Trinkets API and Baubles API, with styling inspired by b1.7.3's Aether.\n\n![Inventory Preview](https://i.imgur.com/CVVfbAN.png)\n\n# Developer Usage\n\nTo learn about modding b1.7.3 in the babric toolchain, join [The Modification Station](https://discord.gg/8Qky5XY)!  \nIt's very similar to fabric and fabric-api, but for b1.7.3.  \n\n## Workspace\n\nAdd Accessory API to your `build.gradle`\n```gradle\nrepositories {\n    maven {\n        name = \"Jitpack\"\n        url \"https://jitpack.io/\"\n    }\n}\n\ndependencies {\n    modImplementation('com.github.matthewperiut:accessory-api:0.5.1') {\n        transitive false\n    }\n}\n```\n\n## Recommendation\n\nIf you want to quickly see how to use this API, clone the repo (in an ide preferably) and navigate to src/test/java/com/matthewperiut/testmod.  \nAlso view API javadocs / documentation  \n\n## Implementation\n\nImplement \"Accessory\" inside your item class\n(with STAPI, will work with any API/mixins)\n```java\npublic class ExampleRing extends TemplateItemBase implements Accessory\n{\n    public Pendant(Identifier identifier)\n    {\n        super(identifier);\n    }\n    \n    // To define trinket slots that your item can go into:\n    @Override\n    public String[] getAccessoryTypes(ItemInstance item)\n    {\n        return new String[]{ \"ring\" };\n        // return new String[0]; // returns no slots\n        // return new String[]{ \"ring\", \"cape\" }; // can be put in multiple types of slots\n        // return new String[]{ \"all\" }; // can be in any accessory slot\n    }\n\n    // other methods you can use, use @Override\n    // void tickWhileWorn(PlayerBase player, ItemInstance accessory)\n    // void onAccessoryAdded(PlayerBase player, ItemInstance accessory)\n    // void onAccessoryRemoved(PlayerBase player, ItemInstance accessory)\n\n    // Rendering\n    private YourCustomRenderer renderer;\n    @Override\n    public Optional<AccessoryRenderer> getRenderer()\n    {\n        return Optional.ofNullable(renderer);\n    }\n}\n```\n\nYou can choose different types of default accessory types:  \n\"pendant\"  \n\"cape\"  \n\"shield\"  \n\"ring\"  \n\"gloves\"  \n\"misc\"  \n\"all\"  \nor use your own custom accessory type\n\n## Accessory Functions Explained\n\nThis is called when an accessory slot is clicked on with an item, the item is passed to the function.  \nThis provides the slot information to see if it is compatible with it.  \n`String[] getAccessoryTypes(ItemInstance item)`\n\nThis is called in the tick function of the associated player, passing the item that is being ticked on which player.  \n`void tickWhileWorn(PlayerBase player, ItemInstance item)`  \n\nThis is called when the inventory relating to the accessory has an item added/removed.  \nThe function provides what player added/removed an accessory as well as the item that was added/removed.  \n`void onAccessoryAdded(PlayerBase player, ItemInstance accessory)`  \n`void onAccessoryRemoved(PlayerBase player, ItemInstance accessory)`  \n\nProvide rendering functions with getRenderer:  \n`public AccessoryRenderer getRenderer()`\n\n## Creating Accessory Renderer\nexample:\n```java\npublic class CustomRenderer implements AccessoryRenderer {\n    void renderThirdPerson(PlayerBase player, PlayerRenderer renderer, ItemInstance itemInstance, double x, double y, double z, float h, float v)\n    {\n        // do entity rendering magic\n    }\n\n   void renderFirstPerson(PlayerBase player, PlayerRenderer renderer, ItemInstance itemInstance)\n   {\n       // do entity first person rendering magic\n   }\n}\n```\nSimilar usage as EntityRenderers  \n\nBuilt-in AccessoryRenderers:  \n`CapeRenderer`  \n`GloveRenderer`  \n`NecklaceRenderer`  \n`ConfigurableRenderer`  ",
+  "categories": [
+    "babric",
+    "fabric",
+    "game-mechanics",
+    "ornithe",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 6900,
+  "followers": 0,
+  "game_versions": [
+    "b1.7.3"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,18 @@
+{
+  "id": "owQyCHo4",
+  "slug": "iris-veil-compat",
+  "title": "Iris Veil Compat",
+  "description": "Bridges Veil shader rendering through Iris shaderpacks so that mods using Veil's shader infrastructure\nsuch as Create Aeronautics render correctly when a shaderpack is active",
+  "body": "<h1 align=\"center\">Iris Veil Compat<br>\n  <a href=\"https://github.com/leon-o/iris-veil-compat\"><img src=\"https://img.shields.io/github/license/leon-o/iris-veil-compat\" alt=\"License\"></a>\n    <br><br>\n</h1>\n\n# Iris Veil Compat\nAllow mods using the Veil rendering engine (such as **Create: Aeronautics**) to render correctly when using Iris shaderpacks.\n\n# Principle\n[Veil](https://github.com/FoundryMC/Veil) is an advanced rendering SDK for Minecraft mods — it provides a shader infrastructure that other mods can build on. The most prominent consumer is [Create: Aeronautics](https://github.com/Creators-of-Aeronautics/Simulated-Project), which uses Veil for its airplane wings, glass panels, contrails, and other visual effects.\n\nThe problem: when you enable a shaderpack via Iris, Veil-rendered visuals bypass the shaderpack's pipeline entirely, causing them to appear broken or missing.\n\nThis mod automatically merges Veil shader code into the shaderpack's gbuffer programs at runtime, so Veil-based visuals (like Aeronautics planes) integrate seamlessly with your shaderpack.\n\n# Implementation details\n\nThis mod intercepts Veil's shader compilation via mixins, capturing and caching the processed shader source. At render time, it injects Veil shader logic into the shaderpack's gbuffer vertex/fragment programs using AST-level patching (powered by [glsl-transformer](https://github.com/IrisShaders/glsl-transformer)), and creates an Iris `ShaderInstance` to replace the original Veil shader.\n\nThe cache is automatically invalidated when you switch or reload shaderpacks — no restart needed.\n\n# Compatibility\n- **Iris** 1.8.1+ (required)\n- **Sodium**\n- **Veil** 4.0.0+\n- Tested with **Create: Aeronautics** (Spring, Laser) and **Sable**\n\n# Credit\nThis project uses [glsl-transformer](https://github.com/IrisShaders/glsl-transformer) for shader AST manipulation.",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 26056,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

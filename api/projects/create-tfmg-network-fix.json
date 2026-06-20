@@ -1,0 +1,19 @@
+{
+  "id": "7G8Y2FSh",
+  "slug": "create-tfmg-network-fix",
+  "title": "Create TFMG: Network Fix",
+  "description": "Fixes TFMG recipe fields not syncing over the network, causing JEI to display vat recipes without machine modules on dedicated servers.",
+  "body": "On dedicated servers, several TFMG recipe types do not serialize their custom fields into the network buffer. When the server sends recipes to clients, these fields arrive empty:\n\n- **VatMachineRecipe** loses `machines`, `allowedVatTypes`, and `minSize` — JEI displays vat recipes without machine modules (mixer, centrifuge, electrodes) and without material overlays (firebrick, cast iron).\n- **IndustrialBlastingRecipe** loses `hotAirUsage` — blast furnace recipes show incorrect hot air requirements.\n\nThis only affects dedicated servers. In singleplayer, recipes are loaded directly from JSON, so all fields are present.\n\n### How it works\n\nThe mod uses Mixin to inject into the `writeAdditional(FriendlyByteBuf)` and `readAdditional(FriendlyByteBuf)` methods of both recipe classes. The missing fields are appended at the tail of the network buffer. No original TFMG code is replaced — the existing logic runs as-is.",
+  "categories": [
+    "forge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 210,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "zjtgpI4I",
+  "slug": "e418",
+  "title": "e418",
+  "description": "[in development] A library mod providing support for data-driven gameplay events.",
+  "body": "# e418\n\nThis is a library mod providing functionality for data-driven gameplay events.\n\nHere's an example of a data-driven event.\n\n```json\n{\n  \"name\": \"Example event\",\n  \"description\": \"\",\n  \"behaviours\": [\n    {\n      // Modify context to select a random location around a random player\n      \"type\": \"e418:mutate_context\",\n      \"mutators\": [\n        {\n          \"type\": \"e418:select_random_player\",\n        },\n        {\n          \"type\": \"e418:select_random_location_around_player\",\n        },\n      ],\n\n      // Run only if the player is below 30 on Y-axis\n      \"run_conditions\": [\n        {\n          \"type\": \"e418:at_height\",\n          \"below\": 30,\n        },\n      ],\n\n      // Play a cave sound\n      \"behaviours\": [\n        {\n          \"type\": \"e418:play_sound\",\n          \"sound\": \"minecraft:ambient.cave\",\n          \"volume\": 1.0,\n          \"pitch\": 0.8,\n        },\n      ],\n    },\n  ],\n  \"run_conditions\": [],\n  \"queue_conditions\": [],\n}\n```\n\n### Use as a dependency\n\nWhile this library could work as a driver for a datapack-driven addon, you can add your content using mods.\n\nWe recommend to develop multi-platforms addons using Architectury.\n\nAdd a version string to your `gradle.properties`:\n\n```\ne418_version=0.0.2\n```\n\nAdd jitpack repository and dependencies:\n\n```gradle\n// in root build.gradle\nrepositories {\n  maven {\n    url = \"https://jitpack.io/\"\n    // Note: JitPack compile times may be slow on first build\n  }\n}\n\ndependencies {\n  // in common/build.gradle\n  modImplementation \"com.github.5w14.e418:e418-common:${project.e418_version}\"\n\n  // in fabric/build.gradle\n  modImplementation \"com.github.5w14.e418:e418-fabric:${project.e418_version}\"\n\n  // in neoforge/build.gradle\n  modImplementation \"com.github.5w14.e418:e418-neoforge:${project.e418_version}\"\n}\n```\n\nCheck [GitHub](https://github.com/5w14/e418) for more information.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 371,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4"
+  ],
+  "date_updated": null
+}

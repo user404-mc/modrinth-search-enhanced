@@ -1,0 +1,22 @@
+{
+  "id": "HMNV4z01",
+  "slug": "feature-nbt-deadlock-be-gone",
+  "title": "Feature NBT Deadlock Be Gone",
+  "description": "Fixes deadlocks caused by https://bugs.mojang.com/browse/MC-246262",
+  "body": "### This mod's sole goal is to fix this bug that only exists for 1.18 MC: https://bugs.mojang.com/browse/MC-246262\n\n-----\n\nThe bug is when placing NBT builds into the world during worldgen, it can deadlock the game if the build is replacing a BlockEntity of any kind. Spawners, chests, lecterns, beds, signs, etc. Which is... bad. Your game locks up and freezes. Ticks are no longer being run. \n\n \n\nThe issue comes down to the fact that the method used to place build's blocks in the world is not worldgen safe. It is using the wrong world object inside. The way this mod fixes the bug is by simply skipping the calls to those unsafe methods if the world passed into the nbt placing method is a WorldGenRegion class. More info and in-depth detail is in the bug report above. \n\n \n\nFor mods, this bug may occur more often which is why it may be a good idea to just have this mod on as a precaution. \n\n \n\nThis bug does not occur in 1.17.x and below. It is fixed in 1.19 and above. It seems to only exist in 1.18.x. \n\n \n\n------------------------------------------\n\n### MOD DEVERLOPERS:\n\n\nTo use in dev, add this to the repositories block in build.gradle:\n\n```\n    maven {\n\n       // FeatureNBTDeadlockBeGone\n\n       url \"https://nexus.resourcefulbees.com/repository/maven-public/\"   \n\n    }\n```\n\nThen in dependencies block in build.gradle, add:\n\n     FORGE:\n\n        `runtimeOnly fg.deobf(\"com.telepathicgrunt:FeatureNBTDeadlockBeGone-Forge:2.0.0+1.18.2\")`\n\n     FABRIC:\n\n        `modRuntimeOnly \"com.telepathicgrunt:FeatureNBTDeadlockBeGone-Fabric:2.0.0+1.18.2\"`\n\n     QUILT:\n\n        `modRuntimeOnly \"com.telepathicgrunt:FeatureNBTDeadlockBeGone-Quilt:2.0.0+1.18.2\"`\n\n\nChange 2.0.0+1.18.2 to the version you want.",
+  "categories": [
+    "fabric",
+    "forge",
+    "quilt",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 109218,
+  "followers": 0,
+  "game_versions": [
+    "1.18.1",
+    "1.18.2"
+  ],
+  "date_updated": null
+}

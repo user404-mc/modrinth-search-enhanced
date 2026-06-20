@@ -1,0 +1,22 @@
+{
+  "id": "XJ2NYlD0",
+  "slug": "fire-bending",
+  "title": "Fire Bending",
+  "description": "A Minecraft Fabric server-side mod that allows for more customization on the behavior of fire.",
+  "body": "# Fire Bending\n\nThis is a Fabric Minecraft server-side mod that allows server administrators to control with more detail the behaviour of fire ticking.\n\n## Fire Sources\n\nFire blocks produced by different sources are now their own fire blocks. The mod adds new gamerules that let you configure the fire tick delay of each fire source individually:\n\n- `/gamerule lightningFireTickDelay <integer-argument>`\n- `/gamerule lavaFireTickDelay <integer-argument>`\n- `/gamerule flintAndSteelFireTickDelay <integer-argument>`\n- `/gamerule explosionFireTickDelay <integer-argument>`\n- `/gamerule fireChargeFireTickDelay <integer-argument>`\n\nThe integer argument supplied to the gamerule, will modify the fire tick delay of the corresponding fire source, using the formula `tickDelay = argument + RandomNumber(0, 10)`. Additionally, setting this value to `-1` disables fire ticking for that fire source.\nAll of these gamerules have the default value of `30`.\n\n## Tick fire based on nearby players\n\nFurthermore, the mod adds two new gamerules:\n\n- `/gamerule doTickFireOnlyWhenPlayerNearby <boolean-argument>`: This gamerule toggles whether fire blocks should tick only when a player is within a certain user-configurable distance and fire ticking is enabled for the source of the fire. This is `false` by default.\n- `/gamerule tickFireWhenPlayerNearbyDistance <integer-argument>` This gamerule sets the distance at which a player has to be in order for fire to tick, if the `doTickFireOnlyWhenPlayerNearby` gamerule is enabled. This is `30` by default, and the minimum value is `1`.\n\n## Flammable blocks blacklist\n\nFinally, the mod offers a configuration file, found at `./config/fire-bender-config.json`, where the user can configure a list for blocks that shouldn't be flammable.\nYou can add block identifier entries to the `flammable_blocks_blacklist` array, and then reload the config using the command `/fire-bender reload_config`.\n\n```json\n{\n  \"flammable_blocks_blacklist\": [\n    \"minecraft:my_block\",\n    \"modid:other_block\"\n  ]\n}\n```\n\n## Support\n\nIf you would like to report a bug, or make a suggestion, you can do so via the mod's [issue tracker](https://github.com/ArkoSammy12/fire-bending/issues). \n\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 320,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.21"
+  ],
+  "date_updated": null
+}

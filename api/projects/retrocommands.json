@@ -1,0 +1,21 @@
+{
+  "id": "wIWtkL0s",
+  "slug": "retrocommands",
+  "title": "RetroCommands",
+  "description": "Retro Commands built on Fabric for b1.7.3, but it also works in Multiplayer and has an API.",
+  "body": "# Retro Commands for b1.7.3\n + it works on servers\n + it has an extensible API.\n + No dependencies required\n\n## Optional Dependencies\n + To access /tp with dimensions, install STAPI\n + To access /gamemode, install BHCreative\n\n## Help\n+ Use `/help` in-game\n\n## API\nNote: Please make Retro Commands optional!!\n\nbuild.gradle\n```gradle\nrepositories {\n    maven {\n        name = \"Jitpack\"\n        url \"https://jitpack.io/\"\n    }\n}\n\ndependencies {\n    modImplementation('com.github.matthewperiut:retrocommands:0.5.2') {\n        transitive false\n    }\n}\n```\n\nfabric.mod.json\n```json\n  \"suggests\": {\n    \"retrocommands\": \"*\"\n  },\n```\n\nin your mods initialization\n```java\npublic static void init_of_some_sort()\n{\n    if (FabricLoader.getInstance().isModLoaded(\"retrocommands\")){\n        MyModsCommands.add();\n    }\n}\n```\n\nimplement `com.matthewperiut.retrocommands.api.Command`  \n\nregister with `com.matthewperiut.retrocommands.api.CommandRegistry`  \n`CommandRegistry.add(new Command())`  \n\nnew Command() replaced with your custom command.  \n\n### Add your own summon command for your entities\n\nUse `com.matthewperiut.retrocommands.api.SummonRegistry`  \nSummonRegistry.add(...)  \n\n\nExamples from `com.matthewperiut.retrocommands.util.VanillaMobs`\n```java\nSummonRegistry.add(Creeper.class, (level, pos, param) -> {\n    Creeper creeper = new Creeper(level);\n\n    if (param.length > 5)\n        if (!param[5].isEmpty())\n            if (param[5].charAt(0) != '0')\n                ((EntityAccessor) creeper).getDataTracker().setInt(17, (byte) 1);\n\n    return creeper;\n}, \"{charged (0 or 1)}\");\n\nSummonRegistry.add(Sheep.class, (level, pos, param) -> {\n    int color = Integer.parseInt(param[5]);\n    int has_wool = 1;\n    if (param.length > 6)\n        has_wool = Integer.parseInt(param[6]);\n    Sheep sheep = new Sheep(level);\n    sheep.setSheared(has_wool == 0);\n    sheep.setColour(color);\n    return sheep;\n}, \"{wool color meta} {has wool (0/1)} \");\n```",
+  "categories": [
+    "babric",
+    "fabric",
+    "ornithe",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 12318,
+  "followers": 0,
+  "game_versions": [
+    "b1.7.3"
+  ],
+  "date_updated": null
+}

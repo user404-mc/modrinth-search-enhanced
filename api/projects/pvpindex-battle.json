@@ -1,0 +1,39 @@
+{
+  "id": "wOZtwr2V",
+  "slug": "pvpindex-battle",
+  "title": "PvPIndex Battle",
+  "description": "Official open free ELO platform with advanced battle system. Includes Sword PvP, Crystal PvP, Sumo and much more",
+  "body": "**PvPIndex Battles** is a competitive PvP plugin for Paper, Folia, Purpur, Spigot, BungeeCord, and Velocity servers. It adds a full **1v1 duel and ranked matchmaking system** with per-mode **ELO ratings**, persistent global leaderboards, battle replays, and a moderation suite - all synced to [pvpindex.com](https://pvpindex.com) so your players' rankings persist across the entire network.\n\n> **Supported game modes:** Crystal PvP · Sword PvP · Pot PvP · NoDebuff · Soup PvP · Axe PvP · Mace PvP · Boxing · Sumo · UHC\n\n---\n\n## Features\n\n- **10 ranked game modes** - Crystal, Sword, Pot, NoDebuff, Soup, Axe, Mace, Boxing, Sumo, UHC - each with independent ELO ladders and separate leaderboards\n- **1v1 matchmaking queue** - fully configurable 54-slot GUI with per-mode ELO, countdowns, and automatic arena teleportation\n- **Cross-server duels** - `/battle challenge <player> [mode]` works standalone or routes through a Velocity or BungeeCord proxy\n- **Network-wide tab completion** - proxy broadcasts all online players so `/battle challenge <TAB>` shows names from every backend server\n- **Battle replay system** - frame-by-frame recording, reviewable in-game with `/pvpmod replay <id>`\n- **Arena pool** - procedural, schematic, and world-copy generation strategies; four bundled schematics included\n- **Moderation suite** - player reports, local bans, federated network-wide bans, real-time spectating\n- **PlaceholderAPI integration** - ELO, rank, win/loss, queue state, and active mode placeholders for scoreboards and tab lists\n- **Fully configurable messages** via `messages.yml`\n- **HMAC-signed payloads** - battles are cryptographically signed before submission; the API rejects anything tampered with\n- **Open ELO formula** - K=32 trust-weighted implementation published under MIT at [github.com/PVP-Index/battle-validator](https://github.com/PVP-Index/battle-validator)\n- **Folia compatible** - runs on Folia, Paper, Purpur, Spigot, and Bukkit (1.21+)\n\n[![PvPIndex Global Leaderboard](https://i.ibb.co/8np4vTwM/pvpindex-global-leaderboard.png)](https://pvpindex.com)\n\n[![Configurable 1vs1 battle arenas](https://i.ibb.co/RpB21J5d/configurable-arenas.png)](https://docs.pvpindex.com/server_owner/arenas-and-templates)\n\n---\n\n## Requirements\n\n| Requirement | Version |\n|---|---|\n| Java | 21+ (25+ for Paper API 26.1.x) |\n| Paper / Folia / Purpur / Spigot | 1.21.x or 1.21.4+ (API 26.1.x) |\n| Velocity or BungeeCord *(optional)* | Velocity 3.x / BungeeCord 1.21+ |\n| PlaceholderAPI *(optional)* | 2.11+ |\n| PvPIndex API key | Free at [pvpindex.com](https://pvpindex.com) |\n\n---\n\n## Installation\n\n### Paper / Folia / Purpur / Spigot\n\n1. Drop `PvPIndexBattles-<version>.jar` into `plugins/`.\n2. Start the server, configs are generated automatically.\n3. Stop the server, then add your API key to `plugins/PvPIndexBattles/config.yml`:\n\n```yaml\napi:\n  api_key: \"your-api-key-here\"\n\nserver:\n  id: \"my-server\"\n```\n\n4. Restart and run `/pvpindex` to confirm everything loaded correctly.\n\n### Velocity / BungeeCord *(optional)*\n\nDrop `PvPIndexBattles-velocity-<version>.jar` into your proxy `plugins/` folder and configure `plugins/pvpindex-battles/config.properties` with the same API key and shared secret as your backend servers.\n\n→ Full proxy setup guide: [docs.pvpindex.com/server_owner/proxy-setup](https://docs.pvpindex.com/server_owner/proxy-setup)\n\n---\n\n## Commands\n\n### `/battle`  Players\n\n| Command | Description |\n|---|---|\n| `/battle` | Open the matchmaking mode selection GUI |\n| `/battle challenge <player> [mode]` | Send a duel challenge |\n| `/battle accept <id>` | Accept a challenge |\n| `/battle decline <id>` | Decline a challenge |\n| `/battle leave` | Leave the queue or forfeit an active battle |\n\n### `/pvpindex` Admins\n\n| Command | Permission | Description |\n|---|---|---|\n| `/pvpindex reload` | `pvpindex.reload` | Reload plugin config |\n| `/pvpindex submissions` | `pvpindex.admin` | View pending battle submissions |\n| `/pvpindex sync` | `pvpindex.admin` | Retry unsubmitted battles |\n| `/pvpindex retryfailed` | `pvpindex.admin` | Retry failed API submissions |\n\n### `/pvpmod`  Moderation\n\n| Command | Permission | Description |\n|---|---|---|\n| `/pvpmod watch <player>` | `pvpindex.mod` | Spectate a live battle |\n| `/pvpmod replay <id>` | `pvpindex.mod` | Play back a recorded battle |\n| `/pvpmod report <player> <reason>` | `pvpindex.mod.report` | Report a player |\n| `/pvpmod ban <player> <duration> <reason>` | `pvpindex.mod.ban` | Ban a player from battles |\n| `/pvpmod unban <player>` | `pvpindex.mod.ban` | Unban a player |\n\n---\n\n## PlaceholderAPI\n\n| Placeholder | Returns |\n|---|---|\n| `%pvpindex_elo%` | Overall ELO rating |\n| `%pvpindex_elo_<mode>%` | ELO for a specific mode |\n| `%pvpindex_rank%` | Global ladder position |\n| `%pvpindex_wins%` | Session wins |\n| `%pvpindex_losses%` | Session losses |\n| `%pvpindex_kd%` | Win/loss ratio |\n| `%pvpindex_in_battle%` | `true` / `false` |\n| `%pvpindex_queued%` | `true` / `false` |\n| `%pvpindex_queued_mode%` | Current queue mode or `none` |\n| `%pvpindex_battle_type%` | Display name of the active mode |\n\n---\n\n## Configuration\n\n```yaml\n# plugins/PvPIndexBattles/config.yml\napi:\n  api_key: \"\"\n  base_url: \"https://api.pvpindex.com/api\"\n\nserver:\n  id: \"my-server\"\n  require_signature: false   # Recommended: set to true in production\n  debug: false\n\narena:\n  world_prefix: \"pvpindex_arena\"\n  cleanup_delay_ticks: 100\n\nqueue:\n  max_wait_seconds: 120\n```\n\n→ Full reference: [docs.pvpindex.com/server_owner/configuration](https://docs.pvpindex.com/server_owner/configuration)\n\n---\n\n## Links\n\n- **Website & leaderboards** - [pvpindex.com](https://pvpindex.com)\n- **Documentation** - [docs.pvpindex.com](https://docs.pvpindex.com)\n- **Source (plugin)** - [github.com/PVP-Index/pvpindex-battles](https://github.com/PVP-Index/pvpindex-battles)\n- **Source (ELO formula / anti-cheat)** - [github.com/PVP-Index/battle-validator](https://github.com/PVP-Index/battle-validator)\n- **Issue tracker** - [github.com/PVP-Index/pvpindex-battles/issues](https://github.com/PVP-Index/pvpindex-battles/issues)\n\n---\n\n## PvPIndex is partnered with NeyHost\n\nUse the coupon code `PVPINDEX` for 10% off on checkout.\n\n[![Neyhost PvPIndex Partner](https://i.ibb.co/sd2XzphL/neyhost-banner-PVPINDEX.png)](https://www.neyhost.com/)\n\n---\n\n## License\n\nThe ELO validator is published under [MIT](https://github.com/PVP-Index/pvpindex-battles/blob/main/LICENSE). See [LICENSE](https://github.com/PVP-Index/pvpindex-battles/blob/main/LICENSE) for the plugin itself.",
+  "categories": [
+    "bukkit",
+    "bungeecord",
+    "folia",
+    "paper",
+    "purpur",
+    "spigot",
+    "velocity",
+    "waterfall"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 109,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "AP4MNKKf",
+  "slug": "lucium",
+  "title": "Lucium",
+  "description": "Fixes and utilities originating in Yttr.",
+  "body": "> Lucium was the proposed name for an alleged new element found by chemist Prosper Barrière in 1896 in the mineral monazite. Later, William Crookes confirmed that the new element was actually an impure sample of yttrium.\n\n*From [Wikipedia](https://en.wikipedia.org/wiki/Lucium), the free encyclopedia*\n\n----\n\nLucium is a small collection of \"no-brainer\" utilities originating in Yttr that I didn't want to tangle up into [Fabrication](https://modrinth.com/mod/fabrication). It's especially useful in dev environments and for debugging. (Fabrication currently doesn't work very well in dev environments.) For that reason, it's also available via the Sleeping Town Maven:\n```gradle\nrepositories {\n\tmaven {\n\t\turl 'https://repo.sleeping.town'\n\t\tcontent {\n\t\t\tincludeGroup 'com.unascribed'\n\t\t}\n\t}\n}\n\ndependencies {\n\tmodRuntimeOnly \"com.unascribed:lucium:1.1\"\n}\n```\n\nYou can JIJ Lucium by wrapping it in `include()` if any of its fixes are important for your mod, such as the particle fix. Yttr does this because its Continuous Platforms look *very* bad without the particle fix.\n\n# Features\n\n## Fancy/Fast Particles Fix\nLucium will render particles in two passes, similar to pre-1.15 versions, allowing particles to render behind translucent blocks even on Fancy and Fast graphics. Compatible with Sodium.\n\n## Debug World Fix\nLucium will fix the vanilla debug world to include all modded blockstates.\n\n## Customizable F3 Screen\nUse Page Up and Page Down to tab through entries in the vanilla F3 screen. Home and End switch between the left and right sides, respectively. Press Delete to collapse the highlighted group of entries, and Insert to bring back the nearest one.\n\n## Smaller F3 Screen\nMakes the F3 screen half the size, if the GUI scale is at least 3. (⅔ on GUI scales not divisible by 2. No effect on GUI scales not divisible by 3 or 2 — sorry, GUI Scale 5 users, but I can't do much with a prime number.)\n\n## More Tags In F3\nShows biome and entity tags in F3.\n\n# Commands\n\n## /l:dtp\nOnly available in debug worlds. Specify a blockstate to teleport there.\n\n## /l:goto\nRequires operator or cheats. Teleports you to another dimension, putting you in a \"logical\" location automatically. Never `/setblock ~ ~ ~ nether_portal` again.\n\n## /l:devsetup\nRuns the following commands:\n- `/gamerule doTraderSpawning false`\n- `/gamerule doPatrolSpawning false`\n- `/gamerule doWeatherCycle false`\n- `/gamerule doDaylightCycle false`\n- `/time set 6000`\n- `/weather clear 1000000`\n\n## /l:wireframe\nRequires Creative or Spectator mode. Switches the game's rendering to wireframe, for render debugging.\n\n## /l:profiler\nOpens a custom view for the vanilla profiler that's much more useful and easier to use.",
+  "categories": [
+    "fabric",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 4501,
+  "followers": 0,
+  "game_versions": [
+    "1.19.1",
+    "1.19.2"
+  ],
+  "date_updated": null
+}

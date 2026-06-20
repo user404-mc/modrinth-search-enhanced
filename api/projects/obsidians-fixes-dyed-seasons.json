@@ -1,0 +1,24 @@
+{
+  "id": "6LA2mD96",
+  "slug": "obsidians-fixes-dyed-seasons",
+  "title": "Obsidian's Fixes: Dyed Seasons",
+  "description": "Prevents a crash when Fabric Seasons: Extras is loaded with any mod that adds dyes, such as Dye Depot.",
+  "body": "## What is this?\nFabric Seasons: Extras and Dye Depot are both great mods, but they don't like each other. Specifically, Seasons: Extras crashes when any dye mod is installed. This mod fixes that and allows the mods to run together.\n\n## How did we get here?\nI tried installing Fabric Seasons: Extras in my modpack this morning and ran face-first into [issue #24](https://github.com/lucaargolo/fabric-seasons-extras/issues/24). After narrowing down which mod it was and checking the source code, I discovered that someone had made a pull request for it, but it's been almost a year and that has not been merged.\n\nIt seemed trivial to make a small mod to implement the same fix myself, so I did. Much thanks to those on the Fabric Discord, mixins have changed again and they were very patient.\n\n## What does this actually do?\nThis mod uses mixin injection to alter two constants in Fabric Seasons: Extras, making them reach for the actual amount of dyes in the game instead of assuming there are 16. This prevents Java from having a conniption fit when there are actually more than 16 dyes. In short, it implements [this](https://github.com/lucaargolo/fabric-seasons-extras/pull/38) but mixins.\n\n## Licensing\nThis is ARR, I didn't use anyone else's code and what was written is mine. I've had enough of mod reposting and this licensing is part of my effort to stop it.\n\nAssume that you *may* put this in a modpack or use it in a YouTube video. As it's a small fix, I don't require attribution for such things. It's a *mixin*.\n\nIf you see *any* of my mods reposted anywhere but right on Modrinth under the account obsidian29, *it has been stolen* and we don't know what else they might have been willing to do to the mod. Be safe, don't reward theft of people's mods, enjoy the game.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 146,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

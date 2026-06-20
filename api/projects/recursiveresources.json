@@ -1,0 +1,37 @@
+{
+  "id": "CcL3MXyI",
+  "slug": "recursiveresources",
+  "title": "Recursive Resources",
+  "description": "Enhances the Resource Pack menu with folder support.",
+  "body": "# Recursive Resources\n\nAn opinionated port of the [Resource Pack Organiser](https://github.com/chylex/Resource-Pack-Organizer) mod to modern versions of Minecraft.\n\n## Summary\n\nRecursive Resources is a mod that revamps the vanilla resource pack menu to be more friendly to power users\nwith the addition of many Quality of Life features, such as:\n\n- The ability to organize resource packs into folders that you can navigate within the game\n- Extensive folder customization including custom icons, ordering and pseudo-symlinking\n- Enabling full folders of resource packs at once, effectively creating \"profiles\"\n- Folder view (navigate in and out of folders) and flat view (packs from all folders shown in a single list)\n- Searching pack names and description (with wildcard support)\n\n![Main image](https://github.com/enjarai/recursive-resources/raw/master/img/example.png)\n\n## Features\n\n### Folders\n\nMost of the features in this mod revolve around folders. \nUnlike vanilla, any subfolders you create in the `.minecraft/resourcepacks` folder will be shown ingame,\nletting you navigate in and out of them to select packs.\nDue to technical limitations, this mod **cannot create or manage folders or move packs ingame**, \nthis must be done via an external file browser.\nAny changes you make to the directory structure will be updated in realtime ingame.\n\n![Folders example 1](https://github.com/enjarai/recursive-resources/raw/master/img/folders-1.png)\n\nNote: Unzipped resource packs **will** still be properly detected and shown in the list as a resource pack.\n\n### Quick enable/disable\n\nYou may have noticed the new buttons added to the top of the resource pack list.\nThese can be used to quickly enable or disable all resource packs in the current folder.\nA similar button can also be seen by hovering over the icon of a folder, \nwhich will enable all packs in that folder.\n\nPacks enabled this way will apply in the order they appear in the folder, \nthis order can be customized using the `folder.json` files as described below.\n\n![Quick toggle example 1](https://github.com/enjarai/recursive-resources/raw/master/img/quick-1.png)\n\n![Quick toggle example 2](https://github.com/enjarai/recursive-resources/raw/master/img/quick-2.png)\n\n### Folder icons\n\nYou can give folders custom icons by placing an image named `icon.png` inside them.\nThis image will be shown in the resource pack list, and can be used to quickly identify folders.\n\n![Folder icons example 1](https://github.com/enjarai/recursive-resources/raw/master/img/icons-1.png)\n\n### folder.json configuration\n\nYou've probably seen a file named `folder.json` in the screenshots above,\nthis file is used to configure some extra properties for the folder it is inside of.\nOne of these files will be automatically created when you create and enter a new folder.\nOpening it up in a text editor, you should see a structure similar to this:\n\n```json\n{\n  \"icon\": \"icon.png\",\n  \"description\": \"\",\n  \"packs\": [\n    \"circular hotbar.zip\",\n    \"Not Microsoft\"\n  ],\n  \"hidden\": false\n}\n```\n\nThese fields represent the following:\n\n- `icon` - The name of the icon file to use for this folder, relative to this folder.\n- `description` - A description of the folder, shown under its name.\n- `hidden` - Whether or not to hide this folder from the list.\n\nThe `packs` field is a little more complicated.\nIt contains a list of all packs in the current folder, in the order in which they'll be displayed and applied.\nWhile you can reorder these as you please, \nremoving one will cause it to be added back automatically so long as its file is still in the folder.\n\n### Pseudo-symlinks\n\nIn some cases, you may want to have a pack appear in multiple folders at once.\nWhile you could just copy the pack, this would use twice the disk space, and might be impractical.\nThis is why the `packs` field in the `folder.json` supports referencing packs outside of the current folder.\n\nFor example, you could modify the `folder.json` from the above examples like this:\n\n```json\n{\n  \"icon\": \"icon.png\",\n  \"description\": \"\",\n  \"packs\": [\n    \"vanillatweaks packs/VanillaTweaks_general.zip\",\n    \"circular hotbar.zip\",\n    \"Not Microsoft\"\n  ],\n  \"hidden\": false\n}\n```\n\nThis would cause the `VanillaTweaks_general.zip` pack to appear in \nboth the `vanillatweaks packs` folder and the current folder:\n\n![Pseudo-symlinks example 1](https://github.com/enjarai/recursive-resources/raw/master/img/symlinks-1.png)\n\n## License\n\nThis mod is under the [Mozilla Public License](https://github.com/enjarai/recursive-resources/blob/master/LICENSE), version 2.0\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 904879,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.6",
+    "1.21.7"
+  ],
+  "date_updated": null
+}

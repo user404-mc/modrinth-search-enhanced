@@ -1,0 +1,24 @@
+{
+  "id": "r569qlAV",
+  "slug": "hocon-resource-loader",
+  "title": "Hocon Resource Loader",
+  "description": "Loading packs' files ending with `.hocon` as hocon format",
+  "body": "This mod is for using [HOCON](https://github.com/lightbend/config) for resource packs or data packs  \nHOCON's syntax is more flexible and supports advanced syntax such as variables and include, which can reduce boilerplate code.  \nThe mod will load any file in packs ends with `.hocon` with HOCON parser and trick the game to think it's a json file.  \nSo that it shouldn't conflict with any packs that already use the json format.  \n\nNeed to enable in pack.mcmeta lie below:\n```json\n{\n    \"pack\": {\n        \"pack_format\": 15,\n        \"description\": {\n            \"translate\": \"settingsun.pack\",\n            \"fallback\": \"Assets of SettingSun\"\n        },\n        \"supported_formats\": [15, 22]\n    },\n    \"hoconresourceloader\" : {\n        \"enabled\": true\n    }\n}\n```\n\n## Advantage of HOCON\n- `include` url, file (Can be used for resource/data pack config), minecraft resource by identifier\n- With `include`, you can include the origin json file and modify the value instead of edit the whole file. Far more convenient than the JsonPatch\n- See more on https://github.com/lightbend/config/blob/main/HOCON.md\n\n## Examples\nThe result of the resource pack at https://github.com/SettingDust/HoconResourceLoader/tree/main/mod/run/resourcepacks/test-resources  \n- https://github.com/SettingDust/HoconResourceLoader/blob/main/mod/run/resourcepacks/test-resources/assets/minecraft/models/item/stone.hocon  \n    ```hocon\n    # The current directory to read file relative is minecraft run dir.\n    # `.minecraft` or `.minecraft/versions/{NAME}` dir in commonly\n    # At here is `{PROJECT_DIR}/mod/run`\n    include file(\"dirt.hocon\")\n    ```\n    ![img.png](https://raw.githubusercontent.com/SettingDust/HoconResourceLoader/main/docs/img.png)  \n- https://github.com/SettingDust/HoconResourceLoader/blob/main/mod/run/resourcepacks/test-resources/assets/minecraft/models/item/dirt.hocon  \n    ```hocon\n    parent: \"minecraft:block/stone\"\n    ```\n    ![img_1.png](https://raw.githubusercontent.com/SettingDust/HoconResourceLoader/main/docs/img_1.png)  \n- https://github.com/SettingDust/HoconResourceLoader/blob/main/mod/run/resourcepacks/test-resources/assets/minecraft/models/item/oak_log.hocon  \n    ```hocon\n    # Support identifier\n    include \"minecraft:models/item/dirt.json\"\n    ```\n    ![img_2.png](https://raw.githubusercontent.com/SettingDust/HoconResourceLoader/main/docs/img_2.png)  \n- https://github.com/SettingDust/HoconResourceLoader/blob/main/mod/run/resourcepacks/test-resources/assets/minecraft/models/item/oak_wood.hocon  \n    ```hocon\n    # Will try to find under the starting path that passed to resource manager.\n    # It's `models/` here\n    include \"minecraft:item/dirt.json\"\n    ```\n    ![img_3.png](https://raw.githubusercontent.com/SettingDust/HoconResourceLoader/main/docs/img_3.png)  \n- https://github.com/SettingDust/HoconResourceLoader/blob/main/mod/run/resourcepacks/test-resources/assets/minecraft/models/item/torch.hocon  \n    ```hocon\n    # Specifically, include json files won't be resolved to hocon.\n    # So, you can do patch for the json file and provide the hocon file as json to the game.\n    include \"minecraft:models/item/torch.json\"\n    \n    textures.layer0 = \"minecraft:block/soul_torch\"\n    ```\n    ![img_4.png](https://raw.githubusercontent.com/SettingDust/HoconResourceLoader/main/docs/img_4.png)\n## Credit\nIcon from https://www.flaticon.com/free-icon/folder_3767084#\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 2767,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21"
+  ],
+  "date_updated": null
+}

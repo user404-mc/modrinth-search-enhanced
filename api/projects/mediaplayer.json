@@ -1,0 +1,23 @@
+{
+  "id": "QbRqSovU",
+  "slug": "mediaplayer",
+  "title": "MediaPlayer",
+  "description": "A decode library for Minecraft based on ffmpeg.",
+  "body": "# MediaPlayer\n\n## A decode library for Minecraft based on [ffmpeg](https://ffmpeg.org/).\n\n### Features:\n\n* Video and audio decoder\n* Hardware acceleration\n* Supports many media formats\n* Only Windows x64 platform is supported\n\n### How to use:\n\n#### For user\n\nUse the commands\n\n```\n/summon mediaplayer:video\n/mediaplayer video\n```\n\nto play video.<br><br>\nOr use\n\n```\n/mediaplayer audio\n```\n\nto play audio.<br><br>\nUse\n\n```\n/mediaplayer clear\n```\n\nstop all video and audio.\n\n#### For developer\n\nCreate decoder\n\n```java\nvar file = new File(\"<video file path>\");\nvar decoder = VideoDecoder.create(file);\n```\n\nDecode and render frame\n\n```java\ndecoder.fetch();\nbufferSource.getBuffer(VideoRenderType.create(decoder.frame));\n/* Rendering code */\n```\n\nPlay companion audio from video\n\n```java\nMinecraft.getInstance().getSoundManager().play(new AudioInstance(decoder.audio.decode(false), null));\n```\n\nPlay independent audio\n\n```java\nMinecraft.getInstance().getSoundManager().play(new AudioInstance(new AudioDecoder.decode(false), null));\n```",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 30272,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

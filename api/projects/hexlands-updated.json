@@ -1,0 +1,29 @@
+{
+  "id": "3TMQS50Y",
+  "slug": "hexlands-updated",
+  "title": "HexLands (Updated)",
+  "description": "Hexagonal world generation, Settlers of Catan style!\nUpdated to 1.21.8+",
+  "body": "![Hex Lands](https://raw.githubusercontent.com/Patbox/hexlands/refs/heads/1.21.x/img/splash.png)\n\nThis mod is an updated version of [Hex Lands](https://modrinth.com/mod/hexlands) mod by superfluke, updated through 1.16 to 1.21.1 by alcatrazEscapee.\n\n### Features\n\n- Adds two world type presets: \"HexLands\", and \"HexLands (Overworld)\". The former which enables hexagonal terrain generation in both the overworld and the nether, the latter which only enables it in the overworld.\n- Each hex contains a single biome. Hexes of different types are bordered by walls.\n- Automatic compatibility with mods that add biomes to the overworld or other world generation.\n- Many options for world customization via data packs.\n\n### Configuration\n- For [1.21.8+](https://github.com/patbox/hexlands/blob/1.21.x/README.md#configuration-data-packs)\n\nWorlds are specified by [World Presets](https://minecraft.wiki/w/World_preset). HexLands can be customized by adding a new world preset, which uses the `hexlands:hexlands` chunk generator. The hexlands chunk generator has the following fields:\n\n- `type` is a string identifying what generator to use. It should be `hexlands:hexlands`.\n- `settings` is a [Noise Settings](https://minecraft.wiki/w/Noise_settings) used by the dimension.\n- `biome_source` is the biome source, as in vanilla. It can be a known preset, such as `\"minecraft:overworld\"`, or `\"minecraft:nether\"`, or it can be a JSON object following the vanilla biome source format.\n- `hex_settings` is an object with parameters defining how the hexagonal grid works. It can either be a known preset, which must be one of `\"hexlands:overworld\"`, `\"hexlands:nether\"`, or `\"hexlands:the_end\"`, or it can be an object with the following fields:\n    - `biome_scale` (Default: 8) is the scale at which biomes are sampled to create hexes. Higher values create more random biome layouts.\n    - `hex_size` (Default: 40) is the size of an individual hex.\n    - `hex_border_threshold` (Default: 0.92) is a number between `0` and `1` representing how much of a hex should be covered by the border. Larger values will lead to thinner borders.\n    - `top_border` and `bottom_border` are both border settings which define how the top and bottom borders of the world are built. The borders between hexes consist of a bottom border, air, and a top border. If not present, this section of the border will consist entirely of air. If present, it must have the following fields:\n        - `min_height`: The minimum height of the border.\n        - `max_height`: The maximum height of the border.\n        - `state`: A block state to generate as the border state. It must be an object with the following fields:\n          - `Name`: The name of the block\n          - `Properties`: An object with any block state properties, such as `{\"snowy\": \"false\"}` that you desire to set\n\n**Example**\n\n```json5\n// Below is an example object which can be used in the `generator` field of a world preset.\n{\n    \"type\": \"hexlands:hexlands\",\n    \"settings\": \"minecraft:overworld\",\n    \"biome_source\": {\n      \"type\": \"minecraft:multi_noise\",\n      \"preset\": \"minecraft:overworld\"\n    },\n    \"hex_settings\": \"hexlands:overworld\"\n}\n```\n\n### Gallery\n\n![Overworld Hexes](https://raw.githubusercontent.com/Patbox/hexlands/refs/heads/1.21.x/img/hex_overworld.png)\n![Nether Hexes](https://raw.githubusercontent.com/Patbox/hexlands/refs/heads/1.21.x/img/hex_nether.png)\n\n\n",
+  "categories": [
+    "fabric",
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 678,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

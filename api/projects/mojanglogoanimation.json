@@ -1,0 +1,29 @@
+{
+  "id": "GSEDw8iD",
+  "slug": "mojanglogoanimation",
+  "title": "MojangLogoAnimation",
+  "description": "This mod changes loading screen.",
+  "body": "# MojangLogoAnimation\n\nA Fabric mod that replaces the static Mojang Studios logo on the splash screen with a smooth frame-by-frame animation.\n\n## Dependencies\n\n| Dependency | Required | Link |\n|---|---|---|\n| **Fabric API** | ✅ | [Modrinth](https://modrinth.com/mod/fabric-api) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) |\n| **Cloth Config** | ✅ | [Modrinth](https://modrinth.com/mod/cloth-config) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/cloth-config) |\n| **Mod Menu** | ❌ (optional) | [Modrinth](https://modrinth.com/mod/modmenu) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modmenu) |\n\n## Architecture\n\nThis mod uses a **data-driven animation system** built around a clean separation of concerns:\n\n- **`ISplashScreenAnimationData`** — Interface defining animation metadata (frame count, timing, sound, textures). New animation types can be added by implementing this interface.\n- **`FolderAnimationData`** — A `record` implementation that resolves textures from `textures/gui/title/{id}/` and sound events via the `gui.title.{id}` naming convention.\n- **`AnimationPlayer`** — Encapsulates all animation state (frame progression, sound playback, lifecycle). Runs animation on a daemon thread with thread-safe access via `AtomicInteger`/`AtomicBoolean`.\n- **`SplashLoader`** — Registry for animation data. Animations are pre-registered during client initialization since the splash screen renders *during* resource loading.\n- **`SplashOverlayMixin`** — A thin Mixin layer that delegates all logic to `AnimationPlayer`. The Mixin itself holds no animation knowledge.\n\nAdding a new animation requires only:\n1. Place frame textures in `textures/gui/title/{id}/`\n2. Place sound in `sounds/gui/title/{id}.ogg`\n3. Register with `splashLoader.register(new FolderAnimationData(\"id\", frameCount))`\n\n## Preview\n\n![MojangStudioMode](https://raw.githubusercontent.com/Hashibutogarasu/MojangLogoAnimation-Assets/main/mojang_studios.gif)\n![3dSharewareMode](https://raw.githubusercontent.com/Hashibutogarasu/MojangLogoAnimation-Assets/main/april_fool.gif)\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2974,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

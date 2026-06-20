@@ -1,0 +1,20 @@
+{
+  "id": "GBTZ8qN6",
+  "slug": "mob-limiter",
+  "title": "Mob Limiter",
+  "description": "Set per-chunk and world limits to manage mob spawning and prevent overcrowded farms.",
+  "body": "This mod lets you control mob spawning by setting per-chunk and world limits, helping to prevent overcrowded farms or excessive mob spawns.\n## Features\n- **Chunk Limits**: Restrict mob counts per chunk to avoid overcrowding.\n- **World Limits**: Set global caps for total mob populations.\n- **Targeted Limits**: Apply restrictions to specific mobs, categories, or namespaces.\n- **Modded Mobs**: Supports mobs registered in Forge.\n- **Excess Handling**: Remove excess mobs via silent despawn or kill with loot and experience.\n- **Despawn Control**: Choose vanilla rules, custom despawn ranges, or persistent mobs.\n- **Commands**:\n  - `/moblimiter reload`: Refresh config without server restart.\n  - `/moblimiter info`: Display active settings.\n- **Priority System**: Limits prioritize specific mobs, then categories, namespaces, and defaults.\n- **Optimized**: Asynchronous processing ensures smooth server performance.\n\n## Configuration\nCustomize limits and despawn behavior in `config/moblimiter.json5`. Example:\n```json5\n{\n  // Vanilla despawn settings\n  // mode: \"vanilla\" (default rules), \"custom\" (set min/max distance), \"disabled\" (persistent mobs)\n  \"vanilla_despawn\": {\n    \"mode\": \"custom\",\n    \"min_distance\": 32.0, // Min distance (blocks) to despawn (for \"custom\" mode)\n    \"max_distance\": 128.0 // Max distance (blocks) to despawn (for \"custom\" mode)\n  },\n  \n  // World-wide mob limits\n  // enabled: true/false to toggle world limits\n  // total: Max mobs in the world (-1 for unlimited)\n  // removal_type: \"despawn\" (silent) or \"kill\" (drops loot)\n  \"world_limits\": {\n    \"enabled\": true,\n    \"total\": 500, // Total mobs allowed in the world\n    \"removal_type\": \"despawn\",\n    \"mobs\": {\n      \"minecraft:cow\": 100, // Max 100 cows in the world\n      \"minecraft:pig\": 100, // Max 100 pigs in the world\n      \"minecraft:zombie\": 50 // Max 50 zombies in the world\n    }\n  },\n  \n  // Per-chunk mob limits\n  // enabled: true/false to toggle chunk limits\n  // default.limit: Default mob cap per chunk (-1 for unlimited)\n  // removal_type: \"despawn\" (silent) or \"kill\" (drops loot)\n  \"chunk_limits\": {\n    \"enabled\": true,\n    \"removal_type\": \"despawn\",\n    \"default\": { \"limit\": 20 }, // Default limit for unspecified mobs\n    \"mobs\": {\n      \"minecraft:cow\": 10, // Max 10 cows per chunk\n      \"minecraft:pig\": 10, // Max 10 pigs per chunk\n      \"minecraft:chicken\": 10, // Max 10 chickens per chunk\n      \"minecraft:creatures\": 15, // Max 15 creatures (animals) per chunk\n      \"minecraft:*\": 8 // Max 8 of any other Minecraft mob per chunk\n    }\n  }\n}\n```\n## Usage  \nFollow these steps to set up and use Mob Limiter:  \n\n1. **Install the Mod**:  \n   Add Mob Limiter to your server (client installation is optional). The mod is server-side and works without requiring clients to install it.  \n\n2. **Configure Limits**:  \n   After launching the server, find `config/moblimiter.json5` in the server directory. Edit the file to set your desired limits and despawn behavior (see the example above). Save the file after making changes.  \n\n3. **Apply Changes**:  \n   Run `/moblimiter reload` in-game or via the server console to apply changes without restarting.  \n\n4. **Check Settings**:  \n   Use `/moblimiter info` to view the current configuration, including despawn mode, world limits, and chunk limits.  \n",
+  "categories": [
+    "forge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20224,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

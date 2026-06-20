@@ -1,0 +1,22 @@
+{
+  "id": "p40y3hwS",
+  "slug": "lc-cc-compat",
+  "title": "Lightman's Currency x CC:Tweaked Compat",
+  "description": "A simple CC:Tweaked addon to add in compatibility with Lightman's Currency",
+  "body": "This mod adds in support for Lua interaction with Lightman's Currency using CC Tweaked!\n\nsimply place a computer near any lightman's currency trader blocks and wrap the peripheral.\n\n### How to Use\n\nAttach the terminal peripheral to your ComputerCraft computer. You can then call the following Lua functions:\n\n- `getName(trader)`: Returns the custom name of the trader.\n- `getOwnerName(trader)`: Returns the name of the trader's owner.\n- `getTrades()`: Returns a table of all trades for the trader. Each trade includes:\n  - `items`: List of items being sold or offered (each with `item` and `count`).\n  - `transactionType`: One of `sale`, `purchase`, or `barter`.\n  - `price`: (For sales/purchases) The price in currency.\n  - `itemsCost`: (For barters) List of items required as cost (each with `item` and `count`).\n\n#### Example Lua Usage\n\n```lua\nlocal p = peripheral.wrap(\"back\") -- change to your peripheral side\nlocal traders = p.getTrades()\n\nfor _, trader in ipairs(traders) do\n    print(\"Trader:\", trader.name, \"(ID:\", trader.id .. \")\")\n    if #trader.trades == 0 then\n        print(\"  No trades available.\")\n    else\n        for i, trade in ipairs(trader.trades) do\n            print(\"  Trade \" .. i .. \":\")\n            print(\"    Type:\", trade.transactionType)\n            if trade.price then\n                print(\"    Price:\", trade.price)\n            end\n            if trade.items then\n                print(\"    Items:\")\n                for _, item in ipairs(trade.items) do\n                    print(\"      -\", item.count, item.item)\n                end\n            end\n            if trade.itemsCost then\n                print(\"    Cost Items:\")\n                for _, item in ipairs(trade.itemsCost) do\n                    print(\"      -\", item.count, item.item)\n                end\n            end\n        end\n    end\n    print()\nend\n\n```",
+  "categories": [
+    "economy",
+    "forge",
+    "game-mechanics",
+    "social",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 347,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

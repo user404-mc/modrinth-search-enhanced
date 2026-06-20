@@ -1,0 +1,23 @@
+{
+  "id": "GDyhJyRy",
+  "slug": "dimensional-structure-restrict",
+  "title": "Dimensional Structure Restrict",
+  "description": "A lightweight mod that allows you to control where structures can spawn based on dimension and structure rules. This mod provides fine-grained control over world generation behavior — especially useful for modpack developers and world designers.",
+  "body": "# Dimensional Structure Restrict\n\nDimStructRestrict is a lightweight Minecraft Forge mod for **Minecraft 1.20.1** that allows you to **control where structures can spawn** based on dimension and structure rules. Designed and developed by **Troy Cook (@cookta2012)**, this mod provides fine-grained control over world generation behavior — especially useful for modpack developers and world designers.\n\nInitial release will be 1.20.1 other versions will be coming later.\n\n---\n\n## 🌍 Features\n\n- Prevent or allow specific structures from generating in specific dimensions.\n- Define whitelist or blacklist rules.\n- Optionally flag structures to not place the structure while it believes it placed it.\n- JSON-based configuration — supports comments and regenerates missing keys automatically.\n- Logs rule enforcement with structure/dimension context for debugging.\n\n---\n\n## 🔧 Configuration\n\nThe config file is located at:\n```\n<minecraft_root>/config/dimstructrestrict.json\n```\n\nIf the file doesn't exist, it will be generated with example entries.\n\n---\n\n### 📐 Structure of `dimstructrestrict.json`\n\n```jsonc\n{\n  \"structures\": [\n    {                                       // Individual structure rules will override dimension rules FULL STOP\n      \"id\": \"minecraft:village_plains\",     // Structure ID\n      \"whitelist\": [\"minecraft:overworld\"], // Allowed dimensions\n      \"false_place\": false,                 // If true, the structure will be \"falsely placed\" (may break mods)\n      \"active\": true                        // Whether this rule is active\n    }\n  ],\n  \"dimensions\": [\n    {\n      \"id\": \"minecraft:overworld\",        // Dimension ID\n      \"whitelist\": [],                    // Structures allowed in this dimension\n      \"active\": true\n    }\n  ]\n}\n```\n\n---\n\n## 🧠 Rule Types\n\n### ✅ `whitelist`\nOnly listed dimensions or structures are allowed.\n\n### ❌ `blacklist`\nListed dimensions or structures will be prevented.\n\n### ⚙️ `false_place` (optional, default `false`)\nIf `true`, prevents the structure from placing **without skipping the generation step** meaning it is marked on the map as generated.\n\n> ⚠️ May cause issues with some structure-dependent mods.\n\n### 🔄 `active` (optional, default `false`)\nControls whether the rule is enforced. Useful for temporarily disabling rules without removing them.\n\n---\n\n## 🧪 Example Use Case\n\n```json\n{\n  \"structures\": [\n    {\n      \"id\": \"minecraft:ruined_portal\",\n      \"blacklist\": [\"minecraft:the_end\", \"minecraft:the_nether\"],\n      \"active\": true\n    }\n  ],\n  \"dimensions\": [\n    {\n      \"id\": \"minecraft:overworld\",\n      \"whitelist\": [\"minecraft:village_savanna\", \"minecraft:village_plains\"],\n      \"false_place\": true,\n      \"active\": true\n    }\n  ]\n}\n```\n\n---\n\n## 🛠️ Advanced Setup\n\nThe mod uses a generic `Rule` system internally with two maps:\n\n- `STRUCTURE_RULES` for structure-specific rules\n- `DIMENSION_RULES` for dimension-based restrictions\n\nEach `Rule` is backed by:\n- `id`: ResourceLocation\n- `mode`: WHITELIST or BLACKLIST\n- `resource`: Set of targets (structure/dimension IDs)\n- `false_place`: Boolean\n- `active`: Boolean\n\n---\n\n## 🧑‍💻 Developer Notes\n\n- Author: **Troy Cook**\n- GitHub: [@cookta2012](https://github.com/cookta2012)\n- Language: Java\n- Environment: Minecraft Forge for Minecraft 1.20.1\n\n---\n\n## 📄 License\n\nMIT License.\n\n---\n\n## 📬 Feedback & Contributions\n\nFeel free to open an issue or fork the project if you'd like to expand the system (e.g., gamerule-based control, datapack integration, or GUI support).",
+  "categories": [
+    "forge",
+    "management",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 955,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

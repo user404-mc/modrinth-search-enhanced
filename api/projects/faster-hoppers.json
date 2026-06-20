@@ -1,0 +1,37 @@
+{
+  "id": "P0w3a1i1",
+  "slug": "faster-hoppers",
+  "title": "Faster Hoppers",
+  "description": "A lightweight Paper/Spigot plugin that makes hoppers transfer items faster. Works on Minecraft 1.21.x+",
+  "body": "# Faster Hoppers\n\n### v2.0.2 - Changelog\n- Added items-per-stack config — set how many items are pulled per slot per transfer\n- Fixed items-per-transfer — now correctly cycles through slots per tick\n- Worlds not in enabled-worlds now run at vanilla speed instead of freezing\n  - Thanks to ronko_01 for reporting on discord.\n\nA lightweight Paper/Spigot plugin that makes hoppers transfer items faster. Works on Minecraft 1.21.x+\n\n## How It Works\n\nVanilla hoppers transfer 1 item every 8 ticks (2.5 items/second). This plugin:\n\n1. **Cancels vanilla hopper transfers** (via `InventoryMoveItemEvent`)\n2. **Runs its own transfer system** at your configured speed\n3. **Handles both PUSH and PULL** operations\n\n## Installation\n\n1. Download `FasterHoppers-2.0.2.jar`\n2. Put it in your `plugins/` folder\n3. Restart the server\n4. Done! Hoppers are now 8x faster by default\n\n## Commands\n\n| Command | Description |\n|---------|-------------|\n| `/fh reload` | Reload config and restart hopper task |\n| `/fh speed <ticks>` | Set transfer speed (1-100) |\n| `/fh debug` | Toggle debug mode |\n| `/fh info` | Show current settings |\n\n## Permissions\n\n| Permission | Description |\n|------------|-------------|\n| `fasterhoppers.admin` | Access to all commands |\n\n## Troubleshooting\n\n### Hoppers aren't faster after changing config\n\n1. Make sure `disable-vanilla-transfer: true` is set\n2. Run `/fh reload` (this restarts the task with new settings)\n3. Enable debug mode: `/fh debug` - you should see transfer messages\n\n### Hoppers stopped working entirely\n\n1. Check if hoppers are powered (redstone disables them)\n2. Check `enabled-worlds` in config - empty list means all worlds\n3. Check server console for errors\n\n### Server lag with many hoppers\n\nSet `max-hoppers-per-tick` to limit processing:\n```yaml\nperformance:\n  max-hoppers-per-tick: 500\n```\n\n### Debug mode\n\nRun `/fh debug` to enable. You'll see messages like:\n```\n[DEBUG] Pulled 1 items from above\n[DEBUG] Pushed 1 items to DOWN\n[DEBUG] Processed 24 hoppers this tick\n```\n\n## Speed Reference\n\n| transfer-speed | Transfers/sec | Multiplier |\n|----------------|---------------|------------|\n| 1 tick | 20/sec | 8x faster |\n| 2 ticks | 10/sec | 4x faster |\n| 4 ticks | 5/sec | 2x faster |\n| 8 ticks | 2.5/sec | Vanilla |\n| 20 ticks | 1/sec | Slower |\n\n\n## Requirements\n\n- Paper/Spigot 1.21.x or newer\n- Java 21+",
+  "categories": [
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1042,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

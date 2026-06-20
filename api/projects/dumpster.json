@@ -1,0 +1,24 @@
+{
+  "id": "mw0GFOJy",
+  "slug": "dumpster",
+  "title": "Dumpster",
+  "description": "Dump registries, tags, and all you want about your game in your local files",
+  "body": "# Dumpster\n\nAllows you do dump, at will\n* your game's registries, with the command `/dump registries`\n* your game's data, including tags, recipes and more, with the command `/dump data`\n* more specific data, such as either tags, recipes, loot tables, etc, with the command `/dump data <type>`\n* both of the above, with the pure `/dump` command\n\n## Config\n\nIncludes a small configuration file, allowing you to set whether or not to dump the tags and/or the recipes when dumping the data. The same way, you can configure whether to dump data and/or registries upon reload or startup.\nIt also gives you the option to control how should the dump files be organized.\n\nThis file can be found as `dumpster.properties` file, in the config folder.\n\n## Server or Client\n\nThis mod has actually been thought somewhat smartly! (I surprise even myself)\n\nSo, when the mod is on the server, OP players only have the option to use the `/dumpster` command, which will dump the wanted data *in the server's files*!\n\nAnd just as well, when the mod is on the client, the player will be able to use the `/dumpster` command without any concern of whether they are OP or not.\n\nLast but not least, if the mod is on both the client and the server, due to Minecraft's architecture, the client-side command will be renamed `/dump-client`, in order to work properly.\n\n## Use cases\n\nThis mod is not meant to be used for regular gaming! It is solely intended as a handy tool for datapack, mod and modpack creators, for them to be able to know whether their game manipulations had a proper impact on the game.\n\n## Compatibility\n\nThis mod is not able to process modded  recipe types by default. Thus, a compatibility layer must be implemented, either on the side of the mod adding the recipe type, or by some third-party mod that intends to add it.\n\n### How to implement compatibility\n\nYou may import this mod in your Gradle project using the Modrinth maven API, as per indicated in [the documentation](https://docs.modrinth.com/maven).\n\nYou may then implement the [RecipeJsonParser](https://github.com/RecraftorsMC/Dumpster/blob/main/src/main/java/mc/recraftors/dumpster/recipes/RecipeJsonParser.java) interface in a class and register it as a `recipe-dump` entry-point as shown in the base [fabric.mod.json](https://github.com/RecraftorsMC/Dumpster/blob/dbb8bbc4d9bc2516854b2e88fca182c137aad875/src/main/resources/fabric.mod.json#L24) file.\n\nYou shall also annotate it with the [TargetRecipeType](https://github.com/RecraftorsMC/Dumpster/blob/main/src/main/java/mc/recraftors/dumpster/recipes/TargetRecipeType.java) annotation, in order to indicate what recipe you are actually registering it for. You may as well indicate a priority value, if you want to overhaul another parser, by providing it a higher value.\n\nAnd that is all you have to do.\n\nAll in all, your recipe dump class shall resemble the following (using Yarn mappings):\n```java\nimport com.google.gson.JsonObject;\nimport mc.recraftors.dumpster.recipes.RecipeJsonParser;\nimport mc.recraftors.dumpster.recipes.TargetRecipeType;\nimport net.minecraft.recipe.Recipe;\n\n@TargetRecipeType(\"mymod:myrecipetype\")\npublic class MyRecipeTypeJsonParser implements RecipeJsonParser {\n    private MyRecipe recipe;\n\n    @Override\n    public JsonParser.InResult in(Recipe<?> recipe) {\n        if (recipe instanceof MyRecipe myRecipe) {\n            this.recipe = myRecipe;\n            return RecipeJsonParser.InResult.SUCCESS;\n        }\n        return RecipeJsonParser.InResult.FAILURE;\n    }\n\n    @Override\n    public JsonObject toJson() {\n        // implement your parsing method here\n    }\n}\n```\n\nOther methods are optionally available, for in-detail functionalities, such as regrouping multiple recipes generated out of a single files, or supporting alternative recipe type IDs",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 2294,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2"
+  ],
+  "date_updated": null
+}

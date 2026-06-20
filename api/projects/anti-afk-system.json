@@ -1,0 +1,32 @@
+{
+  "id": "5vJsuy7O",
+  "slug": "anti-afk-system",
+  "title": "Anti AFK System",
+  "description": "A complete Anti-AFK plugin for Minecraft Paper 1.21.10 that automatically detects and kicks inactive players.",
+  "body": "# AntiAFK Plugin\n\nA complete Anti-AFK plugin for Minecraft Paper 1.21.10 that automatically detects and kicks inactive players.\n\n## ✨ Features\n\n- 🎯 **Automatic AFK Detection** - Detects players who are inactive for too long\n- ⚠️ **Warning System** - Warns players before they get kicked\n- 🎮 **Manual AFK Toggle** - Players can mark themselves as AFK with `/afk`\n- ⚙️ **Fully Configurable** - Customize timeouts, messages and detection\n- 🛡️ **Permission System** - Staff can bypass AFK detection\n- 📢 **Broadcast Messages** - Server is informed when players go AFK or return\n\n## 📋 Requirements\n\n- **Minecraft**: 1.21.10\n- **Server Software**: Paper (or forks like Purpur)\n- **Java**: 21 or higher\n\n## 📥 Installation\n\n1. Download the latest `AntiAFK-1.0.0.jar` from releases\n2. Place the JAR file in your server's `plugins` folder\n3. Restart your server\n4. Customize the configuration in `plugins/AntiAFK/config.yml`\n5. Use `/afkreload` to reload the configuration\n\n\n## ⚙️ Configuration\n\nThe configuration is located in `plugins/AntiAFK/config.yml`:\n\n```yaml\n# Time in seconds before a player is considered AFK\nafk-timeout: 300\n\n# Time in seconds before the warning is given\nwarning-time: 270\n\n# Check interval in ticks (20 ticks = 1 second)\ncheck-interval: 100\n\n# Messages (use & for color codes)\nmessages:\n  kick: \"&cYou have been kicked for inactivity!\"\n  warning: \"&eWarning: You will be kicked in {time} seconds for inactivity!\"\n  afk-enabled: \"&7You are now AFK\"\n  afk-disabled: \"&7You are no longer AFK\"\n  player-afk: \"&7{player} is now AFK\"\n  player-back: \"&7{player} is back\"\n  reload: \"&aConfiguration reloaded!\"\n  no-permission: \"&cYou don't have permission to do this!\"\n\n# Actions that reset AFK status\ndetect-movement: true\ndetect-chat: true\ndetect-block-break: true\ndetect-block-place: true\ndetect-interact: true\ndetect-damage: true\n```\n\n### Configuration Options\n\n| Option | Default | Description |\n|--------|---------|-------------|\n| `afk-timeout` | 300 | Seconds before player gets kicked |\n| `warning-time` | 270 | Seconds before warning is given |\n| `check-interval` | 100 | Ticks between each check (20 = 1 sec) |\n| `detect-movement` | true | Detect movement as activity |\n| `detect-chat` | true | Detect chat as activity |\n| `detect-block-break` | true | Detect block breaking as activity |\n| `detect-block-place` | true | Detect block placing as activity |\n| `detect-interact` | true | Detect interactions as activity |\n| `detect-damage` | true | Detect damage as activity |\n\n## 🎮 Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/afk` | Toggle your AFK status manually | `antiafk.command` |\n| `/afkreload` | Reload the plugin configuration | `antiafk.reload` |\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `antiafk.command` | true | Use the `/afk` command |\n| `antiafk.bypass` | op | Bypass AFK detection (for staff) |\n| `antiafk.reload` | op | Reload the configuration |\n\n### Permission Examples\n\n**LuckPerms:**\n```bash\n# Give moderators bypass permission\nlp group moderator permission set antiafk.bypass true\n\n# Give admins reload permission\nlp group admin permission set antiafk.reload true\n```\n\n## 🔍 How it Works\n\n1. **Activity Tracking**: The plugin tracks when players were last active\n2. **Periodic Checks**: Every X ticks (configurable) it checks if players have been inactive too long\n3. **Warning**: At `warning-time` seconds the player receives a warning\n4. **Kick**: At `afk-timeout` seconds the player gets kicked\n5. **Broadcast**: Other players are informed when someone goes AFK or returns\n\n### Detected Activities\n\nThe plugin detects the following activities (if enabled in config):\n- ✅ Movement (position change, not just head rotation)\n- ✅ Chat messages\n- ✅ Breaking blocks\n- ✅ Placing blocks\n- ✅ Interactions (buttons, doors, etc.)\n- ✅ Taking damage\n- ✅ Executing commands\n\n## 📝 Examples\n\n### Example 1: Default Usage\n```\nPlayer is inactive for 4 minutes\n→ At 4:30 minutes: \"⚠️ Warning: You will be kicked in 30 seconds for inactivity!\"\n→ At 5:00 minutes: Player gets kicked\n```\n\n### Example 2: Manual AFK\n```\nPlayer: /afk\n→ \"You are now AFK\"\n→ Server: \"Player123 is now AFK\"\n\nPlayer moves\n→ \"You are no longer AFK\"\n→ Server: \"Player123 is back\"\n```\n\n### Example 3: Staff Bypass\n```\nStaff with antiafk.bypass permission\n→ Never gets kicked, regardless of inactivity\n```\n\n## 🐛 Troubleshooting\n\n**Players are not getting kicked:**\n- Check if `afk-timeout` is set correctly\n- Verify players don't have `antiafk.bypass` permission\n- Verify the plugin is loaded correctly with `/plugins`\n\n**Warnings don't work:**\n- Make sure `warning-time` is less than `afk-timeout`\n- Check the console for errors\n\n**Config changes don't work:**\n- Use `/afkreload` after editing the config\n- Or restart the server\n\n## 📄 License\n\nThis project is open source and available for personal and commercial use.\n\n---\n\n**Made with ❤️ for the Minecraft community**\n",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 105,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

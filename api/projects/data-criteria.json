@@ -1,0 +1,27 @@
+{
+  "id": "bbvSY1VI",
+  "slug": "data-criteria",
+  "title": "Data Criteria",
+  "description": "Data-driven advancement criteria",
+  "body": "## Why?\n\nCheck out [this page](https://github.com/acikek/data-criteria/wiki/Why%3F) for an example of creating advancement criteria without this mod. See the [rest of the wiki](https://github.com/acikek/data-criteria/wiki) for complete documentation.\n\n## Example\n\n1 - Create a criterion file. `parameters` is an **ordered list** of parameter names and types to pass in and check for. Make sure to group optional parameters at the end.\n\n`data/namespace/criteria/int_and_bool.json`\n```json\n{\n  \"parameters\": [\n    {\n      \"name\": \"number\",\n      \"type\": \"datacriteria:int\"\n    },\n    {\n      \"name\": \"possible\",\n      \"type\": \"datacriteria:bool\",\n      \"optional\": true\n    }\n  ]\n}\n```\n\n2 - Use the criterion within an advancement file.\n\n```json5\n{\n  // ...\n  \"criteria\": {\n    \"test\": {\n      \"trigger\": \"namespace:int_and_bool\",\n      \"conditions\": {\n        \"number\": 5,\n        // As 'possible' is optional, it's not required in the conditions\n      }\n    }\n  }\n  // ...\n}\n```\n\n3 - Trigger the criterion through `DataCriteriaAPI`.\n\n```java\nDataCriteriaAPI.trigger(\n    new Identifier(\"namespace:int_and_bool\"),\n    serverPlayer,\n    // The parameters begin here\n    10, true\n);\n```\n\n## License\n\nMIT © 2022 spadeteam\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1835,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

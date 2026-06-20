@@ -1,0 +1,32 @@
+{
+  "id": "WGxKLoGM",
+  "slug": "midi",
+  "title": "midi",
+  "description": "A lightweight Minecraft mod for sending MIDI-like actions from the client to the server via custom plugin messages.",
+  "body": "\n\n# 🎹 MIDI Plugin Message Mod\n\nThis Minecraft mod adds support for sending **MIDI actions** from the client to the server using **custom plugin messages**. It can be used to control in-game instruments, sound systems, lighting effects, or other MIDI-reactive features.\n\n## 📦 Plugin Message: `midi:action`\n\nThe plugin message is based on a custom payload called `MidiAction`, sent via the `CustomPayload` system.\n\n### `MidiAction` Payload Structure\n\n```java\nrecord MidiAction(\n    String name,\n    int command,\n    int channel,\n    int data1,\n    int data2\n)\n````\n\n| Field     | Type     | Description                                 |\n| --------- | -------- | ------------------------------------------- |\n| `name`    | `String` | Name of the MIDI device (e.g., \"Launchpad\") |\n| `command` | `int`    | MIDI command (e.g., `144` = Note On)        |\n| `channel` | `int`    | MIDI channel (0–15)                         |\n| `data1`   | `int`    | First data value (e.g., note number)        |\n| `data2`   | `int`    | Second data value (e.g., velocity)          |\n\n## 🛠 Example Usage\n\n### Sending from the Client\n\n```java\nClientPlayNetworking.send(\n    new MidiAction(\"Launchpad\", 144, 0, 60, 127)\n);\n```\n\n### Receiving on the Server\n\nRegister a global receiver in your server mod:\n\n```java\nServerPlayNetworking.registerGlobalReceiver(\n    MidiAction.ID,\n    (payload, context) -> {\n        System.out.println(\"Received MIDI action from device: \" + payload.name());\n    }\n);\n```\n\n## ⚙️ Technical Details\n\n* **Packet ID**: `midi:action`\n* **Codec**: Custom implementation using `FriendlyByteBuf`\n* **Minecraft Version**: 1.20.5+ (uses `CustomPacketPayload` API)\n\n## ✅ Requirements\n\n* Minecraft 1.20.5 or higher\n* Fabric (or another compatible mod loader)\n* A server mod that handles incoming `MidiAction` payloads\n\n---\n\nGot questions or suggestions? Feel free to open an [issue](https://github.com/uebliche/midi/issues) or reach out \ndirectly!\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "magic",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 998,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

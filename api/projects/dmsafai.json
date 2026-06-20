@@ -1,0 +1,19 @@
+{
+  "id": "B0iT9cuq",
+  "slug": "dmsafai",
+  "title": "dmsafai",
+  "description": "Don't make such a fuzz about it. A Fabric mod that makes some errors a bit less loud",
+  "body": "# Don't make such a fuzz about it\n\nYou hate it that the most simple and \"normal\" errors always add a useless stacktrace?\n\nThis mod wraps some common error handler and only writes the exception message instead of the whole stacktrace. \n\n## Examples\n- Failed to generate recipe for...\n- Couldn't parse element...\n- Failed to load model...\n- Parsing error loading recipe...\n\n### Invalid model files\nBefore:\n```\n[17:28:56] [Worker-ResourceReload-5/ERROR]: Failed to load model <filename>.json\njava.lang.StringIndexOutOfBoundsException: Index 0 out of bounds for length 0\n\tat jdk.internal.util.Preconditions$1.apply(Preconditions.java:55) ~[?:?]\n\tat jdk.internal.util.Preconditions$1.apply(Preconditions.java:52) ~[?:?]\n\tat jdk.internal.util.Preconditions$4.apply(Preconditions.java:213) ~[?:?]\n\tat jdk.internal.util.Preconditions$4.apply(Preconditions.java:210) ~[?:?]\n\tat jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:98) ~[?:?]\n\tat jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106) ~\n    ...\n```\n\nAfter:\nRemoved by adding a check for empty strings\n\n### Loot Tables with missing items\n\nBefore:\n```\n[Worker-ResourceReload-7/ERROR]: Couldn't parse element loot_tables:foo/bar\ncom.google.gson.JsonSyntaxException: Expected name to be an item, was unknown string 'foo:bar'\n\tat net.minecraft.class_3518.method_17995(class_3518.java:145) ~[client-intermediary.jar:?]\n\tat java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]\n\tat net.minecraft.class_3518.method_15256(class_3518.java:145) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_3518.method_15288(class_3518.java:153) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_77$class_78.method_413(class_77.java:55) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_77$class_78.method_443(class_77.java:40) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_85$class_90.method_441(class_85.java:151) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_85$class_90.method_424(class_85.java:129) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_79$class_5337.method_29319(class_79.java:86) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_79$class_5337.method_517(class_79.java:74) ~[client-intermediary.jar:?]\n\tat net.minecraft.class_5330$class_5333.deserialize(class_5330.java:102) ~[client-intermediary.jar:?]\n```\n\nAfter:\n```\n[Worker-ResourceReload-7/ERROR]: Couldn't parse element loot_tables:foo/bar: Expected name to be an item, was unknown string 'foo:bar'\n```\n\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 340,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

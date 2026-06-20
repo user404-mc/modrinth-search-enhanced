@@ -1,0 +1,30 @@
+{
+  "id": "ID9fdscc",
+  "slug": "soundreloader",
+  "title": "Sound Reloader",
+  "description": "Sound Reloader automatically reloads your audio whenever you reconnect your output device.",
+  "body": "# Sound Reloader\nEver accidentally unplugged your headphones and Minecraft just didn't reload the audio? Does that annoy the shit out of you because it should just do it by default?\nWell I've got just the mod for you!\n\nSound Reloader makes sure your audio comes back AUTOMATICALLY whenever you plug your speakers or headphones back in!\n\nThere's even a litte popup when it does it. (WOW!!) (you can even turn off the popup in the Music & Sound menu WOWWOW!!)\n\n![Popup Notification in the top right of the screen with the top text: Sound Reloader and bottom text: Audio Reloaded!](https://cdn.modrinth.com/data/cached_images/b3f9a0a3618f0e829bf26068eea84941d4a4ddeb.png)\n\n### Note\nThere's a chance it wont detect when your audio device is reconnected. Replugging your device back in _should_ fix it.\n\n\n<details>\n<summary>How it works</summary>\n\nSound Reloader uses two detection paths to notice when your audio output changes.\n\nFirst, it checks OpenAL every second via the **ALC_EXT_disconnect** extension to see if the current device has disconnected and then reconnected.\n\nSecond, a background thread polls Java’s **AudioSystem** every 2 seconds for new output mixers (e.g., when you plug in headphones or a USB DAC).\n\nWhen either path detects a change, it waits 3 seconds for the device to stabilize, then calls Minecraft’s **SoundManager.reloadSounds()** to reinitialize the sound engine.\n</details>\n\n\n\nTested on 1.21.1 and 1.21.11. Requires Fabric API.",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 160,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

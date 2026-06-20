@@ -1,0 +1,20 @@
+{
+  "id": "2A2XjoYK",
+  "slug": "itemgator",
+  "title": "ItemGator",
+  "description": "Prevent players from having/using specific items until they have a certain tag!",
+  "body": "Looking for an easy way to prevent players from having *anything* to do with an item until they've made it further through progression? Then look no further! ItemGator allows you to use datapack-style recipes in order to prevent players from being able to have an item until some other process - be it an FTB Quest Reward, a Per-Tick `mcfunction` or some other means - adds a tag to the player.\n\nWhen the tag isn't present on the player, the item will turn into whatever item is defined as a substitute and all of the data for the original item will be stored on the substitute as NBT.\n\nWhen the tag *is* present, the mod will use that NBT data on the item to revert it back to its original form, allowing you to push the use of an item to a later time.\n\n\n## Datapack examples:\n\n### Disallow access to an entire mod until the tag `test123` is given to the player\n\nIn this example, the mod Immersive Engineering is being gated from any player that doesn't have the tag `test123`. When a player without that tag obtains *any* Immersive Engineering item, it'll turn into a stick until they are granted that tag.\n\n```json\n{\n  \"type\": \"itemgator:mod\",\n  \"mod\": \"immersiveengineering\",\n  \"substitute\": { \"item\": \"minecraft:stick\" },\n  \"tag\": \"test123\"\n}\n\n```\n\n### Disallow an item or item tag until the tag `test123`is given to the player\n\nIn this example, any `minecraft:planks` will be turned into a stick until the player is granted the tag `test123`:\n\n```json\n{\n  \"type\": \"itemgator:ingredient\",\n  \"input\": { \"tag\": \"minecraft:planks\" },\n  \"substitute\": { \"item\": \"minecraft:stick\" },\n  \"tag\": \"test123\"\n}\n```",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 422,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

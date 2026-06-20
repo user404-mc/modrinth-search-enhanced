@@ -1,0 +1,28 @@
+{
+  "id": "NE7Gptcf",
+  "slug": "astralbot",
+  "title": "AstralBot",
+  "description": "Minecraft Mod doubling as a Discord Bot, initially made for Create: Astral",
+  "body": "# AstralBot\n[![build workflow](https://img.shields.io/github/actions/workflow/status/Erdragh/AstralBot/build.yml?style=for-the-badge)](https://github.com/Erdragh/AstralBot/actions/workflows/build.yml)\n[![License](https://img.shields.io/github/license/Juuxel/Adorn.svg?style=for-the-badge)](LICENSE)\n![Environment](https://img.shields.io/badge/environment-server-4caf50?style=for-the-badge)\n\nThis is a Minecraft mod and Discord Bot in one package. It's intended for the [Create: Astral](https://www.curseforge.com/minecraft/modpacks/create-astral)\nModpack's official server, but it's implemented cross-platform to be usable by others too.\nThe goal is to be easy-to-use and accessible for non-technical server admins,\nwhile allowing true complexity for power users.\n\n## Features\nThese features are the core of what this bot will do. See [the Status section](#status)\nto see how much is already implemented.\n- Discord and Minecraft account linking, optionally requiring this to be whitelisted\n- Discord and Minecraft chat synchronization, optionally via webhook for improved readability\n- FAQ commands using Markdown files without needing to restart the server\n\n## Dependencies\n\nThis mod has a few dependencies, some of which are not specified directly as they're technically optional:\n- The Kotlin Implementation for the platform you're running. (e.g. [Kotlin For Forge](https://modrinth.com/mod/kotlin-for-forge) or [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin))\n- The (Neo-)Forge Config API (Included in Neo/Forge, [extra mod for Fabric](https://modrinth.com/mod/forge-config-api-port))\n\n## Implementation\n- [JDA](https://jda.wiki) library to communicate with the Discord API.\n- Kotlin for the improved development experience over Java\n- [JetBrains Exposed](https://github.com/JetBrains/Exposed) to communicate with the Database\n\n## Configuration\nThe following things will be configurable:\n- Required linking to be whitelisted (default: `off`)\n- Chat synchronization with imitated Discord Users:\n  1. No user imitation (The bot will write the messages under its own name)\n  2. (If possible) Minecraft user imitation (The Minecraft usernames and heads will be used for messages)\n  3. (Only available if requiring linking for whitelist) Discord user imitation (The messages will be written under the linked Discord name)\n  \n  Default: Minecraft user imitation (if webhook available is set, otherwise no imitation)\n- Managing FAQs through a command interface (default: `off`)\n- Database connection. Uses an SQLite database by default\n\n## Status\n- [x] Whitelisting\n- [ ] FAQ Commands\n  - [x] Reading Markdown files\n  - [x] Updating suggestions without restart\n  - [ ] Management/Creation via commands\n- [x] Chat synchronization\n  - [x] Minecraft to Discord\n  - [x] Discord to Minecraft\n  - [x] User imitation on Discord. Either uses Minecraft avatars or Discord avatars\n\n## Running\nThere is no public instance of this bot/mod available. To use it, create a new Application\non the [Discord Developer Portal](https://discord.com/developers/applications) and configure it\nto have the three privileged gateway intents: `PRESENCE`, `SERVER MEMBERS` and `MESSAGE CONTENT`.\n\nCopy the bot token and store it somewhere safe (like a Password Manager) and never show it to\nanybody else. To make sure the token gets read by the bot, it has to be in either an [Environment Variable](https://en.wikipedia.org/wiki/Environment_variable)\n`DISCORD_TOKEN` where the running Minecraft server can access it or in the config file under the key `token`.\nYou could for example modify a `start.sh` script on a Unix-like system to `export` it or start the shell script with it set directly:\n\n`startmc.sh`:\n```shell\nexport DISCORD_TOKEN=<place token here>\n\njava ... # java command that starts the server\n```\n\nor\n\n```shell\nDISCORD_TOKEN=<place token here> startmc.sh # Start the script with the env variable set\n```\n\nAfter starting the server, you can go into the OAuth2 URL builder on the Discord\nDeveloper Portal and generate a URL with the `bot` and `applications.command` permissions.\nUse the generated URL to have the bot join your server.\n\nTo be able to use user imitation, which makes the chat synchronization more readable, the bot will try and create a webhook\nin the configured chat synchronization channel. This means it will need to have the permission to manage webhooks. If you\ndon't want that you can manually create a webhook in the channel where you want the messages synchronized and set it in the\n`webhook.url` option in the config for the mod.",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5156,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

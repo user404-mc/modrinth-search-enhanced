@@ -1,0 +1,34 @@
+{
+  "id": "8hhaeY0e",
+  "slug": "the-mob",
+  "title": "The Mob",
+  "description": "Mob Framework | YAML | Boss Phases | Radar HUD | AutoSpawn | Player Stats | 1.21.+",
+  "body": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/SDxDjcAgPqE\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\nTheMob is a high-performance custom mob and boss system for Paper / Spigot servers.\nIt allows you to create powerful custom mobs and multi-phase bosses using simple YAML configuration files – no coding required.\nThe plugin is designed for RPG servers, events, dungeons and PvE-focused gameplay, with a strong focus on performance and scalability.​\n\n[Tebex](https://the-mob.tebex.io/) | [Github](https://github.com/3o3y/TheMob) | [Gitbook](https://3o3y.gitbook.io/the-mob) | [Patreon](https://www.patreon.com/12553689/join)\n\n✨ Key Features\n\nYAML-Based Custom Mobs\n\n    Define mobs entirely via YAML\n    Including Custom Heads with Base64 String\n    Clean and predictable configuration structure\n    Custom stats, attributes and equipmen\n\nBoss System with Phases\n\n\n<details>\n<summary>Spoiler</summary>\n\n![BossPhase](https://3o3y.gitbook.io/the-mob/~gitbook/image?url=https%3A%2F%2F614325371-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Ft467EVEwf9LG0VpfFqnp%252Fuploads%252FP3iAQHhssw3ODVrDr18i%252FBP.png%3Falt%3Dmedia%26token%3D85b14024-6400-4369-b826-a52863bd02bc&width=768&dpr=1&quality=100&sign=daf2aa96&sv=2)\n\n</details>\n\n\n\n    Multi-phase bosses based on HP percentage\n    Minion support\n    BossBar integration\n    Phase messages, effects and abilities\n\nRadar & Navigation HUD\n\n\n    Player-specific BossBar HUD\n    Directional compass display\n    Detects nearby mobs within a radius\n    Priority-based threat detection\n\n⏱ Auto-Spawn System\n\n\n<details>\n<summary>Spoiler</summary>\n\n![Autospawn](https://3o3y.gitbook.io/the-mob/~gitbook/image?url=https%3A%2F%2F614325371-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Ft467EVEwf9LG0VpfFqnp%252Fuploads%252FUb8472uQu7dzGkPKVLaG%252Flifecycle.png%3Falt%3Dmedia%26token%3D0a3992db-5622-46f3-ae4a-9c693170951e&width=768&dpr=1&quality=100&sign=23caba15&sv=2)\n\n</details>\n\n\n\n\nDesigned for performance and fairness\n\n\n    Chunk-aware Hot / Cold Zone logic\n\n    Spawns activate only when players enter\n    \n    Spawn cycles pause automatically when players leave\n    \n    Hard spawn limits (no refill spawning)\n    \n    \n    Prevents:\n    \n        \n        Endless spawning\n        \n        AFK farming\n        \n        Kill-speed exploits\n        \n        When players leave, the world rests.\n        \n        When they return, it feels alive again.\n\n\nPlayer Stats GUI\n\n\n    In-game stats menu\n\n    No permissions required for basic access\n    \n    Player-friendly by default\n\n\n\n⚡ Performance-First Design\n\n\n    Event-driven logic (no global polling)\n\n    Optimized for high player counts\n    \n    Radius-limited entity scans\n    \n    No forced chunk loading\n\n✅ Tested Scenarios (v1.5)\n\nTheMob v1.5 has been tested under real server conditions with the following results:\n\n\n✔ 20+ concurrent players\n\n✔ 400+ active custom mobs\n\n✔ Multiple bosses running simultaneously\n\n✔ Stable TPS on Paper 1.21.10\n\n✔ No forced chunk loading\n\n✔ No spawn refill abuse or AFK farming\n\n\nThe system remains stable during:\n\n\n    Player joins & leaves\n\n    Boss phase transitions\n\n    Auto-spawn hot/cold state changes\n\n    /mob reload without server restart\n\n\nCommands (v1.5)\n\n\n```\nCore Commands\n\n\n/mob reload\n\n/mob spawn <mob-id>\n  \n/mob killall\n\n/stats\n\n\nAuto-Spawn Management\n\n\n/mob set autospawn <mob-id> <seconds> <maxSpawns>\n\n/mob set randomradius <mob-id> <seconds> <maxSpawns> <minRadius> <maxRadius>\n\n/mob set followplayer <player> <mob-id> <seconds> <maxSpawns> <onetime/endless> <minDistance> <maxDistance> <message>\n\n/mob set randomworld <mob-id> <seconds> <maxSpawns> <onetime/endless> <message-timer> <message>\n\n\nDeleting Spawns\n\n\n/mob del autospawn <mob-id>\n\n/mob del randomradius <mob-id>\n\n/mob del followplayer <player> <mob-id>\n\n/mob del randomworld <world> <mob-id>\n\n\nListing & Utilities\n\n\n/mob list autospawn\n\n/mob list all\n\n/mob toggle hud\n\n\nLegacy Alias (still supported)\n\n\n/mob autospawn <mob-id> <seconds> <maxSpawns>\n```\n\n\n\nPermissions (v1.5)\n\n\nPermission Description\n\n\n```\n\nthemob.spawn Manually spawn custom mobs\n\nthemob.spawn.set Create, delete and manage auto-spawns\n\nthemob.killall Remove all custom mobs instantly\n\nthemob.reload Reload TheMob without server restart\n\nthemob.stats Open the player stats GUI (optional/future use)\n```\n\n\n\n✔ Permissions are cleanly separated\n\n✔ Safe for admin / moderator delegation\n\n✔ No permission required for basic player features (Stats GUI, HUD toggle)\n\n\nExample Configuration\n\n\n```\nmob-id: zombie_boss\ntype: ZOMBIE\n\nstats:\n  health: 500\n  damage: 12\n\nphases:  # This will count the mob as a Boss\n  phase_2:\n   at-health: 50\n   effects:\n     - INCREASE_DAMAGE\n```\n\n     \nDocumentation\nFull documentation available here\nIncludes:\n\n    Installation guide\n    \n    Mob & boss configuration\n    \n    Radar system\n    \n    Commands & permissions\n    \n    Best practices\n\n\n⚙️ Requirements\n\n\n    Paper / Spigot 1.21.10\n    \n    Java 21 recommended\n    \n\nUse Cases\n\n\n✔ RPG Servers\n\n✔ Boss Events\n\n✔ Dungeons\n\n✔ Hardcore / Purge Servers\n\n✔ Custom PvE Content\n\n\nSupport & Feedback\n\nThis plugin is actively developed.\n\nFeedback, bug reports and feature suggestions are welcome.\n\n\nFinal Notes\n\nTheMob is built for server owners who want:\n\n\n    Powerful custom mobs without coding\n    \n    Boss fights with real mechanics\n    \n    Strong performance\n    \n    Clean administration\n\n\nIf you value control, performance and scalability, this plugin is for you.\n\n\nThanks for the first 100 downloads! ❤️\n\nIf you test this plugin on a live server, I’d love to hear feedback or suggestions. ",
+  "categories": [
+    "adventure",
+    "equipment",
+    "game-mechanics",
+    "mobs",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 433,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "iBZozRpb",
+  "slug": "just-enough-filtering-(jef)",
+  "title": "Just Enough Filtering (JEF)",
+  "description": "JEF is a small client-side add-on for Just Enough Items (JEI) that adds extra search-bar filtering for item stats.",
+  "body": "# Just Enough Filtering (JEF)\n\nHave you ever wanted to find out what the strongest weapons, tools, and armor were in your modpack, but didn't want to painstakingly read through all the tooltips? Then this is the mod for you! JEF offers additional search-bar filtering options within JEI to easily find the items with your desired attributes.\n\n## What JEI Already Offers\n\nJEI already has several built-in \"prefix\" searches. The most important ones are:\n\n- `@modname` — filter by mod\n- `#text` — search tooltip text\n- `$tag` — search tags\n- `%tab` — search a specific creative tab\n- `^color` — search by color\n- `&namespace:path` — search by item id or resource location\n\nJEI also supports the following:\n\n- Spaces = AND\n- `|` = OR\n- `-token` = exclude token\n- Quotes for multi-word tokens, e.g. `#\"attack damage\"\n## What JEF Offers\n\nJEF adds the additional attribute filtering prefix, \"!\", allowing you to filter items by their attribute values.\n\n#### Examples:\n- `!ad>7` — filters by items with an Attack Damage of at least 7\n- `!as<=2.4` — filters by items with an Attack Speed of at most 2.4\n- `!akb>0` — filters by items with Attack Knockback greater than 0\n- `!dps>=20` — filters by items with a computed DPS of at least 20\n- `-!ad>7` — excludes items that match the attribute expression (items with an Attack Damage of at least 7)\n\nTo filter by a specific item attribute, you can use full attribute ids: `!minecraft:generic.attack_damage>=7`, or you can use aliases (see \"Aliases below). Supported comparators include the following: `>=`, `<=`, `>`, `<`, `=`.\n\n### Aliases\n\nJEF automatically builds an alias index at runtime from the attribute registry, creating an editable config list of full atribute ids (e.g. `minecraft:generic.attack_damge`) and their auto-generated aliases from ids and translated names.\nOn the client, JEF writes these files:\n\n- `config/jef.aliases.generated.properties` — this is the full alias map, and is automatically overwritten at runtime, and should not be touched.\n- `config/jef-aliases.properties` — this is the authoritative list of aliases that you can edit to change what attributes map to what aliases.\n\nBoth files use the format: `namespace:path=alias1,alias2,alias3`\nI.E.: attribute id = comma-separated list of aliases\n\nYou can also add overrides in the Forge client config `aliases.manual` by putting entries such as: `entityreach=attributeslib:entity_reach`\n\n### Tooltip Filtering\n\nWhat do you do if you don't know the alias for something and don't want to check the config? That's what plaintext tooltip filtering is for. You can use the `#` tooltip search operator to search for a token within a tooltip, followed by a comparator and value to filter directly from the numbers within tooltips.\n\n#### Examples:\n- `#\"entity reach\">=3` — filters for items with tooltips that contain the text, \"entity reach\" (case insensitive) and a number greater than or equal to 3.\n- `#\"armor negation\">=30` — filters for items with tooltips that contain the text, \"armor negation\" and a number greater than or equal to 30\n- `-#\"crit chance\">=15` — excludes items with a tooltip that match the attribute expression.\n### Configs\n\n`config/jef-client.toml` offers some useful options for configuring the mod:\n\n- autoEnabled — true by default, allows the mod to auto-discover attributes and generate aliases from ids and translations\n- autoFromIds — true by default, allows the mod to generate aliases from attribute registry ids (namespace:path)\n- autoFromTranslations — true by default, allows the mod to generate aliases from translated attribute names (client language)\n- enableShortAliases — true by default, allows the mod to generate convenient, short aliases like ad/as/kbres\n- enableAbbreviations — false by default as it can cause collisions, allows the mod to generate abbreviation aliases from words\n- debugLog — false by default, allows the mod to log the resolved alias map to the console at startup\n- showDps — false by default, allows the mod to add a computed DPS tooltip to items\n- usePlayerContextCombat — false by default, allows the mod to take player buffs into account rather than just using base item attribute values. In certain modded environments, tooltips will take these buffs into account (Attack Strength tooltip displays a higher number when the player has strength). This option makes it so that filtering and tooltips won't display discrepancies in those environments.",
+  "categories": [
+    "equipment",
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 400,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "LwH5rYyd",
+  "slug": "worldthreader",
+  "title": "Worldthreader",
+  "description": "Worldthreader speeds up servers by safely running each dimension on a separate thread.",
+  "body": "Worldthreader is a free and open-source Minecraft mod which optimizes the processing of multiple dimensions, by ticking\ndimensions in parallel. Thread safety is ensured, with fallbacks to serial execution if no other solution can be found.\nAfter each tick the dimensions wait for each other to ensure that everything stays in sync, avoiding breaking many\nadvanced redstone contraptions. Mod incompatibilities are expected, please report any issues to the [worldthreader\nissue tracker](https://github.com/2No2Name/worldthreader/issues).\n\nThe mod works on both the **client (singleplayer) and server**, and **does not** require the mod to be installed on both\nsides.\n\n## Installation\n\nThe mod must be installed on the server to work in multiplayer. For use in singleplayer worlds, the mod must be\ninstalled on the client.\n\n1. Download the mod from [Modrinth](https://modrinth.com/mod/worldthreader)\n   or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/worldthreader).\n2. Place the downloaded `.jar` file into the `mods` folder of your Minecraft directory.\n3. Launch Minecraft with the Fabric mod loader.\n\n### Configuration\n\nTo use the gamerules, you need the Fabric API. Without the Fabric API, Worldthreader will use the default settings.\n\n- `/gamerule worldthreader_Active <true/false>` (default true) enables/disables the mod\n- `/gamerule worldthreader_AdditionalEntityTickAfterTeleport <true/false>` (default false) enables/disables ticking\n  entities immediately after teleporting from the main overworld to the nether or end to simulate the timings of vanilla\n  portal use\n- `/gamerule worldthreader_Debug <true/false>` (default false) enables/disables debug logging and illegal world access\n  detection. Use this to find issues, both correctness and performance related. If nothing shows up in the logs, that\n  only means that no issues were found, not that none can exist.\n\n---\n\n### FAQ\n\n##### Does the mod change Vanilla behaviour?\n\nWorldthreader aims to conserve vanilla-parity in most points.\n\nBehavior based on the timing of entities going through portals might be delayed by a game tick when the entity is\nleaving the overworld. However, `/gamerule worldthreader_AdditionalEntityTickAfterTeleport` ticks entities that are not\nteleporting to the overworld once after being placed in the world. This should allow them to catch up on the tick they\nmissed. However, this happens at the end of the tick, meaning that no other mobs or pistons were able to push or damage\nthe entity in that tick because it hasn't been there yet.\n\nInterdimensional commands in command blocks or shared scoreboard accesses from different dimensions can be observed to\nbe in a different order since there are no interdimensional ordering guarantees within a single game tick for\ninterdimensional commands. The order of commands within one dimension remains the same as in vanilla.\n\n##### Can my dimensions get de-synchronized?\n\nNo. Worldthreader will always synchronize the dimensions with each other, setting the overall MSPT to that of the\nslowest individual dimension.\n\n##### Are dimension counts above 3 supported?\n\nYes.\n\n##### Can I use Worldthreader if I have fewer threads on my CPU than dimensions?\n\nYes, but that may reduce the performance.\n\n##### How is the compatibility with other mods?\n\nCompatibility issues with other mods may be very common. Please report all issues you encounter to Worldthreader\ndirectly to avoid giving other mod authors headaches. The author of Worldthreader is willing to cooperate and suggest\nchanges to other mods for compatibility.\n\n##### What about older versions of Minecraft?\n\nThere is the DimThread mod which supports a few older versions: https://github.com/WearBlackAllDay/DimensionalThreading\n\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16565,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

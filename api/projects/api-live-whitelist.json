@@ -1,0 +1,26 @@
+{
+  "id": "4nQPe7H3",
+  "slug": "api-live-whitelist",
+  "title": "Live Whitelist",
+  "description": "A mod that allows you to connect your server to an api or discord bot to allow or disallow connections based on uuid",
+  "body": "### A mod by cyber.98\nThis very simple mod allows you to connect to an api running somewhere on the internet (or on your machine) to validate or invalidate minecraft UUIDS. This was originally intended to be used with a discord bot running an api, but is completely valid outside of that use case. If you'd like to use the discord bot to make sure specific people have a role before joining, please skip to that section.\n## Configuration settings\nThe mod has two configuration settings:\n\n```\napi:[a url by default]\nmessage:[a string by default]\n```\n- The api url is what defines the base of where all requests should go. This can be a site, or an ip, but the server must allow for http connections.\n- The message string is what is shown to the player if the api is online, and responds with a false verification for that uuid.\n\n## Setting up an API\nAPI setup is super simple. It should meet the following guidelines:\n- Have at least one endpoint, being at '/verify'\n- Respond within about 2 seconds to ensure no progress can be made by players before being kicked\n- follow this json guide for urls and responses:\n\n```\nURLS:\n[base url defined in config]/[minecraft uuid sent from the server] // make sure you have something to parse the url bar, as the server sends get requests, not post requests.\n\nResponses:\n\n{\n  \"verified\":boolean\n}\n```\nIt's that easy (at least for this version)\n\n\n# Discord bot setup\nThis mod comes feature complete with a discord bot!\nFollow these steps to allow users to authenticate using the discord bot instead of having to make your own api!\n## Prerequisites\n- Script running is enabled on your system (see [microsoft's page on this](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5))\n- You have nodeJS and npm installed (I'm a js developer idk what you want me to do)\n## Usage:\n/link uuid:[uuid] -> will link your discord account to your mojang account. if you don't know your uuid, try joining the server first, the server will tell it to you (assumming the api is running already).\n/unlink -> pretty self-explanatory, will remove your entry from the database, allowing you to relink it\n/ping -> gets the status of the api and some response times\n## setup guide\nHead to [The github page for the bot](https://github.com/cybermine2098/apiwhitelist/releases/tag/sync)\nand download the source code as a zip. extract it, and open the root folder and run \n```\nnpm install\n```\nand wait a few moments for it to get the required packages.\nafterwards, create a config.json file with the following information (fill in the fields)\n```\n{\n    \"token\":\"discord bot token\",\n    \"botname\":\"a name you wanna see in the terminal for the bot\",\n    \"author\":\"your name\",\n    \"clientId\":\"the bots client id\",\n    \"adminids\":[\"your user id\"],\n    \"authorid\":\"your user id\",\n    \"roleID\":\"the id of the role you want to look for\"\n}\n```\nyour discord bot will need:\nGuild install only.\nPublic bot off (unless you are not discord server admin)\nServer members intent.\nThese permissions:\n![Replace this with a description](https://cdn.modrinth.com/data/cached_images/750a8b6adecece930d66d3be7d43ee1043a8c256.png)![Scopes: application.commands, bot || Permissions: Use slash commands](https://cdn.modrinth.com/data/cached_images/7806fca0d237857a6809e57ab6a4ec75c7c40dce.png)\n\nAdd in your token, and you're ready to hit the ground running!\nTo run the script, open the folder and run\n```\nnpm start\n```",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 128,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

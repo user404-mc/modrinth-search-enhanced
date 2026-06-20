@@ -1,0 +1,22 @@
+{
+  "id": "hKeZP11p",
+  "slug": "accrelatedrendering-refabricated",
+  "title": "AcceleratedRendering-reFabricated",
+  "description": "A client side only entity rendering optimization MOD, aiming at improving performance when rendering large amount of entities or complex modded entities",
+  "body": "# AcceleratedRendering\n\n**This is the Fabric port of AcceleratedRendering, if you need the NeoForge supported version, please visit [here](https://github.com/Argon4W/AcceleratedRendering)**\n\nThis is a client side only entity rendering optimization MOD, aiming at improving performance when rendering large amount of entities\nor complex modded entities with significant amount of vertices with compute shaders on GPU while being compatible with shader packs,\nother MODs and their entities.\n\n![Benchmark](https://cdn.modrinth.com/data/cached_images/586cdce749f0cf8e82b498b3dbeb878536caab11_0.webp)\n\n## 🍝Sponsorship\n\nThis MOD is almost done by myself and takes thousands of hours of my own time working and testing on it to be released.\nSponsorships from players can ensure the future development, innovation and optimization of this MOD. Thanks for everyone\nthat support this MOD! If you like it and want to support my work on development of AcceleratedRendering, please consider sponsor me at [爱发电](https://afdian.com/a/argon4w)\n\n## ✨Why need this MOD\n\nMinecraft has a poor immediate rendering system for rendering entities (including block entities) that is inherited from\nOpenGL immediate rendering mode that older versions of Minecraft uses. It transforms and uploads vertices on the **single render thread** on **CPU**\nevery frame the entities are rendered, which takes a huge amount of time spending on these operations and left CPU and GPU idle with a very low FPS\nwhen rendering large amount of vertices.\n\n## ⚙️How it works\n\nAcceleratedRendering constructs a unique rendering pipeline that caches the \"original\" vertices (vertices before the transform)\ninto meshes and transforms them parallel in GPU using compute shaders. Then draw the transformed vertices with the original shader.\nIn this way, this MOD can make entity rendering much more efficient by moving off transforming stress from the CPU\nat the same time being compatible with shader packs (currently support Iris Shaders). All acceleration features can be disabled\nfor better compatibility.\n\n## 🖥️Hardware Requirements\n\nAcceleratedRendering requires OpenGL 4.6 to work properly for the usage of persistently mapped buffers and compute shaders.\nGraphics cards like NVIDIA GT 400 Series and Intel HD Graphics 520/530 or newer will fit this requirement.\nThis MOD has been tested on NVIDIA GTX 1660Ti Max-Q, NVIDIA RTX 3070Ti Laptop, NVIDIA RTX 4090 Laptop, RX 580, RX 5600XT.\nMobile devices are **not currently supported**.\n\n## 🛠️Configuration\n\nConfiguration file can be found in ``<your Minecraft>/.minecraft/config/acceleratedrendering-client.toml``. You can modify\nacceleration features in this file or in game (some specific configurations needs to restart the game to take effect).\nIn game configuration editor can be found in ``Mods > Accelerated Rendering > Config``.\n\"Force Translucent Acceleration\" in \"Core Settings\" is required to be enabled in order that accelerated item rendering can work properly.",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 44243,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

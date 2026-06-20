@@ -1,0 +1,33 @@
+{
+  "id": "NDSqRqcX",
+  "slug": "jellychats",
+  "title": "JellyChats",
+  "description": "Highly customizable Redis-based private chats plugin for Velocity proxies.",
+  "body": "# jelly-chats\n\nJellyChats is a highly customizable Redis-based private chats plugin for [Velocity](https://github.com/PaperMC/Velocity) proxies.\n\n## Pre-requisites\n\nFor building from source:\n- JDK 17 or higher\n- An Internet connection\n\nFor running the plugin:\n- A Redis instance\n- JRE 17 or higher\n- A [Velocity](https://github.com/PaperMC/Velocity) proxy\n\n## Installation\n\nGrab the latest release from [here](https://github.com/azurejelly/jelly-chats), then drop it into your `plugins/` folder.\n\n### Creating new chats\n\nGo to the `plugins/jelly-chats/config.yml` file in your server, then add a new entry inside the `chats` section:\n```yaml\n  moderator:\n    enabled: true\n    name: \"Moderators\"\n    channel: \"jelly-chats/mods\"\n    permission: \"jelly-chats.chat.moderator\"\n    command:\n      main: \"mod-chat\"\n      aliases:\n        - \"m\"\n        - \"mc\"\n        - \"modchat\"\n        - \"mods\"\n        - \"mod\"\n```\n\nYou can also simplify it to:\n```yaml\n  moderator:\n    enabled: true\n```\n\nIn these cases:\n- The name will be set to the chat ID\n  - `moderator` in this example\n- The Redis channel will be set to the value of `default-channel-prefix` + the chat ID\n  - `jelly-chats/moderator` in this example\n- The permission will be set to `jelly-chats.chat.` + the chat ID\n  - `jelly-chats.chat.moderator` in this example\n- The command will be the chat ID + `-chat`\n  - `/moderator-chat` in this example\n- The command will have no aliases\n\n### Formatting new chats\n\nSimply add a new entry under `messages → formatting` with the same chat ID:\n\n```yaml\nmessages:\n  # ...\n  formatting:\n    moderator: \"<gold>[MOD] (<server>)</gold> <yellow><author>:</yellow> <content>\"\n```\n\nThis example assumes you're using the same chat created earlier.\n\n## Building from source\n\nClone the repository:\n```shell\n$ git clone https://github.com/azurejelly/jelly-chats\n$ cd jelly-chats/\n```\n\nBuild the project using Gradle:\n```shell\n$ ./gradlew build\n```\n\nYou should be able to find a distributable JAR under `./build/libs/`",
+  "categories": [
+    "management",
+    "social",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 149,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

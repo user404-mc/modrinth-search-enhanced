@@ -1,0 +1,30 @@
+{
+  "id": "rKaiEzXG",
+  "slug": "sknbs",
+  "title": "skNBS",
+  "description": "Play .nbs song using this Skript Addon!",
+  "body": "# 🎵 skNBS – Skript Addon for NoteBlockAPI\n\nskNBS is a Skript addon that integrates the NoteBlockAPI with Skript, allowing you to load `.nbs` songs, create playlists, and control playback directly from Skript.\n\n## 📦 Installation\n1.  Install Skript on your Spigot/Paper server.\n2.  Install NoteBlockAPI.\n3.  Place the `skNBS.jar` into your `/plugins` folder.\n4.  Restart the server.\n\n## 📖 Syntax & Usage\n\n### 🎶 Songs\nLoad an `.nbs` song from the `plugins/NoteBlockAPI/songs` folder:\nUse code with caution.\n```\nset {_song} to nbs song from \"test.nbs\"\n```\n### 📑 Playlists\nCreate a playlist from multiple songs:\nset {_song1} to nbs song from \"intro.nbs\"\nset {_song2} to nbs song from \"loop.nbs\"\nset {_playlist} to nbs playlist from {_song1} and {_song2}\n\n### ▶️ Playback Types\n*   **Radio:** Plays to players directly (no location).\n    ```\n    play radio nbs {_song} to all players\n    play radio nbs {_playlist} to player\n    ```\n*   **Position:** Plays from a location in the world with a range.\n    ```\n    play position nbs {_song} at location of player with range 32 to all players\n    ```\n*   **NoteBlock:** Plays from a specific NoteBlock.\n    ```\n    play noteblock nbs {_song} at target block with range 16 to {_p}\n    ```\n*   **Entity:** Plays from an entity (follows the entity).\n    ```\n    play entity nbs {_playlist} at {_mob} with range 24 to all players\n    ```\n\n### ⏯ Controls\nPause, resume, or stop a SongPlayer:\n```\npause nbs {_player}\nresume nbs {_player}\nstop nbs {_player}\n```\n### ⏩ Seeking\nSkip forwards or backwards in a song/playlist by seconds:\nforward 10 seconds in nbs {_player} # skip ahead 10s\nrewind 5 seconds in nbs {_player} # rewind 5s\n\n## ⚠️ Notes\n*   Songs must be placed in `/plugins/NoteBlockAPI/songs/`.\n*   `SongPlayer` objects are returned when you start playback, so keep them in variables if you want to pause/seek later.\n*   Playlists currently don’t support seeking between songs.\n\n## 💡 Example Script\n```\ncommand /music:\n    trigger:\n        set {_song} to nbs song from \"lobby.nbs\"\n        play radio nbs {_song} to player\n        send \"&aNow playing lobby music!\" to player\n\ncommand /dj:\n    trigger:\n        forward 30 seconds in nbs {_songplayer}\n```\n\n## 🛠 API Reference\n\n### Expressions\n*   `nbs song from %string% → Song`\n*   `nbs playlist from %songs% → Playlist`\n\n### Effects\n*   `play radio nbs %song/playlist% to %players%`\n*   `play position nbs %song/playlist% at %location% with range %number% to %players%`\n*   `play noteblock nbs %song/playlist% at %block% with range %number% to %players%`\n*   `play entity nbs %song/playlist% at %entity% with range %number% to %players%`\n*   `pause nbs %songplayer%`\n*   `resume nbs %songplayer%`\n*   `stop nbs %songplayer%`\n*   `forward %number% seconds in nbs %songplayer%`\n*   `rewind %number% seconds in nbs %songplayer%`\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 177,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

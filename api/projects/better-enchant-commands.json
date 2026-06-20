@@ -1,0 +1,33 @@
+{
+  "id": "rh6kvpwJ",
+  "slug": "better-enchant-commands",
+  "title": "Better Enchant Commands",
+  "description": "Better enchant commands to enhance your creative gameplay when utilizing /enchants and /give.",
+  "body": "# Better Enchant Commands\n\n**Override `/enchant`, `/give`, and friends with extended enchantment levels, simplified syntax, presets, and an audited confirmation/undo workflow for Minecraft 1.21.x.**\n\nVanilla `/enchant` refuses non-integer levels and caps out where the enchantment says so. Vanilla `/give` needs verbose component syntax for enchanted items. Better Enchant Commands replaces the two core commands and adds a handful of workflow helpers, all gated behind op level 2 and backed by a structured audit log.\n\n## Features\n\n### `/enchant` — enchant beyond vanilla limits\n\nDrop-in replacement for vanilla `/enchant`. Apply any enchantment to the item in a player's hand at **levels 1–255**.\n\n- `/enchant @s minecraft:sharpness 255`\n- `/enchant aGamingGod minecraft:protection 10`\n- `/enchant list`\n\n`/enchant list` prints the enchantments on the held item of the player running the command.\n\n### `/give` — inline enchantment syntax\n\nDrop-in replacement for vanilla `/give`. Works exactly like normal when used without enchantments. Append an optional `enchantments:` block for instant enchanted items:\n\n- `/give @s minecraft:netherite_chestplate enchantments:protection:10,unbreaking:3`\n- `/give @s minecraft:diamond_sword 1 enchantments:sharpness:255,fire_aspect:5,looting:10`\n\nThe `minecraft:` namespace is optional — `sharpness:255` works. No JSON, no brackets, no quotes. Tab completion filters candidates to enchantments actually compatible with the chosen item.\n\n### `/enchantpreset` — save and replay enchantment bundles\n\n- `/enchantpreset save <name>` — save currently-held item's enchantments\n- `/enchantpreset apply <name> <targets>`\n- `/enchantpreset delete <name>`\n- `/enchantpreset list`\n\nNames are validated (1–64 chars, `A–Z`, `a–z`, `0–9`, `_`, `-`). Skipped empty-hand targets are reported in the output.\n\n### `/unenchant`, `/enchantinfo`, `/enchantlist`\n\nCleanup and inspection helpers:\n\n- `/unenchant <targets>` — strip all enchantments\n- `/unenchant <targets> <enchantment>` — strip one\n- `/enchantinfo` — full detail on held item\n- `/enchantlist [filter]` — registry listing, optionally filtered\n\n### `/repair` — mended gear in one command\n\nHands out a copy of any item with Mending (and Unbreaking III where compatible) pre-applied. The reflective compat lookup is cached per session so repeat invocations are fast.\n\n### `/enchants` — bulk operations, undo, and config\n\n- `/enchants undo` — restore your last bulk modification\n- `/enchants confirm <token>` — complete a gated bulk operation\n- `/enchants status`\n- `/enchants allow_all_enchantments true|false`\n\nOperations over `confirmation_threshold` targets require a short-lived token — no more accidental \"enchanted the entire server\" incidents. Undo is a bounded per-operator deque (default 8 entries).\n\n## Design highlights\n\n- **Fail-safe validation.** Enchantment strings parse into fully-validated `(Identifier, level)` pairs before any item is touched. Parse failures leave items unmodified.\n- **Structured audit log.** Every privileged action is emitted to a dedicated SLF4J `[AUDIT]` logger with sanitised operator, target, and label fields — safe to route to a log-aggregation pipeline.\n- **Log-injection hardened.** Any string originating from player input is stripped of ASCII control characters before being formatted into log lines, so a crafted scoreboard name can't forge or break audit entries.\n- **Bounded bulk modifications.** Commands that affect more targets than `confirmation_threshold` require a token-based confirmation round-trip.\n- **Reflective compatibility layer.** Permission checks, registry lookups, and component reads resolve via method-shape heuristics cached per class, so the same jar runs across **all 1.21.x minor versions** without recompilation.\n- **Zero mixins.** Pure Fabric API command registration — maximum compatibility with other mods.\n- **Server-side only.** Clients don't need the mod installed.\n\n## Why Better Enchant Commands?\n\n- **Drop-in replacements.** Overrides vanilla `/enchant` and `/give` directly; no new commands to memorise for the core workflow.\n- **Fully backward compatible.** `/give @s diamond 64` still works exactly like vanilla.\n- **Lightweight.** ~105 KB, server-side only, no tick hooks, no mixins.\n- **Crash-proof.** Every code path is defensively wrapped; malformed input gives helpful error messages, never a server crash.\n- **Cross-version.** Built against 1.21 base — works on every 1.21.x subversion without recompilation.\n- **Preset-driven workflow.** Save standard loadouts once; apply them to any number of players with one command.\n- **Audit trail.** Operators can be held accountable for what they enchanted, for whom, and when.\n\n## Requirements\n\n- Minecraft **1.21.x** (any subversion)\n- Fabric Loader **0.16.0+**\n- Fabric API\n\n## Permissions\n\nAll commands require **operator level 2**, matching vanilla `/enchant` and `/give`.\n\n## Technical notes\n\nBetter Enchant Commands writes directly to the `DataComponents.ENCHANTMENTS` component on item stacks, bypassing vanilla's level validation but enforcing its own bounds (1–255). Enchantments are stored exactly like vanilla ones — no custom data, no compatibility issues with other mods reading your items.",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 405,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

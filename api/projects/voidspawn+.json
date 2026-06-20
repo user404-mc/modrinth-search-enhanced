@@ -1,0 +1,43 @@
+{
+  "id": "EWR3hxnq",
+  "slug": "voidspawn+",
+  "title": "VoidSpawn+",
+  "description": "Teleports players to spawn when they fall into the void. Simple and lightweight plugin designed to prevent void deaths and keep gameplay smooth.",
+  "body": "![logo](https://cdn.modrinth.com/data/cached_images/25e8966648cc3f9a94420d4c75987c4c6c248a27.png)\n---\n![bStats - VoidSpawnPlus](https://bstats.org/signatures/bukkit/VoidSpawnPlus.svg)\n\n# 📝 Overview\n\nVoidSpawn is a high-performance Paper/Spigot plugin designed to automatically teleport players to safety when they fall into the void. The plugin monitors each player's Y-coordinate and instantly teleports them to a designated spawn point when they fall below a configurable threshold.\n\n### How It Works\n\n1. Players fall below the configured Y-level threshold for their world\n2. The plugin instantly detects the void fall\n3. Players are teleported to a custom spawn point (set via `/vs setspawn`)\n4. If no custom spawn exists, players are sent to the world's default spawn\n5. A smooth fade animation and sound effect enhance the experience\n\n---\n\n## ✨ Key Features\n\n### 🎯 Core Functionality\n- **Multi-World Support** - Configure unique Y-levels for each world\n- **Custom Spawn Points** - Set specific teleport locations with exact orientation\n- **Default Spawn Fallback** - Automatic fallback to world spawn if custom spawn not set\n- **Optimized Detection** - Lag-free performance even with many players\n\n### 🎨 Player Experience\n- **Smooth Fade Effect** - 2-second fade-in/fade-out screen transition\n- **Customizable Messages** - Full color code support with `&` formatting\n- **Sound Effects** - Configurable teleport sounds\n- **Cooldown System** - Prevents teleport spam and exploitation\n\n### 🛡️ Administration\n- **Permission-Based Access** - Granular control over commands and bypass\n- **Hot Reload** - Update configuration without server restart\n- **Per-World Configuration** - Enable/disable void protection per world\n- **Minecraft 1.20+** - Full compatibility with latest versions\n\n---\n\n## 🚀 Installation\n\n### Requirements\n- Minecraft Server: Paper/Spigot/folia 1.20 or newer\n- Java: 17 or higher\n\n### Setup Steps\n\n1. Download `VoidSpawn-1.0.0.jar`\n2. Place the file in your server's `plugins/` folder\n3. Restart your server\n4. Configure the plugin (files created automatically):\n   - `plugins/VoidSpawn/config.yml`\n   - `plugins/VoidSpawn/spawns.yml`\n\n---\n\n## 🎮 Commands\n\n### Administrator Commands\n\n| Command | Description | Permission Required |\n|---------|-------------|---------------------|\n| `/vs setspawn` | Sets the void spawn point for current world at your location and facing direction | `voidspawn.admin` |\n| `/vs reload` | Reloads the configuration from disk | `voidspawn.admin` |\n\n**Alias:** `/voidspawn` works identically to `/vs`\n\n---\n\n## 🔐 Permissions\n\n| Permission Node | Description | Default |\n|----------------|-------------|---------|\n| `voidspawn.admin` | Access to all `/vs` commands | OP only |\n| `voidspawn.bypass` | Exempts player from void detection (useful for testing) | OP only |\n\n---\n\n## ⚙️ Configuration\n\n### config.yml Structure\n\n```yaml\n# Fade Effect Settings\nfade-effect-enabled: true  # Enable/disable screen fade animation\n\n# Sound Settings\nteleport-sound: ENTITY_ENDERMAN_TELEPORT  # Sound played on teleport (use 'none' to disable)\n\n# Cooldown Settings\nteleport-cooldown: 3  # Seconds before player can be teleported again\n\n# Messages (supports & color codes)\nteleport-message: \"&aYou have been teleported to safety!\"\nspawn-not-set-message: \"&eNo custom spawn set. Teleporting to world spawn...\"\ncooldown-message: \"&cPlease wait before being teleported again.\"\n\n# World-Specific Settings\nworlds:\n  world:\n    y-level: -64      # Players below this Y-level are teleported\n    enabled: true     # Enable/disable void protection for this world\n  world_nether:\n    y-level: -64\n    enabled: true\n  world_the_end:\n    y-level: -64\n    enabled: true\n```\n\n### Configuration Options\n\n#### Visual Effects\n- **fade-effect-enabled**: `true/false`\n  - Enables smooth screen fade during teleportation\n  - Duration: 2 seconds total (1s fade out, 1s fade in)\n\n#### Audio Settings\n- **teleport-sound**: Sound name or `none`\n  - Default: `ENTITY_ENDERMAN_TELEPORT`\n  - Must be valid Bukkit Sound enum name\n  - Set to `none` to disable sound\n\n#### Anti-Spam Protection\n- **teleport-cooldown**: Integer (seconds)\n  - Prevents repeated rapid teleportations\n  - Default: 3 seconds\n  - Helpful for preventing abuse\n\n#### World Configuration\nFor each world, configure:\n- **y-level**: Y-coordinate threshold (players below this are teleported)\n- **enabled**: `true/false` to toggle void protection\n\n---\n\n## 🗺️ Setting Up Spawn Points\n\n### Initial Setup (Required)\n\n1. Ensure you have OP status or `voidspawn.admin` permission\n2. Enter the world you want to configure\n3. Stand at the exact location where players should spawn\n4. Face the direction players should be facing\n5. Execute: `/vs setspawn`\n6. Confirmation message will appear\n\n### What Gets Saved?\n- World name\n- X, Y, Z coordinates\n- Yaw (horizontal rotation)\n- Pitch (vertical rotation)\n\n### Without Custom Spawn\nIf no custom spawn is set via `/vs setspawn`, players will:\n1. Receive the `spawn-not-set-message`\n2. Be teleported to the world's default spawn point\n3. Still benefit from void protection\n\n---\n\n## 🔧 Advanced Usage\n\n### Multiple Worlds\nConfigure different Y-levels for each world type:\n\n```yaml\nworlds:\n  survival_world:\n    y-level: -64\n    enabled: true\n  creative_world:\n    y-level: -128\n    enabled: false  # Disable in creative\n  mining_world:\n    y-level: -64\n    enabled: true\n```\n\n### Custom Messages\nUse Minecraft color codes with `&`:\n\n```yaml\nteleport-message: \"&b&lVOID RESCUE &r&7» &aYou've been saved!\"\nspawn-not-set-message: \"&e&l⚠ &7Using default spawn point...\"\ncooldown-message: \"&c&l✖ &7Wait {cooldown}s before next teleport\"\n```\n\n### Performance Tuning\nThe plugin is optimized by default, but you can:\n- Disable fade effects for minimal overhead\n- Adjust cooldowns to reduce event frequency\n- Disable in creative/spectator worlds\n\n---\n\n## 📊 Performance Information\n\nVoidSpawn is built with performance as a priority:\n\n- **Optimized Event Handling**: Only processes relevant player movement events\n- **Memory Efficient**: Automatic cleanup on player disconnect\n- **No Tick Lag**: Asynchronous processing where possible\n- **Minimal Overhead**: Typically <1% CPU usage even with 100+ players\n\n### Best Practices\n- Set appropriate Y-levels (don't set too high)\n- Use reasonable cooldowns (3-5 seconds recommended)\n- Disable in worlds where void protection isn't needed\n\n---\n\n## ❓ Troubleshooting\n\n### Players aren't being teleported\n- Check if void protection is enabled for that world in config.yml\n- Verify the Y-level is set correctly\n- Ensure players don't have `voidspawn.bypass` permission\n- Check server console for errors\n\n### Spawn point not working\n- Confirm spawn was set with `/vs setspawn`\n- Check `spawns.yml` for the world entry\n- Try setting the spawn again\n- Verify world name matches exactly\n\n### Performance issues\n- Disable fade effects if experiencing lag\n- Increase cooldown duration\n- Check for conflicting plugins\n- Review server TPS with `/tps` command\n\n---\n\n## 📞 Support\n\nFor bug reports, feature requests, or general support, please contact the development team.",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2396,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "USS41haY",
+  "slug": "brandblock",
+  "title": "BrandBlock",
+  "description": "Block certain client brands from joining your server",
+  "body": "# BrandBlock\nSimple Fabric server-side mod to block certain client brands from joining your server\n\n![Disconnection Message](https://cdn.modrinth.com/data/USS41haY/images/d0e2b1eef87f4fe75ed4ddf25fda36650ae23d3f.png)\n\n## Configuration\n`config/brandblock.json`\n```json5\n{\n  \"blockedBrands\": [                             // All brands that will be blocked\n    \"forge\",\n    \"vanilla\"\n  ],\n  \"kickMsg\": \"This client brand is not allowed\"  // The disconnection reason shown to the player, can be in Raw JSON text format\n}\n```\n\n## How it works?\nWhen joining a server, during the configuration phase, both the server and client send a [`minecraft:brand`](https://wiki.vg/Plugin_channels#minecraft:brand) [custom payload packet (aka plugin message)](https://wiki.vg/index.php?title=Protocol&oldid=18641#Serverbound_Plugin_Message_.28configuration.29) containing the brand name. For unmodified clients and servers, this brand is always \"vanilla.\" However, custom clients (such as Forge, Fabric, etc.) typically change this brand identifier.\n\nThis server-side mod listens when a brand payload is received and checks if it matches any blocked brands specified in the configuration file. If a blocked brand is detected, the player is disconnected from the server. However, this can be easily bypassed and modified clients may not to send this packet at all.\n",
+  "categories": [
+    "fabric",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 993,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

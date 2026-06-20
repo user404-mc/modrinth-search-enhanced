@@ -1,0 +1,19 @@
+{
+  "id": "kEZeKobn",
+  "slug": "synchronised-blockstates",
+  "title": "Synchronised Blockstates",
+  "description": "A mod to synchronise the list of blockstates from server to client to prevent mismatches",
+  "body": "# Synchronised Blockstates\n\nModded multiserver setups can be... complicated.\n\nWhen you have multiple connected servers that all have different modlists, it's not uncommon for different servers to have mismatched blocks, leaving you with sights like this:\n![An image of a minecraft world (seed 4443874797342797) but many of the blocks are incorrect, having been corrupted by the inconsistent network order of blockstates between client/server. Sandstone is replaced by waterlogged cherry leaves. Dead bushes are replaced by noteblocks. Brown, light grey, white, red, brown and orange terracotta are replaced by birch buttons in multiple rotations. Uncoloured terracotta appears as waterlogged spruce stairs. Dripstone us replaced by various forms of copper. Etc](https://cdn.modrinth.com/data/cached_images/b3a7df8fa1773b7c1e971d499c25df1f98535b5c_0.webp)\n\n\nObviously this isn't ideal, so this mod takes the approach of synchronising all of the blockstates from the server to the client side when the player joins, allowing the client to compensate.\n\nFor example, that same image with synchronised blockstates enabled:\n![The above image, but the world looks as it is meant to, no blocks were incorrectly replaced](https://cdn.modrinth.com/data/cached_images/da65f5ebd6dd2159ebfc18749f663255f8ebbe93_0.webp)\n\nNote: if the client doesn't receive blockstate info from the server, it'll fall back to using vanilla states.\n\nThis mod is still a W.I.P. and there are plenty of improvements yet to be made, but it *should* function for the time being.\n\n## Configuration\n\nIn lieu of a proper config at this point in time, Synchronised Blockstates has several behaviours that can be enabled or customised using JVM arguments or environment variables:\n\n* `-Dmod.synchronisedblockstates.dumpAllStates`\n  * Client-only.\n  * Accepted values: `true`, `1`, `yes`, `on`.\n  * On startup, encodes all blockstates (using the same format as if it were sending a single, unchunked, state registry packet) and writes it to `<minecraft run directory>/synchronized_blockstates/vanillablockstates.dat` (note: not necessarily only vanilla blockstates, will also include modded blockstates if there are any modded blocks).\n\n* `-Dmod.synchronisedblockstates.ouputMissingStates`\n  * Client-only.\n  * Accepted values: `true`, `1`, `yes`, `on`.\n  * When the client recieves a packet and remaps its local registry, outputs any mismatches between the client and server registries to `<minecraft run directory>/synchronized_blockstates/missing-states-<current time>.dat`\n\n* `-Dmod.synchronisedblockstates.propertyChunkingThreshold`\n  * Logical Server only.\n  * Accepted values: any integer, default `1024`.\n  * Max limit on properties before the server starts chunking data before sending it to the client. Additionally, the maximum number of properties that can be sent in a single property chunk.\n\n* `-Dmod.synchronisedblockstates.blockChunkingThreshold`\n  * Logical Server only.\n  * Accepted values: any integer, default `4096`.\n  * Max limit on blocks before the server starts chunking data before sending it to the client. Additionally, the maximum number of blocks there can be sent in a single blockstate chunk.\n\n* `-Dmod.synchronisedblockstates.stateChunkingThreshold`\n  * Logical Server only.\n  * Accepted values: any integer, default `32768`.\n  * Max limit on blockstates before the server starts chunking data before sending it to the client.\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 258,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,37 @@
+{
+  "id": "N3yZLdwV",
+  "slug": "attribute-base-modifier",
+  "title": "Attribute Base Modifier",
+  "description": "A data-driven mod to modify mobs' default attribute",
+  "body": "Attribute Base Modifier (**ABM**) allows you modify the default base value of any attribute of any mob.\n\nThis mod is server-side.\n\n| Side                 | Required to install |\n| -------------------- | ------------------- |\n| Dedicated server     | True                |\n| Integrated server    | True                |\n| Single-player client | True                |\n| Pure client          | False               |\n\nThis mod is **data-driven**. It's recommended to read [Data pack – Minecraft Wiki](https://minecraft.wiki/w/Data_pack) if you encounter issue.\n\nYou can define multiple rules in the data pack to apply modifiers.\n\n\n\n## Register Rules\n\nRules are registered by JSON files in the data pack.\n\nThe rule file should be in `data/<namespace>/abm_rules/<name>.json`.\n\nIf the rule is successfully registered, its ID will be `<namespace>:<name>`.\n\nLike other data pack contents, all rules will be reloaded when the server reloads data. Specifically, when reload the world or use `reload` command.\n\nJSON format:\n\n- `<root>` ***Compound{}***\n  - `include` ***Compound{}***  A include filter. Only the type specified here will be included. **Optional**, all type of mobs will be included if omitted. \n    - `type` ***String* | *Array[]***  List the mobs that need to be included.\n      - ***String***  either an ID or a tag(starts with `#`). *e.g*. `minecraft:zombie`, `#minecraft:undead`.\n    - `spawn_group` ***String***  This means all mobs of this spawn group is included. Must be one of `monster`, `creature`, `ambient`, `water_creature`, `underground_water_creature`, `water_ambient`, `misc`, or `axolotls`. Has no effect when coexists with `type`.\n  - `exclude` ***Compound{}***  A exclude filter. The format is the same as `include`. **Optional**, no mobs will be excluded if omitted.\n  - `modifies` ***Array[]***  Defines the modification methods.\n    - ***Compound{}***  Define an attribute and the modification methods. If the mob lacks default value of this attribute, this modification will be skipped.\n      - `attribute` ***String***  ID of the attribute . *e.g*. `minecraft:max_health`.\n      - `modifiers` ***Array[]***  The modification methods. The base values are calculated sequentially in order.\n        - ***Compound{}***  A modification method.\n          - `type` ***String***  The type of modification(operator). Must be one of `set`, `add` or `multiply`.\n          - `value` ***Number***  The value of this modification. Will be parsed as a double value.\n  - `default_enable` ***Boolean***  Whether to enable this rule by default. See \"Debug Command\" for more information. **Optional**, defaults to `true`.\n\nExample: (**some IDs may be not correct**)\n\n```json\n{\n    \"include\": {\n        \"spawn_group\": \"monster\"\n    },\n    \"exclude\": {\n        \"type\": \"#c:bosses\"\n    },\n    \"modifies\": [\n        {\n            \"attribute\": \"minecraft:max_health\",\n            \"modifiers\": [\n                {\n                    \"type\": \"add\",\n                    \"value\": 100\n                }\n            ]\n        },\n        {\n            \"attribute\": \"minecraft:armor\",\n            \"modifiers\": [\n                {\n                    \"type\": \"set\",\n                    \"value\": 10\n                }\n            ]\n        }\n    ]\n}\n```\n\nHere is an [example_data_pack](https://github.com/whyvo1/Attribute-Base-Modifier/tree/main/example_data_pack).\n\n\n\n## Debug Command\n\n```\nabmrule <rule_id> [enable|disable]\n```\n\nYou can enable or disable a rule by this command.\n\n**This command is for debugging.**\n\nWhen the rule is reloaded, this state will be reset to its default value. Specifically. the `default_enable` defined in the rule's JSON file.\n\n\n\n## FAQ\n\n- Some mob is not modified after reload the rules using `reload` command.\n\nThis is an expected behavior.\n\nAfter a reload, a previously summoned mob may not update its default attributes unless it's \"recreated\" in the code (typically when mob's chunk is loaded).\n\nHowever, it's recommended to summon a new mob to reduce uncertainty and ensure it has the latest default attributes.\n\nIf you want a previously summoned mob updates, it's recommended to re-enter the world.\n\n- How to define rules before creating a world, just like a config?\n\nIn certain situations, such as when making mod packs, many people encounter this problem.\n\nIt's recommended to make a global data pack through a low-code mod or [Paxi](https://modrinth.com/mod/paxi).\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 511,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

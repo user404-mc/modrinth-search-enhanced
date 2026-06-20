@@ -1,0 +1,35 @@
+{
+  "id": "EI18paZi",
+  "slug": "viewdistancecontrol",
+  "title": "View Distance Control",
+  "description": "PaperMC plugin for per-player view distance control via LuckPerms permission nodes.",
+  "body": "# View Distance Control\n\nView Distance Control gives different chunk view distances to different groups of players on your server. Assign larger\ndistances as a perk for donors or VIPs, limit guests to save bandwidth, or let the plugin automatically pull back the\nview distance for AFK players and restore it when they return. Getting started takes a single LuckPerms command per\ngroup; players with no matching permission fall back to the defaults in config.\n\n> **Note:** This plugin controls how much of the world is *streamed* to each player, not how much the server loads.\n> Players see fewer chunks, but the server still keeps the same area loaded. If you want to reduce server load, lower\n`simulation-distance` in `server.properties` instead.\n\n## Dependencies\n\n- LuckPerms\n- EssentialsX\n- PlaceholderAPI\n\n## Configuration\n\n`plugins/ViewDistanceControl/config.yml`:\n\n```yaml\ndefault-view-distance: 10       # Fallback view distance\ndefault-afk-view-distance: 4    # Fallback AFK view distance\nafk-view-distance-enable: true  # Set to false to disable AFK distance reduction\nafk-distance-delay: 5           # Seconds before AFK distance applies (0 = immediate)\nnotify-player: false            # Notify player when their view distance changes\nnotify-message: \"Your view distance has been changed to %viewdistancecontrol_distance%\"\nconsole-log: false              # Log view distance changes to the console\ndebug: false                    # Log debug messages for diagnosing listener triggers\n```\n\nThe `notify-message` supports `&` color codes and other PlaceholderAPI placeholders.\n\n## Permissions\n\n| Node                              | Description                                                              |\n|-----------------------------------|--------------------------------------------------------------------------|\n| `viewdistancecontrol.default.<N>` | Sets normal view distance to N. Highest granted value wins.              |\n| `viewdistancecontrol.afk.<N>`     | Sets AFK view distance to N. Highest granted value wins.                 |\n| `viewdistancecontrol.max.<N>`     | Caps the resolved view distance to at most N. Lowest granted value wins. |\n| `viewdistancecontrol.reload`      | Allows `/vdc reload`                                                     |\n| `viewdistancecontrol.get`         | Allows `/vdc get <player>` and `/vdc list`                               |\n| `viewdistancecontrol.afkbypass`   | Bypasses AFK view distance reduction                                     |\n\n**Example** — give a VIP group a view distance of 16:\n\n```\nlp group vip permission set viewdistancecontrol.default.16 true\n```\n\n**Example** — cap a restricted group to at most 6 chunks, regardless of other groups:\n\n```\nlp group restricted permission set viewdistancecontrol.max.6 true\n```\n\n> **Note:** The view distance is capped by `view-distance` in `server.properties`. If a value greater than the\n`view-distance` is set, the `view-distnace` would apply.\n\n## PlaceholderAPI\n\n| Placeholder                      | Description                    |\n|----------------------------------|--------------------------------|\n| `%viewdistancecontrol_distance%` | Player's current view distance |\n\n## Commands\n\n| Command             | Description                                                  |\n|---------------------|--------------------------------------------------------------|\n| `/vdc reload`       | Reloads config and reapplies distances to all online players |\n| `/vdc get <player>` | Shows a player's current view distance and AFK state         |\n| `/vdc list`         | Shows all online players' view distances                     |",
+  "categories": [
+    "management",
+    "optimization",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 130,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

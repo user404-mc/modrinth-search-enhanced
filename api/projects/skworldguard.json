@@ -1,0 +1,36 @@
+{
+  "id": "9c4tj1Kt",
+  "slug": "skworldguard",
+  "title": "SkWorldGuard",
+  "description": "Most Worldguard effects/events in skript",
+  "body": "![Banner of SkWorldGuard](https://cdn.modrinth.com/data/cached_images/21b7e252ee8fb6bb55b3d24bcc65eb8db4712072_0.webp)\n\n# Skworldguard: Advanced WorldGuard Integration for Skript\n\n_Skworldguard is a Skript addon designed to extend the capabilities of WorldGuard within your Minecraft server. This plugin allows you to interact with WorldGuard regions directly through Skript, offering more control and flexibility in managing your server’s protected areas._\n\nKey Features:\n\n1. Region Management: Create and delete WorldGuard regions directly from Skript commands.\n   Member and Owner Control: Easily add or remove members and owners from specific regions.\n   \n2. Flag Manipulation: Set and modify WorldGuard region flags, such as build permissions, directly through Skript.\n   \n3. Efficient Integration: Designed to work seamlessly with existing Skript setups, making it easier than ever to automate and customize region management.\n\n**Whether you're looking to automate region protection or integrate region-based features into your custom scripts, Skworldguard provides the tools you need to enhance your server’s WorldGuard capabilities.**\n\n\n## **Effects Added:**\n```html\nCreate Region:\n- create region %string% from %location% to %location%\n\nDelete Region:\n\ndelete region %string%\n```\n```html\nAdd Member to Region:\n- add %string% as member to region %string%\n\n\nRemove Member from Region:\n- remove %string% from region %string%\n\nAdd Owner to Region:\n- add %string% as owner to region %string%\n\nRemove Owner from Region:\n- remove %string% as owner from region %string%\n```\n```html\n\nSet Region Flag:\n- set flag %string% of region %string% to %string%\n```\n\n\n**-Template.sk**\n```html\n# Use a gold axe as WorldGuard tool\non rightclick with a gold axe:\n    set {regionselect.%player%.loc2} to location of event-block\n    send \"Second Position set to: %clicked block%\" to player\n    cancel event\n\non leftclick with a gold axe:\n    set {regionselect.%player%.loc1} to location of event-block\n    send \"First Position set to: %clicked block%\" to player\n    cancel event\n\n# Create or delete a region using the selected positions\ncommand /regionskript <text> <text>:\n    permission: op\n    trigger:\n        if arg-1 is \"create\":\n            if arg-2 is set:\n                if {regionselect.%player%.loc1} or {regionselect.%player%.loc2} is not set:\n                    send \"You need to set 2 location with your Axe\" to player\n                    stop\n                create region \"%arg 2%\" from {regionselect.%player%.loc1} to {regionselect.%player%.loc2}\n                send \"Region '%arg 2%' got created at %{regionselect.%player%.loc1}% to %{regionselect.%player%.loc2}%!\" to player\n                delete {regionselect.%player%.loc1}\n                delete {regionselect.%player%.loc2}\n        if arg-1 is \"delete\":\n            if arg-2 is set:\n                delete region \"%arg-2%\"\n```\n\n```html\n# Add or remove players as members or owners of a region\ncommand /addregionowner <player> <text>:\n    trigger:\n        add \"%arg-1%\" as owner to region \"%arg-2%\"\n        send \"%arg-1% got set as Owner from %arg-2% \" to player\n\ncommand /removeregionowner <player> <text>:\n    trigger:\n        remove \"%arg-1%\" as owner from region \"%arg-2%\"\n        send \"%arg-1% got removed from owner position from %arg-2% \" to player\n\ncommand /addregionuser <player> <text>:\n    trigger:\n        add \"%arg-1%\" as member to region \"%arg-2%\"\n        send \"%arg-1% got added as member to %arg-2%\" to player\n\ncommand /removeregionuser <player> <text>:\n    trigger:\n        remove \"%arg-1%\" from region \"%arg-2%\"\n        send \"member %arg-1% got removed from %arg-2% region\" to player\n\n# Set flags for a specific region\ncommand /setregionflag <text> <text> <text>:\n    trigger:\n        set flag \"%arg-1%\" of region \"%arg-2%\" to \"%arg-3%\"\n        send \"Flag '%arg-1%' got set in the region %arg-2% to %arg-3%\" to player\n\n```\n---\n\n## 📢 Community & Support\n\n[![Discord](https://img.shields.io/discord/1415668646981800032?label=Join%20our%20Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge)](https://discord.gg/bvAF3fA8zG)\n![NEW](https://img.shields.io/badge/-NEW-ff4757?style=for-the-badge)\n\nJoin my Discord server for support, questions, or just to hang out!\n\n---",
+  "categories": [
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1821,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.6",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

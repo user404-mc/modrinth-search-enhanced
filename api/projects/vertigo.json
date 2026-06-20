@@ -1,0 +1,40 @@
+{
+  "id": "4LzgJp1j",
+  "slug": "vertigo",
+  "title": "Vertigo",
+  "description": "The vertical chunk section syncing mod.",
+  "body": "By default, Minecraft keeps entire chunks synced with players, which is problematic when using mods or data packs which make the world taller. [Big Globe](https://modrinth.com/mod/big-globe) for example makes the overworld 2048 blocks tall. The reason why this is problematic is two-fold:\n1. It means there's a lot more data to sync from the server to the client in multiplayer, which increases bandwidth requirements.\n2. It means there's more blocks the client needs to keep track of, which increases memory usage.\n\nMinecraft started delaying chunk syncing in 1.21 to adapt to the player's internet connection, and while this does help a lot,\n* A lot of mods are still on MC 1.20.1, and\n* The problem is still not solved completely. The player is less likely to time out now, but chunk syncing is overall slower.\n\nI didn't find a mod that can solve all of the above problems during my brief search, so I made my own.\n\nVertigo attempts to solve these issues by only syncing chunk sections that are near the player vertically. In other words, by lying to the client about what blocks are where. If a chunk section is too far above or below the player, the server will tell the client that the section is empty. Or in other words, full of air.\n\n# Mod compatibility\n\nBecause the client does not know about all the blocks in a chunk, it is expected that other mods may try to sync data in sections the client doesn't know about, with undefined results. To help reduce some of these problems, Vertigo does the following:\n* Overwrite `PlayerLookup.tracking(ServerWorld, BlockPos)` in Fabric's networking API to not include players which are out of vertical range of the input position. If your mod uses this method to send update packets to players, it will probably work just fine.\n\t* `PlayerLookup.tracking(BlockEntity)` delegates to `tracking(ServerWorld, BlockPos)`, so this tracking method should work just fine too.\n\t* All other tracking methods are unchanged.\n* Include an API which allows:\n\t* Querying whether or not a specific player knows about a specific chunk section.\n\t* Listing players which know about a specific chunk section.\n\nDespite this, I do expect some mods to have issues still. If you are an end user, please do not expect this mod to work out-of-the-box with every other mod just yet. Some mods will need to make changes in order to work with Vertigo. If you are a mod developer and think that a conflict is on my end, feel free to open an issue about it.\n\n# Q&A\n\nQ: Does Vertigo help with vanilla/non-tall worlds?  \nA: Not really, unless you have a very small view distance.\n\nQ: Does Vertigo help in singleplayer?\nA: It can reduce memory usage in singleplayer, but only with tall worlds or short view distances. It will not help with lag or latency in singleplayer because networking is not the bottleneck there, even in tall worlds.\n\nQ: Does Vergito need to be installed on both the client and the server to work?  \nA: Yes.\n\nQ: Will things break if I only have it installed on one side?  \nA: Hopefully not. Vertigo should fallback on the vanilla chunk syncing protocol if it's only installed on one side.\n\nQ: Does Vertigo affect any server-side mechanics? Like mob spawning or block ticking?  \nA: No.\n\nQ: What counts as \"near the player vertically\"?  \nA: The vertical sync distance is the same as the horizontal sync distance, which is the same as your view distance (or the server's view distance; whichever one is smaller).",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 69767,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

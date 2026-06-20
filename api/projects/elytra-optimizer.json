@@ -1,0 +1,20 @@
+{
+  "id": "hmzNsGB6",
+  "slug": "elytra-optimizer",
+  "title": "Elytra Optimizer",
+  "description": "A mod that aims to fix slow chunk generation while using elytra.",
+  "body": "### Why Elytra Optimizer?\nLarge multiplayer servers often stall when several players fly with elytra. Those stutters are the server choking on sudden chunk requests. Elytra Optimizer is a conservative Fabric server mod that smooths those bursts without changing gameplay.\n\n### How it works\n- Detects players in elytra flight with a safe speed threshold.\n- Predicts chunks ahead using an adaptive cone (45° when turning, narrows to 5° during straight flight—up to 80% fewer chunks loaded on long journeys).\n- Issues short-lived chunk tickets so those chunks load gradually instead of all at once.\n- Automatically throttles predictions when MSPT exceeds 40ms, disables entirely above 50ms.\n- Pauses when memory usage exceeds 75% to prevent out-of-memory issues.\n- Auto-enables \"Lite mode\" on servers with less than 2GB RAM (reduced cone, fewer chunks, lower limits).\n- Skips chunks that are already loaded—no wasted work.\n- Falls back to vanilla instantly if anything misbehaves.\n\n### Compatibility\nPlays nicely with the Fabric optimization stack: C2ME, Lithium, Starlight, FerriteCore, Krypton, ModernFix, Noisium. Detects and supports modded flight from Origins, Create, Colytra, Trinkets, Curios, and Caelus API.\n\n### Commands\n- `/eo stats` — TPS, memory, flying players, active tickets at a glance. Shows active modes (Lite, Conservative) and warns when resources are low.\n- `/eo toggle` — disable without restart when things get busy.\n- `/eo debug` — per-player flight details: straight-flight distance, current cone angle, ticket count.\n- `/eo reload` — re-detect installed mods after changes.\n\n### Technical details\nUses primitive collections (fastutil), pre-computed trig tables, squared distance comparisons, and thread-local buffers. Targets under 50 microseconds per player per tick with zero GC pressure. Tickets expire after 5 seconds; stale tickets are cleaned up immediately on direction changes.\n\n### Dependencies\n- Fabric API\n\nAll logic runs server-side (works in singleplayer too because it's just an integrated server). Players don't need the mod installed. Minimal config, fewer lag spikes when everyone takes to the skies.",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 224,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4"
+  ],
+  "date_updated": null
+}

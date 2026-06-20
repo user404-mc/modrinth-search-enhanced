@@ -1,0 +1,38 @@
+{
+  "id": "d32z4lp3",
+  "slug": "score-fixer",
+  "title": "ScoreFixer",
+  "description": "Prevent scores from getting lost after player name changes.",
+  "body": "# ScoreFixer\nA robust Minecraft Data Pack library that prevents scoreboard values from getting lost after a player name change.\\\nFor inquiries, please contact **@silicatYT** on Discord.\\\n\\\nDownload: [Modrinth](https://modrinth.com/datapack/score-fixer)\\\nIssue tracker: [GitHub](https://github.com/CMDred/ScoreFixer)\n\n## Why is this necessary?\nIn Minecraft, scores are tied to usernames rather than UUIDs. As such, changing your name resets your previously held scores (which can break Data Packs or lose progress), and anyone joining with your old name can take over your previous scores.\\\n**ScoreFixer** tackles this issue and lets you automatically transfer scores to your new name without conflicts.\n\n## Features\n- Automatically transfer certain scoreboard objectives' values to the new player name upon a name change\n- Read/write offline players' scores using their UUID or specific scoreboard values (e.g. ID score) as selectors\n- Events (function tags): `#score_fixer:changed_name`, `#score_fixer:joined_game` & `#score_fixer:left_game`\n\n## How to use\n<details>\n<summary>Make scores transfer on name change</summary>\n\nTo make ScoreFixer automatically transfer objectives (e.g. \"foo\" & \"bar\") on name changes, run `/function score_fixer:util/track_objectives {Objectives:[\"foo\", \"bar\"]}`.\n\nTo untrack objectives again, run `/function score_fixer:util/untrack_objectives {Objectives:[\"foo\", \"bar\"]}`.\n\nAlternatively, you can directly add or remove `{Name:\"foo\"}` to/from the `score_fixer:objectives List` data storage.\n\n</details>\n\n<details>\n<summary>Access offline players' scores</summary>\n\n  <details>\n  <summary>Load</summary>\n\nYou can access offline players' scores with their UUID by running `/function score_fixer:util/load_with_uuid {UUID:...}` (accepts hexadecimal and int array format). If a player is found, their data is copied to `score_fixer:loaded Players`. From there, you can make changes (adjust score values, remove objectives from the list to reset them, etc).\\\nAlternatively, you can manually copy data from every player that matches your custom condition like so:\n```\n/data modify storage score_fixer:loaded Players append from storage score_fixer:zprivate Maps[{Objectives:[{Name:\"foo\",Value:10}]}]\n```\n\n  </details>\n\n  <details>\n  <summary>Save</summary>\n\nAfter applying changes to the objectives in `score_fixer:loaded Players`, run `/function score_fixer:util/save` to save the data for all loaded players at once.\n\n  </details>\n\n</details>\n\n<details>\n<summary>Events</summary>\n\n- `#score_fixer:changed_name`: When a player joins with a new name, this function tag is executed **as** that player. The data storage `score_fixer:event Data` contains `Name`, `OldName` and `UUID`.\n- `#score_fixer:joined_game`: When a player joins, this function tag is executed **as** that player. The data storage `score_fixer:event Data` contains `Name` and `UUID`.\n- `#score_fixer:left_game`: When a player leaves, this function tag is executed. The data storage `score_fixer:event Data` contains `Name` and `UUID`.\n\nThe data inside `score_fixer:event Data` is also directly accessible using **macros**.\n\n</details>\n\n<details>\n<summary>Upgrade or uninstall ScoreFixer</summary>\n\n- **Uninstall:** Run `/function score_fixer:uninstall`.\n- **Upgrade:**\n  - Uninstall the current version (keep the associated data), replace the Data Pack with the new version, then `/reload`.\n  - **(v1.2.0+)** Upgrading from v1.2.0 to a higher version can be done without uninstalling the current version first.\n\n</details>\n\n## Good to know\n<details>\n<summary>Caveats to ScoreFixer</summary>\n\n- Scores manually set while the player is offline (e.g. `/scoreboard players set SilicatYT foo 1`) cannot be transferred if they join with a new name. Use the `load` and `save` utilities instead.\n  - Reason: While a player is offline, the game becomes case insensitive to that name, making it impossible to copy scores from the previous name to the new name if a player only changed their name capitalization.\n\n</details>\n\n<details>\n<summary>Lantern Load</summary>\n\nScoreFixer supports [Lantern Load](https://github.com/LanternMC/load), a convention that lets you specify dependencies (incl. versions) and control the order in which Data Packs run. **It is vital that ScoreFixer loads and ticks before your Data Pack**, so that scores can be assigned to the new player names before your Data Pack checks them.\n- **Make ScoreFixer load and tick before your Data Pack:** Specify ScoreFixer as a Lantern Load dependency (makes it load first), and make your `load` function start a self-scheduled `tick` function instead of using `#minecraft:tick`.\n- `#ScoreFixer load.status`: This score is set once ScoreFixer loads. Its value tells you **whether ScoreFixer has loaded already**. Negative values are error codes:\n  - 1: ScoreFixer loaded correctly and can be used\n  - <unset>: ScoreFixer could not load (e.g. not installed)\n  - -1: Multiple incompatible ScoreFixer versions installed\n  - -2: Tried to load a ScoreFixer version while a newer one was previously installed and not manually uninstalled\n  - -3: Tried to load a ScoreFixer version while a different unknown version was previously installed and not manually uninstalled\n- `#ScoreFixer.Version load.status`: This score is set once ScoreFixer loads. Its value tells you **what ScoreFixer version is installed**. It's a single integer that increments whenever a potentially breaking change is made (e.g. behaviour change, utility function renamed etc). If the value does not change (e.g. only optimizations were made), any Data Packs that use ScoreFixer should not require any changes either.\n\n</details>\n\n## Credit\nFrom CMDred:\n- **SilicatYT**\n\nAdditional help:\n- Leinad677YT (Consulting & ideas)\n\n## License\nAs per the MIT License, you are allowed to redistribute, modify and use ScoreFixer as long as you provide credit for the original work.",
+  "categories": [
+    "datapack",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 271,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

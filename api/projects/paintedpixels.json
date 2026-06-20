@@ -1,0 +1,29 @@
+{
+  "id": "BX8LmnSC",
+  "slug": "paintedpixels",
+  "title": "PaintedPixels",
+  "description": "A Minecraft plugin for Paper/Spigot that allows players to create map art from images via URL.",
+  "body": "**PaintedPixels**\n\nA Minecraft plugin for Paper/Spigot that allows players to create map art from images via URL.\n\n**Description**\n\nPaintedPixels enables players to upload an image through an online URL and receive a Minecraft map art that replicates the image. The plugin automatically converts the image colors to match Minecraft's map color palette for a near 1:1 replica.\n\n**Features**\n\n- **URL to Map Art**: Convert any image URL into Minecraft map art\n- **Automatic Resizing**: Images are automatically resized while maintaining aspect ratio\n- **Multi-Map Support**: Large images are automatically split across multiple maps\n- **Color Matching**: Advanced color conversion to match Minecraft's map palette\n- **Async Processing**: Downloads and processes images asynchronously to prevent server lag\n- **Queue System**: Maps are stored in a queue to prevent floor clutter (NEW!)\n- **Permission Based**: Full permission system for control\n- **Configurable**: Customize max dimensions, delivery methods, and other settings\n\n**Commands**\n\n| Command | Description | Permission | Aliases |\n|---------|-------------|------------|---------|\n| `/paint <url>` | Create map art from an image URL | `paintedpixels.use` | `/mapimage`, `/imagemap`, `/paintpixels` |\n| `/paint next` | Get the next map from your queue | `paintedpixels.use` | - |\n| `/paint all` | Get all remaining maps from your queue | `paintedpixels.use` | - |\n| `/paint status` | Check how many maps are waiting | `paintedpixels.use` | `/paint queue` |\n| `/paint help` | Show help message | `paintedpixels.use` | - |\n\n**Permissions**\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `paintedpixels.use` | Allows using the /paint command | `true` |\n| `paintedpixels.admin` | Admin permissions | `op` |\n\n**Configuration**\n\nThe `config.yml` file allows you to customize:\n\n```yaml\n# Maximum image dimensions (in pixels)\nmax-width: 512\nmax-height: 512\n\n# Delivery method for created maps\n# Options: queue, immediate\ndelivery-method: queue\n\n# Enable debug logging\ndebug: false\n\n# Cache settings\ncache:\n  clear-on-restart: true\n  max-cached-images: 100\n```\n\nDelivery Methods:\n- `queue` (default) - Maps are stored in a queue, retrieved with `/paint next` or `/paint all`\n- `immediate` - Maps are given directly\n\n**Usage Example**\n\n1. Find an image URL (e.g., from Imgur, Discord, etc.)\n2. Run the command: `/paint https://example.com/image.png`\n3. Wait for the plugin to download and process the image\n4. Maps are added to your queue - use `/paint next` to get them one at a time!\n\n**Note**: Large images will be split into multiple maps. For example, a 256x256 image will create 4 maps (2x2 grid).\n\n- `/paint next` - Get one map at a time\n- `/paint all` - Get all maps at once\n- `/paint status` - Check how many maps are waiting\n- `/paint all` - Get all maps at once\n- `/paint status` - Check how many maps are waiting\n\n**Supported Image Formats**\n\n- PNG (recommended)\n- JPEG/JPG\n- GIF (first frame only)\n- BMP\n- Any format supported by Java's ImageIO\n\n**Technical Details**\n\nMap Colors:\n\nMinecraft maps use a limited color palette based on block colors. The plugin uses the `MapPalette` API to match colors as closely as possible. Some color information may be lost in the conversion, which is normal and expected.\n\nMap Dimensions:\n\n- Each Minecraft map is 128x128 pixels\n- Images larger than 128x128 are split into multiple maps\n- Maximum configurable size is 512x512 (16 maps)\n\nPerformance:\n\n- Image downloading is done asynchronously to prevent server lag\n- Processing is also asynchronous until the final map creation\n- Map creation is done on the main thread (required by Bukkit API)\n- Images are cached to the `plugins/PaintedPixels/cache/` directory\n\n**Limitations**\n\n- Maximum file size: 10 MB (hardcoded for security)\n- Timeout for downloads: 10 seconds\n- Color palette is limited to Minecraft's map colors\n- Animated images (GIF, etc.) will only use the first frame\n\n**Troubleshooting**\n\n\"Failed to download image\":\n- Check that the URL is valid and publicly accessible\n- Ensure the URL points directly to an image file\n- Check your server's firewall settings\n\n\"Your inventory is full\":\n- The map will be dropped at your location\n- Pick it up or make space in your inventory\n\nMaps appear as empty/blank:\n- This may be a client-side issue\n- Try relogging or reloading resource packs",
+  "categories": [
+    "decoration",
+    "minigame",
+    "paper",
+    "spigot",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 112,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

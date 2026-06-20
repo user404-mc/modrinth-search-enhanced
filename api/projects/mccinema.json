@@ -1,0 +1,37 @@
+{
+  "id": "TBKVCamZ",
+  "slug": "mccinema",
+  "title": "MCCinema",
+  "description": "Paper plugin to play back video (and audio) in-game without the use of clientside mods.",
+  "body": "Paper plugin to play back video (and audio) in-game without the use of clientside mods. \n\n## Features\n* Play local MP4/MKV/AVI/WEBM files or download videos directly from YouTube (optional)\n* Play Livestreams directly from Twitch or YouTube by simply using an URL instead (no audio).\n* Automatic resource pack generation and hosting for synchronized audio playback for videos.\n* True 1080p or even 4K playback with efficient tile-based rendering\n  * Only limit is the server and player bandwidth.\n* Improved bandwidth usage. Down to 8 MB/s for a really large (2176x896) screen.\n* Significantly improved visual quality\n  * Floyd-Steinberg, Stucki or Atkinson dithering with temporal noise reduction\n* Full playback controls: pause, resume, seek, and skip\n  * Audio is sliced into seamless chunks to work around Minecraft's audio limitations\n* Various compression techniques are used to reduce bandwidth usage as much as possible by only updating whats actually needed\n  * Selective updating, downsampling, dirty region detection and more\n \n## Basic usage\n_All commands have helpful tab-completion available_\n1) Use `/mcc create <screen id> <aspect ratio> [x] [y]` while looking at the lower left corner to create a screen\n   * Tip: Make sure your screen is evenly lit, e.g. using light blocks.\n2) Place your video `.mp4` files in `/plugins/MCCinema/videos/`\n3) Use `/mcc play <screen id> <video>` to start playback. Optionally include the `--audio <chunk size>` parameter to play with audio.\n   * For audio, this plugin will use [mcpacks.dev](https://mcpacks.dev/) for Resourcepack hosting by default.\n   * Alternatively, it can automatically host a resourcepack server if audio is enabled. On some hosts this may fail. \n   * To allow for resuming and pausing of playback, audio data is split into chunks of `<chunk size>` seconds in length. The default value of 10s is usually good.\n4) You can use `/mcc quality <screen> <performance/balanced/quality>` to change playback quality settings. This will have a significant effect on bandwidth and CPU usage.\n\nTo download videos from YouTube, run `/mcc download`. \nThere is some first-time setup required for this. You will be asked to confirm the yt-dlp download. Due to YTs anti-bot measures, you also may need to install a JS runtime on your machine for yt-dlp to work properly. \nBut of course you can also always download YouTube videos manually and place them in /videos/ yourself!\n\n---\n\n**A note on bandwidth usage:** \n\nThis plugin will inevitably create a lot of traffic. Minecraft isn't really a great video player. \n\nThis is optimized as best as possible (and likely better than many similar plugins), however it can still be a lot. \n\nThe actual amount of traffic scales with two factors: Screen size, and how dynamic the video is. Videos with very little movement such as slideshows will barely generate any traffic. \nYou can see live metrics, including bandwidth usage, using `/mcc debug <screen id>`. However note that those metrics are before compression. You can press F3+3 to get the built-in bandwidth graph, which will give you after compression bandwidth.\n\n**One example on a reasonably sized (7x4 blocks, 896x512) screen:**\n- [Server Trailer](https://www.youtube.com/watch?v=R-HWAiNj9Nw): Average 3 MB/s\n  * This screen size gives you good enough resolution for most content\n\n**Two examples on a very large (17x7 blocks, 2176x896) screen:**\n\nUsing Velocity with `compression-threshold: 256` and `compression-level: 4`\n- [Bad Apple](https://www.youtube.com/watch?v=FtutLA63Cp8): Average 400 KB/s\n  * Only two colors, pillarboxing on both sides, many large same-color areas -> lower bandwidth usage\n- [Bite Marks](https://www.youtube.com/watch?v=I76wvt0aEE4): Average 8 MB/s\n  * Many colors, full CS format, very quick scenes -> high bandwidth usage\n\n---\n\n## Configuration\nYou can find a full, commented configuration file [here](https://github.com/Malfrador/MakiScreen/blob/master/src/main/resources/config.yml)\n\n### Additional notes:\n- This plugin makes heavy use of multi-threading and benefits from more and faster CPU cores significantly. \n- Video and audio are streamed, so RAM usage should not be a meaningful concern. However, this plugin will create considerable GC pressure.\n- It is recommended to use a Velocity proxy in front of your server, and to then disable `network-compression-threshold` in `server.properties`. Doing so will offload the work of compressing and encrypting packets to the proxy, which can significantly improve performance and throughput. If that is not possible, increasing `netty-threads` in spigot.yml might be worth considering. \nIf using Velocity, try playing around with the `network-compression-threshold` and `compression-level` settings a bit. I had great results with `256` and `4` respectively.\n- Packets are bundled per frame, so packets-per-second should not be a concern here.\n- You can tweak most config settings during video playback with `/mcc debug <screen> <setting> <value>`. Depending on the video content, tweaking settings might have a big effect (e.g. anime style vs real life videos).\n\n## Showcase\n\n**Very large screen (17x7 blocks, 2176x896 CS) playing at 24FPS**\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/duaVoQ2CYhc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n**Even larger screen sizes are supported, but you will run into bandwidth limitations**\n<img alt=\"javaw_UbWieGAgKk\" src=\"https://github.com/user-attachments/assets/1d6b7c9b-2c33-4d27-baaf-055825bf9114\" />\n",
+  "categories": [
+    "cursed",
+    "game-mechanics",
+    "paper",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 503,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

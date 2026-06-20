@@ -1,0 +1,41 @@
+{
+  "id": "UF11NNft",
+  "slug": "customworldheight",
+  "title": "CustomWorldHeight",
+  "description": "A plugin for Paper that allows you to modify the height of the Minecraft world",
+  "body": "# CustomWorldHeight\n\n**CustomWorldHeight** is a plugin for Paper that allows you to modify the height of the Minecraft world. It provides an easy and efficient way to extend or limit the vertical dimensions of your world for creative builds, gameplay tweaks, or server optimization.\n\nGithub page: [https://github.com/Lumine1909/CustomWorldHeight](https://github.com/Lumine1909/CustomWorldHeight)\n\n# Important\n\n> This plugin is similar to the vanilla datapack, so there will be some similar issues as the datapack one.\n> \n> Once you set the height of a certain world, it will be VERY DANGEROUS to shirk the world height, all the data will lose.\n> \n> Expand the height is relatively unharmful, but if you decrease the min-Y, new chunks will be different from already generated chunks.\n> \n> Increasing the height will only cause the chunk's height map to be recalculated, and all the data will be properly preserved.\n\n\n## Features\n\n- Customize the height of your Minecraft world.\n- Seamless integration with Paper.\n- Easy-to-configure settings for server administrators.\n\n## Installation\n\nFollow these steps to install the plugin:\n\n1. Download the latest release of **CustomWorldHeight** from the [Releases](https://github.com/Lumine1909/CustomWorldHeight/releases/latest) page.\n2. Place the downloaded `.jar` file into your server's `plugins` folder, start the server.\n3. After plugin generated the config template it will automatically disable, please finish the config.\n4. Restart your Minecraft server, and the configured world's height will be modified.\n\n## API Usage\n```kotlin\nrepositories {\n    mavenCentral()\n}\ndependencies {\n    compileOnly(\"io.github.lumine1909:CustomWorldHeight-API:0.0.1\")\n}\n```\n```java\npublic void modifyHeight() {\n    /*\n    All of these works only if the world is not loaded yet!\n    This is not a permanent modification! If you want to set permanently,\n    store the height data with your plugin and SET IT ON EACH STARTUP!\n    */\n\n    // Set the height of overworld\n    WorldHeightService.get().registerWorld(\n        Identifier.of(\"demo\", \"height1\"), \"world\",\n        new Height(1088, -64, 512, Height.CloudHeight.DEFAULT),\n        BaseDimensionType.OVERWORLD\n    );\n    // Set the height of all worlds start with \"test_\"\n    WorldHeightService.get().registerRegex(\n        Identifier.of(\"demo\", \"height2\"), \"test_\\\\w+\",\n        new Height(1088, -64, 512, Height.CloudHeight.DEFAULT),\n        BaseDimensionType.CUSTOM\n    );\n}\n```\n\n## Configuration\n\n```yaml\n# You can set to anything you want, will be used to generate Identifier (ResourceLocation)\nexample-namespace:\n\n  # Set the name for certain world\n  world: 'example-world-name'\n\n  # Min Y position\n  min-y: -64\n\n  # Height (max Y position = min-y + height - 1)\n  height: 1024\n\n  # Height for Chorus Fruit teleport and etc. See wiki for details\n  logical-height: 512\n\n  # Height for the cloud (empty -> do not have cloud, default -> use default height)\n  # This feature is only for 1.21.6+\n  cloud-height: 'default'\n\n  # This will let the plugin process registration data when world load\n  dimension-type: 'custom'\n\n# You can set to anything you want, will be used to generate Identifier (ResourceLocation)\nexample-regex:\n\n  # This plugin also support Regex matching\n  regex: '^test_\\w+'\n\n  # Min Y position\n  min-y: -64\n\n  # Height (max Y position = min-y + height - 1)\n  height: 1024\n\n  # Height for Chorus Fruit teleport and etc. See wiki for details\n  logical-height: 512\n\n  # Height for the cloud (empty -> do not have cloud, default -> use default height)\n  # This feature is only for 1.21.6+\n  cloud-height: 256\n\n  # For 'overworld', 'the_nether', 'the_end', 'overworld_cave', this will use built in data to generate before world is initializing\n  dimension-type: 'overworld'\n```\n\n## License\n\nThis project is licensed under the [GPL 3.0 License](https://github.com/Lumine1909/CustomWorldHeight/blob/main/LICENSE).\nThe [API](https://github.com/Lumine1909/CustomWorldHeight/tree/main/api) part is licensed under the [LGPL 3.0 License](https://github.com/Lumine1909/CustomWorldHeight/tree/main/api/LICENSE).\n\n## Support\n\nIf you encounter any issues or have questions, feel free to open an [issue](https://github.com/Lumine1909/CustomWorldHeight/issues).\n\n---",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3610,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

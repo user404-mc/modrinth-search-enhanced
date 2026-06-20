@@ -1,0 +1,18 @@
+{
+  "id": "YCb1XINQ",
+  "slug": "tacz-firstaid-compat",
+  "title": "[TaCZ] FirstAid Compat",
+  "description": "This mod allows First Aid to be fully compatible with TaCZ. Shooting the right arm wil actually damage the right arm, etc.",
+  "body": "# [TaCZ] First Aid Compat\nA compatibility mod that enables precise 3D hitbox-based damage distribution when using **TacZ (Timeless and Classics Zero)** with **First Aid**.\n## Features\n- **Realistic Bodypart Targeting**: Uses exact 3D hit locations to determine which bodypart was hit, instead of FirstAid's default random/height-based distribution\n- **Proper Armor Protection**: Calculates armor protection per bodypart (head, chest, legs, feet)\n- **Damage Spillover**: Implements realistic damage spillover mechanics - when a limb is destroyed, excess damage transfers to the torso\n- **Crawl Support**: Properly handles damage distribution when players are in TacZ's crawling/prone state\n- **Explosion Support**: Distance-based damage distribution for explosions\n## Requirements\n- **Minecraft**: 1.20.1\n- **Forge**: 47.3.0+\n- **TacZ (Timeless and Classics Zero)**: 1.1.7+\n- **First Aid**: 1.20.1-1.1+\n## Installation\n1. Download the mod JAR\n2. Place it in your `mods` folder\n3. Make sure both TacZ and First Aid are installed\n4. Launch the game!\n## How It Works\nThis mod uses Mixin to intercept TacZ's bullet hit events and FirstAid's damage distribution system:\n1. When a TacZ bullet hits a player, the exact 3D hit location is captured\n2. The hit location is converted to player-local coordinates (accounting for rotation and posture)\n3. A 3D hitbox system determines which bodypart was hit\n4. FirstAid applies damage to that specific bodypart, with proper armor calculation\n5. If the bodypart is destroyed, excess damage spills over to the torso\n## Technical Details\n- **Hitbox System**: Defines precise 3D bounding boxes for each bodypart (head, torso, arms, legs, feet)\n- **Coordinate Transform**: Handles world-to-local coordinate conversion with proper yaw rotation and crawl positioning\n- **Spillover Logic**: \n  - Bullets: 80% of excess damage transfers (20% energy loss)\n  - Explosions: 100% of excess damage transfers (shockwave)\n  - Feet: Damage first spills to the corresponding leg, then to torso\n## License\nMIT License - See [LICENSE](LICENSE) for details\n## Credits\n- **Author**: Ranazy\n- **TacZ**: [Timeless and Classics Zero](https://modrinth.com/mod/timeless-and-classics-zero)\n- **First Aid**: [First Aid](https://modrinth.com/mod/firstaid)",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 25919,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

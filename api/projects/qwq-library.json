@@ -1,0 +1,19 @@
+{
+  "id": "XcNPz1Ba",
+  "slug": "qwq-library",
+  "title": "QωQ Library",
+  "description": "This is a mod for Fabric which add a simply way to subscribe and custom events!",
+  "body": "![issues](https://img.shields.io/github/issues/Abstruck-Studio/QwQ-Library?style=for-the-badge) \n![forks](https://img.shields.io/github/forks/Abstruck-Studio/QwQ-Library?style=for-the-badge)\n![stars](https://img.shields.io/github/stars/Abstruck-Studio/QwQ-Library?style=for-the-badge)\n![license](https://img.shields.io/github/license/Abstruck-Studio/QwQ-Library?style=for-the-badge)  \n__*QωQ Library*__  \nThis is a library which can subscribe events simply.\nIt offers a way to Register Objects like items, the following example shows:\n```java\npublic static final Registration<Item> ITEMS = new Registration<>(Registry.ITEM, MOD_ID);\npublic static final Item EXAMPLE_ITEM = ITEMS.register(\"example_item\", () -> new Item(new Item.Settings()));\n```\nDon't forget to add it into your Main Class:\n```java\n@Override\npublic void onInitialize() {\n  ItemInit.ITEMS.register();\n}\n```\n\nIf you want to Subscribe an event, do it like this:\n```java\n@ModEvent\npublic class OnEventHandle {\n    @SubscribeEvent\n    public static void onEvent(IEvent event){\n        //todo\n    }\n}\n```\nHowever, you must tell the program where did you put the class.  \nIn this example, it just like this:\n```java\n@Override\npublic void onInitialize() {\n  ItemInit.ITEMS.register();\n  EventLoader.initEvent(\"org.abstruck.qwq.init.event\");\n}\n```\nBut, if you put your classes in __*std.init.event*__, it will be subscribed directly.  \n__*WARNING: DO NOT PUT CLASSES WITH @Mixin IN THIS FLODER!!!*__  \n  \nMaybe sometimes you can't find an event you want in the library, you can custom a one:\n```java\npublic class AfterBreakEvent implements IEvent{\n        private final World world;\n        private final PlayerEntity player;\n        private final BlockPos pos;\n        private final BlockState state;\n        private final BlockEntity blockEntity;\n        private final ItemStack stack;\n        public AfterBreakEvent(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {\n            this.world = world;\n            this.player = player;\n            this.pos = pos;\n            this.state = state;\n            this.blockEntity = blockEntity;\n            this.stack = stack;\n        }\n\n        public PlayerEntity getPlayer() {\n            return player;\n        }\n\n        public BlockPos getPos() {\n            return pos;\n        }\n        \n        public BlockState getState(){\n            reutrn state;\n        }\n\n        public World getWorld() {\n            return world;\n        }\n\n        public BlockEntity getBlockEntity() {\n            return blockEntity;\n        }\n\n        public ItemStack getStack() {\n            return stack;\n        }\n    }\n```\nAnd don't forget to mixin:\n```java\n@Mixin(Block.class)\npublic abstract class BlockMixin {\n    @Inject(method = \"afterBreak\", at = @At(\"RETURN\"))\n    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci){\n        EventManager.onEventAction(() -> new AfterBreakEvent(world, player, pos, state, blockEntity, stack));\n    }\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 415,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2"
+  ],
+  "date_updated": null
+}

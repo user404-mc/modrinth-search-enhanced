@@ -1,0 +1,21 @@
+{
+  "id": "n08RGbq9",
+  "slug": "velocity-vanish",
+  "title": "Velocity Vanish",
+  "description": "A lightweight vanish plugin for Velocity proxy servers. Vanished players are hidden from the tab list and trigger fake leave/join messages for players without the see permission.",
+  "body": "# VelocityVanish\n\nA lightweight vanish plugin for **Velocity** proxy servers. Vanished players are hidden from the tab list and trigger fake leave/join messages for players without the see permission.\n\n## Installation\n\n1. Drop `VelocityVanish.jar` into your Velocity proxy's `plugins/` folder.\n2. Restart (or reload) the proxy.\n\n> **Do not install this on your backend (Paper/Purpur) servers.** It runs on the proxy only.\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/vanish` | Toggle vanish on yourself |\n| `/vanish <player>` | Toggle vanish on another online player |\n| `/v` | Alias for `/vanish` |\n\n## Permissions\n\n| Permission | Description |\n|---|---|\n| `vanish.use` | Required to use `/vanish` at all |\n| `vanish.others` | Required to vanish/unvanish other players |\n| `vanish.see` | See vanished players in tab list; skip fake join/quit messages |\n\n## How It Works\n\n- **Tab list** — When a player vanishes, their entry is removed from the tab list of every player who does not have `vanish.see`. Players with `vanish.see` always see everyone.\n- **Fake messages** — When a player vanishes, a fake `left the game` message is broadcast to players without `vanish.see`. When they unvanish, a fake `joined the game` message is broadcast.\n- **Server switches** — The tab list is refreshed every time any player changes backend servers, keeping it accurate across your network.\n- **Disconnect cleanup** — If a vanished player disconnects, they are automatically removed from the vanished set and the tab list is updated.\n\n## Limitations\n\n- Vanish state is stored **in memory only**. If the proxy restarts, all players will be unvanished.\n- Backend servers are unaware of vanish state. Players on the same backend server may still see vanished players through means other than the tab list (e.g. nearby detection in-game). For full invisibility, pair this with a backend vanish plugin.\n\n## Requirements\n\n- Velocity **3.4.0** or newer\n- Java **21**+",
+  "categories": [
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 123,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

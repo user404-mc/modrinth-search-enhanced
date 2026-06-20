@@ -1,0 +1,43 @@
+{
+  "id": "uzkOnbv4",
+  "slug": "combat-tag",
+  "title": "Combat Tag",
+  "description": "Block commands, display messages & different scoreboards (with TAB) when players hit each other for a specified time.",
+  "body": "Paper/Bukit plugin that can block commands, display messages & different scoreboards when players hit each other for a specified time. Simple and lightweight.\n\n<details><summary><b>Commands, Permissions & Placeholders</b></summary>\n\n- `/combat-tag reload` (alias: `/ct`) - reloads the config\n\nCommand requires the permission `combattag.admin`.\n\n**Placeholders:**\n- `%ct_time_left%` - time left in combat (in seconds)\n- `%ct_in_combat%` - whether the player is in combat (true/false)\n\n_(Yeah... not much; what a simple plugin!)_\n</br></details>\n<details><summary><b>Default config</b></summary>\n\n```yaml\n# All messages use Adventure's MiniMessage: https://docs.advntr.dev/minimessage/format.html\n# All messages support PlaceholderAPI placeholders\n# Make any message an empty string \"\" to disable it\n\n# Enable the plugin's features?\nenabled: true\n\ncombat-duration: 20.0\n\n# Enabled: if player leaves while in combat, they die and drop their items\nkill-on-quit: true\n\n# Internal placeholder: [otherPlayer]\ncombat-tagged-message: \"<#cb0000>You are now in combat with [otherPlayer]\"\n\nin-combat-action-bar: \"<#cb0000>You are in combat! <grey>(<#ffd0a8>%ct_time_left%<grey>)\"\n\ncombat-expired-message: \"<green>You are no longer in combat\"\n\n# Enable the command blocker?\nenable-command-blocker: true\ncommand-blocker:\n  blocked-msg: \"<red>You can't run this command while in combat!\"\n\n  # Enabled: if command has a colon in (e.g. /plugin:spawn), it will ignore the text before the colon, and only check it as '/spawn'\n  bypass-colons: true\n\n  # Enabled: each whole word must match (e.g., `/warp spawn` will block `/warp spawn` but not `/warp1` or `/warp spawn1`)\n  match-entire-words: true\n\n  blocked-cmds:\n    - \"/warp spawn\"\n    - \"/home\"\n    - \"/tpa\"\n```\n</br></details>\n<details><summary><b>Combat scoreboard</b></summary>\n\n[TAB](https://github.com/NEZNAMY/TAB) offers a pretty nifty feature where you can display scoreboards determined by conditions. You can use this in conjunction with the `in_combat` placeholder offered by this plugin to create a scoreboard that is displayed when the player is in combat.\n\nExample usage (in TAB's `config.yml`):\n```yaml\nscoreboard:\n  scoreboards:\n    # Combat scoreboard (TAB checks top to bottom)\n    combat:\n      display-condition: \"%ct_in_combat%=true\" # <- the condition\n      title: Combat scoreboard\n      lines:\n        - ' You are in combat!'\n        - ' %ct_time_left% secs left'\n    # Default scoreboard\n    scoreboard:\n      title: Normal scoreboard\n      lines:\n        - ' The default scoreboard of my server!'\n```\n</br></details>\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6245,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

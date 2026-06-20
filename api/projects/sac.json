@@ -1,0 +1,25 @@
+{
+  "id": "GEvUgSC4",
+  "slug": "sac",
+  "title": "ServerAlarmClock",
+  "description": "This plugin gives your Minecraft server a wake-up call, automatically restarting it when it decides to snooze.",
+  "body": "# ServerAlarmClock\n\n**ServerAlarmClock** is the perfect wake-up call for your Minecraft server! Ever tried to join a server that's still fast asleep? With ServerAlarmClock, your server will automatically start up when someone attempts to join, ensuring no one has to wait too long for the fun to begin.\n\n### Features\n- 🚀 **Automatic Server Start:** Your server will automatically boot up when a player attempts to join a stopped or sleeping server.\n- 💬 **Custom Messages:** Send players fun and customizable messages while they wait for the server to start.\n- 🔧 **Easy Configuration:** Simple setup with a lightweight, no-hassle config.\n\n\n<details>\n<summary>Principle</summary>\n\n![Principle](https://cdn.modrinth.com/data/cached_images/8257a01aef9a294e8e299a88004fd01bbf9f5914.png)\n\n</details>\n\n\n\n### Command\n```\n# reload your plugin config(serveralarmclock.reload)\n/sac reload\n```\n## How to Use\n\n1. **Install the Plugin:**\n   - Download the `ServerAlarmClock.jar` file and place it in your BungeeCord plugins folder.\n   \n2. **Configure the Flags:**\n   - Open the `config.yml` file located in the `ServerAlarmClock` folder.\n   - Under the `flags` section, specify the paths to the flag files for each of your servers. These flags will be used to trigger the server startup.\n\n3. **Setup the Server Startup Script:**\n   - You need to create or modify your server startup script to include the logic for checking the flag file. The example of a Linux shell script is provided at the end of this passage.\n4. **Start the Server:**\n   - Once everything is configured, reload the plugin using /sac reload. The plugin will now monitor server connections and start the target server when a player attempts to join a server that is currently stopped.\n5. **Enjoy!**\n\n<details>\n<summary>Example of a Linux shell script</summary>\n\n```\n#!/bin/bash\n\n# Server directory\nSERVER_DIR=\"your/server/path\"\n\n# Path to the flag file\nFLAG_FILE=\"your/flag/file/path/example.flag\"\n\n# Change to the server directory\ncd \"$SERVER_DIR\" || { echo \"Failed to change directory to $SERVER_DIR\"; exit 1; }\nwhile true\ndo\n  # Check if the flag file exists\n  if [ -f \"$FLAG_FILE\" ]; then\n    echo \"Minecraft Server is Starting\"\n\n    # Start the server\n    java -jar server.jar\n\n    # Remove the flag file\n    rm -f \"$FLAG_FILE\"\n\n    echo \"Minecraft Server has Stopped\"\n  else\n    sleep 1\n  fi\ndone\n```\n</details>\n<details>\n<summary>Example of a Windows bat script(generate by gpt)</summary>\n\n```\n@echo off\n\nREM Server directory\nset SERVER_DIR=your\\server\\path\n\nREM Path to the flag file\nset FLAG_FILE=your\\flag\\file\\path\\example.flag\n\nREM Change to the server directory\ncd /d \"%SERVER_DIR%\"\nif %errorlevel% neq 0 (\n    echo Failed to change directory to %SERVER_DIR%\n    exit /b 1\n)\n\n:loop\nREM Check if the flag file exists\nif exist \"%FLAG_FILE%\" (\n    echo Minecraft Server is Starting\n\n    REM Start the server\n    java -jar server.jar\n\n    REM Remove the flag file\n    del /f \"%FLAG_FILE%\"\n\n    echo Minecraft Server has Stopped\n) else (\n    timeout /t 1 /nobreak >nul\n)\n\ngoto loop\n\n```\n</details>\nKeep your players happy and your server ready with ServerAlarmClock—no more unexpected downtime!\n",
+  "categories": [
+    "bungeecord",
+    "optimization",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 699,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

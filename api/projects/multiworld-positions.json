@@ -1,0 +1,22 @@
+{
+  "id": "8T70An9t",
+  "slug": "multiworld-positions",
+  "title": "MultiWorld Positions",
+  "description": "An extension to the MultiWorld Fabric mod that stores last-known locations across different worlds.",
+  "body": "# MultiWorld Positions (Fabric)\n# An extension to the MultiWorlds mod by Isaiah\n\nTracks and restores player positions across worlds/dimensions on a dedicated server. It saves a player’s last location per world, restores on return, and adds special behavior for vanilla “default worlds” (Overworld, Nether, End) while allowing you to exclude hub/lobby worlds from saving.\n\n## Features\n- Per-world position saving on teleport, respawn, disconnect, and shutdown.\n- Exclusion list for hub/lobby worlds so they don’t pollute saved positions.\n- Default worlds group: treats Overworld, Nether, End as one connected set with last-known default dimension tracking.\n  - When a player enters any default world, the mod can redirect them to the last default dimension they were in and restore that dimension’s saved coordinates.\n- JSON config file is auto-generated; easy to edit.\n- Player data saved per UUID in JSON for portability and safe backups.\n- Debug logging toggle for deeper insights during setup/testing.\n\n## Configuration quick start\nA config file is created at first run:\n- config/multiworldpositions.json\n\nDefault contents (subject to change as features evolve):\n\n```json\n{\n  \"hubWorldsExcluded\": [\n    \"multiverse:spawn\"\n  ],\n  \"debugMode\": false,\n  \"defaultWorlds\": [\n    \"minecraft:overworld\",\n    \"minecraft:the_nether\",\n    \"minecraft:the_end\"\n  ]\n}\n```\n\n- hubWorldsExcluded: Worlds here will never be saved/restored.(Good to use for Spawn worlds/server hubs)\n- debugMode: Write extra logs for troubleshooting.\n- defaultWorlds: The set of worlds that are treated as the “default” connected dimensions. You can adjust if your server uses different keys. These are usually the minecraft namespaced worlds/dimensions Ex. \"minecraft:overworld\", \"minecraft:the_nether\", \"minecraft:the_end\". (Use these as your survival world)\n\n## Player data storage\nSaved at: config/worldpositions/<player-uuid>.json\n\n## Installation\n- Server: Put the built mod jar into the server’s mods folder along with Fabric Loader and Fabric API.\n- Client: Not required.\n- Start the server once to generate the configuration file.",
+  "categories": [
+    "fabric",
+    "optimization",
+    "storage",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 247,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

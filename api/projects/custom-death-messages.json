@@ -1,0 +1,32 @@
+{
+  "id": "kwr9qL5o",
+  "slug": "custom-death-messages",
+  "title": "Custom-Death-Messages",
+  "description": "A Plugin thats lets you configure custom death messages random or with a specific death corse",
+  "body": "# CustomDeaths\n\n![banner](https://github.com/BlackDevCoding/BlackDevAssets/blob/main/banner.png?raw=true)\n\nRule-based, funny death messages for Minecraft. Designed for **PaperMC 1.21.x** and **Java 21**. Shows the **original vanilla death message on hover** while broadcasting your customized one.\n\n---\n\n⚠️ **Irreversible (Messaging Only):** This plugin *replaces broadcast death messages*. It does not change drops, XP, or inventories, but your chat history cannot be “un-broadcast.” Use with care.\n\n---\n\n## ✅ Supported Platforms & Requirements\n\n- **Minecraft server:** PaperMC 1.21.x (API 1.21).  \n- Works on Paper-compatible forks that maintain API parity (e.g., Purpur).  \n- **Java runtime:** Java 21 (server + build).\n\n---\n\n## ✨ Features\n\n- **Custom Death Rules:** Define messages by conditions:\n  - Damage cause, world, biome\n  - Y height (above/below)\n  - Killer type, name, or whether killer is a player\n  - Victim permissions or held item\n- **Original on Hover:** Vanilla death message remains available as a hover tooltip.  \n- **Enable/Disable Quickly:** Toggle via `/customdeaths toggle` or set `enabled: true|false`.  \n- **Per-Cause & Global Messages:** Simple config lists.  \n- **Presets Included:** Ship with defaults; disable via `use-presets: false`.  \n- **Hot Reload:** `/customdeaths reload` applies changes without restart.\n\n---\n\n## 📦 Commands\n\n- `/customdeaths reload` — Reload `config.yml`.  \n- `/customdeaths toggle` — Flip the master `enabled` flag on/off.  \n\n### Permissions\n- `customdeaths.admin` — default: **op**\n\n---\n\n## ⚙️ Configuration (`plugins/CustomDeaths/config.yml`)\n\n```yaml\nenabled: true\nhover-original: true\noverride-broadcast: true\nuse-presets: true\n\nmessages:\n  - \"{player} took a permanent nap without setting an alarm.\"\n\nper-cause:\n  VOID:\n    - \"{player} fell off the edge of the internet.\"\n\n# Custom rules (first match wins)\ncustom-deaths:\n  - name: \"archer_headshot\"\n    when:\n      killer-type: \"SKELETON\"\n      y-above: 100\n    messages:\n      - \"{player} got a high-altitude headshot from {killer}.\"\n\npresets:\n  messages:\n    - \"{player} opened the hardcore tutorial.\"\n  per-cause:\n    FALL:\n      - \"{player} mistook the ground for a trampoline.\"\n```\n\n**Supported `when` keys**\n- `cause` (DamageCause), `world`, `biome`  \n- `y-above`, `y-below`  \n- `killer-type` (EntityType), `killer-name`, `killer-is-player`  \n- `victim-has-permission`, `victim-holding`  \n\n**Placeholders:** `{player}`, `{killer}`, `{cause}`\n\n---\n\n## 🧭 How it Works\n\n1. On `PlayerDeathEvent`, the plugin checks **custom-deaths** rules in order.  \n2. First match wins; if none, it falls back to **per-cause**, then **messages**, then **presets**.  \n3. The chosen line is broadcast, with the vanilla message shown on hover (if enabled).  \n\n---\n\n## 📥 Installation\n\n1. Drop the plugin JAR into `plugins/` on a Paper 1.21.x server.  \n2. Start the server to generate `config.yml`.  \n3. Edit `plugins/CustomDeaths/config.yml`.  \n4. Apply changes with `/customdeaths reload` (or restart).  \n\n---\n\n## 🔒 Safety Notes\n\n- Only the broadcasted death message is replaced; no inventories, XP, or drops are touched.  \n- Ensure admins understand that **first match wins** in `custom-deaths`.  \n\n---\n\n## 📄 License\n\nMIT — free to use and contribute.  \n",
+  "categories": [
+    "adventure",
+    "cursed",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 368,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

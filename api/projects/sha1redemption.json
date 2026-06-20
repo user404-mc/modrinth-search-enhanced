@@ -1,0 +1,30 @@
+{
+  "id": "1EPOBccB",
+  "slug": "sha1redemption",
+  "title": "SHA-1 Redemption",
+  "description": "A hack workaround for signature errors in legacy Minecraft versions",
+  "body": "Has this ever happened to you?\n\n\n`[SEVERE] [ForgeModLoader] The minecraft jar file:/home/una/.local/share/PrismLauncher/libraries/com/mojang/minecraft/1.6.4/minecraft-1.6.4-client.jar!/net/minecraft/client/ClientBrandRetriever.class appears to be corrupt! There has been CRITICAL TAMPERING WITH MINECRAFT, it is highly unlikely minecraft will work! STOP NOW, get a clean copy and try again!`\n\n`[SEVERE] [ForgeModLoader] For your safety, FML will not launch minecraft. You will need to fetch a clean version of the minecraft jar file`\n\n`[SEVERE] [ForgeModLoader] Technical information: The class net.minecraft.client.ClientBrandRetriever should have been associated with the minecraft jar file, and should have returned us a valid, intact minecraft jar location. This did not work. Either you have modified the minecraft jar file (if so run the forge installer again), or you are using a base editing jar that is changing this class (and likely others too). If you REALLY want to run minecraft in this configuration, add the flag -Dfml.ignoreInvalidMinecraftCertificates=true to the 'JVM settings' in your launcher profile.`\n\nNo? How about this:\n\n\n`[SEVERE] [Forestry] railcraft.common.core.Railcraft failed validation. Halting runtime for security reasons. Please replace your mods with untampered versions from the official download sites.`\n\n`Process exited with code 1.`\n\nThis is caused by newer Java 8 releases dropping support for SHA-1 signatures, and these older versions rely on those for ill-considered and poorly implemented \"tamper detection\". (FML's reasoning is benign, at least — it wants to warn people who have installed jar mods that it won't work correctly.)\n\nRather than attempt to remove this detection and trigger god-knows-what kind of \"anti-piracy\" checks (Forestry for 1.2 is particularly well known for this — remember the original Technic Pack?), SHA-1 Redemption hacks into Java's guts to re-enable SHA-1 signature trust.\n\nThis will work on any version of Minecraft, or indeed any Java program. I've tagged support for the versions where this problem is most frequently seen.\n\n## Warning\n\nSHA-1 is a broken algorithm that can no longer be trusted — this is why support was removed. Adding this nilmod to a Java program now means the signing infrastructure also cannot be trusted. This is fine in the context of Minecraft modpacks, where the systems we're bypassing are already horribly broken due to implementation mistakes.\n\nHowever, in another context, where the signing is actually meaningful, this really should not be used. Consider editing your Java security policy to add a more targeted exception instead, or re-signing the affected jars if you can.",
+  "categories": [
+    "java-agent",
+    "magic",
+    "nilloader",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 212,
+  "followers": 0,
+  "game_versions": [
+    "1.4.2",
+    "1.4.4",
+    "1.4.5",
+    "1.4.6",
+    "1.4.7",
+    "1.5.1",
+    "1.5.2",
+    "1.6.1",
+    "1.6.2",
+    "1.6.4"
+  ],
+  "date_updated": null
+}

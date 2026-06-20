@@ -1,0 +1,25 @@
+{
+  "id": "rmGkrvFd",
+  "slug": "nickudon",
+  "title": "NickUdon",
+  "description": "Nickname & prefix manager with a second nametag line, chat/display formatting, PlaceholderAPI support, and multi-language messages for Paper and Fabric servers.",
+  "body": "# NickUdon\n\nNickUdon is a multi-target Minecraft nickname/prefix/subtitle project for Paper and Fabric.\nShared formatting, config, persistence, and localization logic lives in `common`, while platform-specific adapters live in `paper` and `fabric`.\n\n## Highlights\n- Nicknames, prefixes, and a second nametag line (subtitle)\n- Legacy `&` colors and RGB hex `#RRGGBB`\n- Configurable display/chat formats\n- Alias uniqueness checks with configurable normalization rules\n- Multi-language messages with bundled `en_US` and `ja_JP`\n- Join/quit display overrides and broadcast messages\n- Shared config defaults across Paper and Fabric\n\n## Platform Notes\n\n### Paper\n- Built as a Paper plugin for the 1.21 API line\n- Optional PlaceholderAPI integration for external placeholders\n- Optional Vault integration for economy-backed payments\n- Config directory: `plugins/NickUdon/`\n\n### Fabric\n- Current target: Minecraft `1.21.11`\n- Supports Fabric Loader `0.18.4` through `0.18.x`\n- Requires `fabric-api` and Patbox `placeholder-api` in the server `mods/` directory\n- No economy integration; payment-related settings and bypass permissions are Paper-only\n- Supports external permission providers through `fabric-permissions-api-v0`\n- LuckPerms works as a permission provider on Fabric; without a provider, permission checks fall back to the built-in defaults (`true` or operator level)\n- Config directory: `config/nickudon/`\n\n## Commands\n- `/nickudon name|nick|alias|rename [player] <alias|clear>`\n- `/nickudon prefix [player] <prefix|clear>`\n- `/nickudon subtitle [player] <text|clear|on|off>`\n- `/nickudon reload`\n- `/nickudon lang <code>`\n- `/nickudon cleanupsubtitles` (Fabric only, admin only, removes orphan subtitle armor stands from older builds)\n- `/name ...` (shorthand for `/nickudon name ...`)\n\n## Permissions\n- `nickudon.use`\n- `nickudon.admin`\n- `nickudon.broadcast.*` (`alias`, `prefix`, `subtitle`)\n- `nickudon.nickname`, `nickudon.nickname.others`\n- `nickudon.prefix`, `nickudon.prefix.others`\n- `nickudon.subtitle`, `nickudon.subtitle.others`\n- `nickudon.payments.bypass.*` (`alias`, `prefix`, `subtitle`, and their `.others` variants)\n\nPaper exposes these permissions through `plugin.yml`.\nFabric uses `fabric-permissions-api-v0`. If a provider such as LuckPerms is installed, these permission nodes are checked there. Otherwise, Fabric falls back to the built-in defaults used by the mod.\n\n## Build\n\n### Requirements\n- Java `21`\n\n### Commands\n- Build both targets: `.\\gradlew build`\n- Build Paper only: `.\\gradlew :paper:build`\n- Build Fabric only: `.\\gradlew :fabric:build`\n\n### Output\n- Paper JAR: `paper/build/libs/NickUdon-<version>.jar`\n- Fabric JAR: `fabric/build/libs/NickUdon-fabric-<version>.jar`\n\n## Installation\n\n### Paper\n1. Build `:paper:build`\n2. Put `paper/build/libs/NickUdon-<version>.jar` into `plugins/`\n3. Install PlaceholderAPI if you want external placeholder expansion\n4. Install Vault plus an economy plugin only if you want `payments.*` to be active\n\n### Fabric\nRequirements:\n- Fabric Loader `0.18.4` through `0.18.x`\n\n1. Build `:fabric:build`\n2. Put `fabric/build/libs/NickUdon-fabric-<version>.jar` into `mods/`\n3. Also install:\n   - `fabric-api-0.141.3+1.21.11.jar`\n   - `placeholder-api-2.8.2+1.21.10.jar` or newer\n   - LuckPerms or another Fabric permission provider if you want non-OP permission management\n4. Start a Minecraft `1.21.11` Fabric server\n5. If older Fabric subtitle armor stands are left behind, stand near them and run `/nickudon cleanupsubtitles`\n\n## Config And Lang Files\n- Shared default resources are packaged from `common/src/main/resources/`\n- Paper runtime files live under `plugins/NickUdon/`\n- Fabric runtime files live under `config/nickudon/`\n- External `lang/<locale>.yml` files override bundled resources on both platforms\n\n## Placeholders\n\n### Paper PlaceholderAPI\n- `%nickudon_alias%`, `%nickudon_alias_stripped%`\n- `%nickudon_prefix%`\n- `%nickudon_chat%`\n- `%nickudon_display%`, `%nickudon_display_no_prefix%`\n- `%nickudon_name%`\n\n### Fabric Patbox Text Placeholder API\nNickUdon registers these placeholder identifiers:\n- `nickudon:alias`\n- `nickudon:alias_stripped`\n- `nickudon:prefix`\n- `nickudon:chat`\n- `nickudon:display`\n- `nickudon:display_no_prefix`\n- `nickudon:name`\n\nUse them with the syntax supported by the installed Patbox Text Placeholder API version.\n\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 317,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

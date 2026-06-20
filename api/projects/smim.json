@@ -1,0 +1,34 @@
+{
+  "id": "nj1Ki0fO",
+  "slug": "smim",
+  "title": "Smart Inventory Manager",
+  "description": "A lightweight Fabric client mod that adds safe icon buttons and keybinds to quickly sort inventories and common containers.",
+  "body": "# Smart Inventory Manager\n\nSmart Inventory Manager is a client-side Fabric mod that adds fast, safe inventory sorting with clean icon buttons, keybinds, multiple sort modes, JSON config recovery, Mod Menu support, and broad localization.\n\nAuthor: Matfi1\n\n## Features\n\n- Sort the player inventory from the inventory screen.\n- Sort common containers: chest, barrel, shulker box, hopper, dispenser, and dropper.\n- Use compact icon buttons instead of large text buttons.\n- Switch sorting mode from an in-game icon button.\n- The mode icon changes to match the selected sort mode.\n- Long hover tooltips explain each icon.\n- Settings are available from the main/pause menu and with a keybind.\n- Sorting respects protected hotbar slots when `ignoreHotbar` is enabled.\n- Sorting respects configured `lockedSlots`.\n- Invalid config files are backed up and replaced with defaults.\n- No mixins in the MVP.\n\n## Sort Modes\n\n- Item ID\n- Category\n- Count\n- Durability\n- Name A-Z\n- Name Z-A\n\n## Controls\n\nDefault keybinds:\n\n- `I`: sort player inventory\n- `O`: sort opened container\n- `K`: open Smart Inventory Manager settings\n\nYou can change these in Minecraft's controls menu.\n\n## Supported Versions\n\nBuilt Modrinth jars are saved in `dist/modrinth/`.\n\n| Minecraft | Jar |\n| --- | --- |\n| 1.21 | `SmIm-1.21.jar` |\n| 1.21.1 | `SmIm-1.21.1.jar` |\n| 1.21.2 | `SmIm-1.21.2.jar` |\n| 1.21.3 | `SmIm-1.21.3.jar` |\n| 1.21.4 | `SmIm-1.21.4.jar` |\n| 1.21.5 | `SmIm-1.21.5.jar` |\n| 1.21.6 | `SmIm-1.21.6.jar` |\n| 1.21.7 | `SmIm-1.21.7.jar` |\n| 1.21.8 | `SmIm-1.21.8.jar` |\n| 1.21.9 | `SmIm-1.21.9.jar` |\n| 1.21.10 | `SmIm-1.21.10.jar` |\n| 1.21.11 | `SmIm-1.21.11.jar` |\n| 26.1 | `SmIm-26.1.jar` |\n| 26.1.2 | `SmIm-26.1.2.jar` |\n\nMinecraft `26.1` and `26.1.2` require Java 25.\n\n## Installation\n\n1. Install Fabric Loader for your Minecraft version.\n2. Install Fabric API for your Minecraft version.\n3. Put the matching `SmIm-*.jar` file into your `mods` folder.\n4. Optional: install Mod Menu to open the config screen from the mods list.\n\nThis is a client-only mod. It is not required on servers.\n\n## Config\n\nThe config file is created here:\n\n```text\nconfig/smartinventorymanager.json\n```\n\nConfig keys:\n\n- `enableInventorySort`\n- `enableContainerSort`\n- `buttonSide`\n- `buttonScale`\n- `animationEnabled`\n- `sortMode`\n- `ignoreHotbar`\n- `lockedSlots`\n\nIf the JSON is broken, Smart Inventory Manager renames it to a timestamped `.broken` backup and creates a new default config.\n\n## Localization\n\nIncluded languages:\n\n- English (`en_us`)\n- Russian (`ru_ru`)\n- German (`de_de`)\n- French (`fr_fr`)\n- Spanish (`es_es`)\n- Portuguese, Brazil (`pt_br`)\n- Italian (`it_it`)\n- Polish (`pl_pl`)\n- Ukrainian (`uk_ua`)\n- Turkish (`tr_tr`)\n- Dutch (`nl_nl`)\n- Czech (`cs_cz`)\n- Hungarian (`hu_hu`)\n- Chinese, Simplified (`zh_cn`)\n- Chinese, Traditional (`zh_tw`)\n- Japanese (`ja_jp`)\n- Korean (`ko_kr`)\n\n## Compatibility\n\nSmart Inventory Manager uses Fabric screen events and avoids unsafe widget-list indexes. If a screen is not recognized, the feature path fails softly instead of crashing the client.\n\nManual compatibility test targets:\n\n- Sodium\n- Iris\n- Mod Menu\n- Mouse Tweaks\n- Shulker Box Tooltip\n- JEI\n- libIPN\n\nThese are manual test targets, not full compatibility certifications. Mods that also move inventory slots may conflict if both mods sort at the same time.\n\n## Building\n\nBuild all supported Modrinth files:\n\n```bash\n./scripts/build-modrinth.sh\n```\n\nBuild one Minecraft version:\n\n```bash\n./gradlew clean build -PmcVersion=1.21.11\n```\n\nBuild `26.x` with Java 25:\n\n```bash\nJAVA_HOME=\"$PWD/.jdks/jdk-25\" ./gradlew clean build -PmcVersion=26.1\nJAVA_HOME=\"$PWD/.jdks/jdk-25\" ./gradlew clean build -PmcVersion=26.1.2\n```\n\nSuccessful jars are copied to:\n\n```text\ndist/modrinth/\n```\n\n## Manual Test Plan\n\n- Open the player inventory.\n- Confirm the sort and mode icons are outside the inventory GUI, not in the center.\n- Open chest, barrel, shulker box, hopper, dispenser, and dropper.\n- Click Sort in every supported screen.\n- Switch sort modes and confirm the mode icon changes.\n- Use keybinds for player inventory and container sorting.\n- Change GUI scale and reopen screens.\n- Corrupt the config JSON and confirm backup plus default regeneration.\n- Launch with Mod Menu and confirm the config screen opens.\n- Launch with Sodium/Iris and confirm the GUI still renders.\n\n## Roadmap\n\nPlanned ideas for future releases:\n\n- Quick Stack\n- Restock Hotbar\n- Auto Refill\n- Interactive Slot Locking UI\n- Clean Inventory\n\n## License\n\nMIT",
+  "categories": [
+    "fabric",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 124,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

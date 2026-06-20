@@ -1,0 +1,38 @@
+{
+  "id": "CA8JqQek",
+  "slug": "accessory+",
+  "title": "Accessory+",
+  "description": "A lightweight Accessory&Trinket plugin.\nCompatible with Vanilla Attribute , Mythicmobs and AuraSkills.",
+  "body": "# Accessories\n\n### Lightweight Accessory System for Minecraft Servers\n\n**Accessories** is a lightweight accessory slot system for Minecraft servers.\n\nIt adds a separate **Accessories GUI**, allowing players to equip custom accessories without interfering with vanilla armor or normal equipment logic.\n\nAccessories can be used to provide:\n\n* extra attributes or trait-style effects\n* support for vanilla Minecraft attributes\n* custom shield mechanics\n* lore-based tags\n* external skill integrations such as **MythicMobs**\n* compatibility hooks for plugins like **AuraSkills**\n\nThis makes it suitable as a modular accessory framework rather than a system tied to a single plugin.\n\n---\n\n![Replace this with a description](https://cdn.modrinth.com/data/cached_images/d9a219496be3e87a15fc2b412ca6c69734adfa24.png)\n\n\n---\n\n## MythicMobs Support\n\nAccessories supports triggering **MythicMobs skills** through equipped accessories.\n\nYou can bind MythicMobs skills to accessory items and have them trigger under different conditions, such as:\n\n* `onAttack` — when the player deals damage\n* `onDamaged` — when the player takes damage\n* `onInteract` — when the player interacts\n* `onKill` — when the player kills an entity\n* `onShoot` — when the player fires a projectile\n* `onTimer` — repeated trigger based on a configured interval\n\nEach skill entry can also define:\n\n* the target type (`self` or `targeted`)\n* timer period for repeated effects\n* optional condition fields for future expansion\n\nThis allows accessories to work as custom skill carriers, making them easy to integrate into advanced combat or RPG systems.\n\n### Example\n\n```yml\nsignature: 1\n\nitems:\n  example_ring:\n    name: \"&bExample Ring\"\n    skills:\n      - skill: ExampleAttackSkill\n        trigger: onAttack\n        target: targeted\n\n      - skill: ExampleTimerSkill\n        trigger: onTimer\n        period: 20\n        target: self\n        conditions: {}\n```\n\n---\n\n## Vanilla Attribute Support\n\nAccessories can also apply **vanilla Minecraft attributes** through equipped items.\n\nThis makes it possible to build accessories around native attribute systems, such as:\n\n* max health\n* armor\n* armor toughness\n* attack damage\n* attack speed\n* movement speed\n* knockback resistance\n* luck\n\nThis is useful if you want your accessory system to stay close to vanilla mechanics while still benefiting from a separate accessory GUI.\n\n---\n\n## Absorb System (Shield Mechanic)\n\nAccessories introduces custom **Absorb** and **MagicAbsorb** shield mechanics.\n\n### How Absorb Works\n\nThis applies to both **Absorb** and **MagicAbsorb**:\n\n* All incoming damage, except **fall damage**, is absorbed by the shield first.\n* When the shield is depleted, damage is applied to the player's health as normal.\n* If the player takes **no damage for 12 seconds**, the shield starts regenerating.\n* Regeneration rate: **10% of max absorb per second**.\n* All values can be customized in the config file.\n\n---\n\n## PlaceholderAPI Support\n\nYou can display shield status using **PlaceholderAPI**:\n\n* `%absorb_current_shield%`\n* `%absorb_max_shield%`\n* `%magicabsorb_current_shield%`\n* `%magicabsorb_max_shield%`\n\nUseful for:\n\n* action bars\n* scoreboards\n* HUD displays\n\n---\n\n## Accessories GUI\n\nThe plugin includes a fully customizable GUI system:\n\n* custom GUI title\n* adjustable GUI size\n* locked frame slots\n* slot-based item restrictions using lore keywords\n* only items that match slot rules can be equipped\n\nThis gives you precise control over what types of accessories players can use.\n\n---\n\n## Dependencies\n\n| Plugin         | Requirement                              |\n| -------------- | ---------------------------------------- |\n| PlaceholderAPI | Optional                                 |\n| AuraSkills     | Optional, for trait-style integrations   |\n| MythicMobs     | Optional, for accessory-triggered skills |\n\n---\n\n## Commands\n\n| Command             | Description                                  | Permission         |\n| ------------------- | -------------------------------------------- | ------------------ |\n| `/inv`              | Open the Accessories GUI                     | `accessory.inv`    |\n| `/accessory reload` | Reload config, GUI, frame, and slot settings | `accessory.reload` |\n\n---\n\n## Available Effects\n\nAccessories can be used for effects such as:\n\n* **Defence**\n  Reduces incoming magic damage\n\n* **HealRegeneration**\n  Increases health regeneration\n\n* **HealRegenerationDecrease**\n  Reduces regeneration, useful for cursed items\n\n* **Absorb**\n  Grants and regenerates a physical damage shield\n\n* **MagicAbsorb**\n  Grants and regenerates a magic damage shield\n\n* **Vanilla Attributes**\n  Supports native Minecraft attributes such as health, armor, damage, and movement speed\n\n---\n\n## Lore Tag System\n\nAccessories supports a lore-based tag system.\n\n### How It Works\n\nIf an accessory item contains lore in the following format:\n\n```text\n[xxxx]\n```\n\nthe player will automatically receive the corresponding tag:\n\n```text\nxxxx\n```\n\n### Use Cases\n\n* conditional skills or effects\n* integration with other plugins or datapacks\n* custom mechanics triggered by player tags\n* advanced accessory-based logic\n\nThis system allows accessories to interact with external systems without hard dependencies.\n\n---\n\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "equipment",
+    "magic",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 411,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

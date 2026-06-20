@@ -1,0 +1,31 @@
+{
+  "id": "nILYwKV9",
+  "slug": "simple-registry-aliases",
+  "title": "Simple Registry Aliases",
+  "description": "Exposing Fabric API's registry aliasing in a simple, config driven way.",
+  "body": "# Simple Registry Aliases\nThis mod allows you to define registry entry aliases, by exposing Fabric API's registry alias\nsystem in simple, config-driven way.\n\nIt supports both static (blocks, items, etc.) and dynamic (biomes, enchantments, etc.) registries.\n\n# Configuration.\nAll alias definitions are stored in `./config/registry_aliases/` as a json map.\nFor vanilla registries, the file should be named as `<registry_path>.json`,\nso for example item registry aliases will be located it `item.json`, block as `block.json`, \nbiomes at `worldgen/biome.json` (`worldgen` is a folder) and so on.\n\nFor modded registries (through it also works in vanilla), the file should be named `<registry_namespace>/<registry_path>.json`,\nfor example for registry `magic_mod:spells` the name is `magic_mod/spells.json`.\n\nThe file itself is just a json map, with keys being the original entry id and value being the replacement.\nFor example, a file at `./config/registry_aliases/item.json` with content\n```json\n{\n  \"toomanymetals:enderite_pickaxe\": \"minecraft:netherite_pickaxe\",\n  \"toomanymetals:enderite_axe\": \"minecraft:netherite_axe\"\n}\n```\nwill make all item (as they are sourced from item registry) `toomanymetals:enderite_pickaxe` get replaced with \n`minecraft:netherite_pickaxe` once it's loaded.\n\nWorth noting this only works if the registry entry you want to replace doesn't exist. If it does, this won't work and \nthe original entry will be used instead.\n\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13796,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

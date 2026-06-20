@@ -1,0 +1,20 @@
+{
+  "id": "lwBLig0b",
+  "slug": "uuid-impersonate",
+  "title": "UUID Impersonate",
+  "description": "Allows you to impersonate another player at the UUID level which allows you to load in as though you are really that player (NBT and all).",
+  "body": "The motivation behind this mod was to:\n- Modify Player (NBT) Data of Inactive Players\n  1. Dump Inventories (and Ender Chests) \n  2. Interact with mods as though you are the player so you don't need to resort to NBT manipulation if the mod does not have admin functionality/management\n\nThe way the mod functions is by\n- Letting the server check if the actual player joining (not the person they are impersonating) is allowed to join the server\n  - So the original player cannot use this to bypass bans or other things that would inhibit joining ordinarily\n  - It also has the helpful side effect of making it so (on a whitelisted server) you don't need to whitelist the player you are impersonating.\n- Then after it verifies you can join, it checks if you are trying to impersonate someone (via the `/uuidimpersonate impersonate <player|uuid>` command you used on the previous login)\n  - The `/uuidimpersonate impersonate <player|uuid>` command is guarded by both a not impersonated predicate and a has OP level 4 (owner) predicate.\n  - The accompanying `/uuidimpersonate clear` command is guarded by just an impersonated predicate (so no matter what permissions you have, you can stop the impersonation)\n    - If for some reason the `/uuidimpersonate clear` command is not working, the impersonation list is not persistent so you can also restart the server to clear ALL impersonations. \n- If you are then it swaps out the original GameProfile with the player you are trying to impersonate's (generated) GameProfile.\n\nIt is that simple, however, as there is a hardcoded 16 character limit for the GameProfile's name, I had to inject into various places like the `ServerPlayerEntity#getPlayerListName` (for tab list) and the `PlayerEntity#getName` (for chat messages and others) functions to get the name I wanted to display (\"ImpersonatedName (Impersonated by OriginalName)\") while impersonating which ensures transparency for other players.\n\nThis is still not perfect though, for instance, I observed that some mods (like Fabricord) check the GameProfile name directly (instead of `PlayerEntity#getName`) and thus it will only appear as though the (Impersonated) player joined the world without the descriptor of who is impersonating them (looks like a normal non-impersonated join)",
+  "categories": [
+    "fabric",
+    "management"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 341,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21"
+  ],
+  "date_updated": null
+}

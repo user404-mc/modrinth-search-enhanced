@@ -1,0 +1,36 @@
+{
+  "id": "8RD1hmA5",
+  "slug": "tabplugin",
+  "title": "TabPlugin",
+  "description": "TabPlugin displays player ping in milliseconds on the tab list with color-coding (green/yellow/orange/red) and automatically marks players as AFK after 5 minutes of inactivity.",
+  "body": "\n**[⚠️]NOTE!** If u have aby issue with the plugin please report to in our discord!\n\n**TabPing Plugin Description 🎮**\n**Main Function:**\nThe plugin displays player ping ⚡ in milliseconds next to their nickname on the tab list (when you press Tab key). Additionally, it monitors player activity and marks inactive players as AFK 💤.\n\n**How the ping system works: 📊**\n\nUpdates every second ⏱️: The plugin checks each player's ping on the server every 1 second (20 Minecraft ticks)\n**Color coding by speed 🌈:**\n\n- Green 🟢 < 50ms - excellent ping\n- Yellow 🟡 50-100ms - good ping\n- Orange (GOLD) 🟠 100-150ms - medium ping\n- Red 🔴 > 150ms - poor ping\n\n\nDisplay format: PlayerName [45ms]\n\nNickname is white ⚪\nPing is colored 🎨 (depends on value)\nBrackets are dark gray\n\n\n\n\n**How the AFK system works: 😴**\n\n**Activity tracking 👀:**\n\nPlugin saves timestamp of each player's last movement\nListens to PlayerMoveEvent - reacts when player moves 🏃\n\n\n**Movement detection 🎯:**\n\nPlugin checks if player actually moved (X, Y, Z coordinate change)\nJust rotating camera 🔄 does NOT reset AFK timer\nEvery real movement 🚶 resets the timer\n\n\n**AFK checking ⏲️:**\n\nEvery second the plugin checks all players\nIf player hasn't moved for 5 minutes ⏰ (300 seconds) - gets AFK status\nFormat: PlayerName [120ms] [AFK] 💤\n\n\n**Returning from AFK ✅:**\n\nWhen AFK player moves - immediately loses AFK marker\nPing is automatically updated 🔄\n\n\n\n\n**Configuration system (config.yml): ⚙️**\nYou can customize everything:\nyamlafk:\n  time-seconds: 300    # Change to 60 = 1 minute, 600 = 10 minutes etc. ⏱️\n  text: \"AFK\"          # Can change to \"AWAY\" or \"INACTIVE\" 📝\n  color: \"GRAY\"        # Color of AFK text 🎨\n\nping:\n  thresholds:\n    good: 50           # Good ping threshold ✅\n    medium: 100        # Medium ping threshold ⚠️\n    bad: 150           # Bad ping threshold ❌\n  \n  colors:\n    good: \"GREEN\"      # Color for <50ms 🟢\n    medium: \"YELLOW\"   # Color for 50-100ms 🟡\n    bad: \"GOLD\"        # Color for 100-150ms 🟠\n    very-bad: \"RED\"    # Color for >150ms 🔴\n\n**Commands: 💬:**\n\n- /tabping - Forces immediate update + shows player info in chat 🔄\n- /tabping reload - Reloads config.yml without server restart ♻️\n- /tabping toggle - Disables/enables plugin temporarily 🔌\n\n\n**How the plugin handles AuthSystem: 🔐**\n\nWhen player joins, plugin waits 5 seconds ⏳ before setting ping\nThis gives time to log in through AuthSystem 🔑\nAfter logging in, ping appears automatically ✨\n\n\nTechnically - what happens behind the scenes: 🔧\n\nMemory 💾: Plugin stores in HashMaps:\n\nlastActivity - last activity time of each ****player (UUID → timestamp)\nafkPlayers - AFK status of each player (UUID → true/false)\n\n\n**Events 📡:**\n\nPlayerJoinEvent - initializes player (resets AFK, sets activity time) 👋\nPlayerQuitEvent - removes player from memory 👋\nPlayerMoveEvent - updates activity time 🏃\n\n\n**Timers ⏲️ (BukkitRunnable):**\n\nTimer #1: Every second checks and marks AFK players 😴\nTimer #2: Every second updates ping for all players ⚡\n\n\nAdventure API 🎨: Uses modern text component system for coloring\n\n\n**Example scenarios: 📝**\n**Scenario 1: Normal player ✅**\n\nPlayer \"Invvl\" joins, logs in 🔑 → waits 5s ⏳ → displays Invvl [35ms] (green 🟢)\nPlayer actively plays 🎮, ping updates every second\n\n**Scenario 2: Player leaves computer 💤**\n\nAfter 5 minutes without movement → Invvl [40ms] [AFK] (AFK gray)\nReturns, moves 🏃 → immediately Invvl [42ms] (AFK disappears ✨)\n\nScenario 3: Bad internet 📶\n\nPing jumps: 80ms → Invvl [80ms] (yellow 🟡)\nLagspike 📉: 200ms → Invvl [200ms] (red 🔴)\nStabilizes 📈: 60ms → Invvl [60ms] (yellow 🟡)\n\n\nThe plugin is lightweight 🪶 (only checks movement and ping), configurable ⚙️ (everything in config.yml) and automatic 🤖 (requires no player interaction).\n\n**Perfect for: 🎯**\n\n✅ Survival servers\n✅ PvP servers (important ping info!)\n✅ Minigame servers\n✅ Community servers with AFK management\n\nEnjoy your optimized tab list! 🚀✨",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 575,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

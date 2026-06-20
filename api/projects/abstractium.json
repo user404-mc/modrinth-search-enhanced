@@ -1,0 +1,27 @@
+{
+  "id": "iQQduFdX",
+  "slug": "abstractium",
+  "title": "Abstractium",
+  "description": "An api to aid abstracting interactions between mod and dependency.",
+  "body": "# Summary\nAbstractium is a moderately simple mod that provides tools to abstract interactive code between a mod and \ngiven dependency.\n\n# What does this do?\nAbstractium's branch looks a little like this:\n- Abstractium = \"Api\" + \"Minecraft Abstraction\";\n- Api = \"Events\" + \"Abstraction Tools\";\n\n**Events** function similarly to basically every other event system out there with the small\ndifference that it also has concurrent capabilities and string-based identification systems.\nIt is used to hold the main \"function\" of a mixin that potentially might not work in another\nupdate.\n\nThe **Abstraction Tools** provide an easy way to essentially implement an interface of pre-made calls a.k.a\n\"Abstraction Mappings\". The different versions of abstraction mappings are registered through an entrypoint.\nThe AbstractionHandler.java class handles all the versioning automatically. The abstraction mappings also\nallow for \"sub-abstraction\", where a subset of specific calls can reside. Here is an example hierarchy:\n- AbstractClientCalls{\n  - AbstractRenderCalls{\n    - AbstractWorldRenderCalls{\n      - AbstractBlockRenderCalls{},\n      - AbstractEntityRenderCalls{}\n    - }, \n    - AbstractGuiRenderCalls{}\n  - }, \n  - AbstractSoundCalls{\n    - AbstractEntitySoundCalls{},\n    - AbstractBlockSoundCalls{}\n  - }\n- }\n\nThe **Minecraft Abstraction** puts all this together to provide an inbuilt abstraction layer for other mods\nto use. Please keep in mind that this is far from finished. There is a bare minimum to get my mods ported to\nit but that's about it. If you feel like contributing, just keep in mind that I'll only accept abstractions\nthat work for all inbuilt versions this api supports.\n\n# How do I use this?\nWell if you do want to use my inbuilt minecraft abstraction, it's actually really easy! Just add my mod\nto your dependency list (There will be documentation for that shortly) and access \n`AbstractiumClient#CLIENT_ABSTRACTION_HANDLER` or `AbstractiumCommon#COMMON_ABSTRACTION_HANDLER`.\nIf you want to make your own abstraction handling, well that's quite a bit more complicated but you will\nneed to follow how it's done in `net.feltmc.abstractium.library`.\nThere will be a wiki some time in the future.\n\n# Development Roadmap\nFor now this has rather limited goals. Support **fabric 1.18.2** to the **latest version**. In the future\nthere are **possibilities not plans** for the following:\n- Code Wrapper: This would allow mods from different versions running on newer ones without modifications.\n- Legacy Support: Supporting versions below 1.18.2.\n- Forge Abstraction: Abstracting and wrapping forge code (contingent upon another PatchworkMC)\n\n# Why was this made?\nI made this api because of how much mojang loves to refactor their own code. I know mod devs alike can agree\nwith me that mojang's refactors make modding so tedious and demotivating. It forces us devs to focus less on\nimproving the mod and more on rewriting code to get it working on the latest versions. Then, if someone wants\nto maintain multiple versions, multiple branches have to be updated with patches/improvements which is a \nlogistical nightmare. For the users it causes many, many mods to be split amongst different versions. This\nstops people from playing all their favourite mods in one modpack, on the latest versions. This frustration\nhas been productively redirected to an ambitious api to finally nuke these irritating nuisances out of existence.",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3878,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

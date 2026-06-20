@@ -1,0 +1,22 @@
+{
+  "id": "36AACSsJ",
+  "slug": "slashbridge",
+  "title": "Slashbridge",
+  "description": "serverside utility mod aiming to add in minecraft commands that I think the base game lacks, bridging datapack and mod function.",
+  "body": "### Slashbridge\n\n## What does it do?\n\nSlashbridge was started because there are functions that I was like \"Really? You can't do that with commands?\" In its current state it adds commands, but the plan is to expand it to other serverside features that will be used my own datapacks and data-driven mods, and hopefully yours too!\n\n## Commands\n\n<details>\n<summary>/motion</summary>\nEntitymotion allows you to smoothly move an entity and edit its current velocity in different ways.\n  \nMovement subcommands:\n\n> set (vector) - Changes the entity's velocity to a new vector.\n> \n> add (vector) - Adds a new vector to the entity's current velocity.\n> \n> seek (number) - Moves targets towards an entity (or away from with a negative number).\n> \n> mult (number) - Multiplies a target's current velocity by a number.\n\nVector movement formats:\n\n> world - Movement corresponds to in-game coordinates. <x> <y> <z>\n> \n> local - Movement relative to where the target entity is facing. <forward/back> <up/down> <right/left>\n> \n> zx - Movement rotates only horizontally but not vertically. Y is always up in the game world and not up relative to where an entity is facing. <forward/back> <y> <right/left>\n</details>\n\n \n<details>\n<summary>/status</summary>\nEntitystatus lets you modify the health, hunger, and absorption values of an entity. \n\nSubcommands:\n\n> seek lets you transfer any of these stats from one entity to another, such as giving an entity hunger by removing another's health.\n> \n> The rest of the subcommands +|-|*|/|= are just math operators. \n</details>\n\n\n<details>\n<summary>/despawn</summary>\n\n\n  \nDespawn lets you despawn entities without technically killing them. They won't drop items or xp or anything. Currently made to ignore players.\n\nSubcommands:\n\n> recursive - Despawns the entity targeted alongside all of its passengers.\n>\n> single - Despawns only the entity targeted.\n</details>\n\n<details>\n<summary>/after</summary>\n\nAfter lets you run a command after a number of ticks. Can be stacked with other commands. For example `/execute at @p run after 100 kill' could be a command. \n\n</details>\n\n<details>\n<summary>/during</summary>\n\nDuring lets you run a command during day, night, or a specific moon phase. \n\n</details>\n\n<details>\n<summary>/Ignite & /Extinguish</summary>\n\nSet entities on fire or put it out. The ignite command lets you set the number of ticks entities are on fire for.\n\n</details>\n\n## Tags\n\nThese will have some degree of command functionality, but they partially use minecraft's command system and can be added & manipulated with the /tag command.\n\n<details>\n<summary>Damage Resitance and Vulnerability</summary>\nsb.dx.<damageType>+<multiplier>\n  \n> This adds in damage multipliers for a specific damage type. These are done in camelcase, as that's what's displayed in minecraft. So instead of writing indirect_magic you'd write indirectMagic.\n> \n> sb.dx.mob+0.5 would mean you take half melee damage from mobs\n> \n> these tags are not intended to stack, and the math will work out weirdly if you try and stack them.\n> \n> you can put negative multipliers to heal on damage.\n\nsb.damageheal\n\n> This tag is added when an entity heals instead of taking damage. It does not get removed at the moment, with the assumption that whoever's using the tag for tracking purposes can remove it on their end.\n</details>\n\n\n## Plans for the future\n\n<details>\n<summary>Player Animation Command(s)</summary>\n  \nIdk how plausable this is, but I want to be able to queue up player animations available in vanilla game such as swinging a hand or sitting. Whether or not this would be possible, especially at my current skill level, only time will tell.\n</details>\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 426,
+  "followers": 0,
+  "game_versions": [
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

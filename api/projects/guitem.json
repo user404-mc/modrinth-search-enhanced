@@ -1,0 +1,38 @@
+{
+  "id": "QhVIWufN",
+  "slug": "guitem",
+  "title": "GUItem",
+  "description": "Item models for customizing container GUI.",
+  "body": "# What is this?\n\n* Does not replace existing textures or models of the vanilla game.\n* Use custom item models to decorate the container GUI instead of Glass Panes and Heads.\n* Stack layers of models, then use custom model data to control.\n* Template models for easily creating layer models from textures.\n* An item model definition as an example or direct use.\n\n# GUItem\n\nThe goal is to imitate the container GUI by covering inventory slots with pieces of the GUI elements.\n\nModels can be created from template models by simply providing textures to the specified texture variable.  \nThe templates and models are categorized from GUI elements, layered from bottom to top:\n* Background\n  * The bottom layer that can be displayed.\n  * Ignorable or unimportant information that does not affect the reading.\n* Field\n  * To declare sections or primary color fill.\n* Pattern\n  * Visually interact with.\n  * Implicit or direct informing of something.\n* Slot\n  * Can insert, take, or preview items.\n* Button\n  * Something will happen when interacting with.\n  * Must have a placeholder state if the action cannot be available.\n* Icon\n  1. Expression of condensed information.\n  2. Symbols or graphics representing.\n* Foreground\n  * The top layer that can be displayed.\n  * Any information that must be shown, even if the items can be covered.\n\nModels can then be composed into the item model definition, and can also be controlled by custom model data by adding some tricks.  \nHere is an example `/give` command to get a \"check mark button\" by using the provided item model definition: `/give @s minecraft:recovery_compass[minecraft:item_model='guitem:gui_stack',minecraft:custom_model_data={\"strings\":[\"\",\"\",\"\",\"\",\"button\",\"check_mark\",\"\"]}]`\n\n## GUI Pieces\n\nMost pieces are designed to fit a whole slot size:  \n![An animated image that shows how the one-slot pieces act in inventory.](https://cdn.modrinth.com/data/cached_images/b2cd3b1c6bfb8069bc5745e8f5df8e9898a213bc.gif)\n\nSome pieces have a greater cover area that extends to other slots, representing a complete element or being a foreground/background to the others:  \n![An animated image demonstrating how oversized pieces work in the inventory.](https://cdn.modrinth.com/data/cached_images/d566fe4234f9843fa55f28c7d247badf1010f218.gif)\n![An animated image demonstrating how oversized pieces work in the inventory.](https://cdn.modrinth.com/data/cached_images/2172fd90b6d7e23f83f833fa820366dd887f40a8.gif)\n\nPlaying with oversized items with caution! They may have their own rules for covering items:  \n![The special covering rules to the oversized item](https://cdn.modrinth.com/data/cached_images/83fb37aad109f2834baaaa76e44205ccd98aafdf.png)\n\n# Reminder\n1. The item model definition, after Minecraft 1.21.6, added `oversized_in_gui` to control whether the model can exceed a slot (true) or be trimmed to slot size (false, default).\n2. Try combining with the custom fonts as well. Although the container name cannot be changed without reopening the UI, it's still a great option for drawing static content; on the other hand, modeled items handle dynamic content.\n\n# Known Issues\n\n* Item models are rendered slightly dim.\n  * It seems like this upstream issue is fixed along with the lightmap algorithm changes made in Minecraft 26.1 snapshot 1.\n* Oversized models sometimes have a smaller UV area, resulting in the wrong scaling of the texture.\n* Some oversized models are missing their top row of pixels(GUI scaled).\n\n# Compatibility Info\n\n* namespace: `guitem`\n* atlases directory: `gui_item`",
+  "categories": [
+    "minecraft",
+    "models",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1425,
+  "followers": 0,
+  "game_versions": [
+    "24w36a",
+    "24w37a",
+    "24w38a",
+    "24w39a",
+    "24w40a",
+    "1.21.2-pre1",
+    "1.21.2-pre2",
+    "1.21.2-pre3",
+    "1.21.2-pre4",
+    "1.21.2-pre5",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

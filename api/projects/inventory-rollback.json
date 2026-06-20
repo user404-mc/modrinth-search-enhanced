@@ -1,0 +1,33 @@
+{
+  "id": "8ohUhjdr",
+  "slug": "inventory-rollback",
+  "title": "Inventory Rollback",
+  "description": "Has a user lost their items and need restoration? No worries! Easily restore inventories with this plugin.",
+  "body": "# Inventory Rollback Plugin\n\nA comprehensive Paper Minecraft plugin for snapshotting and restoring player inventories with time-based rollback capabilities.\n\n## Installation\n\n1. Download `InventoryRollback-1.0.0.jar`\n2. Place in `plugins/` folder\n3. Restart server\n4. Configure in `plugins/InventoryRollback/config.yml`\n5. Reload: `/invrollback reload`\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/ir restore <player> [time]` | Restore player inventory | `invrollback.restore` |\n| `/ir restore world <world> <time>` | Restore entire world | `invrollback.restore.world` |\n| `/ir restore server <time>` | Restore entire server | `invrollback.restore.server` |\n| `/ir list <player>` | List snapshots | `invrollback.list` |\n| `/ir backup <player>` | Manual backup | `invrollback.backup` |\n| `/ir cleanup` | Cleanup old snapshots | `invrollback.cleanup` |\n| `/ir confirm` | Confirm operation | - |\n| `/ir cancel` | Cancel operation | - |\n\n**Aliases**: `/invrollback`, `/ir`, `/invr`\n\n## Configuration\n\n### Snapshot Settings\n```yaml\nsnapshots:\n  interval: 300  # 5 minutes\n  max-per-player: 50\n  events:\n    on-death: true\n    on-quit: true\n```\n\n### Storage\n```yaml\nstorage:\n  mode: HYBRID  # MEMORY, DISK, or HYBRID\n  compression:\n    enabled: true\n    level: 6  # 1-9\n```\n\n### Rollback\n```yaml\nrollback:\n  max-time: 3600  # 1 hour in seconds\n  current-inventory-action: BACKUP  # BACKUP, DROP, or CLEAR\n```\n\n## Usage Examples\n\n### Restore Single Player\n```\n/ir restore Steve 30m\n```\nRestores Steve's inventory to 30 minutes ago\n\n### Restore Entire World\n```\n/ir restore world world_nether 1h\n/ir confirm\n```\nRestores all players in Nether to 1 hour ago (requires confirmation)\n\n### List Snapshots\n```\n/ir list Steve\n```\nShows all available snapshots for Steve\n\n### Manual Backup\n```\n/ir backup Steve\n```\nCreates immediate snapshot for Steve\n\n## Time Format\n\n- `30s` or `30` - 30 seconds\n- `5m` - 5 minutes  \n- `1h` - 1 hour\n- `2h30m` - 2 hours 30 minutes\n\n## Storage Modes\n\n### MEMORY\n- Fast access\n- Lost on restart\n- Periodic disk backup\n- Takes RAM\n\n### DISK\n- Persistent\n- Slower access\n- Compressed storage\n- Takes Storage\n\n### HYBRID\n- Memory cache + disk persistence\n- Best of both\n- Automatic sync\n\n## Safety Features\n\n- **Confirmation Required**: Dangerous operations need `/ir confirm`\n- **Current Inventory Handling**: Backup before restore\n- **Batch Processing**: World/server restores in batches to avoid lag\n- **Corruption Detection**: Auto-removes corrupted files\n\n## Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `invrollback.admin` | op | Full access |\n| `invrollback.restore` | op | Restore inventories |\n| `invrollback.restore.others` | op | Restore others |\n| `invrollback.restore.world` | op | Restore inventories for users in a world |\n| `invrollback.restore.server` | op | Restore inventories for everyone in the server |\n\n## Support\n\nFor issues, check:\n1. `/ir status` for plugin info\n2. Enable debug in config\n3. Check console logs\n4. Join our Discord Server",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 614,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

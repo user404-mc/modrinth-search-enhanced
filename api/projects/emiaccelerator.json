@@ -1,0 +1,22 @@
+{
+  "id": "tcEn0k7K",
+  "slug": "emiaccelerator",
+  "title": "EmiAccelerator",
+  "description": "Caches the EMI item stack list to disk and defers search index building to a background thread, drastically reducing EMI reload time.",
+  "body": "# EMI Accelerator\nCaches the EMI item stack list to disk and defers search index building to a background thread, drastically reducing EMI reload time.\n\n## Overview\nEvery time you join a world or reload resources, EMI rebuilds the entire item stack list and search index. For modpacks with a large number of mods, this process can take tens of seconds, and the game UI freezes completely while the search index is being built.\n\nEMI Accelerator solves this problem with the following optimizations:\n\n- **Stack Caching**: Serializes `EmiStackList.stacks` to JSON and caches it to disk on the first load. Subsequent game launches skip the full reload (around 130ms compared to ~40 seconds).\n- **Deferred Search**: Defers `EmiSearch.bake()` to a background thread, eliminating roughly 10 seconds of UI blocking.\n- **Auto Refresh**: Automatically updates EMI search results once background indexing finishes, with no manual re-input required.\n\n## Usage\n\n| Command | Description |\n|---------|-------------|\n| `/emiacc status` | View cache status, file size, and hit count |\n| `/emiacc clear` | Delete the cache (rebuilds on next launch) |\n| `/emiacc reload` | Trigger an EMI reload manually |\n| `/emiacc reload --force` | Clear cache and force a full EMI reload |\n\n## Configuration\nConfig file path: `config/emi-accelerator/emi-accelerator.properties`\n\n| Option | Type | Default | Description |\n|--------|------|---------|-------------|\n| `cacheEnabled` | boolean | `true` | Enable item stack caching |\n| `autoClearOnModChange` | boolean | `true` | Automatically clear cache when mod list changes |\n| `maxFileSizeMb` | int | `100` | Maximum cache file size (MB) |\n| `diagnosticsEnabled` | boolean | `false` | Write stage timings to `reload-timings.json` |\n| `deferredSearchEnabled` | boolean | `true` | Enable background deferred search indexing |\n\n## How It Works\n1. EMI tag sync triggers → `EmiReloadManager.reload()` → `ReloadWorker.run()` starts\n2. Check if the cache exists and is valid (SHA-256 mod list hash verification)\n3. **Cache hit**: Deserialize stack list directly → skip full reload → build search index in background → complete\n4. **Cache miss**: Proceed with normal EMI reload → asynchronously write cache after completion\n5. Automatically refresh the EMI UI after search build finishes, showing `[EMI Accelerator] Search Ready`\n\n## Dependencies\n\n| Mod | Version | Required |\n|-----|---------|----------|\n| [EMI](https://modrinth.com/mod/emi) | 1.1.22+ | Yes |\n\n- Loader: NeoForge 21.1.228+\n- Side: Client-only\n- Environment: Minecraft 1.21.1\n\n## Build\n\n```bash\n./gradlew build\n```\n\n## License\n[GNU AGPL 3.0](LICENSE)",
+  "categories": [
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 4484,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

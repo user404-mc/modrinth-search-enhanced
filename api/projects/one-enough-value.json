@@ -1,0 +1,23 @@
+{
+  "id": "avvVWBbv",
+  "slug": "one-enough-value",
+  "title": "One Enough Value",
+  "description": "An item value system similar to ProjectE, offering a convenient and highly extensible reference for item values.",
+  "body": "## One Enough Value\n\nThis mod provides an item value system similar to [ProjectE](https://www.curseforge.com/minecraft/mc-mods/projecte), offering a convenient and highly extensible reference for item values.\n\nRequires KubeJS as a prerequisite.\n\n### Base Value\n\n![showcase](https://cdn.modrinth.com/data/cached_images/7a4b299020803ccda61358ba1f2d6b9cb7c06e1d.png)\n\nBy default, this mod provides base values for most basic materials.\n\nAdditionally, you can add or modify base values for items using the following methods:\n\n```javascript\nOEVEvents.addItemValue(event => {\n    // Add base value.\n    event.addBaseItemValue('minecraft:iron_nugget', 10);\n    // Add extra value by matching NBT, such as Tacz's firearms.\n    event.addExtraItemValue('{GunId:\"tacz:m700\"}', 500000);\n});\n```\n\nIf an item does not show a value, its value is 0. The methods above add a value of +10 (e.g., 0 becomes 10). These methods support negative numbers.\n\nItem values are rounded down (e.g., 0.5 becomes 0).\n\nIf you need to interact with other mods and read values at any time, you can use the Value Manager:\n\n```javascript\n// Output the item's value when the player right-clicks the item.\nItemEvents.rightClicked(event => {\n    event.player.tell(OEV$ItemValueManager.getValue(event.item));\n});\n```\n\n### Processing Value\n\nIf an item has no base value, but there is a recipe that produces it, the item's value will default to the minimum sum of the ingredient values from the recipes.\n\nFor example, red dye can be crafted from a red tulip (value 16) or a beetroot (value 64), so the default value will be 16.\n\nFor recipes that produce more than one item, the value is automatically divided by the quantity. For instance, a gold ingot (default value 648) can craft 9 gold nuggets, each with a value of 72.\n\nVanilla recipes are set by default to use a simple summation method.\n\nFor new recipe types registered by other mods, you can set up a simple summation method using the following approach:\n\n```javascript\nlet $RecipeType = Java.loadClass(\"net.minecraft.world.item.crafting.RecipeType\");\nOEVEvents.addRecipeHandler(event => {\n    event.addSimpleRecipeHandler($RecipeType.BLASTING);\n});\n```\n\n### Custom Processing\n\nHere is a simple template to make the value of a crafted item ten times the sum of the ingredient values:\n\n```javascript\nlet $RecipeType = Java.loadClass(\"net.minecraft.world.item.crafting.RecipeType\");\nOEVEvents.addRecipeHandler(event => {\n    // Add a custom recipe handler for processing value, iterating through all recipes.\n    event.addCustomRecipeHandler($RecipeType.CRAFTING, recipe => {\n        let value = 0;\n        // Iterate through each ingredient in the recipe.\n        for (let ingredient of recipe.getIngredients()) {\n            // Get the minimum value of a single ingredient. For example, for an ingredient matching a tag like coal (value 128) or charcoal (value 32), it takes 32 when crafting a torch.\n            let ingredientMinValue = event.getMinIngredientValue(ingredient);\n            // Handle cases where the ingredient is empty or has no corresponding value. Just copy this as is.\n            if (ingredientMinValue === event.getMaxInteger()) continue;\n            else if (ingredientMinValue === -1) return true;\n            value += ingredientMinValue;\n        }\n        value *= 10;\n        // Set the final value for a single recipe.\n        return event.defaultSetRecipeValue(recipe, value);\n    });\n    // Helper method to output an array containing all registered recipe types.\n    console.log(event.getAllRecipeType());\n});\n```\n\n### Future Plans\n\n- Port to other versions.",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 286,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

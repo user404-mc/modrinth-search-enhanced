@@ -1,0 +1,21 @@
+{
+  "id": "esOFHI8q",
+  "slug": "notjustjson",
+  "title": "NotJustJson",
+  "description": "This mod allows the usage of toml, xml, yaml, nbt and snbt file formats for datapacks",
+  "body": "# Not Just Jason\n\nNot Just Jason (NotJustJson or NJJ in short) is a utility mod, which allows to use other data types then json to define new data-pack elements.\nIt will log an error if it detects one file being defined in different file types and is going to use the last match.\n\n## Currently, these file types are supported:\n\n| Type | Version  | Suffix  |\n|------|----------|---------|\n| TOML | v1.0.0   | .toml   |\n| XML  | 1.0      | .xml    |\n| YAML | 1.2      | .yaml   |\n| JSON | 2020-12  | .json   |\n| NBT  | 19133    | .nbt    |\n| SNBT | 19133    | .snbt   |\n\n## How to use NJJ?\n\nThe usage is fairly simple: One can use the other file typed just as `json` is used. To define a new biome,\none would add a new file called `data/<namespace>/worldgen/biome/<filename><suffix>`, \nfor example `data/test/worldgen/biome/new_biome.toml` or `data/test/worldgen/biome/new_biome.xml`.\n\n## FAQ\n\n### Which elements can I use with these file types?\n\nAll entries, except structures (the generated .nbt files in `data/<namespace>/structures/`), can be used with these file types. \nPlease report all element types, which do not work on the issue tracker\n\n### Do these file types work with other mods?\n\nYes, as long as they either use Forge's data-pack registries system or their `ReloadableResourceListener`s implement `SimpleJsonReloadListener`,\nwhich should be the case for most mods.\nAgain, please report mods which do not work on the issue tracker.\n\n### Can I add new file types?\n\nYes, of course. You can either PR the new file type and they may become part of the mod, or you create an add-on mod which depends on this one.\nAll you have to do to add a new file type is to register a new `FileType` in the `FileTypeRegistry`. The required `ResourceKey` can be found in `FileType#REGISTRY`.\n\n### How is an ID conflict handled?\n\nAn ID Conflict might be the case if you have the same file type, but different suffixes. For example, the `/data/<namespace>/worldgen/biome` directory might look like this:\n```\n.../test.json\n.../test.toml\n.../test.xml\n```\nIn case of an ID Conflict, the loader can load all of them, because all their ID would be identical. Therefore, it just uses the alphabetically last suffixed one. \nIt would use the `.../test.xml` file in this case.\n\n### Can different suffixes override each other?\n\nYes, you can also override a `test.json` file with a `test.toml` one, assuming they're in different data-packs.\nFor same data-pack handling see the above FAQ.\n\n### Where can I get help if I struggle with this mod?\n\nJoin our [discord](https://discord.gg/8pUpWCEUe2) (preferred) or write a comment on CurseForge. Please do NOT use the GitHub issue tracker, it's only used for final bug reports.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 394,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2"
+  ],
+  "date_updated": null
+}

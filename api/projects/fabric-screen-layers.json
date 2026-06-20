@@ -1,0 +1,25 @@
+{
+  "id": "7DOLIJdi",
+  "slug": "fabric-screen-layers",
+  "title": "Fabric Screen Layers",
+  "description": "Screen Layering Utility for Fabric",
+  "body": "FabricScreenLayers is modelled after Minecraft Forge's GuiScreenLayering logic using mixins.\nProvides utility to layer minecraft gui screens on top of one another. \n\nExamples Usages: \n\nTo add a screen on top of another screen:\n\n\n```\nScreenLayerManager.pushLayer(new CustomScreen());\n```\n\nTo remove a screen:\n\n\n```\nScreenLayerManager.popLayer();\n```\n\nTo clear all screens:\n\n\n```\nScreenLayerManager.clearLayers();\n```\n\nWhen translating a screen or item on the screen for sizing. \nIt is important to use `ScreenLayerManager.getFarPlane()`so it does not break mods using layers.\n\n```\nRenderSystem.clear(GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);\nMatrix4f matrix4f = new Matrix4f().setOrtho(0.0F, (float) width, (float) height, 0.0F, 100.0F, ScreenLayerManager.getFarPlane());\nRenderSystem.setProjectionMatrix(matrix4f);\nPoseStack posestack = RenderSystem.getModelViewStack();\nposestack.setIdentity();\nposestack.translate(0.0D, 0.0D, 1000.0F - ScreenLayerManager.getFarPlane());\n```\n\n\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1931,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.2",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

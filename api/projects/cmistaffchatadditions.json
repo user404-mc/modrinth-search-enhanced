@@ -1,0 +1,21 @@
+{
+  "id": "AHWjpqli",
+  "slug": "cmistaffchatadditions",
+  "title": "CMI Staff Chat Additions",
+  "description": "Discontinued:\nAdditions for CMI's Staffchat",
+  "body": "# Discontinued\nDiscontinued in favor of CMI's new event:\nwith discord srv, simply use that instead\nif its still needed for its other uses, let me know through discord `@The456gamer#3999` (324638236196601869)\n\n# REQUIREMENTS\n[Paper](https://papermc.io/) (NO Spigot compatibility)  \n[CMI](https://www.zrips.net/cmi/) from [Spigotmc.org](https://www.spigotmc.org/resources/3742/)\n\n# Features\n- hooks directly into CMI, so no messages are missed, and is comparable with bungee cord if installed on each server\n- multiple destinations, so you can send your messages to multiple channels at the same time\n- Works with staff message persistence, including ignoring subcommands to control it\n\n# Commands\nOnly /cmistaffchatadditionsreload\nStaff chat itself uses CMI's native command\n\n# Permissions\ncmistaffchatadditions.reloadconfig (given to /op by default)\n\n# Uses\n- an offline log file just for staff messages\n- a separate discord channel just for staff messages, staying in touch privately even when not in the game\n- custom actions through the power of console commands (NOTE: currently there is no attempt at escaping user messages. stick to simple placeholders, like UUID and time)\n- multiple locations for the same destination, each with their own settings means that different channels can contain different information\n\n# Default Config\n```yaml\n# A list of handlers with their config options\n#\n# placeholders\n# ${sendername}, ${senderuuid}, ${message}, ${isotime}\n\n# Each handler can Appear multiple times\nhandlers:\n  # Send a message to Console using the plugin's logger\n  # CMI auto logs to console, so in most cases this is not needed\n#  - type: consolemsg\n#    format: \"msgint: from:'${sendername}' msg:'${message}'\"\n\n  # Logs all messages to a file in the plugins folder\n  - type: logfile\n    # the format of each line in the log file\n    logline-format: \"${isotime} - ${senderuuid} \\\"${sendername}\\\": \\\"${message}\\\"\"\n    # the file to save the log in\n    filename-format: \"staffmsglog.txt\"\n\n  # Sends all staffchat messages to a discord webhook\n#  - type: discordwebhook\n#    webhook-url: \"[REPLACEME]\"\n#    msg-format: |\n#      StaffMsg:\n#      from:'${sendername}'\n#      msg:'${message}'\n#    name-format: \"${sendername}\"\n#    avatarurl-format: \"https://mc-heads.net/head/${sendername}/256\"\n\n  # Runs a command in console when a staffmsg occurs\n#  - type: consolecommand\n#    command: \"say this command is run in console\"\n\n  # Sends the message to a discord SRV channel. another named channels needs to be setup in your discord srv config\n#  - type: discordsrv\n#    format: |\n#      StaffMsg:\n#      from:'${sendername}'\n#      msg:'${message}'\n#    # The Channel name, as in discord srv's config. !!NOT THE CHANNEL NAME ON DISCORD!!\n#    channel: \"staffchat\"\n\n  # Sends the message to a slack webhook\n#  - type: slackwebhook\n#    webhook-url: \"[REPLACEME]\"\n#    msg-format: |\n#      StaffMsg:\n#      from:'${sendername}'\n#      msg:'${message}'\n\n```",
+  "categories": [
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 377,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "z4FuKbrr",
+  "slug": "metaawareblocks",
+  "title": "MetaAwareBlocks",
+  "description": "Adds meta-aware versions of several Block rendering functions",
+  "body": "# MetaAwareBlocks\n\n## As of now this only transforms Minecraft's code, and currently that is all that is planned due to other mods being a compatibility nightmare without any great way to go about things automatically. I'd have to write mixins for every single mod, and it's just not practical. If someone wants to create pull requests adding support for a mod, that's great, but for now it only supports Minecraft's native code.\n\nThis is a library used to add meta-aware functionality for several (primarily rendering) functions inside of net.minecraft.block.Block.\n\nUsage:\n\nCreating a new block:\n\n```java\nclass NewBlock implements IMetaAware {\n  ...\n\n  @Override\n  public boolean renderAsNormalBlock(IBlockAccess world, int x, int y, int z) {\n    return world.getBlockMetadata(world, x, y, z) != 0;\n  }\n\n  ...\n}\n```\n\nMixin into a preexisting block:\n\n```java\n@Mixin(NewBlock.class)\npublic abstract class MixinNewBlock implements IMetaAware {\n  @Override\n  public boolean renderAsNormalBlock(IBlockAccess world, int x, int y, int z) {\n    return world.getBlockMetadata(world, x, y, z) != 0;\n  }\n}\n```",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 364,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10"
+  ],
+  "date_updated": null
+}

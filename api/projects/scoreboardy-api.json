@@ -1,0 +1,21 @@
+{
+  "id": "ehoGjhgj",
+  "slug": "scoreboardy-api",
+  "title": "ScoreboardY-api",
+  "description": "This is a very simple scoreboard api. I will provide docs in the future",
+  "body": "## ScoreboardY API\n\n**This is an API _**NOT A PLUGIN**_**\n\nThis is how u use it:\n\nCreating a scoreboard:\n\n- make a class for youre scoreboard (eg. MainBoard)\n- implement CreateAbleScoreboard\n- your done!\n\nExmple:\n\n```\npackage de.nms.scoreboardY;\n\nimport net.kyori.adventure.text.Component;\nimport org.bukkit.Bukkit;\nimport org.bukkit.entity.Player;\nimport org.bukkit.scoreboard.Criteria;\nimport org.bukkit.scoreboard.Score;\nimport org.bukkit.scoreboard.Scoreboard;\nimport org.jetbrains.annotations.Contract;\nimport org.jetbrains.annotations.NotNull;\n\npublic class TestScoreBoard implements CreateAbleScoreboard{\n    private Scoreboard scoreboard;\n    private Boolean created;\n    static TestScoreBoard testScoreBoard = new TestScoreBoard();\n\n    @Override\n    public @NotNull Component displayName() {\n        return Component.text(\"DISPLAY\");\n    }\n\n    @Override\n    public Scoreboard create() {\n        scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();\n        scoreboard.registerNewObjective(\"main\", Criteria.AIR, displayName());\n        scoreboard.getObjective(\"main\").setAutoUpdateDisplay(true);\n        Score mod = scoreboard.getObjective(\"main\").getScore(\"line\");\n        mod.customName(Component.text(\"custom\"));\n        created  = true;\n        return scoreboard;\n    }\n\n    @Override\n    public void show(Player player) {\n        if (created){\n            player.setScoreboard(scoreboard);\n        }else{\n            player.sendRichMessage(\"<red>Some developer tried to show u a scoreboard that wasnt created yet!\");\n            player.sendRichMessage(\"<yellow>For more info try to ask the developer or owner for a log!\");\n        }\n    }\n\n    public void showEveryone(){\n        Bukkit.getOnlinePlayers().forEach(this::show);\n    }\n\n    public static TestScoreBoard instance(){\n        return testScoreBoard;\n    }\n}\n\n```\n\n\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 328,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

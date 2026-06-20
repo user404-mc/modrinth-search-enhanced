@@ -1,0 +1,43 @@
+{
+  "id": "nrXHkZFC",
+  "slug": "armor-nerf",
+  "title": "Armor Tweaks",
+  "description": "Makes armor protection & toughness super configurable.",
+  "body": "# Minecraft Armor Tweaks\n\nTired of protection being too powerful? Fed up with the slap fights, waiting for the other player's four sets of gear to\ndegrade? Well, wait no more!\n\nThis mod does a few things:\n1. Make the max damage reduction by armor points configurable\n2. Make the damage reduction provided by protection configurable\n3. Provide a few alternate ways of handling toughness\n4. Remove armor caps. Total armor or protection point values above 20 will bypass the configured limits, similarly to\nthe mod [AttributeFix](https://modrinth.com/mod/attributefix)\n\n# Purpose\n\nI'm working on a total combat overhaul, and the main issue I discovered is that armor is simply too strong. My solution\nis to simply nerf the everliving heck out of it.\n\n# Configuration\n\nAll configuration is done through the file `config/armor-nerf.json5` in your `.minecraft` directory or through\n[Mod Menu](https://modrinth.com/mod/modmenu). Vanilla values are shown here:\n\n```json\n{\n  \"armorPercentage\": 0.8,\n  \"protectionPerPoint\": 0.04,\n  \"removeArmorLimit\": false,\n  \"armorFormula\": \"vanilla\"\n}\n```\n\n`armorMultiplier` is the amount of damage protection that full diamond armor (a full armor bar) will provide.\n\n`protectionPerPoint` is the percentage of damage reduction granted by each protection point. You can read up on what a\nprotection point is [here](https://minecraft.wiki/w/Protection#Usage).\n\n`removeArmorLimit`: removes the cap of 20 armor points.\n\n`armorFormula` is the formula used to determine how armor and toughness affect damage taken. It can be one of these\noptions:\n\n- `vanilla`: This is how vanilla typically calculates it. Read up on how that works\n[here](https://minecraft.wiki/w/Armor#Mechanics).\n- `toughness_disabled`: Ignores the toughness system entirely.\n- `flat_toughness`: Toughness reduces the incoming damage by a flat amount.\n- `large_toughness`: Toughness makes armor more effective against larger attacks.\n- `crumbling_armor`: Rebel's insane formula that makes toughness add to the armor value based on durability.\n\n# Extending\n\nIf you want to add more formulae, you totally can! Just make your formula class extend `me.ryleu.armornerf.ArmorFormula`\nand then register your new class with `me.ryleu.armornerf.ArmorNerf::registerFormula`. The `id` you pass in will become\nthe string you have to input into the config.\n\n# Questions, Comments, or Concerns\n\nFeel free to reach out in the issues section of this page, or on Discord `@ryleu`.\n\n# Credit\n\n - [wizardwatch](https://github.com/wizardwatch) for the icon\n - [Rebel459](https://modrinth.com/user/Rebel459) for formula ideas",
+  "categories": [
+    "cursed",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9843,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

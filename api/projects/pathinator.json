@@ -1,0 +1,35 @@
+{
+  "id": "BMHsIuqM",
+  "slug": "pathinator",
+  "title": "Pathinator",
+  "description": "Easily create custom paths using the block you're standing on.",
+  "body": "# Pathinator\n\n![logo](https://github.com/HideTheMonkey/Pathinator/raw/main/resources/logo_small.png)\n\nPathinator allows you to easily create custom paths using the block you're standing on.\n\nFor example, if you are standing on a block of `OAK_PLANKS` and you issue a command to create a path of 50 blocks, Pathinator will replace all the blocks in the direction you are facing with `OAK_PLANKS` out to a distance of 50 blocks. If you also specified `with lights` Pathinator will add a light (_configurable, defaults to TORCH_) every N<sup>\\*</sup> blocks to the side of the path.\n\n_NOTE: version 1.4.0 adds support for SILK_TOUCH, FORTUNE, and UNBREAKING enchantments on tools. Prior versions added blocks to inventory as if SILK_TOUCH was applied to all tools, and UNBREAKING was always ignored when applying damage._\n\n## Usage\n#### Basic\n\n`path:basic <distance> [with lights]` (aliased as `pb`) where **\\<distance\\>** is the number of blocks to place, and **[with lights]** is an optional boolean `true|false` whether to place a light every N<sup>\\*</sup> number of blocks.\n\nFor example: `path:basic 25 true` to create a path 25 blocks long with lights, or `path:basic 25` where [with lights] defaults to false for no lights.\n\n#### Tracks\n\n`path:tracks <distance> [with power] [with lights]` (aliased as `pt`) where **\\<distance\\>** is the number of blocks to place, and **[with power]** is an optional boolean `true|false` whether to place a powered rail every N<sup>\\*</sup> number of blocks. **[with lights]** is another optional boolean whether to place a light every N<sup>\\*</sup> number of blocks.\n\n<sup>\\*</sup> _N is configurable in `/plugins/Pathinator/config.yml`_\n\n#### Custom\n\n`path:custom <distance> <width> <height> [path material] [clearance material]` (aliased as `pc`) where **\\<distance\\>** **\\<width\\>** and **\\<height\\>** are required and **[path material]** and **[clearance material]** are optional. If no **[path material]** is specified Pathinator will detect the pattern of blocks the player is currently standing on for the path. For example: if you create a path 3 blocks wide Pathinator will detect the block under the player and one block to the left and right and keep that same pattern for the entire distance requested.\n\nAdditionally, you can specify what material to use to fill the 'air' space above the path (clearance material). This allows you to easily create 3 dimensional structures out of any material!\n\n#### Follow\n\n`path:follow <start|stop> [radius] [path material]` (aliased as `pf`) where `[radius]` is a number between 0 and 5, and `[path material]` is any solid block. NOTE you must run `path:follow stop` to tell Pathinator to stop creating a path wherever you walk.\n\nFor example, `path:follow start` will start following using the default radius and whatever block you are currently standing on. `path:follow start 2 minecraft:oak_planks` will create a wide path with OAK_PLANKS.\n\nThe follow command only works in Creative mode at this time.\n\n#### Dig\n\n`path:dig <up|down|ahead|vup|vdown> [distance]` (_aliased as `pd`_) where \\<distance\\> is the number of blocks away from you to dig. `path:dig` does not place any blocks, it only removes them (_and adds to your inventory when in survival_).\n`up|down` will dig a stair step pattern either up or down with the default clearance height (set in config.yml).\n`vup|vdown` (vertical up | vertical down) will dig straight up or down starting from one block in front of where the player is standing.\n\nFor example, `path:dig down 20` will dig a stair step pattern extending 20 blocks, starting from the block in front of the player. (1 block forward, and 1 block down)\n`path:dig vup 20` will dig straight up for 20 blocks starting from the block in front of the player.\n\n## Examples\n\n<details> \n  <summary>/path:basic</summary>\n  \n![basic](https://github.com/HideTheMonkey/Pathinator/raw/main/resources/path.basic.gif)\n\n</details>\n\n<details> \n  <summary>/path:tracks</summary>\n\n![tracks](https://github.com/HideTheMonkey/Pathinator/raw/main/resources/path.tracks.gif)\n\n</details>\n\n<details> \n  <summary>/path:custom</summary>\n\n![custom](https://github.com/HideTheMonkey/Pathinator/raw/main/resources/path.custom.gif)\n![custom](https://github.com/HideTheMonkey/Pathinator/raw/main/resources/path.custom_bell.gif)\n\n</details>\n\n<details>\n    <summary>/path:follow</summary>\n\n![follow](https://github.com/HideTheMonkey/Pathinator/raw/main/resources/path.follow.gif)\n\n</details>\n\n\n## Survival vs Creative\n\nIn **Survival** mode, you must have enough material in your inventory to place blocks for the distance requested. Additionally, the following options can be configured:\n- **Tool Damage**: each relevant tool in your inventory will take 1 damage for each block you replace (_including the clearance space above if carving through a mountain_). For example, if you have a shovel and a pickaxe and you create a path 10 blocks long through 6 blocks of dirt and 4 blocks of stone, your shovel will take 6 damage and your pickaxe will take 4 damage. If you have more than one tool of the same type, Pathinator will take the damage from the tool with the least remaining durability.\n- **Require Tool**: in order to clear (*mine*) blocks you must have an appropriate tool in your inventory. (*e.g. a shovel to clear dirt, a pickaxe to clear stone, etc...*)\n- **Keep Material**: any material cleared (*mined*) will be added to the player's inventory.\n\n\nIn **Creative** mode, you can place as many blocks of any type as you want, with no inventory restrictions or damage to tools.\n## Configuration\n\nOnce loaded on the server, edit `/plugins/Pathinator/config.yml` to adjust the default values.\n\n```\nclearance:\n  height: 3\n  material: AIR\n\nlighting:\n  interval: 12\n  stack: [TORCH]\n\nsurvival:\n  enabled: true|false\n  requireTool: true|false\n  toolDamage: true|false\n  keepMaterial: true|false\n\ntracks:\n  powerInterval: 34\n```\n\n## Future Updates\n\n- ~~Add option to create a path with rail tracks `path:tracks ...`~~ (v1.1.0)\n- ~~Add option to customize aspects of the path (height, width, material, etc...) `path:custom ...`~~ (v1.2.0)\n- Add option to follow the natural terrain instead of laying it all on the same Y value.\n- Add permissions management with LuckPerms\n\n## Support\n\nIf you encounter any issues or have any questions, please [open an issue](https://github.com/HideTheMonkey/Pathinator/issues) on GitHub.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 185,
+  "followers": 0,
+  "game_versions": [
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.18",
+    "1.19",
+    "1.20",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

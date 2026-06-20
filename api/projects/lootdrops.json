@@ -1,0 +1,37 @@
+{
+  "id": "APKXjYhg",
+  "slug": "lootdrops",
+  "title": "LootDrops",
+  "description": "A plugin that automatically spawns loot drops with random loot. With title announcements. (Everything adjustable in a single Config.yml)",
+  "body": "# LootDrops (Paper 1.21.4)\n\nAutomatische Lootdrops für dein Minecraft-Netzwerk: zufällige Drops in der Overworld, coole Effekte & Titel, konfigurierbarer Loot, Admin-Commands – und optional eigene **WorldEdit-Schematics** als Drop-Modell.\n\n> **Kurz:** Das Plugin kann auf **öffentlichen Servern frei genutzt** werden.  \n> **ABER:** Wenn durch das Plugin **Geld eingenommen** wird (Shop, Ränge, Spenden, In-Game-Käufe etc.), **bitte vorab Kontakt aufnehmen**, um die weitere Nutzung zu besprechen (siehe *Nutzung & Monetarisierung*).\n\n---\n\n## Features\n\n- ⏱️ **Auto-Drops**: Standardmäßig alle 30 Minuten (Timer startet neu, wenn ein Drop verschwindet).\n- 🗺️ **Fairer Spawn**: Zufällige Position innerhalb ±2000 Blöcken ab Welt-Spawn, Mindestabstand, **kein Ozean**, **kein Wasser**, **nicht im Baum**, Luft-Schutzzone (keine Blätter/Logs/Decken direkt über der Kiste).\n- 📦 **Schematic-Support (optional)**: Wenn **WorldEdit/FAWE** installiert ist und `plugins/LootDrops/Ballon.schem` existiert, wird **deine Schematic** gespawned (Chest-Position wird automatisch erkannt).  \n  Ohne WorldEdit nutzt das Plugin einen hübschen **Fallback-Drop** aus Code.\n- 🎆 **Effekte & Sounds**: Beim Spawn und beim Entfernen (inkl. Broadcast-Nachricht & Titel).\n- 🧰 **Loot**: Zufallsliste für PVP-Items; Limits für Iron/Diamond-Armor/Weapons; random Slots in der Kiste; optional Haltbarkeits-Variationen.\n- 🧹 **Despawn**: **Sobald die Kiste einmal geöffnet und wieder geschlossen wird**, verschwindet der Drop mit Effekten – unabhängig vom Restinhalt.\n- 🔧 **Saubere Struktur**: Manager, Listener, Tasks, Utils, Loot-Konfiguration, klare Trennung.\n\n---\n\n## Kompatibilität\n\n- **Server:** Paper **1.21.4**\n- **Java:** **21**\n- **Optional:** WorldEdit **oder** FastAsyncWorldEdit (für `.schem`)\n\n---\n\n## Installation\n\n1. Jar in den `plugins/`-Ordner legen.\n2. (Optional) **WorldEdit/FAWE** installieren, wenn du `.schem` nutzen willst.\n3. Server starten (erzeugt `plugins/LootDrops/`).\n4. (Optional) **Eigene Schematic** als  \n   `plugins/LootDrops/Ballon.schem`  \n   ablegen (Dateiname **muss exakt** so heißen).  \n   > Die Schematic sollte **genau eine Chest** enthalten. Diese wird als Loot-Kiste verwendet.\n5. Server neu starten oder Plugin reloaden.\n\n---\n\n## Commands & Permissions\n\n### Commands\n- `/lootadmin reload` – Konfiguration & Schematic neu laden  \n- `/lootadmin force here` – Drop **hier** sofort spawnen  \n- `/lootadmin remove` – aktiven Drop entfernen  \n- `/lootadmin status` – Status/Koordinaten anzeigen  \n- `/lootdrop` – Spielerinfo (z. B. Koordinaten/Status)\n\n### Permissions\n```text\nlootdrops.admin  (default: op)\nlootdrops.use    (default: true)\n````\n\n---\n\n## Konfiguration (Auszug)\n\nDatei: `plugins/LootDrops/config.yml`\n\n```yaml\nsettings:\n  world: \"world\"\n  spawn-radius: 2000\n  min-distance-from-spawn: 100\n\n# Limits pro Drop (Caps)\nloot:\n  limits:\n    iron-armor-max: 2\n    diamond-armor-max: 1\n    weapons-max: 1\n\n  # Anzahl Loot-Rolls pro Drop (Range)\n  rolls:\n    min: 4\n    max: 8\n\n  # Optionale Haltbarkeits-Variation bei damageable Items\n  allow-durability-variance: true\n  max-damage-fraction: 0.35\n\n  # Beispiel-Pool (du kannst beliebig erweitern/kürzen)\n  pool:\n    - material: DIAMOND\n      min: 1\n      max: 3\n      weight: 3\n      damageable: false\n\n    - material: IRON_HELMET\n      min: 1\n      max: 1\n      weight: 4\n      damageable: true\n\n    - material: IRON_CHESTPLATE\n      min: 1\n      max: 1\n      weight: 4\n      damageable: true\n\n    - material: IRON_LEGGINGS\n      min: 1\n      max: 1\n      weight: 4\n      damageable: true\n\n    - material: IRON_BOOTS\n      min: 1\n      max: 1\n      weight: 4\n      damageable: true\n\n    - material: IRON_SWORD\n      min: 1\n      max: 1\n      weight: 6\n      damageable: true\n\n    - material: BOW\n      min: 1\n      max: 1\n      weight: 5\n      damageable: true\n\n    - material: ARROW\n      min: 16\n      max: 48\n      weight: 8\n      damageable: false\n\n    - material: COBWEB\n      min: 8\n      max: 24\n      weight: 10\n      damageable: false\n\n    - material: ENDER_PEARL\n      min: 2\n      max: 6\n      weight: 6\n      damageable: false\n\n    - material: GOLDEN_APPLE\n      min: 1\n      max: 3\n      weight: 5\n      damageable: false\n\n    - material: COOKED_BEEF\n      min: 16\n      max: 32\n      weight: 10\n      damageable: false\n```\n\n---\n\n## Schematic-Hinweise\n\n* Datei: `plugins/LootDrops/Ballon.schem`\n* Unterstützt WorldEdit & FAWE-`.schem` (neuere Formate).\n* Der Drop wird so gepastet, dass **die Chest exakt auf dem berechneten Boden** steht.\n* **Luft wird ignoriert** → Terrain bleibt.\n* Typische Markerblöcke (z. B. rotes Wool/Concrete, `LIGHT`, `BARRIER`, `STRUCTURE_VOID`) werden **automatisch entfernt**.\n* Beim Entfernen des Drops werden **alle gesetzten Blöcke** auf ihren **Originalzustand** zurückgesetzt (kein kaputtes Terrain).\n\n---\n\n## Roadmap (Ideen)\n\n* Mehrere Schematics zufällig aus `/schematics/` wählen\n* Coords-Hint im Chat klickbar machen (Kompass/Waypoint)\n* BossBar während aktiver Drops\n* Per-World Einstellungen & Blacklist-Biomes\n\n---\n\n## Support\n\n* **Bugs/Feature-Requests:** GitHub Issues\n* **Kontakt:** Emiliosrz@gmx.de / Discord: emioo01\n\n---\n\n## Nutzung & Monetarisierung\n\n* Die Nutzung ist **kostenlos**, auch auf **öffentlichen Servern**.\n* Wenn dein Server durch dieses Plugin **Einnahmen** generiert (z. B. Shop, Ränge, Spenden, In-Game-Käufe),\n  **kontaktiere den Autor vorab**, um die weitere Nutzung zu besprechen und eine **Genehmigung** einzuholen.\n\nFormulierungsvorschlag für dein Server-Impressum/Repo:\n\n> *Dieses Plugin „LootDrops“ wird mit Erlaubnis genutzt.\n> Bei kommerzieller Nutzung bitte vorab den Autor kontaktieren.*\n\n---\n\n## Lizenz\n\n© Emilio – Alle Rechte vorbehalten.\nKostenlose Nutzung auf öffentlichen Servern erlaubt; **kommerzielle Nutzung nur nach Absprache** (siehe oben).\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "decoration",
+    "equipment",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 443,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

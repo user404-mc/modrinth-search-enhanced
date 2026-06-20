@@ -1,0 +1,22 @@
+{
+  "id": "ZeMREG8v",
+  "slug": "commandsspy",
+  "title": "CommandsSpy",
+  "description": "Log commands executed by Players and other sources to the server console.",
+  "body": "# CommandsSpy\nA mod to log commands to the server console. Both existing and non-existing commands are logged. Commands that are permitted or not are added to the server logs as well.\n\n## Installation\nSimply place the mod into the mods directory of your server, and it will start monitoring executed commands.\nOn startup, the config file will be created automatically.\n\n## Examples\nPlayer \"Ultra_MC\" executing \"/gamemode creative\" command is logged without arguments in server logs when using config `\"logArguments\": false` (default):\n```\n[18:57:06] [Server thread/INFO]: [CommandsSpy] [Player: Ultra_MC] gamemode\n```\n\nPlayer \"Ultra_MC\" executing \"/gamemode creative\" command is logged with arguments in server logs when using config `\"logArguments\": true`:\n```\n[18:57:06] [Server thread/INFO]: [CommandsSpy] [Player: Ultra_MC] gamemode creative\n```\n\nPlayer \"Ultra_MC\" executing \"/op\" command is logged in server logs:\n```\n[18:56:38] [Server thread/INFO]: [CommandsSpy] [Player: Ultra_MC] op\n```\n\nServer console executing \"/list\" is logged in server logs:\n```\n[18:53:02] [Server thread/INFO]: [CommandsSpy] [Server] list\n```\n\nRCON executing \"/save-all\" is logged in server logs:\n```\n[09:25:01] [Server thread/INFO]: [CommandsSpy] [Rcon] save-all\n```\n\n## Configuration\n### Config file `config/commands-spy.json`\n#### Initial config\n```\n{\n\"blacklist\": [],\n\"logArguments\": false\n}\n```\n\n#### blacklist\nTo prevent logging certain commands, add them to the blacklist.\nExample - to maintain privacy of players' conversations, you can avoid logging commands `tell` and `t`.\n```\n\"blacklist\": [\"tell\", \"t\"]\n```\n\n#### log arguments\nCommand arguments are not logged by default: `\"logArguments\": false`.\nExample: `/a b c` - `[CommandsSpy] [Player: Ultra_MC] a`\n\nTo log arguments of all commands, use `\"logArguments\": true`.\nExample: `/a b c` - `[CommandsSpy] [Player: Ultra_MC] a b c`\n",
+  "categories": [
+    "fabric",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 838,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

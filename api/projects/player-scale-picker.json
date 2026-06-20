@@ -1,0 +1,22 @@
+{
+  "id": "sgDGWV2v",
+  "slug": "player-scale-picker",
+  "title": "Player scale picker",
+  "description": "Provides a mechanism (`/trigger scale`) for players to adjust their size.",
+  "body": "Allows all players (**including non-operators**) to adjust their `generic.scale` attribute. Minimum and maximum values are configurable by operators.\n\n## Features\n* `/trigger scale set <value>` to set your scale. Value is 10x\\* the actual scale. (e.g. 10 is 1x, 5 is 0.5x, 20 is 2x, etc.)\n* `/trigger scale` (with no `set`) to reset the scale of the player to 1x.\n* Players tagged by operators or other datapacks with the tag `no_scaling` are not permitted to adjust their scale.\n* Operators can force a scale change by manually adjusting the scoreboard: `/scoreboard players set <player> scale <value>` (0 to reset, otherwise identical to `/trigger` parameter)\n* Operators can change the minimum scale: `/scoreboard players set $minScale scale.conf <value>` and maximum scale: `/scoreboard players set $maxScale scale.conf <value>`\n\n\\*see below to change this\n\n## Defaults\n* Minimum scale: 0.1x\n* Maximum scale: 10x\n\n## Uninstallation\n1. Run `/function scaler:uninstall`\n2. Disable the datapack (`/datapack disable ...`) or remove it from the datapack directory\n3. Reload datapacks (`/reload`)\n\n### Advanced configuration\n* **Adjust the scale factor (i.e. ratio between input value and resulting scale)**: In `/data/scaler/function/pre_invoke.mcfunction` and its equivalent in the overlay, the scale factor is managed by the `execute store` line. The default, 0.1, means that inputting 10 results in 100% scale; 0.01 would mean 100 = 100% scale, etc. If you change the scale factor, it might be necessary to change the reset scale on line 4.",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 318,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21"
+  ],
+  "date_updated": null
+}

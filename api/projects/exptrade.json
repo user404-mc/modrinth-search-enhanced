@@ -1,0 +1,37 @@
+{
+  "id": "cqM5MIQg",
+  "slug": "exptrade",
+  "title": "expTrade",
+  "description": "Trade XP levels with other players via commands. Send offers or requests, accept or decline with clickable chat buttons. Accurate   per-level XP math ensures fair transfers. Includes admin controls and per-player thresholds.",
+  "body": "# expTrade\n\nA Minecraft mod/plugin that lets players trade XP with each other. Offers and requests queue up per-player with individual TTLs, and are managed through an in-game chest GUI.\n\n---\n\n## Branches\n\n| Branch | Platform | MC Version |\n|---|---|---|\n| `multi_1.21.11` | Fabric + NeoForge (Architectury) | 1.21.11 |\n| `plugin_1.21.11` | Spigot, Paper, Purpur, Pufferfish | 1.21.11 |\n| `multi_26.x` *(upcoming)* | Fabric + NeoForge (Architectury) | 26.x |\n| `plugin_26.x` *(upcoming)* | Spigot, Paper, Purpur, Pufferfish | 26.x |\n\n---\n\n## Features\n\n- Give or request XP levels or raw XP from any online player\n- Per-player incoming trade queue — multiple players can send trades simultaneously\n- Chest GUI to review, accept, and decline queued trades\n- Live TTL countdown per trade — expired trades are removed automatically\n- Configurable timeout and max queue size\n- Personal XP threshold — prevent trades that would drop you below a set level\n- Admin force-transfer with confirmation step\n- Config hot-reload without restarting the server\n\n---\n\n## Trade Queue GUI\n\nOpening `/exptrade pending` shows a chest with one row per queued trade:\n\n| Slot | Item | Meaning |\n|---|---|---|\n| 1 | Clock | Seconds remaining before this trade expires |\n| 2 | Player Head | Who sent the trade |\n| 3 | Water Bucket / Bucket | Offer (giving XP) / Request (asking for XP) |\n| 4 | Paper | Trade details on hover (from, type, amount) |\n| 8 | Recovery Compass | Click to **accept** |\n| 9 | Compass | Click to **decline** |\n\nThe GUI stays open after each action as long as trades remain in the queue.\n\n---\n\n## Commands\n\nAll commands use `/exptrade`.\n\n| Command | Description |\n|---|---|\n| `/exptrade give <player> <levels\\|exp> <amount\\|all>` | Offer XP to a player |\n| `/exptrade request <player> <levels\\|exp> <amount\\|all>` | Request XP from a player |\n| `/exptrade accept [player]` | Accept the first (or a specific) queued trade |\n| `/exptrade decline [player]` | Decline the first (or a specific) queued trade |\n| `/exptrade cancel` | Cancel your outgoing trade |\n| `/exptrade pending` | Open the trade queue GUI |\n| `/exptrade threshold <levels>` | Set minimum level to keep after a trade |\n\n### Admin (`exptrade.admin` / op permission)\n\n| Command | Description |\n|---|---|\n| `/exptrade admin transfer <from> <to> <levels\\|exp> <amount\\|all>` | Force an XP transfer between two players |\n| `/exptrade admin confirm` | Confirm a pending admin transfer |\n| `/exptrade admin cancel` | Cancel a pending admin transfer |\n| `/exptrade config timeout <10-300>` | Set trade TTL in seconds |\n| `/exptrade config maxqueue <1-50>` | Set max trades per player queue |\n| `/exptrade config reload` | Reload config from disk |\n\n---\n\n## Configuration\n\nConfig is written on first launch.\n\n**Multi-loader** — `config/exptrade.json`\n**Paper plugin** — `plugins/expTrade/config.json`\n\n```json\n{\n  \"timeoutSeconds\": 60,\n  \"maxQueueSize\": 10\n}\n```\n\n| Field | Default | Description |\n|---|---|---|\n| `timeoutSeconds` | `60` | Seconds before an unaccepted trade expires |\n| `maxQueueSize` | `10` | Max number of queued trades per player |\n\n---\n\n## Requirements\n\n**Multi-loader:** Architectury API  \n**Paper:** Paper 1.21.11+\n",
+  "categories": [
+    "bukkit",
+    "fabric",
+    "management",
+    "neoforge",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 139,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

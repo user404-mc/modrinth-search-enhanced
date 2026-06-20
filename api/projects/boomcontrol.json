@@ -1,0 +1,39 @@
+{
+  "id": "KjYiXq06",
+  "slug": "boomcontrol",
+  "title": "BoomControl",
+  "description": "Nerf or disable Crystal PvP and anchor damage on SMPs without fully banning them.",
+  "body": "# 💥 BoomControl\n\n**BoomControl** is a lightweight and focused plugin designed specifically for **SMP servers** that want to **limit or nerf Crystal PvP**. It offers fine-tuned control over End Crystal and Respawn Anchor explosions to prevent unfair advantages or griefing, while keeping gameplay fun and balanced.\n\n- - -\n\n## 🎯 Why BoomControl?\n\nOn many SMPs, End Crystals and Respawn Anchors are used in PvP for massive burst damage. BoomControl gives you **full control** over how these items behave:\n\n*   Disable or weaken crystal PvP\n*   Prevent griefing through explosion block damage\n*   Make explosions only damage the attacker\n*   Keep your SMP fun and fair without banning crystals entirely\n\n- - -\n\n## 🔧 Features\n\n*   ✅ Toggle the plugin globally\n*   🔄 Reload settings on the fly with `/boomcontrol reload`\n*   🧨 Full control over **End Crystal** behavior\n*   🌋 Full control over **Respawn Anchors**\n*   ❌ Block explosion grief (block breaking & fire)\n*   📢 Custom denial messages for blocked actions\n\n- - -\n\n## 🧨 Crystal Settings\n\n```\ncrystal:\n  enabled: true           # REQUIRES server restart to change\n  mode: \"self\"            # Options: \"disabled\", \"self\", \"vanilla\"\n  break-blocks: false     # Prevents block damage\n  start-fire: false       # Stops fire on explosion\n  show-deny-message: true # Inform players when blocked\n```\n\n### Modes:\n\n*   `\"disabled\"` – Crystals won't explode at all.\n*   `\"self\"` – Only the player who triggered the explosion takes damage.\n*   `\"vanilla\"` – Default Minecraft behavior.\n\n- - -\n\n## 🌋 Respawn Anchor Settings\n\n```\nanchor:\n  enabled: true\n  mode: \"self\"            # Same options as crystal\n  break-blocks: true\n  start-fire: true\n  show-deny-message: true\n```\n\nPerfect for controlling Nether-based PvP or creative mechanics using anchors.\n\n- - -\n\n## 🔄 Command\n\n```\n/boomcontrol reload\n```\n\nReloads the plugin configuration **without restarting the server**.  \n⚠️ Note: The `enabled` toggle and `crystal.enabled` **require a restart**.\n\n- - -\n\n## 🗨️ Custom Messages\n\n```\nmessages:\n  crystal-denied: \"&cCrystal PvP is disabled on this server.\"\n  anchor-denied: \"&cRespawn anchor damage is not allowed.\"\n```\n\nUse color codes (`&c`, `&7`, etc.) to style your messages.\n\n- - -\n\n## 🛑 World Blacklist\n\nBoomControl now supports **disabling the plugin entirely in specific worlds** via a blacklist configured in `settings.yml`. This is useful if you want BoomControl to be completely inactive in certain worlds (like the Nether, End, or lobby worlds), regardless of region flags or other settings.\n\n### Example configuration:\n\n```yaml\nblacklisted_worlds:\n- world_nether\n- world_the_end\n  ```\n\n### How it works:\n\n- If a world is listed in `blacklisted_worlds`, BoomControl will be **fully disabled in that world**.\n- This means that any region-based controls or WorldGuard flags are ignored for that world.\n- Vanilla Minecraft explosion behavior applies in those worlds instead.\n\n### Usage tips:\n\n- Leave the list empty to enable BoomControl in *all* worlds.\n- Add worlds where you want BoomControl disabled completely, such as lobby or event worlds.\n- Combine this blacklist with WorldGuard region flags to achieve fine-grained control elsewhere.\n\n---\n\n## 🏳️ WorldGuard Integration (Optional)\n\nBoomControl integrates with [WorldGuard](https://enginehub.org/worldguard/) to support **region-based control** using a custom flag.\n\n### 🔖 `boomcontrol` Flag\n\nIf WorldGuard is installed, BoomControl registers a custom region flag:\n\n```\nboomcontrol\n```\n\nThis flag allows you to **disable BoomControl in specific regions**, even if the plugin is globally enabled.\n\n### 🧰 How It Works\n\n- If the flag is set to `DENY` in a region, **BoomControl will be disabled there completely**.  \n  Explosion behavior in that region will follow normal Minecraft mechanics.\n- If the flag is **not set** or explicitly `ALLOW`, BoomControl will apply as configured in `settings.yml`.\n\n### 🧪 Example\n\nTo disable BoomControl inside a region:\n\n```bash\n/rg flag spawn boomcontrol deny\n```\n\nTo enable it again:\n\n```bash\n/rg flag spawn boomcontrol allow\n```\n\nTo remove the flag entirely:\n\n```bash\n/rg flag spawn -r boomcontrol\n```\n\n### ❗ Default Behavior\n\n- If the flag is **not set**, BoomControl assumes `ALLOW`.\n- This means BoomControl is **active everywhere** by default, unless explicitly denied via region flag.\n\n---\n\n## 🧠 Perfect For\n\n*   🏰 SMP servers\n*   🔒 Anti-grief setups\n*   ⚔️ PvP practice worlds with restricted meta\n*   🛡️ Survival servers with balanced combat\n\n- - -\n\n## ✅ Lightweight & Reliable\n\nNo bloat. No complex dependencies. Just simple, effective explosion control.\nMake your SMP safer and more balanced with **BoomControl**.",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 368,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,18 @@
+{
+  "id": "seiE4l87",
+  "slug": "goety-apostle-fix",
+  "title": "goety-apostle-fix",
+  "description": "Goety Fix Fixes memory leaks and bugs in Goety/GoetyAwaken mods for Minecraft 1.20.1 (Forge).",
+  "body": "Goety Client Fix\nFixes client-side memory leaks caused by Goety mods for Minecraft 1.20.1 (Forge).\n\nProblem\nWhen a player dies/respawns or changes dimension, the old LocalPlayer and ClientLevel instances are not garbage collected. Memory grows with each death, eventually causing lag and crashes.\n\nHow it works\nTracks Minecraft.player reference each tick. When the instance changes (respawn, dimension change), the mod:\n\nInvalidates old player and level capabilities to break reference chains\nClears Mob.target and LivingEntity.lastHurtByMob references to the old player\nClears static Entity/Player/Level fields in Goety/GoetyAwaken client event handlers via reflection\nRuns periodic cleanup every 30 seconds as a safety net\nRequirements\nForge 47+ (Minecraft 1.20.1)\nClient-side only",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 332,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

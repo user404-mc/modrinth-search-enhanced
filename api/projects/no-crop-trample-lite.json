@@ -1,0 +1,23 @@
+{
+  "id": "eVeqY9PM",
+  "slug": "no-crop-trample-lite",
+  "title": "No Crop Trample",
+  "description": "Prevents farmland from being trampled by players, mobs, and projectiles. Fabric + NeoForge for Minecraft 26.1.x.",
+  "body": "![No Crop Trample](https://i.imgur.com/rKaCYmh.png)\n\n# No Crop Trample\n\nA small mod that does one thing: stops farmland from reverting to dirt when entities land on it. No more destroyed wheat fields from a careless jump, a wandering zombie, or a stray arrow.\n\nTargets Minecraft **26.1.x** on both **Fabric** and **NeoForge**.\n\n## Why this mod exists\n\nMinecraft 26.1 is brand new and the popular legacy trample-prevention mods haven't ported yet. This fills the gap with a minimal, fast-loading implementation — no new blocks, no new items, just the fix.\n\n## What it does\n\n- Disables farmland trampling for **all** entities by default — players, mobs, projectiles.\n- One simple JSON config toggle if you want to turn it off.\n- Fall damage still applies. Only the farmland-destruction path is skipped.\n\n## How it works under the hood\n\n- **Fabric**: a tiny mixin wraps the `turnToDirt(...)` call inside `FarmlandBlock.fallOn`, using MixinExtras' `@WrapOperation` (bundled with Fabric Loader, no extra dependency).\n- **NeoForge**: subscribes to the built-in `BlockEvent.FarmlandTrampleEvent` and cancels it.\n\nBoth paths route through the same config-aware decision, so per-entity-type toggles (player-only, mob-only, projectile-only) can be added in a future release without breaking changes.\n\n## Configuration\n\nEdit `config/nocroptramplelite.json` (created on first launch):\n\n```json\n{\n  \"preventTrampling\": true\n}\n```\n\n| Key | Default | Notes |\n|---|---|---|\n| `preventTrampling` | `true` | When true, no entity can trample farmland. Set false to restore vanilla behaviour. |\n\nRestart Minecraft (or the dedicated server) after editing for changes to take effect.\n\n## Compatibility with modded crops\n\nWorks automatically with:\n\n- **Modded crops planted on vanilla farmland** — most common case (Farmer's Delight, most magic-crop mods, etc.).\n- **Modded farmland that extends vanilla `FarmlandBlock`** — inheritance carries the protection through.\n- **Modded farmland that overrides `fallOn` but calls `super.fallOn(...)`** — super call routes back into the protected path.\n\nDoes **not** affect:\n\n- Modded farmland that fully replaces `fallOn` with its own trample logic (rare).\n- Custom \"farmland\" blocks that don't extend `FarmlandBlock` at all.\n- Pot-style growers (Botany Pots, Garden Cloches, etc.) — they don't have trampling to begin with.\n\n## Requirements\n\n- Minecraft **26.1.x**\n- Java **25**\n- Fabric Loader **0.18.4+** with **Fabric API**, *or* NeoForge **26.1+**\n\n## License\n\nCC0-1.0 — public domain, do whatever you want with it.\n\n## Source\n\n<https://github.com/kestalkayden/no-crop-trample-lite>\n",
+  "categories": [
+    "fabric",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 190,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

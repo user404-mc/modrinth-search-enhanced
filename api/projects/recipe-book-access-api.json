@@ -1,0 +1,34 @@
+{
+  "id": "aWgs4SgO",
+  "slug": "recipe-book-access-api",
+  "title": "Recipe Book Access API",
+  "description": "An effortless Fabric API, enabling recipe-book crafting from customizable external inventories.",
+  "body": "![Recipe Book Access Banner](https://cdn.modrinth.com/data/cached_images/6a9610664160b3d32157edee9c484d5c04077bc1.png)\n\nRecipe Book Access is a simple Fabric API designed to intuitively add support for external inventory access in any crafting screen. \\\nIt redirects the recipe book functionality to check and fill from a customisable list of inventories, instead of just the player's.\n\n### What does this mean?\nSee for yourself! \n![Recipe Book Access Demonstration](https://raw.githubusercontent.com/Jomlom/Recipe-Book-Access/refs/heads/main/demo.gif) \\\nThis is an EXAMPLE of a modded crafting table uses a custom list of inventories via this API, in this specific case it uses all inventories from nearby chests.\n\n### This mod _alone_ will not achieve what is shown above - If you are looking for a mod that implements this for the crafting table, you probably want the [Nearby Crafting](https://modrinth.com/mod/nearby-crafting) mod.\n\n## Quickstart Guide\n**For a more detailed how-to-use guide, including how to setup this API in your project's environment, please see the readme on Github for this project [here](https://github.com/Jomlom/Recipe-Book-Access).**\n\nThis API provides a simple interface called `RecipeBookInventoryProvider`, located in `com.jomlom.recipebookaccess.api`. \n\nThis interface must be implemented to your screen handler class, only one method needs overriding (`getInventoriesForAutofill()`) for the API's full functionality.\n\nYou must implement this method to return a list of inventories which you want the recipe book to access and craft from, this won't include the player's inventory by default.\n\n_Code Example:_\n```java\nimport com.jomlom.recipebookaccess.api.RecipeBookInventoryProvider\n\npublic class YourCraftingScreenHandler extends AbstractRecipeScreenHandler implements RecipeBookInventoryProvider {\n    // your existing code...\n\n    @Override\n    public List<Inventory> getInventoriesForAutofill() {\n        return yourInventoriesList;\n    }\n}\n```\n\n**Assumptions made by this API:**\n- Your screen handler class extends 'AbstractRecipeScreenHandler', or any of its subclasses\n- Your corresponding screen extends 'RecipeBookScreen', in order to utilize the minecraft recipe book\n\n(_I have not tested outside these assumptions_)\n\n## FAQs\n- **Q**: I think I found an issue... \\\n  **A**: Feel free to create an issue on [Github](https://github.com/Jomlom/Recipe-Book-Access/issues) or reach out directly on discord @joonty\n \n- **Q**: Will you release support for _x_ ? \\\n  **A**: I plan to release support for older versions soon, I don't currently plan to release support outside of Fabric. If _you_ would like to make a verion for another loader (Forge, NeoForge, etc) feel free to reach out on discord! @joonty\n\n- **Q**: Does my `getInventoriesForAutofill()` implementation need to work from the client? \\\n  **A**: Nope! `getInventoriesForAutofill()` is only used from the server side screen handler, and the API will keep the client up to date on the results for you automatically!",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 45548,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

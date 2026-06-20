@@ -1,0 +1,33 @@
+{
+  "id": "RhiqvLwA",
+  "slug": "skkaemok",
+  "title": "Skkaemok",
+  "description": "A Skript addon that adds nametag and skin customizations.",
+  "body": "# skkaemok\n\nA Skript addon that lets you change player **nametags**, **tablist names**, **chat names**, and **skins** with a few simple syntaxes.\n\n## Features\n- Change player nametags\n- Change tablist and chat display names\n- Change player skins\n- Supports non‑English languages\n- Simple, lightweight syntax\n\n## Requirements\n- Minecraft: 1.21+, 26.1+\n- Skript: 2.10+\n- ProtocolLib (required)\n\n## Installation\n1. Install Skript and ProtocolLib on your server.\n2. Drop the `skkaemok` JAR into your `plugins/` folder.\n3. Restart the server.\n\n## Usage\n\n### Basic Syntax\n```skript\nset nametag of %player% to %string%\nset nametag of %string% to %string%\nreset nametag of %player%\nreset nametag of %string%\n```\n```skript\nset skin of %player% to %player% \nset skin of %string% to %player% \nset skin of %player% to %string% \nset skin of %string% to %string% \nset skin of %player% to url %string% \nset skin of %string% to url %string% \nreset skin of %player%  \nreset skin of %string% \n```\n\n\n\n### Example: /nick Command\n```skript\ncommand /nick <text> <text>:\n    trigger:\n        if arg-1 is \"reset\":\n            reset nametag of player\n            stop\n\n        if arg-1 is \"set\":\n            if arg-2 is not set:\n                send \"Usage: /nick set <nick>\" to player\n                stop\n            set nametag of player to arg-2\n            stop\n\n        send \"Usage: /nick <set|reset> <nick>\" to player\n```\n### Example: /skin Command\n```skript\ncommand /skin <text> [<text>]:\n    trigger:\n        if arg-1 is \"reset\":\n            reset skin of player\n            stop\n\n        if arg-1 is \"set\":\n            if arg-2 is not set:\n                send \"Usage: /skin set <url|name>\" to player\n                stop\n\n            if arg-2 starts with \"http\":\n                set skin of player to url arg-2\n                stop\n\n            set skin of player to arg-2\n            stop\n\n        send \"Usage: /skin <set|reset> <url|name>\" to player\n```\n        \n\n[![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=skkaemok)\n",
+  "categories": [
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 137,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "wDkgTf4u",
+  "slug": "brea-nona",
+  "title": "Brea Nonatomic",
+  "description": "A mod provides operator system which can create entities to follow and help you.",
+  "body": "瓦解核心：非原子单位 | Brea:Nonatomic\n=======\n\n---\n\n## Overview\n\nThe Nonatomic Lib allows players to deploy Operators in the game. Operators correspond to Operator entities, and players\ncan deploy them to perform various tasks.\n\nThis library provides a range of commonly used features for the entire Operator system:\n\n- **Operator Customization**: Allows the customization of various types of Operators, each with unique attributes and\n  behaviors.\n- **Operator Information Storage**: In addition to customizable attributes, Operators have the capability to store\n  mutable and persistent information.\n- **Entity and Information Communication**: Operator entities and their information reference each other, with\n  appropriate clearing and refreshing to ensure synchronization and proper status.\n- **Player Behavior Handling**: Special player behaviors affect entity states to ensure proper functionality, including\n  login, logout, teleportation, etc.\n- **Event Listening**: The mod listens to game events, such as player login, logout, and the deployment and retrieval of\n  Operators, to enhance flexibility.\n\n## Code Framework\n\nIdeally, we can directly bind data to dimensions for unified management—this ensures that Operator data references are\nmaintained when players are offline and avoids crashes due to excessive player data.\n\nThe data structure is roughly as follows, from broadest to most specific:\n\n1. World Data Storage. We do not provide a standard for this level,\n   but we offer\n   the `GroupProvider` interface (see at the bottom)\n   for convenient handling of player and entity events.\n2. Player Operator Data (`OpeHandler`)\n   Stores data on Operators owned by a player and a list of deployed Operators. Since a player might have multiple\n   Operator data under different mod implementations, you need to configure the appropriate `ContainerId`\n   to ensure the entity correctly captures the corresponding data upon loading. For data capturing, refer\n   to `FindOperatorEvent`.\n   If the `GroupProvider` mentioned in the first step is implemented and registered, related events can be automatically\n   handled.\n3. Operator (`Operator`)\n   Is the unit that can be directly captured and referenced by the Operator entity and is responsible for storing\n   Operator information. This includes methods related to basic Operator behaviors such as deployment, withdrawal,\n   legality checks, as well as basic information such as Operator type, status, last recorded position, etc. The\n   referenced Operator entities will not be null as long as the entity exists and is loaded.\n4. Operator Data (`OperatorInfo`)\n   Responsible for storing additional information about Operators. If needed, Operator entities can store similar types\n   of information and request merging at appropriate times to implement temporary information functionality.\n\nYou can refer to the `TestObjects` class to see our\ntest code.\nCalling the `TestObjects#initTest` method in the mod's main class will activate it—don't forget to remove it afterward.\n\nYou can also view the provided events in `EventHooks`.\nEach event class contains javadoc content about its usage.\n\nAdditionally, you can refer to our TEST_LIST to see and verify the features that can be\nautomatically implemented under correct configurations.\n\n## Contributing\n\nWe welcome contributions to the Nonatomic mod. You can submit Issues to report problems or Fork this project to submit\nyour improvements.\n\n## Developer\n\n- **Mon-landis**: Provides technical support and development.\n\n---",
+  "categories": [
+    "library",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 170,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

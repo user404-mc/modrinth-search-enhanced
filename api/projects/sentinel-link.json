@@ -1,0 +1,33 @@
+{
+  "id": "VzQD35uZ",
+  "slug": "sentinel-link",
+  "title": "Sentinel",
+  "description": "Velocity plugin that functions as a larger-scale Discord linking system leveraging MySQL.",
+  "body": "# Sentinel\n\n> ⚠️ **Tested with Minecraft 1.20.1**: \nThis said, Sentinel uses Velocity’s login API and does not depend on specific Minecraft server software or versions. It should work with any backend supported by your Velocity proxy including Paper, Spigot, Forge, and Fabric servers.\n\n**Sentinel** is a Velocity plugin that securely links Minecraft accounts to Discord accounts. It integrates with a Discord bot to verify players before allowing login, helping to prevent impersonation and aiding in connecting players together. Sentinel also provides quarantine functionality to temporarily restrict access for problematic players.\n\n## Commands\n\n### Discord Commands\n    /link <code>\n    Link your Minecraft account to your Discord account.\n\n    /whois [discord: @user | minecraft: username]\n    Look up linked account info.\n\n    /quarantine <user>\n    Toggle quarantine role for a user (Minecraft username or Discord @mention).\n    Requires staff role permissions. Automatically kicks online players when quarantined.\n\n## Features\n\n- **Account Linking**: Secure verification system linking Minecraft accounts to Discord\n- **Login Protection**: Prevents unlinked accounts from joining (with configurable bypass servers)\n- **Role Management**: Automatic Discord role assignment for linked players\n- **Quarantine System**: Staff can quarantine problematic players, preventing login and kicking online players\n- **Automatic Cleanup**: Removes database entries for users who leave Discord\n- **Rate Limiting**: Respects Discord API limits with intelligent rate limiting\n\n## Requirements\n\n- Java 17+\n- Velocity Proxy (tested on 3.4.0-SNAPSHOT)\n- MySQL or MariaDB\n\n## Setup\n\n1. **Install the plugin**  \n   Place the shaded JAR into your `plugins/` folder on your Velocity proxy.\n\n2. **Configure MySQL and Discord**  \n   On first run, `plugins/sentinel/config.json` will be created. Fill in your database credentials, Discord token, and optionally configure quarantine and staff roles:\n   ```json\n   {\n     \"mysql\": {\n       \"host\": \"localhost\",\n       \"port\": 3306,\n       \"database\": \"sentinel\",\n       \"username\": \"sentinel_user\",\n       \"password\": \"password\"\n     },\n     \"discord\": {\n       \"token\": \"your_discord_bot_token\",\n       \"linkedRole\": \"123456789012345678\",\n       \"quarantineRole\": \"987654321098765432\",\n       \"quarantineMessage\": \"Your account has been quarantined. Contact an administrator.\",\n       \"staffRoles\": [\"111111111111111111\", \"222222222222222222\"]\n     },\n     \"bypassServers\": {\n       \"servers\": [\"lobby\", \"auth\"]\n     }\n   }\n   ```\n\n### Configuration Options\n\n- **`bypassServers`**: Server names that bypass Discord verification requirement. Useful for lobbies or auth servers where unverified players should be allowed.\n\n- **`linkedRole`**: (Optional) Discord role ID automatically assigned to all linked players. When configured:\n  - All existing linked accounts receive the role on bot startup (rate-limited)\n  - New accounts that link immediately receive the role\n  - Role synchronization spreads over ~20 minutes for large databases\n\n- **`quarantineRole`**: (Optional) Discord role ID for quarantined players. When configured:\n  - Players with this role are denied login\n  - Staff can use `/quarantine` command to toggle this role\n  - Online players are immediately kicked when quarantined\n\n- **`quarantineMessage`**: Message shown to quarantined players when they try to join or are kicked\n\n- **`staffRoles`**: Array of Discord role IDs that can use the `/quarantine` command\n",
+  "categories": [
+    "management",
+    "social",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 286,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "BAwZB2UH",
+  "slug": "aluminis-inject",
+  "title": "Aluminis Inject",
+  "description": "A dependency-injection based framework mod for simplifying creation of minecraft mods",
+  "body": "# Aluminis Inject\n\nA dependency-injection based framework mod for simplifying creation of minecraft mods. \nTo understand how to use this mod, it is expected to have a basic understanding of \n[Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming) and \n[Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)\n\n\n\n## Why \n\nBefore we can dive into features, let's talk a little bit about why you might want to use this mod... rather\nthan standard fabric development. A downfall of fabric, there is no automatic injection: Fabric doesn’t \"inject\" objects into your classes.\nYou’re responsible for instantiating and registering everything explicitly. Basically, you make many different classes\nthen instantiate them manually and finally wire it all together. This is fine for small mods, where not much wiring/registration\nis required, but when you're working on larger, more complex mods... it can become disorganized and confusing fast.\n\n### 1. Manual Boilerplate\nIn Fabric, you have to explicitly register every single item, block, event listener, etc. with no abstraction layer. \nThis means there is more repetitive code, especially as your mod scales up.\n\n### 2. Scaling Pain\nA small Fabric mod feels clean and simple.\n\nA large Fabric mod? Now you’re wrangling dozens or hundreds of manual Registry.register() calls, \nevent registrations, etc. Without a central container or automation system (like a DI container), scaling to big \nprojects requires building your own abstractions.\n\n## Core Features\n\n### Automatic dependency injection (Autowiring)\n\nAutowiring is a feature that automatically injects dependencies into a class without requiring\nexplicit configuration or manual wiring. Instead of writing configuration code to specify which implementation \nshould be injected, the framework automatically figures it out based on certain rules (in this case, an annotation).\n\nOf course, some configuration may still be needed for non-class based providers, if you want to use them. \nFor more information, view the [Google Guice Wiki](https://github.com/google/guice/wiki).\n\n## Getting Started\n\nFirst, set up the fabric entrypoint named `aluminis-inject:bootstrap` pointing to a class that extends \n`net.aluminis.inject.model.AbstractModule`. Aluminis inject will instantiate this class, and \nuse it to autoload your services.\n\n```json\n\"aluminis-inject:bootstrap\": [\n  \"net.aluminis.inject.test.module.TestModule\"\n]\n```\n\nIn your module entrypoint, be sure to implement the `provideModId()` method, to provide your modId. \nThis can be injected \n\n```java\nimport com.google.inject.Provides;\nimport net.aluminis.inject.api.annotation.ModId;\nimport net.aluminis.inject.api.model.AbstractModule;\n\npublic class TestModule extends AbstractModule {\n\n    @Provides // Optional (Tells autoloader to make this value a provider)\n    @ModId    // Optional (Tells autoloader to make this value available with the annotation @ModId)\n    public String provideModId() {\n        return \"aluminis-inject\";\n    }\n\n    public TestModule() {\n        LoggerFactory.getLogger(MOD_ID).info(\"TestModuleInit worked!\");\n    }\n}\n```\n\nMake your services! Any class with the `@AutoLoad` annotation will be automatically loaded to the mod container.\n\n```java\n@AutoLoad()\npublic class TestService {\n    public TestService() {\n        \n    }\n}\n```\n\nServices can be injected with other services, or providers too. Autowiring is done automatically! For more information,\nview the [Google Guice Wiki](https://github.com/google/guice/wiki)\n\n```java\n@AutoLoad()\npublic class TestService {\n    @Inject\n    public TestService(@ModId String modId) {\n        LoggerFactory.getLogger(modId).info(\"TestService worked!\");\n    }\n}\n```",
+  "categories": [
+    "cursed",
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 335,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

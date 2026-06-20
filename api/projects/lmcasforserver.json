@@ -1,0 +1,30 @@
+{
+  "id": "aCkShO7p",
+  "slug": "lmcasforserver",
+  "title": "Let Me Click And Send for Server",
+  "description": "Reverses the run_command click event restriction introduced in 1.19.1-rc1.",
+  "body": "# Let Me Click and Send for Server\n\n\n## TL;DR\nServer-side version of [LetMeClickAndSend](https://modrinth.com/mod/letmeclickandsend) that reverses the run_command click event restriction introduced in 1.19.1-rc1.\n\n## Why?\n\nFor example, we run the following command and then click on the displayed text:\n\n```\n/tellraw @a {\"text\":\"click me to send \\\"hi\\\"\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"hi\"}}\n```\n\nIn vanilla 1.19.1+ you cannot say anything after clicking because `hi` is not a valid command (a command shall start with /).\n\nWith this mod, you will automatically send a hi message to the server after clicking, which is the same behavior as previous versions of Minecraft.\n\n## How?\n\nUnlike the original LetMeClickAndSend, which changed the client behavior, we introduce a random 5-character server-side command generated from [0-9A-za-z] to send a fake player chat.\n\nIf we detect a \"run_command\" action whose value doesn't start with \"/\", we replace it with the generated command. This way the client will always find a real command from the `run_command' action.\n\nStill using the previous example, we would replace the value `\"hi\"` with something like `\"/a2xBg hi\"`, then client would correctly execute it to send `hi` from player.\n\nAs a result, the maximum length of the `run_command' action is reduced from 256 to 249.\n\n## Contact\n\nIf you have any problems or suggestions, please let us know on [Github](https://github.com/ZhuRuoLing/LetMeClickAndSendForServer).\n\n## Copyright\n\nConcept by [Alex3236](https://github.com/alex3236), Authored by [ZhuRuoLing](https://github.com/ZhuRuoLing), [Alex3236](https://github.com/alex3236), [Optijava](https://github.com/OptiJava) and [HuajiMURsMC](https://github.com/HuajiMURsMC).",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1042,
+  "followers": 0,
+  "game_versions": [
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21"
+  ],
+  "date_updated": null
+}

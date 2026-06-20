@@ -1,0 +1,40 @@
+{
+  "id": "OAnVMzFq",
+  "slug": "resource-remover",
+  "title": "Resource Remover",
+  "description": "Prevent specific resources in resource packs and data packs from being loaded by the game.",
+  "body": "# Resource Remover\n\nA lightweight mod that prevents selected resource files from being loaded by the game. You configure which resources to\nblock using two plain-text matcher files:\n\n- `./config/resource_remover/assets.txt` — used for client resources (textures, models, sounds, lang, etc.)\n- `./config/resource_remover/data.txt` — used for server/data resources (recipes, tags, loot tables, datapacks, etc.)\n\nIf a matcher file is missing or unreadable the mod will create an empty file automatically.\n\nThis mod is useful for:\n\n- Cannot fully remove a resource file or annoying about loading errors when override with a blank file.\n- Modpack developers who want to disable specific resources from mods without needing to create a full resource pack /\n  data pack.\n\n## How it works\n\n- The mod wraps each resource with a filter that checks resource identifiers (ResourceLocation.toString()) against\n  the matchers.\n- When a resource matches a rule the mod prevents it from being returned to the game (and logs a short info message).\n- Matching is applied separately for client assets (pack type CLIENT_RESOURCES → `assets.txt`) and server data (pack\n  type SERVER_DATA → `data.txt`).\n\n## Matcher rules and syntax\n\n- Each non-empty line in `assets.txt` / `data.txt` is treated as a single rule. Blank lines and fully\n  blank/whitespace-only lines are ignored.\n- Lines starting with `#` are treated as comments and ignored.\n- The implementation supports three rule modes (determined automatically):\n    1. **Regular expression**: if the line contains regex metacharacters (one of . + ? | ( ) [ ] { } ^ $ \\ ) it will be\n       treated as a Java regular expression and matched against the whole resource string.\n    2. **Wildcard**: if the rule contains `*` and no other regex meta characters, it will act as a simple wildcard where\n       `*` matches any sequence of characters.\n    3. **Exact match**: otherwise the rule is treated as an exact full-string match.\n\n## Examples\n\n- Resource identifiers are compared using their string form (for example `minecraft:models/block/dirt` or\n  `mymod:textures/gui/button.png`). Use the examples below as guidance:\n\n### Client (assets.txt) examples\n\n```\n# block models\nminecraft:models/block/*\n\n# specific texture\nmy_mod:textures/gui/button.png\n\n# regex example: any PNG under any namespace ending with _icon.png\n.*_icon\\.png$\n```\n\n### Server/data (data.txt) examples\n\n```\n# all recipes in a namespace\nmy_mod:recipes/*\n\n# exact datapack root file (if needed)\nsomepack:pack.mcmeta\n```\n\n## Notes on matching behavior\n\n- A rule that contains any regex metacharacter is compiled as a full Java regex and matched against the whole resource\n  string (`Pattern.matches` semantics used internally).\n- A rule with `*` but no other meta characters is translated to a wildcard (so `mod:models/*/block` becomes a regex\n  equivalent to `^mod:models/.*/block$`).\n- If a rule is an invalid regex it will be treated as an exact literal match as a fallback.\n\n## Troubleshooting\n\nIf your matchers do not appear to take effect, ensure:\n\n- Your patterns match the full ResourceLocation string form (`namespace:path` + path parts). Try a more general wildcard\n  like `*` to verify the system is filtering.\n- Check the game log for `Prevented loading of resource` messages to confirm matches.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 233,
+  "followers": 0,
+  "game_versions": [
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

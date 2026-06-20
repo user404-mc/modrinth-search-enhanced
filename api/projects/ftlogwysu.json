@@ -1,0 +1,20 @@
+{
+  "id": "hUFltDd4",
+  "slug": "ftlogwysu",
+  "title": "For the Love of God Would You Shut Up",
+  "description": "Reverts the change made in 22w13a where noteblocks make sound even when there is a block ontop of them.",
+  "body": "# the change that prompted the creation of this mod has been reverted\n> ## [Changes in 22w15a](https://www.minecraft.net/en-us/article/minecraft-snapshot-22w15a)\n> [A previous change to Noteblocks that only Wool and Wool Carpets would block the sounds has been reverted](https://www.minecraft.net/en-us/article/minecraft-snapshot-22w15a) \n\n![icon](https://user-images.githubusercontent.com/37855219/162797793-e483ce7e-91aa-4037-aa6d-5de7fee3b3fe.png)\n# For the Love of God Would You Shut Up\nReverts the change made in 22w13a where noteblocks make sound even when there is a block ontop of them.\n\nThis mod seeks to make redstone less annoying, it disables sounds from noteblocks when there is something ontop of them.\n\nNote Blocks will still notify allay/sculk despite not making a sound.\n\n## Video\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/OQ2EmVMYguU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n\n## Code Change explained\nOriginally, the code for playing a note looked like this:\n```java\nprivate void playNote(World world, BlockPos pos) {\n    if (world.getBlockState(pos.up()).isAir()) {\n        world.addSyncedBlockEvent(pos, this, 0, 0); // plays sound\n    }\n}\n```\n22w13a added a GameEvent for noteblocks being played and made it so noteblocks are only disabled if they have wool or carpet ontop of them\n```java\nprivate void playNote(@Nullable Entity entity, World world, BlockPos pos) {\n    BlockState blockState = world.getBlockState(pos.up());\n    if (blockState.isIn(BlockTags.WOOL) || blockState.isIn(BlockTags.WOOL_CARPETS)) {\n        return;\n    }\n    world.addSyncedBlockEvent(pos, this, 0, 0); // plays sound\n    world.emitGameEvent(entity, GameEvent.NOTE_BLOCK_PLAY, pos); // notifies allay, warden, and skulk sensors\n}\n```\nThis mod makes the following changes to that code*\\\n<sub><sup>*it actually turns `world.addSyncedBlockEvent` into a method that has the if statement</sup></sub>\n```diff\nprivate void playNote(@Nullable Entity entity, World world, BlockPos pos) {\n    BlockState blockState = world.getBlockState(pos.up());\n    if (blockState.isIn(BlockTags.WOOL) || blockState.isIn(BlockTags.WOOL_CARPETS)) {\n        return;\n    }\n+   if (world.getBlockState(pos.up()).isAir()) {\n+       world.addSyncedBlockEvent(pos, this, 0, 0); // plays sound\n+   }\n-   world.addSyncedBlockEvent(pos, this, 0, 0);\n    world.emitGameEvent(entity, GameEvent.NOTE_BLOCK_PLAY, pos); // notifies allay, warden, and skulk sensors\n}\n```\nBecause this mod only seeks to make redstone less annoying, it just disables sounds from noteblocks when there is something ontop of them.\n\nThe functionality for notifying allay/sculk remains intact.\n\n## License\nThis project is under the [Unlicense](https://unlicense.org/)\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 207,
+  "followers": 0,
+  "game_versions": [
+    "22w13a",
+    "22w14a"
+  ],
+  "date_updated": null
+}

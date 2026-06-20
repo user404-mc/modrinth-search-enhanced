@@ -1,0 +1,33 @@
+{
+  "id": "PzZLlW52",
+  "slug": "pronounsmc",
+  "title": "PronounsMC",
+  "description": "PlaceholderAPI compatible Pronouns Plugin for Minecraft Spigot/Paper.",
+  "body": "# PronounsMC\n\n**PronounsMC** is a Minecraft Spigot plugin that allows players to set and display their pronouns. It supports multiple database types (**MySQL** and **SQLite**) and provides customizable messages via language files.\n\n## Notes\n\n- PlaceholderAPI is required for placeholders.\n- We reccomend using a plugin like [ChatInjector](https://www.spigotmc.org/resources/chatinjector-1-20.81201/) for use with plugins that **don't** support PlaceholderAPI like EssentialsX Chat.\n\n## Features\n\n- Players can set and display their pronouns using simple commands.\n- Pronouns are color-coded and configurable via `config.yml`.\n- Supports **MySQL** or **SQLite** for data storage.\n- Fully customizable messages via language files (e.g., `lang/en_US.yml`).\n- Reload settings and messages without restarting the server.\n\n---\n\n## Installation\n\n1. **Download** the plugin jar file and place it in your server's `plugins/` folder.\n2. **Start your server** to generate the default configuration files.\n3. **Edit `config.yml`** to configure:\n    - **Database type**: Choose between `mysql` or `sqlite`.\n    - **Available pronouns**: Customize the list of pronouns and their color-coded formats.\n    - **Language file**: Specify the language file (default: `en_US`).\n4. **Restart your server** or use `/pronouns reload` to apply changes. *(Does not work for database changes)*\n\n---\n\n## Placeholders\n\n| Placeholder            | Description                                |\n|------------------------|--------------------------------------------|\n| `%pronouns%`           | Displays users pronouns. Works with PlaceholderAPI   |\n\n---\n\n## Configuration\n\n### `config.yml`\n\nColour formatting can be used in pronouns as shown below, this is optional.\n\n```yaml\nlangFile: \"en_US\"\n\ndatabase:\n   type: sqlite # Use either 'mysql' or 'sqlite'\n   host: localhost\n   port: 3306\n   name: minecraft\n   user: root\n   password: \"password\"\n\nuserSuppliedPronouns: false # This setting can be abused by players.\ndefaultProunounTemplate: \"&7(%s)&r\"\n\navailablePronouns:\n   he/him: \"&3(&bHe&3/&bHim&3)&r\"\n   she/her: \"&5(&dShe&5/&dHer&5)&r\"\n   they/them: \"&2(&aThey&2/&aThem&2)&r\"\n   it/its: \"&8(&7It&8/&7Its&8)&r\"\n   he/they: \"&3(&bHe&3/&bThey&3)&r\"\n   she/they: \"&4(&cShe&4/&cThey&4)&r\"\n   xe/xem: \"&8(&7Xe&8/&7Xem&8)&r\"\n   ze/zir: \"&8(&7Ze&8/&7Zir&8)&r\"\n```\n\n### `lang/en_US.yml`\n\nAll user-facing messages are customizable in the language file. Example:\n\n```yaml\nmessages:\n   usageMain: \"&cUsage: /pronouns <command>\"\n   usageSet: \"&cUsage: /pronouns set <pronoun>\"\n   usageGet: \"&cUsage: /pronouns get <username>\"\n   noPermission: \"&cYou don't have permission to use this command.\"\n   playerNotFound: \"&cPlayer not found!\"\n   invalidPronoun: \"&cInvalid pronoun. Use /pronouns list to see available options.\"\n   notSet: \"&7Not set\"\n   pluginReloaded: \"&aPronounsMC config reloaded.\"\n   pronounSet: \"&aYour pronouns have been set to: &r{pronouns}\"\n   availablePronounsHeader: \"&aAvailable pronouns:\"\n   playerPronounFormat: \"&a{player}'s pronouns: &r{pronouns}\"\n   playerPronounNone: \"&a{player}'s pronouns: &bNot set\" # Used for /pronouns get <username>\n   onlyPlayers: \"&cOnly players can set pronouns.\"\n   availablePronounsFooter: \"&9You can also set your own pronouns using /pronouns set <pronoun>\"\n   pronounResetTarget: \"&aReset pronouns for {player}.\"\n```\n\n---\n\n## Commands\n\n| Command                   | Description                                  | Permission        |\n|---------------------------|----------------------------------------------|-------------------|\n| `/pronouns set <pronoun>` | Sets your pronouns to the specified pronoun. | None              |  \n| `/pronouns reset`         | Resets previously set pronouns by user       | None              |  \n| `/pronouns reset <user>`  | Resets other users pronouns                  | `pronouns.admin`  |  \n| `/pronouns get <user>`    | Displays the pronouns of another player.     | `pronouns.get`    |\n| `/pronouns list`          | Lists all available pronouns.                | None              |\n| `/pronouns reload`        | Reloads the configuration and language.      | `pronouns.reload` |\n\n---\n\n## Permissions\n\n| Permission        | Description                                      | Default |\n|-------------------|--------------------------------------------------|---------|\n| `pronouns.get`    | Allows retrieving another player's pronouns.     | OP      |\n| `pronouns.reload` | Allows reloading the configuration and language. | OP      |\n| `pronouns.admin`  | Allows resetting other users pronouns.           | OP      |\n\n\n---\n\n## Database Support\n\n### MySQL\nTo use MySQL:\n1. Set `database.type: mysql` in `config.yml`.\n2. Configure `host`, `port`, `name`, `user`, and `password`.\n\n### SQLite\nTo use SQLite:\n1. Set `database.type: sqlite` in `config.yml`.\n2. The plugin will create a `pronouns.db` file in the plugin folder.\n\n---\n\n## License\nThis project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).\n\n---\n\n## Contribution\n\nContributions are welcome! To contribute:\n1. Fork the repository.\n2. Create a new feature branch.\n3. Submit a pull request explaining your changes.\n\n---\n\n## Thanks for using PronounsMC\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 328,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

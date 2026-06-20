@@ -1,0 +1,29 @@
+{
+  "id": "kdjnEFLS",
+  "slug": "blockboy-arcade",
+  "title": "BlockBoy Arcade",
+  "description": "Serverside GameBoy emulator as Arcade machines with data driven cartridge items!",
+  "body": "# This mod will no longer be updated on modrinth!\n# See https://www.curseforge.com/minecraft/mc-mods/blockboy-arcade for the latest version!\n\nArcade machines with full gameboy resolution and color support!\n\nFully server-side, using polymer!\n[Checkout polymers authost feature](https://polymer.pb4.eu/latest/user/resource-pack-hosting/) to host the resource-pack (in polymer/resourcepack.zip) automagically!\n\nThere are no recipes, use `/polymer creative` to see the items or use `/give @s blockboy:arcade`\n\nThe mods' builtin datapack comes with 6 open source gameboy games:\n- [Renegade Rush](https://quinnp.itch.io/renegade-rush)\n- [Wyrmhole](https://quinnp.itch.io/wyrmhole)\n- [Postie](https://invertedhat.itch.io/postie)\n- [Dawn Will Come](https://eishiya.itch.io/dawn-will-come)\n- [Tobu Tobu Girl Deluxe](https://tangramgames.itch.io/tobu-tobu-girl-deluxe)\n- [Flooder](https://github.com/Obalfour/Flooder)\n\n## Config\n\n```json\n{\n  \"dateFormat\": \"dd.MM yyyy, HH:mm\",\n  \"sound\": false\n}\n```\n\n- `dateFormat`: Date format for rom save data tooltip\n- `sound`: Flag to enable sounds for the playing player using simple voice chat\n\n## Adding roms / items\n\nYou can either add cartridge items using filament or just use the `blockboy:rom` component to give yourself an item that can play a given rom file:\n`/give @s paper[blockboy:rom=\"namespace:game.gb\"]`\n\nPut the roms in `data/<namespace>/blockboy/<rom>.gb` and `data/<namespace>/blockboy/<rom>.gbc`\nMake sure the rom file names are lowercase and only contain letters from `a` to `z`, `0-9` and/or underscores.\n\nTo add your own arcade model item + block use the filament mod and the `blockboy:arcade` behaviour for decorations.\n\nArcade example for filament (data/<namespace>/filament/decoration/<name>.json):\n```json\n{\n  \"id\": \"blockboy:arcade\",\n  \"group\": \"blockboy:items\",\n  \"blockTags\": [\"shulker_boxes\"],\n  \"itemResource\": {\n    \"models\": {\n      \"default\": \"blockboy:item/arcade-item\",\n      \"floor\": \"blockboy:item/arcade\"\n    }\n  },\n  \"properties\": {\n    \"rotate\": true,\n    \"rotateSmooth\": true,\n    \"stackSize\": 1,\n    \"destroyTime\": 2,\n    \"requiresTool\": false\n  },\n  \"behaviour\": {\n    \"blockboy:arcade\": {\n      \"seatTranslation\": [0, 0.4, 0],\n      \"screenTranslation\": [0, 0.95, -0.775],\n      \"screenPitch\": -22.5,\n      \"brightness\": 10\n    }\n  },\n  \"blocks\": [\n    {\n      \"origin\": [0,0,-1],\n      \"size\": [1,1,2]\n    },\n    {\n      \"origin\": [0,1,-1],\n      \"size\": [1,1,1]\n    }\n  ]\n}\n```\n\nCartridge / rom item example for filament (data/<namespace>/filament/item/<name>.json):\n```json\n{\n  \"id\": \"blockboy:flooder\",\n  \"translations\": {\n    \"en_us\": \"Flooder\"\n  },\n  \"group\": \"blockboy:items\",\n  \"vanillaItem\": \"minecraft:paper\",\n  \"itemResource\":{\n    \"models\": {\n      \"default\": \"blockboy:item/cartridge2\"\n    }\n  },\n  \"properties\": {\n    \"stackSize\": 1\n  },\n  \"components\": {\n    \"blockboy:rom\": \"namespace:flooder.gb\"\n  }\n}\n```\n\nBlockboy Arcade comes with 2 item textures/models for cartridges, feel free to modify them as you wish:\n`blockboy:item/cartridge1` and `blockboy:item/cartridge2`\n\n\nPermissions for Luckperms and friends: `blockboy_arcade.command`, with vanilla permission level 1\n\n## Controls:\n- WASD = DPAD\n- Jump = A\n- Left-Click = B\n- F (swap held item) = Start\n- Q (drop held item) = Select\n\n\n\n---\nThis project uses code from the [coffee-gb gameboy emulator](https://github.com/trekawek/coffee-gb) and the [Image2Map Mod](https://github.com/Patbox/Image2Map) \nYou can find the original licenses in the \"licenses\" directory.\nMy changes are also licensed under the MIT license.\n",
+  "categories": [
+    "cursed",
+    "fabric",
+    "game-mechanics",
+    "minigame",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2203,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

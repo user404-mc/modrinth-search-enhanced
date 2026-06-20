@@ -1,0 +1,21 @@
+{
+  "id": "FXM8lRSj",
+  "slug": "simple-damage-caps",
+  "title": "Simple Damage Caps",
+  "description": "Data-driven and fully customizable mod that allows you to put arbitrary per-hit damage caps on any mob.",
+  "body": "## Overview  \nA member of the Minecraft Pack Development discord was looking for a mod to cap the amount of damage an entity could recieve in a single blow, and other mods on offer weren't configurable or customizable enough. As such I quickly threw together this mod allowing you to set per-entity damage caps with Neoforge's Datamaps.\n\n## Configuration  \nConfiguration of the mod is entirely done through datapacks.  \n* Three shortcut tags exist for pack devs who just want a simple damage cap and aren't interested in configuration via datamaps. Entity Types tagged with **_#simpledamagecaps:default_flat_damage_cap_**, **_#simpledamagecaps:default_percentage_damage_cap_**, and **_#simpledamagecaps:invincible_** will be able to take no more than 15 damage per hit, 5% of max health per hit, and no damage at all, respectively. \n* Damage types can be assigned to the damage type tag _**#simpledamagecaps:bypasses_damage_cap**_ in order to completely bypass the damage cap on all mobs. This defaults to damage types that bypass invulnerability (such as /kill and void damage) in vanilla.\n* Damage caps for individual entities and entity type tags can be assigned through two simple datamaps located in **_{your_namespace}/data_maps/entity_type/_**. See the spoiler below for an example.  \n```json\n/// damage_caps_flat.json\n{\n    \"values\": [\n        \"minecraft:wither\": 15,\n        \"#minecraft:raiders\": 5,\n        \"{entity_or_entity_type_tag_in_quotes}\": {damage cap here}\n    ]\n}\n\n/// damage_caps_percentage.json\n{\n    \"values\": [\n        \"minecraft:wither\": 0.15,\n        \"#minecraft:raiders\": 0.05,\n        \"{entity_or_entity_type_tag_in_quotes}\": {damage cap as decimal percentage of max health)\n}\n```\n## Ports  \nWill only happen to the lastest \"community consensus\" modding version, at my discretion.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 145,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

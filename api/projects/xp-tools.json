@@ -1,0 +1,19 @@
+{
+  "id": "wf4zZH1V",
+  "slug": "xp-tools",
+  "title": "XP Tools",
+  "description": "Minecraft Forge mod for tweaking various things about XP in Minecraft. Primarily targeted at modpack developers.",
+  "body": "![Banner artwork.](https://cdn.modrinth.com/data/cached_images/54e430c3c984ce6865495604052d52cbecbc8762.jpeg)\n\nThis mod currently lets you change the XP drops of blocks and entities. It lets you specify lists of operations to perform on the XP drops of either all block/entities or specific ones (by ID or TAG). You can also specify a range for your value if you want a randomized amount. Operations are ordered by their specified priorities.\n\nNote: This is a server-sided mod and the configuration file will be generated per-world inside the serverconfig folder.\n\nExample configuration for block breaking:\n\n_The following sets the XP drops of all blocks to 0. Then it adds 0-10 XP for all blocks tagged `#minecraft:mineable/shovel` and sets the XP of blocks tagged `#forge:ores` to 2-5._\n```\n#Settings for block breaking\n[block_breaking]\n\t#Available operations: [SET, ADD, SUBTRACT, MULTIPLY, DIVIDE]\n\t#List of global operations. Format: '[operation],[min],[max],[priority]'\n\t#Global operations are run before any unique operations.\n\t#Examples:\n\t#'set,0,0,0' - Sets the xp of all blocks to 0.\n\tblockBreakGlobalOperations = [\"set,0,0,0\"]\n\t#List of unique operations. Format: '[block_id/tag_id],[operation],[min],[max],[priority],[is_last]'\n\t#Examples:\n\t#'minecraft:dirt,set,2,2,0,true' - Sets the xp drop of the dirt block to 2, takes highest priority and stops any additional operations.\n\t#'#forge:ores,multiply,1,2,1,false' - Multiplies xp drop of all blocks tagged forge:ores by 1-2, allows additional operations.\n\tblockBreakOperations = [\"#minecraft:mineable/shovel,add,0,10,0,false\", \"#forge:ores,set,2,5,0,false\"]\n```\n\n# FAQ\n\n<details>\n<summary>Can I use this in my modpack?</summary>\nYes, go for it! Just make sure to use the appropriate source for your modpack (Modrinth/CurseForge).\n</details>\n\n<details>\n<summary>Will this be ported to x.x.x version?</summary>\nFeel free to open up a version port request on my issue tracker and I will see what I can do.\n</details>",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 351,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

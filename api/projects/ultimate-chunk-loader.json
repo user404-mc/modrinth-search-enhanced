@@ -1,0 +1,33 @@
+{
+  "id": "IJnC7mXM",
+  "slug": "ultimate-chunk-loader",
+  "title": "Ultimate Chunk Loader",
+  "description": "Powerful chunk loader with GUI management, coordinate & WorldEdit support, and persistent storage.",
+  "body": "A powerful plugin for Paper and Spigot that keeps chunks loaded using coordinate-based regions or WorldEdit selections.\n\n**Features**\n\n- **Interactive GUI** - Easy-to-use graphical interface for managing chunk loaders\n- Keep chunks loaded permanently across server restarts\n- Create chunk loaders using coordinates (x1, z1, x2, z2)\n- Create chunk loaders from WorldEdit selections (optional)\n- Name your chunk loader regions for easy management\n- Enable/disable chunk loaders without removing them\n- Persistent data storage (survives server restarts)\n- Permission-based access control\n- List and view information about all chunk loaders with their status\n\n**Installation**\n\n1. Download the latest `UltimateChunkLoader.jar`\n2. Place it in your server's `plugins/` folder\n3. (Optional) Install [WorldEdit](https://modrinth.com/plugin/worldedit) for selection-based chunk loading\n4. Restart your server\n5. Configure permissions if needed (all commands default to OP)\n\n**Commands**\n\nAll commands can be used with `/chunkloader`, `/cl`, or `/cloader`\n\n- `/chunkloader gui` or `/chunkloader menu` - **Open the GUI management menu**\n- `/chunkloader create <name> <x1> <z1> <x2> <z2>` - Create a chunk loader using block coordinates\n- `/chunkloader create <name> worldedit` - Create a chunk loader from your WorldEdit selection\n- `/chunkloader remove <name>` - Remove a chunk loader\n- `/chunkloader enable <name>` - Enable a disabled chunk loader\n- `/chunkloader disable <name>` - Disable a chunk loader without removing it\n- `/chunkloader list` - List all chunk loaders with their status\n- `/chunkloader info <name>` - View detailed information about a chunk loader\n- `/chunkloader reload` - Reload the plugin configuration and data\n\n**Permissions**\n\n- `chunkloader.*` - Access to all commands (default: op)\n- `chunkloader.create` - Create chunk loaders (default: op)\n- `chunkloader.remove` - Remove chunk loaders (default: op)\n- `chunkloader.enable` - Enable chunk loaders (default: op)\n- `chunkloader.disable` - Disable chunk loaders (default: op)\n- `chunkloader.list` - List chunk loaders (default: op)\n- `chunkloader.info` - View chunk loader information (default: op)\n- `chunkloader.gui` - Use the GUI menu (default: op)\n- `chunkloader.reload` - Reload the plugin (default: op)\n\n**Usage Examples**\n\n**_Using the GUI (Recommended)_**\n\nThe easiest way to manage your chunk loaders is through the GUI:\n\n```\n/chunkloader gui\n```\n\n**In the GUI:**\n- **Green wool** = Enabled chunk loader\n- **Red wool** = Disabled chunk loader\n- **Left Click** - View detailed information\n- **Right Click** - Toggle enable/disable\n- **Shift + Left Click** - Remove (with confirmation)\n\n**_Create a chunk loader using coordinates_**\n\n```\n/chunkloader create spawn 0 0 64 64\n```\n\nThis creates a chunk loader named \"spawn\" that keeps all chunks loaded between block coordinates (0, 0) and (64, 64).\n\n**_Create a chunk loader using WorldEdit selection_**\n\n1. Make a WorldEdit selection (`//wand`, then left-click and right-click)\n2. Run: `/chunkloader create myregion worldedit`\n\n**_List all chunk loaders_**\n\n```\n/chunkloader list\n```\n\n**_View information about a specific chunk loader_**\n\n```\n/chunkloader info spawn\n```\n\n**_Remove a chunk loader_**\n\n```\n/chunkloader remove spawn\n```\n\n**_Disable a chunk loader temporarily_**\n\n```\n/chunkloader disable spawn\n```\n\nThis unloads the chunks but keeps the region configuration saved, so you can re-enable it later.\n\n**_Enable a previously disabled chunk loader_**\n\n```\n/chunkloader enable spawn\n```\n\n**Configuration**\n\nThe plugin creates a `config.yml` file in `plugins/ChunkLoader/` with the following options:\n\n```yaml\nsettings:\n  debug: false\n  auto-save-interval: 5\n\nmessages:\n  prefix: \"&6[ChunkLoader]&r \"\n  no-permission: \"&cYou don't have permission to do that.\"\n  reload-success: \"&aPlugin reloaded successfully!\"\n```\n\n**Data Storage**\n\nChunk loader data is stored in `plugins/ChunkLoader/data.yml` and persists across server restarts. The plugin automatically saves when:\n- A chunk loader is created\n- A chunk loader is removed\n- The server shuts down\n\n**Requirements**\n\n- Paper 1.21+ or Spigot 1.21+ (or compatible forks)\n- WorldEdit (optional, for selection-based loading)\n\n**How It Works**\n\nThe plugin uses Minecraft's chunk ticket system to keep chunks loaded:\n- `addPluginChunkTicket()` - Registers the plugin's interest in a chunk\n- `setForceLoaded(true)` - Ensures the chunk stays loaded\n\nChunks remain loaded even when no players are nearby, making this perfect for farms, redstone contraptions, or any automated systems.\n\n**License**\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 540,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

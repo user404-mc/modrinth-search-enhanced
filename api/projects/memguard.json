@@ -1,0 +1,39 @@
+{
+  "id": "4pERD9rc",
+  "slug": "memguard",
+  "title": "MemGuard",
+  "description": "Reduces RAM usage in large modpacks and servers by caching NBT strings, monitoring memory usage, and triggering garbage collection at optimal times.",
+  "body": "# MemGuard\n\n> Lean memory behavior for long Minecraft sessions.\n\nMemGuard is a lightweight utility mod for **Fabric / Forge / NeoForge** (Minecraft **1.21.1**) focused on reducing avoidable allocations and making memory pressure easier to observe.\n\n## What MemGuard does\n\n### 1. Reuses repeated short NBT strings\n- Hook: `NbtString.of(...)`\n- Repeated short values are reused through an LRU cache (up to 2048 entries).\n- This reduces duplicate object allocations for common IDs/tags in larger modpacks.\n\n### 2. Logs periodic heap snapshots\n- Heap usage is sampled from server tick context.\n- Warning logs are emitted when configured usage thresholds are exceeded.\n- Intended for visibility and troubleshooting, not as a direct performance claim.\n\n### 3. Tracks texture-atlas lifecycle (client)\n- On atlas upload completion, MemGuard logs heap-used values in debug context.\n- This helps correlate load phases with memory behavior.\n\n## Technical notes\n- Uses mixin hooks for targeted behavior (`NbtCacheMixin`, `ServerChunkManagerMixin` / `ChunkCacheMixin`, `TextureCacheMixin`).\n- No native code, no unsafe memory access.\n- `System.gc()` is **not** used to force garbage collection.\n\n## Important accuracy notes\n- MemGuard does **not** guarantee fixed FPS/MSPT/MB improvements.\n- Real impact depends on modpack size, entity/world state, JVM vendor/flags, and session length.\n- Expected benefit is typically higher in medium/large packs with repeated NBT patterns.\n\n## Reproducible evaluation (recommended)\nTo evaluate MemGuard for your own setup, compare baseline vs. MemGuard under identical conditions:\n\n1. Same Java version, JVM args, mod list, world seed, and config.\n2. Same runtime window (recommended: 30-60 minutes per run).\n3. At least 3 baseline runs + 3 MemGuard runs.\n4. Collect comparable metrics:\n- p50/p95 MSPT (`spark` or similar)\n- heap usage trend from logs\n- allocation/GC event data (JFR or similar)\n5. Compare distributions (median/p95), not single spikes.\n\n## Installation\n\n### Fabric\n1. Install Fabric Loader (`0.16+`)\n2. Install Fabric API\n3. Place MemGuard jar in `mods/`\n\n### Forge / NeoForge\n1. Install the matching loader for your Minecraft version\n2. Place MemGuard jar in `mods/`\n\n## Compatibility\n- Designed to work alongside common optimization mods.\n- As with any mixin-based mod, test your exact modpack before production deployment.",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 9503,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

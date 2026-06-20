@@ -1,0 +1,39 @@
+{
+  "id": "ADOWEE0o",
+  "slug": "ban-on-death",
+  "title": "Ban on Death",
+  "description": "This plugin bans players on their death for short amount of time.",
+  "body": "# BanPlayerOnDeath\n\nA Spigot plugin that bans players for a configurable duration upon death, announces death coordinates, and automatically unbans them when the time expires.\n\n## Installation\n\n1. **Download or build** the `PALATA_BanPlayerOnDeath.jar` (located in the [PALATA repository](https://github.com/ButterDevelop/PALATA_MinecraftSpigotPlugins/tree/main/PALATA_BanPlayerOnDeath)).  \n2. **Place** the JAR into your server’s `plugins/` folder.  \n3. **Restart** (or `/reload`) your server. A default `config.yml` will be generated under `plugins/PALATA_BanPlayerOnDeath/`.\n\n## Configuration\n\nEdit `plugins/PALATA_BanPlayerOnDeath/config.yml` to suit your server:\n\n    # Enable or disable the DeathBan system\n    isEnabled: false\n\n    # Ban duration in minutes after death\n    minutesToBan: 30\n\n    # (Internal) Timestamp when DeathBan will auto-enable\n    schedule:\n      enableAt: 0\n\n    # (Internal) Map of banned players (UUID → unban timestamp)\n    bannedPlayers: {}\n\nKeys explained:\n- `isEnabled` — toggles the system on/off.\n- `minutesToBan` — how long (in minutes) a player stays banned after dying.\n\n## Commands\n\n_All commands require operator (OP) status._\n\n    /deathban on\n    /deathban off\n    /deathban info\n    /deathban schedule <minutes>\n    /deathban unban <player>\n\n- **`/deathban on`** — enable automatic bans on death  \n- **`/deathban off`** — disable the system  \n- **`/deathban info`** — display whether DeathBan is currently on or off  \n- **`/deathban schedule <minutes>`** — schedule DeathBan to turn on after `<minutes>`; broadcasts warnings at 1 hour and 30 minutes beforehand  \n- **`/deathban unban <player>`** — manually lift a player’s ban before it expires  \n\n## How It Works\n\n1. **On player death** (when enabled):  \n    - Records `banUntil = now + minutesToBan` in `bannedPlayers`.  \n    - Sends a death message and kicks the player after 10 seconds, showing their ban duration and death coordinates.  \n2. **On player join**:  \n    - If `banUntil > now`, immediately kicks them with the remaining ban time.  \n    - If `banUntil ≤ now`, removes their entry and allows login.\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 483,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "K3JdKc3w",
+  "slug": "invalidplayerbypasslist",
+  "title": "InvalidPlayerBypassList",
+  "description": "InvalidPlayerBypassList allows specific players - added to a configurable bypass list - to join a server even when online-mode is set to true, without passing Mojang authentication.",
+  "body": "## Goal\n\n**InvalidPlayerBypassList** allows specific players to join a Minecraft server even when the server is in **online mode**, regardless of Mojang authentication.\nThis is particularly useful for private testing, LAN setups, or fallback scenarios where certain usernames (and optionally IPs) should be allowed to bypass authentication checks.\n\nThis mod works **only** if the server is in `online-mode=true`, and it will intercept login attempts and allow access if the player's name and IP match entries in a configurable bypass list.\n\n## How It Works\n\nWhen a player tries to join the server, the mod checks if they are present in the bypass list. This list is defined by pairs of:\n\n* **Username**\n* **Optional IP address**\n\nIf IP enforcement is enabled via config, the player must match both the name and IP. Otherwise, just the name is sufficient if `\"none\"` is specified.\n\n## Commands\n\nYou can manage the bypass list directly using Minecraft server commands:\n\n### `/bypasslist add <player> [ip]`\n\n* Adds a player (with optional IP) to the bypass list.\n* If IP checking is enabled, the IP must be provided.\n\n### `/bypasslist remove <player> [ip]`\n\n* Removes a specific player from the bypass list.\n* If the IP is not provided, all entries for the player will be removed.\n\n### `/bypasslist list`\n\n* Lists all current entries in the bypass list with their associated IPs.\n\n### `/bypasslist on`\n\n* Enables the bypass list at runtime.\n\n### `/bypasslist off`\n\n* Disables the bypass list at runtime.\n\n> All commands require a permission level of `2` or higher (e.g., server operators).\n\n## Config\n\nConfiguration can be found under `invalidplayerbypasslist.properties` and includes the following settings:\n\n| Property             | Description                                                                | Type    | Default |\n| -------------------- | -------------------------------------------------------------------------- | ------- | ------- |\n| `ip-required`        | If true, players must match both username and IP to bypass authentication. | boolean | true    |\n| `enforce-bypasslist` | If true, the bypass list is active on server startup.                      | boolean | true    |\n\n## Use Cases\n\nThis mod is ideal for:\n\n* Whitelisted development environments\n* Testing servers with known usernames/IPs\n* Offline access fallback while still in `online-mode`\n* Controlled security bypass for known players\n\n## Reporting Issues\n\nIf you find a bug or want to request a feature:\n\n1. Go to the [Issues](https://github.com/TheMisterFish/Fabric_InvalidPlayerBypassList/issues) tab of the repository.\n2. Click **New Issue**.\n3. Use the appropriate template (Bug Report or Feature Request).\n4. Fill in all relevant details.\n5. Submit the issue.",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1047,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

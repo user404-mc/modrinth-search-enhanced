@@ -1,0 +1,29 @@
+{
+  "id": "zsc6s5fX",
+  "slug": "timeformatter",
+  "title": "Time Formatter",
+  "description": "A client-side mod which formats Discord Timestamps to your local time.",
+  "body": "# TimeFormatter\n\n[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)\n\nA simple client-side Minecraft mod that automatically finds and formats Discord-style timestamps in chat, converting them to your local time.\n\n## Features\n\n-   **Client-Side Only**: No server-side installation is required. It works on any server you join. The formatting works only with the mod installed.\n-   **Automatic Formatting**: Detects timestamps like `<t:1672531200>` in chat messages.\n-   **Literal Sending** (not timezone aware): If a timestamp like `<<t:1672531200>>` is sent in the chat, it will get replaced by a matching literal assuming it won't overflow the 256 character limit, thus visible to everyone.\n-   **Local Time Conversion**: All timestamps are converted and displayed in your computer's local time zone.\n-   **Multiple Formats**: Supports all of Discord's standard timestamp formatting styles.\n-   **Relative Time**: Can display time relatively, such as \"5 minutes ago\" or \"in 2 hours\".\n\n## How It Works\n\nThe mod checks incoming chat messages for timestamps like `<t:TIMESTAMP:STYLE>` (or `<<t:TIMESTAMP:STYLE>>`).\n\n-   `TIMESTAMP`: A Unix timestamp (in seconds). You can also use the special values `yesterday`, `now` and `tomorrow` to represent the respective time.\n-   `STYLE`: An optional single character that controls the output format. If you don't provide a style, it defaults to `f` (Short Date/Time).\n\n### Supported Styles\n\n| Style | Example Output                       | Description               |\n|:-----:|:-------------------------------------|:--------------------------|\n|  `t`  | `14:30`                              | Short Time                |\n|  `T`  | `14:30:00`                           | Long Time                 |\n|  `d`  | `31/12/2023`                         | Short Date                |\n|  `D`  | `December 31, 2023`                  | Long Date                 |\n|  `f`  | `December 31, 2023 at 14:30`         | Short Date/Time (Default) |\n|  `F`  | `Sunday, December 31, 2023 at 14:30` | Long Date/Time            |\n|  `R`  | `5 minutes ago`                      | Relative Time             |\n\n### Example\n\nIf another player let's say in the UTC timezone sends the following message in chat:\n> `The server event will start at <t:1704067200:F>.`\n\nAnd you're in the GMT+1 timezone, you'll see:\n> `The server event will start at Monday, January 1, 2024 at 01:00.`\n\n\nHowever, if the player in UTC sends this message in chat:\n> `My date and time is <<t:1704067200:F>>.`\n\nEveryone (even players without this mod) will see this:\n> `The server event will start at Monday, January 1, 2024 at 01:00.`\n\n## Installation\n\nThis is a Fabric mod and requires the [Fabric API](https://modrinth.com/mod/fabric-api).\n\n1.  Download the latest version.\n2.  Place the downloaded `.jar` file into your `.minecraft/mods` folder.\n3.  Launch the game using the Fabric Loader.\n\n## Building from Source\n\n1.  Clone the repository: `git clone https://github.com/m3z0id/TimeFormatter.git`\n2.  Navigate into the project directory: `cd TimeFormatter`\n3.  Build the project using Gradle: `./gradlew build -Pmc=<Minecraft Version> -Pyarn=<Yarn Version> -Papi=<Fabric API Version> -Padventure=<Koryo Adventure Fabric Version>`\n4.  The compiled `.jar` file will be located in the `build/libs/` directory.\n\n## License\n\nThis project is licensed under the MIT License. See the `LICENSE` file for more details.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 779,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

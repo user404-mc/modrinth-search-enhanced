@@ -1,0 +1,35 @@
+{
+  "id": "c3onkd5k",
+  "slug": "asyncparticles",
+  "title": "AsyncParticles",
+  "description": "Async particle tick, GPU accelerated particle rendering.",
+  "body": "# AsyncParticles\n\n- It will remain in the beta stage in the future to alert potential mod conflict issues.\n  - Not yet compatible with Particle Core.\n- Now compatible with Valkyrien Skies v2.4.\n- Now support for GPU acceleration.(v20.1.0a+)  \nFill 1331 campfires (16,000+ particles, you can change the limit via config screen):  \nTested on: Ultra5 225H + RTX 5060 Laptop.\n![Frame rate with 1331 campfires(16,000+ particles).](https://cdn.modrinth.com/data/cached_images/e26a785ff93ef8bc62bd85e1e83d3ab1e356d4d7_0.webp)\n- Create contraptions can now block vanilla weather.(v20.1.0a+)\n![A Create contraption blocking vanilla weather.](https://cdn.modrinth.com/data/cached_images/008340e89131315763916ecbe5bcc7379467df4a_0.webp)\n## Configuration\n### Settings can be accessed via the ModList/ModMenu.\n\n## Troubleshooting\n\n### Crash with C2ME\n- Set `enforceSafeWorldRandomAccess = \"false\"` in `c2me.toml`\n  - Only set this if you are experiencing crashes.\n\n### Crash with LodestoneLib\n- Set `buffer_particles = false` in `lodestone-client.toml`.\n\n### Crashes related to `ClassInstanceMultiMap` or `Level.getEntities(...)`\n- Please share the logs or crash report on the GitHub issue.\n- As a workaround, enable the option:  \n  `Mixin` → `Make 'ClassInstanceMultiMap' Thread-Safe`\n\n### Crashes related to `Level.getBlockEntity(...)`\n- Please share the logs or crash report on the GitHub issue.\n- As a workaround, enable the option:  \n  `Mixin` → `Make 'LevelChunk#blockEntities' Thread-Safe`\n\n### ConcurrentModificationException\n\n#### The Most Common Cause  \nThis exception typically occurs when particle rendering and ticking concurrently access the same **thread-unsafe container**.\n\n#### How to Fix  \n- Add the fully qualified particle class names to both `particle$lockProvider` and `particle$lockRequired` in the mod's Mixin settings.  \n  [See the configuration guide for details](https://github.com/Harveykang/AsyncParticles/wiki/Mixin-Configuration)\n\n> **Note**: This enables fine-grained locking for specific particle types, allowing safe asynchronous execution between the `tick()` and `render()` methods.\n\n#### Other Potential Causes  \nStarting in **vX.4.0**, the default particle rendering mode has been changed to `SYNCHRONOUSLY` to prevent rare `ConcurrentModificationExceptions` when used with mods that access external thread-unsafe containers (e.g., global maps or lists) during particle rendering.\n\n- If you're using an older version (**≤ vX.3.0**), consider manually setting the mode to `SYNCHRONOUSLY` in the config screen for improved stability.\n- **For modpack authors**: If you’d like to test whether `FASTEST` provides a noticeable FPS boost in your setup, you can switch to it in the config screen—**but use with caution**, as it may trigger crashes with incompatible mods.\n\n### Need Help?  \nIf you’re unsure how to identify or fix the issue, please open a [GitHub Issue](https://github.com/Harveykang/AsyncParticles/issues) or start a [Discussion](https://github.com/Harveykang/AsyncParticles/discussions).\n\n- In version x.4.0, changed the default particle rendering mode to `SYNCHRONOUSLY` to avoid rare and confusing `ConcurrentModificationException`s when used with certain mods.\n  - If you're still using an older version (≤ x.3.0), you may want to manually set it to `SYNCHRONOUSLY` in the config screen.\n  - If you're a modpack author or want to test whether a different rendering mode (e.g., `ASYNCHRONOUSLY`) provides a noticeable FPS boost in your modpack, you can manually select another enum value in the config screen—use with caution.\n\n## Features\n- Flexible mixin options.\n- Minecraft\n  - Particle culling.\n  - GPU particle acceleration(v20.1+ only).\n  - Async particle tick&rendering.\n  - Async particle light cache.\n  - Delayed texture tick by one frame to reduce client tick duration.\n  - Async rain&snow tick&rendering(buffer filling). (currently only supported in MC1.21.5+)\n- Create\n  - Contraptions now block vanilla rains(v20.1+ only).\n- Valkyrien Skies/Create\n  - Particles can now collide with ships/contraptions.\n- Valkyrien Skies/Create + Simple Weather/Pretty Rain/Particle Rain\n  - Modded weather particles can now collide with ships/contraptions.\n\n## Mods Recommended\n\n- ModernFix\n- Sodium/Embeddium\n- Flerovium\n- Startlight/ScalableLux\n\n## Mod Compatability\n\n### ✅ Compatible (Proactively)\n\n- Sodium/Embeddium\n- Flerovium\n- Iris/Oculus\n- Create\n- Create: Aeronautics\n- Valkyrien Skies\n- Particle Rain\n- Simple Weather\n- ...\n\n### ❌ Incompatible\n- OptiFine\n- MadParticle\n- Particle Core\n\n## Credits\n\n- [MixinSquared](https://github.com/Bawnorton/MixinSquared)\n- [MixinExtras](https://github.com/LlamaLad7/MixinExtras)\n- [MixinConstraints](https://github.com/Moulberry/MixinConstraints)\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 4403526,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

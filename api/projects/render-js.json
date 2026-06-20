@@ -1,0 +1,20 @@
+{
+  "id": "VSqEtwNR",
+  "slug": "render-js",
+  "title": "Render.js",
+  "description": "Allow to use KubeJs customize world rendering.",
+  "body": "Due to the simplicity of painter API, I have developed this mod that allows you to customize world rendering.\n\n## How to use\n\n```js\n// Similar to the painter API, register a RenderObject before rendering.\nClientEvents.loggedIn(event => {\n    RenderObjectManager.register({\n        example_triangle: {\n            type: \"triangles\",\n            r: 128,\n            g: 255,\n            b: 29,\n            a: 150,\n            vertices: [\n                -0.120, 0.00, 0.001,\n                0.0000, 0.20, 0.001,\n                0.1200, 0.00, 0.001,\n                -0.064, 0.03, 0.000,\n                0.0000, 0.14, 0.000,\n                0.0640, 0.03, 0.000\n            ],\n            options: {\n                blend: true,\n                depth_test: true,\n                cull: false,\n                billboard: \"center\"\n            }\n        }\n    })\n})\n\n// And then, you can render it on event.\n\nRenderEntityEvents.afterRender(event => {\n    let h = event.getEntity().getBbHeight(); // entity's height\n    event.renderWithOffset(\"example_triangle\", [0.0, h + 0.2, 0.0]); // render it with offset\n});\n\n// Now, you can see that each entity has a triangle on its head!\n\n```\n\nCurrently supported events:\n1. After World Render Event:\n```js\nRenderLevelEvents.afterSolidBlockRender(event => {\n    // do something\n});\n```\n\n2. After/Before Living Entity Render Event:\n```js\nRenderEntityEvents.beforeRender(event => {\n    // do something\n});\n\nRenderEntityEvents.afterRender(event => {\n    // do something\n});\n```\n\nYou can give me suggestions in Github Issues or the comment!",
+  "categories": [
+    "forge",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 949,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

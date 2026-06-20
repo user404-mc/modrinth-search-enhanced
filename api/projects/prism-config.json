@@ -1,0 +1,43 @@
+{
+  "id": "FM8gIQ3R",
+  "slug": "prism-config",
+  "title": "Prism Config",
+  "description": "A lightweight config library for Java to let you write your config elegantly and flexibly. Theoretically standalone from any loaders.",
+  "body": "<div align=\"center\">\n\n<img alt=\"Icon\" src=\"https://github.com/Prismwork/PrismConfig/raw/main/arts/prismconfig_title_lowheight.png\" height=\"250\" width=\"960\">\n\n![java8](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/cozy/built-with/java8_vector.svg)\n![gradle](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/cozy/built-with/gradle_vector.svg)\n[![Release](https://img.shields.io/github/v/release/Prismwork/PrismConfig?style=for-the-badge&include_prereleases&sort=semver)][releases]\n\nA lightweight config library for Java to let you write your config elegantly and flexibly.\n\n</div>\n\n### Getting Started\n\nFor users, Prism Config can be installed as a Fabric mod natively as it includes a `fabric.mod.json`, but it is mostly for JiJ, and the mod itself is actually just a normal Java library, so it can theoretically run on any Minecraft version with any loader. However, support for specific mods, like Mod Menu, is planned.\n\nFor developers, to add Prism Config to your project, you need to add following into your `build.gradle(.kts)`:\n\nGroovy DSL:\n```groovy\nrepositories {\n    // ...\n    maven {\n        name = \"Nova Committee - Release\"\n        url = \"https://maven.nova-committee.cn/releases/\"\n    }\n    maven {\n        name = \"Nova Committee - Snapshot\"\n        url = \"https://maven.nova-committee.cn/snapshots/\"\n    }\n}\n\ndependencies {\n    // ...\n    implementation \"io.github.prismwork:prismconfig:0.2.0:all\"\n    // Or use the slim jar if you have the libraries included in your project (Gson, Jankson...)\n    // implementation \"io.github.prismwork:prismconfig:0.2.0\"\n}\n```\n\nKotlin DSL:\n```kotlin\nrepositories {\n    // ...\n    maven {\n        name = \"Nova Committee - Release\"\n        url = uri(\"https://maven.nova-committee.cn/releases/\")\n    }\n    maven {\n        name = \"Nova Committee - Snapshot\"\n        url = uri(\"https://maven.nova-committee.cn/snapshots/\")\n    }\n}\n\ndependencies {\n    // ...\n    implementation(\"io.github.prismwork:prismconfig:0.2.0:all\")\n    // Or use the slim jar if you have the libraries included in your project (Gson, Jankson...)\n    // implementation(\"io.github.prismwork:prismconfig:0.2.0\")\n}\n```\n\nPrism Config by default provides serializers and deserializers for JSON (Gson), JSON5 (Jankson) and TOML 0.4.0 (toml4j).\n\nTo parse a config from string into object, you can do this:\n\n```java\nString content;\nMyConfig config = PrismConfig.getInstance().serialize(\n        MyConfig.class,\n        content,\n        DefaultSerializers.getInstance().json5(MyConfig.class) // We assume that your config is written in JSON5\n);\n```\n\nTo parse a config from object into string, you can do this:\n\n```java\nMyConfig content;\nString config = PrismConfig.getInstance().deserialize(\n        MyConfig.class,\n        content,\n        DefaultDeserializers.getInstance().json5(MyConfig.class) // We assume that your config is written in JSON5\n);\n```\n\nYou can also write it to a file:\n\n```java\nMyConfig content;\nFile configFile;\nPrismConfig.getInstance().deserializeAndWrite(\n        MyConfig.class,\n        content,\n        DefaultDeserializers.getInstance().json5(MyConfig.class), // We assume that your config is written in JSON5\n        configFile\n);\n```\n\nTo write your own serializer/deserializer, you can use the following code (we use serializing as an example):\n\n```java\nString content;\nPrismConfig.getInstance().serialize(\n        MyConfig.class,\n        content,\n        (string) -> {\n            // Do your own parsing here\n        }\n);\n```\n\n### Libraries Used\n\n* [Jankson](https://github.com/falkreon/Jankson) by falkreon, licensed under MIT.\n* [Gson](https://github.com/google/gson) by Google, licensed under Apache-2.0.\n* [toml4j](https://github.com/mwanji/toml4j) by Moandji Ezana, licensed under MIT.\n\n[releases]: https://github.com/Prismwork/PrismConfig/releases\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 498,
+  "followers": 0,
+  "game_versions": [
+    "1.14",
+    "1.14.1",
+    "1.14.2",
+    "1.14.3",
+    "1.14.4",
+    "1.15",
+    "1.15.1",
+    "1.15.2",
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3"
+  ],
+  "date_updated": null
+}

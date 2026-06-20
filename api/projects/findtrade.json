@@ -1,0 +1,33 @@
+{
+  "id": "LxHAW5v2",
+  "slug": "findtrade",
+  "title": "FindTrade",
+  "description": "Plugin to locate enchanted book trades",
+  "body": "# FindTrade\n\nA Minecraft plugin for finding villagers with specific enchantment trades using visual particle guidance.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/Sbt-IjB3o1A\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## Features\n\n- **Enchantment Search**: Find nearby villagers selling specific enchantment books\n- **Pathfinding**: Realistic walkable path visualization using the [pathetic-bukkit](https://github.com/bsommerfeld/pathetic-bukkit) library\n- **Region Management**: Define regions to identify villager locations easily\n- **Interactive TUI**: Text-based user interface for search results and region management\n- **Customizable Particles**: Configure multiple particle types for pillar and path effects\n\n## Commands\n\n### `/findtrade search <enchantment>`\nSearch for nearby villagers offering a specific enchantment book.\n\n- Displays results in an interactive TUI\n- Click on a result to show particle effects guiding you to the villager\n- Shows region name if the villager is within a defined region\n\n### `/findtrade region`\nOpens the region management TUI for creating, editing, and deleting regions.\n\n- **Create**: Define a region with a name and coordinates (supports WorldEdit selection)\n- **List**: View all defined regions\n- **Edit**: Modify region name or coordinates\n- **Delete**: Remove a region\n\n**Aliases**: `/ft`\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `findtrade.use` | Use search and view regions | `true` |\n| `findtrade.write` | Create, edit, and delete regions | `op` |\n\n## Configuration\n\nThe configuration file is located at `plugins/FindTrade/config.yml`.\n\n### Particle Effects\n\n```yaml\nparticle-effects:\n  duration: 30  # How long particles are displayed (seconds)\n\n  # Pillar particles above villager location\n  pillar:\n    enabled: true\n    interval: 1\n    particles:\n      - type: \"HAPPY_VILLAGER\"\n        height: 20\n        count: 10\n      - type: \"END_ROD\"\n        height: 20\n        count: 5\n\n  # Path particles between player and villager\n  path:\n    enabled: true\n    use-pathfinding: true  # false = straight line (lower server load)\n    update-interval: 0.1\n    particles:\n      - type: \"END_ROD\"\n        count: 1\n        offset-x: 0.5\n        offset-y: 0.5\n        offset-z: 0.5\n        randomness-x: 0.0\n        randomness-y: 0.0\n        randomness-z: 0.0\n        speed: 0.0\n```\n\n### Pathfinding\n\nThe plugin uses A* pathfinding to show realistic walkable paths. This runs asynchronously and has minimal server impact. If you experience performance issues, set `use-pathfinding: false` to use simple straight-line visualization.\n\n## Localization\n\nLanguage files are located in `plugins/FindTrade/localization/`. Supported languages:\n- English (`en.yml`)\n- Korean (`ko.yml`)\n\n## Dependencies\n\n- **WorldEdit** (optional) - For region selection using WorldEdit wand\n\n## Installation\n\n1. Download the latest release from the releases page\n2. Place the `.jar` file in your server's `plugins` folder\n3. Restart your server\n\n## Changelog\n\n### 0.4.0\n- **Major refactor**: Consolidated commands into `/findtrade`\n- Added A* pathfinding for realistic path visualization (pathetic-bukkit)\n- Added interactive TUI for search results and region management\n- Configurable multiple particle types for pillar and path effects\n- Added particle offset, randomness, and speed settings\n- Improved fallback to straight line when pathfinding fails\n\n### 0.3.0\n- Added EasyVillagerTrade integration with TUI interface\n- Added interactive Text User Interface for enchantment management\n- Enhanced search to include both registered and nearby villagers\n- Added clickable chat messages for better interaction\n\n### 0.2.0\n- Added region-based villager trade management\n- Enhanced `/findvillager` command to search for specific enchantments\n- Added WorldEdit integration for region selection\n\n### 0.1.0\n- Initial release\n- Basic villager trade management\n- Enchantment search functionality\n- Particle effect visualization\n\n## License\n\nThis project is licensed under the MIT License.\n",
+  "categories": [
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 288,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

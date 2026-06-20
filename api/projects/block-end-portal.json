@@ -1,0 +1,35 @@
+{
+  "id": "IVZeE0w4",
+  "slug": "block-end-portal",
+  "title": "Block End Portal",
+  "description": "a plugin for managing access to The End dimension. Allows you to enable/disable the portal, schedule automatic opening/closing, and display portal status to players.",
+  "body": "# EndPortal Plugin - User Guide\n\n## 📖 About the Plugin\n\n**EndPortal** - a plugin for managing access to The End dimension. Allows you to enable/disable the portal, schedule automatic opening/closing, and display portal status to players.\n\n**Version:** 2.0.0 | **Minecraft:** 1.21+ | **Platform:** Paper, Spigot, Purpur, Folia\n\n## 📋 Admin Commands\n\n**Main command:** `/endportal` (aliases: `/ep`, `/portal`)  \n**Permission:** `endportal.admin` (OP only by default)\n\n| Command | Description |\n|---------|-------------|\n| `/endportal on` | Enable the portal |\n| `/endportal off` | Disable the portal |\n| `/endportal toggle` | Toggle portal state |\n| `/endportal status` | Show status and schedule |\n| `/endportal schedule-open <date> <time>` | Schedule opening |\n| `/endportal schedule-close <date> <time>` | Schedule closing |\n| `/endportal cancel` | Cancel all scheduled events |\n| `/endportal reload` | Reload configuration |\n| `/endportal help` | Show help |\n\n### Command Examples:\n```\n/endportal on\n/endportal schedule-open 31.12.2025 20:00\n/endportal schedule-close 01.01.2026 06:00\n/endportal cancel\n```\n\n---\n\n## 👥 Player Commands\n\n**Main command:** `/endcount` (aliases: `/ec`, `/counter`)  \n**Permission:** `endcount.use` (everyone by default)\n\n| Command | Description |\n|---------|-------------|\n| `/endcount` | Toggle counter |\n| `/endcount on` | Enable counter |\n| `/endcount off` | Disable counter |\n| `/endcount status` | Show portal status |\n| `/endcount help` | Show help |\n\n---\n\n## 📅 Date and Time Format\n\n**Format:** `dd.MM.yyyy HH:mm`\n\n**Correct examples:**\n```\n31.12.2025 23:59  ✅\n01.01.2026 00:00  ✅\n15.06.2025 18:30  ✅\n```\n\n**Incorrect examples:**\n```\n31.12.2025 23.59  ❌ (dot instead of colon)\n33.12.2025 19:22  ❌ (December 33rd doesn't exist)\n31-12-2025 23:59  ❌ (dashes instead of dots)\n```\n\n**Important:**\n- Use **dots** in date: `31.12.2025`\n- Use **colon** in time: `20:00`\n- Time in 24-hour format\n- Date and time must be in the future\n\n\n**Examples:**\n```yaml\nmessage: \"&c&lWARNING!\"\nmessage: \"&6[&cEndPortal&6] &fMessage\"\n```\n\n---\n\n## 🔧 Placeholders\n\n| Placeholder | Description | Example |\n|-------------|-------------|---------|\n| `{status}` | Portal status | `Open`, `Closed` |\n| `{time}` | Time until event | `2h 30m 15s` |\n| `{datetime}` | Date and time | `31.12.2025 20:00` |\n| `{minutes}` | Minutes until event | `5` |\n\n---\n\n## 🔑 Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `endportal.admin` | All admin commands | OP |\n| `endcount.use` | Counter commands | Everyone |\n\n**Setup (LuckPerms):**\n```\n/lp group admin permission set endportal.admin true\n```\n\n---\n\n## 💡 Usage Examples\n\n### Holiday Event\n```\n/endportal off\n/endportal schedule-open 31.12.2025 20:00\n/endportal schedule-close 01.01.2026 06:00\n```\n\n### Weekly Access (weekends)\n```\n/endportal schedule-open 27.12.2025 18:00\n/endportal schedule-close 29.12.2025 23:59\n```\n\n### Maintenance\n```\n/endportal off\n# After completion:\n/endportal on\n```\n\n---\n\n## ❓ Common Issues\n\n**Portal works even though it's disabled**\n- Check `block-teleportation: true` in config.yml\n- Use `/endportal reload`\n\n**Error \"Invalid data/time format\"**\n- Check format: `31.12.2025 20:00` (colon!)\n- Day must exist (not 33.12)\n- Time must be in the future\n\n**Counter not displaying**\n- Use `/endcount on`\n- Check `endcount.use` permission\n\n**Scheduled event didn't execute**\n- Check that time was in the future\n- Check server logs\n- Use `/endportal status`\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1407,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

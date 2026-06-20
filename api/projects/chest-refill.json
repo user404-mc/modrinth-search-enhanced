@@ -1,0 +1,34 @@
+{
+  "id": "7DTkFflG",
+  "slug": "chest-refill",
+  "title": "Chest Refill",
+  "description": "ChestRefill is a loot refill and randomization plugin for Minecraft servers. It lets you refill nearby chests and barrels using configurable probabilities, random slot placement, and strict per-container limits. Created by zJuqni",
+  "body": "# ChestRefill\n\nChestRefill is a loot refill and randomization plugin for Minecraft servers (Arclight/Bukkit).  \nIt refills nearby **chests** and **barrels** with configurable **probabilities**, **random slot placement**, strict per-container limits, and support for **modded items** plus **exact chest item copy**.\n\nCompatible with:\n- Arclight 1.21.1 (Bukkit/Spigot API)\n\n## What it does\n- Scans **loaded blocks only** around the player in a range.\n- Finds containers:\n- Chests (single + double)\n- Trapped chests\n- Barrels\n- Refills each container from a config loot pool:\n- Weighted chance per entry (`chancePercent`)\n- Random slot placement (not sequential)\n- Supports:\n- `itemsPerContainer` (separate chest/barrel)\n- `maxPerItemPerContainer` (default + overrides)\n- `allowDuplicates`\n- `clearBeforeRefill` (fresh refill) or fill only empty slots\n- Optional random amount per stack (`amountMin/amountMax` or global min/max)\n\n## New features\n- **Modded item support**:\n- Use namespaced ids like `modid:item_name` in `loot` and `lootMap`.\n- Unknown/invalid ids are skipped safely with console warnings.\n- **Exact chest item copy (`/savechest`)**:\n- Command: `/savechest <x> <y> <z>`\n- Reads that container and saves non-empty slots into `savedItems` in config.\n- Preserves exact `ItemStack` data (meta/lore/enchants/custom NBT data carried by stack serialization).\n- Slot index is **1-based** (first slot = 1, fourth slot = 4).\n- You can reference saved slots directly in loot:\n- `item: 4`\n- `savedSlot: 32`\n- `item: saved:32`\n- Also supported in `lootMap`:\n- `4: 25`\n- `saved:32: 10`\n\n## Commands\n- `/chestrefill <range>`: Refill nearby containers in range.\n- `/chestrefill reload`: Reload config safely.\n- `/savechest <x> <y> <z>`: Save exact container contents by slot into `savedItems`.\n\n## Permissions\n- `chestrefill.use`: use `/chestrefill <range>`\n- `chestrefill.admin`: use `/chestrefill reload` and `/savechest`\n\n## Important limits\n- Does not scan the whole world.\n- Does not force-load chunks.\n- Scans only loaded chunks to reduce lag.\n- Runs in batched scheduled ticks to avoid freezing.\n- Loot output varies per run due to weighted random + limits.\n\n## Requirements\n- Arclight server with Bukkit/Spigot plugin support.\n- Java 21.\n- No client mod required.\n\n---\n\n# ChestRefill\n\nChestRefill es un plugin de refill de loot y aleatorización para servidores Minecraft (Arclight/Bukkit).  \nRellena **cofres** y **barriles** cercanos con **probabilidades configurables**, **slots aleatorios**, límites estrictos por contenedor, y soporte para **ítems de mods** + **copiado exacto de cofre**.\n\nCompatible con:\n- Arclight 1.21.1 (API Bukkit/Spigot)\n\n## ¿Qué hace?\n- Escanea solo **bloques cargados** alrededor del jugador.\n- Encuentra contenedores:\n- Cofres (simples + dobles)\n- Cofres trampa\n- Barriles\n- Rellena cada contenedor desde un loot pool en config:\n- Probabilidad ponderada por entrada (`chancePercent`)\n- Colocación en slots aleatorios (no secuencial)\n- Soporta:\n- `itemsPerContainer` (separado cofre/barril)\n- `maxPerItemPerContainer` (default + overrides)\n- `allowDuplicates`\n- `clearBeforeRefill` (vaciar y refill fresh) o solo slots vacíos\n- Cantidades aleatorias por stack (`amountMin/amountMax` o min/max global)\n\n## Novedades\n- **Soporte de ítems modded**:\n- Puedes usar ids con namespace como `modid:item_name` en `loot` y `lootMap`.\n- Si un id no existe, se ignora sin crashear y se muestra warning en consola.\n- **Copia exacta de ítems de cofre (`/savechest`)**:\n- Comando: `/savechest <x> <y> <z>`\n- Lee el contenedor y guarda los slots no vacíos en `savedItems` dentro de la config.\n- Conserva el `ItemStack` exacto (meta/lore/enchants/NBT personalizado serializable).\n- Los slots son **1-based** (primer slot = 1, cuarto slot = 4).\n- Puedes referenciar esos slots guardados en loot:\n- `item: 4`\n- `savedSlot: 32`\n- `item: saved:32`\n- También en `lootMap`:\n- `4: 25`\n- `saved:32: 10`\n\n## Comandos\n- `/chestrefill <rango>`: rellena contenedores cercanos.\n- `/chestrefill reload`: recarga config de forma segura.\n- `/savechest <x> <y> <z>`: guarda el contenido exacto del contenedor por slot en `savedItems`.\n\n## Permisos\n- `chestrefill.use`: usar `/chestrefill <rango>`\n- `chestrefill.admin`: usar `/chestrefill reload` y `/savechest`\n\n## Límites importantes\n- No escanea el mundo completo.\n- No fuerza carga de chunks.\n- Solo escanea chunks ya cargados para minimizar lag.\n- Usa escaneo por lotes por tick para evitar congelar el servidor.\n- El loot varía según probabilidad ponderada y límites configurados.\n\n## Requisitos\n- Servidor Arclight con soporte Bukkit/Spigot.\n- Java 21.\n- No requiere mod en cliente.\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 205,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "fylxngrk",
+  "slug": "wayland-fixes",
+  "title": "wayland-fixes",
+  "description": "Fix/work around wayland bugs on modern versions. Sibling mod to legacy-lwjgl3.",
+  "body": "# Minecraft & Wayland\n\nOther mods already promise to run the game on wayland natively, yet they also tell you that for example you are going to loose the window icon. This mod doesn't, you won't have to miss out on anything!\n\nThis is a sibling mod to [legacy-lwjgl3](https://modrinth.com/mod/moehreag-legacy-lwjgl3) and more or less does the same things in terms of wayland compatibility, just on very different versions of the game. All sections in its description regarding this also apply to this mod.\n\n> If you are running the game inside a sandbox, e.g. by using a launcher packaged as a flatpak, make sure to allow the paths listed below to be accessed for this mod to function correctly!\n\n<details>\n<summary>Accesses Paths & Programs and why</summary>\n\nThis part is mostly copied from the previously mentioned mod since it also applies here.\n\n### Features\n\n- Injects a .desktop file and the icon in the correct locations for them to function correctly\n- Loads & Displays a virtual cursor on in-game screens to support setting the cursor position\n\n### Properties\n\n- `virtual_mouse.export` may be passed as `true` to export the loaded cursor to a `cursors` directory in the instance folder. It will contain all images contained in the cursor as well as all metadata. It will also create a human-readable metadata file for each image, and a `cursor.cursor` file in the cursor config format. This file may be used to generate a new X11 cursor out of the images with the `xcursorgen` program.\n\n### Accessed Paths\n- `$HOME/.local/share/applications/com.mojang.minecraft.desktop` (write)\n- `$HOME/.local/share/icons/hicolor/apps/{16x16, 32x32}/minecraft.png` (write)\n- `$HOME/.local/share/icons/<theme>/cursors/left_ptr` (read only)\n- `$HOME/.icons/<theme>/cursors/left_ptr` (read only)\n- `/usr/share/icons/<theme>/cursors/left_ptr` (read only)\n\n### Accessed Programs\n- `xdg-icon-resource` (to update the icon system)\n- `gsettings` (to query for cursor theme & size)\n\n</details>\n\n### Credits\n\n- KDE visual design group (the fallback cursor file shipped with the mod is from KDE's breeze cursor theme)\n",
+  "categories": [
+    "fabric",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1536,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

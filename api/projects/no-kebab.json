@@ -1,0 +1,34 @@
+{
+  "id": "y82xHklI",
+  "slug": "no-kebab",
+  "title": "No Kebab",
+  "description": "Prevents unknown painting ids from being erased from the world, and offers a way to manually fix them up.",
+  "body": "⚠ As of MC 1.21.5, painting items can no longer hold invalid variants. When using the mod Invariable Paintings, invalid paintings will no longer drop themselves when broken.\n\n# No Kebab\n## Overview\nIn vanilla Minecraft, when a painting is loaded with an ID that doesn't match any existing variant, it will be automatically replaced with another one. No questions asked. If you mess around with data-driven paintings, any error in your datapacks may cause already-placed paintings to be lost upon loading a world.\n\nNo-Kebab serves as a safeguard against that. Invalid paintings will still fall back to a different variant, but they will remember the variant ID that was originally present in their NBT data, and keep that ID when saving the game. The next time you load that world with the correct set of variants installed, those painting will be restored to their original appearance.\n\nTrivia: Prior to MC 1.21, invalid paintings would invariably be reverted to the `minecraft:kebab` variant, hence the mod's name.\n\n## Environment\nCore functionalities are **fully server-side**.\n\nClient-side is required only if the **Missingno Display** feature is enabled, in which case it will be required an _all_ clients.\n\n## Missingno Display\nThis changes the appearence of invalid paintings, making them stand out, and revealing their ID.\n\nBy default, it will be **disabled on dedicated server**, and **enabled on integrated servers** (singleplayer and LAN). \nThis can be toggled in the config file `nokebab.properties`, with the option called `customTracker`. This requires a full restart to take effect.\n\n## Migration\nThe command `/nokebab migrate` can be used to change the variant of existing paintings in bulk. It requires a permisssion level of 3 (Admin).\n\n**This will only change the variant of placed paintings in currently loaded chunks** Paintings in item form or in unloaded chunks will not be affected.\n\nIf a migration would result in a painting no longer being able to fit its wall, this painting will be skipped with an error message.\n\n### Synopsis\n`/nokebab migrate <mode> <source> <destination>`\n\n`<source>` is the variant of paintings that should be migrated. `<destination>` is the variant they will be replaced with. Their specifics vary depending on the mode.\n\n`<mode>` can be either:\n- `literal`, will seek paintings that exactly match the source, and change them all to the same variant.\n- `regex`, allows the use of Regular Expressions, so `<source>` can match multiple variants, and `<destination>` can use substitution variables.\n\nFor example, the command to change the namespace of multiple paintings would be:\n```\n/nokebab migrate regex \"oldspace:(.*)\" \"newspace:$1\"\n```\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 3518,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

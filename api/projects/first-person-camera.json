@@ -1,0 +1,21 @@
+{
+  "id": "GUYPouk6",
+  "slug": "first-person-camera",
+  "title": "First Person Camera",
+  "description": "Natural first person camera transforms with collision detection.",
+  "body": "# 📷 First Person Camera\n\nMoves the first-person camera slightly forward out of your head — and keeps it from clipping through walls.\n\n---\n\n## ✨ What it does\n\nVanilla Minecraft places the camera right inside your skull. This mod pushes it forward a little (0.25 blocks by default), which feels more natural and gives you a slightly wider view of your surroundings.\n\nThe hard part is making sure the camera doesn't end up inside a block. This mod handles that in a few ways:\n\n- **Collision clamping** — if a wall is in the way, the camera pulls back to your eyes rather than clipping through it.\n- **Body nudge on turn** — if rotating would push the camera into a wall, your body is gently nudged aside to make room.\n- **Movement constraint** — your body can't move into a position where the offset camera would be buried in a block.\n- **View bob suppression** — walking bob is smoothly suppressed near walls.\n- **Raycast item correction** — buckets, glass bottles, boats, and place-on-water items use the transformed camera target instead of the vanilla eye ray.\n\nEverything is **client-side only**. For a small set of raycast-based right-click items, the mod adjusts the sent look direction so the server resolves the same target you are actually looking at.\n\n---\n\n## 🤝 First-person Model integration\n\n[First-person Model](https://modrinth.com/mod/first-person-model) renders your full player body visible in first-person — a really cool idea, and part of what inspired this mod. It's strongly recommended alongside First Person Camera.\n\nThe problem with First-person Model on its own is that the body has to be rendered offset from your actual position, otherwise it fills your entire screen the moment you look down. First Person Camera locks those offset values to where the player _actually is_, so the two mods just work together out of the box.\n\nFirst-person Model is **optional**. This mod works perfectly fine without it.\n\n---\n\n## ⚙️ Configuration\n\n`config/first-person-camera.json` is auto-generated on first launch:\n\n```json\n{\n  \"cameraForward\": 0.25\n}\n```\n\n`cameraForward` is the distance in blocks the camera is pushed forward. The default of `0.25` is a good balance between natural feel and collision protection.\n\n---\n\n## ⚠️ Anti-cheat notice\n\nThis mod hasn't been tested against server-side anti-cheat. Most behavior is purely visual/client-side, but raycast-based right-click items may briefly send adjusted look or position packets so the server targets the same block as the transformed camera. Use on servers at your own discretion.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 265,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

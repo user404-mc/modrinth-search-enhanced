@@ -1,0 +1,36 @@
+{
+  "id": "5okZGgjt",
+  "slug": "afklimboconnector",
+  "title": "AfkLimboConnector",
+  "description": "AfkLimboConnector allows you to send AFK players to a specific Limbo Server",
+  "body": "# AFK LIMBO CONNECTOR\n\nIs a minecraft plugin which works with [Velocity](https://papermc.io/downloads/velocity). But it is a [PaperMC](https://papermc.io/downloads/paper) plugin.\n\n**Why does it only work for PaperMC and not Velocity?**\n-> It does need Velocity for the sub-servers but the plugin needs to be on the PaperMC server because Velocity does not have Activity Listeners.\n\n**Features:**\n- kick / move feature when afk\n- warning and action when beeing afk\n- bypass permission\n- config reload command\n- all messages are editable\n- editable timings\n- afk logging in console\n- multi-limbo support (with priority)\n- permission-based limbo system (if enabled)\n- sounds for warning and un-afking (optional, configurable)\n\n**Config:**\n<details>\n<summary>Spoiler</summary>\n\n\n```\n# AfkLimboConnector Configuration\n# Made by DippyCoder\n\n# Time (in seconds) before sending warning\nwarning-time: 40\n\n# Time (in seconds) before executing action (kick or move)\naction-time: 60\n\n# What happens when player is AFK too long? (MOVE or KICK)\naction-type: \"MOVE\"\n\n# ---------------------------------------------------------------------------\n# Multi-Limbo (priority list)\n# ---------------------------------------------------------------------------\n# Servers are tried in order. If the player is still online after\n# limbo-fallback-delay seconds, the next server in the list is tried.\n# You can also keep a single entry if you only have one limbo.\nlimbo-servers:\n  - \"limbo\"\n  #- \"limbo-1\"\n  #- \"limbo-2\"\n\n# How many seconds to wait before trying the next server (default: 5)\nlimbo-fallback-delay: 5\n\n# ---------------------------------------------------------------------------\n# Permission-based limbos\n# ---------------------------------------------------------------------------\n# When enabled, players with a matching permission are sent to a specific\n# server list instead of the default limbo-servers list.\n# Entries are checked top-to-bottom — first match wins.\n# Can be disabled entirely by setting enabled: false.\nperm-limbos:\n  enabled: false\n  entries:\n    - permission: \"afklimbo.vip\"\n      servers:\n        - \"limbo-vip\"\n        - \"limbo\"\n    - permission: \"afklimbo.premium\"\n      servers:\n        - \"limbo-premium\"\n        - \"limbo\"\n\n# ---------------------------------------------------------------------------\n# Sounds\n# ---------------------------------------------------------------------------\nsounds:\n  #Find all sounds at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html\n\n  # Warning sound — plays when the AFK warning message is sent\n  warning:\n    enabled: true\n    sound: \"BLOCK_NOTE_BLOCK_BELL\"\n    volume: 1.0\n    pitch: 1.0\n    # SINGLE: plays once when the warning triggers\n    # CONSTANT: repeats every interval-ticks until the player moves or is sent\n    mode: \"CONSTANT\"\n    # Only used in CONSTANT mode (in ticks, 20 = 1 second)\n    interval-ticks: 3\n\n  # Un-AFK sound — plays when a warned player moves again BEFORE being sent\n  # Does NOT play if the player was already sent to limbo\n  unafk:\n    enabled: true\n    sound: \"BLOCK_LEVER_CLICK\"\n    volume: 1.0\n    pitch: 1.2\n\n# ---------------------------------------------------------------------------\n# Bypass\n# ---------------------------------------------------------------------------\nbypass:\n  enabled: false\n  permission: \"afklimbo.bypass\"\n\n# Should log to console when an action happens?\nlog-actions: true\n\n# ---------------------------------------------------------------------------\n# Messages (§ color codes supported)\n# ---------------------------------------------------------------------------\nmessages:\n  warning: \"§8[§b§lAFK§r§8] §eYou have been inactive! You will be moved to limbo soon.\"\n  timeout: \"§8[§b§lAFK§r§8] §cYou are being moved to limbo...\"\n  move: \"§8[§b§lAFK§r§8] §aYou are no longer AFK.\"\n  kick: \"§8[§b§lAFK§r§8] §cYou were kicked for being AFK too long!\"\n  no-permission: \"§8[§b§lAFK§r§8] §cYou don't have permission to use this command!\"\n  usage: \"§8[§b§lAFK§r§8] §eUsage: /afklimbo reload\"\n  reload: \"§8[§b§lAFK§r§8] §aAfkLimboConnector configuration reloaded!\"\n\n```\n\n\n</details>\n\n",
+  "categories": [
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 125,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

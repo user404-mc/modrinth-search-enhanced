@@ -1,0 +1,31 @@
+{
+  "id": "2woNzXs6",
+  "slug": "minecraft-wrapper",
+  "title": "Minecraft Wrapped",
+  "description": "Spotify Wrapped, but for Minecraft. A cinematic monthly recap of your play time, top blocks, mobs, archetype and more.",
+  "body": "# Minecraft Wrapped\n\n> **Spotify Wrapped, but for Minecraft.** Every 1st of the month, a button appears on your title screen — click it to relive your month with a cinematic animated recap.\n\nA **Fabric client-side mod** for **Minecraft 1.21.11**. Zero server changes, zero account, zero network calls. Your data never leaves your machine.\n\n## Features\n\n### A cinematic monthly recap\n\n12+ animated cards that reveal in sequence, each with its own visual signature:\n\n- **Intro** — the month name fades in with a green accent sweep and dropping letters.\n- **Time Spent** — a clock dial spins toward your total play time.\n- **Longest Session** — your single longest play streak, broken down across sessions in the month.\n- **When You Play** — a 24-bar histogram of your peak hours (night owl? lunch raider?).\n- **Top World** — your most-played world or server, with a traced gold frame and share bar.\n- **Dimensions Explored** — Overworld vs Nether vs End, ranked by ticks.\n- **Social** — players met, messages sent, solo-vs-server split bar.\n- **Distance Covered** — total kilometres + breakdown by walking, elytra, boat, horse, swim, fly.\n- **Top Blocks Mined** — top 3 with real block textures.\n- **Top Mob Killed** — spawn-egg of your most-killed enemy, rotating.\n- **Top Crafted** — top 3 items you crafted.\n- **Death Recap** — your deaths and the most embarrassing cause (or *Perfect Streak* if zero).\n- **Archetype** — drumroll then card flip reveals your personality among 15 archetypes.\n- **Final** — recap tiles + Save Image / Copy / Close buttons.\n\n### Multiplayer-aware\n\nThe mod tracks your time on each server (client-side tick counter + vanilla server stats via REQUEST_STATS), counts unique players you cross paths with, chat messages sent, and servers visited. The recap mixes solo worlds and servers in one timeline — because that's what playing Minecraft actually looks like.\n\n### Image export\n\nHit **Save Image** in the final card and the mod renders a 1080×1920 PNG (story format) into `screenshots/wrapped/`. Or **Copy** to put it directly on your clipboard.\n\n### Smart filtering\n\nThe recap only includes cards that are relevant to your data. Played 5 minutes? Just the basics. Spent 100 hours on three servers and crafted 600 items? You get the full ride.\n\n### Privacy first\n\n- 100% client-side. No telemetry, no analytics, no remote calls.\n- Your data lives in `<game>/wrapped/`. Delete it any time.\n\n## Install\n\n1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for **Minecraft 1.21.11**.\n2. Drop **[Fabric API](https://modrinth.com/mod/fabric-api)** into your `mods/` folder.\n3. Drop the `minecraft-wrapped-*.jar` from the [latest release](https://github.com/Zeffut/minecraft-wrapped/releases) into the same `mods/` folder.\n4. Launch the game.\n\nThe mod runs silently in the background. On the **first day of every month**, when you launch the game, a *Your X Wrapped is ready* button appears on the title screen.\n\n## Commands\n\n| Command | What it does |\n|---|---|\n| `/wrapped` | Replay the latest finalized Wrapped |\n| `/wrapped history` | Browse all your past Wrappeds |\n\n## How it works\n\n- At every game launch, the mod scans `saves/*/stats/<uuid>.json` (your singleplayer worlds), pulls server-side vanilla stats via the `REQUEST_STATS` packet, and aggregates them into a cumulative monthly snapshot at `wrapped/snapshot-YYYY-MM.json`.\n- When the calendar rolls over, the mod computes the delta against last month's snapshot and writes a finalized `wrapped-YYYY-MM.json`.\n- That finalized file drives every card in the sequence.\n\nSide trackers persist in `wrapped/`:\n- `server-play-time.json` — ticks per server you connect to\n- `server-stats.json` — full vanilla stats from servers that respond to REQUEST_STATS\n- `multiplayer-data.json` — UUIDs of players seen, chat counter, commands counter\n- `sessions.json` — start/end timestamps of every session\n- `play-by-hour.json` — ticks per hour of day, per month\n- `play-by-dimension.json` — ticks per dimension, per month\n\n## Build from source\n\n```bash\n./gradlew build\n```\n\nThe jar lands in `build/libs/`.\n\n## Run in dev\n\n```bash\n./gradlew runClient\n```\n\n## License\n\nMIT — see [LICENSE](LICENSE).\n\n---\n\nMade by [Zeffut](https://github.com/Zeffut).\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "quilt",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 181,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

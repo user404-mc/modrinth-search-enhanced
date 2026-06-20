@@ -1,0 +1,23 @@
+{
+  "id": "9LtRWHdC",
+  "slug": "configmobs",
+  "title": "ConfigMobs",
+  "description": "Configure how many vanilla mobs spawn and the conditions of their spawn.",
+  "body": "# ConfigMobs <br> ![Fabric API required for this mod banner.](https://cdn.modrinth.com/data/cached_images/d96e9beaeabbdb44f8e9cb17214f96decc4716b7_0.webp)\n\n**Version 1.0 · Minecraft 26.1**\n\n---\n\nEver wished creepers only spawned at night in deserts? Or that sheep fought back? Or that zombies just... left you alone? **ConfigMobs** gives you full control over how every vanilla mob spawns and behaves through easy to understand config files.\n\n## How It Works\n\nOn first launch, ConfigMobs generates a JSON5 config file for every mob in the game under `config/configmobs/vanilla/`. Each file is pre-filled with that mob's actual vanilla defaults, so nothing changes until you say so.\n\nTo start tweaking a mob, open its config and flip the master switch:\n\n```\nmodConfigEnabled: true\n```\n\nThat's it. Now every setting in that file overrides vanilla behavior for that mob.\n\nThere's also a global kill switch in `config/configmobs/configMobsGeneral.json5`: <br> \n> Set `modEnabled: false` and the entire mod steps aside.\n\n## What You Can Configure\n\n### Spawning\n- **spawn_weight** — How common this mob is relative to others. Higher = more frequent.\n- **min/max_group_size** — How many spawn together in a pack.\n- **max_concurrent_spawns** — The mob cap contribution for this entity type.\n\n### Where They Spawn\n- **biome_whitelist / biome_blacklist** — Control exactly which biomes a mob can (or can't) appear in. Supports biome tags like `#minecraft:is_forest`.\n- **dimensions** — Restrict spawning to specific dimensions.\n- **structures / structure_only_mode** — Lock mobs to specific structures (or just prefer them).\n- **block_filtering** — Whitelist which blocks the mob can spawn on.\n- **min/max_y_level** — Vertical spawn range.\n\n### When They Spawn\n- **day_night_cycle** — `\"day_only\"`, `\"night_only\"`, or `\"both\"`.\n- **min/max_light** — Light level requirements.\n- **min/max_player_distance** — How close (or far) a player needs to be.\n\n### Spawn Rules\n- **spawn_type_whitelist** — Filter by spawn trigger: `\"natural\"`, `\"spawner\"`, `\"structure\"`, `\"reinforcement\"`.\n- **check_collision** — Whether to verify the mob fits before spawning.\n- **ignore_mob_cap** — Let this mob bypass the global cap.\n- **despawn_on_peaceful** — Whether switching to Peaceful removes this mob.\n\n### Behavior\n\n- **burns_in_daylight** — Make any mob burn in sunlight, or stop undead from burning. Want sunburn cows? Go for it.\n\n- **hostile_to_players** — Three modes:\n  - `\"hostile\"` — Actively hunts players on sight.\n  - `\"neutral\"` — Minds its own business until you hit it. Then it's personal.\n  - `\"passive\"` — Won't target players, ever. Peaceful zombies? Sure, why not.\n\n- **attack_damage** — Override how hard a mob hits. Set to `-1` for vanilla default.\n  > If you make a naturally passive mob hostile or neutral, **set this to a positive number** (like `2.0`). Leaving it at `-1` for mobs like sheep or cows will ⚠️ crash ⚠️ the game — they don't have an attack stat by default, and the mod needs a value to give them one.\n\n- **aggressive_towards** — A list of entity IDs this mob will actively hunt. Want wolves that chase creepers? Cows that hunt chickens? An army of skeletons targeting zombies? Just list the targets:\n  ```\n  aggressive_towards: [\"minecraft:chicken\", \"minecraft:creeper\"]\n  ```\n\n## Global Mob Caps\n\nIn the general config (`configMobsGeneral.json5`), you can adjust the global mob caps per category — monster, creature, ambient, water, axolotls, etc. Note that passive mob caps only limit *new* spawns; existing animals don't despawn when you lower the cap.\n\n## Quick Tips\n\n- **Delete a mob's config file** to regenerate it with fresh vanilla defaults on next launch.\n- Enable `debug_spawning: true` on any mob to see detailed spawn-check logs in your game log.\n- Old configs with boolean `hostile_to_players: true/false` still work — they map to `\"hostile\"` and `\"passive\"` automatically.\n- All config files use **JSON5**, so comments and trailing commas are fine.\n- Changes take effect after restarting the game (or using `/configmobs reload`).\n\n---\n\n*ConfigMobs only supports vanilla entities. Modded mobs are not configurable.*",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 151,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

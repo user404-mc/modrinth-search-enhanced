@@ -1,0 +1,20 @@
+{
+  "id": "gyhBkVbb",
+  "slug": "iceandfire-atm-compatibility",
+  "title": "IceAndFire ATM Compatibility",
+  "description": "Fixed compatibility issues of IceAndFire Community Edition on the ATM-10 integration package.",
+  "body": "**Most issues have been fixed in ATM-10 v6.0 and later.**\n\nThis project is open-source under the dual licenses of LGPL-3.0-or-later and 0BSD, and it is free software.\n\n1. Amphitheres are difficult to spawn in \"The Other: Desert\"\nThe main reason is that Ice and Fire hardcoded the spawning logic to only allow spawning on Grass Blocks or Jungle Leaves.\nThe solution is to trigger the hooked logic if the original method returns false; if the block beneath is Sand, it returns true.\n\n2. Dragons do not drop Dragon Bones\nThe reason is that ATM uses the legacy Ice and Fire datapack structure, whereas the Ice and Fire Community Edition rewrote this structure and changed the Dragon Bone item ID.\nThe solution is to register an original datapack function to redirect the logic to the new datapack function, while checking if the item ID is the legacy version and replacing it with the new ID.\n\n3. Siren kill quest from Ice and Fire cannot be completed\nThe reason is that the ATM-10 kill quest incorrectly assigned the entity ID to the Siren from Elemental Craft (an Ars Nouveau extension).\nThe solution is to intercept the quest validation logic via Mixin; when the code detects a quest where the target is an Elemental Craft Siren but the icon is an Ice and Fire Siren, it automatically counts the Ice and Fire Siren kill toward the progress.\n\n4. Other Fixes\n- ATM-10 quests referenced removed legacy texture assets.",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 423,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

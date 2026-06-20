@@ -1,0 +1,31 @@
+{
+  "id": "RT18TcxA",
+  "slug": "neovelocity",
+  "title": "NeoVelocity",
+  "description": "A Compatibility layer that allows velocity proxy modern forwarding on modded neoforge server.",
+  "body": "<img src=\"https://raw.githubusercontent.com/intergrav/devins-badges/d0dd406e1106cd0726bf85743575368e3c4b2f5e/assets/cozy/supported/neoforge_vector.svg\" alt=\"NeoForge Logo\" height=\"60\" />\n\n# NeoVelocity\n\nNeoVelocity enables **Modern Forwarding** support for NeoForge servers running behind a [Velocity proxy](https://papermc.io/software/velocity).\n\nWithout this mod, NeoForge servers behind a proxy often see all players connecting from `127.0.0.1` or fail to validate UUIDs/Skins correctly. This mod implements Velocity's native forwarding protocol to ensure IP addresses, UUIDs, and game profiles are passed correctly to the server.\n\n## Features\n\n*   **Modern Forwarding:** Full support for Velocity's secure forwarding protocol.\n*   **Auto-Reload:** Configuration changes (like updating the secret) apply immediately without restarting the server.\n*   **Sinytra/Fabric Compatibility:** Automatically detects `fabric_networking_api_v1`. If you are running Forgified Fabric API and experience login disconnects, the mod includes a workaround (see `login-custom-packet-catchall` in the config).\n\n## Installation\n\n1.  **Install the Mod**\n    Drop the jar file into your server's `mods` folder.\n\n2.  **Server Properties**\n    You do **not** need to set `online-mode=false` in `server.properties`, as this mod hooks into the login process directly. However, if you run into authentication loops, setting it to `false` is safe since the proxy handles auth.\n\n3.  **First Run**\n    Start the server once to generate the configuration file at `config/neovelocity-common.toml`.\n\n4.  **Configure the Secret**\n    Locate the `forwarding.secret` file in your **Velocity proxy's** root directory. Copy the content and paste it into `config/neovelocity-common.toml` on your NeoForge server.\n    *   *Option A:* Paste the string directly into the config.\n    *   *Option B:* Point the config to a file path containing the secret.\n\n## Configuration & Compatibility\n\n### Large Modpacks (Velocity Config)\nVelocity limits the number of known packs to 64 by default. If your modpack exceeds this limit, players will be disconnected, and your Velocity console will show `QuietDecoderException: too many known packs`.\n\nTo fix this, add the following flag to your **Velocity Proxy's** startup arguments and set the number higher than 64:\n```bash\n-Dvelocity.max-known-packs=64 # Increase this value (try 128 or higher)\n```\n\n### Mod Compatibility (The \"Catch-All\" Setting)\nBy default, NeoVelocity assumes **all** custom login packets are Velocity authentication attempts.\n\nHowever, the **Fabric Networking API** allows mods to send their own custom login packets. To allow these mods to work, you must set `login-custom-packet-catchall = false` in the configuration.\n\n*How it works:*\nWhen set to `false`, NeoVelocity checks the packet's signature first.\n*   **If the secret matches:** NeoVelocity claims the packet and handles the login.\n*   **If the secret does NOT match:** The packet is ignored and passed to other mods.\n\n**Warning:** If your forwarding secret is incorrect while this setting is `false`, NeoVelocity will ignore the Velocity packet. The server will treat it as unknown garbage data and disconnect you with an **\"Incompatible mod detected\"** error in the logs.\n\n### Security Warning\n**Do not expose your NeoForge server port directly to the internet.**\nYou must configure your firewall (iptables/UFW) to only accept connections from your Velocity Proxy's IP address. If the backend port is open, a malicious user could bypass authentication by knowing the forwarding secret.\n\n## Troubleshooting\n\nIf players are kicked during login, check the disconnect message and compare it below.\n\n*   **\"NeoVelocity configuration error. Check server logs.\"**\n    The mod is installed, but you haven't configured the secret yet.\n    *   *Fix:* Open `config/neovelocity-common.toml` and paste your `forwarding.secret`.\n\n*   **\"Unable to verify proxy data integrity.\"**\n    The secret in your Velocity proxy does not match the secret in your NeoForge server config.\n    *   *Fix:* Copy the content of `forwarding.secret` from your proxy again and ensure there are no extra spaces when pasting it into the NeoVelocity config.\n\n*   **\"This server requires you to connect via a Velocity Proxy using Modern Forwarding.\"**\n    The server did not receive any forwarding data.\n    *   *Cause A:* You are trying to connect to the backend server port directly. You must connect through the Proxy IP/Port.\n    *   *Cause B:* Your Velocity `velocity.toml` is set to `player-info-forwarding-mode = \"none\"` or `\"legacy\"`. You must set it to `\"modern\"`.\n\n*   **\"Incompatible mod detected during login handshake.\"**\n    Another mod (usually **Fabric Networking API**) has modified the login packet, causing the signature check to fail.\n    *   *Fix:* Open `config/neovelocity-common.toml` and set `login-custom-packet-catchall = false`.\n    \n## Further Documentation\n\nFor detailed guidance on setting up your proxy, configuring firewalls, and tuning network settings, please refer to the official [Velocity Documentation](https://docs.papermc.io/velocity).\n\n## Contributing\n\nSource code is available on GitHub. If you find a bug or want to suggest support for other proxy protocols, feel free to open an issue or submit a Pull Request.",
+  "categories": [
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5373,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

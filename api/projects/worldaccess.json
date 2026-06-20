@@ -1,0 +1,34 @@
+{
+  "id": "54vGDulq",
+  "slug": "worldaccess",
+  "title": "Datapack Sync",
+  "description": "This mod is intended to let admins remotely make changes to the datapack files on their server.",
+  "body": "**What does it do?**  \nThis mod currently only supports uploading and downloading the datapacks folder to and from the server, though it was originally intended to work for the entire world folder.  \n\n**For what reason would anybody use this?**  \nI made this mod, because a friend of mine had a private creative server and I wanted to do command stuff. Eventually there were too many command blocks for it to be fun to change stuff anymore and for reasons this friend could not give me access to the server files for me to put my commands in a datapack.  \nI could still do it with a datapack, I'd just have to bother my friend every few minutes to upload my datapack to the server. That or keep using the botherful command blocks.  \nSo here is the solution to my dilemma!  \nWhen faced with two bad choices just take option 3! Make a mod to safely allow server admins to update the datapacks folder remotely.  \n\nI guess you could also use it to speed up the process of uploading datapacks to your server, if you use some third party serverhost.  \n\nI recommend using this mod alongside [Basically Restart](https://modrinth.com/mod/basicallyrestart) and [Advanced Backups](https://modrinth.com/mod/advanced-backups).\n\n**How to use the mod?**  \nThis mod requires fabric api, make sure to have it installed.\nIn your minecraft folder (`%appdata%\\.minecraft` by default) there should be a new `fetched_worlds` folder. In here are more folders, named after the IP of the servers from which you have fetched the datapacks (the datapacks folder is part of the world folder).   \n\nThis mod currently has two commands, both of which require permission level 4 by default.  \n- `/worldaccess-push` Uploads your datapacks folder to the server\n- `/worldaccess-pull` Downloads the servers datapacks folder\n\nFrom those descriptions you should already know how to use this mod.  \n\n\n**Config**  \nThe config file of this mod is located in `config/WorldAccess.properties`. It has the following options:\n- `filterFileExtensions` A comma seperated list with file extensions to allow or block depending on filterMode. By default only files that are to be expected in a datapack are listed here.\n- `allowExtensionless` Should files without a file extension pass the file extension filtering step? Must be `true` or `false`, defaults to `true`, as some people may leave notes in these files.\n- `filterMode` Either `whitelist` or `blacklist` no files except those in filterFileExtensions will be let through when in whitelist mode, which is the default.\n- `filterHeaders` A comma seperated list of hexadecimal file headers. Files with these headers will be blocked regardless of the filter mode. By default Windows and Linux executable headers and java class and jar files are on here.\n- `readPermissionLevel` The permission level required to perform a `/worldaccess-pull`. This option has no effect on the client. Defaults to `4`\n- `writePermissionLevel` The permission level required to perform file operations on the server. This option has no effect on the client. Defaults to `4`\n\n\n**What is the worst that can happen?**  \nThis mod makes direct changes to your worldfiles. I recomend you use this alongside [Advanced Backups](https://modrinth.com/plugin/advanced-backups).\n\nI might regret including this section, but... oh well.  \nStarting off with two things that are unlikely to happen in a private server, but still far more likely than the stuff further down: You could do a `/worldaccess-push` and then get timed out, because for example your internet connection is slow or you have a very large datapack.\nThis would result in the server having an incomplete version of the datapack with some files missing. If you were to then reconnect and run `/worldaccess-pull` you would download the incomplete datapack and end up deleting your locally stored copy. Very unfortunate.  \n\nThe other thing that could happen is two or more people uploading datapacks in rapid succession, overriding one of their versions in the process, as there is no such thing as automatic versioning in this mod. To avoid this just don't have multiple people working at the same time and everything should be fine.  \n\nNow we come to spooky scary hackers.  \nDon't give permission level 4 to strangers and you're safe.  \nIf you do end up with someone having write access who wants to harm you then this is the worst they can do:  \n- Upload malware to the server. This mod pervents read/write requests outside your world folder, so no autoruns. Contrary to common belief, having a virus on your device is not actually dangerous, so long as you don't execute it. The default config makes uploading malware in any form that can be executed quite difficult, so running it accedentally is quite unlikely. Not anything to worry about here.\n- Upload lots of big files to use up your disk space, which could cause some janky OS bugs if the server is on your main disk.  \n\n**Issues**  \nShould you encounter any bugs not already listed on the [issue tracker](https://github.com/Mabeeck/World-Access/issues) or find a security vulnerability, please do [report it](https://github.com/Mabeeck/World-Access/issues/new).\nYou may also open an issue, should you want to request for me to add in a feature or port to a specific version.  \nPlease remember: I am doing this in my free time and may not come around to fulfilling your request, but it's worth a try.",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 390,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

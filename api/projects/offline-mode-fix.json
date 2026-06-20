@@ -1,0 +1,41 @@
+{
+  "id": "N8eMBhbr",
+  "slug": "offline-mode-fix",
+  "title": "Offline Mode Fix",
+  "description": "A Fabric mod that fixes chat lag spikes and UI warnings on offline-mode Minecraft servers",
+  "body": "# Offline Mode Fix\n\nA lightweight, plug-and-play Fabric mod that fixes the random chat lag spikes, annoying UI warnings, and texture loading crashes when playing on offline-mode Minecraft servers.\n\n## Features\n* **Zero Chat Lag:** Prevents the random network timeout lag spikes that trigger after periods of inactive chat on offline servers.\n* **Clean UI:** Removes the ugly red/gray \"Not Secure\" sidebars from player messages, restoring the classic chat look.\n* **Player Head**: Restores player head in Player Tab for offline server.\n* **No Annoying Toasts:** Hides the \"Unverified Server\" popup that appears every time you join the world.\n* **No Texture Crashes:** Stops the log spam and client crashes caused by strict signature validation on custom offline skins.\n* **Smart Premium Compatibility:** Automatically detects if you are using a premium account and lets vanilla checks run normally. You can safely leave this mod installed when playing on premium servers like Hypixel.\n\n## Installation\n1. Install the Fabric Loader: https://fabricmc.net/\n2. Download the correct `.jar` for your Minecraft version from the releases page.\n3. Drop the `.jar` into your `.minecraft/mods` folder.\n\n## Building from Source\nThis project uses **Stonecutter** to seamlessly support multiple Minecraft versions from a single unified codebase. You will need Java 21+ and Git installed on your system.\n\n1. Clone the repository:\n\n   ```bash\n   git clone https://github.com/louiszn/offline-mode-fix\n   cd offline-mode-fix\n   ```\n\n2. Build the project using the Gradle wrapper. To compile all supported Minecraft versions at once, run:\n\n   * **Windows:**\n\n     ```cmd\n     gradlew buildAndCollect\n     ```\n\n   * **Linux / macOS:**\n\n     ```bash\n     ./gradlew buildAndCollect\n     ```\n\n3. Once the build process finishes, you will find the compiled `.jar` files for every version cleanly organized in the `/versions/xxx/build/libs/` directory.\n\n### IDE Setup for Development (IntelliJ IDEA)\nBecause Stonecutter relies on dynamic comments to switch code between mapping versions:\n1. Install the **Stonecutter Dev** plugin by KikuGie from the IntelliJ Plugins Marketplace for proper syntax highlighting and error resolution.\n2. Open the Gradle tab, navigate to `Tasks -> stonecutter`, and double-click **`Set active project to xxx`** to swap your active workspace to a specific Minecraft update (e.g., `1.21.11`).\n\n## How it works (Technical)\nOffline-mode servers suffer from several distinct client-side issues introduced in different Minecraft updates:\n\n1. **1.16.4 (The Social Manager):** Minecraft checks every incoming message against the `PlayerSocialManager` blocklist. In offline mode, looking up unauthenticated Version 3 UUIDs causes unnecessary synchronous network requests and processing delays.\n2. **1.19+ (Chat Signing):** Minecraft attempts to fetch and refresh cryptographic public keys from Mojang's API to verify chat signatures. On offline servers, these background refreshes fail, causing random lag spikes (often triggering after ~30 seconds of inactive chat) and forcing the game to flag all messages as \"unsecure\" (UI warnings).\n3. **1.20.2 (Authlib Strict Validation):** The game enforces strict Base64 signature validation for player textures (skins/capes). Dummy signatures provided by offline skin plugins (like `BUILDER_APPALLED_PUMPKIN`) instantly trigger `IllegalArgumentException` log spam and texture loading failures.\n\nThis mod uses surgical Mixins to:\n1. Detect offline (Version 3) UUIDs to instantly bypass the `isBlocked` and `isTextFilteringEnabled` network checks.\n2. Intercept the chat GUI renderer to hide the \"Not Secure\" tag.\n3. Block the specific \"Unverified Server\" toast from being added to the screen via the `ToastManager` / `ToastComponent`.\n4. Bypass `YggdrasilServicesKeyInfo` strict Base64 property validation if a dummy signature is detected.\n\n## Contributing\nContributions are always welcome. If you have an idea for an improvement or find a bug, please open an issue first to discuss what you would like to change. Pull requests are greatly appreciated.\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2029,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

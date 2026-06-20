@@ -1,0 +1,36 @@
+{
+  "id": "HRXgZcrv",
+  "slug": "sneaky-server",
+  "title": "Sneaky Server",
+  "description": "Anonymise your server from scanners like Copenheimer and ServerSeeker. With options to disable logging spam logins and rate limit new connections.",
+  "body": "# Sneaky\n\n**⚠️ Versions 1.0.11 to 1.0.13 have an oversight allowing unwhitelisted or banned players to still see MOTD and player list.** This only affects servers with whitelist on. I made a mistake in adding players to the allowed list too early in the signin process. It's unlikely that this was abused on a wide scale as it still required successful authentication with Mojang (on Online-Mode servers). 1.0.14.1 is available for all affected Minecraft versions\n\nSneaky anonymises your server from server scanners like Copenheimer, Shodan or ServerSeeker by only showing server info to players who have previously joined.\n\nSneaky has other options to protect your server including disabling logs for unauthorised players, and ratelimiting the creation of new connections.\n\n## Configuration\nThe configuration is stored in config/sneakyserver/config.properties\n\n`hide-server-ping-data`: (Default: true) Only sends server ping data to known players\n\n`hide-player-list`: (Default: false) Sends server ping data to unknown players, but doesn't send a user list. Only works when \"hide-server-ping-data\" is false.\n\n`dont-log-unauthed-client-disconnects`: (Default: false) Prevents the server from logging failed offline-mode player logins. Prevents logs when the client closes the connection. Example of a server being spammed with offline mode logins: https://www.reddit.com/r/Minecraft/comments/12ip3gd/who_is_shepan/\n\n`dont-log-unauthed-server-disconnects`: (Default: false) Prevents the server from logging failed offline-mode player logins. Prevents logs when the server closes the connection\n\n`rate-limit-new-connections`: (Default: true) Enables a rate limit for clients creating new connections. \n\n`new-connection-rate-limit`: (Default: 7) Connection limit over 15 seconds. If a client exceeds this limit new connections will be closed.\n\n`disable-query-until-login`: (Default: false) shows the server as offline before the first time a player joins\n\n`disable-legacy-query`: (Default: true) disables legacy ping used by clients older than Minecraft 1.6\n\n`disable-connections-from-banned-ips`: (Default: false) closes connections from banned IPs before reaching login logic. May be incompatible with BungeeCord or Velocity\n\n## Hiding ping data\nSneaky hides server info by keeping a list of IP addresses of known players and their last join date, only allowing known players to receive the real server info, and appearing as an unconfigured server with no player activity to server scanners and players who have never joined. this feature is meant to be a no compromise alternative to vanilla's `hide-online-players` feature, allowing members of a server to see relevant information without leaking that information to scanners or un-whitelisted players (in the case of a whitelisted server)\n\n### Before joining\nBefore first joining, players and server scanners see a generic, unconfigured server with no player activity\n\n<img src=\"https://cdn.modrinth.com/data/HRXgZcrv/images/887cc374e4fc681be15f5617da9d0381262e1bc4.png\">\n\n### After joining\nAfter their first join, players will see the real MOTD, server icon, and online players list\n\n<img src=\"https://cdn.modrinth.com/data/HRXgZcrv/images/83de9372ec2ba50ac49375e5e6e19f1ab720bce0.png\">",
+  "categories": [
+    "fabric",
+    "management",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9130,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20-rc1",
+    "1.20",
+    "1.20.1-rc1",
+    "1.20.1",
+    "23w31a",
+    "23w32a",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.5",
+    "1.21.8",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

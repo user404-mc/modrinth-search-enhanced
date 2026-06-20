@@ -1,0 +1,21 @@
+{
+  "id": "z5skOi6f",
+  "slug": "soldisco",
+  "title": "Spice of Life: Discovery",
+  "description": "Spice of Life inspired mod to encourage new food discovery!",
+  "body": "# Spice of Life Discovery\n\nSpice of Life Discovery is a spin on the Spice of Life: Carrot Edition idea, but more geared toward finding more unique\nfoods as you play. SOL: Discovery is best enjoyed with a mountain of new modded foods. Consider using Farmer's Delight\nwith a bunch of addons!\n\n## Configuration\n\n### Default\n\nBy default, SOL:D starts the player at 6 HP (3 hearts) and grants an additional 2 HP (1 heart) for each 5 new food items\neaten. That formula is completely configurable in `.minecraft/config/soldisco.json5`. See the Suggestions section for some ideas to get you started.\n\nThe formula you input into the config is parsed by exp4j. You can find which functions are available [here](https://www.objecthunter.net/exp4j/#Built-in_functions).\n\n### Suggestions\n\nHere are a few interesting or weird ideas to get you started.\n\nThis formula will require an increasing amount of new food items for each additional heart:\n\n```json5\n{\n    \"formula\": \"20 + 2 * floor(sqrt(foodsEaten))\",\n    \"minHp\": 20.0\n}\n```\n\nThis formula punishes you for each new food you eat:\n\n```json5\n{\n    \"formula\": \"40 - foodsEaten\",\n    \"minHp\": 1.0\n}\n```\n\nStart at 3 hearts and gain a heart for every five new foods you eat (this is the default):\n\n```json5\n{\n    \"formula\": \"6 + 2 * floor(foodsEaten / 5)\",\n    \"minHp\": 6.0\n}\n```\n\n## Commands\n\nThe `/foodhistory` command lets you manage the foods you've eaten.\n\n- `foodhistory get [<player>]` gets the full food history of a player\n- `foodhistory add <food> [<players>]` adds a food to the food history of `players`\n- `foodhistory remove <food> [<players>]` removes a food from the food history of `players`\n- `foodhistory query <food> [<players>]` check if `players` have a food\n\n## Credits\n\n- [Siphalor's Spice of Fabric mod](https://github.com/Siphalor/spiceoffabric), for inspiration and a code reference.\n- [Twemoji](https://github.com/twitter/twemoji), for the magnifying glass in the mod icon.\n",
+  "categories": [
+    "cursed",
+    "fabric",
+    "food",
+    "game-mechanics"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 32168,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

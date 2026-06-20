@@ -1,0 +1,20 @@
+{
+  "id": "nFmetpvY",
+  "slug": "mechanical-pump",
+  "title": "Mechanical Pump",
+  "description": "A Mechanical Fluid Pump Mod",
+  "body": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/ywNE15BVl_4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\nThis mod adds a mechanical pump. The pump does consume fluids, but you need a finite water mod to empty a water area.\n\nThe pump always prioritizes source blocks at the highest connected y level that are the most far away from the pump to be pumped first.\n\n\n\nThe pump works in a radius of 96 blocks (6chunks) (~30k blocks) around the pump, scanning 1000 blocks per tick. So its highest speed on large oceans is 1 block / 1.5 seconds, no matter how much energy you put in.\n\nA scanning speed of 1000/tick should not have any performance impacts. The code uses a TreeSet to sort the blocks by distance . Maybe I will optimize this in the future...\n\nThe pump processes 1 block every rotation.\n\n\n\n## Recommendations for use:\n\nI strongly recommend you install my finite water mod for improved performance when pumping water from large areas of water. Even if you want infinite water everywhere you can just set the blacklist empty. \n\nlets look at the following example:\n![mechanical pump build](https://cdn.modrinth.com/data/cached_images/9b8a71744ba7f38e31050178c1303c896d808ea7_0.webp)\n\nBy default, the pump will try to pump the highest water source it can find. This would remove the water channel and break the build. With my finite water mod, the pump will notice it sits in a river biome where water is infinite. So it will try to pump the first water source it can find and leave the water channel.\n\nNote that the pump will always prioritize water above, so in the example shown you would need to have a water source directly below the pump or it would scan the channel up. Once the pump detects any water block at a higher y level from where it currently scans, it will completly disregard the current scan and only scan the higher y level for water sources. ",
+  "categories": [
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 258000,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

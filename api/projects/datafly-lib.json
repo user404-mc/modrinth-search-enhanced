@@ -1,0 +1,25 @@
+{
+  "id": "EDs1arKV",
+  "slug": "datafly-lib",
+  "title": "DataFly Lib",
+  "description": "Simple lib for async I/O made originally for Adrenaline mod",
+  "body": "# Datafly\nA shared async I/O library for Fly's Minecraft mods providing centralized, high-performance disk persistence.\n## Features\n- One shared thread pool across all mods — no wasted threads, no duplicated I/O code\n- Write data from any thread and get a result via DataTask<T> — no blocking, no callback hell\n- Read-your-writes guarantee — reads always return the latest submitted value even before it hits disk\n- Coalesces burst writes to the same key — only the last value in a time window actually writes to disk\n- Atomic writes via tmp → fsync → rename — no half-written or corrupted files on crash\n- Emergency gzip compression when buffer memory runs low — trades CPU for heap headroom\n- Spill oversized writes to a temp spool directory instead of blocking or dropping data\n- Crash recovery — leftover spool files are re-drained to their destinations on next startup\n- Pluggable codec system — JSON, NBT, TOML, YAML, raw bytes, or bring your own\n- Per-mod writer configuration — each mod controls its own heap limit, codec, coalesce window, and cache size\n- Optional LRU read cache — skip disk entirely for hot keys\n- update() — atomic read-modify-write with the write lock held for the full cycle\n- computeIfAbsent() — create-or-update in one atomic call\n- World-agnostic — works from the main menu, client-side, dedicated server, anywhere",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 248,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

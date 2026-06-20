@@ -1,0 +1,23 @@
+{
+  "id": "hzqFYDcB",
+  "slug": "worn-tear",
+  "title": "Worn Tear",
+  "description": "Durability affects tool efficiency and weapon damage.",
+  "body": "# Worn Tear\n\nWant durability to affect tool efficiency and weapon damage? This mod provides a convenient configuration file that allows you to easily set how an item's performance changes with durability loss based on customizable curves.\n\n### Usage Example\n\nCreate `config/WornTear/example.json`:\n\n```json\n[\n  {\n    \"match\": \"minecraft:wooden_axe\",\n    \"rule\": \"4+[0,0]*0\"\n  },\n  {\n    \"match\": \"minecraft:shears\",\n    \"rule\": \"0+[0,1]*-20\"\n  },\n  {\n    \"match\": \"minecraft:iron_shovel\",\n    \"rule\": \"0.3+[0.4,0.5]*0.6\"\n  }\n]\n```\n\n- The first rule makes the wooden axe always have 400% efficiency.\n- The second rule makes shears have -2000% efficiency at full durability, increasing linearly as durability decreases. At zero durability, efficiency becomes 0%.\n- The third rule demonstrates a more typical configuration: 0.3 means the iron shovel always has a base efficiency of 30%. When durability is between 40% and 50%, a linear change occurs:\n    - At or below 40% durability, efficiency remains 30%.\n    - At 45% durability, efficiency is 0.3 + 0.5 * 0.6 = 60%.\n    - At or above 50% durability, efficiency stabilizes at 0.3 + 0.6 = 90%.\n\nYou can enable tooltip coefficient displays in the configuration file to visualize these effects.\n\nThe efficiency changes mentioned above apply to both block breaking speed and weapon damage.\n\n### Planned Features\n- Durability affecting armor toughness.\n- More detailed and customizable configuration options.",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 298,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

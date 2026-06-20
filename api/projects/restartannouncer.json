@@ -1,0 +1,40 @@
+{
+  "id": "ZOknUbsd",
+  "slug": "restartannouncer",
+  "title": "RestartAnnouncer",
+  "description": "A simple and easy-to-use Minecraft server restart announcement plugin for Paper servers.",
+  "body": "# Restart Announcer\n\nHighly configurable **restart countdowns** for **Paper** and **Folia**: chat, boss bar, or title announcements, optional **scheduled** daily/weekly restarts with reminders, and **MiniMessage** in `messages.yml`.\n\n\n**Command:** `/announcer` · **Aliases:** `/ra`, `/restartannouncer`\n\n## Requirements\n\n- **Minecraft** 1.20+ (Paper API)\n- **Java 17+**\n- **Paper** or a compatible fork (**Folia** supported — `folia-supported: true`)\n\n## Features\n\n- **Manual countdowns** — `/announcer start` with time, interval, and display mode (`chat`, `bossbar`, `title`)\n- **Scheduled restarts** — wall-clock **DAILY** or **WEEKLY** restarts, optional hour-based reminders, optional **wait for backup** + delay after backup finishes\n- **Shutdown control** — `execute-shutdown: true` stops the server at zero; `false` = announcements only (your script/watchdog must reboot)\n- **Shutdown method** — `shutdown`, `stop`, or `restart` (see config comments; default `shutdown` is recommended)\n- **In-game management** — toggle execute-shutdown, set restart message, reload config/messages\n- **Update checker** — optional; `announcer.update` for `/announcer update`\n- **Configurable permissions** — permission node strings in `config.yml` map to your permission plugin\n\n## Commands\n\n| Command | Description |\n|--------|-------------|\n| **`/announcer start <time> [interval] [display]`** | Start a countdown. **time** / **interval**: e.g. `10m`, `30s`, `1h`. **display**: `chat` (default), `bossbar`, `title`. |\n| **`/announcer stop`** | Cancel the active countdown |\n| **`/announcer status`** | Show whether a restart is running and time left |\n| **`/announcer reload`** | Reload `config.yml`, `messages.yml`, and re-apply scheduled restart from config |\n| **`/announcer toggle`** | Flip `execute-shutdown` in `config.yml` (reload afterward to fully sync behavior) |\n| **`/announcer set message <message>`** | Set the main restart announcement (MiniMessage); persists to `messages.yml` |\n| **`/announcer update`** | Check for plugin updates (requires `announcer.update`) |\n| **`/announcer help`** | Context-sensitive help (players only see subcommands they can use) |\n\n**Examples**\n\n- `/announcer start 10m` — 10 minutes, default interval, chat  \n- `/announcer start 30m 2m bossbar` — 30 minutes, announce every 2 minutes on boss bar  \n- `/announcer start 30s 2s title` — 30 seconds, every 2 seconds as title  \n\n## Permissions\n\nDefined in `plugin.yml` (defaults shown). You can point config keys at custom nodes if your permission plugin uses different names.\n\n| Permission | Default | Purpose |\n|------------|---------|---------|\n| `announcer.use` | `true` | Base command access |\n| `announcer.start` | op | Start countdowns |\n| `announcer.stop` | op | Stop countdowns |\n| `announcer.status` | op | View status |\n| `announcer.reload` | op | Reload, toggle, `set message` |\n| `announcer.update` | op | `/announcer update` |\n| `announcer.admin` | op | Parent node grouping the above |\n\n`config.yml` also lists the strings used for start/stop/status/reload checks (defaults match the table).\n\n## Configuration\n\n### `config.yml`\n\n- **`config_version`** — bumped when defaults change; keep your file when updating and merge new keys from the jar if needed.\n- **`update-checker`** — enable/disable update checks on startup.\n- **`defaults`** — `restart-time` (minutes), `announcement-interval` (seconds) when omitted from `/announcer start`.\n- **`scheduled-restart`** — `enabled`, `time` (`HHmm` 24h), `recurrence` (`DAILY` / `WEEKLY`), `day-of-week`, `interval-weeks`, `week-anchor-date` (for multi-week weekly), `reminder-interval-hours`, `wait-for-backup`, `wait-for-backup-delay`.\n- **`shutdown-method`** — `shutdown` | `stop` | `restart`\n- **`execute-shutdown`** — `true` to stop server at end of countdown; `false` for announcements only.\n- **`permissions`** — override permission node strings for start/stop/status/reload.\n\nExample skeleton:\n\n```yaml\nconfig_version: 4\n\nupdate-checker:\n  enabled: true\n\ndefaults:\n  restart-time: 10\n  announcement-interval: 60\n\nscheduled-restart:\n  enabled: false\n  time: \"0400\"\n  recurrence: DAILY\n  day-of-week: SUNDAY\n  interval-weeks: 1\n  week-anchor-date: \"2026-01-04\"\n  reminder-interval-hours: 4\n  wait-for-backup: true\n  wait-for-backup-delay: 60\n\nshutdown-method: \"shutdown\"\nexecute-shutdown: true\n\npermissions:\n  start: \"announcer.start\"\n  stop: \"announcer.stop\"\n  status: \"announcer.status\"\n  reload: \"announcer.reload\"\n```\n\n### `messages.yml`\n\n- **`messages_version`** — do not change unless you know what you’re doing.\n- **`restart-message`** — `%time%` = time remaining.\n- **`scheduled-restart.reminder`** — `%time%`, `%timezone%` for scheduled notices.\n- **`scheduled-restart.backup-delayed`** — when restart waits on a backup.\n- **`commands.*`** — MiniMessage strings for usage, errors, and help.\n\n```yaml\nmessages_version: 3\n\nrestart-message: \"<red><bold>Server will restart in <yellow>%time%<red>!\"\n\nscheduled-restart:\n  reminder: \"<yellow>Next scheduled restart: <white>%time% <gray>(%timezone%)\"\n  backup-delayed: \"<yellow>Restart delayed – backup in progress. Will restart when backup completes.\"\n\ncommands:\n  start:\n    usage: \"<red>Usage: /announcer start <time> <interval> [display]\"\n    example: \"<gray>Example: /announcer start 10m 60s chat\"\n    invalid-display: \"<red>Invalid display type. Use: chat, bossbar, title\"\n  # … stop, status, reload, help …\n```\n\n## Installation\n\n1. Download the built **JAR** (`mvn package`) or a release artifact.  \n2. Place it in the server’s `plugins` folder.  \n3. Start the server once to generate `config.yml` and `messages.yml`.  \n4. Edit config/messages, then `/announcer reload` (or restart).  \n5. Use `/announcer help` in-game for allowed subcommands.\n\n### Updating\n\n- **Back up** `plugins/RestartAnnouncer/config.yml` and `messages.yml`.  \n- Replace the JAR and start the server.  \n- Compare your files with the defaults in the new jar; add any **new keys** (e.g. under `scheduled-restart` or `update-checker`) instead of deleting the whole folder unless you want a full reset.  \n- After large jumps, verify `config_version` / `messages_version` and scheduled-restart fields match the new defaults.\n\n## Time formats\n\nExamples: `30s`, `60s`, `5m`, `10m`, `30m`, `1h`, `2h`, `6h` (used for start time and announcement interval).\n\n## Shutdown methods\n\n- **`shutdown`** (default) — `Bukkit.shutdown()`  \n- **`stop`** — intended to align with `/stop`-style behavior (see in-jar comments)  \n- **`restart`** — `/restart`; may not exist on all setups — use with care  \n\n## Announcement-only mode\n\n```yaml\nexecute-shutdown: false\n```\n\nAnnounces as usual; at **0** the server **does not** stop. Use an external script or panel to restart after players are warned.\n\n## MiniMessage\n\n`messages.yml` supports **MiniMessage** (e.g. `<red>`, `<yellow>`, `<bold>`, `<reset>`, gradients). Legacy `§` codes may still appear in a few hard-coded admin strings; prefer MiniMessage in YAML.\n\n## Support\n\nIssues and suggestions: use the provided Discord \n\n---\n\n*Plugin does **not** restart the process by itself when the OS exits — pair with a start script, systemd, or watchdog that brings the server back up.*\n",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 742,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

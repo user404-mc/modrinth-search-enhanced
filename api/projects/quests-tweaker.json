@@ -1,0 +1,19 @@
+{
+  "id": "ojUjKDJz",
+  "slug": "quests-tweaker",
+  "title": "Quests Tweaker",
+  "description": "A mod to integrate FTBQuests with CraftTweaker.",
+  "body": "# QuestsTweaker\nA mod to integrate FTBQuests with CraftTweaker.  \n\n## Features\n- Add/set progress for an existing quest from crafttweaker.  \n- New 'Function' task type that runs a crafttweaker function to check progress.  \n- New 'Function' reward type that runs a crafttweaker funtion on completion.  \n\n## CraftTweaker API\n### mods.questtweaker.QuestManager\nAdd/set progress for any existing and available task from crafttweaker:  \nWhen the task is unavailable (for example has dependencies uncompleted), this function does nothing.  \n`QuestManager.addTaskProgress(IPlayer player, string/int id, long progress);`\n`QuestManager.setTaskProgress(IPlayer player, string/int id, long progress);`\n```\nimport mods.questtweaker.QuestManager;\n// Add progress\n// IPlayer player, string/int id, long progress\nQuestManager.addTaskProgress(event.player,\"4c4bd563\",1 as long);\n// Or use hex int\nQuestManager.addTaskProgress(event.player,0x4c4bd563,1 as long);\n// Set progress\n// IPlayer player, string/int id, long progress\nQuestManager.setTaskProgress(event.player,\"4c4bd563\",1 as long);\n```  \nExample when player pickups an item, set the task progress to stack size:\n```\nimport mods.questtweaker.QuestManager;\nevents.onPlayerPickupItem(function(event as crafttweaker.event.PlayerPickupItemEvent){\n    QuestManager.setTaskProgress(event.player,\"52725826\",event.item.item.amount as long);\n});\n```\n\n### mods.questtweaker.FunctionManager\nAdd a new function to use with this mod's 'Function' tasks and rewards:  \n`FunctionManager.addFunction(string functionID, function(IPlayer) -> long);`  \nThe function __must__ return an long.  \nExample 1: Player's current altitude\n```\nimport mods.queststweaker.FunctionManager;\nimport crafttweaker.player.IPlayer;\n// string functionID, function(IPlayer) -> long\nFunctionManager.addFunction(\"height\",function(player as IPlayer){\n    return player.y as long;\n});\n```\nExample 2: On a Rail [on_a_rail.zs](https://github.com/Blue-Beaker/QuestsTweaker/blob/master/Examples/on_a_rail.zs)  \n\n## FTBQuests Integration\n### Function Task\nExecutes a function peridocally, and uses its return value as the progress.  \nParameters:  \n- Function ID: the function ID registered in scripts.  \n- Value: The value needed to complete the task.  \n- Interval: The interval to run the function. Set to 0 for manual submission.  \n\n### Function Reward\nExecutes a function when collected.  \nParameters:  \n- Function ID: the function ID registered in scripts.  \n\n### Dummy Task\nDoes nothing on its own. Intended to use with the QuestManager above.  \nParameters:  \n- Value: The value needed to complete the task.  ",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 781,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

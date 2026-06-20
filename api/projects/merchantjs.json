@@ -1,0 +1,25 @@
+{
+  "id": "MkbaP4fk",
+  "slug": "merchantjs",
+  "title": "MerchantJS",
+  "description": "This mod is an addon for KubeJS, expanding its functionality in the trading system.",
+  "body": "## MerchantJS\n\nThis mod is an addon for **KubeJS**, expanding its functionality in the **trading system**.\n\n### Create Custom Trades Anywhere\n\nThis mod allows you to initiate trades *anywhere* — trade with pigs, with End Stone, with Enchanted Golden Apples, or even out of thin air!\n\n```javascript\n// server_scripts\nItemEvents.entityInteracted(event => {\n    // Check if the interacted entity is a pig\n    if (event.getTarget().type === \"minecraft:pig\") {\n        // Create a complete trade offer\n        let offer0 = MerchantJSUtils.createMerchantOffer({\n            buy: Item.of(\"minecraft:potato\").toNBT(),\n            buyB: Item.of(\"minecraft:bread\").toNBT(),\n            sell: Item.of(\"minecraft:stone\").toNBT(),\n            uses: 0,\n            maxUses: 50,\n            xp: 5,\n            priceMultiplier: 0,\n            demand: 0\n        });\n        // Create a simple trade offer\n        let offer1 = MerchantJSUtils.createMerchantOffer({\n            buy: Item.of(\"minecraft:beef\").toNBT(),\n            sell: Item.of(\"minecraft:egg\").toNBT()\n        });\n        // Open a custom trading GUI with the given player, title, and offers\n        MerchantJSUtils.openMerchant(\n            event.player,\n            Component.translatable(\"Little Piggy’s Cartoon House\"),\n            [offer0, offer1]\n        );\n    }\n});\n```\n\nThe above example lets players **trade with pigs**, with a fully customizable trading GUI!\n\nAnd if you need deeper customization — read on.\n\n---\n\n### Selective Trade Availability\n\nLet’s first explain the meaning of each parameter:\n\n```javascript\nlet offer0 = MerchantJSUtils.createMerchantOffer({\n    buy: Item.of(\"minecraft:potato\").toNBT(), // Input item A (required)\n    buyB: Item.of(\"minecraft:bread\").toNBT(), // Input item B (optional, defaults to empty)\n    sell: Item.of(\"minecraft:stone\").toNBT(), // Output item (required)\n    uses: 0, // Number of times used (optional, default 0)\n    maxUses: 50, // Maximum uses (optional, default 99)\n    xp: 5, // Experience reward (optional, default 0)\n    priceMultiplier: 0, // Price fluctuation multiplier (optional, default 0)\n    demand: 0 // Initial demand value (optional, default 0)\n});\n```\n\nSetting `maxUses` to `0` will make the trade appear **unavailable**.\n\nNow combine it with this event for dynamic trade control:\n\n```javascript\n// client_scripts\nMerchantEvents.switchTrade(event => {\n    if (event.titleKey == \"Little Piggy’s Cartoon House\") {\n        // Check if it’s the pig’s trading window (works with vanilla ones too!)\n        if (event.getOffer().getMaxUses() == 0) {\n            Client.player.tell(\"This trade is locked...\");\n        }\n    }\n});\n```\n\nWith this, you can **selectively enable or disable trades**, which is perfect for stage-based gameplay or progression systems.\n\n---\n\n### Vanilla Trade Compatibility\n\nVanilla trading already has many mechanics.\nMerchantJS mainly focuses on **creating additional trades easily**.\nFor features like restocking, experience, demand, or price fluctuation — you’ll need to handle those yourself.\n\nAt minimum, you’ll need a place to store trade-related data (like inventory or stock info),\nsince each call to `openMerchant` defines the offers anew.\n\nFortunately, **KubeJS’s `persistentData`** works great for this.\nThen, all that’s left is triggering data refresh when needed.\n\n```javascript\n// server_scripts\nMerchantEvents.afterTrade(event => {\n    event.player.tell(`Thank you for purchasing ${event.getOffer().result.id}! Come again soon!`);\n    event.player.addXP(event.getOffer().xp);\n});\n```\n\nThis event fires after any trade occurs — and works for vanilla trades too!\nIf you want to trigger additional actions after trading, this is the place to do it.\n\nAs for restocking — just check the time interval whenever you open the trade window.\n\n---\n\n### Future Plans\n\nNone for now — but feel free to make a wish!",
+  "categories": [
+    "economy",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 8550,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

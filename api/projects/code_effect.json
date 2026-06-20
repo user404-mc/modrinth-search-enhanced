@@ -1,0 +1,21 @@
+{
+  "id": "bpMrXh3o",
+  "slug": "code_effect",
+  "title": "CodeEffect",
+  "description": "Adds a new enchantment effect that runs a method registered by a mod for 24w18a's new data-driven enchantments. Similar to its run_function but with code",
+  "body": "### For Users\nThis mod doesn't do anything on its own. This library allows mods to call code in data-driven enchantments.\n\n### For Devs\n**Registering your code:**\n```java\nCodeEffect.register(HOOK_ID, (world, level, context, user, pos) -> {\n    // Code Here\n});\n```\nor\n```java\nCodeEffect.register(HOOK_ID, this::stuff);\n// ...\npublic void stuff(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {\n    // Code Here\n}\n```\n\n**Using it:**\n```json\n\"effect\": {\n     \"type\": \"code_effect:run_code\",\n     \"hook\": \"HOOK_ID\"\n}\n```\n\nFull Enchantment example:  \n*Sharpness but modified to run the code every tick*\n```json\n{\n  \"anvil_cost\": 1,\n  \"description\": {\n    \"translate\": \"enchantment.minecraft.sharpness\"\n  },\n  \"effects\": {\n    \"minecraft:tick\": [\n      {\n        \"effect\": {\n          \"type\": \"code_effect:run_code\",\n          \"hook\": \"HOOK_ID\"\n        }\n      }\n    ]\n  },\n  \"exclusive_set\": \"#minecraft:exclusive_set/damage\",\n  \"max_cost\": {\n    \"base\": 21,\n    \"per_level_above_first\": 11\n  },\n  \"max_level\": 5,\n  \"min_cost\": {\n    \"base\": 1,\n    \"per_level_above_first\": 11\n  },\n  \"primary_items\": \"#minecraft:enchantable/sword\",\n  \"slots\": [\n    \"mainhand\"\n  ],\n  \"supported_items\": \"#minecraft:enchantable/weapon\",\n  \"weight\": 10\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 298,
+  "followers": 0,
+  "game_versions": [
+    "24w18a",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

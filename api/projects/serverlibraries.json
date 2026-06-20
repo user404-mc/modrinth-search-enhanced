@@ -1,0 +1,27 @@
+{
+  "id": "kjqxZ07F",
+  "slug": "serverlibraries",
+  "title": "ServerLibraries",
+  "description": "A Library made to ease serverside mod creation",
+  "body": "# ServerLibraries\n\n![Modrinth Shield](https://img.shields.io/modrinth/dt/kjqxZ07F?style=for-the-badge&logo=modrinth&color=00AF5C)\n![Github Shield](https://img.shields.io/badge/Source_code-Available-src?style=for-the-badge&color=00AF5C&logo=github&label=Source%20code&link=https://github.com/VitacraftOrg/ServerLibraries)\n![Wakatime](https://wakatime.com/badge/github/Relism/ServerLibraries.svg?style=for-the-badge&label=Modrinth%20Projects&link=https%3A%2F%2Fmodrinth.com%2Fuser%2FRelism)\n\n![Banner Image](https://github.com/VitacraftOrg/ServerLibraries/blob/master/images/banner1.png?raw=true)\n\n**ServerLibraries** is a library for Minecraft server-side Fabric mod development, aiming to simplify the development experience and make it feel like making a Bukkit-based plugin.\n\n## Features\n- Simplified event handling with hundreds of mapped events.\n- Easy sync/async scheduling.\n\n## Example Usage\n\nHere's an example of how to use **ServerLibraries** to handle events:\n\n```java\n// Listener class that handles server events\npublic class ExampleListener implements Listener {\n\n    @EventHandler\n    public void onPlayerChatEvent(@NotNull PlayerChatEvent event) {\n        event.setCancelled(true);\n        ServerPlayerEntity player = event.getPlayer();\n        String message = event.getMessage();\n        // Format the message to display the player's name followed by the message\n        String formattedMessage = player.getName().getString() + \" > \" + message;\n        // Broadcast the formatted message to all players and log it in the console\n        msg.broadcast(formattedMessage);\n        msg.log(formattedMessage);\n    }\n\n    @EventHandler\n    public void onPlayerMoveEvent(@NotNull PlayerMoveEvent event) {\n        // Get the player and their position\n        ServerPlayerEntity player = event.getPlayer();\n        BlockPos pos = player.getBlockPos();\n        // Format and send the coordinates as an action bar message\n        String message = \"X: \" + pos.getX() + \" Y: \" + pos.getY() + \" Z: \" + pos.getZ();\n        msg.sendActionBar(player, message);\n    }\n}\n\n// Main Fabric mod class\npublic class ExampleMod implements ModInitializer {\n    @Override\n    public void onInitialize() {\n        EventsRegistry.registerListener(new ExampleListener());\n    }\n}\n```\n\n## Installation\n\nTo include ServerLibraries in your project, add the following to your `build.gradle` file.\n\n## Maven Repository\n```groovy\nrepositories {\n    exclusiveContent {\n        forRepository {\n            maven {\n                name = \"Modrinth\"\n                url = \"https://api.modrinth.com/maven\"\n            }\n        }\n        filter {\n            includeGroup \"maven.modrinth\"\n        }\n    }\n}\n```\n\n## Dependency\nAdd the following dependency. Replace `<version>` with the version you want to use. You can find available versions [here](https://modrinth.com/mod/serverlibraries/versions) or use the version below for the latest stable release.\n\n![Stable Release Shield](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.modrinth.com%2Fv2%2Fproject%2FkjqxZ07F&query=%24..versions%5B-1%3A%5D&style=flat-square&logo=gradle&label=latest%3Astable&color=00AF5C&link=https%3A%2F%2Fmodrinth.com%2Fmod%2Fserverlibraries)\n```groovy\ndependencies {\n    modImplementation \"maven.modrinth:kjqxZ07F:<version>\"\n}\n```\n\n## Documentation\nDocs and Javadocs can be found on [here](https://relism.github.io/ServerLibraries).\n\n",
+  "categories": [
+    "fabric",
+    "library",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 679,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "EML2u4I8",
+  "slug": "hooklib",
+  "title": "HookLib",
+  "description": "Framework for coremods",
+  "body": "**Introduction**\n\nThis is framework for coremods at MinecraftForge.\n\nBasicaly, useful for mod developers.\n\nGoal of this project is to provide an easy way to modify existing logic without directly changing code of it, but by writing your additional code.\n\nDoesn't require knowledge of jvm bytecode.\n\n_Welp, kinda I'm late with publishing it project, bc Mixins took over the world, but I found out HookLib more handy, and I still have unimplemented good ideas, which will make it even better. So maybe it makes sense_\n\n**Getting started**\n\n**Understanding of hooks**\n\nWhen exists some code which you wanna to change, but its part of Minecraft or other mod, you can write something like:\n\n    @HookContainer\n    public class MyHooks {\n        @Hook\n        @OnBegin\n        public static void resize(Minecraft mc, int x, int y) {\n            System.out.println(\"Resize, x=\" + x + \", y=\" + y);\n        }\n    }\n\nHookLib will find method with name \\`resize\\` with two \\`int\\`'s arguments in class \\`Minecraft\\` and will insert call of MyHooks#resize to begin of found  \ntarget method.\n\n  \nThen you will see in console message when window resized.\n\n**Adding to project**\n\n*   Add dependency to build.gradle:\n\n    repositories {\n        maven {\n            url \"https://cursemaven.com\"\n        }\n    }\n    dependencies {\n        implementation \"curse.maven:hooklib:12345\"\n    }\n\n*   Add VM option \\`-Dfml.coreMods.load=gloomyfolken.hooklib.minecraft.MainHookLoader\\`\n\nIt's possible by gradle too:\n\n    minecraft {\n        mappings channel: 'snapshot', version: '20171003-1.12'\n    \n        runs {\n            client {\n                workingDirectory project.file('run')\n                property \"fml.coreMods.load\", \"gloomyfolken.hooklib.minecraft.MainHookLoader\" //here\n            }\n    \n            server {\n                workingDirectory project.file('run')\n                property \"fml.coreMods.load\", \"gloomyfolken.hooklib.minecraft.MainHookLoader\" //here\n            }\n        }\n    }\n\n*   Perform Gradle Refresh in your ide\n\n**Next** learning\n\nCheck [our wiki](https://github.com/hohserg1/HookLib/wiki) for api details and advanced techniques\n\n**Roadmap**\n\n*   <s>make HookLib to modloader for coremods</s>\n*   <s>injection point at method call</s>\n*   <s>way to print possible @LocalVariable arguments</s>\n*   <s>injection point at expression</s>\n*   <s>way to access to private variables</s>\n\n*   port to new versions of Minecraft\n*   annotation processor for compile-time validation\n*   configs for coremods\n*   caching of target classes with applied hooks\n\n**Gratitudes**\n\n*   Thanks @GloomyFolken for original HookLib development!\n*   Thanks @Foreck for cool logo!",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 436,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

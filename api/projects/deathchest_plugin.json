@@ -1,0 +1,38 @@
+{
+  "id": "xD6Ne1gI",
+  "slug": "deathchest_plugin",
+  "title": "DeathChest",
+  "description": "A plugin that creates a treasure chest when a player dies",
+  "body": "# DeathChest - Death Chest Plugin\n\nA plugin for Minecraft servers that automatically creates a chest containing a player's items upon death.\n\n## 📦 Features\n\n- **Automatic Chest Creation** – Upon death, all player items are placed into a chest\n- **Flexible Configuration** – Multiple settings for various needs\n- **Chest Protection** – Explosion, fire, and piston protection\n- **Permission System** – Flexible access management\n- **WorldGuard Compatibility** – Chests can be opened in protected regions\n- **Multi-World Support** – Can restrict chest creation in specific worlds\n- **Holograms Above Chest** – Displays the owner's name (requires DecentHolograms)\n- **Automatic Cleanup** – Periodic task removes expired chests\n\n## 🖼️ Screenshots\n\n![DeathChest](https://cdn.modrinth.com/data/xD6Ne1gI/images/ac81c3436e41ba3c0da579f9c2683c70d1e4782c.png)\n\n## Dependencies:\n[DecentHolograms](https://modrinth.com/plugin/decentholograms) - optional (to display a hologram above the chest)\n\n## ⚙️ Installation\n\n1. Download the **latest version**\n2. Place the `.jar` file into your server's `plugins/` folder\n3. Restart the server\n4. Configure the config file to your liking\n5. Reload the plugin with `/dchest reload` or restart the server\n\n## 🎮 Commands\n\n```\n/deathchest list    – List your death chests\n/deathchest reload  – Reload configuration and chests (requires permission)\n/deathchest version – Show plugin version\n/deathchest help    – Show help\n```\n\nAlias: `/dchest`\n\n## 🔐 Permissions\n\n```\ndeathchest.use    – Basic permission to use the plugin (default: true)\ndeathchest.reload – Reload configuration and chests (default: op)\ndeathchest.admin  – Administrator permissions (default: op)\ndeathchest.*      – All plugin permissions\n```\n\n## 📁 Configuration\n\nThe `config.yml` file is automatically created on first run:\n\n```yaml\n# DeathChest - Configuration\n\n# Chest creation settings\nchest-creation:\n  # Create a chest only upon death by a mob\n  mob-death-only: false\n  # Worlds where death chests are allowed (empty = all worlds)\n  allowed-worlds: [ ]\n  # Disabled worlds where death chests are turned off\n  blacklisted-worlds: [ ]\n\n# Chest interaction settings\nchest-interactions:\n  # Can players interact with others' death chests\n  allow-access-others-chests: true\n  # Can players break a death chest\n  player-breakable: true\n  # Is the chest protected from explosions\n  explosion-proof: true\n  # Do items drop when the chest is exploded\n  items-drop-when-exploded: true\n  # Do items drop when the chest is broken by a player\n  items-drop-when-broken: true\n  # Automatically remove empty chests\n  remove-empty-chests: true\n\n# Chest appearance settings\nchest-appearance:\n  # Custom chest title (supports MiniMessages)\n  title: \"<gradient:gold:white>Death Chest:</gradient> <gold>{player}\"\n  # Chest expiration time in minutes (0 = never expires)\n  expiration-time: 1440  # Default 24 hours\n  # Display hologram above chest (requires DecentHolograms)\n  hologram-enabled: true\n  # Does not support MiniMessages, use colors from https://wiki.decentholograms.eu/general/format-and-colors/colors/\n  hologram:\n    - \"<#800000>☠ <#FFD700>Death Chest </#FFFFFF><#800000>☠\"\n    - \"<#FFD700>Player: <#FFFFFF>{owner}\"\n\n# Time translation\ntime-ago:\n  days: \"days\"\n  hours: \"hours\"\n  minutes: \"minutes\"\n\n# Message prefix (supports MiniMessages)\nprefix: \"<gradient:gold:white>[DeathChest]</gradient>\"\n\n# Messages (supports MiniMessages)\nmessages:\n  # commands\n  player-only: \"<red>This command can only be used by players.\"\n  no-permission: \"<red>You do not have permission to use this command\"\n  help: |\n    <gradient:gold:white>=== DeathChest Commands ===\n    <white>/deathchest list <gray>- List your death chests\n    <white>/deathchest reload <gray>- Reload configuration (requires permission)\n    <white>/deathchest version <gray>- Show plugin version\n    <white>/deathchest help <gray>- Show this help\n  version: \"<white>DeathChest <yellow>v{version}\"\n  list-header: \"<gradient:gold:white>=== Your Death Chests ===</gradient>\"\n  list-format: \"<yellow>World: <white>{world} <yellow>X: <white>{x} <yellow>Y: <white>{y} <yellow>Z: <white>{z} <gray>({time} ago)\"\n  list-numbered: \"<white>{number}. \"\n  no-chests: \"<green>You have no active death chests\"\n  reload-success: \"<green>Configuration reloaded!\"\n  # listeners\n  chest-created: \"<white>Your death chest was created at coordinates: <yellow>X: {x} Y: {y} Z: {z}.\"\n  chest-accessed: \"<white>You are opening the death chest of player: <yellow>{player}.\"\n  access-denied: \"<red>This death chest belongs to player: <yellow>{player}.\"\n  cannot-break: \"<red>You cannot break this death chest while it contains items!\"\n  chest-removed: \"<green>The death chest disappeared because you took all items.\"\n  chest-broken-own: \"<white>You broke your own death chest.\"\n  chest-broken-other: \"<white>You broke the death chest of player <yellow>{player}.\"\n```\n\n## 🔧 Features\n\n### Chest Protection\n- **Explosion Protection** – Chests are protected from explosions (configurable)\n- **Fire Protection** – Chests do not burn or catch fire\n- **Piston Protection** – Pistons cannot move death chests\n- **Region Access** – Chests can be opened even in protected WorldGuard regions\n\n### Smart Creation\n- **Location Search** – The plugin automatically searches for a suitable place for the chest\n- **Item Check** – If a player has no items, a chest is not created\n- **World Filter** – Can restrict chest creation in specific worlds\n\n### Access Management\n- **Ownership Rights** – Only the owner can open their chest (configurable)\n- **Breaking Permission** – Ability to break chests can be configured\n- **Auto-Removal** – Empty chests are automatically removed\n- **Holograms** – Owner's name is displayed above the chest if enabled\n\n### Automatic Management\n- **Periodic Cleanup** – Expired chests are automatically removed\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1308,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

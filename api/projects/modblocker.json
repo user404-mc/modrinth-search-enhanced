@@ -1,0 +1,34 @@
+{
+  "id": "1qVJQYqy",
+  "slug": "modblocker",
+  "title": "ModBlocker",
+  "description": "Restrict which mods are allowed on your server.",
+  "body": "# ModBlocker\n**Restrict which mods are allowed on your server.**\n\n---\n\n## 📌 Overview\n\n**ModBlocker** is a lightweight yet powerful Paper plugin that gives server administrators full control over which client-side mods players are allowed to use. Whether you're running a competitive PvP server, an RPG experience, or a vanilla-faithful community, ModBlocker ensures a fair and consistent environment for all players.\n\n---\n\n## ⚙️ Features\n\n- **Mod Detection** — Detects client modifications via channel-based handshake inspection (e.g. `wurst:init` identifies the `wurst` client)\n- **Blacklist & Whitelist Modes** — Choose between blocking specific mods outright or only allowing an approved list via `use-whitelist-mode`\n- **Per-Permission Bypass** — Grant trusted players or staff the ability to bypass restrictions using the `modblocker.bypass` permission node\n- **Custom Kick Messages** — Define fully customizable kick messages using **MiniMessage** format with `{player}` and `{mods}` placeholders\n- **Configurable Check Delay** — Adjustable tick delay before channel inspection on join, since mod channels are not registered instantly\n- **Debug Mode** — Enable debug logging to see all registered player channels in the console\n- **Reload Support** — Reload configuration at runtime without restarting the server via `/modblocker reload`\n\n---\n\n## 🔧 Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/modblocker list` | Displays all currently blocked or whitelisted mods depending on the active mode | `modblocker.admin` |\n| `/modblocker check <player>` | Checks what mods a connected player has registered | `modblocker.admin` |\n| `/modblocker add <mod>` | Adds a mod to the active blacklist or whitelist at runtime | `modblocker.admin` |\n| `/modblocker remove <mod>` | Removes a mod from the active blacklist or whitelist at runtime | `modblocker.admin` |\n| `/modblocker reload` | Reloads the plugin configuration from disk | `modblocker.admin` |\n\n---\n\n## 🔑 Permissions\n\n| Permission Node | Description | Default |\n|---|---|---|\n| `modblocker.admin` | Grants access to all ModBlocker commands (list, check, add, remove, reload) | OP |\n| `modblocker.bypass` | Bypasses all mod restrictions — useful for trusted players or staff | false |\n\n---\n\n## 📄 Configuration\n\n```yaml\n# ============================================================\n#  ModBlocker — Configuration\n#  Block players from joining with certain client mods\n# ============================================================\nsettings:\n  # Delay (in ticks) before checking a player's channels after join.\n  # 40 ticks (2 seconds) is recommended — channels aren't registered instantly.\n  check-delay-ticks: 40\n  # Whitelist mode: if true, only mods in 'whitelisted-mods' are allowed.\n  # If false, only mods in 'blocked-mods' are blocked (blacklist mode).\n  use-whitelist-mode: false\n  # Enable debug logging to see all registered channels in console\n  debug: false\n\n# Blacklist mode — common hack client IDs:\nblocked-mods:\n  - wurst\n  - meteor-client\n  - inertia\n  - aristois\n  - kami\n  - lambda\n  - xray\n  - killaura\n\n# Whitelist mode — only these mods are allowed (minecraft/paper/bukkit always allowed)\nwhitelisted-mods:\n  - fabric\n  - optifine\n  - sodium\n  - lithium\n  - iris\n\n# Messages — MiniMessage format | Placeholders: {player}, {mods}\nmessages:\n  kick-message: |\n    <red><bold>ModBlocker</bold></red>\n    <white>Unauthorized mods detected:</white>\n    <red>{mods}</red>\n    <yellow>Please remove them before joining.</yellow>\n  no-permission: \"<red>You don't have permission to use this command.\"\n```\n\n---\n\n## 🖥️ Requirements\n\n- **Server Software:** Paper (1.19+)\n- **Java:** Java 17 or higher\n- **Dependencies:** None — completely standalone\n\n---\n\n*Found a bug or have a feature request? Contact me on Discord !*\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 227,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

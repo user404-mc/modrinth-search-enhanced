@@ -1,0 +1,21 @@
+{
+  "id": "sEqfM0gQ",
+  "slug": "potions-please",
+  "title": "Potions Please",
+  "description": "Adjust the duration of minecraft potions",
+  "body": "# Potions Please\nServer-side fabric mod for Minecraft 1.21.5 to alter vanilla potion durations by injecting the POTION_DURATION_SCALE Component.\n\n## Potion Sources\nThis mod only affects potions generated through the following primary sources:\n - Brewing\n - Villager Trading\n - Loot Tables (set_potion function)\n - Tipped Arrow crafting\n\nPotions that is created from any other source such as the /give command or the creative inventory do not have the durations modified.\nThis is because the mod is unable to inject the POTION_DURATION_SCALE Component to the items from those sources.\n\n## Configuration\nOpening the game for the first time generates a file to `config/potionsplease.json5`. Configuring this file is used to alter the potion durations.\n\nThe JSON keys match [minecraft's potion IDs](https://minecraft.wiki/w/Potion#Item_data) and the next 4 values define the duration in **TICKS** for each item type.\n - DEFAULT_DURATION -> Potion\n - SPLASH_DURATION -> Splash Potion\n   - *(Vanilla splash potions have the same duration as regular potions)*\n - LINGER_DURATION -> Lingering Potion\n   - *(Vanilla lingering potions only apply 25% of the regular potion duration)*\n - TIPPED_DURATION -> Tipped Arrow\n   - *(Vanilla tipped arrows only apply 12.5% of the regular potion duration)*\n```json\n{\n  \"minecraft:long_strength\" : {\n    \"DEFAULT_DURATION\" : 9600,\n    \"SPLASH_DURATION\" : 9600,\n    \"LINGER_DURATION\" : 2400,\n    \"TIPPED_DURATION\" : 1200\n  }\n}\n```\nThe above example uses the vanilla long_strength (Extended strength) potion durations. In this case drinking the potion regularly will grant the player strength for 8 minutes.\nMaybe this isn't long enough so we can change the values to following to instead have default potion grant 45 minutes of strength.\nTo calculate the number of ticks for the potion duration, you can simply follow this equation: <mark>MINUTES × 60<sub>(seconds in a minute)</sub> × 20<sub>(ticks per second)</sub></mark>\n```json\n{\n  \"minecraft:long_strength\" : {\n    \"DEFAULT_DURATION\" : 54000, // 45 × 60 × 20 = 45 minutes in ticks\n    \"SPLASH_DURATION\" : 18000, // 15 × 60 × 20 = 15 minutes in ticks\n    \"LINGER_DURATION\" : 9600, // 8 × 60 × 20 = 8 minutes in ticks\n    \"TIPPED_DURATION\" : 3600 // 3 × 60 × 20 = 3 minutes in ticks\n  }\n}\n```\n\nRemoving a potion from the config disables the duration injection logic for that potion.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 145,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "WJ1ahCDP",
+  "slug": "composer",
+  "title": "Composer",
+  "description": "A library mod created to improve the QOL of developing fabric mods.",
+  "body": "[![wakatime](https://wakatime.com/badge/github/project-codecs/composer.svg)](https://wakatime.com/badge/github/project-codecs/composer)\n# What is Composer?\n\n**Composer** is a general-purpose Fabric library mod developed under **Project Codex**.\nIt provides shared systems, utilities, and architectural building blocks used across multiple mods, with a focus on clean APIs, long-term stability, and multi-version support.\n    \nComposer does **not** add gameplay content on its own (except for a plushie). It exists to support other mods at runtime and during development.\n\nFor more details, take a look at the [wiki](https://moddedmc.wiki/composer-reloaded/latest)! <br>\nInformation like style and contributing guidelines are also there!\n\n---\n\n<details>\n<summary>Old development usage docs</summary>\n# Development Usage\n\nIf you want to use Composer as a library in your mod, add the Composer Maven repository and Cardinal Components\nrepository to your build file, then add Composer as a dependency.\n\nReplace `(latest_version)` with the latest Composer version compatible with your Minecraft version.\n\n---\n<details>\n<summary>Gradle (Groovy DSL) - build.gradle</summary>\n\n```properties\n# gradle.properties\ncomposer_version = (latest_version)\n```\n\n```groovy\n// build.gradle\n\nrepositories {\n    // Before 3.0\n    maven {\n        name = \"Composer Maven\"\n        url = \"https://dl.cloudsmith.io/public/lilbrocodes/composer-reloaded/maven/\"\n    }\n    \n    // After 3.0\n    maven {\n        name = \"Composer Maven\"\n        url = \"https://dl.cloudsmith.io/public/project-codex/composer/maven/\"\n    }\n    \n    // After 3.0.4\n    maven {\n        name \"Constructive\"\n        url \"https://dl.cloudsmith.io/public/lilbrocodes/constructive/maven/\"\n    }\n    \n    maven {\n        name = \"Cardinal Components\"\n        url = \"https://maven.ladysnake.org/releases\"\n    }\n    maven {\n        name \"Fuzzy Hamsters\"\n        url \"https://maven.fzzyhmstrs.me/\"\n    }\n}\n\ndependencies {\n    // <2.0\n    modImplementation \"org.lilbrocodes:composer-reloaded:$composer_version\"\n\n    // >=2.0 <3.0\n    modImplementation \"org.lilbrocodes:composer-reloaded:$composer_version+mc$minecraft_version\"\n\n    // >=3.0\n    modImplementation \"com.codex:composer:$composer_version+mc$minecraft_version\"\n}\n```\n\n</details>\n\n<details>\n<summary>Gradle (Kotlin DSL) - build.gradle.kts</summary>\n\n```properties\n# gradle.properties\ncomposer_version = (latest_version)\n```\n\n```groovy\n// build.gradle.kts\n\nrepositories {\n    // Before 3.0\n    maven(\"https://dl.cloudsmith.io/public/lilbrocodes/composer-reloaded/maven/\") {\n        name = \"Composer Maven\"\n    }\n    \n    // After 3.0\n    maven(\"https://dl.cloudsmith.io/public/project-codex/composer/maven/\") {\n        name = \"Composer Maven\"\n    }\n\n    // After 3.0.4\n    maven(\"https://dl.cloudsmith.io/public/lilbrocodes/constructive/maven/\") {\n        name = \"Constructive\"\n    }\n    \n    maven(\"https://maven.ladysnake.org/releases\") {\n        name = \"Cardinal Components\"\n    }\n    maven(\"https://maven.fzzyhmstrs.me/\") {\n        name = \"Fuzzy Hamsters\"\n    }\n}\n\ndependencies {\n    // <2.0\n    modImplementation(\"org.lilbrocodes:composer-reloaded:$composer_version\")\n    \n    // >=2.0 <3.0\n    modImplementation(\"org.lilbrocodes:composer-reloaded:$composer_version+mc$minecraft_version\")\n    \n    // >=3.0\n    modImplementation(\"com.codex:composer:$composer_version+mc$minecraft_version\")\n}\n```\n\n</details>\n\n<details>\n<summary>Maven - pom.xml</summary>\n\n```xml\n<repositories>\n    <!-- Before 3.0 -->\n    <repository>\n        <id>composer-maven</id>\n        <url>https://dl.cloudsmith.io/public/lilbrocodes/composer-reloaded/maven/</url>\n    </repository>\n    <!-- After 3.0 -->\n    <repository>\n        <id>composer-maven</id>\n        <url>https://dl.cloudsmith.io/public/project-codex/composer/maven/</url>\n    </repository>\n    <!-- After 3.0.4 -->\n    <repository>\n        <id>constructive-maven</id>\n        <url>https://dl.cloudsmith.io/public/lilbrocodes/constructive/maven/</url>\n    </repository>\n    <repository>\n        <id>cardinal-components</id>\n        <url>https://maven.ladysnake.org/releases</url>\n    </repository>\n    <repository>\n        <id>fuzzy-hamsters</id>\n        <url>https://maven.fzzyhmstrs.me/</url>\n    </repository>\n</repositories>\n\n<dependencies>\n    <!-- <2.0 -->\n    <dependency>\n        <groupId>org.lilbrocodes</groupId>\n        <artifactId>composer-reloaded</artifactId>\n        <version>${composer.version}</version>\n        <scope>compile</scope>\n    </dependency>\n    \n    <!-- >=2.0 <3.0 -->\n    <dependency>\n        <groupId>org.lilbrocodes</groupId>\n        <artifactId>composer-reloaded</artifactId>\n        <version>${composer.version}+mc${minecraft.version}</version>\n        <scope>compile</scope>\n    </dependency>\n\n    <!-- >=3.0 -->\n    <dependency>\n        <groupId>com.codex</groupId>\n        <artifactId>composer</artifactId>\n        <version>${composer.version}+mc${minecraft.version}</version>\n        <scope>compile</scope>\n    </dependency>\n</dependencies>\n\n```\n\nAdd the following property to your `<properties>` section:\n\n```xml\n<properties>\n    <composer.version>(latest_version)</composer.version>\n</properties>\n```\n\n</details>\n</details>\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1889,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

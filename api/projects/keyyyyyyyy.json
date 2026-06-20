@@ -1,0 +1,43 @@
+{
+  "id": "KMtOZMrU",
+  "slug": "keyyyyyyyy",
+  "title": "Keyyyyyyyy",
+  "description": "Enables keyboard repeat events on versions before 1.13",
+  "body": "# Keyyyyyyyy\n\n![keyyyyyyyy logo](https://cdn.modrinth.com/data/cached_images/dccdb4b4554f54019d5e9526117dc10f788ed695.png)\n\n![Badge](https://img.shields.io/badge/discord-yedel-blue)\n\n![GitHub Release](https://img.shields.io/github/v/release/Yedelo/Keyyyyyyyy?include_prereleases&label=GitHub%20version)\n\n![Modrinth Version](https://img.shields.io/modrinth/v/KMtOZMrU?label=Modrinth%20version)\n\nEnables keyboard repeat events on versions before 1.13\n\n## Supported Versions\n\n| **Minecraft version & loader**             | **Tested** | **Should work** |\n|--------------------------------------------|------------|-----------------|\n| 1.12.2 (Forge & Fabric)                    | ✅          | ✅               |\n| 1.11.2 (Forge & Fabric)                    | ✅          | ✅               |\n| 1.10.2 (Forge & Fabric)                    | ✅          | ✅               |\n| 1.9.4 (Forge)                              | ✅          | ✅               |\n| 1.9.4 (Fabric)                             | ❌          | ✅               |\n| 1.8.9 (Forge & Fabric)                     | ✅          | ✅               |\n| Other versions 1.8-1.12.2 (Forge & Fabric) | ✅          | ✅               |\n| Versions before 1.8 (Forge)                | ❌          | ❌               |\n| Versions before 1.8 (Fabric)               | ❌          | ✅               |\n\n## Developing\n\nThis mod is a pretty messy one-jar project.\n\n### Ducks source set\n\nThis source set contains LaunchWrapper and Forge classes so that Fabric versions can compile.\nWe don't need this the other way around because the Fabric part of this mod doesn't use any Fabric classes.\n\n### Packages\n\nWithin `at.yedel.keyyyyyyyy` are 3 packages: `common`, `fabric`, and `forge`. \nThese are simply to organize the classes; there is no special logic for them.\n\n### Transformations\n\nThe mod is done through 3 transformations to Keyboard:\n\n- Transforming `void enableRepeatEvents(boolean enable)` so that `enable` is always true\n- Transforming `boolean areRepeatEventsEnabled()` so that the result is always true\n- Transforming `boolean isRepeatEvent` so that the result is always false\n\nAll three transformations are probably not needed (especially `areRepeatEventsEnabled`; not used in vanilla) but it is just better to do.\nTransformations are applied with raw ASM instead of Mixins, as supporting mixins is somewhat complicated in legacy forge.\nIn Forge, ASM is used with a coremod / loading plugin, while in Fabric, ASM is used with Chocohead's [Fabric-ASM](https://github.com/Chocohead/Fabric-ASM/tree/master) which is bundled with the mod.\n\n### Run configs / multiversion\n\nRun configs are set up for the following versions of Forge and Fabric:\n- 1.12.2\n- 1.11.2\n- 1.10.2\n- 1.9.4\n- 1.8.9\n\nOther versions are supported, but versions below 1.8.9 don't work with loom, \nsome forge/fabric versions don't exist and there are preprocessor graph issues.\n\nFor Forge you should use Java 8 and for Fabric you should use Java 17?/21.\n\nAs this mod has multiple projects, jars will be built for all versions. They appear almost identical, but they have key differences.\nThe published jar will always be from 1.8.9-fabric, although any fabric jar should work.\n\n| Jar type   | Has mcmod.info | Has fabric.mod.json | Has Fabric-ASM properly bundled |\n|------------|----------------|---------------------|---------------------------------|\n| forge      | ✅              | ✅                   | ❌                               |\n| forge-dev  | ✅              | ❌                   | ❌                               |\n| **fabric** | ✅              | ✅                   | ✅                               |\n| fabric-dev | ❌              | ✅                   | ❌                               |\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 918,
+  "followers": 0,
+  "game_versions": [
+    "1.8",
+    "1.8.1",
+    "1.8.2",
+    "1.8.3",
+    "1.8.4",
+    "1.8.5",
+    "1.8.6",
+    "1.8.7",
+    "1.8.8",
+    "1.8.9",
+    "1.9",
+    "1.9.1",
+    "1.9.2",
+    "1.9.3",
+    "1.9.4",
+    "1.10",
+    "1.10.1",
+    "1.10.2",
+    "1.11",
+    "1.11.1",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "tDI2meH8",
+  "slug": "redstone_signal_visualizer",
+  "title": "Redstone Signal Visualizer",
+  "description": "A mod that lets you visualize redstone signals with neat numbers.",
+  "body": "# Redstone Signal Visualizer\n\n**See every redstone signal at a glance — debug, optimize, and design with confidence.** \n\n---\n\n## Overview \n**Redstone Signal Visualizer** overlays real-time redstone signal strengths in-world so builders, redstone engineers, and server admins can inspect and debug circuits quickly without changing mechanics.\n\nThis mod splits responsibilities between server and client: the server performs authoritative sampling of redstone state (including comparator outputs and other values the client is not allowed to access), ensuring visualizations reflect the true world state. The client focuses on rendering overlays, handling input, and per-player customization. In singleplayer or when the server-side component is absent, the client can perform a best-effort local inspection, but it may lack comparator-level accuracy.\n\n---\n\n## Features \n- Real-time visualization of redstone signal strength and propagation\n- Server-side sampling with optional client fallback for correctness\n- Per-player client rendering: colors, opacity, and visualization modes\n- Configurable update delay and radius to control performance overhead\n- Keybinding support for toggle, hold-to-show, cycle modes, and freeze\n- In-game config UI plus editable `config/redstone_visualizer.json`\n\n---\n\n## How it works — Server vs Client \n- **Server-side (authoritative):** The server samples block updates and redstone propagation to compute authoritative signal strengths. This ensures visualizations reflect the true world state (good for multiplayer and server-based debugging).\n\n- **Client-side (rendering & local fallback):** The client receives updates from the server and renders overlays (lines, gradients, labels, and animations). When the server-side component is absent (or for quick singleplayer mode), the client can locally inspect blocks for a best-effort visualization.\n\n- **Interaction:** The server sends either periodic updates or responds to client requests (depending on configuration). Clients control what they render (radius, mode, colors) so multiple players can visualize independently without forcing server-side rendering for everyone.\n\n---\n\n## Performance & Player Control \n- **Update delay:** Adjustable refresh interval (ms). Increase the delay to reduce CPU/network usage, or decrease it for snappier updates.\n- **Radius:** Limits how far from the player signals are visualized. Lower radius reduces overhead on busy servers and lower-end clients.\n- **Per-player limits:** Players can set their own radius and refresh rate to limit client-side cost and avoid overloading servers.\n\n> Tip: On high-population servers increase the update delay and reduce radius for best performance. \n\n---\n\n## Settings & Customization \nSettings are available via the in-game UI (Controls / Mods / Config) and via `config/redstone_visualizer.json`.\n\nYou can customize:\n- **Enable/disable** the mod globally or per-player\n- **Display toggles:** turn on/off `showEmits`, `showReceives`, and `showComparators` to control which signal types are rendered\n- **Colors & opacity** for default/obstructed/emitter/comparator signals\n- **Radius & update delay:** control how far and how often updates are performed to trade responsiveness for performance\n- **Behavior:** request frequency, server push vs client poll, and how much data is sent\n\n\nNote: The client currently registers a single keybinding (default `o`) to open the mod's options screen.\n\n---\n\n## Installation \n- Drop the mod JAR into your `mods/` folder (Fabric loader supported). Restart the client and/or server.\n- Server admins: install the server component on the server for authoritative visuals in multiplayer.\n\n---\n\n## Usage Scenarios & Examples \n- Quickly locate signal leaks or unintended clocks\n- Measure propagation delay visually across repeaters and comparators\n- Educate players by showing signal strength gradients during tutorials\n- Debug server-side redstone issues without hosing performance\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 5667,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20.6",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "Vjm9818I",
+  "slug": "miniscaled-forge-unofficial",
+  "title": "MiniScaled (Unofficial Forge Port)",
+  "description": "An unofficial Forge port for MiniScaled",
+  "body": "# MiniScaled\nShould work pretty much like the Fabric version. Make a frame out of stained glass in 2x2x2, 4x4x4, 8x8x8, 16x16x16, or 32x32x32 formats, then right click it with a netherite ingot. Each player may only use one of each size+color combo.\n\nOriginal code: https://github.com/iPortalTeam/MiniScaledMod\n\n## Why\nI wanted this mod with Forge.\n\n## How\nGitHub Copilot :P (I hate Java, so I made Copilot do it all for me)\n\n## Changes\nThis port replaces Fabric-specific APIs with Forge equivalents:\n\n- `@ModInitializer` → `@Mod` constructor with `FMLJavaModLoadingContext`\n- `@ClientModInitializer` → `FMLClientSetupEvent` + `EntityRenderersEvent.RegisterRenderers`\n- `FabricEntityTypeBuilder` → `EntityType.Builder` via Forge `DeferredRegister`\n- `FabricBlockEntityTypeBuilder` → `BlockEntityType.Builder` via Forge `DeferredRegister`\n- `UseBlockCallback.EVENT` → `PlayerInteractEvent.RightClickBlock`\n- `ClientTickEvents.END_CLIENT_TICK` → `TickEvent.ClientTickEvent`\n- `ServerTickEvents.END_SERVER_TICK` → `TickEvent.ServerTickEvent`\n- `ItemGroupEvents.modifyEntriesEvent` → `BuildCreativeModeTabContentsEvent`\n- `CommandRegistrationCallback` → `RegisterCommandsEvent`\n- `ServerLifecycleEvents.SERVER_STARTED` → `ServerStartedEvent`\n- `EntityRendererRegistry` → `EntityRenderersEvent.RegisterRenderers`\n- `ModMenuApi` (config screen) → `ConfigScreenHandler.ConfigScreenFactory`\n- `@Environment(EnvType.CLIENT)` → `@OnlyIn(Dist.CLIENT)`\n- All block/item/entity registrations via `DeferredRegister`",
+  "categories": [
+    "decoration",
+    "forge",
+    "game-mechanics",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1016,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

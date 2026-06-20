@@ -1,0 +1,36 @@
+{
+  "id": "MrNj4SH3",
+  "slug": "limitedmaces",
+  "title": "LimitedMaces",
+  "description": "This plugin limits the number of maces on a server!",
+  "body": "# LimitedMaces\n\n**LimitedMaces** is a lightweight server-side plugin that gives server owners full control over how many **Maces** can exist on the server at any given time. Perfect for hardcore, SMP, or special-event servers where powerful items should stay rare and meaningful.\n\n> 💡 Want a *one-mace server* like the Lifesteal SMP? Just set the mace limit to **1**!\n\n---\n\n## Features\n\n- **Global Mace Limit**  \n  Set a hard cap on how many maces may exist across the entire server.\n\n- **Container Restrictions**  \n  Maces **cannot** be placed into:\n  - Chests\n  - Barrels\n  - Shulker Boxes\n  - Any other container\n  \n  Hoppers **cannot** pick up maces.\n\n- **Crafting Control**\n  - The mace crafting recipe is **disabled automatically** once the limit is reached\n  - **Autocrafters cannot craft maces**\n  - Global messages are sent out about mace status changes (discord webhook feature coming soon!!!)\n\n- **Destruction Handling**\n  - When a mace is destroyed:\n    - A **server-wide broadcast** is sent\n    - A new mace can be crafted again (until the limit is reached)\n\n- **Illegal Mace Cleanup**\n  - Untracked or duplicated maces are automatically removed\n\n- **Optional Enchanting**\n  - Control whether maces can be enchanted\n  - When `allow-mace-enchanting` is **true**, maces can be placed into **Enchanting Tables** and **Anvils**\n  - When **false**, maces cannot be placed into enchant tables or anvils, making them completely unenchantable\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/maces` | `limitedmaces.use` | View tracked maces |\n| `/maces reload` | `limitedmaces.reload` | Reload the config |\n| `/maces setlimit <n>` | `limitedmaces.setlimit` | Set the mace limit |\n| `/maces enchanting <on\\|off>` | `limitedmaces.enchanting` | Enable/disable mace enchanting |\n| `/getuntrackedmace` | `limitedmaces.getuntracked` | Get an untracked mace (bypasses limit) |\n| `/clearuntrackedmaces` | `limitedmaces.clearuntracked` | Clear all untracked maces |\n| `/removemace <id>` | `limitedmaces.remove` | Remove a mace from the plugin and world |\n\n---\n\n## Configuration\n\nConfiguration file is located at: `plugins/LimitedMaces/config.yml`\n\nData file is located at: `plugins/LimitedMaces/maces.yml`. **_DO NOT TOUCH THIS UNLESS YOU KNOW WHAT YOU ARE DOING._**\n\n### Default / Example `config.yml`\n\n```yml\nversion: 1.1.4\n\n# Maximum number of maces allowed on the server\nallowed-maces: 3\n\n# Whether maces can be enchanted\n# If false, maces cannot be placed into enchant tables or anvils\nallow-mace-enchanting: true\n\nmessages:\n  prefix: \"&6[LimitedMaces]&r \"\n  crafted-broadcast: \"&a%player% &7crafted &f%amount%&7 mace(s)! &7(%current%/%max%)\"\n  destroyed-broadcast: \"&cA mace was destroyed! &7(last held by &f%lastHolder%&7) &7(%current%/%max%)\"\n  containers-blocked: \"&cYou can't put the mace in any container.\"\n  limit-reached: \"&cMace limit reached. A mace must be destroyed before another can be crafted.\"\n  illegal-removed: \"&cAn illegal/untracked mace was removed.\"\n  reload: \"&aLimitedMaces config reloaded.\"\n  no-permission: \"&cYou don't have permission.\"\n```\n\n---\n\n## Migration from MultiMace\n\nIf you're upgrading from an older version (1.1.3 or earlier) that used the \"MultiMace\" name:\n\n1. The plugin will automatically detect the old `plugins/MultiMace/` folder\n2. Config and data will be migrated to the new `plugins/LimitedMaces/` folder\n3. The old folder will be deleted after successful migration\n4. Prefix \"MultiMace\" will be updated to \"LimitedMaces\". If you set a custom prefix, this may override that.\n\nIf this is not automatically done or you face issues with this process, feel free to join our Discord and open a ticket. Link is in the sidebar. \n\n---\n\n## Compatibility\n\n* **Minecraft 1.21.x**\n* Designed to be lightweight and efficient\n* No dependencies required",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4068,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

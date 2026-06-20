@@ -1,0 +1,21 @@
+{
+  "id": "ADhzdjKH",
+  "slug": "revelationaryjs",
+  "title": "Revelationary JS",
+  "description": "Use Revelationary API by KubeJS",
+  "body": "# RevelationaryJS\nUse Revelationary API to cloak block/item by KubeJS\n\n## Example\n[Revelationary Wiki](https://github.com/DaFuqs/Revelationary/wiki/)\n\n### Server script\n```js\nServerEvents.revelation(event => {\n    event.registerFromJson({\n        \"block_states\": {\n            \"minecraft:grass\": \"minecraft:beacon\",\n            \"minecraft:tall_grass\": \"minecraft:obsidian\",\n            \"minecraft:tall_grass[half=upper]\": \"minecraft:netherite_block\"\n        },\n        \"items\": {\n            \"minecraft:nether_star\": \"minecraft:gunpowder\"\n        },\n        \"advancement\": \"minecraft:nether/root\"\n    })\n\n    event.register(\"minecraft:adventure/root\", revBuilder => {\n        revBuilder\n            .cloakBlockState(\"minecraft:grass\", \"minecraft:beacon\")\n            .cloakItem(\"minecraft:nether_star\", \"minecraft:gunpowder\")\n            .cloakItem(\"minecraft:diamond_ore\", \"minecraft:stone\")\n            .replaceItemName(\"minecraft:nether_star\", \"block.minecraft.poppy\")\n            .replaceItemName(\"minecraft:diamond_ore\", \"Probably Stone?\")\n            .replaceItemName(\"minecraft:grass\", \"block.minecraft.dandelion\")\n            .replaceItemName(\"minecraft:gold_ore\", \"Since Gold Ore is not in the items tag above, you should never see this\")\n            .replaceBlockName(\"minecraft:grass\", \"block.minecraft.dandelion\")\n    })\n    \n    let count = 0;\n    event.onReveal((doneAdvancements, revealedBlocks, revealedItems, isJoinPacket) => {\n        console.log(\"Hey \" + (++count))\n    })\n})\n```\n\n### Registering a revealable block or item\n```js\n// Register a cloaked block\nStartupEvents.registry(\"block\", event => {\n    event\n        .create(\"revjs:example_block\", \"cloaked\")\n        .cloakAdvancement(\"story/smelt_iron\")\n        .cloakedBlockTranslation(\"I'm stone stairs!\")\n        // Or just 'cloakBlock(\"stone_stiars\")'\n        .blockStateCloak(Block.id(\"revjs:example_block\"), Block.id(\"stone_stairs\", { \"facing\": \"west\" }))\n        .onCloak((cloakedBlock, cloakAdvancement, cloakBlock) => { })\n        .onUnCloak((cloakedBlock, cloakAdvancement, cloakBlock) => { })\n})\n\n// Register a cloaked item\nStartupEvents.registry(\"item\", event => {\n    event\n        .create(\"revjs:example_item\", \"cloaked\")\n        .cloakAdvancement(\"story/smelt_iron\")\n        .cloakedItemTranslation(\"I'm diamond!\")\n        .cloakItem(\"diamond\")\n        .onCloak((cloakedItem, cloakAdvancement, cloakItem) => { })\n        .onUnCloak((cloakedItem, cloakAdvancement, cloakItem) => { })\n})\n```",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 870,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

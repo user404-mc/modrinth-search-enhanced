@@ -1,0 +1,19 @@
+{
+  "id": "39L8Dxh3",
+  "slug": "replication-extended-registry",
+  "title": "Replication Extended Registry",
+  "description": "Integrates various mods with Replication.",
+  "body": "# Replication Extended Registry – Data & scripting\n\nThis mod ships **built-in matter value recipes** (Replication) for many mods and provides an **external scripting system** to register or override matter values without editing the mod.\n\n---\n\n## Built-in matter values (datapack)\n\nUnder `data/rep_ext_reg/recipe/matter_values/items/` the mod includes matter value definitions grouped by mod. These are standard Replication `replication:matter_value` recipes and are loaded with the game.\n\n### Mods included\n\n- Actually Additions\n- Advanced AE\n- Applied Energistics\n- Applied Flux\n- Applied Mekanistics\n- Aquaculture\n- Ars Nouveau\n- Bumblezone\n- Cataclysm\n- Corail Tombstone\n- Create\n- Deeper Darker\n- Draconic Evolution\n- Ender IO\n- Evilcraft\n- Extended AE2\n- Hostile Network\n- Ice and Fire\n- Immersive Engineering\n- Industrial Foregoing\n- Just Dire Things\n- Mahoutsukai\n- Megacells\n- Mekanism\n- Mekanism Generator\n- MIFA\n- Oritech\n- Pneumaticcraft\n- Powah\n- Productive Bees\n- Reliquary\n- Roots Classic\n- Sophisticated Backpack\n- Supplementaries\n- Synergy\n- XNet\n- Xycraft\n\n*(Folder names under `matter_values/items/` use snake_case (e.g. `ars_nouveau`, `deeper_darker`).)*\n\n---\n\n## Scripting system (external scripts)\n\nBesides the built-in data, **rep_ext_reg** can load **register scripts** from a configurable folder. Those scripts are JSON files that assign matter values to items (or item tags) and are applied **after** Replication’s calculation, so you can add or override values without changing the mod or the datapack.\n\n- **Path:** Set in mod config → **dev → externalScriptsPath**. Default: `kubejs/external_scripts/rep_ext_reg`.\n- **Format:** Each JSON file must have `\"type\": \"rep_ext_reg\"`, optional `\"aggressive\"` (override existing values), and an `\"entries\"` array. Each entry has:\n  - **`res`:** list of item IDs (`\"minecraft:tnt\"`) and/or tags with `#` (`\"#c:ingots/lead\"`). Multiple IDs in one entry share the same matter definition.\n  - **`mat`:** list of matter type → amount, e.g. `[{\"replication:earth\": 10}]`.\n- **When:** Scripts are loaded on server start and on `/reload`; values are injected once Replication has finished its matter calculation.\n\nWhen the scripts folder is created (or when the mod runs), it **auto-generates a README** in that folder with the full format description and examples. Create the folder, run the game once, and use the generated `README.md` there as reference.\n\n",
+  "categories": [
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 392,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

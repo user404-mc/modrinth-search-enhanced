@@ -1,0 +1,38 @@
+{
+  "id": "kbUCkuFX",
+  "slug": "loginme",
+  "title": "LoginMe",
+  "description": "A simple Spigot plugin that requires players to log in before playing.",
+  "body": "```\n██╗      ██████╗  ██████╗ ██╗███╗   ██╗███╗   ███╗███████╗\n██║     ██╔═══██╗██╔════╝ ██║████╗  ██║████╗ ████║██╔════╝\n██║     ██║   ██║██║  ███╗██║██╔██╗ ██║██╔████╔██║█████╗  \n██║     ██║   ██║██║   ██║██║██║╚██╗██║██║╚██╔╝██║██╔══╝  \n███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║██║ ╚═╝ ██║███████╗\n╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═╝     ╚═╝╚══════╝\n```\n\n# LoginMe\n\nA lightweight authentication plugin for cracked/offline-mode Minecraft servers. Supports Bukkit, Spigot, Paper, Purpur, Folia, BungeeCord, Waterfall, and Velocity — all in a single JAR.\n\n---\n\n## Features\n\n- Register and login system with `/register` and `/login`\n- Passwords hashed with **SHA-256 + random salt** per player — never stored in plaintext\n- Offline session cache — players don't need to re-login after briefly disconnecting\n- Full movement, chat, and command restrictions until authenticated\n- Blindness effect applied to unauthenticated players\n- Login timeout on proxy (auto-kick if not logged in within X seconds)\n- **Session sharing** — login once at the proxy, stays logged in across all backend servers\n- No external database required — uses a simple flat file (`players.dat`)\n\n---\n\n## Compatibility\n\n| Platform | Supported |\n|---|---|\n| Bukkit / Spigot | ✅ |\n| Paper / Purpur | ✅ |\n| Folia | ✅ |\n| BungeeCord / Waterfall | ✅ |\n| Velocity | ✅ |\n\nMinecraft version: **1.21.1+**\n\n---\n\n## Installation\n\n**Standalone (Paper/Spigot only, no proxy):**\nDrop `LoginMe.jar` into your server's `plugins/` folder and restart.\n\n**With proxy (BungeeCord / Velocity):**\nDrop `LoginMe.jar` into **both** the proxy `plugins/` folder and every backend server's `plugins/` folder. The proxy handles authentication and shares the session to backend servers automatically.\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/login <password>` | Login to your account |\n| `/register <password> <confirm>` | Create an account |\n| `/reg <password> <confirm>` | Alias for `/register` |\n\n---\n\n## Configuration\n\nLocated at `plugins/LoginMe/config.yml`:\n\n```yaml\nprefix: \"&7[&bLoginMe&7] \"\n\n# How long to keep a session after a player disconnects\n# Supports: s (seconds), m (minutes), h (hours), d (days)\noffline-cache-duration: \"5m\"\n\n# Proxy only: kick player if not logged in within this time after joining\nlogin-timeout: \"60s\"\n\nmessages:\n  login-success: \"&aLogin successful!\"\n  already-logged-in: \"&cYou are already logged in!\"\n  not-registered: \"&cYou are not registered! Use /register <password> <confirm>\"\n  login-usage: \"&cUsage: /login <password>\"\n  wrong-password: \"&cWrong password!\"\n  register-success: \"&aRegister successful!\"\n  already-registered: \"&cYou are already registered! Use /login <password>\"\n  register-usage: \"&cUsage: /register <password> <confirm>\"\n  password-mismatch: \"&cPasswords do not match!\"\n  please-login: \"&ePlease login with /login <password>\"\n  please-register: \"&ePlease register with /register <password> <confirm>\"\n  must-login-first: \"&cYou must login first!\"\n  must-login-chat: \"&cYou must login first to chat!\"\n  login-timeout: \"&cLogin timeout! Please reconnect and login.\"\n\ntitles:\n  login-success: \"&aLogin Successful!\"\n  login-success-subtitle: \"&7Welcome back!\"\n  register-success: \"&aRegister Successful!\"\n  register-success-subtitle: \"&7Please login with /login <password>\"\n```\n\nAll messages support `&` color codes.\n\n---\n\n## Data Storage\n\nPlayer data is stored in `plugins/LoginMe/players.dat`. Each entry contains the player's UUID alongside a randomly generated salt and SHA-256 hash of their password. The file is human-readable but **should not be edited manually**.\n",
+  "categories": [
+    "bukkit",
+    "bungeecord",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility",
+    "velocity",
+    "waterfall"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3410,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

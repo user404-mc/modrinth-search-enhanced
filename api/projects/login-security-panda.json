@@ -1,0 +1,22 @@
+{
+  "id": "pHKnXUKq",
+  "slug": "login-security-panda",
+  "title": "Login Security - Panda",
+  "description": "A secure player authentication system for Minecraft servers featuring login/registration, IP protection, and admin tools to prevent unauthorized access while preserving gameplay integrity.",
+  "body": "# Minecraft Login/Registration System Analysis\n\n## Core Features\n\n### Authentication System\n- Commands: `/login <password>` and `/register <password>`\n- Password verification with attempt limit (default: 3)\n- Minimum password length requirement (4 characters)\n\n### Account Protection\n- Configurable account limit per IP\n- Action blocking while unauthenticated\n- IP registry to prevent multi-accounting\n\n### Security Measures\n- Freezes unauthenticated players (movement prevention)\n- Blocks interactions (items, blocks, chat)\n- Prevents unauthorized command usage\n\n### Administration Tools\n- Force login: `/auth forcelogin`\n- Manual unfreeze: `/auth unfreeze`\n- IP limit configuration: `/auth setiplimit`\n- Configuration reload: `/auth reload`\n\n### Internationalization\n- Multi-language support (PT/EN included)\n- Customizable messages via JSON files\n\n## Technical Components\n\n### Data Storage\n- Player data: `players.json`\n- System config: `config.json`\n- IP registry: `ip_registry.json`\n- Custom IP limits: `ip_limits.json`\n\n### Session Management\n- `SessionData`: Tracks login state and attempts\n- `PlayerState`: Stores pre-login player data\n- `PlayerData`: Permanent account information\n\n### Event Handling\n- Player connection/disconnection\n- Movement and interaction attempts\n- Command and chat usage\n- Item throwing\n\n## System Flow\n\n### First Access\n1. Player is frozen and prompted to register\n2. After registration, player is disconnected to login\n\n### Subsequent Access\n1. Player must login with registered password\n2. Full functionality unlocked after authentication\n\n### Protection Mechanisms\nUnauthenticated players cannot:\n- Move or interact with world\n- Use commands (except login/register)\n- Send chat messages\n- Throw items\n\n## Customization Options\n- Message files (in `messages/`)\n- Default accounts-per-IP limit\n- Custom IP-specific limits\n- System language (PT/EN)\n\n**Summary:** A robust authentication system providing security against unauthorized access and multi-accounting, with comprehensive admin tools for server management.",
+  "categories": [
+    "management",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1051,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "8B0Xv5Jn",
+  "slug": "mischievous-skull",
+  "title": "Mischievous Skull",
+  "description": "Give random effect (good) when the skull is destroyed",
+  "body": "## 📖 What's this mod?\n\nThe Mischievous Skull mod introduces a new block into the game—a mysterious skull that offers a unique twist. Once destroyed, the skull grants the player a random Level 1 effect (such as Strength, Speed, Haste, etc.) with an infinite duration. This feature is perfect for adventure map creators looking to add an element of unpredictability and strategy, placing these skulls in key locations to enhance the gameplay experience.\n\nThe design of the skull is inspired by the [Traits charms]([https://huntshowdown.fandom.com/wiki/World?file=Trait_Charm.jpg](https://huntshowdown.fandom.com/wiki/World#Lootable_Items)) from the game Hunt Showdown, adding a touch of mischievousness to your adventures. Whether you're setting up a challenging quest or simply want to experiment with new gameplay dynamics, the Mischievous Skull mod is sure to add some fun surprises to your world.\n\n## Customizing effects\n\nYou can change which status effects the skull can roll, and how long each one lasts, by providing a **data resource** at:\n\n`data/mischievous-skull/skull_effects.json`\n\nThat file can come from:\n\n- A **datapack** under your world folder (for example `saves/<world>/datapacks/<your_pack>/data/mischievous-skull/skull_effects.json`).\n- A **resource pack** that includes a `data/` tree (the same path under the pack root).\n\nThe mod ships a default `skull_effects.json` inside the mod JAR. Packs with higher priority override lower ones, like other Minecraft data. On a dedicated server, run **`/reload`** after changing the file so server data is reloaded.\n\n### Format\n\n- **`effects`**: array of objects.\n- **`id`**: status effect identifier (`namespace:path`), e.g. vanilla `minecraft:strength` or another mod’s effect `examplemod:my_effect`.\n- **`duration`** (optional): duration in **game ticks** (20 ticks = 1 second). Omit the field or set it to **`0`** for **infinite** duration. Values greater than `0` apply a timed effect.\n\nIf the file is missing, invalid, or `effects` is empty, the mod falls back to its built-in list (the same nine positive effects as before). Unknown effect IDs are skipped with a warning in the log.\n\n### Example (vanilla + timed effect)\n\n```json\n{\n  \"effects\": [\n    { \"id\": \"minecraft:strength\", \"duration\": 0 },\n    { \"id\": \"minecraft:speed\", \"duration\": 200 }\n  ]\n}\n```\n\nHere, Strength can roll with infinite duration, and Speed with 200 ticks (10 seconds) when applied.\n\n### Example (effect from another mod)\n\nAnother mod must **register** that status effect and be **loaded** in your instance. Use that mod’s namespace and effect path (check its documentation or data).\n\n```json\n{\n  \"effects\": [\n    { \"id\": \"minecraft:regeneration\", \"duration\": 0 },\n    { \"id\": \"examplemod:my_custom_effect\", \"duration\": 600 }\n  ]\n}\n```\n\nIf `examplemod` is not installed or does not register `examplemod:my_custom_effect`, that line is ignored at reload time and a warning is logged; the rest of the list still applies.\n\n## Screenshots\n\n![the skull](https://cdn.modrinth.com/data/8B0Xv5Jn/images/2daae6390ac777e219b2685e4b633b2a54bc2144.png)\n\nThe Mischievous Skull\n\n![Random effects with infinite duration](https://cdn.modrinth.com/data/8B0Xv5Jn/images/06ae725d53713e5c1bf22b317fcf2e93faf8ee07.png)\nRandom effect give by the skull",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 274,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21.1",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

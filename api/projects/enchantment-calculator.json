@@ -1,0 +1,31 @@
+{
+  "id": "7eBnrS29",
+  "slug": "enchantment-calculator",
+  "title": "Enchantment Calculator",
+  "description": "Client-side mod that calculates optimal enchantment paths to save XP and levels when enchanting gear, tools, weapons, and armor.",
+  "body": "## Overview\n\nEnchantment Calculator is a client-side mod that helps you find the most cost-effective way to combine enchantments on your items.\n\nThis mod is based on the functionality provided by [this website](https://iamcal.github.io/enchant-order/)\n\nThis mod supports customization via a custom resource pack. GUI elements are located at:\n`assets/enchantmentcalculator/textures/gui`\n\nYou can view the original textures in the source code on [GitHub](https://github.com/FanyaOff/Enchantment-Calculator/tree/main/src/main/resources/assets/enchantmentcalculator/textures/gui)\n\n_If you have an idea to improve the interface by redrawing the elements or by changing the code, I would appreciate it._\n\n\n## Known bugs\n- The interface overflows off-screen when using UI scale 4 (idk how to fix this :P)\n\n## Bug Reports & Feature Requests\n\nFound a bug, errors in calculations, have a suggestion? Please report it my our [GitHub Issues](https://github.com/FanyaOff/Enchantment-Calculator/issues) page.\n\n## Usage\n\n1. **Place an item** in the anvil\n2. **Select enchantments** from the left panel\n3. **Click Calculate** to find the optimal sequence\n4. **Follow the steps** shown in the right panel\n5. **Navigate** through steps using arrow buttons\n\n## Screenshot\n\n<img width=\"1209\" height=\"423\" alt=\"image\" src=\"https://github.com/user-attachments/assets/b4ab4176-93f9-4317-98fa-0e2dda540c28\" />\n\n# Technical Algorithm Overview\n\n## Optimization Algorithm\n\nThe Enchantment Calculator uses a sophisticated **tree-based optimization algorithm** to find the most cost-effective enchanting sequence.\n\n### Core Algorithm Steps:\n\n#### 1. **Tree Structure Generation**\n```\nFor n enchantments, generate all possible binary combination trees\n- Each leaf = enchantment book or base item\n- Each internal node = anvil combination operation\n- Tree depth determines maximum prior work penalty\n```\n\n#### 2. **Cost Calculation Model**\nThe mod calculates costs using Minecraft's exact anvil mechanics:\n\n**Total Cost = Enchantment Cost + Prior Work Penalty**\n\nWhere:\n- **Enchantment Cost**: Based on enchantment rarity weights\n- **Prior Work Penalty**: `MULTIPLIERS[left_uses] + MULTIPLIERS[right_uses]`\n- **Multipliers**: `[1023]`\n\n#### 3. **Tree Pruning Optimization**\nInstead of testing all possible trees, the algorithm:\n- Groups trees by maximum depth (anvil use count)\n- Calculates weighted contribution sums for each tree\n- Keeps only the best tree per depth level\n- Reduces complexity from O(n!) to O(n²)\n\n#### 4. **Item Placement Optimization**\nFor each tree structure:\n```\n1. Sort enchantment books by cost (expensive first)\n2. Calculate leaf contribution values for each position\n3. Place expensive items at positions with lowest contributions\n4. Minimize total weighted cost\n```\n\n#### 5. **Multi-Mode Optimization**\nSupports two optimization targets:\n- **Level Mode**: Minimizes total anvil level cost\n- **Experience Mode**: Minimizes total XP expenditure\n\n### Mathematical Foundation\n\n#### Prior Work Penalty Calculation:\n```\npenalty = MULTIPLIERS[left_item_uses] + MULTIPLIERS[right_item_uses]\n```\n\n#### Experience Cost Conversion:\n```\nif (levels ≤ 16): xp = levels² + 6×levels\nif (levels ≤ 31): xp = 2.5×levels² - 40.5×levels + 360\nif (levels > 31): xp = 4.5×levels² - 162.5×levels + 2220\n```\n\n#### Tree Contribution Weighting:\n```\nFor each tree position i:\ncontribution[i] = depth_from_root\nweighted_sum = Σ(i × contribution[i])\n```\n\n### Algorithm Complexity\n\n- **Time Complexity**: O(n² × 2^n) where n = number of enchantments\n- **Space Complexity**: O(n × 2^n) for tree storage\n- **Practical Performance**: <100ms for typical 5-7 enchantments\n\n### Enchantment Weight System\n\nThe mod uses empirically determined weights matching Minecraft's internal costs:\n\n```java\nWeight 1: protection, sharpness, efficiency, unbreaking, power\nWeight 2: fire_aspect, looting, fortune, punch, flame\nWeight 4: mending, silk_touch, infinity, curse_of_binding\n```\n\n### Tree Search Strategy\n\n1. **Generate** all possible binary tree structures\n2. **Filter** by maximum depth to reduce search space  \n3. **Score** each tree using weighted contribution analysis\n4. **Select** optimal trees per depth level\n5. **Test** item placements for each selected tree\n6. **Return** globally optimal solution\n\n### Edge Case Handling\n\n- **Single enchantment**: Direct application (cost = weight × level)\n- **Two enchantments**: Simple combination without tree search\n- **Incompatible enchantments**: Filtered during selection phase\n- **Maximum anvil uses**: Capped at 6 uses (cost = 1023 levels)\n\nThis algorithm ensures you get the mathematically optimal enchanting sequence while maintaining fast performance suitable for real-time gameplay.\n\n\n\n",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 4948,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

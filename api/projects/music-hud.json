@@ -1,0 +1,35 @@
+{
+  "id": "7Rnb6oJr",
+  "slug": "music-hud",
+  "title": "Music Hud",
+  "description": "Request music in whole server powered by Netease Cloud Music (NCM) | 一个基于网易云的全服点歌模组",
+  "body": "![Banner](https://cdn.modrinth.com/data/7Rnb6oJr/images/0ec5142f5e4ea723ce955e2aa3774be6df349270.png)\n![Home View](https://cdn.modrinth.com/data/7Rnb6oJr/images/b1ab5a9d276489d9f2ef4ecce3fd318e58290553.png)\n\n#### A GUI-based, server-wide song request mod/plugin designed with zero modifications to game mechanics\n\n> Due to service scope provided by NetEase, this mod might not work well outside China\n\n## Related Links\n\n[Third-party Bukkit plugin 1](https://github.com/Shiroiame-Kusu/MusicHud-Bukkit) (1.0.5 stable -)\n\n[Third-party Bukkit plugin 2](https://github.com/MOPELotus/MusicHud-Paper) (1.1.4 hotfix +, now partly merged into main repository)\n\n## Prerequisites\n- ModernUI (only client) \n- Forge Config API Port (only fabric)\n- ~~Architectury API~~ (Mod edition, 1.2.0 and below)\n\n## Features\n- With graceful GUI, providing an in-game operation interface and a easily configurable HUD.\n- Can read NetEase Cloud Music account playlists for convenient song requests.\n- The server does not retain user data; it is only temporarily stored during login.\n- Streamed playback with no redundant client-side caching.\n- Staggered lyrics auto scroll inspired by Apple Music\n- HUD dynamic fluid background\n\n## Functions\n- Search for musics, playlists, albums and artists.\n- Log in to NetEase Cloud Music account via QR code or SMS code to explore subscribed playlists, albums and artists.\n- Synchronized server-wide play queue.\n- Configure idle playback sources for automatic random song switching when server is idle.\n- Display lyrics, requesting player (or avatar) in the HUD and user interface.\n\n## TO-DO List\n- Customizable HUD layout [target 1.3.0/1.4.0]\n- More music platform support (QQ Music, Kugou Music) [target 2.0.0]\n\n## Usage\n\n### Client\nFirst of all, place the prerequisite mods and the MusicHud jar file into the mods folder.\n\n#### Single-player or LAN Multi-player Host\nAll you need is to configure or deploy an API server.\n\n#### Multiplayer (join Server or LAN Multi-player)\nYou don't need to configure or deploy an API server, but the server or LAN multiplayer host needs to configure or deploy MusicHUD and API server.\n\n### Server\nAll you need is to configure or deploy an API server.\n\n### How to Deploy an API Server\nThere are 2 methods to deploy.\n#### Deploy bound with mod (recommend for client)\n> This method allows MusicHUD to manage lifecycle of api server.\n>\n> Due to some limitations, API Server may not be auto-closed when game exit abnormal (e.g., due to a crash)\n\n1. **Login to GitHub (Important, otherwise can NOT download artifacts)** and go to https://github.com/NeteaseCloudMusicApiEnhanced/api-enhanced/actions/workflows/build-dev.yml\n2. Click latest action runs in type \"Build Artifacts\" and download platform binary artifacts matches to your pc/server platform\n3. Uncompress the binary executable file from ZIP file to ...\n   - Mod edition: `{corepath}/music-hud/` and rename it to `api` (`api.exe` on Windows)\n   - Plugin edition: `{corepath}/plugins/MusicHud/` and rename it to `api` (`api.exe` on Windows)\n   - Or place it anywhere and modify config in game or option `serverApiBinaryExecutablePath` (absolute or relative path) in config file `/config/music_hud-common.toml`.\n\n#### Deploy separately (recommend for server)\n1. Deploy NetEase Cloud Music API Enhanced (https://github.com/neteasecloudmusicapienhanced/api-enhanced).\n2. If not using the default port (3000) of NCM API Enhanced or deploying on another server, modify the `serverApiBaseUrl` property in the config file `/config/music_hud-server.toml`.\n\n---\n## CN version description\n\n#### 图形化的全服点歌模组/插件，设计上不修改任何游戏机制\n\n## 相关链接\n\n[MC 百科](https://www.mcmod.cn/class/23688.html)\n\n[第三方 Bukkit 插件实现 1](https://github.com/Shiroiame-Kusu/MusicHud-Bukkit) (1.0.5 stable -)\n\n[第三方 Bukkit 插件实现 2](https://github.com/MOPELotus/MusicHud-Paper) (1.1.4 hotfix +，目前已部分合并至主仓库)\n\n## 前置依赖\n- ModernUI （仅客户端）\n- Forge Config API Port （仅 Fabric）\n- ~~Architectury API~~ （非插件版，1.2.0 以及更低版本）\n\n## 特点\n- 具有优雅的 GUI，提供游戏内操作界面，以及易配置的 HUD\n- 可读取网易云账户歌单，方便点歌\n- 服务端不保留用户数据，仅在登录时暂存\n- 流式播放，无赘余的客户端缓存\n- 受 Apple Music 启发的歌词交错滚动与逐字歌词\n- HUD 动态流体背景\n\n## 功能\n- 搜索音乐、歌单、专辑和歌手\n- 通过二维码或短信验证码登录网易云账户，查看收藏的歌单、专辑和歌手\n- 全服同步播放队列\n- 配置空闲播放源，服务器空闲时随机切歌\n- 在 HUD 和用户界面中展示歌词，点歌玩家（或头像）\n\n## ~~大饼~~ 待办清单\n- 可自定义的 HUD 布局 [目标 1.3.0/1.4.0]\n- 更多音乐平台支持(QQ音乐, 酷狗音乐) [目标 2.0.0]\n\n## 使用\n### 客户端\n首先在 mods 文件夹中放入前置 mod 和 MusicHud 的 jar 文件\n#### 单人模式 或 局域网联机主机\n只需要配置/部署 API 服务器\n\n#### 加入服务器 或 加入局域网世界\n不需要配置/部署 API 服务器\n\n但是需要服务器/局域网主机配置/部署 MusicHUD 和 API 服务器\n\n### 服务端\n只需要部署 API 服务器\n\n### 如何部署 API 服务器\n两种方法\n#### 绑定在 mod 中（推荐客户端使用）\n> 这个方法会让 MusicHUD 管理 API 服务器生命周期\n>\n> 由于一些限制，在游戏非正常退出时（如崩溃）无法自动结束进程\n\n1. **登录到 GitHub (重要，否则无法下载工件)** 并跳转到 https://github.com/NeteaseCloudMusicApiEnhanced/api-enhanced/actions/workflows/build-dev.yml\n2. 在 actions 类型中选择 \"Build Artifacts\" 并进入最新的构建中根据你的平台下载对应的二进制构建产物\n3. 解压下载得到的压缩包并将其中的二进制可执行文件放置到...\n   - mod 版：{核心目录}/music-hud/ 并重命名为 `api` (对于 Windows 为 `api.exe`)\n   - 插件版: {核心目录}/plugins/MusicHud/api(.exe)\n   - 或者放在任意处并在游戏内或配置文件`/config/music_hud-common.toml`中修改选项 `serverApiBinaryExecutablePath` 对应(绝对/相对)目录\n\n#### 独立部署（推荐服务端使用）\n1. 部署 Netease Cloud Music API Enhanced (https://github.com/neteasecloudmusicapienhanced/api-enhanced)\n2. 如果不使用 NCM API Enhanced 的默认端口 ( 3000 ) 或在其他服务器上部署，需要修改配置文件`/config/music_hud-server.toml`的 `serverApiBaseUrl` 属性",
+  "categories": [
+    "bukkit",
+    "fabric",
+    "folia",
+    "neoforge",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5416,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

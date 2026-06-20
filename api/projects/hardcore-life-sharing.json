@@ -1,0 +1,38 @@
+{
+  "id": "sF91lEGr",
+  "slug": "hardcore-life-sharing",
+  "title": "(Ultra) Hardcore Life Sharing",
+  "description": "Share a life count among players in a Hardcore server, works with Ultra Hardcore too",
+  "body": "# Hardcore Mode with life sharing\n\n**Works for both Hardcore AND Ultra Hardcore**\n\nIn vanilla hardcore, when someone dies on a server they will be locked out of the server while everyone else can still play.\nThis datapack changes this to **make hardcore more suitable for a server**.\n\nAll players have **a shared life total** displayed on the action bar and the world only ends when it reaches zero. Difficulty is set to hard automatically on load to mimic vanilla hardcore.  \nAll players also **glow** to see each other better.  \n_The hearts in the hotbar will look like regular hearts, you might want to use a texture pack that changes them to hardcore hearts._\n\nIf you have any **questions, comments or suggestions**, please post them on the project's [Planet Minecraft page](https://www.planetminecraft.com/data-pack/hardcore-life-sharing/).\n\n## Features:\n\n- **Config** for _(almost)_ everything\n- **Shared lives** system\n- Ability to **gain back lives**\n- Ability to **opt out** for guests\n- Custom **advancements**\n\nMore detailed explainations below.\n\n## Installation:\n\nPut this datapack in the _datapack_ folder of your world like any other pack. No resource pack is required. **DO NOT** enable minecraft's vanilla hardcore mode, **this pack replaces it entirely**. \n\n_Playing with keepInventory on is encouraged (it is off by default), as losing a life is a big enough punishment for dying even without dropping all your items._\n\n**Please DO NOT reupload this pack without giving credit, and if you use it for a video or stream give credit and link this page in the description.**\n\nIf you want to play **Ultra Hardcore** just do \n```\n/gamerule natural_health_regeneration false\n```\n### Uninstalling:\nUse the command \n```\n/function uhc:config/uninstall\n```\nand immediately **disable** the datapack or **stop** your world/server, then **delete the datapack** from your world's datapacks folder.\n\n## Shared lives system:\n\nThere is a **single lives total** shared among all\\* players, by default you start with **3 lives** and there is a **max of 5 lives** you can't go over _(see config to change these)_.  \nIf anyone\\* dies a title is displayed to all players to inform them (showing who died) and a life is removed from the total.\n\nIf the life total reaches 0 a **\"Game Over\"** text will be displayed and everyone\\* will **become a spectator**, just like vanilla hardcore.\n\n_\\* see \"opt-out\" below_\n\n## Gaining extra lives:\n\nThere is a way to **gain lives** _(this can be disabled, see \"config\" below)_. You need to give a **heart of the sea** to an **Allay**. The Allay will start to spin, glow and emit sounds and particles and after a set time (configurable) you will gain an extra life and **the heart is consumed**.\nThis only works if your lives total is below the max lives (configurable), when at max lives you will see \"[MAX]\" next to the life total and giving a heart to an Allay will do nothing (it will just hold it like normal) until someone dies.\nWhen gaining an extra life a title will be displayed to everyone, players will emit particles and a sound will be played.\n\n_I chose this method because it requires exploring dangerous places to get the Allay (and bring it back home) and because the heart of the sea is an item that's not easy to find (but not impossible), not renewable, not farmable and not that useful in vanilla._\n\n## Opt out:\n\nIf you want to invite a guest in your world but want to let them play casually without worrying about death and without you worrying about them losing your precious lives, **players can opt out of Hardcore**.\nAn opted out player will:\n- not affect the life total when dying\n- not glow like hardcore players\n- not see the death and extra lives notifications\n- still see the life total, but in white text\n- not become a spectator when a Game Over happens\n\nOnly an **operator** can make someone opt in or out of hardcore, the commands are:\n- To opt in yourself:\n```\n/function uhc:opt/in\n```\n- To opt out yourself:\n```\n/function uhc:opt/out\n```\n- To make someone else opt in:\n```\n/execute as <name> run function uhc:opt/in\n```\n- To make someone else opt out:\n```\n/execute as <name> run function uhc:opt/out\n```\n\n## Config:\n\nYou can configure the **lives total**, the **max lives** possible, the ability to **gain extra lives** and the **time** it takes for an Allay to \"charge\" before giving an extra life. You can also change what item to use to gain an extra life.\nBelow is a list of commands to do these things _(operator only)_.\n### Set lives _(default: 3)_\nThis changes how many lives you currently have. It can go over the maximum, but you won't be able to gain lives normally until the lives total goes back to below the maximum.\n```\n/function uhc:config/life_count {\"lives\":X}\n```\nreplace X with a number.\n### Max lives _(default: 5)_\nThis changes the maximum lives you can have. Setting it to one or below effectively disables gaining extra lives.\n```\n/function uhc:config/max_lives {\"lives\":X}\n```\nreplace X with a number.\n### Gaining extra lives _(default: enabled)_\nThis enables or disables the gaining extra lives functionality with the Allays, when disabled an Allay holding a heart of the sea will behave like in vanilla. If this is disabled while an Allay is charging that extra life will still be granted when it's done.  \n\n- Enable:\n```\n/function uhc:config/extra_lives/enable\n```\n- Disable:\n```\n/function uhc:config/extra_lives/disable\n```\n### Allay charge time _(default: 100)_\nThis changes how long an Allay holds the heart of the sea (while spinning, making sounds and emitting particles) before consuming it and granting an extra life. The time is in ticks (seconds*20).\n```\n/scoreboard players set #timer UHC_Constants X\n```\nreplace X with number of ticks.\n### Item for extra lives _(default: \"heart_of_the_sea\")_\nUnfortunately to change the item itself you need to go into the code (the file is \"uhc/function/tick.mcfunction\", first and second lines, **there are comments showing you where**) and change it there, I couldn't implement an easier way.\n",
+  "categories": [
+    "adventure",
+    "datapack",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "minigame",
+    "neoforge",
+    "quilt",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3089,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

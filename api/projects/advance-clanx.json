@@ -1,0 +1,33 @@
+{
+  "id": "PjZGwrs8",
+  "slug": "advance-clanx",
+  "title": "Advance ClanX",
+  "description": "A professional-grade, high-performance clan management system for Minecraft servers. Built with a focus on extreme scalability, minimal resource usage, and seamless player experience",
+  "body": "# AdvanceClans\n\n[ ![logo](https://cdn.modrinth.com/data/cached_images/b6a8613305c7a7d68abbf1d9fab01d39bb48ecc3_0.webp)\n](https://www.gtxgaming.co.uk/)\n\n### 1. Plugin Overview\n**Name**: AdvanceClans (Advance ClanX)  \n**Version**: 1.0  \n**Description**: A professional-grade, high-performance clan management system for Minecraft servers. Built with a focus on extreme scalability, minimal resource usage, and seamless player experience\n\n### 2. Core Features (Performance)\n### The Performance Analysis\n*   **Extreme Load Handling**: Tested for **30 Kills/Deaths per second**.\n*   **Zero TPS Impact**: All database operations (point updates, member changes) are handled **Asynchronously**. The main server thread is never blocked.\n*   **Memory Efficiency**: Uses smart caching for online players (~10-20MB overhead). Does **NOT** use `Bukkit.getOfflinePlayer().getName()`, preventing the common \"null\" bug and lag.\n*   **Scalability**: Optimized for **1,000+ members per clan** and **200+ active clans**.\n*   **Database**: Uses **SQLite with WAL Mode** (Write-Ahead Logging) for safe, concurrent high-speed data access.\n\n### 3. Commands & Permissions\n\n### Player Commands\n| Command | Usage | Description | Permission |\n|:--- |:--- |:--- |:--- |\n| `/clan` | `/clan` | Main GUI Menu. | `clans.use` |\n| `/clan create` | `/clan create <name>` | Create a new clan. | `clans.create` |\n| `/clan join` | `/clan join <name>` | Request to join a clan. | `clans.join` |\n| `/clan accept` | `/clan accept` | Accept a clan invite. | `clans.accept` |\n| `/clan leave` | `/clan leave` | Leave current clan. | `clans.leave` |\n| `/clan info` | `/clan info [clan]` | View clan statistics. | `clans.info` |\n| `/clan top` | `/clan top` | Leaderboard GUI. | `clans.top` |\n| `/clan chat` | `/clan chat` | Toggle Clan Chat mode. | `clans.chat` |\n| `/clan home` | `/clan home` | Teleport to clan home. | `clans.home` |\n\n### Leader/Admin Commands\n| Command | Usage | Description | Permission |\n|:--- |:--- |:--- |:--- |\n| `/clan invite` | `/clan invite <p>` | Invite a player. | `clans.invite` |\n| `/clan kick` | `/clan kick <p>` | Kick a member. | `clans.kick` |\n| `/clan disband` | `/clan disband` | Delete the clan. | `clans.disband` |\n| `/clan sethome` | `/clan sethome` | Set home location. | `clans.sethome` |\n| `/clan cowner` | `/clan cowner set <p>`| Promote to Co-Owner. | `clans.cowner` |\n| `/clan set colour`| `/clan set colour <c>`| Change clan color. | `clans.set` |\n| `/forceclan delete`| `/forceclan delete <c>`| Admin: Delete clan. | `force.op` |\n| `/forceclan remove`| `/forceclan remove <c> <p>`| Admin: Remove member. | `force.op` |\n\n### 4. PlaceholderAPI Integration\nUse these placeholders in scoreboards, tablists, or chat:\n*   `%advanceclans_clan%` - Player's clan name.\n*   `%advanceclans_role%` - Player's role (LEADER, COOWNER, MEMBER).\n*   `%advanceclans_points%` - Clan's total points.\n*   `%advanceclans_color%` - Clan's display color code.\n*   `%clans_name%` → Shows the player's clan name.\n*   `%clans_name_plain%` → Shows the player's clan name stripped from color codes.\n*   `%clans_list_<#>_name%` → Shows the name of the clan at that position in the leaderboard.\n*   `%clans_list_<#>_leader%` → Shows the leader of the clan at that position.\n*   `%clans_list_<#>_point%` → Shows the balance of the clan at that position.\nNote: Replace <#> with the rank number in the leaderboard (e.g., %clans_list_1_name% for the top clan).\n\n### 5. Technical Specifications\n*   **Dependencies**: Requires [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/).\n*   **Database Structure**:\n    *   `clans`: Stores name, leader name, points, color, and home location.\n    *   `members`: Stores UUID, clan name, role, and **last_known_name** (prevents \"null\" issues).\n    *   `allies`: Stores clan alliance relationships.\n*   **Configuration Files**:\n    *   `config.yml`: Core limits and permissions.\n    *   `msg.yml`: 100% translatable messages.\n    *   `gui.yml` / `settingsgui.yml`: Full GUI customization.\n\n### 7. Data Saving Internal Logic\nThe plugin employs a multi-layered approach to data integrity and performance:\n\n### Data Storage Mechanism\n*   **Database Engine**: SQLite with **WAL (Write-Ahead Logging)** mode. This allows the plugin to write to the database while simultaneously reading from it, preventing the \"database is locked\" errors common in simpler plugins.\n*   **Schema Design**:\n    *   `clans`: Primary table for metadata (Owner name, Points, Color, Home Location).\n    *   `members`: Linking table connecting Player UUIDs to Clan names. It includes a `last_name` column which is updated every time a player joins, ensuring that even if a player changes their name or is offline, the plugin can display their name without querying the Mojang API or Bukkit's heavy `getOfflinePlayer` methods.\n    *   `allies`: A simple relationship table for clan-to-clan alliances.\n\n### Functional Logic\n*   **Asynchronous Execution**: Functions like `updatePoints`, `createClan`, and `forceDeleteClan` run on a separate thread. This means that if the database takes 100ms to save, your server's TPS stays at a perfect 20.0.\n*   **Smart Caching**: On startup, the plugin loads all member-to-clan relationships into a `HashMap<UUID, String>`. This allows the plugin to check if a player is in a clan in **constant time (O(1))** without ever touching the hard drive.\n*   **Atomic Updates**: Point updates use SQL arithmetic (`SET points = points + ?`) rather than reading, modifying, and writing back. This prevents \"race conditions\" where two kills happening at the exact same time might overwrite each other.\n*   **Persistence Strategy**: Data is saved immediately to the SQLite file upon any change. There is no risk of losing points if the server crashes unexpectedly.\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 240,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

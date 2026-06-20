@@ -1,0 +1,22 @@
+{
+  "id": "p8N6bspF",
+  "slug": "enchantedbosses-free",
+  "title": "EnchantedBosses [Free]",
+  "description": "An endlessly customisable bosses plugin using SkillsLibrary",
+  "body": "# Summary\nEnchanted Bosses is a bosses plugin created with one goal in mind customisability without needing to know how to code. This means you can write your own abilities for bosses you design without writing any java. It also comes with a stock boss, called Flesheater, to give you an example of what you can create using it.\n\nInstallation is simple: Download SkillsLibrary and EnchantedBosses, and place the Jar files into your plugins folder.\n\n\n# Configuring a Boss\nBoss #1: Flesheater\nA 50 health zombie wearing armor that has a 50% chance to fling you into the air every 10 seconds. It takes reduced damage using our EASED damage modifier, with a cap of 15 damage a hit.\n\nHere is the document for the Flesheater!\n```yaml\nname: Flesheater\ncolouredname: \"<yellow><b>Flesheater\"\ndescription: \"A creature with an insatiable thirst for flesh\"\ndamagemodifier:\n  type: EASED\n  damageCap: 15\n  expectedMaximumDamage: 30\nentity:\n  type: ZOMBIE\n  equipment:\n    helmet:\n      type: DIAMOND_HELMET\n    chestplate:\n      type: IRON_CHESTPLATE\n  attributes:\n    MAX_HEALTH: 50\nskills:\n  fling:\n    trigger:\n      type: COMBAT\n      conditions:\n        proc:\n          type: CHANCE\n          mode: SELF\n          chance: 0.5\n        cooldown:\n          type: COOLDOWN\n          mode: SELF\n          cooldown: 10\n    effects:\n      fling:\n        type: FLING\n        mode: OTHER\n        value: 1.0\n  antiboat:\n    trigger:\n      type: VEHICLE\n    effects:\n      antiboat:\n        type: CANCEL\n        mode: SELF\nrewards:\n  type: BASIC\n  items:\n    diamonds:\n      type: DIAMOND\n      amount: 10\n    steak:\n      type: COOKED_BEEF\n      amount: 16\n  experience: 50\n  commands: []\nautospawn:\n  mode: BOSS\n  weighting: 1\n  biomes:\n    - PLAINS\n  worlds:\n    - world\n  biomesWhitelist: true\n  spaceNeeded: 4\nbossbar:\n  enabled: true\n  flags: [ ]\n  color: GREEN\n  style: PROGRESS\n```\n\n\nNot too bad is it?\n\n# Support\nYou can read more about writing custom skills on the SkillsLibrary github wiki page: [here](https://github.com/Xemorr/SkillsLibrary/wiki)\nHowever, this isn't fully comprehensive yet, so I highly recommend joining my discord and talking to me in #my-plugins. I typically respond (at least) within 24 hours of a message in there if you want to ask a question.\n",
+  "categories": [
+    "adventure",
+    "mobs",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 174,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

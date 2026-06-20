@@ -1,0 +1,41 @@
+{
+  "id": "pDaq3k6b",
+  "slug": "villagerlobotomy",
+  "title": "VillagerLobotimizer",
+  "description": "A plugin to lobotomize villagers stuck in a trading hall. Perfect for SMPs looking to increase performance without sacrificing gameplay!",
+  "body": "![image](https://github.com/user-attachments/assets/2716b281-48a6-4a1a-9305-0560684d4e0f)\n\n# VillagerLobotimizer\n\nA Minecraft Paper plugin that improves server performance by turning off villagers' AI when they're confined to trading halls.\n\n![](https://img.shields.io/bstats/players/25704?color=green?label=Players) ![](https://img.shields.io/bstats/servers/25704?color=green?label=Servers)\n\n## Features\n\n- Automatically detects when villagers are trapped in trading halls\n- Disables AI for trapped villagers to improve server performance\n- Maintains villager trading functionality while AI is disabled\n- Automatically refreshes villager trades on a configurable schedule with randomization support\n- Profession-specific restock sounds and level-up celebrations\n- Optimized job site detection for better performance\n- Night-time trade refresh functionality\n- Allows naming villagers to control their behavior (\"nobrain\", \"alwaysbrain\")\n- Debug mode for troubleshooting\n- Command system for checking villager status and managing the plugin\n\n## Commands\n\n- `/lobotomy info` - Shows statistics about lobotomized and active villagers\n- `/lobotomy debug` - Shows detailed information about the villager you're looking at\n- `/lobotomy debug <entity>` - Shows detailed information about a specific villager\n- `/lobotomy debug toggle` - Toggles debug mode\n- `/lobotomy wake` - Manually restores AI to the villager you're looking at\n- `/lobotomy reload` - Reloads the configuration and applies changes to all villagers\n\n[![Partner link for Nodecraft](https://cdn.modrinth.com/data/cached_images/c739515703b015d95ffc02ebf61007530480bd20.jpeg)](https://nodecraft.com/r/mja00)  \n**Note: I do not make any money off this link. It's fully non-monetized.** \n\n## Configuration\n\n```yaml\n#List of names that will always keep villagers active (case-insensitive)\nalways-active-names:\n  - \"alwaysbrain\"\n\n#Interval between trapped checks, in ticks, for active villagers\ncheck-interval: 150\n\n#Interval between trapped checks, in ticks, for inac![Replace this with a description](https://cdn.modrinth.com/data/cached_images/d9e6e9cef0f4d62860a5ec931a483f000b113874_0.webp)tive villagers\ninactive-check-interval: 150\n\n#Interval between villager trade restocks, in milliseconds\nrestock-interval: 540000\n\n#Range (in milliseconds) before restock-interval to start random restock checks. If set to 0, restocking is not randomized. If equal to or greater than restock-interval, restock will always occur.\nrestock-random-range: 0\n\n#Whether to only lobotomize villagers with jobs\nonly-lobotomize-villagers-with-professions: false\n\n#Whether to lobotomize villagers in boats/minecarts. Does not apply to villagers riding on non-vehicle entities like horses.\nalways-lobotomize-villagers-in-vehicles: false\n\n#The sound to play when a villager restocks. Leave empty (\"\") for default sounds.\n#A list of sounds can be found at https://jd.papermc.io/paper/1.21.6/io/papermc/paper/registry/keys/SoundEventKeys.html\n#Use the name found in the description column, e.g. \"entity.villager.celebrate\" for the sound played when a villager restocks.\nrestock-sound: \"\"\n\n#The sound played when a villager is leveled up. Leave empty (\"\") for no sound.\nlevel-up-sound: \"entity.villager.celebrate\"\n\n#Debug mode. Prints debug messages to the console.\ndebug: false\n\n#Chunk debug mode. Prints debug messages related to chunks\nchunk-debug: false\n\n#To ignore villagers stuck in doors, set this to true.\nignore-villagers-stuck-in-doors: false\n\n#To not lobotomize villagers surrounded by non-solid blocks, set this to true.\nignore-non-solid-blocks: false\n\n#To check if there is a roof above a villager before lobotomizing, set this to true\ncheck-roof: true\n\n#Create teams for debugging purposes. This will create colored teams for inactive and active villagers. We use this to color their glowing effect.\ncreate-debug-teams: false\n\n#Disable the update checker. You can disable this if you don't want to be notified about updates.\ndisable-update-checker: false\n\n#Disable chunk forced Villager updating. This'll disable changes to blocks in a chunk from triggering Villagers in the chunk to be updated.\ndisable-chunk-villager-updates: false\n\n#Prevent trading with unlobotomized villagers. When enabled, players can only trade with villagers that have been lobotomized.\nprevent-trading-with-unlobotomized-villagers: false\n```\n\n## Special Villager Names\n\n- Name a villager with \"nobrain\" to force it to always be lobotomized\n- Name a villager with \"alwaysbrain\" to prevent it from ever being lobotomized (configurable in `always-active-names`)\n\n## Sound System\n\nThe plugin features an enhanced sound system:\n- **Default restock sounds**: When `restock-sound` is left empty, villagers will play default sounds when restocking\n- **Customizable sounds**: You can override the default sounds by specifying a custom sound in the configuration\n- **Sound reference**: A complete list of available sounds can be found in the [Paper API documentation](https://jd.papermc.io/paper/1.21.6/io/papermc/paper/registry/keys/SoundEventKeys.html)\n- **Level-up celebrations**: Villagers play celebration sounds when they level up their trades\n\n## Requirements\n\n- Paper (or its forks) 1.21.6+\n- Java Development Kit (JDK) 21 for development\n\n## Installation\n\n1. Download the latest release from [Modrinth](https://modrinth.com/plugin/villagerlobotomy) or [Hangar](https://hangar.papermc.io/mja00/VillagerLobotimizer)\n2. Place the .jar file in your server's plugins folder\n3. Restart your server or use a plugin manager to load the plugin\n4. Configure the plugin settings in `plugins/VillagerLobotimizer/config.yml` if needed\n\n## Development\n\n### Prerequisites\n\n- Java Development Kit (JDK) 21\n- Gradle (wrapper included)\n\n### Building\n\n1. Clone the repository\n   ```bash\n   git clone https://github.com/mja00/VillagerLobotimizer.git\n   cd VillagerLobotimizer\n   ```\n\n2. Build the plugin\n   ```bash\n   ./gradlew build\n   ```\n   The built plugin will be in `build/libs/VillagerLobotimizer-<version>.jar`\n\n### Running a test server\n\nThe project uses the run-paper plugin to easily test changes:\n\n```bash\n./gradlew runServer\n```\n\nThis will download a Paper server for Minecraft 1.21.5 and start it with the plugin installed.\n\n### Publishing\n\nThe project uses Hangar for publishing:\n\n```bash\n./gradlew publishPluginPublicationToHangar\n```\n\nThis requires the `HANGAR_API_KEY` environment variable to be set. The plugin will be published as:\n- A release version if the current commit is tagged with a version matching the project version\n- A snapshot version if there's no matching tag\n\n## Support\n\nIf you encounter any issues, please report them on [GitHub](https://github.com/mja00/VillagerLobotimizer/issues).\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5129,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

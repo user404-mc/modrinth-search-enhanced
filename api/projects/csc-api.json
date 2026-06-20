@@ -1,0 +1,20 @@
+{
+  "id": "q5pG7IFT",
+  "slug": "csc-api",
+  "title": "Client-Server Communication API",
+  "description": "Communication API for Fabric client and Paper server",
+  "body": "# Client-Server Communication API\n\nhow to use for developer:\n - Register packet in common code:\n```java\npublic class FooBarPacket implements CscPacket{\n    \n    public FooBarPacket(ByteBuf buf) {\n        read(buf);\n    }\n\n    private int foo;\n\n    @Override\n    public void read(ByteBuf buf) {\n        foo = buf.readInt();\n    }\n\n    @Override\n    public void write(ByteBuf buf) {\n        buf.writeInt(foo);\n    }\n}\n```\n\n```java\npublic static CscPacketType<FooBarPacket> FOO_BAR_PACKET = CscApi.registerPacket(\n  \"foo_bar\", \n  FooBarPacket.class, \n  FooBarPacket::new\n);\n```\n\n - Use it on Server:\n\n```java\npublic class ServerClass {\n    private static final Logger log = LoggerFactory.getLogger(ServerClass.class);\n\n    public void init() {\n        CscServer.getService().registerListener((packet, player) -> {\n            log.info(\"Received packet {} from player {}\", packet.getClass().getSimpleName(), player.getName());\n        }, ModPackets.FOO_BAR_PACKET);\n    }\n    \n    public void sendFooBarPacket(Player player) {\n        CscServer.getService().sendPacket(new FooBarPacket(), player);\n    }\n}\n```\n - Use it on Client:\n\n```java\npublic class ClientClass {\n    private static final Logger log = LoggerFactory.getLogger(ClientClass.class);\n\n    public void init() {\n        CscClient.getService().registerListener(packet -> {\n            log.info(\"Received packet: {}\", packet);\n        }, ModPackets.FOO_BAR_PACKET);\n    }\n    \n    public void sendFooBarPacket() {\n        CscClient.getService().sendPacket(new FooBarPacket());\n    }\n}\n```\n",
+  "categories": [
+    "fabric",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 167,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

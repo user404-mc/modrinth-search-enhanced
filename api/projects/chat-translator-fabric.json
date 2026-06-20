@@ -1,0 +1,20 @@
+{
+  "id": "fJFpnFGn",
+  "slug": "chat-translator-fabric",
+  "title": "Chat translator",
+  "description": "This mod translates Minecraft chat into multiple languages.",
+  "body": "# This mod translates Minecraft chat into multiple languages!\n\n### Supported languages:\n- English (english/en)\n- French (french/fr)\n- German (german/de)\n- Russian (russian/ru)\n- Spanish (spanish/es)\n\n### Example\n![Replace this with a description](https://cdn.modrinth.com/data/cached_images/9c3f71dbcaaf54c0c0b354e4d56f1e8c8f30e81d_0.webp)\n\n### How select language?\n\n```\n/sw4-translator mylanguage spanish/russian/german/french/english\n```\n\n### How does the mod translate messages?\n\nMessage Interception - The ChatHud.addMessage() mixin intercepts all incoming chat messages.\n\nText Extraction - Parses the message, separating the player name from the text:\n\n<Player> hello → Player: \"Player\", text: \"hello\"\n\nHTTP Request to Google Translate - Sends an asynchronous GET request:\n\n\n```\nhttps://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ru&dt=t&q=hello\n```\n\nsl=auto - autodetect source language\n\ntl=ru - disable language (your selected one)\n\nq=hello - text to translate\n\nJSON Response Parsing - Extracts the translated text from Google's JSON response\nAdd to Chat - Adds a new message with the translation:\n\nOriginal: <Player>, hello!\n\nTranslation: <Player> привет",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 416,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

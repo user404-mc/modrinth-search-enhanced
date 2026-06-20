@@ -1,0 +1,34 @@
+{
+  "id": "Yp18gs4n",
+  "slug": "graceplugin",
+  "title": "Grace999",
+  "description": "GracePlugin provides configurable, per-world grace periods with PvP and mob damage protection, boss bar countdowns, sound alerts, and customizable safe zone regions with flag-based protections.",
+  "body": "## Feature Systems\n\n- Global grace system with start, stop, pause, resume, extend, and reduce controls.\n- Optional automatic startup grace.\n- Optional per-player grace timers.\n- Optional join-based personal grace start.\n- Region claiming and region-specific protection rules.\n- Global protection rules.\n- World-specific default rule values.\n- Boss bar countdown during active grace.\n- Warning broadcast system at configurable time checkpoints.\n- Configurable sounds for start, end, warnings, and blocked actions.\n- Optional extra-life system during grace.\n- Optional hunger freeze during grace.\n- Deathban system with delay, duration, reason, spectator transition, and optional IP ban.\n- Placeholder support for scoreboards, chat formats, and HUD plugins.\n- Admin GUI panels for fast timer and flag management.\n\n## Commands\n\n- `/grace help`  \n  Show the help menu.\n\n- `/grace start [seconds]`  \n  Start grace with optional custom duration.\n\n- `/grace stop`  \n  End grace immediately.\n\n- `/grace pause`  \n  Pause the active grace timer.\n\n- `/grace resume`  \n  Resume a paused grace timer.\n\n- `/grace extend <seconds>`  \n  Add time to active grace.\n\n- `/grace reduce <seconds>`  \n  Remove time from active grace.\n\n- `/grace status`  \n  Show grace status and current global rule values.\n\n- `/grace reload`  \n  Reload plugin settings.\n\n- `/grace tools`  \n  Get region corner selection tools.\n\n- `/grace gui`  \n  Open the admin control panel.\n\n- `/grace claim <name>`  \n  Create a region from selected corners.\n\n- `/grace delete <name>`  \n  Delete a region.\n\n- `/grace list`  \n  List all regions.\n\n- `/grace info <name>`  \n  Show region details and rule values.\n\n- `/grace setflag <region> <flag> <true/false>`  \n  Set a region rule value.\n\n- `/grace flag <flag> <true/false>`  \n  Set a global rule value.\n\n- `/grace <region> <flag> <true/false>`  \n  Legacy shorthand for setting region rule values.\n\n## Permissions\n\n- `grace.start`  \n  Start grace.\n\n- `grace.stop`  \n  Stop grace.\n\n- `grace.pause`  \n  Pause grace.\n\n- `grace.resume`  \n  Resume grace.\n\n- `grace.extend`  \n  Extend grace.\n\n- `grace.reduce`  \n  Reduce grace.\n\n- `grace.status`  \n  View grace status.\n\n- `grace.reload`  \n  Reload settings.\n\n- `grace.tools`  \n  Receive region tools.\n\n- `grace.gui`  \n  Open admin GUI panels.\n\n- `grace.claim`  \n  Create regions.\n\n- `grace.delete`  \n  Delete regions.\n\n- `grace.list`  \n  List regions.\n\n- `grace.info`  \n  View region details.\n\n- `grace.flags`  \n  Edit region rule values.\n\n- `grace.globalflag`  \n  Edit global rule values.\n\n- `grace.deathban.ignore`  \n  Bypass deathban when bypass mode is enabled.\n\n## Rules and Flags\n\nAll rules use:\n\n- `true` = allowed\n- `false` = blocked\n\nAvailable flags:\n\n- `allow-pvp`\n- `allow-block-breaking`\n- `allow-block-placing`\n- `allow-mob-damage`\n- `allow-mob-spawning`\n- `allow-player-damage`\n- `allow-commands`\n- `allow-flight`\n- `allow-item-drop`\n- `allow-item-pickup`\n\n## Configuration Guide\n\n### Core Timing\n\n- `grace-duration-seconds`  \n  Default grace length for manual starts.\n\n- `auto-start-duration-seconds`  \n  Fallback duration used for auto-start when a world duration is not set.\n\n- `auto-start`  \n  If enabled, grace starts automatically at server startup.\n\n- `grace-active`  \n  Runtime state value saved by the plugin.\n\n- `grace-end-time`  \n  Runtime end timestamp saved by the plugin.\n\n### Personal Grace\n\n- `per-player-grace-enabled`  \n  Enables individual grace timers per player.\n\n- `per-player-grace-duration`  \n  Length of personal grace.\n\n- `grace-starts-from-join`  \n  Starts personal grace when a player first joins.\n\n### Protection Toggles\n\n- `no-damage-everything`  \n  Blocks all player damage during grace.\n\n- `extra-life-enabled`  \n  Gives one extra life during grace.\n\n- `no-hunger-loss`  \n  Prevents hunger depletion during grace.\n\n### Sound Settings\n\n- `sounds.grace-start`\n- `sounds.grace-end`\n- `sounds.warning`\n- `sounds.action-blocked`\n- `sounds.volume`\n- `sounds.pitch`\n\n### Warning Intervals\n\n- `warning-intervals`  \n  Map of seconds-to-end and message text.  \n  Use `%time%` in messages for formatted remaining time.\n\n### Global Defaults\n\n- `default-flags.*`  \n  Server-wide default values for all flags.\n\n### Blocked Commands\n\n- `blocked-commands`  \n  Commands blocked when `allow-commands` is `false`.\n\n### World Settings\n\n- `worlds.<world>.grace-enabled`  \n  Enables grace handling for that world.\n\n- `worlds.<world>.duration`  \n  Per-world grace duration used by start logic when no custom duration is provided.\n\n- `worlds.<world>.flags.*`  \n  Per-world default flag values.\n\n### Deathban Settings\n\n- `deathban.banreason`\n- `deathban.ban-delay`\n- `deathban.spectator-after-death`\n- `deathban.ban-time`\n- `deathban.ban-ip`\n- `deathban.ignore-permission`\n\n### Message Settings\n\n- `messages.grace-end-title`\n- `messages.grace-end-subtitle`\n- `messages.grace-end-message`\n- `messages.pvp-disabled-message`\n- `messages.no-permission`\n- `messages.grace-started`\n- `messages.config-reloaded`\n- `messages.grace-active-already`\n- `messages.grace-stopped`\n\n## Placeholder Support\n\n- `%grace_active%`\n- `%grace_paused%`\n- `%grace_remaining%`\n- `%grace_remaining_formatted%`\n- `%grace_remaining_short%`\n- `%grace_player_active%`\n- `%grace_player_remaining%`\n- `%grace_player_remaining_formatted%`\n- `%grace_player_remaining_short%`\n- `%grace_region%`\n- `%grace_world_grace_enabled%`\n- `%grace_flag_<flagname>%`\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1746,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

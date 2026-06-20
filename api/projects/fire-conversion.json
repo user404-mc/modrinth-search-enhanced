@@ -1,0 +1,39 @@
+{
+  "id": "B4L1pYI2",
+  "slug": "fire-conversion",
+  "title": "Fire Conversion",
+  "description": "A simple plugin to let you convert one item to another, using fire!",
+  "body": "# Fire Conversion\nAllows you to convert items from one to another using fire.\n\n# Configuration\nThe only configeration file is conversions.yml\nEvery conversion uses one of the following setups:\n\n```yaml\n# Material names can be looked up @ https://jd.papermc.io/paper/1.19/org/bukkit/Material.html\n\n# Simple Conversion\nConversionName: # Can be whatever you want, needs to be unique though.\n  sources: # A list of all source materials (what you throw into the fire)\n    - MATERIAL_1\n    - MATERIAL_2\n  result:\n    normal: MATERIAL # The result of throwing one of the sources into normal (orange) fire.\n    soul: MATERIAL # The result of throwing one of the sources into soul (blue) fire.\n    #You can define an amount of material by doing MATERIAL-AMOUNT, it defaults to 1.\n\n# Complex Conversion\nConversionName:\n  sources:\n    - MATERIAL_1\n    - MATERIAL_2\n  result:\n    normal:\n      - RESULT_1-AMOUNT-WEIGHT # The weight is optional, and defaults to 1\n      - RESULT_2-AMOUNT-WEIGHT\n    soul:\n      - RESULT_1-AMOUNT-WEIGHT\n```\n\nWeight determines the odds of that result being picked, for example with the following conversion:\n```yaml\nDiamondOreToDiamond:\n  sources:\n    - DIAMOND_ORE\n    - DEEPSLATE_DIAMOND_ORE\n  result:\n    normal:\n      - DIAMOND-1-10 # This would have a 71.4% chance of dropping 1\n      - DIAMOND-2-3 # 21.4% chance of dropping 2\n      - DIAMOND-3-1 # and 7.1% chance of dropping 3\n```\nYou can figure out the precentage from the weight by doing WEIGHT/TOTAL_WEIGHT, for example 10/(10+3+1) = 0.714... (x100 for the percentage)\n\nYou can also leave one of the results as NONE (or any other invalid material), but must have at least 1 source and 1 result.\n\nIf a source shows up multiple times, then it will use the results for the last conversion in the list.\n\nYou CANNOT use the following materials as a result:\n- AIR\n- CAVE_AIR\n- VOID_AIR",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 187,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

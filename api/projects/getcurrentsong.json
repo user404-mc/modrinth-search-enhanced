@@ -1,0 +1,21 @@
+{
+  "id": "DceBabwS",
+  "slug": "getcurrentsong",
+  "title": "Get Current Song",
+  "description": "Simple Minecraft mod to allow you to view the currently playing song",
+  "body": "# Get Current Song\n\nThis is a simple FabricMC mod that allows you to get the currently playing song in Minecraft via a command. You can download the latest version on [Modrinth](https://modrinth.com/mod/getcurrentsong).\n\n## Commands\n\nThis mod adds two commands to the game:\n\n+ `/getsong` &mdash; Gets information about the currently playing song, such as the name and composer.\n+ `/getsongid` &mdash; Gets the [namespaced ID](https://minecraft.fandom.com/wiki/Namespaced_ID) of the currently playing song.\n\nHowever, instead of using these commands, you can see the same information on the [F3 screen](https://minecraft.fandom.com/wiki/Debug_screen).\n\n## API\n\nThis mod provides a resource-based method of getting information about the songs in Minecraft, such as name, composer, album, and track number.\n\n### Resource pack developers\n\nIf your resource pack adds custom music to the game, consider adding your song(s) to the `getcurrentsong/song_names.json` file in your resource pack. This JSON file has one root object, with keys being the song IDs and values being an object whose form is described below:\n\n```json\n{\n    \"name\": \"song name (string, required)\",\n    \"composer\": \"composer's name (string, required)\",\n    \"soundtrack\": \"album name (string, optional)\",\n    \"trackNumber\": \"track number in album (integer, optional)\"\n}\n```\n\nIf the soundtrack is specified, the track number must also be specified, and vice-versa.\n\n## Mod develepers\n\nTo include this mod's API with Gradle, add the following to your `build.gradle` (code adapted from the [Modrinth Maven docs](https://docs.modrinth.com/docs/tutorials/maven/)):\n\n```gradle\nrepositories {\n    // Other Maven repositories can go above (or below) Modrinth's. We don't need priority :)\n    // Do remember, though, this is the `repositories` block below where plugins are declared, not in `pluginManagement`!\n    maven {\n        name = \"Modrinth\"\n        url = \"https://api.modrinth.com/maven\"\n        content {\n            includeGroup \"maven.modrinth\"\n        }\n    }\n}\n\ndependencies {\n    modApi \"maven.modrinth:getcurrentsong:1.0.1\"\n}\n```\n\nOnce you have added the API to your `build.gradle`, you can load song information from resource packs using the following API (the `SongNameDatabase` class is in the `io.github.gaming32.getcurrentsong` package):\n\n+ `SongNameDatabase#isInitialized` &mdash; Return `true` if the song info is currently in a loaded state. Attempting to read from the database when this returns `false` may not return correct data. You have been warned!\n+ `SongNameDatabase#getSong` &mdash; Gets the current song by name or `net.minecraft.util.Identifier` and returns a `SongNameDatabase.SongInfo` object or `null` if the song wasn't found in the database.\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 4047,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2"
+  ],
+  "date_updated": null
+}

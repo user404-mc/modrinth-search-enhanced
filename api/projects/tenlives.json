@@ -1,0 +1,34 @@
+{
+  "id": "c5JT89ur",
+  "slug": "tenlives",
+  "title": "TenLives",
+  "description": "TenLives is a Minecraft plugin designed to add an extra layer of challenge and excitement to your survival gameplay",
+  "body": "### TenLives Plugin\n\n![logo](https://cdn.modrinth.com/data/cached_images/973fc967bf9763d804b3839249d36a858ab63045.png)\n\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/eZ_GV7NO7rE\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n\n\n**Overview:**\nTenLives is a Minecraft plugin that adds an exciting survival challenge by limiting the number of lives a player has. Each death reduces the player's maximum health, and if it drops too low, the player faces severe consequences such as being switched to spectator mode or banned. Players can restore their lives using special custom totems.\n\n**Features:**\n\n- **Health Reduction on Death:**\n  - Each death reduces the player's maximum health by 2 points.\n  - When a player's maximum health drops below 1 point, they are either switched to spectator mode or banned, based on the configuration.\n\n- **Life Restoration:**\n  - Players can restore their lives using custom totems.\n  - The custom totem increases the player's maximum health by 2 points, up to a maximum of 20 points.\n\n- **Customizable Messages:**\n  - All in-game messages are customizable via the configuration file.\n\n- **Totem Distribution:**\n  - Custom totems can be found with a 10% chance in storage minecarts.\n  - Players can also receive totems via the `/gettotem` command if they have the necessary permissions.\n\n- **Commands:**\n  - `/gettotem <nickname>`: Gives the player a custom totem if they have the required permission (`tenlives.gettotem`).\n\n- **Placeholders:**\n  - `%tenlives_lives%`: Displays the number of lives a player has based on their current maximum health.\n\n**Installation:**\n1. Download the TenLives plugin.\n2. Place the downloaded file into your server's `plugins` directory.\n3. Start or restart your server to load the plugin.\n4. Configure the plugin as needed in the generated `config.yml` file.\n\n**Configuration:**\n- The `config.yml` file allows server administrators to customize various aspects of the plugin, such as messages and actions on death.\n\n**Usage:**\n- Players start with a default number of lives.\n- Each death reduces their maximum health, and they must use custom totems to restore it.\n- Admins can distribute totems using the `/gettotem` command.\n\n**Commands:**\n- `/gettotem`: Gives the player a custom totem if they have the required permission (`tenlives.gettotem`).\n\n**Configuration File (`config.yml`):**\n```yaml\n# TenLives configuration\ndeath_action: \"spectator\"  # Options: 'spectator' or 'ban'\ndeath_message: \"&cВаши жизни закончились...\"\ntotem_name: \"&6Тотем Жизни\"\ntotem_custom_model_data: 993\nlife_lost_title: \"&cВы потеряли жизнь\"\nlife_lost_subtitle: \"&eБудь внимательнее, они не вечны\"\nlife_restored_title: \"&a1 Жизнь восстановлена\"\nlife_restored_subtitle: \"&eПотрать её с умом\"\ntotem_received_message: \"&aВы получили Тотем Жизни!\"\ncommand_player_only: \"&cЭту команду может использовать только игрок.\"\nno_permission_message: \"&cУ вас нет прав на использование этой команды.\"\n```\n\n**Metrics:**\n- This plugin uses bStats to collect anonymous usage statistics to help improve the plugin.\n\n### Code Breakdown\n\n#### Main Class: `TenLives`\nThis is the main plugin class responsible for:\n- Enabling and disabling the plugin.\n- Managing events and commands.\n- Handling player deaths, resurrections, and interactions with storage minecarts.\n\n##### Methods:\n- `onEnable()`: Initializes the plugin, loads the configuration, registers events and commands, and sets up metrics.\n- `onDisable()`: Cleans up when the plugin is disabled.\n- `onPlayerDeath(PlayerDeathEvent event)`: Handles player deaths and reduces their maximum health.\n- `onPlayerRespawn(PlayerRespawnEvent event)`: Provides feedback to the player when they respawn.\n- `onEntityResurrect(EntityResurrectEvent event)`: Handles player resurrections and restores their health if a custom totem is used.\n- `onPlayerInteractEntity(PlayerInteractEntityEvent event)`: Manages interactions with storage minecarts and adds custom totems to their inventory.\n- `onCommand(CommandSender sender, Command command, String label, String[] args)`: Handles the `/gettotem` command.\n- `createCustomTotem()`: Creates the custom totem item.\n- `isValidTotem(ItemStack item)`: Checks if an item is a valid custom totem.\n\n#### Placeholder Expansion: `LivesPlaceholder`\nThis class integrates with PlaceholderAPI to provide custom placeholders.\n\n##### Methods:\n- `getIdentifier()`: Returns the identifier for this placeholder expansion.\n- `getAuthor()`: Returns the author of this placeholder expansion.\n- `getVersion()`: Returns the version of this placeholder expansion.\n- `onPlaceholderRequest(Player player, @NotNull String identifier)`: Handles the placeholder request and returns the appropriate value for `%tenlives_lives%`.\n\n### Usage Notes\n- Customize messages and other settings in the `config.yml` file.\n- Ensure players have the appropriate permissions to use the `/gettotem` command.\n- Monitor player health and interactions to ensure the plugin functions as expected.\n- Use the `%tenlives_lives%` placeholder in supported plugins or message formats to display the number of lives a player has.",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "cursed",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 258,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

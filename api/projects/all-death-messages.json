@@ -1,0 +1,43 @@
+{
+  "id": "KkkpWQ5y",
+  "slug": "all-death-messages",
+  "title": "ALL Death Messages",
+  "description": "Category-based death messages for every entity.",
+  "body": "# All Death Messages\n\n## Overview\nEnables death messages for several categories of mobs, and add colours to their names in death messages. Messages use the same texts as vanilla death messages.\n\nFor each category, separate `kill` and `death` gamerules are generated. \n\nCustom mob categories must be defined in a config file. There is currently no config screen.\n\n\n## Message Triggers\n\nBuilt-in categories based on mob properties. Custom categories are based on entity types.\n\nA death message will appear if its victim belongs to an enabled death rule, or if any of its recent assailant has an enabled kill rule.\nA mob may belong to multiple categories; it will trigger a death message if any of them has its rule enabled.\n\n\n### Built-in categories\n- **`all`**: Applies to everything. When enabled, this overrules all other categories.\n- **`player`**: Players are excluded from every other built-in categories below.\n- **`named`**: Mobs that have been given a custom name.\n- **`tamed`**: Includes both tamed pets and tamed mounts. Messages will still be broadcast to all players regardless of ownership.\n- **`ephemeral`**/**`persistent`**: Mobs that will/won't naturally despawn.\n- **`passive`**/**`hostile`**: Mobs that are allowed/disallowed in Peaceful difficulty.\n\n### Custom categories\nCustom categories are defined in `.minecraft/config/alldeath-rules.json`.\n\nEach key in the root object is used as a category name. The associated value is an array of strings, representing the entity types that can trigger the gamerule.\n\nThis example is provided as the default config file:\n```json\n{\n\t\"utility\": [\n\t\t\"minecraft:allay\",\n\t\t\"minecraft:iron_golem\",\n\t\t\"minecraft:snow_golem\",\n\t\t\"minecraft:villager\",\n\t\t\"minecraft:wandering_trader\"\n\t],\n\t\"boss\": [\n\t\t\"minecraft:ender_dragon\",\n\t\t\"minecraft:elder_guardian\",\n\t\t\"minecraft:warden\",\n\t\t\"minecraft:wither\"\n\t]\n}\n```\n\n## Name Styling\n\nMob names in death messages can have different colours and styling applied. Styles can be based on the same categories used in gamerules (both built-in and user-defined), or can be based on anonymous lists of entity types that don't correspond to any gamerule.\n\nThe way styles are applied is similar to CSS stylesheets, except in Json and in reverse order.\nWhen multiple styles match a mob, they will all be combined, and the topmost style takes priority in case of conflicts.\n\nStyles are defined in the config file `.minecraft/config/alldeath-styles.json`, as an array of Json Object.  \nEach object may contain the following properties:\n- _(Mandatory)_ **`rule`**: The mobs that will have the style applied\n\t- If it is a string, it will be treated as the name of a mob category. (Either built-in or custom.)\n\t- If it is an array of strings, it will be treated as a list of entity types.\n- _(Optional)_ **`color`**: A string. Can be either a hex code formatted as `#rrggbb`, or a built-in colour name.\n- _(Optional)_ **`bold`**: A boolean\n- _(Optional)_ **`italic`**: A boolean\n- _(Optional)_ **`underline`**: A boolean\n- _(Optional)_ **`strikethrough`**: A boolean\n- _(Optional)_ **`obfuscated`**: A boolean\n\n![Styles](https://cdn.modrinth.com/data/KkkpWQ5y/images/ffcef03ef841d9e4aeff603b7746951f49ab0ce9.gif)  \n![Colour Names](https://cdn.modrinth.com/data/KkkpWQ5y/images/c2adec14a41e4bf7e8347f2b6e363c7687fe3397.jpeg)\n\n### Styling Example\n```json\n[\n\t{\n\t\t\"rule\": [\n\t\t\t\"minecraft:wolf\"\n\t\t],\n\t\t\"color\": \"yellow\",\n\t\t\"italic\": false\n\t},\n\t{\n\t\t\"rule\": \"named\",\n\t\t\"italic\": true,\n\t\t\"underline\": true\n\t}\n]\n```\n#### Walkthrough\nThe topmost style defines an anonymous category for entities of type \"wolf\". The bottom one refers to the built-in \"named\" category.\n\nIf a wolf is given a name, both styles will be applied:  \nThe \"italic\" property is taken from the topmost style; its names will not be italicized.  \nThe topmost style does not define a \"underline\" property, so the lower property is used, and its name will be underlined.\n\n![Example](https://raw.githubusercontent.com/Estecka/mc-ALL-Death-Messages/refs/heads/1.21.10/doc/Style%20example.png)\n\n## Commands\n\n`/alldeathmsg` is the root for all subcommands. It requires a permision level of at least 2.\n\n- `test <entities>` Checks which rules apply to the given entities, and preview their styled names.\n- `see-enabled` Lists all currently enabled rules\n- `disable-all <confirm>` Disables all death message rules.\n- `set <rule name> <rule type> <boolean>` Equivalent to the `gamerule` command, but with a more convenient auto-complete.\n- `reload-styles` Reloads styles from the config file.\n\n## Related mods\n### [<img src=\"https://cdn.modrinth.com/data/TR0G6vEd/b79a0a6e2d5003b96ac0d6b04c6802984204963f.png\" width=48> **Gamerule Menu**](https://modrinth.com/mod/packrule-menus)\nMakes the Gamerule menu accessible from singleplayer worlds\n\n### [<img src=\"https://cdn.modrinth.com/data/kKib77nY/a08a3c1a05498c8d9c14bd5a695c8b962b1fcb88.png\" width=48> **Preferred Gamerules**](https://modrinth.com/mod/preferred-gamerules)\nLets you choose the default values of gamerules\n",
+  "categories": [
+    "fabric",
+    "mobs",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5251,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

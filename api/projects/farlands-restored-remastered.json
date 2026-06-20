@@ -1,0 +1,19 @@
+{
+  "id": "ulkW3YjI",
+  "slug": "farlands-restored-remastered",
+  "title": "Farlands Restored Remastered",
+  "description": "Brings the farlands (the old world generation bug) into the future to 1.7.10!",
+  "body": "My fork of \"FarLandsRestored\" originally by Valiec2019. Check out their original version here: https://www.curseforge.com/minecraft/mc-mods/farlandsrestored\n\n### My changes:\n* Remove the \"farlands\" world type. You can now experience farlands, not only in normal worlds with the default generator, it also works for many others!!\n* Add ability to specify in what directions the farlands generate (for example, you can configure them to only spawn east). \n* Add option to change when the farlands start in the nether/end differently from the overworld.\n* Remove version checker code.\n\n### Tested working generators: (everything vanilla has farlands, *some* things added by mods/bukkit-plugins will have them)\n* Default,\n* Amplified (incredibly cool btw try it),\n* Large Biomes,\n* Biomes O Plenty,\n* Twilight Forest,\n* Aether I, Aether II, and Aether Departure\n\n### Tested not working generators and other incompatibilities \n* Superflat (the terraingen is too simple to be affected noticeably),\n* RTG,\n* coretweak's `fix_heightmap_range` setting (which sucks, as it fixes the weird 256 height lighting dark spots),\n* neodymium also forwardports the graphical issues with being this far from 0,0, for better or worse :P \n\n## Description:\nRestores the farlands by removing the exact lines of code mojang added to stop them spawning, that were added all the way back after minecraft's beta 1.7.3 release. This means these farlands are __identical__ to the original, with all of their quirks and intricacies. This uses mixins, so it should work regardless of what other mods play with worldgen, unless they provide their own terrain noise generator. \n\nThey will spawn past 12,550,820 by default. They can be configured to 'spawn' *earlier*, by overflowing the noise octaves sooner, but this will only spawn the terrain gen sooner, not some of the other 'effects' caused by the farlands. You still need to go out to 12,550,820 for those.\n\nCheck out the images section to see the mod for yourself. \n\n\n\n### Dependencies:\nThe only dependency of the mod is a mixins provider. The one you should probably use is **unimixins**. https://modrinth.com/mod/unimixins\n\n### Config file: (`farlands.cfg`)\n```\ngeneral {\n    # Approximate Far Lands start distance. Might not change the start distance for some generators added by mods. (set to -1 for default distance) [range: -1 ~ 12550820, default: -1]\n    I:FarLandsStart=-1\n\n    # Approximate Far Lands start distance in the end. (set to -1 for default distance) [range: -1 ~ 12550820, default: -1]\n    I:FarLandsStartEnd=-1\n\n    # Approximate Far Lands start distance in the nether. If you want the farlands in the nether to line up with farlands in the overworld, set this to an eighth of the value. (set to -1 for default distance) [range: -1 ~ 12550820, default: -1]\n    I:FarLandsStartNether=-1\n\n    # Directions that farlands will generate. Examples: \"NEWS\" for all directions. \"NW\" to spawn them north and to the west. \"E\" to spawn them to the east. [default: NEWS]\n    S:generateInDirection=NEWS\n}\n```\n#### Modpacks: \nYes, this code is MIT licensed, you don't need my permission.\n\n#### Will you port to x.y?\nMaybe if I'm nagged enough. It should be trivial enough to tweak the code a bit to work on any version, it's mostly just finding working forgegradles/mixins for all the versions.\n\n#### Thanks:\n - Thanks to Valiec for making the original mod!\n - Thanks to everyone the legacy modding discord room for helping me!",
+  "categories": [
+    "forge",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1236,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10"
+  ],
+  "date_updated": null
+}

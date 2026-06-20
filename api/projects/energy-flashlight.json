@@ -1,0 +1,30 @@
+{
+  "id": "mx0DxDn9",
+  "slug": "energy-flashlight",
+  "title": "Energy Flashlight",
+  "description": "Darkness in caves? Need to light the way forward? Use redstone as energy for your new flashlight!",
+  "body": "## 📖 About\nThis datapack adds a flashlight that casts light across the entire beam path.\n\n### Important information:\n- In order for light to logically pass through incomplete blocks (slabs for example), you need to install the [MIDWUT(click)](https://modrinth.com/datapack/midwut) library datapack;\n- Help with translation into other languages is welcome, currently only available: Russian, English and pre-reformation Russian.\n\n### Features:\n- Using redstone dust as energy;\n- Real lighting using light blocks;\n- Charge reduction even if the flashlight is not in your hand;\n- The flashlight shines 20 blocks ahead, covering the entire beam path.\n\nThe player can craft a flashlight or give using a function `/function energy_flashlight:give/flashlight`  \n- The player will receive a recipe if he receives a redstone lamp or redstone dust.\n- Recipe visualization on the misode generator website: [Click](https://misode.github.io/recipe/?share=uG8OmJcZtS)\n\nInstructions for charging a flashlight will always be in the description of the flashlight at zero energy, but I'll repeat it here: the player must hold the flashlight in the main hand, the redstone dust in the off hand, sneak and use the flashlight.  \nThe maximum possible charge for a flashlight is **10** redstone dusts, each redstone dust adds **6** minutes of real-time operation, as a result, the flashlight can be charged for **1** hour. If the flashlight is on, the energy is used up and the next time you pick it up, the battery status will be updated, if more than an hour has passed, the flashlight will turn off immediately. This is achieved by storing the gametime in an item, and when the player holds a flashlight, the datapack compares the saved time with the current one.\n\n#\n## 🧩 Add-ons & Technical info\n\n### Custom light beams\nIf you want to add custom light beam, you can do it, but first you need to know: the datapack tick function runs on a 2-tick schedule for optimization, so I added the `#energy_flashlight:tick` functions tag. You can add your own functions for the spawn light beam to this tag.  \n**Why is this necessary?**  \n1\\) To optimize the light sources so that their life is handled only in this datapack;  \n2\\) To avoid bugs, the life of light sources must be processed after they are spawned and updated.  \n\\\nSo, to spawn a light beam, you need to set its length and run the function.  \nThe length is measured in 0.5 blocks, that is, the length of the raycast 10 is equal to (<=)5 blocks.\n```haskell\n# The base length is 20 blocks.\nscoreboard players set #raycast main_score 40\nexecute anchored eyes positioned ^ ^ ^ run function energy_flashlight:other/raycast/loop\n```\n\n### Custom charging item\nThe charging flashlight always accepts only vanilla redstone dust without any custom components, but if you add the `energy_flashlight.energy_for_flashlight:true` nbt tag to the `minecraft:custom_data` component, then this item can be used as a charger.\n\n#\n## 🔗 Links\nYou can leave a comment on the PMC page!\n\n[![PMC](https://www.planetminecraft.com/images/layout/themes/modern/planetminecraft_logo.png)](https://www.planetminecraft.com/data-pack/energy-flashlight/)\n\nRussian discord server of datapackers / Русский дискорд сервер датапакеров\n\nЕсли вы датапакер, ищите адекватной помощи, полезных ресурсов и возможности поделиться проектами, то вам на [СвинСоюз: Датапаки](https://discord.gg/YNsUzsxyu5)!\nЭто сервер-ответвление от изначального заброшенного сервера ZeroCaty \"СвинСоюз\". Сейчас мы не имеем к нему никакого отношения.\n\n[![SvinSoyuz](https://cdn.modrinth.com/data/cached_images/afb7cdcc943fceaa9f901c538ccfe15ea357f383.png)](https://discord.gg/YNsUzsxyu5)",
+  "categories": [
+    "datapack",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "minecraft",
+    "neoforge",
+    "quilt",
+    "technology"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 3405,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

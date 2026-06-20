@@ -1,0 +1,19 @@
+{
+  "id": "wWyibKgu",
+  "slug": "stage-tables",
+  "title": "Stage Tables",
+  "description": "Allows game stages to be placed into weighted tables.",
+  "body": "\n<p>This mod provides a framework for creating weighted randomized tables of <a href=\"https://www.modrinth.com/mod/game-stages\" rel=\"nofollow\">Game Stages</a>. If you do not know what a game stage is, it is highly recommended that you familiarize yourself with the Game Stage mod first. The basic idea of this mod is that modpacks cad define a table of game stages They can then use a command provided by this mod to award a player a random stage from that table. This mod also requires a basic understanding of <a href=\"https://www.modrinth.com/mod/crafttweaker\" rel=\"nofollow\">CraftTweaker</a> scripting to use it effectively.</p>\n\n<p>For in depth examples, please checkout the <a href=\"https://github.com/GetConfluxed/StageTables\" rel=\"nofollow\">GitHub page</a>. There is also a <a href=\"https://discord.darkhax.net\" rel=\"nofollow\">Discord server</a> where you can ask for help and advice.</p>\n<h2>Commands</h2>\n<ul>\n<li><strong>/stagetable</strong> - Provides a list of all commands added by this mod.</li>\n<li><strong>/stagetable dump</strong> - Generates a file containing information about all the stage tables.</li>\n<li><strong>/stagetable award &lt;player&gt; &lt;table&gt;</strong> - Attempts to award a player with a random stage from the specified table.</li>\n<li><strong>/stagetable silentaward &lt;player&gt; &lt;table&gt;</strong> - Same as the award command, but doesn't notify the player about it.</li>\n</ul>\n<h2>Basic Terminology</h2>\n<ul>\n<li><strong>Stage Table</strong> - A named table that contains stage entries.</li>\n<li><strong>Stage Entry</strong> - An entry in a stage table. Each entry has a stage that will be awarded, a weight value, and a list of conditions.</li>\n<li><strong>Stage Condition</strong> - A condition that must be met for a stage entry to be awardable to a given player.</li>\n</ul>\n<h2>Weighted Randomness</h2>\n<p>Weight is a form of probability system where the possible outcomes have unequal odds of happening The percent chance of any given outcome can be calculated by dividing the weight of a specific entry by the total weight of all entries in a table. For example if an entry has a weight of one, and the total weight is 9, there is a 10% chance of the first outcome. Weighted randomness is commonly used when the pool of outcomes needs to be flexible. If you are still unsure, you can run the dump command which will generate visual tables based on the tables that you have created.</p>\n<h2>CraftTweaker Scripting</h2>\n<p>Below is an example script that shows the various things made available. For more precise information please check here for the exact information.</p>\n<pre>// Basic imports used in this script\nimport crafttweaker.player.IPlayer;\n\n// Creates a new stage table with the name exampleTable\nval testTable = stageTables.createTable(\"exampleTable\");\n\n// Creates a new stage entry for stage \"one\" with a weight of 5.\nval entryOne = testTable.createEntry(\"one\", 5);\n\n// Creates a new stage entry for stage \"two\" with a weight of 5.\nval entryTwo = testTable.createEntry(\"two\", 5);\n\n// Prevent entryTwo from being selected unless the player has stage \"four\".\nentryTwo.addStageCondition(\"four\");\n\n// Creates a new stage entry for stage \"three\" with a weight of 1.\nval entryThree = testTable.createEntry(\"three\", 1);\n\n// Adds a custom condition to aquiring this entry using ZenScript.\n// In this case, it's only valid if the player is in creative mode.\nentryThree.addCondition(function(player as IPlayer) {\n    return player.creative;\n});</pre>\n\n",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 380,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

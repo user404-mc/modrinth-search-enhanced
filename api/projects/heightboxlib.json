@@ -1,0 +1,31 @@
+{
+  "id": "LtgwUjzA",
+  "slug": "heightboxlib",
+  "title": "HeightBoxLib",
+  "description": "Hitbox related Library that gets the entity's height!",
+  "body": "# HeightBoxLib\n Hitbox related library for Minecraft: Java Edition that gets the height of an entity's hitbox\n\n## How to use\n Execute as either yourself or any other entity and run `hblib:util/get_height` or any of it's variants.\n You will get both the height of both the position of the entity's eye anchor and the entity's hitbox height (eye and out)\n### Example of use: Making an entity face a torso of a player\n\n```\n##This is from the targetted entity\nscoreboard players set #Player hblib.number 1\nfunction hblib:util/get_height\n\n##Full - Eye height\nscoreboard players operation #Temp plate_havoc.temp = #Total hblib.number\nscoreboard players operation #Temp plate_havoc.temp -= #Eye hblib.number\n#Full /2\nscoreboard players operation #Temp2 plate_havoc.temp = #Total hblib.number\nscoreboard players operation #Temp2 plate_havoc.temp /= #2 plate_havoc.temp\n#Halved + Temp\nexecute store result storage plate_havoc:custom torso double 0.01 run scoreboard players operation #Temp plate_havoc.temp += #Temp2 plate_havoc.temp\n\nexecute anchored eyes as 00000000-0000-0005-0000-0001000007e9 run function plate_havoc:game/misc/face_torso/execute with storage plate_havoc:custom\n```\n\n ## Variants\n `hblib:util/get_height` | Gets height of entity's hitbox\\\n `hblib:util/get_height_dy` | Height of entity's hitbox but subtracted by 0.01\\\n `hblib:util/get_halved` | Height of entity's hitbox but halved\\\n `hblib:util/get_height_specific_scale` | Needs a macro $(scale) to run. It gets the entity's hitbox but aims for a decimal point depending on the scale. Examples: (1=180.0, 2=360.0, 0.5=90.0, 0.01=1.8)\\",
+  "categories": [
+    "datapack",
+    "fabric",
+    "forge",
+    "library",
+    "mobs",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 281,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

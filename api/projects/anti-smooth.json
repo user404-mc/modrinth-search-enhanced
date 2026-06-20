@@ -1,0 +1,43 @@
+{
+  "id": "zlZC5n7T",
+  "slug": "anti-smooth",
+  "title": "Anti-Smooth",
+  "description": "Makes entity movements more responsive",
+  "body": "# Anti-Smooth\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/avoAfObVD8E\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n<p><br></p>\n\nAnti-Smooth makes the server send entity updates more frequently to make player interactions with them (especially knockback from attacks) feel more responsive almost to a point that matches the behavior of mobs in true singleplayer from old versions before release 1.3.\nThis does increase the bandwidth used so it is best to only use this mod for singleplayer worlds, however mobs that are far enough away get interpolated with the vanilla method instead.\nAdditionally, velocity gets applied client side so mobs can move while waiting for updates and knockback gets applied instantly.\n\nAnti-Smooth is available for 1.20.1+ on Fabric and 1.21.1+ on NeoForge.\nIf Anti-Smooth seems to not be available for newer versions, try using the mod jar for the most recent Minecraft version that it claims to support and if it doesn't work then please report it as an issue.\n\nAnti-Smooth was inspired by [No Mob Latency](https://modrinth.com/mod/no-mob-latency) which does basically the same thing, however I wanted to do my own take on it that supported more versions.\n\n## Config\n\nThe configuration can be found in the \"antismooth.json\" file in the config folder.\n\n```json5\n{\n  // Controls whether interpolation is enabled or otherwise position packets are sent every tick.\n  // Interpolation is when the game smoothly transitions entity positions over multiple ticks\n  // and it is a vanilla feature.\n  // Interpolation is set to \"multiplayerOnly\" by default for two reasons:\n  // - The client cannot detect if a server has Anti-Smooth installed.\n  // - Anti-Smooth increases bandwidth consumption because it sends additional\n  //   entity position update packets which is not ideal for server performance.\n  // Set to \"disabled\" if you want to disable interpolation on multiplayer servers anyways,\n  // however this will result in choppy movements when playing on vanilla servers.\n  // Set to \"enabled\" if you want interpolation in singleplayer worlds as well.\n  // Default value: \"multiplayerOnly\"\n  \"interpolation\": \"multiplayerOnly\",\n  // The minimum distance from which entities will always have interpolation applied regardless\n  // of the \"interpolation\" setting. Setting this to 0 or lower disables this behavior.\n  // Having this mismatched from a server\n  // Default value: 64.0\n  \"minInterpolationDist\": 64.0,\n  // Applies velocity to client side entities. Vanilla Minecraft does not do this\n  // despite the fact that entity position update packets also include velocity updates.\n  // Default value: true\n  \"applyVelocity\": true,\n  // A set of entities that will always have interpolation and never have client side velocity.\n  // This setting is useful in case any modded entities do not work nicely with Anti-Smooth.\n  // Default value: [\"minecraft:item\"]\n  \"unaffectedEntities\": [\n    \"minecraft:item\"\n  ]\n}\n```\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 9757,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

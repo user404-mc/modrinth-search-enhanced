@@ -1,0 +1,40 @@
+{
+  "id": "1JHdsCoL",
+  "slug": "betterstructures-fawe",
+  "title": "BetterStructures-FAWE",
+  "description": "Based on the improved branch of MagmaGuy/BetterStructures, made deep adaptations and performance optimizations for Paper + FastAsyncWorldEdit (FAWE).",
+  "body": "# BetterStructures-FAWE\n\n# [中文](https://github.com/yeahnangua/BetterStructures-FAWE/blob/master/README.zh-CN.md)\n\n\nA performance-focused fork of [MagmaGuy/BetterStructures](https://github.com/MagmaGuy/BetterStructures), deeply adapted for the **Paper + FastAsyncWorldEdit (FAWE) + Terra** ecosystem.\n\n> Original plugin: [GitHub](https://github.com/MagmaGuy/BetterStructures) | [Modrinth](https://modrinth.com/plugin/betterstructures)\n\n---\n\n## Key Differences from Upstream\n\n### 1. FAWE Async Pasting (Zero Main-Thread Blocking)\n\nThe original plugin uses `WorkloadRunnable` to place blocks on the main thread in frame-split batches, which still causes TPS drops for large structures. This fork migrates all block pasting to FAWE asynchronous `EditSession`:\n\n- Normal blocks, NBT blocks (spawners, dispensers, etc.), and bedrock replacement are all handled on FAWE async threads\n- The `WorkloadRunnable` frame-splitting system and NMS fast paths have been removed\n- Entity spawning and chest filling are deferred back to the main thread after FAWE completes\n- The `percentageOfTickUsedForPasting` config option is now obsolete\n\n**Dependency change**: Hard dependency changed from `WorldEdit` to `FastAsyncWorldEdit`. The plugin will automatically disable itself if FAWE is not detected on startup.\n\n### 2. Terra / FAWE Compatibility\n\nResolves chunk state issues when using async world generators like Terra with FAWE:\n\n- Added `ChunkValidationUtil`: samples multiple positions to detect whether a chunk is fully generated, preventing structures from being placed on empty chunks\n- Uses Paper API `getChunkAtAsync` for async chunk loading, with `PluginChunkTicket` to keep chunks loaded during pasting\n- All world block access operations ensure chunks are loaded into memory first\n\n### 3. PersistentDataContainer Chunk Marking\n\nThe original plugin relies on `ChunkLoadEvent.isNewChunk()` to identify new chunks, but after a server restart, previously generated but unmarked chunks get scanned again. This fork uses Bukkit `PersistentDataContainer` to persistently mark chunks:\n\n- Processed chunks are tagged with `betterstructures:chunk_processed`\n- No duplicate scanning of already-processed chunks after restart\n\n### 4. Structure Location Persistence\n\nAdded `StructureLocationManager` and `StructureLocationData` to persist all generated structure locations to YAML files:\n\n- Each world is stored independently under `structure_locations/`\n- Records structure coordinates, type, schematic name, and bounding box dimensions\n- In-memory cache with automatic dirty-data saving every minute\n- Provides the data foundation for the mob tracking system\n\n### 5. Mob Tracking & Respawn System\n\nAdded `MobTrackingManager` and `MobSpawnConfig` for tracking and respawning mobs within structures:\n\n- Records mob spawn configurations (position, type) for each structure\n- Supports Vanilla / EliteMobs / MythicMobs mob types\n- Spatial index (world-chunk) for fast nearby structure lookups\n- Triggers mob respawn checks when players approach\n- Fires `StructureClearedEvent` when all mobs in a structure are killed\n\n### 6. Chinese Localization\n\nAll user-facing logs, command feedback, and menu text have been translated to Chinese across 27 files.\n\n---\n\n## Requirements\n\n| Component | Requirement |\n|-----------|-------------|\n| Minecraft | 1.14+ (1.21+ recommended) |\n| Server | Paper (or forks like Purpur) |\n| Java | 21+ |\n| **FastAsyncWorldEdit** | **Required** (vanilla WorldEdit is not supported) |\n\n### Optional Dependencies\n\n- EliteMobs - Custom bosses\n- MythicMobs - Custom mobs\n- WorldGuard - Region protection\n- Terra / Terralith / Iris / TerraformGenerator - Custom world generation\n\n\n\n## License\n\nGPL-3.0, same as upstream.\n\n## Credits\n\n- Original author: [MagmaGuy](https://github.com/MagmaGuy)\n- Original repository: https://github.com/MagmaGuy/BetterStructures\n- Modrinth: https://modrinth.com/plugin/betterstructures\n",
+  "categories": [
+    "adventure",
+    "paper",
+    "purpur",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 328,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

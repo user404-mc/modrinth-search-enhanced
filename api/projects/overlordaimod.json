@@ -1,0 +1,25 @@
+{
+  "id": "M2wST0Ly",
+  "slug": "overlordaimod",
+  "title": "Overlord Ai Mod",
+  "description": "This mod adds integration for the ollama api.",
+  "body": "**SPECIAL THANKS GO TO:**\n- [langchain4j](https://github.com/langchain4j/langchain4j)\n- [jackson-databind](https://github.com/FasterXML/jackson-databind)\n- [gson](https://github.com/google/gson)\n\nFOR MAKING THIS MOD POSSIBLE!!!\n\n\n# Fabric:\n\n**Caution**! Installation/Setup type **advanced**.\n\nYou are required to host ollama on a server.\n\n\nThis is what a model file could look like.\nFeel free to add your own touch.\n```\nFROM granite3.3\n\n# set the system message\nSYSTEM \"\"\"\nYou are a being that controls the actions of a minecraft server.\n\nAll values must default to empty strings.\n\nreply: This is a short message containing information about the status.\nweather: Sets the weather of the minecraft server.\nplayerStrike: Summons lightning upon a list of players.\ntime: Sets the time of the minecraft server.\nsend: Sends a held item from one player to another.\nboost: Boosts the life points of a player.\nhostileInvisibility: Makes specified players invisible to hostile mobs.\nname: This is your name.\nnoClear: Disables clearing the chat history.\nrating: Overall score of the player request(The range is 0 to 100).\n\"\"\"\n```\n![A preview of what the mod adds](https://cdn.modrinth.com/data/cached_images/ed1f633a04f2194f1bd6e2fc528e74138a3dab12.png)\n\nStart out by looking for a flower called natura pura.\nYou can turn the flower into mana powder by putting the item into the crafing table.\nEat the mana dust by right-clicking. You can ask the Ai how much mana you have.\n\nThe **only** action, that currently **works** is **setting** the **weather**.\nOptions are: clear(10 mana), rain(20 mana) and thunder(30 mana)\nMore will be added in the future.\n\n\n# Legacy(Forge) docs:\n\nThis mod **integrates** the an ollama **LLM** into minecraft, which is able to control multiple **actions**.\nThe LLM may for example change the weather or time of day.\n\n![Sample scene](https://cdn.modrinth.com/data/cached_images/aebe66ae4c8de6c525b0499ca08085db78e8a604.png)\n\n**SETUP:**\nYou need to run **ollama** on **either** your **local** machiene or on a dedicated **server**.\nHead to [https://github.com/ollama/ollama](https://github.com/ollama/ollama) for more information.\n\nIn order for the ai to talk with the mod you need to **use** the following **Modelfile**:\n\n```\nFROM granite3.3\n\n# set the temperature to 1 [higher is more creative, lower is more coherent]\nPARAMETER temperature 0\n\n# set the system message\nSYSTEM \"\"\"\nYou are a being that controls the actions of a minecraft server\n\nYou MUST comply with the following rules under any circumstance:\nAll answers must be provided as json and only json\nNo additional text\nThe key value pairs must be one dimensional\nAll keys must be camel case and in english\nAdd a key message containing a short summary\nThe value of message must be written in the language of the request\n\nUse the Key weather for changing the weather\nUse the Key playerStrike for striking players\nThe value is the players name\nUse the Key time for setting the time\nUse the Key send for sending an item to a player name\nUse the Key boost for boosting a players health\n\"\"\"\n```\nI use granite3.3 for testing, but you may use what ever suites you.\n\nThe **configuration** is done in the **config/overlordaimod-common.toml** file.\n\nThe ai is capable of triggering the following actions:\n- weather (clear, rainy, thunder) -> changes the weather\n- playerStrike (<playerName>) -> strikes a player with lightning\n- time (day, night, noon, midnight, sunrise, sunset) -> sets the time of day\n- send (<playerName>) - sends the held item from one player to another\n- boost (<playerName>) - adds the health boost effect to a player\n\n\n\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "neoforge",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 227,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

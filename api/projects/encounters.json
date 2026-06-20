@@ -1,0 +1,23 @@
+{
+  "id": "dyKXK9tv",
+  "slug": "encounters",
+  "title": "Encounters",
+  "description": "Adds immersive, fully customizable encounters. More challenge, more surprises.",
+  "body": "# Encounters\n\nAdds configurable encounter events to Minecraft. Each event has its own\ntrigger, behavior and mob pool, defined in `config/encounters.json5`\nor edited in-game through the YACL config screen.\n\nMore events are planned.\n\n## Configuration\n\n- In-game GUI powered by YACL (required on both loaders)\n- Config file: `config/encounters.json5`\n- Each event exposes its own toggles, chances and a weighted mob pool\n- Pool entries accept custom SNBT (same syntax as `/summon`) for gear,\n  attributes, effects…\n- Entries referencing a missing mod are skipped at load, so a single\n  config works across any modpack\n\n## Global options\n\n- `mobsDropEquipment` — when off (default), mobs spawned by any event\n  keep the gear they spawned with instead of dropping it on death\n\n## Events\n\n<details>\n<summary><b>Lightning Overcharge</b></summary>\n\nNatural lightning bolts during a thunderstorm may spawn a group of mobs\nat the impact point, preceded by a short cinematic.\n\n**Options**\n- Enable toggle\n- Trigger chance per bolt\n- Group size (min / max)\n- Group cohesion — the first mob acts as leader, followers regroup\n  around it when they stray too far\n- Mob pool (weighted, with per-entry SNBT and optional label)\n\n**Compatibility**\n- **Iron's Spells 'n Spellbooks** — adds a shockwave at the impact point\n- **Epic Fight** — honors the vanilla `generic.scale` attribute so\n  scaled mobs render at the correct size\n- The default mob pool ships with entries referencing Iron's Spells,\n  Epic Fight and Simply Swords. Each entry is ignored automatically\n  when the corresponding mod is missing.\n\n</details>\n\n<details>\n<summary><b>Nether Portal Invasion</b></summary>\n\nActive nether portals in the overworld may suddenly disgorge several\nescalating waves of nether mobs, preceded by a short buildup cinematic.\n\n**Trigger**\n- Periodic passive scan around each overworld player (only one\n  invasion may run at a time globally; a configurable cooldown gates\n  the next one)\n- Portal frame analysis picks one of the two perpendicular spawn\n  faces; the chosen face must offer a walkable foot row across the\n  full portal width\n\n**Cinematic**\n- The next wave starts only when the current one is fully wiped (with\n  a short grace period to absorb AoE wipes)\n- Portal teleportation is disabled for everyone (mobs and players)\n  while an invasion runs, with a brief grace period after it ends\n\n**Waves**\n- Random wave count between configurable min/max\n- Linear size progression: `firstWaveSize + (n-1) * step`\n- Rarity bias: later waves shift toward rare entries (capped at 4×\n  base weight, so very-rare mobs never become dominant)\n\n**Mobs**\n- Default roster: Piglin Soldier / Marksman / Shieldbearer, Wither\n  Skeleton, Blaze, Piglin Brute, Hoglin + Piglin Brute (Tusked\n  Vanguard), Hoglin + crossbow Piglin (Crossbow Outrider) and a very\n  rare Ghast\n- Hoglins and piglins spawned by the event are immune to vanilla\n  zombification so they don't morph mid-fight\n- Encounter piglins ignore gold-armor pacification — they keep\n  fighting regardless of player gear\n\n**Army identity**\n- All invasion mobs share an allies tag — no friendly fire across\n  goal-driven or brain-driven AI\n- Per-wave group cohesion: the first survivor acts as leader, others\n  regroup around it when not in active combat\n- Per-wave portal leash: mobs straying too far from the portal are\n  pulled back, unless they're chasing the player\n- One of six curated banner themes (Bloodflag, Skullbearer, Brimstone,\n  Iron Phalanx, Cinder Banner, Hellscar) is rolled per invasion;\n  ~30 % of eligible mobs become banner bearers, with the matching\n  pattern stamped on any vanilla shield they carry. Two parallel\n  invasions look like distinct armies.\n\n**Options**\n- Enable toggle\n- Trigger chance per scan\n- Scan interval (ticks)\n- Portal cooldown after an invasion (ticks)\n- Wave count (min / max)\n- First wave size and per-wave step\n- Group cohesion enable + radius\n- Mob pool (weighted, with per-entry SNBT and optional label).\n  Banner eligibility is opt-in per entry via the\n  `encounters_banner_eligible` entity tag in SNBT.\n\n</details>",
+  "categories": [
+    "adventure",
+    "cursed",
+    "fabric",
+    "magic",
+    "mobs",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 248,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

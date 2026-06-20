@@ -1,0 +1,27 @@
+{
+  "id": "TVKrCZNh",
+  "slug": "resource-trimmer",
+  "title": "Resource Trimmer",
+  "description": "Reduces unnecessary network overhead.",
+  "body": "This mod removes networking overhead by removing the unnecessary namespace from vanilla resource locations. This change will save 10 bytes per occurrence. \n\n## How it works?\nMinecraft uses namespaced identifiers often called resource locations. Each identifier has a namespace and a path which describes a game object. The namespace is optional and is assumed to be minecraft if it is not specified. The vanilla network encoders still include the namespace even if it is not necessary which adds unnecessary overhead.\n\n## How effective is this change?\nEach occurence of the default namespace adds 10 bytes of unnecesary overhead. Players can expect the login process the be reduced by at least 105kb. The amount reduced increases with the amount of additional content installed, for example the login process for the ATM 10 modpack is reduced by at least 125kb. While this may sound like a small reduction, the overhead is unnecesary and can have a meaningful impact for players with a poor internet connection and for servers with a large player base. This mod can also help mitigate issues wit packets exceeding the 2mb limit. This mod is not a silver bullet that can solve all of your issues but it is another tool to be considered. \n\nThe following list shows how long it takes to transfer a 120kb packet over a perfect bidirectional network. In the real world speeds are limited by the upload speed of the server, the download speed of the player, and many other factors. \n\n- 5Mbps = 192ms\n- 10 Mbps = 96ms\n- 15 Mbps = 64ms\n- 100 Mbps = 9.6ms\n- 200 Mbps = 4.8ms\n- 500 Mbps = 1.92ms\n- 1000 Mbps = 0.96ms\n\n**Note**: 120kb is 960,000 bits and a 1Mbps connection transfers 1,000,000 bits per second. Internet providers list their speeds in mega**bits** per second and not mega**bytes** to mislead consumers.\n\n## Server? Client? Singleplayer?\nThe changes made by this mod should be fully compatible with clients and servers, even if they do not have this mod installed. For example modded servers will send smaller packets to any client, and modded clients can send smaller packets to any server including vanilla servers. These changes also apply to singleplayer and LAN mode which still rely on packets to the integrated server. If possible, we recommend that all players and the server have this mod installed for the most benefit.\n\n## Compatibility\nThis mod uses Mixin to apply its changes. While this is common for moddern Minecraft mods it always carries a risk of causing incompatibilities with other online mods or modified clients. The changes made by this mod are within the vanilla spec and should be compatible with everything that fully implements it. There are no known incompatibilities.\n\n[![Nodecraft sponsor banner](https://assets.blamejared.com/nodecraft/darkhax.jpg)](https://nodecraft.com/r/darkhax)\n\n**This project is sponsored by Nodecraft. Use code [DARKHAX](https://nodecraft.com/r/darkhax) for 30% off your first month of service!**",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 11104,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

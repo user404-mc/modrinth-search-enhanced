@@ -1,0 +1,31 @@
+{
+  "id": "d5PYWJFt",
+  "slug": "msmp-enhanced",
+  "title": "MSMP Enhanced",
+  "description": "Extends the Minecraft Server Management Protocol (MSMP), including new JSON RPC methods and Unix socket support",
+  "body": "# MSMP Enhanced\nMSMP Enhanced is a server-side Fabric Mod that extends the [Minecraft Server Management Protocol](https://minecraft.wiki/w/Minecraft_Server_Management_Protocol) introduced in Minecraft 1.21.9 (25w35a).\n\nThis mod provides optional Unix socket support and adds additional RPC methods.\nMSMP Enhanced can also be used as a remote server console backend, similar to RCON but with support for structured Text Components and command tab completion. \nThis allows external tools (like web panels or CLI utilities) to run commands, view styled output, and get live suggestions for commands as you type.\n\n## Features\n### Methods\n#### Command Execution\n- **Method:** `msmpenhanced:command/run`\n- **Description:** Runs console commands and returns the command output as structured Text Components\n- **Parameters:** `command` (String)\n- **Response:** `messages` (Array of [Text Components](https://minecraft.wiki/w/Text_component_format))\n\n#### Command Suggestion (Tab Completion)\n- **Method:** `msmpenhanced:command/suggest`\n- **Description:** Allows external tools (e.g. web panel or CLI tools) to provide command tab completion\n- **Parameters:** `partialCommand` (String)\n- **Response:** `suggestions` ([Command Suggestions](#command-suggestions))\n\n### Unix Socket Support (Optional)\nInstead of binding the Minecraft Management Server to a TCP port, MSMP Enhanced can listen on a Unix Domain Socket.\nSee [Config](#config) for the configuration options.\n\n\n## Schemas\n### Command Suggestions\n- `start` (Integer): start position of the suggestions\n- `end` (Integer): end position of the suggestions\n- `suggestions` (Array of [Command Suggestion](#command-suggestion))\n\n### Command Suggestion\n- `text` (String): command suggestion\n- `tooltip` (Optional [Text Component](https://minecraft.wiki/w/Text_component_format)): additional tooltip\n\n## Config\nConfig is stored at `config/msmpenhanced.json`\n```json\n{\n  \"unixSocketEnabled\": false,\n  \"unixSocketPath\": \"msmp.sock\"\n}\n```\nMSMP Enhanced will default to TCP (vanilla behavior).\n\n## License\nThis project is licensed under the GNU Lesser General Public License version 3 only.",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 308,
+  "followers": 0,
+  "game_versions": [
+    "25w37a",
+    "1.21.9-pre1",
+    "1.21.9-pre2",
+    "1.21.9-rc1",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "OdyyFUwv",
+  "slug": "serene-slice-compat",
+  "title": "Serene & Slice Compat",
+  "description": "Fixes irrigation logic and restores sprinkler sound",
+  "body": "A small compatibility mod that restores proper sprinkler behavior when\n[Create Slice & Dice](https://modrinth.com/mod/slice-and-dice) is used together with\n[Serene Seasons](https://modrinth.com/mod/serene-seasons).\n\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/ptayur/serene-slice-compat/neoforge_1.21.1/screenshots/serene_slice_compat_showcase.gif\" alt=\"Showcase\" width=\"720\">\n</p>\n\n<details>\n<summary><strong>Incompatibility reasons</strong></summary>\n\n- Both mods inject mixins into Minecraft’s `isRainingAt()` method.\n  Each mixin targets `@At(\"HEAD\")`, uses the same priority, and is marked as `cancellable`.\n\n  When multiple cancellable `HEAD` injections with equal priority exist, Mixin applies them sequentially in the order\n  their mixin configurations are loaded. The first injected callback executes first and can cancel the method, \n  preventing later injections from running.\n\n  In this case, Serene Seasons’ mixin configuration is resolved earlier, so its injection is applied first and cancels \n  the method. As a result, Create Slice & Dice’s injection never executes.\n\n\n- Because Create Slice & Dice relies on Minecraft’s vanilla weather system to trigger rain-related sound effects, \n  overriding the vanilla weather logic in Serene Seasons prevents the sprinkler from playing its intended rain sounds.\n\n</details>\n\n<details>\n<summary><strong>How this mod fixes the issues</strong></summary>\n\n- Instead of injecting directly into Minecraft’s `isRainingAt()` method, this compatibility mod integrates the\n  Create Slice & Dice sprinkler check into Serene Seasons’ `isRainingAtHook()`, ensuring both mods’ logic is evaluated\n  consistently.\n\n\n- To restore the missing audio, the mod also plays the appropriate rain sound directly at the sprinkler’s\n  position, bypassing reliance on the vanilla weather system.\n</details>",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 5904,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

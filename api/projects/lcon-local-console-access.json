@@ -1,0 +1,22 @@
+{
+  "id": "MiJSNOGU",
+  "slug": "lcon-local-console-access",
+  "title": "LCon - Local Console Access",
+  "description": "Simple mod that adds WebSocket server to Minecraft, which allows to send commands and receive answers almost like RCon does.",
+  "body": "Simple client-only mod that adds WebSocket server to Minecraft, which allows to send commands and receive answers almost like RCon does. \n\n**Usage:**\n\nBy default mod creates a config with the following settings:\n\n-     enable_mod = true\n-     port = 8115\n\nSo, a WebSocket server will be created listening on port 8115. All you have to do is connect to this server using your preferred WebSocket client. \n\nAfter successful connection, server will respond back with the following information:\n\n\n```\n200:Welcome to LCon! Have fun! Don't forget to use prefixes with every message you send to me.\n200:Valid prefixes:\n200:[chat] - send message to Minecraft chat.\n200:[message] - display message for player only.\n200:[system] - display system message in chat (for player only).\n200:[client] - execute client-side command.\n200:[server] - execute server-side command.\n201:ready.\n```\n\n\nServer prepends every message with the status code. They're pretty similar to regular HTTP status codes:\n\n-     200 - normal message\n-     201 - status message (success)\n-     400 - error\n\nWell, you may send various data to server to perform certain actions and get back messages from server. Every message that is printed in Minecraft chat will be echo'ed to connected WebSocket clients. So, your client should either parse or ignore them.\n\nTo send something to server, you must prepend the message itself with one of the valid prefixes as stated above. Sending message without valid prefix will result in error sent back with appropriate status code.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 582,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

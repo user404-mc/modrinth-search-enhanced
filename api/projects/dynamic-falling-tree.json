@@ -1,0 +1,20 @@
+{
+  "id": "Qkzu4Sjj",
+  "slug": "dynamic-falling-tree",
+  "title": "Dynamic Falling Tree",
+  "description": "Topple trees with realistic physics! Features dynamic tipping, fragile leaf collisions, and full configuration support via ModMenu.",
+  "body": "# Dynamic Falling Tree\n\nRealistic tree falling physics for Minecraft 1.21.1 (Fabric). When you chop a tree, it falls over using rigid-body physics instead of instantly disappearing.\n\n![Tree falling demo](https://github.com/Cukkoo12/dynamic-falling-tree/raw/main/kayit.gif)\n\n![In-game screenshot](https://github.com/Cukkoo12/dynamic-falling-tree/raw/main/ekrangoruntu.png)\n\n## What It Does\n\n- Chopping the base log of a tree causes the entire tree to tip over and fall using real physics simulation.\n- Blocks are removed flicker-free via a `BARRIER -> AIR` sequence in the same server tick.\n- Trees spawn impact smoke particles when they hit the ground.\n- Leaves break naturally after the tree settles, with vanilla particle effects.\n- Works on rootless/floating trees as well as grounded ones.\n\n## Requirements\n\n| Dependency                                  | Version           |\n| ------------------------------------------- | ----------------- |\n| Minecraft                                   | 1.21.1            |\n| Fabric Loader                               | >= 0.16.9         |\n| Fabric API                                  | >= 0.110.0+1.21.1 |\n| [Sable](https://github.com/ryanhcode/sable) | >= 1.2.2          |\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/use/) for 1.21.1.\n2. Download **Sable** and place it in your `mods/` folder.\n3. Download this mod's JAR and place it in `mods/`.\n4. Launch and chop a tree.\n\n## Configuration\n\nConfig file auto-generates at `.minecraft/config/treephysics.properties`:\n\n```properties\nrootless_tree_detection=true\nrequires_axe=false\nprevent_interacting_with_trees=true\nrooted_dirt_generation=true\nimpulse_torque=2.0\nimpulse_force=1.5\n```\n\n| Option                           | Description                                         | Default |\n| -------------------------------- | --------------------------------------------------- | ------- |\n| `rootless_tree_detection`        | Allow floating trees to fall.                       | `true`  |\n| `requires_axe`                   | Only trigger physics when holding an axe.           | `false` |\n| `prevent_interacting_with_trees` | Block placing/using items on falling trees.         | `true`  |\n| `rooted_dirt_generation`         | Generate rooted dirt under naturally spawned trees. | `true`  |\n| `impulse_torque`                 | Rotational force applied to falling trees.          | `2.0`   |\n| `impulse_force`                  | Linear push force applied to falling trees.         | `1.5`   |\n\n## How It Works\n\n1. **Detection**: Breaking a log triggers a flood-fill search for connected logs, leaves, and attached blocks.\n2. **Validation**: The detected structure is validated as a tree (must have a root on dirt or have leaves if rootless mode is on).\n3. **Assembly**: Valid tree blocks are converted into a Sable `ServerSubLevel` — a physics-backed block container with independent collision and transform.\n4. **Flicker Fix**: Original world blocks are replaced with `BARRIER`, then immediately `AIR`, preventing any visual flicker.\n5. **Impulse**: A directional force and torque are applied based on the player's position, causing the tree to tip over.\n6. **Impact & Decay**: While falling, the server tracks velocity. Ground contact spawns smoke particles. After settling, leaves break naturally.\n\n## Technical Details\n\n- Built on the [Sable](https://github.com/ryanhcode/sable) physics engine using SubLevel rigid-body simulation.\n- All physics runs server-side and syncs to clients over the network.\n- Singleplayer and multiplayer compatible.\n- Licensed under MIT.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 188,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "5nj6SCth",
+  "slug": "bufferfix",
+  "title": "BufferFix",
+  "description": "Fixes the \"disconnect.overflow\" error that occurs on some 1.4.7 servers.",
+  "body": "This server-side coremod fixes the `disconnect.overflow` error that players might get on some 1.4.7 servers, most often caused by having a large amount of machines in one location.\n\nThe cause of this problem is a check in Minecraft's `TcpConnection.java#processReadPackets()` method where the server checks the size of the send queue for the user. If the queue is larger than 2MB, the server will drop the player's connection. If a player joins a server in an area with a large number of machines, the send queue can easily exceed the 2MB limit, causing them to be disconnected.\n\nThis mod simply patches the server to increase the maximum queue size to 20MB.",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 136,
+  "followers": 0,
+  "game_versions": [
+    "1.4.7"
+  ],
+  "date_updated": null
+}

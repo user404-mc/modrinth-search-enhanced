@@ -1,0 +1,28 @@
+{
+  "id": "rUI34FlA",
+  "slug": "configured-burn-time",
+  "title": "Configured Burn Time",
+  "description": "Allows to configure the items fuel time dynamically in a data-driven way",
+  "body": "# Configured Burn Time\na.k.a. Configured Burn\n\nAllows to make item burn time data-driven.\nChange your items' fueling time with a single datapack reload!\n\nImplements a new recipe type: `configured_burn:burning_time`\n\nStructure:\n\n```json5\n{\n  \"type\": \"configured_burn:burning_time\",\n  \"item\": \"<item id>\",\n  \"tag\": \"<tag id>\", // Does not take a #\n  // Either the item or tag is required, but one can be missing.\n  \"priority\": 0,\n  // must be positive or null. Indicates priority over the specified item/tag. Optional, 0 by default.\n  \"time\": 200, // the new fuel time, in server ticks.\n  \"compat\": { // optional element, implements some other mods compat\n    \"createOverheatTime\": 100\n    // indicates how long the item would make a Create blaze burner overheat. By default, 0. \n  },\n  \"conditions\": [\n    // optional, a collection of stack predicates to be validated\n    // in order to apply the specified fuel change at a specific occasion.\n    // Warning: due to implementation difficulties, it most often comes irrelevant.\n  ]\n}\n```\n\n## Reference\n\nHere is a small reference sheet of some vanilla item fuel times,\nso that you may have an idea of what a value evaluates for:\n\n| item                         | value (ticks) | time (seconds) | number of items |\n|------------------------------|---------------|----------------|-----------------|\n| `#minecraft:boats`           | 1200          | 60             | 6               |\n| `#minecraft:burnable_planks` | 300           | 15             | 1.5             |\n| `minecraft:coal_block`       | 16000         | 800            | 80              |\n| `minecraft:coal`             | 1600          | 80             | 8               |\n| `minecraft:lava_bucket`      | 20000         | 1000           | 100             |\n| `#minecraft:burnable_logs`   | 300           | 15             | 1.5             |\n\n## Implemented mod compatibilities\n\n### Create\n\nThe recipe supports a compatibility field which allows to define how long should an item make a Create blaze burner overheat.\n\nWarning! As per Create's implementation, any time a blaze burner finished overheating, ensues a time of normal heating that\ncannot be controlled to this day.",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 986,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

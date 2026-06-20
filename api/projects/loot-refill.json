@@ -1,0 +1,27 @@
+{
+  "id": "6j5VSyuK",
+  "slug": "loot-refill",
+  "title": "Loot Refill",
+  "description": "A Fabric server-side mod to automatically refill the inventories of naturally generated loot containers.",
+  "body": "# Loot Refill\n\nThis is a Fabric server-side Minecraft mod that allows chests and other contains with naturally generated loot to refill themselves automatically.\n\n## [Sponsored by Ember Host](https://billing.ember.host/aff.php?aff=21)\n\nCheck out Ember Host if you are looking for a Minecraft server host that offers exceptional value for price. You can support my development by using the banner below, which gives a 50% cut for every first purchase to me, alongside a 10% discount to you. \n\n<center>\n      <a href=\"https://billing.ember.host/aff.php?aff=21\">\n        <img src=\"https://i.imgur.com/dfm9S3K.png\">\n      </a>\n</center>\n\n## Configuration\n\nThe mod includes several settings accessible via a config file named `lootrefill.toml` which can be found in the server's config folder. The settings can be edited in-game or from the console via commands starting with `/lootrefill config`, and they can be reloaded with `/lootrefill config reload`.\nThe following is the default configuration file. Each setting is commented with an explanation as to what it does.\n\n```toml\n[preferences]\n\t#(Default = 1800) The time in seconds between each refill. Note that a refill only occurs whenever a loot container is opened.\n\ttime_until_refill = 1800\n\t#(Default = -1) The max amount of refills allowed per container. -1 is the minimum value and enables unlimited refills. 0 disables loot refills. For a given container, this value can be overridden by setting the individual max refill amount for that container.\n\tmax_refills = 1\n\t#(Default = false) If enabled, a container will only refill if the amount of times a player has refilled a container is lower than the max refill setting value.\n\tper_player_refill_counts = false\n\t#(Default = true) Prevents refilling containers when they are not fully empty.\n\trefill_only_when_empty = true\n\t#(Default = false) If enabled, containers with a set loot table id and a refill count lower than the max refill setting value, or if the max refill amount is set to unlimited, will be unbreakable by players. They can still be broken by indirect means such as explosions.\n\tprotect_loot_containers = false\n```\n\n## Manually set a loot container's loot table id and max refill amount\n\nSince there is no way to retroactively assign loot table ids for already looted naturally generated containers, the mod includes a command to set one manually:\n\n`/lootrefill setLootTableId <loot_table_id>`\n\nwhere `<loot_table_id>` is the registry key identifier of the loot table id you wish to assign.\n\nYou can also specify the coordinates and dimension of the loot containers for use from a console:\n\n```\n/lootrefill add_loot_table_id <loot_table_id> <x> <y> <z> <dimension>\n```\n\nYou can also set the max refill amount for a specific loot container by using:\n\n`/lootrefill setMaxRefillAmount <max_refill_amount>`\n\nwhere `<max_refill_amount>` is an integer value. By default, all containers have an individual max refill amount of `-1`. Setting it to 0 or higher will make the specific container use its individual max refill amount instead of the one specified in the config.\n\nFinally, this command also accepts a position and dimension argument for use from the console:\n\n`/lootrefill setMaxRefillAmount <max_refill_amount> <x> <y> <z> <dimension>`\n\n## Support\n\nIf you would like to report a bug, or make a suggestion, you can do so via the mod's [issue tracker](https://github.com/ArkoSammy12/loot-refill/issues).\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1112,
+  "followers": 0,
+  "game_versions": [
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

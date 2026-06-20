@@ -1,0 +1,26 @@
+{
+  "id": "O9wU3N70",
+  "slug": "placeholdermaker",
+  "title": "PlaceholderMaker",
+  "description": "A minecraft mod with which you can make unlimited placeholders on modded mc servers, using the placeholders api and much more!",
+  "body": "# PlaceholderMaker\n\n## Overview\n**PlaceholderMaker** is a Fabric mod that allows you to create placeholders that use conditions and rules to create unique and unlimited placeholders and even placeholders that are inside other placeholders that use detect to change during the game using conditions that detect changes from placeholders.\n\n---\n\n## How It Works\n- It works using conditions from rules in configure `json` made for placeholders, conditions detect changes from other placeholders that are used in configs from the placeholder!\n- Doing this using **Placeholder API**, and other placeholders from any type of mod!\n- Placeholders can be created in a `json` file in `pmaker/placeholders` and can be used in the game like this `%pm:player_health%`\n---\n\n## Commands and Permissions\n- **`/pm reload`**  \n  - **Permission:** `pm.reload` (or Operator Level ≥ 2)  \n  - Reloads all placeholder configuration files from `config/pmaker/placeholders/`.  \n  - Use this after editing or adding new placeholder JSON files.\n---\n\n## Conditions\n| Operator | Meaning                          | Example                   |\n|----------|----------------------------------|---------------------------|\n| `<`      | Less than                        | `\"<3\"` → if value < 3     |\n| `>`      | Greater than                     | `\">12\"` → if value > 12   |\n| `<=`     | Less than or equal to            | `\"<=\"5\"` → if value ≤ 5   |\n| `>=`     | Greater than or equal to         | `\">=10\"` → if value ≥ 10  |\n| `=`      | Equal to                         | `\"=3\"` → if value == 3    |\n| `!`      | Not equal to                     | `\"!3\"` → if value != 3    |\n| `%`      | Checks if value is divisible by  | `\"%5\"` → if value % 5 == 0|\n| `null`   | If it is null                    | Show the message directly |\n---\n\n## Example: Creating a Placeholder\nBelow is a simple JSON file example you might place in `config/pmaker/placeholders/health_status.json`. This will create a placeholder `health_status` that references `%player:health%` and then decides which text to display based on the player’s health.\n\n```json\n{\n  \"placeholders\": [\n    {\n      \"placeholderid\": \"health_status\",\n      \"placeholder\": \"%player:health%\",\n      \"rules\": [\n        {\n          \"condition\": \"<3\",\n          \"text\": \"&cYou're about to die!\"\n        },\n        {\n          \"condition\": \"<6\",\n          \"text\": \"&eHang in there, warrior!\"\n        },\n        {\n          \"condition\": null,\n          \"text\": \"&aYou look perfectly healthy!\"\n        }\n      ]\n    }\n  ]\n}\n```\n\n## Text Formats\n\n**Examples**  \n\n1. **Bold, Italic, Underline, Strikethrough, Obfuscated**  \n   - `<b>Bold text</b>`  \n   - `<i>Italic text</i>`  \n   - `<u>Underlined text</u>`  \n   - `<strike>Strikethrough text</strike>`  \n   - `<obf>Obfuscated text</obf>`  \n\n2. **Hex Colors**  \n   - `<#FF0000>This text is red</#>`  \n   - `<#00FF00>This text is green</#>`  \n\n3. **Gradient**  \n   - `<gradient:#FF0000:#FFFF00:#00FF00>Hello Gradient!</gradient>`  \n   - You can use multiple hex colors separated by “:” (e.g. `#FF0000:#0000FF:#00FF00`).  \n   - The parser will blend colors across the text.\n\n4. **Click Events**  \n   - `<click:run_command:'/say Hello'>Click to run a command</click>`  \n   - `<click:suggest_command:'/help'>Click to suggest a command in chat</click>`  \n   - `<click:open_url:'https://example.com'>Click to open a website</click>`  \n   - `<click:copy_to_clipboard:'Copied!'>Click to copy text</click>`  \n   - Note: `run_command` is executed as if the player typed it in chat, so it requires permissions.\n\n5. **Hover Events**  \n   - `<hover:show_text:'Hover message here'>Hover over me</hover>`  \n\n6. **Links**  \n   - `<link:https://google.com>Click to open Google</link>`  \n   - Equivalent to a `click:open_url` event.\n\n7. **Reset**  \n   - `<reset>` or `<r>` resets any formatting to default.\n\n8. **Vanilla Formatting Codes**  \n   - Use `&` followed by a code (e.g. `&a`, `&l`, `&r`):  \n     - `&l` = bold  \n     - `&o` = italic  \n     - `&n` = underline  \n     - `&m` = strikethrough  \n     - `&k` = obfuscated  \n     - `&r` = reset  \n     - `&0`-`&f` = color codes",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 367,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "83xBWJAx",
+  "slug": "fastsuite-fabric",
+  "title": "FastSuite [FABRIC]",
+  "description": "A performance upgrade for the JSON recipe system. [Unofficial Port]",
+  "body": "##  About\n\n**This is an unofficial port of [FastSuite](https://www.curseforge.com/minecraft/mc-mods/fastsuite) to Fabric for Minecraft 1.21+. The original mod was developed by [shadows_of_fire](https://www.curseforge.com/members/shadows_of_fire/projects) for Forge/NeoForge.**\n\nFastSuite enables faster execution of recipe matching through the use of concurrency. For any recipe type with more than 100 recipes, FastSuite will enable Concurrent Recipe Matching, and use multiple threads to match all recipe combinations, instead of relying on a single thread to perform this work. This was observed to produce a 10x - 12x speedup in All The Mods 8, as shown below:\n\n**[Multithreaded Test] - Took an average of 301960.28 ns to find the recipe for acacia planks**\n\n**[Singlethreaded Test] - Took an average of 2774185.5 ns to find the recipe for acacia planks**\n\n**[Multithreaded Test] - Took an average of 494851.94 ns to find the recipe for sticks**\n\n**[Singlethreaded Test] - Took an average of 4500045.0 ns to find the recipe for sticks**\n\n**[Multithreaded Test] - Took an average of 148572.14 ns to find the recipe for crafting table**\n\n**[Singlethreaded Test] - Took an average of 3246270.5 ns to find the recipe for crafting table**\n\n**[Multithreaded Test] - Took an average of 370346.56 ns to find the recipe for black shulker box**\n\n**[Singlethreaded Test] - Took an average of 4711380.0 ns to find the recipe for black shulker box**\n\n**[Multithreaded Test] - Took an average of 701000.56 ns to find the recipe for failed match**\n\n**[Singlethreaded Test] - Took an average of 1.3034094E7 ns to find the recipe for failed match**\n\n\n\n\nRecipe types that exhibit problems with Concurrent Recipe Matching can be blacklisted in the configuration file.  As compared to the previous iterations of FastSuite, the concurrent matching model is more compatible (it works with Polymorph installed), and it always works (whereas the old model did not work if there was substantial recipe churn and did not work on the first match). It also is a bit less brittle, because it does not need to write any data during matching, which could cause issues if mods were matching recipes off-thread.\n\n\n\n## Compatibility\n \n\nThis mod should work completely with all other mods.  It is made to be non-intrusive, and should not conflict with anything short of another mod also replacing the recipe manager.  It has been tailored such that it should work with recipe modification mods such as KubeJS and CraftTweaker, and it does not cause any issues with JEI.\n\nThis mod does not replace [FastWorkbench](https://modrinth.com/mod/fastworkbench-fabric) or [FastFurnace](https://modrinth.com/mod/fastfurnace-fabric), though their benefits will be lessened if this is installed, as some of the work will be offloaded to FastSuite.  To receive maximum performance with regards to recipes, I still advise having both of them installed, but if you had to pick just one, it should be FastSuite over either of the others.",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 5671,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.4",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

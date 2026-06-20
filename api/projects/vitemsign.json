@@ -1,0 +1,37 @@
+{
+  "id": "hQZlnTfM",
+  "slug": "vitemsign",
+  "title": "V-ItemSign",
+  "description": "Sign your Items!",
+  "body": "![varilxitemsign](https://cdn.modrinth.com/data/cached_images/53be9abc933500b97eda2771459cf73760ff2cc2_0.webp)\n\n![Discord](https://img.shields.io/discord/1322873747535040512)\n![Build Status](https://img.shields.io/github/actions/workflow/status/Varilx-Development/VItemSign/build.yml?branch=main)\n![Release](https://img.shields.io/github/v/release/Varilx-Development/VItemSign)\n\n<p align=\"center\">\n    <a href=\"https://modrinth.com/plugin/vitemsign\">\n        <img src=\"https://raw.githubusercontent.com/vLuckyyy/badges/main/avaiable-on-modrinth.svg\" alt=\"Available on Modrinth\" />\n    </a>\n</p>\n\n# VItemSign Configuration\n\nVitemsign is a signing system for items, allowing you to sign and protect them.\n\n# Preview\n\n### Commands\n![Commands](https://cdn.varilx.de/raw/Jox6cV.png)\n\n## Configuration Overview\n\n### **Custom Messages**\nCustomize messages for server startup, player join/quit, and Discord chat using the MiniMessage format.\nWe currently support: `de` and `en`\n\n### **Commands**\n`/itemsign <Message>` - Signs the item with the specified text\n\n`/itemsign lock` - Locks the signed item so that it cannot be changed.\n\n`/itemsign unlock` - Unlocks the signed item so that it can be changed again.\n\n`/itemsign delete` - Removes the sign from the item.\n\n\n### 4. **Permissions** \n`vitemsign.use` | Fully configurable in the Config.yml.\n- Permission to use the `/itemsign` Command.\n\n---\n\n## Setup Instructions \n\n1. Download and install the plugin on your Minecraft server.\n2. Configure the `config.yml` file with your preferred settings:\n    - Set the database type and connection details.\n    - Define custom messages using MiniMessage.\n3. Restart the server to apply the changes.\n\n---\n\n## Example config\n\n```yaml\nlanguage: en\n\n# These items should remain in the list to avoid duplication bugs\nBlockedItems:\n  - \"SHULKER_BOX\"\n  - \"WHITE_SHULKER_BOX\"\n  - \"GRAY_SHULKER_BOX\"\n  - \"BLACK_SHULKER_BOX\"\n  - \"BROWN_SHULKER_BOX\"\n  - \"RED_SHULKER_BOX\"\n  - \"ORANGE_SHULKER_BOX\"\n  - \"YELLOW_SHULKER_BOX\"\n  - \"LIME_SHULKER_BOX\"\n  - \"GREEN_SHULKER_BOX\"\n  - \"CYAN_SHULKER_BOX\"\n  - \"LIGHT_BLUE_SHULKER_BOX\"\n  - \"BLUE_SHULKER_BOX\"\n  - \"PURPLE_SHULKER_BOX\"\n  - \"MAGENTA_SHULKER_BOX\"\n  - \"PINK_SHULKER_BOX\"\n  - \"CHEST\"\n  - \"TRAPPED_CHEST\"\n  - \"HOPPER\"\n  - \"ENDER_CHEST\"\n  - \"BARREL\"\n  - \"FURNANCE\"\n```\n\n---\n\n## Example Message Configuration\n\n```yaml\n# General Messages\nprefix: \"<bold><dark_gray>[<gradient:#5FE2C5:#4498DB>VItem</gradient><gradient:#4498DB:#89B974>Si</gradient><gradient:#89B974:#89B974>gn</gradient><dark_gray>]<reset><gray> \"\ndate_format: \"MM/dd/yyyy - hh:mm a\"\nuser_not_found: \"<prefix><red>That user does not exist.\"\nno_permission: \"<prefix><red>You don't have permission to do that.\"\ncannot_sign_blocked_item: \"<prefix><red>You are not allowed to sign that!\"\ncannot_lock_blocked_item: \"<prefix><red>You are not allowed to lock this item!\"\nitem_not_signed: \"<prefix><red>This item is not signed yet!\"\nnot_your_item: \"<prefix><red>You are not the owner of that item!\"\nitem_sign_deleted_successfully: \"<prefix>The sign has been <red>deleted <green>succesfully <gray>!\"\nitem_already_locked: \"<prefix><red>This item has already been locked!\"\nitem_locked_successfully: \"<prefix>This item has <green>succesfully <gray>been <red>locked<dark_gray>!\"\nitem_not_locked: \"<prefix><red>This item is not locked!\"\nitem_unlocked_successfully: \"<prefix>This item has <green>succesfully <gray>been unlocked<dark_gray>!\"\nitem_already_signed: \"<prefix><red>This item has already been signed<dark_gray>!\"\nitem_signed_successfully: \"<prefix>This item has <green>succesfully <gray>been signed<dark_gray>.\"\nitem_in_hand_is_air: \"<prefix><red>You have to hold the item in you main hand!\"\nitem_sign_broken_successfully: \"<prefix>You have broken a signed item block!\"\nlore_prefix_separator: \" <dark_gray>| <gray>\"\n\nsigned_lore: \"<!i><dark_gray>» <gray>Signed by <luckperms_prefix><reset><separator><username> <gray>am <yellow><date>\"\n\nCommand:\n  Name: \"itemsign\"\n  Permission: \"vitemsign.use\"\n  Arguments:\n    Delete: \"delete\"\n    Lock: \"lock\"\n    Unlock: \"unlock\"\n  Usage:\n    - \"<prefix>VItemSign Help<dark_gray>:\"\n    - \"<prefix><yellow>/itemsign <dark_gray><<green>Text<dark_gray>> - <gray>Signs an <yellow>Item<gray>.\"\n    - \"<prefix><yellow>/itemsign <red>delete <dark_gray>- <red>Delete <gray>the item sign.\"\n    - \"<prefix><yellow>/itemsign <red>lock <dark_gray>- <gray>The sign will get <red>locked.\"\n    - \"<prefix><yellow>/itemsign <green>unlock <dark_gray>- <gray>The sign will get <yellow>unlocked.\"\n```\n\n---\n\n## Example Database Configuration\n\n```yaml\ntype: Sqlite # Avaiable types: mongo, mysql, sqlite\n\n\n# MONGO\nMongo:\n  connection-string: \"mongodb://<username>:<password>@<host>:<port>/\"\n  database: \"db\"\n\n\n# SQL\nSQL:\n  connection-string: \"jdbc:sqlite:plugins/VItemSign/database.db\"\n  username: \"username\" # Not required for sqlite\n  password: \"password\" # Not required for sqlite\n```\n\n\n---\n\n---\n## Soft Requirements\n* WorldGuard\n---\n\n\n\n## Notes\n\n- The MiniMessage format is highly flexible for styling and formatting messages. Refer to the [MiniMessage documentation](https://docs.advntr.dev/minimessage/format.html) for more details.\n- SQLite is the simplest database option as it doesn’t require additional setup.\n\n<a href=\"https://discord.gg/ZPyb9g6Gs4\">\n    <img src=\"https://github.com/user-attachments/assets/e2c942ae-d79a-4606-b4b0-240fd92c9a90\" alt=\"Join our Discord for help\" width=\"400\">\n</a>\n",
+  "categories": [
+    "decoration",
+    "equipment",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "sponge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 355,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

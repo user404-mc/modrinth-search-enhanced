@@ -1,0 +1,22 @@
+{
+  "id": "y3UIkmMk",
+  "slug": "villagers-keep-tfc-lamps-lit",
+  "title": "Villagers Keep TFC Lamps Lit",
+  "description": "A mod that refills TFC lamps when villagers are nearby",
+  "body": "# Villagers Keep TFC Lamps Lit\n\nA Minecraft mod that makes TerraFirmaCraft lamps more viable for permanent structures by having nearby villagers\nmaintain them.\n\n## 📝 Features\n\n### Current Features\n\n- Villagers automatically replenish fuel in nearby TFC lamps when they run low\n- Natural feeling maintenance with randomized refill amounts\n- Only already-lit lamps are refilled (empty or unlit lamps are ignored)\n- Fully configurable values for fine-tuning the experience\n\n### Planned Fearures\n\n- Config to whitelist/blacklist fuels\n- Config to add additional entities that can automatically replenish lanterns\n- Refill cooldown based on how long it should take for the fuel to burn, to prevent being able to infinitely extract\n  fuel (this shouldn't be a major concern as-is though; more information further below)\n\n## 📕 How It Works\n\nThe mod checks for nearby villagers when a lamp block is ticked (should work with any block entity extending TFC's\nLampBlock class). If villagers are within range and the lamp's fuel level falls below the configured threshold, the\nlamp will be refilled up to a random amount of fuel (as defined by the range in the config).\n\n## ✏️ Configuration\n\nAll values can be adjusted in the bundled config file (found in `forge_dir/config/villagerskeeptfclampslit.toml`):\n\n- `villagerRange`: Distance (in blocks) villagers need to be from a lamp to maintain it\n    - Default: 24\n    - Min: 1, Max: Integer.MAX_VALUE\n\n- `fuelThreshold`: Fuel level (in mB) at which villagers will refill lamps\n    - Default: 50\n    - Min: 1, Max: 254\n    - Note: Each mB lasts approximately 8000 ticks (~6-7 minutes)\n\n- `minFuelReplenish`: Minimum amount of fuel (in mB) the lamp is refilled to\n    - Default: 75\n    - Min: 1, Max: 250\n\n- `maxFuelReplenish`: Maximum amount of fuel (in mB) the lamp is refilled to\n    - Default: 150\n    - Min: 1, Max: 250\n\n## ℹ️ Technical Note\n\nWhen using mods that can extract fluids (e.g. Create), it is probably possible to infinitely extract the fuel as it is\nbeing refilled by villagers. However, this shouldn't be too big of a deal because:\n\n1. Lamps only get refilled on random block ticks\n2. If a lamp is emptied before being ticked, it will extinguish\n3. The config values can be adjusted to lower amounts if needed, to thwart mechanisms like really slow pump extraction.\n\nBasically, the only way it's possible is if you either extract the fluids slow enough or you find a way to keep a\nsmall amount of fluid in the lamp. I might later refine this by adding a proper cooldown to how often the lantern can be\nrefilled, and it's one of the things I plan on adding to this mod.\n\n## ⚖️ License\n\nThis project is licensed under the MIT license. Feel free to include in modpacks.",
+  "categories": [
+    "decoration",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7056,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

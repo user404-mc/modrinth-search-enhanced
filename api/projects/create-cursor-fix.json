@@ -1,0 +1,19 @@
+{
+  "id": "nx4zDBs6",
+  "slug": "create-cursor-fix",
+  "title": "Create Cursor Fix",
+  "description": "Fixes a gui rendering bug with Create on some linux distros. Guis may not reflect the true physical cursor position when opened.",
+  "body": "# Create Cursor Fix\n\nSmall client-side NeoForge mod for Minecraft 1.21.1 that fixes stale cursor\ncoordinates in Create value settings screens.\n\nThis issue shows up in any gui that is an instance of ValueSettingsScreen including Rotation Speed Controllers and Creative motors.\n\nI do not intend to support other versions unless asked, but its pretty easy to port, so feel free to do so or request a particular version.\n\n## Requirements\n\n- Minecraft 1.21.1\n- NeoForge 21.1.219 or newer\n- Create 6.0.9 or newer\n\n## What It Fixes\n\nCreate's value settings UI receives mouse coordinates from Minecraft's normal\nscreen rendering path. On some Linux setups, those coordinates can be stale\nafter Create programmatically moves the cursor.\n\nThis mod patches Create's value settings screen to read the current GLFW cursor\nposition directly when rendering and saving the panel.\n\n## Wayland Support\n\nWayland is not explicitly supported.\n\nThis mod can fix the stale-coordinate case when cursor repositioning already\nworks. That usually means x11 or xwayland, but I haven't been able to reliably prove this fixes anything outside of x11. Im a new modder, apologies.\n\nNative Wayland seems to sometimes fail earlier than that. GLFW only supports\n`glfwSetCursorPos` on Wayland while the cursor is disabled. Minecraft GUI\nscreens normally use a visible, enabled cursor, so a Wayland compositor may\nrefuse Create's attempt to move the cursor in the first place.\n\nIn that case there is no moved cursor position for this mod to read:\n\n```text\nCreate asks GLFW to move/snap the cursor\nThe Wayland compositor refuses or ignores that cursor move\nThe visible cursor never moves to the saved setting\nThis mod cannot infer the intended cursor position from GLFW\n```\n\nIf the cursor does not visibly move to the saved value when opening the Create\npanel, that setup is probably outside this mod's support boundary.\n\n",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 362,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "90cn5fNC",
+  "slug": "neilon",
+  "title": "Neilon (Text Library)",
+  "description": "FabricMC text library to aid working with Minecraft's text system",
+  "body": "# Neilon\n\nNeilon is a Fabric text library to aid in working with Minecraft text.\n\n**Featureset**\n\n- Literal text\n- Translation text\n- Keybinding text\n- Basic text styling (bold, italic, underlined, strikethrough, magic)\n- Colors\n- Click actions\n    - Command running\n    - Command suggestions\n    - Opening URLs\n    - Copy to clipboard\n- Hover events\n    - Text\n    - Item\n    - Entity\n- QOL text methods\n  - Repeat\n  - Keybinding\n  - Translation\n  - Color\n- QOL features\n  - Automatic command click fixer, no longer requiring `/` in front\n  - Automatic URL fixer, no longer requiring `https://` in front\n\n**Planned**\n- Gradients\n\n## Usage\n\nSee the [wiki](https://wiki.snackbag.net/w/neilon),\nor [directly contribute to our wiki](https://github.com/snackbag/wiki)\n\n## Update policy\n\nUnless we see high demand, or we need it ourselves, we will follow the latest Minecraft version by looking\nat [Create Fabric](https://modrinth.com/mod/create-fabric), as this mod is used primarily for\nthe [SnackBag Create mod server](https://snackbag.net/).\n\n**We try our best to not introduce breaking changes unless truly necessary. Methods will rather be marked as deprecated**\n\n## Code example\n\n```java\nNText.assemble()\n    .text(\"[Epic Button]\")\n    .color(Color.RED)\n    .hover(\"What will this do?\")\n    .click(ClickType.RUN, \"kill @s\")\n    \n    .text(\" \")\n    \n    .text(\"[Another Button]\")\n    .color(Color.GREEN)\n    .hover(NText.of(\"I suspect this won't be any better.\", Color.GREEN))\n    .click(ClickType.COPY, \"i like trains\")\n    \n    .build();\n```\n\nFor reference, this is how it would look like when using vanilla code\n\n```java\nText.literal(\"[Epic Button]\")\n    .styled(style -> style\n        .withColor(Formatting.RED)\n        .withHoverEvent(new HoverEvent(\n            HoverEvent.Action.SHOW_TEXT,\n            Text.literal(\"What will this do?\")\n        ))\n        .withClickEvent(new ClickEvent(\n            ClickEvent.Action.RUN_COMMAND,\n            \"kill @s\"\n        ))\n    )\n    \n    .append(\" \")\n    \n    .append(Text.literal(\"[Another Button]\")\n        .styled(style -> style\n            .withColor(Formatting.GREEN)\n            .withHoverEvent(new HoverEvent(\n                HoverEvent.Action.SHOW_TEXT,\n                Text.literal(\"I suspect this won't be any better.\")\n                    .styled(s -> s.withColor(Formatting.GREEN))\n            ))\n            .withClickEvent(new ClickEvent(\n                ClickEvent.Action.COPY_TO_CLIPBOARD,\n                \"i like trains\"\n            ))\n        )\n    );\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 134,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

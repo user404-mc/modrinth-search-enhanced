@@ -1,0 +1,25 @@
+{
+  "id": "KVd0UUjP",
+  "slug": "shortcut",
+  "title": "Shortcut",
+  "description": "Add new aliases to commands",
+  "body": "# Shortcut\n\nA Minecraft plugin for creating command shortcuts without needing another plugin\n\n> *Reload ready! This plugin has no adverse effects when /reload is executed: commands will be disabled and added according to the changes to the configuration*\n\n## Configuration\n\nEach command can be individually configured\n\nThe basic yaml structure is as follows:\n\n```yml\n# This is the command name/label that you will type ingame (think /command_name)\ncommand_name:\n  # An OPTIONAL permission to use, this can be anything\n  # If the sender doesn't have this permission they cannot run this shortcut\n  permision: example.permission\n  # If the command can only be executed by players (this is also optional) \n  # For none players the execution method returns instantly\n  playerOnly: false\n  # An OPTIONAL way to describe how the command should be used\n  usage: \"/command_name <value>\"\n  # What is actually used to control what the shortcut does\n  executions:\n    - {\n        # This is the command to run\n        # %%0 is replaced with the first argument provided, %%1 is the second and so on\n        # Placeholders can be used if you so choose\n        run: say %%0,\n        # Who to run the command as\n        # Must be either \"sender\" OR \"console\"\n        as: sender\n    }\n    - {\n        # This is a message that is to be sent to the user\n        # Formatting and placeholders can be used here\n        display: Example message with §aFormatting!\n    }\n\n```\n\n### Example\n\nThe following is an example for a \"gmc\" command shortcut:\n\n> Placeholders are utilised in this example, ensure you have PlaceHolderApi if you wish to use it\n\n```yml\n# the command label to use\ngmc:\n  # permission required to run this shortcut\n  # this doesn't bypass the check on the original command if proxying!\n  # placeholders do NOT work here\n  permission: command.gamemode\n  # if the command can only be ran by a player\n  # placeholders do NOT work here\n  playerOnly: true\n  # displayed when an invalid version of this command is issued\n  # placeholders do NOT work here\n  usage: /gmc\n  executions:\n    # runs the command \"gamemode creative\" as the sender\n    # placeholders can be used here\n    - { run: gamemode creative %player_name%, as: console }\n    # displays this message to the executor\n    # placeholders can be used here\n    - { display: \"§0[§a✓§0]§r You are now in creative mode\" }\n```\n\nBelow is each element explained:\n\n| Component | Used Value | Description |\n| --- | --- | --- |\n| Permission | command.gamemode | Specifies the permission required to run the \"gmc\" command. Users attempting to execute this command must have the \"command.gamemode\" permission. |\n| Player-Only | true | When set to `true`, this configuration ensures that only players (as opposed to console or other entities) can execute the \"gmc\" command. |\n| Usage | /gmc | The \"usage\" field specifies the command syntax that users should follow to invoke the \"gmc\" command. |\n\nExecution Step 1\n\n| Action | Command to Run | As Sender |\n| --- | --- | --- |\n| Run a command | `gamemode creative %player_name%` | `console` |\n\nThis step instructs the system to set the executor's game mode to creative. The `%player_name%` placeholder is replaced with the executor's name. The command is executed as the console.\n\nExecution Step 2\n\n| Action | Message to Display |\n| --- | --- |\n| Display a message | \"§0[§a✓§0]§r You are now in creative mode\" |\n\nThis step displays a message to the executor indicating that they are now in creative mode. The message includes formatting for visual appeal.",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 342,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

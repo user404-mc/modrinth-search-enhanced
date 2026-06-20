@@ -1,0 +1,33 @@
+{
+  "id": "i5ZtmNIW",
+  "slug": "bluemap-sign-markers",
+  "title": "BlueMap Sign Markers",
+  "description": "A Fabric plugin for BlueMap that creates markers from signs",
+  "body": "BlueMap Sign Markers\n====================\n\n# Overview\nFabric plugin for BlueMap that displays markers based on in-game signs\n\n# Installation\nPlace in your `mods` folder along with BlueMap.\n\nServer-side only.\n\n# Usage\nPlace a sign or hanging sign with the following text on either the front or back:\n```\n[poi]\n<short description>\n```\nA marker will be displayed on the map at the location of the sign with the text `<short description>`. The marker will\nbe removed from the map when the sign is broken.\n\nNote that the prefixes can be configured in the configuration file.\n\n# Configuration\nThe mod will create a `BMSM-Core.json` file in the `config/bluemapsignmarkers` folder. This file contains the following\noptions:\n- `markerGroups` - a list of marker groups (described in detail below); default is a list with a single marker group\nconfigured for the `[poi]` prefix.\n\n## Marker Groups\nA marker group is a collection of markers that can be toggled on and off in the BlueMap UI. Each marker group\nconfiguration contains the following options:\n- `prefix` - prefix that the sign must contain to be included in the marker group; required;\n- `matchType` - the type of match to use when checking the first non-empty sign text line; optional; default is `STARTS_WITH` (case-sensitive exact match);\n  - `STARTS_WITH` - line must start with the prefix;\n  - `REGEX` - line must match the regular expression (uses [Java regex engine](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html));\n- `name` - the name of the marker group; required;\n- `type` - the type of marker to display; optional; default is `POI`\n- `icon` - the icon path or URL to display for the marker; optional; default is `null` (BlueMap default POI icon)\n- `offsetX` - the x offset of the marker; optional; default is `0` (corresponds with `anchor.x` in BlueMap base configuration)\n- `offsetY` - the y offset of the marker; optional; default is `0` (corresponds with `anchor.y` in BlueMap base configuration)\n\n## Example\n\n```json\n{\n  \"markerGroups\": [\n    {\n      \"prefix\": \"[poi]\",\n      \"name\": \"Points of Interest\"\n    },\n    {\n      \"prefix\": \"[store]\",\n      \"name\": \"Stores\",\n      \"icon\": \"assets/store.png\"\n    },\n    {\n      \"prefix\": \"\\\\[[vV][iI][lL][lL][aA][gG][eE]\\\\]\",\n      \"matchType\": \"REGEX\",\n      \"name\": \"Villages\"\n    }\n  ]\n}\n```\n\nThis example configuration creates 3 marker groups: one for `[poi]` signs, one for `[store]` signs, and one for signs\nwhere the prefix is a regex match for villages (e.g. `[Village]` or `[VILLAGE]`).\n\nThe `[poi]` and `Villages` marker groups use the default POI icon, while the `[store]` marker group uses a custom icon\nlocated at `assets/store.png`.\n\nSigns with the `[poi]` prefix will be displayed in the \"Points of Interest\" marker group. Signs with the `[store]`\nprefix will be displayed in the \"Stores\" marker group. Signs that match the villages regex will be displayed in the\n'Villages' marker group.",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 8336,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

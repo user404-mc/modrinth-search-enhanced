@@ -1,0 +1,27 @@
+{
+  "id": "dblyfJou",
+  "slug": "geysercommandsyml",
+  "title": "GeyserCommandsYML",
+  "description": "Set your own list of custom command suggestions to be displayed for Geyser (Bedrock) Clients",
+  "body": "# GeyserCommandsYML\n\n**GeyserCommandsYML** is a lightweight plugin designed for servers using [Geyser-Spigot](https://geysermc.org/) to allow better control over the **command suggestion list** shown to their Bedrock Edition players.\n\nRather than disabling all of the server command suggestions entirely through the Geyser-Spigot configuration (aka `Geyser-Spigot\\config.yml` → `command-suggestions: false`), this plugin **hooks directly** into Geyser + Floodgate APIs, letting you **define your own custom list** of commands **only for Bedrock players** — avoiding crashes, bloat, or exposing irrelevant commands.\n\n---\n\n## Features\n\n- ✅ Add your own customizable list of visible commands for Bedrock players.\n- ✅ Prevents the need to disable Geyser's command suggestions globally.\n- ✅ Simple YAML configuration (`plugins/GeyserCommandsYML/commands.yml`).\n- ✅ Hot-reloading support for external config edits (with controlled player kick).\n- ✅ Very lightweight — simply intercepts `PlayerCommandSendEvent` and modifies it for Bedrock clients.\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/geysercommands add <command>` | Adds a command to the Bedrock command list. | `geysercommands.add` |\n| `/geysercommands remove <command>` | Removes a command from the Bedrock command list. | `geysercommands.remove` |\n| `/geysercommands list` | Lists all currently registered Bedrock commands in chat. | `geysercommands.list` |\n| `/geysercommands reload` | Reloads the plugin configuration and updates the Bedrock command list (forces Bedrock players to reconnect). | `geysercommands.reload` |\n\n**Aliases:**  \n`/geysercommandsyml`, `/gcyml`\n\n---\n\n## How it Works\n\n- On `PlayerCommandSendEvent`, the plugin:\n  - **Checks if the player is a Bedrock client** (via Geyser/Floodgate APIs).\n  - If **yes**, it **clears** the default command suggestion list.\n  - Then it **adds** only the commands defined in the plugin's YAML file.\n\n- The **Geyser client** **pulls the available commands at player join**, not dynamically —  \n  **therefore, after running `/geysercommands reload`, Bedrock players must rejoin to see the updated list.**  \n  (This command automatically kicks Bedrock players with a kind message asking them to rejoin.)\n\n- **Important:**  \n  - In `Geyser-Spigot\\config.yml`, ensure `command-suggestions: true` is set.\n  - The `/geysercommands add <command>` and `/geysercommands remove <command>` commands **do not** kick players.\n    - But keep in mind, **online Bedrock players won't see updated command lists** until they manually leave and rejoin.\n\n---\n\n## Permissions Overview\n\n| Permission | Purpose |\n| :--- | :--- |\n| `geysercommands.add` | Allows adding commands to the Bedrock command list. |\n| `geysercommands.remove` | Allows removing commands from the Bedrock command list. |\n| `geysercommands.list` | Allows viewing the current Bedrock command list. |\n| `geysercommands.reload` | Allows reloading the plugin configuration and forcing Bedrock players to reconnect. |\n\n- If a player lacks the required permission, they will be denied access to the subcommand.\n- Server Operators maintain default command access.\n\n---\n\n## Tested Environments\n\n- ✅ **PaperMC 1.21.4 - Build #226**: Compatible\n- ✅ **Geyser-Spigot - Build #816:** Compatible\n- ✅ **Floodgate - Build #116:** Compatible\n\n---\n",
+  "categories": [
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 769,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

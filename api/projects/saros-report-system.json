@@ -1,0 +1,40 @@
+{
+  "id": "23qL07lI",
+  "slug": "saros-report-system",
+  "title": "Saros Report System",
+  "description": "Bring a fast, configurable ticket system to your Minecraft servers. Players file tickets in-game with a single command, you receive Discord notifications instantly.",
+  "body": "![Header](https://www.bisecthosting.com/images/CF/Saros_Report_System/BH_Saros_Report_System_header.webp)\n\nBring a fast, configurable ticket system to your Minecraft servers. Players file tickets in-game with a single command, you receive rich Discord notifications instantly.\n\n---\n\n### Highlights\n- In‑game tickets with a simple command: `/ticket <category> <reason...>`\n- Multi‑word categories supported (e.g., \"Staff Request\", \"Player Report\")\n- Smart tab completion that suggests only your configured categories\n- Discord webhook integration using rich embeds\n  - Configurable embed color (hex)\n  - Player head/avatar shown in the embed\n  - Clean, readable layout using your message template\n- Fully server‑side configuration (common config); no client required\n- Customizable user‑facing messages (success/help/errors) with placeholders\n\n---\n\n![Description](https://www.bisecthosting.com/images/CF/Saros_Report_System/BH_Saros_Report_System_description.webp)\n\n\n- Ticket command\n  - `/ticket <category> <reason...>`\n  - Works with multi‑word categories\n  - Bare `/ticket` shows a configurable help/usage message\n\n- Discord embeds\n  - Ticket is posted to a Discord channel via webhook\n  - Color is configurable (hex, e.g., `#5865F2`)\n  - The player's Minecraft head is used as avatar and embed thumbnail\n  - All placeholders from your template are preserved\n\n- Server‑side config only\n  - Everything is configured from the server's common config (no client dependency)\n  - All players see the same messages no matter their client language\n\n- Clean admin UX\n  - Tab completion shows only categories from your config\n  - Invalid categories or missing reasons return clear, configurable errors\n\n---\n\n![Commands](https://www.bisecthosting.com/images/CF/Saros_Report_System/BH_Saros_Report_System_commands.webp)\n\n- Base command: `/ticket`\n- Usage: `/ticket <category> <reason...>`\n- Examples:\n  - `/ticket Bug Bees are escaping the hive enclosure`\n  - `/ticket Staff Request Please review my claim`\n  - `/ticket Player Report Steve griefed my base at spawn`\n\nNotes\n- Multi‑word categories are parsed correctly; the remainder becomes the reason\n- Suggestions show only configured categories\n\n---\n\n![Config](https://www.bisecthosting.com/images/CF/Saros_Report_System/BH_Saros_Report_System_config.webp)\n\nAll options live in `config/sarosdiscordwebhook-common.toml`. Key settings:\n\n- Core\n  - `tickets.enabled` — enable/disable the system\n  - `tickets.categories` — list of categories (strings). Supports multi‑word entries\n  - `tickets.discordWebhookUrl` — your Discord webhook URL\n  - `tickets.commandPermissionLevel` — required vanilla permission (0–4; 0 = everyone)\n  - `tickets.messageTemplate` — text used as the embed description\n  - `tickets.embedColorHex` — embed color (e.g., `#5865F2`)\n\n- Advanced\n  - `tickets.inputTimeoutSeconds` — session timeout for future multi‑step flows\n  - `tickets.hideReasonInChat` — for future chat‑capture flow (not used in default one‑line command)\n\n- Messages (all server‑side; placeholders are supported where shown)\n  - `tickets.messages.successSubmitted` — shown on success\n    - Placeholders: `{category}`, `{reason}`\n  - `tickets.messages.errorInvalidCategory` — invalid category\n  - `tickets.messages.errorMissingReason` — reason missing\n  - `tickets.messages.errorWebhookNotConfigured` — webhook missing\n  - `tickets.messages.errorOnlyPlayers` — console/non‑player usage\n  - `tickets.messages.usageHelp` — displayed on bare `/ticket`\n    - Placeholders: `{categories}` (comma‑separated list)\n  - `tickets.messages.errorNoCategories` — if category list is empty\n  - `tickets.messages.errorSendFailed` — Discord post failed\n\nPlaceholders available in `tickets.messageTemplate` (used inside the Discord embed):\n- `{player}`, `{uuid}`, `{category}`, `{reason}`, `{dimension}`, `{x}`, `{y}`, `{z}`\n\n---\n\n![Discord](https://www.bisecthosting.com/images/CF/Saros_Report_System/BH_Saros_Report_System_discord.webp)\n\n\n## FAQ & Tips\n\n- Nothing posts to Discord\n  - Ensure `tickets.discordWebhookUrl` is set and valid\n  - Check `tickets.enabled = true`\n\n- Players can't use `/ticket`\n  - Lower `tickets.commandPermissionLevel` (0 lets everyone use it)\n\n- I want a different embed look\n  - Customize `tickets.messageTemplate` and `tickets.embedColorHex`\n\n- My categories have spaces\n  - Supported! The command matches the longest configured category at the start of the input\n\n---\n\n[![Bisect Hosting](https://www.bisecthosting.com/images/CF/Saros_Report_System/BH_Saros_Report_System_promo2.webp)](https://server.sarocesch.de/refersaro.php)\n\n\n**Project Support & Usage**\n\n**Hosting:** For the best performance, I recommend using BisectHosting linked in the banner.\n\n**Modpacks:** You are free to include my work in any modpack. Please ensure proper credit is given by providing a link to this project page.\n",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "library",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 390,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,41 @@
+{
+  "id": "NbKFMiE7",
+  "slug": "combatplus-core",
+  "title": "Combat+ Core",
+  "description": "The core library and compatibility layer for the Combat+ series.",
+  "body": "<center>\n\n# Combat+ Core\n[![Combat+](https://github.com/Provismet/CombatPlus-Core/assets/17149901/d7ee8c04-1769-4873-b5a4-8fa23ed26a30)](https://modrinth.com/collection/LxgNym3J)\n\n</center>\n\nThis is the core library mod and compatibility layer that allows the Combat+ series to function with an extremely high level of inter-mod compatibility.\n\nView the collection on Modrinth [here](https://modrinth.com/collection/LxgNym3J).\n\n## API Information\nThe library adds a number of utility methods and interfaces that make it easier to add unique weapons and enchantments to the game.\n\nAny mod that makes use of these will be compatible with the Combat+ series.\n\n### Interfaces\n- Melee Weapon\n  - Used for any melee weapon.\n  - Provides callbacks that trigger for fully charged attacks, critical attacks, and killing.\n  - Must implement a damage value.\n- Dual Weapon\n  - Inherit from Melee Weapon, used for weapons which could be wielded in either hand and may support game-changing offhand enchantments.\n  - Additionally contains a method for offhand damage.\n- CPCEnchantment\n  - Offers hooks for enchantments to perform actions for fully charged hits, critical hits, and killing.\n  - Offers a more advanced version of damage, where an enchantment of any slot can contribute to the damage bonus.\n\n### Enchantment Types\nAn item can only have one enchantment of each category (not including offhand enchantments).\n\n- Additional Damage\n  - A more advanced version of vanilla damage enchantments.\n  - Any enchantment technically can increase damage, but this should mostly be done by Additional Damage enchantments unless there is a special circumstance.\n  - Additionally incompatible with vanilla's Damage Enchantments.\n- Weapon Utility\n  - Enchantments that add some additional utility function to a weapon, or otherwise enhance its existing effects.\n  - Sweeping Edge would be a Weapon Utility.\n- Aspect\n  - Enchantments that modify the state of the user or the target on hit.\n  - Fire Aspect would (obviously) be an Aspect.\n- Offhand\n  - A misc group that is intended to apply to offhanded weapons.\n  - Largely incompatible with the other groups.\n\n## Datapack Information\nTo improve compatibility with mods outside of the Combat+ ecosystem, a series of datapack tags are available.  \nThese tags are considered in various features of Combat+, such as eligibility for enchantments.\n\n### Item Tags\n- `combat-plus:melee_weapon`\n  - These items are considered unimplemented Melee Weapons and will be eligible for enchantments that target Melee Weapons.\n- `combat-plus:dual_weapon`\n  - This tag is included in the melee weapon tag.\n  - These items will be considered unimplemented dual weapons and will be eligble for relevant enchantments.\n- `combat-plus:breaks_shields`\n  - These items can break shields.\n\n### Enchantment Tags\nThere is a corresponding tag for each enchantment type. This can be used by other modders or modpack makers to categorise other enchantments into the four groups.\n\nCombat+ enchantments will be incompatible with enchantments that are in the same tag as their group.\nFor example a Weapon Utility enchantment is incompatible with any enchantment in the `combat-plus:weapon_utility` tag.\n\n## Game Rules\nCombat+ Core adds two additional gamerules to modify vanilla weapon mechanics.\n- `keepLoyaltyTridents`\n  - When true, loyalty tridents will not leave the inventory when thrown, nor can they be picked up or return to the thrower. Instead tridents will go on cooldown. Higher levels of loyalty will decrease the cooldown.\n- `sweepingRequiresEnchantment`\n  - When true, the sweeping effect of a sword will only occur if the sword has the Sweeping Edge enchantment. This allows the player to decide whether sweeping should be considered a native property of the sword, or the product of an enchantment.\n- `pvpEnchantmentModifier`\n  - Damaging enchantments can use the `combat-plus:gamerule_damage` component instead of vanilla's damage component. Damage of this type will be multiplied by this gamerule's value when dealt against players. This is for PvP balancing.\n- `lethalPoison`\n  - When true, poison will be able to kill players and mobs instead of leaving them on half a heart.\n\n## Showcase Video\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/1BRTANhZhgk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "library",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 114131,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

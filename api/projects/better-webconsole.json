@@ -1,0 +1,39 @@
+{
+  "id": "khtebxzn",
+  "slug": "better-webconsole",
+  "title": "Better WebConsole",
+  "description": "Secure real-time web console for Minecraft servers",
+  "body": "# Better-WebConsole\n\nSecure browser console and admin dashboard for Paper/Purpur/Spigot 1.21.x servers.\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/Minecraft-Paper-2C2F33?style=flat&logo=minecraft\">\n  <img src=\"https://img.shields.io/badge/Java-21-ED8B00?style=flat&logo=java&logoColor=white\">\n  <img src=\"https://img.shields.io/badge/Security-Enhanced-4C8BF5?style=flat\">\n  <img src=\"https://img.shields.io/badge/WebSocket-Real--time-6A5ACD?style=flat\">\n</p>\n\n## Features\n\n### Web Console\n\n- Embedded Jetty web server with one built-in web UI.\n- Live console log streaming over WebSocket with buffered history for new sessions.\n- Console command execution through the server command map, including commands from plugins such as CMI.\n- Command history, filtering, log export and clear action in the browser.\n- Configurable web aliases through `!alias`, including chained aliases with `&&`.\n- Audit log for auth events, command execution, player actions and log exports.\n\n### Dashboard\n\n- Desktop-focused two-column dashboard layout for server administration.\n- Server health: TPS, JVM heap, online players, worlds, loaded chunks, entities and session errors.\n- Machine health: host CPU load, Java process CPU load, physical RAM, server disk usage and JVM thread counts.\n- Performance history charts for TPS, JVM RAM, online players and host CPU.\n- Machine details: CPU model, cores/threads, memory, disk mount, OS, Java runtime, PID and JVM uptime.\n- Analytics blocks for log levels, per-world chunks/entities and recent activity.\n- Player list with quick kick/ban actions.\n\n### Security\n\n- Web users stored in `plugins/Better-WebConsole/users.dat` with BCrypt hashes.\n- HttpOnly + SameSite session cookies, optional Secure cookies for HTTPS reverse proxies.\n- CSRF protection for login.\n- IP whitelist with CIDR support.\n- Login lockout and command rate limit.\n- Optional command block list for dangerous console commands.\n\n## First Setup\n\n1. Put the JAR into the server `plugins/` folder.\n2. Start the server once to generate `plugins/Better-WebConsole/config.yml`.\n3. Create a web user:\n\n```text\n/bwc adduser admin YourStrongPassword123\n```\n\n4. Open:\n\n```text\nhttp://your-server-ip:4242\n```\n\nProduction recommendation: bind to `127.0.0.1` and expose the panel through Nginx, Caddy, a VPN or a tunnel with HTTPS.\n\n## Commands\n\nMain command aliases: `/betterwebconsole`, `/bwc`, `/webconsole`, `/bwconsole`, `/betterconsole`.\n\nPermission: `betterwebconsole.admin` (default: op).\n\n| Command | Description |\n| --- | --- |\n| `/bwc status` | Show web server, user, session and config status |\n| `/bwc reload` | Reload config values that do not require web server restart |\n| `/bwc adduser <user> <password>` | Add a web user |\n| `/bwc removeuser <user>` | Remove a web user and invalidate sessions |\n| `/bwc listusers` | List web users |\n| `/bwc setpassword <user> <new-password>` | Change password and invalidate sessions |\n| `/bwc logoutall <user>` | Invalidate active sessions for a user |\n\nExtra command aliases: `useradd`, `createuser`, `deluser`, `deleteuser`, `users`, `passwd`, `password`, `killsessions`.\n\n## Configuration\n\nThe default config is intentionally small and only contains implemented behavior.\n\n```yaml\nweb:\n  port: 4242\n  bind-address: \"0.0.0.0\"\n  log-buffer-size: 1000\n\nsecurity:\n  session-timeout-minutes: 60\n  max-login-attempts: 5\n  lockout-duration-minutes: 15\n  command-rate-limit-per-minute: 30\n  ip-whitelist: []\n  secure-cookies: false\n\nlogging:\n  log-commands: true\n  log-auth: true\n  audit-log: true\n\nsystem-stats:\n  # Adds host CPU, machine RAM, disk, OS and JVM details to the dashboard.\n  enabled: true\n\n  # OS-level polling interval. Keep this above 2 seconds for production servers.\n  update-interval-seconds: 5\n\n  # Reports disk usage for the Minecraft server folder.\n  show-disk: true\n\ncommands:\n  blocked: []\n  aliases:\n    tps: \"tps\"\n    list: \"list\"\n    save: \"save-all\"\n    day: \"time set day\"\n    night: \"time set night\"\n    clear-weather: \"weather clear\"\n```\n\n`system-stats` can be disabled if the host does not allow OS-level metrics or if you only need Minecraft/JVM data.\n\nUse `commands.blocked` to prevent risky commands from web access, for example:\n\n```yaml\ncommands:\n  blocked: [\"stop\", \"restart\", \"op\", \"deop\"]\n```\n\nUse an alias by typing `!name` in the web console. Aliases can chain up to 10 commands with `&&`.\n\n`/bwc reload` updates aliases, logging, system stats settings and command block rules. Restart the Minecraft server after changing `web.port`, `web.bind-address`, `security.ip-whitelist`, session timeout or rate-limit settings.\n\n## Security Notes\n\n- Do not expose `0.0.0.0:4242` directly to the internet unless firewall/IP whitelist/VPN rules are in place.\n- Set `secure-cookies: true` only when users access the panel through HTTPS.\n- Block or avoid destructive commands such as `stop`, `restart`, `op`, `deop`, `ban-ip` and `whitelist`.\n- Keep aliases short and auditable.\n- Keep `commands.blocked` empty only when every web user is trusted as a full console administrator.\n- Treat machine metrics as operational data: expose the panel only to trusted administrators.",
+  "categories": [
+    "bukkit",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 243,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

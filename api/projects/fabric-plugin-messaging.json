@@ -1,0 +1,22 @@
+{
+  "id": "LVjnMd8R",
+  "slug": "fabric-plugin-messaging",
+  "title": "Fabric Plugin Messaging",
+  "description": "A standard library to send and receive plugin messages on a proxied network",
+  "body": "# Fabric Plugin Messaging\n<img src=\"https://img.shields.io/badge/Enviroment-Server-purple\" alt=\"Enviroment Server\"> <a href=\"https://discord.gg/invite/cgBww275Fg\" rel=\"noopener nofollow ugc\"><img src=\"https://img.shields.io/discord/1158447623989116980?color=blue&amp;logo=discord&amp;label=Discord\" alt=\"Discord\"></a>\n\nA Fabric plugin messaging library! This server-sided mod will register a Plugin Message Packet (`PluginMessagePacket.class`) and a Plugin Message Event (`PluginMessageEvent#EVENT`) for developers to use in their projects.\n\nWithout this mod, developers would need to register their own packets, which would cause conflicts if multiple are present at the same time. By using the Packet and Listener provided here, this issue is avoided.\n\n## Developer Info\nAdd the mod as a dependency in your gradle build script! This will include the API in your final build.\n```\ndependencies {\n    modImplementation(include(\"com.pokeskies:fabricpluginmessage:1.0.0\"))\n}\n```\n\n### Sending\nThen you can send Plugin Messages by creating an instance of the PluginMessagePacket class and then sending it! You can either create it by passing a byte array or a FriendlyByteBuf:\n```java\nByteArrayDataOutput outputStream = ByteStreams.newDataOutput();\noutputStream.writeUTF(\"Connect\");\noutputStream.writeUTF(\"cobblemon\");\n\nServerPlayNetworking.send(player, new PluginMessagePacket(outputStream.toByteArray()));\n```\n\n### Receiving\nIf you need to receive a Plugin Message from the proxy, you can subscribe to the PluginMessageEvent:\n```java\nPluginMessageEvent.EVENT.register((payload, context) -> {\n    ByteArrayDataInput inputStream  = ByteStreams.newDataInput(payload.getData());\n    String channel = inputStream.readUTF();\n    if (channel.equals(\"GetServers\")) {\n        String serversList = inputStream.readUTF();\n        System.out.println(\"Proxy Servers: \" + serversList);\n    }\n});\n```\n\n## Support\nA community support Discord has been opened up for all Skies Development related projects! Feel free to join and ask questions or leave suggestions :)\n\n<a class=\"discord-widget\" href=\"https://discord.gg/cgBww275Fg\" title=\"Join us on Discord\"><img src=\"https://discordapp.com/api/guilds/1158447623989116980/embed.png?style=banner2\"></a>",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 435,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

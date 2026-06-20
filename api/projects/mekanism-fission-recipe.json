@@ -1,0 +1,24 @@
+{
+  "id": "QYJj6hkN",
+  "slug": "mekanism-fission-recipe",
+  "title": "Mekanism Fission Recipe",
+  "description": "A mod that allows you to add custom recipe for Mekanism Generators' Fission Reactor.",
+  "body": "# Mekanism Fission Recipe\nA really unique addon for [Mekanism](https://modrinth.com/mod/mekanism) [Generators](https://modrinth.com/mod/mekanism-generators).\n\n## What?\nWith this mod installed, you can add actual recipes for Mekanism's Fission Reactor. Below is an example of converting hydrogen to oxygen with the fission reactor that generates no heat:\n![hydrogen_to_oxygen](https://github.com/North-West-Wind/MekanismFissionRecipe/blob/main/resources/hydrogen.png?raw=true)\n\n## How?\nThis mod uses a dirty hack called [Mixins](https://github.com/SpongePowered/Mixin). It changes Mekanism's code at runtime. By creating a new recipe type and forcing the Fission Reactor to accept it, you can now add custom fission recipes to Mekanism.\n\n### Fission Recipe\nYou just need to create the recipe like a datapack. Here's how the recipe JSON file should look like:\n```json\n{\n\t\"type\": \"mekanism:fission\",\n\t\"input\": {\n\t\t\"chemical\": \"mekanism:fissile_fuel\",\n\t\t\"amount\": 1\n\t},\n\t\"output\": {\n\t\t\"id\": \"mekanism:nuclear_waste\",\n\t\t\"amount\": 1\n\t},\n\t\"heat\": 1\n}\n```\n- Type: Always use \"mekanism:fission\" if you are adding a fission recipe.\n- Input\n  - Gas: The input gas. If you're making a mod you can add your own gas.\n  - Amount: Input amount.\n- Output: Similar to input.\n- Heat: The amount of heat generated. 1 is the amount Fissile Fuel normally creates.\n  - You can also use equations in this field with x as subject. For example, \"x*x\" will make burning 0.1mB of fuel generate 0.01 heat.\n\nWith version 1.1.0, users can add coolant recipes. There are 2 types of coolant recipes:\n### Fluid Coolant Recipe  \nFor all fluid (like water) cooling, use this. The following is a sample JSON:\n```json\n{\n  \"type\": \"mekanism:fluid_coolant\",\n  \"input\": {\n    \"tag\": \"minecraft:water\",\n    \"amount\": 1\n  },\n  \"output\": {\n    \"id\": \"mekanism:steam\",\n    \"amount\": 1\n  },\n  \"thermalEnthalpy\": 10,\n  \"conductivity\": 0.5,\n  \"efficiency\": 0.2\n}\n```\n- Type: Always use \"mekanism:fluid_coolant\" if you are adding a fluid coolant recipe.\n- Input\n  - Fluid/Tag: The fluid to accept. It can be a single fluid type (change `tag` to `fluid`) or a fluid tag (`tag`).\n  - Amount: Input amount.\n- Output: \n  - Gas: The output gas. If you're making a mod you can add your own gas.\n  - Amount: Output amount.\n- Thermal Enthalpy: Higher = Boil less & Cooler\n- Conductivity: Higher = Cooler\n- Efficiency: Higher = Boil more\n\n### Gas Coolant Recipe  \nFor all chemical (like sodium) cooling, use this. The following is a sample JSON:\n```json\n{\n  \"type\": \"mekanism:gas_coolant\",\n  \"input\": {\n    \"chemical\": \"mekanism:sodium\",\n    \"amount\": 1\n  },\n  \"output\": {\n    \"id\": \"mekanism:superheated_sodium\",\n    \"amount\": 1\n  },\n  \"thermalEnthalpy\": 5,\n  \"conductivity\": 1\n}\n```\n- Type: Always use \"mekanism:fluid_coolant\" if you are adding a fluid coolant recipe.\n- Input/Output: Refer to Fission Recipe.\n- Thermal Enthalpy & Conductivity: Refer to Fluid Coolant Recipe.\n\n[This code snippet](https://github.com/North-West-Wind/MekanismFissionRecipe/blob/main/src/main/java/in/northwestw/fissionrecipe/mixin/MixinFissionReactorMultiblockData.java#L136-L144)\nis the relationship between thermal enthalpy, conductivity and efficiency.\n\n### For More Examples,\nPlease take a look at the `test_recipes` directory.\n\n## Why?\nThis is originally implemented in [Sky Farm](https://www.curseforge.com/minecraft/modpacks/sky-farm-1-16), but I feel like this feature has its own potential, so I took it out, and made it a standalone mod.\n\n## Help?\nIf you find my projects great, you can support me on Ko-fi!\n[![An inkling girl drinking tea](https://files.catbox.moe/qlm7iq.png)](https://ko-fi.com/nww)\n\n## License\nThis mod is published under GNU GPLv3.\n",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 5740,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "JPrM1wsu",
+  "slug": "chunkyfast",
+  "title": "ChunkyFast",
+  "description": "ChunkyFast is a high-performance chunk pregenerator for Paper 1.21.x. It provides a clean, predictable workflow for pregenerating terrain, supports running multiple world jobs in parallel, and includes built-in scheduling and load control.",
+  "body": "# ChunkyFast\n\nChunkyFast is a high-performance chunk pregenerator for **Paper 1.21.x**. It provides a clean, predictable workflow for pregenerating terrain, supports running **multiple world jobs in parallel**, and includes built-in scheduling and load control.\n\n---\n\n## Key Features\n\n- **Async chunk generation** using Paper’s async chunk API\n- **Multi-world pregeneration**: run jobs for multiple worlds at the same time\n- **Global scheduler**: shared budgets across all active jobs so load does not scale linearly with the number of worlds\n- **MSPT-based limiter**: dynamically adjusts throughput to keep average tick time near your configured target\n- **Region-friendly traversal**: chunk iteration optimized for better region (.mca) locality\n- **Optional skipping of already-generated chunks** using region header scanning (fast, non-blocking)\n- **Auto-save + auto-resume**: job state is persisted and can resume after restart\n- **MiniMessage** formatting for all plugin messages\n\n---\n\n## Supported Versions\n\n- **Paper**: 1.21.x  \n- **Java**: 21+  \n\n---\n\n## Installation\n\n1. Download the latest release from **GitHub Releases**.\n2. Put `ChunkyFast.jar` into your server `plugins/` folder.\n3. Start the server once to generate the default config.\n4. Adjust `plugins/ChunkyFast/config.yml` if needed.\n5. Use the commands below.\n\n---\n\n## Commands\n\nMain command: `/chunkyfast`  \nAliases: `/cf`, `/cfast`\n\n### Start pregeneration\n\nAll coordinates and radii are in **CHUNKS** (not blocks).\n\n`/chunkyfast start <world> circle <radiusChunks> [centerX centerZ]`\n\n`/chunkyfast start <world> square <radiusChunks> [centerX centerZ]`\n\n`/chunkyfast start <world> rect <minX> <minZ> <maxX> <maxZ>`\n\n`/chunkyfast start <world> worldborder`\n\n---\n\n### How ChunkyFast Differs From Chunky\n\nChunkyFast and Chunky aim at the same outcome (pregenerating terrain), but they emphasize different things.\n\n**ChunkyFast focuses on**\n- **Multi-world parallel jobs** with a **global scheduler**\n- **MSPT-driven throughput control** (limiter adjusts workload to keep tick time stable)\n- A lean workflow with minimal overhead\n- Optional **non-blocking** “already generated” detection via region header scanning\n\n**Chunky focuses on**\n- A long-established, highly feature-rich pregeneration ecosystem\n- Extremely broad configuration and safety controls\n- Mature workflows for a wide variety of server environments\n\nPractical takeaway: ChunkyFast is built around multi-world scheduling and MSPT-based control, while Chunky is a feature-complete, widely adopted solution with deep tooling and history.\n\n---\n\n### Notes\n\n- Pregeneration speed is typically limited by **CPU world generation** and **disk I/O** for region writes.\n- For best results, run pregeneration when the server has enough resources available.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 806,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

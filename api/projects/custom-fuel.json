@@ -1,0 +1,29 @@
+{
+  "id": "Zy4uU3za",
+  "slug": "custom-fuel",
+  "title": "Custom Fuel",
+  "description": "makes furnace fuel items configurable",
+  "body": "# Custom Fuel\n\nThis mod lets you configure which items can be used as furnace fuel.\n\nThe settings are stored in `custom_fuel.json` in the config folder.\n\n## Config file format\n\nA valid config file consists of two optional entries on the top level -\n`include` and `exclude`.\n- `include` is a map where the keys are IDs for the items and/or item tags to\n  be added to the list of fuel items, and their values are how long they last\n  (in ticks, as an integer).\n  - If a value is zero or negative, the item can be placed into the fuel slot,\n    but will not burn. This behaviour relies on vanilla code, and may change at\n    any point in the future.\n- `exclude` is an array of IDs for the item *tags* to no longer be usable as\n  fuel items.\n\nThe mod applies the inclusions, then the exclusions, *on top of* the vanilla\nfuel list (i.e. vanilla fuel items are kept intact unless you manually exclude\nthem).\n\nA current limitation of this mod is that exclusions must be tags. To exclude\nindividual items, you have to make a datapack with your own custom tag that\ncontains all the individual items you want to exclude, and exclude that tag.\n\n## Example configuration\n\n```json\n{\n\t\"include\": {\n\t\t\"#c:netherracks\": 3200,\n\t\t\"#minecraft:beds\": 300,\n\t\t\"#minecraft:flowers\": 50,\n\t\t\"minecraft:redstone_block\": 16000\n\t},\n\t\"exclude\": [\n\t\t\"#minecraft:banners\"\n\t]\n}\n```\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 208,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "7nIDLb5i",
+  "slug": "smart-copper-golem",
+  "title": "Smart Copper Golem",
+  "description": "Refactor the vanilla pathfinding logic and give Copper Golems long-term memory, making them smarter and more efficient.",
+  "body": "# Smart Copper Golem\n\nEnglish | [简体中文](https://github.com/NXY666/smart-copper-golem/blob/master/README-zh_CN.md) | [繁體中文](https://github.com/NXY666/smart-copper-golem/blob/master/README-zh_TW.md)\n\n> This mod is implemented entirely server-side; the client only provides Mod Menu integration.\n\nMojang has been extremely cautious when it comes to \"benefiting players,\" and the Copper Golem is a prime example.\n\nThey were designed to move only a very small number of items from one chest to another with a simple traversal. Once they encounter an item that cannot be inserted, they can fall into an endless loop.\n\nSmart Copper Golem aims to give Copper Golems smarter behavior so they can manage items more efficiently.\n\n## Features\n\n### 🧠 Deep Memory\n\n* When accessing a chest, a Copper Golem remembers the types of items inside.\n* When picking up items from the Copper Chest, a Copper Golem prioritizes items that exist in its memory.\n* Copper Golems exchange memories with each other, making collective learning more efficient.\n\n### 🎯 Target Selection\n\n* Copper Golems can now open Barrels and Shulker Boxes.\n* A new item matching mode, \"Similar Items,\" allows Copper Golems to put similar items (e.g., different-colored wool, anvils with different damage levels, etc.) into the same chest.\n* When the item in hand cannot be inserted into any target container, a Copper Golem will return it to the Copper Chest and ignore that item for a period of time.\n* Copper Golems no longer cycle through targets aimlessly. They now follow these priority rules:\n\n  * Prefer interactable containers within interaction range (especially effective in compact storage builds)\n  * Prefer remembered containers that are relevant to the item\n\n### 🗺️ Pathfinding & Interaction\n\n* Uses a more robust pathfinding approach than vanilla, with higher fault tolerance for complex terrain.\n* More accurate interaction checks—if a player can interact with a container, a Copper Golem can too.\n\n### ⚙️ Configuration\n\nSome core parameters can be adjusted via the config file:\n\n* Search range, interaction range.\n* Item matching mode. maximum items carried.\n* Memory decay time, ignore duration, and more.\n\n## Compatibility\n\nThis mod fully reworks Copper Golem behavior, so it may be incompatible with other mods that also modify Copper Golems.\n\nIf your server relies on Copper Golems for redstone machines, those machines may not function properly.\n\n## Configuration \n\nThe config file is located at `config/smart-copper-golem.json`.\n\n* **Option 1**: Edit the JSON file directly\n* **Option 2**: Configure visually via [Mod Menu](https://modrinth.com/mod/modmenu)\n\n## License\n\n* AGPL-3.0 (see `LICENSE.txt` in the project for details)\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization",
+    "storage",
+    "transportation"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1603,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

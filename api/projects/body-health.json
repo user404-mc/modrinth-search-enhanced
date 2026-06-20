@@ -1,0 +1,31 @@
+{
+  "id": "REzZKlGz",
+  "slug": "body-health",
+  "title": "Body Health",
+  "description": "Life in every part of the body.",
+  "body": "# 🫀 Body Health System\n\n**NeoForge 1.21.1 · v12.3.4**\n\nTired of a single health bar? **Body Health System** replaces Minecraft's vanilla health with a full localized injury system — every part of your body can be wounded, fractured, or destroyed independently.\n\n---\n\n## ⚙️ How it works\n\nEach attack targets a specific body part based on impact height and trajectory. An arrow to the head deals 1.5× damage and counts against head HP — not a shared pool. Every part has its own hearts, its own fracture state, and its own consequences.\n\n| Stat | Value |\n|---|---|\n| Body parts | 6 |\n| Fracture states | 4 |\n| Medical items | 3 |\n| Version | 12.0.3 |\n\n---\n\n## 🦴 Fracture system\n\nParts move through four states:\n\n**Healthy → Sprained → Broken → Shattered**\n\nEach state brings real consequences. Broken legs slow you down, a shattered torso is immediately lethal. Fractures heal naturally over time or faster with the right items.\n\n---\n\n## ⚡ Consequences per part\n\n| Part | Effect when damaged |\n|---|---|\n| **Head** | Nausea (vision trouble) |\n| **Torso** | Death at 0 HP |\n| **Right arm** | Cannot break or place blocks |\n| **Left arm** | Drops offhand item when destroyed |\n| **Legs** | Slowness — worse as fracture progresses |\n\n> All debuffs are silent — no visible effect icons, only action bar messages so your HUD stays clean.\n\n---\n\n## 💊 Medical items\n\n### 🩹 Bandage\n**Craft:** White Wool + String (×4)\n\nHeals the most injured part and improves its fracture state by one level. Works on Sprained and Broken — not on Shattered.\n\n### 🏥 Medical Kit\n**Craft:** Bandages + Chest + Gold Ingots\n\nHeals all parts and can fix even Shattered bones. The only way to recover from a destroyed limb.\n\n### 💉 Morphine Syringe\n**Craft:** Glass + Blaze Powder + Iron Ingot (×2)\n\nSuppresses all pain effects for 30 seconds. Use sparingly — overdose triggers after 3 doses and causes blindness, nausea and poison.\n\n---\n\n## ❤️ Absorption hearts\n\nGolden apples and Enchanted golden apples grant yellow absorption hearts on the most injured part. The Totem of Undying grants 2 extra hearts on the torso when it activates. Absorption is consumed before HP when that part takes damage.\n\n---\n\n## 🛡️ Enchantment support\n\nSince the vanilla health bar is hidden and health is managed separately, all protection enchantments are applied manually per hit:\n\n- **Protection** — 4% reduction per level (all damage)\n- **Fire Protection** — 8% per level (fire/lava)\n- **Blast Protection** — 8% per level (explosions)\n- **Projectile Protection** — 8% per level (arrows)\n- **Feather Falling** — 12% per level on legs only\n- **Slow Falling** (potion) — cancels all fall damage on legs\n- **Resistance** (potion) — 20% per level, level 5 = immunity\n\n---\n\n## 🖥️ HUD\n\nA custom pixel-art panel in the **bottom-right corner** displays:\n\n- Your character assembled from 6 individual sprites, each colored independently:\n  - 🟢 Green = healthy (>65%)\n  - 🟠 Orange = injured (35–65%)\n  - 🔴 Red = critical (1–34%)\n  - ⚫ Black = destroyed (0%)\n- Each part's hearts next to its label\n- Fracture icons next to the hearts when applicable\n- Yellow absorption hearts shown in surplus after the red hearts\n\n---\n\n## 🧰 Admin commands\n\n```\n/bodyhealth heal <player> [part]      — Heals a part or all parts\n/bodyhealth set <player> <part> <hp>  — Sets HP directly\n/bodyhealth setmax <player> <part> <hp> — Sets max HP\n/bodyhealth addhearts <player> <n>    — Adds n hearts everywhere\n/bodyhealth fracture <player> <part> <state> — Sets fracture state\n/bodyhealth status <player>           — Shows full health status\n/bodyhealth reset <player>            — Resets to default\n```\n\n---\n\n## 👨‍💻 Developer API\n\nFull Java API available via `BodyHealthAPI`:\n\n```java\n// Read\nfloat hp  = BodyHealthAPI.getHealth(player, BodyPart.HEAD);\nboolean dead = BodyHealthAPI.isDead(player, BodyPart.TORSO);\nFractureState fr = BodyHealthAPI.getFracture(player, BodyPart.LEG_LEFT);\n\n// Write\nBodyHealthAPI.heal(player, BodyPart.HEAD, 4f);\nBodyHealthAPI.damage(player, BodyPart.TORSO, 2f);\nBodyHealthAPI.fullHeal(player);\nBodyHealthAPI.addMaxHealthAll(player, 4f); // +2 hearts everywhere\nBodyHealthAPI.setFracture(player, BodyPart.ARM_RIGHT, FractureState.BROKEN);\n```\n\nA **MCreator plugin** is also available with 13 visual procedure blocks — no Java required.\n\n---\n\n## ✅ Compatibility\n\n- Works with any mod using standard NeoForge damage events\n- Food from third-party mods heals via `FoodProperties` automatically\n- The Totem of Undying is fully supported\n- **Requires:** NeoForge 21.1.172+ · Minecraft 1.21.1",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 150,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "JN22OHFs",
+  "slug": "research-station",
+  "title": "Research Station",
+  "description": "A Simple Research System",
+  "body": "![title image](https://cdn.modrinth.com/data/cached_images/470c5986824a184e64715e258f47c3c60333dcf2_0.webp)\n\nThis mod adds a research system similar to the one used in Ancient Warfare 2.\n\nYou will use the Research Station to do research and the Engineering Station to craft researched items.\n\nThe Engineering Station can be used for normal crafting too and supports JEI.\n\n\n\nCreating Research Definitions:\n\nEvery research is defined by a json file in config/researches/. This directory should be created on first run, or you create it yourself. The json files are loaded and displayed in the research book in alphabetic order of the filenames, so if you want to group your researches together / order them you can give them similar filenames like \"mymodresearch001\", \"mymodresearch002\".\n\nThis is an example research definition:\n\n\n```\n{\n      \"id\": \"example Research 1\",\n      \"ticksRequired\": 100,\n      \"requiredResearches\": [],\n      \"requiredItems\": [\n        {\n          \"id\": \"c:ingots/iron\",\n          \"amount\": 4\n        }\n      ]\n}\n```\n\n\nIt has no required researches and need 4 iron ingots to unlock. it takes 100 ticks to complete.\n\nHere is another research, it requires \"example Research 1\" to be completed:\n\n\n```\n{\n      \"id\": \"example Research 2\",\n      \"ticksRequired\": 300,\n      \"requiredResearches\": [\n        \"example Research 1\"\n      ],\n      \"requiredItems\": [\n        {\n          \"id\": \"minecraft:string\",\n          \"amount\": 128\n        }\n      ]\n}\n```\n\n\n\n\nCreating Research Crafting Recipes:\n\nEvery research-crafting recipe is defined as a json file in config/research_recipes. This directory should be created on first run too. Here is an example of how a recipe can look like:\n\n\n```\n{\n      \"requiredResearch\": \"example Research 1\",\n      \"output\": {\n        \"id\": \"minecraft:dirt\",\n        \"amount\": 10\n      },\n      \"pattern\": [\n        \"   \",\n        \"ABA\",\n        \"   \"\n      ],\n      \"keys\": {\n        \"A\": {\n          \"input\": { \"id\": \"c:ingots/iron\", \"amount\": 2 }        \n        },\n        \"B\": {\n          \"input\": { \"id\": \"minecraft:string\", \"amount\": 1 }\n        }\n      }\n    }\n```\n\n\nThe pattern should always be 3x3. Research recipes support consuming multiple items per slot.\n\nThey also support converting a used item to a new item, for example if you want to use a water bucket and give back an empty water bucket. It would look similar to this, notice that i added onComplete to the recipe:\n\n\n```\n{\n      \"requiredResearch\": \"example Research 2\",\n      \"output\": {\n        \"id\": \"minecraft:diamond\",\n        \"amount\": 10\n      },\n      \"pattern\": [\n        \"   \",\n        \"ABA\",\n        \"   \"\n      ],\n      \"keys\": {\n        \"A\": {\n          \"input\": { \"id\": \"c:ingots/gold\", \"amount\": 2 },\n          \"onComplete\": { \"id\": \"minecraft:stone\", \"amount\": 1 }\n        },\n        \"B\": {\n          \"input\": { \"id\": \"minecraft:string\", \"amount\": 1 }\n        }\n      }\n    }\n```\n\n\nThis recipe will consume a total of 4 gold ingots, (2 for every 'A') and it will product a total of 2 stone (1 for every A).",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 260230,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

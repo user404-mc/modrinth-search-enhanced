@@ -1,0 +1,23 @@
+{
+  "id": "oiiiq2LQ",
+  "slug": "gpu-servers",
+  "title": "GPU servers",
+  "description": "this mod lets you use a GPU for minecraft servers to make them faster.",
+  "body": "GPUmod - GPU Server Acceleration for Minecraft\n\nThis is a server-side Fabric mod for Minecraft that offloads heavy server computations to your GPU using OpenCL. No client mod needed.\n\nWhat it does:\n\nThe mod takes different server tasks that normally run on your CPU one at a time and runs them in parallel on your GPU instead.\n\nTERRAIN GENERATION - When new chunks are created, the GPU generates the terrain heightmap using multi-layer Perlin noise. It creates continents, hills, mountains, and valleys all computed in parallel on the GPU. The CPU then fills in the actual blocks based on the heightmap.\n\nLIGHTING - When chunks need lighting calculated, the GPU runs iterative light propagation for both block light (torches, glowstone) and sky light. It uses double-buffered propagation that converges in up to 15 iterations, processing all 4096 blocks in a section simultaneously.\n\nORE PLACEMENT - During chunk generation, the GPU calculates where ores should spawn (coal, iron, gold, diamond, lapis, redstone, emerald, copper). It determines positions for all ore types at once, then the CPU places the actual ore veins at those positions.\n\nPATHFINDING - When mobs need to navigate, their pathfinding requests are batched together. Instead of solving paths one mob at a time, the GPU solves all pending paths in one batch using parallel A-star. Results are cached and returned as real paths the next tick.\n\nEXPLOSIONS - TNT and creeper explosions use GPU raycasting with 1352 rays cast in a sphere pattern. The GPU traces each ray through the blast resistance grid simultaneously, determining which blocks get destroyed. This fully replaces vanilla explosion logic.\n\nENTITY PHYSICS - When there are 16 or more entities in the world, their position and velocity updates are batched and sent to the GPU. Gravity, drag, and velocity clamping are all computed in parallel using a Structure-of-Arrays memory layout for optimal GPU performance.\n\nRANDOM TICKS - Crop growth, fire spread, ice melting, sapling growth, and other random tick events are batched across all loaded chunk sections. The GPU processes them all at once using parallel random number generation, then the CPU applies the results.\n\nCOLLISION DETECTION - When there are 16 or more entities, the GPU runs spatial hash broad-phase collision detection to find overlapping entity pairs. Results are stored and queryable by other systems.\n\nREDSTONE (experimental, off by default) - Redstone wire updates within a tick are collected and the entire network is solved at once on the GPU using parallel signal propagation instead of vanilla's sequential updates.\n\nHow it works:\n\nThe mod uses JOCL (Java OpenCL bindings) to talk to your GPU. On startup it detects your GPU, compiles 13 OpenCL kernel programs, and creates multiple command queues for concurrent execution. It uses a memory pool with pre-allocated buffers to avoid allocation overhead.\n\nEach task has batch size thresholds. If there aren't enough items to process (for example, fewer than 16 entities for physics), it skips the GPU and lets vanilla handle it, since GPU dispatch overhead isn't worth it for small workloads.\n\nAll GPU tasks have CPU fallback. If the GPU fails for any reason, the server continues running normally using vanilla logic.\n\nConfiguration:\n\nEdit config/gpumod.properties to enable/disable individual tasks, set batch thresholds, tune iteration limits, and enable debug/performance logging.\n\n\nAs far as im concerned it does not require a beefy GPU a 4060 will do just fine but please correct me if im wrong\n\n\n\n\nDisclaimer!!!\nthis is in very early development please report bugs in the discord if found!!!",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 557,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

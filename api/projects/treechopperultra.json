@@ -1,0 +1,38 @@
+{
+  "id": "iMNl8Px9",
+  "slug": "treechopperultra",
+  "title": "TreeChopperUltra",
+  "description": "TreeChopperUltra is a modern Minecraft tree felling plugin for Paper, Spigot and Folia servers. Break one log with an axe and the whole tree falls with animation, auto-replant, leaf decay and player-placed log protection.",
+  "body": "# 🌲 TreeChopper — Tree Felling Plugin with Falling Animation | Paper · Spigot · Folia 1.21-26.1.2\n\n**Break one log. Watch the whole tree fall.**\n\n[![Support TreeChopper on Ko-fi](https://img.shields.io/badge/Support%20TreeChopper-Ko--fi-29C7FF?style=for-the-badge&logo=kofi&logoColor=white&labelColor=101826)](https://ko-fi.com/erotoro)\n\nTreeChopper is a lightweight, performance-focused tree felling plugin for Paper, Spigot, and Folia servers. Hit any log with an axe and the entire tree collapses — logs tumble down layer by layer with real physics, leaves decay automatically, and a sapling replants itself at the base.\n\nNo client mods. No heavy dependencies. Just drop the jar and it works.\n\n---\n\n## ✨ Why TreeChopper?\n\nMost tree felling plugins were built years ago and never adapted to modern threaded servers. TreeChopper is built for **modern Minecraft 1.21-26.1.2**, with real **Folia support** and a full **falling log animation**.\n\n> **A tree chopper plugin with both falling animation and real Folia compatibility.**\n\n---\n\n## 🪓 Core Features\n\n**Falling animation**  \nLogs do not just vanish. They break top-to-bottom and fly outward as `FallingBlock` entities with real Minecraft physics.\n\n**Smart tree separation**  \nTwo trees growing side by side are treated independently. Chop one tree and the other stays intact. Ownership checks prevent cross-tree damage to leaves, roots, and attached vegetation.\n\n**2×2 mega tree support**  \nLarge Jungle, Spruce, and Dark Oak trees with a 2×2 trunk are detected and felled as a single unit.\n\n**Improved vanilla tree handling**  \nComplex natural trees such as **Cherry**, **Pale Oak**, and **Mangrove** are handled more accurately, including irregular trunk shapes, hanging vegetation, propagules, cocoa, and mangrove roots.\n\n**All vanilla wood types**  \nOak · Birch · Spruce · Jungle · Dark Oak · Acacia · Cherry · Mangrove · Crimson Stem · Warped Stem · Mushroom Stem\n\n**Automatic leaf decay**  \nAfter the logs fall, leaves from the chopped tree break automatically. Leaves shared with a neighboring tree are left untouched.\n\n**Attached vegetation cleanup**  \nVines, cocoa, pale hanging moss, mangrove propagules, and similar vegetation are detected and removed along with the correct tree.\n\n---\n\n## ⚖️ Balance & Gameplay Feel\n\n**Durability & Unbreaking**  \nThe axe loses one durability per log broken. Unbreaking is applied probabilistically across the whole tree, matching vanilla behavior.\n\n**Fortune & Silk Touch**  \nEnchantments on your axe apply to every log that falls, not just the first one.\n\n**Player-placed log protection**  \nLogs placed by players are tracked and never trigger mass felling.\n\n**Structure detection**  \nHeuristic analysis helps prevent the plugin from treating village houses, outposts, and other generated structures as natural trees.\n\n**Sneak activation modes**  \nChoose how the plugin activates:\n- `ALWAYS_ON` — always active with an axe\n- `SNEAK_DISABLE` — active by default, hold sneak to disable\n- `SNEAK_ENABLE` — disabled by default, hold sneak to activate\n\n**Per-player toggle**  \nEach player can enable or disable tree chopping for themselves using `/treechopper toggle`. State persists across sessions.\n\n---\n\n## 🔗 Plugin Integrations\n\n| Plugin | Behavior |\n|---|---|\n| **WorldGuard** | Felling is blocked inside protected regions |\n| **GriefPrevention** | Felling is blocked inside claimed land |\n| **CoreProtect** | Every broken log and replanted sapling is logged under the player's name |\n\nAll integrations are **soft dependencies**. TreeChopper works perfectly without any of them.\n\n---\n\n## 🌱 Auto-Replant\n\nAfter a tree is felled, a sapling is automatically placed at the base:\n\n- Supports regular and mega (2×2) trees\n- Configurable: take sapling from player inventory, or place it for free\n- Respects WorldGuard and GriefPrevention\n- Fixed protection flow so saplings are **not consumed** if placement is denied\n- Can be limited to natural trees only\n- Per-world enable/disable list\n\n---\n\n## ⚙️ Configuration\n\n<details>\n<summary>config.yml — click to expand</summary>\n\n```yaml\nlanguage:\n  default: en          # en · ru · uk\n  fallback: en\n\nlimits:\n  max-logs: 512\n  leaf-search-radius: 6\n  foreign-log-scan-radius: 8\n\nperformance:\n  max-blocks-per-task: 16\n\nactivation:\n  mode: SNEAK_DISABLE  # ALWAYS_ON · SNEAK_DISABLE · SNEAK_ENABLE\n\nplayer-toggle:\n  enabled: true\n  default-enabled: true\n  save-on-change: true\n\ndetection:\n  min-leaf-contacts: 4\n  min-mega-leaf-contacts: 8\n  max-structure-contacts: 4\n\nprotection:\n  enabled: true\n  use-worldguard: true\n  use-griefprevention: true\n  mode: FAIL_WHOLE_TREE\n\nintegrations:\n  coreprotect:\n    enabled: true\n\nauto-replant:\n  enabled: true\n  require-sapling: false\n  consume-sapling: false\n  delay-ticks-after-fell: 20\n  replant-mega-trees: true\n  mega-mode: four-saplings   # single · four-saplings\n  respect-protection: true\n  only-natural-trees: true\n  disabled-worlds: []\n```\n\n</details>\n\n---\n\n## 💬 Commands & Permissions\n\n| Command | Permission | Default | Description |\n|---|---|---|---|\n| `/treechopper toggle` | `treechopper.toggle` | everyone | Enable/disable tree chopping for yourself |\n| `/treechopper reload` | `treechopper.reload` | op | Reload config and all services without restart |\n\n---\n\n## 🌍 Localization\n\nBuilt-in translations: **English**, **Russian**, **Ukrainian**\n\nLanguage files are in `plugins/TreeChopper/lang/` and can be freely edited. Switch language in `config.yml` under `language.default`.\n\n---\n\n## 🚀 Perfect For\n\n- **SMP servers** — satisfying QoL without breaking survival balance\n- **Vanilla+ servers** — feels like a natural part of the game\n- **Economy servers** — Fortune applies to all logs; durability still matters\n- **Folia servers** — safe threaded scheduling with falling animation\n- **Servers using WorldGuard / GriefPrevention / CoreProtect** — native integration\n\n---\n\n## 📋 Requirements\n\n- **Server:** Paper, Spigot, or Folia\n- **Java:** 21+\n- **Minecraft:** 1.21-26.1.2\n\n---\n\n*Built for modern servers. Tested with 49 passing unit tests. MIT licensed.*",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 650,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

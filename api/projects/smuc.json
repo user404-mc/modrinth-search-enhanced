@@ -1,0 +1,35 @@
+{
+  "id": "I70N6bTC",
+  "slug": "smuc",
+  "title": "Simple Modpack Update Checker",
+  "description": "A simple mod for modpacks that automatically checks if the modpack is up-to-date and displays a toast if it is not. Use modrinth id for reference.",
+  "body": "![icon.png](https://cdn.modrinth.com/data/I70N6bTC/a38a4215bb7e541cd4d4d7aaea7883effd18b9e1.png)\n\n**Simple Modpack Update Checker** is a lightweight mod designed to check if your modpack is up-to-date. This mod\nverifies the version of your modpack against a remote source and notifies you if an update is available.\n\n## Supported Versions\n\n|            | [smuc 1.0.0](https://modrinth.com/mod/smuc/version/1.0.0) | [smuc 2.0.0](https://modrinth.com/mod/smuc/versions?g=26.1&g=26.1.1&g=26.1.2&g=26.2) |\n|------------|:---------------------------------------------------------:|:---------------------------------------------------------:|\n| mc 26.2    |                             ❌                             |                             ✅                             |\n| mc 26.1.x    |                             ❌                             |                             ✅                             |\n| mc 1.21.x |                             ✅                             |                             ✅                             |\n\n## Configuration\n\nThe configuration file is located at `config/simple-modpack-update-checker.json`. For most users, only three fields are required:\n\n```json\n{\n  \"configVersion\": 2,\n  \"localVersion\": \"3.3.3\",\n  \"identifier\": \"KmiWHzQ4\"\n}\n```\n\n1. **configVersion**: Configuration file version (automatically set)\n2. **localVersion**: The current version of the installed modpack. This can be any string.\n3. **identifier**: Either a URL to a text file containing the latest version (formatted as `version = \"String\"`, eg [your pack.toml from packwiz](https://raw.githubusercontent.com/SkyblockerMod/Skyblocker-modpack/main/packwiz/pack.toml)) or the Modrinth project ID.\n\n### Configuration Options\n\n| Field | Required | Description                           | Default      | Example                |\n|-------|----------|---------------------------------------|--------------|------------------------|\n| `configVersion` | ✅ | Configuration file version            | `2`          | `2`                    |\n| `localVersion` | ✅ | Current version of your modpack       | -            | `\"3.3.3\"`              |\n| `identifier` | ✅ | Modrinth project ID or URL            | -            | `\"KmiWHzQ4\"`           |\n| `minecraftVersions` | ❌ | Specific Minecraft <br/>version to track <br/>**(Modrinth only)** | All versions | `[\"1.21.4\", \"1.21.5\"]` |\n| `releaseChannel` | ❌ | Release channel to follow <br/>**(Modrinth only)**            | `\"release\"`  | `\"beta\"`, `\"alpha\"`    |\n\n**Note:** `minecraftVersions` and `releaseChannel` only work when using a Modrinth project ID. When using a URL, these options are ignored and the mod will simply check the version string from your URL.\n\n### Release Channels\n\n**Note:** Release channels only work when using a **Modrinth project ID**. URL-based configurations will ignore this setting.\n\nThe mod supports different release channels that work in a **hierarchical** way - more unstable channels include all the more stable ones:\n\n#### Channel Types\n- **`\"release\"` (default)**: Only stable releases\n- **`\"beta\"`**: Beta and stable releases\n- **`\"alpha\"`**: Alpha, beta, and stable releases (everything)\n\n#### Example Scenario\nIf a project has these versions (newest first):\n1. `2.1.0-alpha` (yesterday)\n2. `2.0.5` (release, 3 days ago)\n3. `2.0.4-beta` (1 week ago)\n\n**Results by channel:**\n- `\"alpha\"` → Shows `2.1.0-alpha` (latest of any type)\n- `\"beta\"` → Shows `2.0.5` (latest beta/release, skips alpha)\n- `\"release\"` → Shows `2.0.5` (latest release only)\n\n### Examples\n\n**Using a URL (basic version checking only)**:\n\n```json\n{\n  \"configVersion\": 2,\n  \"localVersion\": \"3.3.3\",\n  \"identifier\": \"https://raw.githubusercontent.com/SkyblockerMod/Skyblocker-modpack/main/packwiz/pack.toml\"\n}\n```\n\n**Using a Modrinth Project ID (basic)**:\n\n```json\n{\n  \"configVersion\": 2,\n  \"localVersion\": \"3.3.3\",\n  \"identifier\": \"KmiWHzQ4\"\n}\n```\n\n**With Minecraft version filtering (Modrinth only)**:\n\n```json\n{\n  \"configVersion\": 2,\n  \"localVersion\": \"3.3.3\",\n  \"identifier\": \"KmiWHzQ4\",\n  \"minecraftVersions\": [\"1.21.4\"]\n}\n```\n\n**With beta release channel (Modrinth only)**:\n\n```json\n{\n  \"configVersion\": 2,\n  \"localVersion\": \"3.3.3-beta.5\",\n  \"identifier\": \"KmiWHzQ4\",\n  \"releaseChannel\": \"beta\"\n}\n```\n\n**With multiple Minecraft versions and release channel (Modrinth only)**:\n\n```json\n{\n  \"configVersion\": 2,\n  \"localVersion\": \"3.3.3\",\n  \"identifier\": \"KmiWHzQ4\",\n  \"minecraftVersions\": [\"1.21.4\", \"1.21.5\"],\n  \"releaseChannel\": \"alpha\"\n}\n```\n\n## Usage\n\nWhen you start Minecraft with this mod installed, it will automatically check for updates based on your configuration\nfile and notify you if an update is available.\n\n### For Modrinth Projects\n- The mod fetches version information from the Modrinth API\n- Supports filtering by Minecraft version(s) and release channels\n- Shows notifications for newer versions based on your configured filters\n\n### For URL-Based Checks\n- The mod fetches content from your specified URL\n- Looks for version information in the format `version = \"String\"`\n- Compatible with packwiz pack.toml files\n- **Note:** Minecraft version filtering and release channels are not supported with URLs\n\n![img.png](https://cdn.modrinth.com/data/I70N6bTC/images/1babc5d3fef1b29f8fd1aa49f845edc21b1d7774.png)\n\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 384174,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

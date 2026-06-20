@@ -1,0 +1,29 @@
+{
+  "id": "K4hbBL6P",
+  "slug": "polymer-squasher",
+  "title": "Polymer PackSquash",
+  "description": "PackSquash runner for polymer resource packs!",
+  "body": "# Polymer PackSquash Integration\n\nThis mod integrates [PackSquash](https://packsquash.dev) with Polymer’s resource pack generation to automatically optimize generated resource packs so you don't have to manually compress after changes.\n\n\n## Setup\n\n- Get the latest [PackSquash release](https://github.com/ComunidadAylas/PackSquash/releases).\n- Place the binary here:\n\n  ```\n  polymer/packsquash\n  ```\n\n- The mod will automatically create a `packsquash.toml` in the `polymer` folder.\n\nThese are the default paths the mod will use. You can adjust them in the configuration file `config/polymer-squasher.json`\n\n### Default config\n```json\n{\n  \"enabled\": true,\n  \"log-packsquash\": false,\n  \"log-hash-mismatch\": false,\n  \"force-size-based-hash\": false,\n  \"cleanup\": false,\n  \"ignore-hash-paths\": [\n    \"polymer-credits.txt\"\n  ],\n  \"packsquash-path\": \"polymer/packsquash\",\n  \"packsquash-toml-path\": \"polymer/packsquash.toml\",\n  \"hash-file-path\": \"polymer/hashes.json\",\n  \"resource-pack-directory\": \"polymer/pack\",\n  \"minified-zip-path\": \"polymer/resource_pack.min.zip\"\n}\n```\n\n## Config options\n\n- **enabled** — turn the integration on/off.  \n- **log-packsquash** — print PackSquash output to the log.  \n- **log-hash-mismatch** — log when a file’s hash changes (useful for debugging).  \n- **packsquash-path** — path to the PackSquash binary.  \n- **packsquash-toml-path** — path to the PackSquash TOML config file.  \n- **ignore-hash-paths** — list of path **prefixes** to ignore hash mismatches when hashing.  \n- **force-size-based-hash** — if `true`, the mod will use file size instead of a full hash (faster, less precise) \n- **cleanup** - cleans up old files in the cached pack folder\n\n---\n\n## How it works\n\nWhen enabled, the mod will hash the generated resource pack files. The hashes are written to `polymer/hashes.json`.\n\nIf nothing has changed since the last run, PackSquash is skipped.  \n\nIf changes are detected, the mod will run PackSquash after Polymer finishes generating the resource pack.  \n\nIf the process completes successfully, the optimized version is used instead.\n",
+  "categories": [
+    "fabric",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1658,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

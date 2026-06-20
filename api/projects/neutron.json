@@ -1,0 +1,29 @@
+{
+  "id": "fRjCqa0y",
+  "slug": "neutron",
+  "title": "Neutron",
+  "description": "Make all mobs neutral, configurable per-player and per-mob!",
+  "body": "Make mobs neutral to all players or specific players!\n\n[<img alt=\"fabric-api\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg\">](https://modrinth.com/mod/fabric-api)\n[<img alt=\"fabric-language-api\" height=\"56\" src=\"https://wsrv.nl/?url=https://raw.githubusercontent.com/JosiahFu/NetherArchives/main/doc/fabric_language_kotlin.svg\">](https://modrinth.com/mod/fabric-language-kotlin)\n\nMost actions that make neutral mobs angry will still be in effect, such as staring at enderman and breaking beehives. However, not wearing gold armor for piglins and darkness for spiders will no longer anger them.\n\nNeutral mode is disabled by default and must be activated with commands.\n\n## Commands\n\n- `/neutron global` - Check if neutral mode is enabled globally\n- `/neutron global <enable | disable>` - Enable or disable neutral mode globally\n- `/neutron player <username>` - Check if neutral mode is enabled for a player\n- `/neutron player <username> <enable | disable>` - Enable or disable neutral mode for a player\n- `/neutron resetall` - Reset player overrides in both modes\n\n## Configuration\n\nThe mod's config file can be found in `config/neutron.json`.\n\n- `exceptions`: List of the mobs which ignore neutrality\n- `preventEndermanEyeContact`: If enderman should ignore eye contact from neutron'd players, default is `false`\n- `excludePatrollers`: If actively patrolling mobs should be neutral even if their types are listed in `exceptions`, default is `true`\n\n\nBy default, boss mobs and certain structure-exclusive mobs are not turned neutral. This is to retain the challenge of certain bosses, events, and structures.\n\n<details>\n\n<summary>Default non-neutral mobs</summary>\n\n- Wither\n- Evoker\n- Vindicator\n- Pillagers\n- Ravager\n- Vex\n- Piglin Brute\n- Blaze\n- Wither Skeleton\n- Guardian\n- Elder Guardian\n- Warden\n- Breeze\n- Shulker\n- Endermite\n\n</details>\n\nNote: Ender Dragon behavior is not affected by this mod, as they do not use the normal targeting system and do not have a concept of being neutral.\n\n---\n\n<details>\n\n<summary>API</summary>\n\n### `ShouldBeNeutralCallback`\n\nIs triggered whenever a mob's neutrality towards a certain entity is checked.\n\n  - `register(callback: (entity: LivingEntity, target: LivingEntity) -> Boolean)`: `entity` is the mob which will or will not be neutral, `target` is the entity which the mob will aggro on. Returning `true` will make the mob be neutral towards the target.\n  - `registerPlayers(callback: (entity: LivingEntity, target: PlayerEntity) -> Boolean)` Same as `register` but only considers player targets\n\nThe mob will be neutral towards the target if any listener returns true.\n  \n</details>\n\n---\n\nNote: Command completion and result messages will be broken if not installed on the client, but otherwise everything will work fine if only installed on the server",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "library",
+    "mobs",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 2976,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "MnHOVlQ7",
+  "slug": "nota",
+  "title": "Nota",
+  "description": "Port of the NoteBlock API for fabric, play .nbs files as noteblock sounds.",
+  "body": "## Nota\n\nPort of the NoteBlock API for fabric, play .nbs files as noteblock sounds.\nThis port is not complete replica, some features are missing or unfinished.\nYou can find original spigot plugin [here](https://www.spigotmc.org/resources/noteblockapi.19287/). \nThis library can be used server-side only or in singleplayer.\n\n## Example \n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/RxDdt90eHUg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n\n## Development\n\n### Adding to your project\nTo use Nota in your project add the Modrinth repository to your build file and a mod dependency. Replace the `VERSION_TAG` with the latest version, for example `0.1.0+1.19`\n\n```gradle\nrepositories {\n    maven {\n        url \"https://api.modrinth.com/maven\"\n        content { includeGroup \"maven.modrinth\" }\n    }\n}\n\ndependencies {\n    modImplementation include(\"maven.modrinth:nota:VERSION_TAG\")\n}\n```\n\n### How to get .nbs\n\n- Download .nbs files, you can simply download a few songs [here](https://dev.bukkit.org/projects/icjukebox/pages/tracks).\n- Convert .midi to .nbs with [Note Block Studio](https://github.com/HielkeMinecraft/OpenNoteBlockStudio/releases).\n- Create a song in [Note Block Studio](https://github.com/HielkeMinecraft/OpenNoteBlockStudio/releases) and export it as .nbs file.\n\n### Playing songs\n\nSong in .nbs format have to be loaded before you can use it.\n\n```java\nSong song = NBSDecoder.parse(new File(\"path/to/song.nbs\"));\nSong song2 = NBSDecoder.parse(new File(\"path/to/another/song.nbs\"));\nPlaylist playlist = new Playlist(song, song2,...);\n```\n\n#### SongPlayer types\nThere are 3 types of SongPlayer:\n- RadioSongPlayer\n- PositionSongPlayer\n- EntitySongPlayer\n\n### RadioSongPlayer\nPlays song for all added players no matter where they are.\n\n```java\nSong song; // Preloaded song\nRadioSongPlayer rsp = new RadioSongPlayer(song); // Create RadioSongPlayer.\nrsp.setId(new Identifier(\"example:radio\")); // Set unique identifier, not necessary\nrsp.addPlayer(player); // Add player to SongPlayer so they will hear the song.\nrsp.setPlaying(true); // Start RadioSongPlayer playback\n```\n\n### PositionSongPlayer\nPlays song for all added players in specified range from specified point.\n\n```java\nSong song; // Preloaded song\nPositionSongPlayer psp = new PositionSongPlayer(song); // Create PositionSongPlayer.\npsp.setId(new Identifier(\"example:position\")); // Set unique identifier, not necessary\npsp.setBlockPos(pos); // Set location where the song will be playing\npsp.setDistance(16); // Set distance from target location in which players will hear the SongPlayer, default: 16\npsp.addPlayer(player); // Add player to SongPlayer so they will hear the song.\npsp.setPlaying(true); // Start PositionSongPlayer playback\n```\n\n### EntitySongPlayer\nPlays song for all added players in specified range from specified entity.\n\n```java\nSong song; // Preloaded song\nEntitySongPlayer esp = new EntitySongPlayer(song); // Create EntitySongPlayer.\nesp.setId(new Identifier(\"example:entity\")); // Set unique identifier, not necessary\nesp.setEntity(entity); // Set entity which position will be used\nesp.setDistance(16); // Set distance from target location in which players will hear the SongPlayer, default: 16\nesp.addPlayer(player); // Add player to SongPlayer so they will hear the song.\nesp.setPlaying(true); // Start EntitySongPlayer playback\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1058,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

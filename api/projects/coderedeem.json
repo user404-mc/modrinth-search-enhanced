@@ -1,0 +1,42 @@
+{
+  "id": "XzD0esfE",
+  "slug": "coderedeem",
+  "title": "CodeRedeem",
+  "description": "Plugin for Redeem Code",
+  "body": "![CodeRedeem by SkyX](https://cdn.modrinth.com/data/cached_images/e538b0219d8a08545a3ba118253e2f58bb32d297.png)\n\n# **CodeRedeem**\nCodeRedeem allows you to create random coupon codes for players to redeem specific rewards.\n\n## **Features**\n- The reward system is fully customizable, allowing you to define what command should be executed for each type of code specified in the configuration. You can set up redemption codes according to your preferences in the folder resources.\n- Make sure to modify the codes, and rewards without needing to restart the server (auto-save). \n\n## **Usage**\n- Usage to redeem for player\n```\n/redeem <Code>\n```\n- Usage for OP and consol\n\n![command](https://cdn.modrinth.com/data/cached_images/3f0f787ab43d89c06f8fd85b220e18c16a01382f.png)\n\n## **Warning**\nHowever, keep in mind that manually editing the data.yml file is not recommended.\n\n## **config.yml**\n\n\n<details>\n<summary>config.yml</summary>\n\n```\n# Selec Language\nlanguage: en_US\n# Economy\neconomy:\n\n  use-vault: true\n\n# Advance Setting\nadditional-settings:\n  \n  example-setting: \"value\"\n\n```\n\n</details>\n\nTo be honest, in config.yml it is only for setting the language. For other settings, it seems that there is no need to change them.\n\n## **example_code.yml**\nThis file is located in the codes folder.\n\n\n<details>\n<summary>example_code.yml</summary>\n\n```\n# REDEEM CODE (use only capital letters and numbers)\ncode: REDEEMCODE123\n\n# Enable or disable the code\nenabled: false\n\n# Validity date in yyyyMMdd format\nvalidity: 20241231\n\n# Rewards configuration \n# Reference to the book YAML file in writtenbook folder\n# level enhantment 1-100\n# Command must be valid\nrewards:\n\n  - book: great_tale\n    custom_name: \"&6The Great &cTale\"\n    count: 1\n     \n  - item: DIAMOND_SWORD\n    custom_name: \"&cFire &6Sword\"\n    count: 1\n    enchantments:\n      - type: FIRE_ASPECT\n        level: 100\n      - type: UNBREAKING\n        level: 100\n        \n  - item: GOLDEN_APPLE\n    count: 5\n    \n  - money: 1000\n  \n  - command: give {player} minecraft:diamond_sword\n    message: \"&x&0&8&4&C&F&BY&x&0&D&5&1&F&Bo&x&1&2&5&6&F&Bu &x&1&C&6&0&F&Bh&x&2&1&6&5&F&Ba&x&2&6&6&A&F&Bv&x&2&B&6&F&F&Be &x&3&5&7&A&F&Cr&x&3&A&7&F&F&Ce&x&3&F&8&4&F&Cc&x&4&4&8&9&F&Ce&x&4&9&8&E&F&Ci&x&4&E&9&3&F&Cv&x&5&3&9&8&F&Ce&x&5&8&9&D&F&Cd &x&6&2&A&7&F&CL&x&6&7&A&C&F&Ce&x&6&C&B&1&F&Cg&x&7&1&B&6&F&Ce&x&7&6&B&B&F&Cn&x&7&B&C&0&F&Cd&x&8&0&C&5&F&Ca&x&8&5&C&B&F&Dr&x&8&A&D&0&F&Dy &x&9&4&D&A&F&DW&x&9&9&D&F&F&De&x&9&E&E&4&F&Da&x&A&3&E&9&F&Dp&x&A&8&E&E&F&Do&x&A&D&F&3&F&Dn\"\n  \n# Optional: Define how many times the code can be redeemed\n# Use -1 for unlimited\nredeem_limit: 10 \n\n#dont change this\nredeem_count: 0\n\n\n```\n\n</details>\n\n## **en_US.yml**\nThis file is located in the language folder.\n\n\n<details>\n<summary>en_US.yml</summary>\n\n```\nversion: 1.0.1\n# Set your langue in this\n\nalready_redeemed: \"You have already redeemed this code.\"\nbook_received: \"You have received the book {title}.\"\ncode_expired: \"This code has expired.\"\ncode_not_available: \"Code not available.\"\nempty_book: \"The book {bookName} is empty.\"\nerror_creating_book: \"There was an error creating the book: {bookName}.\"\nerror_parsing_date: \"Error parsing the expiration date.\"\nerror_loading_code: \"Codes folder does not exist or is not a directory.\"\nerror_processing_reward: \"There was an error processing one or more rewards.\"\ninvalid_book_reference: \"The book reference {bookName} is invalid or does not exist.\"\ninvalid_code: \"The code you provided is invalid or does not exist.\"\ninvalid_date_format: \"The date format in the code configuration is invalid.\"\ninvalid_enchantment: \"Invalid enchantment:  {enchantmentName}. Please check the enchantment name.\"\ninvalid_item_material: \"Invalid item material: {itemName}. Please check the item name.\"\ninvalid_reward_format: \"The reward format is invalid.\"\ninvalid_subcommand: \"Invalid subcommand. Use /cr help for a list of commands.\"\nmoney_received: \"You have received ${money}\"\nno_permission: \"You do not have permission to use this command.\"\nonly_players: \"This command can only be used by players.\"\nplugin_reloaded: \"The plugin has been reloaded successfully.\"\nredeem_limit_reached: \"The redeem limit for this code has been reached.\"\nredeem_successful: \"You have successfully redeemed the code!\"\nreloaded: \"Plugin configuration and language reloaded successfully.\"\nusage_subcommand: \"Usage: /cr {subCommand}\"\nusage_info: \"Usage: /cr info <code>\"\nusage_redeem: \"Usage: /redeem <code>\"\nwarning_throw_book: \"This written book cannot be discarded.\"\nmessage_received_reward: \"You have received {count} {itemName}s.\"\ninalid_number_format_for_length: \"Invalid number format for length.\"\ninvalid_length: \"Length must be between 6 and 16.\"\ninvalid_code_length: \"Code must be beween 6 and 16 character\"\nsuccess_create_code: \"File created and modified successfully. New file: \"\nfailed_create_code: \"Failed to save the new file.\"\ncode_not_found_in_data: \"Code not found in data\"\ncode_refreshed: \"The code was successfully refreshed\"\nfailed_refresh_code: \"The code failed to refresh\"\nop_only: \"You must be an operator to use this command.\"\nhold_written_book: \"You must be holding a Written Book.\"\ninvalid_book: \"The item in your hand is not a valid written book.\"\nno_title: \"The written book must have a title.\"\nfile_exists: \"A file with this title already exists. Choose a different title.\"\nsave_success: \"The book has been successfully saved as {fileName}.\"\nsave_error: \"An error occurred while saving the book.\"\nusage_enable_code: \"Usage: /cr enable <code>\"\nusage_disable_code: \"Usage: /cr disable <code>\"\ncode_enabled_successfully: \"The code has been enabled successfully.\"\ncode_disabled_successfully: \"The code has been disabled successfully.\"\nerror_saving_file: \"An error occurred while saving the file.\"\ninvalid_redeem_code: \"Invalid redeem code. Please contact the administrator.\"\nerror_enable_code: \"Failed to enable code. Because the code has been enabled\"\nerror_disable_code: \"Failed to disable code. Because the code has been disable\"\n\n# translate for /cr info <code>\ncode_info_header: \"Code INFORMATION\"\nstatus: \"Status\"\ncode: \"Code\"\nvalidity_date: \"Valid to\"\nredeem_limit: \"Redeem Limit\"\nredeem_count: \"Redeem Count\"\nfile: \"File Name\"\n```\n\n</details>\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1470,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

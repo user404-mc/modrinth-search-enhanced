@@ -1,0 +1,27 @@
+{
+  "id": "2mgCH6rD",
+  "slug": "loreeditor",
+  "title": "LoreEditor",
+  "description": "Packet-level item lore modification for Spigot and its forks",
+  "body": "# LoreEditor\n\nPacket-level item lore modification for Spigot and its forks.\n\n## ⚠️Warning\n\nThis plugin only supports versions listed in the [Modrinth page](https://modrinth.com/plugin/loreeditor). Other versions will NOT work.\n\nCheck your server version before downloading the plugin!\n\n## ✨Features\n\n- Add lore lines to items, without affecting an actual item.\n\n## 📥Installation\n\nYou can download the latest version of LoreEditor from the [Modrinth](https://modrinth.com/plugin/loreeditor) and then place it in your `plugins` folder.\n\n## 🔧Developer API\n\nLoreEditor provides a simple API for developers to use.\n\n### 💻Dependency\n\n#### 📝plugin.yml\n\nTo use LoreEditor in your plugin, you need to add the following to your `plugin.yml`:\n\n```yaml\ndepend: [LoreEditor]\n```\n\n#### Maven\n\nIf you are using Maven, add the following to your `<repositories>` tag in `pom.xml`:\n\n```xml\n<repository>\n    <id>azisaba</id>\n    <url>https://repo.azisaba.net/repository/maven-public/</url>\n</repository>\n```\n\nAnd add the following to your `<dependencies>` tag in `pom.xml`:\n\n```xml\n<dependency>\n    <groupId>net.azisaba.loreeditor</groupId>\n    <artifactId>api</artifactId>\n    <version>[version]</version>\n    <scope>provided</scope>\n    <classifier>all</classifier> <!-- don't forget \"all\" classifier -->\n</dependency>\n```\n\n#### Gradle (Kotlin DSL)\n\n```kotlin\nrepositories {\n    maven(\"https://repo.azisaba.net/repository/maven-public/\")\n}\n\ndependencies {\n    compileOnly(\"net.azisaba.loreeditor:api:[version]:all\") // don't forget \"all\" classifier\n}\n```\n\n### ⌨️Usage\n\n#### Add lore lines\n\n```java\nimport net.azisaba.loreeditor.api.event.EventBus;\nimport net.azisaba.loreeditor.api.event.ItemEvent;\nimport net.azisaba.loreeditor.libs.net.kyori.adventure.text.Component;\nimport org.bukkit.plugin.java.JavaPlugin;\n\npublic class TestPlugin extends JavaPlugin {\n    @Override\n    public void onEnable() {\n        // In LoreEditor, we use EventBus to listen for events.\n        // This example adds \"Hello, world!\" to the lore of the every item.\n        // Please note that blocking operations (such as file IO and database operations) should not be performed in the event listener.\n        EventBus.INSTANCE.register(this, ItemEvent.class, 0, e -> {\n            e.addLore(Component.text(\"Hello, world!\"));\n            // more lore lines...\n        });\n    }\n\n    // we don't need to unregister the listener because LoreEditor will handle it.\n}\n```\n\n## 📜License\n\nLoreEditor is licensed under the [GNU General Public License v3.0](LICENSE).\n",
+  "categories": [
+    "library",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 224,
+  "followers": 0,
+  "game_versions": [
+    "1.15.2",
+    "1.16.5",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.21.1",
+    "1.21.3"
+  ],
+  "date_updated": null
+}

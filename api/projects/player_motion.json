@@ -1,0 +1,31 @@
+{
+  "id": "oDhxdGVZ",
+  "slug": "player_motion",
+  "title": "Player Motion",
+  "description": "Explosion-based library that uses subtick timing to ensure that only one player is pushed by the blast without any side effects.",
+  "body": "# Player Motion\nPlayer Motion is an explosion-based library that uses subtick timing to ensure that only one player is pushed by the blast without any side effects.\n\nCredit to [@BigPapi13](https://github.com/BigPapi13/Delta) for making the original library this is inspired by. This project aims to succeed it.\n\nCredit to `nedraw` from the minecraft commands discord for the ender crystal methodology & implementation this is now based on.\n\nCredit to [@SuperSwordTW](https://github.com/SuperSwordTW) for helping make significant math performance & stability improvements.\n\n## How to use\n\n### Launching a player where in a specific direction\n\n```mcfunction\nscoreboard players set $strength player_motion.api.launch 10000\nfunction player_motion:api/launch_looking\n```\n- `$strength` represents motion in blocks/tick, scaled by 10000. A strength of 10000 will push the player at 1 block/tick\n- The facing direction in which the function is called is the direction the player will be launched\n- Only the player executing the command will receive a motion update\n\n### Launching a player with xyz vector\n\n```mcfunction\nscoreboard players set $x player_motion.api.launch 500\nscoreboard players set $y player_motion.api.launch 12000\nscoreboard players set $z player_motion.api.launch -3125\nfunction player_motion:api/launch_xyz\n```\n- `$x`, `$y`, and `$z` are the strength in blocks/tick to launch the player in the x, y, and z directions\n- As before, only the player executing the command will be launched\n\n*Note: These functions are *additive* and will apply motion in addition to existing motion rather than directly setting it to whatever input you send \n\n## Limitations + Known Issues\n\nWhile this library is likely the closest we've gotten to perfect player motion manipulation, there are some limitations worth mentioning:\n- **MSPT Inconsistency**: Even though the motion applied is constant, the rate at which the server and client update may vary, and calling motion updates per tick may result in inconsistencies when these variations become too large. For consistent results, the library should only be used for instantaneous bursts of motion, and continuous forces should instead rely on riding-based methods or levitation, depending on the context.\n\nIf you know any possible solutions or would like to help fixing these problems, please let me know!\n",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 5029,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "24w37a",
+    "24w38a",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

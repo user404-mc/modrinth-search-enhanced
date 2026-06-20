@@ -1,0 +1,19 @@
+{
+  "id": "NkT4ftVG",
+  "slug": "server-essentials",
+  "title": "ServerEssentials",
+  "description": "A Server side mod for Fabric servers implementing some widely-known commands in bukkit servers.",
+  "body": "It is a server mod for fabric. (Currently support Chinese only. However you can edit config/Essentials/translation.json)\n\nIt implements tpa, tpahere, tpaccept, tpdeny, home, sethome, delhome, back (partly implemented) , warp, setwarp, delwarp, afk, ping, fly, hat, sit. \n\nIt has additional command essperm to make vanilla command use luckperms permission and edit operators' oplevel.\n\n## Configurations\n- config/Essentials/config.json\n  - sitEnabled = true\n    - Allow players to sit on stairs.\n  - gameLogEnabled = false\n    - ***Ignore this, experiment feature***\n  - dropSkullOnDeath = true\n    - Drop victims' skull when killed by a player.\n- config/Essentials/manpages\n  - Here we store help messages for players to view via `/man`\n  - For `/man command.fly`, we will search for `config/Essentials/manpages/command/fly/_index.txt`. If that was not found, we will try to find `config/Essentials/manpages/command/_notfound.txt` and then `config/Essentials/manpages/_notfound.txt`.\n  - For `/man`, we will search for `config/Essentials/manpages/_index.txt`\n  - See the file format below.\n\n### Manpages Format\nWe use `\\tagname(args){body}` or `\\tagname{body}` as to mark up.\nto use `{` in message, you should write `\\{`, so as other characters\n#### Formatting codes\nThe formatting code (often seen in bukkit servers as &1 &e &r etc) is use as the tagname.\n```plain\n\\n{hi} # underline 'hi'\n\\1{test}\\2{test} # same as &1test&2test in bukkit\n```\n#### The `color` tag and The `format` tag\nYou want this to use hex colors\n```plain\n\\color(red){this text is red}\n\\color(#231093){this text is #231093}\n\\format(underline){------} # we support obfuscated, bold, strikethrough, underline, italic\n```\n#### The `run_command`, `suggest_command`, `copy_to_clipboard` tag\nThis will add click actions to the text\n```plain\n\\run_command(/man command.fly){See the manpage `fly`}\n\\suggest_command(/tell CaveNightingale){Send personal message to CaveNightingale}\n\\copy_to_clipboard(content to copy){click here to copy}\n```\n#### The `i`, `p` or `line`, `page` tag\nUsed for mutilines pages, they are the same\n```plain\nThe first line \\i{}\nThe second line \\line{}\nThe third line\n```\n#### Tags about the command\n```\nGood morning, \\sourceEntity{}. #sourceEntity is replaced with the player who execute the command\nThe page `\\wantedEntry{}` is not found, so you are seeing this message. #wantedEntry is replaced with the argument of `/man` command\n```",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 365,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2"
+  ],
+  "date_updated": null
+}

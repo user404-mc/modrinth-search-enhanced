@@ -1,0 +1,33 @@
+{
+  "id": "F8hNkKfB",
+  "slug": "dynamiclight",
+  "title": "Dynamic Lights",
+  "description": "Held items emit dynamic light that follows players AND mobs. Modern Paper 1.21+. No client mod required.",
+  "body": "# DynamicLights\n\nHeld items emit dynamic light that follows players **and mobs** in real time. Built for modern Paper 1.21+. No client mod, no ProtocolLib, no world modification.\n\nA torch in your hand lights up the cave around you. A jack-o-lantern on a zombie's head lights up the zombie. Drop a lantern on the floor and it lights up the room. Walk away and the world goes dark again — your save file never changes.\n\n## Why this plugin\n\n- **Built for Paper 1.21+** — most alternatives are stuck on 1.16.\n- **Mobs emit light** — give a zombie a torch in its hand or a jack-o-lantern on its head and it walks around lit up. Configurable per mob type.\n- **Soft falloff clusters** — outer light blocks fade in brightness so motion looks smooth instead of jumpy.\n- **Zero dependencies** — pure Paper API. No ProtocolLib, no PacketEvents.\n- **Per-player toggle** — clients can opt out for performance. Persisted via PDC.\n- **Per-world disable** — skip Nether, End, or any world by name.\n- **Reload without restart** — `/dl reload` reverts all phantom blocks, reloads config, resumes.\n- **Tiny footprint** — ~40 KB jar, no shaded dependencies except bStats.\n\n## Features\n\n| Feature | Status |\n| --- | --- |\n| Player held items (main hand, off hand) | ✅ |\n| Player wearable lights (helmet slot) | ✅ |\n| Mob held items (zombies, skeletons, piglins, etc.) | ✅ |\n| Mob wearable lights (jack-o-lantern on a zombie's head) | ✅ |\n| Dropped item lighting (lantern on the ground glows) | ✅ |\n| Configurable item → brightness map | ✅ |\n| Soft cluster falloff for smooth movement | ✅ |\n| Per-player toggle (`/dl toggle`) | ✅ |\n| Per-world disable | ✅ |\n| Underwater (waterlogged light blocks) | ✅ |\n| No world modification — purely packet-based | ✅ |\n| Spectator and vanish detection | ✅ |\n| Hot reload | ✅ |\n| Replaceable-block whitelist (preserves slabs, banners, etc.) | ✅ |\n\n## Compatibility\n\n- **Server**: Paper 1.21.x (built against 1.21.4 API; tested on 1.21.11). Should run on any 1.21 patch.\n- **Java**: 21+.\n- **Folia / Spigot**: untested. PRs welcome.\n- **Conflicts**: none known. Does not modify world data, so safe to remove at any time.\n\n## Default item brightness\n\n```\nTORCH 14    LANTERN 15    GLOWSTONE 15    JACK_O_LANTERN 15\nSOUL_TORCH 10    SOUL_LANTERN 10    REDSTONE_TORCH 7\nSEA_LANTERN 15   SHROOMLIGHT 15   END_ROD 14\nCAMPFIRE 14   SOUL_CAMPFIRE 10   GLOW_BERRIES 6   BLAZE_ROD 10\n```\n\nAdd or override any material via `config.yml`.\n\n## Commands\n\n| Command | Permission | Description |\n| --- | --- | --- |\n| `/dynamiclights toggle` | `dynamiclights.toggle` | Toggle dynamic lights for yourself. |\n| `/dynamiclights reload` | `dynamiclights.reload` | Reload config + resume. |\n| `/dynamiclights status` | — | Diagnostics: tracked emitters, config summary. |\n\nAliases: `/dl`, `/dynlights`.\n\n## Configuration\n\n```yaml\nenabled: true\nview_radius: 32\nupdate_interval_ticks: 1\nmob_scan_interval_ticks: 4\ntrack_mobs: true\ntrack_items: true                # dropped items on the ground emit light\n\nsuppress_vanished_emitters: true\nsuppress_spectator_emitters: true\n\ncluster_radius: 1                # 0 = single column, 1 = 3x3, 2 = 5x5 (capped at 2)\ncluster_height: 2                # 1 = head only, 2 = head + body (capped at 3)\ncluster_falloff_per_block: 2     # subtract per block of distance from center\n\ndisabled_worlds: []              # e.g. [world_nether, world_the_end]\n\nmob_whitelist:\n  - ZOMBIE\n  - SKELETON\n  - PIGLIN\n  - DROWNED\n\nequipment_slots:\n  - MAIN_HAND\n  - OFF_HAND\n  - HEAD\n\nitem_brightness:\n  TORCH: 14\n  LANTERN: 15\n  GLOWSTONE: 15\n  JACK_O_LANTERN: 15\n\nreplaceable_blocks:              # only these blocks may be replaced with phantom light\n  - AIR\n  - CAVE_AIR\n  - WATER\n  - SHORT_GRASS\n  - TALL_GRASS\n```\n\n## How it works\n\nWhen an entity holds a configured light item, the plugin sends each nearby player a phantom `minecraft:light[level=N,waterlogged=B]` block-update packet at the entity's eye position (and surrounding cluster). The actual world is never touched — chunk lighting isn't recomputed and no blocks are placed. When the entity moves, the previous block(s) are reverted with a real-block packet and new ones are emitted.\n\nBecause the vanilla Minecraft client only knows about block-level lighting, dynamic lights inherently snap to the block grid. The cluster + falloff settings make the visual transitions softer but cannot make the light fully continuous — that requires a client-side mod such as LambDynamicLights or Optifine's Dynamic Lights.\n\n## Performance\n\nOn a 4-player test server with ~30 mobs holding torches, default cluster size (3×2×3 = 18 blocks per emitter), the per-tick task takes < 1 ms. If your server is CPU-bound:\n\n- Set `track_mobs: false` to skip the per-tick mob scan.\n- Lower `cluster_radius` to 0 (single column instead of 3×3).\n- Increase `update_interval_ticks` to 2 (light follows entity at 10 Hz instead of 20 Hz).\n\n## Installation\n\n1. Drop `DynamicLights-x.y.z.jar` into your server's `plugins/` folder.\n2. Restart.\n3. Edit `plugins/DynamicLights/config.yml` to taste.\n4. `/dl reload`.\n\n## License\n\nProprietary — All Rights Reserved. You may install and run unmodified copies of the plugin on your own Minecraft servers. Redistribution, modification, and reverse engineering are not permitted without written permission.\n",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 568,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

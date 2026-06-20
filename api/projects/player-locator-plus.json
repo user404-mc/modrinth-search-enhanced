@@ -1,0 +1,38 @@
+{
+  "id": "e0Yt2i7Q",
+  "slug": "player-locator-plus",
+  "title": "Player Locator Plus",
+  "description": "Track other players' locations on your experience bar like a compass! (Replaces/augments vanilla Locator Bar)",
+  "body": "# Player Locator Plus\n\nTrack other players' locations on your experience bar like a compass!\n\n<img alt=\"Requires Cloth Config API\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/cloth-config-api_vector.svg\"> <img alt=\"Requires Fabric API\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg\">\n\n<video src=\"https://github.com/timas130/PlayerLocatorPlus/raw/refs/heads/main/screencast1.mp4\" autoplay loop muted>\n  <img src=\"https://github.com/timas130/PlayerLocatorPlus/raw/refs/heads/main/screenshot1.png\" alt=\"The player locator bar\">\n</video>\n\n## Marker colors\n\nBy default, each player's color is determined randomly by their UUID. There are other options in the config (see below).\n\n## Distance fade\n\nWhen a player is *very* far away, their marker starts to fade:\n\n![The player locator with one marker slightly faded](https://github.com/timas130/PlayerLocatorPlus/raw/refs/heads/main/screenshot2.png)\n\n## Disappearing\n\nThere are three ways to hide from the player locator:\n1. Crouching\n2. Wearing a carved pumpkin\n3. Having the invisibility effect\n\n![A player wearing a pumpkin is not shown on the player locator](https://github.com/timas130/PlayerLocatorPlus/raw/refs/heads/main/screenshot3.png)\n\n## Configuration\n\nThe config is available at `config/player-locator-plus.toml`.\nYou can also access the configuration screen with Mod Menu.\n\nServer parameters:\n\n- `enabled`: Is the mod enabled server-side at all. Note that the bar will still be visible if `visible` is true. Default: `true`\n- `sendServerConfig`: Whether the server will try to force its config on the client. This will only have effect if the clients have `acceptServerConfig` set to true. Default: `true`\n- `sendDistance`: Whether to send distance information along with the direction information.\n  There's basically no point in settings this to `false`, as players can still easily\n  triangulate the exact location of others even without knowing the distance.\n  However, it is harder with this option on, especially if you consider that other players\n  move.\n  Default: `true`\n- `maxDistance`: The maximum distance at which other players are visible on the compass.\n  Default: `0` (unlimited)\n- `directionPrecision`: The amount of segments the direction vector is split into. Decreasing this value significantly will make tracking way more inaccurate but be helpful in preventing triangulation. Default: `300`\n- `ticksBetweenUpdates`: How many ticks apart are the compass updates.\n  The less, the smoother the movements of faraway players are.\n  Close players (inside the entity render distance) do not depend on this parameter as much.\n  Default: `5` (four times per second)\n- `sneakingHides`: Whether sneaking hides players from the locator. Default: `true`\n- `pumpkinHides`: Whether wearing a pumpkin (or any other `gaze_disguise_equipment`) hides\n  players from the locator.\n  Default: `true`\n- `mobHeadsHide`: Whether wearing a mob/player head hides players from the locator. The exact list can be edited with a datapack by changing `data/player-locator-plus/tags/item/hiding_equipment.json` (see default [here](https://github.com/timas130/PlayerLocatorPlus/blob/main/src/main/resources/data/player-locator-plus/tags/item/hiding_equipment.json)). Default: `true`\n- `invisibilityHides`: Whether being invisible hides players from the locator. Default: `true`\n- `colorMode`: How to determine the color of the markers. Vanilla waypoints always override this setting. Available modes:\n  - `UUID` (default): Assign a random color based on the UUID of the player.\n  - `TEAM_COLOR`: Use the color of the player's team (or white)\n  - `CUSTOM`: Allow every player to assign a color with the `/plp color` command\n  - `CONSTANT`: Everyone has the same color from the `constantColor` option\n- `constantColor`: Color used when `colorMode` is `CONSTANT`. Default: `0xFFFFFF` (white)\n- `allowVanillaLocatorBar`: Allow sending waypoint to vanilla players without the mod.  Default: `true`\n\nClient parameters:\n\n- `visible`: Show the player locator. Default: `true`\n- `visibleEmpty`: Show the player locator even there are no players online and no markers in sight. Default: `false`\n- `acceptServerConfig`: Whether to override the client-side config with the server-side one. The server config will also be able set client parameters. Default: `true`\n- `fadeMarkers`: Fade markers of faraway players. Default: `true`\n- `fadeStart`: At what distance the markers start to fade. Default: `100`\n- `fadeEnd`: At what distance the markers stop fading and settle at `fadeEndOpacity`. Default: `1000`\n- `fadeEndOpacity`: The final opacity when/after `fadeEnd` is reached. Default: `0.3`\n- `showHeight`: Show little arrows above/below a marker if the height difference is significant.\n  Default: `true`\n- `alwaysShowHeads`: Always show player heads, regardless of whether Tab is pressed. Default: `false`\n- `showHeadsOnTab`: Show player heads when Tab is pressed. Default: `true`\n- `showNamesOnTab`: Show player names when Tab is pressed. Default: `true`\n- `showVanillaWaypoints`: Show custom waypoints created by adding the `waypoint_transmit_range` attribute. Default: `true`\n\n## Acknowledgements\n\nOriginally introduced in Minecraft: Bedrock Edition Preview\n[here](https://www.minecraft.net/en-us/article/test-the-new-player-locator-bar),\ncovered by Phoenix SC.\n\n## Known issues\n\n- **Major versions (1.x.x and 2.x.x) are NOT compatible!** At least the major version must match between the server and the client.\n\n## License\n\nPlayer Locator Plus is licensed under the GNU General Public License Version 3 or later.",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1788433,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

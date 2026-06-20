@@ -1,0 +1,43 @@
+{
+  "id": "bYZV2BpN",
+  "slug": "lodestone-lib",
+  "title": "Lodestone",
+  "description": "An automatic content loader for Fabric mods.",
+  "body": "\nAn automatic content loader for Fabric mods.\n\n### Usage\n\nIn order to use Lodestone directly,\nplease ensure that you [add it as a dependency for your mod](#depending-on-lodestone).\nThis mod does not add any content by itself.\n\nLodestone provides basic interfaces and APIs for\neasily registering modded content during initialization.\nThe most important type provided is the `Loaded` interface,\nwhich the mod is built around.\nFor a basic example, see the [Cheese mod](https://github.com/Jaxydog/Cheese).\n\nTo create an automatically registered type,\nsimply implement the target environment's associated interface.\n\n```java\n/** An item that is loaded at runtime. */\npublic class LoadedItem extends Item implements CommonLoaded {\n\n    // Required for all instances of `Loaded`. Allows Lodestone to group registered values by mod identifier.\n    @Override\n    public Identifier getLoaderId() {\n        return Identifier.of(YourMod.MOD_ID, \"your_item\");\n    }\n\n    // A function that registers the value at runtime.\n    @Override\n    public void loadCommon() {\n        Registry.register(Registries.ITEM, this.getLoaderId(), this);\n    }\n\n}\n```\n\nEach mod environment has its own dedicated interface:\n\n- `CommonLoaded` loads the value on the \"common\" environment, meaning both the client *and* the server.\n- `ClientLoaded` *only* loads the value on the client instance.\n- `ServerLoaded` *only* loads the value on the server instance.\n- `DataGenerating` *only* loads the value during Fabric's data generation task.\n\nThese are intended to be used within each mod initializer to load it properly.\n\n```java\npublic class YourMod implements ModInitializer {\n\n    public static final String MOD_ID = \"your_mod\";\n    public static final LoadedItem YOUR_ITEM = new LoadedItem(new Settings());\n\n    @Override\n    public void onInitialize() {\n        // Registers this item for later loading.\n        Lodestone.register(CommonLoaded.class, YOUR_ITEM);\n\n        // Which is then done here.\n        Lodestone.load(CommonLoaded.class, MOD_ID);\n    }\n\n}\n```\n\nLodestone also provides an abstract class and two annotations for automatic registration of values.\n\n```java\npublic final class ItemLoader extends AutoLoader {\n\n    @LoadingPriority(-1) // Controls the loading order. In this case, this loads last.\n    public static final LoadedItem ITEM_1 = new LoadedItem(\"item_1\", new Settings());\n    public static final LoadedItem ITEM_2 = new LoadedItem(\"item_2\", new Settings());\n    public static final LoadedItem ITEM_3 = new LoadedItem(\"item_3\", new Settings());\n    public static final LoadedItem ITEM_4 = new LoadedItem(\"item_4\", new Settings());\n    public static final LoadedItem ITEM_5 = new LoadedItem(\"item_5\", new Settings());\n\n    @IgnoreLoading({ }) // Prevents this value from being loaded.\n    public static final LoadedItem NULL = null;\n\n    @Override\n    public Identifier getLoaderId() {\n        return Identifier.of(YourMod.MOD_ID, \"items\");\n    }\n\n}\n```\n\nThis is then registered in a very similar way.\n\n```java\npublic class YourMod implements ModInitializer {\n\n    public static final String MOD_ID = \"your_mod\";\n    public static final ItemLoader ITEMS = new ItemLoader();\n\n    @Override\n    public void onInitialize() {\n        // Registers all items for later loading.\n        ITEMS.register();\n\n        // Which is then done here.\n        Lodestone.load(CommonLoaded.class, MOD_ID);\n    }\n\n}\n```\n\n### Depending on Lodestone\n\nLodestone's sole purpose is to be used as a library for other mods.\nIf you would like to depend on Lodestone for your Fabric mod,\nadd the following to your Gradle manifest:\n\n```properties\n# gradle.properties\n\nlodestone_version = 1.8.0\n```\n\n```groovy\n// build.gradle\n\nrepositories {\n    maven { url 'https://jitpack.io' }\n}\n\ndependencies {\n    modImplementation \"com.github.Jaxydog:Lodestone:${project.lodestone_version}\"\n\n    // Or, to alternatively depend on the most recent commit:\n    modImplementation 'com.github.Jaxydog:Lodestone:main-SNAPSHOT'\n}\n```\n\nLodestone *should* work with many older versions of Minecraft,\nbut only the latest game version is guaranteed to have proper support.\nI am currently not interested in backporting to versions prior to roughly 1.18,\nbut if you encounter any issues feel free to let me know anyway.\n\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 12414,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "TVftNsgD",
+  "slug": "suspicious-shapes",
+  "title": "Suspicious Shapes",
+  "description": "Use glTF models in resource packs and mods!",
+  "body": "# glTF models for everything\n\nUsing frapi (the fabric-rendering API), this mod intercepts requests for block models, and if they refer to glTF files, provides them as static models that get baked into the chunk geometry as normal. Entirely clientside, this mod can be used to power \"cursed\" resource packs that replace existing blocks with non-cuboid shapes that vanilla can't make.\n\n\nIt can also be used as an \"included\" mod to power non-cuboid blocks in your mods.\n\n\n# The Details\n\nThe easiest way to create a compatible model is in Blockbench.\n\n- From the app, select \"New -> Low Poly / Generic Model\" and hit the \"Create new model\" button.\n- Any identifier, UV mode, or other settings are fine.\n- When you're satisfied with your model, hit \"File -> Export -> Export glTF Model\".\n- Blockbench ignores most of these settings, and the defaults are perfectly fine.\n- Find the file you exported and put it where you would normally put a json blockmodel (e.g. `assets/minecraft/models/block`)\n- make a child model which refers to the gltf model as a parent, with a root key-value pair of `\"loader\": \"suspicious_shapes:gltf\"`. You can fill-in texture references and set color indices here too.\n- Edit the text of the glTF model to replace the texture's data URL with a texture reference.\n\nThe last part there is the hard part. In the file you'll see something like,\n```json\n\"images\":[{\"mimeType\":\"image/png\",\"uri\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAr0lEQVQ4y6WTMQrCQBBFt0xtk0YQL+QR0mpnYyk5QbDObTc84YVB0NnFgSGTyf7/5w+bUpJ4LMdaeuI6jzWC5/Vcm0kAAyAleE6Hd00vkn8Fq0oCJv32up9yEg6REPGEQDLemyYR6DS3y7ATp3tQTTCEWqH3U50DcQccRl0b9lKSuAvV0wXG+AQyRTOYiDughkB76bXVgiDr5gkEeYEAu8iuf0L/WiD/Iii94diZ+gZo3N9oOnqLFAAAAABJRU5ErkJggg==\"}]\n```\n\nThis is a base-64 encoded image of the texture you used. Since block models can't use random textures that aren't in the atlas, we'll have to fix that. Replace each of the unreadable strings marked \"uri\" with a minecraft texture reference, like this\n\n```json\n\"images\":[{\"mimeType\":\"image/png\",\"uri\":\"minecraft:blocks/stone\"}]\n```\n\nOr, if you're making several models with this shape, you can use it as a parent with a texture up-reference like normal:\n\n```json\n\"images\":[{\"mimeType\":\"image/png\",\"uri\":\"#all\"}]\n```\n\nYour child model can look something like this:\n```json\n{\n  \"parent\": \"minecraft:block/sphere_all.gltf\",\n  \"loader\": \"suspicious_shapes:gltf\",\n  \"textures\": {\n    \"all\": \"minecraft:block/acacia_leaves\"\n  },\n  \"colorIndexes\": [ 0 ]\n}\n```\n\nAnd that's it! Load up minecraft or reload resource packs and you should see your model!",
+  "categories": [
+    "decoration",
+    "fabric",
+    "library",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 3655,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.4",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

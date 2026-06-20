@@ -1,0 +1,37 @@
+{
+  "id": "FZqTsIlY",
+  "slug": "tweak-mouse-sensitivity",
+  "title": "tweak mouse sensitivity",
+  "description": "make a 20000 dpi or even higher mouse works fine in mc",
+  "body": "-------------------------------------------\n1.0.0.3\n\nVersion id with suffix 'a' means it works like cs series or Apex while 'b' means it's original idea. I'll update both when new mc version release. Chose the version on your own.\n-------------------------------------------\n1.0.0.2\n\nmake the sensitivity procedule same as counterStrike2\n-------------------------------------------\n1.0.0.1 or below\n\nthe dpi range provided by the mouse is going higher and higher, the origin mouse sensitivity procedure is not working cool when u set dpi to value like 20000.\nthis mod only do one simple thing: multiply the origin mouse sensitivity by itself when processing\n\n### Original Code:\n```java\nDouble value = that.client.options.getMouseSensitivity().getValue();\ndouble d = value * 0.6F + 0.2F;\ndouble e = d * d * d;\ndouble f = e * 8.0;\ni = that.cursorDeltaX * f;\nj = that.cursorDeltaY * f;\n```\n\n### Modified Code:\nfor versionID with suffix b\n```java\nDouble value = that.client.options.getMouseSensitivity().getValue();\ndouble d = value * 0.6F + 0.2F;\ndouble e = d * d * d * value; // Multiply e by mouseSensitivity\ndouble f = e * 8.0;\ni = that.cursorDeltaX * f;\nj = that.cursorDeltaY * f;\n```\nfor versionID with suffix a\nsomehow make it finnally same as cs2 which is 0.022 * cursorDeltaX|Y\n\nThe variables `i` and `j` are ultimately added to your look direction. `f` is used for non-spyglass views, while `e` is used for spyglass views.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 5120,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

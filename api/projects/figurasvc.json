@@ -1,0 +1,32 @@
+{
+  "id": "zDF68701",
+  "slug": "figurasvc",
+  "title": "FiguraSVC",
+  "description": "A unofficial addon that allows Figura scripts to detect and process Simple Voice Chat audio in real time.",
+  "body": "# FiguraSVC\nA unofficial addon for [Figura](https://modrinth.com/mod/figura) that allows Simple Voice Chat to be detected by Figura Lua scripts.\n\n## [DOCUMENTATION](https://github.com/KnownSH/FiguraSVC-v2/tree/main/examples)\nWiki will come soon!\n\n## Example Script\n```lua\n-- Example talking animation\nlocal microphoneOffTime = 0\nlocal isMicrophoneOn = false\n\nfunction pings.talking(state)\n    -- (safe on servers) (visible to everyone)\n    animations.model.talk:setPlaying(state)\nend\n\nfunction events.tick()\n    local previousMicState = isMicrophoneOn\n\n    microphoneOffTime = microphoneOffTime + 1\n    isMicrophoneOn = microphoneOffTime <= 2 -- has svc.microphone been called in the past 2 ticks?\n\n    if previousMicState ~= isMicrophoneOn then\n        pings.talking(isMicrophoneOn)\n    end\nend\n\nif client:isModLoaded(\"figurasvc\") and host:isHost() then\n    function events.HOST_MICROPHONE(pcm)\n        microphoneOffTime = 0\n    end\nend\n```",
+  "categories": [
+    "decoration",
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "quilt",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 66582,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6"
+  ],
+  "date_updated": null
+}

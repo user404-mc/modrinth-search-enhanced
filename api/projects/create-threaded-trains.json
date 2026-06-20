@@ -1,0 +1,25 @@
+{
+  "id": "RYJzdkDr",
+  "slug": "create-threaded-trains",
+  "title": "Create: Threaded Trains",
+  "description": "A mod that runs all calculations of the railway network on a separate thread parallel to the server tick, which greatly improves performance, especially in large networks.",
+  "body": "A small mod that runs all calculations of the railway network on a **separate thread** parallel to the server tick, which greatly improves performance, especially in large networks.\n\nThis mod is server-side only, but it can also be used on the client-side (if you are playing in singleplayer).\n\nThis mod works with Create 0.5.1 and all Create 6 versions!\n\n<img width=\"2430\" height=\"757\" alt=\"comparison\" src=\"https://github.com/user-attachments/assets/366bda07-5e2f-49f2-a313-af1e70660617\" />\n\n## ✅ Issues & Compatibility\nSince this mod offloads all train calculations to a separate thread, problems can arise with addons that rely on or modify these parts of Create's code. These problems typically show in server freezes and crashes. Unfortunately, these issues are very difficult to resolve if the mods aren't designed for multithreading (which most won't be). It works for some modpacks, but not for others. I'm sorry if it isn't working for you :(\n\nThis mod has been tested with Create and it should work fine with it. However, with such a large number of different addons, it's impossible to test and cover every possible scenario. If you know exactly which addon is causing problems, please report it in a GitHub issue, and we can try to implement a compatibility fix.\n\nBut as always: **CREATE BACKUPS OF YOUR WORLD!**\n\n## 🧩 How does it work?\nUsually, the railway network is calculated immediately after the other tasks of the server tick loop (e.g. Block Entities, Entities, Players, Chunks, etc.). Under high server load, for example, due to many Block Entities and a large rail network, this can result in very long tick times.\n\nThis mod starts calculating the railway network in parallel with the other tasks right at the beginning of a new server tick, thus reducing the overall time. To keep the game synchronized, both tasks wait on each other until they are finished before the tick ends.\n\nExtensive tests on a large server with 700+ trains and a total of 200 mods have shown that this improves performance significantly.\n\n## 🤗 Contribute to this project\n\nFeel free to help with development by creating pull requests or issues on GitHub.\nIf you have questions, you can visit our Discord server.\n\n[![Discord](https://i.imgur.com/YnDoeHs.png)](https://discord.gg/AeSbNgvc7f)\n\n## ⚠️ Please note!\nTo protect your world from damage, you should always create a backup of your world before installing it!",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 652228,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

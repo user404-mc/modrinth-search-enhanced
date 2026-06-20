@@ -1,0 +1,42 @@
+{
+  "id": "FXyXxB6A",
+  "slug": "better-whitelist",
+  "title": "Better Whitelist",
+  "description": "A configurable whitelist system for Minecraft",
+  "body": "Better-Whitelist provides a basic whitelist system for your server that you can adapt to your use case.\n\nThe mod is required both on the server and any clients connecting to the server.\n\nThe whitelist is configured using [μScript](https://git.jfronny.dev/Johannes/java-commons/src/branch/master/muscript-runtime/README.md), but you don't have to be good at programming to use this mod.\n\nA config file with some additional details will be created when you first start your server with the mod.\n\nA simple config for Better-Whitelist could look as follows (please note that you'd probably have to add exceptions for client-side mods with optional server-side components when using this):\n```\n// convert a mod to a simpler representation to save bandwidth\nsimplify = { mod -> { id = mod.id, version = mod.version } }\n\n// all non-serverside mods present on the server\nsharedMods = mods::values()\n  ::filter({ v -> v.environment != 'server' & v.id != 'java' })\n  ::map(simplify)\n\n// ensure the client has the correct version of every non-serverside mod on the server\nclientMissing = challenge({ arg ->\n  arg::filter({ v -> !mods::values()::anyMatch({ m -> v.id == m.id & v.version == m.version }) })\n}, sharedMods)\nassert(clientMissing::isEmpty(), 'You lack required mods: ' || clientMissing)\n\n// ensure the client has no additional mods that would be required on the server\nclientAdditional = challenge({ arg, fn ->\n  clientSideMods = mods::values()::filter({ v -> v.environment != 'client' & v.id != 'java' })\n  clientSideMods::filter({ v -> !arg::anyMatch({ m -> v.id == m.id & v.version == m.version }) })::map(fn)\n}, sharedMods, simplify)\nassert(clientAdditional::isEmpty(), 'You have unsupported mods: ' || clientAdditional)\n\n// filter resource packs for X-Ray packs\nbannedWords = listOf('xray', 'x-ray', 'cheat')\nassert(!challenge({ ->\n  resourcePacks::map({ pack -> pack.name || ' ' || pack.displayName || ' ' || pack.description })\n})::anyMatch({ v -> bannedWords::anyMatch({ word -> v::toLower()::contains(word) }) }), \"Please don't cheat, \" || user.name)\n```\n\nThe following things are available to your scripts:\n- All methods from the μScript standard library (including date/time, meaning you can temporarily whitelist or blacklist users or create countdowns)\n- `resourcePacks` (client only): a list of resource packs, each of which has a `name`, `displayName` and `description`\n- `println('message')` (both): a function for debugging\n- `mods` (both): a list of loaded mods with the same fields as the result of `mod()`\n- `mod('id')` (both): information about a specific mod (or null): `id`, `name`, `description`, `authors` (list of strings), `contributors` (list of strings), `version`, `environment` (either `client`, `server` or `*`), `license`, `contact` (same as FMJ), `depends` (list of strings)\n- `assert(bool)` (server): assert that something is true and kick the player if it's not (optionally, add a message as the second parameter)\n- `challenge({->closure}, additional arguments...)` (server): send a closure to the client to be executed there. The arguments may contain other closures.\n- `user` (server): information about the user trying to log in, namely their `id` and `name`\n<center>\n  <a href=\"https://jfronny.gitlab.io/contact.html\">\n    <img alt=\"Suggestions and Support\" src=\"https://img.shields.io/badge/Suggestions%20and%20Support-red?style=for-the-badge&logo=matrix\">\n  </a>\n</center>",
+  "categories": [
+    "fabric",
+    "management"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2668,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

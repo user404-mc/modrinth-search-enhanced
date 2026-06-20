@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modrinth Enhanced Search API</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f0f0f0; }
+        code { background: #eee; padding: 2px 5px; border-radius: 3px; }
+        pre { background: #eee; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        .example { border: 1px solid #ccc; padding: 10px; margin: 10px 0; background: #fafafa; }
+        .example button { margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Modrinth Enhanced Search – API Documentation</h1>
+    <p>This API loads the project index (possibly split into multiple files) and filters it.</p>
+
+    <h2>Endpoint</h2>
+    <p><code>/api.js</code></p>
+
+    <h2>Parameters</h2>
+    <ul>
+        <li><strong>q</strong> – search string (matches title, description, body, categories, game versions)</li>
+        <li><strong>category</strong> – exact category name (e.g., "technology", "magic")</li>
+        <li><strong>client_side</strong> – "required", "optional", or "unsupported"</li>
+        <li><strong>server_side</strong> – same as above</li>
+        <li><strong>limit</strong> – number of results per page (default: 20)</li>
+        <li><strong>offset</strong> – starting index (default: 0)</li>
+        <li><strong>callback</strong> – the name of the JavaScript function to call with the result (JSONP)</li>
+    </ul>
+
+    <h2>Response format</h2>
+    <pre>{
+    total: number,
+    limit: number,
+    offset: number,
+    results: [ ... ]
+}</pre>
+
+    <h2>Example usage</h2>
+    <pre>&lt;script src="/api.js?q=mining&limit=5&offset=10&callback=showResults"&gt;&lt;/script&gt;
+&lt;script&gt;
+function showResults(data) {
+    console.log(data.total, data.results);
+}
+&lt;/script&gt;</pre>
+
+    <h2>Live test</h2>
+    <div class="example">
+        <label>Search: <input type="text" id="testQuery" value="fabric" /></label>
+        <label>Limit: <input type="number" id="testLimit" value="5" /></label>
+        <label>Offset: <input type="number" id="testOffset" value="0" /></label>
+        <button onclick="testAPI()">Run</button>
+        <pre id="testOutput">Results will appear here...</pre>
+    </div>
+
+    <h2>Additional REST‑like endpoints</h2>
+    <p>You can also fetch individual project details via:</p>
+    <p><code>/api/projects/&lt;slug&gt;.json</code></p>
+    <p>Example: <a href="/api/projects/sodium.json" target="_blank">/api/projects/sodium.json</a></p>
+
+    <script>
+        function testAPI() {
+            var q = document.getElementById('testQuery').value.trim();
+            var limit = parseInt(document.getElementById('testLimit').value) || 5;
+            var offset = parseInt(document.getElementById('testOffset').value) || 0;
+            var output = document.getElementById('testOutput');
+            output.textContent = 'Loading...';
+            var script = document.createElement('script');
+            script.src = '/api.js?q=' + encodeURIComponent(q) + '&limit=' + limit + '&offset=' + offset + '&callback=showTestResults';
+            document.body.appendChild(script);
+            window.showTestResults = function(data) {
+                output.textContent = JSON.stringify(data, null, 2);
+                delete window.showTestResults;
+                document.body.removeChild(script);
+            };
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "id": "rDufDd8o",
+  "slug": "kowo-lib",
+  "title": "κoωo (kowo-lib)",
+  "description": "Fancy™ kotlin syntax for oωo-lib",
+  "body": "![Icon](https://raw.githubusercontent.com/BonfireMC/kowo-lib/main/images/icon_256px.png)\n\nFancy™ kotlin syntax for [oωo-lib](https://modrinth.com/mod/owo-lib)\n\n# Setup\n\nIn your `build.gradle` file, add these lines:\n\n```groovy\nrepositories {\n    maven { url \"https://api.modrinth.com/maven\" }\n    maven { url \"https://maven.wispforest.io/releases\" }\n}\n\ndependencies {\n    modImplementation include(\"maven.modrinth:kowo-lib:0.12.20b+1.21.5\")\n\n    modImplementation \"io.wispforest:owo-lib:0.12.20+1.21.5\"\n    // only if you plan to use owo-config\n    // annotationProcessor \"io.wispforest:owo-lib:0.12.20+1.21.5\"\n}\n\nkotlin {\n    compilerOptions {\n        freeCompilerArgs.add(\"-Xcontext-parameters\")\n    }\n}\n```\n\n# Example usage\n\n```kt\nimport xyz.bonfiremc.kowo.dsl.*\n\nclass SizingTestKuwuScreen : BaseOwoScreen<FlowLayout>() {\n    override fun createAdapter(): OwoUIAdapter<FlowLayout> {\n        return OwoUIAdapter.create(this, ::verticalFlow)\n    }\n\n    override fun build(rootComponent: FlowLayout) {\n        root {\n            verticalAlignment = VerticalAlignment.CENTER\n            horizontalAlignment = HorizontalAlignment.CENTER\n\n            +stack(Sizing.content(), Sizing.content()).apply {\n                padding {\n                    all(15)\n                }\n                horizontalAlignment = HorizontalAlignment.CENTER\n                surface = Surface.panelWithInset(6)\n\n                val animation: Animation<Sizing> = horizontalSizing().animate(500, Easing.CUBIC, 75.fill)\n\n                +button(\"initialize sizenite\".literal).apply {\n                    horizontalSizing = 50.fill\n\n                    onPress {\n                        animation.reverse()\n                    }\n                }\n            }\n\n            +label(\"bruh\".literal.styled { it.withClickEvent(ClickEvent.OpenUrl(URI.create(\"https://wispforest.io\"))) })\n        }\n    }\n}\n```\n\nMore examples on [GitHub](https://github.com/BonfireMC/kowo-lib/tree/1.21.5/src/test/kotlin/ua/mei/kuwu/client/screen)\n\n# TODO\n\n- [x] Simplified way to add child to parent component\n- [ ] More examples\n- [ ] Styling with MSS (Minecraft Style Sheets)\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1003,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

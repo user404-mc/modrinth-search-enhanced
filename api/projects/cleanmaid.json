@@ -1,0 +1,21 @@
+{
+  "id": "rvq3ytpo",
+  "slug": "cleanmaid",
+  "title": "CleanMaid",
+  "description": "A configurable Minecraft cleanup utility mod.",
+  "body": "# CleanMaid\n\nCleanMaid is a lightweight Minecraft server-side cleanup mod. Like a diligent maid on duty, it cleans dropped items and entities according to your configuration, reducing server load caused by entity buildup.\n\n## Supported Versions\n\n- Minecraft `1.21.1`\n- NeoForge `21.1.222`\n- Java `21`\n\n## Main Features\n\n- Automatically clears dropped items and experience orbs on a timer\n- Warning and countdown messages before cleanup\n- Two-level batched cleanup: dimension-level batching + entity-type batching within each dimension\n- Item blacklist/whitelist and dimension blacklist/whitelist\n- Protection for newly dropped items, named items, and player death drops\n- `/cleanmaid` admin commands and shortcut command `/ccb`\n- Configurable broadcasts via actionbar / chat\n- Hidden Easter eggs and hidden advancements\n\n## Installation\n\n1. Install a Minecraft `1.21.1` server.\n2. Install NeoForge `21.1.222`.\n3. Place the main Mod jar from the release page into the server's `mods/` directory.\n4. Start the server. The configuration files will be generated in `config/cleanmaid/`.\n\n## Common Commands\n\nAll commands require permission level `3` by default.\n\n```text\n/cleanmaid help\n/cleanmaid clean\n/ccb\n/cleanmaid status\n/cleanmaid reload\n/cleanmaid set interval 60\n/cleanmaid set enabled true\n/cleanmaid set easter_egg false\n```\n\nBlacklist and whitelist:\n\n```text\n/cleanmaid item blacklist add minecraft:dirt\n/cleanmaid item blacklist remove minecraft:dirt\n/cleanmaid item whitelist list\n/cleanmaid dimension blacklist add minecraft:the_nether\n/cleanmaid dimension whitelist add minecraft:overworld\n/cleanmaid dimension whitelist list\n```\n\nTargeted cleanup:\n\n```text\n/cleanmaid clean dimension minecraft:the_nether\n/cleanmaid clean item minecraft:cobblestone\n/cleanmaid clean entity minecraft:experience_orb\n/cleanmaid clean force\n```\n\n\n## Configuration Files\n\nConfiguration directory:\n\n```text\nconfig/cleanmaid/\n```\n\nMain files:\n\n```text\ncleanmaid-server.toml\nblacklist.toml\nwhitelist.toml\n```\n\n`cleanmaid-server.toml` controls scheduling, target entities, protection rules, display location, sounds, permissions, and the Easter egg toggle.\n\n`blacklist.toml` and `whitelist.toml` store both items and dimensions:\n\n```json\n{\n  \"items\": [],\n  \"dimensions\": []\n}\n```\n\n## Blacklist and Whitelist Rules\n\n- blacklist = must be cleaned\n- whitelist = protected and will not be cleaned\n- blacklist has higher priority than whitelist\n\nDefault items:\n\n- blacklist: `minecraft:cobblestone`, `minecraft:dirt`\n- whitelist: `minecraft:diamond`, `minecraft:netherite_ingot`\n\n\n## Build\n\n```powershell\n.\\\\gradlew.bat build\n```\n\nBuild artifacts are located in:\n\n```text\nbuild/libs/\n```",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 319,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

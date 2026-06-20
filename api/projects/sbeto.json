@@ -1,0 +1,22 @@
+{
+  "id": "jffOBV5l",
+  "slug": "sbeto",
+  "title": "SBETO (Smart Block-Entity Tick Optimizer)",
+  "description": "Optimizes block‑entity ticks to boost TPS.",
+  "body": "# Smart Block‑Entity Tick Optimizer (SBETO)\nCuts server and client overhead by making block entities tick only when it matters. Hoppers wake on activity and sleep when idle; chest client ticks are skipped when no players are nearby. The result is higher TPS with no changes to vanilla behavior.\n\n## How it works\n\nSkip tick when empty and cooldown allows.\nWake briefly on successful transfers, entity collisions, or adjacent inventory updates.\nConfigurable idle grace period and wake triggers.\nChests (client):\nSkip client-side ticks when no player is within a configurable range.\nFeatures\n\nPotentially* Boosts tick performance by avoiding useless block‑entity updates.\nPreserves vanilla mechanics and item flow.\nWorks on servers without clients having the mod; client install optional for minor CPU savings.\nFully configurable, with commands and stats.\n## Installation\nRequires Fabric Loader and Fabric API.\n\nDrop the jar into your mods folder.\n\nServer-only install is recommended for TPS gains; client install is optional.\n## Configuration\nA config file is created at config/sbeto.json on first run.\nKey options:\n\nChests: enabled, playerRange\n\nHoppers: enabled, idleGraceTicks, cooldownAware, wakeOnInventoryChange, wakeOnEntityCollision,\n\ndebugLogging Example:\n\n```\njson\n{\n  \"chests\": { \"enabled\": true, \"playerRange\": 32.0 },\n  \"hoppers\": {\n    \"enabled\": true,\n    \"idleGraceTicks\": 40,\n    \"cooldownAware\": true,\n    \"wakeOnInventoryChange\": true,\n    \"wakeOnEntityCollision\": true,\n    \"debugLogging\": false\n  }\n}\n```\n\n## Commands\n\n\n```/sbeto stats```— show performance counters\n\n```/sbeto stats reset``` — clear counters\n\n```/sbeto reload``` — reload config\n\n```/sbeto debug on|off|toggle|show``` — control debug logging\n\n```/sbeto hoppers on|off|show``` — enable/disable hopper logic\n\n```/sbeto chests on|off|show``` — enable/disable chest logic\n\n_Please report crashes or incompatibilities in our [Discord](https://discord.gg/b7JFs78abx) server._",
+  "categories": [
+    "fabric",
+    "management",
+    "optimization",
+    "storage",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1746,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

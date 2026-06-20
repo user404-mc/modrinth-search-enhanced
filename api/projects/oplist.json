@@ -1,0 +1,43 @@
+{
+  "id": "APWKzzNj",
+  "slug": "oplist",
+  "title": "OPList",
+  "description": "实时检测服务器中的OP权限变动。当检测到未授权的玩家时，将自动执行自定义命令。\nReal time detection of OP permission changes in the server. When unauthorized players are detected, custom commands will be automatically executed.",
+  "body": "# OPList - Intelligent OP Permission Guardian Plugin  \n# OPList - 智能OP权限守护插件  \n\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21-blueviolet?style=flat-square)  \n![Spigot](https://img.shields.io/badge/Spigot-API%207.0%2B-yellow?style=flat-square)  \n\n## Plugin Overview  \n## 插件概述  \n\nA smart OP permission monitoring system that detects OP permission changes in real-time. When an unauthorized player obtains OP permissions, the plugin will automatically perform the following actions:  \n一个智能的OP权限监控系统，实时检测服务器中的OP权限变动。当检测到未授权的玩家获取OP权限时，将自动执行以下操作：  \n\n- Immediately revoke illegal OP permissions  \n- Execute preset ban commands  \n- Broadcast warning messages to all players  \n- Log security events to the console  \n\n   \n- 立即撤销非法OP权限  \n- 执行预设的封禁命令  \n- 向全服玩家发送警示广播  \n- 记录安全事件到控制台  \n\n\n\n\n\n## Key Features  \n## 主要功能  \n\n- 🛡️ Real-time OP permission monitoring  \n- 🛡️ 实时OP权限监控  \n- ⚡ Automatic execution of security measures  \n- ⚡ 自动执行安全措施  \n- 📢 Visual alert notifications  \n- 📢 可视化警报通知  \n- 🔧 Highly customizable configuration  \n- 🔧 高度可定制化配置  \n- 📅 Supports all versions of modern Minecraft servers  \n- 📅 支持全版本现代Minecraft服务端  \n\n## Configuration File Explanation (`config.yml`)  \n## 配置文件详解 (`config.yml`)  \n\n```yaml  \n# List of players allowed to retain OP permissions  \n# 允许保留OP的玩家名单  \nallowed_ops:  \n  - 'trusted_admin'  \n  \n# Custom command to execute when an illegal OP is detected (use {player} as a placeholder)  \n# 当发现非法OP时执行的自定义命令（可用 {player} 作为占位符）  \ncustom_command: 'ban {player} 非法获取管理员权限'  \n  \n# Broadcast message after banning (use {player} as a placeholder)  \n# 封禁后的广播消息（可用 {player} 作为占位符）  \nbroadcast_message: '&c玩家 &6{player} &c因非法获取OP权限已被封禁！'  \n```  \n\n### Configuration Item Details  \n### 配置项说明  \n\n#### 1. Authorized List Configuration  \n#### 1. 授权名单配置  \n\n```yaml  \nallowed_ops:  \n  - 'trusted_admin'  \n```  \n\n| Attribute | Description |  \n|-----------|-------------|  \n| **Function** | Whitelist system to define players allowed to have OP permissions |  \n| **Format** | YAML list format |  \n| **Notes** | • Case-sensitive<br>• Player names must be enclosed in single quotes<br>• Each ID should start with a dash and be on a separate line |  \n| **Example** | `- 'AdminSteve'` allows player AdminSteve to hold OP permissions |  \n\n| 属性        | 说明                                                                 |  \n|-------------|--------------------------------------------------------------------|  \n| **功能**    | 白名单系统，定义允许拥有OP权限的玩家                                     |  \n| **格式**    | YAML列表格式                                                         |  \n| **注意事项** | • 严格区分大小写<br>• 使用单引号包裹玩家名<br>• 每个ID独占一行并以短横线开头 |  \n| **示例**    | `- 'AdminSteve'` 表示允许玩家AdminSteve持有OP权限                       |  \n\n#### 2. Custom Command Configuration  \n#### 2. 自定义命令配置  \n\n```yaml  \ncustom_command: 'ban {player} 非法获取管理员权限'  \n```  \n\n| Attribute | Description |  \n|-----------|-------------|  \n| **Function** | Define the command to execute when an illegal OP is detected |  \n| **Placeholder** | `{player}` automatically replaces the违规 player's name |  \n| **Extended Use** | Can be configured as other punishment commands, e.g., `tempban <player> 24h 非法获取OP权限` |  \n| **Permission Requirement** | Ensure the plugin has permission to execute the target command |  \n\n| 属性        | 说明                                                                 |  \n|-------------|--------------------------------------------------------------------|  \n| **功能**    | 定义检测到非法OP时执行的命令                                             |  \n| **占位符**  | `{player}` 自动替换为违规玩家名称                                        |  \n| **扩展应用**| 可配置为其他处罚命令，如：`tempban <player> 24h 非法获取OP权限`      |  \n| **权限需求**| 确保插件拥有执行目标命令的权限                                            |  \n\n#### 3. Broadcast Message Configuration  \n#### 3. 广播消息配置  \n\n```yaml  \nbroadcast_message: '&c玩家 &6{player} &c因非法获取OP权限已被封禁！'  \n```  \n\n| Attribute | Description |  \n|-----------|-------------|  \n| **Function** | Define the content of the server-wide broadcast message |  \n| **Color Codes** | Supports hexadecimal color codes with `&` symbol (client support required) |  \n| **Placeholder** | `{player}` automatically replaces the违规 player's name |  \n| **Formatting Suggestion** | Use color codes to emphasize key information, e.g., `<br>&c[Alert] &6{player} &e已被系统自动封禁` |  \n\n| 属性         | 说明                                                                 |  \n|--------------|--------------------------------------------------------------------|  \n| **功能**     | 定义全服广播的消息内容                                                  |  \n| **颜色代码** | 支持`&`符号的十六进制颜色代码（需客户端支持）                                |  \n| **占位符**   | `{player}` 自动替换为违规玩家名称                                        |  \n| **排版建议** | 使用颜色代码分段强调关键信息，例如：<br>`&c[警报] &6{player} &e已被系统自动封禁` |  \n\n## Installation Guide  \n## 安装指南  \n\n- Download the latest version of the plugin  \n- Place the JAR file into your server's `plugins/` directory  \n- Restart your server to generate the configuration file  \n- Edit `plugins/config.yml` to configure settings  \n- Reload the configuration file or restart your server to apply changes  \n\n- 下载最新版本插件  \n- 将jar文件放入服务器的`plugins/`目录  \n- 重启服务器生成配置文件  \n- 编辑`plugins/config.yml`进行配置  \n- 重载配置文件或重启服务器生效  \n\n## Notes  \n## 注意事项  \n\n**🎨 Color Codes**  \n**🎨 颜色代码**  \n\nExamples of color codes supported in broadcast messages:  \n广播消息支持的颜色代码示例：  \n- `&4` Dark Red (深红)  \n- `&c` Red (红色)  \n- `&6` Gold (金色)  \n- `&e` Yellow (黄色)  \n- `&a` Green (绿色)  \n\n**📜 Log Tracking**  \n**📜 日志追踪**  \n\nAll security events are logged in the console with the format:  \n所有安全事件都会在控制台记录，格式：  \n`[OPList] Handled illegal OP player [Name: 1, Online: No, Original OP Status: Yes]`  \n`[OPList] 已处理非法OP玩家 [名称: 1, 在线: 否, 原OP状态: 是]`  ",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 299,
+  "followers": 0,
+  "game_versions": [
+    "1.12",
+    "1.12.1",
+    "1.12.2",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

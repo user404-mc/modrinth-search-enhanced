@@ -1,0 +1,34 @@
+{
+  "id": "t6f5DVpz",
+  "slug": "old-school-jail",
+  "title": "Old School Jail",
+  "description": "A jail mod for fabric servers, just like the good old days!",
+  "body": "# Old School Jail Mod\n\nA classic jail mod for Minecraft Fabric servers - just like the good old days!\n\n## Features\n\n- **Jail Players**: Jail players with customizable time limits and reasons\n- **Jail Management**: Set multiple jail locations and delete them as needed\n- **Permissions System**: Full integration with Fabric Permissions API (works with LuckPerms and other permission mods)\n- **Smart Restrictions**: Jailed players cannot:\n  - Break or place blocks\n  - Interact with blocks (buttons, levers, etc.)\n  - Use commands (except `/jail time` to check their sentence)\n  - Teleport or escape (automatic teleport back to jail)\n- **Configurable**: Extensive config file for customization\n- **Data Persistence**: All jails and jailed players are saved and restored on server restart\n- **Auto-Release**: Players are automatically released when their sentence expires\n- **Original Location Tracking**: Players are teleported back to their original location upon release (configurable)\n- **Logout/Login Handling**: Players remain jailed across logout/login and are auto-released if sentence expired offline\n- **Multiple Jails**: Create multiple jails and choose which one to send players to\n- **Essential Commands Compatible**: Fully compatible with [Essential Commands](https://modrinth.com/mod/essential-commands) - the recommended companion mod\n\n## Commands\n\n### Main Commands\n- `/jail <player> <time> <reason>` - Jail a player in the first available jail\n  - Time is based on config setting (default: minutes)\n  - Example: `/jail Steve 30 Griefing the spawn`\n\n\n- `/jail <player> <jail_name> <time> <reason>` - Jail a player in a specific jail\n  - Example: `/jail Steve spawn 30 Being annoying`\n\n\n- `/jail release <player>` - Release a player from jail early (teleports back to original location if enabled in config)\n\n- `/jail time` - Check your own remaining jail time (available to jailed players)\n- `/jail time <player>` - Check any player's jail time (admin only - requires `oldschooljail.jail` permission)\n- `/jail list` - List all currently jailed players with details (admin only - requires `oldschooljail.jail` permission)\n\n### Admin Commands\n- `/jail set <jail_name>` - Set a jail at your current location\n- `/jail set <jail_name> <x> <y> <z>` - Set a jail at specific coordinates\n- `/jail delete <jail_name>` - Delete a jail (automatically releases all prisoners)\n\n## Permissions\n\nThe mod uses the Fabric Permissions API and supports any permissions plugin that implements it (LuckPerms, etc.)\n\n### Permission Nodes\n- `oldschooljail.jail` - Allows jailing players\n- `oldschooljail.release` - Allows releasing players\n- `oldschooljail.set` - Allows setting jail locations\n- `oldschooljail.delete` - Allows deleting jails\n- `oldschooljail.immune` - Makes a player immune to being jailed\n- `oldschooljail.time` - Allows using `/jail time` (granted to all by default)\n- `oldschooljail.jail` - Also allows using `/jail time <player>` to check other players' jail time\n\n**Note**: If no permissions plugin is installed, the mod falls back to OP level 2 for admin commands.\n\n## Configuration\n\nThe config file is located at `config/oldschooljail.toml` and is automatically generated on first run with helpful comments.\n\n### Config Options\n\nThe TOML file includes detailed comments for each option. Here's what you can configure:\n\n**Time Settings:**\n- `input_unit` - Time unit for commands (SECONDS, MINUTES, or HOURS)\n- `max_sentence_seconds` - Maximum sentence length in seconds\n\n**Restrictions:**\n- `block_commands` - Block all commands except /jail time\n- `block_teleportation` - Auto-teleport back if player escapes >50 blocks\n- `block_block_breaking` - Prevent breaking blocks\n- `block_block_placing` - Prevent placing blocks  \n- `block_interaction` - Prevent interacting with blocks\n\n**Release Settings:**\n- `teleport_back_on_release` - Teleport players back to original location when released (if false, players must walk out manually)\n\n**Messages:**\n- `release` - Message on manual release\n- `jail_expired` - Message when sentence expires\n\nAll settings include helpful comments in the config file explaining what they do!\n\n## Installation\n\n1. Download the oldschooljail-[version].jar for your MC version\n2. Place the JAR file in your server's `mods` folder\n3. Ensure you have Fabric API installed\n4. (Optional) Install a permissions plugin like LuckPerms for advanced permission control\n5. (Recommended) Install [Essential Commands](https://modrinth.com/mod/essential-commands) for full oldschool experience\n6. Start your server\n\n## Compatibility\n\n- **Minecraft Version**: 1.21.2-1.21.11\n- **Mod Loader**: Fabric\n- **Required**: Fabric API\n- **Recommended**: LuckPerms or other Fabric Permissions API compatible plugin\n- **AFK Compatibility**: Fully compatible with [Essential Commands](https://modrinth.com/mod/essential-commands) - the recommended companion mod\n\n## License\n\nThis project is licensed under the MIT License",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 365,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

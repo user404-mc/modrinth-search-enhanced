@@ -1,0 +1,24 @@
+{
+  "id": "zk5JLatm",
+  "slug": "fetchjs",
+  "title": "FetchJS",
+  "description": "FetchJS provides simple methods that allow you to make HTTP requests, send data, or download files directly from KubeJS scripts.",
+  "body": "## FetchJS\n\n**FetchJS** provides simple methods that allow you to make HTTP requests, send data, or download files directly from **KubeJS** scripts.\n\n---\n\n### Basic Usage\n\nThe `Fetch` method works similarly to the web-based `fetch` API.\nIt can be used to call APIs or send data to servers.\n\nA common use case is for modpacks to retrieve official announcements,\nor dynamically update configuration files from a GitHub repository.\n\n```javascript\nFetchJS.fetch(\"https://zenquotes.io/api/random\", data => {\n    event.player.tell(data);\n});\n```\n\nThe URL above returns a random quote — useful for testing.\n\n---\n\nThe `Download` method is used for downloading files such as images or mods.\n\n```javascript\nFetchJS.download(\n    \"https://raw.githubusercontent.com/Tower-of-Sighs/SmartKeyPrompts/refs/heads/master/libs/SlashBladeResharped-1.20.1-1.3.40.jar\",\n    \"mods/SlashBladeResharped-1.20.1-1.3.40.jar\",\n    progress => {\n        event.player.displayClientMessage(Component.literal(\"Downloading \" + Math.round(progress * 100) + \"%\"), true);\n    }\n);\n```\n\nIn this example, the method downloads the *SlashBlade* mod directly into the `mods` folder\nand displays real-time download progress to the player.\n\nDownloading images is usually faster and more practical—\nplease, use it responsibly. 😄\n\n---\n\n### Advanced Usage\n\nThe examples above demonstrate the simplified usage.\nFor more complete control, you can use the extended versions of these methods:\n\n```javascript\nboolean fetch(String url,\n              String method,\n              Map<String, String> headers,\n              String jsonBody,\n              Map<String, String> formData,\n              int timeoutMillis,\n              Consumer<String> callback);\n\nboolean download(String url, \n                 String path, \n                 Map<String, String> headers, \n                 int timeoutMillis, \n                 Consumer<Double> progressCallback);\n```\n\nYou can safely pass `null` for unused parameters.\n`timeoutMillis` defines the maximum time (in milliseconds) to wait before a connection fails —\nfor example, GitHub’s default limit is around **20,000 ms**.\n\nIn most cases, the simplified methods should meet your needs.\nThe extended versions have not been deeply tested, so use them carefully.\n\nIf you’re unsure how to use these parameters,\nrefer to the [**official Fetch API documentation**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).\n\n---\n\n### Notes\n\nThis mod is a bit experimental — who knows how long it’ll last.\nUse it while it lives, and enjoy it while you can.",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 133,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

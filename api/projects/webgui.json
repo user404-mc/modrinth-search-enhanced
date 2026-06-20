@@ -1,0 +1,31 @@
+{
+  "id": "tDw1xQja",
+  "slug": "webgui",
+  "title": "WebGUI",
+  "description": "Embed any web page — React, Vue, plain HTML — as a full-screen GUI or transparent HUD overlay inside Minecraft. Powered by Chromium (MCEF).",
+  "body": "**WebGUI** lets you render real web interfaces inside Minecraft using the technologies you already know.\n\nOpen any web page — React, Vue, Svelte, or plain HTML/CSS/JavaScript — as a full-screen GUI or transparent HUD overlay directly in-game. Powered by real Chromium via MCEF, so modern web features just work: CSS animations, WebSockets, fetch, WebGL, localStorage, realtime updates, and more.\n\n* GitHub — [https://github.com/mc-webgui/webgui](https://github.com/mc-webgui/webgui)\n* Documentation — [https://webgui.space](https://webgui.space)\n* npm — [https://www.npmjs.com/package/@webgui/react](https://www.npmjs.com/package/@webgui/react)\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/wqZ400GWKUw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# Why WebGUI exists\n\nI'm a fullstack developer. Most of my work is building web applications — React frontends, APIs, realtime systems, dashboards, all the usual web stack.\n\nI've always loved Minecraft not only as a game, but as a creative platform. Servers, custom mechanics, communities, minigames, roleplay worlds — Minecraft gives people incredible freedom to build experiences together.\n\nAt some point I realized something:\n\n**Web developers already have amazing tools for building interfaces — but almost no good way to use them inside Minecraft.**\n\nEvery day we build polished UIs with responsive layouts, animations, maps, shops, live dashboards, and realtime interaction. But bringing that same workflow into Minecraft has always been difficult, limited, or awkward.\n\nSo I asked a simple question:\n\n> **What if Minecraft could just open a real web app?**\n\nNot a custom inventory GUI system.\nNot another proprietary UI framework.\nNot a new language to learn.\n\nJust the web.\n\nThat's how WebGUI started.\n\n---\n\n# Built for web developers\n\nWebGUI is designed for developers who already know modern frontend development.\n\nIf you know:\n- HTML\n- CSS\n- JavaScript\n\n—you already know how to build Minecraft interfaces with WebGUI.\n\nUse React, Vue, Svelte, Tailwind, WebSockets, REST APIs, animations, state managers, component libraries — whatever you already use for normal web development.\n\nBuild:\n- server shops\n- HUD overlays\n- maps\n- menus\n- admin panels\n- quest systems\n- roleplay interfaces\n- realtime dashboards\n- entire in-game applications\n\nThen load them directly inside Minecraft.\n\n---\n\n# How it works\n\nThe server sends a URL to the client.\nThe client opens it inside embedded Chromium.\nThe page receives live player data automatically and can communicate back with the game in realtime.\n\n---\n\n# Features\n\n- **Full-screen GUI** — replace Minecraft screens with your web app\n- **HUD overlay** — transparent browser layer rendered over gameplay\n- **Real Chromium browser** — powered by MCEF\n- **Live player data** — position, username, UUID, dimension, server\n- **Realtime communication** — browser ↔ Minecraft messaging\n- **Signed player tokens** — secure backend authentication without login screens\n- **Auto HUD on join**\n- **Per-player main menu**\n- **Server-side Mod API**\n- **Works with any frontend stack**\n\n---\n\n# Commands\n\n| Command | Permission |\n|---|---|\n| `/webgui gui <targets> <url>` | `webgui.command.gui` |\n| `/webgui hud <targets> <url>` | `webgui.command.hud` |\n\n---\n\n# JavaScript API\n\n```js\n// Live player data\nconst {\n  playerUuid,\n  username,\n  dimension,\n  pos,\n  server\n} = window.webgui.client;\n\n// Listen for updates\nwindow.addEventListener('webgui:client', e => {\n  console.log(e.detail);\n});\n\n// Send messages back to Minecraft\nwindow.webgui.postToGame({\n  channel: 'example',\n  value: 42\n});\n\n// Close current GUI/HUD\nwindow.webgui.closeGui();\n````\n\n---\n\n# React integration\n\n```bash\nnpm i @webgui/react\n```\n\n```jsx\nimport { useWebGUIClient } from '@webgui/react';\n\nfunction App() {\n  const client = useWebGUIClient();\n\n  return (\n    <div>\n      Hello, {client?.username}\n    </div>\n  );\n}\n```\n\n---\n\n# Server configuration\n\n`config/webgui/server.json`\n\n```json\n{\n  \"autoHudOnJoin\": true,\n  \"autoHudUrl\": \"https://your-server.com/hud\",\n  \"mainMenuUrl\": \"https://your-server.com/menu\",\n  \"enableTokens\": true,\n  \"tokenSecretBase64\": \"<base64 secret>\",\n  \"tokenTtlSeconds\": 300,\n  \"queryParamName\": \"webgui_token\"\n}\n```\n\n---\n\n# Requirements\n\n* Fabric Loader ≥ 0.18\n* Fabric API\n* Java 21\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "social"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 291,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

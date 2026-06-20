@@ -1,0 +1,31 @@
+{
+  "id": "tycXenOB",
+  "slug": "rrtt217-s-hdr-mod",
+  "title": "rrtt217's HDR Mod",
+  "description": "Enables native HDR in Minecraft with Iris shaders.",
+  "body": "# Minecraft HDR Mod\nA minecraft mod that enables native HDR on Windows/Linux with Iris shaders. Currently, in early development.\n[![PhotonHDRPic](https://i.postimg.cc/tgRwc3x5/2026-02-15-20-07-37-hdr.png)](https://postimg.cc/LJ7xYZvY)\n([Photon](https://modrinth.com/shader/photon-shader) patched to HDR w/ [Patrix](https://modrinth.com/resourcepack/patrix-32x), taken by mod's screenshot feature.)\n## What the mod have achieved\n- Native HDR, both for Windows scRGB and HDR10/PQ.\n- UI color correction by a BEFORE_BLIT pass.\n- Ingame config using Cloth Config API.\n- Ingame HDR screenshot.\n- Replay Mod HDR Video Export (only for versions above 1.21.10, need custom FFmpeg commandline, which can be found in config menu)\n## For Users\n- See XgarhontX's temporary patches for HDR output and tonemapping on select shaderpacks with support for this mod: [Google Sheets](https://docs.google.com/spreadsheets/d/1WgOqKED2FxC11-2oyW4aBIyl8tAHo-8WJ7JPxhYAO2Q/edit?gid=0#gid=0)\n  - See some pics here: [Wiki](https://github.com/rrtt217/Minecraft-HDR-Mod/wiki#gallery)\n- Adjust HDR Brightness values (Paper White, UI, Peak) with config menu. (Default keybind: F9)\n- Take a HDR screenshot ingame. (Default keybind: F10)\n- Supported platforms:\n  - Windows: Nvidia/AMD GPU generally run flawlessly. Intel GPU is supported since v2.1.0 with a DXGI fallback path and there's performance degradation (more info in [v2.1.0 release note](https://github.com/rrtt217/Minecraft-HDR-Mod/releases/tag/v2.1.0)).\n  - Linux Wayland: AMD/Intel GPU generally run flawlessly. People using Nvidia GPU may encounter some problems/crashes, see the troubleshooting for a potential workaround.\n  - macOS: Supported but need more testing, bugs are expected. Also, shaderpack support on macOS is limited.\n  - Android/iOS: **Not supported**. If Mobile launcher developers are interested in the project, my glfw fork can be a starting point for HDR support in the future.\n- **Troubleshooting**:\n    - ReShade is currently not compatible under default settings, failing to load and breaking sky.\n      - Enabling \"Force Activate OpenGL-DirectX Interop\" in config/advanced can improve compatibility with SpecialK and ReShade. Please make sure they only inject into DirectX 11 layer.\n    - Mods also messing with GLFW may be incompatible. (e.g. [Ixeris](https://modrinth.com/mod/ixeris))\n    - If your game is too bright/dark, try to adjust the custom brightness values yourself.\n    - If you're on Windows, don't forget to install the latest [Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).\n    - If your game crashes on NeoForge/Forge, disable `earlyWindowControl` in `<game folder>/config/fml.toml`. On newer HDR Mod versions the game will crash on first launch, please relaunch the game, we've automatically turned off early window. \n    - If HDR is broken when shaders are enabled, please reset \"Colorspace\" setting in Iris/Oculus to \"sRGB\".\n    - Clean temp file if your game doesn't start or some features are broken (path can be found in log, %TEMP%/glfw on Windows and /tmp/glfw on Linux).\n    - For Linux Nvidia users, if your game can't start, or you feel too much banding ingame, here's a potential workaround (using Zink, so performance degradation is expected):\n      - Use these environment variables:\n        ```\n        export __GLX_VENDOR_LIBRARY_NAME=mesa\n        export __EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json\n        export MESA_LOADER_DRIVER_OVERRIDE=zink\n        export GALLIUM_DRIVER=zink\n        ```\n      - **ONLY WORKS ON Mesa >= 26.0.0**. Lower versions crash your game due to the lack of [This PR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37693), So you should probably compile by yourself.\n## For Shader Packs\n### Wiki Tutorial\n- [For Shaderpack Devs](https://github.com/rrtt217/Minecraft-HDR-Mod/wiki/For-Shaderpack-Devs)\n### Macros\n- `HDR_MOD_INSTALLED`\n- `HDR_ENABLED`\n### Uniforms\n- `float HdrGameMinimumBrightness`;\n- `float HdrGamePeakBrightness`;\n- `float HdrGamePaperWhiteBrightness`;\n- `float HdrUIBrightness`;\n\nUse these uniforms inside `#if HDR_MOD_INSTALLED` block.\n### Output\nthe output of the shader(aka. what is written to main render target in final pass) should have **scRGB-nl encoding(Rec.709 primaries, sRGB (for negative numbers use −f(−x)) transfer function)**, and you should not use RGBA8F for scene color.\n- [Wiki Section](https://github.com/rrtt217/Minecraft-HDR-Mod/wiki/For-Shaderpack-Devs#4-ui-scaling--expected-output)\n## Known Issue\n- Xaero Map may cause black screen on startup, but recover to normal before you see title screen.\n## Credits\n- Tom94, for [glfw fork with color management](https://github.com/Tom94/glfw/tree/color-management);\n- IMS212, for [Iris shaders](https://github.com/IrisShaders/Iris) and [original glfw patch idea](https://github.com/IMS212/glfw/tree/hdr);\n- XgarhontX and some other fellows, for working on RenoDX Minecraft HDR and shader patches, and helping me to make color transform correct.\n## Copyright\nThe main HDR Mod repo is licensed under MIT. Bundled GLFW from Tom94's/mine fork is licensed under the zlib/libpng license.\n## Star History\n\n[![Star History Chart](https://api.star-history.com/svg?repos=rrtt217/Minecraft-HDR-Mod&type=date&legend=top-left)](https://www.star-history.com/#rrtt217/Minecraft-HDR-Mod&type=date&legend=top-left)\n",
+  "categories": [
+    "cursed",
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 11739,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

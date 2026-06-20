@@ -1,0 +1,40 @@
+{
+  "id": "jURjbCaq",
+  "slug": "variants-cit",
+  "title": "Variants-CIT",
+  "description": "Alternative CIT format for large collections of variants with repeating patterns.",
+  "body": "# Variants-CIT\nAn alternative CIT format designed to handle large amounts of variants.\n\nThis mod excels in scenarios where one item has many variants all based on the same pieces of data. It yields better performances when extreme amounts of CITs are available, and uses a resource format that is less redundant, requiring only one short file to configure all possible variants of an item at once.\n\nAssigning models on a case-by-case basis (similar to how Optifine-CIT handles it) is still possible, but does not boast the same performances.\n\n## Resource Pack Format\nThis is a quick showcase. Refer to [**The Wiki**](https://github.com/Estecka/mc-Variants-CIT/wiki) for a complete guide.\n\nThe format revolves around item variants being automatically associated to models or textures with matching names.\nInstead of defining separate conditions for every variants, you define a single rule that governs all variants in a collection, (so-called **modules**). This module defines what item is affected, how to figure out its variants, and where the variant models are located.\n\n### Fully automatic variants-to-model association\nHere's a simple module that would change the texture of enchanted books :\n```jsonc\n{\n\t\"items\": \"enchanted_book\", // The affected item type(s)\n\n\t\"modelPrefix\": \"book_cit/\", // The folder containing the possible models/textures.\n\t\"assetGen\": \"item_model/generated\", // Auto-generate models from textures (if missing)\n\t\n\t\"type\": \"stored_entchantment\", // How to compute the item's \"variant ID\"\n\t\"parameters\": { // Extra options specific to the module's type\n\t\t\"levelSeparator\": \"_lvl_\" // Include enchantment level in the variant ID\n\t}\n}\n```\nHere, a book with the enchantment `minecraft:unbreaking` at level 2 will have the variant ID `minecraft:unbreaking_lvl_2`, and thus use the texture stored at `/assets/minecraft/textures/item/book_cit/unbreaking_lvl_2.png`.\nThis single module will work for every possible enchantment, vanilla or modded, so long as a corresponding texture exists.\n\n### Automatic variants based on custom data\nThe module above has a purpose-made type for enchanted books. If no type exists for a specific use-case, you can still use more generic modules to get a variant from any component:\n\n```jsonc\n{\n\t\"items\": \"minecraft:suspicious_stew\",\n\t\"modelPrefix\": \"item/suspicious_stew_cit/\",\n\t\"assetGen\": \"item_model/generated\",\n\n\t\"type\": \"component_data\",\n\t\"parameters\": {\n\t\t\"componentType\": \"suspicious_stew_effects\", // The component containing the variant ID\n\t\t\"nbtPath\": \"[0].id\" // The location of the variant ID in the component.\n\t}\n}\n```\n#### Processing data that can't be used as-is:\n```jsonc\n{\n\t\"items\": \"diamond_sword\",\n\n\t\"modelPrefix\": \"item/named_swords/\",\n\t\"assetGen\": \"item_model/handheld\",\n\n\t\"type\": \"component_data\",\n\t\"parameters\":\n\t{\n\t\t\"componentType\": \"custom_name\",\n\t\t\"transform\": [\n\t\t\t{\n\t\t\t\t\"function\": \"regex\",\n\t\t\t\t// Pattern matching,..\n\t\t\t\t\"regex\": \"(?i)(.*'s )?(Great |Grand )?(?<var>.*(sword|dagger))( of doom)?\",\n\t\t\t\t// ... and preserve only a portion of the name.\n\t\t\t\t\"substitution\": \"$var\"\n\t\t\t\t// (E.g: \"steev18's great Steel Sword\" => \"Steel Sword\")\n\t\t\t}\n\t\t\t{\n\t\t\t\t// Turns any text into a valid identifier\n\t\t\t\t\"function\": \"sanitize\"\n\t\t\t\t// (E.g: \"Steel Sword\" => \"minecraft:steel_sword\")\n\t\t\t}\n\t\t]\n\t}\n}\n```\n\n#### Combining multiple pieces of data from different sources:\n```jsonc\n{\n\t\"items\": \"minecraft:diamond_sword\",\n\t\"modelPrefix\": \"item/trimmed_diamond_sword/\",\n\t\"assetGen\": \"item_model/handheld\",\n\n\t\"type\": \"component_format\",\n\t\"parameters\":\n\t{\n\t\t// How to combine various pieces of data into a variant ID\n\t\t// (E.g: sentry_diamond)\n\t\t\"format\": \"${pattern}_${material}\",\n\t\t// Where to find those pieces of data.\n\t\t\"variables\": {\n\t\t\t\"pattern\": {\n\t\t\t\t\"componentType\": \"trim\",\n\t\t\t\t\"nbtPath\": \".pattern\"\n\t\t\t},\n\t\t\t\"material\": {\n\t\t\t\t\"componentType\": \"trim\",\n\t\t\t\t\"nbtPath\": \".material\",\n\t\t\t\t\"transform\": \"discard_namespace\"\n\t\t\t}\n\t\t}\n\t}\n}\n```\n\n### Case-by-case variants\nFor systems that don't really follow any rules, (or if you have too few variants to care about automatism), you can use a format closer to Optifine-CIT's paradigms:\n```jsonc\n{\n\t\"items\": \"trident\",\n\t\"modelPrefix\": \"item/godly_tridents/\",\n\t\"assetGen\": \"item_model/trident\",\n\n\t\"type\": \"predicates\",\n\t\"parameters\": {\n\t\t\"predicates\":\n\t\t[\n\t\t\t{\n\t\t\t\t\"variantId\": \"zeus_smite\",\n\t\t\t\t\"precondition\": {\n\t\t\t\t\t\"enchantments.channeling\": { \"greater_or_equals\": 1 }\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"variantId\": \"jupiter_syphon\",\n\t\t\t\t\"precondition\": {\n\t\t\t\t\t\"enchantments.riptide\": { \"greater_or_equals\": 1 }\n\t\t\t\t}\n\t\t\t}\n\t\t\t// etc\n\t\t]\n\t}\n}\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1484590,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4-pre1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1-rc-1",
+    "26.1-rc-2",
+    "26.1-rc-3",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

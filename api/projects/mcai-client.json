@@ -1,0 +1,29 @@
+{
+  "id": "oOYhxSCs",
+  "slug": "mcai-client",
+  "title": "MCAI - Client",
+  "description": "MCAI - Client is the client-side version of MCAI.",
+  "body": "# MCAI - Minecraft (Character) Artificial Intelligence\n## (client-side version)\n\nHave you ever played Minecraft alone? Well, let me tell you something - it gets very lonely, very quickly when you're all alone in a vast blocky world and the only human-ish thing in the game just makes 'hrm' and 'huh' noises. This mod aims to alleviate that by providing you access to your very own AIs for you to chat with.\n\n## Setup\nMCAI requires setup to work properly. This is because [c.ai](https://c.ai), like most websites, requires an authorization token before it gives you any data.\n\nLuckily, obtaining your authorization token is simple.\n\nFirst, head to [c.ai](https://c.ai). Log in or create a new account.\n\nThen, open Inspect Element, navigate to Application, find Local Storage -> https://beta.character.ai\n![](https://cdn.modrinth.com/data/cached_images/356d1b64bc60fcf963c330a0574f5ff6431a41e6.png)\n![](https://cdn.modrinth.com/data/cached_images/6ee6913ff2a6718824ddfd0b4aabecdbfa8a1ec3.png)\n\nOnce you're there, you will need to find a key called `char_token`. This should be a JSON file with two keys; `value` and `ttl`. You can ignore the `ttl` key; you only need the `value` key.\n![](https://cdn.modrinth.com/data/cached_images/838c358453f4c9b4d4648b0c952d7f13f65380b0.png)\n\nCopy the value of the `value` key, go to either the mod config (`mcai.toml`) and locate `[General]`, where you will find the `authorization` field in which you can paste the value of `value`. Then you're good to go! Alternatively, you can use the `/ai authorize <token>` command in-game to automatically update the configuration file.\n\nTo register an AI to chat with, you can manually edit the configuration file, or you can use the command `/ai register <character id> <aliases (optional)>`. The `aliases` field is an optional space-separated list of alternative names to ping the AI with in chat, sort of like a nicknames system for the AI.\n\nThe `character id` field is used to get basic information about the character (like their name) and also as a way to know which character to send messages to. You can obtain the character ID of a character by going to [c.ai](https://c.ai), opening a chat with the character you want the ID from, and then copying the value of `char=` from the URL.\n![](https://cdn.modrinth.com/data/cached_images/cdcff45cf1405d3b8358caa401662fdfd7a0395c.png)\n\n## Chatting with registered AIs\nThere are two methods to chat with registered AIs - pinging them in a message via @<AI's name/alias> or via the `/ai talk <name> <text>` command.\n[insert gif of chatting with an AI here]\n\n## Commands\n`/ai authorize <token>` - an admin-only command that changes the access token the mod uses to interface with [c.ai](https://c.ai) in-game.\n\n`/ai context <name> <broadcast (optional)>` - retrieves the last few messages from the chat with the AI. Note that changing the `format` in the MCAI config may or may not cause it to fail when retrieving the name of the message sender. As the command defaults to only giving you context, broadcast is an available option for admins to broadcast the last few messages to everyone in chat.\n\n`/ai disable <name>` - like `/ai unregister`, but less permanent.\n\n`/ai enable <name>` - undoes `/ai disable`.\n\n`/ai list` - lists all available AIs and relevant information (such as whether they're enabled, and their aliases).\n\n`/ai register <character id> <aliases (optional)>` - character ID is the ID obtained from the [c.ai](https://c.ai) website. Registers an AI so that you can chat with 'em.\n\n`/ai unregister <character id>` - permanently removes an AI.\n\n`/ai reload` - reloads the mod's config so that any edits made with an external tool are loaded without requiring a complete restart of Minecraft.\n\n`/ai reset <name>` - wipes the memory of an AI.\n\n`/ai talk <name> <text>` - alternative to pinging the AI that's arguably more clunky.\n\n## FAQ\nQ: Is this mod client-side?\n\nA: Yes! This is the client side version of [MCAI](https://www.curseforge.com/minecraft/mc-mods/mcai).\n\nQ: How do I talk with an AI?\n\nA: [Read this](https://github.com/alfiae/MCAI?tab=readme-ov-file#Setup)!\n\nQ: I don't like the AIs randomly responding to my messages! How do I stop them from doing that?\n\nA: You can disable random responses by switching the `disableRandomResponses` to true in the config's `general` section.\n\nQ: Will you make a Forge port?\n\nA: Nope! You're welcome to port it yourself, if you really want it on Forge, though.",
+  "categories": [
+    "cursed",
+    "decoration",
+    "fabric",
+    "game-mechanics",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 709,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

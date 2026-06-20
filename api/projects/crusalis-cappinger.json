@@ -1,0 +1,25 @@
+{
+  "id": "trDyW9le",
+  "slug": "crusalis-cappinger",
+  "title": "Crusalis Cappinger",
+  "description": "A simple, client sided, QoL mod made for Crusalis, and other Nodes Servers, that watches your chat for war alerts and instantly sends a clean embed to your Discord webhook to inform you.",
+  "body": "# Crusalis CapPinger\n\nA tiny, client-side Fabric mod that watches your chat for war alerts and fires a clean Discord embed with a **live map image** so your team can react instantly.\n\n[![Chat with us on Discord](https://img.shields.io/badge/Chat%20&%20get%20help%20on-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Mn3yFC4ZRV)\n\n---\n\n## What it does\n\n* Detects war messages like:\n  * `\"[War] <player> is attacking <town> at (x, y, z)\"`\n  * `\"[War] <player> captured chunk (cx, cz) from <town>\"`\n  * `\"[War] <player> captured territory (id=ID) from <town>\"`\n\n* Sends a Discord embed with:\n  * Attacker name\n  * Target town\n  * Coordinates\n  * Timestamp\n  * **A generated map image** showing the attack location with nation colors from Dynmap\n\n* Different embed styles for different events:\n  * **Chunk Attacked** - Red, for ongoing attacks\n  * **Chunk Captured** - Orange, for when a chunk is taken\n  * **Territory Captured** - Purple, with a striped visualization showing attacker vs defender\n\nNo commands, no server plugin required—just drop it in your client.\n\n---\n\n## Configuration (Cloth Config)\n\nOpen **Mods → Crusalis Cap Pinger → Config** (Mod Menu), then:\n\n* **Discord Webhook URL** — paste your channel webhook.\n* **Broadcast All** (default ON) — forward every matching alert.\n* **Target Names** — when Broadcast is OFF, only send if the target matches one of these names (exact match, case-insensitive).\n* **Ping Role ID (optional)** — paste a Discord Role ID to @mention your defense squad.\n\nSettings are saved locally; you can change them in-game anytime.\n\n---\n\n## How it works\n\nThe mod listens to client message events on Fabric 1.21.7-1.21.8, parses each line, matches regex patterns for `[War]` messages, and—if allowed by your config—generates a map image from Dynmap data and POSTs a Discord embed. Map generation runs on a background thread so there's no FPS impact.\n\n---\n\n## Requirements\n\n* Minecraft 1.21.7 or 1.21.8\n* Fabric Loader + Fabric API\n* Cloth Config\n* Mod Menu (for the config button)\n\n---\n\n## Installation\n\n1. Install Fabric Loader and Fabric API.\n2. Drop **Crusalis CapPinger** into `mods/`.\n3. Add Mod Menu and Cloth Config.\n4. Launch → Mods → Crusalis Cap Pinger → Config → paste webhook.\n5. Keep Broadcast All ON or add Target Names if you only care about certain towns.\n6. (Optional) Add Role ID to ping a specific role.\n\nYou're live the moment a war alert hits chat.\n\n---\n\n## The Map Image\n\nEach alert includes an auto-generated map showing:\n* Nation territories in their actual Dynmap colors\n* Chunk grid overlay for reference\n* Blue ocean background\n* The attacked/captured chunk or territory highlighted\n* Territory captures show stripes to indicate attacker vs defender\n\n---\n\n## Privacy & Safety\n\n* The mod reads incoming chat locally to find alerts.\n* It only sends matched war alerts to your webhook.\n* Your webhook URL stays on your PC.\n* Dynmap data is fetched from the public Crusalis map API.\n\n---\n\n## Filtering behavior\n\n* **Broadcast All = ON:** every matching `[War]` message goes to Discord.\n* **Broadcast All = OFF:** only send if the parsed target equals one of your Target Names (case-insensitive).\n\n---\n\n## Compatibility\n\n* Client-side only. No server permissions required.\n* Works alongside optimization mods (Sodium, etc.).\n* Doesn't modify gameplay—just listens for messages and posts webhooks.\n\n---\n\n## Modpack & server policy\n\n* Allowed in modpacks.\n* Safe for client-only use (it doesn't automate gameplay, just relays alerts you can already see).\n\n---\n\n## Summary\n\n**Paste webhook → choose Broadcast All or targets → (optional) role ping → done.**\n\nCrusalis CapPinger gives your team fast, clean Discord alerts with map images the moment a war event happens.\n\n---\n\n### Special thanks to: \n**oreotrollturbo** for providing me his original dynmap fetcher code from Crusalis Utils.\n",
+  "categories": [
+    "fabric",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 252,
+  "followers": 0,
+  "game_versions": [
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

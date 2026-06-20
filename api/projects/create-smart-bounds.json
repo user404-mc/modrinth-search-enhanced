@@ -1,0 +1,22 @@
+{
+  "id": "kSok4DxT",
+  "slug": "create-smart-bounds",
+  "title": "Create Smart Bounds",
+  "description": "Improves create mod's block entity renderbounds",
+  "body": "![Whats wrong with conveyor belts](https://raw.githubusercontent.com/LIUKRAST/SmartBounds/refs/heads/master/images/chain_conveyors.png)\nThis mod aims to reduce enormous and nonsense [render bounds](#what-are-render-bounds) for create block entities.\nYou can check neoforge block entities render bounds with this command `/neoforge debug_blockentity_renderbounds true`\n\nIt also reworks some block entities render [bounds caching](#render-bounds-caching)\n\nIt's a pretty small optimization, but in large contraptions and big machine areas, it can make the difference.\n\nWe currently support:\n- Mechanical Arms\n- Belts\n- Chain Conveyors\n- Factory Panels\n- PSI & Deployers\n- Rollers\n- Frog Ports\n\n## What are render bounds?\nUsually, to optimize performance, all blocks that are behind/outside your screen are not rendered to avoid useless computations.\nIn blocks, this bound is set to a 3x3 area, but in block entities, this is customizable.\nThe reason? Simple, render things that are bigger than a block. For example, Chain Conveyors need a larger render bounding box for chain connections.\nThe thing is, most times create goes by \"better larger\" and just inflates the whole area. This makes most of your block entities get rendered even though they are not even visible.\n\n## Render Bounds Caching\nThe bounding box is not generated every frame, since the block only needs to change his bounding box on some precise events.\nThis mod also optimizes this, removing useless bounding box reloading for some blocks (Belts) which before reloaded their bounding box EVERY GAME TICK (20 times per second).\nNow they only update if the block is broken and replaced, reducing the lag.\n\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "optimization",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 294355,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

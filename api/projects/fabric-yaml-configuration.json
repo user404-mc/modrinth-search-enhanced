@@ -1,0 +1,35 @@
+{
+  "id": "9qATwKRu",
+  "slug": "fabric-yaml-configuration",
+  "title": "Fabric Yaml Configuration",
+  "description": "Mod for create configurations with yaml",
+  "body": "# Fabric Yaml Configuration library mod\n\nThis modification allows you to use yaml configuration files as a configuration for your mod.\nThe modification already includes the snakeyaml library.\n\n## FabricConfiguration methods\n\n```java\n// Sets the path to the final configuration\nsetFile(File file)\nsetFile(String file)\n\n// Sets the stream of the original configuration file\n// as a rule the original configuration is located in the mod resources.\nsetDefault(InputStream defaultConfigurationFile)\n        \n// Initializes the configuration\nintialize()\n\n// Saves the configuration to a file\nsaveConfiguration()\n        \n// Reloads the configuration from the file \n// needed to update the configuration during mod operation.\nrelaodConfiguration()\n```\n\n## Simple configuration example\n\nassets/example-mod/config/example-mod.yml\n```yaml\n# Тестовая ветка\ntest:\n  integer: 1\n  double: 1.1\n  string: 'test'\n  list:\n    - 'test-1'\n    - 'test-2'\n    - 'test-3'\n  section:\n    test: 'test'\n```\n\n```java\npublic class ExampleMod implements ModInitializer {\n\n    public static final Logger LOGGER = LogManager.getLogger();\n    public FabricConfiguration configuration = new FabricConfiguration();\n\n    @Override\n    public void onInitialize() {\n        // Getting default configuration file from mod assets\n        InputStream defaultConfigurationFile = ExampleMod.class.getResourceAsStream(\"/assets/example-mod/config/example-mod.yml\");\n        \n        // Setting default configuration file to configuration\n        configuration.setDefault(defaultConfigurationFile);\n        // Setting configuration file path\n        configuration.setFile(\"config/example-mod.yml\");\n        // Initialize configuration (load, if file exists else generate configuration)\n        try {\n            configuration.initialize();\n        } catch (IOException e) {\n            LOGGER.error(\"Configuration file cannot be generated\", e);\n        } catch (InvalidConfigurationException e) {\n            LOGGER.error(\"Configuration file cannot be loaded\", e);\n        }\n        \n        \n    }\n}\n```\n\n## Example code (save and get ItemStack from/to configuration)\n```java\nItemStack exampleItemStack = new ItemStack(Items.BEDROCK);\nNbtCompound itemStackNbt = exampleItemStack.writeNbt(new NbtCompound());\n        \nconfiguration.set(\"item-stack\", NbtHelper.toNbtProviderString(itemStackNbt));\n        \ntry {\n    configuration.saveConfiguration();\n} catch (IOException e) {\n    LOGGER.error(\"Configuration cannot be saved\", e);\n}\n\nItemStack itemStack = null;\ntry {\n    itemStack = ItemStack.fromNbt(NbtHelper.fromNbtProviderString(configuration.getString(\"item-stack\")));\n} catch (CommandSyntaxException e) {\n    LOGGER.error(\"ItemStack cannot be loaded from configuration\", e);\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1137,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

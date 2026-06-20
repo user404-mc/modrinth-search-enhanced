@@ -1,0 +1,31 @@
+{
+  "id": "y16HgCOF",
+  "slug": "iska-lib",
+  "title": "Iskandert's Library",
+  "description": "A library of functions used primarily by Iskandert's Team mods",
+  "body": "# Iskandert-Library — Features Overview\n\nThis library contains reusable building blocks used across projects in the Iskandert ecosystem.\nIt focuses on **practical gameplay systems** (structures, stages, markers, shops/teams) and **developer utilities**\n(parsing helpers, transfer bridging, debug tools).\n\n## Usage and licensing\n\nThe project is released under the **MIT License**. You are free to use it in your projects (including modifying,\nredistributing, and using it commercially), as long as the license notice is preserved.\n\n## What’s included\n\n### Structure system (JSON-driven)\n\nUtilities for defining and placing structures using external JSON definitions:\n\n- **Structure definitions**: patterns, block keys, replacement rules, and options like force/overwrite.\n- **Config scanning & loading**: discovery of structure JSON files and runtime registration.\n- **Placement engine**: places structures in-world with validation, property application, and optional behaviors\n  (e.g. “place as player”, refresh ticks).\n- **Undo history**: lightweight per-player placement history with undo support.\n\nKey packages/classes:\n- `net.unfamily.iskalib.structure.StructureDefinition`\n- `net.unfamily.iskalib.structure.StructureLoader`\n- `net.unfamily.iskalib.structure.StructurePlacer`\n- `net.unfamily.iskalib.structure.StructurePlacementHistory`\n\n### Stage system (player / world / team)\n\nA generic “stage” registry designed to gate content and track progression across different scopes:\n\n- **Player stages**: persistent per-player stage flags.\n- **World stages**: global flags stored in world saved data.\n- **Team stages**: stage flags shared by a team, stored in world saved data.\n- **Hooks and listeners**: integration points for reacting to stage changes.\n\nKey packages/classes:\n- `net.unfamily.iskalib.stage.StageRegistry`\n- `net.unfamily.iskalib.stage.StageHooks`\n- `net.unfamily.iskalib.stage.StageActionHooks`\n\n### Team support (shared balances / membership)\n\nTeam management for grouping players and sharing balances:\n\n- Create/delete teams\n- Manage membership and roles\n- Track and query per-team currency balances\n\nKey packages/classes:\n- `net.unfamily.iskalib.team.ShopTeamManager`\n\n### Shop currency integration hooks\n\nThe library stores balances by currency id but does not hardcode a currency catalog.\nConsumers can provide metadata and suggestions:\n\n- **Currency id listing** for command autocompletion and UIs\n- **Currency display metadata** (translation key, symbol) when available\n\nKey packages/classes:\n- `net.unfamily.iskalib.shop.ShopCurrencyHooks`\n\n### World marker utilities (client-side)\n\nDeveloper-focused marker rendering and helpers, useful for debugging areas, selections, scans, and automation:\n\n- **Marker rendering** for blocks\n- **Billboards** for positions\n- **Runtime sessions** (non-persistent) for cleaning/reset behavior\n- **Debug command** entrypoint for creating/clearing markers\n\nKey packages/classes:\n- `net.unfamily.iskalib.client.marker.MarkRenderer`\n- `net.unfamily.iskalib.client.marker.VanillaWorldMarkerClientHooks`\n- `net.unfamily.iskalib.marker.MarkerSession`\n- `net.unfamily.iskalib.command.MarkerCommand`\n\n### Progressive explosion system (server-side)\n\nA modular, lag-friendlier explosion implementation that can run progressively over time:\n\n- Elliptical/horizontal+vertical radius explosions\n- Tick-based processing (or instant execution when interval is zero)\n- Optional entity damage and “break unbreakable” mode\n- Central registry of active explosions with stop/introspection helpers\n\nKey packages/classes:\n- `net.unfamily.iskalib.explosion.ExplosionSystem`\n\n### Item string parsing and conversion utilities\n\nHelpers for converting “item argument” strings into `ItemStack` (and back), matching the shape accepted by `/give`:\n\n- Parse `minecraft:item_id` as well as bracketed component syntax like `minecraft:item[component=value,...]`\n- Validate user-provided item strings for configs/commands\n- Format an `ItemStack` into an item-argument string (id + component patch)\n\nKey packages/classes:\n- `net.unfamily.iskalib.item.ItemConverter`\n\n### Transfer bridging (automation compatibility)\n\nBridges legacy item handlers to NeoForge’s item transfer capability:\n\n- Wraps `IItemHandler` as a transactional `ResourceHandler<ItemResource>`\n- Uses snapshot journals for rollback when possible (`IItemHandlerModifiable`)\n\nKey packages/classes:\n- `net.unfamily.iskalib.transfer.LegacyItemHandlerResourceHandler`\n\n### Debug helpers and commands\n\nSmall, focused utilities intended for development and troubleshooting:\n\n- Hand/item dump helpers\n- Debug commands for marker/stage workflows\n\nKey packages/classes:\n- `net.unfamily.iskalib.debug.HandItemDump`\n- `net.unfamily.iskalib.command.IskaLibDebugCommand`\n- `net.unfamily.iskalib.command.StageCommand`\n\n",
+  "categories": [
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 220,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

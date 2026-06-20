@@ -1,0 +1,25 @@
+{
+  "id": "2KNt6S40",
+  "slug": "simplechat",
+  "title": "[ABANDONED] SimpleChat - Chat mod for Fabric servers",
+  "description": "A small mod for a customizable chat, with the most simple settings",
+  "body": "# SimpleChat\n\n**[Temporary stop of support](https://github.com/cayennemc/SimpleChat/issues/11)**\n\n_A simple chat mod for your server._\n\n❗**The current supported version of the mod is:** https://modrinth.com/mod/simplechatfork❗\n\nWorks even in a single player game.\n\n[![issues](https://img.shields.io/github/issues/cayennemc/simplechat)](https://github.com/cayennemc/SimpleChat/issues) ![license](https://img.shields.io/github/license/cayennemc/simplechat)\n\n![simplechat](https://repository-images.githubusercontent.com/365025010/b8d2b700-c78f-11eb-816d-cd2ce825778d)\n\nRequires the Fabric API!\n\n❗Version [1.17](https://github.com/cayennemc/SimpleChat/tree/1.17) requires Java 16 to work❗\n\n## Features\n- Global and local chat (you can turn it off)\n- Color chat (you can turn it off)\n- Reloading the configuration with the command\n- For developers: Player chat event\n\n![Imgur](https://i.imgur.com/orpafbR.jpg)\n\n## Configuration\nThe configuration is located in `<game or server directory>/config/simplechat.json`.\n\n| Name | Description | Type |\n|-|-|-|\n| enable_chat_mod | Enables (true) or disables (false) chat handling by the mod. | boolean |\n| enable_global_chat | Enables (true) or disables (false) the global chat. | boolean |\n| enable_chat_colors | Enables (true) or disables (false) the use of color codes in the chat. | boolean |\n| local_chat_format | Defines the appearance of the local chat. | String |\n| global_chat_format | Defines the appearance of the global chat. | String |\n| chat_range | Specifies the distance after which local chat messages will not be visible (if global chat is enabled). | int |\n\n```json\n{\n  \"enable_chat_mod\": true,\n  \"enable_global_chat\": false,\n  \"enable_chat_colors\": false,\n  \"local_chat_format\": \"%player% > &7%message%\",\n  \"global_chat_format\": \"&8[&bG&8] &r%player% > &e%message%\",\n  \"chat_range\": 100\n}\n```\nYou can use the placeholder `%player%` to specify the player's nickname and the placeholder `%message%` to specify their message in the chat.\n\nYou can reload the configuration without restarting the server or the game using the `/simplechat` command (requires [permission level](https://minecraft.fandom.com/wiki/Server.properties#op-permission-level) 1 or more).\n\n## API\nIf you are a developer, you can use an event called when a player writes something to the chat.\n\nLook [`me.vetustus.server.simplechat.api.event.PlayerChatCallback`](https://github.com/cayennemc/SimpleChat/blob/master/src/main/java/me/vetustus/server/simplechat/api/event/PlayerChatCallback.java). \nTo control the behavior, use the [ChatMessage](https://github.com/cayennemc/SimpleChat/blob/master/src/main/java/me/vetustus/server/simplechat/api/event/PlayerChatCallback.java#L47) subclass, which can be used to cancel sending a message or change it.\n\n*Example:*\n```java\n/**\n * Prohibits players from writing messages by canceling an event.\n */\nPlayerChatCallback.EVENT.register((player, message) -> {\n  PlayerChatCallback.ChatMessage chatMessage = new PlayerChatCallback.ChatMessage(player, message);\n  chatMessage.setCancelled(true);\n  return chatMessage;\n});\n```\n## License\nThe MIT license is used.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1895,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17",
+    "1.18",
+    "1.18.1",
+    "1.18.2"
+  ],
+  "date_updated": null
+}

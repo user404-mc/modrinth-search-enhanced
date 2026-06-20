@@ -1,0 +1,31 @@
+{
+  "id": "mzk5hm9o",
+  "slug": "rotting-food",
+  "title": "Rotting Food",
+  "description": "A fully customizable mod that adds a rotting mechanic to all foods in Minecraft. Compatible with your favorite food mods!",
+  "body": "This fully customizable mod adds a rotting mechanic to all foods in the game, even to ones added by other mods. No more chest filled with food. No more food farms!\n\n![A lot of Baked Potatoes with a \"Rotten\" Tooltip](https://cdn.modrinth.com/data/cached_images/2bdd9e58fa7c3eb66564fc862e2380f187b4a5ca.png)\n\n## Configuration Guide\nThis mod was made to be extremely customizable, which means you can freely change what stages the food will go through as it rots, as well as which food will rot and which won't.\nThis is the default config:\n```\n{\n\"modDataComponentsEnabled\": true,\n\"showInTooltip\": true,\n\"randomiseFoodState\": false,\n\"preventFoodFarms\": true,\n\"maxRandomState\": 2,\n\"exclude\": [\n    \"minecraft:golden_apple\",\n    \"minecraft:enchanted_golden_apple\",\n    \"minecraft:golden_carrot\"\n],\n\"foodStates\": [\n    {\n    \"tooltip\": \"Fresh\",\n    \"color\": 5635925,\n    \"duration\": 1,\n    \"nurtition\": \"x\",\n    \"saturation\": \"x\",\n    \"eatSeconds\": \"x\",\n    \"effects\": []\n    },\n    {\n    \"tooltip\": \"Edible\",\n    \"color\": 16777045,\n    \"duration\": 3,\n    \"nurtition\": \"x/2\",\n    \"saturation\": \"x/2\",\n    \"eatSeconds\": \"x\",\n    \"effects\": []\n    },\n    {\n    \"tooltip\": \"Rotten\",\n    \"color\": 16733525,\n    \"duration\": -1,\n    \"nurtition\": \"0\",\n    \"saturation\": \"0\",\n    \"eatSeconds\": \"x*2\",\n    \"effects\": [\n        {\n        \"probability\": 1.0,\n        \"id\": \"minecraft:nausea\",\n        \"duration\": 200,\n        \"amplifier\": 1,\n        \"ambient\": true,\n        \"showParticles\": false,\n        \"showIcon\": false\n        }\n    ]\n    }\n]\n}\n```\n\nHere are a things you should know before tampering with the config:\n- All Food Stages must be in order. The highest one comes first.\n- Values for nutrition, saturation, eatSeconds are essentially equations, where x is the original value of the given item. They can be anything, ranging from \"(x / 2) + 1\" to a plain number like \"2\". Mark that x value is not affected by the previous stage as it is the original value.\n- Duration is measured in world days(Which means even if you do /time set [insert some crazy number] all your food won't immediately rot)\n- Color is an rgb integer.\n- Effects allow you to add your own effects to a certain stage(The food will still keep it's original effects).\n- When \"modDataComponentsEnabled\" is set to false the mod will actively remove the rotting functionality from every item it can tick. Essentialy all the food in players inventory will reset and become normal food that doesn't rot.\n- randomiseFoodState randomises the food items state when you get it, within the range of maxRandomState. maxRandomState of 2 means you would get either 1 - Fresh or 2 - Edible.\n\n## Why was this mod made?\nTruthfully i just wanted to make my friends to suffer. And i thought maybe someone might have a simillar desire or might add this to his hardcore world...\n\nAs always, any mistakes are my own.\n\n![Static Badge](https://img.shields.io/badge/Modrinth-f?logo=modrinth&color=green&link=https%3A%2F%2Fmodrinth.com%2Fmod%2Frotting-food)\n![Static Badge](https://img.shields.io/badge/CurseForge-f?logo=curseforge&color=orange&link=https%3A%2F%2Fwww.curseforge.com%2Fminecraft%2Fmc-mods%2Frotting-food)\n![Static Badge](https://img.shields.io/badge/Mod%20Loaders-Fabric-orange?color=blue&link=https%3A%2F%2Fwww.curseforge.com%2Fminecraft%2Fmc-mods%2Frotting-food)",
+  "categories": [
+    "cursed",
+    "fabric",
+    "food",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 355,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

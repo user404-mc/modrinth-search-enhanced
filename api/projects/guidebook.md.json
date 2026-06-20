@@ -1,0 +1,23 @@
+{
+  "id": "GsQDXnLC",
+  "slug": "guidebook.md",
+  "title": "Guidebook.md",
+  "description": "Add Markdown guides to BTA, allowing modders to efficiently create and format guides.\nMarkdown books were added to BTA, allowing users to create, edit, and organize complete, structured Markdown-compatible documents.",
+  "body": "# Guidebook.md\nHelps BTA modders create mod guides quickly and easily using Markdown with extra features\n\n**How to Use?**  \nCreate a MDBookScreen inherited class.\nLoad config from asset path, include .md files.  \nUse as a normal screen, opened from a trigger.\n\n**Formats**  \n\nUse `< & >` chars for color codes:\n```\n- 0 = &0Black\n- 1 = &1Dark Blue\n- 2 = &2Dark Green\n- 3 = &3Dark Aqua\n- 4 = &4Dark Red\n- 5 = &5Dark Purple\n- 6 = &6Gold\n- 7 = &7Gray\n- 8 = &8Dark Gray\n- 9 = &9Blue\n- a = &aGreen\n- b = &bAqua\n- c = &cRed\n- d = &dLight Purple\n- e = &eYellow\n- f = &fWhite\n- s = &sShadow\n- r = Reset\n```\n**Syntax**  \n```\nRegular &3Markdown syntax adapted for &6BTA Guidebook format:\n# H1\n## H2\n### H3\n#### H4\n##### H5\n###### H6\n* Unordered List\n- Unordered List\n1. Ordered List\n```\n**Specials**  \n```markdown\n**Images**\n- [text](/assets/modid/textures/path/to/img.png)(width,height,type)\n- ![slot](modid:item/name)\n- ![workbench](empty,empty,empty,empty,empty,empty,empty,empty,empty, empty)\n```\n- Width & Height in pixels\n- type = default | icon or (no text) to use default option\n- The workbench last slot it's for output item\n\n# How to use?\n### Markdown guidebook\n```java\npublic class MyBook extends MarkdownGuidebook<MDPage> {\n\n    public IntroBook() {\n        String path = \"/assets/modid/markdown/mybook/\";\n        config = BookConfig.fromJsonResource(getClass(), path + \"config.json\");\n\n        DecimalFormat formatter = new DecimalFormat(\"000\");\n        for (int i = 0; i<11; i++) {\n            String fileName = \"page_\" + formatter.format(i + 1) + \".md\";\n\n            loadMarkdownPages(path + fileName);\n        }\n    }\n}\n```\n\n### Display markdown\n_Check superclass for more info._\n```java\npublic class MyMDScreen extends MDScreen {\n    public MyMDScreen() {\n        currentPage = MarkdownCompiler.compile(\"/assets/modid/markdown/path/to/your/file.md\", getClass());\n    }\n}\n```\n\n# In-Game Markdown Editor\nUse the editable book in-game and export the Markdown content to use in your project!\nOr use it to share information with your friends in your world!\n\n<img width=\"449\" height=\"202\" alt=\"image\" src=\"https://github.com/user-attachments/assets/0b85c816-d925-4c9f-ad51-09d9522b3423\" />\n\n<img width=\"1143\" height=\"838\" alt=\"image\" src=\"https://github.com/user-attachments/assets/95a1e704-cd25-4433-bfa3-c5179f93b5e9\" />\n\n# Commands\nExport or load markdown books.\n\n* Use: /guidebook export <title>\n  * to export to: btafolder/guidebook/exported/<title>\n\n* Use: /guidebook load <title>\n  * Load from: btafolder/guidebook/load/<title>\n\n\n### Showcase\nDownload the zip with the files in the release page\n<img width=\"1464\" height=\"879\" alt=\"image\" src=\"https://github.com/user-attachments/assets/d87392c0-9c10-44e0-878c-a8926bffca7f\" />\n\nhttps://github.com/user-attachments/assets/d2f9fe57-74f7-433e-8f00-0848fc137571\n\n",
+  "categories": [
+    "adventure",
+    "bta-babric",
+    "game-mechanics",
+    "library",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "b1.7.3"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "egQRTISK",
+  "slug": "waypointsplugin",
+  "title": "Waypoints",
+  "description": "Waypoints Plugin for Minecraft (Paper)",
+  "body": "# Waypoints\nWaypoints Plugin for Minecraft (Paper)\n\n\n## In-game commands\n\n- **/wsave \\<waypoint-name\\>** | saves a new waypoint (permission required: **zoink.waypoints**).\n- **/wtp \\<waypoint-name\\>** | teleports to a waypoint (permission required: **zoink.waypoints**).\n- **/wlist \\<world-name\\>** | shows the of list all waypoints (permission required: **zoink.waypoints**).\n- **/wdelete \\<waypoint-name\\>** | delete a waypoint (permission required: **zoink.waypoints**).\n- **/whome** | teleports player to their spawnpoint (permission required: **zoink.waypoints**).\n- **/wspawn** | teleports player to spawn defined in config.yml (permission required: **zoink.waypoints**).\n- **/wconfig \\<config-var(s)\\>** | used to check or redefine variables in config.yml (permission required: **zoink.waypoints**, **server operator**)\n- **/wsetup \\<optional-config-var(s)\\>** | used to setup config.yml if needed, arguments are optional (permission required: **zoink.waypoints**, **server operator**)\n\n## Permissions:\n\n- **zoink.waypoints**: Allow the user to use the personal waypoints.\n- Server Operator for some commands.\n\n## Config.yml\n### For Lazy People\n- You can simply run `/wsetup` if you are a server operator to automatically setup `config.yml`\n- Note this is not guaranteed to 100% work\n- If you want to set up but change a variable like `limited_waypoints` to true, you can simply do the following:\n```bash\n# One argument\n/wsetup limited_waypoints=true\n# Multiple Arguments\n/wsetup limited_waypoints=true max_waypoints=20\n```\n\n### The 'wconfig' Command\n- Arguments work the exact same as the `/wsetup` command, but just changes the variables you define\n- But another feature is checking the current value of a variable like this:\n```bash\n/wconfig limited_waypoints\n# Output:\n# WP> limited_waypoints: false\n\n# Argument Example with array; NOTICE THERE ARE NO SPACES\n/wconfig allowed_worlds_colors=[light_purple,green,gold]\n```\n\n### Defining Spawn\n- If you do not want a spawn in the world you can simply set `enabled` to false under the spawn key in config.yml\n- Simply change the x, y, and z coordinates to wherever spawn is.\n- If your spawn is in a different world than the default overworld, or your overworld folder name is different, you can simply change the name under `spawn.world`.\n\n### Booleans\n- `use_real_world_names` refers to when users can list waypoints they have in a specific world.\n- This setting when set to true uses the names of the worlds folder so like `world_nether`.\n- For a prettier looking result I would just keep this at false.\n<br><br>\n- `multi_world_teleport` when set to true allows players to teleport to waypoints that are in a different world than the current one they are in.\n- For example a player can teleport they have in The End while they are in the Overworld.\n<br><br>\n- `limited_waypoints` is for server owners who want to limit the amount of waypoints that can be saved by a player\n- Note, if a player already has more than your defined max waypoints, it will not remove any.\n- This boolean combos with the `max_waypoints` variable, which defines the max waypoints a player can save.\n\n### Allowed Worlds\n- You are able to set which worlds players are able to save waypoints in\n- The order of the worlds is the order they will be printed out in when a player runs `/wlist`.\n\n### Allowed Worlds Colors\n- The colors are based on the [MiniMessage Colors](https://docs.advntr.dev/minimessage/format.html#color)\n- The order of the colors is the same as the ones in the `allowed_worlds` list.\n\n### Custom World Names\n- This only matters when you have `use_real_world_names` set to false.\n- They are in the same order as the `allowed_worlds` list.\n\n## Build the plugin\n\nTo build the plugin, type the following commands:\n\n```bash\ncd Waypoints\nmvn clean package\n```\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 541,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

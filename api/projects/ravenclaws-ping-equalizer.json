@@ -1,0 +1,39 @@
+{
+  "id": "pWxTsF2R",
+  "slug": "ravenclaws-ping-equalizer",
+  "title": "Ravenclaw's Ping Equalizer",
+  "description": "A mod dedicated to equalizing ping for PvP, doing this by adding arbitrary delays before packets are processed and sent out by the client.",
+  "body": "# Ravenclaw's Ping Equalizer\n### Summary\n**Ravenclaw's Ping Equalizer** is a client-side Fabric mod designed to create a fairer PvP environment by allowing players to artificially increase their network latency. Unlike visual-only mods, this tool introduces real packet delay at the network layer.\n\n* **Real-time Effect:** The delay happens in the Netty event loop; the server and other opponents perceive your higher ping as genuine.\n* **Purpose:** To normalize latency in competitive play (e.g., leveling the field between a 10ms player and a 100ms player).\n  \n---\n\n### Commands\n\n| Command | Usage | Description |\n| :--- | :--- | :--- |\n| **Add Delay** | `/pe add <ms>` | Adds a fixed amount of latency to your connection.<br>_Example: `/pe add 50` adds 50ms to your native ping._ |\n| **Total Target** | `/pe total <ms>` | Automatically adjusts delay to stabilize your ping at a specific target.<br>_Example: `/pe total 100` attempts to keep you at 100ms._ |\n| **Validate** | `/pe validate <user>` | Queries the validation server to check if a specific player is running a verified, integrity-checked instance of the mod. |\n| **Status** | `/pe status` | Displays your current settings and validation status (Client-side only). |\n| **Disable** | `/pe off` | Disables the equalizer and returns connection to native speed. |\n\n---\n\n### Technical Architecture\n**Packet Manipulation**\n\nThe mod hooks into the Minecraft client's Netty pipeline. Outgoing and incoming packets are intercepted and held in a scheduled task queue for the duration of the configured delay before being flushed. This ensures the latency is \"real\" regarding server-side hit registration and movement processing.\n\n**Obfuscation & Integrity**\n\nTo prevent abuse (such as players modifying the code to report high ping while actually having low ping), the distributed JAR file is heavily obfuscated. This makes reverse-engineering difficult and ensures that the logic reporting the delay to the validation server remains secure.\n\n---\n\n### Cryptographic Validation\nTo ensure fair play in competitive environments, the mod utilizes a centralized validation system. This allows staff and other players to verify that players are actually using the mod as intended and not spoofing their latency.\n\n#### 1. Integrity Handshake\nUpon initialization, the client calculates a cryptographic hash of its own JAR file. It sends this hash to the API endpoint (`/api/hash/{modHash}`).\n\n* **Response:** The server verifies the hash against a whitelist of known, official versions.\n* **Result:** Returns a signed validity token, version number, and deprecation status. If the mod has been tampered with, validation fails.\n\n#### 2. Secure Heartbeat\nEvery few seconds, the client sends a \"heartbeat\" payload to the central server containing:\n\n* **Identity:** Player UUID and Username, as well as signed Mojang proof of ownership of that account (this does not reveal any private information).\n* **State:** Mod Version, and active Ping Settings (Mode/Delay).\n* **Signatures:** A digital signature validating the packet content.\n\n---\n\n### Privacy & Security\n\nA balance is maintained between user privacy and the prevention of cheating.\n\n**How IPs are handled**\n\nAs with any website or online game, the validation server is able to see an IP address at the moment a connection is made. The IP address is **not stored**.\n\n* **Protection:** The IP address is immediately hashed, converting it into an irreversible identifier that allows recognition for security purposes without retaining the original address.\n  \n* **No Logs:** Logs of real IP addresses are not kept.\n\nI acknowledged that IP hashes are theoretically brute-forceable. However, a private salt is applied during hashing, and that salt is known only to me. The salt is never shared, logged, or used for any purpose other than preventing abuse, and I will never attempt to brute force the hash.\n\n**What is NOT collected**\n\nOnly the minimum information required to verify fair play is transmitted, such as UUIDs and ping configuration data. The following data is **never** accessed, transmitted, or stored:\n\n* Passwords or authentication tokens.\n* Chat messages or private communications.\n* Gameplay inputs, keystrokes, or client interaction data.\n  \n---\n\n### Ethics & Usage\n* **Rule Compliance:** While this mod is intended for fairness, some public servers may flag artificial latency manipulation as suspicious behavior. Always check server rules before using.\n* **MCTiers Usage:** This mod is explicitly allowed on MCTiers for the sole purpose of equalizing ping in high-tier testing. It must not be used to gain an unfair advantage.\n* **Transparency:** All status changes (enabling/disabling delay) post a public chat message. This prevents \"closet usage\" where a player might secretly toggle lag to gain an advantage.\n\n### License **All Rights Reserved.**\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 155682,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

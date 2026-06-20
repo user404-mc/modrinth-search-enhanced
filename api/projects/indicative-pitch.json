@@ -1,0 +1,31 @@
+{
+  "id": "2ieQlhP1",
+  "slug": "indicative-pitch",
+  "title": "Indicative Pitch",
+  "description": "Increases the pitch of the block breaking sound as the block is closer to being broken.",
+  "body": "## Overview\n\nThis is a tiny quality of life mod that makes the block breaking sound increase in pitch as the block is closer to being broken. It should work on any version from 1.20.1 to 1.21.5. Please let me know in the comments if you have any problems with it!\n\n## Credits\n\nCredit to `@⚔SandWhoop⚔` on Discord for the mod idea.\n\n## Modpacks\n\nFeel free to add this to modpacks!\n\n\n## Porting\n\nI can port this to NeoForge, Forge, or other versions as desired. Unfortunately, Modrinth doesn't have a comments feature, but you could leave a note in the comments on CurseForge! The mod should have the same name there, so it ought to be easy to find. \n\nThat being said, here is the entirety of the functional code of this mod:\n\n```\n@Mixin(MultiPlayerGameMode.class)\npublic abstract class MultiPlayerGameModeMixin {\n\n    @Accessor(\"destroyProgress\")\n    public abstract float getDestroyProgress();\n\n    @ModifyExpressionValue(at = @At(value = \"INVOKE\", target = \"Lnet/minecraft/world/level/block/SoundType;getPitch()F\"), method = \"continueDestroyBlock\")\n    private float modifyPitch(float original) {\n        float returnValue = (this.getDestroyProgress() * 2.5f * original);\n        // System.out.println(\"Returning \" + returnValue);\n        return returnValue;\n    }\n}\n```\n\nIf I ever stop maintaining this, I'd appreciate it if someone could pick this project up and carry it forward! It's a nice QOL/accessibility feature.",
+  "categories": [
+    "fabric",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2331,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

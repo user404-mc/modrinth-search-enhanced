@@ -1,0 +1,20 @@
+{
+  "id": "5kLNgKXJ",
+  "slug": "better-mob-combat-fix",
+  "title": "Better Mob Combat Fix [BMCFIX]",
+  "description": "Fixes Better Mob Combat compatibility with Better Combat 1.9.0",
+  "body": "# Better Mob Combat Fix\n\nFixes Better Mob Combat compatibility with Better Combat 1.9.0\n\n## The Problem\n\nBetter Combat 1.9.0 (latest for 1.20.1) made breaking changes:\n1. Removed `CompatibilityFlags.firstPersonRender()` method\n2. Moved `PehkuiHelper` from `net.bettercombat.compatibility` to `net.bettercombat.client.compat`\n\nBetter Mob Combat stopped updating and still uses old methods/paths, breaking mob attack animations and Pehkui compatibility.\n\n## How It Works\n\nThis mod uses two mixins to fix both issues:\n\n**Mixin 1:** Intercepts `CompatibilityFlags.firstPersonRender()` calls and returns `false`\n\n**Mixin 2:** Overwrites `BMCPehkuiHelper.load()` to use the new PehkuiHelper location\n\n**Technical:** \n- `@Redirect` on `Mob.playAttackAnimation()` → returns `false` for removed method\n- `@Overwrite` on `BMCPehkuiHelper.load()` → uses `net.bettercombat.client.compat.PehkuiHelper`",
+  "categories": [
+    "fabric",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2102,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

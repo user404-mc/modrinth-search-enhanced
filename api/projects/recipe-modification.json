@@ -1,0 +1,27 @@
+{
+  "id": "fRIu3HNp",
+  "slug": "recipe-modification",
+  "title": "Recipe Modification library",
+  "description": "Allows you to automatically apply arbitrary modifications to all recipes at runtime in a simple way.",
+  "body": "# Recipe Modification\n\n## What is this?\n\nThis mod on its own doesn't do anything, instead, it's a tool for **mod pack creators, data pack creators, other mod developers** or anyone who likes tinkering.\nIt allows you to automatically apply arbitrary modifications to any type of recipe at runtime in a simple way, either by using JSON files in a datapack or using the Java API.\n\nThis means, instead of manually overriding multiple existing recipes, you define a set of recipe modifiers, which are applied when the game is starting. This means that modifications are applied to any recipes added by all other mods as well, without causing any incompatibilities or weird issues in case of multiple mods overriding the same recipe.\n\n### Some examples:\n\nFor example, if you wanted to make it so that all button recipes create 8 buttons instead of just 1 because you think the button recipe is a scam otherwise, you can easily do that in just a few lines of JSON!\n\n```json\n{\n  \"target_recipes\": \"#minecraft:buttons\",\n  \"modifiers\": [\n    {\n      \"type\": \"modify_result_item\",\n      \"function\": \"set_count\",\n      \"count\": 8\n    }\n  ]\n}\n```\n![A screenshot of eight buttons being crafted from one spruce plank](https://github.com/user-attachments/assets/af25b360-8e62-44ce-a4ef-92f8151e8f90)\n\n\nOther use cases would be, for example, if some mod's recipes are not properly compatible because they don't utilise tags correctly\n(or there are no standardised tags for the relevant items), you can easily make them compatible\n(without having to manually override every single recipe! yay!).\n\nSay, for example, a mod named \"mod_xyz\" doesn't use the right tag for copper nuggets in their recipes, which makes these incompatible with copper nuggets from other mods.\nUsing Recipe Modification, you can fix it like this:\n\n```json\n{\n  \"target_recipes\": {\n    \"type\": \"namespace_equals\",\n    \"namespace\": \"mod_xyz\"\n  },\n  \"modifiers\": [\n    {\n      \"type\": \"add_alternative\",\n      \"ingredients\": \"mod_xyz:copper_nugget\",\n      \"alternative\": {\n        \"tag\": \"c:copper_nuggets\"\n      }\n    }\n  ]\n}\n```\n\n## How can I use this?\n\nGenerally, the preferred way to interact with this mod is via JSON files, however, there is also a Java API available.\n\n**Check out [the document about JSON Syntax](https://github.com/Player005/RecipeModification/blob/1.21.1/main/docs/JSON_Syntax.md) for more information on how to write these JSON files and what you can do with this mod.**\nThere are also some (nonsensical, but working) [test modifiers](https://github.com/Player005/RecipeModification/tree/1.21.1/main/common/src/main/resources/data/testing/recipe_modifier) that you can take inspiration from.\n\nFor the Java API, just take a look at the [api package](https://github.com/Player005/RecipeModification/tree/1.21.1/main/common/src/main/java/net/player005/recipe_modification/api), especially the methods in the [main `RecipeModification` class](https://github.com/Player005/RecipeModification/blob/1.21.1/main/common/src/main/java/net/player005/recipe_modification/api/RecipeModification.java).\n\nMore detailed instructions & usage information coming soon™.\n\nIf you have any questions or need help, always feel free to [message me on discord](https://discord.com/users/650714531844194304) or open a GitHub issue.",
+  "categories": [
+    "cursed",
+    "fabric",
+    "forge",
+    "library",
+    "management",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 101313,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

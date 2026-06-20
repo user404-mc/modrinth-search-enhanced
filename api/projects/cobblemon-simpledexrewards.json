@@ -1,0 +1,20 @@
+{
+  "id": "p8mlZKxv",
+  "slug": "cobblemon-simpledexrewards",
+  "title": "Cobblemon: SimpleDexRewards",
+  "description": "A comprehensive Pokedex reward system for Cobblemon 1.6+ running on Minecraft 1.21.1 with Fabric",
+  "body": "# SimpleDexRewards\n\nA comprehensive Pokedex reward system for Cobblemon 1.6+ running on Minecraft 1.21.1 with Fabric. Provides configurable rewards for Pokedex completion milestones, supporting multiple reward types including items, Pokemon, and custom commands!\n\n## Installation and Dependencies\n\nThis mod requires the following dependencies:\n- [Cobblemon](https://modrinth.com/mod/cobblemon) (1.6+)\n- [GooeyLibs](https://modrinth.com/mod/gooeylibs)\n\nGooeyLibs is only needed server-side.\n\n## Features\n\n### Reward System\n- Multiple reward types (Items, Pokemon, Commands)\n- Configurable completion tiers with trainer ranks\n- Interactive UI with hover text showing all rewards\n- Direct reward claiming through UI\n- Server-side functionality with client UI\n- Dynamic configuration reloading without server restarts\n\n### Reward Types\n- `ITEM`: Any item from any mod\n- `POKEMON`: Customizable Pokemon rewards (species, level, shiny status)\n- `COMMAND`: Custom command execution with placeholders\n\n## Configuration\n\n### rewardconfig.json\n```json\n{\n  \"enablePermissionNodes\": true,\n  \"completionTiers\": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],\n  \"rewards\": {\n    \"100\": {\n      \"row\": 5,             // Position of the reward tier on the UI grid\n      \"slot\": 7,            // Position of the reward tier on the UI grid\n      \"rewards\": [          // All actual rewards for that tier\n        {\n          \"type\": \"ITEM\",\n          \"data\": {\n            \"id\": \"minecraft:nether_star\",\n            \"Count\": 1\n          }\n        },\n        {\n          \"type\": \"POKEMON\",\n          \"data\": {\n            \"species\": \"Rayquaza\",\n            \"shiny\": true,\n            \"level\": 50\n          }\n        },\n        {\n          \"type\": \"COMMAND\",\n          \"data\": {\n            \"id\": \"minecraft:paper\",\n            \"display_name\": \"Totem of Undying\"\n          },\n          \"command\": \"give @p minecraft:totem_of_undying 1\"      //You can also use %player% for custom commands like assigning ranks\n        }\n      ],\n      \"display\": {\n        \"type\": \"tier_100\",\n        \"format\": \"Master Trainer\",               // Name of the Tier\n        \"item\": \"cobblemon:master_ball\"           // UI element displayed of that Tier\n      }\n    }\n  }\n}\n```\n\n### Player Data\n```json\n{\n  \"version\": \"1.0\",\n  \"claimedRewards\": [25],           // Claimed completion tiers\n  \"caughtPokemon\": [\"Pikachu\", \"Charmander\"],  // Tracked Pokemon\n  \"settings\": {\n    \"notifications\": true\n  }\n}\n```\n\n## Commands\n\n### Player Commands\n- `/dexrewards` - Open the rewards UI\n\n### Admin Commands\n- `/dexrewards reload` - Reload configuration files\n\n\n## UI Layout\n\nThe rewards interface is organized in a grid layout where:\n- Tiers are arranged in rows (1-5) and slots (1-9)\n- Each tier displays its custom name and completion percentage\n- Hovering over a tier shows all available rewards\n- The display item for each tier can be customized\n- Claimed rewards are visually marked\n\n## Permissions\n- `cobblemonpokedex.use` - Access to player commands\n- `cobblemonpokedex.admin` - Access to admin commands\n\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13325,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

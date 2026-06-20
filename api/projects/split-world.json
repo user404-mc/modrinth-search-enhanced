@@ -1,0 +1,37 @@
+{
+  "id": "H0ACAFCe",
+  "slug": "split-world",
+  "title": "Split World",
+  "description": "Split your world into two sides, creative and survival ",
+  "body": "# Split World\n\nThis is a plugin that allows for both creative and survival to coexist in the same world. You define an axis and a\nlocation and one side will be survival and the other will be creative. The mod automatically manages saving, and loading\ninventories on either side of the border as well as potion effects.\n\n# GameMode Switching:\n\n* Game mode can be set per world\n* A world can have two game modes with a border dividing the world into a creative side and a configurable default game mode \n* Player's inventory and potion effects are managed per-game mode\n* Player will be switched to either survival or creative depending on the side of the buffer zone they are on\n* The border axis is padded by the buffer zone, the boundary is visualized with optional particle effects to create a \nvisible wall and/or solid blocks will be rendered as if they were black concrete\n* Sound indicator for when player switches GameMode, can be enabled or disabled with a command (see below)\n* Many methods to prevent cheating are included (see below)\n\n# Buffer Zone\n\n* Defined by border axis and location, with `border_axis: 'X'` and `border_location: 0` the dividing border will be placed\nat x=0, resulting in a border perpendicular to the x-axis\n* Players cannot die in the buffer zone\n* Players cannot regain health in the buffer zone\n* Players will not lose hunger in the buffer zone\n* Players are put in adventure mode with flying enabled\n* Monsters cannot enter the buffer zone, instead they will stop at the border\n* Monsters cannot target players in the buffer zone\n* Players cannot pick up items if they are in the buffer zone\n* Players cannot interact with chests in the buffer zone, or with chests that are not on the same side as the player \n* Liquids will not flow into the buffer zone\n* Vehicles cannot enter the buffer zone\n\n# Commands\n\n* Players can use /fill /setblock /clone on the creative side, you must give the permission for this command\n  with [LuckPerms](https://luckperms.net/), the plugin will prevent the commands if they contain any blocks not on the\n  creative side and prevent their execution on the survival side.\n* /understood: (you should give permission for this to everyone)\n  ```\n    description: You understand the nature of the split world and don't want to see the welcome message anymore.\n    usage: /understood\n    permission: split-world.understood\n  ```\n* /disable-split-world: (you should give this to admins/ops only)\n  ```\n    description: disables split world game mode switching\n    usage: /disable-split-world\n    permission: split-world.disable-split-world\n  ```\n* /enable-split-world: (you should give this to admins/ops only)\n  ```\n    description: enables split world game mode switching\n    usage: /enable-split-world\n    permission: split-world.enable-split-world\n  ```\n* /play-border-sound: (you should give permission for this to everyone)\n  ```\n    description: plays a sound when you cross a split world border\n    usage: /play-border-sound <true|false>\n    permission: split-world.play-border-sound\n  ```\n\n# Cheat Prevention\n\n* When leaving either side of the border, the player's inventory, active potion effects, and ender chest contents are\n  saved. Then their saved data for the other side is loaded.\n* Items dropped in the buffer zone are returned to the user's inventory\n* Fluid cannot flow into the buffer zone\n* Items/Entities cannot be sent through portals on the creative side\n* GameMode is set when a player crosses through a portal\n* GameMode is set when a player teleports to a location or player (should work with any tp plugin tested with simple\n  tpa)\n* Players are prevented from using a fishing pole to pull items from the creative side to the survival side.\n* Players cannot interact with chests that are not on the same side as them\n\n# Config Examples\n\n## Full Config\n\n```yaml\ndefault_game_mode: \"survival\"           # global default \ndisable_welcome_message: false          # globally disable welcome message\nenable_xp_mod: false                    # changes XP loss behavior on death\ndisable_advancements_in_creative: true  # disable advancements in creative mode\nxp_loss_percentage: 25.0                # percentage of XP lost on death\ncustom_respawn: false                   # customize global respawn location\nrespawn_location:                       # \n  world: \"split_world\"                  # which world players should spawn in (if they have not set their spawn point) \n  x: 140.0                              # x coordinate\n  y: 53.0                               # y coordinate\n  z: -64.0                              # z coordinate\n  yaw: 0.0                              # player facing direction\n  pitch: 0.0                            # player facing direction\nborder_particles: true                  # toggles rendering particle wall for boundary\nborder_blocks: true                     # toggles client-side buffer-zone block replacement, this will not alter your world\nenable_easter_eggs: false               # had some fun while coding, enable this to see if you can find them all\nworld_configs:                          # list of worlds to configure\n  - world_name: \"world\"                 # name of the world\n    enabled: true                       # should the world be split\n    default_game_mode: \"survival\"       # optional override for the global default_game_mode, this can be set even if the world is not split\n    border_axis: \"X\"                    # axis the border is placed on\n    border_location: 0                  # location on the axis to place the border\n    creative_side: \"negative\"           # can be positive or negative. when split, determines if the creative side is for coordinates less than border_location or greater than border_location\n    border_width: 5                     # how wide the buffer zone should be. some cheat prevention methods are less reliable for smaller buffer zones\n    no_creative_monsters: true          # stops monsters from spawining on the creative side\n```\n\n## Minimal Per-World Example \n\n```yaml\ndefault_game_mode: \"survival\"\nworld_configs:\n  - world_name: \"creative_world\"\n    default_game_mode: \"creative\"\n  - world_name: \"adventure_world\"\n    default_game_mode: \"adventure\"\n```\n\n## Minimal Split World Example\n\n```yaml\ndefault_game_mode: \"survival\"\nworld_configs:\n  - world_name: \"split_world\"\n    enabled: true\n```\n\n## Minimal Mixed Example\n\n```yaml\ndefault_game_mode: \"spectator\"\nworld_configs:\n  - world_name: \"split_world\"\n    enabled: true\n    default_game_mode: \"survival\"\n  - world_name: \"world\"\n    default_game_mode: \"survival\"\n  - world_name: \"world_nether\"\n    default_game_mode: \"survival\"\n  - world_name: \"world_the_end\"\n    default_game_mode: \"survival\"\n```",
+  "categories": [
+    "fabric",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1169,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

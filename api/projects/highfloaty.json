@@ -1,0 +1,33 @@
+{
+  "id": "YeqMlETH",
+  "slug": "highfloaty",
+  "title": "HighFloaty",
+  "description": "The higher you go, the floatier you get (works with create aeronautics)",
+  "body": "# HighFloaty\n\n**The higher you go, the floatier you get.**\n\nA small NeoForge 1.21.1 mod that scales gravity smoothly with altitude. Up at cloud height, jumps carry further, falls land softer, and arrows drift through the sky on long arcs. Down at ground level, everything is vanilla.\n\n## What it does\n\nBelow a configurable Y level (default `y=200`), gravity is fully vanilla. From there up to a configurable end Y (default `y=319`), gravity ramps down to a configurable minimum multiplier (default 50%). The curve shape is selectable: linear (smooth ramp) or exponential (gravity stays near vanilla most of the way up, then drops sharply near the top).\n\nThe effect applies to:\n\n- Players and mobs\n- Dropped items, falling blocks, TNT\n- Arrows, thrown projectiles\n- Boats and minecarts\n\nFall damage scales naturally,so less velocity at impact means less damage.\n\n## Create Aeronautics support\n\nIf you have **Create Aeronautics** and **Sable** installed, HighFloaty automatically activates compatibility code so airships, planes, hot-air balloons, and other Sable-driven sub-levels also feel lighter at altitude. The integration is fully optional: without Sable, the mod runs as a vanilla gravity tweak.\n\n## Commands\n\nA small text HUD shows your current Y, the computed gravity multiplier at that Y, and the active configuration (master enable, range, min multiplier, curve mode):\n\n`/hfhud` — toggle the HUD (client-side, no permissions needed)\n\nFor tweaking on the fly, an OP-only command tree:\n\n```\n/highfloaty info                            show current settings\n/highfloaty toggle                          flip master enable\n/highfloaty start <y>                       set the start of the gravity ramp\n/highfloaty end <y>                         set the end of the gravity ramp\n/highfloaty min <0.0..1.0>                  set the minimum gravity multiplier\n/highfloaty curve <linear|exponential>      switch falloff shape\n/highfloaty airships <on|off>               toggle Sable airship integration\n/highfloaty reset                           clear runtime overrides\n```\n\nY bounds run from -2048 to 4096, so extended-world-height mods are supported.\n\nCommands modify in-memory overrides only. Restart the game to revert to your config file values. Useful for finding the right curve without committing to it.\n\n## Configuration\n\nEdit `config/highfloaty-common.toml` or use the in-game config screen (Mods → HighFloaty → Config):\n\n| Setting | Default | Description |\n| --- | --- | --- |\n| `enabled` | `true` | Master toggle |\n| `gravityStartY` | `200` | At and below this Y, gravity is fully vanilla |\n| `gravityEndY` | `319` | At and above this Y, gravity reaches its minimum |\n| `gravityMinMultiplier` | `0.5` | Multiplier at and above end Y. 1.0 = vanilla, 0.0 = zero gravity |\n| `curveMode` | `LINEAR` | `LINEAR` (straight ramp) or `EXPONENTIAL` (steep near the top) |\n| `airshipScaling` | `true` | If true and Sable is installed, scales airship/sub-level gravity. Set to false if it misbehaves |\n\n## What it does NOT affect\n\n- **Vanilla Create cart contraptions, mechanical pistons, mechanical bearings, elevator pulleys.** These use Create's own movement code that doesn't go through standard entity gravity.\n- **Rapier internal collision dynamics inside a sub-level.** Items rolling on a moving airship deck still feel the engine's internal gravity (set once at dimension init). The body's overall motion is altitude-scaled; on-deck physics is not.\n- **Iris Shaders** has known visual issues with Sable. Not our problem, but worth knowing if you see weird rendering.\n\n## Compatibility\n\n- **Minecraft** 1.21.1\n- **NeoForge** 21.1.0 or higher\n- **Sable** / **Create Aeronautics** — optional. Compat activates automatically if installed.\n- **Required on both client and server.** Gravity is a physics calculation that runs on both sides; mismatched installs cause desync.\n\n## Server use\n\nDrop the jar in the server's `mods/` folder. All connecting players also need the mod installed.\n\nFor dialing in the curve on a live server: use `/highfloaty info` to see active settings, tweak with the command set, find what you like, then write the same values into `config/highfloaty-common.toml` so they persist across restarts.\n\n## Known limitations\n\n- Vanilla Create's older contraption types (carts, pistons, bearings) aren't affected. Sable-driven Aeronautics contraptions are.\n- Sable is in active development. If a future Sable version refactors `ServerSubLevel.prePhysicsTick`, the airship integration may need an update — disable with `/highfloaty airships off` if that happens.\n- Tested against Sable 1.1.3.\n\n## Credits\n\n- Compatibility patches built against the public APIs of [Sable](https://github.com/ryanhcode/sable) and [Sable Companion](https://github.com/ryanhcode/sable-companion) by RyanHCode",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "transportation"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 754,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

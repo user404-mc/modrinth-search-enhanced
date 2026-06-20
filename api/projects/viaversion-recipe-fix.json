@@ -1,0 +1,21 @@
+{
+  "id": "4LTXZ4D0",
+  "slug": "viaversion-recipe-fix",
+  "title": "ViaVersion Recipe Fix",
+  "description": "Server-side Fabric mod that prevents Fabric API recipe sync packets from crashing clients connecting via ViaVersion/ViaBackwards with older protocol versions.",
+  "body": "# ViaVersion Recipe Fix\n\nA server-side Fabric mod that prevents Fabric API's recipe sync packets from crashing clients connecting via ViaVersion/ViaBackwards with non-native protocol versions.\n\n## Problem\n\nSince Minecraft 1.21.2, vanilla no longer syncs all recipes to clients. Fabric API added an opt-in recipe sync API (`fabric-recipe-api-v1`) for mods that need client-side recipe data (e.g. JEI). When a server uses this alongside ViaFabric and ViaBackwards, clients on older Minecraft versions crash with:\n\n```\nFailed to decode packet 'clientbound/minecraft:custom_payload'\nCaused by: Tried to read NBT tag that was too big\n```\n\nNeither ViaVersion nor ViaBackwards translates Fabric API's custom `RecipeSyncPayloadS2C` packet, causing the client to misparse the data.\n\n## Solution\n\nThis mod intercepts recipe sync at the server level and skips sending the packet to players whose protocol version (detected via ViaVersion API) differs from the server's native protocol.\n\nNative-version clients receive recipe sync as normal.\n\n## Requirements\n\n- Minecraft 1.21.10+\n- Fabric Loader >=0.18.0\n- Fabric API (with `fabric-recipe-api-v1`)\n- ViaFabric (optional) — the mod does nothing without it but won't crash\n\n## Building\n\n```sh\n./gradlew build\n```\n\nOutput jar is in `build/libs/`.\n\n## License\n\nMIT",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 359,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

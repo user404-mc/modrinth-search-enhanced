@@ -1,0 +1,28 @@
+{
+  "id": "2qX7WO3l",
+  "slug": "axolotlclient-rendering",
+  "title": "AxolotlClient Rendering",
+  "description": "AxolotlClient's GUI rendering library. Convenient and simple rendering of some shapes, static SVGs and truetype fonts.",
+  "body": "# AxolotlClient Rendering\n\nThis library allows for shader-based rendering of some rounded shapes (e.g. rectangles), static SVGs and TrueType fonts.\n\nFor SVGs the Apache Batik library is included, for fonts Freetype¹ is used.\n\n\n### For Players\n\nThis is a library, you should not need to install it manually. (Unless someone declared their dependencies wrong or forgot to include it)\n\n\n### For Mod Developers \n\n##### Inclusion in your project\n\nThis library is published at https://maven.axolotlclient.com.\n\n```gradle\ndependencies {\n  modImplementation(include(\"io.github.axolotlclient.rendering:AxolotlClient-rendering:VERSION+MINECRAFT_VERSION\")!!)\n}\n```\n\nNote: you may omit the `include` statement if you do not want to embed this library into your mod. Make sure to declare your dependencies correctly for launchers to download the library in that case.\n\n> Tip: replace `modImplementation` with `modApi` if you're writing a library that uses this one!\n\n##### General Usage\n\nMost methods of this library are accessible using Minecraft's `GuiGraphics` class via the injected `GuiGraphicsExtension` interface.\nOn 1.8.9, since there is no `GuiGraphics` class you should obtain a `GuiGraphicsExtension` using `DrawUtil.get()`.\nAll methods exposed via this way are prefixed with `axolotlclient_rendering`.\n\nFonts can be loaded using `Font.read(...)`. If you're using a variant font\nthis will automatically read the variants and make use of them appropriately,\nhowever the font features supported by FreeType directly are rather limited.\nIf a specific feature is provided by a separate font file (for example an *italic* or\n**bold** variant) they can be added using `Font#addSubFont`, specifying in which conditions it should be used\n(some tags and values can be found as static definitions in the `Font` class).\n\n\n### Projects that use this library\n\n- [AxolotlClientConfig](https://codeberg.org/AxolotlClient/AxolotlClientConfig)\n- [AxolotlClient](https://modrinth.com/mod/axolotlclient)\n\n> Your project makes use of this library and you would like it to appear here? Let us know!\n\n\n### FAQ\n\n<ul>\n  <li>\n    <p>I'm using this library on 1.20.1 and the font looks bad</p>\n    <p>A: Because Minecraft 1.20.1 uses lwjgl 3.3.1 which did not have Freetype bindings yet this library uses STB_Truetype, which does not support hinting (there may also be other bugs we don't know about).</p>\n  </li>\n  <li>\n    <p>But doesn't 1.8.9 use lwjgl2 which is also below 3.3.2?</p>\n    <p>A: Indeed, however with legacy-lwjgl3 we can run it on lwjgl 3.3.6 where we do have bindings to Freetype.</p>\n  </li>\n  <li>\n    <p>Wouldn't it be possible to use a newer lwjgl on 1.20.1 as well?</p>\n    <p>A: Yes, but this is more difficult, increases the jar size even further and will produce incompatibilities with mods like sodium which check for which lwjgl version they're running on.</p>\n  </li>\n</ul>\n\n¹See FAQ, answer #1",
+  "categories": [
+    "fabric",
+    "library",
+    "ornithe",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 18068,
+  "followers": 0,
+  "game_versions": [
+    "1.8.9",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.2-rc-2"
+  ],
+  "date_updated": null
+}

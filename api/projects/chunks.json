@@ -1,0 +1,23 @@
+{
+  "id": "o0dhXn0v",
+  "slug": "chunks",
+  "title": "Chunks",
+  "description": "A claim plugin based on FTB Chunks",
+  "body": "# Chunks\n\nA claim plugin based on FTB Chunks\n\n## Features\n\n* A beautiful gui for easy navigation of the map without commands\n* Claim Chunks \n* Modify permissions of a chunk for a user\n* Modify permissions of a chunk for everyone\n* Enable explosions in a chunk\n* Unclaim chunks\n* Set claim chunk limit \n* Admin commands for overriding chunks and setting claim power for specific user\n* Per world claims\n\n## Installation\n\n## Database setup\n\nKeii's Chunks requires a mysql database running on the server computer because of it's code strucutre. A sqlite one that works\nout of the box is in the works but no promises on when it will be relased.\n\n## Debian\n\n### Install MariaDB Server\n```bash\n$ sudo apt update &&\n$ sudo apt install mariadb-server &&\n$ sudo mysql_secure_installation\n```\n\n### Configure a user for the mariadb server\n\nEnter the mariadb installation\n```bash\n$ sudo mariadb\n```\n\nCreate a database for keii's chunks\n```\nMariaDB [(none)]> CREATE DATABASE <database_name>;\n```\n\nCreate a new user and give it access to the database\n```\nMariaDB [(none)]> CREATE USER '<user_name>'@'localhost' IDENTIFIED BY '<password>';\nMariaDB [(none)]> GRANT ALL PRIVILEGES ON `<database_name>`.* TO '<user_name>'@'localhost';\nMariaDB [(none)]> FLUSH PRIVILEGES;\n```\n\n### Update config.yml\n\nIn the server directory go to `plugins/KeiiChunks/config.yml`. Create the file if it doesn't exist and add/update this to the file.\n\nAll of the entries in arrows '<>' are the same as the inputs you put in the above mariadb configuration.\n\n(If you installed the database on a machine that isn't the machine the server is running on you want to change the dbUrl to `jdbc:mysql://<machine_ip>:3306/`)\n```yml\ndbUrl: jdbc:mysql://localhost:3306/\ndbName: <database_name>\ndbUser: <user_name>\ndbPassword: <password>\n```\n\n### Restart the server\n\nNow restart the server and the database should be setup. If you already have custom server resource packs on the server then you will want to merge that resource pack with [the plugin resourcepack](https://github.com/shykeiichi/plugin-resourcepack/blob/main/release.zip) using something like https://merge.elmakers.com/.\n\n### If your database wasn't setup automatically\n\nIf the database wasn't updated automatically then you will want to update the database manually by running.\n```bash\n$ mysql -u <user_name> -p <database_name> < database.sql\n```\ndatabase.sql is located in plugin/KeiiChunks.\n\n",
+  "categories": [
+    "adventure",
+    "paper",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 918,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

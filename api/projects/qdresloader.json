@@ -1,0 +1,27 @@
+{
+  "id": "8bvlUrBx",
+  "slug": "qdresloader",
+  "title": "QDResLoader",
+  "description": "A dead-simple resource loader that reuses existing functionality.",
+  "body": "So, you know how there's this really nice, battle-tested, and fast resource loading system in QSL? It's used for every mod. Wouldn't it be great if we could just reuse that, instead of needing a bloated Architectury-requiring overengineered mess that breaks when you so much as breathe on it?\n\nThat's what this is. 1.0 is 10 lines of Java code, including formatting:\n```java\nnew File(\"resources\").mkdirs();\nfor (var t : ResourceType.values()) {\n    ResourceLoader.get(t).getRegisterTopResourcePackEvent().register((ctx) -> {\n        ctx.addResourcePack(new ModNioResourcePack(\n            \"QDResLoader resources\", mod.metadata(), null, ResourcePackActivationType.ALWAYS_ENABLED,\n            new File(\"resources\").toPath(), t, null\n        ));\n    });\n}\n```\n\nSince 1.0, some more features have been added to make it nicer to use and have some extra functionality, but it's still tiny regardless; just not \"put the whole mod in your description\" levels of tiny.\n\nHarness the power of QSL Resource Loader in the `resources` directory. You already know the format; data goes in `data`, assets go in `assets`. Maybe you've got some zips you don't want to extract, maybe since you're managing them with Packwiz to update packs someone else manages? Cool, drop them in `packs`.\n\nOn first run, a `QDResLoader-README.txt` file will be dropped into `resources` to give you a quick explainer on how to use the mod. Here's what it says:\n\n> This directory is created and handled by QDResLoader. You can delete this README\n> once any of the following things exist.\n> \n> This directory itself is loaded as a datapack *and* resourcepack, so any pack.mcmeta\n> will be considered (using a default provided by QSL if not present) and any data in\n> \"data\", as well as resources in \"assets\" on the client, will be loaded.\n> \n> You may also create a \"packs\" directory, and put directories, zips, or jars in there\n> that will all be loaded as packs. For organization purposes, you may also create a\n> \"datapacks\" or \"resourcepacks\" directory -- packs in those directories will only be\n> loaded as one type instead of both.\n> \n> The resources in the main directory cannot be disabled by users, but will be visible\n> in the \"Resource Packs\" and \"Data Packs\" menu, and can be reordered. Packs in all\n> three pack directories can be disabled as the user pleases, but are all enabled by\n> default.\n> \n> Jars are recognized as packs so you can take \"datapack-as-mod\" JARs and drop them\n> here instead of in mods, if that's something you would like to do.",
+  "categories": [
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 14807,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "nms8WkBg",
+  "slug": "disabler",
+  "title": "Disabler",
+  "description": "A Minecraft mod that allows you to block mob, biomes and structure spawns and block dimension.",
+  "body": "![icon with text](https://cdn.modrinth.com/data/cached_images/a559f081237eefffbac2fb4938ac215545e3432d_0.webp)\n[![Source](https://img.shields.io/badge/GitHub-Source-black?logo=github)](https://github.com/waterflane/Disabler)\n[![Patreon](https://img.shields.io/badge/Patreon-Support-orange?logo=patreon)](https://patreon.com/waterflane_dev)\n\n# Disabler: Spawn, Biome, Dimension & Structure Control\n\n## About\nA server-side utility mod that gives admins control over mob spawns, structure generation, dimension access, and world composition - powered by a simple config file.\n\n### You can control:\n> Block mob spawns\n- Remove mobs from biome spawn lists\n- Cancel runtime spawn attempts\n> Disable structures\n- Prevent entire structure types from generating\n- Remove their custom mob spawn overrides\n> Remove biomes\n- Fully exclude specific biomes from world generation\n- Cleanly prevent them from appearing in new worlds\n- Includes extra compatibility handling for Alex's Caves cave biome generation paths\n> Disable dimensions\n- Cancel dimension travel before entities enter blocked dimensions\n- Prevent new Nether portals from forming when `minecraft:the_nether` is blocked\n- No spawn-teleport fallback: players stay where they are\n> Simple TOML file\n- No commands, no GUI\n- Server-side only\n- No client install required\n- Optional singleplayer support\n- Same `config/disabler-server.toml` format on NeoForge, Forge, and Fabric\n\n## Configuration\n\nThe config file is located at:\n```\n.minecraft/config/disabler-server.toml\n```\n\n```toml\n[spawns]\n\t#List of mob ids that should never appear in the world.\n\t#Examples: \"minecraft:zombie\", \"minecraft:creeper\"\n\tblocked_mobs = []\n\n[structures]\n\t#List of structure ids that should be removed from world generation.\n\t#Examples: \"minecraft:village_plains\", \"minecraft:mineshaft\"\n\tblocked_structures = []\n\n[biomes]\n\t#List of biome ids that should be fully removed from world generation.\n\t#Examples: \"minecraft:plains\", \"minecraft:swamp\"\n\tblocked_biomes = []\n\n[dimensions]\n\t#List of dimension ids that entities should not be able to enter.\n\t#Dimension travel is cancelled before the entity changes level.\n\t#Examples: \"minecraft:the_nether\", \"minecraft:the_end\"\n\tblocked_dimensions = []\n\n[biome_exceptions]\n\t#List of biome ids that should NOT be included in the replacement pool.\n\t#These biomes have special generation requirements (e.g., mushroom biome on islands).\n\t#They will be kept as fallback if no other allowed biomes exist.\n\t#By default, minecraft:mushroom_fields is excluded.\n\t#Examples: \"minecraft:mushroom_fields\", \"minecraft:deep_dark\"\n\texceptions = [\"minecraft:mushroom_fields\"]\n```\n\n- **Biome Exceptions**: By default, `minecraft:mushroom_fields` is listed in `biome_exceptions`. This prevents it from being used as a replacement for blocked biomes, since mushroom biomes have special generation requirements. You can remove it from this list if you want mushroom biomes to be used as replacements.\n- **Dimension Blocking**: Add dimension ids such as `minecraft:the_nether` or `minecraft:the_end` to `blocked_dimensions`. Travel is cancelled before the entity changes level, with portal cooldown applied to avoid repeated triggers.\n- **Config is written to disk**: When the mod generates the config file for the first time, it includes the default `minecraft:mushroom_fields` in the exceptions list. Edit the file to customize this behavior.\n\nWatch on [GitHub](https://github.com/waterflane/Disabler) how it works!\n\n### Future Plans\n- Loot control (chests / vaults)\n- Mob loot & EXP locks\n...and more\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 232,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

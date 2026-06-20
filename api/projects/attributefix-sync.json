@@ -1,0 +1,19 @@
+{
+  "id": "nUDIHIQP",
+  "slug": "attributefix-sync",
+  "title": "AttributeFix-Sync",
+  "description": "Syncs AttributeFix limits from server to client.",
+  "body": "# AttributeFix Sync\n\n![License](https://img.shields.io/badge/license-MIT-blue)\n![NeoForge](https://img.shields.io/badge/NeoForge-1.21.1-orange)\n\n**AttributeFix Sync** is an unofficial addon for the [AttributeFix](https://github.com/Darkhax-Minecraft/AttributeFix) mod, designed to solve the synchronization issue where modified attribute limits on the server are not reflected on the client.\n\n## The Problem\n\nIn the original **AttributeFix**, if you modify the upper limit of an attribute (e.g., `generic.max_health` or `generic.attack_damage`) in the server configuration:\n1.  The **Server** correctly calculates damage and health based on your config (e.g., capped at 5000).\n2.  The **Client** still uses the default limit (e.g., 1,000,000).\n3.  **Result**: Mods like Jade, WTHIT, or the vanilla health bar display incorrect values because the client isn't aware of the stricter limit enforced by the server.\n\n## Features\n\nThis mod solves the above problem via packet synchronization:\n\n*   **Automatic Synchronization**: When a player joins the server, the mod automatically sends all attribute limits (Max Values) configured on the server to the client.\n*   **In-Memory Patching**: Upon receiving the data, the client dynamically modifies the attribute definitions in memory via Mixin.\n*   **Correct Visualization**: Jade, WTHIT, and vanilla bars will now correctly display values based on the actual server limits.\n*   **Pollution-Free**: When the player disconnects, the mod automatically restores the client's attribute limits to their original state, ensuring single-player worlds or other servers are not affected.\n\n## Installation & Usage\n\n### Dependencies\n*   **Minecraft**: 1.21.1\n*   **Loader**: NeoForge\n*   **Required Mod**: [AttributeFix](https://www.curseforge.com/minecraft/mc-mods/attributefix)\n\n### Usage\n1.  **Server**: Required. No configuration needed. It automatically reads the final values from AttributeFix and sends them to players.\n2.  **Client**: Required. Necessary to receive the synchronization packets.\n\n## Configuration\n\nThe client configuration file can be found at `config/attributefixsync-client.toml`.\n\n| Option | Default | Description |\n| :--- | :--- | :--- |\n| `enableSync` | `true` | Whether to accept attribute limit synchronization from the server. |\n| `showSyncMessages` | `true` | Whether to show a chat message when attributes are synchronized. |\n\n*Note: To change the actual attribute limits (e.g., max health), please edit the **AttributeFix** config files located in `config/attributefix/`.*\n\n## License & Credits\n\nThis project is licensed under the **MIT License**.\n\n*   Core logic is based on the Minecraft NeoForge API.\n*   Special thanks to **Darkhax** for developing the original [AttributeFix](https://www.curseforge.com/minecraft/mc-mods/attributefix) mod. This mod exists solely as a supplementary tool for it.\n\n---\n*This is not an official work by Darkhax. If you have issues related to synchronization, please report them to this repository, not the original author.*",
+  "categories": [
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 405,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

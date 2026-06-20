@@ -1,0 +1,42 @@
+{
+  "id": "QdG47OkI",
+  "slug": "modelfix",
+  "title": "Model Gap Fix",
+  "description": "Fixes gaps in Block Models and Item Models",
+  "body": "Model Gap FIX\n\n \n\nThis is a simple client mod that fixes https://bugs.mojang.com/browse/MC-73186\n\nwhich affects both Block Models and Item Models and possibly other models too\n\n \n\nThe mod works by removing texture zooming, making every model face use 100% of its texture, unlike of what it did previoulsly.\n\nThisnot only fixes this bugs on items (where it's most noticeable) but with block models too and everything else that might use those functions.\n\n \n\nThis issue was especially noticeable with custom block models or some 2d items.\n\n \n\n \n\nQ&A:\n\n- Will this slow down my game? \n\nNot at all! Removing texture zooming just removes some code and has no impact. If you however want to be nit picky the mod also slightly tweaks item models in a way that could add a ouple more quads for concave item textures compared to vanilla so in that case it could very slightly worse that vanilla. This is however negligible and could only be an issue when trying to run high resolution packs\n\n- How does this work?\n\nThe base fix is simply removing texture zooming. This is extremly simple to do and immediately \"fixes up\" all those problematic gaps on models.\nFor 2d item models something else is needed as this alone creates another kind of tiny gaps in them due to the way they are generated, quad by quad. These are very tiny and they flicker so I had to fix those too. To do so I've changed the item model generator to never create a quad that encompasses a transparent pixel and instead create multiple quads for each row of solid pixel in the same direction. This allows me to slightly increase the size of all these side quads without creating new gaps in the process, thus covering all gaps seamlessly. Note that this last part only applies to forge as fabric does not seem to have such tiny lines and the models work right away with no extra quad\n\n ",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 28590081,
+  "followers": 0,
+  "game_versions": [
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

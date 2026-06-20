@@ -1,0 +1,20 @@
+{
+  "id": "5x6P8yci",
+  "slug": "vault-chest-mining-fix",
+  "title": "Vault Chest Mining Fix",
+  "description": "For Vault Hunters 3rd Edition: Workaround for chests sometimes breaking slowly while in Vaults.",
+  "body": "*For the Vault Hunters Minecraft Modpack*\n\n## The Bug \n\nSometimes when you mine a vault chest (Living, Ornate, Gilded or Coin Pile), the mining speed will bug out and prevent you from breaking the chest as fast as it should.\n\nThis occurs when you are falling or have stepped off a block (including slabs) while mining the chest. The bug persists until you either change tools, or try to mine another block instead.\n\n\n## The Cause\n\nThis is caused by an inherent Minecraft game mechanic; when you are not on solid ground (e.g. flying, swimming, falling) the game will slow down your mining speed. This is to prevent players from mining blocks too quickly while in the air.\n\nIn theory, this means after the first \"break\" of the chest, the game should reset the mining speed penalty.\nHowever, in Vault Hunters, mining chests/coins occurs in \"slices\", popping an item out of the chest with each slice, the block isn't actually broken on slicing. Thus, any penalty applied to the first slice will propagate indefinitely.\n\n## The Fix\n\nThis mod aims to fix this bug by simply negating the mining speed penalty when specifically mining vault chests if the player is falling.\nIt ignores subsequent checks (i.e. does not check if it needs to reset the mining penalty) since the bug that causes the incorrect behaviour in the first place is used here to fix it.\n\n*We use the bug to fix the bug*\n\nThis does not apply to wooden chests or strongboxes, as they are not affected by the bug (I think).\n\n&nbsp;\n\n---\n\n**Requires the mod to be present on both clients and servers.**\n \n- If a client has it but not the server, the chest will appear to break at full speed on the client side, but will still be there on the server; it will pop back into existence after a second or two. (Technically this still kind-of helps, as the client starts mining the block behind it the moment the chest disappears, which resets the mining slowdown) \n- If a server has it but not the client, nothing will happen. It should not prevent vanilla clients from joining the server",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 363,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2"
+  ],
+  "date_updated": null
+}

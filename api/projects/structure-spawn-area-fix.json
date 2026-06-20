@@ -1,0 +1,22 @@
+{
+  "id": "cvKam4v0",
+  "slug": "structure-spawn-area-fix",
+  "title": "Structure Spawn Area Fix",
+  "description": "Increases spawn areas for mobs around given structures",
+  "body": "<p align=\"center\">\n  <img alt=\"mc-versions\" height=\"56\" src=\"https://raw.githubusercontent.com/kvnmtz/structure-spawn-area-fix/refs/heads/main/docs/badge_mc_versions.svg\">\n  &nbsp\n  <img alt=\"forge\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg\">\n</p>\n\n# Structure Spawn Area Fix\n\nI have noticed an issue with the Alex's Mobs mod, which adds mob spawns to the shipwreck structure.\nThis structure's bounding box is so small that in practice these mobs will spawn very rarely, if at all.\nYou can read more about this in [this issue](https://github.com/AlexModGuy/AlexsMobs/issues/2257).\n\nThis mod fixes this issue by allowing you to expand the spawn area for mobs around structures.\nIt does this by checking a larger area around a potential spawn point for a given structure.\nIf one is found, the biome's regular mob spawns will be overriden with structure-specific ones for this position.\n\nBefore, I rarely got a Skelewag to spawn in, but with this fix applied, it looks like this (sped up by a factor of 2; there's a shipwreck in the center of the screen):\n\n![Ingame](https://raw.githubusercontent.com/kvnmtz/structure-spawn-area-fix/refs/heads/main/docs/ingame.webp)\n\n## Configuration\n\nThe configuration is located in `config/structure-spawn-area-fix.json`.\nIt is a JSON file containing a list of entries for structures to expand the spawning area for.\nEach entry has the following properties:\n\n- `structure`: The namespaced ID of the structure (e.g., `minecraft:shipwreck`)\n- `category`: The mob category to apply the expansion for\n  - Possible values: `monster`, `creature`, `ambient`, `axolotls`, `underground_water_creature`, `water_creature`, `water_ambient`, `misc`\n- `additional_radius`: An integer value that specifies the additional radius to check for the structure in blocks\n- `biome` (optional): A namespaced biome ID (e.g., `minecraft:plains`) or a biome tag (e.g., `#minecraft:is_ocean`) to restrict the expansion to specific biomes (recommended for performance).\n\n### Example\n\nHere is an example configuration that expands the spawn area for monsters around shipwrecks by 12 blocks, restricted to biomes that have the shipwreck structure:\n\n```json\n[\n  {\n    \"structure\": \"minecraft:shipwreck\",\n    \"category\": \"monster\",\n    \"additional_radius\": 12,\n    \"biome\": \"#minecraft:has_structure/shipwreck\"\n  }\n]\n```\n\nBy default, the mod creates this exact configuration to fix the issue with Alex's Mobs and its Skelewag spawns at shipwrecks.\nIf you find other mobs also have issues spawning near structures, you can just add another entry for them.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 292,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

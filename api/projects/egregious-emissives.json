@@ -1,0 +1,25 @@
+{
+  "id": "hozvnJvZ",
+  "slug": "egregious-emissives",
+  "title": "Egregious Emissives",
+  "description": "Procedurally generated labPBR emissives for GregTech CEu.",
+  "body": "# Egregious Emissives!\n### A very simple resource pack that consists of procedurally generated emissive textures made for labPBR-compatible shaders.\n\nThere are 3 versions available as of right now:\n- **Egregious Emissives** - EE made for the default textures of GTCEu\n- **Egregious Emissives: Zedition** - EE made for **[the ZedTech resource pack](https://www.curseforge.com/minecraft/texture-packs/zedtech)**\n- **Egregious Emissives: TEGBLON** - EE made for **[IGBLON's mashup pack](https://www.mediafire.com/file/fr6r42ckup64cpc/hopefully+this+isnt+copyrighted.zip/file)**.\n\n### You need shaders that support labPBR in order for this resource pack to have an effect.\nI highly recommend **[BSL Shaders](https://modrinth.com/shader/bsl-shaders)** or **[Complementary Reimagined](https://modrinth.com/shader/complementary-reimagined)**, but you can find all the shaderpacks that support labPBR [here](https://wiki.shaderlabs.org/wiki/LabPBR_Supported_Packs).\n\n<details>\n<summary>In case you're interested in how this pack gets generated, here is the script!</summary>\n\n```py\nfrom PIL import Image\nimport glob\nfrom os import makedirs\n\nkeywords = [\"bloom\", \"emissive\"]\nfiles = []\nbad_keywords = []\n\nfor kw in keywords:\n    files += glob.glob(\"./src/**/*{}*.png\".format(kw), recursive=True)\n    bad_keywords.append(\"_no_{}\".format(kw))\n\n\nfor file in files:\n    if not any(kw in file for kw in bad_keywords):\n        img = Image.open(file)\n\n        blank = Image.new('RGBA', img.size, '#00000000')\n        emissive = Image.new('RGBA', img.size, '#000000fe')\n\n        overlay = Image.composite(img.convert(\"LA\"), blank, img.convert(\"L\"))\n\n        folders = file.split(\"/\")\n        folders[1] = \"dst\"\n        folders[-1] = folders[-1].replace(\".png\", \"_s.png\")\n        output = \"/\".join(folders)\n        folders.pop()\n\n        outputImg = Image.composite(emissive, blank, overlay)\n\n        makedirs(\"/\".join(folders), exist_ok=True)\n        outputImg.save(output, 'png')\n        print(file + \" -> \" + output)\n```\n\nAnd here is the source on [GitHub](https://github.com/Aproxia-dev/egregious-emissives-script)!\n</details>",
+  "categories": [
+    "16x",
+    "blocks",
+    "core-shaders",
+    "environment",
+    "minecraft",
+    "modded"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1338,
+  "followers": 0,
+  "game_versions": [
+    "1.12",
+    "1.12.1",
+    "1.12.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "SvXrP8rT",
+  "slug": "achievements-optimizer",
+  "title": "Achievements Optimizer",
+  "description": "Improved achievement performance",
+  "body": "Achievements Optimizer is a lightweight performance mod that optimizes how item-based achievements and advancements are processed — reducing unnecessary inventory scans and improving overall tick efficiency.\n\nIt doesn’t change any gameplay mechanics or logic — only makes achievement checks faster and cleaner under the hood.\n\n⚙️** Key Optimizations**\n- Early tick skipping — heavy slot calculations (empty/occupied/full) are skipped early, preventing extra work per event.\n- Instant empty stack discard — with ignoreEmptyStacks enabled, empty stacks are removed immediately without scanning the entire inventory.\n- Fast multi-item matching — single-pass inventory check using boolean[] flags with early exit. No allocations, noticeably faster on large inventories or long condition lists.\n- Early slot filtering — slots.matches(full, empty, occupied) is evaluated first, avoiding deeper checks when slots don’t match.\n- Preserved fast path for single targets — when items.size() == 1, the comparison is done directly on the changed slot without a full inventory pass.\n\n🚀 **Result**\n\nFewer redundant checks, less memory churn, and faster responses to inventory events.\nParticularly beneficial for servers or modpacks with many players and complex advancement triggers.\n\n**From version 2.0.0 required Forge Config API Port (only for fabric version).\n**\nFeel free to write about all problems and suggestions on my github! Good luck!\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1028515,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

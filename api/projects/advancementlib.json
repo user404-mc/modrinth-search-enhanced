@@ -1,0 +1,31 @@
+{
+  "id": "Lerd3Kd9",
+  "slug": "advancementlib",
+  "title": "AdvancementLib",
+  "description": "A small plugin library for custom advancement triggering.",
+  "body": "# AdvancementLib\n[![Javadoc](https://img.shields.io/badge/docs-javadoc-blue.svg)](https://lambdaphoenix.github.io/AdvancementLib/javadoc/)\n[![License](https://img.shields.io/github/license/lambdaphoenix/AdvancementLib)](https://github.com/lambdaphoenix/AdvancementLib/blob/main/LICENSE)\n[![Java Version](https://img.shields.io/badge/Java-21-blue.svg)](https://jdk.java.net/)\n[![PaperMC](https://img.shields.io/badge/PaperMC-1.21-green)](https://papermc.io/)\n![Modrinth Downloads](https://img.shields.io/modrinth/dt/Lerd3Kd9?logo=modrinth&link=https%3A%2F%2Fmodrinth.com%2Fplugin%2Fadvancementlib)\n\n>**AdvancementLib** is a modern, fluent Java library for creating custom advancements in [PaperMC](https://papermc.io/) Minecraft plugins.  \nIt lets you easily register and manage advancements that respond to any Bukkit event, using a powerful builder-based API.\n---\n\n## ✨ Features\n- **Register custom triggers:** Listen for any Bukkit event (e.g., block break, entity death, player action) as an advancement trigger.\n- **Custom conditions:** Define your own logic to decide when an advancement should progress or be granted—perfect for unique gameplay challenges.\n- **Support for vanilla & custom advancements:** Grant both built-in Minecraft advancements and your own custom ones.\n- **Progress tracking:** Easily set multistep advancements (e.g., \"break 100 blocks\") with automatic progress tracking per player.\n- **Builder API:** Use a fluent builder to configure triggers, conditions, and progress logic.\n- **Custom progress increments:** Determine how much progress each event grants (default is 1, but can be customized).\n\n---\n\n## 🚀 Getting Started\n\n### 1. Add as a Dependency\n\nAdd **AdvancementLib** as a dependency in your project using your preferred build tool or project setup method.\n\n>Note: Add the PaperMC repository if not already present.\n\n### 2. Basic Usage\n\n#### Register an Advancement\n\n```java\nimport io.github.lambdaphoenix.advancementLib.AdvancementAPI;\n\nAdvancementAPI api = new AdvancementAPI(plugin);\n\napi.register(BlockBreakEvent.class)\n    .advancementKey(\"myplugin:break_10_stone\")\n    .condition(\n        (player, event) -> event.getBlock().getType() == Material.STONE\n    )\n    .targetValue(10)\n    .grantMode(GrantMode.ALL_AT_ONCE)\n    .build();\n```\n\n#### Grant Modes\n\n- `ALL_AT_ONCE`: Grants the advancement when the target is reached.\n- `STEP_BY_STEP`: Grants one criterion at a time (shows progress bar in-game).\n\n#### Custom Player Extractor\n\n```java\napi.register(CustomEvent.class)\n    .advancementKey(\"myplugin:custom_event\")\n    .playerExtractor(event -> event.getWhoDidIt())\n    .build();\n```\n\n## 📚 API Highlights & Documentation\n\n- **AdvancementAPI** – Main entry point for registering advancements.\n- **AdvancementRegisterBuilder** – Fluent builder for all advancement options.\n- **GrantMode** – Enum for grant behavior: all at once or step-by-step.\n- **PlayerExtractor** – Interface for mapping any event to a Player.\n\nThe latest Javadoc is automatically published to GitHub Pages:\n\n➡️ **[View the Javadoc here](https://lambdaphoenix.github.io/AdvancementLib/javadoc/)**",
+  "categories": [
+    "adventure",
+    "library",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 276,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

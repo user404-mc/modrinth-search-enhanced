@@ -1,0 +1,27 @@
+{
+  "id": "JpfCkjTu",
+  "slug": "immersive-crafting",
+  "title": "Immersive Crafting",
+  "description": "Library mod providing data driven in-world crafting with support for data generation.",
+  "body": "# Immersive Crafting\n\nImmersive Crafting is a library mod adding support for data-driven in-world crafting.\nCrafting recipes are completely data-driven and reside in the `data/${your_datapack}/ic_recipes`\nfolder. Recipes can also be generated using the fabric-datagen API.\n\nImmersive Crafting provides several built-in recipe types, such as crafting items\nwhen clicking with an item on a block. Everything is designed to be highly customizable.\n\n## Documentation\n\nUp-to-date documentation can be found [here](https://github.com/cschierig/immersive-crafting/blob/dev/1.20.2/docs).\n\n## Example\n\nThe following example crafts a nether star from five diamonds when the player right-clicks\non a quartz block with a stack of diamonds at night.\n\n```json\n{\n  \"type\": \"immersive_crafting:use_item_on\",\n  \"ingredient\": {\n    \"type\": \"immersive_crafting:item\",\n    \"stack\": {\n      \"count\": 5,\n      \"id\": \"minecraft:diamond\"\n    }\n  },\n  \"predicate\": {\n    \"conditions\": [\n      {\n        \"type\": \"immersive_crafting:invert\",\n        \"condition\": {\n          \"type\": \"immersive_crafting:day_time\",\n          \"end_time\": 12999,\n          \"start_time\": 0\n        }\n      },\n      {\n        \"type\": \"immersive_crafting:block\",\n        \"block\": {\n          \"id\": \"minecraft:quartz_block\"\n        }\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"type\": \"immersive_crafting:item\",\n      \"stack\": {\n        \"count\": 1,\n        \"id\": \"minecraft:nether_star\"\n      }\n    }\n  ]\n}\n```\n\n## Usage & Dependencies\n\n- Immersive Crafting for Fabric depends on [Fabric API](https://modrinth.com/mod/fabric-api).\n- It is recommended to use JEI to view the recipes.\n\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 52233,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

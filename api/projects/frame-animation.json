@@ -1,0 +1,19 @@
+{
+  "id": "sLoCbP2T",
+  "slug": "frame-animation",
+  "title": "Frame Animation",
+  "description": "Provides an easy way to make animations with scripts. Works in mp.",
+  "body": "This mod allows you to create some cool animations using basic scripts. This also works in mp! (mod needs to be installed on server for others to see your animations)\n\nAll loadable scripts must be declared in `.minecraft/animations/` folder.\nCurrent extension is .fa, so all files should be named `<readable name>.fa`.\nIn the head of file you declare the name of this animation, this is what will be displayed in the ingame GUI (menu defaults to G).\n```\nname=my awesome animation\n```\nNext you can declare if animation should be interrupted while walking, for that simply just add `interruptible`.\nThat will affect the whole animation no matter where it was declared.\nThere is also `resetarms` that removes idle animation while your frames are in process, declaration rules are the same.\n```\nname=my awesome animation\ninterruptible\nresetarms\n```\nNow to actually do stuff the concept if very simple:\nThere is a frame that is declared with `frame <duration in ticks>` and then comes the actual commands that describe what happens during the frame.\nWhen frame runs it executes the instructions you've set in it every time it renders player.\nHere is the list of what you can set:\n```\nHEAD_X\nHEAD_Y\nHEAD_Z\nHAT_X\nHAT_Y\nHAT_Z\nBODY_X\nBODY_Y\nBODY_Z\nRIGHTARM_X\nRIGHTARM_Y\nRIGHTARM_Z\nLEFTARM_X\nLEFTARM_Y\nLEFTARM_Z\nRIGHTLEG_X\nRIGHTLEG_Y\nRIGHTLEG_Z\nLEFTLEG_X\nLEFTLEG_Y\nLEFTLEG_Z\nCAPE_X\nCAPE_Y\nCAPE_Z\n```\nCaps is not required, underscore can also be replaced with a dot.\nYou can set those values to any float values you want.\n\nSo here is an example for a simple hands up animation that will last 5 seconds:\n```\nname=my awesome animation\ninterruptible\nframe 100\n rightarm_x=-2.8\n leftarm_x=-2.8\n```\nI recommend to add a space before instructions in all frames because that imporves readability.\n\nAfter you wrote the script you can come back to your game and click edit button to enter edit mode, then select slot you want to set animation in and select the animation from list.",
+  "categories": [
+    "babric",
+    "ornithe"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 143,
+  "followers": 0,
+  "game_versions": [
+    "b1.7.3"
+  ],
+  "date_updated": null
+}

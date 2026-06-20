@@ -1,0 +1,37 @@
+{
+  "id": "4pmkajBP",
+  "slug": "playersync",
+  "title": "PlayerSync",
+  "description": "A server side mod that allows synchronising player data (inventory, health, xp, ...) across different Forge or NeoForge servers.",
+  "body": "# PlayerSync\n\n**PlayerSync** is a Minecraft mod that keeps your player data synchronized across multiple servers. Seamlessly move between servers in your network without losing your inventory, experience, advancements, or modded items.\n\n---\n\n## Features\n\n- **Inventory Sync:** Your main inventory, armor, ender chest, and offhand items are always up to date on every server.\n- **Experience & Stats:** XP, health, food, and score are preserved as you travel between servers.\n- **Advancement Sync:** Your achievements and advancements follow you everywhere.\n- **Potion Effects:** Active potion effects are restored when you join a new server.\n- **Mod Support:**\n  - [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios): Curios slots and items are synchronized.\n  - [Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks): Backpack contents are kept in sync.\n  - [Cobblemon](https://www.curseforge.com/minecraft/mc-mods/cobblemon):\nParty, PC and Podex are supported(Only 1.21.1).\n- **Placeholder Items:** If a modded item is missing on a server, a placeholder is created so nothing is lost.\n- **Chat Sync (Optional):** Synchronize chat messages between servers (can be enabled in config).\n\n---\n\n## How It Works\n\nPlayerSync uses a central MySQL or MariaDB database to store your player data. When you join a server, your data is loaded from the database. When you leave or your data is saved, it is updated in the database. This ensures your progress is always up to date, no matter which server you play on.\n\n---\n\n## Getting Started\n\n1. **Install the Mod:**\n   Download the PlayerSync mod and place it in the `mods` folder of each server you want to synchronize.\n\n2. **Configure the Database:**\n   Generate config file by starting server at first.Edit the `playersync.toml` config file in the `config` folder to set your database connection details.\n   Each server should have a unique `Server_id`.\n\n3. **Start Your Servers:**\n   PlayerSync will automatically create the necessary tables and keep your data in sync.\n\n4. **(Optional) Enable Chat Sync:**\n   Enable chat synchronization in the config if you want messages to be shared between servers.\n\n---\n\n\n## Configuration Options\n\nAll options are found in the `playersync.toml` file in your server’s `config` folder.\n\n### Database Settings\n\n- **host**\n  The address of your MySQL/MariaDB database server.\n  *Default:* `\"localhost\"`\n\n- **db_port**\n  The port for your database server.\n  *Default:* `3306`\n\n- **use_ssl**\n  Whether to use SSL for the database connection.\n  *Default:* `false`\n\n- **user_name**\n  The username for your database.\n  *Default:* `\"playersync\"`\n\n- **password**\n  The password for your database.\n\n- **db_name**\n  The name of the database to use.\n  *Default:* `\"playersync\"`\n\n- **Server_id**\n  This value distinguishes each server in your network. **Each server must have a unique integer here!**\n  *Default:* Randomly generated.\n\n### Synchronization Options\n\n- **sync_advancements**\n  Whether to synchronize advancements (achievements) between servers.\n  *Default:* `true`\n\n\n### Serialization Options\n\n- **use_legacy_serialization**\n  Use the old (pre-Base64) serialization format for writing data to the database.\n  *Set to `true` ONLY if you have mod versions older than 1.35 reading the same database.*\n  *Default:* `false`\n\n### Placeholder Item Options\n\n- **item_placeholder_title_override**\n  Override the title of placeholder items (for missing modded items).\n  *Default:* `\"\"` (uses default translation)\n\n- **item_placeholder_description_override**\n  Override the description of placeholder items.\n  *Default:* `\"\"` (uses default translation)\n\n---\n\n## FAQ\n\n**Q: What happens if I have modded items and join a server without that mod?**\nA: PlayerSync will create a placeholder item so your original item is not lost. When you return to a server with the mod, your item will be restored.\n\n**Q: Is my data safe?**\nA: Yes! All data is stored in a central database and is not lost when switching servers.\n\n**Q: Does this work for singleplayer?**\nA: PlayerSync is designed for multi-server networks. It is not needed for singleplayer.\n\n**Q: What mods are supported?**\nA: Curios API and Sophisticated Backpacks are supported out of the box. More mod support may be added in the future.\n\n---\n\n## Support\n\nIf you have questions or need help, please contact us via Github or Discord.\n\n---\n\n**Enjoy seamless play across all your servers with PlayerSync!**\n",
+  "categories": [
+    "bukkit",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1515,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

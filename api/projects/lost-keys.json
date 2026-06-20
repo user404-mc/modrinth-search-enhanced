@@ -1,0 +1,33 @@
+{
+  "id": "TCH6A0lO",
+  "slug": "lost-keys",
+  "title": "Lost Keys",
+  "description": "Temporarily rebind a client's controls from the server!",
+  "body": "# Lost Keys\n\nrequired on both server and client (although it shouldnt crash anything if only client/only server has it)\n\n## Server Side Commands:\n\nit adds a server side command `/lost_keys:override <player> <binding> <key>` that temporarily (until the player relogs) replaces the key for a given binding\n\nfor instance, `/lost_keys:override Steve key.forward key.keyboard.b` will mean Steve has to press B to walk forwards instead of W (or whatever they have it set to)\n\nthe `<key>` can also be set to whatever the value of another binding is, so `/lost_keys:override Steve key.drop key.forward` will mean whenever Steve walks forwards, they also drop whatever they're holding\n\nto clear an override, set the `<key>` to `default` (or itself), to disable a key, set the `<key>` to `none` (or any invalid key), to force a `<key>` to be pressed, set it to `pressed`\n\nthe `<binding>` can also be `all`, which can be used to clear all overrides at once: `/lost_keys:override <player> all default`, disable all keys: `/lost_keys:override <player> all none` (then specific keys can be enabled by setting them to themselves) , or cause a mess: `/lost_keys:override <player> all key.keyboard.a`\n\nyou can also set keybindings to run commands, like so: `/lost_keys:bind_command <player> <binding> <command>`, the command does not include the /, so: `/lost_keys:bind_command @s key.forward say hi`, and the binding can also be keyboard keys. *commands are run by the client*, so commands that require op won't work on an unopped player\n\n## Client Side Commands:\n\nit also adds two client side commands, `/lost_keys:lognext`, which tells you the name of the key you press next (and binding if there is one), so you can easily figure out how to override what you want\n\nand `/lost_keys:list`, which tells you all applied overrides\n\n## Notes:\n\nnot all keys work, because minecraft is inconsistent, but all the important ones like movement and attacking do. Likewise some keys will not work properly with all overrides\n\n### Plugin Version:\nthe permission node is `lost_keys.override`, and it only works with specifically mentioned players and @a - so `/lost_keys:override Steve key.forward none` works, but `/lost_keys:override @p key.forward none` or `/execute as Steve run lost_keys:override @s key.forward none` do not! this is an important difference!\n\nthe same limitations apply for `/lost_keys:bind_command`, and it's permission node is `lost_keys.bind_command`",
+  "categories": [
+    "cursed",
+    "fabric",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 907,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

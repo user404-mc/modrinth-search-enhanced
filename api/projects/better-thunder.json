@@ -1,0 +1,21 @@
+{
+  "id": "oQP3kM94",
+  "slug": "better-thunder",
+  "title": "Better Thunder",
+  "description": "Makes thunder volume controllable by the Weather slider in the sound settings, among other improvements.",
+  "body": "This mod provides volume control over the thunder noise created by lightning bolts. No more setting the Weather slider to \"OFF\". Enjoy the rain alongside the thunder.\n\n### Technical\nThe mod accomplishes this by hooking onto the PlaySound event and filtering for `ambient.weather.thunder`. The volume is then reduced considerably (from 10000.0f to 5.0f) before it plays. It does this for any volume above 5 to try and catch some modded thunderbolts too (such as Weather2, which uses 64.0f). The default volume of 5.0f was chosen according to [a comment](https://bugs.mojang.com/browse/MC-46634?focusedId=623571#comment-623571) on the relevant bug [MC-46634](https://bugs.mojang.com/browse/MC-46634).\n\n## Global thunder\nEnabled by default is a simple algorithm that plays the sound near the player, in the direction of the thunderbolt. It also affects the thunder's volume. See the configuration file for details.\n\n## FAQ\n### Can I distribute it as part of a modpack?\nYes, and you don't need to ask for permission to do so; just preserve the mod credits.\n\n### Will you port this to [version]?\nOnly if enough people want it. Otherwise, probably not. I created this mod for a small modpack that I play on with a friend, and I thought I'd share it since I couldn't find a mod that does this.\n\n### Isn't this already fixed by BugTorch?\nYes, sort of. BugTorch uses [a mixin](https://github.com/jss2a98aj/BugTorch/blob/master/src/main/java/jss/bugtorch/mixins/early/minecraft/tweaks/MixinEntityLightningBolt.java) to patch Minecraft's `EntityLightningBolt` class. This means it is fixed for anything that uses the vanilla lightning bolt. Despite this, setting the volume too low means you won't be able to hear it unless it's quite close to you, and setting it too high means it will still explode your ears even if you have the Weather slider set really low.\n\nThis mod uses a different approach by intercepting the actual thunder sound and reducing its volume before it is played. This allows coverage for any mods using the thunder sound. Additionally, this mod is able to place the sound near you so that you can still hear thunder bolts that are far away, while also being able to control the volume.\n\nAs of version 1.2.0, Better Thunder detects whether or not BugTorch's fix is used, and disables itself if so.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 658,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10"
+  ],
+  "date_updated": null
+}

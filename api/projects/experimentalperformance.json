@@ -1,0 +1,19 @@
+{
+  "id": "pYFi4eeH",
+  "slug": "experimentalperformance",
+  "title": "Experimental Performance",
+  "description": "improves Minecraft performance in several aspects",
+  "body": "Memory Allocation\nSome classes can be very memory dense, they have a big memory footprint.\nThis is an issue because your computer can only fit 64 bytes into a processor's cache line, so anything over 64 needs to be split into multiple lines. This can drastically slow down operations based on what is being called.\nSo obviously the best solution is to make sure nothing is over 64 bytes, this is a lot easier said than done, since there's multiple downsides to this, although they don't matter in the circumstances that ive optimized.\n\nChunk Memory Allocation\nChunks are very memory dense and take up 80 bytes. Using some hacky fabric-ASM we are able to nuke variables from the Chunk class and redirect all the calls.\nThis allows us to bring the chunk back down to 64, which on some computers can make most chunk operations 0.25x faster!\n\nBlock Memory Allocation\nBlocks are also very memory dense, taking up 72 bytes.\nWe do the same thing as Chunks, we move stuff into a BlockInfo class and reduce the weight of the class.\nThis not only makes it so most blocks can now be passed along faster, but also prevents some blocks from going over 128 bytes, which would need 3 cache lines.\n\nEntity Memory Allocation\nUnlike Chunk & Block, entity is its own nightmare. It takes up 272 bytes, which is 5 cache lines. No wonder entities are laggy xD\nI've optimized it to 4 cache lines, although going any further will break more mod compatibility than I have the time to fix.\nIf the mod grows big enough at some point, I may rewrite the entire entity class and just provide an API for the values you would want.\n\nWhy is Mojang not doing this?\nWell they kinda are?\nWhen making my optimizations I noticed that mojang has actually made the same performance improvements that I'm doing. Such as LevelInfo, although that was years ago?\nMojang does not seem to care about performance much these days, they make really weird performance changes but never seem to really care too much. Some classes have grown a lot in the last years, and they haven't really noticed how dense they have become.\nThat's fine though, cause I'm here to help.\n\nThe game of cat and mouse\nPerformance is hard to get more of, it's a very complex puzzle which requires you to understand every single part of it in a lot of detail.\nPut simply, computers are not simple. They try really hard to make it easier for the programmer to not think about it, although programmers should be thinking about it at all times.\nWhat am I talking about?\nWell the performance I get with this mod comes at a cost, extra calls and memory allocation. I'm simply optimizing the structures within the game to work as smoothly and quickly with the computer, although that requires the computer to remember more things.\nUnfortunately, you won't notice that cost since in most of these situations the performance win greatly overcomes the loss.\n\nExperimental!!!\nSeems I need to continue saying it. This mod is highly experimental and does some super sketch ASM magic to gain performance by simply moving classes around. Do not include this in modpacks, and do not make issues about compatibility. This mod was made as a proof of concept to see if we could further optimize minecraft by reducing the classes sizes in the cache lines. This mod showed a clear performance win, although its pretty untested and still needs LOTS of work. I don't have time to continue working on this mod currently",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 26136,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4"
+  ],
+  "date_updated": null
+}

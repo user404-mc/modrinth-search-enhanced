@@ -1,0 +1,24 @@
+{
+  "id": "sFgqI5oP",
+  "slug": "sound-culling",
+  "title": "Sound Culling",
+  "description": "This project adds a highly optimized sound management system that dynamically culls and dampens overlapping audio to prevent sound clutter and eliminate FPS drops in sound-heavy environments.",
+  "body": "# 🎧 Dynamic Sound Culling\n\nA highly optimized, feature-rich audio management mod designed to prevent audio clutter and major FPS drops in sound-heavy environments (e.g., massive entity farms, complex machinery grids, industrial spawners, or crowded multiplayer lobbies). \n\nBy dynamically culling and dampening overlapping audio sources based on the player's view direction, distance, and custom category limits, it delivers a smooth, crisp, and lag-free audio experience without losing critical ambient cues.\n\n---\n\n## ✨ Key Features\n\n* 🚀 **Dynamic Volume Dampening:** Unlike simple mods that instantly mute overlapping sounds, Dynamic Sound Culling softly dampens excessive volumes, preserving atmospheric audio without blasting your speakers.\n* 👀 **Directional Culling:** Prioritizes sounds in front of the player (inside your field of view) and intelligently sops/dampens sounds coming from behind.\n* 📊 **Per-Category Culling Limits:** Configure independent culling limits for different sound types:\n  * **Hostile Mobs** (Zombies, Creepers, Skeleton farms)\n  * **Neutral Mobs** (Massive cow, sheep, or chicken farms)\n  * **Blocks/Spawners** (Pistons, farms, block noises)\n  * **Ambient Sounds** (Environmental loops)\n  * **Default Limit** (Generic catch-all limit)\n* 🎨 **Sleek Side-by-Side Config GUI:** Access a beautiful, dual-column modern grid configuration panel directly from the game's mod menu across **Fabric**, **Forge**, and **NeoForge**.\n* ⚡ **Zero Performance Overhead:** Built using highly optimized Mixins injecting directly into the Minecraft sound engine, leading to improved audio processing threads and frame rates.\n\n---\n\n## 📐 How it Works\n\nThe mod groups sounds into local 3D regions (chunks). When identical or total sounds exceed your defined thresholds within a short time window:\n1. It checks if the sound is **whitelisted** (important sounds like player hurt, player death, generic explosions, lightning, and primed TNT are never culled).\n2. It prioritizes sounds that are **directly in front of you** (inside your FOV) so you never miss what you are looking at.\n3. Overlapping background sounds are softly **dampened** in volume or culled to protect your FPS and ears.\n\n---\n\n## 🛠️ Configuration Details\n\nConfiguration values are stored inside `config/soundculling.json`. You can easily adjust them via the in-game GUI or edit the file directly:\n\n* **Region Total:** Maximum total combined sounds of any type allowed inside a single region.\n* **Time Window:** Evaluation time window in game ticks (20 ticks = 1 second).\n* **Region Size:** Region boundary size in blocks (16.0 = 1 chunk).\n* **Category Limits:** Independent sound limit sliders for Hostile, Neutral, Blocks, and Ambient sound sources.\n\n---\n\n## 🚀 Game Commands\n\nControl settings and inspect culling statistics dynamically using in-game chat commands:\n\n* `/soundculling` — Displays current mod limits, region settings, and total culled sound statistics for the session.\n* `/soundculling limit <n>` — Dynamically adjusts the default sound instance limit.\n* `/soundculling total <n>` — Dynamically adjusts the combined regional limit.",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 506,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

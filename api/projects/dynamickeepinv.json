@@ -1,0 +1,37 @@
+{
+  "id": "mLgWaMK8",
+  "slug": "dynamickeepinv",
+  "title": "DynamicKeepInv",
+  "description": "Dynamically controls keepInventory based on day/night cycle, protection plugins, and death causes.",
+  "body": "# DynamicKeepInv\n\n![Java](https://img.shields.io/badge/Java-17%2B-orange) ![Server](https://img.shields.io/badge/Server-Paper%20%7C%20Spigot%20%7C%20Folia-blue) ![License](https://img.shields.io/badge/License-Apache%202.0-green)\n\n**DynamicKeepInv** is a sophisticated plugin that revolutionizes how the keepInventory gamerule works on Minecraft servers. Instead of a simple global toggle, it dynamically controls inventory loss based on in-game time, death causes, territory protection, and economy.\n\nIt is designed for modern servers (1.20.4+) and features full native support for **Folia** region threading.\n\n---\n\n## Why use DynamicKeepInv?\n\nVanilla Minecraft forces server administrators to choose between \"Too Easy\" (keepInventory true) or \"Too Hard\" (keepInventory false).\n\n**DynamicKeepInv** bridges this gap by offering a configurable balance:\n* **Day/Night Cycle:** Players feel safe during the day but must survive the night without protection.\n* **PvP vs PvE:** Make PvP high-stakes (drop items) while keeping PvE casual (keep items), or vice-versa.\n* **Economy Sink:** Allow players to pay a fee to save their items upon death via an interactive GUI.\n* **Land Integration:** Respects claims from Lands and GriefPrevention (e.g., keep items in your own base).\n\n---\n\n## Key Features\n\n### Time-Based Rules\n* Automatically enables keepInventory during the day.\n* Disables it at night based on configurable start and end ticks.\n* Plays sounds and sends titles when the status changes.\n\n### Advanced Death Rules\n* **PvP vs PvE:** Configure separate rules for Item Loss and XP Loss based on the killer.\n* **By World:** Set different rules for the Overworld, Nether, and End.\n* **Permission Bypass:** Players with `dynamickeepinv.bypass` never lose items.\n\n### Economy & Death GUI\n* **Death Confirmation GUI:** When a player dies, a GUI appears asking them to **PAY** to keep items or **DROP** them.\n* **Auto-Pay:** Players can toggle `/dki autopay` to automatically deduct the fee and skip the GUI.\n* **Persistence:** If a player disconnects while dead, their pending death is saved to a database and the GUI reopens upon rejoin.\n* *(Requires Vault)*\n\n### Player Statistics\n* Tracks death history for every player.\n* **In-Game GUI:** Run `/dki stats` to view:\n    * Total Deaths, Saved Deaths, and Lost Deaths.\n    * Money spent on keeping inventory.\n    * Death cause breakdown (Day, Night, PvP, etc.).\n* **PlaceholderAPI:** Display these stats on scoreboards or chat.\n\n### Plugin Integrations\n* **Lands:** Configure rules for \"Own Land\", \"Enemy Land\", and \"Wilderness\".\n* **GriefPrevention:** Similar support for claims.\n* **GravesX / AxGraves:** If a player chooses to drop items (or cannot afford to pay), they are placed into a Grave instead of scattering on the ground.\n* **Folia:** 100% thread-safe region scheduling.\n\n---\n\n## Logic Hierarchy\n\nWhen a player dies, the plugin decides whether to keep or drop items based on this priority order (highest to lowest):\n\n1.  **Bypass Permission** (`dynamickeepinv.bypass`)\n    * *If player has this permission, they always keep items.*\n2.  **Claim Protection** (Lands / GriefPrevention)\n    * *Is the player in their own claim? Use claim settings.*\n3.  **Death Cause** (PvP / PvE)\n    * *Did another player kill them? Use PvP settings.*\n4.  **Wilderness Settings**\n    * *If enabled, use specific settings for unclaimed land.*\n5.  **Time-Based** (Day / Night)\n    * *Fallback: Is it currently Day or Night?*\n\n---\n\n## Installation\n\n1.  Download the latest JAR from the [Releases](https://github.com/Alexteens24/DynamicKeepInv/releases) page.\n2.  Place it into your server's `plugins/` folder.\n3.  **(Optional)** Install Vault and an Economy plugin for paid features.\n4.  Restart the server.\n\n---\n\n## Commands & Permissions\n\n| Command | Permission | Description |\n| :--- | :--- | :--- |\n| `/dki status` | `dynamickeepinv.admin` | View current status (Time, World, Enabled). |\n| `/dki reload` | `dynamickeepinv.admin` | Reload configuration and messages. |\n| `/dki toggle` | `dynamickeepinv.admin` | Toggle the plugin on/off globally. |\n| `/dki stats [player]` | `dynamickeepinv.stats` | View death statistics GUI. |\n| `/dki confirm` | `dynamickeepinv.use` | Re-open the Death Confirmation GUI (if pending). |\n| `/dki autopay` | `dynamickeepinv.use` | Toggle auto-payment mode. |\n\n**Other Permissions:**\n* `dynamickeepinv.bypass`: User always keeps inventory.\n* `dynamickeepinv.stats.others`: View other players' stats.\n\n---\n\n## Configuration\n\nA snippet of `config.yml` demonstrating the advanced economy mode:\n\n```yaml\nadvanced:\n  enabled: true\n  \n  # Economy Settings\n  economy:\n    enabled: true\n    cost: 100.0\n    mode: \"gui\" # Options: charge-to-keep, charge-to-bypass, gui\n    gui:\n      timeout: 30 # Seconds to decide\n      expire-time: 300 # Seconds to save data on disconnect\n\n  # Death Cause Rules\n  death-cause:\n    enabled: true\n    pvp:\n      keep-items: false\n      keep-xp: false\n    pve:\n      keep-items: true\n      keep-xp: true\n````\n\n-----\n\n## Placeholders\n\nRequires **PlaceholderAPI**.\n\n  * `%dynamickeepinv_isday%` - Returns `true` or `false`.\n  * `%dynamickeepinv_period%` - Returns \"Day\" or \"Night\".\n  * `%dynamickeepinv_stats_save_rate%` - Player's save percentage.\n  * `%dynamickeepinv_economy_cost%` - Current death cost.\n\n-----\n\n## License\n\nThis project is licensed under the [Apache 2.0 License](https://www.google.com/search?q=LICENSE).\n\n```\n```\n\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 136,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

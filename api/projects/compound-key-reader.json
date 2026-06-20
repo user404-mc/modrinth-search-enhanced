@@ -1,0 +1,29 @@
+{
+  "id": "Rps00dtY",
+  "slug": "compound-key-reader",
+  "title": "Compound Key Reader",
+  "description": "Read the keys of nbt compounds easily!",
+  "body": "## Read the keys of nbt compounds easily\n## Command Format\n```mcfunction\nfunction compound_key_reader:get {data:{from/value:...},result:'<ResultFunction>'}\n```\n+ **Result**: Save the compound as a list in `storage compound_key_reader:result keys`\n+ + Like `key+value+seq` format:\n```json\n[ { \"value\": \"(value)\", \"key\": \"(key)\", \"seq\": \"(seq)\" }, ... ]\n```\n\n## UPGRADING\n+ If you want to upgrade from `<=Beta2.0` to `>=Beta2.1`,follow the `UPGRADE.1.md`\n\n## Result Functions\n+ **The functions will beed called by the reader function to get the format of the result.**\n+ **You can use it just like `foreach(<ResultFunction>)` in the following format**\n+ + **You _CANNOT_ use `compound_key_reader:get` in the result function!**\n\n|Type       |Value      |Description                                    |\n|----------:|:----------|:----------------------------------------------|\n|Arguments  |`c`        |Count                                          |\n|Arguments  |`l`,`r`    |Substr cur                                     |\n|Arguments  |`key`      |The name of the key                            |\n|ReturnValue|`0`\\|`VOID`|No Result                                      |\n|ReturnValue|+`1`       |Save substr cur((l,r]) in xx.cur               |\n|ReturnValue|+`2`       |Save key name in xx.key                        |\n|ReturnValue|+`4`       |Save key value in xx.value                     |\n|ReturnValue|+`8`       |Save the sequence in the keys in xx.seq        |\n|**Presets**|`compound_key_reader:result_preset/key`      |key+seq      |\n|**Presets**|`compound_key_reader:result_preset/key-value`|key+value+seq|\n|**Presets**|`compound_key_reader:result_preset/all`      |(all)        |\n+ **Substr curs**:Use `string storage compound_key_reader:result str $(l) $(r)` to get the key",
+  "categories": [
+    "datapack",
+    "fabric",
+    "forge",
+    "library",
+    "management",
+    "neoforge",
+    "quilt",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 321,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

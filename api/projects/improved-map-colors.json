@@ -1,0 +1,29 @@
+{
+  "id": "MzebPvyz",
+  "slug": "improved-map-colors",
+  "title": "Improved Map Colors",
+  "description": "Small project aimed at improving the customizability of Minecraft maps through datapacks, made for Gneiss Name's video",
+  "body": "# Improved Map Colors\nImproved Map Colors is a Minecraft mod made for Gneiss Name's video that improves Minecraft's default map colors, including making them configurable by the user or by datapacks on a server or singleplayer world. Because of that server functionality, this mod must be installed on both the dedicated server and the client distributions.\n\nThere are also several pre-configured options for Minecraft map colors, including sepia tones, grayscale, and inverted colors.\n\n> **Gneiss Name's channel:** [https://www.youtube.com/@gneissname](https://www.youtube.com/@gneissname) \n\n\n<details>\n<summary>Video this mod was made for</summary>\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/4dEx8D1mjso\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n</details>\n\n\n\n## Usage\nThe mod allows you to configure both the color palette Minecraft uses as well as which blocks and blockstates show up as which colors. This is achieved through two main ways: Mod config files and datapacks.\n\n### Config\nThe config file provides two fields that can be used to directly modify the palette and state list: `colorlist` and `state_list`. \n\n`colorlist`, as the name and description suggest, allows you to modify the color palette Minecraft uses. This is set to vanilla by default, to illustrate the format that the mod expects, which is a list containing up to 63 colors specified by their hexadecimal color code.\n\n`state_list` allows you to modify the color ID that a BlockState or a Block shows up as on a map. The format the mod expects is also illustrated by the default entries, graciously provided by Gneiss: blockid[blockstate information]:colorID. The blockstate information is specified in the same way as vanilla blockstate data, [name=value,name1=value1]. The mod will do its best to guess what you intend with a specified state, but it can be a bit finicky.\n\nAlso included is something like a debug method of overriding everything in the form of a CSV file. This must be specified in the provided config fields, `color_file` and `blockstate_file`. The format for each is described and shown below.\n\n\n<details>\n<summary>CSV format</summary>\nColor CSV should be in the format: |hex color|[optional id]|, like:\n\n```csv\n\"#000000\",\"0\"\n\"#00ff00\",\"3\"\n\"#ff00ff\"\n```\n\nBlock State CSV should be in the format: <br>\n|BlockID[statedata]|colorID<required>| OR |BlockID|[statedata]|colorID<required>|, like:\n\n```csv\n\"minecraft:grass_block\",\"1\"\n\"minecraft:black_bed[part=foot]\",\"3\"\n\"minecraft:grass_block\",\"[snowy=true]\",\"2\"\n```\n\n</details>\n\n\n\n### Datapacks\nThese allow per-world map settings and are how the included presets work. The format for them is provided in the presets, but in short the mod will scan the `mapcolors/colors` and `mapcolors/states` subdirectories in any datapack. \n\nColors: The format for the color list files is a \"colorlist\" JSON object for colors in the /colors directory, mapping from a numerical colorID string to a hex color code, like \"id\":\"hex color\", where id is in a range from 0 to 63 inclusive.\n\nStates: The format for the blockstate file is an array called \"stateColorIDList\", which contains JSON objects in the format below.\n\n<details>\n<summary>State Holder Format</summary>\n\n```json\n{\n  \"state\": {\n    \"Name\": \"<minecraft block id>\",\n    \"Properties\": {\n      \"name\": \"value\",\n      \"name1\": \"value1\",\n      \"name2\": \"value2\"\n    }\n  },\n  \"colorID\": <id>,\n  [optional] \"trackedProperties\": [\n    \"name\",\n    \"name1\"\n  ]\n}\n```\n\n</details>\n\n\nBig thanks to Gneiss for inspiring the project and Grassy for translating it into Russian! \n\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1558,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

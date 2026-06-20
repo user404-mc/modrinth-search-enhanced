@@ -1,0 +1,22 @@
+{
+  "id": "sHBN7kWb",
+  "slug": "presence",
+  "title": "Presence",
+  "description": "Time based claiming plugin",
+  "body": "Presence is a time based claiming plugin. The longer a player is in a chunk - the higher their score in that chunk. The player with the highest score in a chunk owns the chunk.\n\n<b>Right now the plugin is only tested on a very small server, if there are issues I might not be aware of them. Please report those if you encounter them!</b>\n\n## Features:\n- Claim groups, which is basically a user-defined mega-claim with it's own permissions.\n- Per-action permission. The owner of a claim can for example allow any player to harvest crops while denying to place blocks. The owner can even prevent themselves from doing actions if they please to\n- A text-based map of claims visible via /claims map\n- A minimal scoreboard tracking the scores of the most important players on a scoreboard. Can be toggled via /claims togglesb\n- Chat messages can be changed dependent on the player's locale, default-implemented languages are german and english\n- Flight in claims owned by the player\n- When a chunk is ticked by a player (i.e. the score is increased), there is a chance that another nearby chunk is ticked too (chance is configurable).\n- Placeholder API support\n- Interactive Text UI\n- When moving to another player's claim, the user is notified\n\n## API:\nThe API is mostly safe in concurrent environments and atomic, so spamming the API on another thread is only going to yield minor performance impacts while having minimal chances of race conditions.\nThe API is freely available as a maven artifact under `de.geolykt:presence:1.0.0` at the `https://geolykt.de/maven/`-repository\n\n## Dependencies:\n\n  -  Paper 1.18.1 or above, Spigot will not work\n  - Java 16 or above\n\n\n## Placeholder documentation:\nNo Placeholder API exapnsion is required for placeholders and PAPI needn't be installed in order for this plugin to work, though using it might be benificial. All placeholders require the player scope to be known, so they may not always be usable.\n\n- %presence_claimowner%\nObtains the name of the owner of the chunk the player is currently standing on, returns \"none\" if not applicable\n\n- %presence_ownerpresence%\nObtains the presence of the owner of the chunk the player is currently standing on, returns \"0\" if not applicable\n\n- %presence_claimsuccessor%\nObtains the name of the follow-up leader of the chunk the player is currently standing on, returns \"none\" if not applicable\n\n- %presence_successorpresence%\nObtains the presence of the follow-up leader of the chunk the player is currently standing on, returns \"0\" if not applicable\n\n- %presence_playerpresence%\nObtains the presence the player has on the chunk it is standing on\n\n## Quirks (or: why to not use this plugin):\n\n  -  No protection against lava & water flow\n  -  Everyone is able to claim everywhere (except if you are in spectator mode, in that case you are not claiming)\n  -  To this plugin, everyone is equal - even the operators.\n  -  This plugin encourages going afk, it could be as much of a curse as it is a blessing however\n",
+  "categories": [
+    "cursed",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 229,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2"
+  ],
+  "date_updated": null
+}

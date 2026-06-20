@@ -1,0 +1,34 @@
+{
+  "id": "LJikSCNQ",
+  "slug": "fancy-glint",
+  "title": "Fancy Glint",
+  "description": "Outline your enchanted armor!",
+  "body": "## What is it?\n\nMojang is tweaking the enchantment glint, which got me thinking... what if we had a glint effect that both was obvious and didn't obscure what armor you're wearing? After three days of working on dodgy shader hacks, I present to you: **Fancy Glint**, a *completely vanilla* resource pack that makes the enchantment glint bright on the edges of your armor but politely stays away from the most detailed and interesting parts. Perfect for showing off your new trim! It even works with other glint-modifying resource packs!\n\n## How does it work?\n\nStarting with 1.17, Minecraft's core shaders (instructions for how to draw the game) are able to be modified by resource packs. This means that I can replace the default one (\"just lay the glint texture over the armor, stretch it, and move it around\") with my own (\"do that but also do some other stuff to make it brighter on the edges\").\n\nThe glint geometry doesn’t have normals or anything, just worldspace positions and UV positions, neither of which are particularly useful. Instead, I used the gl_VertexID to generate “UV” positions that stretch across the whole faces. Since Minecraft always sends the vertices in a specific order, I can assign each one to specific corners (so if gl_VertexID % 4 == 0 , it’s (0, 0) , if gl_VertexID % 4 == 1 , it’s (0, 1) , etc.). And then by using a sin function I can get it to fade from the edges to the center, and somehow it works and is consistent.\n\nBecause this method is reliant on specific geometry, it doesn't work very well with items, unfortunately. This pack will likely remain armor-only.\n\n## Older Versions\n\nOne of the changes Mojang made in the 1.20 snapshots was to have the glint texture move across armor more slowly. The old speed in 1.17-1.19 doesn't look great with this pack, so I tried to slow it down a bit, but that adds a bit of jumpiness. It's not very noticeable though.\n\nMake sure to use the version for your Minecraft version (the 1.19 one will say \"too new\" if you're on 1.19-1.19.2; you can ignore that)! The core shaders had changes in each major release, so it won't work at all if you use the wrong one.",
+  "categories": [
+    "combat",
+    "core-shaders",
+    "equipment",
+    "minecraft",
+    "tweaks",
+    "utility",
+    "vanilla-like"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 58114,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "23w05a",
+    "23w06a"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "ajMDJJDq",
+  "slug": "screenshot-location",
+  "title": "Screenshot Location",
+  "description": "This mod allows configuring the location screenshots are saved. Useful for saving screenshots from various instances in a global folder.",
+  "body": "# Screenshot Location\n[![Chat with me on Discord](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-singular_vector.svg)](https://discord.offsetmonkey538.top/)\n[![Available on Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/screenshot-location)\n[![Check out the Repository](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/git_vector.svg)](https://git.offsetmonkey538.top/OffsetMods538/Screenshot-Location)\n\nThis mod allows configuring the location screenshots are saved though a global config.  \nUseful for using a global screenshots directory.\n\nBy default, the config for the mod is stored in a global location outside the Minecraft instance folder. The mod only needs to be configured once, as every instance uses the same config.\n\n## Usage\nDownload the mod (developers see [below](#developers)), launch the game, join a world, run the `/screenshot-location getConfigLocation` command and copy the path.  \nPaste that path into your file explorer of choice to open the folder and then open the `main.json` config file in an editor.\n\nSet `enabled` to `true` to enable the mod.  \nIf you want, you can customize the location. You can use [user directories](https://codeberg.org/dirs/directories-jvm/src/branch/main#userdirectories) by specifying their name like `${pictureDir}` or `${homeDir}`, environment variables with `${env:VARIABLE_NAME}` and jvm properties with `${jvm:property.name}`.  \n[PrismMC](https://prismlauncher.org) provides the `INST_NAME` variable containing the instance name, which is used in the default config to separate screenshots from different instances.\n\nAfter updating the config, use the `/screenshot-location reloadConfig` command to reload it.\n\n### Developers\nFirst add my maven repository:\n```kotlin\nrepositories {\n    exclusiveContent {\n        forRepository {\n            maven {\n                name = \"OffsetMonkey538\"\n                url = uri(\"https://maven.offsetmonkey538.top/releases\")\n            }\n        }\n        filter {\n            includeGroupAndSubgroups(\"top.offsetmonkey538\")\n        }\n    }\n}\n```\n\nThen depend on it like this for Fabric:\n```kotlin\ndependencies {\n    // localRuntime won't be pulled in by others depending on this project.\n    localRuntime(\"top.offsetmonkey538.screenshotlocation:screenshot-location-fabric-26.1:[VERSION]\")\n}\n```\nor like this for NeoForge:\n```kotlin\nconfigurations {\n    named(\"runtimeClasspath\") { extendsFrom(create(\"localRuntime\")) }\n}\ndependencies {\n    // localRuntime won't be pulled in by others depending on this project.\n    localRuntime(\"top.offsetmonkey538.screenshotlocation:screenshot-location-neoforge-26.1:[VERSION]\")\n}\n```\n\nIf you want to separate normal game launches and dev launches, you'll want to set jvm properties to overwrite the default profile:\n```kotlin\n// NeoForge\nneoForge {\n    runs {\n        create(\"client\") {\n            ideName = \"${project.name} Client\"\n            systemProperty(\"top.offsetmonkey538.screenshotlocation.profile\", \"dev\")\n            systemProperty(\"example.projectName\", project.name) // Used as an example in the default config\n            client()\n        }\n    }\n}\n\n// Fabric\nloom {\n    runs {\n        named(\"client\") {\n            name = \"${project.name} Client\"\n            runDir(\"run/client\")\n            vmArg(\"-Dtop.offsetmonkey538.screenshotlocation.profile=dev\")\n            vmArg(\"-Dexample.projectName=${project.name}\") // Used as an example in the default config\n            ideConfigGenerated(true)\n        }\n    }\n}\n```\n\n### JVM Properties\n- `top.offsetmonkey538.screenshotlocation.profile` - overrides `defaultProfile` from the config, useful for having different locations in for example dev and normal instances.\n- `top.offsetmonkey538.screenshotlocation.configPath` - overrides the config directory, could be useful for... I'm sure it could be useful for something",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 181,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

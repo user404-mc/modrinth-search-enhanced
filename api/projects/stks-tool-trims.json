@@ -1,0 +1,31 @@
+{
+  "id": "fcJsw206",
+  "slug": "stks-tool-trims",
+  "title": "STK's Tool Trims",
+  "description": "Apply vanilla armor trims to tools and weapons.",
+  "body": "# STK's Tool Trims\n\nAllows all vanilla trim templates to be applied to tools and weapons in the smithing table: **bows** and **crossbows**, all **Swords**, **pickaxes**, **axes**, **shovels** and **hoes**.\n\n## Download instructions\n**This page hosts both the datapack and the texturepack.** Each release contains both the files you need: the datapack is the primary file, and the texturepack is the additional file:\n\n<details>\n<summary>Download Instructions</summary>\n\n![Download Instructions](https://cdn.modrinth.com/data/fcJsw206/images/4071ee582ebfbbe405e57f0c0e731421ed480b87.jpeg)\n\nWhen using the big green \"Download\" button, Modrinth only promotes the datapack. Downloading the texturepack requires visiting the version's page.\n</details>\n\n\n\nVanilla versions of the pack are only available for **MC 1.21.2 and onward**.\n\nThe version for **MC 1.21.1** requires [Variants-CIT](https://modrinth.com/mod/variants-cit) on the clientside for the trims to be visible.\n\n## Implementation details\nPrefer using \"Stateless\" implementations when possible, this will be the only implementation going forward. Other implementations are only relevant to MC 1.21.4 and prior, they were required by Minecraft's limitations at the time.\n\n### Vanilla Stateless (MC 1.21.5 and onward)\nThe stateless data-pack does not include any recipe, and does not set any custom data on the tools. It simply adds all trimmable tools to the `#trimmable_armor` tag, making them valid ingredients for the vanilla armor-trimming recipe. It is very lightweight, and completely agnostic to the list of possible trim patterns and materials; meaning it is technically compatible with all supported versions of minecraft, and is expected to remain so for the foreseeable future.\n\nThe texture-pack for this version overwrites the vanilla item model definitions for the affected items. No missing model should be visible to people who join a stateless server without using the texture pack; they'll just see the regular tools and weapons.\n\n### Vanilla Stateful (MC 1.21.3 and MC 1.21.4)\nThese versions of the datapacks use [custom smithing recipes](https://minecraft.wiki/w/Recipe#smithing_transform), which also change the tool's `item_model` component:\n- On MC 1.21.3, the item model is changed to \"`trimmed_<item_name>/<trim_pattern>_<trim_material>`\".\n- On MC 1.21.4, the item model is changed to \"`trimmed_<item_name>/<trim_pattern>`\". Material variance is handled within the model itself.\n\n### Modded Stateless (MC 1.21.1 and onward, requires Variants-CIT)\nThe datapack is identical to the Vanilla Stateless implementation. The texture pack will not work without **Variants-CIT**.\nAll published texture-packs up to MC 1.21.4 (including the \"vanilla\" releases) have support for Variants-CIT, and can be used with this version of the data-pack.\n\n## Upgrading world\nMigrating a world from or to any **Stateful** implementation is likely to cause issues with missing or unset item models. In these conditions, prefer keeping the old packs over using the version-appropriate release.\n(Most versions of the pack will still work on newer version of Minecraft that they're not advertised for.)\n\nUpgrading **Stateless** packs is completely safe.\n",
+  "categories": [
+    "datapack",
+    "decoration",
+    "equipment",
+    "game-mechanics"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 14208,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

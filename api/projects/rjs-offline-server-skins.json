@@ -1,0 +1,19 @@
+{
+  "id": "br65tnJi",
+  "slug": "rjs-offline-server-skins",
+  "title": "RJ's Offline Server Skins",
+  "description": "Make offline servers assign player skins from custom URLs each relog, and let clients load unauthenticated skins.",
+  "body": "This server+clientside mod exists so I can allow players at an after-school club to pick a skin, and make it work with a server in offline mode and no internet access on either the server or clients.\n\nYou need a webserver (on the LAN) which serves up skins at a custom URL, configured in this config file which the server relies on:\n\n```\n# config/rjs_offline_server_skins.txt\nskin_url_template=http://your.ip.or.server/skins/%name%-%rev%.png\n```\n\nTemplate tokens:\n\n- **%name%** (required): in-game player name\n- **%rev%** (optional): random revision string generated on each injection for cache-busting\n\nThe server injects the correct skin URL into the player profile based on their name.\nClients cache the skin keyed on the base filename from the URL, so we inject a random cachebusting string (%rev%) into the filename and ignore it on our skin server.\n\nPlayers connect, and the clientside part of the mod makes sure to bypass the normal skin signing checks, to allow unsigned skins to be loaded from our custom http: url.\n\nThis allows you to manage skins in a purely offline way without internet access at all.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 406,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

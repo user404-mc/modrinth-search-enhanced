@@ -1,0 +1,20 @@
+{
+  "id": "7vujVDby",
+  "slug": "noisethreader",
+  "title": "NoiseThreader",
+  "description": "Improves world generation performance by multi-threading noise generators",
+  "body": "NoiseThreader improves world generation performance by selectively multi-threading world generators such as the noise generators.  \n  \nCurrently adds multi-threading to noise generators for Vanilla dimensions (Overworld/End/Nether) as well as OpenTerrainGenerator's Overworld generator.  \nAdditionally adds multi-threading to YUNG's BetterCave's cave carver/noise generator.  \n  \nStandard noise generators perform costly calculations on only the main server thread when chunks are generated, NoiseThreader improves performance by splitting up these calculations and spreading the load out across multiple threads.  \n  \nPerformance improvement will vary across different systems however in testing even 4 cores can see performance gains through multi-threading the noise generators.  \nCurrently by default the minimum amount of cores required before NoiseThreader will attempt multi-threading is set to 4 for safety, however you can change this number in the config and may still see improvements if you are on a potato.  \n  \nProfiling the time taken for Height-Map (Noise) generation on my system (Your mileage may vary) resulted in ~50% performance improvement for the Vanilla Overworld.  \nFor OTG's Overworld, the results were around ~60% improvement, being more significant due to OTG's heavier generation cost as this resulted in Height-Map generation going from ~2.5ms/chunk down to ~1ms/chunk.  \n(For comparison, the existing Multithreaded Noise mod tested at around ~25% - ~30% improvement, and also only applies to the Vanilla Overworld.)  \nThe Vanilla Nether and End also saw some improvements, however less significant due to them using smaller noise generations, of roughly ~10% - ~30%.  \n  \nYUNG's BetterCave's cave carving also has a performance improvement of ~60% which is significant given that cave carving accounts for a large portion of performance loss during world generation.  \n  \nAs is the point of multi-threading, you will likely see more significant performance improvements when the primary server thread is being utilized heavier such as in the case of OTG generation.  \n  \nPlease report any issues/bugs/suggestions to the issue tracker linked at the top of the page or to my Discord server linked below.  \n  \nThis mod is not required client-side.  \n  \n  \n**Need to get in contact with me, or want to support me? Click the badges below:**\n\n[![Discord](https://img.shields.io/discord/1202561752294760478?labelColor=violet&color=purple)](https://discord.gg/ZPdwrtvBKm)\n[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/FermiumModding)\n[![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/fonnymunkey)\n\n**Need a server? Click the banner below and use code \"fonny\" for 25% off your first month with Bisect Hosting:**\n[![Bisect Banner](https://raw.githubusercontent.com/fonnymunkey/fonnymunkey.github.io/main/docs/assets/banner.webp)](https://fonnymunkey.github.io/)",
+  "categories": [
+    "forge",
+    "optimization",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20856,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

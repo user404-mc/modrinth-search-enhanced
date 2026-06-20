@@ -1,0 +1,28 @@
+{
+  "id": "hykUQTdx",
+  "slug": "serverevents",
+  "title": "Server Events",
+  "description": "A Fabric mod enhancing server-side event handling with a Bukkit-inspired system, extending and encapsulating Fabric API events.",
+  "body": "# Server Events\n\n[![GitHub License](https://img.shields.io/github/license/sucj/serverevents)](https://github.com/sucj/serverevents?tab=MIT-1-ov-file#readme)\n[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sucj/serverevents/build.yml)](https://github.com/sucj/serverevents/actions/workflows/build.yml)\n[![GitHub Release](https://img.shields.io/github/v/release/sucj/serverevents?include_prereleases)](https://github.com/sucj/serverevents/releases/latest)\n\n[![Modrinth Downloads](https://img.shields.io/modrinth/dt/serverevents?logo=modrinth)](https://modrinth.com/project/hykUQTdx)\n\n**Server Events** is a support library for Fabric server development, designed to enhance the Fabric API's limited event system. It offers a Bukkit-like event framework while adhering to Fabric's minimalist philosophy.\n\nThe mod doesn't wrap `CommandRegistrationCallback` and `DynamicRegistrySetupCallback` from Fabric API.\n\n## Installation\n1. Import this package to your project.\n2. Add `serverevents` to your mod depends.\n\n```groovy\nrepositories {\n    maven \"https://mvn.suc.icu\"\n}\n\ndependencies {\n    implementation \"icu.suc.mc:serverevents:<version>\"\n}\n```\n\nSince `2.0.0`, the **groupId** has been changed from `icu.suc` to `icu.suc.mc`.\n\n## Usage\n**ServerEvents** provides a simple API for registering and processing events.\n\nHere is an example of a player modifying broadcast information:\n\n```java\nimport net.fabricmc.api.ModInitializer;\nimport net.minecraft.network.chat.Component;\nimport net.minecraft.world.item.Items;\nimport icu.suc.mc.serverevents.ServerEvents;\n\npublic class ExampleMod implements ModInitializer {\n    @Override\n    public void onInitialize() {\n        ServerEvents.Player.MODIFY_JOIN_MESSAGE.register((player, message) ->\n                Component.literal(\"[+] \").append(player.getName()));\n    }\n}\n```\n\nSince `2.2.0`:\n\n```java\nimport icu.suc.mc.serverevents.Listener;\nimport icu.suc.mc.serverevents.ServerEvents;\nimport net.fabricmc.api.ModInitializer;\nimport net.fabricmc.fabric.api.event.Event;\nimport net.minecraft.network.chat.Component;\nimport net.minecraft.server.level.ServerPlayer;\nimport org.jetbrains.annotations.NotNull;\n\npublic class ExampleMod implements ModInitializer, Listener, ServerEvents.Player.Join.ModifyMessage {\n    @Override\n    public void onInitialize() {\n        ServerEvents.register(this);\n    }\n\n    @Override\n    public @NotNull Event<?>[] events() {\n        return new Event[]{ServerEvents.Player.Join.MODIFY_MESSAGE};\n    }\n\n    @Override\n    public @NotNull Component modifyJoinMessage(@NotNull ServerPlayer player, @NotNull Component message) {\n        return Component.literal(\"[+] \").append(player.getName());\n    }\n}\n```\n\n## License\n\nThis project is licensed under the [MIT License](LICENSE) © 2025 sucj.",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2502,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

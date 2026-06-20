@@ -1,0 +1,21 @@
+{
+  "id": "4QKBiM3f",
+  "slug": "armorrenderlib-directors-cut",
+  "title": "ArmorRenderLib: Directors Cut",
+  "description": "Armor Render Lib: Directors Cut is an updated lightweight extension library to Fabric API's fabric-rendering-v1 ArmorRenderer. Since the Fabric API implementation is quite abstract, a more targeted implementation is needed for some specific use cases.",
+  "body": "\n![logo](https://cdn.discordapp.com/attachments/540362725289885700/1194930378209767465/oie_30VpdLHJHOAj.png?ex=65b224a2&is=659fafa2&hm=1a22e9a6ce2b3249a749ce774ab21097ac8b8dbae6fad815bf34672359b4669c&)\n\n[Armor Render Lib: Directors Cut](https://www.curseforge.com/minecraft/mc-mods/armorrenderlib-directors-cut), a port of [Armor Render Lib](https://modrinth.com/mod/armor-render-lib) is a lightweight extension library to Fabric API's fabric-rendering-v1 [ArmorRenderer](https://github.com/FabricMC/fabric/tree/1.20.1/fabric-rendering-v1). Since the Fabric API implementation is quite abstract, a more targeted implementation is needed for some specific use cases. These use cases are present across more than one of my mods, so in the spirit of code reuse this library was created. It is robust, using only a few very targeted mixins and is fully compatible with Cosmetic Armor and GeckoLib.\n\n### • Build\n\nTo include this library in your project, copy the following into your `build.gradle`:\n\n```gradle\nrepositories {\n    maven {\n        name = \"Modrinth\"\n        url = \"https://api.modrinth.com/maven\"\n        content {\n            includeGroup \"maven.modrinth\"\n        }\n    }\n}\n```\n\n```gradle\ndependencies {\n    modImplementation \"maven.modrinth:armor-render-lib:<version>\"\n    include \"maven.modrinth:armor-render-lib:<version>\"\n}\n```\n\n### • Use\n\nArmor Render Lib adds armor render layers. These are objects containing a dynamic texture location, color and glint boolean that render armor for an item (or items). They are roughly equivalent to Fabric API's [ArmorRenderer#renderPart](https://github.com/FabricMC/fabric/blob/f14603e8624d4cb192846321c429cc00c9ef6f55/fabric-rendering-v1/src/main/java/net/fabricmc/fabric/api/client/rendering/v1/ArmorRenderer.java#L69), but the texture, color and glint can be dynamically specified based on the `ItemStack`, `LivingEntity` and `EquipmentSlot`.\n\nThey should be registered like so:\n\n```java\npublic class ExampleMod implements ClientModInitializer {\n    private static ArmorRenderProvider render(ItemStack stack, LivingEntity entity, EquipmentSlot slot) {\n        // Dynamic texture path\n        String texture = \"examplemod:textures/model/armor/example_chestplate.png\";\n        \n        // Dynamic color\n        int color = 0xFF00FF;\n        \n        return data -> data.accept(texture, color, stack.hasGlint());\n    }\n    \n    @Override\n    public void onInitializeClient() {\n        ArmorRenderLib.register(ExampleMod::render, Items.IRON_CHESTPLATE);\n    }\n}\n```\n\n### • Notes\n\n- An item can have multiple different armor render layers registered to it.\n- Multiple items can have the same armor render layer registered to them.\n- Registering a render layer to a vanilla item (or other armor item) overrides the default armor rendering. \n  - This means that the texture, color and/or enchantment glint of vanilla armor can be modified.\n\n<p><img src=\"https://i.imgur.com/V38aMzY.png\" alt=\"Sponsor Banner\"/></p>\n<p><b>Use code &quot;BAREMINIMUM&quot; to get 15% off your first month!</b></p>",
+  "categories": [
+    "equipment",
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1118,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

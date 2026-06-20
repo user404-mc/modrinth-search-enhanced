@@ -1,0 +1,36 @@
+{
+  "id": "BJEC0JAD",
+  "slug": "message-api",
+  "title": "message-api",
+  "description": "Fabric message api for translatable, configurable and colorful messages with placeholders",
+  "body": "# message-api\n\nA simple server-side message API for Fabric. It allows for translatable messages, with text parsing\nusing [PlaceholderAPI](https://placeholders.pb4.eu/)\n, which can be customized with ease by end users.\n\n## Features\n\n- Special text parsing with PlaceholderAPI\n- Easy customizable in-game messages\n- Language localization support\n- Easy to integrate\n\n## Usage\n\n### Adding the dependency\n\nTo use message-api in your mod, add the following to your `build.gradle` file:\n\nMessage-api doesn't bundle placeholder-api, you have to bundle a compatible of it as well.\nReplace `[TAG]` with the respective versions.\n\n```groovy\nrepositories {\n    maven { url \"https://maven.nucleoid.xyz/\" }\n    maven { url \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n    include(modImplementation(\"maven.modrinth:message-api:[TAG]\"))\n    include(modImplementation(\"eu.pb4:placeholder-api:[TAG]\"))\n}\n```\n\n### Adding messages\n\nCreate a `messages` folder in your resource folder. Create a JSON file with\nthe [language code](https://minecraft.fandom.com/wiki/Language#Languages) you would like to add, like\nthe [testmod example](src/testMod/resources/messages/en_us.json).\nAdd your message to the file (make sure to prefix the message id with your mod id, to avoid conflicts).\n\n### Creating messages\n\nUse any of the provided methods in [LocalizedMessage](src/main/java/me/drex/message/api/LocalizedMessage.java) to get your text instance,\nwhich works like any other vanilla text instance!\n\n```java\nServerPlayerEntity player;\nplayer.sendMessageToClient(LocalizedMessage.localized(\"modid.some.message.id\"));\n```\n\n<details>\n<summary>Official Mojang Mappings</summary>\n\n```java\nServerPlayer player;\nplayer.sendSystemMessage(LocalizedMessage.localized(\"modid.some.message.id\"));\n```\n\n</details>\n\n### User configuration\n\nTo change messages, edit the JSON file in `./config/<modid>/<languageid>.json`. This will change the language file for\nthe mod with the specified `modid`.\n\n## Credits\n\nSpecial thanks to [PlaceholderAPI](https://placeholders.pb4.eu/) for providing the parsing functionality.\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2675,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5-rc2",
+    "1.21.5",
+    "1.21.6-rc1",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

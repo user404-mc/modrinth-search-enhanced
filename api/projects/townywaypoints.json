@@ -1,0 +1,42 @@
+{
+  "id": "alsDiPbN",
+  "slug": "townywaypoints",
+  "title": "TownyWaypoints",
+  "description": "Configurable plot types for Towny that players can teleport between.",
+  "body": "# TownyWaypoints\n\n![townywaypoints](https://github.com/ewof/TownyWaypoints/assets/26354814/876e138d-b011-4286-99bd-06f14cf4f86a)\n\nConfigurable plot types for Towny that players can teleport between. <br/>\nRequires [Paper](https://github.com/PaperMC/Paper) or a fork of it. Supports [Folia](https://github.com/PaperMC/Folia). It will not work on Bukkit or Spigot.\n\n### Traveling\n\nPlayers can travel between different waypoints with `/twp travel <town> <waypoint> <plot name>` <br/>\nWhen players teleport it uses Townys warmups, so if you have a teleport warmup in Towny / make movement or damage cancel the warmup those will apply when players attempt to travel to waypoints.\n\n---\n\n### Config\n\nDefault config:\n\n```yaml\n# This is the current version. Please do not edit.\nversion: '1.9'\n# The language file you wish to use.\nlanguage: en_US.yml\n\nwaypoints:\n\n  ############################################################\n  # +------------------------------------------------------+ #\n  # |                       Economy                        | #\n  # +------------------------------------------------------+ #\n  ############################################################\n\n  economy:\n\n    # The percentage of the travel cost that gets added to the waypoints town bank, the rest goes to the nation. If it has no nation then 100% goes to the town bank.\n    # Disabled with value of -1\n    split: '0.5'\n\n  ############################################################\n  # +------------------------------------------------------+ #\n  # |                   Restrictions                       | #\n  # +------------------------------------------------------+ #\n  ############################################################\n\n  restrictions:\n\n    # The maximum number of blocks a player can travel between waypoints.\n    # Disabled with value of -1\n    max_distance: '2700'\n\n    # The amount of seconds a player must wait between waypoint travels.\n    cooldown: '300'\n\n    # If true players can only teleport from one waypoint type to another.\n    peer_to_peer: 'true'\n\n```\n\n- `waypoints.restrictions.max_distance` is the maximum number of blocks a player can travel via waypoints. A player cannot travel to a waypoint that is `max_distance` blocks away from their current location.\n- `waypoints.restrictions.cooldown` is the amount of time in seconds a player must  way between waypoint travels.\n- `waypoints.restrictions.peer_to_peer` when set to true means that players must be standing in a waypoint of the same type to teleport to another waypoint, meaning I must be standing in a stable plot if I want to travel to another stable waypoint.\n\n---\n\n### The `waypoints.yml` file\n\nIn `waypoints.yml` you define different types of waypoints.\n\n```yaml\nstable:\n  name: \"stable\"\n  mapKey: 'S' # A single character to be shown on the /towny map and /towny map hud.\n  cost: 4500.0 # Cost to create the waypoint.\n  travel_cost: 450 # Cost to travel to waypoint.\n  max: 1 # Max number of plots of this type allowed per town.\n  travel_with_vehicle: true # If true, player's vehicle will travel with the player.\n  permission: townywaypoints.landpoint.stable # Permission node required to set a plot to a type of this waypoint, if no permission is set anyone can create this waypoint, grant it in townyperms.yml\n  # The maximum number of blocks a player can travel between waypoints.\n  # Uses the global value if -1\n  max_distance: -1\n  allowed_biome_tags: # List of biome tags this plot can be created on. Takes priority over allowed_biomes.\n    - minecraft:is_overworld\n  allowed_biomes:  # List of biomes this plot type can be created on. If it's not provided the plot type can be created on any biome.\n    - FOREST\n    - PLAINS\n    - SUNFLOWER_PLAINS\n    - TAIGA\n    - BIRCH_FOREST\n    - SAVANNA\n    - WINDSWEPT_FOREST\n    - WINDSWEPT_SAVANNA\n    - FLOWER_FOREST\nseaport:\n  name: \"seaport\"\n  mapKey: 'P' # A single character to be shown on the /towny map and /towny map hud.\n  cost: 2500.0 # Cost to create the waypoint.\n  travel_cost: 250 # Cost to travel to waypoint.\n  max: 1 # Max number of plots of this type allowed per town.\n  travel_with_vehicle: false # If true, player's vehicle will travel with the player.\n  permission: townywaypoints.seapoint.seaport # Permission node required to set a plot to a type of this waypoint, if no permission is set anyone can create this waypoint, grant it in townyperms.yml\n  # The maximum number of blocks a player can travel between waypoints.\n  # Uses the global value if -1\n  max_distance: 6000\n  allowed_biome_tags: # List of biome tags this plot can be created on. Takes priority over allowed_biomes.\n    - minecraft:is_beach \n  allowed_biomes: # List of biomes this plot type can be created on. If it's not provided the plot type can be created on any biome.\n    - COLD_OCEAN\n    - DEEP_COLD_OCEAN\n    - DEEP_OCEAN\n    - LUKEWARM_OCEAN\n    - OCEAN\n    - WARM_OCEAN\n```\n\nA `waypoints.yml` like this means two plot types will be available to players, stables and seaports.\n\nStables\n- Have a map key of `S`\n- Cost $4500 to create\n- Cost $450 to travel to\n- Are limited to 2 per town\n- Can be created only by players with the `townywaypoints.landpoint.stable` permission\n- Can be created in most land biomes\n- Use the max distance of 2700 from config.yml\n\nSeaports\n- Have a map key of `P`\n- Cost $2500 to create\n- Cost $250 to travel to\n- Are limited to 2 per town\n- Can be created by all players\n- Can only be created in beach and ocean biomes\n- Have their own max distance of 6000 seperate the one in config.yml\n\nA player designates a plot as a waypoint by doing `/plot set <waypoint type name>`. <br/>\nThey can change things about the waypoint with `/twp set <open> [value]`. <br/>\nWaypoints travel can be open to everyone or limited to allies, nation members, town members, or noone (closed)  with `/twp set open <status>`. <br/>\nThe block a player gets teleported to on traveling to a waypoint can be changed with `/twp set spawn` a waypoints default spawn is where the player was standing when they designated the plot as a waypoint.\n\n---\n\n### Permission nodes\n\n- `townywaypoints.admin` Allows use of the reload command and disables all permission checks.\n- Towny's `towny.command.town.set.spawn` permission node is needed for a player to set the spawn of a waypoint.\n- Towny's `towny.command.town.toggle.public` permission node is needed for a player to set the open status of a waypoint.\n\n---\n\n### Translations\n\nIf you'd like to help translating TownyWaypoints into the available languages or add entirely new languages, [we're on Crowdin](https://crowdin.com/project/townywaypoints)!\n\n[![Crowdin](https://badges.crowdin.net/townywaypoints/localized.svg)](https://crowdin.com/project/townywaypoints)\n\n---\n\n### Links\n\n- [Hangar](https://hangar.papermc.io/ewof/TownyWaypoints)\n- [Modrinth](https://modrinth.com/plugin/townywaypoints)\n- [Github](https://github.com/ewof/TownyWaypoints)\n\n---\n\nInspired by [TownyPorts](https://github.com/darthpeti/TownyPorts/)\n",
+  "categories": [
+    "adventure",
+    "economy",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 869,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

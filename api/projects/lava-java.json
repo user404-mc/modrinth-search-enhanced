@@ -1,0 +1,28 @@
+{
+  "id": "bAG8MlLc",
+  "slug": "lava-java",
+  "title": "Lava Java",
+  "description": "Skeletons selling coffee in the Nether.",
+  "body": "# Lava Java\n\nLava Java's Lava Javas will warm your blackened bones! Each cup is a melody of unique flavors that will ensure you are able to face the rest of your day. With Lava Javas starting at only 4 gold nuggets, our prices are affordable by any standard. Our friendly staff are always working to improve, so every time you visit they will have new and exciting Lava Javas waiting for you to try. Please forward all complains and concerns to the branch manager.\n\nLava Java adds a structure to the Nether: the Lava Java Café. Within the café is a pair of friendly baristas who will sell you snacks and Lava Javas in exchange for gold nuggets. Each Lava Java will grant one or more buffs based on the drink's flavor and freshness. As you trade with a particular barista it will become more skilled, selling more drinks at once and making more complex brews.\n\n## Data Packs\n\nLava Java uses datapacks to determine the flavors that drinks can have. It looks for json files under data/lavajava/lava_java_flavor. They are formatted like so:\n\n```\n{\n  \"flavorID\": \"spellbound:bubbly\",\n  \"statusID\": \"spellbound:shielded\",\n  \"isDrawback\": false,\n  \"duration\": 7200,\n  \"magnitude\": 4,\n  \"weight\": 30,\n  \"value\": 15,\n  \"namePriority\": 0,\n  \"exclusions\": [\n    \"spellbound:extra_bubbly\",\n    \"spellbound:very_bubbly\"\n  ]\n}\n```\n**flavorID**: the ID of your flavor. This is mandatory. Unlike the name of the json file, this must be unique. Otherwise it may conflict with other flavors.\n\n**statusID**: the ID of the status effect your flavor provides. This is mandatory.\n\n**isDrawback**: determines if the flavor decreases or increases the cost of a Lava Java. Defaults to false. In the future, may effect the conditions under which it can be selected.\n\n**duration**: how many ticks the flavor's effect will last. This is mandatory, and must be a positive integer.\n\n**magnitude**: determines the magnitude of the effect. This is optional, but recommended. If provided, must be a non-negative integer. Defaults to 0. Keep in mind that internally effect magnitudes are one lower than they are displayed in game. Strength II is actually magnitude 1, for example.\n\n**weight**: determines how common the flavor is. This is mandatory, and must be a positive integer. Flavor generation may be seen like a raffle where tickets are pulled from a box, and this is how many tickets point to this flavor if chosen. 45 is for common flavors like Sweet or Creamy, 30 is for flavors that are neither common nor uncommon like Spicy, and 10 is for rare flavors like Thick or Filling. Generally, superior versions of a flavor (such as Extra Spicy) should be 5 times as rare as their lesser variants.\n\n**value**: how much the flavor influences prices. This is mandatory, and must be a positive integer. A Lava Java with just your flavor will cost about one quarter this number. If the flavor is negative, it instead determines how much the price is reduced. Generally, superior versions of a flavor (such as Very Creamy) should cost twice as much as their lesser variants.\n\n**namePriority**: currently does nothing. This is optional. If provided, must be an integer. Default value is 0. Once implemented, it will determine the order that flavors are listed in a Lava Java's name. Higher priorities will be listed later in the drinks name (a Sweet Spicy Lava Java rather than a Spicy Sweet Lava Java)\n\n**exclusions**: a list of flavorIDs that prevents this flavor from co-existing with the listed flavors. This is optional. If it would be selected but an excluded flavor was first, or if an excluded flavor has been selected but it had been selected first, than the second flavor will be rerolled. _These flavors do not need to exist._ This allows you to exclude flavors that come from other mods, even if you do not use that mod as a dependency.\n\nOnce you have created your flavor, add a line to your language file in the format `\"flavor.spellbound.bubbly\": \"Bubbly\",` to set the display name of the flavor.\n\n",
+  "categories": [
+    "economy",
+    "fabric",
+    "food",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2800,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2cvVReqB",
+  "slug": "invlink",
+  "title": "InvLink",
+  "description": "a plugin that lets players link there inventory together for example a bedrock and java account",
+  "body": "![InventoryLink banner](https://cdn.modrinth.com/data/2cvVReqB/images/3a4406e485854dfcdf665ffd74b97605a9162bca.png \"InventoryLink\")\n# InventoryLink\n\nLink two player inventories — live — with an opt-in request/accept flow and strong safeguards. Designed for **PaperMC 1.21.x** and **Java 21**.\n\n> ⚠️ **Irreversible:** When a link is accepted, the accepting player’s current inventory is **cleared and replaced** with the requester’s. This **cannot be undone**. Linking to unknown players is **not recommended**.\n\n---\n\n## ✅ Supported Platforms & Requirements\n\n- **Minecraft server:** PaperMC **1.21.x** (API 1.21).  \n  - Works on Paper-compatible forks that maintain API parity (e.g., Purpur).  \n- **Java runtime:** **Java 21** (server + build).  \n- **Optional Bedrock play:** GeyserMC + Floodgate (for Java↔Bedrock account linking use case).\n\n---\n\n## ✨ Features\n\n- **Two-player inventory sharing** via `/link` → `/link accept` / `/link deny`.\n- **Live Sync toggle** (`live-sync: true|false`)\n  - `true`: both players can be online; inventories mirror in real-time (click, drag, drop, pickup).\n  - `false`: only one linked player may be online; the second gets kicked with a configurable message.\n- **Clear on Death (with offline support):** If one linked player dies, the partner’s inventory & ender chest are cleared. If the partner is offline, the clear is applied on next join.\n- **Request Expiry:** Link requests expire after a configurable timeout.\n- **Block Linking While Linked:** Already linked players can’t send or accept new `/link`.\n- **Per-player data folder:**  \n  `plugins/InventoryLink/playerdata/<PlayerName>/`  \n  - `inventory.yml` — serialized snapshots  \n  - `link.yml` — partner name + flags (e.g., `pendingClearOnJoin`)\n- **Configurable Messages** using classic `&` color codes.\n- **Admin Command** to reload config without restarting.\n\n---\n\n## 🧩 Bedrock Use Case (Java ↔ Bedrock)\n\nIf your server supports Bedrock via **GeyserMC + Floodgate**, a Java player can link their **own Bedrock account**:\n\n- Bedrock players typically appear as usernames with a Floodgate prefix (e.g., `\".\"` or a custom prefix).  \n- A Java player can run:  \n  ```\n  /link <bedrockUsernameWithPrefix>\n  ```\n- The Bedrock player must **accept** the request:  \n  ```\n  /link accept <javaPlayerName>\n  ```\n- After acceptance, the **Bedrock account receives the Java inventory** (and live sync applies if enabled).  \n- **Tip:** Keep your Floodgate prefix documented for players so they can type the correct Bedrock name.\n\n> This is ideal for players who switch between Java and Bedrock and want a single, shared inventory.\n\n---\n\n## 📦 Commands\n\n- `/link <player>` — Send a link request to `<player>`  \n- `/link accept <player>` — Accept a pending request from `<player>`  \n- `/link deny <player>` — Deny a pending request from `<player>`  \n- `/inventorylink reload` — Reload `config.yml` (permission: `inventorylink.admin`)\n\n**Permissions**\n- `inventorylink.link` — default: `true`  \n- `inventorylink.admin` — default: `op`\n\n---\n\n## ⚙️ Configuration (`plugins/InventoryLink/config.yml`)\n\n```yml\nlive-sync: true                 # Allow both linked players online & mirror live\nsync-debounce-ms: 200           # Debounce mirroring to avoid loops\nkick-message: \"&cYour linked partner is already online. Live sync is disabled on this server.\"\n\nclear-on-death: true            # Also clears partner on death; offline partners clear on next join\n\nrequest-timeout-seconds: 60     # Expire pending /link requests\nblock-command-while-linked: true\n\nmessages:\n  already-linked: \"&cYou are already inventory-linked and cannot use /link.\"\n  target-already-linked: \"&cThat player is already inventory-linked and cannot accept new links.\"\n  request-expired: \"&cThat link request has expired. Please send a new one.\"\n  request-sent: \"&aLink request sent to %target%.\"\n  request-received: \"&e%sender% wants to link inventories with you. &cAccepting will CLEAR your current inventory and cannot be undone. Linking to unknown players is not a good idea.\"\n  accept-hint: \"&aType /link accept %sender%  or  /link deny %sender%\"\n  accepted: \"&aYou are now linked with %other%. Inventories are now synced.\"\n  denied: \"&eYou denied the link request from %other%.\"\n  partner-join-kick: \"&cYour linked partner is already online. Live sync is disabled on this server.\"\n  reloaded: \"&aInventoryLink config reloaded.\"\n  pending-cleared-on-join: \"&eYour inventory was cleared due to your partner's recent death.\"\n```\n\n---\n\n## 🧭 How it Works\n\n1. **Request:** `/link <player>` — Target receives warnings + accept/deny instructions.  \n2. **Accept:** The accepting player’s current inventory is **cleared** and replaced with the requester’s.  \n3. **Live Sync (optional):** With `live-sync: true`, both inventories mirror in real-time.  \n4. **Death Sync:** On death, partner is cleared (immediately if online, or on next join).\n\n---\n\n## 📥 Installation\n\n1. Drop the plugin jar into `plugins/` on a **Paper 1.21.x** server.  \n2. Start the server to generate the config.  \n3. Edit `plugins/InventoryLink/config.yml`.  \n4. Apply changes with `/inventorylink reload` or restart.\n\n---\n\n## 🔒 Safety Notes\n\n- This plugin **deliberately performs destructive inventory operations** on accept and on death (if enabled).  \n- Use where players explicitly consent; consider backups if you run custom item systems.\n\n---\n\n## 📄 License\n\nMIT — keep the license and don’t hold the author liable. Contributions welcome.\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "minigame",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 149,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

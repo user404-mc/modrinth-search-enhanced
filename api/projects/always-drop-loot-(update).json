@@ -1,0 +1,35 @@
+{
+  "id": "c5wMBvgN",
+  "slug": "always-drop-loot-(update)",
+  "title": "Always Drop Loot (update)",
+  "description": "Make mobs always drop exp and loot, regardless of cause of death.",
+  "body": "# Always Drop Loot\n\nAn unofficial Fabric update of **Always Drop Loot** for the full Minecraft `1.21.x` line, including `1.21` through `1.21.11`.\n\nIn vanilla Minecraft, many mobs only drop experience and some loot-table results when they are considered to have been killed by a player. That means falls, lava, suffocation, campfires, drowning, entity cramming, and other environmental deaths often reduce or remove rewards.\n\nThis mod changes that behavior so passive farms and automation setups can still receive the drops you would normally expect from a player kill.\n\n## What the mod does\n\n- Makes mobs able to drop XP even when they die without a direct player kill.\n- Lets you control how much XP non-player kills should give.\n- Lets you control how the `killed_by_player` loot condition behaves.\n- Works in singleplayer and on Fabric servers.\n- Stores configuration per world through gamerules instead of a config screen.\n\nIn practice, this means farms based on fall damage, lava blades, environmental traps, or other automatic kill methods can still drop XP and loot depending on the rules you choose.\n\n## Requirements\n\n- Minecraft Java Edition `1.21` to `1.21.11`\n- Fabric Loader\n- Fabric API\n- Java 21\n\n## Installation\n\n1. Install Fabric Loader for your Minecraft version.\n2. Install Fabric API for the same version.\n3. Put the mod jar in your `mods` folder.\n4. Start the game or server.\n\nThis mod is server-side in practice, so it is useful both in singleplayer and on dedicated servers.\n\n## Configuration\n\nThe mod is configured with gamerules. Because they are world-specific, each save or server can have different behavior.\n\nIf cheats are disabled in a singleplayer world, you can temporarily enable access to gamerules by opening the world to LAN with cheats enabled.\n\n### `always-drop-loot:always_drop_xp`\n\nControls whether mobs may drop XP when they die without being killed by a player.\n\nDefault:\n\n```mcfunction\n/gamerule always-drop-loot:always_drop_xp true\n```\n\nBehavior:\n\n- `true`: mobs can still drop XP when death happens by environment or automation.\n- `false`: vanilla-style XP behavior.\n\n### `always-drop-loot:passive_xp_modifier`\n\nControls the XP multiplier for mobs that die **without** a player kill.\n\nDefault:\n\n```mcfunction\n/gamerule always-drop-loot:passive_xp_modifier 1.0\n```\n\nBehavior:\n\n- `1.0`: non-player kills drop the mob's normal XP amount.\n- `0.5`: non-player kills drop half XP.\n- `0.0`: non-player kills drop no XP.\n- `2.0`: non-player kills drop double XP.\n\nThis value only affects deaths that were not credited to a player. It does not change normal player-kill XP.\n\n### `always-drop-loot:loot_drop_mode`\n\nControls how loot tables interpret the `killed_by_player` condition.\n\nDefault:\n\n```mcfunction\n/gamerule always-drop-loot:loot_drop_mode ALWAYS_AS_PLAYER\n```\n\nAvailable values:\n\n- `ALWAYS_AS_PLAYER`: always treat the mob as if a player killed it.\n- `NEVER_AS_PLAYER`: never treat the mob as a player kill.\n- `VANILLA`: use normal vanilla behavior.\n- `VANILLA_INVERSE`: invert vanilla behavior.\n\nThis rule is what affects loot-table based drops that depend on `killed_by_player`.\n\n## Example setups\n\nAlways drop normal XP and loot from automated farms:\n\n```mcfunction\n/gamerule always-drop-loot:always_drop_xp true\n/gamerule always-drop-loot:passive_xp_modifier 1.0\n/gamerule always-drop-loot:loot_drop_mode ALWAYS_AS_PLAYER\n```\n\nAllow loot from farms, but reduce XP from automated kills:\n\n```mcfunction\n/gamerule always-drop-loot:always_drop_xp true\n/gamerule always-drop-loot:passive_xp_modifier 0.5\n/gamerule always-drop-loot:loot_drop_mode ALWAYS_AS_PLAYER\n```\n\nKeep vanilla loot logic, but still allow some XP from passive farms:\n\n```mcfunction\n/gamerule always-drop-loot:always_drop_xp true\n/gamerule always-drop-loot:passive_xp_modifier 0.5\n/gamerule always-drop-loot:loot_drop_mode VANILLA\n```\n\n## Compatibility\n\nThis fork was updated specifically for the Minecraft `1.21.x` series and tested against the compatibility range from `1.21` through `1.21.11`.\n\nBecause Mojang and Fabric changed internal APIs several times within that version line, this fork includes compatibility work so the same mod jar can run across the full range.\n\n## Credits\n\nFull credit for the original mod concept, implementation, and open-source release goes to **sargunv**.\n\n- Original author profile: <https://modrinth.com/user/sargunv>\n- Original mod page: <https://modrinth.com/mod/always-drop-loot>\n\nThis updated fork exists to keep the mod usable on newer Fabric `1.21.x` versions while preserving the original idea and behavior as closely as possible.\n\n## License\n\nThis fork continues to respect the original project's `Apache-2.0` license.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 661,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

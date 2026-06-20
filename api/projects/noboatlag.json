@@ -1,0 +1,34 @@
+{
+  "id": "1CVK8FYa",
+  "slug": "noboatlag",
+  "title": "No Boat Lag",
+  "description": "A Spigot Plugin that removes buggy behaviour with boats while colliding",
+  "body": "# No Boat Lag\nA paper plugin that fixes buggy behaviour when boats collide, intended for use when Ice Boat Racing.\n\n> **Note:** Make sure to Increase `moved-wrongly-threshold` in `spigot.yml` or boats may freeze in place.\n\n## Boat Lag Explanation\nBoat collisions are handled by the client, but the server also does collision checks.\nThe boat seen by players is the \"interpolated model\", which lags behind the actual position of the boat due to ping and the movement interpolation's natural position offset (and some amount of mojang jank)\n\nThe boat driver's client's collision calculations handle everything required, but the server will still do collision checks between the driver's boat and the real position of other boats which results in the server sending `VehicleMove` packets to the driver which will temporarily freeze the driver in place and/or cause some really unsatisfactory rubberbanding.\n\n\nThis plugin disables the packet sent and removes the buggy behavior, a similar fix is in place on most major Ice Boat Racing servers.\n\n---\nFull Credit to Makkuusen for coming up with the fix. ~~It has been pulled from the TimingSystem plugin and put into its own package for use on other servers, where the full TimingSystem plugin is severely overkill.~~\nAs of 2.0.0 the fix now uses a new approach with packet events.",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1233,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "kLBwyATg",
+  "slug": "gshop",
+  "title": "GShop",
+  "description": "A server-side mod which adds shops.",
+  "body": "# GShop\n\n![requires gunpowder](https://img.shields.io/badge/Gunpowder-Required-important?style=for-the-badge)\n![requires gunpowdercurrency](https://img.shields.io/badge/GunpowderCurrency-Required-important?style=for-the-badge)\n\nA Gunpowder add-on which adds shops.\n\n## Commands\n\n| Command                              | Permission node             | Action                                                                    |\n|--------------------------------------|-----------------------------|---------------------------------------------------------------------------|\n| `/shop <shopname>`                   | `gshop.viewshop.<shopname>` | Opens shop `<shopname>`.                                                  |\n| `/showshop <target> <shopname>`      | `gshop.showshop`            | Opens shop `<shopname>` for `<target>`                                    |\n| `/shopconfigurator export-itemstack` | `gshop.config`              | Returns the String NBT representation of the itemstack in your main hand. |\n\n## Config\n\n```yaml\nshops:                                                      # a list of shops\n- name: \"default\"                                           # each shop has a name\n  categories:                                               # each shop is divided into categories\n  - name: \"items\"                                           # categories have an icon and a list of entries\n    icon:\n      type: \"ITEM_STACK\"                                    # type of icons is always ITEM_STACK.\n      stack: \"{id:\\\"minecraft:apple\\\",Count:1b}\"            # item stacks are given as stringified NBT\n    entries:\n    - type: \"ITEM_STACK\"                                    # entries have a type - currently only ITEM_STACK or COMMAND\n      stack: \"{id:\\\"minecraft:apple\\\",Count:1b}\"\n      priceToBuy: 10                                        # price to buy and sell in gunpowder currency\n      priceToSell: 10\n  - name: \"commands\"                                        # another category\n    icon:\n      type: \"ITEM_STACK\"\n      stack: \"{id:\\\"minecraft:stone_pickaxe\\\",Count:1b,tag:{Damage:0}}\"\n    entries:\n      - type: \"COMMAND\"                                            # another type of entry\n        command: \"lp user --buyer-- permission set test.test true\" # --buyer-- will be replaced with the buyer name\n        icon: \"{id:\\\"minecraft:stone\\\",Count:1b,tag:{RepairCost:0,display:{Name:'{\\\"text\\\":\\\"Permission Node: test.test\\\"}'}}}\" # These strings can be copied from the `/shopconfigurator export-itemstack` command, with the stack in your hand.\n        priceToBuy: 100\n```",
+  "categories": [
+    "economy",
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 497,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5"
+  ],
+  "date_updated": null
+}

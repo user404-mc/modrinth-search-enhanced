@@ -1,0 +1,24 @@
+{
+  "id": "jJkK19x7",
+  "slug": "tameable",
+  "title": "Tameable",
+  "description": "Tame everything!",
+  "body": "# Tameable\n\n*Someone ask me whether they can tame Ingresssus Voltaris (Death Singer) in my SoW Server, so this mod comes out.*\n\nThis mod provides a configurable system to control which mobs you can tame.\n\n**Note: Some entities may meet bugs since this mod doesn't rewrite the full AI!**\n\nIf you are a newcomer of datapack or just want to tame everything, try this addon:\n[Tame Tools](https://github.com/ArkTechMC/TameTools)([CurseForge](https://www.curseforge.com/minecraft/mc-mods/tame-tools)|[Modrinth](https://modrinth.com/mod/tame-tools))\n\n## How to use\n\nYou can use command `/tame <entityUuid> <ownerUuid>` to tame manually (`ownerUuid` leave blank to remove owner). Also, there are two ways to configure.\n\n### Configure with data driven (Recommended)\n\nCreate file `data/<entity mod id>/tameable/<entity id>.json` in your datapack or mod. Then write contents below:\n\n```json5\n{\n  \"tame\": [\n    //Which item you can use to tame\n    \"a single item\",\n    \"#or a tag\"\n  ],\n  \"breed\": [\n    //Which item you can use to breed. If you leave blank, it will use tame item.\n    //Breed amount: value set -> food component -> 1\n    \"a single item\",\n    \"#or a tag\",\n    {\n      //or an object\n      \"item\": \"item or tag\",\n      \"heal\": 1\n    }\n  ],\n  //The taming chance\n  \"chance\": 0.1,\n  //should attack what player is attacking\n  \"attack\": true,\n  //should attack what is attacking player\n  \"protect\": true,\n  \"follow\": {\n    //should follow player\n    \"enable\": true,\n    //follow speed\n    \"speed\": 1,\n    //The max range to stop follow\n    \"minDistance\": 10,\n    //The min range to start follow\n    \"maxDistance\": 2,\n    //Can leave\n    \"leavesAllowed\": false\n  }\n}\n```\n\nDefault Values:\n\n```json5\n {\n  \"tame\": [\n    //This is the only required field\n  ],\n  \"breed\": [\n    //Optional, will use tame item if this field not exist or blank\n    \"item or tag\",\n    {\n      //or an object\n      \"item\": \"item or tag\",\n      \"heal\": 1\n    }\n  ],\n  //The taming chance\n  \"chance\": 1,\n  \"attack\": false,\n  \"protect\": false,\n  \"follow\": {\n    //These value except \"enable\" is the default value of a wolf\n    \"enable\": false,\n    \"speed\": 1,\n    \"minDistance\": 10,\n    \"maxDistance\": 2,\n    \"leavesAllowed\": false\n  }\n}\n```\n\nExample:\n\nWrite contents into `data/minecraft/tameable/pillager.json`, you can tame pillagers with apples and breed with\napples&stones\n\n```json5\n{\n  \"tame\": [\n    \"minecraft:apple\"\n  ],\n  \"breed\": [\n    \"minecraft:apple\",\n    {\n      \"item\": \"minecraft:stone\",\n      \"heal\": 5\n    }\n  ],\n  \"chance\": 0.1,\n  \"attack\": true,\n  \"protect\": true,\n  \"follow\": {\n    \"enable\": true\n  }\n}\n```\n\n### Configure with config file\n\n**NOTE:This will overwrite settings in datapack(s)!**\n\nOpen file `.minecraft/config/tameable.json`. If this file not exists, create it.\n\nYou can use `/reload` in game to reload your edited config.\n\nConfig explanation:\n\n```json5\n{\n  \"entity type here\": {\n    //An object in datapack format, see it above\n  }\n  //... more\n}\n```\n\nExample:\n\nWith config following, you can tame pillagers with apples and breed with apples&stones\n\n```json5\n{\n  \"minecraft:pillager\": {\n    \"tame\": [\n      \"minecraft:apple\"\n    ],\n    \"breed\": [\n      \"minecraft:apple\",\n      {\n        \"item\": \"minecraft:stone\",\n        \"heal\": 5\n      }\n    ],\n    \"chance\": 0.1,\n    \"attack\": true,\n    \"protect\": true,\n    \"follow\": {\n      \"enable\": true\n    }\n  }\n}\n```",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "library",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 8308,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

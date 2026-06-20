@@ -1,0 +1,35 @@
+{
+  "id": "GBFDX8B5",
+  "slug": "modlogs-plugin",
+  "title": "ModLogs Plugin",
+  "description": "A server-side plugin that works with ModLog Mod to verify player mods, resource packs, and client versions, helping administrators monitor and prevent cheating.",
+  "body": "# ModLogs Plugin\n\nServer-side verification and monitoring plugin for Minecraft servers.\n\n---\n\n## 📌 Summary\n\n| Item | Description |\n|------|-------------|\n| Type | Server-side plugin |\n| Purpose | Client verification, moderation & logging |\n| Works With | ModLog Mod (client-side) |\n| Edition | Java Edition (Paper / Spigot compatible) |\n| Bedrock | Ignored automatically (Geyser/Floodgate) |\n| Accounts | Offline & Online |\n\n---\n\n## 🧩 Overview\n\n**ModLog Plugin** is a server-side moderation and verification plugin that receives client environment data from **ModLog Mod** and processes it for logging, monitoring, and anti-cheat purposes.\n\nThe plugin allows server administrators to:\n- Inspect player mods and resource packs\n- Monitor client-side changes in real time\n- Enforce server join rules\n- Receive notifications in-game or via Discord webhooks\n\nThe plugin does not modify gameplay and runs independently in the background.\n\n---\n\n## 🔗 Required Client Mod\n\nThis plugin requires players to use **ModLog Mod**.\n\n| Resource | Link |\n|--------|------|\n| ModLog Mod | https://modrinth.com/mod/modlog-mod |\n\nServers may deny access to Java players who attempt to join without the required mod.\n\n---\n\n## 📊 Received Client Data\n\nThe plugin processes the following information sent by the client mod:\n\n| Data | Description |\n|----|------------|\n| Username | Player name |\n| Mods | List of loaded client mods |\n| Resource Packs | Enabled & disabled resource packs |\n| Version | Minecraft client version |\n\n> No personal or system-level data is collected.\n\n---\n\n## 🔐 Server Enforcement & Behavior\n\n| Feature | Behavior |\n|-------|----------|\n| Join verification | Player data checked on join |\n| Missing mod | Player may be blocked |\n| Change tracking | Resource pack changes detected |\n| Notifications | In-game & Discord supported |\n\nThis system helps detect:\n- X-Ray via suspicious resource packs\n- Unauthorized client mods\n- Modified client environments\n- Version mismatches\n\n---\n\n## ⚙️ Configuration\n\nThe plugin is fully configurable using a single YAML configuration file.\n\n</details> <details> <summary>📄 Full Configuration</summary>\n\n```yaml\ndiscord:\n  # master switch for all Discord webhook notifications\n  enabled: false\n\n  # bot token used to create/validate webhooks in target channels\n  bot-token: \"\"\n\n  # fallback channel for any event that does not define its own channel\n  # recommended to keep this empty when you configure channelid per event\n  channel-id: \"\"\n\nnotifications:\n  join:\n    # in-game admin notification switch\n    enabled: true\n\n    # supported: all, mods, resourcepack_all, resourcepack_enabled, resourcepack_disabled, version\n    # you can use either a string (\"all\") or a yaml list\n    types: \"all\"\n\n    # Discord controls\n    discord-enabled: true\n    channelid: \"\"\n\n  resourcepack-change:\n    # in-game admin notification switch\n    enabled: true\n\n    # supported: all, show-enabled, show-disabled\n    # you can use either a string (\"all\") or a yaml list\n    types: \"all\"\n\n    # Discord controls\n    discord-enabled: true\n    channelid: \"\"\n\n  freecam:\n    # in-game admin notification switch\n    enabled: true\n\n    # when enabled, admins with modlogs.notify can see a live floating marker for active freecam users\n    admin-view: true\n\n    # Discord controls\n    discord-enabled: true\n    # supported: all, start, stop\n    discord-types: \"all\"\n\n    channelid: \"\"\n\nviewer:\n  # if true, /modlog show only works for online targets\n  require-online-player: false\n\n  # show how old the last snapshot is in /modlog show output\n  show-last-update: true\n\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 284,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

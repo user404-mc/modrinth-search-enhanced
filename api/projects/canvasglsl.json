@@ -1,0 +1,20 @@
+{
+  "id": "dGTAB5Uz",
+  "slug": "canvasglsl",
+  "title": "CanvasGLSL",
+  "description": "Replace every menu background with custom GLSL shaders. with a live, in-game shader editor with syntax highlighting, auto-compile, Shadertoy support, and shader file management.",
+  "body": "# CanvasGLSL\n\nReplace Minecraft's menu backgrounds with custom GLSL shaders. Includes a built-in shader editor with syntax highlighting.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/KMdCm9JIzO0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## Features\n\n- **Live shader editor** (press `Insert` to open)\n- **Works on all menu screens** (title, singleplayer, multiplayer, options, etc.)\n- **Shadertoy compatible** - paste shaders directly from Shadertoy\n- **Auto-compile** or manual compile modes\n- **File manager** for organizing shaders\n- **Syntax highlighting**\n## Installation\n\n1. Install [Fabric loader](https://fabricmc.net/) for Minecraft 1.21.10\n2. Download the latest release JAR\n3. Put it in your `.minecraft/mods` folder\n4. Launch the game\n\n## Usage\n\n### Opening the Editor\n\nPress `Insert` while in any menu to open the shader IDE. Press `Insert` or `Esc` to close it.\n\n### Writing Shaders\n\nShaders are saved in `.minecraft/canvasglsl/`. You can create folders to organize them.\n\n**Supported uniforms:**\n- `uniform float iTime;` - Time in seconds\n- `uniform vec3 iResolution;` - Screen resolution (width, height, aspect)\n- `uniform vec4 iMouse;` - Mouse position (x, y, click x, click y)\n- `uniform int iFrame;` - Frame counter\n- `uniform sampler2D iChannel0;` - Procedural noise textures (iChannel0 through iChannel3)\n- `uniform float iTimeDelta;` - Time since last frame\n- `uniform vec4 iDate;` - Current date/time (year, month, day, seconds)\n- `uniform float iSampleRate;` - Audio sample rate (44100)\n\n**Example shader:**\n```glsl\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord) {\n    vec2 uv = fragCoord / iResolution.xy;\n    vec3 col = 0.5 + 0.5 * cos(iTime + uv.xyx + vec3(0, 2, 4));\n    fragColor = vec4(col, 1.0);\n}\n```\n\n### Using Shadertoy Shaders\n\n1. Copy shader code from [Shadertoy](https://www.shadertoy.com/)\n2. Paste into the editor\n3. Click \"Compile\" or enable auto-compile\n4. Done! The shader will render as your menu background\n\n## Controls\n\n- `Insert` - Toggle shader editor\n- `Esc` - Close editor\n- `Ctrl+S` - Save current shader\n- **Compile** button - Compile shader manually\n- **Auto-compile** toggle - Auto-compile on save",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 647,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.4",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

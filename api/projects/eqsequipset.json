@@ -1,0 +1,29 @@
+{
+  "id": "NLNu2wft",
+  "slug": "eqsequipset",
+  "title": "EquipSet",
+  "description": "Predefined equipment set，let you switch equipment more quickly。",
+  "body": "# [EqS]EquipSet\n**Not a native English speaker,This article used translation app**  \nThis mod help players to quickly switch between preseted armors and off-hand items in the game.\n![Show](https://cdn.modrinth.com/data/cached_images/2fed9507d6d60712b589d5581645906219508987.gif)\n## How to use\n### Define your preset\nFirst, you need to know how to use the preset manager and define your custom equipment preset, follow these syntax confirmations:\n\n- Open the settings interface by pressing the  key 'B'.\n- In the equipment preset management interface on the left side, you will see the following options:\n  ![PresetManager](https://cdn.modrinth.com/data/cached_images/d388714bb9d60d6cf1c148584d7e5a056e2ddaa8.png)\n1. Use presets while opening the manager screen, the numbers is the ID of current preset.\n2. Modify the name of the current preset.\n3. Lock and disable the current preset, mainly to exclude it from cycling switching.\n4. Update the current preset by saving the wearing equipments(Armors and off-hand).\n5. Unlock the current preset.\n- The equipment slots shown in the image are essentially buttons, not as containers. Do not drag items onto them, it just throw your items.\n- Click on the equipment slots in the image to enable or disable them. Disabled slots will not trigger equipment swapping when using presets.(Like the leg slot in image)\n- If no other needs, just wear armor item as usual and then click the left side button which marked with Red 4 in the picture. The preset will update and save.\n### Use presets:\nMod provides two switching methods: cyclic switching and selective switching. \n- Cyclic switching: Use the command \"**/eqs use_preset**\" or the default shortcut key 'R'.\n- Selective switching: Use the command \"**/eqs use_preset [Id]**\" where [Id] is the target preset's ID, or use the default shortcut keys \"Ctrl\" + ? where \"?\" varies with the target preset ID, Due to changes in configuration files, the range may vary, so please refer to the key binding setting screen.\n## Notes and Configuration\n- The number of available presets can be modified in the configuration file, with a minimum of 2 sets, a maximum of 10 sets, and a default of 4 sets. When exceeding 4 sets, although there is no scrollbar in the manager interface, you can scroll to view all presets by hovering your mouse over the interface.\n- The functionality of using presets is achieved through commands, with shortcut keys essentially executing predefined commands. If needed, you can disable shortcut key registration in the configuration file. Of course, you will need other mod to support quick input commands.\n- The essence of the mod is to search for the target equipment in the inventory and forcibly swap it. Normally, even cursed bound items will be removed. You can enable curse detection in the configuration file to prevent this.\n- When searching the item, mod considers items with the same name, type, and enchantments as the desired items, please avoid having multiple equipment item same with these.\n- This mod searching item in deafult inventory only.\n## To Developers\nIf you wanna expland item searching container type.  \nfind **com.AutomaticalEchoes.equipset.api.ContainerType**, and add your custom container to TYPE,like this:\n```\n public static ContainerType TYPE_INVENTORY = new ContainerType(\"type_inventory\", Player::getInventory) ;\n public static ContainerType TYPE_ENDER_CHEST = new ContainerType(\"type_ender_chest\",Player::getEnderChestInventory);\n\n    public static void init(){\n        TYPES.clear();\n        TYPES.put(TYPE_INVENTORY.Name(),TYPE_INVENTORY);\n//        TYPES.put(TYPE_ENDER_CHEST.Name(), TYPE_ENDER_CHEST);\n    }\n```\n\n---\n中文百科:[[Eqs]装备预设](https://www.mcmod.cn/class/14150.html)",
+  "categories": [
+    "equipment",
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1966,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.20",
+    "1.20.1",
+    "1.21"
+  ],
+  "date_updated": null
+}

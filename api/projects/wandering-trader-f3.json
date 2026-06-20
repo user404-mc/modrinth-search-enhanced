@@ -1,0 +1,30 @@
+{
+  "id": "hrmr3Ke8",
+  "slug": "wandering-trader-f3",
+  "title": "Wandering Trader F3",
+  "description": "Adds information about the Wandering Trader in the F3 Screen.",
+  "body": "Wandering Trader F3 is a mod that like the name suggests, adds information about the wandering trader, to -you guessed it- the F3 Screen!\n\nIt adds two things:\nThe **chance value** is to show the chance for the trader to make an attempt at spawning.\n\nKeep in mind there is a 90% chance any trader spawn attempt immediately fails. So a 25% chance is really a 2.5% chance.\n\nThe **ticks value** is to show how many ticks until an attempt will be made.\n\n**IMPORTANT: The ticks value may appear in the negatives, it is not a bug and will correct itself when it gets to -1200. This happens when the game saves the ticks value at 0.**\n\n![The chance, and the ticks remaining that the mod adds.](https://cdn.modrinth.com/data/cached_images/6d8ebf952b1a9b5319c5fff95a6c238d1d329041.png)\n\nCheck the [Minecraft Wiki](https://minecraft.wiki/w/Wandering_Trader#Spawning) for more information on how trader spawning works, and what the values mean.\n\n### How to get the mod working on multiplayer.\nWandering traders are handled on the **server**, meaning that you need the mod installed on the server and your client to get it working on a server. Aside from that, everything else runs on the client.\n\n### How to get the mod working with BetterF3.\nTo get the mod working with BetterF3, add the category **Misc Left'** to whichever side you want the wandering trader information to show up on.\n(If you have other mods that add to the F3 screen, then other stuff may appear.)\n\n\n\n<details>\n<summary>Don't Tell Mojang....</summary>\n\nWhile I was making this mod I found a slight bug in Minecraft's code that allows you to spawn wandering traders faster, while this mod does not cause it, it shows values which makes it easier to perform, (so you could still do in in vanilla)\n  \n<details>\n<summary>Boring Explanation</summary>\nEssentially, the game counts down from 24000 ticks (or 20 minutes) and every 1200 ticks (1 minute) it saves the counter, checks if it is 0 or less and if it is, it makes an attempt at spawning and goes back up to 24000 ticks. \n\nThe thing is, it does not save when it goes back up to 24000, so once it goes back up to 24000 if you relog, it will load at 0, then start counting down until it has counted 1200 ticks, (which is now at -1200) realize it's below 0, attempt to spawn, and go back up to 24000. If you repeat this process, the counter gets to -1200, -2400 etc, and you get wandering trader spawning attempts every minute instead of 20 minutes.\n</details>\n\nIf you didn't want to read the boring explanation above, here is how you make wandering trader spawning attempts go from 20 minutes, down to 1 minute. Every time the ticks value goes back up to 24000, simply relog and if the counter is in the negatives, it worked. Every time it loops back around to 24000, it made an attempt at spawning.\n\nKeep in mind an attempt at spawning being successful is very low, so it still will take a bit.\n\nWhile I haven't tested on servers, unless you are willing to shut down and start up the server endlessly, it probably doesn't work.\n</details>\n\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2644,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

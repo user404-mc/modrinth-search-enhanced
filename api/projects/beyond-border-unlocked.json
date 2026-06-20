@@ -1,0 +1,40 @@
+{
+  "id": "qGmA7c36",
+  "slug": "beyond-border-unlocked",
+  "title": "Beyond Border Unlocked",
+  "description": "Bypass the vanilla worldborder building & combat limitations.",
+  "body": "<div align=\"center\">\n\n  [![Discord](https://img.shields.io/badge/Discord_Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/2UTkYj26B4)\n  [![JitPack](https://jitpack.io/v/max1mde/BeyondBorderUnlocked.svg)](https://jitpack.io/#max1mde/BeyondBorderUnlocked)\n  [![Minecraft version](https://img.shields.io/badge/Minecraft%20version-1.19_--_1.21-brightgreen.svg)](https://github.com/max1mde/BeyondBorderUnlocked)\n\n  <img src=\"https://github.com/user-attachments/assets/012f91e1-d872-4c0c-a9f8-829f5004d262\">\n  <br><br>\n  <p>Break or place blocks & damage entities behind the vanilla worldborder without any client side-mods!</p>\n</div>\n\n## Features\n- Bypass world border restrictions for:\n  - Placing blocks (only possible by left clicking with a block)\n  - Breaking blocks\n  - Combat and entity interactions\n  - Player movement through border\n- Visual block outline system for blocks beyond border (using display entities)\n- Block breaking animations and effects\n- Realistic combat mechanics with critical hits & damage calculation based on armor and weapons\n\n## Installation\n1. Place the plugin JAR and [packetevents.jar](https://www.spigotmc.org/resources/80279/) in your server's `plugins/` folder \n2. Restart/reload your server\n3. Configure `plugins/BeyondBorderUnlocked/config.yml` to your needs\n\n> [!WARNING]\n> These actions beyond the world border are not intended by game design.  \n> Unexpected bugs may occur, and the experience will differ from normal gameplay.  \n> Test thoroughly before production use.\n\n## Configuration (`config.yml`)\n```yaml\nbuilding: false        # Allow block placement beyond border (left click)\nbreaking: true        # # Allow block breaking beyond border (left click)\nwalkthrough: true     # Allow walking through border\nhitting: true         # Allow hitting entities beyond border\n\ndamage:\n  enabled: true      # Enable custom border damage settings below (if false, the plugin does not modify the values below in your worlds)\n  buffer: 5.0        # Distance before damage starts\n  amount: 0.2        # Damage per second\n\nblockOutline:\n  enabled: true      # Show block outlines beyond border\n  size: 0.009        # Size of outline segments\n  block: black_stained_glass  # Block type for outline\n```\n\n## Commands\n- `/beyondborder reload` - Reload configuration\n- `/beyondborder set <setting> <value>` - Change settings\n\nAvailable settings:\n- `building`, `breaking`, `walkthrough`, `blockOutline.enabled`, `hitting` (true/false)\n- `damage.enabled`, `damage.buffer`, `blockOutline.size`, `damage.amount` (numbers)\n- `blockOutline.block` (text)\n\n**Permissions**:  \n`beyondborder.commands` - Access to commands (default: op)\n\n## API Documentation\n\nTo use the api add `depends: BeyondBorderUnlocked` to your plugin.yml  \nand this plugin as a compile-only dependency:\n\n```groovy\nrepositories {\n\tmaven { url \"https://jitpack.io\" }\n}\ndependencies {\n\tcompileOnly(\"com.github.max1mde:BeyondBorderUnlocked:1.0.0\")\n}\n```\n\n### Accessing the API\n```java\nBeyondBorderUnlocked plugin = BeyondBorderUnlocked.getInstance();\nConfig config = plugin.getPluginConfig();\n```\n\n### Events\n| Event Class | Async | Cancellable |\n|-------------|-------|-------------|\n| `BlockBreakBorderEvent` | No | Yes |\n| `BlockPlaceBorderEvent` | No | Yes |\n| `AsyncEntityDamageBorderEvent` | Yes | Yes |\n| `AsyncEntityInteractBorderEvent` | Yes | Yes |\n\n**Example Event Usage**:\n```java\n@EventHandler\npublic void onEntityDamage(AsyncEntityDamageBorderEvent event) {\n    if (event.getDamager() instanceof Player) {\n        event.setDamage(event.getDamage() * 1.5); // 50% more damage for example\n    }\n}\n```\n\n## Known Issues\n\n- Blocks can only be placed using the left mouse button\n- Walking through the world border is buggy due to required player teleportation\n- Blocks sometimes continue breaking without holding the mouse button, or breaking progress resets even when holding the left mouse button\n- The block selection outline box has incorrect sizing for certain blocks\n- Mechanics such as block breaking, damage calculations, and other interactions are not entirely accurate\n\n## How does it work?\n\nBy default, Minecraft clients don't send certain packets when behind the world border:\n- No block break/place packets\n- No block break progress packets\n- No block selection outline is displayed by the client\n\nThis plugin works by:\n1. Listening for arm swing animation packets (which are always sent)\n2. Calculating which block the player is looking at\n3. Simulating the appropriate action server-side:\n   - Block breaking with animations and effects\n   - Block placement with sound effects\n\nThe block selection outline is created using:\n- 12 item display entities forming a 3D outline\n- Custom packets to spawn and position these entities\n- Only visible to the player looking at the block\n\nBecause of that, the `building` feature does not work when right-clicking, as the client does not send any packets when right-clicking beyond the world border. The only packet sent is the arm animation packet when the player left-clicks.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 323,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

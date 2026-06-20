@@ -1,0 +1,21 @@
+{
+  "id": "uzZAHr4k",
+  "slug": "minifabricapi",
+  "title": "MiniFabricAPI",
+  "description": "Adds a couple of the Fabric API modules for Neoforge",
+  "body": "> I don't have time to maintain this, sorry guys\n\n\nThis mod adds a couple of the modules from the [Fabric API](https://modrinth.com/mod/fabric-api) to Neoforge. Specifically:\n\n- Fabric Command API V2\n- Fabric Keymapping API V1\n- Fabric Networking API V1\n  - Be careful when interacting with this pared with Neoforge, it can be unstable in some situations.\n- Fabric Rendering API V1\n- Fabric API Base\n- Fabric Object Builder V1\n- Fabric Registry Sync API V2\n- Fabric Lifecycle Events\n\nThis mod hopes to ease developing multiplatform mods and allow developers to use Fabric API's code in the common module.\n\n<details>\n<summary>For Developers (Installation, Setup, Etc)</summary>\n\nFirstly, add Modrinth to your repositories.\n\n```groovy\nrepositories {\n    maven {\n        name = \"Modrinth\"\n        url = \"https://api.modrinth.com/maven\"\n    }\n}\n```\n\nThe second step will depend on what kind of project you are making. For the version, check [our versions page](https://modrinth.com/project/minifabricapi/versions).\n\n**Architectury:**\n\n```groovy\ndependencies {\n    compileOnly \"maven.modrinth:minifabricapi:${project.minifabricapi_version}\"\n}\n```\n\nNote that we use compileOnly since this API is only available for Neoforge. To make sure the sources are provided at runtime, download the mod JAR and drop it into your `neoforge/run/mods` folder. Get the [Fabric API](https://modrinth.com/mod/fabric-api) and drop it into your `fabric/run/mods` folder.\n\n**Basic Neoforge Project:**\n\n```groovy\ndependencies {\n    implementation \"maven.modrinth.minifabricapi:${project.minifabricapi_version}\n}\n```\n\n**Always** remember to add this mod as a dependency in your `neoforge.mods.toml` so the game crashes with a clear view of what the user has to do rather than a `NoClassDefFoundError`.\n\n```toml\n[[dependencies.${mod_id}]]\n    modId=\"minifabricapi\"\n    type=\"required\"\n    versionRange=\"${minifabricapi_version}\"\n    ordering=\"NONE\"\n    side=\"CLIENT\"\n```\n\n</details>\n\n**How does the version system work?**\nThis mod matches the Fabric API version which it is built on, with an additional integer at the end to represent the patches of this mod specifically.\n\n**How can I contribute?**\nIf you are just the ordinary player who enjoys modding, hit that download button! The more downloads we get, the more aware other developers will become of this mod. If you are a developer, pull requests on our [GitHub](https://github.com/downloadableduck/minifabricapi) are available. Go ahead and add a module or two, it would be _extremely_ helpful!\n\nReport ANY and ALL issues on my [GitHub](https://github.com/downloadableduck/minifabricapi/issues). I CANNOT STRESS THIS ENOUGH. REPORTING ISSUES IS HOW THEY GET FIXED. IF YOU WANT AN ISSUE FIXED, REPORT IT.",
+  "categories": [
+    "library",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 415,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

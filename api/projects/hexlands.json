@@ -1,0 +1,30 @@
+{
+  "id": "jkmTQqWQ",
+  "slug": "hexlands",
+  "title": "HexLands",
+  "description": "Hexagonal world generation, Settlers of Catan style!",
+  "body": "![Hex Lands](https://raw.githubusercontent.com/alcatrazEscapee/hexlands/1.19.x/img/splash.png)\n\nThis mod is an updated and rewritten version of the original [Hex Lands](https://www.curseforge.com/minecraft/mc-mods/hex-lands) mod by superfluke, et. al. It has been rewritten completely for new Minecraft versions.\n\n### Features\n\n- Adds two world type presets: \"HexLands\", and \"HexLands (Overworld)\". The former which enables hexagonal terrain generation in both the overworld and the nether, the latter which only enables it in the overworld.\n- Each hex contains a single biome. Hexes of different types are bordered by walls.\n- Automatic compatibility with mods that add biomes to the overworld or other world generation.\n- Many options for world customization via data packs.\n\n### Configuration (Data Packs - 1.19.x - 1.20.x)\n\n**Note:** Due to Mojang's changes to world generation, configuration will be different depending on which Minecraft version you are using! See the [1.18.x](https://github.com/alcatrazEscapee/hexlands/blob/1.18.x/README.md#configuration-data-packs), [1.17.x](https://github.com/alcatrazEscapee/hexlands/blob/1.17.x/README.md#configuration-data-packs), or [1.16.x](https://github.com/alcatrazEscapee/hexlands/blob/1.16.x/README.md#configuration-data-packs) versions of this documentation instead.\n\nWorlds are now specified by [World Presets](https://minecraft.fandom.com/wiki/World_preset) due to a change from Mojang. HexLands can be customized by adding a new world preset. The default HexLands world presets can be found here, for [HexLands](https://github.com/alcatrazEscapee/hexlands/tree/1.19.x/Common/src/main/resources/data/hexlands/worldgen/world_preset/hexlands.json), and [HexLands (Overworld Only)](https://github.com/alcatrazEscapee/hexlands/tree/1.19.x/Common/src/main/resources/data/hexlands/worldgen/world_preset/hexlands_overworld_only.json). They both make use of the `hexlands:hexlands` chunk generator.\n\nIn order to use a HexLands world for a specific dimension, you must change the `generator` field. It must be an object with the following properties:\n\n- `type` is a string identifying what generator to use. It should be `hexlands:hexlands`.\n- `settings` is a [Noise Settings](https://minecraft.fandom.com/wiki/Custom_world_generation#Noise_settings) used by the dimension.\n- `biome_source` is the biome source, as in vanilla. It can be a known preset, such as `\"minecraft:overworld\"`, or `\"minecraft:nether\"`, or it can be a JSON object following the vanilla biome source format.\n- `hex_settings` is an object with parameters defining how the hexagonal grid works. It can either be a known preset, which must be one of `\"hexlands:overworld\"`, `\"hexlands:nether\"`, or `\"hexlands:the_end\"`, or it can be an object with the following fields:\n    - `biome_scale` (Default: 8) is the scale at which biomes are sampled to create hexes. Higher values create more random biome layouts.\n    - `hex_size` (Default: 40) is the size of an individual hex.\n    - `hex_border_threshold` (Default: 0.92) is a number between `0` and `1` representing how much of a hex should be covered by the border. Larger values will lead to thinner borders.\n    - `top_border` and `bottom_border` are both border settings which define how the top and bottom borders of the world are built. The borders between hexes consist of a bottom border, air, and a top border. If not present, this section of the border will consist entirely of air. If present, it must have the following fields:\n        - `min_height`: The minimum height of the border.\n        - `max_height`: The maximum height of the border.\n        - `state`: A block state to generate as the border state. As in vanilla formats, this must be an object with a `Name` and `Properties` field. The `Properties` must be an object containing **all** possible block state properties in key-value pairs, and the `Name` field must be the name of the block.\n\n**Example**\n\nBelow is an example object which can be used in the `generator` field of a world preset.\n\n```json5\n// Below is an example object which can be used in the `generator` field of a world preset.\n{\n    \"type\": \"hexlands:hexlands\",\n    \"settings\": \"minecraft:overworld\",\n    \"biome_source\": {\n      \"type\": \"minecraft:multi_noise\",\n      \"preset\": \"minecraft:overworld\"\n    },\n    \"hex_settings\": \"hexlands:overworld\"\n}\n```\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9307,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

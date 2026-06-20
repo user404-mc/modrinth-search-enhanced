@@ -1,0 +1,40 @@
+{
+  "id": "Vr7HAIVL",
+  "slug": "scarpet-graphics",
+  "title": "scarpet-graphics",
+  "description": "Carpet extension with functions for scarpet, used for headless image manipulation (A wrapper of Processing)",
+  "body": "# scarpet-graphics\n\n[![Discord](https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white)](https://discord.gg/etTDQAVSgt)\n\nA wrapper of [Processing](https://processing.org) for [scarpet](https://github.com/gnembon/fabric-carpet/wiki/Scarpet)\n\nThis can also be used with [Discarpet](https://modrinth.com/mod/discarpet) to send the created images via Discord.\n\n## Values\n\nThis extension adds these new scarpet values:\n\n* `image`: Wrapper for [PImage](https://processing.org/reference/PImage.html)\n* `graphics`: Wrapper for [PGraphics](https://processing.org/reference/PGraphics.html), extends `image` value (meaning it can be used in the same way `image` can)\n* `font`: Wrapper for [PFont](https://processing.org/reference/PFont.html)\n\nColors are handled using numbers (0xRRGGBBAA in hex), but can be constructed from RGB and HSB using the `color` function.\n\n## Functions\n\n**For a more detailed documentation for these functions, see the [Processing reference](https://processing.org/reference)**\nMost functions are just a wrapper function for the internal processing function.\nSometimes they may have slightly different names than the original Processing functions, due to the name being already used by scarpet (e.g. `copy()`) or to group them (all `draw_?()` functions).\n\n### Graphics and Image functions\n\n#### `load_image(location, shared?)`\n\nLoads an image from the specified `location` (string).\nCan be a URL, or file name (path that works just like `read_file`).\nIf `shared` is true, uses shared app storage.\nReturns an `image` value.\n\n#### `save_image(image, location, shared?)`\n\nSaves the `image` in the specified `location` (works like `load_image`)\n\n#### `create_graphics(width, height)`\n\nCreates a new `graphics` object with the specified dimensions.\n\n#### `copy_image(source, desination, sourceX, sourceY, sourceW, sourceH, destinationX, destinationY, destinationW, destinationH)`\n\nCopies pixels from one image/graphics to another.\n\n#### `get_pixel(image, x, y)`\n\nReturns the color of a certain pixel.\n\n#### `set_pixel(image, x, y, color)`\n\nSets the pixel on the image to the color.\n\n#### `begin_draw(graphics)`\n\nPrepares the graphics object for doing drawing operations on it.\n\n#### `end_draw(graphics)`\n\nTo be called when done drawing.\n\n### Drawing functions\n\nSee the [2D Primitives](https://processing.org/reference/#shape) section in the processing reference. (The scarpet functions have `draw_` prefixed with the processing function names)\n\n#### `draw_background(graphics, color)`\n#### `draw_rect(graphics, a, b, c, d)`\n#### `draw_ellipse(graphics, a, b, c, d)`\n#### `draw_line(graphics, x1, y1, x2, y2)`\n#### `draw_image(graphics, image, a, b, c, d)`\n#### `draw_text(graphics, text, x, y)`\n\n### Mode functions\n\n#### `color_mode(graphics, mode)`\n\n`mode`s: `'RGB'`, `'HSB'`\n\n#### `image_mode(graphics, mode)`\n\n`mode`s: `'CORNER'`, `'CORNERS'`, `'CENTER'`\n\n#### `ellipse_mode(graphics, mode)`\n\n`mode`s: `'CORNER'`, `'CORNERS'`, `'CENTER'`, `'RADIUS'`\n\n#### `rect_mode(graphics, mode)`\n\n`mode`s: `'CORNER'`, `'CORNERS'`, `'CENTER'`, `'RADIUS'`\n\n### Utility functions\n\n#### `color(graphics, v1, v2, v3, alpha)`\n\nDepending on the `color_mode()` set, v1,v2,v3 are either r,g,b or h,s,b values\n\n#### `fill(graphics, color)`\n#### `no_fill(graphics)`\n#### `stroken(graphics, color)`\n#### `no_stroke(graphics)`\n#### `stroke_weight(graphics, weight)`\n#### `smooth(graphics)`\n#### `no_smooth(graphics)`\n#### `font_list()` (Equivalent to PFont.list() in processing)\n#### `text_font(graphics, font)`\n#### `text_size(graphics, size)`\n#### `create_font(graphics, name, size, smooth?)`\n#### `text_align(graphics, alignX, alignY)`",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4520,
+  "followers": 0,
+  "game_versions": [
+    "1.19.1",
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

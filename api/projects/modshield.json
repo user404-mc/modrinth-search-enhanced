@@ -1,0 +1,24 @@
+{
+  "id": "cAk90cMR",
+  "slug": "modshield",
+  "title": "ModShield",
+  "description": "Verify that client mods are allowed on the server",
+  "body": "# ModShield\nA lightweight simple to use mod, allowing server admins to check client mods as well as forbid players from using certain mods.\nOr allow players to use only specific mods.\n\n# Usage\nSimply download the latest mod version on the server and the client.\nIt's important to note that a server running ModShield will require all clients to use it as well.\n\n# Server Config\nAll configuration is done through the config file: `config/modshield.properties`.\nAfter you launch the mod for the first time a template version will be automatically generated, with descriptions of all options and how to use them.\nTo realod the config use the `/mod-shield-reload` command. Keep in mind administrator permissions are required.\n\n<details>\n<summary>Show Example</summary>\n\n```properties\n#This is a template ModShield config file.\n#If you want to allow only certain mods add them in the disallowed option, separated by commas.\n#This way only mods in that option can be used by the client.\n#\n#If you want to allow only specified mods put them in the allowed option, separated by commas.\n#\n#savePlayerMods - when set to true ModShield will save mods used by players, that can be accessed through the API.\n#onlyAllowServerMods - when set to true only mods found on the server will be allowed on the client.\n#alwaysAllowedPlayers - list of players that can run every mod, separated by commas, UUIDs or names.\n#autoUpdate - when set to true the mod will attempt to automatically update.\n#Fri Mar 28 23:03:05 CET 2025\nallowed=\nautoUpdate=false\ndisallowed=\nonlyAllowServerMods=false\nsavePlayerMods=false\n```\n</details>\n\n# API Usage (For Mod Developers)\nTo use the mod as a library add the maven repository and declare it as a dependency, in your `build.gradle` file like so:\n```groovy\n// Add the repository\nrepositories {\n    maven {\n        url = 'https://maven.avarisgates.com' // ModShield\n    }\n}\n\n// Declare it as a dependency\ndependencies {\n    // To package the mod with yours\n    modImplementation \"com.avaris:ModShield:${project.modshield_version}\"\n    \n    // To use the mod in a seperate .jar file\n    // This won't strictly require the mod\n    compileOnly \"com.avaris:ModShield:${project.modshield_version}\"\n}\n```\nIt's also recommended to add the following to your `gradle.properties` file:\n```properties\nmod_shield=CURRENT_VERSION\n```\nBe sure to add replace `CURRENT_VERSION` with the version you wish to use.\nIt's always recommended to use the latest one.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "management",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 138,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4"
+  ],
+  "date_updated": null
+}

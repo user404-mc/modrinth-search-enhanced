@@ -1,0 +1,30 @@
+{
+  "id": "QPOqntXP",
+  "slug": "renderer",
+  "title": "Renderer",
+  "description": "An easy to use library for rendering content",
+  "body": "# Renderer\nAn easy to use rendering library for modern fabric\n\n# Installing\nYou can install this library using [Jitpack](https://jitpack.io/)\n\nTo install the library, just add the jitpack repository to your repositories block as described on the website, and this to your dependencies block in build.gradle:\n\n```groovy\ninclude modImplementation(\"com.github.0x3C50:Renderer:master-SNAPSHOT\")\n```\nThis will use the latest commit as build target, but will cache that build target every time. Use the latest short commit hash found on [Jitpack](https://jitpack.io/#0x3C50/Renderer) (example: `d2cc995ff4`) as the version, to get that release instead.\n\n# Usage\nThe api has an extensive javadoc, which explains almost anything. The wiki also has some more insights and examples.\n\n# The two renderers\nRenderer2d draws in 2 dimensions, on the hud. Renderer3d draws in 3 dimensions, in the world.\n\n# Events\nThis library has its own event system, which broadcasts some basic rendering events (hud render, world render, etc). You can find more information on the wiki\n\n# Suggestions\nYou can leave suggestions in the issues section\n\nIf this library helped you, please consider leaving a star, since this library took me a while to make as it is right now :)\n\n# Examples\nMore examples can be found in `RendererClient`.\n\n```java\nclass Listener {\n    void main() {\n        Events.manager.registerSubscribers(this);\n    }\n    @MessageSubscription\n    void onWorldRendered(RenderEvent.World world) {\n        // Quad at (0, 0, 0):\n        Renderer3d.renderFilled(world.getMatrixStack(), Color.RED, Vec3d.ZERO, new Vec3d(1, 1, 1));\n        // Quad outline at (0, 0, 0):\n        Renderer3d.renderOutline(world.getMatrixStack(), Color.RED, Vec3d.ZERO, new Vec3d(1, 1, 1));\n    }\n    \n    @MessageSubscription\n    void onHudRendered(RenderEvent.Hud hud) {\n        // Rounded quad at (50, 50 -> 100, 100), 5 px corner, 10 samples\n        Renderer2d.renderRoundedQuad(RendererUtil.getEmptyMatrixStack(), Color.WHITE, 50, 50, 100, 100, 5, 10);\n    }\n}\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 3348,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

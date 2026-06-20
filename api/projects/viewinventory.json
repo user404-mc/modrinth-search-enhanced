@@ -1,0 +1,34 @@
+{
+  "id": "FW4DNKUX",
+  "slug": "viewinventory",
+  "title": "ViewInventory",
+  "description": "You can view and edit other players' inventories.",
+  "body": "# ViewInventory\n**ViewInventory** is a powerful Minecraft Spigot/Paper plugin designed for server administrators and moderators. It allows you to seamlessly view and manage the inventories and ender chests of other online players in real-time. Whether you need to conduct investigations, provide support, or simply observe, ViewInventory offers a smooth, intuitive, and interactive experience.\n\n### Key Features\n\n* **Real-time Synchronization**: Any changes made to the target player's inventory (by them or you) are instantly reflected in the GUI you are viewing, and vice-versa.\n\n* **Offline Player Support (View Only)**: While direct editing of offline players' inventories is not supported due to data integrity concerns, you can still view their inventory contents.\n\n* **Custom GUI Layout**: A user-friendly 6x9 GUI is provided, clearly displaying the target player's armor, offhand, and main inventory slots.\n\n* **Creative Mode Utilities**: In creative mode, you can use the middle-click (block selection) to copy items from the target's inventory to your cursor, mimicking vanilla behavior. You can also pick up the target player's head.\n\n* **Intuitive Controls**: Standard inventory click actions (left-click, right-click, shift-click) work as expected to move and manage items.\n\nTab Completion: Easy-to-use command with tab completion for subcommands and player names.\n\n### Commands\n\n`/viewinventory <inventory|enderchest> <player>`\n\n**Aliases**: `/vi <in|ec> <player>`\n\n<details>\n<summary>Permissions</summary>\n\nThis plugin employs a permission system (adopted in version 1.1-beta~), enabling granular control over features. Players with OP permissions are granted all permissions by default.\n\n**1.** The process of updating the GUI display (copying the target player's inventory to the GUI)\n\n**2.** The process reflecting click actions (copying what the viewer clicked in the GUI to the target's inventory)\n\nWhen clicking rapidly, process 1 would overwrite process 2. This caused the GUI to revert before changes were saved, resulting in items disappearing.\n\n## Solution\nTo eliminate this conflict, we fundamentally changed the approach.\n\n### Prioritize Click Operations\n> Valid click operations performed by the viewer within the GUI (such as item movement) are now handled by Bukkit's standard functionality. This ensures the exact same processing as Minecraft's normal inventory operations, preventing item disappearance.\n\n### Synchronize Changes Later\n> The modified GUI contents are now copied to the target player's inventory one tick after Bukkit completes the click operation. This completely eliminates processing conflicts and ensures changes are reflected safely.\n\n### Control Only Custom Slots\n> Plugin intervention is now limited solely to clicks on special slots like the trash can or glass panes. These operations cancel the event and are safely handled by the plugin.\n\nThis approach—“leave processing to Bukkit and reflect results later”—achieves both stability and a vanilla-like feel, eliminating the item disappearance bug.\n\n</details>\n\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 376,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

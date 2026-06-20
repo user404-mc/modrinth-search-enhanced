@@ -1,0 +1,31 @@
+{
+  "id": "MnfT32N1",
+  "slug": "infinite-enchantments-modlib",
+  "title": "Infinite Enchantments Mod/Lib",
+  "description": "Infinite Enchantments Mod/Lib aims to make enchantment levels infinite!!",
+  "body": "Infinite Enchantments Mod/Lib\n\nWant to play with enchantments more than 255?\nEnchantments look like this `Sharpness enchantment.level.255`?\n\nThis mod/lib has fixed all that for you!\nEnchantments now made to maximum 255 -> 1000000000 (1 billion!)\n`Sharpness enchantment.level.255` made `Sharpness 255`\n\nHow to install \nFor Players :\n1. Download the jar file\n2. Put it in the `.minecraft/versions/<Neoforge version name>/mods`\n\nNow you can enchant the item with commands\n\nREMEMBER : Using enchantments like fortune with high levels can cause many drops to drop, causing the game to crash \n\nFor Modders:\n1. Put the following in `build.gradle` \n```\nrepositories {\n    exclusiveContent {\n        forRepository {\n            maven {\n                url \"https://cursemaven.com\"\n            }\n        }\n        filter {\n            includeGroup \"curse.maven\"\n        }\n    }\n}\n```\n2. Put the cursemaven snippet in `dependencies` in `build.gradle`\n3. Reload gradle changes to implement it\n\nNow modders can `ItemStack#set` the `Enchantment` with `DataComponents.ENCHANTMENT` and `ItemEnchantments` like follows\n\n```\npublic static void setOverleveledEnchant(ItemStack stack, Holder<Enchantment> enchantment, int level) {\n        ItemEnchantments existing = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);\n        ItemEnchantments.Mutable mutable = new ItemEnchantments.Mutable(existing);\n        mutable.set(enchantment, level);\n        stack.set(DataComponents.ENCHANTMENTS, mutable.toImmutable());\n    }\n```\n\nREMEMBER : The \"max_level\" field in any `<enchantment_name>.json` still needs to be a lower value like 5, as the value determines the number of books generated in the creative mode tab (that means setting it to suppose 1 billion will create 1 billion books, and the game crashes)\n\nDrop any suggestions for updates in the comments!",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 452,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

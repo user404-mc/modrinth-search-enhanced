@@ -1,0 +1,21 @@
+{
+  "id": "h4nsLvjf",
+  "slug": "create-avionics",
+  "title": "Create: Avionics — ComputerCraft for Aeronautics",
+  "description": "CC: Tweaked peripherals for Create: Simulated and Create: Aeronautics.",
+  "body": "# Create: Avionics\n\n**Make your airship fly itself.**\n\nCC: Tweaked peripherals for every instrumentable block in Create: Aeronautics. Read attitude, altitude, velocity, bearing. Drive throttle, propellers, balloon gas. Write your autopilot in Lua (that's a bad pitch, but still!)\n\n## Build\n\n- Altitude-hold for hot-air balloons\n- Heading-and-pitch autopilots for propeller aircraft\n- Cruise control bound to a steering wheel\n- Tracked turrets for mounted potato cannons\n- Whatever else you can write a control loop for\n\n## Start\n\nHeading hold on a twin-engine ship:\n\n```lua\nlocal nav        = peripheral.find(\"navigation_table\")\nlocal port, stbd = peripheral.find(\"analog_transmission\")\nlocal target     = nav.getHeadingRad()\n\nwhile true do\n    local err = (target - nav.getHeadingRad() + math.pi) % (2*math.pi) - math.pi\n    local diff = math.max(-5, math.min(5, err * 4))\n    port.setSignal(7 - diff); stbd.setSignal(7 + diff)\n    sleep(0.05)\nend\n```\n\nThree peripherals, one P-controller, the ship locks heading. Every Aeronautics (and nearly every Create) block is a peripheral — read sensors, set actuators, write the loop you want.\n\n## Not just aircraft\n\nThe same `peripheral.find()` surface drives lifts, vehicles, and your whole rotational network — not only things that fly.\n\n**Create Elevators** — enumerate floors, call the cabin, read where it is:\n\n```lua\nlocal lift = peripheral.find(\"Create_ElevatorPulley\")\nlift.setTargetFloor(lift.getFloors()[3].y)   -- send the cabin to the 3rd floor\nrepeat sleep(0.1) until lift.isArrived()\nprint(\"Arrived: \" .. lift.getCurrentFloor().short_name)\n```\n\n**Kinetic SCADA** — walk the rotation network, alarm on overstress:\n\n```lua\nlocal draw, capacity = 0, 0\nfor _, name in ipairs(peripheral.getNames()) do\n    local p = peripheral.wrap(name)\n    if p.getNetworkId then                       -- any kinetic block\n        draw     = draw     + p.getStressImpact()\n        capacity = capacity + p.getStressContribution()\n        if p.isOverstressed() then\n            print(\"OVERSTRESSED \" .. p.getSelfId() .. \" (\" .. p.getKind() .. \")\")\n        end\n    end\nend\nprint((\"Network load: %.0f / %.0f SU\"):format(draw, capacity))\n```\n\n**Vehicles** — steering and brake override on wheel mounts:\n\n```lua\nfor _, w in ipairs({ peripheral.find(\"wheel_mount\") }) do\n    w.setSteering(0.5)                                       -- -1..1  ->  +/-30 deg\n    if w.getTouchingFriction() < 0.5 then w.setBrake(0) end  -- ease off on slippery stuff\nend\n```\n\n`getKind`, `getSubnetworkAnchorId`, `getColumnContacts`, `getTouchingFriction` — the read side is as rich as the write side.\n\n**[Full API docs](https://solastrius.github.io/CreateAvionics/)** — units, body-frame conventions, every method.\n\n**Read [the parallel guide](https://solastrius.github.io/CreateAvionics/guide/mainthread.html)**. 5 Hz and 20 Hz feel different.\n\n## Install\n\n**Needs:** MC 1.21.1 · NeoForge 21.1.219+ · Create 6.0.10+ · Simulated/Aeronautics/Offroad 1.2.1+ · Sable 1.1.0+ · CC: Tweaked 1.115+\n\n## Pairs with\n\n[`ccc`](https://modrinth.com/resourcepack/ccc) · [`create-computercraft`](https://modrinth.com/resourcepack/create-computercraft)\n\n## Source · Issues\n\n[github.com/SolAstrius/CreateAvionics](https://github.com/SolAstrius/CreateAvionics)\n\nMIT. Built on RyanHCode's CC peripheral foundation in Simulated — [NOTICE](https://github.com/SolAstrius/CreateAvionics/blob/main/NOTICE.md).\n\nCreated by yours truly, [Sol Astrius Phoenix](https://astrius.ink).\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17744,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

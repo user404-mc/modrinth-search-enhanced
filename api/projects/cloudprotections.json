@@ -1,0 +1,22 @@
+{
+  "id": "IeP9peMi",
+  "slug": "cloudprotections",
+  "title": "CloudProtections",
+  "description": "Minecraft paper plugin for protecting specific cuboid/spherical regions of a world using flag-like rules",
+  "body": "# CloudProtections\n\nMinecraft paper plugin for protecting spherical/cubic regions from mobs/players.\n\n## Download Info\n\n> Note: Depends on [CommandAPI](https://modrinth.com/project/commandapi)\nand [CloudCore](https://modrinth.com/project/cloudcore).\n\n## Usage\n\n- Use `/cprots list` to list all protection regions\n- Use `/cprots create <box|sphere> <id> <pos1> <pos2|radius> [<dimension>]` to create a cubic or spherical region\n  - A created region is protected from all flags by default\n- Use `/cprots modify <region> delete` to delete a specific region\n- Use `/cprots modify <region> rename <id>` to rename a specific region\n- Use `/cprots modify <region> flags <add|remove> <flag1> [<flag2>] [<flag3>] ...` to add or remove specific flags from a specific region\n- Use `/cprots modify <region> flags list` to list the flags currently active for the specific region\n- Use `/cprots modify <region> exclusions <add|remove> <uuid>` to add or remove specific exclusions from a specific region\n  - The specified UUID may be the UUID of an entity which is ignored by this region\n- Use `/cprots modify <region> exclusions list` to list the exclusions currently active for the specific region\n- Use `/cprots modify <region> priority <priority>` to change the priority of regions\n  - This is useful for nesting multiple regions\n  - The higher the priority, the more the specific region has to say about wether a specific interaction is allowed or not\n\n<details>\n<summary><strong>Using this as API</strong></summary>\n\n### Dependency\n\nAdd the following to your `build.gradle.kts`:\n\n```kotlin\nrepositories {\n    maven(\"https://repo.cloudcraftmc.de/releases/\")\n}\n\ndependencies {\n    compileOnly(\"dev.booky:cloudprotections:{VERSION}\")\n}\n```\n\n### Usage\n\nYou can get the `ProtectionsManager` instance using bukkit's `ServicesManager`. For updating regions\nuse `ProtectionsManager#updateRegions`. This instantly saves the updated regions to file. Creating a new region\ncan be done using `new ProtectionRegion`. Exclusions and region flags are modifiable, the area, id and priority is not\nmodifiable.\n\n</details>",
+  "categories": [
+    "library",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 222,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "1SvzcA6G",
+  "slug": "proper-ping",
+  "title": "Proper Ping",
+  "description": "Measure and display ping properly",
+  "body": "![](http://cf.way2muchnoise.eu/versions/984800.svg)\n\n_Fabric and newer Minecraft versions coming soon._\n\n[![](http://cf.way2muchnoise.eu/title/984800.svg)](https://www.curseforge.com/minecraft/mc-mods/proper-ping)\n[![](https://static.unixkitty.com/icons/modrinth_long_color_24.svg)](https://modrinth.com/mod/proper-ping)\n[![](https://static.unixkitty.com/icons/discord_long_color_24.svg)](https://discord.unixkitty.com)\n\n---\n\nVanilla ping/latency calculation always seemed *incredibly* inaccurate and delayed to me.\n<details>\n<summary>Info</summary>\n  \nThey only send the latency value to clients once every 30 seconds:\n\n```java\npublic void tick() {\n   if (++this.sendAllPlayerInfoIn > 600) {\n      this.broadcastAll(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.UPDATE_LATENCY, this.players));\n      this.sendAllPlayerInfoIn = 0;\n   }\n}\n```\n\nAnd this is how they \"calculate\" it:\n\n```java\nint i = (int)(Util.getMillis() - this.keepAliveTime);\nthis.player.latency = (this.player.latency * 3 + i) / 4;\n```\n\n</details>\n\nThis mod goes around Vanilla and measures latency with a similar custom packet, but takes a proper average of 5 last RTT (round-trip-time) results.\n\nBesides that, it also adds a customizable hud element to always see your ping with options such as:\n- Hide completely\n- Position anywhere on the screen\n- Show last 5 latency measurements in the same hud element\n- Show numerical readings for other players on the server instead of abstract bars (there is a config option serverside to change the frequency of the server broadcasting these values to everyone)\n\n<details>\n<summary>Example config with default values</summary>\n\n```toml\n[\"Ping HUD\"]\n\t#Enable ping HUD\n\tpingHudEnabled = true\n\t#Additionally show 5 last ping values\n\tshowPingQueue = false\n\t#Draw text with a shadow\n\tdrawTextWithShadow = true\n\t#Draw ping either on the left side (true), or on the right (false)\n\tleftOrRight = true\n\t#How many scaled GUI pixels to start drawing from the edge of the screen\n\t#Range: > 0\n\thorizontalPadding = 4\n\t#On which line counting from the top to start drawing from\n\t#Range: > 0\n\tlineFromTop = 1\n\t#How many scaled GUI pixels to start drawing from the top of the screen\n\t#Range: > 0\n\tverticalPadding = 4\n\n[Other]\n\t#Show numbers in milliseconds in player list\n\tplayerListNumbers = true\n```\n\n</details>\n\nExample of a full display with the last 5 measurements turned on, numerical player list values, positioned on the right side of the screen:\n![](https://static.unixkitty.com/demo/proper_ping/gQsnBv0KLYYd.png)\n\n---\n\n#### FAQ\n\n**Q**: Forge?\n\n**A**: Forge.\n\n**Q**: Can I include your mod in a video?\n\n**A**: As long as you include a link to the mod/modpack (if it happens to be in one), absolutely\n\n**Q**: Can I add your mod to a modpack?\n\n**A**: CurseForge/Modrinth modpacks are cool.\n",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 6322,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

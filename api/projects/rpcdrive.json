@@ -1,0 +1,19 @@
+{
+  "id": "HeOdaLpF",
+  "slug": "rpcdrive",
+  "title": "rpcDrive",
+  "description": "RedPower 2 <-> ComputerCraft disk drive compatibility add-on.",
+  "body": "In the 1980s, it wasn't at all uncommon to see software development houses use a more powerful computer to create and debug software for a less powerful machine. In this spirit, **rpcDrive** is a mod for Minecraft which adds cross-mod compatibility between RedPower 2's Disk Drives and ComputerCraft's Computers, allowing using Lua scripts to read data from and write data to RedPower 2's [65EL02](http://www.eloraam.com/nonwp/redcpu.php)-based computer ecosystem.\n\nIn addition, the mod comes with a built-in (automatically installed) utility called `rpc/drive`, which allows performing basic read, write and copy operations on RP2 floppies.\n\n![](https://cdn.modrinth.com/data/HeOdaLpF/images/b5001e445a05064b6a00d54f48858875ced1b461.png)\n\n## ComputerCraft API Documentation\n\nRP2 Disk Drives are registered as peripherals of type `rp_drive`. It is important to note that Floppy Disks from that mod are operated on in terms of 128-byte sectors; the `rp_drive` peripheral provides an internal 128-byte buffer, from which sectors are read from and written to.\n\nIndexes and sector counts are provided 1-indexed, as is the case across Lua.\n\n| Name | Arguments |Description |\n| - | - | - |\n| isPresent | - | Returns true if a floppy disk is present. |\n| hasData | - | Returns true if a floppy disk contains data. |\n| isReadable | - | Returns true if the inserted floppy disk can be read from. |\n| isWritable | - | Returns true if the inserted floppy disk can be read from. |\n| getSerialNumber | => string | Returns the floppy disk's internal identifier (its \"serial number\") in the form of a string. |\n| getLabel | => string | Gets the floppy disk's displayable label. |\n| setLabel | newLabel (string) | Sets the floppy disk's displayable label. |\n| getBytesPerSector | => number | Returns the number of bytes in a sector; typically 128. |\n| getSectorCount | => number | Returns the number of sectors currently written to the inserted floppy. |\n| getSectorSize | => number | Returns the number of total sectors on the inserted floppy, including ones which have never been written to. |\n| readSector | sectorIndex (number) | Read a sector from the disk to the internal buffer. |\n| writeSector | sectorIndex (number) | Write a sector from the internal buffer to the disk. |\n| erase | - | Erase the floppy disk's contents. |\n| initialize | - | Initialize an empty floppy disk; this gives it a new serial number. Note that writing a sector to an empty floppy disk initializes it automatically. |\n| getBufferByte | index (number) | Read a byte from the internal buffer. |\n| setBufferByte | index (number), value (number) | Write a byte to the internal buffer. |",
+  "categories": [
+    "forge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3000,
+  "followers": 0,
+  "game_versions": [
+    "1.4.7"
+  ],
+  "date_updated": null
+}

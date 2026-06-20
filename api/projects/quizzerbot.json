@@ -1,0 +1,36 @@
+{
+  "id": "cEF862kB",
+  "slug": "quizzerbot",
+  "title": "QuizzerBot",
+  "description": "An engaging quiz plugin for Paper (1.21.6+) that brings fun trivia to your server. Features automatic chat quizzes and new on-demand Dialog GUI quizzes, with leaderboards and custom rewards.",
+  "body": "(Note: This README was written with AI assistance)\n# 🌟 Summary\nQuizzerBot is an engaging Paper (or its forks) server-side quiz plugin that brings fun trivia challenges to your Minecraft world. Compete in server-wide timed chat quizzes, or explore new interactive quiz menus with the new Dialog GUI system! Players can compete for rewards and a spot on the leaderboards.\n\nPlugin default language: zh_CN.\nNote: Multi-language support (i18n) is not yet implemented but is planned for future updates.\n\n# 📝 Description\n\n## Why Choose QuizzerBot?\n\n - **🎮 Two Ways to Play:**\n\n   - Classic Chat Quizzes: The original fast-paced, timed trivia event that appears directly in chat.\n\n   - New! Dialog GUI Quizzes: An interactive, on-demand quiz menu built with Paper's new Dialog API (requires 1.21.6+).\n\n - **🏆 Dual Leaderboards:** Separate rankings for both the classic chat quizzes and the new Dialog quizzes to track different skills.\n\n - **⚙️ Easy Management:**\n\n   - New! CSV Import/Export: Easily manage your question banks! Export questions to a CSV, edit them in any spreadsheet program, and re-import them. **(Warning: Importing overwrites the entire table, so please be careful!)**\n\n   - Simple in-game commands for adding, deleting, and modifying questions for both systems.\n\n - **🎁 Customizable Rewards:** Configure custom commands to reward players for correct answers (supports %player% placeholder).\n\n - **🚀 Lightweight & Easy Setup:** Works out-of-the-box with automatic configuration. Uses SQLite, so no external database is required.\n\n# How It Works\n\n## 1. Timed Chat Quizzes (Classic)\n\n- The plugin randomly selects questions from the main database at intervals randomly chosen from a configurable time range (trigger_interval_sec).\n\n- Questions appear globally in chat with clickable answer options.\n\n- Players have a set time limit (defined in answer_reveal_delay_sec) to answer before the quiz ends.\n\n- After the time is up, results are announced. Rewards are given to a set number of correct players (up to player_reward_limit). 'Quick Answer' status is given to the first few correct players (up to player_QuickAnswer_limit).\n\n- If a 'quick' player answers incorrectly, their reward slot can be taken by the next correct player in line, ensuring rewards are distributed.\n\n## 2. Dialog GUI Quizzes (New in 1.2.0)\n\n- Players can type /quiz dialog to open a new interactive menu.\n\n- This system uses a separate \"Extra\" question bank, keeping its stats and leaderboards distinct from the chat quizzes.\n\n- Perfect for creating on-demand challenges, server guides, vocabulary lists (like CET-4/6 words!), or special event trivia.\n\n# Commands\n\n**Player Commands**\n\n- /quiz ans <answer> - Submit your answer for a chat quiz.\n\n- /quiz me - View your personal quiz statistics.\n\n- /quiz query <player> - View another player's statistics.\n\n- /quiz top [total|correct|quick|rewards] - Show the leaderboards for classic chat quizzes.\n\n- /quiz dialog - Open the new interactive Dialog GUI for extra quizzes.\n\n**Admin Commands (General)**\n\n- /quiz reload - Reload the plugin's configuration files.\n\n- /quiz reset <player> - Reset all quiz data for a specific player.\n\n- /quiz help - Show the help menu.\n\n**Admin Commands (Timed Chat Quiz)**\n\n- /quiz startnow - Force-start a timed chat quiz.\n\n- /quiz stop - Stop the automatic timed quiz scheduler.\n\n- /quiz enable <true|false> - Enable or disable the timed quiz scheduler.\n\n- /quiz add <Q\\> \\<A\\> \\<B\\> <C> <D> <Correct> - Add a new question (e.g., /quiz add \"What is 1+1?\" \"1\" \"2\" \"3\" \"4\" \"B\").\n\n- /quiz delete <id> - Delete a question by its ID.\n\n- /quiz modify <id> <field> <value> - Modify a specific part of a question.\n\n- /quiz toggle <id> <true|false> - Enable or disable a specific question from appearing.\n\n- /quiz list [page] [sort] - List all questions in the main bank.\n\n- /quiz detail <id> - View all details for a specific question.\n\n**Admin Commands (Dialog GUI Quiz - \"Extra\")**\n\n- /quiz extra add ... - Add a question to the Dialog GUI bank.\n\n- /quiz extra delete <id> - Delete a Dialog GUI question.\n\n- /quiz extra modify <id> ... - Modify a Dialog GUI question.\n\n- /quiz extra toggle <id> ... - Enable/disable a Dialog GUI question.\n\n- /quiz extra list - List all Dialog GUI questions.\n\n- /quiz extra detail <id> - View details for a Dialog GUI question.\n\n**Admin Commands (Database Management)**\n\n- /quiz database export <table_name> - Export a question table (e.g., questions or extra_questions) to a CSV file.\n\n- /quiz database import <table_name> - Import data from a CSV file, fully overwriting the specified table. (Use with caution!)\n\n# Configuration (config.yml)\n\n- min_players: Minimum players online required to start a timed quiz.\n\n- trigger_interval_sec: The time range (min, max) in seconds for a quiz to randomly trigger. If both values are the same, the interval is fixed.\n\n- answer_reveal_delay_sec: Time limit to answer a question (in seconds).\n\n- reward_commands: List of commands to run for a winner (e.g., [\"give %player% diamond 1\"]).\n\n- daily_reward_limit: Maximum number of rewards a player can win from timed quizzes per day.\n\n- player_reward_limit: Maximum number of players that can be rewarded per quiz.\n\n- player_QuickAnswer_limit: Maximum number of players who can be recognized for a 'Quick Answer' (must be correct).\n\n- Note: Rewards are given based on player_reward_limit. 'Quick Answer' players are prioritized, but if they answer wrong, the reward slot rolls down to the next correct player.\n\n# Technical Info\n\n- Requires: Paper (or its forks) 1.21.6+ (The new Dialog GUI feature requires 1.21.6+, though the classic chat quiz may work on 1.21+).\n\n- Database: Uses SQLite by default (no setup needed).\n\n- Dependencies: Automatically downloads the H2 database driver on first run (no manual download needed). Download speed depends on your server's network connection.\n\n# 📧 Contact & Feedback\n- Have suggestions or found a bug? Please let me know!\n- Email: yanhy2000@foxmail.com",
+  "categories": [
+    "bukkit",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 157,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

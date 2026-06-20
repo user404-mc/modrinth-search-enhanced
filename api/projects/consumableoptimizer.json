@@ -1,0 +1,40 @@
+{
+  "id": "4alTd2ag",
+  "slug": "consumableoptimizer",
+  "title": "Consumable Optimizer",
+  "description": "Handles eating client-side, ensuring servers don't slow down the eating process",
+  "body": "<h1>Consumable Optimizer!</h1>\n\nThis mod enforces more client-sided processing when handling consumable items (any food item).\n\n---\n**Information**\n\nBy default, Minecraft requires the user to wait for a server response before consuming an item. While this delay is hardly noticeable on low ping, it becomes much more noticable on high ping and causes players to be stuck in an eating animation until the server eventually responds.\nThis optimizer ensures all of that processing is done client-side rather than server-side, allowing items to be comsumed with no delay and on the exact tick it should be finished. The server still applies the item's effects (such as absorption or regeneration from a golden apple) while the client handles the actual eating process.\n\nHigh ping can also occationaly causes desyncs when consuming an item, forcing the server to restart the eating process for the player. This further slows the overall process of consuming an item down even more and makes it feel inconsistent. This optimizer fixes this, by cancelling these recalls from the server when unneeded.\n\n**Demonstration Video**\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/1eVq6nrUfqs\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n---\n\n**Server Opt Out**\n\nOn servers using popular anti-cheats, such as Grim or Vulkan, it's unlikely for Consumable Optimizer to flag. However, if your server has reports of Consumable Optimizer causing flags or you don't want your player base using the mod, you can opt out using a very simple plugin. Some example code can be found below:\n\n```java\npublic class ConsumableOptimizerDisable extends JavaPlugin implements PluginMessageListener {\n\n    private static final String S2C_CHANNEL = \"consumable_optimizer:disable_payload\";\n    private static final String C2S_CHANNEL = \"consumable_optimizer:handshake_payload\";\n\n    @Override\n    public void onEnable() {\n        this.getServer().getMessenger().registerOutgoingPluginChannel(this, S2C_CHANNEL);\n        this.getServer().getMessenger().registerIncomingPluginChannel(this, C2S_CHANNEL, this);\n    }\n\n    @Override\n    public void onPluginMessageReceived(String channel, Player player, byte[] message) {\n        if (channel.equals(C2S_CHANNEL)) {\n            Bukkit.getScheduler().runTaskLater(this, () -> {\n                if (player.isOnline()) {\n                    player.sendPluginMessage(this, S2C_CHANNEL, new byte[0]);\n                    getLogger().info(\"Disabled consumable optimizer for \" + player.getName());\n                }\n            }, 20L);\n        }\n    }\n}\n```\n\n---\n**Credits**\n- Mod: Walksy\n- Icon: [SakuraFX](https://www.youtube.com/@everythingsakura)\n\n",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 508546,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

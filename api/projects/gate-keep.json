@@ -1,0 +1,36 @@
+{
+  "id": "MRyILNIs",
+  "slug": "gate-keep",
+  "title": "Gate Keep",
+  "description": "Allows restricting and scheduling dimension access based on date/time.",
+  "body": "![The End restricted message](https://cdn.modrinth.com/data/MRyILNIs/images/be9b810dd88da10caf4e19e3dc2080e747389d48.png)\n\n# Gate Keep\n\nAllows server admins to control access to dimensions. With GateKeep, you can completely restrict dimensions or set up time-based restrictions that automatically unlock at specific dates and times.\n\n## Features\n\n- **Dimension Restriction**: Completely block access to any dimension\n- **Time-Based Restrictions**: Schedule dimensions to unlock at specific dates and times\n- **Customizable Messages**: Configure the messages players receive when attempting to access restricted dimensions\n- **Automated Announcements**: Server-wide announcements when time-restricted dimensions become available\n\n## Configuration\n\nGateKeep uses a JSON configuration file located at `config/gatekeep.json`. The config file is created automatically when the mod is first loaded (in-case of a crash or mis-behavior re-check the config and deleting it and generating a fresh one)\n\n### Configuration Options\n\n```json\n{\n  \"disabledDimensions\": [\n    \"minecraft:the_end\"\n  ],\n  \"announce\": true,\n  \"restrictedDimensionMessage\": \"&c%dimension% dimension is restricted\",\n  \"timedDimensionRestrictedMessage\": \"&eRestricted till &6%time%\",\n  \"unrestrictedAnnouncementMessage\": \"&a%dimension% dimension is now open!\",\n  \"timeRestrictions\": {\n    \"minecraft:the_end\": {\n      \"enabled\": true,\n      \"timeZone\": \"UTC\",\n      \"unlockDateTime\": \"2024-12-31T23:59:59\"\n    }\n  }\n}\n```\n\n### Configuration Explanation\n\n- **disabledDimensions**: List of dimensions that are completely disabled\n- **announce**: Whether to announce when time-restricted dimensions unlock\n- **restrictedDimensionMessage**: Message displayed when a player tries to access a disabled dimension\n- **timedDimensionRestrictedMessage**: Message displayed when a player tries to access a time-restricted dimension\n- **unrestrictedAnnouncementMessage**: Message announced when a time-restricted dimension becomes available\n- **timeRestrictions**: List of dimensions with time-based restrictions\n  - **enabled**: Whether the time restriction is active\n  - **timeZone**: Time zone for the unlock time (uses standard time zone IDs)\n  - **unlockDateTime**: Date and time when the dimension will unlock (ISO format)\n\n### Message Formatting\n\nMessages support Minecraft color codes using the `&` character:\n- `&0` to `&9`, `&a` to `&f`: Colors\n- `&k`: Obfuscated\n- `&l`: Bold\n- `&m`: Strikethrough\n- `&n`: Underline\n- `&o`: Italic\n- `&r`: Reset\n\nIn the configuration messages, you can use the following variables:\n- `%dimension%`: Will be replaced with the formatted dimension name\n- `%time%`: Will be replaced with the formatted unlock time (for time-restricted dimensions)\n\n## Examples\n\n### Basic Setup: Disable The End\n\n```json\n{\n  \"disabledDimensions\": [\"minecraft:the_end\"],\n  \"announce\": true,\n  \"timeRestrictions\": {}\n}\n```\n\n### Time-Restricted Nether\n\n```json\n{\n  \"disabledDimensions\": [],\n  \"announce\": true,\n  \"timeRestrictions\": {\n    \"minecraft:the_nether\": {\n      \"enabled\": true,\n      \"timeZone\": \"America/New_York\",\n      \"unlockDateTime\": \"2024-06-01T12:00:00\"\n    }\n  }\n}\n```\n\n### Multiple Restrictions\n\n```json\n{\n  \"disabledDimensions\": [\"minecraft:the_end\"],\n  \"announce\": true,\n  \"timeRestrictions\": {\n    \"minecraft:the_nether\": {\n      \"enabled\": true,\n      \"timeZone\": \"UTC\",\n      \"unlockDateTime\": \"2024-05-15T18:00:00\"\n    },\n    \"twilightforest:twilight_forest\": {\n      \"enabled\": true,\n      \"timeZone\": \"UTC\",\n      \"unlockDateTime\": \"2024-07-22T15:06:20\"\n    }\n  }\n}\n```\n\n## How It Works\n\n- When a player or entity attempts to change dimensions including through commands or other means that use minecrafts internal code to travel through dimensions, the mod checks if the destination dimension is restricted\n- If the dimension is in the `disabledDimensions` list, access is denied\n- If the dimension has a time restriction that hasn't passed its unlock time, access is denied\n- Players with permission level 4 (operators) can bypass all restrictions when in creative mode\n- The mod regularly checks if time-restricted dimensions have reached their unlock time, these checks run on a background thread to minimize performance impact\n- When a time-restricted dimension becomes available, an announcement is sent to all online players (if enabled)\n\n## Compatibility\n\nGateKeep should be compatible with most modded dimensions and forms of dimensional travel.",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge",
+    "quilt",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 981,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "25w14craftmine",
+    "25w15a",
+    "25w16a",
+    "25w17a",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

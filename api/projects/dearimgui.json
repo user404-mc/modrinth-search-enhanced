@@ -1,0 +1,30 @@
+{
+  "id": "I16j44CK",
+  "slug": "dearimgui",
+  "title": "DearImGui",
+  "description": "A library mod providing a means of using ImGui within Minecraft",
+  "body": "# DearImGui for Minecraft\nA basic library mod giving developers the ability to use ImGui within Minecraft.\n\n---\n\n[![Discord Badge](https://raw.githubusercontent.com/intergrav/devins-badges/v2/assets/cozy/social/discord-singular_64h.png)](https://s.deftu.dev/discord)\n[![Ko-Fi Badge](https://raw.githubusercontent.com/intergrav/devins-badges/v2/assets/cozy/donate/kofi-singular_64h.png)](https://s.deftu.dev/kofi)\n\n---\n\n## Usage\n\n### Setup\n\nYou need to add it as a dependency in your `build.gradle(.kts)` file.\n\n```kotlin\nrepositories {\n    maven(\"https://maven.deftu.dev/snapshots\")\n}\n\ndependencies {\n    modImplementation(\"dev.deftu:dearimguimc-<MINECRAFTVERSION>-fabric:<VERSION>\")\n}\n```\nOf course, replace `<MINECRAFTVERSION>` with the version of Minecraft you are developing for, and `<VERSION>` with the version of the library you want to use.\n\n### Rendering\n\nTo render for ImGui, you need to create your own `DearImGuiEntrypoint` and add it to your `fabric.mod.json` file,\n\n```json\n{\n    \"entrypoints\": {\n        \"imgui\": [\"your.package.here.DearImGuiEntrypoint\"]\n    }\n}\n```\n\n`DearImGuiEntrypoint` has two methods you can override - `createRenderer` and `render`.\n\n```java\npublic class ExampleDearImGuiEntrypoint implements DearImGuiEntrypoint {\n    \n    @Override\n    public ImGuiRenderer createRenderer() {\n        return new ExampleImGuiRenderer();\n    }\n\n    @Override\n    public void render() {\n        // Render ImGui here\n    }\n    \n}\n```\n\nBoth ultimately achieve the same goal, but `createRenderer` is more flexible and allows you to pass in additional parameters to your renderer.\n\n### Example Rendering\n\n```java\npublic class ExampleImGuiRenderer implements ImGuiRenderer {\n\n    @Override\n    public void render() {\n        ImGui.showDemoWindow();\n    }\n\n}\n```\n\n```java\npublic class ExampleDearImGuiEntrypoint implements DearImGuiEntrypoint {\n\n    @Override\n    public void render() {\n        ImGui.showDemoWindow();\n    }\n    \n}\n```\n\n---\n\n[![BisectHosting](https://www.bisecthosting.com/partners/custom-banners/8fb6621b-811a-473b-9087-c8c42b50e74c.png)](https://s.deftu.dev/bisect)\n\n---\n\n**This project is licensed under [LGPL-3.0][lgpl]**\\\n**&copy; 2024 Deftu**\n\n[lgpl]: https://www.gnu.org/licenses/lgpl-3.0.en.html\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 923,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.2",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21"
+  ],
+  "date_updated": null
+}

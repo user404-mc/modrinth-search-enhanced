@@ -1,0 +1,19 @@
+{
+  "id": "AonjKlxh",
+  "slug": "create-bugfix-clipboard-patch",
+  "title": "Create Bugfix: Clipboard Patch",
+  "description": "This mod fixes a bug in the Create mod’s clipboard. It removes illegal data components, ensuring stability by preserving only whitelisted components.",
+  "body": "### Create Bugfix: Clipboard Patch\n\n**Introduction**  \nThis mod fixes a critical exploit in Create Mod's clipboard item for Minecraft 1.21+. Maliciously modified clipboards with illegal data components could trigger item duplication. The patch automatically sanitizes component data to ensure gameplay security.\n\n**Technical Mechanism**  \n1. **Event Monitoring**: Hooks into `ItemTossEvent` (player item-drop event)  \n2. **Item Identification**: Detects if dropped item is `create:clipboard`  \n3. **Component Whitelisting**: Only preserves:\n   - `create:clipboard_pages` (page content)\n   - `create:clipboard_type` (clipboard type)\n4. **Illegal Component Handling**:\n   - Generates clean clipboard instance\n   - Migrates whitelisted valid data\n   - Auto-replaces dropped item\n5. **Exploit Prevention**: Blocks item duplication via `container` or other illegal components\n\n**Fix Impact**  \n- Permanently patches item duplication exploits\n- Maintains normal clipboard functionality (text/icons preserved)\n- Compatible with Create Mod versions larger than 6.0",
+  "categories": [
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 4982,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

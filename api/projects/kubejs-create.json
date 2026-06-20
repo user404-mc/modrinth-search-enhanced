@@ -1,0 +1,31 @@
+{
+  "id": "T38eAZQC",
+  "slug": "kubejs-create",
+  "title": "KubeJS Create",
+  "description": "KubeJS Create integration",
+  "body": "[Create](https://modrinth.com/mod/create) integration for [KubeJS](https://modrinth.com/mod/kubejs). This mod allows you to add and properly edit recipes of Create mod in KubeJS scripts. All supported recipe types and examples are below. See [Recipes page](https://mods.latvian.dev/books/kubejs/page/recipeeventjs) for more info.\n\nSupported recipe types:\n\n- `createCrushing`\n- `createCutting`\n- `createMilling`\n- `createBasin`\n- `createMixing` (supports **.heated()** and **.superheated()**)\n- `createCompacting` (supports **.heated()** and **.superheated()**)\n- `createPressing`\n- `createSandpaperPolishing`\n- `createSplashing` (Bulk Washing)\n- `createDeploying`\n- `createFilling`\n- `createEmptying`\n\n> Note: Bulk Smoking = vanilla smoking and Bulk Blasting = vanilla blasting recipe types.\n\n`event.recipes.createCrushing(output[], input[])`\nOutput doesn't have to be an array. It can be either items or fluids\nInput doesn't have to be an array. It can be either ingredients or `Fluid.of('minecraft:water', 1000)` or `{fluidTag: 'some:fluid_tag', amount: 1000}`\n\n### `createMechanicalCrafting`\n\n`event.recipes.createMechanicalCrafting(output, pattern[], {patternKey: input})`\n\nThis recipe type is the same as regular crafting table shaped recipe\n\n```javascript\nevent.recipes.createSequencedAssembly(output[], input, sequence[]) \n// output[] are your output items\n// input is your input item\n// sequence[] is an array of sequences. These sequences are \"regular\" recipes that are supported.\n```\n\n## Examples\n\n```javascript\nevent.recipes.createCrushing([\n  '2x minecraft:cobblestone',\n  'minecraft:redstone',\n  Item.of('minecraft:redstone').withChance(0.5)\n], 'minecraft:redstone_ore')\n```\n\n```javascript\nevent.recipes.createMixing('create:chromatic_compound', [\n  '#forge:dusts/glowstone',\n  '#forge:dusts/glowstone',\n  '#forge:dusts/glowstone',\n  'create:powdered_obsidian',\n  'create:powdered_obsidian',\n  'create:powdered_obsidian',\n  'create:polished_rose_quartz'\n]).superheated()\n```\n\n```javascript\nevent.recipes.createFilling('create:blaze_cake', [\n  'create:blaze_cake_base',\n  Fluid.of('minecraft:lava', 250)\n])\n```\n\n```javascript\nevent.recipes.createEmptying([\n  'minecraft:glass_bottle',\n  Fluid.of('create:honey', 250)\n], 'minecraft:honey_bottle')\n```\n\n```javascript\nevent.recipes.createMechanicalCrafting('minecraft:piston', [\n  'CCCCC',\n  'CPIPC',\n  'CPRPC'\n], {\n  C: '#forge:cobblestone',\n  P: '#minecraft:planks',\n  R: '#forge:dusts/redstone',\n  I: '#forge:ingots/iron'\n})\n```\n\n```javascript\nevent.recipes.createSequencedAssembly([ // start the recipe\n Item.of('6x create:large_cogwheel').withChance(32.0), // have this item be an output with a certain chance\n Item.of('create:brass_ingot').withChance(2.0), // have this item be an output with a certain chance\n 'minecraft:andesite', // have this item be a guaranteed output\n 'create:cogwheel', // have this item be a guaranteed output\n 'minecraft:stick', // have this item be a guaranteed output\n 'minecraft:iron_nugget' // have this item be a guaranteed output\n], 'create:brass_ingot', [ // 'create:brass_ingot' is the input.\n// the transitional item set by \"transitionalItem('create:incomplete_large_cogwheel')\" is the item that will be used during the recipe as the item that the input is using to transition to the output.\n event.recipes.createDeploying('create:incomplete_large_cogwheel', ['create:incomplete_large_cogwheel', '#minecraft:planks']), // like a normal recipe function, is used as a sequence step in this array. Input and output have the transitional item\n event.recipes.createDeploying('create:incomplete_large_cogwheel', ['create:incomplete_large_cogwheel', '#minecraft:wooden_buttons']), // like a normal recipe function, is used as a sequence step in this array. Input and output have the transitional item\n event.recipes.createCutting('create:incomplete_large_cogwheel', 'create:incomplete_large_cogwheel').processingTime(50) // like a normal recipe function, is used as a sequence step in this array. Input and output have the transitional item\n]).transitionalItem('create:incomplete_large_cogwheel').loops(6) // set the transitional item and the loops (amount of repetitions)\n```\n\nIf you want to use your own transitional item in sequenced_assembly recipes, you must register it in startup event:\n\n```javascript\nonEvent('item.registry', event => {\n  // Texture for this item goes in kubejs/assets/kubejs/textures/item/my_part.png\n  event.create('my_part', 'create:sequenced_assembly').displayName('My Part')\n})\n```\n\nThen you would use ...`transitionalItem('kubejs:my_part')`...\n\n> Note! Mysterious Conversion recipes are client side only, so the only way to add them currently is using reflection with this code in client scripts (outside any event):\n\n```javascript\nlet MysteriousItemConversionCategory = java('com.simibubi.create.compat.jei.category.MysteriousItemConversionCategory')\nlet ConversionRecipe = java('com.simibubi.create.compat.jei.ConversionRecipe')\n\nMysteriousItemConversionCategory.RECIPES.add(ConversionRecipe.create('minecraft:apple', 'minecraft:carrot'))\nMysteriousItemConversionCategory.RECIPES.add(ConversionRecipe.create('minecraft:golden_apple', 'minecraft:golden_carrot'))\n```\n\n[![](https://links.latvian.dev/links.png?mr=kubejscreate)](https://links.latvian.dev/)\n\n[![](https://links.latvian.dev/partner.png)](https://links.latvian.dev/partner)",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1456064,
+  "followers": 0,
+  "game_versions": [
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.18.1",
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

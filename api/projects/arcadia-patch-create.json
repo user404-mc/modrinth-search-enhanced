@@ -1,0 +1,34 @@
+{
+  "id": "VEknrmqM",
+  "slug": "arcadia-patch-create",
+  "title": "Arcadia Patch Create",
+  "description": "Validated server-side performance patches and runtime controls for the Create mod on NeoForge 1.21.1. Reduces server tick time (MSPT) with adaptive throttling and admin commands.",
+  "body": "[![Wabbanode Partner](https://cdn.modrinth.com/data/cached_images/09170952db6f73a4435c533478d0fe4d3147e8a9.png)](https://wabbanode.com/partner/curveo)\n\n## Arcadia Patch Create\n\nA focused, server-side performance optimization mod for the **Create** mod on **NeoForge 1.21.1**.\n\nOriginally developed for the Arcadia server network, every patch included in a release has passed\na strict validation policy: clean startup, no gameplay regression, confirmed improvement via Spark\nprofiler on the targeted hotspot, and a conservative implementation with a narrow blast radius.\n\n---\n\n### What it patches\n\n| Patch | Target | Effect |\n|---|---|---|\n| **Belt Inventory** | `BeltInventory` | Early return when the belt is completely empty — skips unnecessary tick logic |\n| **Fluid Transport** | `FluidTransportBehaviour` | Idle fast-path for Create fluid pipes with conservative server-side guards |\n| **Chute Throttle** | `ChuteBlockEntity` | Adaptive throttling of input probe logic based on server MSPT |\n| **Factory Gauge Throttle** | `FactoryPanelBehaviour` | Throttles storage-monitor updates for factory gauges |\n| **Item Fast Despawn** | Item entities | Marks Create-spawned physical items for early despawn (configurable) |\n\nAll patches are **server-side only** — no client installation required.\n\n---\n\n### Runtime control system\n\nEvery patch can be toggled without restarting the server via the admin command:\n\n```\n/arcadiapatchcreate <subcommand>\n```\n\nRequires **operator level 2**.\n\n**Available controls:**\n- Enable / disable the master patch switch (affects all patches at once)\n- Toggle individual patches independently\n- Switch throttle modes per patch:\n  - **OFF** — no throttling (interval = 1 tick)\n  - **STATIC** — fixed configurable interval (1–5 ticks)\n  - **ADAPTIVE** — dynamic interval that scales with live MSPT (35 → 2×, 45 → 3×, 55+ → 5×)\n- Open an admin GUI panel (`/arcadiapatchcreate panel`)\n- Simulate MSPT load for testing throttle behavior\n- Dump a full debug report (`/arcadiapatchcreate debug dump`)\n\nSettings persist across restarts in `arcadia-patch-create.properties`.\n\n---\n\n### Requirements\n\n- Minecraft **1.21.1**\n- **NeoForge** 21.1.221+\n- **Create** 6.0.9+\n- Java 21\n- Server-side only — clients do **not** need this mod\n\n---\n\n### Source & Issues\n\n- GitHub: https://github.com/Blushister/arcadia-patch-create\n- Issue tracker: https://github.com/Blushister/arcadia-patch-create/issues\n```",
+  "categories": [
+    "management",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 603,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "haVEitcW",
+  "slug": "commandclip",
+  "title": "CommandClip",
+  "description": "A Command Framework for Bukkit Plugins",
+  "body": "# CommandClip [![CommandClip Build Status](https://img.shields.io/github/actions/workflow/status/notTamion/CommandClip/publish.yml)](https://github.com/notTamion/CommandClip/actions) [![Latest Version](https://img.shields.io/maven-central/v/io.github.nottamion/commandclip)](https://central.sonatype.com/artifact/io.github.nottamion/commandclip/overview)\n\nA Command Framework for Bukkit Plugins\n\n## Dependency\n\n##### Gradle\n```kotlin\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    compileOnly(\"io.github.nottamion:commandclip:1.1.0\")\n}\n```\n\n##### Maven\n```xml\n<dependency>\n    <groupId>io.github.nottamion</groupId>\n    <artifactId>commandclip</artifactId>\n    <version>1.1.0</version>\n</dependency>\n```\n\nTo reduce the file size of your plugin its recommended to let spigot download the framework \nfor you. This also removes the need to shade the framework into your plugin jar.\n##### plugin.yml\n```yaml\nlibraries:\n  - io.github.nottamion:commandclip:1.1.0\n```\n\n## Usage\n\nDocumentation is currently being built at https://github.com/notTamion/CommandClip/wiki.\n\nFor now just take a look at the example below.\n\nHere is an example utilizing basic features:\n```java\nnew BaseCommand(\"hello\", this)\n    .subCommand(new SubCommand(\"there\")\n        .executes((commandSender, s, strings) -> {\n            commandSender.sendMessage(s + \" there \" + strings[0]);\n        })\n        .tabCompletes((commandSender, s, strings) -> strings.length == 1 ? Bukkit.getOnlinePlayers().stream().map(Player::getName).toList(): List.of())\n        .testArgs((commandSender, s, strings) -> {\n            if (strings.length != 1)\n                return \"Please provide a valid playername\";\n            if (!Bukkit.getOnlinePlayers().stream().map(player -> player.getName()).toList().contains(strings[0]))\n                return \"Player is not online\";\n            return null;\n        })\n        .permission(\"hello.there\", \"You aren't allowed to get a Welcome :(\"))\n    .alias(\"hi\")\n    .commandDescription(\"Welcomes you\")\n    .commandPermission(\"hello\")\n    .register();\n```",
+  "categories": [
+    "bukkit",
+    "library",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 265,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4"
+  ],
+  "date_updated": null
+}

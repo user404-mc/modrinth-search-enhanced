@@ -1,0 +1,33 @@
+{
+  "id": "hhCJ03uI",
+  "slug": "notoriety",
+  "title": "notoriety",
+  "description": "A classic MMORPG-style notoriety system for Minecraft. Track player reputation through crimes, protect ownership, and let villagers witness criminal acts.",
+  "body": "# Notoriety\n\nA Paper plugin that brings a classic MMORPG-style notoriety system to Minecraft. Players are dynamically categorized based on their actions, creating a self-regulating community where crime has consequences.\n\n## Features\n\n### Reputation System\nPlayers are classified into three states based on their behavior:\n\n| Status | Color | Condition |\n|--------|-------|-----------|\n| Innocent | Blue | Alignment ≥ 0, PKCount = 0 |\n| Criminal | Gray | Alignment < 0, PKCount = 0 |\n| Murderer | Red | PKCount ≥ 1 |\n\n### Ownership Protection\n- Blocks placed by innocent players are automatically protected\n- Breaking or stealing from others' property is a crime\n- 5-second grace period to undo accidental actions\n- Owned blocks are protected from explosions (Creeper, TNT, etc.)\n\n### Three-State Trust System\n- **TRUST** - Grant full access to your property\n- **UNSET** - Default state; guild members get automatic trust\n- **DISTRUST** - Block access even from guild members\n\n### Guild System\nForm groups with automatic trust relationships:\n- Guild members automatically trust each other (unless DISTRUST is set)\n- Player display format: `Title PlayerName [GuildTag]`\n- 16 customizable tag colors\n- Three roles: Master, Vice Master, Member\n- Guild chat channel for private communication\n- Application system (join guilds without invitation)\n\n### Territory System\nGuilds can claim protected land:\n- Requires minimum 5 guild members\n- 1 chunk per 5 members\n- Non-members cannot place/break blocks or access containers\n- Beacon auto-placed at territory center\n- Entry/exit notifications\n- Guild master receives territory status on login\n\n### Inspect System\nInvestigate block ownership and territory information:\n- `/inspect` - Toggle inspect mode\n- `/noty inspect tool` - Get inspection stick\n- Shows owner, placement time, trust status, and territory info\n\n### Chat System\nMultiple communication channels:\n- **Local** - 50-block range (default)\n- **Global** - Server-wide with `!` prefix\n- **Guild** - Members only with `@` prefix\n- **Whisper** - Private 1-on-1 messages\n- Romaji to Hiragana conversion for Japanese players\n\n### Villager & Golem System\n- Villagers shout when they witness crimes\n- Iron Golems attack criminals on sight\n- Golems teleport to criminals if too far away\n- Enhanced golem stats when attacking criminals\n\n### Bounty System\n- Place bounties on murderers\n- Claim rewards by defeating wanted players\n- Leaderboard display via signs\n\n### 5-Tier Penalty System\n\n| Severity | Penalty | Examples |\n|----------|---------|----------|\n| Severe | -50 | Kill villager (with bed), Theft, Kill golem |\n| Moderate | -20 | Kill animal (witnessed) |\n| Minor | -10 | Destroy property, Kill villager (no bed) |\n| Petty | -5 | Destroy villager bed/workstation |\n| Trivial | -1 | Attack player/villager, Harvest crops |\n\n## Commands\n\n**Main Commands**\n- `/noty status [player]` - View reputation status\n- `/noty history [player]` - View crime history\n- `/inspect` - Toggle inspect mode\n- `/noty inspect tool` - Get inspection stick\n\n**Trust Commands**\n- `/trust add <player>` - Trust a player (TRUST)\n- `/trust distrust <player>` - Distrust a player (DISTRUST)\n- `/trust remove <player>` - Reset trust (UNSET)\n- `/trust list` - View trust relationships\n- `/trust check <player>` - Check trust status with a player\n\n**Guild Commands**\n- `/guild create <name> <tag> [description]` - Create a guild\n- `/guild disband` - Disband your guild (Master only)\n- `/guild invite <player>` - Invite a player\n- `/guild accept/decline <guild>` - Accept/decline invitation\n- `/guild kick <player>` - Remove a member (Master only)\n- `/guild leave` - Leave your guild\n- `/guild promote/demote <player>` - Change member roles\n- `/guild transfer <player>` - Transfer leadership\n- `/guild tagcolor <color>` - Change tag color\n\n**Guild Application Commands**\n- `/guild apply <guild>` - Apply to join a guild\n- `/guild applications` - View received applications (Master/Vice Master)\n- `/guild applications accept <player>` - Accept application\n- `/guild applications reject <player>` - Reject application\n\n**Territory Commands**\n- `/guild territory set` - Set territory center (Master only)\n- `/guild territory info` - View territory information\n- `/guild territory remove` - Remove territory (Master only)\n\n**Chat Commands**\n- `/w <player> <message>` - Send whisper\n- `/r <message>` - Reply to last whisper\n- `/romaji on/off` - Toggle romaji conversion\n\n**Bounty Commands**\n- `/bounty set <player> <amount>` - Set a bounty\n- `/bounty list` - View all bounties\n- `/bounty check <player>` - Check specific bounty\n\n## Requirements\n\n- Minecraft 1.21.1+\n- Paper Server\n- Java 21+\n- Vault (optional, for economy features)\n\n## Configuration\n\nSupports both SQLite and MySQL databases. Multi-language support with Japanese and English localization.\n\n## API\n\nProvides a developer API for third-party plugin integration:\n\n```kotlin\nval api = notoriety.api\nval color = api.getNameColor(player.uniqueId)\napi.addAlignment(player.uniqueId, 50)\n```\n\n## Events\n\n| Event | Description |\n|-------|-------------|\n| PlayerColorChangeEvent | When player status changes |\n| PlayerCrimeEvent | When a crime is committed |\n| PlayerGoodDeedEvent | When a good deed is performed |\n| BountyClaimedEvent | When a bounty is claimed |\n| GuildCreateEvent | When a guild is created |\n| GuildMemberJoinEvent | When a member joins a guild |\n| GuildMemberLeaveEvent | When a member leaves a guild |\n| GuildApplicationEvent | When a guild application is submitted |\n| TerritoryClaimEvent | When territory is claimed |\n| TerritoryReleaseEvent | When territory is released |\n| TerritoryEnterEvent | When entering a territory |\n| TerritoryLeaveEvent | When leaving a territory |\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 220,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

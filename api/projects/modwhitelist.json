@@ -1,0 +1,25 @@
+{
+  "id": "gslHVKu1",
+  "slug": "modwhitelist",
+  "title": "ModWhiteList",
+  "description": "This is a Mod used to verify whether the client has loaded illegal mods",
+  "body": "# Description\nThis mod can manage which mods the client can install and which ones are prohibited from being installed.\n![Result](https://cdn.modrinth.com/data/cached_images/f4f02578981bc5bbf66c0bc1fb6ee538acfa3789.png)\n\n## Working Principle\nWhen the client logs in to the server, it will send the mod already loaded by the client to the server. After the server verifies it, it decides whether the client can log in to the server.\n\n## Features\n- WhiteList:  \nClients with mods installed outside the whitelist are prohibited from logging into the server.\n- BlackList:  \nClients that have installed the mods on the blacklist are prohibited from logging into the server. (Priority higher than the whitelist)\n- Reload Command:  \nThe configuration file can be overloaded using the \"/mwl reload\" command without restarting the server.\n\n## Testing Environment\n|ClientMod|WhiteList|Result|\n|:----:|:----:|:----:|\n|minecraft|empty|✅|\n|minecraft|minecraft|✅|\n|minecraft, neoforge|minecraft|❌|\n\n|ClientMod|BlackList|Result|\n|:----:|:----:|:----:|\n|minecraft|empty|✅|\n|minecraft|neoforge|✅|\n|minecraft, neoforge|neoforge|❌|\n\n## Q&A\n- Can resourcepackage be prevented?  \nThis mod is only for the mod scope and does not perform any operations on resourcepackage.\n- Check whether the module ID is valid?  \nNo, it won't check whether the ModId is valid, such as: WhiteList: [\" Custom ModId\"] or [\"\"]. If this is done, no one can join the server.\n- Can it be completely eradicated?  \nIt cannot be done because this mod needs to read the mod list after all the mods have been loaded. Therefore, it is impossible to prevent certain mods from modifying the loaded mods.\n- How to fill in the configuration file?  \nJust fill in the ID of the mod, separated by commas, such as: [\"minecraft\", \"neoforge\", 'jei', 'create'], single or double quotation marks are also acceptable.\n- Why doesn't it work even after filling in the mod ID?  \nPlease check whether the configuration file format and mod ID are correct, such as quotation marks, commas, and ID case. It is recommended to use an editor with syntax checking for editing.\n- What should I do if there are too many client mods to fill in?  \nYou can search for \"ModList:\" in the client's log file to obtain the ids of all the mods loaded by the client (the game needs to be started).\n- What will happen if the configuration file is filled in wrongly?  \nIf the configuration file format is filled in incorrectly, a backup file will be generated and the default configuration state will be restored.\n- Does the mod affect the original dual-terminal environment detection?  \nThis mod merely adds a verification step on the original basis and does not affect the dual-terminal environment detection. The dual-terminal mods that should be installed on the client side still need to be installed.",
+  "categories": [
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3842,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

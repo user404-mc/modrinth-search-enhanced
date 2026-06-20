@@ -1,0 +1,28 @@
+{
+  "id": "q3H3ChJM",
+  "slug": "simple-home-gui",
+  "title": "Simple Home Gui",
+  "description": "A home system with extensive GUI",
+  "body": "# Simple Home Gui - Slot-Based Home System\n\n**Simple Home Gui** is a modern, GUI-based home system. It uses a visual slot system (akin to 8 \"save slots\") that provides players an intuitive and beginner-friendly way to manage their homes.\n\nThe plugin is optimized from the ground up for **Paper 1.20.1**, focusing on stability, performance (via caching), and extensive configuration.\n\n---\n\n## Core Features\n\n### 1. Slot-Based GUI Menu\nThe heart of the plugin is the main menu, opened with `/homes`.\n\n* **Visual Feedback:** Players see 8 slots (beds and dyes) that can represent 3 states:\n    * **Green (Set):** The home is set. Displays the name and coordinates. Clicking opens the submenu.\n    * **Gray (Empty):** The slot is unlocked, but no home has been set. Clicking sets the home at the player's current location.\n    * **Red (Locked):** The player does not have the necessary permissions for this slot.\n* **Submenu:** Clicking a set (green) home opens a separate menu where the player can choose to:\n    * Teleport\n    * Delete Home\n    * Go back to the overview\n* **Fully Customizable:** The layout, items (beds, dyes, ender pearls, etc.), and all text in the GUI can be freely configured in the `config.yml` and language files.\n\n### 2. Comprehensive Command System\nFor players who prefer commands, Simple Home Gui offers full functionality via the chat.\n\n* `/homes`: Opens the GUI.\n* `/homes set <slot> [name]`: Sets a home in a specific slot (e.g., `/homes set 1 Base`).\n* `/homes tp <slot_or_name>`: Teleports to a home. Accepts both the slot number (e.g., `/homes tp 1`) and the name (e.g., `/homes tp Base`).\n* `/homes delete <slot>`: Deletes the home in the specified slot.\n* `/homes rename <slot> <new_name>`: Renames a home (e.g., `/homes rename 1 Farm`).\n* **Tab Completion:** All commands and arguments (including slot numbers and home names) are fully tab-completable.\n\n### 3. Safe Teleport Timer\nTo prevent abuse (e.g., in combat), every teleport includes a timer.\n\n* **3-Second Delay:** The teleport only executes after 3 seconds.\n* **Movement Cancellation:** If the player moves from their block during the countdown, the teleport is automatically cancelled.\n\n---\n\n## Configuration & Customization\n\nThe plugin was designed to be perfectly integrated into your server. **Everything is configurable.**\n\n* **`config.yml`:**\n    * **Chat Prefix:** Change the appearance of the plugin's name in chat.\n    * **Language:** Set the default language (e.g., `en` or `de`).\n    * **GUI Layout:** Change the exact position of every single slot (1-8) in the GUI.\n    * **GUI Items:** Define every item (material, name, lore) for every state (Locked, Empty, Set) and every menu (Main and Submenu).\n* **`messages_xx.yml`:**\n    * Translate every single message the plugin sends to players—from error messages to GUI descriptions.\n\n---\n\n## Permission System\n\nSimple Home Gui is designed for use with **LuckPerms** (or any other permissions plugin). It does *not* check for groups, but for flexible permission nodes.(ignores the name Valoria that was the original name of the system)\n\n* **Home Limits:** The number of available slots is controlled via permissions.\n    * `valoria.homes.limit.1` (Default for every player)\n    * `valoria.homes.limit.2`\n    * ...\n    * `valoria.homes.limit.8`\n    * *(If a player has `valoria.homes.limit.5`, slots 1-5 will be unlocked (gray/green) and 6-8 will be locked (red).)*\n* **Command Permissions:**\n    * `valoria.homes.command.gui` (For `/homes`)\n    * `valoria.homes.command.set`\n    * `valoria.homes.command.tp`\n    * `valoria.homes.command.delete`\n    * `valoria.homes.command.rename`\n* **Wildcard:**\n    * `valoria.homes.*` (Grants all permissions, including all 8 slots)\n\n---\n\n## Technical Details\n\n* **Server:** Paper (or compatible forks like Purpur)\n* **Version:** Minecraft 1.20.1\n* **Storage:** Homes are managed in a high-performance player cache (RAM) and are saved securely to individual `playerdata/<uuid>.yml` files on logout or server stop.",
+  "categories": [
+    "adventure",
+    "management",
+    "optimization",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 126,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

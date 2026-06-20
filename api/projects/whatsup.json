@@ -1,0 +1,23 @@
+{
+  "id": "7t2kydgp",
+  "slug": "whatsup",
+  "title": "WhatsUp",
+  "description": "Allows datapacks to query external APIs and run functions based on the result",
+  "body": "# WhatsUp\n\nQuilt version requires: [QSL](https://modrinth.com/mod/qsl) and [GroovyDuvet](https://modrinth.com/mod/groovyduvet)\n\nForge version requires: [GML](https://modrinth.com/mod/gml)\n\nWhatsUp is a tool for datapacks that allows servers to query a provided web endpoint at a given frequency, and execute\nfunctions (the normal `.mcfunction` type) based on the results returned by that endpoint.\n\nWhatsUp defines both `listeners` and `predicates`. `listeners` are defined at `data/<namespace>/whatsup/listeners/<name>.json`,\nand take the following structure:\n\n* `endpoint` - The URL to be queried by the listener\n* `frequency` - An integer representing how many seconds should pass between queries of the endpoint\n* `actions` - A list of actions to do based on the returned result of the endpoint. Each takes the following form:\n  * `predicate` - The resource location of a predicate to check against the endpoint's result\n  * `function` - The resource location of a function to execute if the predicate passes\n  * `levels` - (Optional; defaults to `[\"overworld\"]`) A list of dimensions to run the provided function in\n  * `then` - (Optional) a list of locations of other listeners to chain after this listener\n  * `storage` - (Optional) a map of property names to resource locations specifying command data storage that the predicate has access to\n\nPredicates are stored at `data/<namespace>/whatsup/predicates/<name>.groovy`, and are groovy scripts. The groovy environment\nthe predicates run in has access to the `context` variable, which has the following properties:\n* `text` - The unprocessed response text\n* `json` - The a Map of the response parsed as JSON, or `null` if the response is not a JSON object\n* `storage` - Contains a property for every command data storage specified in the action; data storages can be queried and mutated.\nThis context object is also available as the delegate of the script, so a leading `context.` to access these properties is optional.\n\nAn example datapack can be found on the [GitHub releases](https://github.com/lukebemish/whatsUp/releases).\n\nThe mod also provides the `/whatsup` command for easily testing datapacks; this can be used to run any listener immediately.",
+  "categories": [
+    "forge",
+    "library",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1344,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

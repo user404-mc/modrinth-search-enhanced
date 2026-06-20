@@ -1,0 +1,39 @@
+{
+  "id": "T8kyE5QU",
+  "slug": "backpacksss",
+  "title": "BackPackSSS",
+  "description": "Custom tiered backpacks with progression crafting, upgrade system and persistent storage — designed for survival servers.",
+  "body": "# BackPackSSS\n\n**BackPackSSS** is a lightweight, survival-friendly backpack plugin for PaperMC 1.21+.\nIt features a 3-tier crafting progression system, custom 3D resource-pack models,\nSQLite persistence, and robust anti-dupe protection — with minimal server overhead.\n\nCurrent version: **1.9**\n\n---\n\n## Features\n\n| Feature | Details |\n|---|---|\n| 3 backpack tiers | Weak (18 slots) → Good (27 slots) → Strong (54 slots) |\n| Tier upgrade crafting | Craft a higher tier using the previous tier as center ingredient |\n| 3D resource pack | Custom bundle model per tier (brown / yellow / red) |\n| SQLite persistence | Data survives restarts; async dirty-flag saves, sync save on shutdown |\n| Anti-dupe protection | Session lock, opening cooldown, death/quit save |\n| Nesting prevention | Blocks backpacks, shulker boxes, and bundles inside backpacks |\n| Item filter | Explicitly blocks armor, tools, weapons, and enchanted books |\n| Max backpack limit | Configurable per-player limit (default: 1) |\n| Permission-based admin | `backpack.admin` for give/reload; works with LuckPerms etc. |\n\n---\n\n## Requirements\n\n- **Server**: [PaperMC](https://papermc.io/) 1.21 or later\n- **Java**: 21+\n- **SQLite JDBC**: bundled by PaperMC — no extra jars needed\n\n---\n\n## Building from Source\n\n```bash\ngit clone <repo-url>\ncd BackPackSSS\nmvn clean package\n# Output: target/BackPackSSS-1.9.jar\n```\n\nRequires Maven 3.8+ and JDK 21.\n\n---\n\n## Installation\n\n1. Drop `BackPackSSS-1.9.jar` into your server's `plugins/` folder.\n2. Restart (or reload) the server.\n3. *(Optional)* Copy `resource-pack/` contents, host the pack, and set it as your\n   server resource pack in `server.properties`.\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/backpack` or `/bp` | `backpack.use` | Show craft reminder |\n| `/bp give <tier>` | `backpack.admin` | Give yourself a backpack (tier 1–3) |\n| `/bp give <tier> <player>` | `backpack.admin` | Give a backpack to another online player |\n| `/bp reload` | `backpack.admin` | Reload config without restarting |\n\n---\n\n## Permissions\n\n| Node | Default | Description |\n|---|---|---|\n| `backpack.use` | everyone | Allows opening a backpack |\n| `backpack.admin` | OP | Access to `give` and `reload` sub-commands |\n\n---\n\n## Crafting Recipes\n\n**Tier 1 — Weak Backpack** (18 slots)\n```\n[L][L][L]\n[L][C][L]\n[L][L][L]\nL = Leather  |  C = Chest\n```\n\n**Tier 2 — Good Backpack** (27 slots)\n```\n[I][R][I]\n[R][B1][R]\n[I][R][I]\nI = Iron Ingot  |  R = Redstone  |  B1 = Tier 1 Backpack\n```\n\n**Tier 3 — Strong Backpack** (54 slots)\n```\n[S][D][S]\n[D][B2][D]\n[S][D][S]\nS = Shulker Shell  |  D = Diamond  |  B2 = Tier 2 Backpack\n```\n\n---\n\n## Configuration (`config.yml`)\n\n```yaml\nauto-discover-recipes: true   # Show recipes in recipe book on join\n\nrestrictions:\n  max-backpacks: 1            # Max backpacks per player inventory (0 = unlimited)\n  allow-nesting: false        # Block backpacks/shulkers/bundles inside backpacks\n  filter-special-items: true  # Block armor, tools, weapons, enchanted books\n\ntiers:\n  1:\n    name: \"&fWeak Backpack\"\n    size: 18                  # Must be a multiple of 9 (max 54)\n    cmd: 10101                # CustomModelData matching your resource pack\n    lore:\n      - \"&7Level: &fWeak\"\n      - \"&7Capacity: &b18 slots\"\n      - \"\"\n      - \"&aRight-click to open!\"\n  # tiers 2 and 3 follow the same structure\n```\n\n**Notes on `size`:** Changing a tier's `size` after players have already stored items is\nsafe — the plugin will trim excess items and log a warning rather than crash.\n\n---\n\n## Item Filter (`filter-special-items`)\n\nWhen enabled, the following item categories cannot be placed inside a backpack:\n\n- Armor (helmets, chestplates, leggings, boots — all materials)\n- Melee weapons (swords — all materials)\n- Tools (axes, pickaxes, shovels, hoes — all materials)\n- Ranged weapons (bows, crossbows, tridents)\n- Shields, elytras, shears, flint and steel\n- Enchanted books\n- Totems of undying\n\nRegular items with a stack size of 1 from other plugins are **not** blocked unless they\nmatch one of the categories above.\n\n---\n\n## Changelog\n\nSee [CHANGELOG.md](CHANGELOG.md) for the full history of changes.\n\n---\n\n## Author\n\n**Duong2012G** — feedback and bug reports welcome.\n\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "cursed",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 313,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

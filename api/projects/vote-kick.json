@@ -1,0 +1,33 @@
+{
+  "id": "oGKAkDhO",
+  "slug": "vote-kick",
+  "title": "VoteKick",
+  "description": "A mod that lets you vote kick on players.",
+  "body": "# VoteKick\n\nA democratic voting system that allows players to collectively remove disruptive players from the server through a clean, fair voting process.\n\n## Features\n\n- **Simple Voting Interface** - Unobtrusive UI with F1/F2 keybinds or chat commands\n- **Anti-Abuse Protection** - Prevents harassment and vote spam with cooldowns and immunity periods\n- **Configurable Client UI** - Adjustable scaling, positioning, and visual options\n- **Real-time Vote Tracking** - Live progress bars and vote counts\n- **Flexible Configuration** - Extensive server-side settings for fine-tuning\n\n## Usage\n\n### Starting a Vote\n```\n/votekick <player> <reason>\n/vk <player> <reason>\n```\n\n### Voting\n- Press **F1** for YES (kick player)\n- Press **F2** for NO (keep player)\n- Commands: `/vote yes` or `/vote no`\n\n### Status\n```\n/vote status\n```\n\n### Admin Commands\n```\n/votekick-admin cancel\n/votekick-admin force\n/votekick-admin reload\n/votekick-admin history [page]\n```\nRequires the `votekick.admin` permission (or op level configured in `permissions_admin_default_level`).\n`cancel` ends the active vote without a kick; `force` ends it as passed.\n\n## Configuration\n\n### Server Configuration\nLocated in `config/votekick.properties`:\n\n```properties\n# Basic Settings\nvote_duration_seconds=30\nvote_pass_percentage=0.6\nminimum_players=2\ncooldown_seconds=120\n\n# Protection System\nnew_player_protection_enabled=true\npost_kick_protection_enabled=true\nharassment_detection_enabled=true\nvote_threshold_modifiers_enabled=true\n\n# Customization\nrequire_kick_reason=true\nallow_self_voting=false\n\n# Permissions (default op levels)\npermissions_enabled=true\npermissions_start_default_level=0\npermissions_vote_default_level=0\npermissions_admin_default_level=2\npermissions_exempt_default_level=2\n\n# Vote History\nvote_history_enabled=true\nvote_history_max_entries=200\nvote_history_retention_days=90\n```\n\n### Client Configuration\nCustomize your voting experience through:\n- **ModMenu Integration** - Graphical configuration screen\n- **Properties File** - `config/votekick-client.properties` for manual editing\n\nOptions include UI scaling, panel positioning, sound controls, and animation settings.\n\n## Permissions\n\nPermission nodes:\n- `votekick.start` — allow starting votes\n- `votekick.vote` — allow casting votes\n- `votekick.admin` — allow admin commands\n- `votekick.exempt` — exempt a player from being vote-kicked\n\nDefaults are controlled by `permissions_*_default_level` in the server config (0 = all, 2 = ops).\nIf a permissions API is present (Fabric Permissions API or LuckPerms on Fabric/NeoForge), the nodes above are checked;\notherwise the defaults apply.\n\n### LuckPerms setup\n\n- **Fabric**: install `LuckPerms` and `fabric-permissions-api` on the server.\n- **NeoForge**: install `LuckPerms` on the server.\n\nExample grants:\n```\n/lp group default permission set votekick.start true\n/lp group default permission set votekick.vote true\n/lp group mod permission set votekick.admin true\n/lp group mod permission set votekick.exempt true\n```\n\n## Vote History\n\nHistory is stored in `config/votekick_history.json` and follows the retention/max entry limits.\n\n## Anti-Abuse Features\n\n- **New Player Protection** - Grace period for first-time joiners\n- **Post-Kick Immunity** - Temporary protection after being kicked\n- **Harassment Detection** - Automatic protection for repeatedly targeted players\n- **Vote Cooldowns** - Prevents spam voting and target harassment\n- **Threshold Modifiers** - Requires more votes to kick frequently kicked players\n\n## Requirements\n\n- **Fabric**: Fabric API (required), ModMenu (optional for GUI configuration)\n- **NeoForge**: no extra dependencies\n- Must be installed on both client and server\n\n## Default Behavior\n\n- Server operators and players with permission level 2+ are exempt from being vote-kicked.\n- All other players can participate in voting (unless protected).\n\n## Compatibility\n\n- Minecraft 1.20.1 (Fabric only)\n- Minecraft 1.20.4, 1.20.6, 1.21.1, 1.21.4 (Fabric + NeoForge)",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 2369,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.6",
+    "1.21.1",
+    "1.21.4",
+    "1.21.6",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

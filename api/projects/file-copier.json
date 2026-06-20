@@ -1,0 +1,34 @@
+{
+  "id": "1ut5iqAy",
+  "slug": "file-copier",
+  "title": "File Copier",
+  "description": "File Copier allows you to copy specific files into any new world that is made. So you can copy data packs or custom NPCs with the custom NPC mod as an example.",
+  "body": "# 📁 File Copier Mod\n\nundefined\n\n**A modern continuation of the Copy-Paste / Copied mods for automatic world data syncing.**\n\n***\n\n## 📜 Overview\n\nA Minecraft mod for Fabric and NeoForge that copies files from `config/copy/` into newly created worlds.\n\n## Features\n\n*   **Automatic File Copying**: Copies any files from `config/copy/` into new worlds\n*   **Datapack Injection**: Datapacks in `config/copy/datapacks/` are loaded **before world generation**, allowing terrain-modifying datapacks to affect the spawn area\n*   **Hash-based Updates**: Only copies files when they've changed (uses MD5 hashing)\n*   **Configurable**: Option to copy to existing worlds or only new ones\n\n## Folder Structure\n\n```\nconfig/\n├── copy/\n│   ├── datapacks/           <- Datapacks loaded BEFORE world generation\n│   │   ├── my_datapack/     <- Affects terrain generation at spawn!\n│   │   │   ├── pack.mcmeta\n│   │   │   └── data/\n│   │   └── another.zip      <- Zip files supported\n│   │\n│   └── (other files)        <- Copied into world folder after creation\n│\n└── file_copier.properties   <- Configuration file\n```\n\n## How It Works\n\n### Terrain-Modifying Datapacks\n\nDatapacks placed in `config/copy/datapacks/` are injected into Minecraft's pack repository system via Mixin before world generation begins. This means:\n\n*   Custom biomes will generate at spawn\n*   Custom structures will appear in the initial terrain\n*   Worldgen features work from the very first chunks\n\n### Other Files\n\nFiles placed directly in `config/copy/` (not in the datapacks subfolder) are copied into the world folder after world creation, using the same relative path structure. This is fantastic for modpack devs who want to include customnpc data or schematics that will automagicaly copy into any world the user / server creates.\n\n## Configuration\n\nEdit `config/file_copier.properties`:\n\n```\n# Set to false to only copy files into new worlds\ncopyExisting=true\n```\n\n## 💬 Credits\n\nHuge thanks to the original creators of the Copy-Paste for the inspiration:\n\n*   **Girafi** (Copy-Paste)\n    \n*   **JoshieJack** (Copy-Paste)\n    \n*   **Petey** (Copied fork)\n    \n\nAnd to the entire modding community for modern tooling support.\n\nThis project exists to keep the utility alive for current modpack creators. ❤️",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 510,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

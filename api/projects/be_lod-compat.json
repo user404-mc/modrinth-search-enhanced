@@ -1,0 +1,21 @@
+{
+  "id": "7Nifu7N7",
+  "slug": "be_lod-compat",
+  "title": "be_lod-compat",
+  "description": "This mod make some modded blocks rendered better in DistantHorizon.",
+  "body": "# _Current status: Please use 0.6a for DH-2.3.5~DH-2.4.5, 0.7.2a for DH-3.0.2~DH-3.0.3, 0.7.3a for DH-3.1.0 and above_\n\n# BeLodCompat\n\nThis mod improves how Distant Horizons renders blocks from certain mods. Without it, those blocks may look wrong or disappear entirely in the distance.\n\n## Features\n\nWithout this mod, LittleTiles blocks are treated as avoided blocks by Distant Horizons (similar to flowers), making them mostly invisible or appearing as gray when visible. Immersive Railroading rails appear as pure white.\n\n- **LittleTiles** – Extracts one tile's block state and color from LittleTiles blocks. Color blending requires database caching to be enabled and the Distant Horizons config option `common.lodBuilding.worldCompression` set to `\"MERGE_SAME_BLOCKS\"` for stable rendering.\n- **Immersive Railroading** – Reads the rail bed fill material ID from the parent block's NBT. If the fixed block override is not enabled, database caching must be active to ensure reliable long‑distance display.\n- **Database support** – Each dimension maintains its own SQLite database, stored in separate locations:\n  - Singleplayer: `<save_folder>/belodcompat/<dimension>.db`\n  - Multiplayer client: `.minecraft/belodcompat_servers/<server_ip>/<dimension>.db`\n  - Dedicated server: `<world_root>/belodcompat/<dimension>.db`\n  This per‑dimension isolation prevents data mixing and ensures correct LOD rendering across all dimensions.\n\n## Requirements\n\n- Minecraft: 1.20.1 (Forge) or 1.21.1 (NeoForge)\n- Distant Horizons 2.3.5/3.0.2 or later\n- LittleTiles (optional)\n- Immersive Railroading (optional)\n\n## Configuration\n\nA config file is generated at `config/belodcompat.cfg`. The file is automatically reloaded when changed (except for `enableDatabase`, which requires a restart). The following options are available:\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `debugLogging` | Enable debug logging (some debug messages may not be written to the log in certain situations) | `false` |\n| `overrideIrRailBlock` | Force all IR rails to use a custom block instead of their bed fill material | `false` |\n| `overrideIrRailBlockId` | Block ID used when override is enabled (falls back to `minecraft:soul_sand` if invalid) | `minecraft:soul_sand` |\n| `getIrDataFromParentDirectly` | Retrieve bed fill color directly from parent rail (faster but may slow down slightly) | `false` |\n| `replaceIrIfAir` | Replace the bed fill color with a fallback if the original is air | `false` |\n| `enableDatabase` | Enable SQLite database caching (requires restart) | `true` |\n| `useAsyncDbWrite` | Use asynchronous database writes (better performance but may lose data on crash) | `true` |\n\n## Commands\n\nThe mod adds the `/belodcompat` command with the following subcommands:\n\n| Command | Description |\n|---------|-------------|\n| `/belodcompat dumpIR [dimension]` | Dump all cached IR block states for the specified dimension (or current dimension if omitted) |\n| `/belodcompat dumpLT [dimension]` | Dump all cached LT block states with colors |\n| `/belodcompat showConfig` | Display current configuration values |\n| `/belodcompat getLtColor <x> <y> <z> [dimension]` | Show the cached LT color at the given position |\n| `/belodcompat getBlockStateOfLT <x> <y> <z> [dimension]` | Show the cached LT block state |\n| `/belodcompat getBlockStateOfIR <x> <y> <z> [dimension]` | Show the cached IR block state |\n\n## License\n\nLGPL 3.0\n\n## Project Links\n\nGitHub: [https://github.com/Deepseasaltyfish/BE_DH-compat](https://github.com/Deepseasaltyfish/BE_DH-compat)",
+  "categories": [
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 278,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "AovO3jos",
+  "slug": "datapack-debugger",
+  "title": "Datapack Debugger",
+  "description": "A fabric mod for Minecraft 1.21, which allows you to set breakpoints in datapacks",
+  "body": "# Datapack Breakpoint\n\n## Introduce\n\nThis is a fabric mod for Minecraft 1.21, which allows you to set breakpoints in the game and \"freeze\" the game when \nthe breakpoint is reached.\n\n## Usage\n\n* Set a breakpoint\n\nIn datapack, you can insert `#breakpoint` into .mcfunction file to set a breakpoint. For example:\n\n```mcfunction\n#test:test\n\nsay 1\nsay 2\n#breakpoint\nsay 3\nsay 4\n```\n\nIn this case, after the game executes `say 2`, the game will be \"frozen\" because it meets the breakpoint. \n\nWhen the game is \"frozen\", you can still move around, do whatever you want, just like execute the command `tick freeze`.\nSo you can check the game state, or do some debugging.\n\n* Step\n\nWhen the game is \"frozen\", you can use the command `/breakpoint step` to execute the next command. In above example, \nafter the game meets the breakpoint, you can use `/breakpoint step` to execute `say 3`, and then use `/breakpoint step`\nto execute `say 4`. When all commands are executed, the game will be unfrozen and continue running.\n\n* Continue\n\nWhen the game is \"frozen\", you can use the command `/breakpoint move` to unfreeze the game and continue running.\n\n* Get Macro Arguments\n\nBy using `/breakpoint get <key>`, you can get the value of the macro argument if the game is executing a macro function.\nFor example:\n\n```mcfunction\n#test:test_macro\n\nsay start\n#breakpoint\n$say $(msg)\nsay end\n```\n\nAfter executing `function test:test_macro {\"msg\":\"test\"}`, we passed the value `test` to the macro argument `msg` and \nthen the game will pause before `$say $(msg)`. At this time, you can use `/breakpoint get msg` to get the value `test`.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1621,
+  "followers": 0,
+  "game_versions": [
+    "1.21"
+  ],
+  "date_updated": null
+}

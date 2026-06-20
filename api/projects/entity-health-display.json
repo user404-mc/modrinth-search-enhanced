@@ -1,0 +1,25 @@
+{
+  "id": "84H12Z4u",
+  "slug": "entity-health-display",
+  "title": "Entity Health Display",
+  "description": "Fabric server-side library mod for displaying entities' health.",
+  "body": "## About\nEntity Health Display is a fabric server-side library for displaying entities' health.\n\n## Installing\nTo use Entity Health Display in your project add the Modrinth repository to your build file and a mod dependency. Replace the `VERSION_TAG` with the latest version, for example `0.3.1+1.20.2`\n\n```gradle\nrepositories {\n    maven {\n        url \"https://api.modrinth.com/maven\"\n        content { includeGroup \"maven.modrinth\" }\n    }\n    maven { url \"https://maven.nucleoid.xyz\" }\n}\n\ndependencies {\n    modImplementation include(\"maven.modrinth:entity-health-display:VERSION_TAG\")\n    modImplementation include(\"eu.pb4:placeholder-api:${project.placeholder_api}\")\n    modImplementation include(\"eu.pb4:polymer-virtual-entity:${project.polymer_version}\")\n}\n```\n\n## Example\n\n```java\nHealthDisplayEvents.FORMAT_HEALTH_DISPLAY.register((entity, world) -> {\n   String color = (entity.getMaxHealth() / 2) >= entity.getHealth() ? \"<yellow>\" : \"<green>\";\n   var text = TextParserUtils.formatText(\"<red>\" + entity.getName().getString() + \" \" + color + String.format(\"%.1f\", entity.getHealth()) + \"<white>/<green>\" + (int)entity.getMaxHealth() + \"<red>❤\");\n   return text;\n});\n\nHealthDisplayEvents.SHOULD_DISPLAY_HEALTH.register((entity, world) -> {\n   return true;\n});\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1819,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.3"
+  ],
+  "date_updated": null
+}

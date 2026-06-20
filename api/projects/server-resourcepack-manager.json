@@ -1,0 +1,21 @@
+{
+  "id": "vCtds5od",
+  "slug": "server-resourcepack-manager",
+  "title": "Server ResourcePack Manager",
+  "description": "Server Resource Pack Manager with multi pack support",
+  "body": "# Server ResourcePack Manager\n\nMulti Server ResourcePack Manager for a single dedicated server.\n\n## Features\n\n- Multi ResourcePack introduced in 1.20.3 is supported\n- Automatic calculation of ResourcePack hash\n- Simple configuration file\n- Reload command to update ResourcePacks without server restart\n- Send command to re-apply ResourcePacks to player(s)\n\n## Installation\n\n1. Install [Fabric](https://fabricmc.net/use/) modloader on your Minecraft server.\n2. Install [Fabric API](https://modrinth.com/mod/fabric-api) and [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin).\n3. Install the mod from [Releases](https://github.com/jimchen5209/ServerResourcePackManager/releases) or [Modrinth](https://modrinth.com/mod/server-resourcepack-manager).\n4. Start server to generate config\n\n## Configuration\n\nThe configuration file is located at `config/server-resource-pack-manager.json`. You can add multiple ResourcePacks by specifying their URL.\n\n| Name | Description | Default |\n|:--|:--|:--|\n| `autoSend` | Automatically send ResourcePack(s) on player join | `true` |\n| `promptMessage` | Message displayed to players when prompting for ResourcePack(s) | `\"\"` |\n| `required` | Whether to enforce server ResourcePack(s) | `false` |\n| `resourcePacks` | List of ResourcePack URLs | `[]` |\n\n### Multi ResourcePack\n\nThe order of ResourcePacks in the list determines the order they are applied.\n\nThe first ResourcePack will be applied first, followed by the second, and so on. If there are duplicate ResourcePack keys, the first occurrence takes precedence.\n\n#### Example\n\n```json\n{\n  \"autoSend\": true,\n  \"promptMessage\": \"\",\n  \"required\": false,\n  \"resourcePacks\": [\n    \"https://path/to/resourcepack1.zip\",\n    \"https://path/to/resourcepack2.zip\"\n  ]\n}\n```\n\nIn this example, `resourcepack1.zip` will be applied first, followed by `resourcepack2.zip`.\n\nApplied resource packs will be shown in the in-game settings menu in this order.\n\n![Image showing order in game](https://github.com/user-attachments/assets/18dc5224-7f46-46ce-91e9-562fd8a7b262)\n\n## Commands\n\n- `/resourcePackManager reload` - Reload the configuration file and update ResourcePacks.\n- `/resourcePackManager send [player]` - Re-apply ResourcePacks to the specified player, or yourself if no player is specified.\n\n\\* Icon generated with Nano Banana",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 338,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

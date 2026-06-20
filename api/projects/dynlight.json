@@ -1,0 +1,36 @@
+{
+  "id": "CoeYpFIH",
+  "slug": "dynlight",
+  "title": "DynLight",
+  "description": "dynamic lights -- held or dropped items, glowing or on-fire mobs, flaming arrows, etc. configurable and provides an API for other plugins",
+  "body": "A dynamic entity-based lighting plugin, which allows for integrations with other plugins.\n\nHeld items, dropped items, burning mobs, and other entities glow. Fully configurable, and other plugins can use the API or scoreboard tags to define their own custom glowing entities.\n\n## Features\n\n### Light Sources\n\n- **Held Items** - Torches, lanterns, glowstone, and 40+ other items emit light when held\n- **Dropped Items** - Items on the ground emit their light level\n- **Burning Entities** - Any entity on fire glows with configurable intensity\n- **Flaming Projectiles** - Arrows on fire, fireballs, and spectral arrows emit light\n- **Enchanted Equipment** - Players wearing enchanted armor or holding enchanted items emit a subtle glow\n- **Always-Lit Entities** - Blazes, Glow Squids, Magma Cubes, and Allays always emit light\n- **Scoreboard Tag Lights** - Any entity with a `dynlight:<level>` scoreboard tag emits light, enabling cross-plugin integration without compile-time dependencies\n\n### Special Mechanics\n\n- **Water Sensitivity** - Fire-based items (torches, campfires) are extinguished underwater while waterproof items (glowstone, sea lanterns) continue to glow\n- **Client-side only** - Light blocks are packet based, and don't modify the world. Inspired by [DynamicLights](https://github.com/xCykrix/DynamicLights)\n- **Per-Player Toggle** - Players can individually enable/disable dynamic lights client side\n- **Async Rendering** - Light calculations run asynchronously for minimal server impact\n\n\n\n\n# Configuration\n\nPerformance settings:\n```yaml\n# Update interval in ticks (20 ticks = 1 second)\n# smaller values = more frequent updates = smoother light movement but higher CPU usage\nupdate-interval: 1\n\n# Maximum distance to render dynamic lights (blocks)\nrender-distance: 96\n\n# How often to check for fire expiration on entities (ticks, 10 = 0.5 seconds)\nfire-sweep-interval: 10\n```\n\nEnable or disable specific light source types:\n\n```yaml\ndetection:\n  held-items: true\n  dropped-items: true\n  burning-entities: true\n  flaming-arrows: true\n  enchanted-armor: true\n  enchanted-items: true\n  always-lit-entities: true\n  tagged-entities: true\n```\n\nConfigure light intensity for enchanted equipment:\n\n```yaml\nlight-levels:\n  enchanted-armor: 3\n  enchanted-items: 3\n```\n\nConfigure how items emit light:\n\n```yaml\nitems:\n  TORCH:\n    light: 10\n    water-sensitive: true\n  LANTERN:\n    light: 12\n    water-sensitive: false\n```\n\nWater-sensitive items stop emitting light when submerged.\n\n\nConfigure how entities emit light when on fire:\n\n```yaml\nentities:\n  # Properties: base-light, fire-light, horizontal-radius, height\n  BLAZE:\n    base-light: 8    # Always emits light\n    fire-light: 15\n```\n\n| Property            | Description                                          | Default |\n| ------------------- | ---------------------------------------------------- | ------- |\n| `base-light`        | Light level when not on fire (0 = only when burning) | 0       |\n| `fire-light`        | Light level when on fire                             | 12      |\n| `horizontal-radius` | Light column radius (0=1x1, 1=3x3, 2=5x5)            | 1       |\n| `height`            | Light column height in blocks                        | 2       |\n\nThe light column will once place one light block -- we search wider than you'd think to avoid obstacles, since light blocks can't be placed inside things like vines, tall grass, ladders, etc.\n\n## Commands\n\n| Command             | Description                         | Permission       |\n| ------------------- | ----------------------------------- | ---------------- |\n| `/dynlight help`    | Show available commands             | -                |\n| `/dynlight enable`  | Enable dynamic lights for yourself  | `dynlight.use`   |\n| `/dynlight disable` | Disable dynamic lights for yourself | `dynlight.use`   |\n| `/dynlight info`    | Show active light source count      | `dynlight.admin` |\n| `/dynlight stats`   | Show detailed statistics            | `dynlight.admin` |\n| `/dynlight reload`  | Reload configuration                | `dynlight.admin` |\n| `/dynlight regen`   | Regenerate all light sources        | `dynlight.admin` |\n\n\n## Scoreboard Tag Lights\n\nAny entity with a scoreboard tag matching `dynlight:<level>` will emit light. No API dependency required — just add the tag via commands or another plugin.\n\n**Format:** `dynlight:<level>` or `dynlight:<level>:<radius>:<height>`\n\n| Parameter | Range | Description |\n|-----------|-------|-------------|\n| `level`   | 1–15  | Light level |\n| `radius`  | 0–5   | Horizontal search radius (optional, default from entity config) |\n| `height`  | 1–10  | Vertical search height (optional, default from entity config) |\n\n**Examples:**\n```\n/summon armor_stand ~ ~ ~ {Tags:[\"dynlight:15\"]}\n/summon armor_stand ~ ~ ~ {Tags:[\"dynlight:10:3:5\"]}\n```\n\nNote: the `/tag` command does not support colons in tag names — use NBT `Tags` when summoning, or add tags programmatically from another plugin.",
+  "categories": [
+    "adventure",
+    "decoration",
+    "equipment",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 123,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

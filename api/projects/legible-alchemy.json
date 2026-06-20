@@ -1,0 +1,21 @@
+{
+  "id": "JvWUsaHa",
+  "slug": "legible-alchemy",
+  "title": "Legible Alchemy",
+  "description": "Mod that tries to fix certain potion recipes not showing up in recipe viewers.",
+  "body": "# Legible Alchemy\nA mod that tries to fix certain potion recipes not showing up in recipe viewers.\n\n---\n\nEver noticed how some mods add potions with *only seemingly* no way to brew them when you try to check for a brewing recipe?  \nHow Create's automated brewing doesn't pick up the input potion or ingredient even after you've figured out the recipe?\n\nPotion recipes (sadly) aren't datapackable. That also means there's no complete standard for what such a recipe looks like.  \nIn practice in Forge there is one: the BrewingRecipe class, which provides methods for looking up ingredients, but importantly, the only thing that's required to add a recipe is an IBrewingRecipe, which doesn't provide those methods. (There is sense to that, as it allows adding potion-independent recipes (such as normal to splash) without making each one individually.)\nAnd that means that mods that want to use a brewing recipe really want a BrewingRecipe, but sometimes only get an IBrewingRecipe, which is unusable for their purposes.\n\nIn comes Legible Alchemy.\n\nIt tries to find and fix as many recipes as it can.\n\n### F.A.Q.\n**Q: My potion only sometimes has a shown brewing recipe.**  \nA: Increase time_to_sleep in our config `legible_alchemy-common.toml`. We've intercepted the recipe but did our brute-forcing before that. You'll need to restart your game.\n\n**Q: My potion never has a recipe, even with time_to_sleep obscenely high.**  \nA: Please make an issue for the mod. We can look at the recipe it adds in a dev environment to see what's required and adjust our brute-forcing to catch that too. Some mods also legitimately don't have recipes for some of their potions.\n\n**Q: My potion has a recipe that is brewable without Legible Alchemy but isn't with it, even with time_to_sleep obscenely high.**  \nA: Please make an issue for the affected mod. We can look at the recipe it adds in a dev environment to see what's required and adjust our brute-forcing to catch that too. Their recipe class adds multiple recipes, at least one of which we catch and another one we miss.\n\n**Q: Will you be porting to Loader/X.x.x?**  \nA: Yes to 1.18.2, 1.19.2, 1.19.4, 1.20.4, 1.20.6, and 1.21.1 (and future later releases), provided the issue is present on the loader and version.\nPast 1.20.1, I'll support Neoforged instead of Forge. I will check whether this is still a possible issue on Neoforged, as those are based on Forge. I'm not too familiar with Fabric, but I don't think it supports item inputs, only potions, and so this issue shouldn't exist on Fabric to begin with, but I'll check when I have the time.\n\n**Q: Can this be used in my modpack?**  \nA: Yes, but do note our license does not allow directly including the mod files in your pack.",
+  "categories": [
+    "forge",
+    "magic",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 344,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

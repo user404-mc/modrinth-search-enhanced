@@ -1,0 +1,38 @@
+{
+  "id": "GnNMQrj3",
+  "slug": "modern-manhunt",
+  "title": "Modern Manhunt",
+  "description": "Compass-free Manhunt Datapack using the Locator Bar with a more simplified setup.",
+  "body": "#  Modern Manhunt (Datapack)\n\nA **Minecraft Java datapack** that recreates the classic *Manhunt* game mode, modernized to use the **locator bar** instead of a compass and an easier start of the game.\n\n**This pack was born during a Manhunt session where we realized the experience could be far smoother and more intuitive than what was available.**\n\n##  Supported Versions\n\n* **Minecraft Java 1.20 → 1.21.11** (Tested on 1.21.11, should be compatible with other supported versions)\n* Fully vanilla & server-friendly **(Note that this pack will affect all players on a server, even ones without a team, to some extent)**\n\n\n##  What This Datapack Does\n\n* Adds a simple Manhunt setup with **Hunters vs Runner**\n* Uses **Locator Bar** instead of a tracking compass\n* Includes:\n\n  * 30-second PvP grace period with countdown\n  * Automatic PvP toggle\n  * Win & loss detection\n  * Clean stop/reset command\n\n\n##  Core Gameplay Rules\n\n### Teams\n\n* **Hunters**\n\n  * Blue names\n  * Cannot transmit waypoints (runner cannot track hunters)\n  \n* **Runner**\n\n  * Red name\n  * Objective: survive and kill the Ender Dragon\n\n### Win Conditions\n\n*  Runner dies somehow → **Hunters win**\n*  Ender Dragon dies → **Runner wins**\n\n\n##  Commands\n\n### Join Teams\n\n```mcfunction\n/team join Hunters <player>\n/team join Runner <player>\n```\n(If no player is specified, player who executed team command will be assigned)\n\n### Start the Game\n\n```mcfunction\n/function manhunt:start\n```\n\nThis will:\n\n* Disable PvP\n* Sets time to day\n* Freeze all players **(This distorts FOV. Disable \"FOV Effects\" in Accessibility to fix this. This has been implemented to stop anyone from running away with PVP disabled)**\n* Clear all inventories\n* Remove dropped items\n* Fill Health & Saturation for everyone completely\n* Disable waypoint transmission for Hunters\n* Start a **30-second countdown**\n* Enable PvP after the countdown\n* Set Worldspawn & Spawnpoint of everyone at coordinates of the player who executed the command.\n* Set the Worldborder diameter to 12000 with center 0, 0.\n\n### Stop the Game\n\n```mcfunction\n/function manhunt:stop\n```\n\nThis will:\n\n* Cancel the manhunt\n* Remove bossbars & timers\n* Restore altered attributes\n* Show a gray **“Manhunt Stopped”** title\n\n\n##  Installation\n\n1. Download the datapack\n2. Place it in:\n\n   ```\n   .minecraft/saves/<world>/datapacks/\n   ```\n3. Reload the world or run:\n\n   ```\n   /reload\n   ```\n4. Verify it loaded:\n\n   ```\n   /datapack list\n   ```\n\nThat’s it. If it doesn’t work after this, its a bug we need to fix. Please report these on our github repository. (Linked Above)\n\n\n##  How Waypoints Are Used\n\nThis datapack uses Minecraft’s **locator bar** introduced in 1.21.6.\n\n### Attribute Used\n\n* `minecraft:waypoint_transmit_range`\n\n### What It Does\n\n* Hunters have their transmit range set to `0.0`\n* This prevents them from broadcasting their position to the runner\n* The Runner remains unaffected\n\n### Exact Command Syntax\n\n```mcfunction\n/attribute @a[team=Hunters] minecraft:waypoint_transmit_range base set 0.0\n```\n\nWhen the game stops, this attribute is restored to its default value.\n\n\n---\n\nNote: This datapack is NOT a fork of Lprogrammer's Manhunt datapack, but it was inspired by it. It was fully coded by us, and no code was reused from Lprogrammer's pack.\nIf you want to check their pack out, click [here](https://modrinth.com/datapack/manhunt_pack)",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "minigame"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 115,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

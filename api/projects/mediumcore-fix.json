@@ -1,0 +1,19 @@
+{
+  "id": "oQJkEJqw",
+  "slug": "mediumcore-fix",
+  "title": "Mediumcore Fix",
+  "description": "Fixes a MediumCore mod issue and bugs",
+  "body": "# Mediumcore Fix\n\n**Fixes health data loss when updating Alex's Mediumcore mod**\n\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green.svg)](https://www.minecraft.net/)\n[![Forge](https://img.shields.io/badge/Forge-47.4.0+-orange.svg)](https://files.minecraftforge.net/)\n\n---\n\n## Problem\nThe original Mediumcore in onLivingDeath uses player.getMaxHealth(), which INCLUDES modifiers from external sources (rings, armor, etc.).\n\nExample with a +20 HP ring:\n\n- maxHealth = 40 (20 base + 20 ring) \n- clippedHealth = clip(40 - 2, 6, 20) = 20 (clamped to maxPlayerHealth!)\n- healthModifiedBy = 0 + (20 - 40) = -20!\n- After respawn: maxHealth = 20 + 0 + (-20) = 0 HP → the player gains 1 HP.\n\n## Solution\nIntroduce BASE_HEALTH_TAG to store the \"pure\" base health, which is independent of external modifiers.\n",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 496,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

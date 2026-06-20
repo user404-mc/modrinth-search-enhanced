@@ -1,0 +1,19 @@
+{
+  "id": "n48fBTaW",
+  "slug": "glomphosche",
+  "title": "Glomphosche",
+  "description": "View composed glyphs or ligatures in Minecraft. (Alpha)",
+  "body": "# Glomphosche\n\nGlomphosche is a simple mod that visually ligates or compose supported character or Unicode code point sequences into supported ligatures.\n\n## Alpha Usage\n\nThis mod is currently in Alpha testing. The composition system is already\nworking, though needing polishing and possibly improved capabilities that can be\nbuilt on top with.\n\n## Characters\n\n| Item | Pre-composed Unicode | Unifont Extension |  Custom Font | Notes |\n|:---:|:---:|:---:|:---:|:---|\n| Tagalog Block | N/A | WIP | ✅ | Since `0.1.0`. To display characters with vowel markers, viramas, and pamudpod, a custom font is used. The base characters are also replaced, overriding the default from Unifont. |\n| Modern Hangul Jamo | ✅ | TBD | ❌ | Since `0.2.0`. Visually handles valid jamo sequence as pre-composed syllable, which the in-game Unifont supports. |\n| Hanuno'o Block | N/A | WIP | ✅ | Since `0.2.1`. Custom font relacement and to support displaying vowel markers and pamudpod. |\n\n## Technicals\n\nThe internals are still being polished. You can check the first few lines of\nthe `GlomphoscheImpl` class and even the mentioned `Node` classes there that you\nmay find of interest.\n\n```java\nimport io.github.startsmercury.glomphosche.impl.client.GlomphoscheImpl;\nimport io.github.startsmercury.glomphosche.impl.client.node.DiscreteNode;\nimport io.github.startsmercury.glomphosche.impl.client.node.hangul_jamo.composable.ComposableHangulJamoNode;\nimport net.minecraft.network.chat.FontDescription;\n\nclass Example\n{\n\nvoid initialize()\n{\n// register modern Hangul Jamo handler, or your own handler\n// for a different use, if you implemented one\nGlomphoscheImpl.ROOT\n    .inner()\n    .add(new ComposableHangulJamoNode());\n\n// the letter 'f'\nDiscreteNode node1 = GlomphoscheImpl.LOOKUP.withDiscrete('f');\n// the theoretical glyph 'fi'\nDiscreteNode node2 = node1.withDiscrete('i');\n// register the font that retextures 'f' as the glyph representing 'fi'\nnode2.fontOverride(FontDescription.DEFAULT); // replace with your own\n\n// This one is for 'ffi' by retexturing 'f'\nGlomphoscheImpl.ROOT\n    .withDiscrete('f')\n    .withDiscrete('f')\n    .withDiscrete('i')\n    // replace with your own\n    .fontOverride(FontDescription.DEFAULT);\n}\n\n}\n```\n\nThe shortest path to test with an editable text box is through the *Add Server*\nscreen found in `Title Screen > Multiplayer > Add Server`.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/8U0UHsFkOR0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 111,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10"
+  ],
+  "date_updated": null
+}

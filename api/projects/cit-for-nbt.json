@@ -1,0 +1,20 @@
+{
+  "id": "A1gJtDBi",
+  "slug": "cit-for-nbt",
+  "title": "CIT for NBT",
+  "description": "An NBT based CIT alternative for Optifine 1.12.2.",
+  "body": "# CIT for NBT\n\nA mod that adds Optifine's CIT feature as a standalone feature for 1.12.2.\n\n## Usage\n\nThis mod currently only looks in the `.minecraft/resources` folder for your files.\nIt treats this resource folder as the \"assets\" folder. In other words,\na path `assets/<namespace>/textures` would be placed in `resources/<namespace>/textures`\ninstead. This allows compat with mods like contenttweaker, which\nfollows this folder style instead.\n\nTo conditionally texture an item, a `.properties` file must exist. *This file can\nexist anywhere in the resources folder*, and can apply to a list of items. This currently\n*requires* two fields. `items`, the target item. And `texture` or `model`, which can be any texture\nor valid item. All other fields are currently optional.\n\nExample:\n```\nitems=minecraft:stick\nnbt.display.Name=contains:Glow\ntexture=cit:items/stick_glow\n```\n\n**Note:** `texture` does NOT need to be in the same namespace as the item.\n\n## Behavior\n\n- The NBT condition `exists` must be either `true` or `false`\n- Relative paths do not work like Optifine's do (yet)\n- Aside from the one exception above, the *file format* is stable. Unless \na serious bug occurs, you can use the same `.properties` file in any version.\n\n## Current Features\n\n- NBT conditions\n  - Matches: `nbt.tag.path=matches:ExactNBTMatch`\n  - Contains/IContains: `nbt.tag.path=contains:TextToContain`\n  - Exists: `nbt.tag.path=exists:true`\n  - Range: `nbt.tag.path=range:1-5 9 17`\n  - Regex/IRegex: `nbt.display.Name=iregex:Something fishe?y is(n't)? brewing\\\\.+`\n  - Raw: `nbt.ench=raw:[{lvl:1s,id:2s}]`\n- Item Stack conditions\n  - Stack Size: `stackSize=1` or `stackSize=range:1-17 32`\n- Basic model support (not fully tested)\n- mcmeta animation support\n- Hot reload\n- Multi item support `items=minecraft:paper minecraft:stick`\n\n## Possible future features\n\n- Regular Resourcepack Support\n- More Optifine conditions\n- Set primary assets folder\n\n## Breaking Changes\n\n### 0.2 -> 0.3+\n\nFree-floating `.properties` files will require an additional suffix related to their role.\nFor example: `item.properties` -> `item.cit.properties`, `animation_item.properties` ->\n`animation_item.anim.properties`. Files that follow Optifine's folder organization\nwill not require additional suffix. While I may add support for default being `cit`,\nthis should not be counted upon.",
+  "categories": [
+    "decoration",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 594,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2"
+  ],
+  "date_updated": null
+}

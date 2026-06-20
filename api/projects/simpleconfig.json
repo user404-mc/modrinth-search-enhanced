@@ -1,0 +1,19 @@
+{
+  "id": "Ga52Q8Eb",
+  "slug": "simpleconfig",
+  "title": "Simple Config",
+  "description": "Simple Config is a Kotlin Fabric Minecraft mod that allows you to easily manage your mod's configuration. It provides a simple and intuitive API to read and write configuration data. The data will be serialized with the JSON format.",
+  "body": "# Simple Config\n\nSimple Config is a Kotlin Fabric Minecraft mod that allows you to easily manage your mod's configuration. It provides a simple and intuitive API to read and write configuration data. The data will be serialized with the `JSON`format.\n\n## Usage\n\nHere's a basic example of how to use Simple Config:\n``` kotlin\nobject TutorialMod : ModInitializer {\n  private val logger = LoggerFactory.getLogger(\"tutorialmod\")\n\n  override fun onInitialize() {\n  \n    //Access Data\n    MyConfig.data.someNestedObject.someData\n    MyConfig.data.someString // returns \"hello\"\n    \n    //write Data\n    MyConfig.patch {\n      someString = \"Hello World!\"\n      someNumber = 0.07\n    }\n    \n    MyConfig.data.someString // returns \"Hello World!\"\n    \n    logger.info(\"Hello I am using Simple Config!\")\n  }\n}\n```\nWhen you write data using the `patch` method, it will automatically be written to the file.\n\n### Command\n\nYou can also reload your config with `/simpleconfig [fileName]` command or you can reload all Simple Config's with the `/simpleconfig all` command.\n\n## Configuration\n\nTo create a config, you need to create an `object` that extends `SimpleConfig<T>`. `T` can be any class as long as it has the `@Serializable` annotation. You must override `fileName`!\n\nHere's an example:\n``` kotlin\nobject MyConfig: SimpleConfig<SomeDataClass>(defaultValue = SomeDataClass()) {\n  override var fileName = \"tutorialmod_config\"\n}\n\n@Serializable\ndata class SomeDataClass(\n  var someNumber: Double = 2.0,\n  var someString: String = \"hello\",\n  var someNestedObject: SomeNestedClass = SomeNestedClass()\n)\n\n@Serializable\nclass SomeNestedClass {\n  var someData = LocalDate.parse(\"2024-01-01\")\n}\n```\nOptional values you can override:\n| Options                  | Description                                    | default                                              |\n|--------------------------|------------------------------------------------|------------------------------------------------------|\n| fileEnding               | The file extension that should be used         | \".json\"                                            |\n| path                     | The path the config will be written to         | FabricLoader.getInstance().configDir               |\n| createReloadCommand      | Should Simple Config register a reload command | true                                               |\n| json                     | The Json settings used for the serialization   | Json { prettyPrint = true; encodeDefaults = true } |\n\n## Gradle Setup  \nTo set up Simple Config via Gradle, add the following to your `build.gradle` file:\n``` gradle\n\nplugins {\n  [...]\n  id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.22'\n}\n\nrepositories {\n  [...]\n  maven { url 'https://jitpack.io' }\n}\n\ndependencies {\n  [...]\n  modImplementation 'com.github.JonasSeifried:SimpleConfig:1623553e8f'\n}\n```\n\n## Troubleshooting\nIf you encounter any issues while using Simple Config, please check the [GitHub issues](https://github.com/JonasSeifried/SimpleConfig/issues) page. If your issue is not listed there, feel free to open a new issue.\n\n## License\nSimple Config is licensed under the [MIT License](https://github.com/JonasSeifried/SimpleConfig/blob/main/LICENSE).\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 242,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4"
+  ],
+  "date_updated": null
+}

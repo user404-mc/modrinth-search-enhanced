@@ -1,0 +1,22 @@
+{
+  "id": "U5dqIoUQ",
+  "slug": "bscm",
+  "title": "BSCM",
+  "description": "Ben's S#### Config Mod - A simple config mod meant to work easily on both server & client side.",
+  "body": "# BSCM (Ben's S#### Config Mod)\n\nBSCM is a lightweight, YAML configuration library for Fabric mods. It simplifies config creation, loading, and editing, so you can focus on building features instead of boilerplate.\n\n## Features\n\n- Annotation-based configs\n\nDefine your config structure directly in code with simple annotations.\n\n- YAML-backed\n\nHuman-readable, clean, and widely supported configuration format.\n\n- Automatic loading & saving No need to manually change config YAML (server-side still requires), BSCM does it all for you.\n\nBuilt-in config screen (Mod Menu support) Easily edit in-game configs with Mod Menu.\n\n- Minimal & developer-friendly\n\nDesigned to stay out of your way while giving you full control.\n\n## Usage\n\n1. Create a config class\n\n2. Annotate fields you want to expose\n\n3. Let BSCM handle the rest\n\nExample:\n\nGradle:\n\n```Groovy\nrepositories{\n\n  maven {\n\n    name = \"Modrinth\"\n\n    url = \"https://api.modrinth.com/maven\"\n  }\n  maven {\n    name = \"Terraformers\"\n    url = \"https://maven.terraformersmc.com/\"\n  }\n}\ndependencies {\n\n  modImplementation \"maven.modrinth:bscm:1.0.4\"\n  modImplementation \"com.terraformersmc:modmenu:${project.modmenu_version}\"\n\n}\n```\n\nConfig Class:\n```Java\npublic class ExampleConfig {\n\n@Comment(\"Enable the feature\")\npublic boolean enabled = true:\n\n@Comment(\"Maximum value\")\npublic int maxValue = 10;\n}\n```\nMain Class:\n\n```Java\n\nimport ca.techgarage.bscm.Bscm;\n\npublic void onInitialize() {\n\nBscm.load(ExampleConfig.class, \"ModID\");\n}\n```\n\n### How to set up client-side\n#### To set up you must depend on ModMenu for the version you are using\nModMenu Integration class\n```Java \npublic class MyModMenuIntegration extends BSCMModMenuIntegration {\n    public MyModMenuIntegration() {\n        super(ExampleConfig.class, \"ModID\");\n    }\n}\n```\nIn your fabric.mod.json\n```json\n\"entrypoints\": {\n    \"modmenu\": [\n        \"com.example.mymod.MyModMenuIntegration\"\n    ]\n}\n```\n\n\nBSCM will automatically:\n\n- Generate a YAML file\n\n- Load values on startup\n\n- Save changes when updated\n\n## In-Game Configuration\n\nIf you have **[Mod Menu]([url](https://modrinth.com/mod/modmenu))** installed, BSCM provides a simple config GUI so users can edit settings without leaving the game.\n\n## Dependencies\n\n- Fabric Loader ≥ 0.15.0\n\n- (Optional) Mod Menu for in-game config UI\n\n## Why BSCM?\n\nMost config systems are either:\n\n> Too complex\n\n> Too limited\n\n> Or require tons of boilerplate\n\nBSCM aims to hit the sweet spot:\n\n> Simple, readable, and powerful enough for real mods.",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

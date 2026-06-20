@@ -1,0 +1,22 @@
+{
+  "id": "93SQF87q",
+  "slug": "userloginproxy",
+  "title": "UserLoginProxy",
+  "description": "Autologin feature for UserLogin and NukeLogin, requires Velocity or BungeeCord.",
+  "body": "Autologin feature for [UserLogin](https://www.spigotmc.org/resources/userlogin.80669/) 2.12.1+ and [NukeLogin](https://codeberg.org/BratishkaErik/NukeLogin) 0.0.4+.\n\nHere, the \"main plugin\" refers to the UserLogin or NukeLogin.\n\nSuppose you have a proxy and three servers: `lobby`, `survival` and `mini-games`. The `lobby` server has the \"main plugin\" installed, and here (and only here!) players log in (or register) and teleport through portals to other servers.\n\nLet's imagine that some player, BratishkaErik, joined the server, authorized on `lobby`, and went to the `survival` portal. Then, he decided to go to the `mini-games` server, but he needed to go via the `lobby` server:\n\n* Without autologin support: BratishkaErik must log in manually as if he were offline on `lobby` the whole time he was on the `survival` server. This can be annoying for some players.\n* With autologin support: BratishkaErik logged in automatically as if he were online on the `lobby` the whole time he was on the `survival` server. Player don't need to do anything and he can go straight to the `mini-games` portal.\n\nNote that in the second scenario `ipCache` setting from \"main plugin\" config is not respected.\n\n# How to install\n\n## Jar-files\n\n* Download \"main plugin\" and put it into plugins folder of your auth server.\n* Download UserLoginProxy and put it into plugins folder of your Velocity 3 or BungeeCord proxy (**not auth server!**).\n\n## Configuration\n\n* For \"main plugin\": enable `autologin` setting in `config.yml`:\n\n```yaml\nbungeeCord:\n  # ...\n  autoLogin: true\n```\n\n* For this plugin: add backend server(s) (where \"main plugin\" is installed) to the `auth-servers` list in `config.yml`:\n\n```yaml\nauth-servers:\n  - 'lobby'\n  - 'another_lobby'\n```\n\nFinally, restart servers. Now players will be logged in automatically when changing server to `lobby` or `another_lobby`.\n\n# Permissions and Commands\n\nThere are no permissions. There is only one command, `/userloginproxy` (alias `/ulp`), that re-reads config.\n\n# License\nThis plugin is licensed under \"GNU GPL v3 or later\" license. Release jars includes relocated [DazzleConf 1.2.1](https://github.com/A248/DazzleConf/tree/1.2.1), which is licensed under \"GNU LGPL v3 or later\" license.",
+  "categories": [
+    "bungeecord",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 360,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.16.5",
+    "1.19.4"
+  ],
+  "date_updated": null
+}

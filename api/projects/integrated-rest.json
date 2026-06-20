@@ -1,0 +1,34 @@
+{
+  "id": "ovubcV3F",
+  "slug": "integrated-rest",
+  "title": "Integrated REST",
+  "description": "Expose Integrated Dynamics networks as a REST API",
+  "body": "<center><strong><img src=\"https://media.forgecdn.net/attachments/223/139/logo.png\" width=\"210\" height=\"197\" /></strong></center>\n<p>&nbsp;</p>\n<center><strong>This requires the <a href=\"https://modrinth.com/mod/cyclops-core\">Cyclops Core</a>&nbsp;library and <a href=\"https://modrinth.com/mod/integrated-dynamics\">Integrated Dynamics</a>!</strong></center>\n<center><strong>Come talk to us in #integratedmods on the <a href=\"https://discord.gg/9yDxubB\">Cyclops Discord server</a>!</strong></center>\n<p>&nbsp;</p>\n<p>This mod allows you to <em>read</em> from and <em>write</em> to your&nbsp;<a href=\"https://modrinth.com/mod/integrated-dynamics\">Integrated Dynamics</a> networks via a REST API.<br />This makes it possible to read the status of your networks and worlds via Web-protocols, and interact with them by POST-ing values to HTTP Proxy blocks in your world.</p>\n<p>&nbsp;</p>\n<p>Some examples on what is possible with this mod (and some external coding):</p>\n<ul>\n<li>Control the lights of your home based on the day time in your Minecraft world.</li>\n<li>Play a sound in Minecraft when you receive an email.</li>\n<li>Show the positions of all online players in the overworld on your website.</li>\n<li>Open a door from your mob farm when you gain a new Twitch or Mixer subscriber.</li>\n</ul>\n<p>&nbsp;</p>\n<p><em><strong>WARNING:</strong> If you have never heard about 'API' or 'REST' before, then this probably is nothing for you. This mod is mainly aimed at advanced users wanting to do very advanced automation using external system that can communicate over HTTP.</em></p>\n<p>&nbsp;</p>\n<p>This mod exposes your networks as JSON on a configurable port. Here is a snippet of a single network element output:</p>\n<p>&nbsp;</p>\n<pre class=\"codeStyle\">{\n  \"@context\": \"https://raw.githubusercontent.com/CyclopsMC/IntegratedREST/master-1.12/src/main/resources/context.jsonld\",\n  \"@id\": \"http://localhost:3000/\",\n  \"networkElements\": [\n    {\n      \"@id\": \"http://localhost:3000/networkElement/integrateddynamics/part/4\",\n      \"position\": {\n        \"world\": 0,\n        \"x\": -26,\n        \"y\": 57,\n        \"z\": -249,\n        \"side\": \"ir:east\"\n      },\n      \"block\": \"http://localhost:3000/registry/block/integrateddynamics/cable\",\n      \"@type\": [\n        \"NetworkElement\",\n        \"http://localhost:3000/registry/part/display_panel\"\n      ],\n      \"channel\": 0,\n      \"priority\": 0,\n      \"updateInterval\": 1,\n      \"network\": \"http://localhost:3000/network/1619976862\",\n      \"valueType\": \"http://localhost:3000/registry/value/valuetype/valuetypes/integrateddynamics/string/name\",\n      \"value\": \"I was updated\\\\nvia HTTP!\",\n      \"target\": {\n        \"world\": 0,\n        \"x\": -25,\n        \"y\": 57,\n        \"z\": -249,\n        \"side\": \"ir:west\"\n      },\n      \"loaded\": true\n    },\n  ...\n  ]\n}</pre>\n<p><em>In fact, this JSON is valid <a href=\"https://json-ld.org/\">JSON-LD</a>&nbsp;(Linked Data JSON), which makes it possible to use this output in <a href=\"https://www.w3.org/RDF/\">RDF</a> tools.</em>&nbsp;</p>\n<p>&nbsp;</p>\n<p>Next to the state of your network and its elements, this mod also exposes the state of most Forge registries.<br />All available information (accessible via the API index page):</p>\n<ul>\n<li>Networks</li>\n<li>Network elements</li>\n<li>Part types</li>\n<li>Aspect types</li>\n<li>Value types</li>\n<li>Items</li>\n<li>Blocks</li>\n<li>Fluids</li>\n<li>Mods</li>\n</ul>\n<p>This mod adds a single craftable block to the game, the <em>HTTP Proxy</em>.</p>\n<p><img src=\"https://media.forgecdn.net/attachments/223/138/2018-01-20_17.png\" width=\"690\" height=\"411\" /></p>\n<p>&nbsp;</p>\n<p>Like all network elements, this block is accessible via HTTP. For example, an HTTP Proxy with ID 7 will be accessible via&nbsp;http://localhost:3000/networkElement/integrateddynamics/http/7.</p>\n<p>This block has an internal value state that can be updated via <a href=\"https://github.com/CyclopsMC/IntegratedREST/wiki/HTTP-POST-requests\">HTTP POST requests</a>&nbsp;(more information on the wiki).</p>\n<p>&nbsp;</p>\n<p><strong>Note:</strong> If you are using this mod on a server, you'll probably want to disable starting up the HTTP server client-side, by disabling it via the config file of the players.</p>\n<p>&nbsp;</p>\n<p>This mod&nbsp;collects <a href=\"https://github.com/CyclopsMC/CyclopsCore/blob/master-1.9/src/main/java/org/cyclops/cyclopscore/tracking/Analytics.java\" rel=\"nofollow\">anonymized startup data</a>, this can be disabled in the config file and adheres to Minecraft's snooper settings.</p>\n<p>&nbsp;</p>\n<center><a href=\"https://bisecthosting.com/cyclops\" rel=\"nofollow\"><img src=\"https://media.forgecdn.net/banner/console-affiliation-banners/banner_abd7c360-8f9d-4395-8382-b28f26a2d6b2.png\" alt=\"Bisect Hosting\" /></a><br />Support us via the referral code <strong>cyclops</strong> when renting a <strong><a href=\"https://bisecthosting.com/cyclops\" rel=\"nofollow\">Bisect Hosting</a> server</strong>, and get <strong>25% off!</strong></center>\n<center><a href=\"https://www.patreon.com/kroeser\" rel=\"nofollow\"><img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Patreon_logo.svg/1082px-Patreon_logo.svg.png\" width=\"100\" height=\"36\" /></a><br />If you like this mod, consider supporting me on <a href=\"https://www.patreon.com/kroeser\" rel=\"nofollow\">Patreon</a>!</center>",
+  "categories": [
+    "forge",
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 10973,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

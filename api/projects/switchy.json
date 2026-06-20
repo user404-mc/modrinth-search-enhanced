@@ -1,0 +1,34 @@
+{
+  "id": "ss0QuCRx",
+  "slug": "switchy",
+  "title": "Switchy",
+  "description": "Play multiple characters in one world! Opt-in, customizable player profiles for hotseat multiplayer, lets plays, plural systems, RP servers, or just for fun!",
+  "body": "<!--suppress HtmlDeprecatedTag, XmlDeprecatedElement -->\n<center><img alt=\"mod preview\" src=\"https://cdn.modrinth.com/data/ss0QuCRx/images/0fd2d9d7ccb66e457f7604e09803c1b6457418c6.png\"/></center>\n\n<center>\nServerside player profiles for hotseat multiplayer, adventure maps, and plural systems.<br/>\n<b>Requires <a href=\"https://modrinth.com/mod/connector\">Connector</a> and <a href=\"https://modrinth.com/mod/forgified-fabric-api\">FFAPI</a> on (neo)forge.<br/></b>\n</center>\n\n---\n\n**Switchy** allows players to create and switch between **player profiles**, which save part of their player data.\n\nThis is both **data-driven** and **player-customizable**. Here's a profile with [Styled Nicknames](https://modrinth.com/mod/styled-nicknames) and [Fabric Tailor](https://modrinth.com/mod/fabrictailor) (+[SCH](https://github.com/sisby-folk/ServerChatHeads/releases/tag/1.0.0)):</br>\n![components](https://cdn.modrinth.com/data/ss0QuCRx/images/23cde9633791796124d060c13133428f67c3c662.png)<br/>\nSupport is also built-in (via data) for [Lampblack Pronouns](https://modrinth.com/mod/lampblack), [Trinkets](modrinth.com/mod/trinkets)/[Accessories](https://modrinth.com/mod/accessories), [Pehkui](https://modrinth.com/mod/pehkui) (width/height), and [Origins](https://modrinth.com/mod/origins).\n\nYou can even fluently chat using the display names of other profiles, just like [PluralKit](https://pluralkit.me/):<br/>\n![chat tags](https://cdn.modrinth.com/data/ss0QuCRx/images/07265dba2d427ecfadc8c0c919389b81e3173c52.gif)</br>\nThis is fully compatible with well-behaved chat bridges, like [our cantilever fork](https://github.com/sisby-folk/cantilever/releases/tag/2.0-tailor)!\n\n## Usage\n\n> _**Disclaimer**: All mods that manipulate player data have a save corruption risk!<br/>\nAlways take backups of your worlds, especially when updating mods._\n\n**Just run `/switchy` and follow the hints!** This covers renaming, toggling components, and making new profiles.\n\nAfter this, you can freely switch profiles via `/switch <name>` or by clicking `<switch>` in the profile list.<br/>\nSwitching into a profile restores component data to **the state it was in was when the profile was last used**.<br/> \nSo to change e.g. a fabric tailor skin for a profile, switch into the profile first, set the skin, and switch out.\n\nYou can use `/switchy say` to send a chat message as if you were switched into a specific profile.<br/>\nUse `/switchy edit <name> tag <prefix>text<suffix>` to match regular chat messages based on a pattern.<br/>\nDisplay names look slightly different to styled nicknames/chat, so just adjust their configs to match.\n\nProfiles are per-world, so speed things up by running `/switchy export` to get your name/skin data to save to a .json file.<br/>\nTo import, upload the file (e.g. to [tmpfiles.org](https://tmpfiles.org/)) and paste the link into `/switchy import all <url>`.<br/>\nYou can also import from [PK](https://pluralkit.me/guide/#exporting-your-pluralkit-data) (and import from / export to [Utter](https://utter.y2k.diy/)) - use `/switchy import <member/group>` to filter imports.\n\n## Compatibility\n\n> Note: If Switchy crashes your 1.20 modpack, set `fastSingleplayerReconnect` to `false` in `config/switchy.toml`\n\nFor compatibility with new mods, components are defined like so:\n\n```json5\n// data/minecraft/switchy_components/inventory/ender_chest.json (minecraft:inventory/ender_chest)\n{\n  \"enabled\": true, // whether to load the component at all. use this instead of deleting default files, as they'll regenerate.\n  \"codec\": \"inventory\", // which codec (from the registry in SwitchyComponentTypes) to use to deserialize the data. defaults to \"nbt\" (passthrough)\n  \"path\": \"EnderItems\", // NBT path targeting the part of player.dat to load from / modify to\n  \"preview\": \"inventory\", // which text previewer (from the registry in SwitchyComponentTypes) to use in chat. null = toString(), use \"trunc\" for long data. Start with $ to use an NBT path for passthrough components.\n  \"prefix\": \"👁 \", // a prefix to add to the text preview, for glanceability\n  \"emptyChecker\": \"inventory\", // which empty checker (from the registry in SwitchyComponentTypes) to use to prevent profile deletion for precious data. Start with $ to use an NBT path for passthrough components.\n  \"group\": \"inventory\", // components with a matching group ID will be previewed and toggled as if they're one component\n  \"default\": [], // default value. JSON serialized. set to \"$copy\" to copy the value from previous. set to null or omit to delete the key from player data as the initial value.\n  \"hidden\": false // hides the component preview in the profiles list (still shown in the components list)\n}\n```\n\nFeel free to PR components (and previewers/etc with **no dependencies**) into the main mod - see [existing examples](https://github.com/sisby-folk/switchy/tree/1.20/src/main/resources/data).\n\nSwitching data outside player NBT requires an addon. API TBD - Interested addon devs can hit up the [issues page](https://github.com/sisby-folk/switchy/issues).\n\n## Afterword\n\nIf you're a plural system (or a friend to one) and appreciate our work, please consider reading and sharing [sys.guide](https://sys.guide), our plurality handbook.\n\nSwitchy was our first original minecraft mod, made during the mod jam [ModFest: Singularity](https://modfest.net/singularity/submissions).<br/>\nSince making it, the minecraft modding community has given us friendship, mentorship,<br/>\nendless favours, an outlet for self-expression, and reinforced our passion for software as an art.<br/>\nEveryone who's been a part of that - and you should know who you are - thank you.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "management",
+    "neoforge",
+    "quilt",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 81402,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.4",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

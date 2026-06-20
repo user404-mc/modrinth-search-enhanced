@@ -1,0 +1,25 @@
+{
+  "id": "pLwqCiz9",
+  "slug": "kubejs-figura",
+  "title": "KubeJS Figura",
+  "description": "Offers some basic Figura capabilities designed for use with KubeJS by server developers.",
+  "body": "A lightweight bridge that exposes core Figura avatar functionality directly to KubeJS scripts. This is designed to add minimal strain to environments and simply provide a safe way to (up)load avatars from server scripts.\n\nFor safety, it can only load avatars that already exist in the players avatar folder. This is primarily designed for automatic character systems scripted on the server-side, and allows developers to integrate Figura.\n\n\n```\n// Example usage of KubeJS Figura in a server script.\n\nconst StringArgumentType = Java.loadClass(\"com.mojang.brigadier.arguments.StringArgumentType\");\nconst ServerPlayer = Java.loadClass(\"net.minecraft.server.level.ServerPlayer\");\nconst KJSFigura = Java.loadClass(\"com.confect1on.kubejs_figura.KubeJSFiguraMod\");\n\nServerEvents.commandRegistry(event => {\n  const { commands: Commands } = event;\n\n  event.register(\n    Commands.literal(\"figuraLoad\")\n      .then(\n        \n        Commands.argument(\"model\", StringArgumentType.greedyString())\n          .executes(ctx => {\n            const player = ctx.source.entity;\n            const model = StringArgumentType.getString(ctx, \"model\");\n\n            if (player instanceof ServerPlayer) {\n              KJSFigura.load(player, model);\n            }\n\n            return 1;\n          })\n      )\n  );\n\n  event.register(\n    Commands.literal(\"figuraUpload\")\n      .executes(ctx => {\n        const player = ctx.source.entity;\n\n        if (player instanceof ServerPlayer) {\n          KJSFigura.upload(player);\n        }\n\n        return 1;\n      })\n  );\n\n  event.register(\n    Commands.literal(\"figuraHandle\")\n      .then(\n        Commands.argument(\"charName\", StringArgumentType.greedyString())\n          .executes(ctx => {\n            const player = ctx.source.entity;\n            const charName = StringArgumentType.getString(ctx, \"charName\");\n\n            if (player instanceof ServerPlayer) {\n              KJSFigura.handle(player, charName, false);\n            }\n\n            return 1;\n          })\n      )\n  );\n});\n\n```\n",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1375,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

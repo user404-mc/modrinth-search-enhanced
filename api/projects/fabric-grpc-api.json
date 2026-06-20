@@ -1,0 +1,21 @@
+{
+  "id": "GYei0TuF",
+  "slug": "fabric-grpc-api",
+  "title": "Fabric gRPC API",
+  "description": "This utility mod contains required libraries for implementing gRPC server/client in Fabric mods",
+  "body": "# gRPC-Fabric - gRPC-Java, packed as a mod\n\nThis mod uses Shade plugin to include all required dependencies for using [gRPC-Java](https://github.com/grpc/grpc-java) library in your Fabric mod. Some libraries were removed from the mod because they are already in use and downloaded by Minecraft client/server.\n\n## How to use\n\n### 1. Add Modrinth repository\nSince compiled jar file is stored on Modrinth, add their repository according to [this guide](https://docs.modrinth.com/maven).\n\n### 2. Add mod dependency:\n\n```gradle\ndependencies {\n    // ...\n    implementation 'maven.modrinth:fabric-grpc-api:1.0-fabric'\n    compileOnly 'org.apache.tomcat:annotations-api:6.0.53'\n    // ...\n}\n```\n*\\* Tomcat Annotations API aren't included because they're compile only.*\n\nOptionally you can use `include` directive so that your mod users don't have to download it manually. But **keep in mind**, that the size of *your* mode will increase by ~5MB.\n\n```gradle\ndependencies {\n    // ...\n    include(implementation('maven.modrinth:fabric-grpc-api:1.0-fabric'))\n    compileOnly 'org.apache.tomcat:annotations-api:6.0.53'\n    // ...\n}\n```\n\n### 3. (if using protobuf plugin) Specify grpc plugin artifact version\n```gradle\nprotobuf {\n    protoc {\n        artifact = \"com.google.protobuf:protoc:3.21.7\"\n    }\n    plugins {\n        grpc {\n            artifact = 'io.grpc:protoc-gen-grpc-java:1.58.0'\n        }\n    }\n    generateProtoTasks {\n        all()*.plugins {\n            grpc {}\n        }\n    }\n}\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "technology",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 206,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

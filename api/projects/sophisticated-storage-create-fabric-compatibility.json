@@ -1,0 +1,21 @@
+{
+  "id": "OO84Irwr",
+  "slug": "sophisticated-storage-create-fabric-compatibility",
+  "title": "Sophisticated Storage Create Fabric Compatibility",
+  "description": "Sophisticated Storage is now compatible with Create Fabric Contraptions.",
+  "body": "# Create: Sophisticated Storage Compatibility\nA Fabric mod that fixes crashes when Sophisticated Storage containers are placed inside Create Contraptions on Minecraft 1.20.1.\n\n![contraptions and train support](https://i.imgur.com/0d9x7hy.png)\n\n## Problem\nWhen a Sophisticated Storage block entity (chest, barrel, etc.) is placed inside a Create Contraption, the game crashes with:\n\n```\njava.lang.ClassCastException: class com.simibubi.create.foundation.virtualWorld.VirtualChunk cannot be cast to class net.minecraft.world.chunk.WorldChunk\n```\n\nThis happens because:\n\n1. Create Contraptions use a special VirtualChunk class for rendering and manipulation\n2. Sophisticated Storage calls BlockEntity.setChanged() during NBT data loading\n3. setChanged() tries to cast the chunk to WorldChunk, but it's actually a VirtualChunk\n4. The cast fails and crashes the game\n\n## Solution\nThis mod implements a Mixin that intercepts all BlockEntity.setChanged() calls and:\n\n1. Checks if the block entity is from Sophisticated Storage\n2. Checks if the current chunk is a Create VirtualChunk\n3. If both conditions are true, cancels the setChanged() call to prevent the crash\n\nThe fix is transparent and doesn't break any functionality—items still transfer properly between Create and Sophisticated Storage.\n\n## Features\n- Enables Sophisticated Storage chests to be moved in Create Contraptions\n- Prevents the ClassCastException crash\n- Automatic detection — no configuration needed",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "storage",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 650,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

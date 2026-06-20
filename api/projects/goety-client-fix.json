@@ -1,0 +1,18 @@
+{
+  "id": "tqkySVQb",
+  "slug": "goety-client-fix",
+  "title": "goety-client-fix",
+  "description": "Goety Client Fix\nFixes client-side memory leaks caused by Goety mods for Minecraft 1.20.1 (Forge).",
+  "body": "Goety Client Fix\nFixes client-side memory leaks caused by Goety mods for Minecraft 1.20.1 (Forge).\n\nProblem\nWhen a player dies/respawns or changes dimension, the old LocalPlayer and ClientLevel objects are not garbage collected. This causes client memory to grow continuously, eventually leading to lag and crashes.\n\nFixes\nInvalidates old player and level capabilities on respawn/dimension change to break reference chains\nClears Mob.target and LivingEntity.lastHurtByMob references to the old player in the client level\nClears static Entity/Player/Level fields in Goety/GoetyAwaken client event handlers via reflection\nPeriodic cleanup (every 30s) to catch any lingering references\nRequirements\nForge 47+ (Minecraft 1.20.1)\nClient-side only, server does not need this mod",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 146,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

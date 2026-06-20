@@ -1,0 +1,21 @@
+{
+  "id": "c96LQqju",
+  "slug": "playtime-logger",
+  "title": "Playtime Logger",
+  "description": "This mod logs players' playtime on the server using Google Spreadsheets API. Useful for monitoring server's active player base.",
+  "body": "# Playtime Logger Mod\n\n### Purpose\n\nIf you ever encountered a problem with monitoring your server's activity, you might be interested in this modification.\nThis mod uses Google Spreadsheets API to automatically log every player's logins and logouts, calculates individual session timeframes and shows this information in an easy and comfort way.\n\n### Setup\n\n1. Download and install this mod on your dedicated server.\n2. For now, you can follow [this tutorial](https://developers.google.com/sheets/api/quickstart/java#set-up-environment)\n- Follow the [link](https://console.cloud.google.com/apis/dashboard) and create new Project\n- Enable the API\n- Create [OAuth consent screen](https://console.cloud.google.com/apis/credentials/consent) and setup External user type. After that, you can use this project in the testing environment.\n- Don't forget to add scope \"./auth/spreadsheets\"\n3. Download your generated [OAuth client](https://console.cloud.google.com/apis/credentials) as a json file.\n4. Rename it to \"credentials.json\" and put this file to \"/config/playtimelogger/\" (if you have started your server, this directory should already exist)\n5. Restart your server. If everything works correctly, you will be prompted to follow the link in your server console. Follow the link and authorize with Google project that you created. Your credentials will be used by Playtime Logger to generate and update spreadsheet.\n\n### Usage\n\nAfter successful initialization you can start tracking your players' playtime activity. Go to the Google Spreadsheets, authorize with your Google account and search for \"Playtime Logger\" spreadsheet (the name might be different if you replaced it in the config file).\nThere you will see two sheets:\n1. First one, by default, is called \"Total Playtime\". There you will see all unique players that visited your server starting from the moment you installed the mod.\nThere you will see players' names, UUIDs (for servers in offline mode), playtime for specified period and last login date.\n2. The second sheet is called \"Logs\" by default. There you will see individual logins and logouts of every player. Those events are described by Epochs (in seconds), Dates (using =EPOCHTODATE formula), and session playtime in seconds.\n\n### License\n\nThis project is available under the MIT license. Feel free to learn from it and incorporate it in your own projects.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 151,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

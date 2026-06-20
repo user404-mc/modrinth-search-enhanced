@@ -1,0 +1,26 @@
+{
+  "id": "USfhdKm3",
+  "slug": "client-key-login",
+  "title": "client key login",
+  "description": "authenticate to servers using cryptography instead of Mojang account",
+  "body": "# client key login\n\n**i don't have the energy to keep this mod updated all the time**, but if you want it ported to a specific minecraft version, please [contact me](https://winter.entities.org.uk/) and i'll try my best to do that for you :3\n\n**this is unstable and potentially broken!** so it might break in unexpected ways! if you find a problem, please [send me](mailto:winter@envs.net) full details of the error so i can fix it\n\nuses public key cryptography to authenticate to servers instead of going via Mojang's account service (yggdrasil)\n\n## features\n\n- customise your profile extensively with the identity manager (see gallery)\n- create new identities (like accounts) in seconds and switch between them even faster\n- use custom skins and capes, hosted on any website (for example you can put an image URL directly linking to NameMC or similar sites)\n- continue to use protocol encryption when Mojang is offline\n- protection from profile stealing: your UUID is derived from your keypair, which means your player data on the server is linked to the secret on your computer, and the only way to access your player data is to have that secret (or be the server admin)\n- \"identity theft\": clone skin and cape textures from an existing Mojang account\n- you can still join vanilla servers with the mod installed - it will just use your regular account instead of a client-key identity\n\n## known incompatibilities\n\n- LuckPerms (and possibly other permission mods): expects the UUID associated with a given username to never change, so it may work but will probably break if you use the same name as a previous login under a different identity, or if you use the same name as your Mojang account after previously logging in with that\n- any proxies that don't understand the custom protocol (i.e. BungeeCord, Velocity, Waterfall, …)\n\n## notes\n\n- by some mysterious stroke of luck, this mod *is* compatible with Floodgate (from Geyser)! so you can use Bedrock accounts and custom identities and Mojang accounts all at the same time if you really want to\n- if you delete an identity with some associated player data, that data is not gone but is **no longer accessible** and you will have to ask the server admin to transfer it to your new identity (admins: this is as simple as renaming the `.dat` file under `world/playerdata` to the new UUID)\n- if you join a server with a regular Mojang account, but then change to using a client key identity, you will not have the same player data and might need to transfer it as above\n- does not remove any attempts to contact Mojang, so you should still be able to join vanilla servers (as long as you're logged in to Minecraft)\n- this also means if you run a server with this mod you'll need to set `enforce-secure-profile` to `false` in server.properties, otherwise there will be consequences (either nobody will be able to join, or in-game chat will be disabled). of course, doing that will spam you with alerts about \"insecure server\" and so on, so you probably want to use [no chat reports](https://modrinth.com/mod/no-chat-reports) alongside this mod\n\ncheck the [project readme](https://codeberg.org/winter/client-key-login/src/branch/main/README.md) for more information on server-side configuration, and technical details",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3351,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

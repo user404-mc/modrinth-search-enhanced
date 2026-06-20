@@ -1,0 +1,23 @@
+{
+  "id": "h43V4ydX",
+  "slug": "kubejs+cc-tweaked",
+  "title": "KubeJS + CC: Tweaked",
+  "description": "KubeJS + CC: Tweaked for Forge 1.20.1 and 1.19.2",
+  "body": "Credits go to Amygdaloideae (Prunoideae on GitHub). Original mod [here](https://www.curseforge.com/minecraft/mc-mods/kubejs-computercraft) \\\nBig thanks to richie3366 for helping to make the port work! \\\nMod icon made by FooterMan16 \\\n\n![supported versions](https://img.shields.io/badge/supported_versions-1.20.1%20|%201.19.2-blue) \n![required sides](https://img.shields.io/badge/sides_required-Client%20|%20Server-blue) \n\nAvailable on both [Curseforge](https://www.curseforge.com/minecraft/mc-mods/kubejs-cc) and [Modrinth](https://modrinth.com/mod/kubejs+cc-tweaked)\n\nCurseForge: ![CurseForge Downloads](https://img.shields.io/curseforge/dt/1000850) \\Modrinth: ![Modrinth Downloads](https://img.shields.io/modrinth/dt/h43V4ydX)\n\nAdds support for KubeJS to add [peripherals](https://tweaked.cc/module/peripheral.html) to any block.\n\n# GO VISIT THE WIKI&nbsp;[HERE](https://github.com/wolfieboy09/KubeJS-CC-Tweaked/wiki)! All things are there!\n\n\nExample of methods you could add to furnaces:\n```js\n// priority: 0\n// The following code was last updated: April 30th 2024\n\n// Visit the wiki for more info - https://kubejs.com/\nComputerCraftEvents.peripheral(event => {\n    // First Param: peripheral type\n    // Second Param: What block it goes to\n    // Note: you can use regex for the second param\n    \n    event.registerPeripheral(\"furnace\", \"minecraft:furnace\")\n        // This limits the method to 1 call/tick,\n        // as the method is scheduled on main thread.\n        // The main thread is synced with the block\n        .mainThreadMethod(\"burnTime\", (container, direction, arguments) => {\n            // This custom method returns the current\n            // remaining burntime the furnace has.\n            return container.entityData.getInt(\"BurnTime\")\n        })\n        .mainThreadMethod(\"cookingProgress\", (container) => {\n            // This custom method returns the percentage\n            // of the current cooking process going on.\n            // A progress of 0 returned during two consecutive\n            // ticks means that there is no cooking happening.\n            let data = container.entityData\n            let cookTime = data.getInt('CookTime')\n            let cookTimeTotal = data.getInt('CookTimeTotal')\n            if (!cookTimeTotal) return 0;\n            return (cookTime / cookTimeTotal) * 100\n        })\n\n\n        // This has no limit on calling\n        // however, the method can't access most of the in-world data.\n        // For example, it couldn't access the NBT of a tile entity\n        .method(\"say_hi\", (container, direction, arguments) => {\n            container.up.set(\"diamond_block\")\n            return \"hi, here's your diamond block\"\n        })\n})\n```",
+  "categories": [
+    "forge",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17474,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "date_updated": null
+}

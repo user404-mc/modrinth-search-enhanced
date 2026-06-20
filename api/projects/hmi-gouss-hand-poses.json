@@ -1,0 +1,27 @@
+{
+  "id": "hlBznIDN",
+  "slug": "hmi-gouss-hand-poses",
+  "title": "[HMI] Gous's Hand Poses",
+  "description": "Added some hand poses for the Hold My Items mod.",
+  "body": "<div align=\"center\"><h1>Gous's Hand Poses</h1>\n\n  <a href=\"https://modrinth.com/mod/hold-my-items\">\n    <img src=\"https://cdn.modrinth.com/data/cached_images/4b2e01bfef3086d00b3e9b184e1db33da315d4d7.png\" alt=\"Requires Hold My Items\">\n  </a>\n  <a href=\"https://modrinth.com/mod/respackopts\">\n    <img src=\"https://cdn.modrinth.com/data/cached_images/3f98b51204619f8949d81b30da9e29b23dc16b83.png\" alt=\"Requires Respackopts\">\n  </a><br><br>\nJust a small addon for the HMI mod, maybe I'll expand it in the future.\n</div>\n<br>\n\n## Current Features _(toggleable)_\n\n- Throwing item pose (Resource pack used: [3D Tools and Utils](https://modrinth.com/resourcepack/tools-and-utils))\n\n![throwing](https://i.postimg.cc/9Qd172Lw/2025-11-2202-03-18-ezgif-com-video-to-gif-converter.gif)\n- Offhand planting pose\n\n![planting](https://i.postimg.cc/bwYrPHSb/2025-11-2213-08-45-ezgif-com-video-to-gif-converter(1).gif)\n- Shearing pose\n\n![shearing](https://i.postimg.cc/qvdWjpXC/2025-12-2701-08-30-ezgif-com-video-to-gif-converter.gif)\n\n## For other pack creators\nI’ve made it so other packs can detect and disable my pack’s features for compatibility. Here’s an example of how to disable features in my pack - you can put it in either `item_addon` or `hand_addon`\n```lua\nglobal.GHP_disablePlanting = 0.0;\nglobal.GHP_disableThrowing = 0.0;\nglobal.GHP_disableShearing = 0.0;\nglobal.GHP_disableShearingMPA = 0.0;\n\nglobal.GHP_customShearsMPA = 0;\nglobal.GHP_leftShearsStart = 0;\nglobal.GHP_leftShearsEnd = 29;\nglobal.GHP_rightShearsStart = 30;\nglobal.GHP_rightShearsEnd = 59;\nglobal.GHP_leftShearsRot = 7.5;\nglobal.GHP_rightShearsRot = -7.5;\n\nglobal.GHP_isActive = 0.0;\nglobal.GHP_prevIsActive = 0.0;\nlocal isHandPosesActive = (GHP_prevIsActive ~= GHP_isActive) -- check if hand poses pack is active\n\nGHP_disablePlanting = GHP_disablePlanting + 1\t-- disable planting\nGHP_disableThrowing = GHP_disableThrowing + 1\t-- disable throwing\nGHP_disableShearing = GHP_disableShearing + 1\t-- disable shearing\nGHP_disableShearingMPA = GHP_disableShearingMPA + 1\t-- disable shears modelpart animation\n\n--------------------------------------------- PUT YOUR SCRIPT UNDER HERE v\n\n-- EXAMPLE\n\n-- do things if hand poses pack is on\nif isHandPosesActive then\n\t-- example: move item up by 1 unit\n\tM:moveY(context.matrices, 1)\nend\n\nGHP_customShearsMPA = GHP_customShearsMPA + 1\t-- enable custom shears modelpart\n-- pretty much self explain\nGHP_leftShearsStart = 0\nGHP_leftShearsEnd = 29\nGHP_rightShearsStart = 30\nGHP_rightShearsEnd = 59\nGHP_leftShearsRot = 7.5;\nGHP_rightShearsRot = -7.5;\n\n\n--------------------------------------------- END OF YOUR SCRIPT ^\n\n-- leave this at the bottom of your script\nGHP_prevIsActive = GHP_isActive\n```",
+  "categories": [
+    "entities",
+    "minecraft",
+    "modded",
+    "tweaks"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 263889,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

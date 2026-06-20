@@ -1,0 +1,31 @@
+{
+  "id": "gGnLhnCP",
+  "slug": "project-mmo-irons-spells-spellbooks-compat",
+  "title": "Project MMO: Iron's Spells & Spellbooks Compat",
+  "description": "Adds compatability between Project MMO and Iron's Spells and Spellbooks.",
+  "body": "<p>&nbsp;</p>\n<h5>This mod requires&nbsp;<a href=\"https://www.curseforge.com/minecraft/mc-mods/project-mmo\" rel=\"nofollow\">Project MMO</a>&nbsp;and&nbsp;<a href=\"https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks\" rel=\"nofollow\">Iron's Spells and Spellbooks</a>&nbsp;for 1.20.1</h5>\n<h4>About</h4>\n<hr>\n<p>This compatability mod allows you to add skill requirements to spells using datapacks. If a player doesn't meet the requirements then they can't cast the spell. It allows you to specify requirements on a per spell level basis as well. These requirements can be configured to only apply when casting from scrolls, spellbooks, and/or swords. You can also make it so these requirements prevent players from inscribing the spell into their spellbook entirely.</p>\n<p>Additionally there is a config that allows you to award xp to a player when their spell heals another player. This enables healers/priest archetypes to actually be able to level a skill while supporting other players.</p>\n<p>&nbsp;</p>\n<h4>Guide</h4>\n<hr>\n<p>The easiest way to start is to load into the world in question and run the command:</p>\n<pre>/pmmo_irons_compat genSpellData</pre>\n<p>I know, snake case and camel case in one command, provocative. This will generate a datapack with defaults for every spell that is currently enabled in Iron's Spells and Spellbooks. You can modify this datapack and then delete the JSON files for spells that you did not configure. You can run this command at any time to repopulate the list of spells and it won't affect the JSON files you already have in there.</p>\n<p>After running the command and generating the datapack I modified the <strong>fireball.json</strong> file to look like this:</p>\n<pre>{\n  \"requirements\": {\n    \"1\": {},\n    \"2\": { \"magic\":  5}\n  },\n  \"default_requirements\": {\n    \"magic\": 10,\n    \"charisma\": 2\n  },\n  \"sources\": [\n    \"scroll\",\n    \"spellbook\",\n    \"sword\",\n    \"inscribe\"\n  ],\n  \"replace\": true\n}</pre>\n<p>&nbsp;</p>\n<p>The <strong>\"</strong><strong>default_requirements\"</strong> key will add a requirement to all fireball spell levels. In this case all fireball spell levels will require a magic of level 10 and a charisma of level 2 to cast.</p>\n<p>The <strong>\"requirements\"</strong> section allows you to set requirements for specific spell levels. In this json the level 1 fireball spell now has no requirement to cast. This will override <strong>\"default_requirements\"</strong> for that specific spell level. The level 2 fireball spell has been configured to require level 5 magic to cast. Every other level of fireball would require 10 magic and 2 charisma to cast.</p>\n<p>The&nbsp;<strong>\"sources\"</strong> section allows you to specify when to apply these requirements and when not to. Right now this would restrict casting fireball spells from scrolls, spellbooks, and swords. It would also not allow you to inscribe the fireball spell into a spellbook unless you meet the requirements. If you would like any spell to be castable from a scroll for example, you could remove&nbsp;<strong>\"scroll\"</strong> from the&nbsp;<strong>\"sources\"</strong> list and it would no longer be restricted.</p>\n<p>The \"<strong>replace\"</strong> is there to solve datapack disputes. If there are multiple datapacks with requirements applied to a spell, say fireball, then the datapack with <strong>\"replace\": true</strong> will overwrite any that have it set to false. If there are multiple datapacks with&nbsp;<strong>\"replace\": true</strong> then it will use whichever was the last loaded datapack.</p>\n<p>None of these are required; if you only want to add a requirement to a specific level of a spell then don't include <strong>\"default_requirements\" </strong>at all. If you want every spell to have the same requirement, remove&nbsp;<strong>\"requirements\"</strong> and only use&nbsp;<strong>\"default_requirements\".&nbsp;</strong>If you leave off <strong>\"sources\"</strong> then the requirements wouldn't apply to anything. You could just delete the JSON at that point.</p>\n<p>&nbsp;</p>\n<h4>FAQ</h4>\n<hr>\n<p>I will not backport this or port it to fabric. I just don't have the time and I will only be playing on 1.20.1+ going forward. You are welcome to do so though!</p>\n<p>You can use this mod in any modpacks, but you cannot monetize it in any way or post it to another minecraft site.</p>\n<p>&nbsp;</p>\n<p><strong>Huge</strong> thanks to Caltinor / Project MMO team for their constant help and access to the project source code. Also thanks to the Iron's Spells and Spellbooks team for allowing me to merge a few PR's to emit events so I didn't have to use any mixins to make this work.</p>",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 4681,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

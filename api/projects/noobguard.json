@@ -1,0 +1,24 @@
+{
+  "id": "CTTnLIMj",
+  "slug": "noobguard",
+  "title": "NoobGuard",
+  "description": "A minimal, server-side NeoForge mod to prevent mobs from targeting certain players.",
+  "body": "# NoobGuard\n\nNoobGuard is a **server-side only** Minecraft NeoForge mod (1.21.x) designed to provide a \"peace mode\" for specific players, allowing them to explore and interact with the world without facing hostile mobs when they are alone or in the presence of other \"guarded\" players. This is especially useful for players who prefer a less challenging experience or for younger players.\n\n## Features\n\n- **Guarded Players**: Prevents hostile mobs from targeting or damaging specific players when they are alone or only in the company of other guarded players.\n- **Hostile Entity Management**:\n    - Prevents hostile mobs from targeting or damaging guarded players.\n    - Prevents hostile mobs from spawning near guarded players if configured.\n    - Allows the option to drop loot from hostile mobs killed by the plugin, or simply removes them without loot.\n- **Configurable Alone Distance**: Set a configurable distance in blocks around a player, defining how far they need to be from other non-guarded players to trigger peace mode.\n\n## Installation\n\n1. Install Minecraft NeoForge.\n2. Download the NoobGuard mod file.\n3. Place the NoobGuard mod file into the `mods` folder of your Minecraft directory.\n4. You will find the configuration file `noobguard-common.toml` in the `config` folder of your Minecraft Server directory.\n\n## Usage\n\n1. After installation, launch the game.\n2. Add the UUIDs of guarded players in the `noobguard-common.toml` config file, or edit via the config screen in-game if supported.\n\n## Configuration Options\n\nNoobGuard offers the following customizable options:\n\n- **preventSpawning**: Boolean (`false` by default). Set to `true` to prevent hostile entities from spawning near guarded players.\n- **dropLoot**: Boolean (`false` by default). Set to `true` to enable loot drops from hostile mobs removed by the mod.\n- **aloneDistance**: Integer (default is `32` blocks). Defines the distance around a guarded player to check for other players.\n- **guarded-users**: A list of UUIDs for players who should be protected. Only these players will be shielded from hostile entities.\n\n### Example Configuration\n\nIn `noobguard.toml`:\n\n```toml\npreventSpawning = true\ndropLoot = true\naloneDistance = 40\nguarded-users = [\"uuid1\", \"uuid2\", \"uuid3\"]\n```\nReplace uuid1, uuid2, and uuid3 with the actual UUIDs of the players you wish to guard.\n\n## Events\n\nNoobGuard leverages the following events:\n\n- LivingChangeTargetEvent: Prevents hostile mobs from targeting guarded players when peace mode is active.\n- EnderManAngerEvent: Stops Enderman from targeting guarded players.\n- FinalizeSpawnEvent: Prevents hostile mob spawning near guarded players.\n- LivingIncomingDamageEvent: Cancels incoming damage to guarded players from hostile entities.\n\n## Logging\n\nNoobGuard logs actions and events such as target prevention, entity removal, and spawn prevention for debugging and monitoring purposes under the DEBUG level.\n\n## License\n\nThis project is licensed under the MIT License. See LICENSE for details.",
+  "categories": [
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 120,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3"
+  ],
+  "date_updated": null
+}

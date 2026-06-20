@@ -1,0 +1,21 @@
+{
+  "id": "DiyKT6tb",
+  "slug": "create-aeronautics-rope-fix",
+  "title": "Create Aeronautics: Rope Fix",
+  "description": "This mod fixes the problem where structures containing ropes lose their physical ropes after being copied by a Structure Block — or loaded from an NBT file. The knot texture stays rendered, but the rope is gone.",
+  "body": "**RopeFix is a small companion mod that repairs a critical bug affecting airships and any structure containing rope_connector and rope blocks from Create Aeronautics.**\n\n## **The Problem**\n\n**When you copy a structure that contains ropes** — for example an airship whose balloon is connected to the hull by ropes — and paste it using a **Structure Block**, a **Create schematic**, an **NBT file** loaded by another mod, or any template system, here's what happens:\n\n**The rope looks intact** (the knot texture and attachment points are visible)\n\nBut the rope doesn't physically exist — you can't grab it, it doesn't swing, it has no physics\nThis happens because Create: Aeronautics saves rope strand data using absolute world coordinates.\n \nWhen the structure is pasted at a new location, those coordinates still point to the original build — the rope engine destroys the strand immediately, but the visual knot survives, giving the illusion of a working rope.\n\n### The Fix\n### \n**RopeFix intercepts the rope data at load time, detects that the connector was relocated (its saved anchor no longer matches its real position), strips the broken strand before the rope engine ever sees it, and automatically re-creates the rope at the correct position on the next server tick.\nPhysics assembly (Sable sub-levels) is fully handled: the mod recognises world↔plot coordinate transfers and leaves them untouched, so assembled airships keep their ropes through physics simulation.**\n\n### Issues\n \nplease, report any bugs or else [here](https://github.com/emariduble-cmd/Rope_fix/issues), I will fix it as fast as possible\n\n### Requirements\n\n[Create: Aeronautics](https://modrinth.com/mod/create-aeronautics)\n\n### Notes:\n### \nStructures pasted before installing RopeFix can't be auto-repaired — re-paste them once with the mod installed.",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 163,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

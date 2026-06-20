@@ -1,0 +1,22 @@
+{
+  "id": "ESDkerqQ",
+  "slug": "encdata-event-manager",
+  "title": "EncData's Event Manager",
+  "description": "Server-side Fabric mod for organized events with role rules, holding control, editable kits, role spawns, and identity randomization.",
+  "body": "# Event Manager\nEvent Manager is a server-side Fabric mod for hosting organized Minecraft events with:\n\n- Role-based permissions\n- Pre-event holding control\n- Queue positions while players wait\n- Randomized role assignment by role slot counts\n- Role spawns\n- Editable role kits\n- Randomized names and skins\n- In-game admin commands and role configuration\n\nUse it to contain players before an event, assign them roles, equip them with kits, and release them when the round starts.\n\n## Features\n\n- Server-side only Fabric mod\n- Custom `void_prison` holding dimension for pre-event containment\n- Event phases: `CLOSED`, `RUNNING`, `ENDING`\n- Role-based permissions for:\n  - Breaking blocks\n  - Placing blocks\n  - Using items\n  - Opening blocks\n  - Using containers\n  - Interacting with entities\n  - PvP\n  - Picking up items\n  - Dropping items\n- Per-role spawn points\n- Per-role kits\n- Default kit support\n- Configurable queue role slots for randomized release assignment\n- Optional role bypass flow\n- Optional random name and skin assignment\n- Identity pool import and reload commands\n- In-game role configuration GUI\n\n## How It Works\n\nWhen the mod is loaded, it manages players through an event session system.\n\n- `CLOSED`: eligible players are contained in the holding dimension\n- `RUNNING`: contained players are released, teleported to role spawns, and given their role kits\n- `ENDING`: cleanup phase before returning to `CLOSED`\n\nRoles decide what a player is allowed to do and what kit they receive.\n\n## Kits\n\nEach role has an editable kit.\n\n- Opening `Change Kit` from the role configure menu lets you place the items for that role\n- When the role is applied during release, the player's inventory is cleared first\n- The saved role kit is then inserted into the player's inventory\n\nDefault role kit:\n\n- Wooden sword\n- Shield\n- Full leather armor\n\n## Commands\n\nMain command: `/event`\n\nCore flow:\n\n- `/event help`\n- `/event start`\n- `/event end`\n- `/event status`\n- `/event validate`\n\nDebug:\n\n- `/event debug participants`\n- `/event debug contained`\n- `/event debug identity <player>`\n- `/event debug release <player>`\n- `/event debug roles`\n\nBypass:\n\n- `/event bypass add <player>`\n- `/event bypass remove <player>`\n- `/event bypass list`\n\nAutojoin:\n\n- `/event autojoin add <player>`\n- `/event autojoin remove <player>`\n- `/event autojoin list`\n\nQueue:\n\n- `/event queue set <role> <amount>`\n- `/event queue remove <role>`\n- `/event queue clear`\n- `/event queue list`\n- `/event queue display <true|false>`\n- `/event queue position <player>`\n\nIdentities:\n\n- `/event identities list`\n- `/event identities import <url>`\n- `/event identities reload`\n\nConfig:\n\n- `/event config adminAutoJoin <true|false>`\n- `/event config defaultRole <role>`\n\nRoles:\n\n- `/event roles create <name>`\n- `/event roles list`\n- `/event roles info <role>`\n- `/event roles assign <player> <role>`\n- `/event roles unassign <player>`\n- `/event roles get <player>`\n- `/event roles configure <role>`\n- `/event roles setspawn <role>`\n- `/event roles clearspawn <role>`\n- `/event roles setbypassflow <role> <true|false>`\n\n## Configuration\n\nMain config file:\n\n- `config/eventmanager.json`\n\nIdentity files:\n\n- `config/eventmanager/identities/names.json`\n- `config/eventmanager/identities/skins.json`\n- `config/eventmanager/identities/namemc_request.json`\n\n## Requirements\n\n- Minecraft `1.21.11`\n- Fabric Loader `0.18.4+`\n- Fabric API `0.141.3+1.21.11`\n- Java 21\n\n## Notes\n\n- This mod is server-side.\n- Clients do not need the mod for the event logic itself.\n- Identity randomization works best when the identity pool is properly populated.\n- Role kits currently store item type and count.\n\n## License\n\nMIT.\n",
+  "categories": [
+    "fabric",
+    "management",
+    "minigame",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 146,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

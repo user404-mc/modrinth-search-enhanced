@@ -1,0 +1,26 @@
+{
+  "id": "jkWXDybF",
+  "slug": "5q12s-yaml-api",
+  "title": "5q12's YAML API",
+  "description": "A YAML api to read and write to YAML files for Fabric.",
+  "body": "# 5q12's YAML API\n\n## Overview\n5q12's YAML API is a simple and efficient API for reading and writing YAML files within the Minecraft Fabric modding environment. This API facilitates seamless integration of YAML configuration files, allowing mod developers to easily manage configuration data.\n\n## Features\n- **Read YAML Files**: Parse YAML files into Java objects with ease.\n- **Write YAML Files**: Serialize Java objects into YAML format.\n- **Integration**: Designed specifically for use with Fabric, ensuring compatibility and performance.\n\n## Example Usage\n\n### Add to repositories\n```\nrepositories {\n    maven {\n        url = uri(\"https://yml.ccls.app/v1.1.3\")\n    }\n    mavenCentral()\n}\n```\n\n### Add to dependencies\n```\ndependencies {\n    modImplementation 'app.ccls.yml:yamlapi:1.1.3'\n}\n```\n\n### Imports \n```java\nimport app.ccls.yml.YamlHandler;\nimport app.ccls.yml.YamlHandlerFactory;\n```\n\n### Simple Key-Value Storage\n```java\nimport app.ccls.yml.YamlHandler;\nimport app.ccls.yml.YamlHandlerFactory;\nimport java.io.IOException;\nimport java.util.HashMap;\nimport java.util.Map;\n\npublic class SimpleKeyValueExample {\n    public static void main(String[] args) {\n        // Initialize YamlHandler with the \"nested\" format\n        YamlHandler yamlHandler = YamlHandlerFactory.getHandler(\"nested\");\n\n        // Define a file path\n        String filePath = \"config/simple_data.yml\";\n\n        // Create a simple key-value map\n        Map<String, Object> data = new HashMap<>();\n        data.put(\"username\", \"exampleUser\");\n        data.put(\"score\", 1500);\n\n        try {\n            // Write the data to the YAML file\n            yamlHandler.writeYaml(filePath, data);\n            System.out.println(\"Data saved to \" + filePath);\n\n            // Read the data back from the YAML file\n            Map<String, Object> loadedData = yamlHandler.readYaml(filePath);\n            System.out.println(\"Loaded data: \" + loadedData);\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```\n### Nested Structures\n```java\nimport app.ccls.yml.YamlHandler;\nimport app.ccls.yml.YamlHandlerFactory;\nimport java.io.IOException;\nimport java.util.HashMap;\nimport java.util.Map;\n\npublic class NestedStructureExample {\n    public static void main(String[] args) {\n        // Initialize YamlHandler with the \"nested\" format\n        YamlHandler yamlHandler = YamlHandlerFactory.getHandler(\"nested\");\n\n        // Define a file path\n        String filePath = \"config/nested_data.yml\";\n\n        // Create a nested structure map\n        Map<String, Object> data = new HashMap<>();\n        Map<String, Object> userDetails = new HashMap<>();\n        userDetails.put(\"age\", 25);\n        userDetails.put(\"email\", \"user@example.com\");\n        data.put(\"username\", \"exampleUser\");\n        data.put(\"details\", userDetails);\n\n        try {\n            // Write the nested data to the YAML file\n            yamlHandler.writeYaml(filePath, data);\n            System.out.println(\"Data saved to \" + filePath);\n\n            // Read the nested data back from the YAML file\n            Map<String, Object> loadedData = yamlHandler.readYaml(filePath);\n            System.out.println(\"Loaded data: \" + loadedData);\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```\n\n### Lists in YAML\n```java\nimport app.ccls.yml.YamlHandler;\nimport app.ccls.yml.YamlHandlerFactory;\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\npublic class ListExample {\n    public static void main(String[] args) {\n        // Initialize YamlHandler with the \"nested\" format\n        YamlHandler yamlHandler = YamlHandlerFactory.getHandler(\"nested\");\n\n        // Define a file path\n        String filePath = \"config/list_data.yml\";\n\n        // Create a list\n        List<String> favoriteFoods = new ArrayList<>();\n        favoriteFoods.add(\"Pizza\");\n        favoriteFoods.add(\"Sushi\");\n        favoriteFoods.add(\"Tacos\");\n\n        // Create a map to hold the list\n        Map<String, Object> data = new HashMap<>();\n        data.put(\"username\", \"exampleUser\");\n        data.put(\"favoriteFoods\", favoriteFoods);\n\n        try {\n            // Write the list data to the YAML file\n            yamlHandler.writeYaml(filePath, data);\n            System.out.println(\"Data saved to \" + filePath);\n\n            // Read the list data back from the YAML file\n            Map<String, Object> loadedData = yamlHandler.readYaml(filePath);\n            System.out.println(\"Loaded data: \" + loadedData);\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "optimization",
+    "storage",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 1197,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20.1",
+    "1.20.6",
+    "1.21"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "XURvx0KZ",
+  "slug": "craftaudit",
+  "title": "CraftAudit",
+  "description": "CraftAudit is a server-side audit mod/plugin for Minecraft Forge that records world changes made by players and the environment (block place/break, container I/O, ignition, item-frame/painting actions, bucket usage, kills, etc.).",
+  "body": "# CraftAudit – Block/Entity Audit Logger & Rollback Tool (Forge)\n\n## Overview\nCraftAudit is a server-side audit mod/plugin for Minecraft Forge that records world changes made by players and the environment (block place/break, container I/O, ignition, item-frame/painting actions, bucket usage, kills, etc.). It provides in-place inspection, area queries, rollback/restore and undo features, supporting SQLite or MySQL storage.\n\n## Features\n- **Block Change Logging**\n  - Player break/place (with optional BlockState/NBT snapshots)\n  - Environment breaks (natural_break): explosion, fluid, gravity\n\n- **Interaction Logging**\n  - Container put/take (menu session-based, accurate block position)\n  - Sign editing (logs text)\n  - Ignition (campfire/candle/TNT/fire)\n  - Redstone interactions: button/lever/door\n  - Item frame/painting: put/take/rotate/place/break\n  - Bucket: fill/empty/catch/milk\n  - Kill: logs killer, victim, reason, projectile, weapon, distance, etc.\n\n- **Query**\n  - In audit mode, left/right-click a block to view logs for that position (paged)\n  - Area+time queries (`near` command)\n\n- **Rollback/Restore/Undo**\n  - Rollback a player’s place/break within radius & time window (`rollback`)\n  - Restore all breaks (player & environment) or filtered by type (`restore`)\n  - Restore kills: respawn non-player entities at log positions (`restore ... kill`)\n  - Undo last rollback/restore (`undo`): revert blocks or remove spawned entities\n\n- **Storage**\n  - SQLite (default) or MySQL backend\n  - Configurable file location and MySQL parameters\n\n- **Other**\n  - Localized names for items/blocks\n  - Audit mode exempt from logging (auditor actions ignored)\n\n## Commands\n_All `craftaudit` commands have `/ca` alias. OP level 2 required._\n\n### Basic\n- `/craftaudit status`  \n  Show database/mode status\n- `/craftaudit inspect` or `/ca i`  \n  Toggle audit mode (left-click: block logs, right-click: interaction logs)\n- `/craftaudit log [page]`  \n  Show interaction logs for last right-clicked block (paged)\n- `/craftaudit blocklog [page]`  \n  Show block logs for last left-clicked block (paged)\n\n### Area Queries\n- `/craftaudit near <radius> <time> [page]`  \n  Search logs near player (by radius & time)\n  - Time format: Ns/Nm/Nh/Nd (e.g., `30m`, `12h`, `5d`)\n\n### Rollback/Restore/Undo\n- `/craftaudit rollback <player> <time> [radius=10]`  \n  Roll back a player’s place/break within area & time\n- `/craftaudit restore <time> [radius=10] [type]`  \n  Restore breaks or kills, optionally filtered by type:\n  - No type: all breaks (player & environment)\n  - `break`: only player breaks\n  - `natural`/`natural_break`: only environment breaks\n  - `explosion`/`fluid`/`gravity`: environment breaks by cause\n  - `kill` or `kill:<entity_id>`: restore kills (respawn non-player entities)\n- `/craftaudit undo`  \n  Undo last rollback/restore (revert blocks, remove spawned entities)\n- `/craftaudit purge <time>`  \n  Purge logs older than time (irreversible)\n\n### Time Format\n- Examples: `30s`, `15m`, `12h`, `7d`\n\n## Installation\n- Place the mod jar in your Forge server’s `mods` folder  \n- Requires Java 17 (Forge 1.19+)\n- Config file is generated after first run\n\n## Configuration\n- Database:\n  - SQLite: default at `gameDir/craftaudit/craftaudit.db`\n  - MySQL: configurable host, port, database, user, password, SSL, params\n\n## Data & Privacy\n- Only logs essential events, coordinates, item/block/entity IDs for audit/rollback\n- BlockEntity NBT is stored (compressed, size-limited, opt-in) for BE blocks on break\n- Use `purge` regularly to clean up old logs\n\n## Build\n- Requires JDK 17 and Forge MDK\n- Typical steps: import Gradle, sync dependencies, build jar\n\n## Contributing\n- Issues, PRs, and feature requests welcome\n\n## License\nLicensed under Creative Commons Attribution 4.0 International (CC BY 4.0)  \nSee [LICENSE](LICENSE).\n\nCopyright (c) 2025 CraftAudit contributors",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 860,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5"
+  ],
+  "date_updated": null
+}

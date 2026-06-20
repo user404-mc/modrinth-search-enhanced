@@ -1,0 +1,31 @@
+{
+  "id": "1zWiAQC1",
+  "slug": "flexborder",
+  "title": "FlexBorder",
+  "description": "FlexBorder adds a fully configurable world border system designed for PvP, survival, and Battle Royale–style servers.",
+  "body": "This mod is a reimagining of my old mod [Border like Battle Royale](https://modrinth.com/mod/border-like-battle-royale)\n\n## What This Mod Adds\n\nThis mod adds a single, powerful command:\n\n```\n/flexborder\n```\nAll setup and control is done through its subcommands.\n\n---\n\n## 🧭 Features\n\n- 📦 Asymmetric rectangular border (any X/Z coordinates)\n- 🔄 Smooth animation of shrinking or repositioning\n- 🧲 Soft pushing toward the safe zone when slightly outside\n- 🕳️ \"Rescue\" teleportation with dark screen + impulse if far away\n- 🩸 Health penalty system that reduces **max HP** on each death (down to 1 HP), like a [Mediumcore](https://modrinth.com/mod/alexs-mediumcore) mod\n- 🕒 Configurable **development phase** (safe exploration period)\n- 🏁 Built-in **Battle Royale mode**: automatic shrinking with pause phases\n- 🔃 Fully resyncs on player join or dimension switch\n- ✅ Persistent state (saved in world data)\n- Translation to hardcore in \"battle mode\"\n\n---\n\n## Command Reference\n\n### `/flexborder set <x1> <z1> <x2> <z2> [dimension]`\n\nSet the rectangular border in the given dimension (or current one).  \nCoordinates define the opposite corners.\n\n### `/flexborder get [dimension]`\n\nDisplay current border settings.\n\n\n `/flexborder dev <duration> <shrinkDistance> <shrinkTime> <pauseTime> <minSize>`\n\nStart a development phase for the given number of seconds.  \nDuring this phase:\n- Players **lose max HP** on death (but stay alive)\n- Border stays still\n\nWhen time is up, **Battle Royale mode** starts automatically.\n\n🧪 Example:\n/flexborder dev 300 10 15 10 50\n\n\n→ Wait 5 minutes, then start shrinking every 10 blocks, taking 15s per step, with 10s pauses, until the zone is 100×100 (minSize=50).\n\n---\n\n `/flexborder brstart <shrinkDistance> <shrinkTime> <pauseTime> <minSize>`\n\nStart shrinking the border in steps:\n- Shrinks by `shrinkDistance` (on both X and Z)\n- Takes `shrinkTime` seconds per step\n- Waits `pauseTime` seconds between steps\n- Stops when either half-size reaches `minSize`\n\nExample:\n```\n/flexborder brstart 5 10 10 50\n```\n\n---\n\n `/flexborder brstop`\n\nStop any ongoing shrinking animation.\n\n---\n\n `/flexborder hploss <amount>`\n\nSet how much **maximum HP** is lost per death during development phase.  \nHP never goes below **1 HP** and never reduces more than **20 total HP**.\n\nExample:\n```\n/flexborder hploss 2.0\n```\n\nEach death removes 2.0 max HP from the player.\n\n---\n\n `/flexborder hpreset [targets]`\n\nReset max HP penalty. Restores players' original HP cap.  \nHeals players by the lost amount (but not above new max).\n\nIf no targets specified, resets for command sender.\n\nExamples:\n```\n/flexborder hpreset\n/flexborder hpreset @a\n```\n\n---\n\n## 🔒 Permissions\n\nAll `/flexborder` subcommands **require level 4** permission (admin by default).  \nOnly the command sender sees any messages in chat.\n\n---\n\n## 📌 Requirements\n\n- 📦 **NeoForge 21.1.200+**\n- ⚙️ Must be installed **on both client and server** (for rendering + logic)\n- 🧠 No mixins, cleanly integrated via event hooks\n- 💾 Border data saved per-dimension (via world capabilities)\n- Completely removes vanilla worldborder, do not use with mods that change worldborder\n\n---\n\n## 💡 Use Cases\n\n- Hardcore survival servers with soft boundaries\n- Battle Royale gamemodes\n- PvP arenas with dynamic safe zones\n- RPG maps with exploration followed by collapse\n\n---",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 169,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

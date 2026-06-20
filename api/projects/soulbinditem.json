@@ -1,0 +1,27 @@
+{
+  "id": "6shUJ5Fe",
+  "slug": "soulbinditem",
+  "title": "Soulbind",
+  "description": "One for soulbinding mods, which bind items to a specific player, preventing the item from being used by other players.",
+  "body": "\nA soulbinding mod that binds items to a specific player, preventing them from being used by other players.\n一个灵魂绑定模组，将物品绑定到特定玩家，防止其他玩家使用。\n\n---\n\n## Features / 特点\n\n- Item Binding — Bind items to a specific player, only the bound player can use them\n物品绑定 — 将物品绑定到指定玩家，仅绑定者可使用\n\n- Prevent Dropping — Bound items cannot be dropped by any means\n禁止丢弃 — 绑定物品无法以任何方式丢弃\n\n- Prevent Pickup — Other players cannot pick up bound items\n禁止拾取 — 其他玩家无法拾取绑定物品\n\n- Retain on Death — Bound items are kept on death (configurable)\n死亡保留 — 死亡后保留绑定物品（可配置）\n\n- Auto Bind — Automatically bind specified items upon first acquisition\n自动绑定 — 首次获取指定物品时自动绑定\n\n- Command System — Complete command system with multi-page help\n命令系统 — 完整的命令系统，支持多页帮助\n\n- Configurable — Customize all functionality via config file\n可配置 — 通过配置文件自定义所有功能\n\n---\n\n## Installation / 安装\n\n1. Install Fabric Loader  and Fabric API \n安装 Fabric Loader 和 Fabric API\n\n2. Place the JAR into `.minecraft/mods/`.\n将 JAR 文件放入 `.minecraft/mods/` 目录\n\n3. Launch the game.\n启动游戏\n\n---\n\n## Command Usage / 命令用法\n\nAll commands require administrator privileges (default permission level: 2).\n所有命令需要管理员权限（默认权限等级：2）。\n\n### Basic Commands / 基础命令\n\n| Command / 命令 | Description / 说明 |\n|:---|:---|\n| `/soulbind` | Display help / 显示帮助信息 |\n| `/soulbind help [page]` | Display help for a specified page / 显示指定页帮助信息 |\n| `/soulbind bind` | Bind the held item to yourself / 将手持物品绑定到自己 |\n| `/soulbind bind <player>` | Bind the held item to a specific player / 将手持物品绑定到指定玩家 |\n| `/soulbind unbind` | Unbind the held item / 解绑手持物品 |\n| `/soulbind check` | Check binding status of the held item / 查看手持物品绑定状态 |\n| `/soulbind list` | List all bound items in inventory / 列出背包中所有绑定物品 |\n| `/soulbind reload` | Reload config (requires permission level 3) / 重载配置文件（需要权限等级 3） |\n\n### Autobind Commands / 自动绑定命令\n\n| Command / 命令 | Description / 说明 |\n|:---|:---|\n| `/soulbind autobind add` | Add the held item to autobind list / 将手持物品添加到自动绑定列表 |\n| `/soulbind autobind add <item ID>` | Add specified item to autobind list / 将指定物品添加到自动绑定列表 |\n| `/soulbind autobind remove` | Remove the held item from autobind list / 将手持物品从自动绑定列表移除 |\n| `/soulbind autobind remove <item ID>` | Remove specified item from autobind list / 将指定物品从自动绑定列表移除 |\n| `/soulbind autobind list` | List all autobind items / 列出所有自动绑定物品 |\n| `/soulbind autobind toggle` | Toggle autobind feature (requires permission level 3) / 切换自动绑定功能（需要权限等级 3） |\n\n### Examples / 示例\n\n```\n/soulbind bind Steve\n/soulbind unbind\n/soulbind help 2\n/soulbind autobind add minecraft:diamond_pickaxe\n/soulbind autobind add\n/soulbind autobind remove diamond_sword\n/soulbind autobind list\n```\n\n---\n\n## Configuration / 配置\n\nConfiguration file located at `.minecraft/config/soulbinding/soulbinding.json`.\n配置文件位于 `.minecraft/config/soulbinding/soulbinding.json`。\n\n```json\n{\n    \"keepOnDeath\": true,\n    \"allowUnbind\": true,\n    \"showTooltip\": true,\n    \"preventDrop\": true,\n    \"preventPickup\": true,\n    \"commandPermissionLevel\": 2,\n    \"autoBindEnabled\": true,\n    \"autoBindItems\": [\n        \"minecraft:diamond_sword\",\n        \"minecraft:netherite_sword\",\n        \"minecraft:elytra\"\n    ],\n    \"language\": \"zh_cn\"\n}\n```\n\n| Field / 字段 | Description / 说明 |\n|:---|:---|\n| `keepOnDeath` | Keep bound items on death / 死亡后保留绑定物品 |\n| `allowUnbind` | Allow players to manually unbind / 允许玩家手动解绑 |\n| `showTooltip` | Show binding status in item tooltip / 在物品提示中显示绑定状态 |\n| `preventDrop` | Prevent dropping bound items / 禁止丢弃绑定物品 |\n| `preventPickup` | Prevent others from picking up bound items / 禁止其他玩家拾取绑定物品 |\n| `commandPermissionLevel` | Minimum permission level for commands (0-4) / 命令最低权限等级 (0-4) |\n| `autoBindEnabled` | Enable auto bind feature / 启用自动绑定功能 |\n| `autoBindItems` | List of items to auto bind / 自动绑定物品列表 |\n| `language` | Language code / 语言代码 |\n\n---\n\n## Notes / 注意事项\n\n1. Bound items display purple italic binding info in inventory.\n绑定物品会在物品栏中显示紫色斜体的绑定信息。\n\n2. Bound items can be freely moved between player inventory and containers.\n绑定物品可以在玩家背包和容器之间自由移动。\n\n3. Admins can unbind any item.\n管理员可以解绑任何物品。\n\n4. Use `/soulbind reload` after modifying the config file.\n修改配置文件后，可使用 `/soulbind reload` 重新加载。\n\n5. Auto-bound items are bound immediately when the player first obtains them.\n自动绑定物品会在玩家首次获得时立即绑定。\n\n6. Auto binding supports the following acquisition methods:\n自动绑定支持以下获取方式：\n   - Picking up from the ground / 从地面拾取\n   - Taking from containers / 从容器中取出\n   - Given via commands / 通过命令给予\n   - Obtained through crafting / 通过合成获得\n   - Taking in Creative mode / 创造模式中取出\n\n---\n\n## Development / 开发信息\n\n- Minecraft: 1.20.1\n- Fabric Loader: 0.17.2\n- Fabric API: 0.92.6+1.20.1\n- Java 17\n\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 555,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

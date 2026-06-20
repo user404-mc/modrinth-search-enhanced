@@ -1,0 +1,32 @@
+{
+  "id": "O6KpTOJZ",
+  "slug": "combatme",
+  "title": "CombatMe",
+  "description": "an pvp fair system when someone starting a fight the one who start it  doesn't run with TP command 😈",
+  "body": "# ⚔ CombatMe\n\n> **Prevent teleport abuse during PvP with combat tagging, action bar countdown, and full config control.**\n\n---\n\n## 📖 What is CombatMe?\n\nCombatMe is a lightweight Paper plugin that **tags both players** the moment one hits the other. While tagged, every teleport command is blocked — no more running `/home` mid-fight, no `/rtp` to escape, no `/tpa` cheese. A clean action bar countdown keeps players informed without cluttering the screen with titles or chat spam.\n\nOnce the timer runs out with no further combat, the tag is lifted and players are free to teleport again.\n\n---\n\n## ✨ Features\n\n- ⚔ **Instant combat tagging** on both attacker and victim\n- 🚫 **Teleport command blocker** — `/home`, `/warp`, `/tpa`, `/rtp`, `/spawn`, `/tp`, and more\n- 🎨 **Action bar countdown** — color shifts as time runs out\n  - 🔴 **Red** — lots of time left\n  - 🟡 **Yellow** — halfway through\n  - 🟢 **Lime** — almost done\n  - ⚪ **White** — flash when combat ends\n- 💬 **Private chat alerts** — attacker and victim each get their own message on tag\n- 🔔 **Action bar alert** — flashes a warning when a blocked command is attempted\n- 🔊 **Sound alerts** — configurable sounds on tag and on blocked commands\n- ♻️ **Timer reset** — hitting again resets the countdown to full duration\n- 🛡 **Bypass permission** — for staff who should never be tagged\n- 🎯 **Ender pearl friendly** — ender pearls do **not** trigger combat tagging\n- 🔧 **Live reload** — `/combatme reload` applies config changes instantly\n\n---\n\n## 🎬 How It Works\n\n```\nPlayer A hits Player B\n  ├─ Both are combat-tagged for 10 seconds (configurable)\n  ├─ Action bar: :::::::::::: (red)\n  ├─ Player A chat: \"You hit Steve! You are now in PVP mode for 10 seconds.\"\n  └─ Player B chat: \"You're on PVP mode, cannot use any TP command until 10 seconds.\"\n\nPlayer B tries /home while tagged\n  ├─ Command is cancelled\n  └─ Action bar: \"You are in PVP! Cannot teleport for 7 seconds!\"\n\n10 seconds pass without combat\n  ├─ Action bar: :::::::::::: (white flash, then clears)\n  └─ Chat: \"You are no longer combat-tagged.\"\n```\n\n---\n\n## ⚙️ Configuration\n\nEvery message, sound, and blocked command can be customized in `config.yml`.\n\n```yaml\n# How long (in seconds) a player stays combat-tagged\ncombat-duration: 10\n\nmessages:\n  # Sent to the attacker — supports {victim} and {time}\n  attacker-tagged: \"&cYou hit &f{victim}&c! You are now in PVP mode for &f{time}&c seconds.\"\n\n  # Sent to the victim — supports {time}\n  victim-tagged: \"&cYou're on PVP mode, cannot use any TP command until &f{time}&c seconds.\"\n\n  # Chat message when the tag expires\n  combat-end-chat: \"&a[CombatMe] &7You are no longer combat-tagged.\"\n\n  # Action bar message when a blocked command is attempted — supports {time}\n  blocked-actionbar: \"&cYou are in PVP! Cannot teleport for &f{time}&c seconds!\"\n\n  # Action bar flash when combat tag expires\n  expire-actionbar: \"&fCombat ended!\"\n\nsounds:\n  on-tag:   \"ENTITY_VILLAGER_HURT\"  # leave \"\" to disable\n  on-block: \"ENTITY_VILLAGER_HURT\"\n  volume: 1.0\n  pitch:  1.2\n\n# Commands to block while combat-tagged (no slash needed)\nblocked-commands:\n  - home\n  - warp\n  - tpa\n  - tpaccept\n  - rtp\n  - spawn\n  - tp\n  - teleport\n  - back\n  # add any custom commands here\n```\n\n### Placeholders\n\n| Placeholder | Available in | Description |\n|---|---|---|\n| `{time}` | `attacker-tagged`, `victim-tagged`, `blocked-actionbar` | Remaining seconds |\n| `{victim}` | `attacker-tagged` | Name of the player who was hit |\n\n---\n\n## 🔑 Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `combatme.admin` | OP | Use `/combatme reload` |\n| `combatme.bypass` | `false` | Never gets combat-tagged |\n\n---\n\n## 💬 Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/combatme reload` | `combatme.admin` | Reload config.yml without restarting the server |\n\n---\n\n## 📦 Requirements\n\n| | |\n|---|---|\n| **Server software** | Paper 1.21.1+ |\n| **Java version** | Java 21+ |\n\n> ⚠️ This plugin will **not** work on Spigot or CraftBukkit. Paper is required.\n\n---\n\n## ❓ FAQ\n\n**Does this work with EssentialsX?**\nYes. EssentialsX commands like `/home`, `/warp`, `/tpa`, and `/back` are all blockable via `blocked-commands` in config.\n\n**Does this work with CMI / other home plugins?**\nYes, as long as you add the command to `blocked-commands` in config.\n\n**Do ender pearls count as combat?**\nNo. Ender pearl throws do not trigger combat tagging by design.\n\n**Can I change how long the tag lasts?**\nYes. Change `combat-duration` in `config.yml` and run `/combatme reload`.\n\n---\n\n## 🐛 Bugs & Support\n\nFound a bug or have a suggestion?\n\n📧 **Email:** [herzfnf@gmail.com](mailto:herzfnf@gmail.com)\n\nPlease include:\n- Your server version (e.g. Paper 1.21.1 build 123)\n- Your Java version (`java -version`)\n- A description of the issue or the full error from your console\n\n---\n\n*Made with ❤ by **Herza***",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 134,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

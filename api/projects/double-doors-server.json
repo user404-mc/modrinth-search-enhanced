@@ -1,0 +1,41 @@
+{
+  "id": "Fdj5mcgC",
+  "slug": "double-doors-server",
+  "title": "Double Doors Server",
+  "description": "A Bukkit/Spigot plugin that opens mirrored double doors together, with low-latency syncing and optional compatibility handling for common server stacks.",
+  "body": "# Double Doors Server\n\n[![GitHub Release](https://img.shields.io/github/v/release/SzaBee13/double-doors-spigot)](https://github.com/SzaBee13/double-doors-spigot/releases)\n[![GitHub License](https://img.shields.io/github/license/SzaBee13/double-doors-spigot)](https://github.com/SzaBee13/double-doors-spigot/blob/main/LICENSE)\n[![GitHub Issues](https://img.shields.io/github/issues/SzaBee13/double-doors-spigot)](https://github.com/SzaBee13/double-doors-spigot/issues)\n[![Modrinth Game Versions](https://img.shields.io/modrinth/game-versions/double-doors-server)](https://modrinth.com/plugin/double-doors-server)\n[![Crowdin](https://badges.crowdin.net/double-doors-server/localized.svg)](https://crowdin.com/project/double-doors-server)\n<br>\n[![Online players](https://img.shields.io/endpoint?url=https%3A%2F%2Ffaststats.dev%2Fapi%2Fshields%2Fdouble-doors-server%3Fmetric%3Donline_players&style=flat)](https://faststats.dev/project/double-doors-server)\n[![Online servers](https://img.shields.io/endpoint?url=https%3A%2F%2Ffaststats.dev%2Fapi%2Fshields%2Fdouble-doors-server%3Fmetric%3Donline_servers&style=flat)](https://faststats.dev/project/double-doors-server)\n\nA Bukkit/Spigot plugin that opens mirrored double doors together, with low-latency syncing and optional compatibility handling for common server stacks.\n\n## Features\n\n- Same-tick partner door sync (no scheduled 1-tick delay)\n- Strict mirrored pair matching for doors:\n  - same door type\n  - same facing direction\n  - opposite hinge\n  - side-by-side only\n- Optional recursive opening support for non-door openables (fence gates/trapdoors)\n- Per-player toggle: `/doubledoors toggle`\n- LuckPerms-friendly permission nodes\n- GriefPrevention compatibility check for linked-door claim access\n- Duplicate interaction debounce (helps packet duplication patterns seen with some Bedrock/Geyser flows)\n- Translation support via JSON language files (built-in + custom)\n\n## Official sources\n\n- [GitHub *www.github.com/SzaBee13/double-doors-server*](https://github.com/SzaBee13/double-doors-server)\n- [Modrinth *www.modrinth.com/plugin/double-doors-server*](https://modrinth.com/plugin/double-doors-server)\n- [Hangar *hangar.papermc.io/SzaBee13/double-doors-server*](https://hangar.papermc.io/SzaBee13/double-doors-server)\n- [CurseForge *www.curseforge.com/minecraft/bukkit-plugins/double-doors-server*](https://www.curseforge.com/minecraft/bukkit-plugins/double-doors-server)\n\n## Compatibility\n\n- Supports Minecraft Java Edition `1.21.X` `26.1.X`.\n### Geyser / Floodgate\n\n- Plugin declares soft-depends on `Geyser-Spigot` and `floodgate`.\n- A short duplicate-interaction debounce window is used to avoid rapid duplicate toggles on the same block.\n\n### LuckPerms\n\n- Works through standard Bukkit permissions, so LuckPerms applies automatically.\n- Use `doubledoors.use` to allow/deny linked opening behavior.\n\n### GriefPrevention\n\n- Plugin declares a soft-depend on `GriefPrevention`.\n- When present, linked-door interaction is checked against claim build permission before toggling the partner door.\n\n## Proxy Setup (Multi-Server)\n\nDoubleDoors includes an optional **Velocity proxy plugin** for Geyser/Floodgate environments with multiple backend servers.\n\n### Proxy Features\n\n- Shared SQL heartbeat/presence tracking across multiple proxies\n- Automatic detection of Geyser/Floodgate clients\n- Support for SQLite and MySQL databases\n- Connection pooling via HikariCP for efficient SQL resource usage\n\n### Proxy Installation\n\n1. Download the proxy JAR from the releases page (`doubledoors-proxy-<version>.jar`)\n2. Place it in your Velocity `plugins/` directory\n3. Restart the proxy\n4. A `plugins/DoubleDoors/proxy-config.properties` file will be generated\n\n### Proxy Configuration\n\nEdit `plugins/DoubleDoors/proxy-config.properties`\n\nFor more, visit the [wiki](https://github.com/SzaBee13/double-doors-server/wiki/Proxy-Setup)\n\n## Commands\n\n- `/doubledoors reload` - reload config\n- `/doubledoors toggle` - toggle behavior for yourself\n\nAlias: `dd`\n\nCheck out more commands at the [wiki](https://github.com/SzaBee13/double-doors-server/wiki/Commands-and-Permissions)\n\n## Permissions\n\n- `doubledoors.use` (default: `true`)\n- `doubledoors.toggle` (default: `true`)\n- `doubledoors.reload` (default: `op`)\n\nCheck out more permissions at the [wiki](https://github.com/SzaBee13/double-doors-server/wiki/Commands-and-Permissions)\n\n## Config\n\n`src/main/resources/config.yml`\n\n- `enableRecursiveOpening` (default: `true`)\n- `recursiveOpeningMaxBlocksDistance` (default: `10`)\n- `enableDoors` (default: `true`)\n- `enableFenceGates` (default: `true`)\n- `enableTrapdoors` (default: `true`)\n- `enableVillagerLinkedDoors` (default: `true`)\n- `serverWideEnabled` (default: `true`)\n- `language` (default: `en_US`)\n\nLanguage files:\n\n- Built-in fallback file: `src/main/resources/lang/en_US.json`\n- Runtime custom language folder: `plugins/DoubleDoors/lang/`\n- Set active language with `language: <code>` in `config.yml` (example: `language: de_DE`)\n- Custom files are JSON objects of key/value strings and override built-in messages when present.\n\n## License\n\nLicensed under the GNU General Public License v3.0.\nSee `LICENSE`.\n",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 645,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

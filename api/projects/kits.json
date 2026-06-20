@@ -1,0 +1,35 @@
+{
+  "id": "yeVTVdYd",
+  "slug": "kits",
+  "title": "Kits",
+  "description": "Permissions-based player kits for Fabric Servers.",
+  "body": "\n# Kits\n\nPermissions-based player kits for Fabric Servers.\n\n[![Release](https://img.shields.io/github/v/release/John-Paul-R/kits?style=for-the-badge&include_prereleases&sort=semver)][modrinth:files]\n[![Available For](https://img.shields.io/badge/dynamic/json?label=Available%20For&style=for-the-badge&color=34aa2f&query=$[:]&url=https%3A%2F%2Fwww.jpcode.dev%2Fkits%2Fsupported_mc_versions.json)][modrinth:files]\n\nKits is a **Minecraft mod** for [Fabric][fabric] servers that adds configurable,\npermissions-based player kits. This allows server owners to easily set up\nbatches of items that their players can claim, depending on their rank.\nAdditionally, kits can have a predefined cooldown, so that players do not get to\nuse them infinitely.\n\n**Compatible with LuckPerms**\n\n## Usage\n\n### Adding Kits\n\nCommand: `/kit add <kit_name> <cooldown> [time_unit]`\\\nRequires Permission: `kits.manage`\n\nTo add a kit, simply place the items you would like to be included in this kit\nanywhere in your inventory and run the command `/kit add`.\n\n> NOTE:\n> `[time_unit]` may be one of `d` (day), `h` (hour), `m` (minute), `s`\n> (second), `y` (year). If no time unit is specified, `cooldown` is interpreted\n> as milliseconds.\n\n### Claiming Kits\n\nCommand: `/kit claim <kit_name>`\\\nRequires Permission: `kits.claim.<kit_name>`\n\nFor players, claiming kits is simple. They simply type `/kit claim <kit_name>`.\nIf they have permissions to use the specified kit, and that kit is not on\ncooldown for them, they receive the kit in their inventory (or on the ground if\ntheir inventory is full.)\n\nBrigadier suggestions are enabled, and will only suggest kits the player has\npermissions for.\n\n### Removing Kits\n\nCommand: `/kit remove <kit_name>`\\\nRequires Permission: `kits.manage`\n\nTo remove a kit, simply type `/kit remove <kit_name>`. This _irreversibly and\ncompletely_ **deletes** the specified kit from the server, for all users.\n\n### Reset Player Kit Cooldowns\n\nIf, as a moderator, you wish to reset a player's kit cooldowns, allowing them to\nregain access to already-claimed kits, you can do so with the following\ncommands:\n\n#### Reset a single kit\n\nCommand: `/kit resetPlayerKit <player> <kit_name>`\\\nRequires Permission: `kits.manage`\n\n#### Reset all kits\n\nCommand: `/kit resetPlayer <player>`\\\nRequires Permission: `kits.manage`\n\n### Kit Rings\n\nKits supports **Kit Rings** - collections of kits that share a common cooldown. When a player claims any kit from a ring, all kits in that ring go on cooldown together.\n\nFor detailed information on Kit Rings, see [RINGS.md](https://github.com/John-Paul-R/kits/blob/1.21.x/docs/RINGS.md).\n\n## Advanced\n\n**Kits** stores most of its data in `nbt` files, using Minecraft's NBT format.\nYou can modify and create such files with a tool like [NBTExplorer][nbtexp].\n\n### Kit Config Files\n\nIf, for whatever reason, you wish to configure kits manually, instead of using\nthe built-in commands, you can do so by modifying the kit files directly.\n\nKit files are stored in the directory `config/kits` in Minecraft's NBT format.\n\nThis allows you to modify kit contents or cooldowns after creation, or even add\nentirely new kits.\n\n### Player Kit Usage Files\n\nWhenever a player successfully claims a kit, the time at which this kit was\nclaimed is recorded in a user-specific file named `<player_uuid>.nbt` in the\ndirectory `world/kits_user_data`.\n\nIf you wish to reset or modify when a user can next use a kit that they have\nalready claimed, you can edit the time specified in this file (stored as\n[milliseconds since Epoch](https://www.epochconverter.com/)). To reset all kit\ncooldowns for a given user, simply delete the nbt file that corresponds to them.\n\n---\n\n## Contributing\n\nThank you for considering contributing to Kits! Please see the [Contribution\nGuidelines][contributing].\n\n## Licence\n\nKits is open-sourced software licenced under the [MIT license][licence].\n\n## Discord\n\nQuestions? Contact me in [my Discord server][discord].\n\n[nbtexp]: https://github.com/jaquadro/NBTExplorer\n[contributing]: .github/CONTRIBUTING.md\n[curseforge]: https://curseforge.com/minecraft/mc-mods/kits\n[curseforge:files]: https://www.curseforge.com/minecraft/mc-mods/kits/files\n[modrinth:files]: https://modrinth.com/mod/kits/versions\n[fabric]: https://fabricmc.net/\n[licence]: LICENCE\n[minecraft]: https://minecraft.net/\n[releases]: https://github.com/John-Paul-R/kits/releases\n[security]: .github/SECURITY.md\n[discord]: https://discord.jpcode.dev/",
+  "categories": [
+    "equipment",
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 97319,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.21.1",
+    "1.21.2",
+    "1.21.5",
+    "1.21.7",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

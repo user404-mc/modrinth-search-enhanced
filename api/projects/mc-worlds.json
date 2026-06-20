@@ -1,0 +1,43 @@
+{
+  "id": "rDdf0tz6",
+  "slug": "mc-worlds",
+  "title": "Worlds",
+  "description": "A mod to support infinite worlds (dimensions). Worlds with own weather, time, End Dragon and all vanilla mechanics.",
+  "body": "# Worlds\n\nA Minecraft mod that allows you to create and manage worlds in-game using simple commands.\n\n## Features\n\n- Create new worlds with custom IDs and optional seeds\n- Create worlds from presets (flat world, amplified, large biomes, etc.)\n- Default world creation uses normal overworld dimensions\n- Delete worlds safely (removes all players first)\n- Teleport between worlds easily\n- Lazy worlds loading (support for infinite worlds)\n- Create fully functional Overworld, End and Nether worlds (mod includes fixes to enable End Dragon and other vanilla mechanics in the custom worlds)\n- **API for other mods to register custom level providers**\n\n## Commands\n\nAll commands use the base `/worlds` command:\n\n### Create Command\n\nThe `/worlds create` command allows you to create new worlds with various options:\n\n**Basic usage:**\n- `/worlds create <id>` - Creates a new normal overworld with the specified ID and a random seed\n- `/worlds create <id> <seed>` - Creates a new normal overworld with the specified ID and seed\n\n**Create from preset:**\n- `/worlds create <id> from-preset <preset>` - Creates a world using a specific world preset (e.g., `minecraft:flat`, `minecraft:amplified`, `minecraft:large_biomes`)\n- `/worlds create <id> from-preset <preset> <seed>` - Creates a world from a preset with a specific seed\n- `/worlds create <id> from-preset <preset> <dimension>` - Creates a world from a preset using a specific dimension from that preset\n- `/worlds create <id> from-preset <preset> <dimension> <seed>` - Combines preset, dimension, and seed options\n\n**Create from dimension:**\n- `/worlds create <id> from-dimension <dimension>` - Creates a world using an existing dimension type (e.g., `minecraft:overworld`, `minecraft:the_nether`, `minecraft:the_end`)\n- `/worlds create <id> from-dimension <dimension> <seed>` - Creates a world from a dimension with a specific seed\n\n**Examples:**\n```\n/worlds create myworld\n/worlds create myworld 12345\n/worlds create flatworld from-preset minecraft:flat\n/worlds create amplified from-preset minecraft:amplified 67890\n/worlds create nether from-dimension minecraft:the_nether\n/worlds create custom_end from-dimension minecraft:the_end 11111\n```\n\n### Delete Command\n\n- `/worlds delete <id>` - Deletes the specified world and kicks all players currently in it\n\n### Teleport Command\n\n- `/worlds tp <id> [targets]` - Teleports you (or specified players) to the world\n\n### Settings Command\n\nThe `/worlds settings` command allows you to view and modify settings for the current world you're in. Similar to Minecraft's `/gamerule` command, you can query the current value by omitting the new value parameter.\n\n**Load on Startup:**\n- `/worlds settings loadOnStartup` - Displays whether the world loads automatically on server start\n- `/worlds settings loadOnStartup <true|false>` - Enable or disable automatic loading on server start\n  - When enabled (`true`), the world will load automatically when the server starts\n  - When disabled (`false`), the world will only load when a player enters it (lazy loading)\n\n**Spawn Point:**\n- `/worlds settings spawn` - Displays the current spawn point and rotation\n- `/worlds settings spawn here` - Sets the spawn point to your current position and rotation\n- `/worlds settings spawn <x> <y> <z>` - Sets the spawn point to specific coordinates (rotation defaults to 0, 0)\n\n**Examples:**\n```\n/worlds settings loadOnStartup\n/worlds settings loadOnStartup true\n/worlds settings loadOnStartup false\n/worlds settings spawn\n/worlds settings spawn here\n/worlds settings spawn 100 64 200\n```\n\n**Note:** These commands affect the world you're currently in. Navigate to the world you want to configure before running the command.\n\n## Importing worlds from World Manager\n\n1. Replace World Manager mod with Worlds\n2. use `/worlds create {world_id_to_import} {world_type} {world_seed}`\n   You need to specify same world id, type and seed that world had when was created with \"World Manager\", only classic Overworld, End and Nether worlds supported\n\n## For Mod Developers\n\nMC Worlds provides an API that allows other mods to register custom server level providers. This enables you to create worlds with custom behavior, special rules, or unique mechanics.\n\n### Quick Start\n\n1. Add MC Worlds as a dependency in your `fabric.mod.json`\n2. Implement the `ServerLevelProvider` interface\n3. Register your provider using `WorldsRegistries.LEVEL_PROVIDER_REGISTRY`\n\nFor detailed documentation and examples, see [API.md](https://github.com/Wroud/mc-worlds/blob/main/API.md).\n\n## Requirements\n\n- Fabric Loader\n- Minecraft 1.21.8+",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "quilt",
+    "worldgen"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 5229,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9-pre4",
+    "1.21.9-rc1",
+    "1.21.9",
+    "1.21.10-rc1",
+    "1.21.10",
+    "1.21.11",
+    "26.1-pre-1",
+    "26.1-pre-2",
+    "26.1-pre-3",
+    "26.1-rc-1",
+    "26.1-rc-2",
+    "26.1-rc-3",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2-pre-1",
+    "26.2-pre-2",
+    "26.2-pre-3",
+    "26.2-pre-4",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

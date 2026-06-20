@@ -1,0 +1,22 @@
+{
+  "id": "Uxm6iBHp",
+  "slug": "carbonised-mod",
+  "title": "Carbonised",
+  "description": "Copper: Reworked",
+  "body": "# Carbonised\nVanilla copper is a bit... weird. You basically _have_ to spread it out at least 5 blocks or else it will barely oxidise at all. This, frankly, doesn't make any sense. So I changed it!\n\n## Brief\n- Copper will now oxidise at the same* speed, even when surrounded by other copper blocks.\n- Batches of copper blocks will try to balance their oxidisation levels **without cancelling any oxidisation attempts.**\n  - Added a new gamerule `oxidisationRadius` (default: 4), which controls the radius in which copper blocks attempt to preserve balance. (Note that larger collections of copper will still age at roughly the same rate regardless) Setting this value to 0 disables balancing.\n- *Copper blocks oxidise slower the more full blocks surround them\n- Copper blocks will oxidise faster when underwater\n\n## Details for Nerds\n### What happened previously?\nPreviously, whenever a copper block tries to oxidise, it will search for any block less oxidised in a 9x9x9 area. If it finds one, it doesn't oxidise. I can only guess that this was an attempt to make copper oxidise evenly, but it ends up making groups of copper almost never oxidise.\n\n### So what happens now?\nWhen a copper block attempts to oxidise, it searches for a less oxidized block within a 4 block distance (or higher depending on `oxidisationRadius`) that has a physical connection to it. If it finds one, it oxidises that block instead. This leads to higher synchronicity on connected surfaces and makes those oxidise at roughly the same speed as normal spread out copper blocks.\n\nHowever! The fewer sides of a copper block are exposed to air or water, the fewer [random ticks](https://minecraft.wiki/w/Tick#Random_tick) will be turned into oxidisation attempts. Blocks that are completely surrounded will not attempt to oxidise, but can still become oxidised through other copper blocks.\n\nFor every side of a copper block that is surrounded by water, its probability of oxidising will increase (equivalently to the decrease noted above). That means if a copper block is surrounded by other blocks on four sides but has two sides touching water, its oxidisation chance will multiply by `((6 - 4 + 2)/6) = (4/6)`. Note that due to a technical limitation the final oxidisation chance cannot exceed 1. In the end, a single copper block submerged in water behaves exactly the same as one floating in the air.\n\n\n## Translation Note\nI have added names for the new gamerule in German and British and American English. Since I don't know any languages besides that the gamerule will appear by its command name in those languages. Feel free to open issues on the issue tracker with a suggested translation for your own language, should you miss it.",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 427,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

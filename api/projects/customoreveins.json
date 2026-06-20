@@ -1,0 +1,28 @@
+{
+  "id": "rMWqXxl3",
+  "slug": "customoreveins",
+  "title": "Custom Ore Veins",
+  "description": "Allows you to add more types of large ore veins through datapacks",
+  "body": "![Redstone vein](https://cdn.modrinth.com/data/rMWqXxl3/images/65e34c3454f679e5e28381c37ea230af18188fa8.png)\n**Redstone vein from the example datapack.**\n\n\n\n\nWith this mod you can configure more types of large ore veins other than iron and copper. It doesn't add any by default, it reads data/yournamespace/worldgen/custom_ore_veins/yourvein.json files from each datapack, which should have the following format:\n\n    dimension: dimension type in which this vein is generated (overworld if not specified).\n      toggle: determines the regions of the world in which this vein can be generated:\n      density: a density function from which the toggle value is calculated.\n      max_value: maximum value of the toggle value at which the veins are generated (optional if min_value is specified).\n      min_value: minimum value of the toggle value at which the veins are generated  (optional if max_value is specified).\n      min_y: minimum Y at which the vein is generated.\n      max_y: maximum Y at which the vein is generated.\n    ridged: determines the shape of the veins. If not specified, it uses the same as the vanilla copper and iron veins, which is not recommended because it causes them to overlap with the added ones.\n      density: density function from which the ridged value is calculated (optional, see above).\n      min_value: minimum ridged value at which blocks are generated (default is 0).\n    gap: determines where ores are generated as opposed to the base stone. If not specified, it uses the vanilla one.\n      density: density function from which the gap value is calculated (optional, see above).\n      min_value: minimum gap value at which ores are generated (default is -0.3).\n    stone: base rock block.\n    ore: ore block.\n    raw_ore: raw ore block (same as ore if not specified).\n    min_ore_chance: chance of generating a ore block in the outer part of the vein (default: 0.16).\n    max_ore_chance: chance of generating a ore block in the inner part of the vein (default: 0.5).\n    raw_ore_chance: chance of replacing a ore block with a raw ore one (default 0.02).\n\n \n\nIf you (understandably) don't want to learn about density functions and stuff, you can copy and rename each file from the [example datapack](https://github.com/orlouge/custom-ore-veins/tree/1.20/datapacks/example) (which adds redstone and coal veins) for each pair of vein type, and then change the stone, ore, raw_ore blocks and the references to the noise functions (ore_veinness, etc.). Note that the veins from the same pair are never generated at the same location (just like copper and iron), if you don't want that you can add only one vein file for each set of noise files instead of two.\n\n ",
+  "categories": [
+    "decoration",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 751,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

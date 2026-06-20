@@ -1,0 +1,25 @@
+{
+  "id": "6o9zaNB9",
+  "slug": "flashbackturbo",
+  "title": "Flashback Turbo",
+  "description": "Field-proven faster Flashback exports, without quality loss — up to ~11x, ~8.5s for a 1080p60 clip on NVIDIA.",
+  "body": "# FlashbackTurbo\n\nA Fabric addon for [Flashback](https://modrinth.com/mod/flashback) that **drastically speeds up video export — without quality loss.**\n\n## Proven in the field\n\nValidated across **hundreds of real anonymous exports** on **Windows (primary platform), macOS and Linux**. Export failure rate **~1%**, and every observed failure was external (not enough RAM allocated for very long replays, or the game closed mid-export) — never a regression introduced by FlashbackTurbo itself.\n\n## What it does\n\nPatches Flashback's export pipeline via Mixin to replace serial, low-tuned operations with parallel ones:\n\n- **Parallel PNG writer** (N-1 threads) + configurable zlib level + RGB color-type when transparency is off\n- **FFmpeg threading tunes** per encoder (`h264_nvenc`, `h264_qsv`, `h264_videotoolbox`, `libopenh264`)\n- **Removes the silent 4K downscale cap**\n- **Fragmented MP4** muxer on hardware encoders → ~10× faster finalize\n- **Animated \"Saving…\" overlay** during the post-export phase\n- **Fixes a Flashback crash** on mid-replay exports (null `mc.level` race)\n- **Auto-promotes software → GPU encoding (0.5.0)** — when an export would use the slow `libopenh264` encoder, redirects it to a hardware encoder (NVENC/QSV) when one is available, for the ~13% of exports on software-only configs. Fail-safe, SSIM ≥ 0.99.\n- **Silent auto-update (0.6.0)** — keeps your Zeffut mods up to date from Modrinth automatically: background check on launch, verified download, swap at game exit. Opt out with `\"autoUpdate\": false` in the config.\n\nAll hooks are opt-in via `config/flashbackturbo.json` and default to safe values.\n\n## Performance\n\n### Controlled benchmark (PNG sequence)\n\nReal 1.21.11 replay, 10-second slice at 1920×1080 (603 frames):\n\n| Mode    | Total     | Per frame |\n|---------|-----------|-----------|\n| Vanilla | 96 081 ms | 159 ms    |\n| Turbo   |  8 774 ms |  14 ms    |\n\n**10.95× end-to-end.**\n\n### Real-world field data (MP4 export)\n\nMedian export time across real exports (~1080p clips), by encoder:\n\n| Platform · encoder              | Median export      |\n|---------------------------------|--------------------|\n| Windows · NVIDIA `h264_nvenc`   | **~8.5 s** (60 fps) |\n| Windows · Intel `h264_qsv`      | ~23 s (60 fps)     |\n| macOS · `h264_videotoolbox`     | ~26 s (30 fps)     |\n| Software fallback `libopenh264` | ~55 s              |\n\nFastest on Windows + an NVIDIA GPU. A coming release auto-promotes pure-software exports to the GPU encoder when one is available.\n\n## Quality\n\nLossless PNG output — zlib level only changes file size, decoded pixels are bit-identical. The FFmpeg threading tunes don't change the encoded bitstream.\n\n## Privacy\n\nSince 0.4.0, FlashbackTurbo sends **anonymous** usage telemetry (PostHog) to prioritise improvements: a random local UUID, no username / IP / file paths, sanitised exception messages. Fully fail-safe (it can never slow down or break an export) and **opt-out** — set `\"enableTelemetry\": false` in the config.\n\n## Requirements\n\n- [Flashback](https://modrinth.com/mod/flashback) and [Fabric API](https://modrinth.com/mod/fabric-api)\n- Minecraft 1.21.9 / 1.21.10 / 1.21.11 (Java 21) — or 26.1.x (Java 25)\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 3063,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

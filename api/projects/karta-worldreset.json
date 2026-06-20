@@ -1,0 +1,35 @@
+{
+  "id": "teZTbHhK",
+  "slug": "karta-worldreset",
+  "title": "Karta WorldReset",
+  "description": "Automated, highly configurable, and modern world reset management plugin for Minecraft.",
+  "body": "<div align=\"center\">\n\n# 🌍 KartaWorldReset\n**Automated, highly configurable, and modern world management plugin for Minecraft.**\n\n[![Version](https://img.shields.io/badge/Version-2.0.0-success?style=for-the-badge&logo=minecraft)](#)\n[![API](https://img.shields.io/badge/API-Paper_1.21-blue?style=for-the-badge&logo=java)](#)\n[![Framework](https://img.shields.io/badge/Commands-Cloud_V2-orange?style=for-the-badge)](#)\n[![Formatting](https://img.shields.io/badge/Text-MiniMessage-purple?style=for-the-badge)](#)\n\n*An essential tool for Minecraft servers requiring seasonal resets, resource worlds, or scheduled wipes with built-in backup safety and zero hassle.*\n\n</div>\n\n---\n\n## ✨ Features\n\n- ⏳ **Automated Scheduling**: Set precise reset schedules (e.g., every 30 days, or on a specific cron-like interval).\n- 🎨 **Modern Aesthetics (MiniMessage)**: 100% configurable messages using HEX colors, gradients, click events, and hover tooltips (`messages.yml`).\n- ⚡ **Blazing Fast Commands**: Powered by Incendo's *Cloud Command Framework V2* for intelligent, context-aware **Tab Completion**.\n- 🎯 **Targeted Resets**: Reset all worlds at once, or target specific worlds gracefully (`/kwr reset resource_world`).\n- 🛡️ **Safety First**: Asynchronous and synchronous backup generation before resets.\n- 📦 **Multiverse Integration**: Hooks directly into Multiverse-Core for safe unloading, cloning, and physical deletion of world folders.\n- 🔗 **PlaceholderAPI Support**: Display countdowns and reset info anywhere (holograms, scoreboards) with `%kwr_time_left%` and `%kwr_next_reset%`.\n- 🚷 **Player Evacuation**: Automatically teleports players to a safe fallback/lobby world before wiping the ground beneath them!\n\n---\n\n## 🚀 Getting Started\n\n### 1. Requirements\n- **Server Software:** Paper (or forks like Purpur, Folia) version **1.21+**.\n- **Java:** Java 21+.\n- **Soft Dependencies:** [Multiverse-Core](https://modrinth.com/plugin/multiverse-core) (highly recommended for world management), [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/).\n\n### 2. Installation\n1. Download the latest `KartaWorldReset-2.0.0.jar` release.\n2. Drop it into your server's `plugins/` folder.\n3. Restart your server to generate the configuration files.\n4. Modify `config.yml` and `messages.yml` to fit your server's economy and theme!\n\n---\n\n## 🛠️ Commands & Permissions\n\nKartaWorldReset provides intelligent subcommands under the generic `/kwr` namespace.\n*Aliases:* `/worldreset`, `/quest`, `/adventurequest`, `/quests`\n\n| Command | Permission Node | Description |\n| :--- | :--- | :--- |\n| `/kwr help` | *None* | Displays the interactive help menu. |\n| `/kwr info [clock]` | `kartaworldreset.info` | View the countdown to the next global reset, or check the internal server clock. |\n| `/kwr status` | `kartaworldreset.admin` | Shows a technical summary profile of the plugin hook status. |\n| `/kwr addworld <world>` | `kartaworldreset.admin.schedule` | Adds an active world to the auto-reset watchlist. |\n| `/kwr removeworld <world>`| `kartaworldreset.admin.schedule` | Removes a world from the watchlist. |\n| `/kwr autogen` | `kartaworldreset.admin.schedule` | Evaluates the config and artificially generates the next reset timestamp. |\n| `/kwr pause` / `resume` | `kartaworldreset.admin` | Pauses or unpauses the scheduled cron-timer. |\n| `/kwr backup <world|all>` | `kartaworldreset.admin.backup` | Manually triggers the backup generation system. |\n| `/kwr reload` | `kartaworldreset.admin.reload` | Hot-reloads all `.yml` files without restarting the server. |\n| `/kwr reset [target]` | `kartaworldreset.admin.reset` | **DANGER**: Triggers a manual reset. Requires typing `/kwr reset confirm` within 30s as a safety mechanism. |\n\n---\n\n## ⚙️ Configuration Guides\n\n### 📝 The `config.yml` Core Settings\n\nHere is a brief overview of what you can control:\n- `Interval.days` / `hours` / `minutes`: Set exactly how long a \"season\" lasts.\n- `Lobby.world` / `x` / `y` / `z`: The evacuation safe-zone coordinate for players inside wiping worlds.\n- `Worlds`: The list of exact Multiverse world names to reset.\n- `Backup`: Enable/disable world-zipping before deletion, limiting maximum stored backups to save disk space.\n- `Notifications`: Tune when the Chat, ActionBar, and Title warnings appear (e.g., `3600, 1800, 300, 60, 10, 5`).\n\n### 🎨 The `messages.yml` Aesthetics Layer\n\nUnlike legacy plugins, KartaWorldReset uses [MiniMessage](https://docs.advntr.dev/minimessage/format.html). \nAdd gradients, hover-text, and run-commands easily! \n\n**Example Custom Gradient Title:**\n```yaml\nreset-title: \"<gradient:#FF416C:#FF4B2B><bold>Resetting Worlds...</bold></gradient>\"\nreset-subtitle: \"<gray>Creating new adventures, sit tight!</gray>\"\n```\n\n---\n\n## 🧩 PlaceholderAPI Hooks\n\nIf PlaceholderAPI is installed, KartaWorldReset automatically registers the following placeholders:\n\n- `%kwr_time_left%` — Beautifully formatted string (e.g., `5d 12h 30m`).\n- `%kwr_next_reset%` — The absolute date formatted via `config.yml` patterns.\n- `%kwr_worlds%` — A comma-separated list of tracked worlds.\n- `%kwr_backup_status%` — Returns `Enabled` or `Disabled`.\n\n---\n\n## 👨‍💻 Developer API (Coming Soon)\n`KartaWorldReset` is built to be modular. Future versions will expose a native API for developers to listen to `WorldResetEvent`, `WorldPreResetEvent`, and manage schedules internally from other plugins.\n\n<div align=\"center\">\n<i>Crafted with ❤️ by Minekarta Studio.</i>\n</div>",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 480,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

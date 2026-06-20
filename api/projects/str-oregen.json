@@ -1,0 +1,30 @@
+{
+  "id": "CeqW3bwo",
+  "slug": "str-oregen",
+  "title": "STR OreGen",
+  "description": "Bukkit plugin that randomly adds extra ores to a Minecraft server world as new chunks are generated.",
+  "body": "This Bukkit plugin will randomly add extra ores to new chunks as they are generated.  At this time, only the default Minecraft ores are supported.  Currently, the ore generation only works in the Over World.  Even though the generation only takes place in the Over World, ores from any dimension may be used.\n\n\nThe ores are generated in spherical blobs based on a configuration file.  The default configuration file will be created after the plugin's first run.  For best use, this plugin should be used with brand new worlds.  A reproducible seed value is generated for each ore in the configuration and per each individual chunk.  If the world is deleted and regenerated and no changes have been made to the world seed or configuration, the ores will generate in the exact same locations.  Changing the world seed will change the locations where the ores generate.  Making any changes to the configuration for an ore will change the locations where the ore generates.\n\n\nHere is a quick explanation of the configuration file:\n\n```\noreGenSettings:\n  - ==: OreGenSettings\n    percentChancePerTry: 40.0\n    maxPerChunk: 2\n    ore: CLAY\n    triesPerChunk: 4\n    percentChancePerBlock: 80.0\n    radius: 5.5\n    logAttempts: 'true'\n    replacedBlocks: SAND,DIRT,COARSE_DIRT,GRASS_BLOCK,GRAVEL\n```\n\n* __ore__: This is ore that will be added to the chunk.\n* __radius__: The radius of the sphere to be generated.  Minimum is 0.5 and the maximum will typically be 16 but is computed on the fly and if the configuration value is larger than the computed max then the computed max will be used.\n* __triesPerChunk__: This controls how many times the plugin will attempt to add the ore to the chunk.  There are several reasons why adding the ore will fail.  Minimum is 1, maximum is 50.\n* __maxPerChunk__:  This is the maximum number of successful attempts to add the ore to the chunk.  Even if only one block is converted to the ore, this is considered a success.    Minimum is 1, maximum is 50.\n* __percentChancePerTry__:  This is a percent value (i.e. 40 is 40%.)  If this check fails, the attempt is not successful.  This is a double sized value and can be very small so as to make some ores very rare.  Minimum is 0, maximum is 100.\n* __percentChancePerBlock__:  This is a percent value (i.e. 80 is 80%.)  If this check fails, the block will not be converted to the ore.  Minimum is 0, maximum is 100.\n* __replacedBlocks__:  *Optional*.  If not specified, the default list of replaced blocks will be:  GRANITE, STONE, ANDESITE, DIORITE, CALCITE, DEEPSLATE, TUFF\n* __logAttempts__:  *Optional*.  If specified as 'true', both failed and successful attempts to generate the ore will be added to the server's logs.\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "spigot",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 410,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

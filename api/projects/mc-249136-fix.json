@@ -1,0 +1,30 @@
+{
+  "id": "QzMW0gl4",
+  "slug": "mc-249136-fix",
+  "title": "MC-249136 Fix",
+  "description": "A hacky fix for server lag spikes when generating shipwreck buried treasure map / explorer map loot.",
+  "body": "<table><tbody><td>\n\n## **NOTICE**\n\n[MC-249136 appears to have been fixed](https://bugs.mojang.com/browse/MC-249136) in newer versions of Minecraft! As such, I've decided not to update this mod for 1.20.5-onwards.\n \nIf you still encounter problems with treasure maps in 1.20.5+, please [create an issue](https://gitlab.com/horrific-tweaks/MC-249136/-/issues/new) to let me know!\n      \n</td></tbody></table>\n\n# MC-249136 Fix\n\n[![Requires Fabric API](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/cozy/requires/fabric-api_vector.svg)](https://modrinth.com/mod/fabric-api)\n[![Available on GitLab](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/cozy/available/gitlab_vector.svg)](https://gitlab.com/horrific-tweaks/MC-249136)\n[![Available on Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/mc-249136-fix)\n\nThis mod implements a minimal hacky fix for [MC-249136](https://bugs.mojang.com/browse/MC-249136), a significant server lag spike that occurs when locating buried treasure structures for shipwreck loot.\n\nTo avoid this lag spike, structure location is moved into a separate thread that does not block the server tick loop. This does nothing to improve the structure location performance, but it does at least prevent it from significantly impeding gameplay.\n\n![An empty Minecraft buried treasure map, with the text \"Loading\" in the center](https://gitlab.com/horrific-tweaks/MC-249136/-/raw/main/screenshot.png?v=1)\n\n## Configuration\n\nThe map \"loading\" images can be customized by placing `128x128` PNG files in `/config/mc249136/map_loading.png` and `/config/mc249136/map_not_found.png`.\n\nFor performance reasons, these images will draw all pixels as black unless they are fully transparent (i.e. `rgba(0,0,0,0)`). Minecraft's map color palette is difficult and expensive to calculate - so this mod literally just does an `if (rgb != 0)` to draw the image.\n\nKnown issues:\n- This mod does not handle state persistence, and only updates loaded maps once they are inside a player's inventory.\n  This means that it is possible to prevent a treasure map from loading by breaking the chest, leaving it in item entity\n  form, and then restarting the server.\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 75366,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

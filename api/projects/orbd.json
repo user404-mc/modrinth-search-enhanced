@@ -1,0 +1,21 @@
+{
+  "id": "mtPCNG6V",
+  "slug": "orbd",
+  "title": "Orb'd",
+  "description": "Redefining Origin Orbs!",
+  "body": "Ever had the thought it would be cool if you could assign specific origins to a special orb? Well now you can! introducing:\n\n# Orb'd\nOrb'd is an Origins Addon which allows you to define custom Orbs of Origin through Json! \n\nImplementation of data-driven orbs is quite simple and requires very little setup.\n\n# How do I define Custom Orbs?\nIn your datapack, create the following file path:\n`datapackname/data/namespace/orbs/`\nthis is the file path for all custom orbs, meant to keep them all in one nice place.\nNext up is the Json structure, its quite simple & small so no headaches required.\n\n```JSON\n{\n  \"orb_name\": \"Fire Orb\", // Name of Orb\n  \"orb_description\": \"Grants the powers of a Fire Elemental.\", // Description of the orb\n  \"orb\": \"orbd:fire_orb\", // ID of the orb, allows for unique ids (namespace:id)\n  \"origin\": \"origins:blazeborn\" // Origin to turn into (in this case blazeborn)\n}\n```\n\n# What if I want Multiple Origins in an Orb?\nInstead of using `\"origin\": \"origins:blazeborn\"` to define an origin, we can use `\"origins\": [\"namespace:id\", ect]` to define a set of origins that orb can turn you into. Using a multi-orb, it will put the player into a restricted Origins Menu for the specified origins. This also works with other origin layers (such as `origins-classes` and custom made layers.) Do not use both `\"origin\"` and `\"origins\"` in the same orb file. Do not try and cross layer either, it will not work.\n\n```JSON\n{\n  \"orb_name\": \"Tri-Orb\", // Name of Orb\n  \"orb_description\": \"Holds the power of 3 different Origins.\", // Description of the orb\n  \"orb\": \"orbd:tri_orb\", // ID of the orb, allows for unique ids (namespace:id)\n  \"origins\": [\"origins:blazeborn\", \"origins:arachnid\", \"origins:phantom\"] // Origins to turn into \n}\n```\n\n# I want Custom Textures though!\nDefining custom textures for your custom orb is also pretty simple and only requires basic resource pack knowledge. Orb'd uses minecraft's override system to keep things simple, however a new system will be put into place in the future, but for now this works.\n\n```JSON\n{\n  \"parent\": \"item/generated\", // Original model\n  \"textures\": {\n    \"layer0\": \"origins:item/orb_of_origin\" // Original texture\n  },\n  \"overrides\": [\n    {\n      \"predicate\": { \"custom_model_data\": 42700 }, // Custom model data\n      \"model\": \"item/fire_orb\" // The model\n    }\n  ]\n}\n```\nDo note other resource packs may conflict with other ones.\n\n# How do I give myself the Custom Orb?\nYou can use this command to grab your custom orb:\n\n`/give @s orbd:generic_orb{orb_id:\"namespace:id\"} 1`\n\n# You Did it!\nAnd thats it! You've completely defined a custom orb bound to one origin!",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 237,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

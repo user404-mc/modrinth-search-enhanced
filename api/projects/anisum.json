@@ -1,0 +1,24 @@
+{
+  "id": "KikOIfnh",
+  "slug": "anisum",
+  "title": "Anisum",
+  "description": "Add the items from the datapacks to Creative Mode Tab",
+  "body": "# Anisum\n\nAnisum is a NeoForge-based Minecraft mod that collects items from loot tables and syncs them into client creative tabs for easier content organization and browsing.\n\n## Features\n\n- Define tab sources and ordering through datapack JSON files.\n- `include` rules support exact match, wildcard, and regex patterns.\n- Automatically reprocesses loot tables after server datapack reload.\n- Syncs tab payloads to players on join.\n\n## Configuration\n\nAnisum reads JSON definitions via a resource reload listener with the `anisum` directory prefix. Typical location:\n\n- `data/<namespace>/anisum/<name>.json`\n\nExample:\n\n```json\n{\n  \"location\": \"anisum:demo\",\n  \"name\": { \"translate\": \"itemGroup.anisum.demo\" },\n  \"include\": [\n    \"examplemod:chests/simple_dungeon\",\n    \"examplemod:chests/*\",\n    \"examplemod:chests/.*_rare\"\n  ],\n  \"sort\": [\n    \"examplemod:chests/simple_dungeon\",\n    \"examplemod:chests/*\"\n  ]\n}\n```\n\nField notes:\n\n- `location`: target tab identifier (`namespace:path`).\n- `name`: tab display name (text component).\n- `icon`: optional tab icon (empty if omitted).\n- `include`: optional list of loot table matching rules.\n- `sort`: optional list of ordering rules.\n\nSupported rule formats for `include` / `sort`:\n\n- Full path: `namespace:path/to/table`\n- Wildcard: `namespace:path/to/*_cell`\n- Regex: `namespace:path/to/.*_cell`",
+  "categories": [
+    "library",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 43921,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

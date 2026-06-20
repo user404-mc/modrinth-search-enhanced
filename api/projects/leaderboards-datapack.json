@@ -1,0 +1,34 @@
+{
+  "id": "zyFuJ0rz",
+  "slug": "leaderboards-datapack",
+  "title": "LeaderBoards Datapack",
+  "description": "A Datapack to place LeaderBoards Ranking players of your server on a given scoreboard objective.",
+  "body": "# LeaderBoards Datapack 1.21.6+\n\nA Datapack to place LeaderBoards Ranking players of your server on a given scoreboard objective\n\n![Fixed Leaderboard example](https://cdn.modrinth.com/data/cached_images/291cff70d6a66cfb2ff6dd5f85803a5077e65344.png)\n\n## How to use\n\nLeaderBoards Datapack 1.21.6+ uses the Dialog feature to provide an easy to use interface to create and edit Leaderboards\n\n![Add Leaderboard Dialog menu](https://cdn.modrinth.com/data/zyFuJ0rz/images/c966a1c5ba74f92b01a0bfa45df237209e1852e3.png)\n\n### Add a LeaderBoard\n\n```\n/function leaderboard:_dialog/add_leaderboard_dialog\n```\n\n- **Scoreboard objective name** is the most important parameter, it sets the scoreboard objective to be displayed in the Leaderboard. This **MUST** match the **exact** score name.  \nExample: if you create a scoreboard with the command: \n`/scoreboard objectives add score_name dummy \"My score\"`, the _Scoreboard objective name_ to use will be `score_name` and **NOT** `My score`\n\n- **Displayed Title** is the name that will be displayed on top of the leaderboard\n\n- **time_mode** option displays the score as a time with hours, minutes, seconds and 1/20th of a second (ticks). It requires the given score to be a time in ticks.  \nExtended, keeps ms even when value is larger than 1 hour  \nStopwatch, is more suited for the new `/stopwatch` command release in 1.21.11. It requires the given socre to be a time in ms. To get such a time you can use the following example:\n`/execute store result score @p score_name run stopwatch query minecraft:foo 1000` Note that the x1000 scaling allows to get a time in ms\n\n- **reverse_order** option reverses the order of the players in the LeaderBoard. Puts the lowest score first\n\n- **no_zero** option removes players with either no score or a score that equals 0 from the LeaderBoard. This is especially useful in reverse mode to avoid having new players at the top of the LeaderBoard by default\n\n- **billboard** option sets the billboard type that the LeaderBoard will use  \nIt can be set to vertical, horizontal or fixed  \nWhen using **fixed** billboard type, the direction is set from the head direction of the player executing the command  \ntips: you can use `/tp @s ~ ~ ~ x y`, with x and y set to the rotation if you want the leaderboard to be aligned to a specific angle\n\n- **medal_color** option adds medal like colors the the top 3 ranks\n\n- **show_heads** option adds the player heads next to it's name **_(1.21.9+ only)_**\n\n- **always_show_closest_player** option highlights the line of the nearest player. If this player's rank is not present in the base list (cause of max_players option), it will add an extra line under the default one with the closest player score\n\n- **bright** option sets the text_displays with constant full brigthness\n\n- **Custom player list** this is an advanced feature, leave empty to get the default list of player built by the datapack  \nThis parameter allows to use a different storage list for a specific Leaderboard. This can be used to display scoreboard scores that aren't directly related to a player. For example a custom objective tracking teams scores  \nThe syntax is `<storage_name> <list_name>`  \nFor example if you create your list this way:\n`/data modify storage my_storage:custom_namelist names set value [\"Team1\",\"Team2\",\"Team3\"]`\nyou need to use\n`my_storage:custom_namelist names` in the Custom player list field  \nwarning: this might have some unexpected behaviour when used with `always_show_closest_player` and a list that does not contain the nearest player\n\n### Remove a LeaderBoard\n\nThis will remove the nearest LeaderBoard\n\n```\n/function leaderboard:commands/remove_leaderboard\n```\n\n### Edit a LeaderBoard\n\nThis will edit the nearest LeaderBoard\n\n```\n/function leaderboard:_dialog/edit_leaderboard_dialog\n```\n\n### Uninstall\n\n```\n/function leaderboard:commands/uninstall\n```\n\n(Only keeps the storage leaderboard:namelist in case you want to re-enable it)\n\n## Back compatibility\n\nVersions of the datapack prior to 1.21.6 are still available but won't be updated anymore  \nYou can find tutorials on how to use legacy verisons on the [Github link](https://github.com/DJTgeekk/LeaderBoards_Datapack)\n\n## Contact\n\nFeel free to join the discord for any question, bug report or feature request  \n[Discord invite](https://discord.gg/WfPRt4PkT6)",
+  "categories": [
+    "datapack",
+    "management",
+    "minigame",
+    "social",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1603,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

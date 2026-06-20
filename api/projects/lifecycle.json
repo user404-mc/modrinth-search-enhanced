@@ -1,0 +1,22 @@
+{
+  "id": "ODWHwXbi",
+  "slug": "lifecycle",
+  "title": "LifeCycle",
+  "description": "A plugin that adds aging and trait system to Minecraft.",
+  "body": "## LifeCycle\nA plugin that adds aging and trait system to Minecraft\n### ⚠️ Disclaimer ⚠️\nPlugin is still in beta stage and will possibly break, use it at your own risk!\n### Features\n- Age system and configurable age stages and aging interval/lifespan\n- Trait system\n- Family system (toggleable) (WIP - Not available yet)\n### Commands\n- `/lifecycle` (`/life`)\n  - `check [player?]`\n    - Check a player's age and their traits\n    - Permission:\n      - `lifecycle.check.others` (default: `False`)\n      - `lifecycle.check.self`(default: `True`)\n  - `age [set/subtract/add] [player] [value]`\n    - Edits target player's age\n    - Permission: `lifecycle.age.[set/subtract/add]` (default: `False`)\n  - `trait`\n    - `list`\n      - List all avaiable traits\n      - Permission: `lifecycle.trait.list` (default: `True`)\n    - `set [player] [trait] [slot]`\n      - Set a player's trait\n      - ⚠️ `[slot]`: The current implementation will add the inputed trait to the highest avaiable slot in a player's life. For example: A player has 2 traits which are in slot 0 and slot 1 respectively. Attempting to add a trait to slot >=3 will result in the trait being added to slot 2 instead.\n      - Permission: `lifecycle.trait.set` (default: `False`)\n### PlaceholderAPI\n- `%lifecycle_player_age%`\n- `%lifecycle_player_trait_[index]%`\n### Example configs\n**`config.yml`**\n```yml\nlifecycle:\n  # How often the plugin updates players' ages in ticks\n  update-interval: 20\n  # Lower values mean less data loss if server crashed\n  backup-interval: 3000\n  # How long it takes for a player to age by 1 year in ticks\n  age-interval: 6000\n  # Default lifespan (traits will add/subtract this number)\n  lifespan: 50\n```\n**`age_stages.yml`**\n```yml\nage-stages:\n  - name: Infancy\n    age: 0\n    earn_trait: FALSE\n    effects:\n      - type: POTION\n        effect: SLOWNESS\n        amplifier: 1\n      - type: POTION\n        effect: WEAKNESS\n        amplifier: 1\n      - type: POTION\n        effect: MINING_FATIGUE\n        amplifier: 0\n      - type: ATTRIBUTE\n        attribute: GENERIC_MAX_HEALTH\n        value: -14.0\n      - type: ATTRIBUTE\n        attribute: GENERIC_SCALE\n        value: -0.5\n\n  - name: Early Childhood\n    age: 2\n    earn_trait: TRUE\n    effects:\n      - type: POTION\n        effect: SLOWNESS\n        amplifier: 1\n      - type: POTION\n        effect: WEAKNESS\n        amplifier: 0\n      - type: POTION\n        effect: MINING_FATIGUE\n        amplifier: 0\n      - type: ATTRIBUTE\n        attribute: GENERIC_MAX_HEALTH\n        value: -10.0\n      - type: ATTRIBUTE\n        attribute: GENERIC_SCALE\n        value: -0.45\n\n  - name: Middle Childhood\n    age: 6\n    earn_trait: FALSE\n    effects:\n      - type: POTION\n        effect: SLOWNESS\n        amplifier: 0\n      - type: POTION\n        effect: WEAKNESS\n        amplifier: 0\n      - type: POTION\n        effect: MINING_FATIGUE\n        amplifier: 0\n      - type: ATTRIBUTE\n        attribute: GENERIC_MAX_HEALTH\n        value: -10.0\n      - type: ATTRIBUTE\n        attribute: GENERIC_SCALE\n        value: -0.4\n```",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 169,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

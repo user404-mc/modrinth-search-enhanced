@@ -1,0 +1,23 @@
+{
+  "id": "gYomIZoZ",
+  "slug": "json-entity-animation",
+  "title": "Json Entity Animation",
+  "description": "Library mod for creating your entity animations in JSON",
+  "body": "# Json Entity Animation\n\nJson Entity Animation (JsonEA) for short is a library mod for other mods to be able to define animations through JSON instead of through code. [A Blockbench plugin](animation_to_jsonea.js) (also available in the Blockbench plugins browser) is also provided in order to export your animations to this format.\n\n## For developers\n\nAdd the mod as a dependency using the [Modrinth Maven](https://docs.modrinth.com/docs/tutorials/maven).\n\n```gradle\ndependencies {\n    include(modImplementation(\"maven.modrinth:json-entity-animation:0.2.1+1.19.4\"))\n}\n```\n\nOnce added, put your animation JSONs in the `assets/modid/jsonea` directory. To load the animations, your entity model must subclass `SinglePartEntityModel`/`HierarchicalModel`. Then define a `JsonAnimator` field and animation IDs.\n\n```java\npublic class MyEntityModel extends SinglePartEntityModel<MyEntity> {\n    private static final Identifier PUNCH_ANIMATION = new Identifier(\"modid\", \"my_entity/punch\");\n    \n    private final JsonAnimator animator = new JsonAnimator(this);\n    \n    // ...\n    \n    @Override\n    public void setAngles(MyEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {\n        getPart().traverse().forEach(ModelPart::resetTransform);\n        animator.animate(entity.punchState, PUNCH_ANIMATION, animationProgress);\n    }\n}\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1229,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

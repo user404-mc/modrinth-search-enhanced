@@ -1,0 +1,19 @@
+{
+  "id": "Q6m3uhhJ",
+  "slug": "raing_row",
+  "title": "raing_row",
+  "description": "This mod automatically generates grass in surrounding chunks after rain.",
+  "body": "This mod automatically generates grass in surrounding chunks after rain.\n\n1. Configuration System (Config.java)\n   - Mod toggle control\n   - Generation interval configuration (in 10-tick units)\n   - Horizontal search range configuration (in 16-block units)\n   - Methods to retrieve actual values\n\n2. Environment Detection (EnvironmentChecker.java)\n   - Dimension restriction: Only works in the Overworld\n   - Height restriction: Y coordinate ≥ 10\n   - Biome filtering:\n     - Excludes cold biomes (snowy, frozen)\n     - Excludes arid biomes (desert, badlands)\n     - Excludes aquatic biomes (ocean, river, swamp)\n     - Excludes other unsuitable biomes (mushroom island, stone, caves, etc.)\n\n3. Post-Rain Grass Block Mechanism (RainGrassBlock + RainGrassBlockEntity)\n   - Generation timing: Generates around players during rain\n   - Generation position: 3 blocks above grass blocks, requiring blocks 1-3 above to be air\n   - Block characteristics:\n     - Transparent with no collision box\n     - Does not block light\n     - Is a solid block (with BlockEntity)\n   - Conversion logic:\n     - Detects nearby players after rain stops\n     - Applies bonemeal effect to grass blocks 3 blocks below\n     - Automatically removes itself\n\n4. Event Handling (RainGrassBlockEventHandler)\n   - Listens to player tick events\n   - Randomly generates post-rain grass blocks within configured range during rain\n   - Generates up to 2 blocks per tick, checking 4 random points",
+  "categories": [
+    "decoration",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 142,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

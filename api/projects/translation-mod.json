@@ -1,0 +1,30 @@
+{
+  "id": "CHIqKaX8",
+  "slug": "translation-mod",
+  "title": "Chat Translation Mod",
+  "description": "This Minecraft mod translates chat messages into your chosen language with a single click. It uses the Google Apps Script (GAS) API for translation.",
+  "body": "# Chat Translation Mod\nA mod that translates Minecraft chat messages into your specified language with a single click. The translation is done via the Google Apps Script (GAS) API. It works on the Fabric environment, Minecraft Version 1.21.11.\n\n***\n\n**If setting it up is too much trouble, you can just copy the following link and paste to API URL (config/translator-url.txt):**\n```\nhttps://script.google.com/macros/s/AKfycbyoiiASzJr_SNFV9Wn5388f03C8jKuz6IQMrRVt-AejbhKaDjO0BXxvQw_zp2rkv05g-w/exec\n```\n\n***\n\n## How to Use\nYou must complete these steps to enable translations.  \n\n**Step 1.** Log in to your Google account and go to https://script.google.com/.  \n**Step 2.** Create a new project. You can name it anything you like, such as \"Minecraft Translation API\".  \n**Step 3.** Select and delete all the default code, then paste the following code:  \n```javascript\nfunction doGet(e) {\n  var {text, target = 'ja', source = ''} = e.parameter;\n  var translatedText = LanguageApp.translate(text, source, target);\n  return ContentService.createTextOutput(translatedText).setMimeType(ContentService.MimeType.TEXT);\n}\n```\n**Step 4.** Click the \"Deploy\" button and choose \"New deployment\". Set the type to \"Web app\". You can enter any description. Set \"Execute as\" to \"Me\" and \"Who has access\" to \"Anyone\", then click the \"Deploy\" button.  \n**Step 5.** Copy the generated Web App URL (which looks like `https://script.google.com/macros/s/.../exec`) to complete this step. Do not share this URL with anyone!  \n**Step 6.** Place the downloaded `.jar` file into your `mods` folder.  \n**Step 7.** Launch Minecraft once and close it. This will generate the configuration files in your `config` folder.  \n**Step 8.** Open `translator-url.txt`, paste the translation API URL (GAS, etc.) you prepared in the previous step, and save the file.  \n**Step 9.** Open `translator-lang.txt` to change the target language code (e.g., `en` for English, `ja` for Japanese). Default language is Japanese(ja).\n  \n***\n* If you have any questions, feature requests, or encounter issues, please send me a DM on Discord. \n* Discord Username: @nuyuchi",
+  "categories": [
+    "fabric",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 286,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

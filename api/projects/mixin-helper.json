@@ -1,0 +1,25 @@
+{
+  "id": "r6BhGlY3",
+  "slug": "mixin-helper",
+  "title": "Mixin Helper",
+  "description": "Utility mod for modpack developers that provides complete control over mixin behavior",
+  "body": "# Mixin Helper\n\nTake control of mixin conflicts in your modpack. Mixin Helper lets you blacklist, prioritize, and surgically modify mixins from any loaded mod — all from a single JSON config file. No code, no recompiling, no removing mods.\n\n## Documentation\n\nFull documentation, guides, and examples at **https://tysontheember.dev/mixin-helper/intro/**\n\n***\n\n# ⚠️ USE AT YOUR OWN RISK ⚠️\n\n**This is an advanced tool. If you don't know what mixins are or how they work, this mod is not for you.**\n\nWhile there are guardrails Mixin Helper directly interferes with how other mods patch the game. Incorrect use **will** break things. This includes but is not limited to:\n\n*   **Game crashes** with difficult-to-diagnose stacktraces\n*   **Broken mod features** that may not be immediately obvious\n*   **World corruption** — back up your worlds before making changes\n*   **Incompatible save files** if disabled mixins affect world data\n\n**Do NOT report bugs to mod authors if you have modified their mixins with this tool.** Any issues caused by Mixin Helper are your responsibility.\n\n***\n\n## Features\n\n*   **Mixin Blacklisting** — Disable individual mixins, entire mixin configs, or block all mixins targeting a specific class\n*   **Priority Control** — Override mixin execution order to resolve load-order conflicts between mods\n*   **Method Removal** — Neutralize or remove specific injected methods without disabling the entire mixin\n*   **Audit Report** — Generate a detailed JSON report of every loaded mixin config, including annotations, to diagnose conflicts fast\n\n## Supported Versions\n\n| Minecraft Version |Loader   |Status          |\n| ----------------- |-------- |--------------- |\n| 1.20.1            |Forge    |Fully Supported |\n| 1.20.1            |Fabric   |Fully Supported |\n| 1.21.1            |NeoForge |Fully Supported |\n| 1.21.1            |Fabric   |Fully Supported |\n\n## How It Works\n\n1.  Install Mixin Helper — drop the jar in your `mods` folder\n2.  Launch the game — a default config is generated at `config/mixinhelper.json`\n3.  Check the audit report at `config/mixinhelper-report.json` to see every mixin loaded in your game\n4.  Edit the config to blacklist, reprioritize, or strip methods as needed\n5.  Restart and you're done\n\n## Quick Example\n\nTwo mods crash because they both modify the same class? Blacklist the offending mixin:\n\n```\n{\n  \"enabled\": true,\n  \"blacklist\": {\n    \"mixins\": [\"com.conflictingmod.mixin.MixinLevelRenderer\"],\n    \"mixinConfigs\": [],\n    \"targetClasses\": []\n  }\n}\n```\n\nNeed finer control? Neutralize a single injected method instead of the whole mixin:\n\n```\n{\n  \"methodRemovals\": {\n    \"rules\": [\n      {\n        \"targetClass\": \"net.minecraft.world.level.Level\",\n        \"method\": \"brokenMethod\",\n        \"action\": \"nop\"\n      }\n    ]\n  }\n}\n```\n\n## Use Cases\n\n*   **Modpack developers** resolving mod conflicts without waiting for mod authors to fix them\n*   **Server admins** disabling specific mod behaviors that cause instability\n*   **Debugging** which mixins are causing crashes or unexpected behavior\n*   **Fine-tuning** mod interactions by controlling execution order\n\n## Notes\n\n*   Config changes require a full game restart — mixins load very early in startup\n*   Mixin Helper itself has no mixins — it uses the Mixin plugin system to intercept other mods\n*   Zero runtime performance impact — all work is done during startup",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 1326,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

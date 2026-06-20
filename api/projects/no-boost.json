@@ -1,0 +1,25 @@
+{
+  "id": "GCPy7ntv",
+  "slug": "no-boost",
+  "title": "No Boost",
+  "description": "Removes the boost from using fireworks on elytra",
+  "body": "Removes the ability to rocket boost with the elytra. Simple mixin please use kindly.\n\nIf you want to reference see below.\n```java\n@Mixin(FireworkRocketEntity.class)\npublic abstract class FireworkRocketEntityMixin {\n\n    @Redirect(\n        method = \"tick\",\n        at = @At(\n            value = \"INVOKE\",\n            target = \"Lnet/minecraft/world/entity/LivingEntity;isFallFlying()Z\"\n        )\n    )\n    private boolean preventElytraBoost(LivingEntity instance) {\n        if (instance instanceof Player) {\n            return false;\n        }\n        return instance.isFallFlying();\n    }\n    \n}\n```",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "transportation"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 131,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

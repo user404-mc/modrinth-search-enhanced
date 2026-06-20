@@ -1,0 +1,40 @@
+{
+  "id": "iCRO1YNs",
+  "slug": "canary-safety",
+  "title": "Canary",
+  "description": "An early warning of poison in the mines.",
+  "body": "# Canary\nAn early warning of poison in the mines.\n\nCanary is a mod that detects dangerous behaviors in other mods and provides several diagnostic tools.\n\n### Detected Issues\n\n#### BlockState Property Injection\nSome mods try to add new BlockState properties to vanilla blocks.\nUnfortunately, this is likely to cause block desyncs.\n\nSolutions:\n- Use [Statement](https://github.com/Virtuoel/Statement), a library designed to do this safely\n- Use a custom block instead, converting between it and the vanilla block as needed\n\n#### Synced Entity Data Injection\nSome mods try to add new synced data entries (`EntityDataAccessor`s) to vanilla entity classes.\nDoing this is likely to cause inscrutable networking errors, since field order is not stable between clients and the server.\n\nSolutions:\n- Use a [Data Attachment](https://docs.fabricmc.net/develop/data-attachments)\n- Store values in normal fields, and sync them with custom packets\n\n### Diagnostics\n\nIn addition, Canary has the following diagnostic features:\n- when enabled in the config (`\"print_blockstate_report\": true`), a report of BlockStates will be printed to the log\n- the command `/canaryclient diagnoseDesync` will generate a report of blockstates on the client and server\n\n### Fun Fact\nThis mod is named after the real life practice of using canaries in coal mines to detect\npoisonous gasses. Like the real life counterpart, if the canary dies (the game crashes),\nyou've got a problem.",
+  "categories": [
+    "fabric",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 10420,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "26.1"
+  ],
+  "date_updated": null
+}

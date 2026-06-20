@@ -1,0 +1,21 @@
+{
+  "id": "rcs3LOu2",
+  "slug": "create-chain-conveyors-compat",
+  "title": "Create: Chain Conveyors Compat",
+  "description": "Adds a tag to allow any item to be used as a chain conveyor connector with custom texture support. For modpack development and adding compatibility with modded chains or items",
+  "body": "# Create: Chain Conveyors Compat\n\nThis Create addon for Neoforge 1.21.1 allows any item to be used for connecting chain conveyors via a unique tag.\n\nThe chain items featured in the screenshots are from TerraFirmaCraft as this addon was initially intended to support those exclusively, but TFC is not a dependency, and this addon can be used to add chain conveyor functionality to items from any mod. The code is partially based on the implementation of this feature in the [WoodenCog](https://modrinth.com/mod/woodencog) addon for Forge 1.20.1 by [manubarrach]([https://www.curseforge.com/members/manwe_b](https://modrinth.com/user/manubarrach)).\n\nThis mod's entire implementation is built on mixins, and as I'm not terribly experienced in working with these, I can't guarantee its compatibility with other mods or addons that affect the behavior of Create's Chain Conveyors.\n\n## Compatibility Notes\n\n*   [TerraFirmaCraft](https://modrinth.com/mod/terrafirmacraft) (Out-of-the-box compatibility)\n*   [Create Aeronautics](https://modrinth.com/mod/create-aeronautics) (Modded chains work on chain conveyors on physics contraptions)\n*   [Quark](https://modrinth.com/mod/quark), [Supplementaries](https://modrinth.com/mod/supplementaries), [Farmer's Delight](https://modrinth.com/mod/farmers-delight) (Rope can be added to tag, but the default rendering looks very broken. **As of v0.1.0**, a generic rope texture is included in the mod, together with conditionally-loaded data map entries for these items. Users are no longer required to supply their own replacement texture for these items to appear without broken rendering)\n*   Let me know how it gets along with other mods!\n\n## Adding Compatibility for Modded Chains\n\nItems that can be used to connect chain conveyors are included in the item tag `#createchaincompat:valid_for_chain_conveyor`. By default, this tag inherits from the `#c:chains` tag. Valid connectors for chain conveyors can be added to the tag using datapacks, KubeJS, or any other method for adding tags to items. Theoretically, any item (not just chains) can be added to this tag, but non-chainlike blocks may render strangely and non-block items (items that cannot be placed) will render identically to the vanilla minecraft chain unless a custom texture for that item is added to the data map.\n\n## Adding Custom Textures via Data Map (v0.0.4)\nv0.0.4 adds a data map that can be used to add custom textures for blocks and items when they are used to connect chain conveyors. The datamap is located at `createchaincompat/data_maps/item/chain_tex_data.json`. This also allows for live reloading with the `/reload` command to quickly test your changes ingame!\n\nSee the example entry below:\n```\n{\n  \"values\": {\n    \"minecraft:melon_slice\": {\n      \"texture\": \"minecraft:textures/block/melon_side.png\"\n    }\n  }\n}\n```\nNote: the melon slice is not added to the `valid_for_chain_conveyor` tag by default. It is only included as an example of how to use this feature.\n\n\n## Known Issues\n\n*   ~~Game crashes when loading into an existing world with \"vanilla\" chain conveyors.~~ **_Fixed in v0.0.2_**\n*   ~~In cases where the chain's block texture location does not match the resource location of the block itself, the texture will not load properly. I'm trying to work out a better way to get the intended texture.~~ **_Fixed in v0.0.4_**\n*   ~~Sneak-wrenching chain conveyors in pre-existing worlds with chain connections made before installing this addon will not return any chains to the player's inventory.~~ **_Fixed in v0.1.0_**",
+  "categories": [
+    "decoration",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 286,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

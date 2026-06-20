@@ -1,0 +1,37 @@
+{
+  "id": "ZzBwu6WX",
+  "slug": "emaki-attribute",
+  "title": "EmakiAttribute | Full-Pipeline RPG Combat with 43 Attributes",
+  "description": "Complete RPG attribute and combat system — crits, penetration, dodge, block, elemental damage, all included.",
+  "body": "EmakiAttribute is a complete RPG attribute and combat system. It brings 43 built-in attributes, 3 damage types, and a carefully designed damage calculation pipeline to Minecraft, giving your server MMORPG-level combat depth. From simple attack/defense values to complex elemental systems, everything is configurable.\n\n## 43 Built-in Attributes\n\n### Physical Attack (7)\n\n`physical_attack`, `physical_crit_rate`, `physical_crit_damage`, `physical_damage_bonus`, `physical_armor_penetration`, `lifesteal`, `percentage_lifesteal`\n\n### Projectile Attack (6)\n\n`projectile_attack`, `projectile_crit_rate`, `projectile_crit_damage`, `projectile_damage_bonus`, `projectile_penetration`\n\n### Spell Attack (5)\n\n`spell_attack`, `spell_crit_rate`, `spell_crit_damage`, `spell_damage_bonus`, `magic_penetration`\n\n### Defense (11)\n\n`physical_defense`, `projectile_defense`, `spell_defense`, `dodge_chance`, `physical_crit_evasion`, `projectile_crit_evasion`, `magic_crit_evasion`, `physical_crit_multiplier_resistance`, `projectile_crit_multiplier_resistance`, `magic_crit_multiplier_resistance`, `lifesteal_resistance`\n\n### Resources (4)\n\n`health`, `health_regen`, `mana`, `mana_regen`\n\n### General (6)\n\n`attack_speed`, `movement_speed`, `real_damage`, `attribute_power`, `entity_scale`, `speed`\n\nAll attributes are fully customizable via YAML — display names, lore formats, value ranges, and stacking behavior.\n\n## Damage Pipeline\n\nWhen an attack occurs, EmakiAttribute processes damage through this pipeline:\n\n1. **Attack Snapshot** — Collect all attacker attributes (from equipment, gems, strengthening, sets, etc.)\n2. **Damage Type Determination** — Physical / Projectile / Spell based on attack method\n3. **Base Damage** — Attack × (1 + damage bonus%)\n4. **Crit Check** — Crit rate vs crit evasion; on crit, multiply by crit damage (reduced by crit multiplier resistance)\n5. **Penetration** — Reduce target defense by penetration value\n6. **Defense Mitigation** — Remaining defense reduces damage via formula\n7. **Dodge Check** — Dodge rate determines if damage is nullified entirely\n8. **Real Damage** — Add flat true damage (ignores all defense)\n9. **Lifesteal** — Calculate healing from final damage (reduced by lifesteal resistance)\n10. **Damage Messages** — Send combat info to attacker and target\n\n## Resource System\n\n- Define unlimited custom resources (health, mana, rage, energy, stamina, etc.)\n- Independent max value, min value, and regen rate per resource\n- Natural regeneration at configurable tick intervals\n- Optional sync to Bukkit native attributes (e.g., health)\n- Full on init option (start at max value)\n- API for other plugins to consume/restore resources\n\n## Condition System\n\nEquipment and items can have usage conditions — attributes only apply when conditions are met:\n\n- Level requirements, permission checks, placeholder conditions\n- Expression syntax using `{variable}` format\n- `all_of` / `any_of` combination logic\n\n## Lore Format Engine\n\nCustomize how attributes display in item lore via template files in `lore_formats/`:\n\n- Independent display template per attribute\n- Color codes and placeholder support\n- Percentage and flat value formats\n- Different colors for positive/negative values\n\n## Damage Messages\n\nCustomizable combat messages sent to attacker and target with rich placeholders:\n\n| Placeholder             | Description                          |\n| ----------------------- | ------------------------------------ |\n| `{damage}`              | Final damage value                   |\n| `{damage_type}`         | Damage type name                     |\n| `{attacker_name}`       | Attacker name                        |\n| `{target_name}`         | Target name                          |\n| `{attacker_health}`     | Attacker current health              |\n| `{attacker_max_health}` | Attacker max health                  |\n| `{target_health}`       | Target current health                |\n| `{target_max_health}`   | Target max health                    |\n| `{distance}`            | Distance between attacker and target |\n| `{is_crit}`             | Whether the hit was a crit           |\n| `{element}`             | Element type                         |\n\n## Skill Damage Integration\n\nWhen EmakiSkills is installed, skill scripts can use `attribute_damage` to route skill damage through the full EA pipeline — crits, penetration, dodge, defense, lifesteal, and messages all apply.\n\n## PAPI Placeholders\n\n| Placeholder                              | Description                    |\n| ---------------------------------------- | ------------------------------ |\n| `%emakiattribute_<attribute_id>%`        | Current attribute value        |\n| `%emakiattribute_resource_<id>_current%` | Resource current value         |\n| `%emakiattribute_resource_<id>_max%`     | Resource max value             |\n| `%emakiattribute_resource_<id>_regen%`   | Resource per-second regen rate |\n\n## Commands\n\n| Command                                                   | Description                    |\n| --------------------------------------------------------- | ------------------------------ |\n| `/ea reload`                                              | Reload configuration           |\n| `/ea dump [player]`                                       | Output full attribute snapshot |\n| `/ea resource <player> <resource> set/add/remove <value>` | Manage player resources        |\n| `/ea inspect`                                             | Inspect held item attributes   |\n\n## Permissions\n\n| Permission              | Description              |\n| ----------------------- | ------------------------ |\n| `emakiattribute.use`    | Base usage permission    |\n| `emakiattribute.reload` | Reload permission        |\n| `emakiattribute.admin`  | Administrator permission |\n| `emakiattribute.dump`   | View attribute snapshot  |\n\n## Requirements\n\n| Item              | Requirement                 |\n| ----------------- | --------------------------- |\n| Server            | Spigot 1.21+                |\n| Java              | 21+                         |\n| Hard Dependencies | EmakiCoreLib                |\n| Soft Dependencies | EmakiSkills, PlaceholderAPI |\n\n[View Full Wiki Documentation](https://github.com/jiuwu02/Emaki_Series/wiki) | [Join Discord Community](https://discord.gg/FV4GFQbvCM) | [QQ Group](https://qm.qq.com/q/GqGrzHp0wU)",
+  "categories": [
+    "adventure",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 144,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "jnZgACca",
+  "slug": "mcgltf",
+  "title": "MCglTF",
+  "description": "glTF library for Minecraft Mod",
+  "body": "\n**MCglTF** is a 3D model loader library which load glTF format file and prepare the required techniques to render the model for Minecraft Modding enviroment.  \nVarious features from glTF spec are available, but still remain a good compatibility and performance.\n\n![enter image description here](https://media.forgecdn.net/attachments/439/370/2022-03-07_12.png)\n## Usages\n\nThe example codes for rendering Block, Item, and Entity\n\n-   [https://github.com/ModularMods/MCglTF-Example](https://github.com/ModularMods/MCglTF-Example)\n\n## Features\n\n-   ✅ GLTF format (Embedded resources or via ResourceLocation)\n-   ✅ GLB format\n-   ✅ UVs\n-   ✅ Normals\n-   ✅ Tangents\n-   ✅ Vertex colors\n-   ✅ Materials (Require [OptiFine](https://github.com/ModularMods/MCglTF/wiki/How-to-make-PBR-Materials-working-with-OptiFine) or [Iris Shaders](https://github.com/ModularMods/MCglTF/wiki/How-to-make-PBR-Materials-working-with-Iris-Shaders) and supported ShaderPack for PBR and Normal map)\n-   ✅ Textures\n-   ❎ Mutiple texture coordinates (For compatibility reason with Vanilla)\n-   ✅ Rig\n-   ✅ Animations (multiple)\n-   ✅ Morph targets\n-   ✅ Zero-scale node culling ([https://github.com/KhronosGroup/glTF/pull/2059](https://github.com/KhronosGroup/glTF/pull/2059))\n## Frequently Asked Question\n\n**Q.** Why my texture for my model does not show up?  \n**A.** You need to defined material inside \"extras\" of \"materials\" to link your texture. For more details please visit [wiki page](https://github.com/ModularMods/MCglTF/wiki/From-3D-modeling-software-to-Minecraft).\n\n**Q.** Why two animations cannot control translation/rotation/scale/weight in same node at the same time and cause one of the animation not playing?  \n**A.** There is no animation blending technique defined in glTF specification, so the animations created by GltfAnimationCreator does not support animation blending too. You need to create your own animation processor based on your scenario.\n\n**Q.** How to apply my custom processing to the model like custom material(e.g. apply player skin) or create special OpenGL commands for specified node?  \n**A.** For more advanced way to generate OpenGL commands for glTF model, you can override and return false to isReceiveSharedModel(GltfModel, GltfRenderDatas) in your IGltfModelReceiver. This allow you to create your custom RenderedGltfModel based on supplied GltfModel. (Beware to add your OpenGL objects like VBO, VAO, Texture, etc to GltfRenderDatas for deletion during refresh resource.)\n\n## Credit\n\n-   JglTF by javagl: [https://github.com/javagl/JglTF](https://github.com/javagl/JglTF)\n-   Mikk Tangent Generator by jMonkeyEngine: [https://github.com/jMonkeyEngine/jmonkeyengine](https://github.com/jMonkeyEngine/jmonkeyengine)\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 33926,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.18.2",
+    "1.19.3"
+  ],
+  "date_updated": null
+}

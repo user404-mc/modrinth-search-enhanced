@@ -1,0 +1,40 @@
+{
+  "id": "1QUtO3R9",
+  "slug": "signwarp",
+  "title": "SignWarp",
+  "description": "Allows players to place panels to teleport between them by simply right-clicking on them.",
+  "body": "# SignWarp\n\n![Version](https://img.shields.io/badge/plugin%20version-1.2.0-blue) ![Minecraft](https://img.shields.io/badge/minecraft-1.20--1.21.8-brightgreen) ![Downloads](https://img.shields.io/badge/downloads-1k%2B-orange) [![Discord](https://img.shields.io/discord/1188587577998057582?label=Discord&logo=discord&color=5865F2)](https://discord.com/invite/sRuEqP6Bxs)\n\nA Bukkit plugin for teleportation using signs.\n**(Minecraft Version 1.20 - 1.21.8)**\n\nSignWarp allows players to place signs to teleport between them with a simple right-click.\n\nBy default, teleportation costs one ender pearl, which must be in the player's hand when interacting with the sign, but this can also be disabled in the configuration.\n\n## Permissions\n\n- `signwarp.create` - Allow creation and destruction of warp signs (default: op)\n- `signwarp.use` - Allow usage of warp signs (default: everyone)\n- `signwarp.reload` - Allow access to reload (default: op)\n- `signwarp.admin` - Allows access to the warp management GUI (default: op)\n- `signwarp.*` - Allow access to all features (default: op)\n- `signwarp.limit.unlimited` - Allows unlimited warp creation\n\nCommands:\n\n- `/signwarp reload` - Reloads the configuration.\n- `/signwarp gui` - Open the warp management GUI.\n\n## How to Use\n\nFirst, place a sign where you want to teleport with the following content:\n\n- First line: **[WarpTarget]** or **[WPT]**\n- Second line: The name you want to use\n\nThis will create a warp sign that sets the location to which a player teleports.\n\nAfter creating the warp sign, create one or more warp signs from which you want to teleport to the target sign.\n\nThis is done by placing a sign with the following content:\n\n- First line: **[Warp]** or **[WP]**\n- Second line: The name you want to use\n\n**Note: The target sign (WarpTarget) must exist before creating the warp sign!**\n\n### Bi-Directional Teleportation (New in v1.2.0!)\n\nSignWarp now supports **bi-directional teleportation**! This enhancement allows players to travel back and forth between paired warp signs seamlessly.\n\n#### How It Works\n\n- **Forward Travel**: Right-clicking a **[Warp]** sign teleports you to the corresponding **[WarpTarget]** (existing behavior)\n- **Return Travel**: Right-clicking a **[WarpTarget]** sign now teleports you back to the corresponding **[Warp]** sign (new feature!)\n\nThis creates a true two-way teleportation system between paired signs, perfect for:\n\n- Creating transportation networks between bases\n- Setting up quick travel points in adventure maps\n- Establishing merchant shop connections\n- Building dungeon entrance/exit systems\n\n#### Technical Details\n\n- Both directions respect the same permissions, cooldowns, and costs\n- The plugin tracks sign locations in a database for reliable bi-directional links\n- If either sign is broken, the link is automatically cleaned up\n- Works with all existing warp configurations (economy costs, item costs, effects, etc.)\n\nOnce you have created both signs, you can right-click with the `use-item` in your hand (by default, it's an ender pearl).\nEach teleportation will cost the number of items configured in `use-cost` (default: 1).\n\nYou can remove the `use-item` option in the config.yml or set it to \"none\" to allow any item to be used (i.e., each warp is free per use).\n\nAlternatively, you can enable `teleport-cost` in the `config.yml` to charge players a set amount of in-game currency for each teleportation. Ensure [Vault](https://www.spigotmc.org/resources/vault.34315/) is installed on your server to use this feature.\n\n## Warp Limit System\n\nControl the maximum number of warps players can create using permissions.\n\nExample with LuckPerms:\n\n`/lp group default permission set signwarp.limit.3`\n\nThis allows players in the default group to create up to 3 warps.\n\nWithout a limit permission, players can create an unlimited number of warps by default.\n\n## Admin GUI\n\n![Warps Admin](https://i.imgur.com/60JLVPC.gif)\n\n## Message Customization\n\nIn the `config.yml` configuration file, you have the option to customize the messages used by the plugin. These messages are defined under the key messages and can be modified according to your preferences.\n\n**Preview :**\n\n```yaml\nmessages:\n  create_permission: \"&cYou do not have the required permissions to create warp signs!\"\n  no_warp_name: \"&cNo warp name set!\\nPlease specify the warp name on the second line.\"\n  warp_created: \"&aWarp sign successfully placed.\"\n  warp_name_taken: \"&cA warp target with the same name already exists!\"\n  warp_destroyed: \"&aWarp destroyed.\"\n  target_sign_created: \"&aTarget sign for warp successfully placed.\"\n  destroy_permission: \"&cYou do not have the required permissions to destroy warp signs!\"\n  invalid_item: \"&cYou must use {use-item} for this warp!\"\n  not_enough_item: \"&cYou need {use-cost} {use-item} for this warp!\"\n  warp_not_found: \"&cSpecified warp does not exist!\"\n  use_permission: \"&cYou do not have the required permissions to use the warp sign!\"\n  teleport: \"&eTeleporting to {warp-name} in {time} seconds...\"\n  teleport-success: \"&aSuccessfully teleported to {warp-name}.\"\n  teleport-cancelled: \"&cTeleport cancelled.\"\n  notify-cost: \"&aYou have been charged {cost} currency for the teleportation.\"\n  not_permission: \"&cYou do not have permission!\"\n  limit_reached: \"&cYou have reached your warp creation limit ({limit}).\"\n  warp_sign_removed: \"&aWarp sign removed successfully!\"\n  no_bidirectional_link: \"&cNo return point found for this warp!\"\n  ```\n\n- `{warp-name}` : This placeholder is replaced by the name of the warp specified on the sign.\n- `{use-item}` : Used to represent the name of the item required to use the warp. For example, if the required item is an ender pearl, this placeholder will be replaced by \"ENDER_PEARL\".\n- `{use-cost}` : This placeholder is replaced by the number of items needed to use the warp. For example, if the cost to use the warp is 1 ender pearl, this placeholder will be replaced by \"1\".\n- `{cost}` : This placeholder is replaced by the amount of currency charged for teleportation.\n- `{time}` : This placeholder is replaced by the time in seconds before the teleportation is completed.\n\nYou have the option to stylize your texts with Minecraft color codes. These codes start with the & character, followed by a letter or number representing a specific color. [More informations](https://www.digminecraft.com/lists/color_list_pc.php)\n\n## Sound and Effect Customization\n\nYou can customize the sound and effect played during teleportation in the `config.yml` configuration file:\n[List Sound](https://www.digminecraft.com/lists/sound_list_pc.php) and [List Effect](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html)\n\n**Note : The sound and effect must be in uppercase and replace \".\" by \"_\" for the sound.**\n\n**Preview :**\n\n```yaml\nteleport-sound: ENTITY_ENDERMAN_TELEPORT\nteleport-effect: ENDER_SIGNAL\n```\n\n## Screenshot\n\n![Plugin Screenshot](https://i.imgur.com/vrdM5sD.png)\n\n## Statistics (bstats.org)\n\n![Stats](https://bstats.org/signatures/bukkit/SignWarps.svg)",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1212,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

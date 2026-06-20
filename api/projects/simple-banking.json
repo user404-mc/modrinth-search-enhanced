@@ -1,0 +1,35 @@
+{
+  "id": "ST2n5UGF",
+  "slug": "simple-banking",
+  "title": "Simple Banking",
+  "description": "A Vault Enabled Scoreboard Driven Banking Plugin",
+  "body": "# Simple Banking\n\nSimple Banking is a Vault-enabled, scoreboard-driven bank plugin for Spigot servers. Players deposit a configurable currency item (and optionally its block form) into shared \"Bank Chests\" but maintain per-player balances. Withdrawals convert bank balance back into items and blocks based on a configurable multiplier.\n\n## Features\n- Per-player balances stored in `config.yml`\n- Configurable currency: item and optional block with multiplier (e.g., 1 `DIAMOND_BLOCK` = 9 `DIAMOND`)\n- Deposits via:\n  - Shift-click into Bank Chests\n  - Cursor click onto Bank Chest slots\n  - Hopper transfer with per-hopper owner tracking\n- Withdrawals split into blocks first (to save inventory slots), then leftover items\n- Live scoreboard updates in tab list and below player names\n- Vault `Economy` provider for compatibility with other plugins\n- In-game currency management command with autocompletion for `minecraft:[item]`\n\n## Requirements\n- Server: Bukkit/Spigot/Paper 1.21.x\n- Java: 17+\n- Plugins: `Vault`\n\n## Installation\n1. Ensure `Vault` is installed.\n2. Copy `simplebanking-<version>.jar` into your server `plugins/` directory.\n3. Start the server. The plugin creates default `config.yml`.\n4. Verify startup logs show:\n   - Registered SimpleBanking as Vault provider\n   - Simple Banking enabled / account count\n\n## Configuration (`src/main/resources/config.yml`)\n```\nplayers: {}\nbank-chests: []\ncurrency:\n  item: DIAMOND\n  block: DIAMOND_BLOCK\n  block_multiplier: 9\n  name_singular: Diamond\n  name_plural: Diamonds\n```\n- `currency.item`: Base item material ID\n- `currency.block`: Optional block material ID; omit to disable block deposits/withdrawals\n- `currency.block_multiplier`: Units per block\n- `name_singular` / `name_plural`: Display names used in scoreboard and messages\n\nChanges are persisted automatically when using `/currency`; manual edits require a server restart or configuration reload.\n\n## Commands\n- `/givebankchest`\n  - Gives a tagged chest that becomes a Bank Chest when placed\n  - Permission: `diamondbank.admin`\n- `/withdraw <amount>`\n  - Withdraws `<amount>` units from the player’s bank\n  - Converts to blocks first, then items using the configured multiplier\n  - Permission: `diamondbank.withdraw`\n- `/balance`\n  - Shows leaderboard of players with non-zero balances\n  - Permission: `diamondbank.balance`\n- `/currency <item> [block] [multiplier] [singular] [plural]`\n  - Changes the currency item and optional block/multiplier and display names\n  - Autocompletes as `minecraft:[item]` for first arg and `minecraft:[block]` for second\n  - Requires all player balances to be zero before change\n  - Permission: `diamondbank.admin`\n\n## Permissions\n- `diamondbank.admin`: Admin tasks like giving Bank Chests and changing currency (default `op`)\n- `diamondbank.withdraw`: Allows withdrawals (default `true`)\n- `diamondbank.balance`: Allows viewing the leaderboard (default `true`)\n\n## How Deposits Work\n- Bank Chest placement: placing the given chest item registers the location as a Bank Chest\n- Manual deposits:\n  - Shift-click: moving currency items/blocks from inventory into a Bank Chest credits units\n  - Cursor click: placing currency items/blocks into Bank Chest slots credits units\n- Hopper deposits:\n  - Hoppers track owner via persistent data when placed\n  - Moving currency items/blocks into a Bank Chest credits that owner’s balance\n  - If owner is unknown, credits the nearest player within 16 blocks\n\n## Scoreboard\n- Displays currency plural name (e.g., \"Diamonds\") in tab list and below player names\n- Updates on every deposit/withdrawal and player join\n\n## Vault Economy\n- Implements Vault `Economy` for compatibility; account balance maps to bank units\n- No bank accounts (only player accounts). Vault bank-related methods return NOT_IMPLEMENTED\n\n## Troubleshooting\n- Invalid `plugin.yml`:\n  - Ensure no non-ASCII/control characters; fix and rebuild\n- Scoreboard class errors:\n  - Must import `org.bukkit.scoreboard.Scoreboard` and `ScoreboardManager`\n  - Always restart server after updating the plugin to avoid stale classes\n- Duplicate JARs:\n  - Remove old copies (e.g., both `SimpleBanking.jar` and `simplebanking-<version>.jar`) to prevent classpath conflicts\n- Currency change blocked:\n  - `/currency` refuses changes if any player balance > 0; have players withdraw first and retry\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "paper",
+    "social",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 139,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

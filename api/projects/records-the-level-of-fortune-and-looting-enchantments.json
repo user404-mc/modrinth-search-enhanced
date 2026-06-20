@@ -1,0 +1,31 @@
+{
+  "id": "fQ0hPSZW",
+  "slug": "records-the-level-of-fortune-and-looting-enchantments",
+  "title": "Records the Level of Enchantments│記錄附魔的等級",
+  "description": "The Fortune and Looting enchantment levels of the equipment held by the mob are recorded as scoreboard scores to facilitate the definition of loot tables.│生物所持有的裝備的時運和搶奪附魔等級被記錄為記分板分數，以方便定義戰利品表。",
+  "body": "# To Users│給使用者\nIf the data pack you are playing requires this data pack as a prerequisite, just add this data pack to the data pack folder.│如果你所遊玩的數據包需要使用該數據包作為前置，那麼只需將此數據包也加進數據包資料夾即可。\n# To Data Pack Creator│給資料包製作者\n- This data pack stores the looting enchantment level of the item held in the mob's main hand to the scoreboard target ```looting_level```. If the mob's main hand does not hold an item with the Looting enchantment, it will store 0.│此資料包會將生物主手持有的裝備的搶奪附魔等級儲存到記分板目標```looting_level```，如果主手不持有帶有搶奪附魔的裝備，那麼儲存為0。\n- This data pack stores the Fortune enchantment level of the item held in the mob's main hand to the scoreboard object ```fortune_level```. If the mob's main hand does not hold any item with the Fortune enchantment, it will store 0.│此資料包會將生物主手持有的裝備的時運附魔等級儲存到記分板目標```fortune_level```，如果主手不持有帶有時運附魔的裝備，那麼儲存為0。\n## Usage Examples│使用範例\n\n```\n{\n  \"type\": \"minecraft:entity\",\n  \"pools\": [\n    {\n      \"bonus_rolls\": 0.0,\n      \"entries\": [\n        {\n          \"type\": \"minecraft:tag\",\n          \"expand\":true,\n          \"name\": \"minecraft:bee_loot\"\n        }\n      ],\n      \"rolls\": {\n        \"type\":\"minecraft:uniform\",\n        \"min\":0,\n        \"max\":2\n      }\n    },\n    {\n      \"bonus_rolls\": 0.0,\n      \"entries\": [\n        {\n          \"type\": \"minecraft:tag\",\n          \"expand\":true,\n          \"name\": \"minecraft:bee_loot\"\n        }\n      ],\n      \"rolls\": {\n        \"type\":\"minecraft:uniform\",\n        \"min\":0,\n        \"max\":{\n          \"type\":\"score\",\n          \"target\":\"attacker\",\n          \"score\":\"looting_level\"\n        }\n      }\n    }\n  ],\n  \"random_sequence\": \"minecraft:entities/bee\"\n}\n```\nThe above is the content of one of my data pack. When defining the number of draws for the second draw pool of this loot table, I set it to a min value of 0 and a max value of the attacker's scoreboard ```looting_level```. In this way, the max number of draws can be set to the looting enchantment level of the weapon held by the killer.│上方是我的一個資料包的內容，在定義這個戰利品表的第二個抽獎池的抽獎次數時，將其設定為最小值為0，而最大值為攻擊者記分板```looting_level```的分數，透過這樣的方式就能將抽獎次數的最大值設為擊殺者持有的武器的搶奪附魔等級。",
+  "categories": [
+    "datapack",
+    "equipment",
+    "fabric",
+    "forge",
+    "library",
+    "mobs",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 546,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

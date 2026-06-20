@@ -1,0 +1,22 @@
+{
+  "id": "i8lIqBKT",
+  "slug": "dataified-paintings",
+  "title": "Dataified Paintings",
+  "description": "(Superceded by \"More-Canvases v2\")\nCreate data-driven paintings, in compliance with the vanilla variant system.",
+  "body": "**Note of archival:**\nAlthough not datapack-driven, [More Canvases v2](https://modrinth.com/mod/more-canvases) achieves similar results, and is infinitely easier to maintain. The \"placeholder\" feature has a more stable equivalent in [No Kebab](https://modrinth.com/mod/no-kebab)\n\n# Dataified Paintings\n\nVanilla compliant, datapack-driven custom paintings.  \n\nUnlike other data-driven mods, this one does not implement its own variant system, but fully re-use the vanilla one. This was made with the intent to be compatible with [Invariable Paintings](https://modrinth.com/mod/invariable-paintings), but neither is required to work with the other.\n\nMultiplayer is not supported at the moment.\n\n### Word of caution\nThe mod is sufficiently stable for long play sessions, but touches a lot of delicate mechanics. I'm releasing it as an **Alpha** until I'm confident I have ironed out all the fatal edge cases.\n\nMost of the heavy lifting is done during datapack reloads. They happen when using the `/reload` command, but also when joining a world, or creating a new one. If something ever goes wrong, it will probably be at one of these moments.  \nJoining worlds should be safe enough, but manually reloading in an already loaded world is a lot more sensitive.\n\n\n## Features\n\n### Pack format\nNew variants are defined in separate json files, which simply contains a `width` and `height` properties, measured in block. The variant id is automatically derived from the file's basename and namespace.\n```json\n{\n\t\"width\":  3,\n\t\"height\": 2\n}\n```\nVariant files are located in `/data/<namespace>/paintings/`. Textures and title/author are provided the same way as for the vanilla paintings.   Don't forget to add your paintings to the \"placeable\" tag, otherwise they will only be obtainable through commands.\n\nIn principle, textures and language files would need to be provided separately in a resource pack. But you can use [Embedded Assets](https://modrinth.com/mod/embedded_assets) to merge the resource pack into the datapack.  \n(The official mod page has yet to port it to a compatible version of minecraft, but I have an up-to-date fork here [on github](https://github.com/Estecka/mc-Embedded-Assets/releases), waiting to be merged.)\n\nThe combined pack structure would look something like this:\n```\n./\n├─ pack.mcmeta\n├─ assets\n│ └─ <namespace>\n│     ├─ lang\n│     │  └─ en_us.json\n│     └─ textures\n│        └─ painting\n│           ├─ <title1>.png\n│           └─ <title2>.png\n└─ data\n   ├─ minecraft\n   │  └─ tags\n   │     └─ painting_variant\n   │        └─ placeable.json\n   └─ <namespace>\n      └─ paintings\n         ├─ <title1>.json\n         └─ <title2>.json\n```\n\n### Missing Variants\nIn vanilla minecraft, a painting bearing an unknown variant id is reversed to the \"Kebab\" variant.\n\nWith Dataified Paintings, a placeholder 1x1 variant will be created, and the paintings will never loose its variant id. This gives you the leisure to make mistakes while developping datapacks, so a broken one will not result in your already existing paintings to transformed.  \nThis applies to both placed paintings, and painting items.\n\nBe mindful however that increasing an existing variant's size may still result in already placed paintings to be dropped from their wall, should they no longer fit.\n",
+  "categories": [
+    "decoration",
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 331,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "2iv6PRWD",
+  "slug": "displacer",
+  "title": "Displacer",
+  "description": "Something in-between a vacuum hopper and a hopper duct",
+  "body": "Depends on [**Fabric API**] and [**Fabric Language Scala**]\n\n# Displacer\n\n## Description\nThe Displacer (displacer:displacer) is a block and redstone component that can\nsuck items out of the world in a 3x3 region (like a vacuum hopper) and push to\ninventories up to 3 blocks behind it (like a hopper duct, but with additional\nrange). It *cannot* extract from inventories, unlike a hopper. It has a single\ninventory slot, but no GUI (since a GUI isn't really necessary here).\n\n* Suck rate: up to a stack every 40 ticks\n* Push rate: up to 1 item every tick (8x hopper speed)\n* Inventory size: 1 stack\n\n## Behaviour\n(LOW  => redstone signal strength = 0)\n\n(HIGH => redstone signal strength > 0)\n\n* When it has a LOW signal:\n  *\tIt will do absolutely nothing.\n* When it has a HIGH signal, but was LOW the previous game tick:\n  * It will attempt to suck items out of the world. It will not push in this\n\ttick. Items closer to the Displacer have higher priority. If it succeeds (ie\n\tit picks up at least one item), it will start a 2 second (40 ticks) cooldown,\n\tduring which it will be able to push as usual but will not be able to suck\n\tany more items. (This is to discourage laggy setups).\n* When it has a HIGH signal, and was HIGH the previous game tick:\n  * It will attempt to push to inventories behind it. It will push 1 item every\n\ttick. Closer inventories have higher priority and it ignores anything else in\n\tthe way. If it finds an inventory in the first two blocks but it refuses to\n\taccept an item, the Displacer will try to look behind it for another\n\tinventory in the same tick. It will not interact with entities like minecarts\n\teven if they have an inventory.\n\t\nThe Displacer provides a comparator output as you would expect. You will\nprobably need to slow down its transport until you get the comparator signal\nsince otherwise it will be too fast for the comparator to catch.",
+  "categories": [
+    "fabric",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 164,
+  "followers": 0,
+  "game_versions": [
+    "1.16.2",
+    "1.16.3",
+    "1.16.4"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "IAzu52kG",
+  "slug": "feature-recycler",
+  "title": "Feature Recycler",
+  "description": "A simple mod that prevents crashes between world generation mods caused by Minecraft's Feature Cycler.",
+  "body": "What does this mod do?\n\nFixes the \"Feature order cycle\" error when mods add placed features in different orders between their biomes. It does this by automatically recycling(resorting) their biome features to respect the rules set by a previous biome containing the same 2 elements.\n\nIt will now also silently log and tell you which features may have conflicted between which mods and how many crashes were prevented:\n[01:55:31] [Worker-Main-11/INFO]: Starting feature recycler...\n[01:55:32] [Worker-Main-11/WARN]: Moved placed feature \"minecraft:flower_default\" from index 2 to index 4 for biome \"biomeswevegone:sakura_grove\". Placed Feature index rules set by biome \"wythers:sakura_forest\".\n[01:55:32] [Worker-Main-11/WARN]: Moved placed feature \"minecraft:flower_cherry\" from index 4 to index 2 for biome \"biomeswevegone:sakura_grove\". Placed Feature index rules set by biome \"wythers:sakura_forest\".\n[01:55:32] [Worker-Main-11/WARN]: Just prevented a crash between biomeswevegone and wythers! Please report the issues to their respective issue trackers.\n[01:55:32] [Worker-Main-11/INFO]: Finished recycling features. Took 192ms\n[01:55:32] [Worker-Main-11/INFO]: Feature Recycler just prevented 1 crashes!\n\n\n\n\n\n\nWhat is the Feature Order Cycle error?\n\nThe error looks similar to this:\n\njava.lang.IllegalStateException: Feature order cycle found, involved sources: [Reference{ResourceKey[minecraft:worldgen/biome / wythers:sakura_forest]=net.minecraft.class_1959@3fddd9c5}, Reference{ResourceKey[minecraft:worldgen/biome / biomeswevegone:sakura_grove]=net.minecraft.class_1959@337bfcbf}]\n\n\n\nor with Cyanide:\n\n\ncom.alcatrazescapee.cyanide.codec.FeatureCycleDetector$FeatureCycleException: A feature cycle was found.\n\nCycle:\nAt step 9\nFeature 'minecraft:patch_melon_sparse'\nmust be before 'biomeswevegone:oak_bushes' (defined in 'biomeswevegone:fragment_jungle' at index 8, 9)\nmust be before 'biomeswevegone:mushrooms' (defined in 'biomeswevegone:pumpkin_valley' at index 8, 14 and 8 others)\nmust be before 'minecraft:seagrass_normal' (defined in 'biomeswevegone:crag_gardens' at index 11, 12)\nmust be before 'minecraft:sea_pickle' (defined in 'biomeswevegone:lush_stacks' at index 10, 11)\nmust be before 'minecraft:patch_melon_sparse' (defined in 'minecraft:warm_ocean' at index 11, 12)\n\n\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "quilt",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 479700,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,37 @@
+{
+  "id": "GEndvIfp",
+  "slug": "rabbit-pathfinding-fixed-(unofficial-forge-port)",
+  "title": "Rabbit Pathfinding Fixed (Unofficial Forge Port)",
+  "description": "Fixes rabbit pathfinding / MC-150224. An unofficial Forge ecosystem port from the Fabric version",
+  "body": "# Disclaimer\n\nThis is a fork of the [Rabbit Pathfinding Fixed](https://modrinth.com/mod/rabbit-pathfinding-fix). I do not claim ownership of the original code, assets nor changing any of the code logic. All credit goes to the litetex. I just made a port for Forge ecosystem.\n\n# Rabbit Pathfinding Fixed\nFixes rabbit pathfinding efficiently.\n\nAs of 1.21.1 there are multiple problems with rabbit pathfinding:\n\n### Basic pathfinding\n1. The calculation of the jump height/velocity is incorrect and poorly implemented.<br/>This results in too small jumps for climbing over a block.\n2. Rabbits \"stall\" (no horizontal movement) during jumps - due to this they just jump upwards in the same place when trying to climb a block.<br/>This behavior is caused by ``RabbitMoveControl`` which only sets the (horizontal) speed correctly during movement but not while jumping.\n3. Rabbits are stuck / try to wander around forever.\n   * The root cause is that ``EntityNavigation`` sets its timeouts based on movement speed.<br/>If the movement speed is 0 (this is the case when a rabbit/mob is \"stuck\"), the timeout is also 0... and if the timeout is 0 it's ignored and therefore it's executed forever (or until interrupted by something external like another goal).\n   * Rabbits only have a single goal when idle: ``WanderAround(Far)``. Most other entities also use ``LookAroundGoal``.<br/> Thus the above mentioned infinite navigation is never stopped in favor of executing another goal like in most other mobs.\n   * ``RabbitMoveControl#tick`` constantly updates the rabbits speed (``RabbitEntity#setSpeed``).<br/> While doing this it also indirectly executes ``moveControl#moveTo`` thus the rabbit always tries to reach it's last target even when it shouldn't do that.\n> As of ``1.21.4/24w46a`` [MC-150224](https://bugs.mojang.com/browse/MC-150224) was fixed, correcting the jump height (1) and fixing the stall (2).<br/>\n> However all other parts - including optimizations and sanity checks in above mentioned fixes - are still missing.\n\n### Eating carrot crops\n1. Rabbits can't reach the crops and always stop one block short of them.<br/>This is due to selecting the incorrect distance from the crop block (it's ``1`` but should be ``0``).\n2. Rabbits eat the crop instantly even while still jumping and being in the air.\n3. The goal/behavior is immediately aborted (after a few ticks - when a target crop block was selected) due to incorrect implementation of ``shouldContinue`` and ``isTargetPos`` methods.\n\nDetailed [video comparisons](https://litetex-oss.github.io/mcm-rabbit-pathfinding-fix/assets/comparison) are also available.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "mobs",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3344,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

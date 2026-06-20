@@ -1,0 +1,31 @@
+{
+  "id": "pLmmdiaY",
+  "slug": "manhunts-reinvented",
+  "title": "Manhunts Reinvented",
+  "description": "Simple Server-side Fabric mod that adds manhunts into the game. Supports both classic and impostor modes.",
+  "body": "# Manhunts Reinvented\n\nSimple server-side Fabric mod for running a manhunt in Minecraft. Supports classic and impostor modes.\n\n### Classic Mode\nThis mode relies on pre-assigned roles for hunters and speedrunners. The hunters are given compasses to track the speedrunner(s). The target can be changed with `/manhunt track`.\n\nThe speedrunners win if the ender dragon is slain, and the hunters win if all the speedrunners are killed. In this mode, when a speedrunner dies, they are put in spectator mode and are out of the game.\n\n### Impostor Mode\nThis mode revolves around secrecy. The impostor(s) are randomly chosen from the players in the game, and are secretly given a compass and told their role upon the start of the manhunt. The impostors' goal is to stop the speedrunners from beating the game.\n\nProximity voice chat is encouraged for this mode to enhance the experience. Furthermore in impostor mode, things like achievements and join/leave messages for dead players are disabled so it isn't known if they are alive or not by the others. See below for details and config.\n\n### Infection Mode\nThis mode is similar to the impostor mode, with one change: speedrunners, upon death, also become hunters. This means that as the game progresses, it will become harder for speedrunners to win with an increasing number of secret hunters in the game. Once again, this mode is best played with proximity voice chat.\n\n## Usage\n\n`/manhunt` is the main command.\n\n`/manhunt team` edits the team. Used for classic manhunts.\n- `/manhunt team <player> hunter` adds the player to the hunters.\n- `/manhunt team <player> speedrunner` adds the player to the speedrunners.\n\n`/manhunt track <player>` sets the compass to track the player.\n\n`/manhunt start` starts the manhunt. Requires op.\n- `/manhunt start classic` starts the manhunt in classic mode.\n- `/manhunt start impostor <number>` starts the manhunt and randomly assigns a secret hunter. An optional number can be added to specify a number of hunters; default is 1.\n\n`/manhunt stop` stops the current manhunt. Requires op.\n\n`/manhunt reset-timer` resets all timers (useful after a server crash). Requires op.\n\n`/manhunt alert` sends an alert with coordinates and current dimension.\n\n`/manhunt lost` sends a request for coordinates to other players.\n\n`/manhunt chat <message>` allows players to communicate with their teammates during a manhunt. Speedrunners cannot use this during impostor or infection games.\n\n`/manhunt reveal` can be used to get another player's exact coordinates and dimension. However, each player only gets one per game (by default). This amount can be changed in the config.\n\n## Config File\n\nYou can config the time before the release of the hunters and the time between two compass' updates by modifying the config\nfile `config/manhunt.json`.\n\nThe default config file is:\n\n```json\n{\n  \"secondsBeforeRelease\": 30,\n  \"updateCompassEach\": 5,\n  \"removePiglinBrutes\": false,\n  \"disableImpostorGameChat\": true,\n  \"disableMessaging\": true,\n  \"maximumReveals\": 1,\n  \"hunterChat\": true,\n  \"speedrunnerChat\": true,\n  \"enableWorldBorder\": true,\n  \"enableOnePlayerSleeping\": true,\n}\n```\n\n- `secondsBeforeRelease` is the time before the release of the hunters\n- `updateCompassEach` is the time between two compass' updates (fewer means more updates)\n- `removePiglinBrutes` allows the disabling of piglin brute spawning, instead spawning regular piglins in their place.\n- `disableImpostorGameChat` disables the regular game chat during impostor manhunts.\n- `disableMessaging` disables /msg and related messaging commands globally. Requires game restart.\n- `maximumReveals` is the amount of uses of `/manhunt reveal` that each player can use per game.\n- `hunterChat` is whether the hunters can use `/manhunt chat` to communicate with each other.\n- `speedrunnerChat` is whether speedrunners can use `/manhunt chat` to communicate with each other in non-impostor/infection modes.\n- `enableWorldBorder` is whether the game automatically creates a world border (of 4000 blocks in each direction) in the overworld. This is done to prevent runners from running too far away.\n- `enableOnePlayerSleeping` is an option to automatically turn on the gamerule for one player sleeping through the night.\n\nWarning: When you break a lodestone, the compass is still focused on that lodestone!\n\n## Technologies\nBased on https://github.com/anhgelus/manhunt-mod\n\n- Fabric\n- Fabric API\n- Yarn Mappings\n- MidnightLib (embedded in jar)\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "minigame",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 868,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

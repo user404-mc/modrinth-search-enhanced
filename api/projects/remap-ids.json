@@ -1,0 +1,25 @@
+{
+  "id": "LS9KUmOO",
+  "slug": "remap-ids",
+  "title": "Remap IDs",
+  "description": "Redirect item, block, entity, fluid, tag, recipe, and loot table IDs to alternative IDs at runtime",
+  "body": "# RemapIDs\n\n**Remap any item, block, fluid, or entity ID to another — data-driven, zero-config code.**\n\nRemapIDs is a utility mod for **modpack developers** that lets you redirect registry IDs throughout the entire game using simple JSON files. Unify duplicate ores across mods, replace deprecated items, or migrate worlds between mod versions — all without writing a single line of code.\n\n## Features\n\n**Registry Remapping**\nRemap across 7 registry types:\n- Blocks, Items, Fluids, Entity Types\n- Tags, Recipes, Loot Tables\n\nRemaps are applied deeply — recipes, loot tables, tags, NBT data in inventories and containers are all automatically rewritten.\n\n**Data-Driven Configuration**\nDrop JSON files into `config/remapids/remaps/` and you're done:\n```json\n{\n  \"remaps\": [\n    {\n      \"source\": \"iceandfire:silver_ingot\",\n      \"target\": \"othermod:silver_ingot\",\n      \"types\": [\"item\", \"recipe\", \"loot_table\"]\n    }\n  ]\n}\n```\n\n**Wildcard Patterns**\nBulk-remap entire families of items with a single rule:\n```json\n{\n  \"source\": \"iceandfire:silver_*\",\n  \"target\": \"othermod:silver_*\"\n}\n```\n\n**Tag-to-Item Recipe Conversion**\nReplace tag ingredients in recipes with specific items:\n```json\n{\n  \"source\": \"#forge:ingots/silver\",\n  \"target\": \"othermod:silver_ingot\",\n  \"types\": [\"recipe\"]\n}\n```\n\n**Smart Chain Resolution**\nIf A remaps to B and B remaps to C, the mod automatically flattens this to A→C. Circular dependencies are detected and rejected.\n\n**Live Reloading**\nTag, recipe, and loot table remaps are reapplied on `/reload` — no restart needed.\n\n**Zero Runtime Overhead**\nBlock, item, fluid, and entity remaps are applied as registry aliases at startup. After that, there's no performance cost.\n\n## Supported Versions\n\n| Minecraft | Loader |\n|-----------|--------|\n| 1.20.1 | Forge |\n| 1.20.1 | Fabric |\n| 1.21.1 | NeoForge |\n| 1.21.1 | Fabric |\n\n## Use Cases\n\n- **Ore unification** — Redirect all silver ingots from 5 different mods to one canonical ID\n- **Mod migration** — Swap out a removed mod's items for replacements without breaking existing worlds\n- **Loot/recipe cleanup** — Rewrite loot tables and recipes to use the items you want\n- **World upgrades** — Items already in inventories and containers are remapped via NBT on load\n\n## Getting Started\n\n1. Install the mod for your loader\n2. Create `config/remapids/remaps/` if it doesn't exist\n3. Add any number of `.json` files with your remap definitions\n4. Launch the game — remaps are applied automatically\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 1667,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

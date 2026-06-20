@@ -1,0 +1,38 @@
+{
+  "id": "bUCUBnGP",
+  "slug": "keystrokes-overlay-lua",
+  "title": "KeyStrokes Overlay With Lua",
+  "description": "A highly customizable keystrokes overlay for Fabric that uses Lua scripts for dynamic visual themes and real-time design editing",
+  "body": "# ⌨️ KeyStrokes Overlay With Lua\nA powerful and flexible keystrokes display mod for Minecraft Fabric, featuring a unique Lua-based engine for deep visual customization.\n\n### ✨ Key Features:\n* **Lua-Powered Themes**: All visual styles (Classic, Modern, Apple, and Lunar) are handled via external Lua scripts. Create your own unique look by adding `.lua` files to `config/keystrokes/ThemeManager/`.\n* **Live Hot-Reloading**: Modify your theme scripts while the game is running and see the changes instantly using the \"Reload Lua\" button in the settings menu.\n* **Intuitive In-Game Menu**: Press the **'K'** key to open the settings interface.\n* **Full RGB Customization**: Real-time color sliders that sync directly with your Lua scripts for ultimate control.\n* **Flexible UI**: Independently drag and reposition the keyboard and mouse overlays. Support for custom scaling (Auto, Fixed, or Slider-based).\n\n### 🚀 Installation:\n1. Ensure you have **Fabric Loader** installed for Minecraft **1.20 or higher**.\n2. Download the mod and place the `.jar` file into your `mods` folder.\n3. Launch Minecraft and press **'K'** to open the settings.\n4. Explore the `config/keystrokes/ThemeManager/` folder to tweak the default scripts or add new ones.\n\n---\n\n### 📜 Scripting Guide: Create Your Own Theme\nCreating a theme is easy. Just create a `.lua` file in the `config/keystrokes/ThemeManager/` folder. Here is a starter template:\n\n```lua\n-- Save this as \"my_custom_theme.lua\" in config/keystrokes/ThemeManager/\n\n-- Optional: This runs once when the theme is loaded or selected\nfunction onThemeLoad()\n    -- Sets the default color of the menu sliders (R, G, B, A)\n    setMenuColor(255, 165, 0, 255) -- Default to Orange\nend\n\n-- This runs every frame for every key and mouse button\n-- Parameters: label (String), isPressed (Boolean), x, y, w, h (Position/Size), r, g, b, a (Menu Colors)\nfunction renderKey(label, isPressed, x, y, w, h, r, g, b, a)\n    -- Combine the R, G, B, A values from the menu into a single color\n    local menuColor = bit.bor(bit.lshift(a, 24), bit.lshift(r, 16), bit.lshift(g, 8), b)\n    \n    if isPressed then\n        -- Draw a solid background using the menu color\n        fill(x, y, w, h, menuColor)\n        -- Tell the mod to draw the text in Black\n        setTextColor(0xFF000000) \n    else\n        -- Draw a semi-transparent black background when not pressed\n        fill(x, y, w, h, 0x80000000)\n        -- Tell the mod to draw the text in White\n        setTextColor(0xFFFFFFFF)\n    end\nend",
+  "categories": [
+    "fabric",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 11030,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

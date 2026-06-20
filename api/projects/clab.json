@@ -1,0 +1,25 @@
+{
+  "id": "cQGbqGTG",
+  "slug": "clab",
+  "title": "CLab",
+  "description": "Bringing Hardware Occlusion Culling (HOC) to Minecraft entity rendering optimization.",
+  "body": "\n> Bringing **Hardware Occlusion Culling (HOC)** to Minecraft entity rendering optimization.\n\nCLab is a client-side rendering optimization mod. It leverages GPU OpenGL occlusion queries to determine entity visibility directly, eliminating the approximation errors and side effects inherent to traditional CPU-side pathtracing.\n\n![1](https://cdn.modrinth.com/data/cached_images/982e5b2983c75cd23283835cc4e37d07df0d8a6d.png)\n\n## Core Features\n\n- **Hardware Occlusion Culling (HOC)**  \n  Uses GPU queries to test entity bounding boxes against the depth buffer, measuring real occlusion against actually rendered terrain rather than CPU-side approximations of the world model.\n\n- **Zero False-Positive Culling**  \n  Based on ground-truth depth buffer testing. An entity is never hidden if even a single pixel is visible. No whitelist needed, no per-mod patches required.\n\n- **Render-Layer Only, Zero Intrusion**  \n  Only decides whether to invoke the entity render method. Does not interfere with client-side ticks, animation states, position interpolation, or any logic. Trains, vehicles, and contraptions behave normally.\n\n- **Built-in Leaf Face Culling**  \n  Automatically culls leaf faces occluded by adjacent leaves, reducing terrain rendering overhead.\n\n- **Zero-Config, Works Out of the Box**  \n  No entity whitelist, no distance threshold, no tick-culling toggle. Install and play.\n\n## Technical Overview\n\nCLab uses **Hardware Occlusion Culling**:\n\n1. During entity rendering, submit the entity bounding box to the GPU as an occlusion query (OpenGL Query).\n2. The GPU compares the bounding box against the already-rendered terrain depth buffer at the hardware level.\n3. Read the previous frame's query result: if no pixels passed the depth test, skip rendering this entity.\n\nThis creates a fundamental difference:\n\n| Aspect | CPU Pathtracing | CLab HOC |\n|--------|---------------|----------|\n| Occlusion basis | Simplified assumptions about world model | Actual GPU-rendered depth buffer |\n| False positives (hiding visible entities) | Common (near non-solid blocks) | Extremely unlikely |\n| Entity tick/animation | Often frozen or skipped | Completely unaffected |\n| CPU overhead | Continuous background traversal | Render thread submits AABB only; GPU handles the rest asynchronously |\n| Configuration required | Whitelists, distance limits, thresholds as compensatory mechanisms | None required |\n\n## ⚠️ Important Compatibility Notes\n\n*   **Hardware Requirement:** CLab requires a dedicated graphics card with **OpenGL 3.3 or higher**. Most modern GPUs meet this requirement, but certain older integrated graphics or outdated drivers may not.\n*   **Do NOT use with other entity culling mods:** CLab should **not** be installed alongside **EntityCulling** or any other mod that modifies entity/block entity visibility. While these mods use different techniques, they all ultimately override the same visibility decisions. Running more than one will not improve performance — instead, they may conflict and cancel out each other's optimizations, resulting in wasted resources and potential visual inconsistencies. For the best results, keep only CLab active.\n\n### Compatibility & Future Optimizations\n\nThe current approach was chosen to maintain compatibility with older devices and macOS. A more advanced technique is available, but it would introduce compatibility problems on those systems. Development and testing are currently done on a Mac, which limits how far I can improve things today. I plan to transition to a machine with OpenGL 4.6 support soon, after which I’ll introduce a system that automatically selects the optimal method during loading.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 741,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

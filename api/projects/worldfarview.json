@@ -1,0 +1,20 @@
+{
+  "id": "8ykc9UnH",
+  "slug": "worldfarview",
+  "title": "WorldFarView",
+  "description": "Mod that increases render distance by utilizing height map planes.",
+  "body": "**Inspired by FarPlane2**, this mod enhances render distance using Level of Detail (LOD) planes.\n\n\n![Image of LOD's from y=3500 with resolution = 70 and start size = 1024](https://cdn.modrinth.com/data/cached_images/430cce8c858289b63b22b0f13f60934a1c5f163b_0.webp)\n\nImage of LOD's from y=3500 with resolution = 70 and start size = 1024\n\n## 🚀 Features\n- Dynamic LOD-based rendering\n- Configurable render distance and quality settings\n- Server-side compatibility controls\n- Extensible API for custom chunk generators\n\n## 🔧 Installation & Usage\n1. Install the mod on both **client and server**.\n2. Join a world - the mod activates automatically.\n    - *Note:* High resolutions may require longer loading times.\n3. **Currently supports only noise-based chunk generators** (vanilla-compatible).\n    - The mod will notify you if any compatibility issues arise.\n\n> ⚠️ **Development Notice**: This mod is still in active development and may have stability issues.\n\n---\n\n## ⚙️ Configuration\n\n### **Client Settings** *(Editable in-game via Mods menu)*\n| Setting | Description | Recommended Value        |  \n|---------|-------------|--------------------------|  \n| **LOD0 Start Size** | Base plane size (rendering starts at half this distance) | `Render distance * 32`   |  \n| **Number of LODs** | Total LOD planes (each 2× larger than the previous) | -                        |  \n| **Resolution Quality** | Vertices per plane (higher = sharper but heavier) | `70` |  \n\n**Render Distance Formula**:  \n`Total Distance = LOD0 Start Size × (2 ^ Number of LODs)`\n\n*Example*: If `LOD0 Start Size = 1000` and `Number of LODs = 3`, the max distance is `1000 × 8 = 8000` blocks.\n\n⚠️ If the server rejects client settings (e.g., unsupported resolution), the mod will auto-disable.\n\n---\n\n### **Server Settings** *(Can be found in world/server files)*\n| Setting | Description |  \n|---------|-------------|  \n| **clientSide** | If `true`, sends seed/generator data to clients (*unsupported in current version*). If `false`, forces server-side generation. |  \n| **maxResolution** | Rejects clients requesting resolutions beyond this limit (if `clientSide = false`). |  \n| **maxLevel** | Rejects clients requesting higher LOD levels than allowed (if `clientSide = false`). |  \n\n---\n\n## 🛠️ For Developers: Adding Compatibility\nTo integrate your custom world generator:\n1. Implement `FarChunkGenerator` and register it in `FarChunkGenerators`.\n2. For **client-side support**, create:\n    - `ClientFarChunkGenerator`\n    - `SerializableFarChunkGenerator<YourClientFarChunkGenerator>`\n\n📌 **Performance Note**: Ensure your chunk generator is optimized for speed!\n\n---",
+  "categories": [
+    "forge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1724,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

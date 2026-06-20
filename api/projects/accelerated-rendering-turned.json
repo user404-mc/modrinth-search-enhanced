@@ -1,0 +1,23 @@
+{
+  "id": "MPpj0WSK",
+  "slug": "accelerated-rendering-turned",
+  "title": "Accelerated Rendering: Turned",
+  "description": "Fork of AR. Entity rendering optimization mod. Fast vertices transforming and caching using compute shaders.",
+  "body": "An unofficial fork of [https://modrinth.com/mod/acceleratedrendering](https://modrinth.com/mod/acceleratedrendering).\n\n\n## Difference:\n\nAdded Immersive Portal Compatibility(half).\nOptimized some mixins. \n\n### Details\nWith the original AR, if any immersive portal is being rendered, the entities(or other accelerated rendered things) would be placed in the wrong layer of rendering. This port would disable the accelerated rendering pipeline if any portal is being rendered, which isn't the best way to cope with immersive portals, but the one that we can do right now. Also, the implementation of mixin in the original AR is really messy; we also fixed that.\n\n\n## From origin mod:\n# AcceleratedRendering (CN version)\n\nThis is a client side only entity rendering optimization MOD, aiming at improving performance when rendering large amount of entities or complex modded entities with significant amount of vertices with compute shaders on GPU while being compatible with shader packs, other MODs and their entities.\n\n\n\n## ✨Why need this MOD\n\nMinecraft has a poor immediate rendering system for rendering entities (including block entities) that is inherited from OpenGL immediate rendering mode that older versions of Minecraft uses. It transforms and uploads vertices on the single render thread on CPU every frame the entities are rendered, which takes a huge amount of time spending on these operations and left CPU and GPU idle with a very low FPS when rendering large amount of vertices.\n\n## ⚙️How it works\n\nAcceleratedRendering constructs a unique rendering pipeline that caches the \"original\" vertices (vertices before the transform) into meshes and transforms them parallel in GPU using compute shaders. Then draw the transformed vertices with the original shader. In this way, this MOD can make entity rendering much more efficient by moving off transforming stress from the CPU at the same time being compatible with shader packs (currently support Iris Shaders). All acceleration features can be disabled for better compatibility.\n\n## 🖥️Hardware Requirements\n\nAcceleratedRendering requires OpenGL 4.6 to work properly for the usage of persistently mapped buffers and compute shaders. Graphics cards like NVIDIA GT 400 Series and Intel HD Graphics 520/530 or newer will fit this requirement. This MOD has been tested on NVIDIA GTX 1660Ti Max-Q, NVIDIA RTX 3070Ti Laptop, NVIDIA RTX 4090 Laptop, RX 580, RX 5600XT. Mobile devices are not currently supported.\n\n## 🛠️Configuration\n\nConfiguration file can be found in <your Minecraft>/.minecraft/config/acceleratedrendering-client.toml. You can modify acceleration features in this file or in game (some specific configurations needs to restart the game to take effect). In game configuration editor can be found in Mods > Accelerated Rendering > Config. \"Force Translucent Acceleration\" in \"Core Settings\" is required to be enabled in order that accelerated item rendering can work properly.\n\n\n\n# 加速渲染\n\n加速渲染是一个客户端实体渲染优化MOD. 目的是改善在渲染大量实体或拥有大量顶点的复杂MOD实体的情况下产生的渲染性能问题, 与此同时尽可能与光影MOD和其他MOD及其自定义实体兼容.\n\n\n\n## ✨为什么需要这个MOD\n\nMinecraft拥有一个羸弱的, 继承使用OpenGL立即模式的老版本的渲染系统以用来渲染实体和方块实体. 这个渲染系统会在CPU上单线程每帧变换和上传实体渲染所需要的顶点. 这就导致有巨量的时间被浪费在这些单线程执行的操作上, 导致了在渲染大量顶点时CPU其他核心和GPU空闲, 而FPS却十分低的奇异景象.\n\n## ⚙️工作原理\n\n加速渲染构建了一个独特的渲染管线, 将变换前的顶点缓存至模型中, 并在需要渲染时将其提交到GPU使用计算着色器进行多线程并行变换. 之后使用原本渲染系统中所使用的着色器进行渲染绘制. 通过这个渲染管线, 加速渲染可以在将实体渲染效率大幅提升, 将CPU压力转移的同时维持对光影MOD的兼容性 (当前兼容Iris Shaders). 并且所有渲染特性都可以被关闭以保证兼容性.\n\n## 🖥️硬件要求\n\n加速渲染因为使用了持久映射缓冲区(Persistently Mapped Buffer)和计算着色器, 因此需要OpenGL 4.6才能正常工作. 理论上NVIDIA GT 400 Series, Intel HD Graphics 520/530及以上的显卡可以满足这个要求. 加速渲染已经在发布前在NVIDIA GTX 1660Ti Max-Q, NVIDIA RTX 3070Ti Laptop, NVIDIA RTX 4090 Laptop, RX 580, RX 5600XT上经过测试. 移动设备目前不受支持.\n\n## 🛠️配置\n\n配置文件可以在<Minecraft安装位置>/.minecraft/config/acceleratedrendering-client.toml找到. 你可以通过配置文件修改加速特性或在游戏内进行修改. 部分特性可能需要重启游戏才能生效. 你可以在模组 > Accelerated Rendering > 配置找到游戏内配置编辑器. 如要让加速物品渲染正常工作, 请在\"核心配置\" (Core Settings) 处开启\"强制加速半透明\" (Force Translucent Acceleration).",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 6770,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

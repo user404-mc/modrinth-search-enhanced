@@ -1,0 +1,20 @@
+{
+  "id": "b4T2AF9Q",
+  "slug": "craftui",
+  "title": "CraftUI",
+  "description": "An implementation of Dear ImGui on top of Minecraft for in-game editors.",
+  "body": "# CraftUI\n\nA framework to use [Dear ImGui](https://github.com/ocornut/imgui) in Minecraft\n\n---\n\nOver the past few years, I've noticed a growing use of ImGui in utility mods such as Flashback. However,\ndue to technical constraints, none of these mods can be compatible with each other (and if they are, they're extremely jank).\n\nCraftUI is a framework that attempts to fix this. Being a minecraft-specific wrapper for Dear ImGui, it handles mounting\nand rendering the ImGui native code, cross-mod compatibility, as well as providing a set of extra, Minecraft-specific utility systems.\n\n> Note: This framework is still in development, and public API functionality might change.\n> It also doesn't support all Minecraft versions right now.\n\n## Examples\n\n![Example of an editor UI](https://cdn.modrinth.com/data/cached_images/e6204f2c066fb8d04cf4b3227a7a45f006887b60_0.webp)\n![Some of the widgets ImGui provides](https://cdn.modrinth.com/data/cached_images/ce1c2e339a48de9d3c5d1230ce0f76a60622bd65.png)\n\n## Features\n\nCraftUI is built on [ImGui Java](https://github.com/SpaiR/imgui-java/), and by extension, contains all its features.\nOn top of that, it also includes:\n\n* Resource-pack-based font loading\n* User-definable themes (also resource-pack-based)\n* Game viewport resizing via dock-space\n* Native file browser access\n* Other various utilities\n\n## Getting Started\n\nTo preface, it's important to have a basic understanding of Dear ImGui, and specifically ImGui Java, before using this library.\nAny questions pertaining ImGui on its own will be redirected there.\n\nWith that said, to install, add the following to the `repositories` section of your buildscript:\n\n```groovy\nrepositories {\n    // ...\n    maven { url = 'https://jitpack.io' }\n}\n```\n\nThen, in your `dependencies` section, add the following, replacing `[version]` with the desired version:\n```groovy\ndependencies {\n    // ...\n    modImplementation 'com.github.Igrium:CraftUI:[version]'\n}\n```\n\nAnd don't forget to add it as a dependency in `fabric.mod.json`!\n\nOnce you have the framework installed and building, you can create a new UI application by extending `CraftApp`:\n\n```java\npublic class ExampleApp extends CraftApp {\n    @Override\n    protected void render(MinecraftClient client) {\n        // ImGui rendering code here\n    }\n}\n```\n\nNow, to open the UI, call:\n```java\nAppManager.openApp(new ExampleApp());\n```\n\nThe app will now render atop the game until it is closed with `exampleApp.close()`. See `testmod` for a more in-depth example.\n\n## Important Notes:\n\n* Due to the size of the included native libraries, it is *not* recommended to bundle the framework itself with your mod.\n* The package `com.igrium.craftui.impl` is *not* considered part of the public API, and could change without warning!",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 150,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4"
+  ],
+  "date_updated": null
+}

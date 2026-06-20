@@ -1,0 +1,35 @@
+{
+  "id": "yK5HP519",
+  "slug": "unstable-ban",
+  "title": "Unstable Ban",
+  "description": "A remake of the banning system on Unstable with optional timed bans - easy configuration",
+  "body": "# 💀 Unstable Ban — Minecraft Plugin\n\n**Unstable Ban** brings **true hardcore vibes** to your Minecraft server by turning **player deaths into bans**.\nEvery life counts — **one mistake and you're out**.\n\nIt functions just like the **banning system on Unstable SMP**, with a **few additional features**, but it's **fully configurable** to behave *exactly* like **Unstable SMP** if desired.\n\n---\n\n## ⚡ Core Idea\n\nDeath is no longer just a setback.\n\n* You don't respawn\n* You don't keep playing\n* You get **banned**\n\nWhether temporary or permanent — **death finally means something**.\n\n---\n\n## 💬 What Happens When a Player Dies\n\n* The plugin **detects the death instantly**\n* A **ban command is sent to LibertyBans**\n* The player is **automatically banned**\n* A **Wither spawn sound** plays\n* Nearby players **see the death message and hear the sound** (configurable radius)\n* The player sees a **custom ban reason** (killer or natural cause)\n\n```yaml\n# The radius in which the death message/sound will be seen/heard when someone dies. 1 = 1 Block\ndeath-radius: 1000\n\n# Should the plugin send a death message in the chat and/or play a sound when someone dies ONLY IN THE ASSIGNED RADIUS?\ndeath-message: true\ndeath-sound: true\n\n# Only use sounds that are listed in https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html\ndeath-sound-type: ENTITY_WITHER_SPAWN\n\n# The reason the player should see if he dies\n# %player% = the name of the player who died\n# %killer% = the name of the player who killed the player (if there is one)\n# %banCount% = the amount of bans the player has after being killed\nban-reason: \"You were killed by %killer%!\"\n\n# when there is no killer, the player should see this message\nban-reason-natural-causes: \"You died!\"\n```\n\nNo delays. No loopholes.\nJust **pure consequences**.\n\n---\n\n## ⏳ Ban Progression System\n\nUnstable Ban supports **escalating ban durations**, just like on **Unstable SMP**.\n\n```yaml\n# m = minutes, h = hours, d = days, mo = months\n# for permanent bans, delete all durations except the first one and set it to \"perm\"\nban-durations:\n  - \"10m\"\n  - \"1h\"\n  - \"6h\"\n  - \"24h\"\n  - \"7d\"\n\n# Should a players bans be reset after the last/longest ban time\nban-durations-last-reset: true\n```\n\nEach death increases the punishment.\nAfter reaching the longest duration, bans can automatically reset (optional).\n\nSurvive longer — or **pay the price**.\n\n---\n\n## 🔄 Earn Your Way Back In\n\nIf you're using **temporary bans**, players can **reduce their ban counter** in two ways.\n\n### ⏱️ By Spending Time on the Server\n\n```yaml\n# Should someone lose one ban after a certain time period?\nlose-ban-after-time: true\n\n# s = seconds, m = minutes, h = hours, d = days\nlose-ban-after-duration: \"2h\"\n\n# use -1 to remove all bans after the time period\nlose-ban-amount: 1\n```\n\nIf a player is on ban level 2 and the time passes,\nthey'll drop back to ban level 1 — meaning **shorter bans next time**.\n\nWhen they join while this system is active, a **boss bar countdown** shows the remaining time.\n\n```yaml\n# the color of the countdown boss bar\ncountdown-bossbar-color: \"RED\"\n\n# The title on top of the boss bar\n# Use %time% to show the remaining time until the next ban is removed\ncountdown-bossbar-title: \"§cYou will lose one ban in %time%\"\n```\n\n---\n\n### ⚔️ By Killing Other Players\n\nHigh risk. High reward.\n\n```yaml\n# Should someone lose ban(s) after getting a kill?\nlose-ban-after-kill: true\n\n# use -1 to remove all bans after the time period\nlose-ban-amount-on-kill: -1\n```\n\nOne kill can **wipe all previous bans** — if you're brave enough.\n\n---\n\n## 🧠 Why Unstable Ban Is Different\n\n* **Death = Consequence**\n* **Escalating punishments**\n* **Redemption through skill or patience**\n* **Public deaths with sound & messages**\n* **Full logging & moderation transparency**\n* **Fully configurable hardcore experience**\n\nIt's not just a plugin — it's **a ruleset for tension**.\n\n---\n\n### 📢 Join & Leave Radius Control\n\nJoin and leave messages can also be limited to a specific radius.\n\n```yaml\n# Should leave messages only be sent to players in a certain radius around the player who left?\nleave-msg-radius-enabled: true\nleave-msg-radius: 1000\n\n# Should join messages only be sent to players in a certain radius around the player who joined?\njoin-msg-radius-enabled: true\njoin-msg-radius: 1000\n```\n\n---\n\n## 🎮 Perfect For\n\n* Hardcore SMPs\n* Competitive survival servers\n* Events & challenges\n* Content creators\n* Servers that want **real stakes**\n\nEvery fight matters.\nEvery heart matters.\nEvery decision matters.\n\n---\n\n## 📋 Commands — Unstable Ban\n\n| Command                                 | Function                          | Permission            |\n| --------------------------------------- | --------------------------------- | --------------------- |\n| `/unstableban bans`                     | Check your current ban count      | Player                |\n| `/ub bans`                              | Alias for `/unstableban bans`     | Player                |\n| `/unstableban togglebossbar`            | Toggle your ban countdown bossbar | Player                |\n| `/ub togglebossbar`                     | Alias                             | Player                |\n| `/unstableban help`                     | Show help message                 | `unstableban.help`    |\n| `/ub help`                              | Alias                             | `unstableban.help`    |\n| `/unstableban reload`                   | Reload configuration              | `unstableban.reload`  |\n| `/ub reload`                            | Alias                             | `unstableban.reload`  |\n| `/unstableban getbans <player>`         | Get ban count of a player         | `unstableban.getbans` |\n| `/unstableban setbans <player> <value>` | Set ban count of a player         | `unstableban.setbans` |\n\n---\n\n## 📦 Installation\n\n1. Place `unstable-ban` in your `plugins/` folder\n2. Make sure **LibertyBans** is installed\n3. Restart your server\n4. Deaths now trigger bans automatically\n\n---\n\n## 🔗 Dependencies\n\n* [LibertyBans](https://libertybans.org/)\n\n---\n\n**Death finally means something.**\n**Every life is precious. Every fight counts.**\n\nUnstable Ban turns your server into a **true hardcore adventure** 💀🔥\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 678,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

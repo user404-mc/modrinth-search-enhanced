@@ -1,0 +1,34 @@
+{
+  "id": "oOg2anHr",
+  "slug": "client-guard",
+  "title": "Client Guard",
+  "description": "Blacklist certain mods such as Freecam, hack clients, etc. The only plugin that allows for kicking players with selected mods without a client-side mod.",
+  "body": "## ClientGuard\n\nClientGuard detects and removes players running blacklisted cheat clients — completely server-side, no client mod required. Vanilla players join without any issues. The detection is fully silent; players have no idea a check is happening.\n\nShips with tested probes for **Wurst, Meteor Client, Freecam, Baritone, XRay Mod, SeedCrackerX, SeedCracker, CrystalCore, ChestESP, and PlayerESP.** Additional probes can be added at any time via config or the `/cg probe` command.\n\n---\n\n## How It Works\n\nEvery cheat client registers its keybindings under unique translation keys (e.g. `key.wurst.zoom`). When a player joins, ClientGuard silently places a hidden sign below them packed with those keys as translatable components, opens the sign editor on the client, and immediately closes it. The client echoes the sign back to the server — if any keys were resolved to readable labels (e.g. `Zoom`), the mod is present.\n\nThe entire exchange happens on the loading screen. Players never see a sign editor.\n\n---\n\n## Features\n\n- **Silent detection** — players have no idea a scan is running\n- **Warn system** — warn players on first detection before the action fires; warned state survives reconnects so players cannot relog to reset it\n- **Configurable actions** — run any console command on detection, including commands from other plugins (ban, tempban, etc.)\n- **Per-probe overrides** — set a different action or toggling warnings for individual probes\n- **Auto re-scan** — periodically re-scan all online players on a configurable interval\n- **Scan on join** with a configurable delay to handle high-latency connections\n- **Manual scan** with `/cg scan <player>` or `/cg scan-all` for the whole server\n- **Scan cooldown** to prevent staff from spamming scans on the same player\n- **Bypass detection** — alerts staff when a player's client doesn't respond to the scan\n- **Detection sound** — plays an alert sound to online staff when a dissallowed mod is found\n- **Exempt permission** — trusted staff or builders can be excluded from scanning entirely\n- **Detection history** — every scan result is logged and viewable with `/cg history <player>`\n- **Live config** — toggle any setting or manage probes in-game without a restart\n- **Suppression** — optional blindness + slowness applied during the scan window (fully configurable)\n- **No dependencies** — runs on any Paper 1.21+ server out of the box\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/cg scan <player>` | Manually scan a player |\n| `/cg scan-all` | Scan every online player at once |\n| `/cg history <player>` | View a player's detection log |\n| `/cg history clear <player>` | Wipe a player's history |\n| `/cg status` | Show current plugin status and config |\n| `/cg set <flag> <value>` | Toggle any detection flag live |\n| `/cg probe <list/add/remove/toggle>` | Manage detection probes |\n| `/cg reload` | Reload config.yml |\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 650,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

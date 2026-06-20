@@ -1,0 +1,20 @@
+{
+  "id": "Dv0wRUzC",
+  "slug": "mod-menu-1.1x",
+  "title": "Mod Menu 1.1x",
+  "description": "A fixed up version of Mod Menu for older versions of Minecraft that are less supported.",
+  "body": "# Mod Menu 1.1x\n\n## About\n\nA fork of [Mod Menu](https://modrinth.com/mod/modmenu) to try and maintain less supported versions of Minecraft, mainly 1.14.x as of now.\n\n![modmenu](https://cdn.modrinth.com/data/cached_images/07d445a0291c16a6d08f05c4da064ca782ec4534.png)\n\n### Other Forks\n\nSimilar forks of modmenu:<br/>\n\n- [Mod Menu Ornithe](https://modrinth.com/mod/modmenu-ornithe)\n- [Mod Menu Babric](https://modrinth.com/mod/modmenu-babric)\n\n### Current and Projected Version Support\n\n- [x] 1.14.4\n- [x] 1.14.2\n\n### Why\n\nWell trying to mod Minecraft 1.14.2 I found that Mod Menu did not work correctly and since I was looking for a small project I decided try to back port it, in the process I started by getting 1.14.4 updated and releasing that first then releasing 1.14.2\n\n## Development Info\n\nMost other development info is the same from normal Mod Menu with the exception of a few things.<br/>\n\n1. All API imports are kept at `io.github.prospector.modmenu.api` this is becuase it enables the maximum level of compatiblity with pre-existing mods for 1.14.x\n\nExample imports:\n\n```java\nimport io.github.prospector.modmenu.api.ModMenuApi;\nimport io.github.prospector.modmenu.api.ConfigScreenFactory;\n```\n\n2. `ConfigScreenFactory` is supported this is done through a 1.15.2 backport\n3. When adding as a dependency use `maven.modrinth`, below are some examples of what you need to add to your `build.gradle`.\n\nMore information on `maven.modrinth` can be [found here.](https://support.modrinth.com/en/articles/8801191-modrinth-maven)\n\n`build.gradle`\n\n```groovy title=\"build.gradle\"\nrepositories {\n    exclusiveContent {\n            forRepository {\n                maven {\n                    name = \"Modrinth\"\n                    url = \"https://api.modrinth.com/maven\"\n                }\n            }\n            filter {\n                includeGroup \"maven.modrinth\"\n            }\n        }\n    }\n```\n\n`build.gradle`\n\n```groovy title=\"build.gradle\"\ndependencies {\n    modApi include(\"maven.modrinth:mod-menu-1.1x:ABC\")\n}\n```\n\n`ABC` should be replaced with the version of the release of Mod Menu 1.1x you are trying to support, you can find the version on the versions page.\n\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 401,
+  "followers": 0,
+  "game_versions": [
+    "1.14.2",
+    "1.14.4"
+  ],
+  "date_updated": null
+}

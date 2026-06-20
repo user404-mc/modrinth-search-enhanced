@@ -1,0 +1,30 @@
+{
+  "id": "QoUTazud",
+  "slug": "custompotions",
+  "title": "Custom Potions",
+  "description": "Allows adding custom potions and potion recipes through datapacks",
+  "body": "# Custom Potions\nProvides a server side only way to add custom potions using datapacks.\n\nWhen installed on the client, it provides integration with REI and EMI. (Only up to 1.21.1. If you experience issues with it, you can disable it starting with 2.1.2+1.21.1 in config/custompotions.json)\n\n## Adding a potion\nIn a datapack, make a data/id/custom_potions/id.json file for your potion.\n\nThe available parameters are \"fallback\" for the fallback name of the potion, if translations are unvailable\n(Potion of {fallback}, Arrow of {fallback}, Splash {fallback}, Lingering {fallback}),\nan array of effects following the vanilla format, and an optional color using the [same format as vanilla](https://minecraft.wiki/w/Calculators/Decimal_representation_of_color).\n\nFor example:\n```json\n{\n    \"fallback\": \"Bad Luck\",\n    \"effects\": [\n        {\n            \"id\": \"minecraft:unluck\",\n            \"duration\": 6000,\n            \"amplifier\": 1\n        }\n    ],\n    \"color\": 5841183\n}\n```\n\n## Adding a potion recipe\nIn your datapack, make a data/id/potion_recipes/id.json file for your recipe. The available parameters are \"reagent\",\nwhich takes in an item id, and is the ingredient used in the top of the brewing stand to make the potion. There are \nalso \"base\" and \"result\", which both use the same format, and define the input and output potions used in the recipe.\nThey have the parameters \"type\", which takes in either \"custompotions:vanilla\" for vanilla (or modded) potions, and \n\"custompotions:custom\" for potions added by datapack using this mod.\n\nFor example:\n```json\n{\n    \"reagent\": \"minecraft:poisonous_potato\",\n    \"base\": {\n        \"type\": \"custompotions:vanilla\",\n        \"potion\": \"minecraft:awkward\"\n    },\n    \"result\": {\n        \"type\": \"custompotions:custom\",\n        \"potion\": \"potionstuffs:bad_luck\"\n    }\n}\n```\n```json\n{\n    \"reagent\": \"minecraft:nautilus_shell\",\n    \"base\": {\n        \"type\": \"custompotions:vanilla\",\n        \"potion\": \"minecraft:awkward\"\n    },\n    \"result\": {\n        \"type\": \"custompotions:vanilla\",\n        \"potion\": \"minecraft:luck\"\n    }\n}\n```\n## Translating\nThe translation key follows the format of `custompotion.namespace.id.type`. For example, `custompotion.mypotions.bad_luck.normal`, `custompotion.mypotions.bad_luck.splash`, `custompotion.mypotions.bad_luck.lingering`, \nand `custompotion.mypotions.bad_luck.arrow`.\n\nYou can use these in a language json file like so:\n```json\n{\n    \"custompotion.mypotions.bad_luck.normal\": \"Unlucky Potion\",\n    \"custompotion.mypotions.bad_luck.splash\": \"Throwable Unlucky Potion\",\n    \"custompotion.mypotions.bad_luck.lingering\": \"Lingering Unlucky Potion\",\n    \"custompotion.mypotions.bad_luck.arrow\": \"Unlucky Arrow\"\n}\n```\n",
+  "categories": [
+    "cursed",
+    "fabric",
+    "magic",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 1926,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2-pre5",
+    "1.21.2-rc1",
+    "1.21.2-rc2",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

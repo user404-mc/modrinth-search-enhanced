@@ -1,0 +1,30 @@
+{
+  "id": "EdUFs6Fs",
+  "slug": "autonomous-minecarts",
+  "title": "autonomous-minecarts",
+  "description": "A fabric mod which allows minecarts to autonomously load chunks.",
+  "body": "# Autonomous minecarts\n\nThe autonomous minecarts mod allows minecarts to load chunks independently of the player. This allows players to send minecarts over long distances without having to worry about them stopping when they reach the edge of the loaded area.\n\nIt works by identifying moving minecarts and adding them to a list of \"active\" carts. Active carts are each given a chunk ticket which follows the minecart and loads a small number of chunks surrounding it. If a cart stops moving it becomes \"inactive\" and the chunk ticket is removed after a few minutes.\n\n_**Note regarding dimensions:** In minecraft versions prior to 1.21.11, dimensions will only tick when a player is present or there are force loaded chunks present. If you are using a version prior to 1.21.11 and want this mod to work in dimensions where no players are present, you will need to force load at least one chunk somewhere in each of those dimensions._\n\n## What about performance?\n\nBy default, the mod loads only a 3x3 area of entity processing chunks around each active minecart. Server load should be pretty negligible. \n\nServer administrators should be aware though that this mod may be abused by players to create chunk loaders. For this reason, it's probably best used in single player worlds or on small private servers only.\n\n## Configuration\n\nThe mod comes sensibly configured out of the box, but can also be customized by users. Configuration can be found under `.minecraft/config/`, or if installed on a dedicated server, then under `<server-root>/config/`.\n\n### Basic config options:\n\n - `idleTimeoutTicks` - How long minecarts should remain loaded once they become inactive. Defaults to 6000 ticks (5 minutes).\n- `idleThreshold` - The threshold velocity in blocks per tick above which a cart will be considered active. Defaults to 0.2 or 4 blocks per second (half the maximum cart speed in vanilla minecraft).\n- `chunkLoadRadius` - How large an area to load surrounding each minecart in chunks. Defaults to 2 for a 3x3 area.\n- `ticketDuration` - Duration of chunk tickets created by the mod in ticks. Defaults to 60 (3 seconds).\n\n### Advanced configuration options:\n\nThe mod implements a mechanism for preventing carts which are moving but not going anywhere (e.g. are on small circular tracks), from loading chunks indefinitely.\n\nThis mechanism works by calculating an exponental moving average of the cart position over time and comparing it to the current position of the cart. If the cart stays close to its average position, then it will be considered inactive and will eventually be unloaded as if it were stationary, in accordance with `idleTimeoutTicks`.\n\nThis behavior is controlled by the following configuration options:\n\n- `positionAverageFactor` - Smoothing factor for the exponential moving average of cart position. Larger values mean a longer average.\n- `positionAverageDistance` - Distance threshold for moving cart rejection. This controls the distance in blocks that the cart must be from it's average position to be considered \"active\".\n\n**WARNING** \n\nImproper configuration of these last two options may lead to carts remaining loaded in perpetuity, or carts not loading at all. Configure at your own risk!\n\nThat's all, enjoy!\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4047,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

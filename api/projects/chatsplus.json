@@ -1,0 +1,36 @@
+{
+  "id": "kSoxPSAO",
+  "slug": "chatsplus",
+  "title": "ChatsPlus",
+  "description": "The solution for custom chats with a lot of features.",
+  "body": "![](https://imgur.com/AxH5bBJ.png)\n\n**<center>If you're looking for a plugin that allows you to make multiple different chats, then this one is for you!</center>**\n\n![](https://imgur.com/6YiD8Q2.png)\n<center>ChatsPlus allows you to create chats that only certain players and ranks can join and chat in, assign those chats to a certain world and much more!\n\nThis plugin also has EssentialsDiscord support. If you have chats, that should not be shown in a Discord server, then you can have them ignored using a sub-configuration inside the config file.\n(More about that in the config section of this description)</center>\n\n![](https://imgur.com/zFGXKHn.png)\nIt is recommended to use a permissions plugin like [LuckPerms](https://modrinth.com/mod/luckperms) for the best experience.\n\n![](https://imgur.com/P9fywH0.png)\nThis plugin supports Placeholder API!\n\n|Placeholder|Description|\n|:------|:------|\n|%chatsplus_chat%|returns the chat name the player is in.|\n\n![](https://imgur.com/YcFq0pF.png)\n<center>This plugin mainly uses the main command <b>/chat</b> in-game, however it comes with subcommands.</center>\n<p> </p>\n\n\n|Command Sender|Command|Description|Permission|\n|:---|:---|:---|:---|\n|Player|/chat <chat>|Assigns you to a chat|chatsplus.command.chat.<chat>|\n|Player|/chat off|Unassigns you from a chat|chatsplus.command.off|\n|Player|/chat mute <chat>|Mutes a chat for the player.|chatsplus.command.mute|\n|Player|/chat unmute <chat>|Unmutes a chat for the player.|chatsplus.command.unmute|\n|Player|/chat help|Shows the list of commands.|chatsplus.command.help|\n|||||\n|Admin|/chat assign <player> <chat>|Assigns player to a chat.|chatsplus.command.assign|\n|Admin|/chat kick <player>|Kicks player from chat they're assigned to.|chatsplus.command.kick|\n|Admin|/chat reload|Reloads the configs of this plugin.|chatsplus.command.reload|\n|||||\n|Console|chatsystem listChats|Lists up all chats.|-/-|\n|Console|chatsystem listWorldChats|Lists up all worlds with chat assigned.|-/-|\n|Console|chatsystem getPlayerChats|Lists up all players who are assigned to a chat.|-/-|\n|Console|chatsystem reload|Reloads the configs of this plugin.|-/-|\n\n![](https://imgur.com/HbqF5hy.png)\n|Permission|Default|\n|:--|:--|\n|chatsplus.command.*|true|\n|chatsplus.command.help|true|\n|chatsplus.command.chat.<chat>|true|\n|chatsplus.command.off|true|\n|chatsplus.command.mute|true|\n|chatsplus.command.unmute|true|\n|chatsplus.command.assign|op|\n|chatsplus.command.reload|op|\n|chatsplus.command.kick|op|\n|||\n|chatsplus.admin.*|op|\n|chatsplus.admin.join|true|\n|chatsplus.admin.bypass|true|\n|chatsplus.chat.read.<chat>|op|\n\n![](https://imgur.com/2qhgCi4.png)\n\n<details>\n\n \n<summary>config.yml</summary>\n\n\n```YAML\n#############################\n#  CHATSPLUS by Niestrat99  #\n#############################\n\n###########\n#  DEBUG  #\n###########\n\n# Allows the developer to try and find out any possible bugs.\ndebug-mode: false\n\n# []>-----------------------------------------------------------------------------<[]\n\n###########\n#  CHATS  #\n###########\n\n# This option allows you to make new chats. Simply add them to the list below.\n# Each chat, that you create, will automatically have a permission named 'chatsplus.chat.<chatName>'.\n\n# The chats must have sub-settings set up as well, or else it uses default values which may look ugly.\n# - title = The text that appears in the very front of the message.\n# - nameTag = The way the player name is displayed. You can make it look like \"xXPlayerNameXx\" for example.\n# - messageColor = The color of what the actual message shall appear in.\n# - ignoreDiscord = This prevents the EssentialsX Discord plugin from sending a message out of this chat into the Discord server, if set to \"true\".\n# EXAMPLE:\n# chats:\n#     vip:\n#         title: '&8[&6VIP&8]'\n#         nameTag: '&8<&6name&8>'\n#         messageColor: '&6'\n#         ignoreDiscord: true\n#\n# NOTE:\n# - The color codes (e.g. &6) are optional, but allow you to make your chats look fancier.\n# - You MUST have the text \"name\" included in your nameTag section, or else the player name won't be displayed.\nchats:\n  staff:\n    title: '&b[&fStaffChat&b]'\n    nameTag: '&b<&fname&b>'\n    messageColor: '&r'\n    ignoreDiscord: true\n  vip:\n    title: '&8[&6VIP&8]'\n    nameTag: '&8<&6name&8>'\n    messageColor: '&6'\n    ignoreDiscord: true\n\n# []>-----------------------------------------------------------------------------<[]\n\n####################\n#  PER WORLD CHAT  #\n####################\n\n# In this section, you can assign a chat to a certain world.\n# If a player joins that world, they'll automatically be assigned to that specific chat.\n# Just like the chats section, this section also comes with sub configurations:\n# - chat = The chat that shall be assigned to the world\n# - isGlobal <true/false> = Whether the chat shall appear in all worlds or not\n# - offStandard <true/false> = If the player shall be put into the assigned that when using /chat off/kick\n\n# To assign a chat to a world you do the following:\n# per-world-chat:\n#     world:\n#         chat: vip\n#         isGlobal: true\n#         offStandard: false\n#\n# NOTE:\n# - The world must match the world's actual name.\n# - All three sub configurations MUST be included! If not, then the plugin will set default values to it.\n# - Make sure you're setting a valid chat created in the chats section above, or else the plugin will remove that setting.\nper-world-chat:\n  world:\n    chat: vip\n    isGlobal: true\n    offStandard: true\n\n# []>-----------------------------------------------------------------------------<[]\n\n#########################\n#  ASSIGN CHAT ON JOIN  #\n#########################\n\n# Assigns the joining player to the specified chat, if they have the permission 'chatsplus.admin.join'.\n# This can be ideal, if you want staff members to be automatically assigned to a staff chat.\n# It bypasses the Per-World-Chat settings.\nassign-chat-on-join: \"\"\n```\n\n</details>\n\n![](https://imgur.com/y7N568D.png)\nIf you found any issues, got questions or need help with this plugin, then feel free to reach out to me here:\n- [Discord](https://discord.gg/Jrr6veTNGF)\n- [Github Issue Tracker](https://github.com/Niestrat99/ChatsPlus/issues)",
+  "categories": [
+    "paper",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 446,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21"
+  ],
+  "date_updated": null
+}

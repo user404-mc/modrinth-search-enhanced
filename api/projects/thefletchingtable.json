@@ -1,0 +1,21 @@
+{
+  "id": "tTNjtcvH",
+  "slug": "thefletchingtable",
+  "title": "The Fletching Table",
+  "description": "Give the vanilla fletching table a proper use with a custom crafting system for arrows",
+  "body": "# The Fletching Table\n\nGive the vanilla fletching table a proper use with a custom crafting system for arrows.\n\n## How it works\n\n- Right-click any fletching table to open the crafting UI\n- Place ingredients in the three input slots to craft arrows\n- Sneak + right-click bypasses the menu (for placing blocks against it)\n\n## Recipes\n\n| Slot 1 | Slot 2 | Slot 3 | Result |\n|--------|--------|--------|--------|\n| Feather | Stick | Flint | 6x Arrow |\n| - | 6x Arrow | Glowstone Dust | 6x Spectral Arrow |\n| - | 16x Arrow | Potion | 16x Tipped Arrow |\n| - | 32x Arrow | Splash Potion | 32x Tipped Arrow |\n| - | 64x Arrow | Lingering Potion | 64x Tipped Arrow |\n\nTipped arrows inherit the potion effect from the input potion, including modded potions.\n\n<details>\n<summary><b>Adding custom recipes</b></summary>\n\n### Datapacks\n\nAny datapack or mod can add fletching table recipes by placing a JSON file in:\n\n```\ndata/<your_namespace>/recipe/<recipe_name>.json\n```\n\nRecipe format:\n\n```json\n{\n    \"type\": \"the_fletching_table:fletching\",\n    \"first\": {\n        \"item\": \"minecraft:feather\"\n    },\n    \"second\": {\n        \"item\": \"minecraft:stick\"\n    },\n    \"third\": {\n        \"item\": \"minecraft:flint\"\n    },\n    \"result\": {\n        \"id\": \"minecraft:arrow\",\n        \"count\": 6\n    }\n}\n```\n\n- `first`, `second`, `third` are standard ingredient fields - use `\"item\"` for a specific item or `\"tag\"` for a tag\n- `first` is optional - omit it for a two-ingredient recipe (the first slot must be empty to match)\n- Each ingredient supports an optional `*_count` field (e.g. `\"second_count\": 6`) - defaults to 1\n- `result` uses the standard item format with `id` and `count`\n\n### Tags\n\nThe built-in arrow recipe uses common tags for broader mod compatibility:\n\n```json\n\"first\": { \"tag\": \"c:feathers\" },\n\"second\": { \"tag\": \"c:rods/wooden\" }\n```\n\nAny mod that adds items to these tags will automatically work as arrow ingredients.\n\n</details>\n\n## Compatibility\n\n- Supports [EMI](https://modrinth.com/mod/emi) and [JEI](https://modrinth.com/mod/jei) for recipe browsing\n- Tipped arrow crafting works with any modded potion effects\n- Recipe system is fully extensible via datapacks\n- Requires NeoForge 21.1.219+\n\n## Credits\n\nInspired by [Better Fletching Table](https://modrinth.com/mod/bft), a datapack by [ElGeroIngles](https://modrinth.com/user/ElGeroIngles) that gives the fletching table crafting functionality using invisible minecarts as containers. This mod is a clean reimplementation as a NeoForge mod with a native crafting UI and recipe system.\n\n## License\n\nGPL-3.0-or-later\n",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 182,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

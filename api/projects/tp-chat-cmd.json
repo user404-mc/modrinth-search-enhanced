@@ -1,0 +1,21 @@
+{
+  "id": "xpCSAwvb",
+  "slug": "tp-chat-cmd",
+  "title": "TP Chat Command",
+  "description": "A simple client-side mod that provides a command to send clickable chat messages for teleporting.",
+  "body": "# TP Chat Command\n\n![Stars](https://img.shields.io/github/stars/jaxvanyang/tp-chat-cmd) ![Forks](https://img.shields.io/github/forks/jaxvanyang/tp-chat-cmd)\n![Issues](https://img.shields.io/github/issues/jaxvanyang/tp-chat-cmd) ![Closed](https://img.shields.io/github/issues-closed/jaxvanyang/tp-chat-cmd)\n![Closed PR](https://img.shields.io/github/issues-pr-closed/jaxvanyang/tp-chat-cmd) ![Version](https://img.shields.io/github/v/release/jaxvanyang/tp-chat-cmd)\n![Test Status](https://img.shields.io/github/actions/workflow/status/jaxvanyang/tp-chat-cmd/build.yml) ![Downloads](https://img.shields.io/github/downloads/jaxvanyang/tp-chat-cmd/total)\n\nThis is a simple client Fabric mod for Minecraft. It provides a\ncommand called `/tpchat`, which has a simlar syntax to the\nvanalia `/tp` command. You can use it to send clickable message\nto **EVERY ONLINE PLAYER** for teleporting. And it can be used to teleport\nbetween dimensions, e.g., overworld <-> nether.\n\n## Usage\n\nSyntax: `/tpchat [<location>] [<description>]`.\n\nNotice: You must have `/tellraw` command permission to execute\nthis command. Because `/tpchat` is technically a\n[wrapper command](#development) of `/tellraw`.\n\nExamples:\n\n- `/tpchat`: Send a clickable message for teleporting to current\n  location.\n\n- `/tpchat x y z`: Send a clickable message for teleporting to\n  `(x,y,z)`.\n\n- `/tpchat ~ ~ ~ Hello, World!`: Send a clickable message for\n  teleporting to current location with a custom description.\n\n## Development\n\n`/tpchat` is completely a client-side mod, because it is only a\nwrapper command of `/tellraw`. There's no need to installed it\non server side. You can use it on any server as long as you have\n`/tellraw` command permission.\n\nActually, when you use `/tpchat`, something like this will be\nexecuted:\n\n```bash\n/tellraw @a [\"<Player> \",{\"text\":\"Nether (9 60 -2)\",\"color\":\"green\",\"underlined\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute in minecraft:the_nether run tp @s 9 60 -2\"}},\": Hello, World!\"]\n```\n\n## Limitation\n\nBecause of dedicated server's packet size limit, `/tpchat`'s\ndescription has a length limit. Details see [Cannot send too long message to dedicated server · Issue #5 · jaxvanyang/tp-chat-cmd](https://github.com/jaxvanyang/tp-chat-cmd/issues/5).\n\n## Acknowledgement\n\n- [Fabric](https://fabricmc.net) - Thanks for the wonderful\n  framework, documents and community.\n- [得意黑 Smiley Sans](https://atelier-anchor.com/typefaces/smiley-sans) - Thanks for the awesome font, it is used in the icon.\n- [VueTorrent](https://github.com/WDaan/VueTorrent) - Thanks for\n  the README title template.\n",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 8517,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "x57T8ILO",
+  "slug": "improvedgrindstone",
+  "title": "ImprovedGrindstone",
+  "description": "Lightweight Paper 1.21.11 plugin that reroutes disenchantments from a grindstone directly into an enchanted book whenever an empty book sits in the second slot. Also has optional cross-material transfer support as well as XP costs.",
+  "body": "# Improved Grindstone\n\nLightweight Paper 1.21.11 plugin that reroutes grindstone disenchantments into books, with optional cross-material transfer support.\n\n## Features\n- Slot 0: enchanted source item.\n- Slot 1 can be either:\n  - A normal book (optionally can be a special book) to extract enchantments into an enchanted book.\n  - A compatible target item (same archetype, different material allowed) to transfer enchantments directly.\n- Extraction keeps the source item (disenchanted) and gives an enchanted book with removed enchants.\n- Transfer keeps the source item (disenchanted) and returns the target item with transferred enchants.\n- Optional cursed-enchantment capture toggle.\n- Separate XP-cost toggles for extraction and transfer.\n- Separate configurable XP percentages (default 50%) based on estimated enchanting-table cost of the moved enchants.\n\n- Commands:\n  - `/improvedgrindstone toggle`\n  - `/improvedgrindstone status`\n  - `/improvedgrindstone cursed`\n  - `/improvedgrindstone xp`\n  - `/improvedgrindstone transfer`\n  - `/improvedgrindstone transferxp`\n  - `/improvedgrindstone specialbook`\n  - `/improvedgrindstone reload`\n\n## Configuration\nConfigure behavior in `config.yml`:\n```yaml\nfeature-enabled: true\ncapture-cursed: true\nbook-xp-cost-enabled: true\nbook-xp-cost-percent: 50.0\ntransfer-enabled: true\ntransfer-xp-cost-enabled: true\ntransfer-xp-cost-percent: 50.0\nrequire-special-book: false\nspecial-book-ids: []\nmax-enchants-per-operation: 16\nmax-operation-item-bytes: 24576\n```\n\n`special-book-ids` accepts namespaced IDs (for example `dingus:blah`).  \nIf `special-book-ids` is empty, any non-vanilla namespaced marker is accepted (item model, plugin PDC key, or namespaced display name).\n\n`max-enchants-per-operation` is a safety cap. If a source item has more enchantments than this value, the grindstone operation is blocked to avoid oversized/unstable enchant payload handling.\n`max-operation-item-bytes` is an additional safety cap on serialized item size (source/result/bonus). If any item involved exceeds this size, the operation is blocked to prevent unsafe payload handling.\n\nXP-cost notes:\n- Vanilla enchantments use their estimated enchanting-table costs.\n- Custom enchantments are assigned a rough vanilla-equivalent cost from their level, using the highest matching vanilla cost as the baseline.\n\n## Compatibility\nDesigned for Paper 1.21.11.\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 325,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

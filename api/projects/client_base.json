@@ -1,0 +1,27 @@
+{
+  "id": "hPR6X8fV",
+  "slug": "client_base",
+  "title": "Client Base",
+  "description": "Bringing your pause menu to physical space!",
+  "body": "**Requires [Connector](https://modrinth.com/mod/connector) and [FFAPI](https://modrinth.com/mod/forgified-fabric-api) on neo/forge.**\n\n<details>\n  <summary><b>STILL IN PRE-RELEASE</b></summary>\n  This mod is still in a pre-release state. This means: \n  <ul>\n    <li>All features are subject to change</li>\n    <li>Documentation may be slim</li>\n    <li>Examples are not present</li>\n  </ul>\n</details>\n\nProviding the player with a client-only room that dependencies can hook into for special functionality.\n\nThis mod adds in a new keybind and config setup that allow the user to pause their game -- but instead of a menu appearing, they spawn into a room! This room can house anything the player desires as long as they set up the correct configs and assets.\n\n<details>\n  <summary>Config Schema</summary>\n  \n  Web-based [Config Generator](https://client-base.bug1312.com/) based on https://misode.github.io/\n\n  <details>\n    <summary>MCDoc</summary>\n    \n```\ndispatch minecraft:resource[clientbase:config] to struct ClientbaseConfig {\n\tconfig_format: 1,\n\tstructure: StructureConfig,\n\tplayer_start?: PlayerStartConfig,\n\trenderers?: struct {\n\t\t[string]: RendererConfig,\n\t},\n\tinteractions?: [InteractionConfig],\n\teasy_place?: [EasyPlaceConfig],\n}\n\nstruct StructureConfig {\n\tstructure: string,\n\toffset?: [int] @ 3,\n}\n\nstruct PlayerStartConfig {\n\toffset?: [float] @ 3,\n\tpitch?: float,\n\tyaw?: float,\n}\n\nstruct RendererConfig {\n\ttype: RendererType,\n\t...clientbase:renderer[[type]],\n}\n\nenum(string) RendererType {\n\tFakeBlock = \"fake_block\",\n\tBlockEntity = \"block_entity\",\n\tBlockModel = \"replace_state\",\n}\n\ndispatch clientbase:renderer[fake_block] to struct FakeBlockRenderer {\n\tmodel: #[id=\"model\"] string,\n\thitbox?: [[float] @ 6],\n}\n\ndispatch clientbase:renderer[block_entity] to struct BlockEntityRenderer {\n\trenderer: #[id=\"renderer\"] string,\n\thitbox?: [[float] @ 6],\n}\n\ndispatch clientbase:renderer[replace_state] to struct BlockModelRenderer {\n\tmodel: #[id=\"model\"] string,\n\treplace_state: struct {\n\t\tblock: #[id=\"block\"] string,\n\t\tstate: string,\n\t},\n}\n\nstruct InteractionConfig {\n\ttype: InteractionType,\n\t...clientbase:interaction[[type]],\n}\n\nenum(string) InteractionType {\n\tBlockPos = \"blockpos\",\n}\n\nenum(string) InteractionId {\n\tExit = \"exit\",\n\tInventory = \"inventory\",\n\tAdvancements = \"advancements\",\n\tOptions = \"options\",\n\tVideoOptions = \"video_options\",\n}\n\ndispatch clientbase:interaction[blockpos] to struct BlockPosInteraction {\n\tinteraction: InteractionId,\n\tblockpos: [int] @ 3,\n}\n\nstruct EasyPlaceConfig {\n\tblockpos: [int] @ 3,\n\trenderer: string,\n}\n```\n\n  </details>\n\n</details>",
+  "categories": [
+    "decoration",
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 341,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.8",
+    "26.1",
+    "26.1.1"
+  ],
+  "date_updated": null
+}

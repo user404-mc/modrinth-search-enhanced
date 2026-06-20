@@ -1,0 +1,25 @@
+{
+  "id": "kPiAZGSa",
+  "slug": "nomorepowder",
+  "title": "NoMorePowder",
+  "description": "No more sinking. No more freezing. Just snow.",
+  "body": "![NoMorePowder](https://cdn.modrinth.com/data/cached_images/1740a3fcb35777d6550fb5d991eeea370853fe6d_0.webp)\n\n# **NoMorePowder**\n\n---\n\n> 🌨️ *No more sinking. No more freezing. Just snow.*\n\n---\n\n## Overview\n\nYou're sprinting across a snowy mountain, the landscape looks solid and safe — and then you sink. Powder snow: invisible, silent, and one of Minecraft's most frustrating terrain hazards. No warning, no indication, just a slow freeze creeping up your health bar.\n\n**NoMorePowder** fixes this at the root. Instead of patching around powder snow after the fact, the mod intercepts world generation itself and replaces every naturally-spawned powder snow block with a regular **snow block** before it ever touches the world. The terrain looks identical — it just doesn't swallow you whole anymore.\n\nYour mountain biomes stay snowy and beautiful. You just stop falling through them.\n\n---\n\n## Features\n\n- 🏔️ **Seamless terrain** — Powder snow patches in frozen and mountain biomes are silently replaced with regular snow blocks during world generation. No visual difference, no more hidden traps.\n- 🪣 **Powder snow is not gone** — You can still collect it the intended way: place a cauldron outside during a snowstorm and wait. It can still be placed and used as a block in survival or creative.\n- 🏛️ **Trial Chambers untouched** — The powder snow traps inside Trial Chambers are deliberately preserved. They are a designed part of that dungeon's challenge and are generated through a completely different system that this mod does not touch.\n- ⚡ **Zero overhead** — No config files, no commands, no runtime processing. The replacement happens once, at worldgen time, and that's it.\n\n---\n\n## What is and isn't affected\n\n| Source | Result |\n|---|---|\n| Naturally generated powder snow (frozen/mountain biomes) | ✅ Replaced with snow blocks |\n| Powder snow collected via cauldron in snowfall | ❌ Unchanged — works as normal |\n| Powder snow placed manually (survival/creative) | ❌ Unchanged |\n| Trial Chamber powder snow traps | ❌ Unchanged — intentionally preserved |\n| Powder snow added by other world generation mods | ⚠️ Only replaced if placed via surface rules |\n\n---\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft.\n2. Download the latest `nomorepowder-x.x.x.jar`.\n3. Download the latest compatible `Fabric API` version.\n5. Drop the `.jar` into your `mods/` folder.\n5. Launch the game.\n\n> **Server note:** This mod modifies world generation. It must be installed **server-side** (or in singleplayer). Players connecting to a modded server do not need to install it themselves.\n> **Existing worlds:** Chunks that were already generated before installing this mod will not be retroactively changed. The effect only applies to newly generated chunks.\n\n---\n\n## Compatibility\n\n- Fabric Loader\n- Java **21+** for Minecraft 1.21.11 / Java **25+** for Minecraft 26.1+\n- Compatible with other mods — the intercept targets only `SurfaceRules$StateRule.tryApply()` and does not affect feature-based placement or structure generation\n\n---\n\n## How it works\n\nPowder snow in frozen biomes (Frozen Peaks, Snowy Slopes, Grove, etc.) is placed via Minecraft's **surface rule system** — not via world generation features. Surface rules determine which block appears at the terrain surface for each biome, and are applied directly to each chunk column during generation, completely bypassing the feature placement pipeline.\n\nNoMorePowder uses a single Mixin on `SurfaceRules$StateRule.tryApply()` with `@ModifyReturnValue` from MixinExtras. This method returns the `BlockState` that a surface rule wants to place. If that state is `POWDER_SNOW`, the mod returns `SNOW_BLOCK` instead — before it ever reaches the chunk.\n\nTrial Chamber powder snow is placed via `StructureTemplate` (NBT-driven structure files) after terrain generation, which is an entirely separate system that never goes through surface rules. It is therefore completely unaffected by this mod.\n\n---\n\n## Test Server \nFeel free to join my Minecraft server to test my mods: `play.swordfishbe.eu`",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 216,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "PEg5zDCu",
+  "slug": "easeon-cs-core",
+  "title": "EaseonCS - Core",
+  "description": "A client-side core that serves as the shared foundation for all Easeon modules.",
+  "body": "## 🌿 Easeon\n\n## Overview\nA client-side core that serves as the shared foundation for all Easeon modules, freely available for any mod to reference and use.\n\n\n## Example\n\n\n<details>\n<summary>Spoiler</summary>\n\n### Feature Definition\n```java\npackage com.example;\n\nimport com.easeon.cs.core.api.EaseonFeatureEnumLike;\nimport com.easeon.cs.core.config.model.*;\n\npublic enum FeatureExample implements EaseonFeatureEnumLike {\n    // ✅ Toggle Example: Enable or disable the minimap\n    SHOW_MINIMAP(\"featuredemo.show_minimap\",\n            new ToggleConfig() {{ Enabled = true; }}),\n\n    // ✅ Slider Example: Adjust screen brightness (1–10)\n    SCREEN_BRIGHTNESS(\"featuredemo.screen_brightness\",\n            new SliderConfig() {{ Enabled = true; Value = 5; }}, 1, 10) {\n        @Override public String getValueFormat() { return \"featuredemo.screen_brightness.format\"; }\n    },\n\n    // ✅ Hotkey Example: Toggle fullscreen with a shortcut\n    TOGGLE_FULLSCREEN(\"featuredemo.toggle_fullscreen\",\n            new HotkeyConfig() {{ Enabled = true; Key = 70; Mod = 2; }}); // Example: Ctrl + F\n\n    private final String title;\n    private final Object defaultConfig;\n    private final int min, max;\n\n    FeatureExample(String title, Object defaultConfig) { this(title, defaultConfig, 0, 0); }\n    FeatureExample(String title, Object defaultConfig, int min, int max) {\n        this.title = title; this.defaultConfig = defaultConfig; this.min = min; this.max = max;\n    }\n\n    @Override public String id() { return name(); }\n    @Override public String title() { return title; }\n    @Override public Object getDefaultConfig() { return defaultConfig; }\n    @Override public int getMin() { return min; }\n    @Override public int getMax() { return max; }\n}\n```\n\n### Mod Initialization\n```java\npackage com.example;\n\nimport com.easeon.cs.core.EaseonClientCore;\nimport net.fabricmc.api.ClientModInitializer;\n\npublic class TemplateModClient implements ClientModInitializer {\n    @Override\n    public void onInitializeClient() {\n         EaseonClientCore\n            .init(\"feature-demo\", \"feature.demo.config.json\")\n                .category(\"UI\", \"featuredemo.ui\")\n                .section(\"GENERAL\", \"featuredemo.ui.general\")\n                    .slider(FeatureExample.SCREEN_BRIGHTNESS)\n                .section(\"CONTROL\", \"featuredemo.ui.control\")\n                    .toggle(FeatureExample.SHOW_MINIMAP)\n                    .hotkey(FeatureExample.TOGGLE_FULLSCREEN)\n            .build();\n    }\n}\n```\n\n### Accessing Config Values\n```java\n   var config = EaseonClientCore.getSliderConfig(FeatureExample.SCREEN_BRIGHTNESS);\n   if (!config.Enabled) return;\n   System.out.println(config.value);\n```\n\n\n### Settings Screen Usage\n```java\n   // Open settings screen directly\n   EaseonClientCore.openSettingsScreen();\n\n   // Or manually open the screen returned by getSettingsScreen()\n   MinecraftClient.getInstance().setScreen(EaseonClientCore.getSettingsScreen());\n```\n\n\n### en_us.json\n```json\n{\n  \"featuredemo.ui\": \"Feature Demo\",\n  \"featuredemo.ui.general\": \"General\",\n  \"featuredemo.ui.control\": \"Control\",\n\n  \"featuredemo.screen_brightness\": \"Screen Brightness\",\n  \"featuredemo.screen_brightness.format\": \"Brightness: %.0f\",\n  \"featuredemo.show_minimap\": \"Show Minimap\",\n  \"featuredemo.toggle_fullscreen\": \"Toggle Fullscreen\"\n}\n```\n\n\n### Preview Image\n![Replace this with a description](https://cdn.modrinth.com/data/cached_images/ed946e082b23ca2c80c4b76f10c356d7cb51fc2e_0.webp)\n</details>\n\n<br/>\n\n---\n\n### 🔗 More Easeon Mods\nLooking for more lightweight and practical mods in the same style?  \nCheck out other Easeon series mods <a href=\"https://modrinth.com/user/Teron\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>.",
+  "categories": [
+    "fabric",
+    "library",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1082,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

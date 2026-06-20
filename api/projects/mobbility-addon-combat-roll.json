@@ -1,0 +1,20 @@
+{
+  "id": "JKye4yiT",
+  "slug": "mobbility-addon-combat-roll",
+  "title": "Mobbility [Addon: Combat Roll]",
+  "description": "Gives mobs player dodging abilities for Combat Roll - dodge attacks with roll animations just like players.",
+  "body": "![Showcase](https://cdn.modrinth.com/data/Es8xro21/images/1a30601fe94fe70523d1a10b644df036b7512bd9.gif)\n\n## Features\n\n- **Player-Like Dodging**: Mobs dodge attacks with roll animations, just like players\n- **Automatic Ability**: All mobs gain dodge capability on spawn\n- **Combat Roll Integration**: Uses Combat Roll mod mechanics\n- **Configurable**: Dodge chance, ranged/melee dodge, spell cast interruption\n\n## How It Works\n\nEvent-based dodge detection system (no AI goals):\n\n**Fabric Events:**\n- `ServerLivingEntityEvents.ALLOW_DAMAGE` - Detects melee and projectile hits before damage applies\n- `UseItemCallback.EVENT` - Detects ranged weapon usage (bow, crossbow, trident)\n- `MobbilityEvents.SPELL_CAST_START` - Detects spell casts targeting the mob\n\n**Forge Events:**\n- `LivingAttackEvent` - Detects melee and projectile hits before damage applies\n- `ArrowLooseEvent` - Detects player bow shots with charge calculation\n- `LivingEntityUseItemEvent.Finish` - Detects crossbow/trident usage\n- `MobbilityEvents.SPELL_CAST_START` - Detects spell casts targeting the mob\n\n**Dodge Process:**\n1. Event fires when mob is targeted by attack/spell\n2. System checks: dodge chance, cooldown, humanoid model, casting state\n3. If conditions met: triggers Combat Roll animation, cancels damage/spell cast\n4. Dodge strategy adapts to mob health (aggressive/balanced/defensive)\n\n## Configuration\n\nFully customizable via `config/mobbility/combat_roll.toml`:\n\n<details>\n<summary>Dodge Settings</summary>\n\n```toml\n[combatRoll]\nenabled = true\nmobRollChance = 0.3\ndodgeRangedAttacks = true\ndodgeMeleeAttacks = true\ncancelCastOnDodge = true\nallowDodgeDuringChanneling = false\n```\n</details>\n\n## Requirements\n\n- **Minecraft**: 1.20.1\n- **Fabric Loader**: 0.15.11+ (Fabric version) OR **Forge**: 1.20.1-47.4.10+ (Forge version)\n- **Mobbility [Core]**: Required core mod (matching platform)\n- **Combat Roll**: The combat mod this addon integrates with\n- **Fzzy Config**: For configuration\n\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "mobs"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 674,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

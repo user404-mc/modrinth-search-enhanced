@@ -1,0 +1,43 @@
+{
+  "id": "oYpOBAJA",
+  "slug": "config-datapack",
+  "title": "Config Datapack",
+  "description": "Config List for Datapacks",
+  "body": "## ✅ Features\n- Adds a config list dialog via `#config:list`\n- Calls `#config:add` on `/trigger config` to register and customize datapack configs\n\n## 📖 Usage\nYou can find it in the **Pause Screen** under `Config` or `Custom Options/Config`\\\nBut the **preferred method** is using `/trigger config`, which shows you the Configs **with changed values**\n\nI sure hope Mojang adds better methods for dynamic initial values in dialogs soon :p\\\nelse we'll hit some limits soon\\\n\\+ the example using the function command for saving only works for server admins ;-;\n\n<details>\n<summary>Example</summary>\n\n`data/config/tags/function/add.json`\n```json\n{\"values\":[\"example:setup_config\"]}\n```\n`data/example/function/setup_config.mcfunction`\n```mcfunction\ndata modify storage config:list configs append value <config screen>\nexecute store result storage config:list configs[-1].inputs[0].initial int 1 run scoreboard players get @s exampleValue\n```\n\n`data/config/tags/dialog/list.json`\n```json\n{\"values\":[\"example:config\"]}\n```\n`data/example/dialog/config.json`\n```json\n{\n  \"type\": \"minecraft:multi_action\",\n  \"title\": \"Example Config\",\n  \"inputs\": [\n    {\n      \"type\": \"minecraft:number_range\",\n      \"key\": \"int\",\n      \"label\": \"Int\",\n      \"start\": 0,\n      \"end\": 100,\n      \"step\": 1,\n      \"initial\": 10\n    },\n    {\n      \"type\": \"minecraft:number_range\",\n      \"key\": \"float\",\n      \"label\": \"Float\",\n      \"start\": 0,\n      \"end\": 100,\n      \"step\": 0.1,\n      \"initial\": 40\n    },\n    {\n      \"type\": \"minecraft:single_option\",\n      \"key\": \"enum\",\n      \"label\": \"Enum\",\n      \"options\": [\n        \"first\",\n        \"second\",\n        \"third\"\n      ]\n    }\n  ],\n  \"columns\": 1,\n  \"actions\": [\n    {\n      \"label\": \"Save\",\n      \"action\": {\n        \"type\": \"dynamic/run_command\",\n        \"template\": \"function example:config {int:$(int),float:$(float),enum:\\\"$(enum)\\\"}\"\n      }\n    }\n  ]\n}\n```\n\n</details>\n\n### ⚖️ License\nVersions <1.2 are licensed under the ARR license.\nEvery other under GNU GPL v3\n",
+  "categories": [
+    "datapack",
+    "fabric",
+    "forge",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 395,
+  "followers": 0,
+  "game_versions": [
+    "25w20a",
+    "25w21a",
+    "1.21.6-pre1",
+    "1.21.6-pre2",
+    "1.21.6-pre3",
+    "1.21.6-pre4",
+    "1.21.6-rc1",
+    "1.21.6",
+    "1.21.7-rc1",
+    "1.21.7-rc2",
+    "1.21.7",
+    "1.21.8-rc1",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1-snapshot-1",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,42 @@
+{
+  "id": "1WLb2d2F",
+  "slug": "p_autopickup",
+  "title": "P_AutoPickup",
+  "description": "Um plugin avançado de autopickup que coleta itens e XP automaticamente, com sistema de níveis baseado em blocos quebrados, ranking Top 10, integração com Discord e suporte a regiões via WorldEdit.\n\n\nAn advanced autopickup plugin that automatically collects",
+  "body": "# **P_autopickup**\n\n> Auto coleta + progressão por níveis para 1.8/1.9, com autosmelt, autoblock, autoreplant, buffs, GUI de Top 10 e integrações.\n\n---\n\n## ✅ **Principais recursos**\n\n* **AutoPickup** (itens no inventário), **AutoXP**, **AutoSmelt**, **AutoBlock**, **AutoReplant**\n* **Progressão por níveis** com **ActionBar** de progresso, **recompensas** e **buffs**\n* **Top 10** em **GUI** personalizável\n* **Blacklist por metadata** (ex.: `INK_SACK:3`), **Compat Mode** 1.8\n* Integrações: **PlaceholderAPI**, **mcMMO**, **LuckPerms**, **Discord Webhook**, **WorldEdit/FAWE**\n\n---\n\n\n## 🔧 **Comandos essenciais**\n\n> Os nomes/aliases são definidos em `commands.yml`.\n\n* **/autopickup** – menu/ajuda principal (exemplo)\n* **/ap top** – abre o Top 10 (se configurado no CommandManager)\n\n---\n\n## 🗝 **Permissões**\n\n* `autopickup.auto` – liga o sistema para o jogador\n* `autopickup.autoxp` – coleta XP automaticamente\n* `autopickup.autosmelt` – usa AutoSmelt\n* `autopickup.autoblock` – usa AutoBlock\n* `autopickup.replant` – habilita AutoReplant\n\n> **Níveis mínimos** que liberam cada feature: veja `settings.*-level`.\n\n---\n\n## 🔌 **Placeholders (PAPI)**\n\n* `%autopickup_level%`, `%autopickup_broken_blocks%`\n* `%autopickup_autopickup_enabled%`, `%autopickup_autoxp_enabled%`\n* `%autopickup_autoreplant_enabled%`, `%autopickup_autosmelt_enabled%`, `%autopickup_autoblock_enabled%`\n* `%autopickup_next_level_blocks%`\n\n---\n\n## ⚙️ **Config – o essencial** (`config.yml`)\n\n**Geral**\n\n```yml\nsettings:\n  default-enabled: true\n  default-xp-enabled: false\n  debug: false\n  count-unknown-blocks: true\n  allowed-tools: [DIAMOND_PICKAXE, IRON_PICKAXE]\n\n  # Compat 1.8 (captura drops no ItemSpawn)\n  compat-mode: true\n  compat-pickup-radius: 3.0\n  compat-exp-pickup: true\n\n  # Liberação por nível\n  autoxp-level: 2\n  autosmelt-level: 3\n  autoblock-level: 4\n  replant-level: 5\n\n  # Autosmelt x Silk Touch\n  silk-touch-bypass-autosmelt: true\n```\n\n**Tarefas**\n\n```yml\nsettings:\n  top-update-interval: 5      # min\n  auto-save-interval: 5       # min\n  autoblock-check-interval: 5 # s\n```\n\n**ActionBar**\n\n```yml\nactionbar:\n  always-on: false\n  update-interval-ticks: 20\n  format: \"&eNível {level} &7- {bar} &7({current}/{next})\"\n```\n\n**Progressão**\n\n```yml\nlevel-progress:\n  level-1: {blocks: 0}\n  level-2: {blocks: 100}\n  level-3: {blocks: 250}\n```\n\n**Recompensas & Buffs**\n\n```yml\nrewards:\n  level-3:\n    message: \"§aNível 3!\"\n    icon: {material: FURNACE}\n    commands: [\"give %player% coal 10\"]\n\nlevel-buffs:\n  apply-on-levelup: true\n  reapply-on-join: true\n  by-level:\n    level-3:\n      potions: [\"HASTE:2:180\", \"RESISTANCE:0:90\"]\n```\n\n**Blacklist por metadata**\n\n```yml\nautopickup:\n  metadata-blacklist-action: DROP  # DROP | IGNORE | PICKUP\n  metadata-blacklist:\n    - \"INK_SACK:3\"\n    - \"WOOL:14\"\n    - \"DIAMOND:*\"\n```\n\n**mcMMO (opcional)**\n\n```yml\nmcmmo:\n  enabled: true\n  disable-with-silk-touch: true\n  xp-list:\n    - \"COAL_ORE,MINING-1\"\n    - \"IRON_ORE,MINING-2\"\n```\n\n**Discord (opcional)**\n\n```yml\ndiscord:\n  webhook-url: \"https://discord.com/api/webhooks/...\"\n  notify-levels-enabled: true\n  notify-levels: [2,3,4,5,10]\n```\n\n> Outras configs úteis: `autosmelt.yml`, `autoblock.yml`, `autoreplant.yml`, `inventory_full.yml`, `pontos_blocos.yml`, `menus.yml` (Top 10).\n\n---\n\n## 🧠 **Dicas rápidas**\n\n* **Autosmelt não ativou?** Ferramenta com **Silk Touch** e `silk-touch-bypass-autosmelt: true` → ignora fundição.\n* **Item não vai ao inventário?** Confira `autopickup.metadata-blacklist` e a **ação** (`DROP/IGNORE/PICKUP`).\n* **mcMMO sem XP?** Habilite `mcmmo.enabled`, adicione o bloco em `xp-list` e veja Silk Touch.\n* **ActionBar discreta?** Ative `actionbar.always-on: true` para atualizar sempre.\n\n---\n\n## 📝 **Descrição curta**\n\n**P_autopickup** — Auto coleta completa para 1.8/1.9 com **níveis**, **recompensas**, **buffs**, **autosmelt**, **autoblock**, **autoreplant**, **ActionBar** de progresso, **Top 10 em GUI** e integrações (**PlaceholderAPI**, **mcMMO**, **LuckPerms**, **Discord**). Blacklist por metadata, compat-mode para 1.8, tarefas automáticas e configs YAML. Ideal para survival/skyblock.\n\n---\n\n### 📌 Créditos\n\nCriado por **Pedro (P_Plugins)**. Integrações: PlaceholderAPI, mcMMO, LuckPerms, WorldEdit/FAWE, Discord Webhook.\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "magic",
+    "mobs",
+    "optimization",
+    "paper",
+    "spigot",
+    "storage",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 201,
+  "followers": 0,
+  "game_versions": [
+    "1.8",
+    "1.8.1",
+    "1.8.2",
+    "1.8.3",
+    "1.8.4",
+    "1.8.5",
+    "1.8.6",
+    "1.8.7",
+    "1.8.8",
+    "1.8.9",
+    "1.9",
+    "1.9.1",
+    "1.9.2",
+    "1.9.3",
+    "1.9.4"
+  ],
+  "date_updated": null
+}

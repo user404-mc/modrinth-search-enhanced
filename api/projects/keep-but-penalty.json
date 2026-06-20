@@ -1,0 +1,20 @@
+{
+  "id": "KSwTY44J",
+  "slug": "keep-but-penalty",
+  "title": "Keep But Penalty",
+  "description": "Keep inventory on death while applying configurable experience and equipped-item durability penalties.",
+  "body": "# Keep But Penalty\n\n![Inventory retained after death penalty is applied](https://cdn.modrinth.com/data/KSwTY44J/images/591609ae6f9f3858a58c1da00a5ccab3f3253a7d_350.webp)\n\n**Keep your inventory. Pay a real death penalty.**\n\nKeep But Penalty is for modpacks and servers that want to avoid item drops, grave recovery loops, or corpse runs without making death free. Players keep their inventory, but death still removes experience and wears down equipped gear.\n\n## What it does\n\n- Keeps player inventory on death while the mod is installed.\n- Does **not** change the world's vanilla `keepInventory` gamerule.\n- Reduces vanilla experience after player death.\n- Damages selected equipped items after player death.\n- Covers armor, main hand, and off hand by default.\n- Supports equipped **Curios** items when Curios is installed.\n- Supports equipped **Accessories** items when Accessories is installed.\n- Can let death damage push items to 0 durability, making it pair well with no-break mods such as **Keep My Sword**.\n\n![Death penalty test world after inventory is kept](https://cdn.modrinth.com/data/KSwTY44J/images/f12590b9f0cad25e7f1753fc88954c623203c98b_350.webp)\n\nScreenshots above are captured in a Minecraft 1.21.1 NeoForge development client.\n\n## Default death penalty\n\nThe default settings are tuned for a simple keep-inventory survival loop:\n\n- Players keep their inventory.\n- Players keep **one third** of their total vanilla experience.\n- Players lose **two thirds** of their total vanilla experience.\n- Each selected damageable equipped item takes **80 durability damage**.\n- Armor, main hand, off hand, Curios slots, and Accessories slots are included.\n\nThis makes death gentler than losing everything, but still expensive enough to matter.\n\n## Configuration\n\nConfigure the rules in:\n\n```text\nconfig/keep_but_penalty-common.toml\n```\n\nUseful options include:\n\n```toml\n[death]\nkeepInventory = true\nenableExperiencePenalty = true\nexperienceKeepRatio = 0.333333333\n[durability]\nenableDurabilityPenalty = true\ndurabilityLoss = 80\nallowZeroDurability = true\ndamageArmor = true\ndamageMainHand = true\ndamageOffHand = true\ndamageCurios = true\ndamageAccessories = true\n```\n\n## Compatibility notes\n\nCurios and Accessories are optional. If either mod is installed, Keep But Penalty can include its equipped item slots in the durability penalty.\n\nFor 0-durability item preservation, pair this mod with a no-break mod such as **Keep My Sword**. Keep But Penalty applies the death cost; a no-break mod controls whether max-damage items remain as repairable stacks instead of breaking normally.\n\n## Requirements\n\n- Minecraft 1.21.1\n- NeoForge\n\nOptional integrations:\n\n- Curios API\n- Accessories\n\n## Source and issues\n\n- Source: https://github.com/rinchanai/keep-but-penalty\n- Issues: https://github.com/rinchanai/keep-but-penalty/issues\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 118,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

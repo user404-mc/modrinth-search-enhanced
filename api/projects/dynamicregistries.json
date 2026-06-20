@@ -1,0 +1,19 @@
+{
+  "id": "oz6iM7ld",
+  "slug": "dynamicregistries",
+  "title": "Dynamic Registries",
+  "description": "Allows other mods to create data-pack based registries",
+  "body": "# dynamic registries\n\nDynamic registries is a library mod that allows the creation of new data-pack based registries. It's **possible** to define elements in code and trough data-packs (even the data-pack in your mod), but not necessary; you can also create elements only in code **or** in data-packs. Elements that were defined in code can also be overwritten from data-packs. Elements must be encoded in JSON.\n\nThis library is based on the changes introduced in [this PR](https://github.com/MinecraftForge/MinecraftForge/pull/8263). This PR probably isn't going to be merged before 1.18.2 gets released, but I needed this feature already for 1.18.1, so I wrote this mod. There won't be versions of this library for other Minecraft version for this reason.\n\n### How to add this library to your mods dependencies\n\nTo add the library to your gradle setup, add modrinth to your dependency repositories.\n\n```\nrepositories {\n    maven {\n        name = \"Modrinth\"\n        url = \"https://api.modrinth.com/maven\"\n        content {\n            includeGroup \"maven.modrinth\"\n        }\n    }\n}\n```\n\nAdd the above codeblock to your build.gradle above your dependencies block (the order doesn't matter that strong, but lets assume that you've placed it there to simplify things a bit). If you already had a ```repositories``` block, only append the ```maven``` block to it.\n\nWe now define the dependency itself. Add the line below to your dependencies block in your build.gradle. Version `0.1.0` was the latest at time of writing. Replace that with the latest currently available version.\n```\nimplementation fg.deobf(\"maven.modrinth:dynamicregistries:0.1.0\")\n\n```\n\nYou can now refresh your gradle project to download the dependencies and re-run IDE setup tasks (`genIntellijRuns`, `genEclipseRuns` or `genVSCodeRuns`)\n\nYou can now use dynamic registries in your development setup, but you should make the forge mod-loader check for it's dependencies when loading. That requires changes in your mods.toml (in `src/main/resources/META-INF`). Add the following block at the end of the file\n\n```\n[[dependencies.modid]]\nmodId = \"dynamicregistries\"\nmandatory = true\nversionRange = \"[0.0.0,2.0.0)\"\nordering = \"NONE\"\nside = \"BOTH\"\n```\nReplace `modid` with the modid of your mod and rearrange the version range if necessary\n\n### Credits\n- Won-Ton, the author of the PR that was the base for this library\n- Mod Icon: [flaticon.com](https://www.flaticon.com/free-icons/bookshelf)",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 765,
+  "followers": 0,
+  "game_versions": [
+    "1.18.1"
+  ],
+  "date_updated": null
+}

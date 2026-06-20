@@ -1,0 +1,33 @@
+{
+  "id": "4lDrPSXX",
+  "slug": "longview",
+  "title": "Longview",
+  "description": "Fixes flickering, jaggies and Z-fighting on long distances using the Reverse Z technique.",
+  "body": "![Longview](https://raw.githubusercontent.com/EnnuiL/longview/refs/heads/main/.docs/longview_banner.png)\n\n![A comparison between having Longview installed and not having it installed. The cold pig is visibly jagged on the \"Longview Off\" shot and Z-fighting is visible on the waterlogged leaves. The \"Longview On\" shot shows the exact same scene but without the jaggies and with waterlogged leaves working as intended.](https://raw.githubusercontent.com/EnnuiL/longview/refs/heads/main/.docs/longview_comparison.webp)\n\nLongview is a mod for Minecraft 26.1 that fixes glitches such as Z-fighting and jaggies on far distances.\n\nThis is accomplished through two techniques:\n1) By changing the Z coordinate limits from [-1,1] to [0,1] using the `GL_ARB_CLIP_CONTROL` extension (officially part of OpenGL 4.5)\n2) By applying the reversed Z technique, where the far plane and the near plane are swapped in the renderer.\n\nThis ensures that the depth buffer will be evenly distributed no matter the distance, fixing all sorts of glitches that happens from a distance!\n\n## Compatibility\n\nThis mod is no longer needed in Minecraft 26.2+ since the game has implemented the same fixes that Longview implements! This mod will continue to work in Minecraft 26.1.\n\nThis mod requires a device supporting either the `GL_ARB_CLIP_CONTROL` extension or OpenGL 4.5 in order to apply Technique 1.\n\nOn devices that don't support either, like ones running macOS, Technique 2 will still be applied, although since the Z coordinate limits will remain as [-1,1], flipping them will do nothing at all considering said limit is effectively symmetric.\n\nAs of Longview 1.1.0, this mod is semi-compatible with [Iris Shaders](https://modrinth.com/mod/iris) and it will disable itself if a shader pack is active. Proper compatibility will be worked on in the future.\n\nThis mod is fully compatible with custom graphics backends and will implement Technique 2 by default, although said custom backends are required to implement Technique 1 themselves.\n\n## Acknowledgements\n\n- [This Godot Engine blog post](https://godotengine.org/article/introducing-reverse-z/) for introducing me to the reverse Z technique.\n- [Depth Precision Visualized](https://developer.nvidia.com/content/depth-precision-visualized): an excellent article covering the topic of depth precision as well as the reverse Z technique.\n- The many people who have independently discovered and popularized this technique, including [goddamn Quake developers](https://www.bluesnews.com/abrash/chap66.shtml).\n- [qendolin](https://modrinth.com/user/qendolin) for putting together the [farz-poc](https://github.com/Qendolin/farz-poc) proof-of-concept and for starting discussions involving Mojang developers.\n- [IMS](https://modrinth.com/user/IMS) for he's a jolly good fellow, which nobody can deny.",
+  "categories": [
+    "fabric",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 17044,
+  "followers": 0,
+  "game_versions": [
+    "26.1-snapshot-7",
+    "26.1-snapshot-8",
+    "26.1-snapshot-9",
+    "26.1-snapshot-10",
+    "26.1-snapshot-11",
+    "26.1-pre-1",
+    "26.1-pre-2",
+    "26.1-pre-3",
+    "26.1-rc-1",
+    "26.1-rc-2",
+    "26.1-rc-3",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

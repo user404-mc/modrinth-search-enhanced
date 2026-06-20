@@ -1,0 +1,22 @@
+{
+  "id": "18hg2a3u",
+  "slug": "thirst-was-tweaked",
+  "title": "Thirst Was Tweaked",
+  "description": "A mod which tweaked the 'Thirst Was Taken' mod.",
+  "body": "## Features\n\n- Removed the original mechanism where drinking dirty water grants hunger or poison effects.Now, players drinking dirty water will receive a brand new effect: **Hydratoxin** — which increases the player's thirst rate and intermittently causes nausea.\n\n- Retain thirst and food levels after death (disabled by default, can be enabled via configuration).\n\n- **AppleSkin** compatibility: the Hydratoxin effect will turn the thirst bar into purple.\n\n- Player can now drink rainwater by crouching and right-clicking the sky with an empty hand, instead of simply looking up to hydrate as before (both the amount of water and purity from rainwater are configurable).\n\n- Disabled some unnecessary or useless configurations from **Thirst Was Taken** to prevent them from taking effect.\n\n## Developer Content\n\nThis mod fixes some logical issues in the **Thirst Was Taken** code and provides some API for developers. Here are some available features:\n\n- You can now register pure drinks or food drinks through the `DrinkItem` subclass of `Item`, allowing simultaneous setting of item data and water data. A simple `Supplier<? extends Item>` example:\n\n```\n() -> new DrinkItem(\n    new Item.Properties()\n            .food(new FoodProperties.Builder()\n                    .nutrition(2)\n                    .saturationMod(1.0f)\n                    .alwaysEat()\n                    .build()\n                 ),\n    new DrinkItemManager()\n            .thirst(4)\n            .quenched(2)\n            .container(Items.STICK)\n)\n```\n\nYou can use `DrinkItemManager` to set the item's hydration amount, use duration, animation, and items returned after use. For more details, please refer to the [Wiki](https://github.com/Dark2932/Thirst-Was-Tweaked/wiki) or browse the source code.\n\n- Modified classes like `ThirstHelper` and `WaterPurity` via Mixin to make their code logic more aligned with practical development needs and expected results. Common methods can be called through the `ThirstAPI` class.\n\n- Fixed some meaningless code that could lead to bugs.\n\n## Future Plans\n\n- Add a \"Thirsty\" effect, causing faster thirst in high-temperature biomes, with integration for **Cold Sweat**.\n\n- **KubeJS** compatibility, making it easier for modpack authors to create drinks.\n\n- Add compatibility and customization for water-holding containers.\n\n- Fix more bugs from **Thirst Was Taken** and provide more API for developers.\n\n- Gradually improve the mod's Wiki.",
+  "categories": [
+    "food",
+    "forge",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 397,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

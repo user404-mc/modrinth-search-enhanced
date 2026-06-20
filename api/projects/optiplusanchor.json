@@ -1,0 +1,43 @@
+{
+  "id": "jrlJ1e3H",
+  "slug": "optiplusanchor",
+  "title": "OptiPlus-Anchor",
+  "description": "Removes the wait between triggering a charged respawn anchor and the block clearing from the world. The anchor is set to air on the client immediately on interaction, so the slot is ready for the next placement without any server-confirmation lag.",
+  "body": "# ⚓ OptiPlus-Anchor\n\n> **Zero-wait respawn anchor placement for Minecraft 1.21.11**\n\n---\n\n## 🔎 What does it do?\n\nOptiPlus-Anchor **removes the wait between triggering a charged respawn anchor and the block clearing from the world**. The anchor is set to air on the client **immediately** on interaction, so the slot is ready for the next placement without any server-confirmation lag.\n\nThe server-side detonation still happens normally, this just **stops the empty-frame stutter** that usually blocks re-placement at the same spot. The result: a **smoother, more responsive placement loop** during anchor PvP.\n\n---\n\n## ✅ Is this allowed?\n\n**No servers have been explicitly confirmed yet.**\n\nPlease check with server staff **before using this on any server**, rules around anchor optimizations vary a lot, and what's allowed on one server may be bannable on another.\n\n> ⚠️ **Use at your own risk** until a server has clearly approved it.\n\n---\n\n## 📥 How to use?\n\n1. **Drop the `.jar`** into your `.minecraft/mods` folder\n2. 2. Make sure you have **Fabric Loader** installed\n3. 3. Launch Minecraft **1.21.11**\n\n**Requirements:**\n- ✅ Minecraft **1.21.11** (only supported version for now)\n- - ✅ **Fabric Loader**\n\n---\n\n## 🎨 Can I change the anchor texture?\n\n**Not in this version.** Unlike some other anchor optimizers, OptiPlus-Anchor **doesn't swap in a \"fake\" anchor block**, the real anchor is simply cleared from the client view immediately.\n\nBecause there's no custom block or model being rendered, there's **nothing for a resource pack to retexture** here. The vanilla anchor textures still apply right up until the moment the block is cleared.\n\n---\n\n## 🔧 Compatibility\n\nShould work fine alongside **any mods that don't alter respawn anchor behavior directly**.\n\nMods that **may conflict**:\n- Mods that change how anchors detonate\n- Mods that change how anchors are placed\n- Mods that add their own client-side anchor handling\n\nIf you run into weirdness, try isolating the issue by **disabling other anchor-related mods first**.\n\n---\n\n## 📌 Version support\n\n| Version | Status |\n|---------|--------|\n| **1.21.11** | ✅ Supported |\n| Other versions | ❌ Not supported (yet) |\n\n---\n\n*Built for clean, lag-free anchor gameplay.*\n\n---\n\n## 🛡️ Server-side opt-out\n\nPer Modrinth rule 3.2, server admins can disable OptiPlus-Anchor for connected players. The mod listens for an empty plugin-channel message on `optiplus:disable` (kills both OptiPlus variants) or `optiplus-anchor:disable` (this variant only). The flag clears on disconnect, so the server must re-send the signal on each join.\n\n**Paper / Spigot / Bukkit:**\n```java\nserver.getMessenger().registerOutgoingPluginChannel(plugin, \"optiplus-anchor:disable\");\n// on PlayerJoinEvent:\nevent.getPlayer().sendPluginMessage(plugin, \"optiplus-anchor:disable\", new byte[0]);\n```\n\n**Fabric server mod:** send a `CustomPayloadS2CPacket` whose payload id is `optiplus-anchor:disable` (any body works) to the joining player.\n\n**Velocity / BungeeCord:** forward a plugin message on `optiplus-anchor:disable` to the backend, or send it from the proxy.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 654,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

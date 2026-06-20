@@ -1,0 +1,40 @@
+{
+  "id": "dbVXHSlv",
+  "slug": "fabricexporter",
+  "title": "FabricExporter",
+  "description": "Fabric mod that adds a Prometheus exporter with general metrics of your server",
+  "body": "# FabricExporter\n\n![](https://img.shields.io/github/license/ruscalworld/fabric-exporter)\n![](https://img.shields.io/github/actions/workflow/status/ruscalworld/fabric-exporter/gradle.yml?branch=master)\n\nFabric mod that adds a Prometheus exporter with general metrics of your server.\n\n![Grafana Dashboard](https://grafana.com/api/dashboards/14492/images/10444/image)\n\n---\n\nIt's a server-side mod that exposes metrics of your Fabric server in [Prometheus](https://prometheus.io) format.\nSo, it requires you to have at least Prometheus installed to collect provided metrics.\nI recommend also using [Grafana](https://grafana.com) to visualize data.\n\nIf you want to get TPS and MSPT metrics, you should also install [Spark](https://spark.lucko.me) as mod for your Fabric server.\n\n## Exposed metrics\n\nHere is a list of metrics that are collected by FabricExporter.\n\n* Metrics collected by Minecraft doesn't require anything, but may cause errors when running on old Minecraft versions\n* Metrics collected by [Spark](https://spark.lucko.me) require Spark to be installed\n\nYou can disable any of these metrics in [config](src/main/resources/config/exporter.properties).\n\n| Prometheus name                 | Description                                        | Config property              | Collected by   |\n|---------------------------------|----------------------------------------------------|------------------------------|----------------|\n| `minecraft_loaded_chunks`       | Amount of currently loaded chunks on server        | `enable-loaded-chunks`       | Minecraft      |\n| `minecraft_total_loaded_chunks` | Amount of total loaded chunks on server            | `enable-total-loaded-chunks` | Minecraft      |\n| `minecraft_mspt`                | Count of milliseconds per tick (MSPT)              | `enable-mspt`                | Spark          |\n| `minecraft_tps`                 | Count of ticks per second (TPS)                    | `enable-tps`                 | Spark          |\n| `minecraft_players_online`      | Amount of currently online players on your server  | `enable-players-online`      | FabricExporter |\n| `minecraft_entities`            | Amount of currently loaded entities on your server | `enable-entities`            | FabricExporter |\n| `minecraft_handshakes`          | Count of handshake requests                        | `enable-handshakes`          | FabricExporter |\n\n## Getting started\n\nTo use this mod you should have at least Fabric server and Prometheus installed.\n\n### Installing mod\n\n1. Download the mod from [Releases](https://github.com/RuscalWorld/FabricExporter/releases) page.\n2. Drop downloaded mod jar to the `mods` folder.\n3. Start your server to generate config file.\n4. Open `config/exporter.properties`, ensure that `server-port` value is an open port that can be accessed by your Prometheus and change it if required.\n5. Restart the server if you made changes in config.\n\n### Configuring Prometheus\n\n1. Open your Prometheus config file (it located at `/etc/prometheus/prometheus.yml` by default).\n```bash\nsudo nano /etc/prometheus/prometheus.yml\n```\n2. Add FabricExporter endpoint to the `scrape_configs` section. \nDon't forget to replace `127.0.0.1` with address of your server and `25585` with port specified in `server-port` property in `exporter.properties` file.\n```YAML\n- job_name: 'fabric'\n  static_configs:\n    - targets: ['127.0.0.1:25585']\n```\n3. Restart Prometheus service.\n```bash\nsudo service prometheus restart\n```\n\n### Importing Grafana dashboard\nIf you want to use Grafana, you can use my dashboard as template. \nI assume that you have already [created a Prometheus data source](https://prometheus.io/docs/visualization/grafana/) in Grafana.\nSo, let's import [dashboard for FabricExporter](https://grafana.com/grafana/dashboards/14492).\n\n1. Log in to your Grafana and go to `Create -> Import` tab.\n2. Type `14492` in \"Import via grafana.com\" field and click \"Load\".\n3. On the next page change settings as you wish and click \"Import\".\n\n## Configuring\n\nAfter your server starts, FabricExporter will create `exporter.properties` file in the `config` folder. \nYou should use this file to configure the mod.\nIn this file you can see some general settings and metrics settings.\n\n### General settings\n\n| Property | Description | Default value |\n| -------- | ----------- | ------------- |\n| `server-port` | Port on what the web server will listen for requests | `25585` |\n| `update-interval` | Interval between gauge metrics updates in milliseconds | `1000` |\n| `use-spark` | If set to `false`, FabricExporter will be independent from Spark | `true` |\n\n### Metrics settings\n\nYou can disable any metric that registered via MetricRegistry (all metrics by default) using `exporter.properties` file.\nNames of properties consist of `enable` and metric name without prefix and `_` replaced with `-`.\nFor example, if you want to disable `minecraft_players_online`, you should set `enable-players-online` to `false`.\nYou can also see list of available properties in \"Exposed metrics\" section.\nIf you can't find property for some metrics, you can manually add it.\nAll metrics are enabled by default.\n\n## License\nMIT license. Read more in [LICENSE](LICENSE)\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 35625,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.19",
+    "1.19.3",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

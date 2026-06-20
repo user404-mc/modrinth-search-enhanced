@@ -1,0 +1,27 @@
+{
+  "id": "G2Z02IvF",
+  "slug": "relay",
+  "title": "EasyAntiCheat",
+  "description": "A lightweight and simple, yet powerful AntiCheat tool for Forge, providing server admins with oversight of client-installed mods and resource packs.",
+  "body": "# EasyAntiCheat\nA lightweight and simple, yet powerful AntiCheat tool for Forge, providing server admins with oversight of client-installed mods and resource packs.\n\n## ⚠️ Disclaimer\nThis mod isn't intended to act as a defense against skilled hackers. Rather, it's a basic countermeasure aimed at script kiddies and similar low-level threats. It's designed to be simple and not to eliminate the risk of hackers on your server.\n\n## How does it work?\nThis mod works by the client sending the server a list of installed mods and resource packs upon connection. The server will then log all mods and resource packs, that are installed on the client but not on the server. If the functionality is enabled and properly configured via the config, it will also take automatic action when a mod isn't appreciated by the server owners.\n\n## What is its purpose?\nIts primary purpose is the quick identification of unwanted mods by the server operators through the logging mechanism, but as this is only efficient on small servers, as it needs human oversight, there is also a whitelisting/blacklisting functionality to automate the identification of widespread/known mods or assist the operators.\n\n## Configuration\nThe config file can be found in `./config/ezac-common.toml`. All options are described by comments, so you can modify them yourself easily to meet your needs.\n\nDown below, you can find an example config, that uses the `WHITELIST` `mode`, which means that only mods in the `mods` array will be allowed on the server. As `mods` is left empty though, all client-only mods will be flagged, which means that every mod, that's not on the server, but on the client will be flagged. Allowed resource packs on the server are defined in the `resourcePacks` list. In this example, only resource packs named \"TotallyLegitResourcePack.zip\" are allowed on the server. The `action` is set to `RESTRICT` which means, that as long as flagged mods are installed on the client, the player won't be able to join, but can join again, after removing said mods.\n```toml\n[\"Server Configuration\"]\n\t# A list of all mods that should be added to either the blacklist or whitelist.\n\tmods = []\n\t# A list of all resource packs that should be added to either the blacklist or whitelist.\n\tresourcePacks = [\"TotallyLegitResourcePack.zip\"]\n\t# How should the mods in the list be treated?\n\t# BLACKLIST will flag all mods of the client that are in the list.\n\t# WHITELIST will flag all mods of the client that aren't in the list.\n\t#Allowed Values: BLACKLIST, WHITELIST\n\tmode = \"WHITELIST\"\n\t# What should be done, when a player uses a flagged mod?\n\t# NOTIFY will log the flagged mods in the console (and send a message to the operators).\n\t# RESTRICT will do the same as NOTIFY, but will additionally deny the player everytime they join with a flagged mod.\n\t# BAN will also do the same as NOTIFY, but is a bit harsher than RESTRICT and will ban the player, so once they joined with a flagged mod, they will never be able to join again, until they are pardoned by an operator.\n\t# This will only work, when the mode selected is either BLACKLIST or WHITELIST.\n\t#Allowed Values: NOTIFY, RESTRICT, BAN\n\taction = \"RESTRICT\"\n```\n\n## FAQ\nQ: Port to version/Fabric/NeoForge?\n\nA: Not at the moment, sorry.\n\n\n\nQ: Can I use this in my Modpack?\n\nA: Sure!\n\n## Credits\n- [Icon](https://heroicons.com/)",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 12201,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sjuR07qC",
+  "slug": "fagas-discord-bridge",
+  "title": "Faga's Discord Bridge",
+  "description": "MC Discord Bridge is a server-side NeoForge mod that links Minecraft 1.21.x and Discord with event logs, /mc chat relay, account linking, and leaderboards.",
+  "body": "## Features\n- Minecraft -> Discord bridge for server lifecycle, player join/leave, deaths, advancements, and day milestone announcements\n- Discord -> Minecraft chat relay via `/mc` slash command in the configured channel (with mention sanitization)\n- `/mc` relays to Minecraft and echoes plain text back to Discord (`**name:** message`)\n- `/mc` uses linked Minecraft nickname when the Discord user is linked\n- Rich Discord embeds with per-event colors, timestamps, optional player head thumbnails, and plain-text fallback\n- Bot activity rotation with configurable activity list, interval, and type (`PLAYING`, `WATCHING`, `LISTENING`, `COMPETING`)\n- Admin logging channel with command redaction and structured admin embeds\n- Discord config slash command for admins: `/config` to update chat/admin channels and whitelist guild\n- Discord/Minecraft account linking via `/link` (ephemeral one-time code) and in-game `/bridge link <code>`\n- `/leaderboard` slash command with categories, pagination, and visibility (`private` default, optional `public`)\n- Leaderboards include online and offline players with saved stats\n- Linked players are shown as Discord mentions (`<@discordUserId>`) in leaderboard and embeds\n- Bot activity rotation includes a built-in online/max players status entry\n- Resilient startup/runtime behavior: Discord failures are logged, startup messages are queued until JDA is ready\n\n## Discord Bot Permissions\nBot permissions:\n- Read Messages / View Channels\n- Send Messages\n- Read Message History\n\n## Configuration\nFirst run creates `config/mcdiscordbridge-common.toml`.\n\n```toml\n# Discord bot token or env:DISCORD_BOT_TOKEN\ndiscordApiKey = \"env:DISCORD_BOT_TOKEN\"\n\n# Only messages from this guild are accepted\nwhitelistGuildId = \"123456789012345678\"\n\n# Discord channel for chat bridge\nchatChannelId = \"123456789012345678\"\n\n# Discord channel for admin logs\nadminLogChannelId = \"123456789012345678\"\n\n# Legacy toggle for text-message relay mode (slash command `/mc` does not require this)\nenableMessageContentIntent = false\n\n# Send Discord embeds for richer event logs\nenableEmbeds = true\n\n# Hex color for embeds, for example #57A5FF\nembedColorHex = \"#57A5FF\"\n\n# Include player head thumbnail in embeds when UUID is available\nincludePlayerHeadInEmbeds = true\n\n# URL template with %uuid% placeholder\nplayerHeadUrlTemplate = \"https://crafatar.com/avatars/%uuid%?size=128&overlay\"\n\n# Rotate bot activity text from botActivities\nenableBotActivityRotation = true\nbotActivities = [\"Watching the server\", \"Bridging chat\", \"Tracking events\"]\nbotActivityRotateSeconds = 20\n\n# PLAYING, WATCHING, LISTENING, COMPETING\nbotActivityType = \"WATCHING\"\n\n# Send day milestone message every N minecraft days (0 disables)\ndayMilestoneGap = 10\n\n# Enable Discord account linking to Minecraft players\nenableAccountLinking = true\n\n# How long link codes remain valid\nlinkCodeExpirySeconds = 600\n\n# Length of one-time account link code\nlinkCodeLength = 6\n```\n\n### Token via environment variable\nSet:\n```bash\nexport DISCORD_BOT_TOKEN=\"your_token\"\n```\n\nThen set in config:\n```toml\ndiscordApiKey = \"env:DISCORD_BOT_TOKEN\"\n```\n\n## Setup\nIn your whitelisted Discord server, run `/config` with one or more of:\n- `chat_channel_id`\n- `admin_channel_id`\n- `whitelist_guild_id`\n\nOnly Discord admins can run `/config`.\n\n## Account Linking\n- On Discord, run slash command: `/link`\n- The bot replies ephemerally with a one-time code\n- In Minecraft, run: `/bridge link <code>`\n- `linkCodeExpirySeconds` controls how long the code remains valid\n\n## Discord to Minecraft Relay\n- On Discord in the configured chat channel, run: `/mc <message>`\n- The message is relayed to Minecraft chat as `[Discord] <name> message`\n- The same message is echoed in Discord as plain text: `**name:** message`\n- If the Discord account is linked, `name` uses the linked Minecraft nickname\n\n## Leaderboard\n- On Discord, run: `/leaderboard <category>`\n- Optional page: `/leaderboard <category> <page>`\n- Optional visibility: `/leaderboard <category> <page> <visibility>` where `visibility` is `private` (default) or `public`\n- Linked players are shown with Discord mention tags (`<@discordUserId>`)\n- Categories: `playtime`, `deaths`, `player_kills`, `mob_kills`, `mined_blocks`, `distance_walked`\n- Leaderboard responses are ephemeral by default\n\n## Notes\n- This is server-only. Do not install on clients.\n- Discord failures are logged and do not intentionally crash server startup.\n- Avoid logging secrets in command usage; redaction is enabled by default.\n",
+  "categories": [
+    "management",
+    "neoforge",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 105,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

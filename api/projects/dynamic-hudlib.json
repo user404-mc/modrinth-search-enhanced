@@ -1,0 +1,20 @@
+{
+  "id": "zErAqm0g",
+  "slug": "dynamic-hudlib",
+  "title": "Tango's Dynamic Hud Lib",
+  "description": "A small client-side Fabric library for movable HUD widgets.\nProvides an API that other mods can use to register HUD elements. For players, that means TangosHudLib renders and stores the widgets that another mod registers through this l",
+  "body": "# Tango's HudLib\n\nTango's HudLib is a small client-side Fabric library for movable HUD widgets.\n\nThe mod itself does not add major gameplay features. It provides an API that other mods can use to register HUD elements. For players, that means TangosHudLib renders and stores the widgets that another mod registers through this library.\n\n\n## In-Game Usage\n\n1. Install the mod together with Fabric API.\n2. Start the game with a mod that registers widgets through TangosHudLib.\n3. Open the `Tango's HudLib` category in the Minecraft controls menu.\n4. Look for `HUD Editor (<Mod Name>)`.\n5. Press the assigned key in-game to open that mod's HUD editor.\n6. Drag widgets with the left mouse button to move them.\n7. Close the editor with the same hotkey or with `Esc`.\n\nWidget positions are stored in `config/tangos-hud-lib.json`.\n\n## Using It In Your Own Mod\n\nThe smallest clean integration has two parts:\n\n1. A class with `static` methods annotated with `@HudWidget`.\n2. A registration call inside your `ClientModInitializer`.\n\n### Example\n\n```java\npackage eu.example.mod;\n\nimport eu.tango.tangosHudLib.api.HudContent;\nimport eu.tango.tangosHudLib.api.HudLibrary;\nimport eu.tango.tangosHudLib.api.HudWidget;\nimport net.fabricmc.api.ClientModInitializer;\nimport net.minecraft.client.MinecraftClient;\nimport net.minecraft.text.Text;\nimport net.minecraft.util.Formatting;\nimport org.lwjgl.glfw.GLFW;\n\npublic final class ExampleModClient implements ClientModInitializer {\n    @Override\n    public void onInitializeClient() {\n        HudLibrary.registerWidgets(\"examplemod\", GLFW.GLFW_KEY_H, ExampleWidgets.class);\n    }\n\n    public static final class ExampleWidgets {\n        private ExampleWidgets() {\n        }\n\n        @HudWidget(id = \"position\")\n        public static HudContent position() {\n            MinecraftClient client = MinecraftClient.getInstance();\n            if (client.player == null) {\n                return HudContent.builder()\n                    .line(Text.literal(\"Position\").formatted(Formatting.GOLD))\n                    .line(Text.literal(\"No world loaded\").formatted(Formatting.GRAY))\n                    .build();\n            }\n\n            return HudContent.builder()\n                .line(Text.literal(\"Position\").formatted(Formatting.GOLD))\n                .line(Text.literal(\n                    client.player.getBlockX() + \" \"\n                        + client.player.getBlockY() + \" \"\n                        + client.player.getBlockZ()\n                ).formatted(Formatting.WHITE))\n                .build();\n        }\n    }\n}\n```\n\n## Rules For `@HudWidget`\n\nA widget method must:\n\n- be `static`\n- have no parameters\n- return `HudContent`\n- use a non-empty `id`\n\n`HudContent` must contain at least one non-blank line:\n\n```java\nHudContent.builder()\n    .line(Text.literal(\"Title\"))\n    .line(Text.literal(\"Content\"))\n    .build();\n```\n\n## API Summary\n\n- `HudLibrary.registerWidgets(String ownerId, int defaultKey, Class<?> clazz)` registers all `@HudWidget` methods in the class and assigns a default HUD editor hotkey.\n- `HudLibrary.registerWidgets(String ownerId, Class<?> clazz)` registers widgets without a default hotkey.\n- `HudLibrary.registerWidgets(Class<?> clazz)` uses the library defaults `tangos-hud-lib` and `H`.\n",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 623,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

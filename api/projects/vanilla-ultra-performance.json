@@ -1,0 +1,21 @@
+{
+  "id": "TOemWFhq",
+  "slug": "vanilla-ultra-performance",
+  "title": "Vanilla Ultra Performance",
+  "description": "Designed to maximize performance while being compatible with other vanilla clients/servers.",
+  "body": "# Vanilla Ultra Performance\n\n### **This modpack is currently pretty unstable expect crashes and keep backups of your worlds.**\n\nThe focus on this modpack is to maximize performance of the game. Most of the fps gains come from [vulkanmod](https://modrinth.com/mod/vulkanmod) so shaders will not work. There is still controller support though and some additional performance mods.\n\n## Performance\n\nAs you can see in the image below in vanilla in my main survival world I get ~120 fps, in my other modpack [Vanilla Plus](https://modrinth.com/modpack/vanilla-plus) I get ~140 fps without shaders, and with this pack I get ~200 fps.\n\n![fps](https://i.imgur.com/UrhhX32.jpg)\n\nI'm not sure why the screenshot for this pack has the colors messed up, in game it looks fine. That's part of the reason this pack is marked as alpha though.\n\n## Usage\n\n### Client\n\nTo use on a client use the integrated modrinth downloader on prism launcher or download the .mrpack and open it using prism launcher or whatever launcher you prefer as long as it has modrinth support.\n\n### Server\n\nBefore you continue with the server installation it does require [Docker](https://www.docker.com/) or [podman](https://podman-desktop.io/) If there's enough demand I might make a script to run the server that doesn't involve containers.\n\nOn modrinth click the source button as seen below.\n\n![Modrinth Image](https://i.imgur.com/ZcE7Ygu.jpg)\n\nOnce your on the github page find the tag for whichever version you want and then click the green code button and then click download zip as seen below.\n\n![Github Image](https://i.imgur.com/Q6TRNvD.jpg)\n\nOnce you have the zip file downloaded. Extract its contents. Then run this command in the directory that contains the Dockerfile `docker builder build -t vanilla-plus .`\n\nWhen that finishes you can run it using `docker run -dit -v /path/for/world:/Minecraft/server/world -p 25565:25565 vanilla-plus`\n\nThe default ram ussage of the server is set to 4G if you want to change the amount of ram the server can use add `-e 5G` or `-e 3000M` to the docker run command  so it looks something like this `docker run -dit -v /path/for/world:/Minecraft/server/world -e 5G -p 25565:25565 vanilla-plus`\n\nIf you want consistent ops or server properties you'll have to add a ops.json file or a server.properties file on the host somewhere and link the to the container with a start command that looks something like this `docker run -dit -v /path/for/world:/Minecraft/server/world -v /path/for/ops.json:/Minecraft/server/ops.json -p 25565:25565 vanilla-plus`\n\nGood luck have fun and hopefully these instructions are good enough.\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 2480,
+  "followers": 0,
+  "game_versions": [
+    "1.19.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

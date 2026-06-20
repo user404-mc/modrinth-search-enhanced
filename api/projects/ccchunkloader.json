@@ -1,0 +1,26 @@
+{
+  "id": "XcghFcon",
+  "slug": "ccchunkloader",
+  "title": "CCChunkloader",
+  "description": "Chunkloader for cc:tweaked Fabric only",
+  "body": "# CC Chunk Loader\n\nA dynamic chunk loading mod for ComputerCraft turtles that goes beyond traditional always-on/always-off chunk loaders.\n\n## Why This Mod?\n\nI wasn't happy with existing chunk loading options for ComputerCraft setups. Standard chunk loaders are either always active or completely off - there's no middle ground for dynamic, intelligent chunk management.\n\n**CC Chunk Loader** solves this by giving turtles the ability to dynamically scale their chunk loading based on what they're actually doing, with remote management capabilities for distributed automation systems.\n\n## Core Features\n\n### 🔄 **Dynamic Chunk Loading**\n- Turtles can adjust their chunk loading radius through code (0 to 2.5 chunks by default)\n- Perfect for tasks that need different area coverage at different times\n- Automatic shutdown when fuel runs out prevents abandoned chunk loaders\n\n### 🔋 **Fuel-Based Balancing** \n- Powered by turtle fuel with exponential cost scaling by distance loaded\n- Random ticking support for farms (doubles fuel cost)\n- Fractional fuel debt system for precise cost calculation\n- All costs are fully configurable\n\n### 📡 **Remote Management**\n- Wake up dormant turtles by ID even in unloaded chunks\n- Control any turtle's chunk loading remotely through the manager block\n- Perfect for managing distributed automation without keeping everything loaded\n\n### ⚙️ **Smart Persistence**\n- Complete state preservation across server restarts/world reloads\n- Wake-on-world-load option for critical turtles\n\n## API Reference\n\n### Chunkloader Peripheral\n\n```lua\nlocal chunkloader = peripheral.find(\"chunkloader\")\n\n-- Core chunk loading control\nchunkloader.setRadius(radius)           -- Set loading radius (0-2.5, 0 = disabled)\nchunkloader.getRadius()                 -- Get current radius\nchunkloader.getFuelRate()              -- Get fuel consumption per tick\n\n-- Wake control\nchunkloader.setWakeOnWorldLoad(boolean) -- Auto-resume on server restart\nchunkloader.getWakeOnWorldLoad()        -- Check wake setting\n\n-- Random tick control (for farms)\nchunkloader.setRandomTick(boolean)      -- Enable random ticking (doubles fuel cost)\nchunkloader.getRandomTick()            -- Check random tick status\n\n-- Turtle identification\nchunkloader.getTurtleIdString()         -- Get unique turtle ID for remote management\n```\n\n### Chunkloader Manager Block\n\n```lua\nlocal manager = peripheral.find(\"chunkloader_manager\")\n\n-- Remote turtle management\nmanager.getTurtleInfo(turtleId)                    -- Get turtle status/stats\nmanager.setTurtleRadius(turtleId, radius)          -- Wake & control dormant turtles\nmanager.setTurtleWakeOnWorldLoad(turtleId, boolean) -- Control wake settings remotely\nmanager.getTurtleWakeOnWorldLoad(turtleId)         -- Check wake settings\nmanager.listTurtles()                              -- List all active turtles\n```\n\n## Use Cases\n\n### 🌾 **Smart Farming Systems**\n- Turtles enable chunk loading and random ticking only when tending crops\n- Scale down to minimal radius when just monitoring\n- Remote activation to start the farm remotely\n\n### 📊 **Monitoring Networks**\n- Wake dormant sensor turtles on-demand\n- Collect data across large areas without constant chunk loading\n- Centralized management through chunkmanager block\n\n## Highlights\n\n- **UUID-based persistence** - Turtle identities survive world restarts and position changes\n- **Exponential fuel scaling** - Larger areas cost exponentially more fuel to prevent abuse\n- **Custom block models** - Polished visual design\n- **Comprehensive admin tools** - Debug commands for troubleshooting\n\n## Configuration\n\nAll fuel costs and limits are configurable via in-game commands:\n\n```\n/ccchunkloader get <key>          # View current settings\n/ccchunkloader set <key> <value>  # Modify settings\n/ccchunkloader list               # Show all config values\n```\n\n**Default Settings:**\n- Max radius: 2.5 chunks (covers ~21 chunks total)\n- Base fuel cost: 0.033 per chunk per tick\n- Random tick max radius: 1.4 chunks\n- Distance multiplier: 2.0 (exponential scaling)\n\n## Advanced Features\n\n### Debug Commands\n```\n/ccchunkloader debug uuids        # List all tracked UUIDs\n/ccchunkloader debug stats        # Show system statistics\n/ccchunkloader debug orphans      # Find orphaned UUIDs\n```\n\n### Remote Bootstrap\n- Manager blocks can wake turtles in unloaded chunks\n- Persistent state ensures no data loss during dormancy\n- Wake-on-world-load for critical automation systems\n\n---\n\n**Perfect for:** Dynamic automation systems, large-scale turtle networks, smart resource management, and anyone who wants intelligent chunk loading instead of static always-on solutions.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 706,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}
