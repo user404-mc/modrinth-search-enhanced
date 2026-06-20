@@ -306,7 +306,7 @@ def generate_api_js():
         f.write(js)
 
 def generate_api_html():
-    html = '''<!DOCTYPE html>
+    apihtml = '''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -386,10 +386,14 @@ function showResults(data) {
         }
     </script>
 </body>
-</html>'''
+</html>
+'''
+    with open("api.html", "w", encoding="utf-8") as f:
+        f.write(apihtml)
 
 
 if __name__ == "__main__":
     generate_index_html()
     generate_api_js()
+    generate_api_html()
     print("Updated search logic in index.html and api.js (with highlighting and tags)")

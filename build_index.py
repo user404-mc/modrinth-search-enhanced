@@ -7,8 +7,8 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 BASE_URL = "https://api.modrinth.com/v2"
-DATA_DIR = "data"
-API_DIR = "api"
+DATA_DIR = "data-test2"
+API_DIR = "api-2"
 PROJECTS_API_DIR = os.path.join(API_DIR, "projects")
 
 MAX_FILE_SIZE_BYTES = 500 * 1024 * 1024
@@ -284,14 +284,14 @@ def generate_index_html():
 def generate_api_js():
     """Generate the JSONP API with chunk support and pagination."""
     # (same as in recovery script – copy from above)
-    js = '''// Modrinth Enhanced Search API (JSONP) with pagination and chunk support
+    js = '''// Modrinth Enhanced Search API (JSONP) with multi‑term AND search, highlighting and tags
 (function() {
     var currentScript = document.currentScript || document.scripts[document.scripts.length - 1];
     var src = currentScript.src;
     var query = src.split('?')[1] || '';
     var params = new URLSearchParams(query);
     var callback = params.get('callback') || 'console.log';
-    var q = (params.get('q') || '').toLowerCase().trim();
+    var q = (params.get('q') || '').trim();
     var category = (params.get('category') || '').toLowerCase().trim();
     var clientSide = (params.get('client_side') || '').toLowerCase().trim();
     var serverSide = (params.get('server_side') || '').toLowerCase().trim();
@@ -321,21 +321,54 @@ def generate_api_js():
         }
     }
 
+    async function loadHighlighted() {
+        var resp = await fetch('/data/highlighted.json');
+        if (!resp.ok) return []; // fallback
+        return await resp.json();
+    }
+
+    async function loadTags() {
+        var resp = await fetch('/data/tags.json');
+        if (!resp.ok) return {};
+        return await resp.json();
+    }
+
     (async function() {
         try {
-            var projects = await loadProjects();
+            var [projects, highlighted, tags] = await Promise.all([
+                loadProjects(),
+                loadHighlighted(),
+                loadTags()
+            ]);
+            var terms = q ? q.toLowerCase().split(/\\s+/) : [];
             var results = [];
             for (var i = 0; i < projects.length; i++) {
                 var p = projects[i];
-                var text = (p.title + ' ' + p.description + ' ' + p.body + ' ' + (p.categories || []).join(' ') + ' ' + (p.game_versions || []).join(' ')).toLowerCase();
+                var tagList = tags[p.slug] || [];
+                var tagText = tagList.join(' ');
+                var text = (p.title + ' ' + p.description + ' ' + p.body + ' ' + (p.categories || []).join(' ') + ' ' + (p.game_versions || []).join(' ') + ' ' + tagText).toLowerCase();
                 var match = true;
-                if (q && !text.includes(q)) match = false;
+                if (terms.length > 0) {
+                    for (var t = 0; t < terms.length; t++) {
+                        if (!text.includes(terms[t])) {
+                            match = false;
+                            break;
+                        }
+                    }
+                }
                 if (match && category && !(p.categories || []).some(function(c) { return c.toLowerCase() === category; })) match = false;
                 if (match && clientSide && p.client_side !== clientSide) match = false;
                 if (match && serverSide && p.server_side !== serverSide) match = false;
                 if (match) results.push(p);
             }
-            results.sort(function(a, b) { return (b.downloads || 0) - (a.downloads || 0); });
+            // Sort: highlighted first, then by downloads
+            results.sort(function(a, b) {
+                var aHigh = highlighted.includes(a.slug);
+                var bHigh = highlighted.includes(b.slug);
+                if (aHigh && !bHigh) return -1;
+                if (!aHigh && bHigh) return 1;
+                return (b.downloads || 0) - (a.downloads || 0);
+            });
             var total = results.length;
             var paginated = results.slice(offset, offset + limit);
             var response = { total: total, limit: limit, offset: offset, results: paginated };
