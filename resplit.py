@@ -4,7 +4,7 @@ import math
 
 DATA_DIR = "data"
 MAX_TOTAL_SIZE_MB = 20        # Ab dieser Größe wird gesplittet
-MAX_CHUNK_SIZE_MB = 10        # Zielgröße pro Chunk
+MAX_CHUNK_SIZE_MB = 9        # Zielgröße pro Chunk
 
 def load_existing_projects():
     """Load projects from existing index or single file."""
