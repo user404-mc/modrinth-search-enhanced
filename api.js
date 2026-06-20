@@ -13,17 +13,17 @@
     var offset = parseInt(params.get('offset')) || 0;
 
     async function loadProjects() {
-        var indexResp = await fetch('/data/projects_index.json');
+        var indexResp = await fetch('/modrinth-search-enhanced/data/projects_index.json');
         if (!indexResp.ok) throw new Error('Failed to load projects_index.json');
         var index = await indexResp.json();
 
         if (index.type === 'single') {
-            var resp = await fetch('/data/' + index.file);
+            var resp = await fetch('/modrinth-search-enhanced/data/' + index.file);
             if (!resp.ok) throw new Error('Failed to load ' + index.file);
             return await resp.json();
         } else if (index.type === 'chunks') {
             var chunkPromises = index.files.map(function(file) {
-                return fetch('/data/' + file).then(function(r) {
+                return fetch('/modrinth-search-enhanced/data/' + file).then(function(r) {
                     if (!r.ok) throw new Error('Failed to load ' + file);
                     return r.json();
                 });
@@ -36,13 +36,13 @@
     }
 
     async function loadHighlighted() {
-        var resp = await fetch('/data/highlighted.json');
+        var resp = await fetch('/modrinth-search-enhanced/data/highlighted.json');
         if (!resp.ok) return []; // fallback
         return await resp.json();
     }
 
     async function loadTags() {
-        var resp = await fetch('/data/tags.json');
+        var resp = await fetch('/modrinth-search-enhanced/data/tags.json');
         if (!resp.ok) return {};
         return await resp.json();
     }
