@@ -1,0 +1,33 @@
+{
+  "id": "p3ejhmzp",
+  "slug": "midireceiver",
+  "title": "MidiReceiver",
+  "description": "The MIDIReceiver plugin plays Minecraft note block sounds based on real-time MIDI data sent from the client",
+  "body": "# 🎼 MIDIReceiver (Spigot Plugin)\n\nThe **MIDIReceiver** plugin listens for `midi:action` plugin messages and plays matching Minecraft note block sounds in real time.\n\n## 📡 Incoming Plugin Message: `midi:action`\n\nThe plugin receives `MidiAction` packets from the client mod and triggers sounds accordingly.\n\n### `MidiAction` Payload Structure\n\n```java\nrecord MidiAction(\n    String name,\n    int command,\n    int channel,\n    int data1,\n    int data2\n)\n```\n\n| Field     | Type     | Description                          |\n| --------- | -------- | ------------------------------------ |\n| `name`    | `String` | Name of the MIDI device              |\n| `command` | `int`    | MIDI command (e.g., `144` = Note On) |\n| `channel` | `int`    | MIDI channel (0–15)                  |\n| `data1`   | `int`    | Note number                          |\n| `data2`   | `int`    | Velocity                             |\n\n## 🔊 MIDI to Minecraft\n\nIf `command == 144` and `velocity > 0`, the plugin maps `data1` (MIDI note) to Minecraft note block pitch `0–24` and plays the note using `player.playNote(...)`.\n\n## ✅ Requirements\n\n* A Spigot/Paper server (1.20+ recommended)\n* A client mod that sends `midi:action` plugin messages\n\n---\n\nNeed help or want to contribute? Check out the [repository](https://github.com/uebliche/midireciever) or open an issue!\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 67,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

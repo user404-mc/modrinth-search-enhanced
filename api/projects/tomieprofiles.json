@@ -1,0 +1,22 @@
+{
+  "id": "W8HsLDjY",
+  "slug": "tomieprofiles",
+  "title": "TomieProfiles",
+  "description": "Use the same account to connect several times to the same server",
+  "body": "# Introduction\n\nA plugin for Minecraft Velocity servers that allows to connect with the same account to the server several times. The plugin will assign a new username to each new connection using the same account. By using commands the players can change which MiniProfile (sub-profile) they are using. This plugin is heavily inspired by [TwinSession](https://modrinth.com/plugin/chatpatchertwin).\n\n# Requirements\n\n- [configLib](https://github.com/Exlll/ConfigLib)\n\n# Features\n\nWhen a player with the account of and already connected player tries to connect to the proxy, they'll get a new profile with a different name and info. These profiles are numbered starting from 0. If a player wants to use a diferent profile, they can use the command `profileswap` followed by and argument indicanting the miniprofile id, like this:\n`/profileswap 1`, this will kick the player out of the server and when they reconnect, they'll be using the miniprofile 1.\n\nThe config file should look like this.\n\n```\nservers:\n  - serverName: \"survival\"\n    overwriteMessages: false\n  - serverName: \"creative\"\n    overwriteMessages: false\n```\n\noverwriteMessages is false by default\n\n# Known issues\n\n- Chat messages don't work properly, so in each server, you can change enforce-secure-profile (server.properties) to false. If you dont want to change that option, in the config file of the plugin, you have to set overwriteMessages to true. Some minecraft versions (mainly newer versions) do not allow to overwrite chat messages, so you'll need a plugin like [ChatPatcher](https://modrinth.com/plugin/chatpatcher) to be able to use it. ChatPatcher comes with some other issues, its a proxy level plugin, so it'll affect all the subservers. It'll also have problems if enforce-secure-profile is set to false.\n- MiniProfiles can't be created without trying to connect with the same account first.\n- Even if the second player connects to a diferent subserver, they'll get the new profile instead of the base one.\n",
+  "categories": [
+    "management",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

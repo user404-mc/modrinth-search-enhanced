@@ -1,0 +1,22 @@
+{
+  "id": "qVpTPVku",
+  "slug": "open-persistence",
+  "title": "Open Persistence",
+  "description": "Open source reimplementation of Persistent Players for 1.12.2, with fixes and Mod Compatibility",
+  "body": "# Open Persistence\n\nAn open-source reimplementation of _Persistent Players_, rebuilt for modern Minecraft with bug fixes and mod compatibility.\n\nWhen a player logs out of a multiplayer server, Open Persistence leaves behind a **persistent body** — an entity that looks like the player and holds all of their gear, standing where they disconnected. When they log back in, their state is transferred back and the body is removed. While they are away, the body can be killed by other players or mobs, dropping the player's inventory (and updating their offline save data, so the loss sticks).\n\nThis makes logging out a meaningful decision on survival/PvP servers: your character stays in the world and remains vulnerable until you return.\n\n## Features\n\n*   **Persistent logout bodies** — a player-shaped entity spawns on logout, wearing and holding the player's full inventory and equipment.\n*   **State round-trip on login** – inventory, armor, and accessory slots are restored when the player rejoins; the body is then despawned.\n*   **Killable bodies** — the body has health and can be slain; doing so drops the player's items and writes the change back to their offline player data.\n*   **Despawn-proof** — the body will **not** vanish on peaceful difficulty or when `doMobSpawning` / mob-spawning gamerules are disabled. It ignores despawn distance and persistence culling.\n*   **Accessory support** — extra equipment slots are preserved across logout/login.\n*   **Configurable** — see [Configuration](#Configuration).\n\n## Supported versions\n\nOpen Persistence is built as a single multiversion project (using the [Prism](https://github.com/Leclowndu93150/Prism) build system) and ships a separate jar per Minecraft version and mod loader.\n\n| Minecraft |Loaders           |Loader versions                                                    |Accessory compat              |\n| --------- |----------------- |------------------------------------------------------------------ |----------------------------- |\n| <strong>1.12.2</strong> |Forge             |Forge <code>14.23.5.2847</code>                                    |ModularWarfare (Shining fork) |\n| <strong>1.20.1</strong> |Forge · Fabric    |Forge <code>47.4.18</code> · Fabric loader <code>0.18.6</code> (API <code>0.92.7+1.20.1</code>) |Curios (Forge)                |\n| <strong>1.21.1</strong> |NeoForge · Fabric |NeoForge <code>21.1.222</code> · Fabric loader <code>0.18.6</code> (API <code>0.116.9+1.21.1</code>) |Curios (NeoForge)             |\n| <strong>26.1</strong> |NeoForge · Fabric |NeoForge <code>26.1.1.0-beta</code> · Fabric loader <code>0.18.6</code> (API <code>0.145.2+26.1.1</code>) |Curios (NeoForge)             |\n\n## Compatibility\n\nAccessory/extra-slot mods are integrated as **optional soft dependencies** — Open Persistence works fine without them, and detects them at runtime when present.\n\n*   **Curios** (1.20.1+ on Forge/NeoForge) — items in Curios slots are copied onto the body and restored on login. Curios is a Forge/NeoForge-only mod; on **Fabric** there is no Curios integration and accessory handling is a no-op.\n*   **ModularWarfare** (1.12.2, Shining fork) — the original mod's extra-slot compatibility is preserved on the legacy build.\n\n## Configuration\n\n| Option                 |Default |Description                                                           |\n| ---------------------- |------- |--------------------------------------------------------------------- |\n| <code>persistCreativePlayers</code> |<code>true</code> |Whether players in creative mode also leave a persistent body behind. |\n| <code>offlinePlayersSleep</code> |<code>false</code> |Whether offline bodies lie down (sleeping pose, smaller hitbox).      |\n| <code>debug</code>     |<code>false</code> |Verbose logging for troubleshooting.                                  |\n\n## License\n\nLicensed under the **GPL-3.0**.",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

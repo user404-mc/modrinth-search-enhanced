@@ -1,0 +1,33 @@
+{
+  "id": "2MGzAjDb",
+  "slug": "ankicamera",
+  "title": "AnkiCamera",
+  "description": "A cinematic camera cutscene plugin for Minecraft servers",
+  "body": "A cinematic camera cutscene plugin for Minecraft servers. Supports Paper, Folia, and Spigot, covering 1.21 and above.\n一个服务端过场动画摄像机插件，支持 Paper、Folia 和 Spigot，覆盖 1.21 及以上版本。\n\n---\n\n![EASY](https://cdn.modrinth.com/data/cached_images/99e930e01a3051f9749e2fad5c53031b9e0100c7.png)\n## Features / 特点\n\n- Smooth spline camera paths with 4 interpolation modes (Catmull-Rom, B-Spline, Hermite, Linear)\n  平滑样条摄像机路径，4 种插值模式（Catmull-Rom、B-Spline、Hermite、线性）\n\n- Visual hotbar editing tools with clickable chat UI\n  可视化快捷栏编辑工具 + 可点击聊天 UI\n\n- Point events: trigger titles, sounds, commands, scripts at any camera point\n  点位事件：在任意摄像机点位触发标题、音效、指令、脚本\n\n- AC Script system for chaining scenes, delays, dialogues, and rewards\n  AC 脚本系统，串联场景、延迟、对话和奖励\n\n- Trigger system: auto-play on region enter, block click, or command\n  触发器系统：区域进入、方块点击或指令自动播放\n\n- Recording mode: walk to auto-capture camera points\n  录制模式：行走自动捕获摄像机点位\n\n- Packet-based camera: no entity flicker, smooth spectator-mode playback\n  基于数据包的摄像机：无实体闪烁，流畅旁观者模式播放\n\n---\n\n## Requirements / 依赖\n\n- Paper 1.21+ / Folia 1.21+ / Spigot 1.21+\n- Java 21\n- [PacketEvents](https://github.com/retrooper/packetevents) (place in plugins folder)\n\n---\n\n## Installation / 安装\n\n1. Install Paper, Folia, or Spigot 1.21+.\n   安装 Paper、Folia 或 Spigot 1.21+\n\n2. Place `packetevents.jar` into `plugins/`.\n   将 `packetevents.jar` 放入 `plugins/` 目录\n\n3. Place `AnkiCamera.jar` into `plugins/`.\n   将 `AnkiCamera.jar` 放入 `plugins/` 目录\n\n4. Start the server.\n   启动服务器\n\n---\n\n## Usage / 使用方法\n\n1. Create a scene: `/acam new <id>`\n   创建场景：`/acam new <id>`\n\n2. Enter edit mode: `/acam edit <id>`\n   进入编辑模式：`/acam edit <id>`\n\n3. Use hotbar tools to add points, preview, record, and toggle path particles.\n   使用快捷栏工具添加点位、预览、录制、开关路径粒子\n\n4. Play the scene: `/acam play <id>`\n   播放场景：`/acam play <id>`\n\n5. Hold Shift to exit playback.\n   长按 Shift 退出播放\n\n---\n\n## Commands / 指令\n\n| Command / 指令 | Description / 说明 |\n|:---|:---|\n| `/acam new <id>` | Create a new scene / 创建新场景 |\n| `/acam del <id>` | Delete a scene / 删除场景 |\n| `/acam list` | List all scenes / 列出所有场景 |\n| `/acam edit <id>` | Enter edit mode / 进入编辑模式 |\n| `/acam exit` | Exit edit mode / 退出编辑模式 |\n| `/acam add` | Add point at current position / 在当前位置添加点位 |\n| `/acam insert <idx>` | Insert point at index / 在指定位置插入点位 |\n| `/acam rm <idx>` | Remove a point / 删除点位 |\n| `/acam set <idx> <param> [val]` | Set point parameter / 设置点位参数 |\n| `/acam points [id]` | View point list / 查看点位列表 |\n| `/acam pt <idx>` | View point detail (clickable UI) / 查看点位详情（可点击 UI） |\n| `/acam play <id> [player\\|all]` | Play a scene / 播放场景 |\n| `/acam stop [player\\|all]` | Stop playback / 停止播放 |\n| `/acam pause` | Pause/resume playback / 暂停/恢复播放 |\n| `/acam rec start\\|stop` | Start/stop recording / 开始/停止录制 |\n| `/acam setting <param> <val>` | Modify scene settings / 修改场景设置 |\n| `/acam path [on\\|off]` | Toggle path particles / 开关路径粒子 |\n| `/acam smooth <id>` | Smooth path / 平滑路径 |\n| `/acam reverse <id>` | Reverse point order / 反转点位顺序 |\n| `/acam copy <src> <dst>` | Copy a scene / 复制场景 |\n| `/acam tp <idx>` | Teleport to point / 传送到点位 |\n| `/acam export <id>` | Export scene / 导出场景 |\n| `/acam import <file>` | Import scene / 导入场景 |\n| `/acam trigger <sub>` | Trigger management / 触发器管理 |\n| `/acam action <idx> <sub>` | Point event management / 点位事件管理 |\n| `/acam script <name>` | Run AC script / 执行 AC 脚本 |\n| `/acam reload` | Reload config and lang / 重载配置和语言 |\n\n---\n\n## Permissions / 权限\n\n| Permission / 权限 | Description / 说明 |\n|:---|:---|\n| `ankicamera.admin` | Full access to all commands / 所有指令完整权限 |\n| `ankicamera.play` | Play scenes / 播放场景 |\n| `ankicamera.play.other` | Play scenes for other players / 为其他玩家播放场景 |\n\n---\n\n## Languages / 语言\n\nConfigure in `config.yml`:\n在 `config.yml` 中配置：\n\n```yaml\nlanguage: en_US\n```\n\nAvailable / 可用语言: `zh_CN`, `en_US`, `ja_JP`, `ko_KR`, `ru_RU`, `de_DE`, `fr_FR`, `es_ES`, `pt_BR`\n\n---\n\n## AC Script / AC 脚本\n\nPlace `.ac` files in `plugins/AnkiCamera/scripts/`. Example:\n将 `.ac` 文件放入 `plugins/AnkiCamera/scripts/`。示例：\n\n```\n@scene intro\n  title \"<gold>Welcome!</gold>\" \"<gray>Enjoy the tour</gray>\"\n  sound entity.experience_orb.pickup 1.0 1.2\n  delay 40\n  play my_scene\n  wait 0\n  msg \"<green>Tour complete!</green>\"\n```\n\nSee `plugins/AnkiCamera/scripts/` for more examples after first launch.\n首次启动后查看 `plugins/AnkiCamera/scripts/` 获取更多示例。\n\n---\n\n## Configuration / 配置\n\n`plugins/AnkiCamera/config.yml` — main config with speed, recording interval, particles, edit tools, etc.\n`plugins/AnkiCamera/config.yml` — 主配置文件，包含速度、录制间隔、粒子、编辑工具等设置。\n\n`plugins/AnkiCamera/lang/` — language files, editable for customization.\n`plugins/AnkiCamera/lang/` — 语言文件，可自定义编辑。\n\n---\n\nA wiki page is coming soon!\n",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 80,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

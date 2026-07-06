@@ -1,0 +1,36 @@
+{
+  "id": "g9wycqyW",
+  "slug": "simplereportplugin",
+  "title": "SimpleReportPlugin",
+  "description": "ReportPlugin is a lightweight Spigot/Paper report system that lets players report others with anti-spam limits, allows staff to review reports in a GUI to ban or delete them, and persists all reports in a JSON file across restarts.",
+  "body": "# SimpleReportPlugin \n\nA simple and lightweight **player report system** for **Spigot/Paper 1.21.x**. Players can report other players with a reason, while staff/OPs can review all reports in a clean inventory GUI and decide to **ban** the reported player or **delete** the report.\n\nAll reports are stored **persistently in a JSON file**, so they remain available after server restarts.\n\n---\n\n## Features\n\n- **/report**: Players can report other players (including a reason)\n- **Anti-spam protection**\n  - A player can report the same target **only once** as long as that report still exists\n  - Global **5 minute cooldown**: a player can only create one new report every 5 minutes\n- **Staff GUI / Reports overview**\n  - OPs can view reports in an **inventory GUI**\n  - Select a report by clicking the **player head**\n  - Actions via buttons:\n    - **Ban** (Red Wool): bans the reported player and removes the selected report\n    - **Delete** (Barrier): deletes the selected report (no ban)\n    - **Close** (Redstone): closes the GUI\n    - Reports stay after **restart**\n- ## Configuration (`config.yml`)\nThe plugin automatically generates a configuration file on the first startup. It allows you to paste a Discord Webhook URL to receive instant logs in your Discord channel whenever a report is made, with an optional toggle to ping a specific role or `@everyone`.\n\n---\n\n## Commands\n\n### `/report <player> <reason>`\nCreates a report for the given player.\n\n**Examples:**\n- `/report Steve Fly hacks`\n- `/report Alex Chat harassment`\n\n**Rules:**\n- You **cannot report yourself**\n- You cannot report the **same player multiple times** while the report exists\n- You can only create one report every **5 minutes**\n\n---\n\n### `/reports`\nOpens the reports GUI.\n\n- **OP only** by default (`default: op`)\n- Shows each report as a **player head** item including:\n  - reporter\n  - reason\n  - timestamp\n\n---\n\n## Staff GUI Usage\n\n1. Run `/reports`\n2. Click a **head** to select a report  \n   (the paper item will show `Selected: <playername>`)\n3. Click one of the action buttons:\n   - **Ban (Red Wool)**: bans the player and removes the selected report\n   - **Delete (Barrier)**: deletes the selected report only\n   - **Close (Redstone)**: closes the GUI\n\n---\n\n## Data Storage\n\n- Reports are automatically saved when:\n  - a report is created\n  - a report is deleted\n  - the server stops / plugin disables\n\n**Note:** Only reports are saved. The 5-minute cooldown is currently stored in memory and resets after server restart (reports remain saved).\n\n---\n\n## Compatibility\n\n- Designed for **Spigot/Paper 1.21.x**\n- Recommended: **Paper** for best performance\n- Java: **Java 21**\n\n---\n\n## Installation\n\n1. Put the `.jar` into your server `plugins/` folder\n2. Start the server\n3. The plugin will automatically create `plugins/ReportPlugin/reports.json` once reports exist\n\n---\n\n## Support\n\nIf you find a bug add me on Discord **Petarhrv16**",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

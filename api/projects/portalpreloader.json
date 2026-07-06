@@ -1,0 +1,35 @@
+{
+  "id": "8Og6SUCJ",
+  "slug": "portalpreloader",
+  "title": "PortalPreloader",
+  "description": "Reduces loading screens and improves the portal travel experience by beginning to load chunks as soon as a nether portal is lit",
+  "body": "# Portal Preloader\n\nA Folia-compatible Minecraft plugin that reduces loading screens and improves the portal travel experience by preloading chunks at portal destinations before players teleport.\n\n## Features\n\n- **Portal Preloading**: Automatically spawns a snowball through newly created portals to pre-generate destination chunks\n- **Portal Cooldown System**: Gives the destination time to fully load before allowing players to teleport\n- **Dimension-Specific Cooldowns**: Set different cooldown times for Overworld and Nether portals\n- **Live Countdown**: Players waiting in a portal see a countdown message every second\n- **Automatic Timer Reset**: When cooldown expires, players don't need to leave and re-enter the portal\n- **Folia Compatible**: Fully compatible with Folia's region-based threading\n- **Customizable Messages**: All chat messages are configurable with color code support\n- **Reload Command**: Update configuration without restarting the server\n\n## Why Use This Plugin?\n\nWhen players travel through nether portals to unexplored areas, the destination chunks need to be generated. This can cause:\n- Long loading screens\n- Client freezing\n- Players getting stuck in the portal animation\n- Poor user experience, especially on servers with complex terrain generation\n\n**Portal Preloader solves this by:**\n1. Spawning a snowball through the portal immediately when it's lit\n2. The snowball travels to the destination and triggers chunk generation\n3. Chunks are pre-loaded and ready before any player teleports\n4. The configurable cooldown ensures chunks have time to fully generate\n5. Players experience smooth, instant teleportation with no loading screen\n\nThis is especially useful for:\n- Servers with custom terrain generation\n- High-performance servers running Folia\n- Anarchy servers where players frequently explore new areas\n- Any server wanting to improve the portal travel experience\n\n## Installation\n\n1. Download the latest release JAR file\n2. Place it in your server's `plugins` folder\n3. Restart your server or use a plugin manager to load it\n4. Configure the plugin in `plugins/PortalPreloader/config.yml`\n\n## Requirements\n\n- Minecraft 1.21.x\n- Folia or Paper server\n- Java 21\n\n## Configuration\n\n### Default Config (`config.yml`)\n\n```yaml\n# Portal Preloader Configuration\n\n# Enable portal cooldown system\n# When enabled, players cannot use newly lit portals for a set time\nenable-portal-cooldown: true\n\n# Default cooldown for all portals (in seconds)\n# This is used when dimension-specific cooldowns are not set or set to -1\nportal-cooldown-seconds: 10\n\n# Dimension-specific cooldowns (set to -1 to use default cooldown)\n# Overworld portals cooldown (portals lit in the overworld)\noverworld-cooldown-seconds: -1\n\n# Nether portals cooldown (portals lit in the nether)\nnether-cooldown-seconds: -1\n\n# Messages sent to players\n# Use {time} as a placeholder for remaining seconds in cooldown message\n# Color codes supported with & (e.g., &c for red, &a for green, &e for yellow)\nmessages:\n  # Message sent every second while player waits in a portal on cooldown\n  cooldown: \"&cThis portal is still loading! Please wait {time} seconds.\"\n  \n  # Message sent when the portal becomes ready while player is waiting inside\n  ready: \"&aPortal is ready! You can now travel.\"\n\n# Enable verbose logging for debugging\n# Shows detailed information about portal creation, cooldowns, and player interactions\nverbose: false\n```\n\n### Configuration Options\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `enable-portal-cooldown` | Enable/disable the cooldown system | `true` |\n| `portal-cooldown-seconds` | Default cooldown time in seconds | `10` |\n| `overworld-cooldown-seconds` | Cooldown for portals lit in the Overworld (-1 = use default) | `-1` |\n| `nether-cooldown-seconds` | Cooldown for portals lit in the Nether (-1 = use default) | `-1` |\n| `messages.cooldown` | Message shown during countdown (use `{time}` for seconds remaining) | See config |\n| `messages.ready` | Message shown when portal becomes ready | See config |\n| `verbose` | Enable detailed logging for debugging | `false` |\n\n### Color Codes\n\nMessages support Minecraft color codes using `&`:\n- `&0` - Black\n- `&1` - Dark Blue\n- `&2` - Dark Green\n- `&3` - Dark Aqua\n- `&4` - Dark Red\n- `&5` - Dark Purple\n- `&6` - Gold\n- `&7` - Gray\n- `&8` - Dark Gray\n- `&9` - Blue\n- `&a` - Green\n- `&b` - Aqua\n- `&c` - Red\n- `&d` - Light Purple\n- `&e` - Yellow\n- `&f` - White\n\n## Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/portalpreloader` | - | Shows plugin version and help |\n| `/portalpreloader reload` | `portalpreloader.reload` | Reloads the configuration |\n\n**Aliases:** `/pp`, `/preloader`\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `portalpreloader.reload` | Allows reloading the plugin configuration | `op` |\n\n## How It Works\n\n### Portal Preloading\n1. When a nether portal is lit with fire\n2. A snowball is spawned in the center of the portal\n3. The snowball immediately goes through the portal\n4. This generates the destination portal before any player can teleport\n\n### Cooldown System\n1. When a portal is created, it's placed on cooldown\n2. Players attempting to enter get a message showing remaining time\n3. If a player waits inside the portal, they see countdown updates every second\n4. When the cooldown expires, their portal timer automatically resets\n5. Players can then teleport without leaving and re-entering\n\n### Standing in Portal Area\n- If a player is already standing where portal blocks will appear when it's lit\n- They automatically get the cooldown and countdown starts\n- This prevents bypassing the system by pre-positioning\n\n## License\n\nThis project is provided as-is for use on Minecraft servers.\n",
+  "categories": [
+    "folia",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 57,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

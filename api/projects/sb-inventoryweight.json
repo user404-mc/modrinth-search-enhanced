@@ -1,0 +1,23 @@
+{
+  "id": "t4wTy1IL",
+  "slug": "sb-inventoryweight",
+  "title": "Sophisticated Backpacks - MT Inventory Weight",
+  "description": "Accurate MT Inventory Weight support for Sophisticated Backpacks (Unofficial Fabric port), reading real backpack contents via the SB wrapper API.",
+  "body": "# Sophisticated Backpacks InventoryWeight\n\nAccurate **MT Inventory Weight** support for **Sophisticated Backpacks (Unofficial Fabric port)**.\n\nMT Inventory Weight ships a generic backpack calculator that reads container NBT, but **Sophisticated Backpacks** assigns each backpack a UUID and stores its real contents in world `BackpackStorage` (PersistentState) — not always in the item NBT. Generic NBT reading therefore under- or mis-counts SB backpacks. This add-on fixes that by reading the actual contents through the Sophisticated Backpacks API.\n\nIt registers an **Inventory Weight item weight provider** (via the `inventoryweight` entrypoint) at **priority 8500** — above the built-in generic `backpacks` provider (8000) — so SB backpacks are handled by this accurate provider while everything else falls through to the defaults.\n\nTo read contents it uses the SB wrapper API. This resolves UUID-backed contents from `BackpackStorage` automatically, so equipped, held, and stored backpacks are all weighed correctly.\n\n## Weight model\n\nMatches the built-in backpack model:\n\n```\neffectiveWeight = emptyBackpackWeight + (contentsWeight / 2)\n```\n\n- `contentsWeight` is computed by recursing each inner stack through Inventory Weight's own lookup (`context.nested()`), so datapack weights, nested containers, and other add-ons all apply.\n- The result's base weight carries the full (undivided) contents weight for display.\n\n## Notes\n\n- If Sophisticated Backpacks is not installed, the provider is inactive (a warning is logged) and Inventory Weight uses its default behavior.\n- `nested()` is used when recursing to avoid runaway depth with nested backpacks.\n- The empty-backpack base weight is a single constant (`SophisticatedBackpacksInventoryWeight#EMPTY_BACKPACK_WEIGHT`); wire it to fzzy_config if you want it user-configurable.",
+  "categories": [
+    "fabric",
+    "management",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 36,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

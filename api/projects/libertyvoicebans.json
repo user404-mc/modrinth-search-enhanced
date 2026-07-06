@@ -1,0 +1,39 @@
+{
+  "id": "klRMKsxN",
+  "slug": "libertyvoicebans",
+  "title": "LibertyVoiceBans",
+  "description": "This plugin adds compatibility between LibertyBans and Simple Voice Chat for muting players in voice chat.",
+  "body": "# LibertyVoiceBans 🎙️🚫\n\n**LibertyVoiceBans** is a bridge plugin that connects [LibertyBans](https://modrinth.com/mod/libertybans) with [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat). When a player is muted via LibertyBans, their voice chat is automatically disabled, and they cannot speak in-game until their mute expires or is pardoned.\n\n## ✨ Features\n* **Real-time Synchronization:** Instantly mutes a player's microphone the moment they are punished.\n* **Smart Auto-Unmute:** Continuously checks for temporary mute expirations in the background and restores voice chat seamlessly.\n* **Dual Architecture Support:** Works natively on single standalone servers AND large proxy networks (Velocity + Backend).\n* **Anti-Spam Warning:** Sends a customizable cooldown-protected chat message to muted players when they try to speak.\n\n---\n\n## 🏗️ How It Works (Modes)\n\nLibertyVoiceBans features a smart configuration system with two modes to fit any server architecture.\n\n### 1. Proxy Mode (Recommended for Networks)\nIf your server uses a proxy (Velocity) and LibertyBans is installed on the proxy, this mode is for you.\n* **LibertyVoiceBans-Velocity.jar** is installed on the proxy. It listens to LibertyBans events globally.\n* **LibertyVoiceBans-Bukkit.jar** is installed on your backend game servers (Paper/Spigot). It waits for invisible Plugin Messages from Velocity. \n* *Advantage:* You don't even need to install LibertyBans on your backend servers. Zero database desync issues!\n\n### 2. Standalone Mode (For Single Servers)\nIf you don't use a proxy and only have a single Paper/Spigot server, this mode is for you.\n* **LibertyVoiceBans-Bukkit.jar** hooks directly into the local LibertyBans installation on the same server.\n* *Advantage:* Simple plug-and-play setup for small servers.\n\n---\n\n## 📥 Installation & Setup\n\n### ⚙️ Setup A: Proxy Networks (Velocity + Paper/Bukkit)\n1. Drop `LibertyVoiceBans-Velocity.jar` into your **Velocity** `plugins` folder.\n2. Drop `LibertyVoiceBans-Bukkit.jar` into your **Backend Server** (Paper/Bukkit) `plugins` folder.\n3. Restart all servers.\n4. The backend server will generate a `config.yml`. Make sure `mode` is set to `'proxy'`.\n5. *(Optional)* You can safely delete LibertyBans from your backend servers if you only use it for punishments on the proxy.\n\n### ⚙️ Setup B: Standalone Servers (Paper/Bukkit Only)\n1. Ensure both `LibertyBans` and `Simple Voice Chat` are installed on your server.\n2. Drop `LibertyVoiceBans-Bukkit.jar` into your server's `plugins` folder.\n3. Restart the server.\n4. Open `plugins/LibertyVoiceBans/config.yml`.\n5. Change `mode: 'proxy'` to **`mode: 'standalone'`**.\n6. Restart the server one last time.\n\n---\n\n## 📝 Configuration (`config.yml`)\n\nThe Bukkit plugin generates a highly customizable config file:\n\n```yaml\n# LibertyVoiceBans - Bukkit Configuration\n\n# Choose the operation mode:\n# \n# 'proxy'      -> (Recommended) Punishments are tracked via the Velocity plugin.\n#                 LibertyBans is NOT required on this specific backend server.\n# 'standalone' -> Punishments are tracked via the local LibertyBans installation.\n#                 LibertyBans is STRICTLY REQUIRED on this server.\nmode: 'proxy'\n\nmessages:\n  prefix: '&8[&cLibertyVoice&8] '\n  muted-warning: '&cYou cannot use voice chat because you are muted in text chat!'\n  \nsettings:\n  # The cooldown (in seconds) for sending the warning message.\n  # Voice chat sends hundreds of packets per second. This prevents chat spam.\n  warning-cooldown: 5\n```\n\n### Tips for Translators\nYou can fully translate the `prefix` and `muted-warning` fields. Standard Minecraft color codes (`&c`, `&8`, etc.) are fully supported.\n\n---\n\n## 🆘 Troubleshooting\n* **Players are muted in text but can still speak in voice chat:**\n  * If using *Proxy Mode*, ensure the proxy and backend servers can communicate via Plugin Messaging.\n  * If using *Standalone Mode*, verify that the local LibertyBans database contains the active punishment.\n* **Plugin fails to load on backend server:**\n  * Ensure `Simple Voice Chat` is installed. LibertyVoiceBans requires VoiceChat API to function.\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 85,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

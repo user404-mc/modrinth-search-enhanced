@@ -1,0 +1,21 @@
+{
+  "id": "vV6s6v7l",
+  "slug": "respawn-penalty",
+  "title": "Respawn Penalty",
+  "description": "Server-side Fabric respawn penalty system with persistent death streaks, hunger control, max-health penalties, and anti-respawn-abuse behavior.",
+  "body": "## Summary\n\nRespawn Penalty is a server-side Fabric mod for Minecraft 1.21.8 that adds persistent death penalties to discourage reckless gameplay and repeated suicide-respawn abuse.\n\nPlayers who repeatedly die within a short time window receive escalating penalties such as reduced max health, reduced food level, Weakness, Slowness, Mining Fatigue, and temporary sleep-recovery locks. The system is designed to increase survival tension without creating permanent death spirals.\n\nThe mod includes persistent multiplayer-safe UUID tracking, server restart persistence using Minecraft `PersistentState`, passive recovery over time, and anti-exploit behavior that prevents players from instantly resetting penalties through repeated sleep cycles.\n\n---\n\n## Penalty System\n\nWhen a non-creative, non-spectator player dies and respawns:\n\n| Death streak | Max health | Food | Effects | Sleep recovery lock |\n|---:|---:|---:|---|---:|\n| 1 | 15 | 9 | Weakness 30s, Slowness 10s, Darkness 3s | none |\n| 2 | 14 | 8 | Weakness 45s, Slowness 15s, Darkness 4s | none |\n| 3 | 12 | 7 | Weakness II 60s, Slowness 20s, Mining Fatigue 20s, Darkness 5s | none |\n| 4-5 | 10 | 6 | Weakness II 75s, Slowness 25s, Mining Fatigue 30s, Darkness 6s | 5 minutes |\n| 6+ | 10 | 6 | Weakness II 90s, Slowness II 30s, Mining Fatigue 40s, Darkness 8s | 10 minutes |\n\nDeath streak increases only when deaths happen within 10 minutes.\n\nPenalties cap at 10 max health and 6 food to avoid permanent death spirals.\n\n---\n\n## Recovery\n\nA player recovers when either condition happens:\n\n- Successfully sleeps while sleep recovery is not locked\n- Survives online for 20 minutes\n\nRepeated intentional deaths temporarily lock sleep recovery:\n\n| Streak | Lock duration |\n|---|---|\n| 4-5 | 5 minutes |\n| 6+ | 10 minutes |\n\nSurvival recovery still works during the lock period.\n\nThis prevents:\n\n```text\ndie -> sleep -> reset -> die\n````\n\nabuse loops without permanently trapping players.\n\nRecovery restores:\n\n* Original max-health base value\n* Normal recovery state\n* Cleared penalty effects\n\n---\n\n## Anti-Exploit Guarantees\n\n* Respawn cannot fully restore normal health/food\n* Logout/relog keeps active penalty state\n* Server restart preserves:\n\n  * death streak\n  * active penalties\n  * recovery lock\n* Multiplayer state is isolated per UUID\n* Creative and spectator players are ignored\n* Penalty persistence survives crashes and restarts through world `PersistentState`\n\nNote: Death streak only increases if deaths happen within the configured streak window.",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

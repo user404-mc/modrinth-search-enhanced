@@ -1,0 +1,25 @@
+{
+  "id": "MdOeJEL0",
+  "slug": "dispenser-vilager-trading",
+  "title": "Dispenser Vilager Trading",
+  "description": "A Minecraft paper plugin to add the ability of Dispensers to trade with Villagers.",
+  "body": "# Dispenser Villager Trading\n\nDispenser Villager Trading is a Paper plugin that allows dispensers to perform villager trades automatically.  \nWhen a dispenser faces a villager and contains the required ingredients for one of the villager’s trades, it will automatically:\n\n- Select a valid trade (at random, preserving vanilla dispenser behavior),\n- Pay the cost using items from its inventory,\n- Drop the result behind the dispenser (or insert it into a chest located directly behind it),\n- Update villager experience and trade usage as if a player traded manually.\n\nThis plugin also adds a **villager-only pressure plate** that only villagers can activate.\n\n---\n\n## Features\n- **Dispenser trading**: Dispensers can fulfill any available villager trade — including two-ingredient trades — using their own inventory. Villagers gain experience and trades lock/unlock as normal.\n- **Player Experience**: Players gain experience as if they traded manually when dispensers perform trades. Same as Furnace Experience.\n- **Villager-only pressure plate**: A custom craftable pressure plate (stone pressure plate + emerald) that only villagers can activate.\n\n---\n###  Public API (Event System)\nA dedicated **API module** exposes events for other plugins.\n\nThe first event is:\n\n#### `DispenserVillagerTradeDepositEvent`\n\nThis event fires whenever the plugin attempts to deposit a villager trade result into a chest.\n\nAvailable methods:\n\n```java\npublic Inventory getSource();\npublic Inventory getDestination();\n\npublic ItemStack getItem();\npublic void setItem(ItemStack item);\n\npublic boolean isCancelled();\npublic void setCancelled(boolean cancel);\n\npublic HandlerList getHandlers();\npublic static HandlerList getHandlerList();\n```\n\n\n---\n\n## Requirements\n- **Paper 1.21.10** (or any Paper build targeting the `1.21.10` API)\n- **Java 21** runtime on the server\n\n---\n\n## Installation\n1. Build the plugin JAR (see below) or download one from the releases page.\n2. Place the JAR into your server’s `plugins/` directory.\n3. Start or reload your Paper server.\n\n---\n\n## Building\nThis project uses Gradle. Common tasks:\nYou can build only the plugin JAR, copy it to a server, or run a local test server.\n- `./gradlew build` — Builds the plugin JAR under `plugin/build/libs/`.\n- `./gradlew copyToServer` — Builds the JAR and copies it to the server directory specified by `SERVER_LOCATION` in `secrets.properties`.\n---\n\n## Configuration\nThe generated `config.yml` provides the following option:\n\n- **`allowVillagerDispenserInteractions`** (boolean):  \n  If `false`, dispensers will *not* fire when a villager stands in front of them *unless* a matching trade exists.  \n  Defaults to `false`.\n\n---\n\n## Usage Tips\n- Place a dispenser facing a villager, load it with the required trade ingredients, and power it. The plugin selects a valid trade, consumes the payment, and outputs the result behind the dispenser.\n- Craft the villager-only pressure plate (stone pressure plate + emerald) to allow villagers — and optionally players — to activate contraptions while preventing other mobs from triggering them.\n- Place a chest directly behind the dispenser to automatically collect traded items.\n\n---\n\n## Notes\nThe plugin is designed specifically for **Paper** and may not function correctly on other server types.\n\nIt aims to preserve core vanilla behavior while adding helpful mechanics:\n\n- Trades are selected randomly, matching vanilla dispenser behavior.\n- Villager experience and trade usage update normally.\n- Result items are dispensed naturally, as if fired by a dispenser.\n- Additional quality-of-life features:\n    - Traded items are dispensed *behind* the dispenser so villagers don’t pick them up.\n    - Chests placed behind the dispenser collect trade outputs automatically.\n    - A villager-only pressure plate allows villager-driven redstone without mob interference.\n\n---\n\n## Future Plans\n- Selecting a specific trade via redstone signal strength.\n- Moving the villager-only pressure plate to a dedicated plugin. Or adding more pressure plate types.\n- Add more events to the public API for deeper integration.\n- Add barrels support for trade result collection.\n- Add more configuration options to better mimic vanilla behavior.\n\n---\n\n## Feedback and Contributions\nFeedback, issues, and pull requests are welcome!  \nVisit the GitHub repository: [DispenserVillagerTrading](https://github.com/afekaoh/DispenserVillagerTrading)\n",
+  "categories": [
+    "economy",
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 79,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10"
+  ],
+  "date_updated": null
+}

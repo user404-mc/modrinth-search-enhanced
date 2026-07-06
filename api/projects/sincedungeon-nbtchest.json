@@ -1,0 +1,29 @@
+{
+  "id": "BcIaysye",
+  "slug": "sincedungeon-nbtchest",
+  "title": "SinceDungeon-NBTChest",
+  "description": "An addon for the SinceDungeon plugin.",
+  "body": "# SinceDungeon-NBTChest\n\nAn addon for the [SinceDungeon](https://github.com/SinceRPG/SinceDungeon/) plugin that adds two powerful custom dungeon actions:\n\n- **`NBT_LOOT_CHEST`** — loot chests that preserve **full item NBT** (enchantments, attributes, custom model data, persistent data) and support random preset pools.\n- **`PARALLEL`** — run any number of dungeon sub-actions **simultaneously**, completing only when **all** of them finish.\n\nBoth actions register themselves through SinceDungeon's public API, so they appear in the dungeon editor alongside the built-in actions.\n\n---\n\n## Features\n\n-  **Full-NBT loot chests** — items are serialized with Paper's `ItemStack#serializeAsBytes()`, so nothing is lost.\n-  **Random preset pools** — list multiple presets and one is chosen at random.\n-  **Per-player or shared mode** — each player can draw their own random loot, or everyone shares one chest.\n-  **Optional key requirement** — gate chests behind a required dungeon key ID.\n- ️ **Time limits & penalties** — supported per action.\n-  **PARALLEL action** — combine `SPAWN_WAVE`, `NBT_LOOT_CHEST`, and any other registered action into a single parallel objective.\n-  **In-game editors** — visual GUIs for both loot presets and parallel presets, no YAML editing required.\n\n---\n\n## Requirements\n\n| Requirement | Version |\n|-------------|---------|\n| Server      | Paper `1.21+` |\n| Java        | `21` |\n| SinceDungeon| Installed and loaded **before** this addon |\n\n---\n\n## Installation\n\n1. Download the latest `SinceDungeon-NBTChest-x.x.x.jar`.\n2. Make sure **SinceDungeon** is already installed in your `plugins/` folder.\n3. Drop this addon's JAR into `plugins/`.\n4. Restart the server.\n\nOn startup you should see:\n\n```text\n[SinceDungeon-NBTChest] SinceDungeon-NBTChest enabled. Actions: NBT_LOOT_CHEST, PARALLEL\n```\n\n---\n\n## Commands\n\n| Command | Description |\n|---------|-------------|\n| `/sdnbt create <name>` | Create a new loot preset (opens the editor GUI) |\n| `/sdnbt edit <name>`   | Edit an existing loot preset |\n| `/sdnbt list`          | List all loot presets |\n| `/sdnbt delete <name>` | Delete a loot preset |\n| `/sdnbt info <name>`   | Show details about a preset |\n| `/sdnbt reload`        | Reload `presets.yml` |\n| `/lapparallel`         | Open the Parallel preset editor |\n| `/lapparallel reload`  | Reload `parallel_presets.yml` |\n\n### Permission\n\n| Node | Default | Grants |\n|------|---------|--------|\n| `sincedungeon.nbtchest.admin` | `op` | Access to all `/sdnbt` and `/lapparallel` commands |\n\n---\n\n## Creating a Loot Preset\n\n1. Run `/sdnbt create epic_chest`.\n2. A 54-slot editor opens — place any items you want (with full NBT) freely.\n3. **Close the inventory** to save. Empty editors are not saved.\n\nPresets are stored in:\n\n```plain text\nplugins/SinceDungeon-NBTChest/presets.yml\n```\n\n\n---\n\n## Using `NBT_LOOT_CHEST` in a Dungeon\n\nAdd it to your dungeon YAML like any other action.\n\n**Single preset (backwards-compatible):**\n\n```yaml\ntype: \"NBT_LOOT_CHEST\"\npreset: \"epic_chest\"\nlocation: \"0,64,0\"\n```\n\n\n**Random preset pool:**\n\n```yaml\ntype: \"NBT_LOOT_CHEST\"\npresets: \"epic_chest,rare_chest,common_chest\"\nlocation: \"0,64,0\"\nper_player: true        # each player draws independently\nrequired_key: \"NONE\"    # or a key ID\n```\n\n\n### `NBT_LOOT_CHEST` parameters\n\n| Key | Default | Description |\n|-----|---------|-------------|\n| `location` | `0,64,0` | Chest location as `x,y,z` (dungeon-relative) |\n| `presets` | `[my_preset]` | One preset name per line; one is picked at random |\n| `preset` | — | Single preset (alternative to `presets`) |\n| `per_player` | `true` | `true`: each player draws independently · `false`: shared chest |\n| `required_key` | `NONE` | Key ID required to open, or `NONE` |\n| `time_limit` | `-1` | Seconds before time penalty (`-1` = no limit) |\n| `time_penalty` | `1` | Points deducted per second overtime |\n\n> **Note:** Players must take **all** items before the chest counts as completed.\n\n---\n\n## Using the `PARALLEL` Action\n\nThe `PARALLEL` action runs every sub-action of a **parallel preset** at the same time and completes when all of them finish.\n\n### 1. Build a parallel preset\n\n```plain text\n/lapparallel\n```\n\n\n- Create a preset, then add sub-actions (e.g. `SPAWN_WAVE`, `NBT_LOOT_CHEST`).\n- Each sub-action's fields can be edited in the GUI.\n- `PARALLEL` itself cannot be nested (recursion is blocked).\n\nPresets are stored in:\n\n```plain text\nplugins/SinceDungeon-NBTChest/parallel_presets.yml\n```\n\n\n### 2. Reference it in a dungeon\n\n```yaml\nchallenge:\n  type: \"PARALLEL\"\n  preset: \"wave_and_loot\"\n  start_message: \"<red>Survive the wave AND loot the chest!\"\n```\n\n\n### `PARALLEL` parameters\n\n| Key | Default | Description |\n|-----|---------|-------------|\n| `preset` | `\"\"` | Name of the parallel preset to run |\n| `time_limit` | `-1` | Seconds before time penalty (`-1` = no limit) |\n| `time_penalty` | `1` | Points deducted per second overtime |\n\n---\n\n\n## License\n\nAPACHE-2.0-license.\n\n## Author\n\n- **LAPDK66**\n",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

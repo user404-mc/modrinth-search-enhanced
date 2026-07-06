@@ -1,0 +1,23 @@
+{
+  "id": "7kzs1AhX",
+  "slug": "cron-scheduler",
+  "title": "Cron Scheduler",
+  "description": "A minecraft plugin that runs console commands on cron schedules",
+  "body": "# Scheduler\n\nA **minecraft plugin** that runs console commands on cron schedules.\n\n## Configuration\n\n```yaml\nschedules:\n\n  my-schedule:\n    cron: \"*/10 * * * *\"   # every 10 minutes\n    parallel: false         # run commands one after another\n    commands:\n      - \"save-all flush\"\n      - \"broadcast Server saved!\"\n\n  another-schedule:\n    enabled: false          # set to true to activate\n    cron: \"0 2 * * *\"      # every day at 02:00\n    parallel: true          # run all commands at the same time\n    commands:\n      - \"broadcast Nightly task running\"\n      - \"say Hello from cron\"\n```\n\n### Schedule fields\n\n| Field      | Required | Description                                                                |\n|------------|----------|----------------------------------------------------------------------------|\n| `cron`     | ✅        | Standard 5-field cron expression                                           |\n| `commands` | ✅        | List of console commands to run (no leading `/`)                           |\n| `parallel` | ❌        | `true` = all commands fire at once, `false` (default) = sequential         |\n| `enabled`  | ❌        | Set to `false` to disable a schedule without deleting it (default: `true`) |\n\n### Cron syntax\n\nFive space-separated fields: `minute  hour  day-of-month  month  day-of-week`\n\n| Field        | Range            | Special characters |\n|--------------|------------------|--------------------|\n| Minute       | 0–59             | `*` `,` `-` `/`    |\n| Hour         | 0–23             | `*` `,` `-` `/`    |\n| Day of month | 1–31             | `*` `,` `-` `/`    |\n| Month        | 1–12             | `*` `,` `-` `/`    |\n| Day of week  | 0–6 (0 = Sunday) | `*` `,` `-` `/`    |\n\n**Examples**\n\n| Expression       | Meaning                                |\n|------------------|----------------------------------------|\n| `* * * * *`      | Every minute                           |\n| `*/5 * * * *`    | Every 5 minutes                        |\n| `0 * * * *`      | Every hour (at :00)                    |\n| `0 2 * * *`      | Every day at 02:00                     |\n| `0 0 * * 0`      | Every Sunday at midnight               |\n| `0 9-17 * * 1-5` | Every hour 09:00–17:00, Monday–Friday  |\n| `0 12 1,15 * *`  | Noon on the 1st and 15th of each month |\n\n### Parallel vs sequential\n\n- **`parallel: true`** — all commands are dispatched in the same server tick.\n- **`parallel: false`** — commands are dispatched one per tick in order, so each command's synchronous side-effects\n  complete before the next one starts.\n\n## Commands\n\nAll commands require the `cronscheduler.admin` permission (default: op).\n\n| Command                     | Alias            | Description                            |\n|-----------------------------|------------------|----------------------------------------|\n| `/cronscheduler reload`     | `/cs reload`     | Reload `config.yml` without restarting |\n| `/cronscheduler list`       | `/cs list`       | Show all active schedules              |\n| `/cronscheduler run <name>` | `/cs run <name>` | Immediately trigger a schedule by name |\n\n## Permissions\n\n| Permission            | Default | Description                   |\n|-----------------------|---------|-------------------------------|\n| `cronscheduler.admin` | op      | Access to all plugin commands |",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

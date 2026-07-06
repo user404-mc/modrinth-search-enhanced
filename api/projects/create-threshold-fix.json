@@ -1,0 +1,21 @@
+{
+  "id": "kDRBfYCz",
+  "slug": "create-threshold-fix",
+  "title": "Create: Threshold Fix",
+  "description": "Fixes Create's Threshold Switch misreading vaults that hold non-stackable or partially-stacked items.",
+  "body": "**Fixes Create's Threshold Switch reading the wrong level for vaults holding non-stackable or partially-stacked items.**\n\nCreate recalculates a vault's capacity every tick from whatever currently occupies each slot, and measures fill by total item count rather than by how many slots are taken. This breaks the reading in two ways:\n\n- An empty slot is counted as holding up to 64, but the moment a non-stackable item (or anything with a small max stack size) lands there, that slot is re-rated to a max of 1.. so the vault's reported maximum capacity gets smaller as it fills, while each item only adds 1 to the fill count. It takes 64 non-stackables to register as a single full stack.\n- When a Vault's slots are all taken by small or unfinished stacks, it can no longer accept new items, yet still reports almost empty.\n\nThis mod patches the level calculation so every occupied slot always counts as a full slot, giving a stable, accurate reading. \n\nIt also adds an optional slot-counting mode: place a glass block renamed \"full\" in the switch's filter and it measures filled slots instead of item count, tripping the moment every slot is taken.",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 52,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

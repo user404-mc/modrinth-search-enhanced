@@ -1,0 +1,39 @@
+{
+  "id": "oDCSr6Ez",
+  "slug": "searchcontainer",
+  "title": "SearchContainer",
+  "description": "Container search plugin that supports Paper and Folia server cores. Hold an item as a template to quickly search containers and precisely locate item positions.",
+  "body": "# SearchContainer\n\n## Introduction\n\nSearchContainer is a Minecraft container search plugin that supports Paper and Folia server cores. Hold an item as a template to quickly search containers and precisely locate item positions.\n\n---\n\n## Core Features\n\n- **Search by Item**: Hold an item, search through containers\n- **Smart Matching**: Support togglable filters for name/enchantments/Lore\n- **World-Scanning**: `/sc all` reads .mca region files to scan all generated chunks in the world\n- **One-Click Teleport**: Click result coordinates to instantly teleport\n- **Multi-Language**: Built-in Simplified Chinese and American English, extensible\n\n---\n\n## Command List\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/sc <radius> [flags]` | Searches loaded containers within a specified chunk radius centered on you | `searchcontainer.use`OP |\n| `/sc all [flags]` | Searches all generated containers in the entire world (reads region files) | `searchcontainer.use.all`OP |\n| `/sc cancel` | Cancels an ongoing search | `searchcontainer.use`OP |\n| `/sc reload` | Reloads configuration and language files | `searchcontainer.use`OP |\n\n---\n\n## Filter Flags\n\n| Flag | Effect Description |\n|------|--------------------|\n| `-name` | Candidate item name **contains** the display name of the held template (default requires exact match) |\n| `-enchant` | Candidate item **contains** all enchantments of the held template, with levels ≥ template levels |\n| `-lore` | Candidate item Lore **contains** every line of lore from the held template |\n\n**Default Mode (no flags)**: Exact match — item type, custom name, enchantments, Lore, PDC must all be equal.\n\n---\n\n## Usage Examples\n\n```\n# Radius 5 chunks, exact match (scans only loaded chunks)\n/sc 5\n\n# World-scan all generated chunks\n/sc all\n\n# World-scan, ignore renamed items\n/sc all -name\n\n# Radius 16, enchantment containment + lore containment\n/sc 16 -enchant -lore\n\n# Cancel current search\n/sc cancel\n```\n\n---\n\n## Configuration (config.yml)\n\n```yaml\n# zh_CN, en_US\nlanguage: zh_CN\n\n# Search cooldown time (seconds)\ncooldown-seconds: 3\n\n# Maximum number of results displayed per search (excess results are hidden)\nmax-results-display: 1000\n\n# Maximum chunk radius allowed in radius mode (does not affect /sc all)\nmax-radius: 32\n```\n\n---\n\n## Operational Mechanism\n\n| Search Mode | Scan Range | Disk Read | Loads New Chunks |\n|------------|------------|-----------|------------------|\n| **Radius Mode** | N×N chunks centered on player, scans only loaded chunks | No | No |\n| **World Mode** | All generated chunks in the world (parses .mca file headers) | Yes | No |\n\n**World Mode Detailed Explanation**:\n- Parses the 4096-byte chunk location table at the header of `r.x.z.mca` files\n- Retrieves coordinates of all chunks ever generated in the world\n- **Scans only currently loaded chunks**, does not actively load unloaded chunks\n- Avoids server lag or loading chunk entities caused by scanning\n\n---\n\n## Important Notes\n\n- **Radius Search**: Limited by `max-radius`, scans only loaded chunks\n- **World Search**: Not limited by `max-radius`, traverses all .mca files in the world but scans only currently loaded chunks\n- World search may take considerable time on large survival servers or archives with thousands of days; it is recommended to set `max-results-display` appropriately\n- **Must hold an item** to search; cannot execute with an empty hand\n- Supports all `Container` type containers: Chests, Trapped Chests, Hoppers, Dispensers, Droppers, Shulker Boxes, Furnaces, etc.\n\n---\n\n### bStats\n![bStats](https://bstats.org/signatures/bukkit/SearchContainer.svg)",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 56,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "TRQg7Yaw",
+  "slug": "spellwords",
+  "title": "Spellwords",
+  "description": "Turn words and phrases into commands.",
+  "body": "\n# SpellWords\n\nTurn words and phrases into commands.\n\nCreate custom chat triggers that execute commands when players send specific messages.\n\n## Features\n\n* Trigger commands from chat messages\n* Multiple trigger words per entry\n* Per-trigger cooldown system\n* Permission-based triggers ([LuckPerms](https://modrinth.com/plugin/luckperms) supported)\n* Optional canceling of original chat message\n* Cooldown and permission fallback commands\n* Fully server-side\n* Works with any language (including non-Latin scripts)\n\n## Configuration\n\n### Trigger Properties\n\n| Property        | Description                                                         | Default |\n| --------------- | ------------------------------------------------------------------- | ------- |\n| words           | List of words or phrases that activate the trigger                  | `[]`    |\n| command         | Command executed when triggered (`{player}` supported)              | `\"\"`    |\n| cooldownCommand | Command executed if trigger is on cooldown (`{cooldown}` supported) | `\"\"`    |\n| denyCommand     | Command executed if player lacks permission                         | `\"\"`    |\n| exactMatch      | Require full message match                                          | `false` |\n| ignoreCase      | Case-insensitive matching                                           | `true`  |\n| cancelMessage   | Cancel original chat message                                        | `false` |\n| cooldownSeconds | Cooldown time in seconds                                            | `0`     |\n| runAsConsole    | Execute command as server/console                                   | `false` |\n| permission      | Optional permission node                                            | `\"\"`    |\n\n## Example\n\n```json\n{\n  \"triggers\": [\n    {\n      \"words\": [\"fireball\"],\n      \"command\": \"execute as {player} at @s run summon fireball ~ ~1 ~ {ExplosionPower:30}\",\n      \"cooldownCommand\": \"tellraw {player} \\\"Wait {cooldown} seconds before using this spell again.\\\"\",\n      \"denyCommand\": \"tellraw {player} \\\"You are not a magician!\\\"\",\n      \"exactMatch\": true,\n      \"ignoreCase\": true,\n      \"cancelMessage\": true,\n      \"cooldownSeconds\": 10,\n      \"runAsConsole\": true,\n      \"permission\": \"spellwords.fireball\"\n    },\n    {\n      \"words\": [\"badword\", \"anotherbadword\", \"плохое слово\"],\n      \"command\": \"tellraw {player} \\\"Sorry, but that word is banned!\\\"\",\n      \"cooldownCommand\": \"\",\n      \"denyCommand\": \"\",\n      \"exactMatch\": false,\n      \"ignoreCase\": true,\n      \"cancelMessage\": true,\n      \"cooldownSeconds\": 0,\n      \"runAsConsole\": true,\n      \"permission\": \"\"\n    },\n    {\n      \"words\": [\"AvAdA kAdAbRa\"],\n      \"command\": \"kill {player}\",\n      \"cooldownCommand\": \"\",\n      \"denyCommand\": \"\",\n      \"exactMatch\": true,\n      \"ignoreCase\": true,\n      \"cancelMessage\": false,\n      \"cooldownSeconds\": 0,\n      \"runAsConsole\": true,\n      \"permission\": \"spellwords.awadakadabra\"\n    }\n  ]\n}\n```\n\n## Note\n\nThis mod was originally created for a personal server and is shared publicly for anyone who wants to use it.\n\nUpdates are primarily driven by server needs.\n\nBackports to older Minecraft versions are not planned, but may happen occasionally.\n\nFeel free to report bugs, issues, or suggestions.\n\nPorting to other Minecraft versions is allowed and welcome.\n",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

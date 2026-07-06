@@ -1,0 +1,28 @@
+{
+  "id": "gjFgA0AC",
+  "slug": "mcf-entitymap",
+  "title": "MCF: EntityMap",
+  "description": "Function library for fast and familiar per-entity data storage",
+  "body": "# MCF (Minecraft Collections Framework): EntityMap\n### JCF-style per-entity mapping for Minecraft datapacks\nMCF: EntityMap is a datapack library for incredibly fast and easy per-entity data storage. Inspired by Java's `HashMap` API, EntityMap allows for storing attributes and other relevant data on entities without having to handle UUIDs and enables high-level interaction.\n\nThanks to [CJDev](https://github.com/CJDevZ/UUID-Hex) for UUID conversion!\n\n## Map or EntityMap?\nThese libraries are similar, but specialized for different purposes. **MCF: Map is superior for general data management** as it is not tied to in-game objects such as entities, making it a better choice if your datapack relies on non-entity-based storage. **MCF: EntityMap stores data on a per-entity basis** with automatic UUID handling (MCF: Map does not do this). It becomes a better choice if your datapack is heavily entity-based.\n\n## Features\n- **Per-entity storage** - supports multiple instances of the same entity under different paths. Data is not synchronized.\n- **Functions to mirror nearly all `HashMap` methods** - familiar, simple, and intuitive functionality!\n- **Automatic UUID resolution and handling** - don't worry about doing anything with UUIDs, as it's all handled under the hood.\n- **No direct storage manipulation required** - other than outputs from getters, storage locations are all accessed and modified internally.\n- **Debug tools** - easy printing and error catching to make life easier.\n- **Documented and commented code** - all top-level functions include a brief description and parameter list.\n\n## Usage\n**All functions intended to be used are at the top level or under `settings`.** Calling any functions in `internal` directly is strongly discouraged as the result will more than likely not be as intended and may potentially cause issues.\n\n### Example\n```mcfunction\nfunction mcfentitymap:new {path: \"entities\"}\nfunction mcfentitymap:put {path: \"entities\", key: \"class\", value: \"mage\"}\n```\n\nThe example above shows how an entity would be registered to the storage path `mcfentitymap:maps entities`, then have the attribute `class: mage` added. These values can be modified or accessed in largely the same way they could be in JCF maps using the provided functions.\n\nNote: it may be helpful to change the namespace for this datapack to match that of your project. The simplest way to achieve this in VSCode is by replacing all instances of `mcfentitymap` with `mynamespace` in the search tab.\n\n### What is the \"path\", and how do I know what parameters to use?\nAll provided functions require a path to be passed in. As Minecraft functions cannot be overloaded, storage paths cannot be inferred by the datapack or disregarded by the user.\n\nThe path is used to store a given entity at the user's choice of storage location under `mcfentitymap:maps`. For instance, as stated above, the provided example stores the added entity at `mcfentitymap:maps entities`. To be exact, the `path` parameter refers to a list in which entity entries are stored.\n\nAgain, feel free to configure namespaces and storage locations as you see fit.\n\n## Debugging\nThere are multiple debugging tools at your disposal. For example, to easily view an entity's entry, simply run the function `mcfentitymap:print_entity` as the entity whom you wish to view. This will print their mappings line-by-line in chat.\n\nAdditionally, this datapack will catch errors and stop execution when they occur. These errors can include, but are not limited to:\n- Invalid parameters\n- Attempting to access a path that doesn't exist\n- Attempting to modify an entry that doesn't exist\n\nBy default, these are not shown in chat, but running the function `mcfentitymap:settings/show_errors` or simply setting your score `mcfem.show_errors` to `1` will allow you to see in chat when these errors are caught.\n\nIf you wish, you can disable error catching entirely by running the function `mcfentitymap:settings/disable_errors`, but this strongly discouraged and only recommended if error catching poses an actual problem to your project.\n\n___\n\nTo get in contact for any reason, message wisoven on Discord!\n\nMIT licensed.",
+  "categories": [
+    "datapack",
+    "fabric",
+    "forge",
+    "library",
+    "management",
+    "mobs",
+    "neoforge",
+    "quilt",
+    "storage"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 64,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

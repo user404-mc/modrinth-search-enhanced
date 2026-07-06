@@ -1,0 +1,34 @@
+{
+  "id": "2XJn7eeo",
+  "slug": "soundcreator",
+  "title": "SoundCreator",
+  "description": "Create sounds from music files (.mp3, .ogg, and .wav) and play them for the players",
+  "body": "# 🎵 SoundCreator\n\n**Play custom audio files on your server through PlasmoVoice — MP3, OGG and WAV with a single command.**\n\nSoundCreator is a Spigot plugin that lets admins broadcast sound files from the server directly to players using [PlasmoVoice](https://modrinth.com/plugin/plasmo-voice)'s audio infrastructure. Drop your audio files in a folder, and stream them to one player, or everyone on the server — no resource pack required.\n\n---\n\n## ✨ Features\n\n- 🎧 **Multi-format support** — Plays **MP3**, **OGG/Vorbis**, and **WAV** files natively (no conversion needed)\n- 📡 **PlasmoVoice integration** — Audio is encoded to Opus and streamed through the voice mod's broadcast source system\n- 🗃️ **Smart cache** — PCM and Opus frames are cached in memory for instant replay after the first load; all sounds are preloaded on startup\n- 🎯 **Flexible targeting** — Play sounds to yourself, a specific player, or all connected players\n- 🔢 **Concurrent sound limit** — Optional cap on simultaneous playback sessions to protect server performance\n- 🔄 **Hot-reload** — Reload the sound library and config without restarting the server\n- 🔒 **Granular permissions** — Individual nodes for play, play-to-others, play-to-all, stop, and reload\n- ⌨️ **Tab completion** — Full tab-complete support, including quoted sound names with spaces\n\n---\n\n## 🔧 Commands\n\n| Command | Description |\n|---|---|\n| `/sc play <sound> [player\\|all]` | Play a sound to yourself, a specific player, or everyone |\n| `/sc stop [sound\\|all]` | Stop one sound (by name) or all active playback sessions |\n| `/sc list` | List all available sounds loaded from the sounds folder |\n| `/sc reload` | Reload config and sound library, then preload cache |\n\nAlias: `/soundcreator`\n\n---\n\n## 🔑 Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `soundcreator.use` | Everyone | Use `/sc list` |\n| `soundcreator.play` | OP | Play sounds to yourself |\n| `soundcreator.play.others` | OP | Play sounds to a specific player |\n| `soundcreator.play.all` | OP | Broadcast sounds to all players |\n| `soundcreator.stop` | OP | Stop playback sessions |\n| `soundcreator.reload` | OP | Reload config and sound library |\n| `soundcreator.admin` | OP | Grants all of the above |\n\n---\n\n## ⚙️ Configuration (`config.yml`)\n\n```yaml\n# Subfolder inside plugins/SoundCreator/ where audio files are scanned\nsounds-folder: sounds\n\n# PlasmoVoice source line to use (default line: \"proximity\")\nsource-line: proximity\n\n# Default playback volume (0.0 – 1.0)\ndefault-volume: 1.0\n\n# Silently skip players who don't have PlasmoVoice installed\nskip-non-voice-players: true\n\n# Maximum simultaneous sounds (0 = unlimited)\nmax-concurrent-sounds: 10\n```\n\n---\n\n## 📦 Installation\n\n1. Install [PlasmoVoice](https://modrinth.com/plugin/plasmo-voice) on your server.\n2. Drop `SoundCreator.jar` into your `plugins/` folder.\n3. Start the server — the `plugins/SoundCreator/sounds/` folder will be created automatically.\n4. Copy your `.mp3`, `.ogg`, or `.wav` files into the `sounds/` folder.\n5. Use `/sc reload` (or restart) and you're ready to go!\n\n> **Note:** Players must have the PlasmoVoice mod installed on their client to hear sounds. Players without the mod are skipped silently.\n\n---\n\n## 📋 Requirements\n\n| Requirement | Version |\n|---|---|\n| Minecraft | 1.21+ |\n| Server software | Spigot / Paper |\n| Java | 21+ |\n| PlasmoVoice | 2.1.8+ |\n\n---\n\n## 🛠️ Technical Details\n\n- Audio files are decoded to raw 16-bit PCM using `mp3spi`, `vorbisspi`, and standard Java Sound SPI\n- PCM is resampled to 48 kHz mono and encoded to Opus frames (960 samples/frame) using PlasmoVoice's encoder\n- All libraries (javazoom, tritonus) are **shaded and relocated** inside the jar — no external dependencies required on the server beyond PlasmoVoice\n- Playback runs **asynchronously** to avoid blocking the main thread\n\n---\n\n*Made by **ELB_GG***\n",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

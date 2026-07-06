@@ -1,0 +1,41 @@
+{
+  "id": "TmcZveKm",
+  "slug": "sklambda",
+  "title": "skLambda",
+  "description": "Skript addon that adds lambda functions and listeners to Skript.",
+  "body": "![Cover](https://cdn.modrinth.com/data/cached_images/32070cb0beb1772a327160cb7f52827138ae8c3b.png)\n\nA Skript addon that lets you treat behavior as a value, and cut a lot of boilerplate while you're at it. It adds:\n\n1. **Lambdas:** Small functions you save in a variable, pass around, and run later. They support closures, default parameters, and piping.\n2. **Predicates:** Reusable yes/no tests you can combine with all, any, or none, or count how many pass.\n3. **List operations:** Map, reduce, scan, zip, sort, highest/lowest, and paging, without writing the loops yourself.\n4. **Self-cleaning listeners:** Temporary event listeners scoped to one player or command, with a timer, a hit count, and lifecycle callbacks. They stop themselves.\n5. **Async:** Run a lambda off the main thread with futures, `wait for` an event or result without freezing the server, and `watch` a value or condition.\n\n## Links\n[![github](https://cdn.modrinth.com/data/cached_images/75ce063aed1ebd362650fad14579ca22f375a392.png)](https://github.com/ahmadmsaleem/skLambda) [![skLambda wiki](https://cdn.modrinth.com/data/cached_images/35010223dc83c95dd3b7a92740ca87eea707d709_0.webp)](https://github.com/ahmadmsaleem/skLambda/wiki)\n\n[![Get on skUnity](https://docs.skunity.com/skunity/library/Docs/Assets/assets/images/buttons/v2/get-the-syntax-square.png)](https://docs.skunity.com/syntax/search/addon:skLambda)[![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=skLambda) [![skDocks](https://skdocs.org/viewdocs.png)](https://skdocs.org/docs?addon=skLambda)\n\n## Example: same task, two ways\n\nThe task: tell the player to mine 10 stone in 30 seconds. Give a diamond if they finish, say \"too slow\" if they don't.\n\n### Without skLambda\n\n```applescript\non break of stone:\n    if {challenge::%player%} is not set:\n        stop\n    add 1 to {challenge::progress::%player%}\n    if {challenge::progress::%player%} >= 10:\n        send \"you did it!\" to player\n        give 1 diamond to player\n        delete {challenge::%player%}\n        delete {challenge::progress::%player%}\n\ncommand /challenge:\n    trigger:\n        set {challenge::%player%} to true\n        set {challenge::progress::%player%} to 0\n        send \"mine 10 stone in 30s\" to player\n        wait 30 seconds\n        if {challenge::%player%} is set:\n            send \"too slow\" to player\n            delete {challenge::%player%}\n            delete {challenge::progress::%player%}\n```\n\nLots to do by hand: a global `on break of stone` that runs for **every** player, a flag variable, a counter variable, a separate `wait` for the timeout, and `delete` lines everywhere to clean up.\n\n### With skLambda\n\n```applescript\ncommand /challenge:\n    trigger:\n        send \"mine 10 stone in 30s\" to player\n        listen for block break where event-block is stone:\n            countdown: 30 seconds\n            triggers: 10\n            every 1 second:\n                send action bar \"%remaining triggers% left — %remaining countdown%\" to event-player\n            on completion:\n                send \"you did it!\" to event-player\n                give 1 diamond to event-player\n            on timeout:\n                send \"too slow!\" to event-player\n```\n\nThat's it. The listener belongs to this one command run. The counter, the timer, and the live action-bar readout are built in, and when it finishes or times out, it cleans up by itself.\n\n## More than listeners\n\nSave a test and run it over a list. Predicates pair with Skript's own filter, and list operations skip the loop:\n\n```applescript\n# keep only the players who are AFK\nset {_afk} to lambda (p: player): {_p}'s idle time > 5 minutes\nset {_idle::*} to all players where [{_afk} passes for input]\n\n# score every player with a lambda, grab the winner\nset {_score} to lambda (p: player) -> number:\n    return {_p}'s level\nset {_mvp} to highest of all players by {_score}\n```\n\nNew in 1.3.0, you can pause a trigger and wait without freezing the server:\n\n```applescript\ncommand /confirm:\n    trigger:\n        send \"type 'yes' in chat within 15s to confirm.\" to player\n        wait for next chat where player is sender within 15 seconds:\n            if message is \"yes\":\n                send \"confirmed!\" to player\n            on timeout:\n                send \"cancelled — no reply.\" to player\n```\n\nThe trigger picks up right where it left off when the player chats, and the server keeps ticking the whole time. You can also `wait for` a background job (`future of calling lambda ...`) or `watch` a value or condition and react only when it changes.\n\nFull guides and dozens of runnable examples are on the [wiki](https://github.com/ahmadmsaleem/skLambda/wiki).\n\n## Requirements\n- [Paper](https://papermc.io/) 1.21.1+\n- [Skript](https://modrinth.com/plugin/skript) 2.15+\n\n## License\n\n[MIT](https://github.com/ahmadmsaleem/skLambda/blob/main/LICENSE)\n\n## Stats\n\nskLambda uses [bStats](https://bstats.org/plugin/bukkit/skLambda/31630) for anonymous usage stats. You can opt out in `plugins/bStats/config.yml`.\n\n[![bStats](https://bstats.org/signatures/bukkit/skLambda.svg)](https://bstats.org/plugin/bukkit/skLambda/31630)\n\n\n## NOTES\n\nif you experience any problems, let me know on discord [eult](https://discord.com/users/670375448508629012), [discord server](https://discord.gg/peTA4AugHb)\n",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

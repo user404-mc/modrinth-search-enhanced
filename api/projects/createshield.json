@@ -1,0 +1,21 @@
+{
+  "id": "ENI7sNEJ",
+  "slug": "createshield",
+  "title": "create:air_shield",
+  "description": "Added an airflow shield to create",
+  "body": "# Create: Shield\n\n**Create: Shield** is a Minecraft NeoForge 1.21.1 mod that adds two powered blocks to [Create](https://github.com/Creators-of-Create/Create) and optionally [Sable](https://github.com/ryanhcode/sable): the **Clockwork Block** (power battery) and the **Shield Block** (cone-shaped entity pusher).\n\n## Dependencies\n\n| Dependency | Version |\n|------------|---------|\n| Minecraft | 1.21.1 |\n| NeoForge | 21.1+ |\n| Create | 6.0.10+ |\n| Sable | 1.2.2 (optional, for subspace physics pushing) |\n| Java | 21 |\n\n## 1. Clockwork Block — Power Battery\n\nThe Clockwork Block is a mechanical device that can **store and release rotational kinetic energy**, essentially a giant \"rechargeable battery.\"\n\n### 1.1 Block Structure\n\n| Face | Function |\n|------|----------|\n| Back | Power **input** side, connect to a power source (e.g., motor, waterwheel) |\n| Front | Power **output** side, supplies power to the mechanical network |\n\n### 1.2 Operation Modes\n\n#### Charging Mode (no redstone signal)\n\n- Receives rotational power from the back, converting kinetic energy into internal stored energy.\n- **Stress consumption** = `RPM × 256` (SU)\n- Maximum energy storage: approximately **2 billion SU·tick**\n- Requires sufficient stress capacity from the external network while charging.\n\n#### Discharging Mode (redstone signal applied)\n\n- Releases stored energy and outputs rotational power from the front.\n- **Provides unlimited stress capacity** (backed by stored energy).\n- **Discharge consumption** = `ceil(stress demand)` SU·tick, deducted from stored energy.\n- Automatically stops output when stored energy is depleted.\n\n## 2. Shield Block — Cone‑Shaped Entity Pusher\n\nThe Shield Block is a **cone‑area entity pushing device** that uses rotational power to generate a repulsion field in front, pushing entities away.\n\n### 2.1 Block Structure\n\n| Face | Function |\n|------|----------|\n| Back | Power **input** side |\n| Front | Direction of repulsion wave emission; can be fitted with a **Nozzle** to adjust the cone angle |\n| Left | Right‑click to open **GUI parameter adjustment panel** |\n| Right | Two **frequency slots**; place items to set wireless frequency |\n\n### 2.3 Cone Scanning Mechanism\n\nWhen supplied with sufficient stress, the Shield Block creates a **cone‑shaped scanning area** in front:\n\n- **Repulsion angle φ** = 45° – 270° (opening angle of the cone). Adjustable only if a *Nozzle* is installed; fixed at 45° without a nozzle.\n- **Repulsion range r** = RPM / 8 (radius of the cone area)\n- **Repulsion strength flow** = redstone signal strength\n- An entity / physical structure (from Sable) is pushed only if it lies within the cone angle and is not blocked by line‑of‑sight.\n- When a nozzle pushes a physical structure (Sable) from a subspace into the overworld, the Shield Block itself is pushed back.\n\n### 2.4 Frequency Linking System\n\nThe Shield Block supports **wireless frequency linking**, enabling multiple blocks to work together:\n\n1. Place items in the two frequency slots to set the frequency.\n2. Supports Create’s wireless redstone adjustment.\n3. Physical structures belonging to Shield Blocks that share the same frequency pair are \"allies\" — they will not push each other within the same subspace, preventing same‑frequency structures from being blown away.\n\n## License\n\nThis mod is licensed under **CC BY-NC-SA 4.0** (Creative Commons Attribution‑NonCommercial‑ShareAlike 4.0 International).\n\n- Free to use, modify, and distribute\n- **Commercial use is prohibited**\n- Derivative works must be released under the same license\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 166,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

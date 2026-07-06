@@ -1,0 +1,35 @@
+{
+  "id": "5FihdWbN",
+  "slug": "dragon-block-plugin",
+  "title": "dragon-block-plugin",
+  "description": "A Paper / Folia plugin (1.21.x) that prevents the Ender Dragon from destroying blocks — unless they're explicitly whitelisted by the server administrator.",
+  "body": "# Dragon Block Plugin\n\nA **Paper / Folia** plugin (1.21.x) that prevents the Ender Dragon from destroying blocks — unless they're explicitly whitelisted by the server administrator.\n\n---\n\n## Purpose\n\nWhen players fight the Ender Dragon, the dragon destroys large swaths of terrain as it flies through blocks. On survival / anarchy / kit servers this can:\n\n- Gut end-island farms (chorus, endermen)\n- Destroy bridges, pathways, and builds near the portal\n- Leave the End dimension permanently scarred\n\nThis plugin intercepts both pathways the dragon destroys blocks:\n\n| Pathway | Event handled | Behaviour |\n|---------|--------------|-----------|\n| Dragon flying through blocks | `EntityChangeBlockEvent` | Cancelled unless block is whitelisted |\n| Dragon / fireball explosions | `EntityExplodeEvent` | Non-whitelisted blocks removed from explosion |\n\n---\n\n## Config\n\nFile: `plugins/dragon-block-plugin/config.yml`\n\n```yaml\n# Block names are Material enum values (case-insensitive).\n# Empty list = dragon cannot destroy ANY blocks.\nwhitelisted-blocks: []\n```\n\n### Example — allow only obsidian and end stone\n\n```yaml\nwhitelisted-blocks:\n  - OBSIDIAN\n  - END_STONE\n```\n\nFull list of block Material names:  \nhttps://jd.papermc.io/paper/1.21/org/bukkit/Material.html\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/dragonblock reload` | `dragonblock.admin` (OP by default) | Reloads config.yml without a server restart |\n| `/dragonblock` | `dragonblock.admin` | Shows usage |\n\n---\n\n## Permissions\n\n| Node | Default | Description |\n|------|---------|-------------|\n| `dragonblock.admin` | `op` | Access to `/dragonblock` commands |\n\n---\n\n## Installation\n\n1. Drop the JAR into your server's `plugins/` folder\n2. Restart the server (or use a plugin manager like PlugManX)\n3. Edit `plugins/dragon-block-plugin/config.yml` to whitelist blocks\n4. Run `/dragonblock reload` to apply changes\n\n---\n\n## Compatibility\n\n| Platform | Status |\n|----------|--------|\n| **Paper** 1.21.x | ✅ Fully supported |\n| **Folia** 1.21.x | ✅ Fully supported (`folia-supported: true`) |\n| **Spigot** 1.21.x | ⚠️ Untested — the Brigadier command API requires Paper |\n\nThe plugin uses Paper's **Brigadier command API** and the **Adventure component API**. It does not use `BukkitScheduler` — events fire on the correct region thread in both Paper and Folia.\n\n---\n\n## Build\n\nRequirements: JDK 21+\n\n```bash\n./gradlew build\n# JAR → build/libs/dragon-block-plugin-1.0-SNAPSHOT.jar\n```\n\nRun a test server (requires Paper 1.21.x in Gradle cache):\n\n```bash\n./gradlew runServer\n```\n\n---\n\n## License\n\nMIT — do whatever you want.\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "OovkyOKa",
+  "slug": "crqzys-nexuscore",
+  "title": "Crqzy's NexusCore",
+  "description": "Modular RPG framework for Paper servers. Adds levels, classes, skills, stats, and a developer API — designed as the foundation for addon plugins.",
+  "body": "# NexusCore — RPG Framework for Survival Servers\n\n**Turn any Survival or SMP server into a fully-featured RPG — without replacing a single vanilla mechanic.**\n\nNexusCore is a lightweight, modular RPG framework for Paper 1.21+. It provides the foundation that addon plugins build on: a persistent stat system, skill engine, class framework, and a clean public API. Install NexusCore once, then layer as many addons as you like.\n\n---\n\n## Features\n\n### Player Stats\nEvery player has a full set of RPG stats that persist across sessions:\n- **Level & XP** — quadratic XP curve, configurable per-level bonuses\n- **HP & Mana** — fully synced with Bukkit's health bar\n- **Attack Power, Defense, Stamina** — ready for addons to use\n- **Unspent Stat Points** — distribute freely with `/nexus spend`\n\n### Class System\nThree built-in classes with unique stat multipliers — more via addons:\n| Class | HP | Mana | Attack | Defense |\n|---|---|---|---|---|\n| Warrior | ×1.4 | ×0.6 | ×1.3 | ×1.5 |\n| Mage | ×0.8 | ×1.8 | ×1.2 | ×0.7 |\n| Archer | ×1.0 | ×1.0 | ×1.4 | ×0.9 |\n\n### Skill Engine\nA full skill registry with cooldown tracking and mana costs. Addons register their own active and passive skills in one line. Players activate skills through addon-defined triggers (items, keybinds, etc.).\n\n### Storage\nChoose between **YAML** (zero setup) or **MySQL** (recommended for larger servers). Switch with one line in `config.yml`. MySQL saves run async to keep your TPS clean.\n\n### Action Bar\nA live HP and mana bar shown to every player above the hotbar — always in sync, no config needed.\n\n### PlaceholderAPI Support\n14 placeholders available for scoreboards, tab lists, and holograms:\n`%nexuscore_level%` · `%nexuscore_class_name%` · `%nexuscore_hp%` · `%nexuscore_mana%` · and more.\n\n---\n\n## For Addon Developers\n\nNexusCore exposes a clean public API. Register skills, classes, and listen to RPG events in a few lines of code:\n\n```java\nNexusCoreAPI api = NexusCore.getInstance().getAPI();\n\n// Register a custom skill\napi.registerSkill(new FireballSkill());\n\n// Register a custom class\napi.registerClass(new RPGClass(\"PALADIN\", \"Paladin\", 1.3, 1.2, 1.0, 1.4, \"Holy warrior.\"));\n\n// Give XP to a player\napi.giveExperience(player, 500);\n```\n\nCustom events: `NexusLevelUpEvent`, `NexusClassChangeEvent`\nUtility classes: `ChatUtil`, `ItemBuilder`\n\nFull addon documentation is included in the download.\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/nexus stats [player]` | View RPG stats |\n| `/nexus spend ` | Spend a stat point |\n| `/nexus setclass ` | Set your class |\n| `/nexus classes` | List all classes |\n| `/nexus skills` | List registered skills |\n| `/nexus givexp ` | Give XP *(admin)* |\n| `/nexus reset [player]` | Reset RPG data *(admin)* |\n| `/nexus reload` | Reload config *(admin)* |\n\n---\n\n## My Addons\n\n- [NexusClasses](https://modrinth.com/plugin/nexusclasses)\n\n---\n## Requirements\n- Paper 1.21+\n- Java 21+\n- [PlaceholderAPI](https://modrinth.com/plugin/placeholderapi) *(optional)*\n\n---\n\n*NexusCore is a developer framework — it adds no gameplay by itself. Gameplay comes from addons that depend on it.*",
+  "categories": [
+    "adventure",
+    "economy",
+    "game-mechanics",
+    "library",
+    "management",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

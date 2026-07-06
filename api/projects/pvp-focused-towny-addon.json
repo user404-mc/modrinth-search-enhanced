@@ -1,0 +1,31 @@
+{
+  "id": "qaHB5dCe",
+  "slug": "pvp-focused-towny-addon",
+  "title": "PVP Focused Towny Addon",
+  "description": "A smart Towny combat control plugin that prevents PvP abuse while respecting Town & WorldGuard. rules.",
+  "body": "# ⚔️ TownyCombat\n\n## Overview\n- **TownyCombat** is a lightweight combat control plugin built specifically for **Towny servers**.\n- It prevents PvP abuse while respecting **Town PvP settings** and **WorldGuard regions**.\n- Designed for modern servers and tested on **Minecraft 1.21.1 (Paper)**.\n\n---\n\n## Core Behavior\n\n### Town PvP Logic\n- If a town has **PvP ENABLED**\n  - PvP works normally\n  - Players in combat can enter the town\n\n- If a town has **PvP DISABLED**\n  - PvP is blocked inside the town\n  - Players in combat are **knocked back** when trying to enter\n\n---\n\n### Combat Outside → Entering Town\n- If PvP starts **outside a town**:\n  - Entering a **PvP-enabled town** is allowed\n  - Entering a **PvP-disabled town** will cause knockback\n\n---\n\n### WorldGuard Integration\n- Optional WorldGuard support\n- Configure allowed regions in the config:\n  - PvP is **not allowed** inside configured WorldGuard regions\n  - If PvP starts **outside** and a player enters one of these regions, entry is allowed\n- Useful for:\n  - Spawn zones\n  - Safe areas\n  - Controlled PvP corridors\n\n---\n\n## Features\n- Configurable combat timer (default: 10 seconds)\n- Adjustable knockback strength\n- Town-aware PvP checks\n- WorldGuard region support\n- Customizable block message\n- Permission-based bypass\n- Live configuration reload\n- Lightweight and optimized\n\n---\n\n## Commands\n- `/townycombat reload`\n  - Reloads the configuration without restarting the server\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|---------|------------|---------|\n| `townycombat.bypass` | Bypass combat restrictions | OP |\n| `townycombat.reload` | Reload plugin configuration | OP |\n\n---\n\n## Configuration Example\n```yaml\ncombat:\n  duration-seconds: 10  # Duration in seconds a player stays in combat after being hit\n\nbehavior:\n  knockback-enabled: true  # Enable knockback when a player tries to enter a PvP-disabled town\n  knockback-strength: 1.5  # Knockback power (recommended: 0.5 - 3.0)\n  allow-entry-if-pvp-enabled: true  # If true, players can enter towns with PvP enabled\n\nworldguard:\n  enabled: true  # Enable WorldGuard integration\n  allowed-regions:\n    - \"southlands\"  # Players who start combat outside these regions can enter towns freely\n  # Add more region names here (case-sensitive)\n\nbypass:\n  ops-only: true  # Only OPs can use the bypass permission by default\n  permission-node: townycombat.bypass  # Permission for bypassing entry restrictions\n\nmessages:\n  blocked_message: \"§cYou are in combat — you cannot enter a town!\"  # Message when entry is blocked\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 85,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "gcqjSE77",
+  "slug": "js-runner",
+  "title": "JS Runner",
+  "description": "The plugin aims to add the ability to run JavaScript files in a Minecraft server.",
+  "body": "## Description\nThis project was inspired by ScriptCraft. ScriptCraft is a plugin that allows JavaScript files to be ran on a Minecraft server, but sadly ScriptCraft is no longer being updated and only supports 1.8. This plugin aims to bring the function of ScriptCraft back to modern day Minecraft. This project includes custom JavaScript API to interact with the game server. \n\n## Setup\nPut the .jar file into the server plugins folder and restart it. A new folder will pop up with the name: \"JSRunner\" and inside that folder will be another folder named: \"scripts.\" You can put .js files into the scripts folder and use the appropriate command to execute it.\n\n## Commands\n\n```\n/js run <filename>\n```\nruns a Javascript file located in JSRunner/Scripts\n\n```\n/js stop <filename>\n```\nstops a Javascript file\n\n```\n/js reload\n```\nstops all JavaScript files\n\n# JavaScript API\n## Server\n\n```\nserver.log()\n```\nlogs a message to the server console\n\n```\nserver.command()\n```\nruns a command as the console\n## Timers \n\n```\ntimers.setTimeout(fn, ticks)\n```\nrun fn once after ticks\n\n```\ntimers.setInterval(fn, ticks)\n```\nrun fn repeatedly every ticks\n\n```\ntimers.clear(id)\n```\ncancels a timeout/interval\n\n```\ntimers.clearAll()\n```\ncancels all timers.\n## Events \n\n```\nevents.on(event, callback)\n```\nlistens for an event\n\n```\nplayerJoin\n```\nparameter: PlayerWrapper\n\n```\nplayerQuit\n```\nparameter: PlayerWrapper\n\n```\nblockBreak\n```\nBlockWrapper\n## Block Wrapper\n\n```\ngetType()\n```\nreturns block type as string\n\n```\ngetX()\n```\nget X position\n```\ngetY()\n```\nget Y position\n```\ngetZ()\n```\nget Z position\n\n```\ngetPlayerName()\n```\nname of the player who broke the block\n## Player Wrapper\n\n```\ngetName()\n```\ngets the players name\n```\ngetUUID()\n```\ngets the players UUID\n\n## Sample Code (Requires latest version to work)\nThis sample code welcomes a player who joined the server.\n\n```\nserver.log(\"Hello from JSRunner!\");\n\nevents.on(\"playerJoin\", function(player) {\n    server.log(\"Welcome \" + player.getName());\n});\n\nvar intervalId = timers.setInterval(function() {\n    server.log(\"Repeating message every 100 ticks\");\n}, 100);\n```\nThis sample code clears the invenory of a player who breaks bedrock with their hands (not TNT).\n\n```\nevents.on(\"blockBreak\", function(block) {\n    if (block.getType() === \"BEDROCK\") {\n        server.command(\"clear \" + block.getPlayerName());\n        server.command(\"tell \" + block.getPlayerName() + \" Your inventory was cleared!\");\n    }\n});\n\n```\n",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 61,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

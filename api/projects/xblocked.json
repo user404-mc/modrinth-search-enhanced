@@ -1,0 +1,37 @@
+{
+  "id": "Zgu6ksns",
+  "slug": "xblocked",
+  "title": "xBlocked",
+  "description": "xBlocker is the ultimate plugin to control and customize the connection experience on your Minecraft server, designed for admins who want professionalism, flexibility, and full compatibility.",
+  "body": "![banner](https://cdn.modrinth.com/data/cached_images/5cfd67d2edcd913cbe8572d3e157007da644b031.jpeg)\n## 📌 xBlocker Description\n\n## Example #1\n![example1](https://cdn.modrinth.com/data/cached_images/9e0f3df6ff161860154e25eb276527486cefb233.png)\n\nxBlocker is the ultimate plugin to control and customize the connection experience on your Minecraft server, designed for admins who want professionalism, flexibility, and full compatibility.\n\n🔹 Version Management:\nSet a minimum allowed protocol (e.g. from 1.16.5 upwards) and block outdated or incompatible clients with clear, customized messages.\n\n🔹 Custom Messages:\n\nServer List (Ping) text to inform players about unsupported versions.\n\nUnique disconnection screens, with dynamic placeholders like %server_version%.\n\nFull integration with i18n (multi-language): messages automatically adapt to the player’s locale.\n\n🔹 Internationalization (i18n):\nMulti-language system with support for Spanish, English, and Portuguese, among others. The plugin detects the client’s locale and shows the appropriate translation.\n\n🔹 Compatibility & Performance:\n\nOptimized IP → protocol caching.\n\nWorks on Spigot, Paper, and forks (for MOTD).\n\nProxy support (BungeeCord / Velocity) through xMotd integration.\n\n🔹 Extra Tools for Admins:\n\nBuilt-in Modrinth update notifier.\n\nOptional usage stats via bStats.\n\nAdvanced debug mode for testing and troubleshooting.\n\n✨ With xBlocker you gain total control over how your server appears in the client list and how version mismatches are handled — all with a professional, multi-language, hassle-free experience.\n\n## ✨ Config.yml ✨\n```yaml\n#   _________                _____.__\n#  \\_   ___ \\  ____   _____/ ____\\__| ____\n#  /    \\  \\/ /  _ \\ /    \\   __\\|  |/ ___\\\n#  \\     \\___(  <_> )   |  \\  |  |  / /_/  >\n#   \\______  /\\____/|___|  /__|  |__\\___  /\n#        \\/            \\/        /_____/\n#  Hecho con amor por 777 Studios - xPlugins\n#\n# Wiki y informacion: https//xblocker.willfry.net/\n\n# =========================\n# I18N (MULTI-LENGUAJE)\n# =========================\ni18n:\n  enabled: true                 # true = usar bundles /messages/*.yml\n  default-lang: \"es_ES\"         # idioma por defecto\n  # PLAYER_LOCALE_THEN_DEFAULT: usa el locale del cliente; si no, default\n  # FIXED: fuerza el idioma en fixed-lang\n  mode: \"PLAYER_LOCALE_THEN_DEFAULT\"\n  fixed-lang: \"es_ES\"           # usado si mode=FIXED\n  ping-lang: \"es_ES\"            # idioma para PING/MOTD (no hay Player)\n  # Mapeos para normalizar locales reportados (ej. es -> es_ES)\n  locale-map:\n    es: \"es_ES\"\n    en: \"en_US\"\n    pt: \"pt_BR\"\n\n# =========================\n# Notificador de Actualizaciones (Modrinth) (No tocar)!!\n# =========================\nupdates:  # (No tocar)!!\n  modrinth: # (No tocar)!!\n    enabled: true # (No tocar)!!\n    project: \"xblocked\" # (No tocar)!!\n    # Comprobar cada X horas (>=1)\n    check-interval-hours: 1 # (No tocar)!!\n    notify: # (No tocar)!!\n      console: true\n      admins-on-join: true\n      permission: \"xblocked.update\"\n\n# =========================\n# bStats (No tocar)!!\n# =========================\nbstats:\n  enabled: true\n  plugin-id: 27316\n\n#  --- Compatibilidad de versiones ---\n# Protocolo mínimo permitido (735 = MC 1.16.5; 763 = 1.20.1; 769 = 1.21.1, etc.)\nmin-protocol: 735\n\n# Texto que se muestra a la DERECHA en la lista de servidores cuando\n# el cliente es más antiguo que min-protocol o no coincide con el servidor.\n# Se procesa con el mismo formato indicado en motd.format (auto/legacy/mini).\n# NOTA: si i18n.enabled=true, se usará messages/<lang>.yml -> serverlist.incompatible.\n# Este texto queda como FALLBACK si desactivas i18n.\nincompatible-message: \"&c ✖️ ¡Oye! 1.19.4 - 1.21x\"\n\n# --- Caché IP -> protocolo detectado (handshake) ---\ncache-ttl-seconds: 45     # Tiempo de vida de la entrada\ncache-soft-limit: 1000    # Límite suave de entradas (limpieza si se excede)\n\n# Motd ( Solo para Spigot x paper ) Para velocity/bungee Usa xMotd\nmotd:\n  enabled: false          # true para habilitar el MOTD personalizado\n  format: auto            # auto | legacy | mini\n  center: true            # centra cada línea (approx. por caracteres)\n  center-width: 50        # ancho usado para el centrado\n  # Si i18n.enabled=true y existe messages/<lang>.yml->motd.*, se prioriza ese contenido.\n  line1: \"&cxBlocked &7| &fLobby\"\n  line2: \"&f¡Bienvenido!\"\n\n# --- Mensaje de desconexión en LOGIN (Outdated server/client) ---\ndisconnect:\n  enabled: true\n  # Si es true, solo reemplaza mensajes tipo “Outdated …”.\n  # Si es false, reemplaza cualquier kick de login por este mensaje.\n  only-on-version-mismatch: true\n  format: auto            # auto | legacy | mini\n  # Placeholders disponibles:\n  #   %server_version%  -> versión del servidor (ej: git-Paper-196 (MC: 1.20.1))\n  # Si i18n.enabled=true, se usa messages/<lang>.yml->disconnect.incompatible (por jugador).\n  # Este texto queda como FALLBACK si desactivas i18n.\n  message: \"<red>✖ Servidor/cliente no coinciden.</red> <gray>Usa</gray> <white>%server_version%</white>\"\n\n####  ##### ####  #   # ####   ###   #### #####  ###  #   #\n#   # #     #   # #   # #   # #   # #       #   #   # ##  #\n#   # ##### ####  #   # ####  ##### #       #   #   # # # #\n#   # #     #     #   # #  #  #   # #       #   #   # #  ##\n####  ##### #      ###  #   # #   #  #### #####  ###  #   #\n\ndebug: true               # logs de handshake/ping/disconnect\ndebug-force-incompatible: false  # fuerza el estado incompatible para \n\n```\n## ✨ Messanges / ES and EN\n\n```yaml\n#   _____   ____   ____   ___________      |__| ____   ______\n#  /     \\_/ __ \\ /    \\ /  ___/\\__  \\     |  |/ __ \\ /  ___/\n# |  Y Y  \\  ___/|   |  \\\\___ \\  / __ \\_   |  \\  ___/ \\___ \\\n# |__|_|  /\\___  >___|  /____  >(____  /\\__|  |\\___  >____  >\n#           Hecho con amor por 777 Studios - xPlugins\n# Usa colores HEX (<#RRGGBB>) o de Minecraft (&a, &b, etc.)\nmeta:\n  name: \"English (US)\"\n  version: 1\n\nserverlist:\n  incompatible: \"<red>✖ Your version is not supported.</red> <gray>Please use</gray> <white>%server_version%</white>\"\n\ndisconnect:\n  incompatible: \"<red>✖ Server/client mismatch.</red> <gray>Please use</gray> <white>%server_version%</white>\"\n\nmotd:\n  line1: \"<gradient:#00C6FF:#0072FF>GhostBlocker</gradient>\"\n  line2: \"<gray>Professional connection control</gray>\"\n\nadmin:\n  reloaded: \"<green>Config reloaded.</green>\"\n```\n---\n\n",
+  "categories": [
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

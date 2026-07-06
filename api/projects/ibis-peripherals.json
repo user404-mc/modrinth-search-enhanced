@@ -1,0 +1,19 @@
+{
+  "id": "zYZpXoSB",
+  "slug": "ibis-peripherals",
+  "title": "IBIS - Peripherals Addon",
+  "description": "Peripheral Addon for IBIS",
+  "body": "This is an addon to the [IBIS](https://modrinth.com/datapack/ibis) datapack to add a peripheral api support, which includes enabling `in` and `out` instructions.\n\nBy default there are two integrated peripheral types: `debug` and `rawlog` (more can be added via other datapacks). Only `debug` is a peripheral for testing, so this will focus on the `rawlog` peripheral only.\n\nThe `rawlog` peripheral displays data using `/tellraw`, but flushes only on `\\n`.\n\nLike usual you'll have to create a CPU, but now you can also add a peripheral to the CPU:\n- `function ibis:create_cpu` (result is cpu id)\n- `function ibis:switch_context {cpu_id:<cpu_id>}`\n- `function ibis.peripheral.rawlog:instantiate` (result is the instance id of the peripheral)\n- `function ibis.peripheral:instance/link {cpu_id:<cpu_id>,instance_id:<instance_id>}` this links the created peripheral to the cpu\n- `data modify storage ibis:mem_<cpu_id> roms set value [{base:0x0000,bytes:[B;0xeb,0xbb,0xbb,0xec,0x48,0x65,0x0e,0x10,0xec,0x6c,0x6c,0x0e,0x10,0xec,0x6f,0x2c,0x0e,0x10,0xec,0x20,0x77,0x0e,0x10,0xec,0x6f,0x72,0x0e,0x10,0xec,0x6c,0x64,0x0e,0x10,0xec,0x21,0x0a,0x0e,0x10,0xec,0x80,0x00,0x1f,0xd1]}]`  (this is a \"Hello, world!\" ROM, code below)\n- `function ibis:emu/reset`\n\nYou might have to step the cpu a couple times for the message to display.\n\n<details>\n<summary>Hello world code</summary>\n\n```\nmov r0, 0xbbbb ; assign r0 to default port used for rawlog\n; now write \"Hello, world!\\n\" and send to rawlog (48 65 6C 6C 6F 2C 20 77 6F 72 6C 64 21 0A in hex)\nmov r1, 0x4865 ; characters 'He'\nout word r1, r0 ; send r1 to r0\nmov r1, 0x6c6c ; characters 'll'\nout word r1, r0 ; send r1 to r0\nmov r1, 0x6f2c ; characters 'o,'\nout word r1, r0 ; send r1 to r0\nmov r1, 0x2077 ; characters ' w'\nout word r1, r0 ; send r1 to r0\nmov r1, 0x6f72 ; characters 'or'\nout word r1, r0 ; send r1 to r0\nmov r1, 0x6c64 ; characters 'ld'\nout word r1, r0 ; send r1 to r0\nmov r1, 0x210a ; characters '!\\n'\nout word r1, r0 ; send r1 to r0\n\nmov r1, 0x8000 ; set r1 to the value of the STOP flag\nor r13, r1 ; set STOP flag in flag register\n```\n\n</details>\n\nIf you want to destroy the peripheral, do `function ibis.peripheral:instance/destroy {instance_id:<instance id>}`, *not* any of the functions from other namespaces, because this one actually handles proper deleting of the data, which later calls the correct destroy of the instance.\n\nYou can also unlink the peripheral from a cpu using `function ibis.peripheral:instance/unlink {instance_id:<instance id>}` (or you can link it to another cpu, which will unlink from the previous cpu)\n",
+  "categories": [
+    "datapack",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "26.1-snapshot-4"
+  ],
+  "date_updated": null
+}

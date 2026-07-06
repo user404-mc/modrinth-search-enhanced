@@ -1,0 +1,25 @@
+{
+  "id": "kVuh4pG0",
+  "slug": "msmp-console",
+  "title": "MSMP Console",
+  "description": "Extends the Minecraft Server Management Protocol (MSMP) by forwarding every server console log event",
+  "body": "# MSMP Console\n\nA server-side Fabric mod that extends the [Minecraft Server Management Protocol](https://minecraft.wiki/w/Minecraft_Server_Management_Protocol) (MSMP) by forwarding every server console log event.\n\n## Installation\n\n1. Download the mod `.jar` and place it in your server's `mods/` folder.\n2. Enable the Management Server in `server.properties`:\n   ```properties\n   management-server-enabled=true\n   ```\n3. Start the server. The Management Server will listen on `localhost:25576` by default.\n\n## Notification\n\nOnce a client connects to the WebSocket endpoint, it will receive a notification for every log event produced by the server.\n\n**Method:** `console:notification/log_event`\n\n### Payload\n\n| Field       | Type   | Description                                                               |\n|-------------|--------|---------------------------------------------------------------------------|\n| `timestamp` | string | ISO-8601 timestamp of when the log event occurred                         |\n| `level`     | string | Log level: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` or `FATAL`           |\n| `thread`    | string | Name of the thread that produced the log event                            |\n| `logger`    | string | Fully qualified name of the originating logger (e.g. the class name)      |\n| `message`   | string | The fully interpolated log message                                        |\n| `throwable` | string | Serialized stacktrace if an exception was attached, omitted otherwise     |\n\n### Example\n\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"console:notification/log_event\",\n  \"params\": [{\n    \"timestamp\": \"2026-03-21T15:06:06.146Z\",\n    \"level\": \"INFO\",\n    \"thread\": \"Server thread\",\n    \"logger\": \"net.minecraft.server.MinecraftServer\",\n    \"message\": \"Done (1.019s)! For help, type \\\"help\\\"\"\n  }]\n}\n```\n\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"console:notification/log_event\",\n  \"params\": [{\n    \"timestamp\": \"2026-03-21T15:06:07.212Z\",\n    \"level\": \"ERROR\",\n    \"thread\": \"Server thread\",\n    \"logger\": \"net.minecraft.server.MinecraftServer\",\n    \"message\": \"Encountered an unexpected exception\",\n    \"throwable\": \"java.lang.NullPointerException: Cannot invoke ...\\n\\tat net.minecraft.server.MinecraftServer...\"\n  }]\n}\n```\n\n## License\n\n[LGPL-3.0](LICENSE)\n",
+  "categories": [
+    "fabric",
+    "library",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

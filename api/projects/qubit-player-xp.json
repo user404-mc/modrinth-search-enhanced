@@ -1,0 +1,21 @@
+{
+  "id": "t7YxvxVR",
+  "slug": "qubit-player-xp",
+  "title": "Qubit Player XP",
+  "description": "A tiny, configurable mod intended for use in modpacks. Allows for configuration of the XP leveling and XP drop on death formulas.",
+  "body": "## Usage\nBy default, this mod should change nothing.\n\nIt can be configured with a file at `<mc folder>/config/qubit/player_xp.json`\n\nIts configuration has this format (this is not the default configuration):\n\n```json5\n{\n  // Controls how much XP is needed for each level.\n  // An array of pieces that forms a piecewise linear function.\n  // The function's input is your *current* level.\n  // Defaults to vanilla's formula if not provided.\n  // One piece needs to start at 0.\n  \"level_formula\": [\n    // Each piece has this format:\n    {\n      // What level this piece starts at, default 0. Must be >=0.\n      \"start\": 0,\n      // The value at the starting level (not the y-intercept). Must be >0.\n      \"constant\": 7,\n      // Additional XP required for each level afterward, default 0.\n      // Must be >=0, can be a float.\n      \"slope\": 2 \n    }\n  ],\n  // Controls how much XP is dropped on death.\n  // Defaults to vanilla's formula if not provided.\n  \"xp_drop\": {\n    // A formula with the same format as `level_formula`.\n    // Controls the amount that drops for each level.\n    \"formula\": [ /* ... */ ],\n    // How much of the progress toward the next level is dropped.\n    // Progress is a fraction of the amount for the next level in `formula`.\n    // It is *not* based on the actual amount of XP the next level requires.\n    // Must be at least 0.\n    \"extra_mult\": 1.0,\n    // The maximum XP that will be dropped. Must be at least 0.\n    // If omitted, there is no cap (except the integer limit).\n    \"cap\": 100\n  }\n}\n```\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 90,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

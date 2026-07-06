@@ -1,0 +1,36 @@
+{
+  "id": "3j3PTnjN",
+  "slug": "altdetector-plugin",
+  "title": "AltDetector Plugin",
+  "description": "AltDetector is a powerful Paper plugin that silently identifies alternate accounts through a multi-layer engine combining IP matching, UUID/username history cross-referencing, and behavioral login pattern analysis. Staff are instantly alerted.",
+  "body": "# 🔍 AltDetector\n**Intelligent Alternate Account Detection for Paper**\n\nStop ban evasion in its tracks. AltDetector runs a silent, fully async multi-layer detection engine on every login — no lag, no false positives flooding chat, just precise alerts delivered straight to your staff.\n\n---\n\n## ✨ Features\n\n### 🧠 Multi-Layer Detection Engine\n\nEvery login is analyzed through four independent detection layers, each producing a confidence score that is then weighted and combined into a final **risk score (0.\n  0–1.0)**:\n\n    | Layer | Method | Weight |\n    |---|---|---|\n    | **IP Match** | Shared IP address history | 40% |\n    | **UUID / Username History** | Name-swap & cross-account username collisions | 25% |\n    | **Login Pattern Analysis** | Session shifts, never-concurrent play, rapid alternation | 25% |\n    | **Behavior Fingerprint** | Playtime ratios, peak-hour cosine similarity | 10% |\n\n    All detection runs **fully asynchronously** — the main thread is never blocked.\n\n\n### ⚠️ Smart Risk Thresholds\n    | Score | Level | Action |\n    |---|---|---|\n    | 0.50 – 0.69 | 🟡 LOW | Staff alert only |\n    | 0.70 – 0.84 | 🟠 MEDIUM | Staff alert + flag player record |\n    | 0.85 – 1.00 | 🔴 HIGH | Staff alert + flag + optional auto-ban |\n\n    All thresholds are fully configurable.\n\n\n### 📣 Interactive Staff Alerts\n\nAlerts are silently sent only to players with `altdetector.staff.alerts`. Each alert includes clickable **[Inspect] [Ban] [Dismiss] [Whitelist]** buttons — no need to type a single command. Offline staff receive queued alerts the moment they log in.\n\n\n### 🔨 Auto-Ban System\n\nWhen an alt of a **banned player** is detected above your configured threshold, AltDetector can automatically issue a ban with a customizable reason and appeal URL. Fires a cancellable `AltBanEvent` so other plugins can hook in.\n\n\n### 🗄️ SQLite Storage (Async, WAL Mode)\n\nAll data is stored in a local **SQLite database** using WAL journal mode and prepared statements. Tracked data includes:\n    - IP address history (up to 20 per player, FIFO)\n    - Username history (up to 50, FIFO)\n    - Risk scores & flagged status\n    - Staff notes\n    - Full detection log with evidence tags\n\n\n### 🛡️ Privacy & Fairness Tools\n- **IP Anonymization** — store only partial IPs (first 3 octets) for GDPR\n  compliance\n- **Shared IP Groups** — whitelist households/LAN players so they're never\n  flagged\n- **VPN/Proxy Hints** — detects datacenter IP ranges (configurable CIDR list) and\n  adds\n      a `vpn_hint` evidence tag with a small risk bump\n- **Bypass Permission** — grant `altdetector.bypass` to trusted accounts\n\n\n### 🖥️ Commands\n\n    | Command | Description |\n    |---|---|\n    | `/alt <player> [page]` | View all known alts of a player with risk scores |\n    | `/altadmin inspect <player>` | Full profile: IPs, logins, risk, links, evidence |\n    | `/altadmin history <player>` | Paginated login history with timestamps |\n    | `/altadmin link <p1> <p2>` | Manually link two accounts |\n    | `/altadmin unlink <p1> <p2>` | Remove a link |\n    | `/altadmin confirm <player>` | Confirm a detected alt link |\n    | `/altadmin whitelist <player>` | Whitelist from detection |\n    | `/altadmin ban <player>` | Ban player and all confirmed alts simultaneously |\n    | `/altadmin note <player> <text>` | Attach a staff note |\n    | `/altadmin purge <player>` | Full GDPR data wipe |\n    | `/altadmin export <player>` | Export full record as JSON |\n    | `/altadmin stats` | Detection statistics |\n    | `/altadmin reload` | Hot-reload config & messages |\n\n    All subcommands support **tab-completion**.\n\n\n### 🔌 PlaceholderAPI Support\n    | Placeholder | Value |\n    |---|---|\n    | `%altdetector_risk_score%` | Player's current risk score |\n    | `%altdetector_alt_count%` | Number of known alt accounts |\n    | `%altdetector_flagged%` | `true` or `false` |\n\n\n### 🪝 Custom API Events\n\nOther plugins can hook into AltDetector's pipeline:\n- `AltDetectedEvent` — fired on any detection above LOW threshold\n- `AltBanEvent` *(cancellable)* — fired before any auto-ban\n- `AltLinkConfirmedEvent` — fired when staff confirms a link\n- `AltWhitelistEvent` — fired on whitelist changes\n\n---\n\n## 📦 Requirements\n\n- **Paper** 1.21+\n- **Java 21**\n- PlaceholderAPI *(optional, soft-depend)*\n\n## ⚙️ Configuration\nFully documented `config.yml` and MiniMessage-powered `messages.yml` with named placeholders. Reload at any time with `/altadmin reload` — no restart needed.\n\n---\n\n*AltDetector is designed for survival, SMP, factions, and competitive servers where ban evasion is a serious problem. Zero dependencies beyond Paper itself.*",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 44,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

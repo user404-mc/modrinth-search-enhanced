@@ -1,0 +1,21 @@
+{
+  "id": "WZORzL2c",
+  "slug": "multiaxisrot",
+  "title": "multiaxisrot",
+  "description": "Backports 25w46a multi axis block/item model element rotation to 1.21.1, so resource packs built for newer Minecraft versions work properly.",
+  "body": "# Multi Axis Rotation\n\n**Fixes purple/missing blocks from resource packs made for newer Minecraft versions**\n\nModern Blockbench exports block & item models that rotate cube elements on\n**any angle and multiple axes at the same time** (`\"rotation\": { \"x\": .., \"y\": .., \"z\": .. }`).\nThat feature was added in snapshot **25w46a** (free single axis angles came in 1.21.6).\n\nOn **1.21.1** the model parser only accepts a **single axis** locked to\n`-45 / -22.5 / 0 / 22.5 / 45`. Any model using the newer rotation is rejected and\nrenders as the missing texture block.\n\nThis client-side mod helps 1.21.1 to read those rotations.\n## What it fixes\n- Detailed trapdoors, buttons, fence gates, signs, props, decorations that use\n  free / 3 axis element rotation.\n- Both block models and held/inventory item models.\n\n## Install\nClient-side, **Fabric**.\n1. Install [Fabric API](https://modrinth.com/mod/fabric-api).\n2. Put the jar in `mods/`.\n3. Launch and enable your resource pack.\n\n## Compatibility\n- Client only, not needed on servers.\n- Renders through the vanilla bake step, so works with Sodium / Continuity / etc.\n\n## Known limitations\n- **UV lock** on arbitrarily-rotated faces follows vanilla's axis-aligned logic;\n  textures on freely-rotated faces may not lock perfectly.\n- **Rescale** (\"inflate to fill\") is applied for legal single axis rotations only;\n  multi-axis elements use their authored geometry without rescale.\n- Built for **1.21.1**. Other 1.21.x versions coming soon.\n\nThe pack used in the gallery images: [Backrooms Retextured](https://modrinth.com/resourcepack/backrooms-retextured)\n\n## License\nAll Rights Reserved.",
+  "categories": [
+    "decoration",
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 11,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

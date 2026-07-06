@@ -1,0 +1,23 @@
+{
+  "id": "NWpw6ccW",
+  "slug": "chunkgenerator",
+  "title": "ChunkGenerator",
+  "description": "Adaptive, TPS-aware chunk pre-generator for Paper, Purpur and Folia. Auto-tuned to your CPU and heap. Pause, resume\n  and survive restarts.",
+  "body": "  **ChunkGenerator** is a focused pre-generation plugin for Paper,\n  Purpur and Folia. It generates world chunks in a chosen shape around\n  any center point, adapts to your server's actual TPS in real time,\n  and keeps the BossBar honest about progress, speed and ETA — without\n  crashing the server when the chunk system saturates.\n\n  ---\n\n  ## Why ChunkGenerator\n\n  - **Adaptive, not reckless.** A TPS-aware controller scales the\n    inflight chunk pipeline up while your TPS holds and down the\n    moment it slips. No fixed chunks-per-tick budget to misconfigure.\n  - **Auto-tunes to your host.** Start it with all defaults: the\n    plugin reads `availableProcessors()` and `maxMemory()` at boot and\n    picks a safe pipeline depth for *your* CPU and JVM heap. The\n    resolved values are logged at startup along with the Paper tuning\n    recommendation for your core count.\n  - **OOM-safe.** A memory-pressure circuit breaker scales the\n    pipeline down past a configurable heap threshold and pauses new\n    submissions entirely past the next, resuming automatically once\n    the GC catches up. Specifically designed to survive container\n    hosts (Pterodactyl, Docker) with aggressive `MaxRAMPercentage`.\n  - **Survives restarts.** Per-world progress is persisted atomically\n    to YAML and resumed automatically when the server comes back up.\n\n  ## Features\n\n  - Pre-generation jobs over **square**, **circle** or **rectangle**\n    zones with an optional explicit center (defaults to world spawn).\n  - One job per world; multiple worlds generate in parallel.\n  - Live **BossBar** for staff (`chunkgenerator.bossbar`), compact\n    **ActionBar** for the player who launched the job, and a periodic\n    **console** progress line with `inflight/target`, `chunk/s`,\n    `TPS`, `CPU` and `RAM` readings.\n  - `/cg status` snapshots with progress percent, speed, ETA, server\n    TPS, process CPU and JVM RAM usage.\n  - Pause / resume / cancel mid-flight with state preserved across\n    restarts.\n  - **Paper**, **Purpur** and **Folia** all supported. Folia is\n    handled through a reflection-based scheduler bridge so the plugin\n    keeps a pure Paper-API compile classpath.\n  - **LuckPerms** integration with `/op` fallback when LuckPerms is\n    absent.\n\n  ## Commands\n\n  | Command | What it does |\n  |---|---|\n  | `/cg start <world> <shape> <size> [centerX centerZ]` | Start a job (`shape` = `square` / `circle` / `rectangle`). |\n  | `/cg stop <world>` | Pause a running job (state preserved). |\n  | `/cg resume <world>` | Resume a paused job. |\n  | `/cg cancel <world>` | Cancel and discard a job's state. |\n  | `/cg status [world]` | Live snapshot of progress, perf and pipeline. |\n  | `/cg list` | List all known jobs. |\n  | `/cg reload` | Reload `config.yml` and `messages.yml`. |\n\n  Alias: `/chunkgen`.\n\n  ## Configuration\n\n  `config.yml` is split into a short **Basics** block\n  (`target-tps`, bossbar / actionbar / console toggles, `auto-resume`)\n  and an **Advanced** `throttle` section that most servers never need\n  to touch. All player-facing strings live in `messages.yml` with the\n  standard `&` color codes.\n\n  ## Maximising throughput\n\n  The plugin keeps Paper's chunk request queue saturated, but the real\n  ceiling is **Paper's chunk worker count**, not the plugin's queue\n  depth. Open `config/paper-global.yml` and raise:\n\n  ```yaml\n  chunk-system:\n    worker-threads: <cores - 1>   # e.g. 5 on a 6-core host\n    io-threads:     3\n\n  The default -1 is \"auto\", which usually allocates only around\n  cores / 2 workers — perfectly safe for a populated survival\n  server, but leaves most of the CPU idle during pre-generation. The\n  plugin prints the recommended values for your host in the startup\n  log.",
+  "categories": [
+    "folia",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 44,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

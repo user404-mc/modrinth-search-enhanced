@@ -1,0 +1,30 @@
+{
+  "id": "SYF76QnT",
+  "slug": "setimmortal",
+  "title": "SetImmortal",
+  "description": "SetImmortal is a plugin that grants a player immortality while preserving normal gameplay visuals. Immortal players can still be hit, burn, fall, and trigger all standard damage effects, but their health never decreases.    discord: @yeimarei",
+  "body": "1. Overview\n\nSetImmortal is a Paper plugin for Minecraft Java 1.21.10 that allows operators or console to grant or remove an immortal status for any username. Immortal players still appear to take damage normally (animation, sound, knockback, fire, etc.) but never lose health. The system works even if the player is offline because usernames are stored instead of active player objects.\n\n2. Commands\n\n/setimmortal <username> — Adds a player to the immortal list\n\n/removeimmortal <username> — Removes a player from the immortal list\n\nRules:\n\nOnly OP or console can use commands\n\nDuplicate entries are prevented\n\nWorks for offline players\n\n3. How It Works\n\nThe plugin listens to damage events. When a player takes damage:\n\nCheck if entity is a player\n\nCheck if username is in immortal list\n\nIf yes → set damage to 0 (do not cancel event)\n\nThis preserves all visual and physical effects while preventing health loss.\n\n4. Storage System\n\nFile automatically generated:\n\nplugins/SetImmortal/players.yml\n\n\nFormat:\n\nimmortals:\n - PlayerName\n\n\nRules:\n\nLoads safely if missing\n\nSaves instantly after changes\n\nNever deletes other entries accidentally\n\n5. Damage Protection Coverage\n\nHealth loss is prevented from all damage sources, including:\n\nPvP, mobs, fall damage, fire/lava, explosions, magic, suffocation, custom plugin damage\n\n6. Permissions\n\nAllowed:\n\nServer console\n\nOperators\n\nDenied:\n\nAll non-OP players\n\n(No permission plugin required.)\n\n7. Stability Requirements\n\nThe plugin must not crash if:\n\ndata file missing\n\nfile empty\n\nplayer offline\n\ninvalid username\n\nserver reload\n\ncommand typo\n\n8. Plugin.yml Requirements\n\nMust include:\n\nname\n\nmain class\n\nversion\n\napi-version\n\ncommands list\n\n9. Code Standards\n\nclean class structure\n\nnull-safe checks\n\nno deprecated API\n\nno NMS usage\n\nuses plugin data folder API\n\nsafe file handling\n\n10. Expandability Design\n\nArchitecture should allow easy future additions such as:\n\nimmortallist command\n\nclear command\n\nUUID support\n\npermission nodes\n\ntemporary immortality\n\nworld-specific immortality",
+  "categories": [
+    "bukkit",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 49,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

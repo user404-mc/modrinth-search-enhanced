@@ -1,0 +1,19 @@
+{
+  "id": "xQ2Xo66r",
+  "slug": "vtsautosync",
+  "title": "VTsAutoSync",
+  "description": "VTs Auto Mod Sync is a server utility mod for Forge 1.16.5",
+  "body": "🔄 VTs Auto Mod Sync\nSay goodbye to \"Mismatched Mod Channel List\" errors forever.\nVTs Auto Mod Sync is a server utility mod for Forge 1.16.5 that allows clients to automatically download missing or outdated mods directly from the server before joining. Whether you run a small SMP or a massive modpack server, this mod ensures your players are always up to date without needing to manually distribute zip files.\n\n✨ Key Features\nAutomatic Synchronization: Detects missing mods, version mismatches, and file corruption.\nLarge Modpack Support: Battle-tested on packs with 360+ mods (e.g., ATM6).\nSmart Download Manager:\nResilient: Retries failed downloads automatically (3 attempts).\nIntelligent: Knows the difference between ProjectRed-Core and ProjectRed-Transmission (won't accidentally delete related modules).\nClean: Removes old versions of mods automatically to prevent duplicates.\nSubfolder Support: Fully supports servers that organize mods into subfolders.\nCrash-Proof: Intercepts the connection after the handshake fails, preventing game crashes and providing a clean, user-friendly download GUI.\nProgress Tracking: Shows real-time progress bars and status updates.\n🛠️ How It Works\nJoin: The player attempts to join the server.\nDetect: If the player is missing mods, Forge usually kicks them. VTs Auto Mod Sync intercepts this kick.\nSync: A GUI appears listing exactly what is missing.\nDownload: The player clicks \"Download Missing Mods\". The files are pulled directly from the server's internal HTTP host.\nPlay: Once finished, the player clicks \"Close Game\", restarts, and joins successfully!\n\n📦 Installation & Setup\nFor the Server Owner\nDrop the .jar into your /mods/ folder.\nStart the server. It will automatically start a lightweight file server on Port 8000 (default).\nCRITICAL: You must Port Forward TCP Port 8000 (or whichever port you choose in the config) so external players can reach the file server.\nFor the Client (Player)\nDrop the .jar into your /mods/ folder.\nJoin the server!\n\n⚙️ Configuration\nThe config file can be found at config/vtsautomodsync-common.toml.\ncode\nToml\n[general]\n    # The TCP Port used for the HTTP File Server.\n    # Client and Server must have the same port setting.\n    # Default: 8000\n    serverPort = 8000\nNote: If you change the port on the server, you must include this config file in your modpack so clients know which port to connect to.\n\n❓ FAQ\nQ: Does this work with huge modpacks?\nA: Yes! It has been tested with 360+ mods. It includes a robust retry system to handle network hiccups during mass downloads.\nQ: Why does it say \"Connection Refused\" when downloading?\nA: This usually means the server owner has not port-forwarded the file server port (Default: 8000) on their router/firewall.\nQ: Does it delete my other mods?\nA: It only deletes old versions of the specific mods it is updating. It uses a smart identity system to ensure it never deletes unrelated mods (e.g., mcw-bridges will never delete mcw-doors).\nQ: Is this safe?\nA: Yes. It does not modify the core Forge handshake code (which causes instability). It sits on top as a safe layer to handle the disconnect screen.\nFound a bug? Please report it on the issue tracker!",
+  "categories": [
+    "forge",
+    "management"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 55,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5"
+  ],
+  "date_updated": null
+}

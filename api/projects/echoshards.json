@@ -1,0 +1,37 @@
+{
+  "id": "nZINNfU0",
+  "slug": "echoshards",
+  "title": "Echo Shards",
+  "description": "Surround a music disc with 8 echo shards in a crafting table to duplicate it - a thematic, near-renewable way to copy rare discs. Ships as a server plugin (Paper/Spigot/Bukkit/Purpur) and a Fabric mod. Auto-covers every disc.",
+  "body": "# Echo Shards\n\nDuplicate music discs by surrounding one with **echo shards** in a crafting table.\nPlace a disc in the center, ring it with 8 echo shards, and you get the disc back\n**plus a copy** - the echo shards are consumed. A thematic, near-renewable way to\ncopy the rarer discs, since the newest discs and echo shards both come from the\ndeep dark.\n\nThis item ships in **two forms** (same mechanic):\n\n- a **server plugin** (Paper / Spigot / Bukkit / Purpur), and\n- a **Fabric mod** (client+server datapack recipes).\n\n## How it works\n\n```\nS S S      S = echo shard\nS D S      D = any music disc\nS S S      result = that disc, duplicated\n```\n\nMusic discs do not stack, so the original disc is handed back to you alongside the\ncopy - you end up with **2 discs** (configurable) for 8 echo shards. Works with\nevery music disc the game has, including the newest ones.\n\n## Plugin\n\n- Auto-registers a duplication recipe for **every** music disc present on the server\n  (forward-compatible: new discs in future updates are covered automatically).\n- `config.yml`:\n  - `output-amount` (default `2`) - total discs you end up with per craft (the\n    original is returned, so `2` = net +1).\n  - `allow-only` / `deny` - restrict which discs can be duplicated (by disc name\n    without the `MUSIC_DISC_` prefix, e.g. `creator`, `precipice`, `5`).\n- `/echoshards` shows info; `/echoshards reload` reloads the config\n  (permission `echoshards.admin`, default op).\n\n## Fabric mod\n\n- Pure datapack recipes (one `crafting_shaped` per disc) plus a tiny initializer.\n- Requires **Fabric API** (its resource-loader module is what loads a mod's bundled\n  datapack - without it the recipes silently do not exist).\n- Duplicated discs carry a `max_stack_size: 2` component, which is what makes the\n  count-2 result a legal recipe (discs are normally unstackable). The pair stacks\n  with itself but not with vanilla copies; jukeboxes treat them normally, and a\n  duplicated disc can seed further duplications.\n- Covers the full 1.21.11 disc set.\n\n## Compatibility\n\nPer-version-LINE builds (see `../MODDING_GUIDE.md`):\n\n- **Plugin, 1.21.x:** `EchoShards-1.0.0.jar` - built against the 1.21.1 API\n  (Java 21, class 65), `api-version 1.21`, load-tested on Paper 1.21.11. Tags\n  1.21.1-1.21.11. No Paper-only classes, no NMS, no dependencies.\n- **Plugin, 26.1.x:** `EchoShards-1.0.0-26.1.jar` - built against spigot-api\n  26.1.2 (Java 25, class 69). Tags 26.1-26.1.2.\n- **Fabric mod, 1.21.x:** `EchoShards-fabric-1.0.0.jar` - Minecraft 1.21.11,\n  Fabric Loader, official Mojang mappings.\n\n## Known gaps / honesty\n\n- The plugin was load-tested headless on Paper 1.21.11 (enables clean, 21 disc\n  recipes registered); not exhaustively QA'd in a live client.\n- Mod (verified 2026-06-10 via `fabric/recipe-verify.ps1`): all 21 recipes were\n  functionally crafted headless on a Fabric 1.21.11 dev server using a Crafter\n  rig - each fired a real RecipeManager match and produced its disc at count 2\n  (`fabric/recipe-status.txt` has the per-disc breakdown). Not hand-tested in a\n  real client GUI (no client in the build env), and tested only on 1.21.11.\n- Because discs are non-stackable, the plugin returns the duplicate via the craft\n  event (clean). The mod's count-2 result needs the `max_stack_size: 2` component\n  to be a legal recipe (the strict 1.20.5+ item codec rejects it otherwise), so\n  mod-duplicated discs stack in pairs and do not stack with vanilla copies.\n  Recommended: the plugin for servers, the mod for single-player/clients.\n\n---\n\nOriginal concept by u/Megatrans69 on Reddit (r/minecraftsuggestions). Built by BeansNToast.",
+  "categories": [
+    "bukkit",
+    "fabric",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

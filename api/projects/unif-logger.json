@@ -1,0 +1,19 @@
+{
+  "id": "ATVC2dJr",
+  "slug": "unif-logger",
+  "title": "UniF-Logger",
+  "description": "UniF-Logger is a datapack used for logging.",
+  "body": "# Usage\nBefore logging, you must tag yourself `unif.debug`\n\nAnd the following is a logging example.\n```\n[0:1000] [INFO] (NAMESPACE) MESSAGE\n```\n\n- `[0:1000]` is the time of the game when logging. It means that log was created at the time of 1000 on the day 1 of the game.\n- `[INFO]` is the type of the logging. There are a total of 6 levels, `ALL` < `DEBUG` < `INFO` < `WARN` < `ERROR`. And type `TIPS` is displayed to normal players, it has no stoarge.\n- `(NAMESPACE)` is the namespace of the logging.\n\nAfter logging but logging of DEBUG, all logging will record into stoarge `unif.logger:logs`,\nand there are also 4 stoarges: `unif.logger:debug_logs`, `unif.logger:info_logs`, `unif.logger:warn_logs`,\n`unif.logger:error_logs`.\n\nWhen the logs is going to be too big, it will auto delete the last log in logs.\n\n## General Logger\nThis is a example to print a general logging.\n```MCFUNCTION\nfunction #unif.logger:logger/v1/info {\"msg\": 'Here\\'s some messages!', \"namespace\": \"Test\"}\n```\n\n![](https://z1.ax1x.com/2023/09/22/pPo6Qw4.png)\n\n## Injected Logger\n**Warning: Warning: Injected Logger can inject clickable JSON fields like clickEvent.**\n\n```mcfunction\nfunction #unif.logger:injected_logger/v1/info {\"msg\": \"{\\\"text\\\":\\\"Injected Info Test\\\"}\", \"namespace\": \"Test\"}\n```\n\n![](https://z1.ax1x.com/2023/09/22/pPoHYLj.png)\n\n```mcfunction\nfunction #unif.logger:injected_logger/v1/info {\"msg\":\"{\\\"text\\\":\\\"Injected Info Test\\\",\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"contents\\\":\\\"aa\\\"}}\",\"namespace\":\"UniF-Logger\"}\n```\n\n![](https://z1.ax1x.com/2023/09/22/pPoH0YV.png)\n\n## Logs\n\n### Read logs\nYou can use the following functions to read logs in the past.\n\n```MCFUNCTION\nfunction #unif.logger:logs/v1/read_all\nfunction #unif.logger:logs/v1/read_debug\nfunction #unif.logger:logs/v1/read_info\nfunction #unif.logger:logs/v1/read_warn\nfunction #unif.logger:logs/v1/read_error\n```\n\n### Clear logs\n\nYou can use the following functions to clear logs.\n\n```MCFUNCTION\nfunction #unif.logger:logs/v1/clear_all\nfunction #unif.logger:logs/v1/clear_debug\nfunction #unif.logger:logs/v1/clear_info\nfunction #unif.logger:logs/v1/clear_warn\nfunction #unif.logger:logs/v1/clear_error\n```",
+  "categories": [
+    "datapack",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 94,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2"
+  ],
+  "date_updated": null
+}

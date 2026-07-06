@@ -1,0 +1,24 @@
+{
+  "id": "JBd8co1K",
+  "slug": "step-erosion",
+  "title": "Step Erosion",
+  "description": "A dynamic Minecraft plugin that simulates environmental wear. High-traffic areas naturally degrade from grass into trails over time, making player activity visible on the landscape.",
+  "body": "# StepErosion\n\n**StepErosion** is a lightweight Paper plugin that makes your Minecraft world feel alive - paths form naturally wherever players walk most often.\n\n## How it works\n\nEvery step a player takes is tracked using a **sliding time window**. Once a block accumulates enough footsteps within that window, it erodes to the next stage:\n\n```\nGRASS_BLOCK ──[20 steps]──► DIRT ──[50 steps]──► DIRT_PATH\n```\n\nPaths are not permanent - if a **DIRT_PATH** block goes unwalked for long enough, it slowly reverts back to **DIRT**, simulating natural recovery.\n\n## Features\n\n- **Gradual erosion** — blocks degrade step-by-step based on real player activity\n- **Natural recovery** — dirt paths revert to dirt after inactivity\n- **Sliding window** — only recent footsteps count; old traffic fades away\n- **Persistent** — erosion state is saved to disk and survives server restarts\n- **Explosion-aware** — TNT and creeper blasts clear erosion data for destroyed blocks\n- **Spread-aware** — grass naturally overgrowing dirt resets its erosion progress\n- **Fully configurable** — thresholds and time windows are all adjustable in config.yml\n- **Debug command** — `/se` lets admins inspect, simulate, and reset erosion data\n\n## Configuration\n\n```yaml\nerosion:\n  dirt-threshold: 20        # steps to erode GRASS → DIRT\n  path-threshold: 50        # steps to erode DIRT → DIRT_PATH\n  step-window-ticks: 1728000    # 1 day — sliding window size\n  recovery-window-ticks: 5184000  # 3 days — idle time before path reverts\n```\n\n## Commands & Permissions\n\n| Command | Description |\n|---|---|\n| `/se info` | Show erosion data for the block under your feet |\n| `/se list` | List all currently tracked blocks |\n| `/se reset` | Clear erosion data for the block under your feet |\n| `/se simulate <n>` | Simulate N footsteps on the block under your feet |\n| `/se config` | Display active configuration values |\n| `/se reload` | Reload config.yml without restarting the server |\n\n**Permission:** `steperosion.admin` (default: op)\n\n## Requirements\n\n- **Paper** 26.1.2+ (2026 build series)\n- **Java** 25+\n\n\n## ⚠️ Region Plugin Compatibility\n\nCurrently, StepErosion does **not** integrate with region protection plugins such as **Towny**, **WorldGuard**, **GriefPrevention**, **PlotSquared**, or similar plot-based solutions.\n\nThis means erosion can occur in protected areas if players are allowed to walk there.\n\n> Full region plugin support is planned for a future update.\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 72,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

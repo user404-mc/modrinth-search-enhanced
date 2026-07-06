@@ -3,7 +3,7 @@
   "slug": "damage-border",
   "title": "Damage = Border",
   "description": "Spawns all players in a world border that expands whenever someone takes damage.",
-  "body": "# 🎮 Damage = Border Plugin  \n\nThis plugin brings a **unique survival challenge** inspired by the German YouTuber **BastiGHG**! 🎥  \n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/30bbyHLdevs\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n\n\n## 🌍 How It Works  \nPlayers spawn inside a **world border**, and every time someone **takes damage**, the border grows bigger – unlocking more of the world step by step.  \n\n---\n\n## ⚔️ Core Gameplay  \n\n- ✅ **Automatic Border Spawn** → Always spawn safely inside the border.  \n- ✅ **Growing Borders** → Every point of damage expands the border size.  \n- ✅ **Multiplayer Support** → Border growth and stats work seamlessly on servers.  \n- ✅ **Challenge Mode** → Damage becomes progress – unlock more of the world together!  \n\n---\n\n## 📊 Features  \n\n- 📈 **Individual Stats** → Track your own border growth.  \n- 🌐 **Server Stats** → See total damage from all players combined.  \n- 🌀 **Teleportation Safety** → Players outside the border are sent back inside.  \n- 💾 **Border Persistence** → Border size is saved across restarts.  \n- ⛏️ **Block Protection** → No mining or breaking outside the border.  \n- 🔢 **Odd-Number Support** → Border always aligns perfectly.  \n\n---\n\n## 📜 Commands  \n- `/border | Show help menu | damageborder.admin |\n- `/border reset | Reset borders to start size | damageborder.admin |\n- `/border size <value> | Set specific border size | damageborder.admin |\n- `/border info | Show border information | damageborder.admin |\n- `/border center | Teleport to center | damageborder.admin |\n- `/border damage | Show your damage stats | damageborder.admin |\n- `/border totaldamage | Show total server stats | damageborder.admin |\n- `/border togglemessages | Toggle expansion messages | damageborder.admin |\n- `/border nether enable | Enable nether border | damageborder.admin |\n- `/border nether disable | Disable nether border | damageborder.admin |\n- `/border nether | Check nether status | damageborder.admin |\n- `/border reload | Reload configuration | damageborder.admin |\n\n---\n\n",
+  "body": "# DamageBorder\n\nA Minecraft plugin where the world border expands every time a player takes damage.  \nInspired by Bastighg<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/30bbyHLdevs\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n> **The border is synced across all dimensions** – same size, configurable per-world center, active in Overworld, Nether, and End.\n\n---\n\n## Features\n\n- **Damage-based expansion** – Every time a player takes damage, the world border grows by a configurable amount\n- **Multi-dimension sync** – Border size is the same in every dimension; per-world centers are auto-set when a player first enters that world\n- **Full protection** – Players cannot walk or break blocks outside the border; if they try to move further out, they get teleported back to the center\n- **Statistics** – Track damage per player and total border expansions\n- **Reloadable config** – All settings can be changed ingame and reloaded without a server restart\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/damageborder` or `/db` | Show help menu |\n| `/damageborder reset` | Reset border to starting size |\n| `/damageborder size <value>` | Set border to a specific size |\n| `/damageborder info` | Show current border size, center, and maximum |\n| `/damageborder center` | Teleport to the border center of your current dimension |\n| `/damageborder damage` | Show your damage statistics |\n| `/damageborder totaldamage` | Show total damage from all players |\n| `/damageborder togglemessages` | Toggle border expansion broadcast messages |\n| `/damageborder reload` | Reload configuration from disk |\n\n**Permission:** `damageborder.admin` (default: op)\n\n---\n\n## Config\n\n```yaml\n# Starting border size in blocks\nstartSize: 1\n\n# Current border size (persists across server restarts)\ncurrentSize: 1\n\n# How much the border grows per damage point\ngrowthPerDamage: 1\n\n# Maximum border size (-1 = infinite)\nmaxSize: -1\n\n# Default border center (for worlds without specific center)\ncenter:\n  world: world\n  x: 0\n  z: 0\n\n# Per-world centers are auto-set when a player first enters that world\nworld_centers:\n\n# Message settings\nmessageSettings:\n  showExpansionMessages: true\n  showJoinMessages: true\n```\n\nWorld centers (like the End spawn platform) are automatically detected and saved the first time a player enters that world. You can also set them manually in `world_centers`.\n\n---\n",
   "categories": [
     "adventure",
     "bukkit",
@@ -15,7 +15,7 @@
   ],
   "client_side": "unsupported",
   "server_side": "required",
-  "downloads": 437,
+  "downloads": 464,
   "followers": 0,
   "game_versions": [
     "1.21",
@@ -29,7 +29,11 @@
     "1.21.8",
     "1.21.9",
     "1.21.10",
-    "1.21.11"
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

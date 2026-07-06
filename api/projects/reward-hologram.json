@@ -1,0 +1,37 @@
+{
+  "id": "C30LLVkE",
+  "slug": "reward-hologram",
+  "title": "Reward Hologram",
+  "description": "A hologram appears where the player is at regular intervals and with a certain probability",
+  "body": "# RewardHologram 🎁\n\nA Paper +1.21.11 plugin that displays per-player floating reward holograms with bobbing animation, skull rotation, individual reward chances, and cooldowns that persist across server restarts.\n\n![In-Game](https://cdn.modrinth.com/data/cached_images/84266172d8ded250c90e8a9031c1f29cfee5f874.jpeg)\n\n## ✨ Features\n\n- **Per-player** — each player sees their own hologram, protected from other players\n- **Bobbing animation** — smooth up/down movement with configurable amplitude and speed\n- **Skull auto-rotation** — the hologram's head can spin continuously\n- **Custom skull** — Base64 texture with configurable height and initial angle\n- **Reward list with chances** — each reward has its own probability; use `pick` to control how many are given\n- **Hex color support** — use `&#RRGGBB` alongside classic `&` color codes\n- **Configurable click type** — `RIGHT`, `LEFT`, or `BOTH` per hologram\n- **Click cooldown** — prevents reward spam\n- **Persistent cooldowns** — intervals are respected across server restarts via `cooldowns.yml`\n- **No external dependencies** — only requires Paper +1.21.11\n- **Auto cleanup** — removes orphaned armor stands on startup and when players disconnect\n- **Admin commands** — manual spawn/remove, live reload and list\n\n## 📦 Dependencies\n\n| Dependency | Type | Link |\n|---|---|---|\n| Paper +1.21.11 | Required | [papermc.io](https://papermc.io) |\n\nNo additional plugins required.\n\n## Video\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/pjzAOA2Oze0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## ⚙️ Full Configuration\n\n```yaml\nsettings:\n  debug: false\n  # Milliseconds between allowed clicks per player (prevents spam)\n  click-cooldown-ms: 500\n\nholograms:\n  my_reward:\n    # Spawn probability (0.0 - 100.0)\n    chance: 25.0\n    # Seconds between evaluations per player\n    interval: 600\n    # Seconds until it disappears if not claimed\n    despawn-after: 20\n\n    # Position offset relative to the player (in front of them)\n    offset:\n      x: 0.0\n      y: 1.5\n      z: 2.5\n\n    # Up/down bobbing animation\n    bobbing:\n      enabled: true\n      amplitude: 0.15   # how much it moves in blocks\n      speed: 0.05       # higher = faster\n\n    # Spacing between hologram lines\n    line-spacing: 0.28\n\n    # Click type to claim: RIGHT, LEFT, BOTH\n    click-type: RIGHT\n\n    # Lines — supports & codes and &#RRGGBB hex colors\n    lines:\n      - \"&#FFD700&l✦ REWARD ✦\"\n      - \"&eClick to claim\"\n      - \"&#00BFFFHex blue text\"\n\n    # Reward list with individual chances\n    rewards:\n      # -1 = evaluate all | 1+ = pick N at random and evaluate them\n      pick: -1\n      list:\n        - command: \"give %player% diamond 1\"\n          chance: 100.0   # always given\n        - command: \"give %player% emerald 1\"\n          chance: 50.0    # 50% probability\n        - command: \"give %player% gold_ingot 3\"\n          chance: 25.0    # 25% probability\n\n    # Chat message on appear (\"\" to disable)\n    appear-message: \"&6You have a reward available!\"\n\n    # Chat message on claim\n    claim-message: \"&aYou claimed your reward!\"\n\n    # Title shown when the hologram appears\n    title:\n      enabled: true\n      title: \"&6&l✦ REWARD ✦\"\n      subtitle: \"&eClick to claim\"\n      fade-in: 10    # ticks (20 ticks = 1 second)\n      stay: 60\n      fade-out: 20\n\n    # Sound on appear\n    sound:\n      enabled: true\n      name: \"ENTITY_EXPERIENCE_ORB_PICKUP\"\n      volume: 1.0\n      pitch: 1.2\n\n    # Sound on claim\n    claim-sound:\n      enabled: true\n      name: \"ENTITY_PLAYER_LEVELUP\"\n      volume: 1.0\n      pitch: 1.5\n\n    # Custom skull at the top\n    skull:\n      enabled: true\n      texture: \"eyJ0ZXh0dXJlcy...\"   # Base64 from minecraft-heads.com\n      head-yaw: 0.0                   # initial angle (0-360)\n      height-offset: 0.7              # extra height above the lines\n      rotation:\n        enabled: true\n        speed: 2.0                    # degrees per tick\n```\n\n## 🔧 Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/rh reload` | `rewardhologram.admin` | Live reload of config.yml |\n| `/rh list` | `rewardhologram.admin` | List holograms with chance and interval |\n| `/rh spawn <id> <player>` | `rewardhologram.admin` | Force-spawn a hologram for a player |\n| `/rh remove <id> <player>` | `rewardhologram.admin` | Remove a player's active hologram |\n\n## 🎨 Color Support\n\n```yaml\nlines:\n  - \"&6Orange text\"             # Classic color code\n  - \"&#FF5733Hex red text\"      # Hex color\n  - \"&l&#00FFFFCyan bold text\"  # Combined\n```\n\n## 🏆 Reward System\n\n```yaml\nrewards:\n  pick: 1       # Pick 1 reward at random from the list\n  list:\n    - command: \"give %player% diamond 5\"\n      chance: 30.0\n    - command: \"give %player% gold_ingot 10\"\n      chance: 60.0\n    - command: \"give %player% iron_ingot 20\"\n      chance: 100.0\n```\n\nWith `pick: 1`, one reward is chosen at random and its `chance` is evaluated. With `pick: -1`, all rewards are evaluated independently.\n\n## 📁 Generated Files\n\n```\nplugins/RewardHologram/\n├── config.yml       # Hologram configuration\n└── cooldowns.yml    # Per-player persistent cooldowns (auto-generated)\n```\n\n## 📣 Important:\n**This plugin was created using AI, but I ran extensive tests to ensure it is 100% functional in terms of both features and performance.**",
+  "categories": [
+    "adventure",
+    "economy",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

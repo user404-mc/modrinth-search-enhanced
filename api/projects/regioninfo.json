@@ -1,0 +1,34 @@
+{
+  "id": "hpztT12q",
+  "slug": "regioninfo",
+  "title": "RegionInfo",
+  "description": "RegionInfo | Region and player names in Action Bar and more",
+  "body": "# RegionInfo – Smart Region Display for Your Server\n\n![RegionInfo](https://cdn.modrinth.com/data/cached_images/f469786a16384db47d864355eaac80f144b97f1d_0.webp)\n\n# RegionInfo – Always Know Where You Stand\n![I am in my own region](https://cdn.modrinth.com/data/cached_images/c0a1f5319503e8888bccde0dc9d37f5190a42cad.png)\n![I am in the region as a member](https://cdn.modrinth.com/data/cached_images/9a1d5bd58db251a1e35a9ccad9fdaf76317e42df.png)\n![I am in someone else's region](https://cdn.modrinth.com/data/cached_images/0d9f290a68a5d9d644984a6bfb3278e4942ebaf4.png)\n\n**Lightweight, multilingual, fully customizable region information plugin for Spigot/Paper 1.21+ with WorldGuard support**\n\n---\n\n## ✨ Features\n\n| Feature                       | Description                                                     |\n| ----------------------------- | --------------------------------------------------------------- |\n| 📍 Smart Action Bar           | Shows current region, owner, and your role in real time         |\n| 🎬 Enter & Exit Notifications | Title, subtitle, or action bar popup when changing regions      |\n| 🌍 3 Languages                | English, Ukrainian, Russian                                     |\n| 🎨 Per-Region Customization   | Custom text and sounds for specific regions                     |\n| 🔔 Sound Alerts               | Play configurable sounds on enter/exit                          |\n| 🛡️ Spam Protection           | Smart cooldown prevents notification spam                       |\n| 👤 Player Toggle              | Players can enable or disable the display                       |\n| ⚡ Instant Reload              | Reload config without restarting the server                     |\n| 🧩 WorldGuard Integration     | Works with owners, members, priorities, and overlapping regions |\n| 🔧 Lightweight                | Minimal performance impact                                      |\n\n---\n\n## 🎮 How it looks in-game\n\n**When you are inside a region:**\n\n* 📺 Action Bar:\n  `⛏ You are in your own region`\n\n* 📺 Action Bar:\n  `🪓 You are in region Spawn owned by zamber`\n\n**When you enter a region:**\n\n* 📢 Title / Subtitle popup\n* 🔊 Sound: `ENTITY_EXPERIENCE_ORB_PICKUP`\n\n**When you leave a region:**\n\n* 🚪 Region text disappears or updates\n* 🔊 Sound: `BLOCK_NOTE_BLOCK_BASS`\n\n> ⚠️ **All messages, sounds, titles, colors, and display modes are fully customizable** in `config.yml` and `messages/*.yml`.\n\n---\n\n## 📋 Commands\n\n| Command                   | Description           | Aliases          |\n| ------------------------- | --------------------- | ---------------- |\n| `/regioninfo toggle`      | Toggle region display | `/rinfo toggle`  |\n| `/regioninfo on`          | Enable display        | –                |\n| `/regioninfo off`         | Disable display       | –                |\n| `/regioninfo lang <code>` | Change language       | `EN`, `UA`, `RU` |\n| `/regioninfo reload`      | Reload plugin config  | –                |\n| `/regioninfo help`        | Show help menu        | –                |\n\n**Language codes:** `EN` (English), `UA` (Ukrainian), `RU` (Russian)\n\n---\n\n## 🔐 Permissions\n\n| Permission          | Description                       | Default  |\n| ------------------- | --------------------------------- | -------- |\n| `regioninfo.toggle` | Allows toggling region display    | ✅ `true` |\n| `regioninfo.lang`   | Allows changing personal language | ✅ `true` |\n| `regioninfo.admin`  | Access to reload commands         | 👑 `op`  |\n\n---\n\n## ⚙️ Configuration (`config.yml`)\n\n```yaml\n# Enable region display\nenabled: true\n\n# Default plugin language\nlanguage: en\n\n# Action bar refresh interval (ticks)\nupdate-interval-ticks: 20\n\n# Display mode: actionbar, title, both\ndisplay-mode: actionbar\n\n# Notification duration\nactionbar-notification:\n  enabled: true\n  seconds: 4.0\n\n# Render interval for smooth updates\nactionbar-render-interval-ticks: 2\n\n# Default enabled state for new players\nplayer-default: true\n\n# Anti-spam cooldown\nnotification-cooldown-seconds: 1.5\n```\n\n# Sound settings\n\n```yaml\nsounds:\n  enabled: true\n\n  enter:\n    sound: ENTITY_EXPERIENCE_ORB_PICKUP\n    volume: 0.9\n    pitch: 1.15\n\n  exit:\n    sound: BLOCK_NOTE_BLOCK_BASS\n    volume: 0.9\n    pitch: 0.9\n```\n\n# Region-specific customization\n\n```yaml\nregion-overrides:\n  spawn:\n    in-region: \"&6★ &eWelcome to Spawn! &6★\"\n\n    enter-sound: UI_TOAST_CHALLENGE_COMPLETE\n    enter-sound-volume: 0.7\n    enter-sound-pitch: 1.0\n```\n\n📝 Message formats (`messages/en.yml`)\n\n```yaml\nin-region: \"&2🪓 &7You are in region &e{region} &7owned by &6{owners}\"\n\nown-region: \"&2⛏ &7You are in &ayour own region\"\n\nmember-region: \"&2🏠 &aYou are a member of region &e{region} &7owned by &6{owners}\"\n\nno-region: \"\"\n\ntoggled-on: \"&aRegion display: &2enabled ✔\"\n\ntoggled-off: \"&cRegion display: &4disabled ✖\"\n\nreloaded: \"&aConfiguration reloaded.\"\n\nno-permission: \"&cYou don't have permission.\"\n```\n\n**Placeholders:**\n`{region}` → Region name\n`{owners}` → Region owner list\n\nColor codes: `&0-9 &a-f &k-o &r`\n\n---\n\n# 🚀 Installation\n\n1. Download `RegionInfo.jar`\n2. Place it in your server's `plugins/` folder\n3. Install **WorldGuard**\n4. Restart your server\n5. (Optional) Edit `config.yml` or `messages/*.yml`\n6. Done! The plugin works immediately\n\n---\n\n# ❓ FAQ\n\n* **How do I change the language?**\n  Use `/regioninfo lang EN`, `/regioninfo lang UA`, or `/regioninfo lang RU`\n\n* **How do I disable sounds?**\n  Set `sounds.enabled: false` in `config.yml`\n\n* **How do I disable the display by default?**\n  Set `player-default: false` in `config.yml`\n\n* **Does it support overlapping WorldGuard regions?**\n  Yes! RegionInfo automatically respects WorldGuard priorities.\n\n* **Can I customize specific regions?**\n  Yes — use `region-overrides` in `config.yml`.\n\n* **Can players disable it?**\n  Yes — `/regioninfo toggle`\n\n---\n\n## 📞 Support\n\n* 🐛 **Report a bug** – [Join our Discord](https://discord.gg/9dgWST3EKd)\n* 💬 **Suggest a feature – Same link**\n* ⭐ **Get help – Same link**",
+  "categories": [
+    "decoration",
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "social",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

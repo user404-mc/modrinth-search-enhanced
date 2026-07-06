@@ -1,0 +1,35 @@
+{
+  "id": "HpFOm8Gb",
+  "slug": "autoproxyupdater",
+  "title": "AutoProxyUpdater",
+  "description": "Automatically updates your Velocity Proxy to the latest build for your version",
+  "body": "# 🚀 AutoProxyUpdater\n\n**Keep your Velocity proxy running on the latest security and performance patches without lifting a finger.**\n\nAutoProxyUpdater is a lightweight, standalone utility designed specifically for [Velocity](https://papermc.io/software/velocity). It ensures your proxy JAR is always up-to-date by communicating directly with the PaperMC API, handling downloads, and managing safe shutdowns.\n\n### 🔄 Why AutoProxyUpdater?\n\nModern proxy environments require high uptime and security. Manually checking for Velocity builds is tedious. This project automates the entire lifecycle—from detecting the latest version to replacing the JAR file safely without corrupting the running process.\n\n### ✨ Key Features\n\n* **Native Velocity Support:** Built from the ground up for the Velocity Proxy API.\n* **PaperMC API v3 Integration:** Uses the latest \"Fill\" API standards for reliable downloads.\n* **Smart Version Persistence:** Stores the current build ID directly in your `config.yml`. No extra files, no redundant downloads after a restart.\n* **Hot-Swap Safety Logic:** Instead of overwriting the active JAR (which causes `NoClassDefFound` errors), it renames the current JAR to `.old` and places the new one. This ensures a clean shutdown.\n* **Automatic Cleanup:** Detects and deletes legacy `.old` files on the next successful startup to keep your root folder clean.\n* **Zero-Touch Configuration:** On the first run, the plugin automatically detects your Velocity version (e.g., 3.4.0-SNAPSHOT) and sets up everything for you.\n\n### 🛠 Configuration\n\nThe plugin generates a `config.yml` in its data folder. You can fine-tune the update behavior here:\n\n```yaml\n# AutoProxyUpdater Configuration\n\n# The API URL for updates. \n# LEAVE EMPTY to automatically use the latest Velocity version from PaperMC.\napi-url: \"\"\n\n# Path to the proxy JAR. Leave empty for auto-detection via classpath.\nproxy-jar-path: \"\"\n\n# Identity header for API requests\nuser-agent: \"AutoProxyUpdater/1.3\"\n\n# Delay in seconds before shutting down after a successful download.\nshutdown-delay: 3\n\n# ------------------------------------------------------------\n# DONT TOUCH! Internal state, do not modify manually.\n# ------------------------------------------------------------\ninternal-current-build: 559\n\n```\n\n### ⚠️ Disclaimer\n\n> [!DANGER]\n> Using auto-updaters in production environments is at your own risk. This plugin replaces your primary proxy JAR. Always ensure you have a robust backup system and a startup script (like a `while true` loop) to bring the proxy back online after it shuts down for an update.\n\n### ⚖️ License\n\nThis project is licensed under the **MIT License**.\n\n---\n\n**Developer Note:** If you are also running backend servers (Paper/Purpur/Leaf), check out my companion project **[AutoUpdateServer](https://modrinth.com/plugin/autoupdateserver)**!",
+  "categories": [
+    "management",
+    "optimization",
+    "technology",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 27,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

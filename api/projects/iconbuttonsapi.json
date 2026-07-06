@@ -1,0 +1,22 @@
+{
+  "id": "gdfyDjhH",
+  "slug": "iconbuttonsapi",
+  "title": "IconButtons API",
+  "description": "API for easily adding buttons to the Icon Buttons row in the title menu and pause menu",
+  "body": "# IconButtons API\nAPI for easily adding buttons to the Icon Buttons row in the title menu and pause menu\n\n![preview](https://cdn.modrinth.com/data/cached_images/d7d430ceee0de33024e73d72d5f5da57dd7fdb7b_0.webp)\n\n# Implementation\n\n### 1. Configure `build.gradle`\n\n```groovy\nrepositories {\n    maven {\n        url \"https://api.modrinth.com/maven\"\n    }\n}\ndependencies {\n    implementation \"maven.modrinth:iconbuttonsapi:${project.iconbuttonsapi_version}+mc-${project.minecraft_version}\"\n}\n```\n\n\n### 2. Configure `gradle.properties`\n\nAdd the following lines to your `gradle.properties` file and replace the values with your target versions:\n\n```properties\niconbuttonsapi_version=1.0.0\n```\n\n### 3. Configure `fabric.mod.json`\n\nDon't forget to declare the dependency in your `fabric.mod.json` so Fabric Loader can verify it at runtime:\n\n```json\n\"depends\": {\n    ...\n    \"iconbuttonsapi\": \">=1.0.0\"\n}\n```\n#  Usage\n\nThe main entry point of the API is the `IconButtons` class. It provides methods to easily add any `AbstractWidget` (like buttons, sliders, etc.) to the Minecraft Title Screen or Pause Menu rows.\n\nYou can register buttons to stay visible permanently or control their visibility dynamically using a `BooleanSupplier`.\n\n### Example\n\n```java\n\npublic class ExampleModClient implements ClientModInitializer {  \n    public static final String MOD_ID = \"iconbuttonsapi\";  \n    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);\n    public static boolean willShow = true;\n\n    @Override\n    public void onInitializeClient() {\n        Button buttonHi = Button.builder(\n                Component.literal(\"hi\"),\n                b -> {\n                    LOGGER.info(\"Hi!\");\n                }\n        ).size(IconButtons.getButtonWidthAndHeight(), IconButtons.getButtonWidthAndHeight()).build();\n        Button buttonToggleShow = Button.builder(\n                Component.literal(\"T\"),\n                b -> {\n                    willShow = !willShow;\n                }\n        ).size(IconButtons.getButtonWidthAndHeight(), IconButtons.getButtonWidthAndHeight()).build();\n\n        IconButtons.addTitleScreenButton(buttonHi, () -> willShow);\n        IconButtons.addPauseScreenButton(buttonHi, () -> willShow);\n\n        IconButtons.addTitleScreenButton(buttonToggleShow);\n        IconButtons.addPauseScreenButton(buttonToggleShow);\n    }\n}\n```\n\n###  Features \n* **Automatic Positioning**: You don't need to specify coordinates (`X` and `Y`) for your widgets. The API calculates and applies positioning automatically, arranging your buttons into a neat row.\n* **Size**: It is recommended to use `IconButtons.getButtonWidthAndHeight()` (returns `20`) for the correct size to ensure your icons fit perfectly alongside vanilla icons.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,18 @@
+{
+  "id": "Ry3dNHF0",
+  "slug": "webkit",
+  "title": "WebKit",
+  "description": "A simple HTTP server for 1.20.1, integrating some of the KubeJS api requests from 1.21.1\nYou can get assets, models, item list and block list easily, just opening your browser.",
+  "body": "A simple HTTP server for 1.20.1, integrating some of the KubeJS api requests from 1.21.1 on port 61423 (or if it's fails, try to use port 61424, .... up to 10 tries)\n\nYou can get assets, models, item list and block list easily, just opening your browser and put http://localhost:<port><url>. Useful to get assets and models automatically with simple requests to the browser instead of going for each mod's repository or opening the mod file using external tools\n\n/api/mods\nExpected return (as JSON):\n```json\n [\n    {\n       \"id\": \"my_mod_id\",\n        \"name\": \"My Super mod installed\",\n        \"version\": \"1.0\"\n    },\n\n    {\n       \"id\": \"industrialforegoing\",\n        \"name\": \"Industrial Foregoing\",\n        \"version\": \"<version>\"\n    },\n ....\n ]\n```\n/api/client/search/blocks:\nExpected return (as JSON):\n```json\n[\n   {\n       \"id\": \"minecraft:air\",\n       \"name\": \"Air\"\n   },\n   {\n       \"id\": \"minecraft:stone\",\n       \"name\": \"Stone\"\n   }\n]\n```\n/api/client/search/items\nExpected return (as JSON)\n```json\n{\n            \"world\": false,\n            \"icon_path_root\": \"http://localhost:61423/img/64/item/\",\n            \"results\": [\n                {\n                    \"id\": \"minecraft:stone\",\n                    \"name\": \"Stone\",\n                    \"icon_path\": \"stone\",\n                },\n               ...\n            ]\n        }\n```\n\n/api/client/assets/list/<models or textures/blocks or textures/item>\nExpected result (as JSON):\n```json\n [\n    \"<mod_id>\": [\n       \"a.png\",\n       \"b.png\",\n       \"my_super_block.json\",\n       \"model.obj\"\n    ], ...\n ]\n\n```\n/api/client/assets/get/<namespace>/<path to the file>\nReturns the content of the file asked , {} or empty if failed or doesn't exist\n\n\n/img/<size>/<item or block>/<namespace>/<id_block>\nReturns a <size>x<size> image as .png\n\nReturns something similar that the original mod, except if it has a custom loader, which returns a \"fake\" json\nFor example, GTCEU using a custom loader, it will turn that into a standard MC representation",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

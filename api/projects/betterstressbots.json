@@ -1,0 +1,35 @@
+{
+  "id": "DQNKpytv",
+  "slug": "betterstressbots",
+  "title": "Better StressBots",
+  "description": "A Paper plugin that makes stress testing and taking cinema shots on a Minecraft server easy with server-side fake bot players.",
+  "body": "**Better StressBots** is a Paper plugin for **stress testing** your server or **creating cinematic scenes** using `server-side` fake players. No external tools are required and there is no need to disable online mode.\n\nUnlike external bot tools like [minecraft-stress-test](https://github.com/PureGero/minecraft-stress-test) that connect bots over the network, Better StressBots creates bots directly inside the server. Bots load chunks, trigger entity tracking, and appear in the player list exactly like real players without needing offline mode. Walk mode makes bots snap to the terrain surface for more realistic civ and survival testing. Includes staggered spawning to avoid lag spikes and a hard cap of 5000 bots to prevent crashes.\n\nMake sure you have `allow-flight=true` in `server.properties`!\n\n## Commands\n```\n/start                            Spawn bots with current settings\n/start <amount>                   Spawn bots with a set amount\n/start <none|walk|fly>            Spawn bots with a set mode\n/start <amount> <none|walk|fly>   Spawn bots with a set amount and mode\n\n/goto                             Send all bots to your location (player only)\n/goto <x> <y> <z>                 Send all bots to exact coordinates\n/goto <x> <y> <z> <world>         Send all bots to coordinates in a specific world\n\n/stress count <amount>            Set how many bots to spawn\n/stress speed <amount>            Set movement speed in blocks/tick (default: 0.1)\n/stress radius <amount>           Set wander radius in blocks (default: 500)\n/stress mode <none|walk|fly>      Set movement mode (default: none)\n/stress chat <message>            Make all bots send a chat message\n/stress tp                        Teleport all bots to your location\n/stress status                    Show current bot count and settings\n/stress stop                      Remove all bots\n```\n\n## Supported versions\n\n| Jar | Paper version |\n|-----|--------------|\n| v1_21-reobf.jar | 1.21 – 1.21.4 |\n| v1_21_11-reobf.jar | 1.21.5 – 1.21.11 |\n| BetterStresstestbots-26.jar | 26.x |\n\n## Advantages over external bot tools\n \n- No `online-mode=false` required as bots are created server-side, bypassing authentication entirely\n- Bots are real `ServerPlayer` objects, they load chunks, trigger entity tracking etc.\n- Walk mode snaps bots to the terrain surface, making it far more realistic for civ, survival, and event server testing.\n- Single jar drop-in install, no extra setup needed.\n- Staggered spawning prevents the server from spiking when adding large numbers of bots at once.\n  \n## Disadvantages compared to external bot tools\n \n- Does not stress the network layer, since bots are created internally, Netty packet handling, encryption, and connection management are not tested, so for Proxy servers not that good (BungeeCord, Velocity).\n- Higher RAM usage per bot compared to external bots, since each bot is a full server-side player object.\n\n## Installation\n\nDrop the correct jar for your server version into `plugins/` and add `allow-flight=true` to `server.properties`.\n\nPS: Also increasing your `max-players=` to an higher number, would be an good idea.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 134,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

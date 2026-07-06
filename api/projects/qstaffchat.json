@@ -1,0 +1,32 @@
+{
+  "id": "D3iPrb2F",
+  "slug": "qstaffchat",
+  "title": "qStaffChat",
+  "description": "Plugin for staff MC-Discord chatting",
+  "body": "[![Support me on Ko-fi](https://cdn.modrinth.com/data/cached_images/c00c3aa5826e038f3497c8a2509f77db9a82bd52.png)](https://ko-fi.com/qustaneu)\n# qStaffChat\n\nA lightweight Paper plugin that gives your staff team a private in-game chat channel with optional two-way Discord sync — all through a single bot token.\n\n---\n\n## Features\n\n- `/sc <message>` — private staff-only chat channel\n- Two-way Discord sync via a Discord bot (read **and** write in one setup)\n- LuckPerms prefix support in message formatting\n- PlaceholderAPI support for advanced placeholders\n- Hex (`#RRGGBB`) and legacy (`&a`, `&c`, …) color codes in all formats\n- Fully configurable message formats and permissions\n- `/staffchat reload` — reload config without restarting the server\n- Works in Minecraft-only mode if Discord is not configured\n\n---\n\n## Requirements\n\n| Dependency | Required |\n|---|---|\n| LuckPerms | Yes |\n| PlaceholderAPI | Yes |\n\n---\n\n## Commands & Permissions\n\n| Command | Description | Permission | Default |\n|---|---|---|---|\n| `/sc <message>` | Send a message to staff chat | `staffchat.use` | op |\n| `/staffchat reload` | Reload the configuration | `staffchat.reload` | op |\n\n---\n\n## Configuration\n\n```yaml\n# --- Discord Bot (optional) ---\n# Leave both values empty to run in Minecraft-only mode.\nDiscordBotToken: \"\"   # Bot token from Discord Developer Portal\nDiscordChannelId: \"\"  # ID of the channel to relay messages to/from\n\n# --- Message Formats ---\n# Supports color codes:\n#   Legacy: &a, &b, &c, &6, &l (bold), &o (italic), etc.\n#   Hex:    #FF0000, #00FF00, #1E90FF, etc. (1.16+ only)\nformatMinecraftMessage: \"StaffChat » %luckperms_prefix% %playerName% » %message%\"\nformatDiscordMessage: \"StaffChat » [Discord] %playerName% » %message%\"\nformatMinecraftToDiscord: \"%playerName% » %message%\"\n\n# --- Permissions ---\nusagePerm: \"staffchat.use\"\nreloadPerm: \"staffchat.reload\"\n```\n\n### Available placeholders\n\n| Placeholder | Description |\n|---|---|\n| `%playerName%` | In-game name of the sender |\n| `%message%` | Message content |\n| `%luckperms_prefix%` | LuckPerms prefix of the sender |\n\n---\n\n## Discord Setup (optional)\n\n1. Go to [discord.com/developers/applications](https://discord.com/developers/applications) and create an application.\n2. Add a **Bot** and copy the token → set as `DiscordBotToken`.\n3. Under *Bot → Privileged Gateway Intents*, enable **Server Members Intent**, **Message Content Intent**.\n4. Invite the bot to your server with the `bot` scope and **Read/Send Messages** permission.\n5. Enable **Developer Mode** in Discord, right-click the target channel → **Copy Channel ID** → set as `DiscordChannelId`.\n6. Run `/staffchat reload` — the bot will connect immediately.\n",
+  "categories": [
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

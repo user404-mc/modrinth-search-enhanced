@@ -1,0 +1,34 @@
+{
+  "id": "wLEEWZZ4",
+  "slug": "skinboosts",
+  "title": "SkinBoosts",
+  "description": "A plugin to add skinsboosters to your tools",
+  "body": "# SkinBoosts\n\nA Paper 1.21.x plugin that applies reward multipliers to players based on the **CustomModelData** (skin) of the tool they are holding. Supports RivalHarvesterHoes, RivalMobSwords, RivalPickaxes, and CyberLevels.\n\n---\n\n## How It Works\n\nSkinBoosts listens to the native reward events fired by each supported plugin. When a reward event triggers, it reads the `CustomModelData` of the tool in the player's main hand and checks if a boost is registered for that value. If found, it multiplies the reward directly in the event before it is processed — no fallbacks, no approximations.\n\n```\nPlayer harvests → RivalHoes fires HoeEssenceReceiveEnchantEvent\n→ SkinBoosts reads CMD from hand (e.g. 1001)\n→ Finds boost: essence x1.5\n→ event.setEssence(essence * 1.5)\n→ Player receives boosted amount\n```\n\nThe system is **stateless** — there is no per-player cache. The boost is resolved in real time on every event, so changing tools mid-session takes effect immediately on the next harvest.\n\n---\n\n## Supported Plugins\n\n| Plugin | Events |\n|---|---|\n| RivalHarvesterHoes | Essence, Money, Tool XP |\n| RivalMobSwords | Essence, Money, XP |\n| RivalPickaxes | Essence, Money, XP |\n| CyberLevels | XP |\n\nAll integrations are soft-depend — the plugin loads and runs normally even if any of them are absent.\n\n---\n\n## Requirements\n\n- Paper 1.21.x\n- Java 21\n- One or more of the supported plugins (optional but needed for boosts to fire)\n- PlaceholderAPI (optional, for placeholders)\n\n---\n\n## Installation\n\n1. Place `SkinBoosts.jar` in your `plugins/` folder.\n2. Restart the server — `plugins/SkinBoosts/config.yml` is generated automatically.\n3. Register your skins with `/skinboost set` or edit `config.yml` directly.\n\n---\n\n## Configuration\n\n```yaml\nskins:\n  1001:\n    name: '&cFire Pick'        # Display name (optional, cosmetic only)\n    multipliers:\n      essence: 1.5             # 1.0 = no change, 2.0 = double\n      money: 1.2\n      tool-xp: 1.5\n      cyber-xp: 1.3\n\nmax-multipliers:               # Hard cap per type. 0.0 = no limit\n  essence: 5.0\n  money: 5.0\n  tool-xp: 5.0\n  cyber-xp: 5.0\n\nprefix: '&8[&6SkinBoosts&8] &r'\n```\n\nAll messages are configurable under the `messages:` section. Changes take effect after `/skinboost reload`.\n\n---\n\n## Commands\n\nAll commands require the `skinboosts.admin` permission (default: op).\n\n| Command | Description |\n|---|---|\n| `/skinboost set <cmd\\|hand> [name] <essence> <money> <tool-xp> <cyber-xp> [player]` | Register or update a skin boost. Use `hand` to read CMD from item in hand. Name and player are optional. If player is provided, applies the CMD to their item in hand. |\n| `/skinboost remove <cmd>` | Remove a registered skin boost. |\n| `/skinboost list` | List all registered skins and active limits. |\n| `/skinboost info [cmd]` | Show multipliers for a CMD. Reads from hand if CMD is omitted. |\n| `/skinboost apply <cmd> [player]` | Apply a CustomModelData to the item in hand. Player is optional in-game, required from console. |\n| `/skinboost reset [player]` | Remove the CustomModelData from the item in hand and delete its registered boost. Player is optional in-game, required from console. |\n| `/skinboost reload` | Reload `config.yml` without restarting. |\n\n### Examples\n\n```bash\n# Register a boost for CMD 1001 (name optional)\n/skinboost set 1001 1.5 1.2 1.5 1.3\n\n# Register reading CMD from item in hand\n/skinboost set hand Fire_Pick 2.0 1.5 2.0 1.5\n\n# Register boost and apply CMD to your item in hand (in-game)\n/skinboost set 730 3.0 3.0 3.0 3.0\n\n# Register boost and apply CMD to a player's item in hand (console or in-game)\nskinboost set 730 3.0 3.0 3.0 3.0 Steve\n\n# Apply CMD 730 to the item in your hand\n/skinboost apply 730\n\n# Apply CMD 730 to another player's item in hand\n/skinboost apply 730 Steve\n\n# Reset item in your hand\n/skinboost reset\n\n# Reset from console\n/skinboost reset Steve\n```\n\n---\n\n## Placeholders\n\nRequires PlaceholderAPI. All placeholders read the item in the player's **main hand**.\n\n| Placeholder | Example value | Description |\n|---|---|---|\n| `%skinboosts_essence%` | `1.50` | Essence multiplier |\n| `%skinboosts_money%` | `1.20` | Money multiplier |\n| `%skinboosts_toolxp%` | `1.50` | Tool XP multiplier |\n| `%skinboosts_cyberxp%` | `1.30` | Cyber XP multiplier |\n| `%skinboosts_essence_fmt%` | `x1.50` | Essence multiplier with x prefix |\n| `%skinboosts_money_fmt%` | `x1.20` | Money multiplier with x prefix |\n| `%skinboosts_toolxp_fmt%` | `x1.50` | Tool XP multiplier with x prefix |\n| `%skinboosts_cyberxp_fmt%` | `x1.30` | Cyber XP multiplier with x prefix |\n| `%skinboosts_name%` | `Fire Pick` | Display name of the active skin |\n| `%skinboosts_cmd%` | `1001` | Raw CustomModelData value |\n| `%skinboosts_active%` | `true` | Whether the item has a registered boost |\n\nReturns `1.00` / `false` / `None` / `-1` if the item has no registered boost.\n\n---\n\n\n## 📣 Important:\n**This plugin was created using AI, but I ran extensive tests to ensure it is 100% functional in terms of both features and performance.**",
+  "categories": [
+    "economy",
+    "equipment",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

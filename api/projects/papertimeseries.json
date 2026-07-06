@@ -1,0 +1,26 @@
+{
+  "id": "5zkDBQxe",
+  "slug": "papertimeseries",
+  "title": "papertimeseries",
+  "description": "A paper plugin to shares server analytics to a postgresql database to view in grafana or other programs",
+  "body": "# Paper Time Series\n\n[see wiki](https://tricked.dev/wiki/papertimeseries/about/) for dashboard and more info \n\n## Setup\n\n1. Create a timescaledb database for example using docker compose\n```yml\nversion: '3'\nservices:\n  postgresql:\n    image: timescale/timescaledb-ha:pg15-latest\n    restart: always\n    ports:\n      - \"5432:5432\"\n    environment:\n      POSTGRES_PASSWORD: time\n      POSTGRES_DB: paper\n      POSTGRES_USER: paper\n      TZ: UTC\n```\n2. Install and run the server with the plugin\n3. A config file in `plugins/PaperTimeSeries/config.yml` should appear, it should contain something like this\n```yml\ndatabase:\n  url: jdbc:postgresql://localhost:5432/paper\n  user: postgres\n  password: postgres\n```\n4. Change the settings to reflect the one of your database\n5. Restart the server\n6. Check if the console gives error's about postgresql if not then you are set\n7. Check the database and see if any tables are created etc\n\n## Help - Bug Reports - Feature Requests\n\nPlease dont hesitate to create a github issue if you have a problem while running the plugin [https://github.com/Tricked-dev/PaperTimeseries](https://github.com/Tricked-dev/PaperTimeseries)\n\n### Connection to localhost:5432 refused.\n\nThe database is not running please start a timescaledb database",
+  "categories": [
+    "management",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 72,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21"
+  ],
+  "date_updated": null
+}

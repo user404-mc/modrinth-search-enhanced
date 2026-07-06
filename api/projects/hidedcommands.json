@@ -1,0 +1,33 @@
+{
+  "id": "RzqWNCaU",
+  "slug": "hidedcommands",
+  "title": "HidedCommands",
+  "description": "HideCommands gives you centralized command visibility control for Velocity + Paper networks. It is built for fast admin workflows, live updates, and a clean permission management experience.",
+  "body": "# HideCommands ✨\n\n**HideCommands** gives you centralized command visibility control for **Velocity + Paper** networks.\nIt is built for fast admin workflows, live updates, and a clean permission management experience.\n\n## 🌟 Why Use It\n\n- Control command visibility with `none`, `all`, and `admin+` groups.\n- Apply changes at backend, plugin/category, subtree, or single-command level.\n- Get live command-tree refresh after permission/group changes.\n- Use both chat tools and inventory GUI for management.\n- Keep backend/plugin icon customization persistent across restarts.\n- Share plugin icons globally across backends, with command icons inherited from their plugin.\n- Companion-aware behavior with clear runtime states in Paper.\n\n## 🧱 Architecture\n\n- `velocity`: filtering engine, persistence, permissions, bridge server, chat commands.\n- `paper`: inventory GUI, admin interactions, bridge client, companion probes.\n- `core`: shared bridge protocol and packet models.\n\n## 🚀 Setup (Requirements + Installation)\n\n1. Put `hidecommands-velocity-<version>.jar` in the Velocity proxy `plugins/` folder.\n2. Put `hidecommands-paper-<version>.jar` in every Paper backend `plugins/` folder.\n3. Start or restart proxy and backends with matching plugin versions.\n4. Verify from:\n- Velocity: `/hc status`\n- Paper: `/hcstatus`\n\n## ✅ Important for GUI Operations\n\n- The plugin must be installed on the **proxy** and on the **backend** servers.\n- You can use the GUI from the backend you want to edit, or from another backend.\n- For changes to apply to a **target backend**, there must be at least **one player online inside that target backend**.\n\n## 🔗 Companion Link States (Classic Mode)\n\nPaper uses classic plugin-messaging bridge detection.\n\n- `waiting-companion-link`: backend is running but no recent bridge response exists yet.\n- `connected`: bridge responses are arriving normally.\n\nBehavior summary:\n\n- After backend restart, state begins at `waiting-companion-link`.\n- State switches to `connected` after a successful bridge roundtrip.\n- If responses stop longer than timeout, it returns to `waiting-companion-link`.\n\n## ⚙️ Configuration\n\nVelocity files:\n\n- `plugins/hidecommands/global.yml`\n- `plugins/hidecommands/backends/<backend>.yml`\n- `plugins/hidecommands/backend-icons.yml`\n\nPaper file:\n\n- `plugins/HideCommandsPaper/config.yml`\n\nExample:\n\n```yml\ncompanion:\n  proxy-detection-timeout-seconds: 12\n```\n\nNotes:\n\n- `plugin-icons` and `backend-icons` are saved automatically when changed from GUI.\n- If a backend is detected as companion-enabled and filtering is not explicitly set, filtering defaults to enabled.\n\n## 🛡️ Permission Management\n\nThere are two management paths:\n\n- Chat management: command/chat workflows from Velocity or Paper command relay.\n- GUI management: Paper inventory menus for backend/plugin/command actions.\n\nBoth paths update the same backend configuration state.\n\n## 🎨 Icon Customization\n\n- Backend icons are customizable and persistent.\n- Plugin icons are shared by normalized plugin name globally.\n- If the same plugin appears in multiple backends, it keeps the same icon everywhere.\n- Commands inherit the icon of the plugin/category they belong to.\n\n## 🧰 Available Commands\n\n### Velocity\n\n- `/hc reload`: Reloads plugin configuration and refreshes command trees.\n- `/hc status`: Shows runtime status, bridge state, and backend diagnostics.\n- `/hc gui`: Opens the Velocity chat GUI main menu.\n- `/hc gui main [page]`: Opens chat GUI main menu at a specific page.\n- `/hc gui backend <backend> [page]`: Opens backend-focused chat GUI view.\n- `/hc gui category <backend> <category> [page]`: Opens one plugin/category chat view.\n- `/hc gui command <backend> <encoded-path> [page]`: Opens one command chat view.\n- `/hc gui set <backend> <encoded-path> <group>`: Sets an explicit group for one command path.\n- `/hc gui cycle <backend> <encoded-path>`: Cycles one command path to the next group.\n- `/hc gui cyclecategory <backend> <category>`: Cycles all commands in a category.\n- `/hc gui cyclebackend <backend>`: Cycles all commands in a backend.\n- `/hc gui filter <backend> <on|off|toggle>`: Enables/disables/toggles backend filtering.\n\n### Paper\n\n- `/hc`: Main admin entry command on Paper.\n- `/hcgui`: Alias that opens the inventory GUI.\n- `/hcstatus`: Requests and displays proxy status from Paper.\n- `/hc gui`: Opens Paper inventory GUI.\n- `/hc status`: Requests status from proxy.\n- `/hc reload`: Requests proxy reload through bridge.\n- `/hc chat [main|gui|status|reload|search <text>]`: Opens or controls chat shortcuts panel.\n- `/hc search <text>`: Applies command search in the current command context.\n- `/hcgui input <text>`: Sends private text input used by GUI search flow.\n\n## 🔐 Permission Node\n\n- `hidecommands.admin`\n\n## 📄 License\n\nThis project is licensed under the MIT License. See `LICENSE`.\n\n## 🤝 Contributing\n\nPlease read `CONTRIBUTING.md` before opening a PR.\n",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "MVTPr7CT",
+  "slug": "mashflightmanager",
+  "title": "MashFlightManager",
+  "description": "World-based timed flight manager for Paper 1.21+ with per-mode limits, restricted worlds, bypass permissions, browse GUI, and admin controls.",
+  "body": "# **MashFlightManager**\n\n### Core Features\n- Restrict flight by world (`restricted-worlds`)\n- Bypass support:\n  - `mashflight.bypass`\n  - `mashflight.bypass.<world>`\n- Two time modes:\n  - `COUNT-FLYING` (consumes only while flying with plugin flight)\n  - `COUNT-ONLINE` (consumes while actively flying with plugin flight)\n- Prevents mixing both modes at the same time\n- BossBar with clean time display\n- Per-mode max caps via `max-flight-time`\n- Async YAML storage (minimal data only)\n- Strong admin tools with tab completion\n- Browse all configured flight items in-game (`/flight browse`)\n- Click items in browse GUI to receive them\n- Sound feedback for success/error/click actions\n\n### Important Behavior\n- Time does **not** consume in Creative/Spectator\n- Time does **not** consume for bypass players\n- Time does **not** consume in restricted worlds\n- Item use denied if it would exceed mode cap\n- Item metadata is non-italic and consistent\n\n---\n\n## Commands\n### Player\n- `/flight`  \nShows your remaining flight time.\n\n### Admin (`mashflight.admin`)\n- `/flight browse`  \nOpens item browser (click to receive item).\n- `/flight give <player> <item-id> [amount]`\n- `/flight give <player> <amount> <item-id>` (also supported)\n- `/flight set <player> <type> <seconds>`\n  - `type`: `count-flying` or `count-online`\n- `/flight add <player> <seconds>`\n- `/flight remove <player> <seconds>`\n- `/flight reload`\n- `/flight restriction add <world>`\n- `/flight restriction remove <world>`\n- `/flight restriction list`\n\n---\n\n## Permissions\n- `mashflight.use`\n- `mashflight.admin`\n- `mashflight.bypass`\n- `mashflight.bypass.<world>`\n\n---\n\n## Default Config (example)\n```yml\nrestricted-worlds:\n  - world\n  - pvp\n\nbossbar:\n  title: \"&8✦ &bFlight &8✦ &f%time% &8✦\"\n  color: BLUE\n  style: PROGRESS\n\nmax-flight-time:\n  count-flying: 3600\n  count-online: 7200\n\nflight-items:\n  small-fly:\n    material: FEATHER\n    custom-model-data: 1\n    name: \"&bSmall Flight Token\"\n    lore:\n      - \"&7Grants 10 minutes of flight\"\n      - \"&7Counts only while flying\"\n    time: 600\n    mode: COUNT-FLYING\n\n  big-fly:\n    material: PHANTOM_MEMBRANE\n    custom-model-data: 2\n    name: \"&dPremium Flight Token\"\n    lore:\n      - \"&7Grants 30 minutes of flight\"\n      - \"&7Counts while online\"\n    time: 1800\n    mode: COUNT-ONLINE\n```\n\n---\n\n## Data Storage\n- File: `plugins/MashFlightManager/data.yml`\n- Stores only:\n  - Player UUID\n  - Remaining time by item ID\n\n---\n\n\n## Installation\n1. Put `MashFlightManager-1.2.0.jar` in your `plugins` folder.\n2. Restart server.\n3. Edit `config.yml` and `messages.yml` if needed.\n4. Run `/flight reload`.\n",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

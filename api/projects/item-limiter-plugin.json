@@ -1,0 +1,24 @@
+{
+  "id": "IUgbyltn",
+  "slug": "item-limiter-plugin",
+  "title": "Item Limiter",
+  "description": "This plugin limits how many of each specified vanilla item a player can hold across all inventory interactions, including pickup, chests, crafting, and hoppers.",
+  "body": "ItemLimiter Plugin\n------------------------------------------------\n\nOverview\nThis plugin enforces per-item inventory limits for players on a Paper server. It ensures players cannot exceed defined maximum amounts for specific vanilla materials, regardless of how items are obtained or moved. The system actively checks and controls item flow in real time rather than only correcting after the fact.\n\n------------------------------------------------\nCore Features\n- Enforces limits per vanilla Material (e.g., DIAMOND, TNT, ENDER_PEARL)\n- Applies limits across all major item acquisition and transfer methods\n- Prevents players from exceeding configured item caps\n------------------------------------------------\nSupported Interactions\nThe plugin monitors and limits items in the following scenarios:\n\n1. Ground Pickup\n- Prevents players from picking up items beyond their allowed limit\n- Excess remains on the ground\n\n2. Chest / Inventory GUIs\n- Blocks or reduces item transfers from chests, barrels, shulkers, etc.\n- Excess remains in the container\n\n3. Shift-Click / Number Keys / Dragging\n- Handles all inventory movement methods inside GUIs\n- Ensures limits are enforced regardless of transfer method\n\n4. Crafting Output\n- Reduces crafted output if it would exceed the player’s limit\n- Prevents crafting entirely if no space is available\n\n5. Hopper Transfers\n- Limits items being inserted into player inventories via hoppers\n\n6. Login Safety Check\n- Scans and corrects inventory on player join to enforce limits\n------------------------------------------------\nLimit Behavior\n- Partial Allow Mode:\n  If a player would exceed the limit, only the allowed amount is transferred.\n  The remainder is left in the original source (ground, chest, or crafting output).\n\nLimit: 16 diamonds\nPlayer has: 14 diamonds\nIncoming: 8 diamonds\nResult: Player receives 2 diamonds, remaining 6 stay in source\n\n------------------------------------------------\nPermissions\n- itemlimiter.bypass\n  Allows admins to ignore all item limits\n- \n------------------------------------------------\nConfiguration (config.yml)\nEXAMPLE:\n------------------------------------------------\nlimits:\n  DIAMOND: 16\n  ENDER_PEARL: 8\n  TNT: 32\n  \n------------------------------------------------\nImplementation Notes\n- Uses Paper event system (InventoryClickEvent, EntityPickupItemEvent, InventoryDragEvent, etc.)\n- Designed for vanilla materials only\n- Continuously enforces limits across multiple interaction paths\n- Prevents most duplication via consistent inventory validation across events",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

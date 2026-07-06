@@ -1,0 +1,23 @@
+{
+  "id": "5TGAA7sf",
+  "slug": "shadow-nametag-fix",
+  "title": "Shadow Nametag Fix",
+  "description": "Removes the duplicate \"ghost\" nametag that shaders draw, by skipping nametag rendering during Iris's shadow pass. Works with any shaderpack and keeps your shadow.",
+  "body": "# Shadow Nametag Fix\n\nEver seen a **rotated, duplicated nametag floating in the air** when playing with shaders? This tiny client-side mod removes it.\n\n## The problem\n\nWith Iris shaders (Complementary Reimagined, Euphoria Patches, BSL, and many others), the game renders entities — including their nametags — during the **shadow pass**, from the sun's point of view. Effects like light shafts then project that shadow buffer back onto your screen, dragging the nametag along as a **rotated \"ghost\" copy** next to the real one.\n\nThe common workaround is to disable the player shadow (`PLAYER_SHADOW=-1`) in each shaderpack's settings — but that has to be redone for every pack and every update, and you lose your shadow.\n\n## What this mod does\n\nShadow Nametag Fix simply **skips nametag rendering while Iris is drawing the shadow pass**. The nametag never enters the shadow buffer, so there's nothing to project — the ghost is gone.\n\n- ✅ Works with **any shaderpack** — no per-pack settings to maintain\n- ✅ Survives shaderpack switches and updates\n- ✅ **Keeps your shadow** — only the nametag is skipped, not the player\n- ✅ Does nothing when shaders are off — fully vanilla behavior\n- ✅ Lightweight: a single Mixin, no config, no extra dependencies\n\n## Compatibility\n\n- **Minecraft:** 1.20.1\n- **Loader:** Fabric\n- **Iris:** optional. The mod finds Iris by reflection, so it doesn't require Iris to be installed and won't break if Iris updates.\n- **Client-side only** — not needed on the server.\n\n## How it works (technical)\n\nA Mixin injects into `EntityRenderer#renderLabelIfPresent` and cancels it whenever `ShadowRenderingState.areShadowsCurrentlyBeingRendered()` reports the shadow pass is active. Iris is accessed reflectively, so there's no hard compile-time dependency.\n\n## License\n\nMIT — do whatever you like, including bundling it in modpacks.",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "OQ8v4uKb",
+  "slug": "natures-appetite",
+  "title": "Nature's Appetite",
+  "description": "Animals automatically eat dropped breeding food, enter love mode, and support quality-based advanced husbandry gameplay.",
+  "body": "# Nature's Appetite\n\n# Overview\n\nNature's Appetite is a Forge 1.20.1 mod that automates animal feeding and breeding:\n\n- Animals can seek and eat dropped breeding food automatically.\n- Adult feeding is gated by breeding cooldown (`age == 0`) to prevent continuous waste.\n- Baby animals can continuously eat (configurable) to speed up growth.\n- Food quality is data-driven and can add healing, love-time bonus, growth bonus, extra baby chance, herd signals, and temporary special drops.\n\n### Current Features\n\n- Auto-feed goal injection for whitelist animals.\n- Tag-driven whitelist/blacklist control.\n- Owner attribution for breeding credit.\n- Reloadable JSON-based quality system (`data_maps/item/food_quality.json`).\n- Per-level dropped-item candidate tracker for better farm performance.\n- GameTest + unit test scaffolding.\n\n### Server Config Keys\n\nMain keys in `natures_appetite-server.toml`:\n\n- `enableAutoFeed`\n- `enableAdultContinuousFeeding`\n- `enableBabyContinuousFeeding`\n- `scanRadius`\n- `scanIntervalMin`\n- `scanIntervalMax`\n- `maxCandidatesPerScan`\n- `pathTimeoutTicks`\n- `ownerAttributionRange`\n- `enableQualitySystem`\n- `enablePackBehavior`\n- `enableSpecialDrops`\n\n### Datapack Tags\n\nOnly entities in whitelist are enabled; blacklist always overrides whitelist.\n\n`data/natures_appetite/tags/entity_type/auto_feed_animals.json`\n\n```json\n{\n  \"replace\": true,\n  \"values\": [\n    \"minecraft:cow\",\n    \"minecraft:sheep\",\n    \"minecraft:pig\",\n    \"minecraft:chicken\"\n  ]\n}\n```\n\n`data/natures_appetite/tags/entity_type/auto_feed_blacklist.json`\n\n```json\n{\n  \"replace\": true,\n  \"values\": [\n    \"minecraft:pig\"\n  ]\n}\n```\n\nApply datapack changes:\n\n```mcfunction\n/reload\n/datapack list\n```\n",
+  "categories": [
+    "food",
+    "forge",
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 322,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

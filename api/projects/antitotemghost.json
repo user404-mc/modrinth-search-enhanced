@@ -1,0 +1,31 @@
+{
+  "id": "fdwyyeMx",
+  "slug": "antitotemghost",
+  "title": "AntiTotemGhost",
+  "description": "This plugin prevents client and server side totem ghosting. it will decrease the ghosting amount a lot.",
+  "body": "# Antighost\n\nLightweight Paper plugin that prevents death by consuming a Totem of Undying and applying safe effects.\n\n## Overview\nThis repository contains a small Minecraft Paper plugin written in Java. The plugin listens for lethal damage and consumes a Totem of Undying (main/off-hand) to keep the player alive while playing the totem effects.        \n\nKey files:\n- `src/main/java/.../Antighost.java` - plugin main class\n- `src/main/java/.../listeners/TotemListener.java` - main listener implementation\n- `src/main/resources/paper-plugin.yml` - Paper plugin descriptor (will be packaged into the JAR)\n- `build.gradle` - Gradle build configuration\n\n## Requirements\n- JDK 17+ (project is configured to target Java 21 in `build.gradle`; ensure your toolchain supports it)\n- Gradle (the project includes the Gradle wrapper; you can run `./gradlew` on Unix or `.\ngradlew.bat` on Windows)\n\n## Build\nFrom the project root (Windows PowerShell):\n\n```powershell\n# Clean and build the plugin\n.\\gradlew.bat --no-daemon clean build\n```\n\nAfter a successful build the plugin JAR will be in `build/libs/` (for example `build/libs/antighost-1.0-SNAPSHOT.jar`).\n\n## Verify the plugin descriptor is packaged (important for Modrinth)\nModrinth (and Paper) requires a `plugin.yml` or `paper-plugin.yml` at the root of the plugin JAR. If Modrinth gives the error \"No plugin.yml or paper-plugin.yml present for plugin file\" the YAML is missing from the artifact.\n\nUse one of these commands in PowerShell to check the contents of the built JAR:\n\n```powershell\n# Find the latest built jar\n$jar = Get-ChildItem .\\build\\libs\\*.jar | Select-Object -Last 1 -ExpandProperty FullName\n# List entries and search for plugin descriptor names\nAdd-Type -AssemblyName System.IO.Compression.FileSystem\n[System.IO.Compression.ZipFile]::OpenRead($jar).Entries | Select-Object -ExpandProperty FullName | Where-Object { $_ -match 'plugin.yml|paper-plugin.yml' }\n```\n\nIf the command prints `paper-plugin.yml` (or `plugin.yml`), it is present. It must appear at the root of the JAR (the entry name should be exactly `paper-plugin.yml` or `plugin.yml`).\n\nAlternative (using `jar` if available):\n\n```powershell\n& 'C:\\Program Files\\Java\\jdk-21\\bin\\jar.exe' tf build\\libs\\antighost-1.0-SNAPSHOT.jar | Select-String 'paper-plugin.yml|plugin.yml'\n```\n\n## Common causes & fixes if the YAML is missing\n- Resource file misplacement: ensure the descriptor is at `src/main/resources/paper-plugin.yml` (or `plugin.yml`).\n- `build.gradle` customizations: check for `sourceSets` overrides that exclude `src/main/resources` or `processResources` filters that unintentionally exclude `*.yml`.\n- Using a shading plugin (Shadow): ensure you upload the shaded JAR (usually `shadowJar`) and that the shading configuration includes `sourceSets.main.output` so resources are bundled.\n- If you use `processResources` to expand properties (this project uses it to expand `version` in `paper-plugin.yml`), make sure the `filesMatching('paper-plugin.yml')` block is correct and not excluding the file.\n\nExample Gradle hints (Groovy DSL):\n- Ensure resources are included (default behavior):\n\n```groovy\nsourceSets {\n    main {\n        resources.srcDirs = ['src/main/resources']\n    }\n}\n\njar {\n    from(sourceSets.main.output)\n}\n```\n\n- If you use Shadow plugin, ensure you publish the shadow jar:\n\n```groovy\nshadowJar {\n    from(sourceSets.main.output)\n}\ntasks.build.dependsOn shadowJar\n```\n\n## Troubleshooting steps\n1. Confirm the `paper-plugin.yml` exists at `src/main/resources`.\n2. Run a clean build: `.\ngradlew.bat --no-daemon clean build`.\n3. Verify the JAR contents using the PowerShell snippet above.\n4. If missing, inspect `build.gradle` for `processResources`, `sourceSets`, `jar`, or `shadowJar` blocks.\n5. If you need help, open an issue or paste the output of `.\ngradlew.bat --no-daemon clean build --info` and the JAR listing command output.\n\n## License\nMIT\n\n---\n\nIf you'd like, I can also add a small CI workflow that builds the jar and checks the JAR contains `paper-plugin.yml` automatically on push.\n\n\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 70,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

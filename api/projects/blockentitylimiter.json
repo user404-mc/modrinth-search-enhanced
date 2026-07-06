@@ -1,0 +1,36 @@
+{
+  "id": "qQDeaCRo",
+  "slug": "blockentitylimiter",
+  "title": "BlockEntityLimiter",
+  "description": "Limits the number of block entities per chunk",
+  "body": "# BlockEntityLimiter\n\nA Folia-compatible Minecraft plugin that limits the number of block entities per chunk for Minecraft 1.21.x.\n\n## Features\n\n- **Folia Compatible**: Fully compatible with Folia's multi-threaded regions\n- **High Performance**: Smart caching system reduces lag significantly\n- **Chunk-based Limiting**: Limits block entities on a per-chunk basis\n- **Master Limit**: Optional master limit that controls total block entities across all types\n- **Individual Limits**: Each block entity type has its own configurable limit\n- **Toggle System**: Enable/disable limiting for each block entity type\n- **No Deletion**: Plugin only prevents placement, never removes existing block entities\n- **Hot Reload**: Reload configuration without restarting the server\n- **Shulker Box Support**: Single config entry covers all shulker box colors\n- **Thread-Safe**: Designed for Folia's concurrent region system\n- **Auto-Forceload**: Automatically forceloads chunks with high block entity counts\n\n## Tracked Block Entities\n\n- Decorated Pot\n- Ender Chest\n- Blast Furnace\n- Smoker\n- Furnace\n- Barrel\n- Dropper\n- Dispenser\n- Chest\n- Trapped Chest\n- Hopper\n- Shulker Box (all colors)\n\n## Installation\n\n1. Download the latest release JAR file\n2. Place it in your server's `plugins` folder\n3. Restart your server or load the plugin\n4. Configure `plugins/BlockEntityLimiter/config.yml` to your needs\n\n## Configuration\n\n### Master Limit\nThe master limit controls the total number of block entities across ALL types:\n\n```yaml\nmaster-limit:\n  enabled: true    # Enable/disable master limit\n  amount: 1000     # Maximum total block entities per chunk\n```\n\n**Example Scenarios** (with master limit of 1000):\n- 500 chests + 500 ender chests = **Allowed**\n- 100 chests + 900 ender chests = **Allowed**\n- 600 chests + 500 ender chests = **Blocked** (exceeds master limit)\n\n### Individual Block Entity Limits\n\nEach block entity type has two settings:\n\n```yaml\nblock-entities:\n  chest:\n    enabled: true   # Enable limiting for this type\n    limit: 100      # Maximum of this type per chunk\n```\n\n- `enabled: true` - This block entity type will be limited\n- `enabled: false` - This block entity type can be placed without restriction\n- `limit` - Maximum number of this specific type per chunk\n\n### How Limits Work Together\n\nWhen placing a block entity, the plugin checks:\n1. Is limiting enabled for this block entity type?\n2. Has the individual limit been reached?\n3. (If master limit is enabled) Has the master limit been reached?\n\nPlacement is **blocked** if any limit is reached.\n\n### Forceload Feature\n\nThe plugin can automatically forceload chunks with many block entities:\n\n```yaml\nforceload:\n  enabled: false          # Enable/disable auto-forceload\n  threshold: 50           # Minimum block entities to trigger forceload\n  notify-player: true     # Notify player when chunk is forceloaded\n  \n  periodic-check:\n    enabled: true         # Enable periodic validation of forceloaded chunks\n    interval: 30          # Check every X minutes\n    delay-per-chunk: 20   # Ticks between checking each chunk (20 = 1 second)\n    verbose: false        # Log detailed info for each chunk check\n```\n\n**How it works:**\n- When a chunk reaches the threshold, it's automatically forceloaded\n- Forceloaded chunks stay loaded even when no players are nearby\n- Useful for farms, storage systems, and automated setups\n- **Persistent across restarts**: Forceloaded chunks are saved to `forceloaded-chunks.yml`\n- When block entities drop below threshold (by breaking blocks), forceload is removed\n- Players are notified when their chunk is forceloaded (optional)\n\n**Periodic Validation:**\n- Every X minutes, the plugin checks all forceloaded chunks\n- Validates each chunk still has enough block entities\n- If below threshold, removes forceload automatically\n- Checks chunks one at a time with configurable delay to prevent lag\n- Example: With 100 forceloaded chunks and 20 tick delay, full check takes ~33 seconds\n- **Verbose mode**: When enabled, logs detailed information about each chunk check to console\n\n**Example:** Set threshold to 50. When a chunk has 50+ hoppers/chests/furnaces, it stays loaded.\n\n## Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/belimiter reload` | `blockentitylimiter.reload` | Reload the configuration |\n| `/belimiter forceloaded [page]` | `blockentitylimiter.admin` | List all forceloaded chunks (paginated) |\n| `/belimiter` | `blockentitylimiter.use` | Show help message |\n\n**Aliases**: `/bel`, `/blocklimiter`\n\n**Forceloaded Command Pages:**\n- Page 1: Shows summary with total count\n- Page 2+: Shows list of chunks (10 per page)\n\n## Permissions\n\n| Permission | Default | Description |\n|-----------|---------|-------------|\n| `blockentitylimiter.use` | true | Access to main command |\n| `blockentitylimiter.reload` | op | Reload configuration |\n| `blockentitylimiter.admin` | op | Access admin commands |\n\n## Performance\n\nThe plugin uses an intelligent caching system to minimize lag:\n- **Cache Duration**: 500ms (configurable in code)\n- **Automatic Invalidation**: Cache updates when blocks are placed/broken\n- **Memory Management**: Automatic cleanup of old cache entries\n- **Thread-Safe**: ConcurrentHashMap for Folia compatibility\n\nIn testing scenarios with high block placement rates, the cache reduces chunk scanning by over 95%, preventing lag spikes.\n\n### Forceload Safety\n\nThe forceload feature is designed to be safe and reversible:\n- ✅ **Non-destructive**: Only sets chunks to forceloaded, never modifies blocks\n- ✅ **Automatic cleanup**: Removes forceload when block entities drop below threshold\n- ✅ **Persistent storage**: Saves to `forceloaded-chunks.yml` and restores on restart\n- ✅ **Periodic validation**: Automatically checks and removes invalid forceloads\n- ✅ **Manual override**: Admins can manually remove forceload with `/forceload remove`\n- ✅ **Graceful shutdown**: Saves all data before server stops\n- ⚠️ **Memory usage**: Forceloaded chunks consume server memory - use reasonable thresholds\n- ⚠️ **Performance**: Too many forceloaded chunks can impact performance - monitor with `/belimiter forceloaded`\n",
+  "categories": [
+    "cursed",
+    "folia",
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 53,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

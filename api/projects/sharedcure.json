@@ -1,0 +1,29 @@
+{
+  "id": "PLMFE3AK",
+  "slug": "sharedcure",
+  "title": "SharedCure",
+  "description": "SharedCure is a server plugin built on the Paper API that utilizes a 'Tagging + Lazy Loading' mechanism to ensure that villagers cured by any player provide the maximum discount to all players on the server.",
+  "body": "# SharedCure\n\nEnglish | [简体中文](https://github.com/LingNc/SharedCure/blob/master/README_zh.md)\n\nSharedCure is a Paper plugin that implements server-wide villager discount sharing using a small tag (PDC) and Just-In-Time reputation injection approach. When a villager has been cured by any player, this plugin ensures other players who interact with that villager receive the highest trade discount (MAJOR_POSITIVE) without requiring bulk updates across all players.\n\n## Features\n\n- **PDC three-state management**: Each villager receives a `discount_status` tag (PDC) indicating `UNKNOWN`, `NOT_CURED`, or `CURED` to minimize server-wide operations.\n- **Instant Reputation Injection**: When a player interacts with a villager in the `CURED` state, the plugin will, if necessary, instantly inject `MAJOR_POSITIVE` reputation for the player's UUID, ensuring that the discount is immediately reflected in the trading interface. This only affects the cured reputation (`MAJOR_POSITIVE`) and does not impact other types of reputation.\n- **Legacy villager backfill**: On plugin load and chunk load, villagers that lack the plugin tag are deep-checked for existing reputations (gossip) and tagged accordingly to support older worlds.\n- **Cure capture**: The plugin listens for `EntityTransformEvent` and marks zombie villager conversions as `CURED` instantly.\n\n## Architecture Overview\n\n| Module | Event | Purpose |\n| --- | --- | --- |\n| Existing villager initialization | `ChunkLoadEvent` + startup scan | Tag existing villagers and deep-check gossip/inventory for unknown states. |\n| New villager tagging | `CreatureSpawnEvent` | Tag newly spawned villagers `NOT_CURED`. |\n| Cure capture | `EntityTransformEvent` | Mark newly cured villagers as `CURED`. |\n| JIT injection | `PlayerInteractEntityEvent` | Inject `MAJOR_POSITIVE` reputation for the interacting player when villager is `CURED`.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 52,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

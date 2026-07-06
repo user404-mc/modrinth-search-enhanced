@@ -1,0 +1,33 @@
+{
+  "id": "H12oPfn8",
+  "slug": "comparators",
+  "title": "Comparator",
+  "description": "Comparator is a lightweight plugin, that allows you to take full control over your event, giving your event the highest potential of success.",
+  "body": "# Comparator 1.0.0\n\nFirst public release. Comparator rolls a stack of event and minigame systems into one plugin, so you don't have to run a dozen separate ones to put on a match. Built for Paper/Folia 1.21 on Java 21, and it runs properly on Folia's region threads (no global scheduler calls anywhere).\n\n## How it works\n\nYour event runs through a five-stage state machine: lobby, pre-game, in-game, paused, and post-game. PvP, stat tracking, and the live event systems turn on and off automatically depending on the stage, and starting or ending a game fires reward triggers for you.\n\n| State | PvP | Stats | Event systems |\n|-----------|:---:|:-----:|:-------------:|\n| Lobby | no | no | no |\n| Pre-game | no | no | yes |\n| In-game | yes | yes | yes |\n| Paused | no | no | yes |\n| Post-game | no | yes | no |\n\n## What's in it\n\n**Events and teams** - create, start, pause, resume, and stop events. Manage teams with display names and live membership, plus per-player profiles. A default event is set up for you on startup.\n\n**Hearts (lifesteal)** — active and banked heart balances that actually change max health, a configurable steal-per-kill, and player-to-player transfers.\n\n**Combat and objectives** — eliminations and revives with logged reasons, safe and no-build zones, and KOTH-style capture scoring. Capsule spawning samples the terrain in the background to spread players across the map, avoid water, and keep everyone spaced out.\n\n**Tournaments** — single-elimination and round-robin brackets with seeding, result reporting, and live standings, all hooked into the dashboard and scoreboard.\n\n**Stats and rewards** — async, batched tracking for 11 stats (kills, deaths, damage dealt and taken, healing, blocks placed and broken, items crafted, distance, captures, rewards earned) with leaderboards. Rewards are defined in `rewards.yml` and can run commands, give items, change health, or show titles on state changes.\n\n**Interfaces** — a 7-page dashboard GUI, a state-aware sidebar scoreboard, and a lightweight web dashboard that's token-gated and runs on the built-in JDK HTTP server (no extra dependencies).\n\n**Storage and integrations** — async batched SQLite for stats, audit log, and analytics, a PlaceholderAPI expansion, and bStats metrics.\n\nThere's also a public API so other plugins can soft-depend on Comparator, and `/comparator reload` reloads config and services without a restart.\n\n### World events\n\nSix built-in events you can trigger live or from the dashboard:\n\n| ID | Effect |\n|----|--------|\n| `supply-drop` | Drops contested loot for players to fight over |\n| `blood-moon` | Forces night and opens a combat window |\n| `border-collapse` | Shrinks the border to force late-game fights |\n| `meteor-storm` | Rains explosive impacts across the arena |\n| `sudden-death` | Shrinks the border to a small radius over 30s |\n| `resource-rush` | Time-boxed resource surge |\n\n## Commands\n\nEverything runs under `/comparator` (alias `/cmp`), and all of it supports tab-completion for player names, enums, and live IDs.\n\n| Command | What it does |\n|---------|--------------|\n| `status` | Overview: state, active event, teams, zones, tournaments, persistence |\n| `reload` | Reload config and reloadable services |\n| `dashboard` | Open the GUI |\n| `event <create\\|start\\|pause\\|resume\\|stop\\|list>` | Manage the event lifecycle |\n| `state <state>` | Force a state transition |\n| `team <create\\|join\\|leave\\|list>` | Manage teams and assignments |\n| `capsule <plan\\|dispatch> [radius]` | Plan or dispatch capsule spawns |\n| `eliminate <player> [reason]` | Eliminate a player |\n| `revive <player>` | Revive a player |\n| `hearts <balance\\|give\\|take\\|set\\|bank\\|withdraw\\|transfer>` | Manage the heart economy |\n| `zone <create\\|list>` | Create or list zones (`create <id> <type> <radius>`) |\n| `worldevent <trigger\\|list>` | Trigger or list world events |\n| `tournament <create\\|entrant\\|seed\\|result\\|standings\\|list>` | Run tournaments |\n| `stats [statistic]` | Show a top-10 leaderboard |\n\n## Permissions\n\n`comparator.admin` covers everything and `comparator.dashboard` only opens the GUI. Both default to op.\n\n## Config\n\nSettings live in `config.yml`. A few defaults worth knowing: the web dashboard runs on port `8087`, capsule spawning uses a `1600` default radius, and there are sections for the SQLite database, lifesteal hearts (starting/min/max and steal-per-kill), zone capture timing, the scoreboard, and integration/metrics toggles.\n\n## Build\n\nPaper/Folia 1.21, Java 21. Built with Gradle 9.3 and Shadow, producing `Comparator-0.1.0.jar`. SQLite is shaded but not relocated (it needs that for native libs), bStats is relocated, and PlaceholderAPI is `compileOnly`.\n",
+  "categories": [
+    "economy",
+    "folia",
+    "game-mechanics",
+    "management",
+    "minigame"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

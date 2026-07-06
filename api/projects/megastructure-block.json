@@ -1,0 +1,23 @@
+{
+  "id": "oPcWyohM",
+  "slug": "megastructure-block",
+  "title": "Megastructure block",
+  "description": "A structure block that breaks the constraints of regular structure blocks and stores chunk-sized parts of the desired area in different consecutive NBT files that can also be loaded back by the same block",
+  "body": "The megastructure block is similar to a regular structure block but it breaks the size limit of the vanilla one.\n\nThis mod is a compulsory dependency for worldgen systems that use megastructures in their generation logic.\n\nThis block works similar to vanilla, but with two major changes:\n- Firstly, it serializes structures differently:\n  - This block captures the whole chunk-sized area (width and length) of any block inside the structure area. The height encompasses the regular height of the structure (from the megastructure block to the set height).\n  - Each chunk is serialized as a different regular encoded structure. This technically means one can load individual structure chunks through a regular structure block\n  - The serialization also includes a \"master nbt file\", that includes the header data necessary to reassemble all the chunks of the overall megastructure correctly into the world.\n- This means, secondly, there is no theoretical structure limit other than what your PC is capable of. I have managed to serialize and deserialize a 100 x 100 block (7x7 chunks) correctly as well as other bigger tests no problem\n\n\n# Instructions \nThe megastructure block is only obtainable via the `/give` command\n\n## SAVE\nWorks as a regular structureblock with the size of the area to save and the offset to move said area around. \n\nThere is a \"DETECT\" that doesn't work because the megastructure block does not have a proper corner detection capabilities. (The \"delimiter mode\" does nothing at the moment)\n\nThere is a button to toggle wether special blocks like air and entities are saved on the megastructure.\n\nThe block automatically prepends any inputed structure name with the minecraft namespace followed by the \"mgst_\" prefix and the name you inputed.\n- For example, if the name of your structure is \"bigcastle\", the header file of the megastructure will be identified as \"minecraft:mgst_bigcastle\"\n\nYou can use your own namespace instead.\n- For example, if you are making the \"bigcastle\" megastructure for the \"bigworld\" namespace, you can write the name as \"bigworld:bigcastle\" and it will be saved as \"bigworld:mgst_bigcastle\"\n\n\n### ATTENTION! \n\n> For now the blocks saves all the width and length of all the chunks that contains part of the stabilished area, meaning that that \"buffer area\" will also be placed on a LOAD opperation.\n\n## LOAD\nAlso works as a regular structure load with the name of the megastructure to load (*including the \"mgst_\" prefix*) and the offset\n\n\n### ATTENTION! \n\n> For now, the offset and the block position are ignored and the megastructure starts to load on the corner of the chunk closest in orientation to the origin of coordinates\n\n---\n\n# For developers\n\nThis mod can be downloaded as a packaged dependency for a mod and also includes the classes and registries needed to spawn megastructures in the world programatically. If people are interested, a doc will be created in the future\n",
+  "categories": [
+    "decoration",
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

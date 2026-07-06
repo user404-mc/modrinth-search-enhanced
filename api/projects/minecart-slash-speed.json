@@ -1,0 +1,23 @@
+{
+  "id": "KLfgx8D5",
+  "slug": "minecart-slash-speed",
+  "title": "Minecart Slash Speed",
+  "description": "Created for the speed of every Minecart! Different speed settings from the original version! Pure server-side mod.",
+  "body": "# Minecart Speed\n\nA server-side Fabric/Forge/NeoForge mod for **Minecraft 26.2** that allows per-minecart speed control via commands. Set different speeds for individual minecarts instead of a global speed!\n\n## Features\n\n- **Per-minecart speed control** — each minecart can have its own speed\n- **Persistent** — custom speeds survive server restarts and chunk unloads\n- **Server-side only** — clients don't need to install this mod\n- **Simple commands** — easy-to-use slash commands with entity selectors\n- **Multi-platform** — supports Fabric, Forge, and NeoForge\n\n## Installation\n\nDownload the JAR for your mod loader:\n\n| Mod Loader | JAR File |\n|------------|----------|\n| Fabric | `minecart_speed-fabric-1.0.0.jar` |\n| Forge | `minecart_speed-forge-1.0.0.jar` |\n| NeoForge | `minecart_speed-neoforge-1.0.0.jar` |\n\nPlace the JAR file in your server's `mods/` folder and start the server.\n\n**Note:** This mod only needs to be installed on the server. Clients connecting to the server do not need to install anything.\n\n## Commands\n\nAll commands require **OP level 2** (admin) permission.\n\n### Set Speed\n\n```\n/minecartspeed set <targets> <speed>\n```\n\nSet the maximum speed for one or more minecarts.\n\n- `<targets>` — entity selector (e.g. `@e[type=minecraft:minecart,limit=1]`)\n- `<speed>` — speed in blocks per second (vanilla default is 8.0)\n\n**Examples:**\n\n```mcfunction\n# Set the nearest minecart to 20 blocks/s (2.5x vanilla speed)\n/minecartspeed set @e[type=minecraft:minecart,limit=1,sort=nearest] 20\n\n# Set all minecarts within 10 blocks to 50 blocks/s\n/minecartspeed set @e[type=minecraft:minecart,distance=..10] 50\n\n# Set a specific minecart by tag\n/minecartspeed set @e[type=minecraft:minecart,tag=express] 100\n```\n\n### Get Speed\n\n```\n/minecartspeed get <targets>\n```\n\nQuery the current custom speed of one or more minecarts.\n\n**Example:**\n\n```mcfunction\n/minecartspeed get @e[type=minecraft:minecart,limit=1,sort=nearest]\n```\n\nOutput: `Minecart [a1b2c3d4] custom speed: 20.00 blocks/s (1.0000 blocks/tick)`\n\n### Remove Custom Speed\n\n```\n/minecartspeed remove <targets>\n```\n\nRemove custom speed and revert to vanilla speed (8 blocks/s).\n\n**Example:**\n\n```mcfunction\n/minecartspeed remove @e[type=minecraft:minecart,limit=1,sort=nearest]\n```\n\n## Speed Reference\n\n| Blocks/s | Description |\n|:---------|:------------|\n| 8.0      | Vanilla default |\n| 16.0     | 2x speed |\n| 32.0     | 4x speed |\n| 64.0     | 8x speed |\n| 100.0    | 12.5x speed (very fast!) |\n\n## Supported Minecart Types\n\nThis mod works with all vanilla minecart types:\n\n- `minecraft:minecart` — Regular Minecart\n- `minecraft:chest_minecart` — Minecart with Chest\n- `minecraft:furnace_minecart` — Minecart with Furnace\n- `minecraft:tnt_minecart` — Minecart with TNT\n- `minecraft:hopper_minecart` — Minecart with Hopper\n- `minecraft:command_block_minecart` — Minecart with Command Block\n\n## Building from Source\n\nEach platform has its own directory with its own build system:\n\n```bash\n# Fabric\ncd fabric && ./gradlew build\n\n# Forge\ncd forge && ./gradlew build\n\n# NeoForge\ncd neoforge && ./gradlew build\n```\n\nThe compiled JAR will be in `build/libs/` under each platform directory.\n\n## Technical Details\n\n- Custom speed is stored in the minecart's NBT data under the key `MinecartSpeedModSpeed`\n- Speed is stored in blocks per second and converted to blocks/tick internally (÷20)\n- The mod uses a Mixin on `AbstractMinecart.getMaxSpeed()` to override vanilla speed limits\n- Compatible with other mods that don't modify minecart speed behavior\n\n## License\n\nMIT\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 15,
+  "followers": 0,
+  "game_versions": [
+    "26.2"
+  ],
+  "date_updated": null
+}

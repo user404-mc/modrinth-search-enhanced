@@ -1,0 +1,37 @@
+{
+  "id": "wS3K73Tp",
+  "slug": "spawnauth-authme-nlogin",
+  "title": "SpawnAuth",
+  "description": "Protect your Minecraft server from login location for AuthMe, nLogin, and OpeNLogin.",
+  "body": "SpawnAuth works with AuthMe or nLogin to keep unauthenticated players away from the main world until they log in. It saves the player's original location before teleporting them to a temporary spawn and restores it after successful authentication.\n\nThe plugin is designed to replace the built-in spawn/limbo handling of AuthMe and nLogin, which can cause issues such as players getting stuck at spawn, spawning in the wrong place after death, or other authentication-related edge cases. It is recommended to disable those features when using SpawnAuth.\n\n## Features\n\n- Supports AuthMe, nLogin, and OpeNLogin.\n- Saves and restores the player's original location after login.\n- Two spawn modes:\n  - `vanilla` – teleports players to the configured world and scatters them around its spawn using the `respawn_radius` gamerule.\n  - `fixed` – teleports players to a fixed location, usually in a dedicated void world.\n- All dimensions (overworld, nether, end) use the same configured world — no per-dimension config.\n- Optional automatic creation of a void world when using `fixed` mode.\n\n\n<details>\n<summary>Config</summary>\n\n\n```\n# World used when spawn-mode is \"vanilla\".\n# Players are scattered around the world's natural spawn point using the\n# respawn_radius gamerule. Set /gamerule respawn_radius <value>\n# to control the scatter distance (0 = no scatter, exact spawn).\n# All dimensions (overworld, nether, end) use this single world.\n# If you need per-dimension worlds, this is no longer supported.\nworlds:\n  overworld: world\n\n# How to choose the spawn point for unauthenticated players:\n#   vanilla  - place the player in the configured world and scatter\n#              them around its spawn using the respawn_radius gamerule.\n#   fixed    - place the player in the void world (generation.world)\n#              at the exact coordinates specified under generation.fixed-spawn.\nspawn-mode: vanilla\n\n# Settings for the auto-generated limbo void world. Only used when\n# spawn-mode is \"fixed\".\ngeneration:\n  # Name of the limbo void world (used when spawn-mode: fixed).\n  world: limbo\n\n  # If true, automatically creates the void world when it doesn't exist.\n  # The void world is always created as an overworld-type world with a small\n  # platform at the fixed-spawn coordinates.\n  create: false\n\n  # Fixed spawn coordinates (used when spawn-mode: fixed).\n  fixed-spawn:\n    x: 7\n    y: 70\n    z: 7\n    yaw: 0\n    pitch: 0\n\n  # Radius of the stone/grass platform around the fixed spawn in the\n  # auto-generated void world. Ignored when using existing worlds.\n  platform-radius: 1\n```\n\n\n</details>\n\n",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 131,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

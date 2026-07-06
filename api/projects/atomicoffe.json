@@ -1,0 +1,18 @@
+{
+  "id": "sjPTWfoi",
+  "slug": "atomicoffe",
+  "title": "AtomiCoffe",
+  "description": "Bring your server to life with Lua. Atomicoffe is a Fabric scripting mod that lets you add custom commands, events, recipes, loot tables, HUDs, and more all in hot-reloadable Lua scripts.",
+  "body": "# Atomicoffe\n\n**Atomicoffe** is a Fabric mod that embeds a full [LuaJ](https://luaj.sourceforge.net/) scripting engine into your Minecraft server and client. Write scripts once, reload them live with `/atomicoffe reload` no restarts, no recompiling, no Java required.\n\n---\n\n## What can you do with it?\n\n- **Custom commands** register Brigadier commands directly from Lua\n- **Event hooks** react to player join/leave/death, block interactions, entity kills, chat, ticks, and more\n- **Recipes** add or modify shaped and shapeless crafting recipes at runtime\n- **Loot tables** inject drops into any vanilla loot table\n- **Scoreboard** create objectives and read/write scores from scripts\n- **Per-player persistent data** save and load arbitrary key/value data per player UUID\n- **Scheduling** run callbacks after N ticks or on a repeating interval\n- **Networking** send custom packets between server scripts and client scripts\n- **Tags** add items/blocks to vanilla tags at startup (affects recipes, mechanics, etc.)\n- **Mob effects** apply, remove, and query potion effects from Lua\n- **Client HUD** draw text and rectangles on the player's screen\n- **Client keybinds** register keybinds that trigger Lua callbacks or send packets to the server\n\n---\n\n## Script Phases\n\n| Folder | When it runs |\n|--------|-------------|\n| `startup_scripts/` | Before the server starts for tag/registry changes |\n| `server_scripts/` | When the server starts and after every `/reload` |\n| `client_scripts/` | On the client HUD, keybinds, client-side events |\n\nAll scripts live in your instance's `config/atomicoffe/` folder and are hot-reloadable.\n\n---\n\n## Quick Example\n\n```lua\n-- config/atomicoffe/server_scripts/welcome.lua\n\nonEvent(\"player.join\", function(e)\n  e.player.tell(\"§aWelcome, §e\" .. e.player.name .. \"§a!\")\n  e.player.give(\"minecraft:bread\", 8)\nend)\n\ncommand.register(\"ping\", function(ctx)\n  ctx.reply(\"Pong! TPS: \" .. server.getTps())\nend)\n\nschedule.every(6000, function()  -- every 5 minutes\n  server.broadcast(\"§b[Info] §fNeed help? Check our Discord!\")\nend)\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 77,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

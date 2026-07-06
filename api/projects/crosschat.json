@@ -1,0 +1,24 @@
+{
+  "id": "zlXiOAOJ",
+  "slug": "crosschat",
+  "title": "CrossChat",
+  "description": "CrossChat the links all Messages as one",
+  "body": "A Velocity 3.x proxy plugin that routes chat from every backend server into a single global channel, visible to all connected players in real time.\n\n---\n\n## Features\n\n- **Cross-server chat** — messages sent on any backend server are broadcast to all players on all (configured) servers\n- **Fully customisable format** — edit `config.yml` with your own colour codes and placeholders\n- **`&` legacy codes and MiniMessage** — auto-detected; use whichever style you prefer\n- **LuckPerms integration** — optional; prefixes are pulled automatically if LuckPerms is installed on the proxy\n- **Server filter** — choose which servers participate; exclude lobby-only or mini-game servers\n- **Toggle on/off** without restarting — flip `enabled: false` and restart the proxy\n\n---\n\n## Requirements\n\n| Requirement | Version |\n|---|---|\n| Java | 17 or later |\n| Velocity | 3.x (tested against 3.4.0) |\n| LuckPerms *(optional)* | 5.x |\n\n---\n\n## Installation\n\n1. Download `crosschat-x.x.x.jar`\n2. Drop it into your Velocity `plugins/` folder\n3. Restart the proxy — `plugins/velocityglobalchat/config.yml` is created automatically\n4. Edit the config to taste, then restart again\n\n---\n\n## Configuration\n\n`plugins/velocityglobalchat/config.yml`\n\n```yaml\n# Enable or disable the plugin entirely\nenabled: true\n\n# Chat format — placeholders:\n#   {server}  — backend server name (e.g. HUB, SURVIVAL)\n#   {player}  — sender's Minecraft username\n#   {prefix}  — LuckPerms prefix (empty if LuckPerms is absent)\n#   {message} — the chat message (always plain text — injection-safe)\n#\n# Use & colour codes OR MiniMessage tags — do not mix both.\nformat: \"&8[&b{server}&8] &7{prefix}{player}&f: {message}\"\n\n# Servers that participate in global chat.\n# Players on servers NOT listed here neither see nor send global messages.\n# Leave the list empty to include ALL servers.\nservers:\n  - hub\n  - survival\n  - farming\n```\n\n### Format examples\n\n| Style | Example |\n|---|---|\n| Legacy `&` codes | `&8[&b{server}&8] &7{prefix}{player}&f: {message}` |\n| MiniMessage | `<dark_gray>[<aqua>{server}</aqua>]</dark_gray> <gray>{prefix}{player}</gray><white>: {message}</white>` |\n\n> **Note:** Player message content is always inserted as plain text regardless of the format style, preventing colour-code injection by players.\n\n---\n\n## How it works\n\n1. `PlayerChatEvent` fires on the proxy when a player sends a chat message\n2. The handler resolves the player's current backend server via `player.getCurrentServer()`\n3. The format string is rendered using the Adventure API (legacy or MiniMessage)\n4. The component is broadcast to all players whose current server is in the configured `servers` list\n5. The original event is **denied** — the backend server never receives the message, so it is not echoed locally\n\n---\n\n## Licence\n\nMIT — see [LICENSE](LICENSE)",
+  "categories": [
+    "adventure",
+    "management",
+    "social",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 56,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.2"
+  ],
+  "date_updated": null
+}

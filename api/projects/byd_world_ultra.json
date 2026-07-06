@@ -1,0 +1,33 @@
+{
+  "id": "KRnCQdDb",
+  "slug": "byd_world_ultra",
+  "title": "BYD_WORLD_ULTRA",
+  "description": "Vanilla Survival Server Basic Integration Plugin",
+  "body": "<p align=\"center\">\n    View this document in:<br> English | <a href=\"https://github.com/Data708983/BYD_WORLD_ULTRA/blob/master/README.zh-cn.md\">简体中文</a>\n</p>\n<a herf=\"https://github.com/Data708983/BYD_WORLD_ULTRA\">\n  <p align=\"center\"><img src=\"https://cdn.modrinth.com/data/cached_images/10648d8abc879ed5077c4a7cdead2e3b13f462d7.png\" alt=\"BYD_ICON\"></p>\n</a>\n<p align=\"center\">Paper Plugin of Vanilla Survival Enhancement</p>\n\n# <center> BYD_WORLD_ULTRA\n\n<p align=\"center\">\n    Give us a star if you like this!\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/Data708983/BYD_WORLD_ULTRA/releases\"><img src=\"https://img.shields.io/github/downloads/Data708983/BYD_WORLD_ULTRA/total?color=%239F7AEA\" alt=\"Release Downloads\"></a>\n  <a href=\"#\"><img src=\"https://img.shields.io/github/repo-size/Data708983/BYD_WORLD_ULTRA?color=6882C4\" alt=\"GitHub Repo Size\"></a>\n  <a href=\"#\"><img src=\"https://img.shields.io/github/last-commit/Data708983/BYD_WORLD_ULTRA?color=%23638e66\" alt=\"Last Commit\"></a>\n  <a href=\"#\"><img src=\"https://img.shields.io/github/release-date/Data708983/BYD_WORLD_ULTRA?color=%15\" alt=\"Release Date\"></a>\n</p>\n<p align=\"center\">\n  <a href=\"#\"><img src=\"https://img.shields.io/badge/MC_version-1.21.x-blue\" alt=\"MC Version\"></a>\n</p>\n\n\n\n## Introduction\n\n**BWU** is a server-side integration plugin for Minecraft Paper servers. It is a vallina survival enhancement plugin.\n\n## Features\n> All features can be configured to be enabled or disabled.\n\n### Player Teleportation\n\n- Use `/tpa to (player name)` to teleport to a player\n- Use `/tpa come (player name)` to invite a player to assist (the invited player will teleport to YOU)\n- Configure whether to enable player confirmation/teleport cooldown/teleport method (including absolute position and safe position) in `tpa.yml`\n- The aliases for this command are `/t` and `/tp`\n\n### Sethome\n\n- Use `/sethome` to set the current location as home\n- Use `/tpa home` or `/tpa to[come] (your player name)` to teleport back home\n- All Tpa commands share the same cooldown timer (the timeout is configurable)\n- The aliases for this command is `/h`\n\n### Broadcast Announcements\n\n- This feature is used to display announcements when players join the game\n- Supports multi-line configuration, player-specific announcements, announcement display blacklist, etc.\n- Integrates PlaceholderAPI, allowing the use of placeholders in announcements\n\n### Suicide\n\n- Use the `/suicide` command to commit a suicide\n- Permissions can be configured using a permissions plugin\n- The aliases for this command are `/s` and `/kill`\n### Death Backtrace\n\n- When a player dies, the coordinates of the death location are echoed in the chat\n- There will be a clickable link to teleport to the death location in the chat\n> When you teleport back to your death location, you gain 3 seconds of extreme resistance\n\n### i18n Suppot\n\n- This plugin supports international language files, allowing you to edit or create relevant language files to customize almost all prompts! in the lang folder\n\n## Configuration\n\n- All configuration files (except locale files) support hot-reloading, no need to reload the server\n\n- Remember to disable debug mode in actual use\n\n### config.yml\n\n```yml\n# (No items yet)\n```\n\n### tpa.yml\n\n```yml\n# TPA feature toggle\nenable: true\n\n# Debug mode (independent of enable)\ndebug: true\n\n# Cooldown time\ncooldown: 60\n\n# Confirmation timeout\nreply: 60\n\n# Whether to enable confirmation\nconfirm: true\n\n# Teleportation method\n# near (safe location within 5 blocks, default), absolute (player's absolute coordinates)\ntype: \"near\"\n\n# Number of records\nrecord: 50\n\n# Cooldown of changing home location\nhomecooldown: 86400\n```\n\n### broadcast.yml\n\n```yml\n# Broadcast feature toggle\nenable: true\n\n# Debug mode (independent of enable)\ndebug: true\n\n# List of players who will not receive announcements\nblacklist:\n  - \"dadsad\"\n  - \"adsddd\"\n\n# Default announcement\ndefault:\n  title: \"Default notice: %player_name%\"\n  content:\n    - \"══════════════════════════════\"\n    - \"Content Ln. 1\"\n    - \"Content Ln. 2\"\n    - \"Content Ln. 3  %img_neitherdoor%\"\n    - \"Content Ln. 4 %img_heart%\"\n    - \"══════════════════════════════\"\n\n# Player-specific announcements\nplayer:\n  - name: \"example name1\"\n    title: \"name1: Welcome to 1.21.8 !\"\n    content:\n      - \"══════════════════════════════\"\n      - \"Content Ln. 1\"\n      - \"Content Ln. 2\"\n      - \"Content Ln. 3\"\n      - \"Content Ln. 4\"\n      - \"══════════════════════════════\"\n  - name: \"example name2\"\n    title: \"name2: Welcome to 1.21.8 !\"\n    content:\n      - \"══════════════════════════════\"\n      - \"Content Ln. 1\"\n      - \"Content Ln. 2\"\n      - \"Content Ln. 3\"\n      - \"Content Ln. 4\"\n      - \"══════════════════════════════\"\n  - name: \"testplayer\"\n    title: \"Test Player Announcement\"\n    content:\n      - \"Content Ln. 1\"\n      - \"Content Ln. 2\"\n      - \"Content Ln. 3\"\n      - \"Content Ln. 4\"\n```\n\n## Dependencies\n\n- Soft dependencies: [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI)\n\n- Recommended: [Emoji+ Resource Pack](https://modrinth.com/resourcepack/emoji-plus) for the best experience\n\n## Building\n\nFeel free to build it yourself when you'd like to try the latest version.\n\nGradle is required to build the project.\n\nTo integrate the CommandAPI, you should bulid the shadowJar:\n\n```sh\ngradle clean shadowJar\n```\n\n---\n\nCheck out the [Changelog](https://github.com/Data708983/BYD_WORLD_ULTRA/blob/master/Doc/Update/2.0.X.md).\n\nPlease report bugs and feature requests. PRs are welcome! 🙏🏻",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 85,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

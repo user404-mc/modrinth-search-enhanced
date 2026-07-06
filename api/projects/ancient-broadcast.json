@@ -1,0 +1,39 @@
+{
+  "id": "hHmxYxQW",
+  "slug": "ancient-broadcast",
+  "title": "Ancient-Broadcast",
+  "description": "AncientBroadcast. Easy Clean and Lagg-free!",
+  "body": "# 📢 Ancient-Broadcast\n\nAncient-Broadcast is a modern, lightweight, and highly configurable broadcast plugin for **Paper / Spigot 1.20+**, built with **Java 21**.  \n✨ Designed to be **lag-free**, scalable, and easy to manage for both small and large servers.\n\nAncient-Broadcast allows server owners to send **professional-looking broadcasts** to all online players, either automatically on a schedule ⏱️ or manually via commands 🧑‍💻. Everything can be configured in-game or via the configuration file.\n\n---\n\n## 🧩 What Ancient-Broadcast does\n\nAncient-Broadcast periodically sends messages (broadcasts) to **all online players** 👥.\n\nEvery broadcast is always sent in the same clean format 🧼:\n- ➖ one empty spacer line\n- 📢 the broadcast message block (single-line or multi-line group)\n- ➖ one empty spacer line\n\n🔊 Optionally, a sound is played for all players when the broadcast is sent.  \nThis keeps chat readable and prevents spam 🚫.\n\n---\n\n## ✨ Features (complete and explained)\n\n### ⏱️ Scheduled broadcasts\nEach broadcast has its own scheduler and runs independently from others.  \nSupported interval units:\n- ⏲️ SECONDS\n- ⏰ MINUTES\n- 🕒 HOURS\n\nThis allows you to run multiple broadcasts at different intervals at the same time.\n\n---\n\n### 🔁 Rotation system\nIf a broadcast contains multiple messages or multiple groups, rotation can be enabled.\n\nRotation modes:\n- 🔢 **SEQUENTIAL** – messages or groups are sent in order\n- 🎲 **RANDOM** – a random message or group is selected each time\n\nRotation is controlled globally and can be enabled, disabled, and switched between modes.\n\n---\n\n### ⭐ Grouped broadcasts (multi-line as ONE broadcast)\nGrouped broadcasts allow multiple lines to be linked together and sent as **one complete broadcast block**.\n\n🔄 Rotation happens per group, not per line.\n\nGrouped broadcasts are ideal for:\n- 💡 tips with multiple lines\n- 📣 announcements\n- 🏷️ server information blocks\n- 🔗 messages containing clickable links\n\nWhen sent, a grouped broadcast appears between one spacer line above and one spacer line below.\n\n---\n\n### 🎨 Colors & formatting\nAncient-Broadcast supports both modern and classic formatting systems.\n\n🧩 **MiniMessage** is fully supported, including colors, gradients, formatting, and click events.\n\n🎨 **Minecraft & color codes** are also supported:\n- &0 – &9\n- &a – &f\n- &l **bold**\n- &o *italic*\n- &n underline\n- &m strikethrough\n- &k magic\n- &r reset\n- 🌈 HEX colors using &#RRGGBB\n\nMiniMessage and & color codes can be mixed in the same message.\n\n---\n\n### 🔗 Clickable links & websites\nClickable links are supported using MiniMessage click events 🖱️.\n\nThis allows linking:\n- 🌍 websites\n- 💬 Discord invites\n- 🛒 web shops\n- 🔗 any external URL\n\n---\n\n### 🔊 Sounds\nEach broadcast can optionally play a sound 🎵.\n\nSound features:\n- 🔇 enable or disable sounds per broadcast\n- 🔔 choose a custom sound per broadcast\n- 🔊 custom volume\n- 🎚️ custom pitch\n- 🎛️ a global default sound\n\nThe default sound is also used by the **broadcast-now** command.\n\n📄 On first startup, the plugin automatically generates a `sounds.yml` file in the plugin folder.  \nThis file contains **all valid sound names** you can use in the configuration or commands.\n\n---\n\n### 🔌 PlaceholderAPI support\nIf **PlaceholderAPI** is installed, placeholders work automatically 🧩.\n\nExamples:\n- `%player_name%`\n- `%vault_eco_balance%`\n\nPlaceholders are resolved **per player**, meaning each player sees their own data 👤.\n\nPlaceholderAPI is optional — the plugin works perfectly without it.\n\n---\n\n### ⚡ Performance & optimization\nAncient-Broadcast is optimized to be fast and lag-free 🚀:\n- ⚙️ uses the Paper scheduler\n- 🚫 no blocking operations\n- 🧠 cached message parsing\n- 🔍 PlaceholderAPI only used if installed and needed\n- 🛡️ safe sound resolution (Paper 1.21+ compatible)\n\n---\n\n## 📦 Requirements\n\n- ☕ Java 21\n- 🧱 Paper / Spigot 1.20+ (Paper recommended)\n- 🧩 Optional: PlaceholderAPI\n\n---\n\n## 🚀 Installation\n\n1️⃣ Download the Ancient-Broadcast jar file  \n2️⃣ Place it into the server **plugins** folder  \n3️⃣ Start the server once (generates config.yml and sounds.yml)  \n4️⃣ Edit `plugins/Ancient-Broadcast/config.yml`  \n5️⃣ Apply changes using `/ab reload`  \n6️⃣ Enable broadcasting globally using `/ab toggle`  \n\n⚠️ The plugin is **disabled by default**.\n\n---\n\n## 🔐 Permissions\n\nAll commands require OP or the following permission 🔑:\n\n`ancientbroadcast.admin`\n\nDefault: OP\n\n---\n\n## 🧑‍💻 Commands (complete list with explanation)\n\n### 📋 General\n- `/ab help` – 📖 shows all available commands  \n- `/ab reload` – 🔄 reloads the configuration file  \n- `/ab toggle` – 🔌 global enable or disable switch  \n- `/ab list` – 📄 lists all broadcasts and their status  \n\n### 📢 Broadcast management\n- `/ab add <id>` – ➕ create a new broadcast  \n- `/ab remove <id>` – ❌ delete a broadcast  \n- `/ab enable <id>` – ✅ enable a broadcast  \n- `/ab disable <id>` – 🚫 disable a broadcast  \n\n### ✏️ Message editing\n- `/ab setmessage <id> <message>` – ✍️ set a single message (overwrites groups and messages)  \n- `/ab addline <id> <message>` – ➕ add a rotating single-line message  \n- `/ab clearlines <id>` – 🧹 clear rotating messages  \n\n### ⭐ Grouped broadcast management\n- `/ab addgroup <id>` – 📦 add a new empty group  \n- `/ab addgroupline <id> <groupIndex> <message>` – 📝 add a line to a group (groupIndex starts at 0)  \n- `/ab listgroups <id>` – 📊 list all groups and line counts  \n\n### ⏲️ Interval & scheduler\n- `/ab setinterval <id> <value> <SECONDS|MINUTES|HOURS>`\n\n### 🔊 Sounds\n- `/ab setsound <id> <on|off> [sound] [volume] [pitch]`\n- `/ab defaultsound <on|off> [sound] [volume] [pitch]`\n\n### 🔁 Rotation\n- `/ab rotation <on|off>`\n- `/ab setmode <SEQUENTIAL|RANDOM>`\n\n### 🧪 Testing & instant broadcasts\n- `/ab test <id>` – ⚡ instantly sends the next broadcast  \n- `/ab broadcastnow <message>` – 📢 sends a one-time broadcast  \n\n---\n\n## ⚙️ Configuration overview\n\nThe configuration file contains the following sections 🧾:\n\n- 🔌 Global enabled toggle  \n- 🔁 Rotation settings (enabled and mode)  \n- 🔊 Default sound settings (enabled, sound, volume, pitch)  \n- 📢 Broadcast definitions  \n\nEach broadcast contains:\n- ✅ enabled toggle\n- ⏱️ interval value and unit\n- 🔊 sound settings\n- 💬 message, messages, or groups\n\nMessage types:\n- 🟢 `message` – single-line broadcast\n- 🔵 `messages` – rotating single-line broadcasts\n- ⭐ `groups` – rotating multi-line broadcasts sent as one block\n\nIf groups are defined, message and messages are ignored.\n\n---\n\n## ❤️ Support\n\nNeed help, found a bug, or have a feature request? 🛠️  \n- 🐞 Open an issue on **Modrinth**  \n- 💬 Or contact the author directly  \n\nEnjoy using **Ancient-Broadcast** 🎉",
+  "categories": [
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 103,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

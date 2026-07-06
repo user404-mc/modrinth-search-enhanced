@@ -1,0 +1,37 @@
+{
+  "id": "Nd5xjrY2",
+  "slug": "whistling-petals",
+  "title": "Whistling Petals",
+  "description": "Arrows can break spore blossoms and harvest glow berries; configurable to support more items",
+  "body": "## Default effect:\n\n![Glow_Berries](https://cdn.modrinth.com/data/cached_images/17c4e7325a8eb5c919258b0fa580f77dc29453fd.gif)![Spore_Blossom](https://cdn.modrinth.com/data/cached_images/93f372afd0a12ca8d00b5315ad6a9338861cf906.gif)\n\n## Configuration files:\n- Path: config\\whistling_petals.json\n- op permission Thermal heavy load command: /whistling_petals reload\n\n### _**Arrow Destruction (canDestroy)**_\n- Arrows can destroy hit or pass blocks.\n- Uses the same block syntax as Minecraft's /setblock command, supporting block states.\n\n_Example:_\n```\n\"canDestroy\": [\n    \"minecraft:spore_blossom\",\n    \"minecraft:mangrove_propagule[hanging=true,age=4]\"\n]\n```\n- 1: destroys default state spore_blossom.\n- 2: destroys mangrove_propagules that are hanging and have age=4\n\n### _**Arrow Plucking (canPluck)**_\n- When an arrow passes through a block, it can pluck fruits or crops and generate drops.\n- Format: Define one or more plucking rules for each block.\n\n_Example:_\n```\n\"canPluck\": {\n    \"minecraft:cave_vines\": [\n        {\n            \"state\": \"berries\",\n            \"pluck\": true,\n            \"after\": false,\n            \"drops\": [\n                { \"item\": \"minecraft:glow_berries\" },\n                { \"item\": \"minecraft:glow_berries\", \"min\": 1, \"max\": 2 }\n            ]\n        }\n    ]\n}\n```\n- state: The block state name to check\n- pluck: The value that triggers plucking (when the state equals this value)\n- after: The value to set the state to after plucking\n- drops: List of items to drop, supports random count (min/max). Defaults to 1 if omitted\n\n### _Tip:_\n- Press F3 + I to copy the /setblock command for the block you're looking at. \n- The command includes the block's registry name and full state — you can directly copy the block part from it to use in your configuration.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 88,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

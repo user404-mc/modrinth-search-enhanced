@@ -1,0 +1,36 @@
+{
+  "id": "bFZjcUs0",
+  "slug": "leratrap",
+  "title": "LeraTrap",
+  "description": "Modern, feature-rich trap management plugin with party system and multilingual support!",
+  "body": "# LeraTrap\n\nLeraTrap is a modern, feature-rich Minecraft trap plugin! Protect your base, manage your trap, party up with friends, and more!\n\n---\n\n## Features\n\n- **Trap Management**: Create, buy, and manage traps for your chunks!\n- **Trap Protection**: Protect your trap from other players!\n- **TNT Damage System**: TNT deals damage to traps!\n- **Trap Shop GUI**: Buy available traps with in-game currency!\n- **Trap Balance**: Deposit and withdraw money from your trap!\n- **Trap Settings GUI**: Configure PVP, block placing/breaking, member taxes!\n- **Party System**: Create parties, invite friends, teleport to party members!\n- **Friendly Fire Control**: Toggle friendly fire in your party!\n- **PlaceholderAPI Support**: Use placeholders for scoreboards, chat, etc.!\n- **Multilingual Support**: Turkish (tr) and English (en) language packs!\n- **SQLite & MySQL Database Support**: Save your trap data!\n\n---\n\n## Commands\n\n### Trap Commands\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/trap` | Open trap main menu | `leratrap.use` |\n| `/trap toggle` | Open trap settings GUI | `leratrap.use` |\n| `/trap deposit <amount>` | Deposit money to your trap | `leratrap.use` |\n| `/trap withdraw <amount>` | Withdraw money from your trap | `leratrap.use` (Requires high rank) |\n| `/trap info` | Show trap information | `leratrap.use` |\n| `/trap leave` | Leave your current trap | `leratrap.use` |\n| `/trap fly` | Toggle fly mode in your trap | `leratrap.fly` |\n| `/trap kick <player>` | Kick a player from your trap | `leratrap.use` (Requires high rank) |\n| `/trap rank <player> <rank>` | Set a player's trap rank | `leratrap.use` (Requires high rank) |\n| `/trap trust add <player>` | Add a player to your trap | `leratrap.use` |\n| `/trap trust remove <player>` | Remove a player from your trap | `leratrap.use` |\n\n### Party Commands\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/party create` or `/parti create` | Create a party | `leratrap.party` |\n| `/party setpassword <password>` or `/parti setpassword <password>` | Set party password | `leratrap.party` |\n| `/party join <player> <password>` or `/parti join <player> <password>` | Join a party | `leratrap.party` |\n| `/party tp <player>` or `/parti tp <player>` or `/ptp <player>` | Teleport to a party member (3-second countdown, cancelled if moved) | `leratrap.party` |\n| `/party delete` or `/parti delete` | Delete your party | `leratrap.party` |\n| `/party toggle friendly-fire` or `/parti toggle friendly-fire` | Toggle party friendly fire | `leratrap.party` |\n\n### Admin Commands\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/trapadmin reload` | Reload the plugin | `leratrap.admin` |\n| `/trapadmin list` | List all traps | `leratrap.admin` |\n| `/trapadmin create` | Create a new sellable trap in the current chunk | `leratrap.admin` |\n| `/trapadmin delete <trap_id|player>` | Delete a trap (either by ID or by player name) | `leratrap.admin` |\n| `/trapadmin remove` | Remove the trap in the current chunk | `leratrap.admin` |\n| `/trapadmin removeall` | Delete ALL traps on the server | `leratrap.admin` |\n| `/trapadmin healty <trap_id> <amount>` | Set a trap's health | `leratrap.admin` |\n| `/trapadmin chunkadd <trap_id>` | Add the current chunk to a trap | `leratrap.admin` |\n| `/trapadmin chunkremove <trap_id>` | Remove the current chunk from a trap | `leratrap.admin` |\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `leratrap.use` | Use basic trap commands | `true` |\n| `leratrap.party` | Use party commands | `true` |\n| `leratrap.admin` | Use admin commands | `op` |\n| `leratrap.bypass` | Bypass trap protections | `op` |\n| `leratrap.fly` | Fly in your own trap | `op` (change as needed for ranks) |\n\n---\n\n## Installation\n\n1. Download the latest version of LeraTrap\n2. Put the `.jar` file in your server's `plugins` folder\n3. **Required Plugins**:\n   - [Vault](https://www.spigotmc.org/resources/vault.34315/) (for economy support)\n   - An economy plugin (e.g., EssentialsX, CMI, etc.)\n4. **Optional Plugins**:\n   - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (for placeholders)\n5. Start or restart your server!\n6. Configure `plugins/LeraTrap/config.yml` and language files in `plugins/LeraTrap/lang/`!\n\n---\n\n## Configuration\n\n### config.yml\n```yaml\n# Language: tr or en\nlanguage: tr\n\ntrap:\n  health_system_enabled: true\n  default_health: 15000.0\n  max_health: 15000.0\n  creation_cost: 10000.0\n\nchunk:\n  max_chunks_per_trap: 3\n\npvp:\n  enabled_in_trap_areas: true\n  protect_trap_owner: false\n  allow_non_owner_pvp: true\n  friendly_fire: false\n\ninteraction:\n  allow_food_consumption: true\n  allow_consumables: true\n  restrict_specific_blocks_only: true\n  crafting_table_restricted: true\n  tnt_break_blocks: false\n\ntnt_damage:\n  min: 50.0\n  max: 150.0\n\nactionbar:\n  enabled: true\n\nhealth_upgrades:\n  1000:\n    material: \"REDSTONE_BLOCK\"\n    cost: 10000.0\n  2000:\n    material: \"DIAMOND_BLOCK\"\n    cost: 20000.0\n  full:\n    material: \"EMERALD_BLOCK\"\n    cost: 50000.0\n\nplaceholders:\n  enabled: true\n  owner_format: \"%owner%\"\n\ndatabase:\n  type: \"sqlite\"\n  sqlite_file: \"traps.db\"\n  mysql:\n    host: \"localhost\"\n    port: 3306\n    database: \"leratrap\"\n    username: \"root\"\n    password: \"password\"\n    use_ssl: false\n\ndebug: false\n```\n\n---\n\n## Placeholders (PlaceholderAPI)\n\n| Placeholder | Description |\n|-------------|-------------|\n| `%leratrap_trap_name%` or `%leratrap_name%` | Name of the trap you own/member of or \"Trap Yok!\" if none |\n| `%leratrap_trap_healty%` or `%leratrap_health%` or `%leratrap_healty%` | Current health of your trap |\n| `%leratrap_max_health%` | Maximum health of your trap |\n| `%leratrap_owner%` | Owner of your trap |\n| `%leratrap_chunk_count%` | Number of chunks in your trap |\n\n---\n\n## Trapper Ranks\n\n| Rank | Permissions |\n|------|-------------|\n| **Leader** (Owner) | All permissions, withdraw money, kick, set ranks, change settings |\n| **Assistant** | Change settings, kick, add/remove members, set ranks (Assistant and below) |\n| **Chief** | Add/remove members |\n| **Member** | Basic access to trap |\n\n---",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 22,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

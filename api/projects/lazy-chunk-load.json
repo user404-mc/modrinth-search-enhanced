@@ -1,0 +1,38 @@
+{
+  "id": "ZsyQkd1s",
+  "slug": "lazy-chunk-load",
+  "title": "Lazy Chunk Load",
+  "description": "The vanilla chunk loading system schedules a massive number of chunks around the player all at once, causing instant server CPU overload and TPS collapse",
+  "body": "# Lazy Chunk Load\n\n**The vanilla chunk loading system schedules a massive number of chunks around the player all at once, causing instant server CPU overload and TPS collapse.** Lazy Chunk Load improves this process: it controls chunk loading speed like a faucet — automatically turning down when the CPU is busy and opening up when idle — so exploring new terrain no longer stutters.\n\n---\n\n## What This Mod Does\n\n### 🚶 Anti-Lag Exploration\n\nWith this mod installed, the server **automatically adjusts chunk loading frequency based on current CPU usage**. Full speed when usage is low, automatically slows down when usage spikes — TPS stays rock-solid throughout.\n\n- **It doesn't make chunk loading faster** — it makes it smoother. Trade a bit of instant speed for a stutter-free experience.\n- True prevention, not an after-the-fact fix.\n\n### 🔄 Background Preloading\n\nWhen you're standing still, the mod **automatically uses idle CPU to preload ungenerated chunks around you**.\n\nPriority: chunks under your feet first, then in your line of sight, then to the sides and behind.\n\n- Enabled by default, works while idling.\n- Automatically pauses when the CPU is busy — never steals resources.\n- Status output to log every 5 seconds.\n\n### 🛡️ Additional Protections\n\n- **Login Warmup**: No limits for the first 10 seconds after joining a world, ensuring initial terrain loads quickly.\n- **Save Safety**: Automatically pauses all chunk loading during world saves to prevent save stalling.\n- **Emergency Bypass**: When the player steps on an unloaded chunk, all limits are bypassed and the chunk loads immediately.\n\n---\n\n## Installation\n\nDrop it into your `mods` folder — no configuration needed to work out of the box. Server-side only; clients do not need to install it.\n\nSingleplayer works perfectly fine too.\n\n| Platform | Supported Versions |\n|---|---|\n| Fabric | 1.21.x, 26.1+ |\n| Forge | 1.20.1 |\n\n> 💡 Fully compatible with optimization mods like C2ME, Lithium, and VulkanMod. Does not modify chunk generation algorithms — only adjusts loading rhythm.  \n> 🗺️ Automatically detects Chunky pre-generation tasks — lifts CPU limits for full speed during generation and notifies in chat; restores automatically when complete.  \n> 💡 Occasional red numbers on the right side of the F3 debug screen are normal — this is the priority scheduler recalculating chunk load order in real time. It's the necessary cost of dynamic queue management, and the tradeoff is smooth exploration without stutter.\n\n---\n\n## Monitoring\n\nEvery 5 seconds a status line is logged to `logs/latest.log`:\n\n```\n[LazyChunkLoad] Tick:1200 CPU:45% Sched:3/t Warmup:N Preload:ON Main:OK\n```\n\n| Field | Meaning |\n|---|---|\n| `Tick` | Current tick count |\n| `CPU` | CPU usage percentage |\n| `Sched` | Chunks loaded last tick |\n| `Warmup` | Y=Warming up / N=Normal |\n| `Preload` | ON=Active / OFF=Disabled / PAUSED=CPU too high |\n| `Main` | OK=Full speed / SLOW=Throttled |\n\n---\n\n## Configuration\n\nThe config file is located at `config/lazychunkload.json` (auto-generated, takes effect immediately on changes).\n\n**If you just want to use the mod normally, you don't need to read any of this — the defaults are already best practice.**\n\n<details>\n<summary>📝 Full Configuration Reference (click to expand)</summary>\n\n| Option | Default | Description |\n|---|---|---|\n| `cpu_threshold` | 0.85 | CPU usage threshold for throttling (0~1, higher = more lenient) |\n| `warmup_ticks` | 200 | How many ticks after login to skip limits (20 ticks = 1 second) |\n| `preload_enabled` | true | Enable background preloading |\n| `preload_radius` | 64 | Preload radius (in chunks) |\n| `preload_delay_seconds` | 1 | Seconds of standing still before preloading begins |\n| `distance_weight` | 0.5 | Distance priority weight (closer = more priority) |\n| `direction_weight` | 0.4 | Direction priority weight (forward-facing = more priority) |\n| `aging_weight` | 0.1 | Aging priority weight (long-unloaded = more priority) |\n| `direction_multiplier` | 5.0 | Direction bonus multiplier |\n| `aging_factor_ms` | 10000 | How many milliseconds count as \"aged\" |\n| `log_loading` | false | Log detailed info to console |\n| `performance_tips` | true | Show chat tips when CPU usage is high |\n\nThere is also a runtime config at `config/lazychunkload-runtime.json`:\n\n| Option | Default | Description |\n|---|---|---|\n| `limit_enabled` | false | Set to true to completely disable CPU limits (full speed) |\n| `tips_disabled` | false | Set to true to disable chat performance tips |\n\n</details>\n\n---\n\n## How It Works\n\n1. Checks CPU usage once per tick (1-second cache, near-zero overhead).  \n2. CPU below 85%: chunks load normally, no restrictions.  \n3. CPU above 85%: chunk loading frequency is automatically reduced — the higher the CPU, the stronger the limit, but **even in the worst case, at least one pass is allowed every 0.2 seconds** — ensuring terrain never gets permanently stuck.  \n4. When you're standing still: background scanning of ungenerated chunks around you, loaded in prioritized batches.  \n5. When you're exploring: stepping on an empty chunk triggers an immediate emergency bypass with no limits applied.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "optimization",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 103,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

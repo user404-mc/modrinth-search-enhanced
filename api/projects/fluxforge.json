@@ -1,0 +1,34 @@
+{
+  "id": "gdumnEZO",
+  "slug": "fluxforge",
+  "title": "FluxForge",
+  "description": "An industrial tech plugin for Minecraft servers. Build power networks, automate your world.",
+  "body": "# FluxForge\n\nFluxForge is an industrial tech plugin for Paper, Spigot and Purpur servers. Build energy networks using generators, solar panels and batteries connected through copper conduits. Automate your world with machines that mine, smelt, sort items and grind mobs. Craft your way up through a three-tier component system and eventually build a Flux Jetpack to fly around your setup. No mods or resource packs required.\n\n---\n\n## Features\n\n- **Energy network system** with per-machine buffers, conduit routing, and automatic network split/merge\n- **8 machines:** Generator, Solar Panel, Battery, Electric Furnace, Miner, Mob Grinder, Item Sorter, Charging Station\n- **Flux Jetpack** worn in the chestplate slot, charged at a Charging Station\n- **Three-tier crafting progression** from vanilla copper plates up to nether star powered components\n- **In-game recipe viewer** via `/ff recipes`, available to all players\n- **Flux Wrench** to open GUIs for every machine\n- **Toggleable machines** - Miner and Mob Grinder are off by default, toggle with the wrench\n- **Full localization** - English and Czech included, easy to add more languages\n- **SQLite by default**, MySQL and MariaDB supported with a built-in migration command\n- **Fully configurable** energy values, machine costs, fuel rates and more\n\n---\n\n## Showcase Video\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/1piaQb2JtYs\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n---\n\n## Energy System\n\nEvery machine has its own FE (Flux Energy) buffer. Generators and solar panels produce energy which flows through copper grate conduits to consumer machines. Batteries store excess power for use when generators cannot keep up. Breaking a conduit splits the network cleanly with no energy lost. The more machines drawing from one generator, the faster it burns through fuel.\n\n---\n\n## Machines\n\n| Machine | Description |\n|---------|-------------|\n| Generator | Burns coal, charcoal or coal blocks to produce 10 FE/s. Holds 1000 FE. |\n| Solar Panel | Produces 3 FE/s during daylight with sky access. Passive, no fuel needed. |\n| Battery | Stores up to 5000 FE. Absorbs excess from generators, supplements consumers. |\n| Electric Furnace | Smelts items using FE instead of fuel. 50 FE per smelt. |\n| Miner | Automatically mines blocks straight down. 100 FE per block. Toggleable. |\n| Mob Grinder | Kills hostile mobs within 8 blocks. 75 FE per kill. Toggleable. |\n| Item Sorter | Moves items from a source chest to destination chests by material filter. 10 FE per operation. |\n| Charging Station | Charges the Flux Jetpack. 10 FE/s charge rate. |\n\n---\n\n## Crafting Progression\n\nFluxForge has a three-tier component system. All recipes are viewable in-game with `/ff recipes`.\n\n**Tier 1** uses only vanilla materials - copper ingots, iron ingots, gold ingots and redstone. Produces Copper Plates, Iron Plates, Gold Plates and Basic Circuits.\n\n**Tier 2** requires diamonds and nether stars - produces Advanced Circuits, Machine Frames, Energy Cores and Flux Coils. Most early machines are crafted at this tier.\n\n**Tier 3** requires nether stars and blaze rods - produces Flux Crystals, Advanced Machine Frames and Energy Cells. The Miner, Mob Grinder and Jetpack are unlocked here.\n\n---\n\n## Flux Jetpack\n\nCrafted at Tier 3 and worn in the chestplate slot. Charge it at a Charging Station connected to your energy network. Double-tap space to activate flight, double-tap again to deactivate. If charge runs out mid-air, Slow Falling kicks in automatically so you land safely. Current charge is always shown in the item lore.\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/ff recipes` | Browse all crafting recipes | All players |\n| `/ff give <machine> [amount]` | Give a machine item | `fluxforge.admin` |\n| `/ff givecomponent <component> [amount]` | Give a component or jetpack | `fluxforge.admin` |\n| `/ff givewrench` | Give a Flux Wrench | `fluxforge.admin` |\n| `/ff setenergy <amount>` | Set energy on the machine you are looking at | `fluxforge.admin` |\n| `/ff language [lang]` | View or change the active language | `fluxforge.admin` |\n| `/ff reload` | Reload config and translations | `fluxforge.admin` |\n| `/ff migratedb confirm` | Migrate SQLite data to MySQL | `fluxforge.admin` |\n\nThe `/ff` alias and `/fluxforge` both work for all commands.\n\n---\n\n## Configuration\n\n```yaml\n# FluxForge Configuration\nlanguage: en_us\n\ndatabase:\n  type: sqlite # Change to 'mysql' for MySQL/MariaDB\n  mysql:\n    host: localhost\n    port: 3306\n    database: fluxforge\n    username: root\n    password: password\n    pool-size: 10\n\nmachines:\n  generator:\n    production-per-tick: 10   # FE produced per second\n    max-buffer: 1000          # Maximum FE the generator holds\n    transfer-rate: 50         # FE pushed to network per tick\n    coal-ticks: 80            # Burn time per coal in ticks\n  solar-panel:\n    production-per-tick: 3\n    max-buffer: 300\n    transfer-rate: 20\n  battery:\n    max-buffer: 5000\n    transfer-rate: 100\n  electric-furnace:\n    energy-cost: 50\n  miner:\n    energy-cost: 100\n  mob-grinder:\n    energy-cost: 75\n    radius: 8\n  item-sorter:\n    energy-cost: 10\n  charging-station:\n    charge-rate: 10\n```\n\nRun `/ff reload` to apply changes without restarting.\n\n---\n\n## Translations\n\nFluxForge ships with English (`en_us`) and Czech (`cs_cz`). To add a new language, copy `en_us.yml` from the `translations/` folder, rename it, translate the values and set it as active in `config.yml`. Switch languages live with `/ff language <code>`.\n\n---\n\n## Requirements\n\n- Paper, Spigot or Purpur 1.21.1+\n- Java 21+\n\n---\n\n## Links\n\n- [GitHub Repository](https://github.com/DogeTennant/FluxForge)\n- [Wiki](https://github.com/DogeTennant/FluxForge/wiki)\n- [Bug Reports & Suggestions](https://github.com/DogeTennant/FluxForge/issues)",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

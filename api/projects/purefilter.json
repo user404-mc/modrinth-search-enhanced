@@ -1,0 +1,24 @@
+{
+  "id": "jtN3aYSz",
+  "slug": "purefilter",
+  "title": "PureFilter",
+  "description": "PureFilter is a lightweight, advanced chat filter for Paper 26.1.2 (Java 25) that uses a Fuzzy-Matching engine to instantly block profanity disguised with spaces, leet-speak, or unicode, featuring full HEX color support and automated console punishments.",
+  "body": "# PureFilter\n\n**PureFilter** is an advanced, lightweight, and highly effective chat profanity filtering plugin designed for modern servers running on **Paper 26.1.2** (and higher, requiring **Java 25**).\n\nUnlike traditional filters that only check for exact word matches, PureFilter utilizes an **intelligent Fuzzy-Matching engine**. By processing and normalizing player messages on the fly, it effortlessly blocks even the most clever attempts to bypass the filter.\n\n---\n\n## 🚀 Key Features\n\n*   **Intelligent Fuzzy-Matching Engine:** Automatically detects and neutralizes bypass attempts, including:\n    *   **Leet-speak:** Substitution of letters with numbers or symbols (e.g., `0→o`, `3→e`, `4→a`, `5→s`, `!→i`, `$+s`).\n    *   **Chat Separators:** Breaking up words with spaces, dots, dashes, underscores, or special characters.\n    *   **Unicode Homoglyphs / Cyrillic:** Blocks lookalike characters from other alphabets used to disguise banned words.\n    *   **Repeated Characters:** Automatically collapses duplicated letters.\n*   **Three Operation Modes (`filter.mode`):**\n    *   `AUTO`: Uses the powerful, aggressive built-in word lists for English (`en.txt`) and Polish (`pl.txt`).\n    *   `MANUAL`: Completely ignores built-in lists and relies solely on your custom files inside the `words/custom/` directory.\n    *   `AUTO_MANUAL`: Combines both built-in lists and your custom word lists for maximum security.\n*   **Automated Punishment System:** Automatically dispatches any configured console commands instantly when a prohibited word is flagged (e.g., auto temp-mute).\n*   **In-Chat Admin Alerts:** Real-time staff notifications for players with the required permission, featuring explicit warnings when the strict AUTO mode is active.\n*   **Modern Chat Support:** Full **Adventure API** integration, providing native support for legacy color codes (`&c`, `&a`) and modern **HEX (#RRGGBB)** format.\n*   **High Performance:** Banned words are pre-computed and stored in a high-speed `HashSet`, ensuring instant $O(1)$ lookups without affecting server thread performance.\n\n---\n\n## 🛠️ Commands & Permissions\n\nEvery subcommand features independent permission checks handled directly within the source code:\n\n*   `/purefilter reload` (Alias: `/pf reload`) – Reloads the configuration and word lists.\n    *   Permission: `purefilter.admin.reload`\n*   `/purefilter info` (Alias: `/pf info`) – Displays plugin version, active filter mode, and loaded word count.\n    *   Permission: `purefilter.admin.info`\n*   `/purefilter status` (Alias: `/pf status`) – Displays whether the filter is currently enabled or disabled.\n    *   Permission: `purefilter.admin.status`\n\n### Additional Permissions:\n*   `purefilter.admin` – Parent permission node (automatically grants access to `reload`, `info`, and `status`). Default: **OP**.\n*   `purefilter.admin.message` – Allows receiving in-chat alerts when a player triggers the filter. Default: **OP**.\n*   `purefilter.admin.override` – **Complete filter bypass.** Messages from this player are never checked or blocked. *Note: This permission is intentionally NOT a child of `purefilter.admin` and must be explicitly granted (e.g., via LuckPerms).* Default: **false**.\n\n---\n\n## ⚙️ Default Configuration (`config.yml`)\n\nThe plugin automatically generates a clean config file supporting multilingual system messages out-of-the-box:\n\n```yaml\nplugin:\n  enabled: true\n  language: en\n  prefix: \"&8[&b&lPureFilter&8]&r \"\n\nfilter:\n  mode: AUTO\n  manual-files:\n    # - mywords.txt\n\npunishment:\n  commands:\n    - \"tempmute {player} 5m\"",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

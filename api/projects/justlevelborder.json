@@ -1,0 +1,35 @@
+{
+  "id": "bRHWCohn",
+  "slug": "justlevelborder",
+  "title": "JustLevelBorder",
+  "description": "For every xp level you get, the worldborder will increase",
+  "body": "# JustLevelBorder\nby BinJustDev\n## What this project does\n\nJustLevelBorder is a lightweight plugin for Minecraft Java Edition (1.21.x) that controls the World Border size based on player XP levels.\n\nThe world border is centered at (0.5, 0.5) in the main world and automatically grows or shrinks as players gain or lose XP levels.\nThe border size follows a simple formula: \n```\nBorder Size = 1 + (Level × blocks-per-level)\n```\n**Depending on configuration**, the border can be:\n\nDriven by the highest current level of all players (even if they are offline), or\n\nFully shared, meaning all online players have the exact same XP bar (level and progress are synchronized in real time).\n\nLevel loss through death, enchanting, or anvil usage is detected, stored, and reflected in the world border size accordingly.\n\n## Why you should download this plugin\nJustLevelBorder is ideal if you want:\n\n- A progression-based survival challenge\n\n- A server where XP directly controls exploration\n\n- A minimal plugin with no databases and no dependencies\n\n- Persistent progression that does not reset when players go offline\n\n- Optional shared XP gameplay\n\nThe plugin is intentionally kept simple and transparent, making it easy to configure, extend, or audit.\n\n\n## Please read this before using the plugin:\n- The world border is server-side and affects all players in the main world.\n- Player levels are stored persistently in saved_levels.yml. This file represents the current levels, not all-time highs.\n- When use-shared-levels is enabled: All online players share the same XP level and XP bar. The shared level initializes from the highest stored level, even if that player is offline.\n- On death, players are reset to level 0 (if enabled), and the border may shrink.\n- Border changes are animated smoothly (configurable).\n- The plugin never logs level or border changes to the server console.\n- Chat notifications for level loss are optional and can be toggled in-game.\n\n**The plugin affects only the overworld (first loaded world).**\n\n## How to download and install\n\n1. Download the JustLevelBorder.jar\n\n2. Place the jar into your server’s plugins/ folder\n\n3. Start or restart the server\n\n4. Edit config.yml to your liking\n\n5. Run /justlevelborder reload to apply changes\n\n## Commands\n\n```\n/justlevelborder\n/levelborder\n```\nShows a short explanation of the plugin.\n```\n/justlevelborder status\n```\nDisplays the current plugin state (mode, highest level, border size, animation time, notifications).\n```\n/justlevelborder reload\n```\nReloads config.yml and saved_levels.yml and immediately applies the values.\n```\n/justlevelborder notifications on|off\n```\nEnables or disables chat notifications for level loss.\n\n## Config\n```\ncenter-x: 0.5\ncenter-z: 0.5\n```\nThese values define the center point of the world border in the main world.\n0.5, 0.5 centers the border exactly on the middle of the (0,0) block.\nYou can change these values if you want the border centered elsewhere.\n```\nuse-shared-levels: false\n```\nControls how player XP levels are handled.\nfalse (default):\nEach player keeps their own XP level.\nThe world border is based on the highest current level of all players, even if that player is offline.\n\ntrue:\nAll online players share the same XP level and XP progress bar.\nWhen one player gains or loses XP, everyone updates instantly.\nThe shared level initializes from the highest stored level, preventing offline players from losing progress.\n```\nlose-progress-on-death: true\n```\nControls what happens when a player dies.\ntrue (default):\nThe player is reset to level 0 on death.\nThis value is saved persistently.\nThe world border may shrink depending on the new highest level.\n\nfalse:\nThe player keeps their level on death.\nNo border change is triggered by death alone.\n```\nblocks-per-level: 2\n```\nDefines how much the world border grows per XP level.\nHigher values make progression faster; lower values make the challenge more challenging.\n```\nborder-transition-seconds: 1\n```\nControls how long the world border takes to resize.\n0 → instant change\n1 or higher → smooth animation in seconds\nThis affects all border updates, including growth and shrinking.\n```\nnotifications:\n  enabled: true\n  ```\n  Controls whether players see chat messages when someone loses XP levels.\n\ntrue (default):\nRed chat messages are sent to all players.\nMessages explain who lost levels, why, and whether the border changed.\n\nfalse:\nNo chat messages are sent.\nBorder logic still works normally.\n  ```\ncauses:\n  anvil: \"anvil\"\n  enchanter: \"enchanter\"\n  dying: \"dying\"\n  other: \"other\"\n```\nThese strings are used in notification messages to describe why a player lost levels.\nExamples:\nUsing an anvil → \"anvil\"\n\nEnchanting items → \"enchanter\"\n\nPlayer death → \"dying\"\n\nAny other reason → \"other\"\n\nYou can customize these freely.\n\n## **PLEASE NOTE:**\nThe plugin is not being worked on anymore.\nThanks for playing JustLevelBorder. ❤️\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 99,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

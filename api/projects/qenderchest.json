@@ -1,0 +1,37 @@
+{
+  "id": "Qo56Rmyj",
+  "slug": "qenderchest",
+  "title": "qEnderChest",
+  "description": "Allows players to expand their Ender Chest by unlocking extra rows with PlayerPoints, using a custom GUI with persistent progress.",
+  "body": "[![Support me on Ko-fi](https://cdn.modrinth.com/data/cached_images/c00c3aa5826e038f3497c8a2509f77db9a82bd52.png)](https://ko-fi.com/qustaneu)\n# qEnderChest\n\n## Features\n\n- Custom ender chest GUI with 3 rows available by default (up to 6 total)\n- Players can unlock additional rows by spending PlayerPoints\n- Purchase confirmation screen before spending points\n- Shift-click (quick-move) support — blocked automatically when the chest is full\n- Info book item showing balance, unlocked rows, and next row price (hidden when all rows are unlocked)\n- Sounds for success, error, and insufficient balance events (configurable)\n- Admin commands to reset, set, or give rows to any player\n- Data stored in a local SQLite database — no external database required\n- Fully configurable messages, prices, sounds, and menu title\n\n---\n\n## Dependencies\n - PlayerPoints\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/ec` | Open your ender chest | `qenderchest.use` |\n| `/ec reload` | Reload the config | `qenderchest.admin` |\n| `/ec reset <player>` | Reset a player's progress and data | `qenderchest.admin` |\n| `/ec setrows <player> <amount>` | Set the number of extra unlocked rows (0–3) | `qenderchest.admin` |\n| `/ec giverows <player> <amount>` | Give extra rows to a player | `qenderchest.admin` |\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `qenderchest.use` | Open the chest via `/ec` | `true` |\n| `qenderchest.open` | Open the chest by right-clicking an ender chest block | `true` |\n| `qenderchest.buy` | Purchase additional rows | `true` |\n| `qenderchest.admin` | Access admin commands | `op` |\n\n---\n\n## Configuration\n\n```yaml\n# Allow opening the chest with /ec\nopen-by-command: true\n\n# Allow opening the chest by right-clicking an ender chest block\nopen-by-enderchest-click: true\n\n# Require qenderchest.open permission when opening by block click\nrequire-permission-for-block-open: true\n\n# PlayerPoints cost to unlock each additional row\nrows:\n  4: 100\n  5: 250\n  6: 500\n\n# Title displayed in the chest GUI (supports color codes with &)\nmenu-title: \"&5Ender Chest\"\n\n# Material used for locked row slots\nlocked-item-material: \"GRAY_STAINED_GLASS_PANE\"\n\n# Player-facing messages (support color codes and placeholders)\nmessages:\n  not-enough: \"&cNot enough PlayerPoints. Required: &6%price% points\"\n  purchase-success: \"&aYou have successfully unlocked row &e%row%&a for &6%price% points&a!\"\n  row-already-open: \"&eThis row is already unlocked or not available for purchase.\"\n  no-permission: \"&cYou do not have permission for this action.\"\n  players-only: \"&cThis command can only be used by players.\"\n  config-reloaded: \"&aConfig reloaded.\"\n\n# Sounds played on various events (use Bukkit Sound enum names)\nsounds:\n  success: \"ENTITY_PLAYER_LEVELUP\"\n  error: \"BLOCK_NOTE_BLOCK_BASS\"\n  not-enough: \"BLOCK_ANVIL_LAND\"\n```\n\n---\n\n## How It Works\n\n1. A player opens their chest via `/ec` or by right-clicking an ender chest block\n2. The first 3 rows are always available for storage\n3. Locked rows show a glass pane with the unlock price — clicking one opens a confirmation screen\n4. After confirming, the required PlayerPoints are deducted and the row is permanently unlocked\n5. Items are saved to an SQLite database when the player closes the chest\n6. When all 6 rows are unlocked, the info book is removed and every slot becomes usable storage\n\n---",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 25,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

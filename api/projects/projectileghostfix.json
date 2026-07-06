@@ -1,0 +1,32 @@
+{
+  "id": "fDh1OUPz",
+  "slug": "projectileghostfix",
+  "title": "ProjectileGhostFix",
+  "description": "Fabric server-side mod that reduces projectile ghosting against fast-moving targets.",
+  "body": "# ProjectileGhostFix\n\nProjectileGhostFix reduces server-side projectile ghosting against fast-moving targets. Without ProjectileGhostFix, vanilla projectile collision can miss cases where a projectile starts inside a target's hitbox or crosses a moving target during the same tick.\n\n## Installation\n\nInstall on the server. A client-only install on multiplayer servers will not affect server-authoritative projectile collision.\n\n## Behavior\n\n- Reduces projectile ghosting against fast-moving targets.\n- Catches projectile hits that start inside a target's hitbox.\n- Catches projectile hits where the projectile and target cross during the same tick.\n- Keeps vanilla projectile hits unchanged when vanilla already detects the collision.\n\n## Configuration\n\nProjectileGhostFix creates `config/projectile-ghost-fix/projectile-ghost-fix.properties` on first launch. The default config enables the fix globally and leaves `wind_charge.vs.player` disabled, so wind-charge collisions against players stay vanilla unless a server owner opts in.\n\nServer operators can change the config in-game:\n\n```mcfunction\n/projectileghostfix status\n/projectileghostfix on\n/projectileghostfix off\n/projectileghostfix mode raystart_inside true\n/projectileghostfix mode swept_volume true\n/projectileghostfix pair set wind_charge player true\n/projectileghostfix pair set wind_charge player false\n/projectileghostfix pair clear wind_charge player\n/projectileghostfix pair list\n/projectileghostfix reload\n```\n\nPer-pair overrides use `<projectile>.vs.<target>`. Projectiles are entity registry paths such as `wind_charge`, `ender_pearl`, `arrow`, or `any`. Targets are `player`, `projectile`, `other`, or `any`.\n\n## Versions\n\n- `26.1.x`: Minecraft Java 26.1 through 26.1.2\n\n## Requirements\n\n- Minecraft Java 26.1.x\n- Fabric Loader 0.19.2 or newer\n- Fabric API 0.149.1 or newer\n\n## License\n\nUnlicense\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 116,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

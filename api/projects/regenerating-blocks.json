@@ -1,0 +1,23 @@
+{
+  "id": "gOTLjwdN",
+  "slug": "regenerating-blocks",
+  "title": "Regenerating Blocks",
+  "description": "Minecraft mod that adds a special block which can regenerate into another block after a delay.",
+  "body": "## Regenerating Blocks\n\nRegenerating Blocks is a cross-loader Minecraft mod for **Fabric** and **Forge** that adds a special block which can regenerate into another block after a delay.\n\n### Features\n\n- A regenerating block that can be configured to restore a target block\n- Timer-based regeneration\n- Block/item tooltip information\n- Command support for setting up regenerating blocks\n- Jade integration for extra block info where available\n\n### Commands\n\nThe mod adds a command for creating a correctly configured regenerating block item:\n\n```text\n/regeneratingblocks <target> <block> <timer>\n```\n\n- `<target>` — one or more players who should receive the item\n- `<block>` — the block that this regenerating block will restore\n- `<timer>` — regeneration time in ticks, minimum `1`\n\nExample:\n\n```text\n/regeneratingblocks @p minecraft:diamond_ore 1200\n```\n\nThis gives the selected player a regenerating block item with the correct `TargetBlock` and `Timer` NBT values already set.\n\n### Global regenerating blocks via tags\n\nYou can also make any block a globally regenerating block by adding it to a block tag whose path starts with `regenerating/`.\n\nThe mod reads tags in the following format:\n\n```text\ndata/regeneratingblocks/tags/blocks/regenerating/<timer>.json\n```\n\nWhere:\n\n- `regeneratingblocks` is the mod namespace\n- `<timer>` is the regeneration time in ticks\n- the JSON file contains the blocks that should use that timer\n\nExample file: `data/regeneratingblocks/tags/blocks/regenerating/1200.json`\n\n```json\n{\n  \"replace\": false,\n  \"values\": [\n\t\"minecraft:diamond_ore\",\n\t\"minecraft:deepslate_diamond_ore\"\n  ]\n}\n```\n\nAny block included in that tag will be treated as a regenerating block with a `1200` tick delay when broken.\n\n### Configuration\n\nСonfig  and currently includes:\n\n- `defaultTimer` — default regeneration time in ticks\n- `defaultBlock` — fallback block used when no target block is provided",
+  "categories": [
+    "cursed",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 38,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

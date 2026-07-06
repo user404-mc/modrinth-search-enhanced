@@ -1,0 +1,36 @@
+{
+  "id": "Eg5gnE11",
+  "slug": "z-auth-backend-addon",
+  "title": "Z-Auth Backend addon",
+  "description": "Auth Backend is the lightweight backend guard for ZCraft Auth. It runs on Spigot, Paper, Purpur, and Folia servers, protecting players until the proxy confirms they are logged in.",
+  "body": "![z-auth banner](https://cdn.modrinth.com/data/cached_images/dd9521659ad237b5b926385eb9fc33b3309b933a.png)\n\n# Auth Backend\n\n**Auth Backend** is the lightweight backend protection layer for **ZCraft Auth**.\n\nIt runs on Spigot, Paper, Purpur, and Folia backend servers, keeping players restricted until the proxy confirms they are logged in.\n\nThe proxy handles accounts, passwords, sessions, 2FA, and database storage.  \nThe backend plugin only protects gameplay until authentication is complete.\n\n---\n\n## Summary\n\nLightweight backend protection for ZCraft Auth. Runs on Spigot, Paper, Purpur, and Folia servers, blocking gameplay until the proxy confirms the player is logged in. No backend database setup required.\n\n---\n\n## Features\n\n| Feature | Status |\n|---|---:|\n| Spigot backend support | Yes |\n| Paper backend support | Yes |\n| Purpur backend support | Yes |\n| Folia backend support | Yes |\n| Proxy auth-state sync | Yes |\n| Movement protection | Yes |\n| Chat protection | Yes |\n| Command protection | Yes |\n| Inventory click protection | Yes |\n| Item drop protection | Yes |\n| Item pickup protection | Yes |\n| Damage protection | Yes |\n| Attack protection | Yes |\n| Backend database setup | Not required |\n| Backend password hashing | Not used |\n| bStats support | Yes |\n\n---\n\n## What This Plugin Is\n\nAuth Backend is made for Minecraft networks using **Auth Proxy** on Velocity or BungeeCord.\n\nWhen a player joins a backend server, Auth Backend checks with the proxy to see if that player is authenticated.\n\nIf the player is logged in, they can play normally.  \nIf not, the backend keeps them locked down until login, registration, or 2FA verification is complete.\n\nThis keeps backend servers protected without requiring every server to connect to your database.\n\n---\n\n## Downloads\n\nInstall the backend jar that matches your server type.\n\n| Jar | Install on |\n|---|---|\n| `Auth-Backend-SpigotLegacy-<version>.jar` | Spigot-style 1.16-1.19 backends |\n| `Auth-Backend-Spigot-<version>.jar` | Spigot-style 1.20-1.21 backends |\n| `Auth-Backend-Paper-<version>.jar` | Paper/Purpur 1.21+ backends |\n| `Auth-Backend-Folia-<version>.jar` | Folia 1.21+ backends |\n\n> **Do not** install backend jars on the proxy.  \n> **Do not** install the proxy jar on backend servers.\n\n---\n\n## Required Proxy Plugin\n\nAuth Backend is **not** a standalone login plugin.\n\nYou must also install the proxy jar:\n\n```text\nAuth-Proxy-<version>.jar\n```\n\non your Velocity or BungeeCord proxy.\n\nThe proxy plugin handles:\n\n- `/login`\n- `/register`\n- `/logout`\n- `/changepass`\n- `/2fa`\n- sessions\n- passwords\n- database storage\n- authentication state\n\nThe backend plugin only listens for that state and protects the server until the player is logged in.\n\n---\n\n## How It Works\n\n1. A player joins through the proxy.\n2. The player logs in, registers, or verifies 2FA.\n3. The player connects to a backend server.\n4. Auth Backend asks the proxy for the player's login state.\n5. The proxy replies with the current auth state.\n6. The backend allows or blocks gameplay based on that state.\n\nBackend and proxy communication uses:\n\n```text\nzcraftauth:state\n```\n\nNo backend database credentials, ports, tokens, or separate linking setup are required.\n\n---\n\n## Backend Protection\n\nAuth Backend can block unauthenticated players from:\n\n- moving\n- chatting\n- running blocked commands\n- clicking inventory items\n- dropping items\n- picking up items\n- taking damage\n- attacking entities\n\nYou can still allow authentication-related commands before login.\n\nDefault backend config:\n\n```yml\nblock-movement: true\nallow-chat: false\nenable-bypass-permission: false\n\nallowed-commands:\n  - \"/login\"\n  - \"/register\"\n  - \"/l\"\n  - \"/reg\"\n  - \"/2fa\"\n  - \"/totp\"\n  - \"/authenticator\"\n```\n\nOperators are **not bypassed by default**.\n\nTo allow bypassing, you must enable it manually and give the player:\n\n```text\nzcraftauth.backend.bypass\n```\n\n---\n\n## Performance\n\nAuth Backend is intentionally small and low-impact.\n\nIt does not:\n\n- connect to a database\n- hash passwords\n- perform account lookups\n- manage sessions\n- run the full authentication system\n\nIt only listens for protection events and proxy authentication state.\n\nThis keeps backend TPS/MSPT impact minimal while still preventing unauthenticated players from interacting with the server.\n\n---\n\n## Requirements\n\n| Component | Supported |\n|---|---|\n| Java | 21+ |\n| Proxy | Velocity or BungeeCord with Auth Proxy |\n| Backend | Spigot-style, Paper, Purpur, Folia |\n| Minecraft | 1.16-1.19, 1.20-1.21, and 1.21+ backend families |\n\n---\n\n## Installation\n\n1. Install `Auth-Proxy-<version>.jar` on your Velocity or BungeeCord proxy.\n2. Install the matching `Auth-Backend-<version>.jar` on each backend server.\n3. Start the proxy and backend servers once.\n4. Configure the proxy plugin.\n5. Restart the proxy and backend servers.\n6. Join through the proxy and authenticate.\n\nRegister:\n\n```text\n/register <password> <password>\n```\n\nLogin:\n\n```text\n/login <password>\n```\n\n---\n\n## Important Notes\n\n- Backend servers do not need database settings.\n- Backend jars do not replace the proxy jar.\n- The proxy jar does not replace backend jars.\n- Install Auth Backend on every backend server that should be protected.\n- Use the backend jar that matches your server software.\n- Authentication logic is handled by the proxy, not the backend.\n\n---\n\n## Support\n\nIf something does not work, include:\n\n- Proxy type and version\n- Backend server type and version\n- Auth proxy jar name\n- Auth backend jar name\n- Console error logs\n- Backend config",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 23,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

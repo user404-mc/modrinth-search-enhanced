@@ -1,0 +1,37 @@
+{
+  "id": "UjLjhwEK",
+  "slug": "odseconomy",
+  "title": "OD's Economy",
+  "description": "Just a better economy plugin to add tons of new money features to Minecraft.",
+  "body": "# OD's Economy\n\nA comprehensive Paper economy plugin with land claims, dealerships, interest, lottery, gambling, bounties, banknotes, and transaction logging.\n\n**Author:** OD Plugins  \n**Supported MC versions:** 1.21 – 26.1.2 (Paper)  \n**API:** Paper 1.21+\n\n---\n\n## Features\n\n| Feature | Description | Config Section |\n|---------|-------------|----------------|\n| **Economy** | Balance, pay, top balances, give/take/set (admin) | `settings` |\n| **Sell** | Sell items from your hand for configured prices | `sell-prices` |\n| **Land Claims** | Register chunks to players, query ownership | `mregister` / `mcertification` |\n| **Dealerships** | Player-owned shops with bulk ordering | `dealerships` |\n| **Interest** | Periodic interest on player balances (disabled by default) | `interest` |\n| **Lottery** | Ticket-based lottery with auto-draw and house cut | `lottery` |\n| **Gambling** | Dice-style double-or-nothing, location-restrictable, command-block support | `gambling` |\n| **Bounties** | Place bounties on players; killer collects on death | `bounties` |\n| **Banknotes** | Physical money items (PersistentDataContainer-backed) | `banknotes` |\n| **Transaction Log** | Logs all balance changes to file (PLAIN or CSV) | `transaction-log` |\n| **Dynamic Help** | `/ecohelp` only shows commands the player can use | — |\n\n---\n\n## Commands\n\n### Player Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/balance [player]` | `odseconomy.balance` | Check your or another player's balance |\n| `/baltop` | `odseconomy.baltop` | Show richest players |\n| `/mtransfer <player> <amount>` | `odseconomy.pay` | Send money |\n| `/sell` | `odseconomy.sell` | Sell the item in your hand |\n| `/worth` | `odseconomy.worth` | Check sell value of held item |\n| `/mcertification <x> <z>` | `odseconomy.certification` | Check chunk owner |\n| `/mcertification <player>` | `odseconomy.certification` | List player's chunks |\n| `/dorder <item> <amount>` | `odseconomy.order` | Place a dealership order |\n| `/dorder confirm` | `odseconomy.order` | Confirm pending order |\n| `/dinquire <player\\|dept>` | `odseconomy.inquire` | Check dealership info |\n| `/dice <amount>` | `odseconomy.dice` | Gamble on a dice roll |\n| `/lottery buy [tickets]` | `odseconomy.lottery` | Buy lottery tickets |\n| `/lottery info` | `odseconomy.lottery` | Check lottery details |\n| `/bounty set <player> <amount>` | `odseconomy.bounty` | Place a bounty |\n| `/bounty list [player]` | `odseconomy.bounty` | List active bounties |\n| `/mnote <amount>` | `odseconomy.banknote` | Create a physical banknote |\n\n### Admin Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/mgive <player> <amount>` | `odseconomy.admin` | Grant money |\n| `/mset <player> <amount>` | `odseconomy.admin` | Set balance |\n| `/mtake <player> <amount>` | `odseconomy.admin` | Remove money |\n| `/mregister <x> <z> <player>` | `odseconomy.admin` | Register a chunk |\n| `/dgive <dept> <player>` | `odseconomy.admin` | Grant a dealership |\n| `/mreload` | `odseconomy.admin` | Reload config |\n\n---\n\n## Permissions\n\n| Node | Default | Description |\n|------|---------|-------------|\n| `odseconomy.*` | op | All permissions |\n| `odseconomy.admin` | op | Admin commands |\n| `odseconomy.balance` | true | /balance |\n| `odseconomy.baltop` | true | /baltop |\n| `odseconomy.pay` | true | /mtransfer |\n| `odseconomy.sell` | true | /sell |\n| `odseconomy.worth` | true | /worth |\n| `odseconomy.certification` | true | /mcertification |\n| `odseconomy.order` | true | /dorder |\n| `odseconomy.inquire` | true | /dinquire |\n| `odseconomy.dice` | true | /dice |\n| `odseconomy.lottery` | true | /lottery |\n| `odseconomy.bounty` | true | /bounty |\n| `odseconomy.banknote` | true | /mnote |\n\n---\n\n## Configuration\n\nAfter editing `config.yml`, run `/mreload` to apply changes without restarting.\n\nKey config sections:\n\n```yaml\nsettings:\n  starting-balance: 0.0\n  currency-symbol: \"$\"\n  tablist-balance: true\n\ninterest:\n  enabled: false\n  rate: 0.01\n  interval-seconds: 3600\n\nlottery:\n  enabled: true\n  ticket-price: 100.0\n  draw-interval-seconds: 86400\n  house-cut-percent: 10\n\ngambling:\n  enabled: true\n  dice-multiplier: 2.0\n  require-location: false\n  locations: []\n\nbounties:\n  enabled: true\n  min-amount: 1.0\n  max-amount: 100000.0\n\nbanknotes:\n  enabled: true\n  item-material: PAPER\n  item-name: \"&6Bank Note &7(%amount%)\"\n\ntransaction-log:\n  enabled: false\n  format: PLAIN\n```\n\n---\n\n## Installation\n\n1. Drop `OdsEconomy.jar` into your server's `plugins/` folder\n2. Restart the server (or use `/reload`)\n3. Edit `plugins/OdsEconomy/config.yml` to your liking\n4. Run `/mreload` to apply changes\n\n---\n\n## Building from Source\n\n```bash\ngit clone <repo-url>\ncd OdsEconomy\nmvn clean package\n```\n\nOutput: `target/OdsEconomy-1.0.0.jar`\n",
+  "categories": [
+    "economy",
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

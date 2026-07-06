@@ -1,0 +1,34 @@
+{
+  "id": "VUl1C8BE",
+  "slug": "ajs",
+  "title": "AntiJoinSpam",
+  "description": "Suppresses join/leave broadcasts for players who relog too frequently.",
+  "body": "# 🛡️ AntiJoinSpam\n\n> **Silence the noise. Keep your chat clean.**  \n> Stop join/leave message spam dead in its tracks — with zero player impact.\n\n---\n\n## 📖 Overview\n\n**AntiJoinSpam** is a lightweight, high-performance server plugin designed to eliminate the chaos of repeated join and leave message spam. Whether it's a player with a flaky connection, a bot cycling through reconnects, or just someone rage-quitting and rejoining, AntiJoinSpam automatically detects and suppresses the clutter — keeping your chat readable and your players happy.\n\nNo commands to memorize. No permissions to configure. Just install, tune your config, and let it work silently in the background.\n\n---\n\n## ✨ Features\n\n- 🔇 **Automatic suppression** of join/leave messages for players who reconnect too frequently\n- ⏱️ **Sliding time-window detection** — tracks logins over a configurable period, not just raw counts\n- 🔌 **Plugin compatibility layer** — plays nicely with plugins that modify join messages\n- ⚡ **Async & efficient** — no main thread blocking, built for scale\n- 🌿 **Folia & Paper support** — runs seamlessly on both schedulers\n- 🧩 **Minimal config** — sensible defaults, easy to understand\n\n---\n\n## 🔌 Plugin Compatibility\n\nAntiJoinSpam is built to coexist peacefully with any plugin that manipulates join or leave messages. It hooks into the event pipeline **after** other plugins have had their say, meaning your custom join messages stay intact — they're just silenced when spam is detected, not replaced or broken.\n\nConfirmed compatible with:\n\n| Plugin | Notes |\n|---|---|\n| **EssentialsX** | Custom join/leave messages are respected and suppressed cleanly |\n| **CMI** | Full compatibility with CMI's join/leave message system |\n| **LuckPerms** | Works alongside prefix/suffix-based join messages |\n| **AuthMe / NexAuth** | No interference with login-gate plugins |\n| **Multiverse-Core** | Per-world join messages handled correctly |\n\n> If a plugin fires a custom `PlayerJoinEvent` or `PlayerQuitEvent` message, AntiJoinSpam will suppress **that** message — not override it. Your formatting, prefixes, and placeholders remain untouched.\n\n---\n\n## 🖥️ Compatibility\n\n| Platform | Supported Versions |\n|---|---|\n| **Paper** | 1.21.10 — 1.21.11 |\n| **Folia** | 1.21.10 — 1.21.11 |\n\n> ⚠️ Spigot/Bukkit are **not** officially supported. Paper or Folia is required.\n\n---\n\n## ⚙️ Configuration\n\nThe config file is located at:\n\n```\nplugins/AntiJoinSpam/config.yml\n```\n\nBelow is the full default configuration:\n\n```yaml\n# ────────────────────────────────────────────── #\n#  AntiJoinSpam  —  config.yml                   #\n# ────────────────────────────────────────────── #\n\n# Sliding time window (in seconds).\n# Logins are tracked within this window.\n# Example: 60 means \"logins within the last 60 seconds\".\ntime-window: 60\n\n# Maximum number of logins allowed within the window\n# before that player's join/leave messages are silenced.\n# Example: 2 means the 3rd login within the window triggers suppression.\nmax-logins: 2\n```\n\n### Config Breakdown\n\n- **`time-window`** — Defines how far back (in seconds) the plugin looks when counting logins. A value of `60` means any login within the last minute is counted.\n- **`max-logins`** — The threshold. If a player's login count *within the window* exceeds this value, their join and leave messages are suppressed for that event.\n\n---\n\n## 📦 Installation\n\n1. Download the latest `.jar` from the releases section\n2. Drop it into your `/plugins` folder\n3. Restart your server *(not `/reload`)*\n4. Edit `plugins/AntiJoinSpam/config.yml` to your liking\n5. Use `/antijoinspam reload` to apply changes without a restart\n\n---\n\n## 📜 License\n\nAntiJoinSpam is open-source and distributed under the **MIT License**.  \nContributions, issues, and feature requests are welcome on the project repository.\n\n---\n\n*Made with ❤️ for server owners who just want clean chat. By `mooshbrixa` on Discord!*",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 32,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

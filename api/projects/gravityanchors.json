@@ -1,0 +1,35 @@
+{
+  "id": "YIOB6iN2",
+  "slug": "gravityanchors",
+  "title": "Gravity Anchors",
+  "description": "Placeable anchors that warp local gravity: attract, repel, or launch nearby entities. Right-click to cycle modes. Velocities are clamped and TPS-budgeted. Server-side, works on Paper/Spigot/Bukkit/Purpur 1.21+.",
+  "body": "# Gravity Anchors\n\nPlaceable anchors that warp local gravity. Mark a block (or place the custom\nGravity Anchor item) and it becomes a gravity well. Right-click it to cycle\nthrough three field modes, and nearby entities get pulled, pushed, or launched\nby a capped, TPS-friendly velocity field.\n\n## What it does\n\nEvery couple of ticks each anchor scans for entities inside its radius and\napplies a velocity based on its current mode:\n\n* Attract pulls entities inward, with the strength falling off over distance.\n  Good for item collection and mob funnels.\n* Repel pushes entities away.\n* Launch fires entities up and outward on a timer, so you can build launch pads\n  and traps.\n\nAnchors stick around across restarts. Every velocity is clamped so nothing flies\noff the map, and busy areas are rate-limited to keep the server smooth.\n\n## Creating and using anchors\n\nLook at a block and run `/gravityanchor` to mark it as an anchor. It starts in\nAttract mode.\n\nYou can also run `/gravityanchor item` to get a placeable Gravity Anchor, which\nis a glowing lodestone. Place it to create an anchor. Breaking the block removes\nthe anchor, and in survival it drops the item back.\n\nRight-click any anchor block to cycle the mode from Attract to Repel to Launch.\nThe new mode shows on your action bar with a sound cue.\n\n## Commands\n\nAll under `/gravityanchor` (aliases: `/ga`, `/gravity`, `/anchor`).\n\n| Command | Description |\n|---|---|\n| `/gravityanchor` | Mark the block you are looking at as an anchor. |\n| `/gravityanchor mode <attract\\|repel\\|launch>` | Set the mode of the anchor you are looking at. |\n| `/gravityanchor tune <radius\\|strength> <value>` | Tune the looked-at anchor (radius capped at 32, strength at 5). |\n| `/gravityanchor item` | Give yourself a placeable Gravity Anchor item. |\n| `/gravityanchor list` | List registered anchors (with distance, in your world). |\n| `/gravityanchor remove` | Remove the anchor you are looking at. |\n| `/gravityanchor clear` | Remove ALL anchors. (admin) |\n| `/gravityanchor reload` | Reload `config.yml`. (admin) |\n| `/gravityanchor info` | Plugin info and current settings. |\n\n## Permissions\n\n| Permission | Default | Grants |\n|---|---|---|\n| `gravity.use` | op | Create, tune, cycle, list, and remove anchors; get the item. |\n| `gravity.admin` | op | `clear` and `reload` (includes `gravity.use`). |\n\n`gravity.use` gates all anchor creation and tuning. `gravity.admin` is a second\ntier for the destructive and global commands.\n\n## Configuration (`config.yml`)\n\n| Key | Default | Meaning |\n|---|---|---|\n| `affect-players` | `true` | Whether anchor fields move players at all. |\n| `exempt-sneaking` | `true` | Sneaking players are ignored by all fields. |\n| `max-velocity` | `2.5` | Hard cap (blocks/tick) on field-applied speed. |\n| `task-period-ticks` | `2` | How often the field engine runs. |\n| `max-entities-per-anchor` | `60` | Max entities one anchor processes per run. |\n| `trace-particles` | `true` | Draw the dust ring/field outline. |\n| `launch-interval-ticks` | `30` | How often Launch mode fires its impulse. |\n| `modes.<mode>.radius` / `.strength` | per mode | Defaults applied when an anchor is created or switched to that mode. |\n\nPer-anchor `tune` overrides stick until you switch that anchor's mode.\n\n## Compatibility\n\nWorks on Paper, Spigot, Bukkit, and Purpur for 1.21.1 through 1.21.11 and the\n26.1.x line (verified on 26.1.2), Java 21. Built against the Spigot API only (no\nPaper-only classes) for portability.\n\n---\n\nOriginal concept, an internal test idea, not from a Reddit post.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 11,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

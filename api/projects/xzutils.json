@@ -1,0 +1,26 @@
+{
+  "id": "Yj0Uy93N",
+  "slug": "xzutils",
+  "title": "xzutils",
+  "description": "Useful and obscure. Provides enchantment reformatting for data manipulation.",
+  "body": "# XZUtils\n\nXZUtils is a library designed to aid datapack developmnent in niche ways.\n\n### Functions\n\n<details>\n<summary>Enchantment Data Restructuring</summary>\n\nEnchantment data is stored in items like so:\n`{id:level,id:level}`\nThis is difficult to work with. This outputs a copy formatted as `[{id:<name>,level:<value>},{id:<name>,level:<value>}]` for easy enchantment manipulation.\n\nie;\n`{\"minecraft:sharpness\":5,\"minecraft:looting\":2}`\nconverts to\n`[{\"id\":\"minecraft:sharpness\",\"level\":5},{\"id\":\"minecraft:looting\",\"level\":2}]`\n\nUSAGE:\n\n1. in storage, set `xzu:temp in` to your enchantment map.\n2. run `function xzu:enchant/build_enchantment_map/main`\n3. your formatted map is located in `xzu:temp out`\n\nExample:\n```\n# put enchantments from players held item in storage input\ndata modify storage xzu:temp in set from entity @p SelectedItem.components.\"minecraft:enchantments\"\n\n# convert map\nfunction xzu:enchant/build_enchantment_map/main\n\n# see formatted data\ndata get storage xzu:temp out\n```\n\nNOTE:\nThis requires 0 0 to be chunkloaded, and will set 0 0 0 to be air. XZUtils handles this automatically, but there will be an air block at 0 0 0 every time this function is used.\n\n</details>\n\n",
+  "categories": [
+    "datapack",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 15,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

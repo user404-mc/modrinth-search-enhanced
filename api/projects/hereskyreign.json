@@ -1,0 +1,38 @@
+{
+  "id": "Oku0a4kt",
+  "slug": "hereskyreign",
+  "title": "HereSkyReign",
+  "description": "A paper server plugin to add the Aether World, the mythical sky reign, to any server.",
+  "body": "# HereSkyReign\n\nA premium [Paper](https://papermc.io) Minecraft plugin that creates a floating-island dimension (**Sky Reign**) with seamless vertical teleportation, custom cloud block terrain, and organic procedural structure spawning using the HereEngy Blueprint API.\n\n## Features\n\n- **Seamless Vertical Teleportation** — Teleports players vertically between the Overworld and the Sky Reign dimension automatically:\n  - **Overworld → Sky Reign:** Reaching Y > 320 in the Overworld teleports players to Y = 2 in the Sky Reign dimension, maintaining horizontal coordinates and momentum.\n  - **Sky Reign → Overworld:** Falling below Y < 0 in Sky Reign teleports players to Y = 320 in the Overworld, sending them falling out of the sky.\n  - **Anti-Loop Cooldown:** A 100-tick (5-second) teleportation cooldown protects players from getting stuck in an infinite vertical loop.\n- **Custom Cloud Block Terrain** — Features flat-plane organic floating islands generated using 2D Simplex Noise.\n  - **Cloud Block Trick:** The islands are constructed out of `BROWN_MUSHROOM_BLOCK` with all 6 directional face properties set to `false` (meaning the inner pore texture is shown on all sides), which serves as a custom Cloud Block via your server's resource pack.\n- **Procedural Structure Spawning** — Integrates with the `HereEngy` Blueprint API to populate islands with **Sky Villages** and **Coliseums**:\n  - **Organic Transformations:** Randomly applies rotation and mirroring to structures so they spawn dynamically.\n  - **Lag Prevention:** Utilizes `LimitedRegion` constraints and deterministic noise checks to guarantee zero cascading chunk generation lag.\n  - **Void Prevention:** Checks the terrain height noise at the structure's origin to prevent structures from spawning floating in mid-air voids.\n- **BlueMap Integration** — Automatically generates and updates BlueMap map rendering configuration files on startup to render the Sky Reign dimension.\n\n---\n\n## Configuration\n\nSettings can be customized in `plugins/HereSkyReign/config.yml`:\n\n```yaml\nworld-name: \"sky_reign\"\n\nteleportation:\n  overworld-to-skyreign-y: 320.0\n  skyreign-to-overworld-y: 0.0\n  cooldown-ticks: 100\n\ngeneration:\n  island-noise-scale: 0.015\n  island-noise-threshold: 0.1\n  island-min-y: 60\n  island-max-y: 64\n\nstructures:\n  village-chance: 0.005\n  coliseum-chance: 0.002\n\nbluemap-integration:\n  enabled: true\n```\n\n---\n\n## Requirements\n\n- **Paper / Spigot 1.21.4** or higher.\n- **Java 21** or higher.\n- **HereEngy (Blueprint Plugin)** installed on the server.\n\n## Resource Pack Setup\n\nTo render the custom Cloud Block correctly instead of the default brown mushroom block texture, a resource pack is required.\n\nUpon the first startup, HereSkyReign automatically extracts a pre-configured resource pack file to:\n`plugins/HereSkyReign/cloud_block_resourcepack.zip`\n\n### How to use:\n1. **Merge/Apply:** Unzip this file and merge its `assets/` folder with your server's existing resource pack.\n2. **Server Distribution:** Upload the `cloud_block_resourcepack.zip` to a public web host, and add the download URL to the `resource-pack` setting in your server's `server.properties`.\n\n---\n\n## License\n\nThis project is licensed under the GPLv3 License - see the LICENSE file for details.\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "cursed",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

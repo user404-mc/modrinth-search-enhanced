@@ -1,0 +1,22 @@
+{
+  "id": "ilFnUivt",
+  "slug": "starbucks",
+  "title": "StarBucks",
+  "description": "A paper plugin for a Nether Star backed economy.",
+  "body": "# StarBucks\n\nStarBucks is a Paper plugin that turns Nether Stars into a server-traded commodity.\n\nPlayers can buy and sell Nether Stars through `/starbank`, track a live market price, pay credits to other players, and view recent transaction history.\n\n## Features\n\n- Dynamic Nether Star pricing based on shared server supply\n- Buy and sell orders through `/starbank`\n- Bulk trade confirmation with price impact preview\n- Player balances stored by UUID\n- Player-to-player payments\n- Transaction history ledger\n- Admin market simulation tools\n- Simple `config.yml` economy tuning\n\n## Requirements\n\n- Paper `1.21.11`\n- Java `21`\n\n## Installation\n\n1. Stop your server.\n2. Download the latest StarBucks release JAR.\n3. Place the JAR in your server's `plugins` folder.\n4. Start the server once to generate config and data files.\n5. Edit `plugins/StarBucks/config.yml` if needed.\n6. Restart the server.\n\n## Commands\n\n| Command | Description |\n| --- | --- |\n| `/starbank buy <amount>` | Buy Nether Stars from the bank |\n| `/starbank sell <amount>` | Sell Nether Stars to the bank |\n| `/starbank confirm` | Confirm a pending bulk buy or sell |\n| `/starbank rate` | View current market prices and trend |\n| `/starbank bal` | View your balance |\n| `/starbank balance` | Alias for `/starbank bal` |\n| `/starbank pay <player> <amount>` | Send credits to an online player |\n| `/starbank ledger` | View your recent transactions |\n| `/starbank admin` | View admin market stats |\n| `/starbank admin sim <amount>` | Simulate a buy or sell impact |\n\n## Permissions\n\n- All commands are player-only.\n- Admin commands require op.\n\n## Config\n\nDefault `config.yml`:\n\n```yaml\neconomy:\n  star:\n    starting-price: 75\n    base-price: 250\n    min-price: 25\n    max-price: 1000\n    smoothing-factor: 0.15\n    tax: 0.03\n    spread: 0.08\n    volume-normalization: 256\n    volume-decay: 0.95\n```\n\nWhat the main settings do:\n\n- `starting-price`: price used when supply is empty\n- `base-price`: overall market price scale\n- `min-price`: floor price\n- `max-price`: ceiling price\n- `smoothing-factor`: how quickly the market moves toward target price\n- `tax`: sell-side reduction\n- `spread`: buy-side markup\n- `volume-normalization`: how strongly recent volume affects price\n- `volume-decay`: how quickly recent volume fades per trade\n\n## Notes\n\n- New players start with `0.0` credits.\n- The bank starts with `0` Nether Stars in supply.\n- Players cannot buy stars until stars have first been sold into the bank or supply is seeded manually.\n- `/starbank pay` only works on online players.\n- This plugin uses its own internal balance system and does not integrate with Vault.\n\n## License\n\nReleased under the Unlicense. See [LICENSE](LICENSE).\n",
+  "categories": [
+    "economy",
+    "game-mechanics",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,37 @@
+{
+  "id": "nE6YU6Ls",
+  "slug": "creative-logger",
+  "title": "Creative Logger",
+  "description": "Logs staff activity creative item spawning, commands, gamemode changes, punishments, and more to Discord webhooks. Per-category toggles. No embeds. In-game setup.",
+  "body": "# Creative Logger\n\nA lightweight staff accountability plugin for Paper servers. Logs creative mode activity, commands, punishments, and more to Discord — one plain-text message per event, no embeds. Sends through webhooks (or, optionally, your own Discord bot).\n\nEach log category has its own destination and on/off toggle. Configure everything in-game with `/creativelog setup` or by editing the config files directly.\n\n---\n\n## What it logs\n\n| Category | Trigger | Default |\n|---|---|---|\n| Creative | Items taken from the creative inventory (net-new only) | ✅ On |\n| Give Commands | `/give` by any player or console | ⬜ Off |\n| Gamemode | Any gamemode change, any player | ⬜ Off |\n| Punishments | `/ban`, `/ban-ip`, `/kick`, `/tempban`, `/unban`, `/pardon`, `/mute`, `/tempmute`, `/unmute`, `/warn` and more | ⬜ Off |\n| OP Changes | `/op` and `/deop` | ⬜ Off |\n| Command Spy | Configurable watched-commands list | ⬜ Off |\n| Server | Server start and stop | ⬜ Off |\n| Connections | Player joins and leaves | ⬜ Off |\n| Whitelist | `/whitelist add` / `remove` | ⬜ Off |\n| Console | Mirrors the live server console to Discord; optional two-way control (allowlisted users run commands from a channel via a bot) | ⬜ Off |\n| Chat | Player chat messages | ⬜ Off |\n\n**Exempt players:** exclude specific players from logging, per category, via `/creativelog setup → [Exempt Players]` or `exempt.yml`.\n\n**Custom loggers:** define your *own* loggers in `custom-loggers.yml` — each with its own trigger (command, chat, join/leave, or a game event like block-place), its own Discord webhook, and its own message. Wildcard matching, placeholders (`{player}`, `{command}`, `{block}`, coords, …), optional role/user ping, per-logger cooldown, and an optional `cancel` flag that blocks the action when it matches. Manage them with `/creativelog setup → [Custom Loggers]`.\n\n**Webhooks by default — a bot if you want one:** webhooks are all you need. Optionally, every destination also accepts a Discord channel ID sent by your own bot: turn on `bot.enabled` and set `bot.token` in config.yml (off by default) — mix webhooks and bot channels freely across categories and custom loggers.\n\n**Updates never touch your settings:** when a new plugin version adds config options, your existing config.yml is upgraded automatically — every value you set is kept, new options arrive with safe defaults and their documentation comments, and your previous file is saved as `config.yml.bak`.\n\n**Proxy support:** hosted somewhere discord.com is blocked? Route all Discord traffic through a SOCKS5 or HTTP proxy — a `proxy:` section in config.yml, no restart needed.\n\n**Reliable delivery:** messages go through a retry queue — rate limits and brief Discord/network outages don't lose logs. `/creativelog status` shows the full delivery state when something's off.\n\n---\n\n## Example messages\n\n```\n🎁 BKHorn — Diamond Sword ×1 [Sharpness 5]\n🎮 BKHorn — Survival → Creative\n🔨 BKHorn — /ban Steve griefing\n🌐 BKHorn joined (first join!)\n🖥️ Server started\n```\n\n---\n\n## Setup\n\n1. Drop the JAR in `plugins/`\n2. Start the server once to generate config files\n3. Run `/creativelog setup` in-game and click to set webhook URLs and toggle categories\n4. Alternatively, edit `plugins/CreativeLogger/config.yml` directly and run `/creativelog reload`\n\nOPed players get a short welcome line on join and are warned if any enabled category is missing a destination. When a new plugin version is released, OPs are notified on join (both toggleable in config.yml).\n\n---\n\n## Admin access\n\nBy default, all OPed players can use `/creativelog setup`. To restrict access, add usernames to `plugins/CreativeLogger/admins.yml` — once at least one name is listed, only those players can make changes in-game.\n\n---\n\n## Commands & permissions\n\n| Command | Description | Permission |\n|---|---|---|\n| `/creativelog setup` | Opens the in-game config panel | `creativelog.admin` (OP default) |\n| `/creativelog reload` | Reloads config from disk | `creativelog.admin` (OP default) |\n| `/creativelog status` | Delivery diagnostics (works from console) | `creativelog.admin` (OP default) |\n\n---\n\n## Requirements\n\n- Paper or Purpur\n- Java 21+\n- Two JARs are provided — pick the right one for your server:\n  - `CreativeLogger-legacy-X.Y.Z.jar` → Minecraft 1.21.x\n  - `CreativeLogger-X.Y.Z.jar` → Minecraft 26.1+\n\n---\n\n## ⚠️ Privacy notice\n\nThis plugin transmits the following player data to the Discord webhooks/channels configured by the server administrator:\n\n- Player username\n- Inventory actions (items taken in creative mode)\n- Commands executed\n- Gamemode changes\n- Join/leave events (if enabled)\n- Chat messages (if the chat category is enabled)\n- Server console output (if the console category is enabled)\n\nAll of the above goes only to the Discord destinations configured by the server admin. Server administrators should inform their players that activity logging is in use.\n\n**bStats:** the plugin collects anonymous usage statistics via [bStats](https://bstats.org/plugin/bukkit/CreativeLogger/32359) (server/player counts, plugin config toggles — never player data). Opt out globally in `plugins/bStats/config.yml`.\n\n**Update check:** the plugin queries the Modrinth API periodically to detect new versions (no data sent beyond a standard HTTP request). Disable with `update-check: false`.\n\n**Optional console control:** if the admin enables `console.control`, messages from allowlisted Discord users in the configured channel are executed as server console commands. This is off by default and requires a Discord bot token the admin provides.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 57,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

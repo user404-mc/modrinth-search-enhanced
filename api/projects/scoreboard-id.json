@@ -1,0 +1,28 @@
+{
+  "id": "w6ytLjMX",
+  "slug": "scoreboard-id",
+  "title": "Scoreboard ID",
+  "description": "This project generate a 9-digit id for each player.",
+  "body": "# Scoreboard ID\n\nA Minecraft datapack that assigns a unique 9-digit ID to each player, enabling easy player identification and management on multiplayer servers.\n\n![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21.9%2B-brightgreen)\n![Datapack Format](https://img.shields.io/badge/Format-88--107-blue)\n![License](https://img.shields.io/badge/License-MIT-yellow)\n\n## Features\n\n- **Automatic ID Assignment**: Each player receives a unique 9-digit ID (100000000-999999999) automatically upon joining\n- **Conflict Resolution**: Built-in detection and resolution system ensures no two players share the same ID\n- **Player Lookup**: Find players by their ID or view all player IDs\n- **Interactive Dialog System**: User-friendly interface with help menus and support options\n- **Easy-to-Use Commands**: Simple trigger-based commands for quick access to ID information\n\n## Requirements\n\n- Minecraft Java Edition 1.21.9 or higher\n- Datapack format version 88-107\n- Server Tools dependency (automatically loaded)\n\n## Installation\n\n1. Download the datapack file\n2. Place it in your world's `datapacks` folder:\n\n    ```\n    <world_folder>/datapacks/Scoreboard ID - 1.21.9+.zip\n    ```\n\n3. Reload datapacks in-game:\n\n    ```mcfunction\n   /reload\n   ```\n\n4. The datapack will automatically initialize and assign IDs to all online players\n\n## Usage\n\n### View Your Own ID\n\n```mcfunction\n/trigger score_id.self_id set 1\n```\n\nDisplays your personal 9-digit ID in chat.\n\n### View All Players' IDs\n\n```mcfunction\n/trigger score_id.show_all set 1\n```\n\nShows the ID of all currently online players.\n\n### Find Player by ID\n\n```mcfunction\n/trigger score_id.show_player set <ID>\n```\n\nReplace `<ID>` with a 9-digit number to find which player owns that ID.\n\n**Example:**\n\n```mcfunction\n/trigger score_id.show_player set 123456789\n```\n\n### Access Help Menu\n\nOpen the pause menu and navigate to the Server Tools menu to access the help dialog with all available commands.\n\n## Technical Details\n\n### Scoreboard Objectives\n\nThe datapack creates the following scoreboard objectives:\n\n- **`score_id`** (dummy): Stores each player's unique 9-digit ID\n- **`score_id.self_id`** (trigger): Trigger for viewing your own ID\n- **`score_id.show_all`** (trigger): Trigger for viewing all players' IDs\n- **`score_id.show_player`** (trigger): Trigger for looking up players by ID\n\n### ID Generation\n\n- IDs are randomly generated within the range: `100000000` to `999999999`\n- Automatic conflict detection ensures uniqueness\n- If a conflict is detected, a new random ID is assigned\n\n### File Structure\n\n```\nScoreboard ID - 1.21.9+/\n├── pack.mcmeta                    # Datapack metadata\n├── spyglass.json                  # Spyglass IDE configuration\n└── data/\n    ├── minecraft/\n    │   └── tags/\n    │       ├── dialog/            # Dialog tags for server tools integration\n    │       └── function/          # Function tags\n    └── score_id/\n        ├── dialog/                # Dialog definitions\n        │   ├── help/              # Help menu dialogs\n        │   ├── support/           # Support dialogs\n        │   └── main_menu.json     # Main menu configuration\n        └── function/              # Function files\n            ├── init.mcfunction    # Initialization function\n            ├── id.mcfunction      # ID assignment logic\n            └── show_id/           # ID display functions\n                ├── show_all_id.mcfunction\n                ├── show_id_self.mcfunction\n                └── show_player_name.mcfunction\n```\n\n## Commands Reference\n\n| Command | Description | Type |\n| --------- | ------------- | ------ |\n| `/trigger score_id.self_id set 1` | Display your own ID | Trigger |\n| `/trigger score_id.show_all set 1` | Display all online players' IDs | Trigger |\n| `/trigger score_id.show_player set <ID>` | Find player by their ID | Trigger |\n\n## For Developers\n\n### Dependencies\n\nThis datapack requires the **Server Tools** framework:\n\n- Automatically loads via `#server_tools_init` function tag\n- Integrates with the server tools menu system\n\n### Customization\n\nYou can modify the following aspects:\n\n1. **ID Range**: Edit `data/score_id/function/id.mcfunction` to change the ID range\n2. **Messages**: Modify tellraw messages in the function files\n3. **Dialog UI**: Customize dialog JSON files in `data/score_id/dialog/`\n\n## Author\n\n### FeSo4a\n\n- [Modrinth](https://modrinth.com/user/FeSo4a)\n- [GitHub](https://github.com/FeSo4a)\n- [Bilibili](https://space.bilibili.com/FeSo4a)\n- [Website](https://feso4a.github.io)\n\n## License\n\nThis project is open-source. Feel free to use, modify, and distribute according to your needs.\n\n## Bug Reports & Support\n\nIf you encounter any issues or have suggestions:\n\n1. Check the help menu in-game: `/trigger` commands or pause menu\n2. Contact the author through the platforms listed above\n3. Submit an issue on GitHub\n\n---\n\n**Enjoy managing your server with Scoreboard ID!**\n",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

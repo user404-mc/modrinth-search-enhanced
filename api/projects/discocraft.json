@@ -1,0 +1,20 @@
+{
+  "id": "jzrO0Vw8",
+  "slug": "discocraft",
+  "title": "Discocraft",
+  "description": "Minecraft and Discord bridge. One plugin to end it.",
+  "body": "# Discocraft\n\nMinecraft and Discord bridge. One plugin to end it.\n\nDiscocraft links a Paper Minecraft server with Discord chat, server events, account verification, and controlled Discord-side console commands.\n\n## Features\n\n- Minecraft chat to Discord\n- Discord chat to Minecraft with a visible configurable label\n- Join, quit, death, server start, and server stop event forwarding\n- Custom event selection with `alls`, `none`, `chat`, `join`, `quit`, `death`, `server-start`, `server-stop`\n- Multiple Discord bot tokens\n- Multiple Discord channel IDs\n- Minecraft account to Discord account linking\n- Discord-side Minecraft console command execution with allowlists\n- Runtime config editing with commands\n- Korean and English language setting\n\n## Requirements\n\n- Paper server matching the plugin API version\n- Java 25 or compatible server runtime\n- A Discord bot token\n- Discord bot `MESSAGE CONTENT INTENT` enabled in the Discord Developer Portal\n\n## Installation\n\n1. Build the plugin with `build.bat` or `.\\gradlew.bat build`.\n2. Copy `build/libs/Discocraft-1.0-SNAPSHOT.jar` into your server `plugins` folder.\n3. Start the server once to generate the plugin folder and config.\n4. Configure Discord settings in `plugins/Discocraft/config.yml` or with commands.\n5. Run `/discocraft reload`.\n\n## Basic Setup\n\n```yaml\nlanguage: ko_kr\n\ndiscord:\n  enabled: true\n  bot-tokens:\n    - \"YOUR_BOT_TOKEN\"\n  channel-ids:\n    - \"YOUR_CHANNEL_ID\"\n```\n\n## Main Commands\n\n```text\n/discocraft status\n/discocraft reload\n/discocraft reset\n/discocraft reset <key>\n/discocraft get <key>\n/discocraft set <key> <value>\n/discocraft events <alls|none|chat|join|quit|death|server-start|server-stop>\n```\n\n## Bot And Channel Commands\n\n```text\n/discocraft bot list\n/discocraft bot add <token>\n/discocraft bot remove <token>\n/discocraft bot clear\n\n/discocraft channel list\n/discocraft channel add <channel-id>\n/discocraft channel remove <channel-id>\n/discocraft channel clear\n```\n\nBot tokens are hidden in command output.\n\n## Account Linking\n\nIn Minecraft:\n\n```text\n/discord link\n```\n\nThen in Discord:\n\n```text\n!link <code>\n```\n\nOther commands:\n\n```text\n/discord status\n/discord unlink\n!unlink\n```\n\nLinked account data is stored separately in `linked-accounts.yml`.\n\n## Discord Console Commands\n\nDiscord console execution is disabled by default.\n\n```yaml\ndiscord:\n  console:\n    enabled: false\n    command-prefix: \"!mc\"\n    allowed-prefixes:\n      - \"list\"\n      - \"say\"\n      - \"time\"\n      - \"weather\"\n    allowed-role-ids: []\n```\n\nExample:\n\n```text\n!mc list\n!mc say hello\n!mc time set day\n```\n\nFor safety, only commands matching `allowed-prefixes` can run. If `allowed-role-ids` is empty, any Discord user in a configured bridge channel can use allowed console commands while the feature is enabled.\n\n## Language\n\n```text\n/discocraft language ko_kr\n/discocraft language en_us\n```\n\nSupported languages:\n\n- `ko_kr`\n- `en_us`\n\n## Build\n\nWindows:\n\n```bat\nbuild.bat\n```\n\nManual:\n\n```text\n.\\gradlew.bat clean build\n```\n\nOutput:\n\n```text\nbuild/libs/Discocraft-1.0-SNAPSHOT.jar\n```\n\n## Upload Assets\n\nPlatform upload icon:\n\n```text\nassets/discocraft-icon.png\n```\n\nSource vector:\n\n```text\nassets/discocraft-icon.svg\n```\n",
+  "categories": [
+    "management",
+    "paper",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

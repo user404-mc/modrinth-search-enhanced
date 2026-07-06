@@ -1,0 +1,22 @@
+{
+  "id": "nrFtzbN6",
+  "slug": "beaconhud",
+  "title": "BeaconHUD",
+  "description": "Aim at a beacon and a compact top-left HUD shows its pyramid tier (1-4), the effect range in blocks, and the selected primary/secondary effects - no need to open the beacon GUI. Toggle with V.",
+  "body": "**BeaconHUD** lets you read a beacon at a glance. Point your crosshair at a beacon (within ~8 blocks) and a small panel appears in the top-left corner:\n\n```\nBeacon\nTier: 4 / 4\nRange: 50m\nPrimary: Speed\nSecondary: Haste\n```\n\nNo GUI to open, no clicking - just look at the beacon and you know its tier, how far its buff reaches, and which effects are set.\n\n### What it shows\n- **Tier** - the completed pyramid tier (1-4), computed live from the base blocks beneath the beacon. Shows `Tier: 0 (incomplete base)` when the pyramid isn't finished yet.\n- **Range** - the effect radius in blocks (`tier x 10 + 10`): tier 1 = 20m up to tier 4 = 50m.\n- **Effects** - the selected primary and secondary status effects, read straight from the beacon. Shows `Effects: none / unopened` when nothing is selected (or when a server hasn't synced the choice to your client).\n\n### Why\nThe vanilla beacon only reveals its tier and effects while the GUI is open, and there's no in-world readout of how far the buff actually reaches. When you're laying out a base and want every spot covered by Haste, or you're checking which of several beacons does what, opening each one is tedious. BeaconHUD answers all of it from a glance.\n\n### How it works\n- Reads the **pyramid tier directly from the world** by scanning the base blocks (`minecraft:beacon_base_blocks` tag) under the beacon - no block-entity needed, so the tier and range are always accurate even before you open the beacon.\n- Reads the **primary/secondary effects** from the beacon block-entity by field type (cross-version safe - no hardcoded obfuscated names), with full guarding so the HUD still shows tier and range if effect data isn't available.\n- Renders through Fabric's `HudRenderCallback`, so **F1** (hide HUD) hides it like any vanilla overlay.\n- Read-only - never opens the beacon, never changes a block, never sends a packet.\n\n### Controls\n- **V** - toggle the HUD on / off (default: on)\n\nThe key is polled via raw GLFW so it works identically across every supported version without a rebind screen.\n\n### Compatibility\nWorks on **Minecraft 1.21.8, 1.21.9, 1.21.10, and 1.21.11** with Fabric Loader 0.16+. One JAR for all four versions - install with Fabric API and drop into your `mods/` folder.\n\n- Pure client-side; safe to install on any server.\n- Zero config files; nothing to set up.\n- Hides automatically with the rest of the HUD on **F1**.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

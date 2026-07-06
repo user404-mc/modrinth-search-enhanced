@@ -1,0 +1,20 @@
+{
+  "id": "NiwonxRt",
+  "slug": "puffish-power-scale",
+  "title": "Puffish Power Scale",
+  "description": "Adds a Puffish Skills level function for Silent's Power Scale expressions.",
+  "body": "# Puffish Power Scale\n\nPuffish Power Scale adds a **Puffish Skills level function** to **Silent's Power Scale** expressions.\n\nIt does not calculate mob difficulty itself. Power Scale remains responsible for formulas, caps, dimension values, player weighting, and attribute scaling.\n\n## What it adds\n\nThis addon registers one Power Scale expression function:\n\n```text\nPUFFISH_SKILL_LEVEL(radius)\n```\n\nIn Power Scale local-difficulty expressions, it returns the highest configured Puffish Skills experience level among players within the given horizontal radius of the evaluated mob position.\n\nExample Power Scale config usage:\n\n```toml\n[difficulty.local_difficulty.parts]\nfrom_players = \"PUFFISH_SKILL_LEVEL(256)\"\n```\n\nThe returned value is the raw Puffish Skills experience level. If your pack wants to divide, cap, blend it with dimension baselines, or combine it with Power Scale's built-in functions, write that formula in Power Scale's config.\n\nWhen a Power Scale expression is evaluated with a `player` variable, `PUFFISH_SKILL_LEVEL()` returns that player's configured Puffish Skills experience level.\n\n## Addon config\n\nThe addon config is `config/puffish_power_scale-common.toml`.\n\n- `enabled`: enables or disables the expression function.\n- `categoryIds`: Puffish Skills category IDs to read. The highest level wins. Leave it empty to scan all Puffish Skills categories that have experience.\n\nDefault category:\n\n```text\npuffish_skills:combat\n```\n\nThis matches the Combat tree from the Pufferfish's Skills default skill-tree pack. Add more category IDs, or leave the list empty to use the highest experience level from any available Puffish Skills category.\n\n## Requirements\n\n- Minecraft 1.21.1\n- NeoForge\n- Puffish Skills\n- Silent's Power Scale\n- Silent Lib\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

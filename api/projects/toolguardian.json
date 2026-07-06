@@ -1,0 +1,31 @@
+{
+  "id": "4Kfdaw8b",
+  "slug": "toolguardian",
+  "title": "ToolGuardian",
+  "description": "Warn players when their tools or armor are about to break - configurable thresholds, localized messages, MiniMessage formatting, and per-player toggles with persistence.",
+  "body": "# ToolGuardian\n\nWarn players when their tools or armor are about to break — configurable thresholds, localized messages, MiniMessage formatting, and per-player toggles with persistence.\n\n## Features\n- Monitor active equipment: main hand, off hand, helmet, chestplate, leggings, boots (toggle per slot).\n- Configurable thresholds in percent (add as many as you like, each with its own message key and optional sound).\n- Localized messages (`lang/de.yml`, `lang/en.yml`) using MiniMessage formatting.\n- Placeholder support in messages: `{item}`, `{percent}`, `{remaining}`, `{max}`.\n- Anti-spam: warn once per threshold per item until the next threshold is reached.\n- Gamemode filter: by default only Survival/Adventure.\n- Per-player toggle command with persistent storage (`toggles.yml`).\n\n## Requirements\n- Paper (Minecraft 1.21.10)\n- Java 21\n\n## Installation\n1. Download the release JAR (or build from source, see below).\n2. Put the JAR into your server's `plugins` folder.\n3. Start or restart the server.\n4. Optional: adjust `plugins/ToolGuardian/config.yml` and localization files under `plugins/ToolGuardian/lang/`.\n\n## Configuration\nDefault `config.yml` (you can add or remove thresholds freely):\n\n```yaml\nlanguage: de\n\nenabled-gamemodes:\n  - SURVIVAL\n  - ADVENTURE\n\nmonitor:\n  main-hand: true\n  off-hand: true\n  head: true\n  chest: true\n  legs: true\n  feet: true\n\nthresholds:\n  - percent: 20\n    message: warn.medium\n  - percent: 10\n    message: warn.low\n  - percent: 5\n    message: warn.critical\n    sound: BLOCK_NOTE_BLOCK_BELL\n    sound-volume: 1.0\n    sound-pitch: 1.0\n\ncheck-interval-ticks: 20\n```\n\nNotes:\n- Thresholds should be listed in ascending order by `percent`.\n- A sound plays only if configured on that threshold.\n- The plugin checks at a fixed interval (20 ticks = 1s by default).\n\n## Localization\nTwo language files are provided: `lang/de.yml` and `lang/en.yml`. Example:\n\n```yaml\nwarn:\n  medium: \"<yellow><bold>Heads up:</bold></yellow> {item} at <yellow>{percent}%</yellow> durability (<gray>{remaining}/{max}</gray>).\"\n  low: \"<gold><bold>Warning:</bold></gold> {item} at <gold>{percent}%</gold> durability (<gray>{remaining}/{max}</gray>).\"\n  critical: \"<red><bold>CRITICAL:</bold></red> {item} only <red>{percent}%</red> durability left (<gray>{remaining}/{max}</gray>)!\"\ntoggle:\n  now-enabled: \"<green>ToolGuardian warnings: <bold>ON</bold></green>\"\n  now-disabled: \"<red>ToolGuardian warnings: <bold>OFF</bold></red>\"\n  usage: \"<gray>Usage:</gray> <yellow>/toolguardian toggle</yellow>\"\n  no-permission: \"<red>You don't have permission.</red>\"\n```\n\nPlaceholders are written as `{item}`, `{percent}`, `{remaining}`, `{max}` and can be styled with MiniMessage tags around them. The plugin converts these placeholders and resolves them at runtime.\n\n## Commands\n- `/toolguardian toggle` (alias `/tg`): Toggle warnings for yourself.\n\n## Permissions\n- `toolguardian.toggle` — default: `true`\n\n## How it works\n- The plugin periodically scans configured slots. If an item has durability and enters a configured threshold (e.g., 20% → 10% → 5%), the player receives exactly one message per threshold step for that item. When the item changes or durability goes above the highest threshold again, the internal state resets, allowing future warnings as appropriate.\n\n## Troubleshooting\n- No messages?\n  - Ensure your gamemode is enabled in `enabled-gamemodes`.\n  - Check that the slot (e.g., `main-hand`, `head`) is enabled under `monitor`.\n  - Verify the item actually has durability.\n- Placeholders appear literally?\n  - Make sure you kept the curly-brace placeholders (`{item}`, `{percent}`, `{remaining}`, `{max}`) in your locale file.\n  - Avoid conflicting chat formatters that strip MiniMessage formatting.\n- No sound at critical?\n  - Ensure the `sound` field exists on the desired threshold and uses a valid Bukkit sound name.",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 29,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

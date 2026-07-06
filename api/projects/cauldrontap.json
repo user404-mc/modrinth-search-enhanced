@@ -1,0 +1,23 @@
+{
+  "id": "WqKHzfAO",
+  "slug": "cauldrontap",
+  "title": "CauldronTap",
+  "description": "Paper plugin that fills empty buckets from lava or water cauldrons using a dispenser.",
+  "body": "# CauldronTap\n\nPaper plugin that fills **empty buckets** from **lava or water cauldrons** using a **dispenser**.\n\n## How it works\n\n1. Place a dispenser facing a **lava** or **water** cauldron.\n2. Put empty buckets in the dispenser.\n3. Power the dispenser — one empty bucket becomes a lava or water bucket; the cauldron is emptied.\n\n## Requirements\n\n- Paper **26.1.2** (or compatible)\n- Java **25**\n\n## Install\n\nCopy the built JAR from `build/libs/` into `plugins/` and restart the server.\n\n## Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/cauldrontap reload` | `cauldrontap.reload` (default: op) | Reload `config.yml` |\n\n## Configuration\n\nFile: `plugins/CauldronTap/config.yml`\n\n| Option | Default | Description |\n|--------|---------|-------------|\n| `debug` | `false` | Log diagnostics to the console and `plugins/CauldronTap/debug.log` |\n| `filled-bucket-output` | `inventory` | Where filled buckets go: `inventory` or `chest` |\n| `chest-output-position` | `back` | Chest offset when output is `chest` (see below) |\n\n### `filled-bucket-output`\n\n- **`inventory`** — filled bucket stays in the dispenser.\n- **`chest`** — filled bucket goes into a nearby chest; falls back to `inventory` if no chest is found or the chest is full.\n\nWorks for both lava and water buckets. Accepts normal and trapped chests.\n\n### `chest-output-position`\n\nOnly used when `filled-bucket-output: chest`. Position relative to the dispenser’s facing:\n\n| Value | Location |\n|-------|----------|\n| `back` | Behind the dispenser (default) |\n| `front` | In front (same side as the cauldron) |\n| `down` | Below |\n| `up` | Above |\n| `left` / `right` | Left or right of the facing direction |\n\n### Example\n\n```yaml\ndebug: false\nfilled-bucket-output: chest\nchest-output-position: back\n```\n\n## Build\n\n```bash\n./gradlew build\n```\n\nOutput: `build/libs/CauldronTap-<version>.jar`\n\n### CI / releases\n\n| Workflow | Trigger | Result |\n|----------|---------|--------|\n| [Build](.github/workflows/build.yml) | Push to `main`, pull requests, weekly schedule | Tests, Checkstyle, SpotBugs; uploads the plugin JAR |\n| [Release](.github/workflows/release.yml) | Push to `main` that changes `CHANGELOG.md`, or manual run | Bumps version, updates changelog, builds JAR, creates GitHub release |\n\n#### Publishing a release\n\n1. Change your code as needed.\n2. Add notes under **`## [Unreleased]`** in [`CHANGELOG.md`](CHANGELOG.md) (use `### Added`, `### Changed`, `### Fixed` and bullet points).\n3. Commit and push to `main` (include the `CHANGELOG.md` update).\n\nThe release workflow will:\n\n- Bump the version automatically (**patch** by default; latest tag `v1.0.0` → `v1.0.1`)\n- Move `[Unreleased]` notes into a new `## [x.y.z] - date` section\n- Reset `[Unreleased]` for the next cycle\n- Build `CauldronTap.jar` and create a [GitHub release](https://docs.github.com/en/repositories/releasing-projects-on-github) with those notes\n\n**Manual release** (choose patch / minor / major): Actions → Release → Run workflow.\n\nIf `[Unreleased]` has no bullet points, the workflow skips (no accidental empty releases).\n\n## License\n\nGPL-3.0 — see [LICENSE](LICENSE).\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "Zp7pgIXw",
+  "slug": "custom-crosshair-mod-circle-fix",
+  "title": "Custom Crosshair Mod circle fix",
+  "description": "Changes the logic of drawing a circle for Custom crosshair mod",
+  "body": "# Custom Crosshair Mod Fix\nA small compatibility patch for Minecraft 1.21.11 that fixes broken circle crosshair rendering (https://modrinth.com/mod/custom-crosshair-mod).\n\nThis mod does not replace the original mod and requires the original mod to be installed.\n\n## How that works?\nThe render was broken because the original mod drew the circle using an old line-based approach: it generated points around the circle and submitted them as a line render state.\n\nOriginal idea:\n\n```\nfor (int i = startAngle; i <= endAngle; i++) {\n    float radians = (i - 90) * ratio;\n    points.add(x + cos(radians) * radius);\n    points.add(y + sin(radians) * radius);\n}\n```\nThe problem was that the original ModLinesGuiElementRenderState used a debug/line pipeline with lineWidth(2.0F). In Minecraft 1.21.11’s newer GUI render-state system, that line rendering path became unreliable: the circle could break into chunks, disappear, or render with incorrect thickness.\n\nSo this mod overrides old circle rendering replaces it with RingGuiElementRenderState\n\n# The rendering is different from the original in older versions!\n\n### Comparing\n\nold:\n![old variation](https://cdn.modrinth.com/data/cached_images/25eea239e66e69766f83dc8cac882a2ab5615847_0.webp)\n\nnew:\n![new](https://cdn.modrinth.com/data/cached_images/12ec0fe7e24f193cf9877df9b217ab7094b5709d_0.webp)\n",
+  "categories": [
+    "decoration",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

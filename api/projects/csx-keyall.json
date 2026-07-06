@@ -1,0 +1,34 @@
+{
+  "id": "R2Q3yevc",
+  "slug": "csx-keyall",
+  "title": "CSX Keyall",
+  "description": "CSX KeyAll is a lightweight, high-performance auto-reward plugin for Minecraft servers (Spigot/Paper 1.21.x) that automates global giveaway countdowns with MySQL (HikariCP) pooling, anti-crash SQLite storage, and full PlaceholderAPI integration.",
+  "body": "# CSX KeyAll\n\n<div align=\"center\">\n\n![[CSX KeyAll](https://img.shields.io/badge/CSX-KeyAll-1.0.0-brightgreen?style=for-the-badge)](https://img.shields.io/badge/github-repo-blue?logo=github&label=CSX-Keyall&link=https%3A%2F%2Fgithub.com%2FCOSAX-ID%2FCSX-Keyall\n)\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-orange?style=for-the-badge\\&logo=minecraft)\n![Java](https://img.shields.io/badge/Java-21-red?style=for-the-badge\\&logo=openjdk)\n![[License](https://img.shields.io/github/license/COSAX-ID/CSX-Keyall?style=for-the-badge)](https://img.shields.io/github/license/COSAX-ID/CSX-Keyall\n)\n![Platform](https://img.shields.io/badge/Platform-Paper%20%7C%20Purpur%20%7C%20Spigot-success?style=for-the-badge)\n![Database](https://img.shields.io/badge/Database-SQLite%20%7C%20MySQL-blue?style=for-the-badge)\n\n### High-Performance Automated KeyAll System for Minecraft Servers\n\nLightweight, modern, and database-safe KeyAll scheduler designed for Paper-based Minecraft servers.\n\nBuilt with asynchronous processing, PlaceholderAPI integration, multi-language support, countdown persistence, and optimized database handling.\n\n[Features](#-features) • [Requirements](#-requirements) • [Installation](#-installation) • [Configuration](#️-configuration) • [Commands](#-commands) • [Permissions](#-permissions) • [Building](#️-building-from-source) • [Troubleshooting](#-troubleshooting) • [License](#-license)\n\n</div>\n\n---\n\n# ✨ Features\n\n## ⏰ Automated Countdown System\n\n* Fully automated KeyAll execution\n* Persistent countdown storage\n* Crash-safe timer recovery\n* Millisecond precision timing\n* Manual execution support\n\n## 🗄 Database Support\n\n| Database    | Supported |\n| ----------- | --------- |\n| SQLite      | ✅         |\n| MySQL       | ✅         |\n| H2 (Legacy) | ✅         |\n\n### Database Features\n\n* HikariCP Connection Pooling\n* Async Database Queries\n* Automatic Storage Detection\n* Smart Database Migration\n* H2 → SQLite Auto Conversion\n\n## 🌎 Localization\n\n* Multi-language Support\n* Indonesian Language Included\n* English Language Included\n* Fully Customizable Messages\n\n## 🔌 PlaceholderAPI Integration\n\nAvailable Placeholders:\n\n```text\n%csxkeyall_time%\n%csxkeyall_seconds%\n%csxkeyall_minutes%\n```\n\nCompatible With:\n\n* TAB\n* Scoreboards\n* Holograms\n* ActionBars\n* BossBars\n\n---\n\n# 📋 Requirements\n\n| Software       | Version   |\n| -------------- | --------- |\n| Minecraft      | 1.21.x    |\n| Java           | 21+       |\n| Paper          | Supported |\n| Purpur         | Supported |\n| Spigot         | Supported |\n| PlaceholderAPI | Optional  |\n\n---\n\n# 📥 Installation\n\n### 1. Download Plugin\n\nPlace:\n\n```text\ncsx-keyall-1.0.jar\n```\n\ninside:\n\n```text\n/plugins/\n```\n\n### 2. Start Server\n\nStart the server once.\n\nThe plugin will automatically generate:\n\n```text\n/plugins/CSX-Keyall/\n```\n\n### 3. Configure Plugin\n\nEdit:\n\n```text\nconfig.yml\n```\n\nConfigure:\n\n* Database\n* Commands\n* Language\n* Interval\n\n### 4. Reload\n\n```bash\n/keyall reload\n```\n\nor restart the server.\n\n---\n\n# ⚙️ Configuration\n\nExample:\n\n```yaml\ndatabase:\n  type: \"SQLITE\"\n\n  host: \"localhost\"\n  port: 3306\n  name: \"minecraft\"\n\n  username: \"root\"\n  password: \"\"\n\n  ssl: false\n\nlang: \"id\"\n\ninterval-millis: 3600000\n\ncommands-list:\n  - \"crate giveall vote 1\"\n  - \"bc &b&lCSXID &7» &aEveryone has received 1x Vote Key!\"\n```\n\n---\n\n# 📖 Commands\n\n| Command               | Description              | Permission   |\n| --------------------- | ------------------------ | ------------ |\n| /keyall info          | View remaining countdown | keyall.use   |\n| /keyall reset         | Reset countdown          | keyall.admin |\n| /keyall set-time <ms> | Modify timer             | keyall.admin |\n| /keyall cmd           | Force execute KeyAll     | keyall.admin |\n| /keyall reload        | Reload configuration     | keyall.admin |\n\n---\n\n# 🔐 Permissions\n\n| Permission   | Default | Description            |\n| ------------ | ------- | ---------------------- |\n| keyall.use   | true    | Access player commands |\n| keyall.admin | op      | Access admin commands  |\n\n---\n\n# 🛠️ Building From Source\n\n### Clone Repository\n\n```bash\ngit clone https://github.com/COSAX-ID/CSX-Keyall.git\ncd CSX-Keyall\n```\n\n### Build\n\n```bash\nmvn clean package\n```\n\nOutput:\n\n```text\ntarget/csx-keyall-1.0-SNAPSHOT.jar\n```\n\n---\n\n# 📂 Project Structure\n\n```text\nCSX-KeyAll/\n├── src/\n│   ├── main/\n│   │   ├── java/\n│   │   │   └── dev/cosax/csxkeyall/\n│   │   └── resources/\n│   │       ├── plugin.yml\n│   │       ├── config.yml\n│   │       └── lang/\n│   │           ├── en.yml\n│   │           └── id.yml\n│   └── test/\n├── pom.xml\n└── README.md\n```\n\n---\n\n# 🔧 Troubleshooting\n\n## PlaceholderAPI Not Working\n\nMake sure:\n\n* PlaceholderAPI is installed\n* Server has been restarted\n* Expansions are loaded correctly\n\n## MySQL Connection Failed\n\nCheck:\n\n* Host\n* Port\n* Username\n* Password\n* Firewall Settings\n\n## Countdown Reset After Restart\n\nEnsure the plugin has permission to write data inside:\n\n```text\n/plugins/CSX-KeyAll/\n```\n\n---\n\n# 👨‍💻 Credits\n\n## Developed By\n\n| Role           | Name      |\n| -------------- | --------- |\n| Organization   | COSAX.ID  |\n| Lead Developer | COSAXID   |\n| Developer      | minggudev |\n\n### GitHub\n\n* https://github.com/COSAX-ID\n* https://github.com/minggudevv\n\n---\n\n# 📜 License\n\nThis project is licensed under the MIT License.\n\nFor more information, see the [LICENSE](LICENSE) file.\n\n---\n\n# ⭐ Support\n\nIf you enjoy using CSX KeyAll, please consider giving this repository a star.\n\nYour support helps future development and maintenance.\n\n<div align=\"center\">\n\nMade with ❤️ by COSAX.ID\n\n### ⬆ Back To Top\n\n[Click Here](#csx-keyall)\n\n</div>\n",
+  "categories": [
+    "economy",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

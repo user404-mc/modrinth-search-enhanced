@@ -1,0 +1,26 @@
+{
+  "id": "DuFPz4nz",
+  "slug": "itemoftheday",
+  "title": "ItemOfTheDay",
+  "description": "A lightweight Minecraft Paper server plugin that allows players to exchange a different item each day for a reward.",
+  "body": "# ItemOfTheDay\n\nA lightweight Minecraft Paper server plugin that allows players to exchange a different item each day for a reward. Server operators have the ability to set or shuffle the Item of the Day (IOTD), set the reward for the current Item of the Day, and set the default reward, which is reverted back to on date change or when the IOTD is shuffled.\n\n### What's New in v1.0.1\n\n- Added the `/iotd list-claimed` command for server operators to view who's already claimed today's reward\n- Minor fixes\n\n### Requirements\n\nServer must have Paper installed. Currently supported versions of Paper include stable builds built for versions `1.21.11` through `26.2` of Minecraft. Use with alpha/beta builds of Paper at your own risk and discretion.\n\n### Commands\n\n- `/iotd info`: available to all players - displays info on the current Item of the Day and corresponding reward.\n- `/iotd exchange`: available to all players - if the player has a single instance of the IOTD in their main hand and has not already exchanged today, the IOTD in their hand will be replaced with the current reward.\n- `/iotd shuffle`: operator required - randomizes the IOTD and resets the reward back to the specified default reward.\n- `/iotd set <item>`: operator required - sets the current IOTD to the specified item WITHOUT changing the reward.\n- `/iotd set-reward <reward> <amount>`: operator required - sets the current reward to the specified item and amount.\n- `/iotd set-default-reward <default-reward> <amount>`: operator required - sets the default reward (reverted to when IOTD is shuffled) to the specified item and amount.\n- `/iotd list-claimed`: operator required - lists all the players who've claimed today's IOTD.\n- `/iotd reset-claimed`: operator required - clears the config's list of players (UUIDs) who have already exchanged for the IOTD.\n\n### Config\n\nThe plugin creates a config file at `plugins/ItemOfTheDay/config.yml`. All key-value pairs found in the config file can be edited through commands except for the list of `blacklisted-items`, so the only time server owners should have to edit this config file is to add or remove items from the blacklist.\n\nBy default, `blacklisted-items` contains all items which are unobtainable in survival mode. Edit the list and restart the server for blacklist changes to take effect.\n\nSupport for adding/removing items to and from the blacklist on the fly with commands will be added in a future update.\n\n### Features\n\n- Uses the `ItemType` registry to select items from and validate against, so any custom items added by mods or plugins will be included in IOTD by default.\n- Supports command arguments of type `ItemStack` for the reward commands, allowing server operators to create unique custom rewards using the same syntax as the Vanilla `/give` command.\n- `DateWatcher`: a lightweight class that keeps track of the current date by checking against a saved `LocalDate` every 1 minute (1200 ticks). Note that this is based on server ticks, so if ticks do not occur when players are offline on your server, the IOTD will be shuffled the first time someone joins on a new date (within a minute).\n\n### Contributing\n\nContribute at [github.com/timnorthrop/ItemOfTheDay](https://github.com/timnorthrop/ItemOfTheDay).",
+  "categories": [
+    "adventure",
+    "economy",
+    "minigame",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

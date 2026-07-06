@@ -1,0 +1,21 @@
+{
+  "id": "RXMJ1jWa",
+  "slug": "carpet-fixes-1.21.11-port",
+  "title": "Carpet Fixes (unofficial port)",
+  "description": "Unofficial 1.21.11 port of Carpet Fixes — fixes many vanilla bugs (Fabric Carpet extension)",
+  "body": "**Unofficial port of [Carpet Fixes](https://github.com/fxmorin/carpet-fixes) to Minecraft 1.21.11.**\n\nCarpet Fixes is a [Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension that fixes as many vanilla Minecraft bugs as possible — redstone update order, dupes, mob behaviour, pistons, observers, rails, explosions and much more. Every fix is a toggleable rule.\n\nThis build ports it to **1.21.11**, based on tomalbrc's 1.21 fork. **Tested in-game** (loads with no mixin errors).\n\n## ⚙️ Requirements\n\n- **Minecraft 1.21.11**\n- **Fabric Loader** ≥ 0.16.9\n- **Fabric Carpet** `1.21.11-1.4.193+v251211` or newer — **required**\n- **Java 21**\n- Fabric API is **not** required\n- `conditional-mixin` is bundled (jar-in-jar)\n\n## 📦 Installation\n\n1. Install Fabric Loader for 1.21.11.\n2. Drop into `mods/`:\n   - `fabric-carpet` for 1.21.11\n   - this jar\n3. Configure rules in game with **`/carpet-fixes <rule> true|false`** (the mod has its **own** command — NOT `/carpet`). Full rule list with descriptions: see RULES.md / RULES-EN.md in the repo.\n\nWorks in singleplayer & multiplayer.\n\n## ✅ What's included\n\n**246 fixes active** — redstone update order, dupe fixes, mob/entity behaviour, blocks, pistons, observers, rails, explosions (including the correct TNT exposure calc — `incorrectExplosionExposureFix`), spawn chunks staying loaded, and more.\n\nRestored & tested in `1.18.1-port`: **creeper portal fuse**, **blue wither skulls saved**, **brewing time on unload**, **bubble column**, **`/data` on players**.\n\n## ❌ What's disabled\n\nA handful of fixes are incompatible with 1.21.11 without a full rewrite, or are now redundant (Mojang fixed the bug in vanilla):\n\n- **Custom redstone neighbour-updater** (`useCustomRedstoneUpdates`, `optimizedNeighborUpdater`, `reIntroduceInstantBlockUpdates`) — neighbour-update system reworked (`WireOrientation` / `ChainRestrictedNeighborUpdater`).\n- **Explosion world-border** (`explosionsBypassWorldBorderFix`) — `Explosion` became an interface and `ExplosionImpl` was restructured.\n- **Entity block-collision / x8-portal** — collision reworked to a `tickBlockCollision(from, to)` queue (vanilla likely fixed it).\n- **RecipeManager optimization** — recipe API reworked (Lithium covers it anyway).\n- **palette data-corruption** — palettes no longer hold a resize listener → bug can't happen.\n- **ChorusFruit / Boat fall damage, Warden eats armor, DaylightDetector placement** — classes/methods removed or made `final`.\n- **Mob conversion data transfer** — vanilla's `EntityConversionContext` handles it now.\n- debug tools & server-toggle rules.\n\n## ⚠️ Note\n\nThe mixin config uses `defaultRequire = 0`: if a fix can't apply in some rare, untested path, it is **silently skipped instead of crashing the server**.\n\n## 🐞 Found a bug?\n\nIf a crash happens or a fix misbehaves, **contact me for a fix** — Discord `skrizzz_`. Please attach your game/loader/Carpet versions and the crash log (`logs/latest.log` or `crash-reports/`).\n\n## 💜 Support the porter\n\n- **Discord:** `skrizzz_`\n- **Card (Т-Bank):** `2200700868492199` — Ivan P.\n\n## 📜 Credits & License\n\nMIT License — © 2020 Fx Morin.\n\n- **Fabric Carpet** (base mod): **gnembon** & team — https://github.com/gnembon/fabric-carpet\n- **Carpet Fixes** (original): **FX_PR0CESS / fxmorin** — https://github.com/fxmorin/carpet-fixes\n- **1.21 fork** (port base): **tomalbrc** — https://github.com/tomalbrc/carpet-fixes\n- **1.21.11 port:** `skrizzz_` (unofficial) — https://github.com/Skr1zzzz/carpet-fixes-1.21.11\n\nHuge thanks to **gnembon** for Carpet, **fxmorin** for Carpet Fixes, and **tomalbrc** for the 1.21 fork.\n\n> This is an **unofficial** build. Report Carpet Fixes bugs to the original repo; report port-specific issues here.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

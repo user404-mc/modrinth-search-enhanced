@@ -1,0 +1,37 @@
+{
+  "id": "AOGJJ7Lx",
+  "slug": "dynamic-pt",
+  "title": "dpt",
+  "description": "Dynamic PTerodactyl -- Spin up/down Pterodactyl minecraft servers on demand!",
+  "body": "# **D**ynamic **PT**erodactyl\n\nVelocity plugin for on-demand minecraft containers!\n\nFeatures:\n- Start/Stop a Pterodactyl Container (hosting Minecraft)\n- Send player(s) to the new servers once it has started (or prompt them to do so)\n\n***Ideal for communities with servers you don't want to run 24/7 (i.e.: For minigame servers)***\n\n## Demo\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/2tsVKLbkUAg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n## A word on security\n\nI would advise that you make a specific user in your panel to use for your API keys for this! You _only_ need to give this user 'START', 'STOP' and 'RESTART' permissions on a server by server basis.\n\nThis is not a matter of plugin functionality but it is always advisable to restrict what your API keys can do to restrict the potential for abuse.\n\nSee:\n![Pterodactyl 'User' permission pane showing permissions 'START', 'STOP', and 'RESTART' all checked, while all other options are left unchecked.](https://cdn.modrinth.com/data/cached_images/9a4aae83a9036d2a34c03b5602fea8e7513618c0.png)\n\n## Config\n\nSee the following example:\n\n```\napi-url: \"https://panel.example.com\"\napi-key: \"apiKeyHere\"\ndefault-timeout: 120 # interval between times server's watchdog will check if its empty & online.\nstartup-timeout: 120 # how long the plugin is willing to wait for a server to start before failing a request.\n\nservers:\n  survival-example: # this must match the `servers` section of `velocity.toml`\n    display-name: Survival 2 # This can use minimessage!\n    uuid: \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"\n    watchdog: true # set to false or omit to disable watchdog entirely.\n    timeout: 120 # watchdog timeout in seconds (default: 120s)\n```\n\nNote that using `/dpt reload` will _not_ change `api-url`/`api-key`, you must restart the proxy in order to do this.\n\n## Commands\n\n### `/dptsend <player/all/current> <server> <promptPlayersToJoin/promptMeToSend>`\n  - player: send player to server\n  - all: send all players on the proxy to server\n  - current: CALLER MUST BE A PLAYER. send all players on current server to server.\n  - promptPlayersToJoin: send a message to all players when the server is ready inviting them to the server.\n  - promptMeToSend: send an interactive message when the server is ready that sends all the players on click.\n\n### `/dptsend server <origin server> <destination server> <promptPlayersToJoin/promptMeToSend>`\n  - origin server: any velocity server.\n  - destination server: any velocity server dpt is configured to control.\n  - promptPlayersToJoin: send a message to all players when the server is ready inviting them to the server.\n  - promptMeToSend: send an interactive message when the server is ready that sends all the players on click.\n\n### `/dptserver <destination server> <immediate>`\n  - destination server: any velocity server dpt is configured to control\n  - immediate: `dptserver` default behaviour should be to prompt when the server is ready. specifying this option will send the player as soon as the servers ready.\n\n### `/dptping <server>`\n  - server: any velocity server dpt is configured to control\n\n### `/dptwd <server> <start/stop>`\n  - server: any velocity server dpt is configured to control\n\n## Permissions:\n\n- `dpt.send` Access to `/dptserver <destination server>`. Give this permission to users ideally (plus specific server permissions)\n- `dpt.send.others` Send other players on proxy/server (`/dptsend <player> <destination>`)\n- `dpt.send.all` Send all players on proxy/server (`/dptsend <all/current> <destination>`)\n- `dpt.send.<server-name>` Access to do `/dptserver <server-name>` and `/dptsend <player/all/current> <server-name>` where `server-name` is already configured.\n- `dpt.send.anywhere` Above permission but for any server.\n- `dpt.ping` Ping a server.\n- `dpt.watchdog` Access to `/dptwd`\n\n# License\n\nLicensed under Apache 2.0.\n\n[Logo Image By \"annaxphiline\"](https://unsplash.com/photos/an-old-tv-sitting-in-the-middle-of-a-forest-SZcGcB4Fy1g)",
+  "categories": [
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 29,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

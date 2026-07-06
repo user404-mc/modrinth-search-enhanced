@@ -1,0 +1,24 @@
+{
+  "id": "qblHNxBB",
+  "slug": "motionomicon",
+  "title": "Motionomicon",
+  "description": "A data pack that allows you to apply motion to a Player.",
+  "body": "# Motionomicon\nThis is a data pack that allows you to apply motion to a Player.\nThe name is a combination of the words *motion* and *Necronomicon* as it uses enchantments to apply motion.\n\n\n## How to Use\nThere are two types of functions: one that allows you to set the motion with the specified value and one that allows you to add motion on top of the existing motion.\nAny of the numbers specified can range from -9.9999 to 9.9999.\nDigits outside of that range won't be considered, meaning that 14.5 is the same as 4.5 and -23.8 is the same as -3.8.\nThese functions fail when the Player is in Spectator mode as motion cannot be applied when they are in said game mode.\nThe effects stack, which means you can call the functions multiple times and it will act appropriately.\nFor example, the following two calls result in a total motion of `[1, 1, 0]`:\n```mcfunction\nfunction motion:set {x: 1, y: 0, z: 0}\nfunction motion:add {x: 0, y: 1, z: 0}\n```\nThis also means that the effects are applied immediately.\nNote that due to floating-point precision errors there might an ever so slight error with the actual motion, though this tends to be negligible.\nAdditionally, the screen might flicker sometimes due to the `rotate` command having already rotated the Player.\nPlease be wary of this.\n\n### `motion:set` and `motion:add`\nBoth of these functions take the parameters `x`, `y`, and `z`, which are all numbers.\n`motion:set` overwrites the current motion entirely.\n`motion:add` adds the motion on top of the current motion.\n\n#### Examples\nJump a single block upwards.\n```mcfunction\nfunction motion:set {x: 0, y: 0.42, z: 0}\n```\n\nDash in the negative z direction.\n```mcfunction\nfunction motion:set {x: 0, y: 0, z: -2}\n```\n\n### `motion:set_rotated` and `motion:add_rotated`\nBoth of these functions take the parameters `left`, `up`, and `forwards`, which are all numbers.\nThese functions use the Player's rotation as their axes instead of using the cardinal directions.\n`motion:set_forwards` overwrites the current motion entirely.\n`motion:add_forwards` adds the motion on top of the current motion.\n\n#### Examples\nStrafe left roughly 10 blocks.\n```mcfunction\nfunction motion:set_rotated {left: 0.91, up: 0, forwards: 0}\n```\n\nJump and move forwards one block.\n```mcfunction\nfunction motion:set_rotated {left: 0, up: 0.42, forwards: 0.27}\n```\n",
+  "categories": [
+    "datapack",
+    "library",
+    "technology",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 101,
+  "followers": 0,
+  "game_versions": [
+    "25w43a",
+    "25w44a",
+    "25w45a",
+    "25w46a"
+  ],
+  "date_updated": null
+}

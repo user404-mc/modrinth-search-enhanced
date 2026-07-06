@@ -1,0 +1,37 @@
+{
+  "id": "bV2MwDvB",
+  "slug": "dungeonrefresher",
+  "title": "DungeonRefresher",
+  "description": "Automatically regenerates loot in chests, barrels and vaults with custom cooldown and vanilla loot table support.",
+  "body": "# DungeonRefresher\n\n**Automatically regenerates loot in chests, barrels, and trial vaults after a configurable cooldown.**\n\nPerfect for custom dungeons, adventure maps, and multiplayer servers where loot needs to be renewable.\n\n## ⚙️ Core Mechanics\n\n- **First open** – a random cooldown (between min and max minutes) is stored.\n- **Cooldown expired** – the container's loot is completely regenerated on the next open.\n- **Custom loot tables** – assign any vanilla loot table (e.g. `minecraft:chests/simple_dungeon`) using `/dr setloot`.\n- **Persistent data** – cooldowns and custom loot assignments survive server restarts using PersistentDataContainer.\n\n## ✨ Features\n\n- Configure min/max cooldown in **minutes** (default 24–96 hours).\n- Choose which container types are affected (chests, barrels, trial vaults).\n- Clear inventory before refilling (configurable).\n- Storage options: PDC (persistent) or in-memory Caffeine cache.\n- Protection system – prevent breaking containers while on cooldown (with bypass permission).\n- Tab completion for subcommands and all vanilla chest/dispenser loot tables.\n\n## 📋 Commands & Permissions\n\n| Command | Permission |\n|---------|------------|\n| `/dr reload` | `dungeonrefresher.reload` |\n| `/dr debug` | `dungeonrefresher.debug` |\n| `/dr reset` | `dungeonrefresher.reset` |\n| `/dr setloot <key>` | `dungeonrefresher.setloot` |\n| `/dr resetloot` | `dungeonrefresher.resetloot` |\n\nAlias: `/dungeonrefresher`. All permissions default to `op`.\n\n## 🔧 Configuration\n\nDetailed `config.yml` with comments:\n\n```yaml\n# Refresh timing settings (in minutes)\nrefresh:\n  # Minimum cooldown before loot can be regenerated (in minutes)\n  # Default: 1440 minutes = 24 hours\n  min-minutes: 1440\n  # Maximum cooldown before loot can be regenerated (in minutes)\n  # Default: 5760 minutes = 96 hours\n  max-minutes: 5760\n\n# Which container types to process\nfeatures:\n  # Trial Vaults (requires Paper 1.21+)\n  vaults: true\n  # Normal chests and trapped chests\n  chests: true\n  # Barrels\n  barrels: true\n  # Clear inventory before filling with new loot (if false, new loot will be merged with existing items)\n  clear-inventory-on-refresh: true\n\n# Cooldown storage method\nstorage:\n  # true = use PersistentDataContainer (stored inside the block, survives server restarts)\n  # false = use in-memory Caffeine cache (resets on restart, faster but volatile)\n  use-persistent-data-container: true\n\n# Protection settings (prevent breaking containers before cooldown expires)\nprotection:\n  # Enable protection for loot containers (players cannot break them while on cooldown)\n  enabled: false\n  # Permission to bypass protection\n  bypass-permission: \"dungeonrefresher.bypass\"\n  # Prevent explosions from destroying containers\n  protect-from-explosions: true\n```\n## 📦 Installation\n1. Place DungeonRefresher.jar into your plugins/ folder.\n2. Restart the server or load the plugin.\n3. (Optional) Edit config.yml if needed and run /dr reload.",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "storage",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "YH4wdXOP",
+  "slug": "creeprchain",
+  "title": "creeprchain",
+  "description": "blockchain for minecraft servers\nfor installation and building, visit github",
+  "body": "# Creeprchain\n\n## for installation and building, visit github\n\nMinecraft Fabric 1.20.1 economy mod. Players deposit items at an ATM block and receive ERC-20-style tokens on an Ethereum-compatible blockchain. Tokens are visible in MetaMask.\n\n## Requirements\n\n| Tool | Version |\n|---|---|\n| Java JDK | 21 |\n| Fabric Loader | 0.19.2 |\n| Fabric API | 0.92.9+1.20.1 |\n| Node.js | 18+ (for Hardhat) |\n| Hardhat | installed in `blockchain/` |\n\n## Building the mod\n\n```bash\n./gradlew build\n```\n\nThe output jar is at:\n\n```\nbuild/libs/creeprchain-1.0.0.jar\n```\n\n> On Windows use `gradlew.bat build`\n\n---\n\n## Installing on a Fabric server\n\n1. Download [Fabric Installer](https://fabricmc.net/use/installer/) and install Fabric server for Minecraft 1.20.1.\n2. Copy `build/libs/creeprchain-1.0.0.jar` into the server's `mods/` folder.\n3. Download [Fabric API](https://modrinth.com/mod/fabric-api) for 1.20.1 and place it in `mods/` as well.\n4. Start the server once — it will create the config directory at `config/creeprchain/`.\n5. Edit `config/creeprchain/blockchain.json` (see [Blockchain setup](#blockchain-setup)).\n6. Restart the server.\n\n## Installing on a client\n\n1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for Minecraft 1.20.1 in the launcher.\n2. Copy `build/libs/creeprchain-1.0.0.jar` into `.minecraft/mods/`.\n3. Copy [Fabric API](https://modrinth.com/mod/fabric-api) for 1.20.1 into `.minecraft/mods/` as well.\n4. Launch the game and connect to the server.\n\n> The client and server **must use the exact same jar**. A version mismatch causes registry sync errors (`missing creeprchain:atm_block`).\n\n---\n\n## Blockchain setup (tested on LINUX)\n\nThe blockchain runs on a separate Linux machine. All commands below are run on that machine inside the `blockchain/` folder.\n\n### Step 1 — Install dependencies\n\n```bash\ncd blockchain\nnpm install\n```\n\n### Step 2 — Start Hardhat node\n\n```bash\nscripts/start-local-chain.sh\n```\n\nThis starts a local Ethereum node at `0.0.0.0:8545` (chain ID **31337**). Leave this terminal open.\n\n### Step 3 — Deploy the contract\n\nOpen a second terminal on the same machine:\n\n```bash\nscripts/deploy-contract.sh\n```\n\nOutput example:\n\n```\nToken deployed to: 0xAbCd1234...\n```\n\nCopy the contract address.\n\n### Step 4 — Configure blockchain.json\n\nOn the **Minecraft server machine**, edit `config/creeprchain/blockchain.json`:\n\n```json\n{\n  \"rpcUrl\": \"http://192.168.0.108:8545\",\n  \"chainId\": 31337,\n  \"contractAddress\": \"0xAbCd1234...\",\n  \"privateKey\": \"0xd345b787fa175fa22321746c8e0289ad88eac2de8c39ce67215c8b362af621e5\"\n}\n```\n\n- `rpcUrl` — IP of the Linux machine running the Hardhat node\n- `contractAddress` — address printed by the deploy script\n- `privateKey` — the Hardhat deployer account; this wallet signs mint/burn transactions on behalf of the server\n\nRestart the Minecraft server. The log will show:\n\n```\nBlockchainService connected: rpc=http://192.168.0.108:8545 chainId=31337 contract=0x...\n```\n\n---\n\n## MetaMask setup\n\n1. Open MetaMask → Settings → Networks → Add network manually:\n   - **RPC URL:** `http://192.168.0.108:8545`\n   - **Chain ID:** `31337`\n   - **Currency symbol:** ETH\n2. Add the token: MetaMask → Tokens → Import token → paste the contract address.\n3. Note your MetaMask wallet address — you will use it with `/linkwallet`.\n\n---\n\n## In-game setup and test\n\n```\n/linkwallet 0xYourMetaMaskAddress\n```\n\nPlace an ATM block (`/give @p creeprchain:atm_block`) and right-click it while holding a diamond (or another configured item). The tokens will appear in MetaMask.\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/linkwallet <address>` | Bind your Minecraft account to an Ethereum wallet address |\n| `/balance` | Show your token balance |\n| `/send <player> <amount>` | Transfer tokens to another online player |\n| `/withdraw <amount>` | Burn tokens (blockchain withdraw) |\n| `/withdraw <item> <count>` | Burn tokens and receive Minecraft items |\n\n---\n\n## Configuration\n\nConfig files live in `config/creeprchain/` on the server. If absent, bundled defaults from `src/main/resources/config/` are used.\n\n### economy.json — deposit and withdraw rates\n\n```json\n{\n  \"depositRates\": {\n    \"minecraft:diamond\": 100,\n    \"minecraft:iron_ingot\": 10,\n    \"minecraft:gold_ingot\": 20\n  },\n  \"withdrawRates\": {\n    \"minecraft:diamond\": 95,\n    \"minecraft:iron_ingot\": 9,\n    \"minecraft:gold_ingot\": 18\n  },\n  \"maxDeposit\": 10000,\n  \"maxWithdraw\": 5000,\n  \"maxBalance\": 100000\n}\n```\n\n### blockchain.json — connection to the Ethereum node\n\n```json\n{\n  \"rpcUrl\": \"http://192.168.0.108:8545\",\n  \"chainId\": 31337,\n  \"contractAddress\": \"0x0000000000000000000000000000000000000000\",\n  \"privateKey\": \"\"\n}\n```\n\nIf `privateKey` is empty or `contractAddress` is zero, the mod runs in **local-ledger mode** (transactions stored only in SQLite, no blockchain interaction).\n\n---\n\n## License\n\nMIT\n",
+  "categories": [
+    "economy",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

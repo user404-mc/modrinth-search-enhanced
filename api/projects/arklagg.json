@@ -1,0 +1,37 @@
+{
+  "id": "JYqnDVHJ",
+  "slug": "arklagg",
+  "title": "ArkLagg",
+  "description": "ArkLagg is an optimization plugin designed to improve Minecraft server performance by reducing unnecessary entities and automating server cleanup. Lightweight, efficient, and fully configurable, it helps maintain a smooth gameplay experience.",
+  "body": "<div align=\"center\">\n\n# 🧹 ArkLagg\n\n**Advanced lag management plugin**\n\n[![Version](https://img.shields.io/badge/version-0.0.1-darkred?style=flat-square)](https://modrinth.com/plugin/arklagg)\n[![MC 1.21](https://img.shields.io/badge/Paper%2FFolia-1.21.x-green?style=flat-square)](https://papermc.io)\n[![MC 26](https://img.shields.io/badge/Paper%2FFolia-26.x-purple?style=flat-square)](https://papermc.io)\n[![Java](https://img.shields.io/badge/Java-21%2B-red?style=flat-square)](https://adoptium.net)\n[![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-lightgrey?style=flat-square)](#licence--license)\n\n</div>\n\n---\n\n## Overview\n\nArkLagg is an advanced ClearLag plugin designed for Paper and Folia servers. It automatically removes ground entities and items at regular intervals, protects valuable items, and creates temporary safe zones around player death locations.\n\n### ✨ Features\n\n- 🔁 **Automatic ClearLag** — configurable cleanup interval (in seconds)\n- 📢 **Progressive announcements** — warnings at 5 min, 1 min, 30 s, and 10 s before cleanup\n- 🗑️ **Item & entity cleanup** — removes drops, mobs, projectiles, and falling blocks\n- 🛡️ **Death protection** — temporary zone around death location to protect drops\n- 🔒 **Item blacklist** — protection for tools, armor, and rare items (Mace, Elytra…)\n- 🐾 **Entity protection** — tamed, named, villagers, and 1.21+ entities preserved\n- 🎮 **Third-party plugin support** — Oraxen, ItemsAdder, enchanted items\n- ⚡ **Folia-compatible** — regionalized scheduler, zero multi-thread conflict\n- 🌐 **Bilingual** — French and English included (`lang/fr.json`, `lang/en.json`)\n- 🐛 **Debug mode** — detailed logs toggled with a single config flag\n\n---\n\n## 📦 Installation\n\nDrop the `.jar` file into your server's `plugins/` folder and restart. Configuration files are generated automatically on first startup.\n\n**Required:**\n* Paper or Folia **1.21.x** (Java 21+) **or** Paper/Folia **26.x** (Java 25+)\n* No required dependencies\n\n**Optional:**\n* [Oraxen](https://modrinth.com/plugin/oraxen) — protection of custom items\n* [ItemsAdder](https://www.spigotmc.org/resources/73355/) — protection of custom items\n\n---\n\n## ⚙️ Configuration\n\nThe `config.yml` is generated in `plugins/ArkLagg/` on first startup.\n\n```yaml\n# Language: fr | en\nlanguage: fr\n\n# Debug logs\ndebug: false\n\n# ── ClearLag ────────────────────────────────────────────────────────────\nclearlag:\n  enabled: true\n  interval: 300          # Interval in seconds (default: 5 min)\n  max-per-tick: 0        # Entities removed per tick (0 = unlimited)\n  announcements:\n    enabled: true\n    timings: [300, 60, 30, 10]   # Seconds before cleanup\n\n# ── Item cleanup ──────────────────────────────────────\nitem-cleanup:\n  enabled: true\n  min-age: 0             # Minimum age before removal (secondes)\n  max-items: 0           # Maximum items removed per cycle (0 = illimité)\n  by-type:\n    common: true         # Remove common items\n    valuable: false      # Protect rare items\n\n# ── Entity cleanup ──────────────────────────────────\nentity-cleanup:\n  enabled: true\n  hostile-mobs: true     # Hostile mobs\n  passive-mobs: true     # Passive animals\n  projectiles: true      # Arrows, fireballs…\n  dropped-blocks: true   # Falling blocks\n\n# ── Death protection zone ─────────────────────────\ndeath-regions:\n  enabled: true\n  duration: 300          # Duration in seconds\n  radius: 30             # Radius in blocks\n  show-particles: true\n  play-sound: true\n\n# ── Entity protection ───────────────────────────────\nentity-protection:\n  protect-tamed: true          # Tamed\n  protect-named: true          # Named (name tag)\n  protect-in-water: false\n  protect-near-players: 0      # Radius (0 = disabled)\n\n# ── Protection items custom ──────────────────────────────────────────────\ncustom-items:\n  protect-oraxen: true\n  protect-itemsadder: true\n  protect-all-custom: false\n  protect-enchanted: true\n\n# ── Blacklist items (never removed) ───────────────────\nblacklist-items:\n  - DIAMOND_PICKAXE\n  - NETHERITE_SWORD\n  - ELYTRA\n  - MACE\n  # ... see full config for the complete list\n\n# ── Blacklist entités (never removed) ────────────────\nblacklist-entities:\n  - ARMOR_STAND\n  - VILLAGER\n  - CREAKING\n  # ... see full config\n\n# ── Performance ──────────────────────────────────────────────────────────\nperformance:\n  use-async: false             # Async processing (experimental)\n  chunk-based: true            # Chunk-by-chunk cleanup\n  min-tps-threshold: 15.0      # Min TPS before pausing\n  clear-memory: true           # Free memory after cleanup\n```\n\n---\n\n## 💬 Language\n\nChange `language: fr` in `config.yml` to switch language. Files are in `plugins/ArkLagg/lang/`.\n\n| File   | Language |\n|------------------|-------------------|\n| `lang/en.json`   | English        |\n| `lang/fr.json`   | French        |\n\n---\n\n## 🕹️ Commands\n\n| Command  | Description               | Permission        |\n|---------------------|-----------------------------|-------------------|\n| `/arklagg`          | Show help                   | —                 |\n| `/arklagg help`     | Show help                   | —                 |\n| `/arklagg clear`    | Trigger a manual cleanup    | `arklagg.clear`   |\n| `/arklagg reload`   | Reload configuration        | `arklagg.reload`  |\n\n---\n\n## 🔐 Permissions\n\n| Permission        | Description                    | Default |\n|-------------------|----------------------------------|-----------------|\n| `arklagg.clear`   | Trigger a manual ClearLag        | `op`            |\n| `arklagg.reload`  | Reload the configuration         | `op`            |\n\n---\n\n## 🖥️ Compatibility\n\n| Platform | Version | Java | Supported |\n|-----------------------|---------|------|----------------------|\n| Paper                 | 1.21.x  | 21+  | ✅                   |\n| Folia                 | 1.21.x  | 21+  | ✅                   |\n| Paper                 | 26.x    | 25+  | ✅                   |\n| Folia                 | 26.x    | 25+  | ✅                   |\n| Spigot                | any     | —    | ❌                   |\n\n---\n\n## 🐛 Debug\n\n```yaml\ndebug: true\n```\n\n---\n\n## 🆘 Support\n\n[![Discord](https://img.shields.io/badge/Discord-Arklandia-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/GyQMMgkGnY)\n\n---\n\n## 📜 License\n\n© 2026 Arklandia Studios — All Rights Reserved",
+  "categories": [
+    "folia",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

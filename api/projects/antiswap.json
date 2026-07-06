@@ -1,0 +1,26 @@
+{
+  "id": "fDtmzE4v",
+  "slug": "antiswap",
+  "title": "AntiSwap (Attribute Swap Fix)",
+  "description": "Prevents players from using attribute swap exploits by fast-swapping items to their offhand. Highly configurable and perfect for Modpack, PvP and SMP servers!",
+  "body": "## Overview\n\nAnti-Swap Fix addresses a critical combat exploit where players can swap weapons mid-attack to gain unintended attribute bonuses. This exploit allows players to combine the attack speed of one weapon with the damage or attributes of another, creating an unfair advantage in PvP and PvE scenarios.\n\nThis mod was specifically designed for large modpack SMPs where players have access to weapons with unique attributes and special effects. In these environments, the exploit becomes particularly problematic as players can mix and match powerful modded weapon attributes, completely breaking the intended game balance and progression systems.\n\n## The Problem\n\nIn vanilla Minecraft, when a player initiates an attack, the game calculates damage and applies attributes based on the item held at the moment the attack connects, not when it was initiated. This creates a window of opportunity where players can:\n\n1.  Start an attack with a fast weapon (e.g., dagger with high attack speed)\n2.  Swap to a powerful weapon mid-attack (e.g., sword with high damage)\n3.  Deal damage with the powerful weapon while maintaining the attack speed of the fast weapon\n\nThis exploit is commonly known as \"Attribute Swap\" or \"Weapon Swap\" and can severely impact game balance, especially on servers with custom weapons or RPG-style combat systems.\n\n## How It Works\n\nAnti-Swap Fix uses a simple but effective approach:\n\n1.  **Snapshot System**: At the start of each player tick, the mod records which item the player is holding\n2.  **Attack Validation**: When a player attempts to attack, the mod compares the current held item with the snapshot\n3.  **Exploit Prevention**: If the items don't match, the attack is cancelled\n\nThis \"snapshot-and-validate\" strategy ensures that players can only deal damage with the weapon they were actually holding when they initiated the attack.\n\n## Features\n\n*   **Server-Side Only**: No client installation required\n*   **Lightweight**: Minimal performance impact with efficient snapshot caching\n*   **Configurable**: Enable/disable protection via server config or commands\n*   **Debug Mode**: Optional per-player debug messages for testing and verification\n*   **Zero False Positives**: Only cancels attacks when an actual swap is detected\n\n## Configuration\n\nThe mod creates a configuration file at `config/antiswapfix-server.toml` with the following options:\n\n```\n[General Settings]\n    # Enables protection against the Attribute Swap exploit\n    enabled = true\n\n    # Sends debug messages to players when attacks are cancelled\n    debugMode = false\n```\n\n## Commands\n\nAll commands require operator permission (level 2).\n\n### Toggle Protection\n\n```\n/antiswap toggle true/false\n```\n\nEnables or disables the anti-swap protection.\n\n### Toggle Debug Mode\n\n```\n/antiswap debug true/false\n```\n\nEnables or disables debug messages for the player who executes the command. When enabled, you will receive detailed messages showing which items were swapped when an attack is cancelled.\n\nDebug messages show:\n\n*   The item held at the start of the tick\n*   The item held when the attack was attempted\n*   Color-coded information for easy identification\n\n## Compatibility\n\n*   **Minecraft Version**: 1.20.1\n*   **Mod Loader**: Forge 47.4.10+\n*   **Side**: Server-side (client installation optional but not required)\n\n## Why This Mod?\n\nIn large modpack environments, the Attribute Swap exploit becomes exponentially more dangerous. Players can exploit combinations of:\n\n*   High attack speed weapons from one mod with high damage weapons from another\n*   Weapons with special effects combined with weapons that have high base damage\n*   Enchantments and custom attributes that were never meant to work together A player with a fast dagger and a powerful greatsword can effectively have both at once, trivializing boss fights and making PvP completely unbalanced. Anti-Swap Fix provides a clean, universal solution that works with any item, any mod, and any combat system. It doesn't care about attributes, enchantments, or special effects - it simply ensures you attack with the weapon you're actually holding.\n\n## Credits\n\n**Author**: [SatDPhoe](https://x.com/SatPhoe)\n\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/satdphoe)\n\n[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/SatDPhoe)",
+  "categories": [
+    "equipment",
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 100,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "TqRJEKRj",
+  "slug": "buildcontest",
+  "title": "BuildContest",
+  "description": "BuildContest plugin automatically creates Minecraft sub-servers using Docker and transfers players to their respective contest servers.",
+  "body": "# BuildContest Plugin\n\nBuildContest is a Velocity plugin that simplifies the setup of dedicated servers for each team in a building contest. The plugin uses Docker Compose to start sub-servers and automatically transfers players to their respective sub-servers for the contest. Team configurations and server information are persistently stored.\n\n## Features\n\n- **Automatic Sub-Server Creation**: Create team servers using HTTP API calls with Docker Compose, and register them with Velocity.\n- **Automatic Player Transfer**: Players are automatically transferred to their corresponding sub-servers when joining the main server.\n- **Permission Control**: Authenticate HTTP requests using Bearer Token.\n- **Prevent Duplicate Participation**: When adding a team, if a player already exists in another team, they cannot join other teams.\n\n## Installation Steps\n\n1. **Prepare the Environment**\n    - Install [Velocity](https://velocitypowered.com/) proxy server.\n    - Ensure Docker and Docker Compose are installed and properly configured.\n\n2. **Create a Minecraft Contest Server Image (Sub-Server)**\n    - It's recommended to use [Little Wrench](https://www.minebbs.com/resources/1-20-4.8372/) as the server base.\n    - Set the port to `25565` and ensure it can be accessed correctly via the proxy, including proper `forwarding-mode` settings.\n    - Create a Dockerfile for building the server image.\n    - Build the image, e.g., `docker build -t minecraft-contest:latest .`\n    - Create a `docker-compose.yml` file for starting the sub-server.\n\n3. **Download the Plugin**\n    - Jump to [version page](https://github.com/Hanamizu2002/BuildContest/releases)\n\n4. **Configure the Plugin**\n    - Place the plugin jar file in the `plugins/` directory of Velocity.\n    - Start the Velocity server once to generate the configuration files, then stop the server to adjust settings.\n\n5. **Configure Files**\n    - Modify `config.yml` in the `plugins/BuilderContest/` directory to set up ports and other settings.\n    - Place `docker-compose-default.yml` in the plugin directory as the template for starting sub-servers.\n\n6. **Start the Server**\n    - Start the server and retrieve the `bearer-token` from the generated `config.yml`.\n\n## Configuration File Description\n\n**config.yml**\n```yaml\nktor:\n  http-port: 8080 # HTTP service port.\n  port-start: 30000 # Starting port for sub-servers.\n  bearer-token: # Bearer Token; leave this empty on first use.\n  allow-host: \"*\" # Allowed host addresses.\n```\n\n**docker-compose-default.yml Example**\n- Use `#SERVER_NAME_PLACEHOLDER` as the placeholder for the Docker container name.\n- Use `#SERVER_PORT_PLACEHOLDER` as the placeholder for the port.\n```yaml\nversion: '3.8'\nservices:\n  minecraft_server:\n    image: minecraft-contest:latest\n    container_name: \"#SERVER_NAME_PLACEHOLDER\"\n    ports:\n      - #SERVER_PORT_PLACEHOLDER:25565\n    volumes:\n      # Mount the local world directory to the specified path in the container\n      - ./worlds/#SERVER_NAME_PLACEHOLDER/world:/app/world\n    environment:\n      EULA: \"TRUE\"\n    restart: unless-stopped\n```\n\n## Usage Instructions\n\n### HTTP API\n\n- After the plugin starts, an HTTP service will be launched on port `8080` by default.\n- Key API endpoint:\n    - **Add Team**: `POST /team/add`, requires Bearer Token authentication, with `teamId`, `teamName`, and `members` as payload fields.\n\n### Example Request\n\n```bash\ncurl --location --request POST 'http://localhost:8080/team/add' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer sSCj4piDoEfV2zIo_C8lD7S4ul0YlVOyBr2BkKpdsTI (Retrieve this from config.yml)' \\\n--data-raw '{\n    \"teamId\": \"team_1\",\n    \"teamName\": \"Team 1\",\n    \"members\": [\"Hanamizu_\", \"user1\"]\n}'\n```",
+  "categories": [
+    "management",
+    "storage",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 78,
+  "followers": 0,
+  "game_versions": [
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

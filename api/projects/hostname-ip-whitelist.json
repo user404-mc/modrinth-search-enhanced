@@ -1,0 +1,21 @@
+{
+  "id": "SNx1hIEk",
+  "slug": "hostname-ip-whitelist",
+  "title": "Hostname IP Whitelist",
+  "description": "A simple yet powerful Velocity proxy plugin that restricts server access to specific hostnames or IP addresses. This is useful for preventing direct IP connections or enforcing the use of specific domains (e.g., `uwu.org.ua`).",
+  "body": "# Hostname Whitelist\n\nA simple yet powerful Velocity proxy plugin that restricts server access to\nspecific hostnames or IP addresses. This is useful for preventing direct IP\nconnections or enforcing the use of specific domains (e.g., `play.example.com`).\n\n## Why is this important?\n\nMalicious actors can create their own BungeeCord or Velocity proxy and forward\nplayers to your server without their knowledge. This allows them to perform a\n**Man-in-the-Middle (MitM) attack**, enabling them to:\n\n- Log all commands (including `/login` and `/register` passwords on non-premium\n  servers).\n- Hijack player sessions (playing as the user).\n- Execute commands on behalf of the victim.\n\nBy enforcing a hostname whitelist, you ensure that players can ONLY connect via\nyour official domain (e.g., `uwu.org.ua`), effectively blocking these malicious\nredirects.\n\nSimilar security systems are used by major servers like **DonutSMP**, **2b2t**,\nand **Hypixel** to protect their players.\n\n## Features\n\n- **Hostname Whitelisting**: Only allow connections from specified domains or\n  IPs.\n- **Wildcard Support**: Easily whitelist subdomains (e.g., `*.uwu.org.ua`) or IP\n  ranges (e.g., `192.168.1.*`).\n- **Customizable Messages**: Configure the kick message shown to blocked\n  players.\n- **Custom MOTD**: Display a specific MOTD for players pinging with an invalid\n  hostname.\n- **Discord Webhook Logging**: Optionally log allowed and blocked connections to\n  a Discord channel.\n\n## Installation\n\n1. Download the latest release of the plugin.\n2. Place the `.jar` file into your Velocity server's `plugins` folder.\n3. Restart your proxy server.\n\n## Configuration\n\nThe plugin creates a configuration folder at `plugins/hostname-whitelist/`\ncontaining two files: `config.yml` and `hostnames.txt`.\n\n### config.yml\n\nThis file handles the general plugin settings.\n\n```yaml\n# Hostname Whitelist Configuration\n\n# Message shown when player connects with invalid hostname\n# Placeholders: {hostname}\nkick-message: \"&cUnknown Server: {hostname}\\n\\n&7Please make sure you are using the correct IP\"\n\n# MOTD shown for invalid hostname pings\ninvalid-motd: \"&cInvalid Hostname. Please use the correct IP address.\"\n\n# Discord Webhook URL for logging connections\n# Leave empty or set to \"YOUR_WEBHOOK_URL_HERE\" to disable\ndiscord-webhook: \"YOUR_WEBHOOK_URL_HERE\"\n\n# Whether to log allowed connections (true/false)\nlog-allowed-connections: false\n\n# Whether to log denied connections (true/false)\nlog-denied-connections: false\n```\n\n### hostnames.txt\n\nThis file is where you define which hostnames or IPs are allowed. You can add\none entry per line.\n\n**Examples:**\n\n```text\n# Allow all subdomains of uwu.org.ua\n*.uwu.org.ua\n\n# Allow exact hostname match\nuwu.org.ua\n\n# Allow specific IP address\n192.168.1.1\n\n# Allow IP range 192.168.1.0-255\n192.168.1.*\n```\n\n## Discord Webhook\n\nTo use the Discord logging feature:\n\n1. Create a Webhook in your Discord server (Server Settings -> Integrations ->\n   Webhooks).\n2. Copy the Webhook URL.\n3. Paste it into the `discord-webhook` field in `config.yml`.\n4. Enable `log-allowed-connections` or `log-denied-connections` as desired.\n\n# License\n\nThis project is licensed under the Mozilla Public License 2.0\n",
+  "categories": [
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 119,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

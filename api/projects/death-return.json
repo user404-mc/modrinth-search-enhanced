@@ -1,0 +1,32 @@
+{
+  "id": "KiPgT8vD",
+  "slug": "death-return",
+  "title": "Death Return",
+  "description": "Death Return is a Fabric mod focused on death position tracking with a minimal and practical workflow.",
+  "body": "# Death Return\n\n`Death Return` is a Fabric mod focused on death position tracking with a minimal and practical workflow.\n\nWhen a player dies, the mod automatically records the dimension, coordinates, and timestamp, keeps the latest `20` death entries, and provides command-based viewing plus clickable chat actions for quick access and teleportation. Both vanilla and modded dimensions are supported.\n\n![示例图片](https://cdn.modrinth.com/data/cached_images/717ba590a3d48a655e5ec2d6979fe889b4de638f.png)\n\n### Overview\n\n- Automatically records death location without manual input.\n- Keeps the latest `20` death history entries per player.\n- `/deathpos` shows history in pages of `5` entries.\n- Each entry includes a clickable teleport action.\n- Sends a compact chat message on death with quick actions.\n- Supports admin queries for other players.\n- Supports vanilla dimensions and mod-added dimensions.\n- Main logic is server-driven, so client installation is optional for multiplayer use.\n\n### Compatibility\n\n| Item | Requirement |\n| --- | --- |\n| Minecraft | `1.21` to `1.21.11` |\n| Fabric Loader | `0.16.0+` |\n| Java | `21+` |\n| Fabric API | Required |\n| Fabric Language Kotlin | Required |\n\n### Required Dependencies\n\nInstall the following dependencies into the target `mods` directory together with this mod:\n\n| Dependency | Required | Notes |\n| --- | --- | --- |\n| Fabric API | Yes | Provides Fabric events, commands, and runtime APIs |\n| Fabric Language Kotlin | Yes | Required because this mod is written in Kotlin |\n\nIf `fabric-language-kotlin` is missing, the game will fail to load the mod.\n\n### Installation\n\n#### Dedicated Server\n\nPlace the mod and its dependencies into the server `mods` directory. Clients do not need to install the mod in order to join.\n\n#### Client / Singleplayer\n\nThe mod can also be installed on the client side for singleplayer or LAN host usage. Since singleplayer uses an integrated server, the mod works normally when installed locally.\n\n### Commands\n\n#### Player Commands\n\n| Command | Description |\n| --- | --- |\n| `/deathpos` | Show the first page of your death history |\n| `/deathpos page <page>` | Show a specific page of your history |\n| `/deathpos tp <index>` | Teleport to a specific death record |\n\n#### Admin Commands\n\n| Command | Description |\n| --- | --- |\n| `/deathpos player <player>` | Show the first page of another player's death history |\n| `/deathpos player <player> page <page>` | Show a specific page of another player's history |\n| `/deathposadmin reload` | Reload the config file |\n| `/deathposadmin set announceOnDeath <true\\|false>` | Enable or disable death chat notifications |\n| `/deathposadmin set allowPlayersUseCommand <true\\|false>` | Allow or block regular players from using `/deathpos` |\n| `/deathposadmin set adminsCanQueryOthers <true\\|false>` | Allow or block admin queries for other players |\n| `/deathposadmin set allowTeleport <true\\|false>` | Allow or block teleporting back to death points |\n\n### Configuration\n\nConfig file path:\n\n```text\nconfig/death-return.json\n```\n\nDefault config:\n\n```json\n{\n  \"announceOnDeath\": true,\n  \"allowPlayersUseCommand\": true,\n  \"adminsCanQueryOthers\": true,\n  \"allowTeleport\": true\n}\n```\n\n## 中文\n\n`Death Return` 是一个面向 Fabric 的死亡坐标记录模组，提供简洁、可追溯、可传送的死亡记录体验。\n\n玩家死亡后，模组会自动记录所在维度、坐标与时间，保留最近 `20` 次死亡历史，并通过命令与可点击聊天消息提供查看和传送能力。模组支持原版维度与其他模组新增维度。\n\n## 功能概览\n\n- 玩家死亡后自动记录当前位置，无需手动操作。\n- 每位玩家保留最近 `20` 次死亡历史。\n- `/deathpos` 以分页列表形式显示记录，每页 `5` 条。\n- 每条记录都提供可点击的传送入口。\n- 死亡后立即显示一条紧凑消息，包含坐标、历史查看和回传按钮。\n- 支持管理员查询其他玩家的死亡历史。\n- 支持原版维度与模组新增维度的记录、显示和传送。\n- 主要逻辑由服务端驱动，多人联机时客户端可选安装。\n\n## 兼容性\n\n| 项目 | 说明 |\n| --- | --- |\n| Minecraft | `1.21` 到 `1.21.11` |\n| Fabric Loader | `0.16.0+` |\n| Java | `21+` |\n| Fabric API | 必需 |\n| Fabric Language Kotlin | 必需 |\n\n当前工程以 `Minecraft 1.21.11` 为主目标版本进行开发。\n\n## 前置依赖\n\n安装本模组前，请确保以下依赖已放入对应环境的 `mods` 目录：\n\n| 依赖 | 是否必需 | 说明 |\n| --- | --- | --- |\n| Fabric API | 必需 | 提供 Fabric 事件、命令和运行时 API |\n| Fabric Language Kotlin | 必需 | 本模组使用 Kotlin 编写，缺失时无法加载 |\n\n如果缺少 `fabric-language-kotlin`，游戏启动时会出现类似报错：\n\n```text\nMod 'Death Return' (death-return) ... requires fabric-language-kotlin, which is missing\n```\n\n## 安装方式\n\n### 专用服务器\n\n将模组与依赖放入服务器的 `mods` 目录后即可生效。客户端连接时不强制要求安装本模组。\n\n### 客户端 / 单人游戏\n\n本模组也可以直接安装在客户端，并在单人世界或局域网主机中正常工作。单人模式本质上运行的是内置服务器，因此本地安装后功能同样可用。\n\n## 使用方式\n\n玩家死亡后，模组会自动完成以下操作：\n\n1. 记录本次死亡的维度、坐标和时间。\n2. 将记录插入历史列表头部。\n3. 仅保留最近 `20` 条数据。\n4. 在聊天栏中发送一条简洁提示消息。\n\n默认交互包括：\n\n- `查看历史`：打开自己的死亡记录列表。\n- `传送回去`：回到最近一次死亡点。\n\n如果服务器管理员关闭了传送功能，传送入口将不会显示。\n\n## 命令说明\n\n### 玩家命令\n\n| 命令 | 说明 |\n| --- | --- |\n| `/deathpos` | 查看自己的死亡历史第一页 |\n| `/deathpos page <页码>` | 查看自己的指定页历史 |\n| `/deathpos tp <编号>` | 传送到自己指定编号的死亡记录 |\n\n### 管理员命令\n\n| 命令 | 说明 |\n| --- | --- |\n| `/deathpos player <玩家>` | 查看目标玩家的死亡历史第一页 |\n| `/deathpos player <玩家> page <页码>` | 查看目标玩家的指定页历史 |\n| `/deathposadmin reload` | 重载配置文件 |\n| `/deathposadmin set announceOnDeath <true\\|false>` | 是否在死亡后发送提示消息 |\n| `/deathposadmin set allowPlayersUseCommand <true\\|false>` | 是否允许普通玩家使用 `/deathpos` |\n| `/deathposadmin set adminsCanQueryOthers <true\\|false>` | 是否允许管理员查询其他玩家记录 |\n| `/deathposadmin set allowTeleport <true\\|false>` | 是否允许玩家传送回死亡点 |\n\n## 配置说明\n\n配置文件路径：\n\n```text\nconfig/death-return.json\n```\n\n默认配置：\n\n```json\n{\n  \"announceOnDeath\": true,\n  \"allowPlayersUseCommand\": true,\n  \"adminsCanQueryOthers\": true,\n  \"allowTeleport\": true\n}\n```\n\n| 字段 | 默认值 | 说明 |\n| --- | --- | --- |\n| `announceOnDeath` | `true` | 玩家死亡后是否发送提示消息 |\n| `allowPlayersUseCommand` | `true` | 普通玩家是否可以使用 `/deathpos` |\n| `adminsCanQueryOthers` | `true` | 管理员是否可以查询其他玩家记录 |\n| `allowTeleport` | `true` | 是否允许通过命令或按钮传送回死亡点 |\n",
+  "categories": [
+    "fabric",
+    "management",
+    "minigame",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 49,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

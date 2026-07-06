@@ -1,0 +1,37 @@
+{
+  "id": "fc0Xm9j7",
+  "slug": "crossanywhere",
+  "title": "CrossAnywhere",
+  "description": "rossAnywhere is a Paper/Spigot teleport plugin for Minecraft 1.21+ (Java 21). It provides personal/global waypoints, TPA requests, back, safety checks, cooldowns, and configurable costs. All messages use Adventure/MiniMessage and support i18n.",
+  "body": "# CrossAnywhere\n\nEnglish | [简体中文](https://github.com/CraftAmethyst/CrossAnywhere/blob/master/README_zh.md)\n\nCrossAnywhere is a Paper/Spigot teleport plugin for Minecraft 1.20+ (Java 21). It provides personal/global waypoints,\nTPA requests, back, safety checks, cooldowns, and configurable costs. All messages use Adventure/MiniMessage and support\ni18n.\n\n## Features\n\n- Personal and global waypoints (with yaw/pitch and description)\n- Waypoint listing with clickable teleport/delete/edit buttons\n- TPA / TPAHere requests with timeout and duplicate policy\n- Back point recorded before teleports and on death (configurable)\n- World whitelist and cross-world permission gate\n- Teleport cooldowns (per feature)\n- Teleport costs (exp and/or item)\n- Safety checks with confirm or nearby-safe search\n- Easy teleport: `/ca <name>` (personal > global > player)\n- Shortcut commands (optional override for `/tp`)\n\n## Requirements\n\n- Paper 1.20+\n- Java 21\n\n## Installation\n\n1. Build the plugin: `./gradlew build`\n2. Put the jar in `plugins/`.\n3. Start the server to generate config and message files.\n4. Edit `config.yml` and `messages_*.yml` as needed.\n\n## Commands\n\nMain command: `/ca` (alias `/stp`)\n\nWaypoints (personal):\n\n- `/ca setp|setpersonal [-f] <name> [desc...]` - Create or update a personal waypoint at your current location; use `-f`\n  to overwrite.\n- `/ca tpp|tpersonal <name>` - Teleport to one of your personal waypoints.\n- `/ca delp|delpersonal <name>` - Delete one of your personal waypoints.\n- `/ca listp|listpersonal` - List your personal waypoints.\n- `/ca descp <name> <desc...>` - Set or update the description of a personal waypoint.\n\nWaypoints (global):\n\n- `/ca setg|setglobal [-f] <name> [desc...]` - Create or update a global waypoint at your current location; use `-f` to\n  overwrite.\n- `/ca tpg|tglobal <name>` - Teleport to a global waypoint.\n- `/ca delg|delglobal <name>` - Delete a global waypoint.\n- `/ca listg|listglobal` - List global waypoints.\n- `/ca descg <name> <desc...>` - Set or update the description of a global waypoint.\n\nOther:\n\n- `/ca list` - List both personal and global waypoints.\n- `/ca tp <player>` - Teleport yourself to the target player (admin permission).\n- `/ca tphere <player>` - Teleport the target player to you (admin permission).\n- `/ca tpa <player>` - Send a teleport request to the target player.\n- `/ca tpahere <player>` - Ask the target player to teleport to you.\n- `/ca cancel` - Cancel all outgoing TPA requests you sent.\n- `/ca accept|allow [player]` - Accept the latest request or a specific player's request.\n- `/ca deny|reject [player]` - Deny the latest request or a specific player's request.\n- `/ca tpaallow <player>` - Allow a player to teleport to you directly without confirmation.\n- `/ca tpadisallow <player>` - Remove a player from your direct-teleport allowlist.\n- `/ca tpaallowlist` - Show your direct-teleport allowlist.\n- `/ca back` - Return to your last recorded location.\n- `/ca confirm` - Confirm a pending unsafe teleport.\n- `/ca cancelconfirm` - Cancel a pending unsafe teleport confirmation.\n- `/ca importstp [file] [--include-back] [--offline-uuid|--raw-uuid|--auto-uuid] [--clear]` - Import MCDR STP data from\n  a JSON file in the plugin data folder.\n- `/ca <name>` (easy_tp=true) - Easy teleport: personal > global > player.\n\nShortcut commands:\n\n- `/setp` - Shortcut for `/ca setp`.\n- `/tpp` - Shortcut for `/ca tpp`.\n- `/delp` - Shortcut for `/ca delp`.\n- `/listp` - Shortcut for `/ca listp`.\n- `/descp` - Shortcut for `/ca descp`.\n- `/setg` - Shortcut for `/ca setg`.\n- `/tpg` - Shortcut for `/ca tpg`.\n- `/delg` - Shortcut for `/ca delg`.\n- `/listg` - Shortcut for `/ca listg`.\n- `/descg` - Shortcut for `/ca descg`.\n- `/tplist` - Shortcut for `/ca list`.\n- `/back` - Shortcut for `/ca back`.\n- `/tpa` - Shortcut for `/ca tpa`.\n- `/tpahere` - Shortcut for `/ca tpahere`.\n- `/tphere` - Shortcut for `/ca tphere`.\n- `/tpaccept` - Shortcut for `/ca accept`.\n- `/tpdeny` - Shortcut for `/ca deny`.\n- `/tpcancel` - Shortcut for `/ca cancel`.\n- `/tpconfirm` - Shortcut for `/ca confirm`.\n- `/tpcancelconfirm` - Shortcut for `/ca cancelconfirm`.\n- `/tp` (only if `commands.override_tp=true`) - Override vanilla `/tp` with CrossAnywhere handling.\n\n## Permissions\n\n- `crossanywhere.personal`\n- `crossanywhere.personal.tp`\n- `crossanywhere.global`\n- `crossanywhere.global.tp`\n- `crossanywhere.list`\n- `crossanywhere.tp`\n- `crossanywhere.tphere`\n- `crossanywhere.tpa`\n- `crossanywhere.tpahere`\n- `crossanywhere.tpa.allowlist`\n- `crossanywhere.back`\n- `crossanywhere.easy`\n- `crossanywhere.crossworld`\n- `crossanywhere.cooldown.bypass`\n- `crossanywhere.cost.bypass`\n- `crossanywhere.safety.bypass`\n- `crossanywhere.admin`\n\n## Data Files\n\n- `plugins/CrossAnywhere/personal_waypoints.json`\n- `plugins/CrossAnywhere/global_waypoints.json`\n- `plugins/CrossAnywhere/tpa_allowlist.json`\n- `plugins/CrossAnywhere/stp_uuid_map.json` (optional name -> UUID map for import)\n- `plugins/CrossAnywhere/stp_world_map.json` (optional dimension -> world map for import)\n\n## Configuration\n\nSee `config.yml` for full options.\n\nKey sections:\n- `worlds`: whitelist\n- `easy_tp`: enable `/ca <name>`\n- `waypoint_name_max_length`, `allow_unicode_names`\n- `personal_max_waypoints`, `global_max_waypoints`\n- `cooldown`: per-feature cooldowns\n- `cost`: exp and item costs (with crossworld handling)\n- `safety_check`: confirm or nearby-safe search\n- `commands.override_tp`: whether to register `/tp`\n\n## i18n\n\n- `messages_en_US.yml`\n- `messages_zh_CN.yml`\n\n## Notes\n\n- All shortcut commands reuse the same checks (world, permission, cooldown, cost, safety).\n- TPA requests and safety confirmations are in-memory and reset on restart.",
+  "categories": [
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 56,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

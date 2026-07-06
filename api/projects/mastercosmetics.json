@@ -1,0 +1,27 @@
+{
+  "id": "A5MF8moI",
+  "slug": "mastercosmetics",
+  "title": "MasterCosmetics",
+  "description": "Create cosmetics and pets with custom effects using the skills of MythicMobs.",
+  "body": "- MasterCosmetics\n- Trigger-based cosmetics plugin for Paper/Purpur 1.20.6–1.21.x. It integrates with MythicMobs to execute custom skills in response to in-game events. No GUI — everything is configured via config.yml. Admins assign cosmetics to players with a command; players can toggle them on and off independently.\n- \n- Commands\n- \n- /mc list — shows the cosmetics you have equipped.\n- /mc equip <id> — toggles a cosmetic on or off. Works only if you own the cosmetic.\n- /mc unequip <id> — removes a specific cosmetic.\n- /mc unequipall — removes all active cosmetics at once.\n- /mc give <player> <id> (admin) — assigns a cosmetic to a player. Without this command, the player cannot equip it.\n- /mc remove <player> <id> (admin) — revokes a cosmetic from a player and unequips it if active.\n- /mc reload (admin) — reloads the config without restarting the server.\n- \n- Aliases: /mc, /cosm.\n- Permissions: mastercosmetics.use for players, mastercosmetics.admin for admins.\n- \n- Triggers\n- \n- Each cosmetic has a list of triggers that define when the MythicMobs skill is executed. Multiple triggers can be combined on the same cosmetic.\n- \n- ALWAYS — the skill repeats every N ticks continuously while the cosmetic is equipped. Use interval: N to control frequency (20 ticks = 1 second).\n- ON_SPAWN — triggers when the player joins the server or respawns after death.\n- ON_DEATH — triggers when the player dies.\n- ON_KILL_PLAYER — triggers when the player kills another player.\n- ON_KILL_MOB — triggers when the player kills any mob.\n- ON_HIT_PLAYER — triggers every time the player hits another player.\n- ON_HIT_MOB — triggers every time the player hits a mob.\n- ON_JUMP — triggers once per jump.\n- ON_FLY_TICK — triggers every N ticks while the player is flying (elytra or creative flight). Use interval: N.\n- ON_WALK — triggers every N ticks while the player is walking on the ground. Stops when the player stops moving. Use interval: N.\n- ON_IDLE — triggers every N ticks while the player is standing still on the ground. Stops when the player moves. Use interval: N.\n- Pet\n- \n- Each cosmetic can have a pet: section that spawns a companion mob. The owner can never damage their own pet.\n- \n- mob-type — type of mob to spawn. Use Bukkit EntityType names: PANDA, WOLF, FOX, BEE, COW, etc.\n- name — name displayed above the pet. Supports & color codes and the {player} placeholder (replaced with the owner’s name).\n- scale — size of the mob. 0.5 = half, 1.0 = normal, 2.0 = double. Requires Paper/Purpur 1.20.5+.\n- follow-distance — distance (in blocks) at which the pet starts moving toward the player.\n- immune — if true, the pet is invulnerable to all damage sources: fire, falls, explosions, attacks from players or mobs.\n- move-speed — movement speed of the pet. Default 0.3. Typical range: 0.15 (slow) → 0.35 (normal) → 0.70 (fast).\n- always-skill — MythicMobs skill executed periodically by the pet, independent of player triggers.\n- always-interval — how many ticks between executions of always-skill. Default 40 (2 seconds).\n- always-caster — who executes always-skill. \"pet\" = effects appear around the pet, \"player\" = effects appear around the player.\n- trigger-skill — MythicMobs skill executed when one of the defined pet triggers activates.\n- trigger-caster — same as always-caster, but for trigger-skill.\n- triggers — list of triggers that activate trigger-skill on the pet. Uses the same names as player triggers (e.g., ON_KILL_MOB, ON_HIT_PLAYER).\n- Database\n- \n- By default, data is stored in YAML files at playerdata/<uuid>.yml. To use MySQL, set database.enabled: true in the config and fill in the connection fields.\n- \n- database.enabled — false = YAML files, true = MySQL.\n- database.host — MySQL server address.\n- database.port — port. Default 3306.\n- database.name — database name.\n- database.username / database.password — credentials.\n- database.table-prefix — table prefix. Default mc_. The mc_player_data table is created automatically.\n- database.pool-size — number of simultaneous connections in the pool. Default 5.\n- database.connection-timeout — connection timeout in milliseconds. Default 30000.\n- \n- If the MySQL connection fails at startup, the plugin automatically falls back to YAML files without crashing. The MySQL driver is already included in Paper/Purpur 1.20+ — nothing extra is required.\n- \n- General Config\n- settings.debug — if true, logs every executed skill, every applied pet attribute, and every pathfinding attempt. Should be false in production.\n- settings.prefix — chat message prefix. Supports & color codes.\n- \n- All messages in the messages: section are customizable and support & color codes and placeholders such as {name}, {player}, {id}, {category}.",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

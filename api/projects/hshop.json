@@ -1,0 +1,38 @@
+{
+  "id": "UvbypAUm",
+  "slug": "hshop",
+  "title": "hShop",
+  "description": "A very customisable and weirdly easy to use Shop plugin.",
+  "body": "![Hshop title image](https://cdn.modrinth.com/data/cached_images/1d9aeed54d83b719d0e111a9cb21b984843c01e0.png)\n# hShop\n\n**A fully customizable GUI shop plugin with multi-currency support, per-item cooldowns, buy limits, and a clean decoration system.**\n\n---\n\n## What is hShop?\n\nhShop is a shop plugin I built because I was tired of bloated alternatives that made simple things complicated. It uses file-based categories (one yml per category), so adding new shop sections is as easy as dropping a new file into the `categories/` folder.\n\nEvery item in every category is fully configurable, buy prices, sell prices, cooldowns, per player limits, currency type, slot position, enchantments, flags, etc. It's built to be readable and easy to edit.\n\n---\n\n## Features\n\n- **File-based categories** - each category has its own `.yml` file, just drop it in and reload\n- **Dual currency support** - items can use either Vault or [hShards](https://modrinth.com/plugin/hshards) as their currency, configurable per-item\n- **Buy limits** - limit how many times a player can buy a specific item (resets are admin-controllable)\n- **Per-item cooldowns** - set a cooldown in seconds on any item individually\n- **Confirm purchase menu** - optional confirmation screen before a purchase goes through\n- **Decoration system** - fully customize the look of menus with filler items, border layouts, navigation buttons and more via decoration yml files\n- **Custom icon slots** - pin category icons to specific slots in the main menu, or leave them on AUTO\n- **Pagination** - category pages auto-paginate with configurable next/prev buttons\n- **Sell support** - players can sell items back through the shop GUI, `/sellhand`, or `/sellall`\n- **Global sell multiplier** - scale all sell prices server-wide from a single config value\n- **Permission per category** - restrict entire categories to specific permission nodes\n- **Sounds** - configurable sounds for opening menus, successful purchases, sells, and failures\n- **Transaction logging** - all buys and sells are logged to a file\n- **PlaceholderAPI support** - via hShards integration\n- **Fully async-safe** - data operations won't lag your main thread\n\n---\n\n## Requirements\n\n| Dependency | Required? |\n|---|---|\n| Paper 1.21+ | ✅ Required |\n| Vault | ✅ Required |\n| hShards | ⭐ Soft (for HSHARDS currency) |\n| PlaceholderAPI | ⭐ Soft |\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/hshop` | Open the main shop | `hshop.use` |\n| `/hshop <category>` | Open a specific category directly | `hshop.use` |\n| `/sellhand` | Sell the item you're holding | `hshop.use` |\n| `/sellall` | Sell all eligible items in your inventory | `hshop.use` |\n| `/hshopa reload` | Reload the plugin | `hshop.admin` |\n| `/hshopa toggle shop` | Toggle the shop on/off | `hshop.admin` |\n| `/hshopa toggle buy <category> <item>` | Toggle buying for an item | `hshop.admin` |\n| `/hshopa toggle sell <category> <item>` | Toggle selling for an item | `hshop.admin` |\n| `/hshopa createcategory <id>` | Create a new category | `hshop.admin` |\n| `/hshopa deletecategory <id>` | Delete a category | `hshop.admin` |\n| `/hshopa createitem <category> <id> <material>` | Add an item to a category | `hshop.admin` |\n| `/hshopa deleteitem <category> <id>` | Remove an item | `hshop.admin` |\n| `/hshopa giveitem <player> <category> <item> <amount>` | Give a player a shop item | `hshop.admin` |\n| `/hshopa setprice <category> <item> buy\\|sell <price>` | Change a price | `hshop.admin` |\n| `/hshopa setlimit <category> <item> <limit>` | Change a buy limit | `hshop.admin` |\n| `/hshopa setcooldown <category> <item> <seconds>` | Change a cooldown | `hshop.admin` |\n| `/hshopa resetlimit <player> <category> <item>` | Reset a player's limit | `hshop.admin` |\n| `/hshopa resetcooldown <player> <category> <item>` | Reset a player's cooldown | `hshop.admin` |\n| `/hshopa info <category> [item]` | View category or item details | `hshop.admin` |\n\n---\n\n## Bypass Permissions\n\n| Permission | Effect |\n|---|---|\n| `hshop.bypass.cooldown` | Skip item buy cooldowns |\n| `hshop.bypass.limit` | Skip buy limits |\n| `hshop.bypass.sell` | Skip sell restrictions |\n\n---\n\n## Category Configuration\n\nEach category lives in `plugins/hShop/categories/<name>.yml`. Here's what a typical one looks like:\n\n```yaml\ndisplay-name: \"&aWeapons\"\nicon: DIAMOND_SWORD\nicon-slot: AUTO        # or a slot number like 13\nicon-lore:\n  - \"&7Buy and sell weapons.\"\n  - \"&8Items: &7{item_count}\"\n  - \"&eClick to open!\"\ndecoration: default\ntitle: \"&8» &a{category_name} &8« &7({page}/{total_pages})\"\nrows: 6\nsort: 1\nenabled: true\npermission: \"\"\n\nitems:\n  diamond_sword:\n    name: \"&b&lDiamond Sword\"\n    material: DIAMOND_SWORD\n    amount: 1\n    slot: AUTO\n    currency: VAULT\n    lore:\n      - \"&8Buy: &a{buy_price} {currency}\"\n      - \"&8Sell: &c{sell_price} {currency}\"\n    buy:\n      enabled: true\n      price: 250.0\n      limit: -1\n      cooldown: -1\n    sell:\n      enabled: true\n      price: 100.0\n```\n\n---\n\n## Item Lore Placeholders\n\nThese work inside any item's `lore` list:\n\n| Placeholder | Description |\n|---|---|\n| `{buy_price}` | Buy price of the item |\n| `{sell_price}` | Sell price of the item |\n| `{currency}` | Currency display name |\n| `{currency_type}` | Currency type (VAULT or HSHARDS) |\n| `{buy_limit}` | Max buy limit (-1 = ∞) |\n| `{buy_limit_remaining}` | How many the player can still buy |\n| `{cooldown_remaining}` | Time left on cooldown |\n| `{buy_status}` | Colored buyable status |\n| `{sell_status}` | Colored sellable status |\n\n---\n\n## Multi-Currency\n\nhShop supports two currencies side by side. Each item can have its own currency type, some items can cost Vault money, others can cost hShards, all in the same category. Set it per item with `currency: VAULT` or `currency: HSHARDS`.\n\nhShards integration is automatic if the plugin is present on your server.\n\n---\n\n## Works great with hShards\n\nhShop pairs with [hShards](https://modrinth.com/plugin/hshards) to give your server a second economy. Players earn shards by selling items, receiving them from admins, or through the interest system, then spend them in the shop on special items that cost `HSHARDS` instead of regular money.\n\n---\n\n*Made by hPlugins by hodakazy*\n\n*The words used in this plugin are inspired by zShop, such as decorations and pagination*",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "library",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 66,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

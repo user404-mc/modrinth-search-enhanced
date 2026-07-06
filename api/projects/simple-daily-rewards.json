@@ -1,0 +1,34 @@
+{
+  "id": "tLa4SGBW",
+  "slug": "simple-daily-rewards",
+  "title": "Daily Rewards",
+  "description": "A dependency-free daily reward plugin. Players run /daily (or get it on login) to claim a weighted-random reward once per day. Rewards give items and/or run console commands, so money, keys and ranks route through your existing plugins. No Vault.",
+  "body": "# DailyRewards\n\nA dependency-FREE daily reward plugin. Players run `/daily` to claim, once per\ncooldown, a reward picked from a configured pool. Rewards grant items and/or run\nconsole commands, so money, crate keys, ranks, and anything else are handed out\nthrough whatever other plugin you already run - without DailyRewards depending\non Vault or any economy library.\n\nThe point: an old daily-reward plugin died when a runtime dependency rotted.\nThis one has **zero external/runtime dependencies** - it uses only the Bukkit\nAPI. Nothing to break.\n\n## What it does\n\n* `/daily` claims a reward once per cooldown (default 24 hours).\n* The reward is chosen by `weighted-random` (default), `random`, or `all`.\n* Each reward can give items, run console commands (with a `{player}`\n  placeholder), and show a message - any combination.\n* Cooldowns persist per player UUID in `cooldowns.yml` across restarts.\n* If a player's inventory is full, overflow items are dropped at their feet\n  (configurable to deny instead).\n\n## Why no economy dependency\n\nInstead of calling Vault or an economy API at compile time, reward entries can\nlist **console commands**. Want to pay 500 coins? Add\n`\"eco give {player} 500\"` to that reward's `commands`. Want to give a crate key?\n`\"crate give {player} vote 1\"`. DailyRewards just dispatches the command as the\nconsole - it does not know or care which plugin handles it, and it will not fail\nto load if that plugin is missing (the command simply errors in console and is\nlogged).\n\n## Commands\n\nAll under `/daily` (aliases: `/dailyreward`, `/dailyrewards`).\n\n| Command | Description |\n|---|---|\n| `/daily` | Claim your daily reward. |\n| `/daily give <player> [--force]` | Make a player claim. Runnable from console and command blocks. `--force` bypasses the cooldown (and does NOT consume the player's real timer). |\n| `/daily reload` | Reload `config.yml`. |\n| `/daily reset <player>` | Clear a player's cooldown. |\n\nTab-completion covers subcommands, online player names, and `--force`.\n\n### Console and automation\n\n`/daily give <player>` is built to run from the server console and from command\nblocks, so a scheduler or a returning Geyser setup can hand out rewards. The\ntarget player must be online (items and `{player}` commands need a live player).\n`--force` skips the cooldown check.\n\nBedrock players via Geyser just run `/daily` like everyone else - there is no\nspecial handling.\n\n## Permissions\n\n| Permission | Default | Grants |\n|---|---|---|\n| `dailyrewards.use` | true | Claim with `/daily`. |\n| `dailyrewards.admin` | op | `give`, `reload`, `reset` (includes `dailyrewards.use`). |\n\nThe console always passes permission checks, so `give`/`reload`/`reset` work\nfrom console and command blocks out of the box.\n\n## Configuration (`config.yml`)\n\n| Key | Default | Meaning |\n|---|---|---|\n| `cooldown-seconds` | `86400` | Seconds between claims per player. |\n| `reward-mode` | `weighted-random` | `weighted-random`, `random`, or `all`. |\n| `overflow` | `drop` | `drop` overflow at the player's feet, or `deny` (skip) it. |\n| `rewards` | (sample pool) | The reward pool - see below. |\n| `messages.*` | (defaults) | All player-facing strings. |\n\n### A reward entry\n\n```yaml\nrewards:\n  - id: rare-gem          # identifier (used in logs)\n    weight: 9             # selection weight for weighted-random (higher = likelier)\n    items:                # optional list of items to give\n      - material: DIAMOND # Bukkit material name; invalid names are logged + skipped\n        amount: 2\n        name: \"&bLucky Diamond\"   # optional, supports & colour codes\n        lore:                     # optional\n          - \"&7A rare find.\"\n    commands:             # optional console commands; {player} = claimer's name\n      - \"say {player} found a gem!\"\n    message: \"&bDaily reward: a rare gem!\"   # optional chat line\n```\n\n`weight` is only used by `weighted-random`. A single-entry pool always returns\nthat entry; if all weights are 0 the plugin falls back to a uniform pick so the\npool still pays out.\n\n### Messages\n\nSupports `&` colour codes. Placeholders: `{time}` (human-readable remaining\ncooldown like `5h 12m 3s`) and `{player}`.\n\n`prefix`, `cooldown`, `claimed`, `no-reward`, `overflow-dropped`,\n`overflow-denied`.\n\n## Compatibility\n\nPaper / Spigot / Bukkit / Purpur, Minecraft 1.21.1-1.21.11. One jar, built\nagainst the 1.21.1 API (Java 21, class 65), load-tested on Paper 1.21.11; no\nPaper-only classes, no NMS, no dependencies.\n\n## Known gaps / honesty\n\n* **Not playtested in a live client/server** - there is no Minecraft client in\n  this build environment. The plugin compiles cleanly, the jar bundles a valid\n  `plugin.yml` (version 1.0.0), and every class is Java-21 bytecode (class 65),\n  but in-game behaviour has not been verified by hand.\n* `/daily give` and the item grant require the **target to be online**. There is\n  no queued/offline delivery - an offline target is reported, not queued.\n* `/daily reset` resolves offline players via the server's offline-player cache,\n  which only knows players who have joined before.\n* Reward console commands are fire-and-forget; DailyRewards does not check\n  whether the downstream plugin actually succeeded (it only catches and logs\n  exceptions). This is by design to keep it dependency-free.\n\n---\n\nOriginal concept by u/DiamondKing1437 on Reddit (r/Minecraft). Built by BeansNToast.",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

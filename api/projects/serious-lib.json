@@ -1,0 +1,21 @@
+{
+  "id": "K2lD9P15",
+  "slug": "serious-lib",
+  "title": "Serious lib",
+  "description": "A library designed for use on legitimoose.com, with a focus on creating the most unoptimized abominations",
+  "body": "This is a library for use on the server legitimoose.com. Many functions won't work properly anywhere else (specifically the motion ones)!\nThis is a library designed mostly for my own use, but it's available in case anyone wants to use it for their own project :)\n\nThis library was designed to be as easy to use as possible. It focuses on functions I use often, such as raycasts and motion manipulation. Please note however that the ease of use and general applicability comes at the cost of optimisation - much of this (especially the raycast functions) could be done much more efficiently by a dedicated function.\n\n# The Functions\n\n### add_motion\nSets the motion of the entity to their current motion plus the input vector. Takes a relative coordinate (anything that works for a teleport command works here) as \"vector\". Example:\n\n```\nfunction serious_lib:motion/add_motion {\"vector\":\"^ ^ ^1\"}\n```\nThis would add 1 to the motion of the executing entity in the direction faced.\n\n### set_motion\nSets the motion of the entity to the input vector, without maintaining current motion. Other than that works the same as add_motion.\n\n### relative_tp and relative_tp_data\nBoth teleport the player from a starting position (start_pos) to a finishing position (end_pos), maintaining their relative position to each point. relative_tp takes both fields as macros (and is fairly pointless) but relative_tp_data takes them through data storage, allowing for dynamic start and end points.\n\n```\ndata modify serious_lib:motion start_pos set from entity @s Pos\ndata modify serious_lib:motion end_pos set value [0,0,0]\nexecute as @e[distance=..10] at @s run function serious_lib:motion/relative_tp_data\n```\nThis would teleport all entities within 10 blocks so that the executing entity is positioned at 0, 0, 0, and all other entities retain their relative position to them.\n\n### raycasts\nThese are designed for ease of use over optimisation, and are likely horribly inefficient. They work by summoning area effect clouds with specific tags when hitting things: \"entity\" for an entity collision, \"block\" for a block collision, and \"end\" in addition to any other tags for wherever the raycast ends (even if it didn't hit anything.\n\n```\nscoreboard players set @s ray_length 100\nexecute anchored eyes positioned ^ ^ ^ run function serious_lib:raycast/particle/basic {\"particle\":\"end_rod\"}\nexecute at @n[type=area_effect_cloud,tag=entity] run damage @n[tag=!end]\nexecute at @n[type=area_effect_cloud,tag=block] run particle explosion\n```\nThis would cast a 50 block ray from the executing entity's eyes, damaging the first entity it collided with, and creating explosion particles if it collides with a block.",
+  "categories": [
+    "datapack",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21.7",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

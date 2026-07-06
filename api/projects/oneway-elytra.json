@@ -1,0 +1,29 @@
+{
+  "id": "vYovtSDs",
+  "slug": "oneway-elytra",
+  "title": "OneWay Elytra",
+  "description": "Compact OneWay Elytra plugin for Paper 1.21.1",
+  "body": "# OneWay Elytra\n\nA Minecraft plugin for Paper/Spigot 1.21.1 that implements a special Elytra system with radius-based restrictions.\n\n---\n\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I61SOC0C)\n\n## What does this plugin do?\n\nThis plugin creates a \"OneWay Elytra\" system where certain Elytras can only be used within a configurable radius around a spawn point. Normal Elytras work as usual and are not affected.\n\n## Features\n\n- **Radius-based Elytra usage**: OneWay Elytras can only be worn within a defined radius around the spawn point\n- **Automatic Elytra management**: \n  - Players automatically receive a OneWay Elytra when entering the radius\n  - The Elytra is automatically removed when players leave the radius (only when not gliding)\n- **Abuse prevention**: \n  - New gliding cannot be started outside the radius\n  - Players already flying can continue their flight until landing\n- **Landing detection**: When a player lands outside the radius, the Elytra is automatically removed\n- **Flexible removal modes**: \n  - `MOVE_TO_INVENTORY`: Elytra is moved to inventory (or dropped if full)\n  - `DROP`: Elytra is immediately deleted (cannot be picked up)\n\n## Installation\n\n1. Download the `OneWayElytra-1.0.0.jar` file\n2. Place it in your server's `plugins` folder\n3. Restart your server\n4. Configure the spawn point and radius (see below)\n\n## Configuration\n\nThe configuration file is located at `plugins/OneWayElytra/config.yml`:\n\n```yaml\n# Spawn point (World + coordinates)\nspawn:\n  world: \"world\"\n  x: 0.0\n  y: 64.0\n  z: 0.0\n\n# Radius in blocks\nradius: 100\n\n# Removal mode: MOVE_TO_INVENTORY or DROP\nremoveMode: \"MOVE_TO_INVENTORY\"\n\n# Messages\nmessages:\n  denyGlide: \"&cYou cannot glide here with the OneWay Elytra!\"\n  removedAfterLanding: \"&cThe OneWay Elytra was removed because you landed outside the allowed area.\"\n\n# Debug mode (shows additional information)\ndebug: false\n```\n\n## Commands\n\n### `/oe setspawn`\nSets the spawn point to your current position.\n\n### `/oe setradius <blocks>`\nSets the radius in blocks (e.g., `/oe setradius 50`).\n\n### `/oe setremovemode <MOVE_TO_INVENTORY|DROP>`\nChanges the removal mode:\n- `MOVE_TO_INVENTORY`: Elytra is moved to inventory\n- `DROP`: Elytra is deleted\n\n### `/oe info`\nShows the current configuration (spawn point, radius, removal mode).\n\n### `/oe reload`\nReloads the configuration file.\n\n### `/oe give <player> [amount]`\nGives a player one or multiple OneWay Elytras.\n\n### `/oe tag`\nMarks the Elytra in your hand as a OneWay Elytra.\n\n### `/oe untag`\nRemoves the mark from the Elytra in your hand.\n\n### `/oe check`\nChecks if the Elytra in your hand is a OneWay Elytra.\n\n**Aliases**: `/onewayelytra`, `/oneway`\n\n## Permissions\n\n- `onewayelytra.admin` - Allows all admin commands (default: OP)\n- `onewayelytra.bypass` - Ignores all OneWay Elytra rules (default: OP)\n\n## How it works\n\n1. **Elytra marking**: OneWay Elytras are marked via PersistentDataContainer (PDC) with a special tag\n2. **Automatic distribution**: When a player enters the defined radius without a OneWay Elytra, they automatically receive one\n3. **Glide protection**: When starting a glide, the plugin checks if the player is within the radius. Outside the radius, the start is blocked\n4. **Landing detection**: A task checks every 2 ticks if players have landed and removes the Elytra if they're outside the radius\n\n## Technical Details\n\n- **API Version**: 1.21.1\n- **Dependencies**: None (Paper API only)\n- **Java Version**: 21\n- **Marking**: PersistentDataContainer with NamespacedKey `onewayelytra:oneway`\n\n## Troubleshooting\n\n**Problem**: Elytra is not automatically given/removed\n- Check if the spawn point is correctly set (`/oe info`)\n- Check if you're within the correct radius\n- Enable debug mode in the config (`debug: true`) and check the console\n\n**Problem**: Special characters are displayed incorrectly\n- Make sure the config file is saved as UTF-8\n- The build file is already configured for UTF-8\n",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 54,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

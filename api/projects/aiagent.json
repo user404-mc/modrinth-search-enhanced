@@ -1,0 +1,35 @@
+{
+  "id": "nIJy44I8",
+  "slug": "aiagent",
+  "title": "AIAgent",
+  "description": "Manage your Minecraft server with natural language! This plugin uses Gemini AI to safely read and edit config files or run console commands from your prompts.",
+  "body": "# AIAgent\n\nAIAgent is a server management plugin that integrates Google's Gemini AI directly into your Minecraft server. Instead of just acting as a chatbot, this plugin acts as an autonomous agent. It can read server files, modify configurations safely, and execute console commands based on natural language prompts.\n\nYou don't need to remember complex command syntaxes or dig through YAML files to find a specific setting. Just tell the AI what you want to do.\n\n## Features\n\n* **Smart Configuration Editing**: The AI doesn't just blindly guess config keys. If you ask it to modify a plugin (e.g., \"disable update checks in ViaVersion\"), the agent will first read the target `config.yml`, locate the exact correct key, and then apply the change.\n* **Preserves YAML Formatting**: When modifying configuration files, the plugin maintains your existing indentations and spacing so your configs won't break.\n* **Context-Aware Commands**: The AI knows who is executing the command. If you type `/aiagent make me op` or `/aiagent heal me`, it automatically targets your exact username.\n* **Built-in Safety**: By default, the AI will not execute anything immediately. It will tell you exactly which files it wants to edit, what keys it wants to change, or what commands it wants to run. You must type `/aiagent confirm` to apply the changes or `/aiagent cancel` to abort.\n* **Free to Use**: Powered by Google's Gemini API (defaults to `gemini-3-flash`), which offers a very generous free tier. API key required.\n\n## Examples\n\nYou can use plain English (or any other language Gemini understands) to control your server:\n\n* `/aiagent change the render distance to 8`\n  *(Finds view-distance in server.properties and updates it)*\n* `/aiagent make it morning and clear the weather`\n  *(Executes /time set day and /weather clear)*\n* `/aiagent disable the check-for-updates in viaversion`\n  *(Reads plugins/ViaVersion/config.yml, finds the right setting, and updates it)*\n\n## Setup & Installation\n\n1. Drop the `AIAgent.jar` into your server's `plugins` folder.\n2. Start the server once to generate the `config.yml` file.\n3. Get a free API key from [Google AI Studio](https://aistudio.google.com/app/apikey).\n4. Open `plugins/AIAgent/config.yml` and paste your API key:\n   ```yaml\n   gemini-api-key: \"YOUR_API_KEY_HERE\"\n   model: \"gemini-3-flash\"\n   require-confirmation: true\n   ```\n5. Restart the server or reload the plugin. \n\n## Commands & Permissions\n\n* `/aiagent <prompt>` - Ask the AI to do something.\n* `/aiagent confirm` - Approve the AI's proposed actions.\n* `/aiagent cancel` - Cancel the pending actions.\n\n**Permission node:** `aiagent.admin` (Defaults to OP). Only grant this permission to highly trusted administrators, as it allows modifying root server files and executing console commands.",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 36,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

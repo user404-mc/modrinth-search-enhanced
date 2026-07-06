@@ -1,0 +1,38 @@
+{
+  "id": "MzWKBKRk",
+  "slug": "lucktab",
+  "title": "LuckTAB",
+  "description": "LuckPerms-powered tablist, chat & scoreboard with animated gradients.",
+  "body": "# LuckTAB\n### *Your tab. Your rules.*\n> Lightweight yet powerful tab list, chat format & scoreboard plugin — all configurable in a single `config.yml`.\n\n---\n\n<div align=\"center\">\n  <a href=\"https://dc.gg/paperstream\">\n    <img src=\"https://img.shields.io/badge/Discord-dc.gg%2Fpaperstream-5865F2?style=for-the-badge&logo=discord\" alt=\"Discord\" />\n  </a>\n</div>\n\n[![bStats](https://bstats.org/signatures/bukkit/LuckTAB%20by%20LucasTHCR.svg)](https://bstats.org/plugin/bukkit/LuckTAB%20by%20LucasTHCR/32022)\n\n---\n\n## ✨ Features\n\n| Feature | Description |\n|---|---|\n| **Tab-List Prefix & Sorting** | Rank-based prefixes and sort order via LuckPerms. Anti-flicker updates. |\n| **Header & Footer** | Per-world designs with hex, gradient and legacy color support. |\n| **Chat Format** | Custom format per rank with full hex & gradient color support. |\n| **Scoreboard Sidebar** | Per-world sidebar with custom title and lines. Full hex & animated gradient support. Anti-flicker via stable score entries and smart change detection. |\n| **Animated Gradients** | Smooth sine-based animated RGB gradients via `<gradient:#RRGGBB:#RRGGBB>text</gradient>` — works everywhere. |\n| **Hex Color Support** | Full `&#RRGGBB` hex color support in prefixes, suffix, header, footer, scoreboard and chat. |\n| **Suffix Support** | Add a suffix per rank — shown in tab list, nametag and chat. |\n| **Vanish Support** | Vanished players are completely hidden from the tab list. Compatible with Essentials, CMI, SuperVanish and PremiumVanish. |\n| **Per-World Config** | Different header/footer and scoreboard designs per world — fallback to `default`. |\n| **Ping Colors** | `%lucktab_ping_colored%` — ping automatically colored green/yellow/red with configurable thresholds. |\n| **LuckPerms Migration** | `/lucktab migrate to-luckperms` and `from-luckperms` — sync prefixes between config and LuckPerms. |\n| **Prefix Source** | Choose between `lucktab` (config) or `luckperms` (live meta) as prefix source. |\n| **PlaceholderAPI Support** | Works in header, footer, sidebar and chat. |\n| **Nametag above head** | Rank prefix and suffix shown above player heads via scoreboard teams. |\n| **bStats Metrics** | Anonymous usage statistics — [view stats](https://bstats.org/plugin/bukkit/LuckTAB%20by%20LucasTHCR/32022). |\n| **Update Checker** | Notifies console and OPs on join when a new version is available. |\n| `/lucktab reload` | Reload config without restarting the server. |\n| `/lucktab migrate` | Migrate prefixes to/from LuckPerms with auto weight calculation. |\n\n---\n\n## 🖥️ Server Software\n\n| | Paper | Spigot | Purpur |\n|---|---|---|---|\n| Tab list, chat, nametag | ✅ | ✅ | ✅ |\n| Hex & gradient colors | ✅ | ✅ | ✅ |\n| Scoreboard anti-flicker | ✅ | ✅ | ✅ |\n| Hex/gradient in scoreboard lines | ✅ | ⚠️ Legacy only | ✅ |\n\n> **Recommended:** Paper or Purpur for full feature support. → [papermc.io/downloads](https://papermc.io/downloads)\n\n---\n\n## 📦 Dependencies\n\n- **LuckPerms** — `required` — [luckperms.net](https://luckperms.net/)\n- **PlaceholderAPI** — `optional` — [Modrinth](https://modrinth.com/plugin/placeholderapi)\n\n---\n\n## 🎨 Color Support\n\n| Format | Example | Works in |\n|---|---|---|\n| Legacy `&` codes | `&6[VIP]` | Everywhere |\n| Hex `&#RRGGBB` | `&#FF5733[Admin]` | Everywhere |\n| Animated gradient | `<gradient:#FF0000:#FF7700>text</gradient>` | Everywhere |\n| Bold gradient | `<gradient:#FF0000:#FF7700>&l[Owner]&r </gradient>` | Everywhere |\n\n---\n\n## 📋 Built-in Placeholders\n\nThese work everywhere without PlaceholderAPI:\n\n| Placeholder | Description |\n|---|---|\n| `%player%` | Player name |\n| `%world%` | Current world name |\n| `%server_online%` | Online player count |\n| `%server_max_players%` | Max player count |\n| `%player_ping%` | Player ping in ms (plain number) |\n| `%lucktab_ping_colored%` | Ping colored green/yellow/red automatically |\n| `%lucktab_rank%` | Colored rank prefix |\n| `%lucktab_prefix%` | Same as `%lucktab_rank%` |\n| `%lucktab_suffix%` | Rank suffix |\n| `%lucktab_color%` | Rank name color |\n| `%lucktab_rank_display%` | Prefix + color + group name + suffix |\n| `%chatPrefix%` | Rank prefix in chat format |\n| `%chatSuffix%` | Rank suffix in chat format |\n\nWith PlaceholderAPI any third-party placeholder like `%vault_eco_balance%` works too.\n\n---\n\n## ⚙️ Configuration\n\nEverything is controlled from `config.yml`:\n\n```yaml\n# ── Prefix Source ─────────────────────────────\n# lucktab   → use prefixes from this config (default)\n# luckperms → use prefixes directly from LuckPerms meta\nprefix-source: lucktab\n\n# ── Ping Colors ───────────────────────────────\nping-colors:\n  good: 50    # ≤ 50ms  → green\n  medium: 100 # ≤ 100ms → yellow\n              # > 100ms → red\n\n# ── Tab-List ──────────────────────────────────\ntab-list:\n  show-only-same-world: false\n\n# ── Chat Format ───────────────────────────────\nuseChatFormat: true\nchatFormat: \"%chatPrefix%%playerName% &8» &7%message%\"\n\n# ── Rank Prefixes ─────────────────────────────\n# Format: \"group;prefix;suffix;namecolor\"\n# Top = highest priority | suffix can be empty: \"group;prefix;;color\"\nprefixes:\n  - \"owner;<gradient:#FF0000:#FF7700>[Owner] </gradient>;;&#FF7700\"\n  - \"admin;&#FF5555[Admin] &7;;&#FF5555\"\n  - \"mod;&#5555FF[Mod] &7;;&#5555FF\"\n  - \"vip;&6[VIP] &7;;&6\"\n  - \"default;&7[Player] &7;;&7\"\n\n# ── Header & Footer ───────────────────────────\n# Per-world: add a section with the exact world name as key\n# Falls back to \"default\" if no world-specific design is found\nheader-footer:\n  enabled: true\n  designs:\n    default:\n      header:\n        - \"\"\n        - \"<gradient:#FF5733:#FFC300>   MyServer   </gradient>\"\n        - \"\"\n      footer:\n        - \"\"\n        - \"&fOnline: &b%server_online%&7/&b%server_max_players%  &7| &fPing: %lucktab_ping_colored%\"\n        - \"\"\n\n# ── Scoreboard Sidebar ────────────────────────\n# Per-world: add a design with the exact world name under \"designs\"\nscoreboard:\n  enabled: true\n  designs:\n    default:\n      title: \"<gradient:#FF0000:#FF7700>MyServer</gradient>\"\n      lines:\n        - \"\"\n        - \"&7Rank: %lucktab_rank%\"\n        - \"&7Ping: %lucktab_ping_colored%\"\n        - \"\"\n        - \"&7World: &f%world%\"\n        - \"\"\n        - \"&7Online: &f%server_online%&8/&f%server_max_players%\"\n        - \"\"\n```\n\n---\n\n## 🔑 Commands & Permissions\n\n| Command | Permission | Default |\n|---|---|---|\n| `/lucktab reload` | `lucktab.reload` | OP |\n| `/lucktab migrate to-luckperms` | `lucktab.migrate` | OP |\n| `/lucktab migrate from-luckperms` | `lucktab.migrate` | OP |\n\n---\n\n## 👥 Credits\n\n| | |\n|---|---|\n| **PattyXDHD** | Original author — created the plugin foundation |\n| **LucasTHCR** | Maintainer — scoreboard, hex & gradient colors, suffix, vanish support, per-world config, ping colors, LuckPerms migration, anti-flicker, PlaceholderAPI, reload command, bug fixes & full config control |\n\nDiscord: [dc.gg/paperstream](https://dc.gg/paperstream)",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 182,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

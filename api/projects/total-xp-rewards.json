@@ -1,0 +1,34 @@
+{
+  "id": "QrphsAHI",
+  "slug": "total-xp-rewards",
+  "title": "Total XP Rewards",
+  "description": "Track lifetime XP and trigger custom rewards! Includes a dynamic BossBar system.",
+  "body": "A powerful and lightweight Paper plugin that tracks each player's **lifetime XP** and executes **custom rewards** when XP milestones are reached.\nFully configurable, translation-ready, and built for modern Paper servers (1.21+).\n\n---\n\n## ✨ Features\n\n- **Global Total XP Tracking** 📈\n  - Tracks XP from killing mobs, mining, **and** vanilla commands (`/xp`, `/experience`).\n  - Never resets, even after death.\n  - **Async Caching**: High-performance data handling prevents server lag.\n- **BossBar Progress System** 📊\n  - Displays a customizable BossBar showing progress to the next rank.\n  - **Dynamic Mode**: Auto-hides the bar when not gaining XP.\n  - **Rich Text support**: Supports **MiniMessage** (Gradients, RGB) AND Legacy Color Codes (`&a`) simultaneously!\n- **Reward System** 🎁\n  - Execute multiple commands when reaching a threshold.\n  - Send custom broadcast messages.\n  - Supports **Minecraft Target Selectors** in commands (e.g., `@a`, `@p`).\n- **Full Customization** 🛠️\n  - **PlaceholderAPI** support.\n  - Complete language control via `lang.yml` (including \"Max Rank\" text).\n  - **SQLite** storage with automatic schema migration (external apps can read `current_rank`).\n\n---\n\n## 📥 Installation\n\n1. Download the latest release from the **Releases** page.\n2. Drop the `.jar` file into your server's `plugins` folder.\n3. Start the server to generate config files.\n4. Adjust `config.yml` and `lang.yml` to your liking.\n5. Restart or run:\n   ```\n   /txp reload\n   ```\n\n---\n\n## ⚙️ Configuration\n\n### `config.yml` (example)\n\n```yaml\nbossbar:\n  enabled: true\n  # Hybrid Support: Mix Legacy (&) and MiniMessage (<gradient>)!\n  title: \"&bCurrent Rank: &e%current_rank% &7| <gradient:blue:aqua>Next: %next_rank%</gradient> &7(&a%xp%&7/&c%required_xp%&7)\"\n  color: BLUE\n  style: SOLID\n  dynamic-mode: true # Bar appears on XP gain and hides after timeout\n  timeout: 10\n\nrewards:\n  \"1000\":\n    name: \"<gradient:#2486B5:#3A816A>Novice</gradient>\"\n    commands:\n      - \"give %player% diamond 1\"\n      - \"eco give %player% 250\"\n    broadcast: \"&a%player% reached %threshold% XP (Novice)!\"\n\n  \"50000\":\n    name: \"Master\"\n    commands:\n      - \"give %player% netherite_ingot 1\"\n    broadcast: \"&6%player% is now a Master!\"\n```\n\n---\n\n## 🧩 Placeholders\n\nAvailable for use in **Chat**, **Broadcasts**, and **BossBar**:\n\n| Placeholder | Description |\n| :--- | :--- |\n| `%player%` | Player's name |\n| `%xp%` | Player's total lifetime XP |\n| `%current_rank%` | Name of the current rank (e.g. \"Novice\") |\n| `%next_rank%` | Name of the next rank (e.g. \"Master\") |\n| `%required_xp%` | XP required for the next rank |\n| `%threshold%` | The specific threshold reached (Rewards only) |\n\n---\n\n## 🔧 Commands\n\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/txp get <player>` | View a player’s total XP | `totalxp.view` |\n| `/txp show` | Show your BossBar | `totalxp.use` |\n| `/txp hide` | Hide your BossBar | `totalxp.use` |\n| `/txp set <player> <amount>` | Set a player’s XP | `totalxp.admin` |\n| `/txp reset <player>` | Reset player XP & history | `totalxp.admin` |\n| `/txp reload` | Reload config & language | `totalxp.admin` |\n\n---\n\n## 💾 Storage\n\nXP and reward history are stored via **SQLite**, located in:\n`plugins/TotalXPRewards/database.db`\n\n**External Access**:\nThe database now includes a `current_rank` and `username` column, making it easy to integrate with web leaderboards (e.g. Node.js apps).\n\n---\n\n## 🧩 Plugin Support\n\n- **LuckPerms** (for rank rewards)\n- **Vault** (for economy)\n- **PlaceholderAPI** (for extra placeholders)\n\nThe plugin does not depend on them but integrates automatically if installed.\n\n---\n\n## 🛡️ Disclaimer\n\nThis plugin was developed with the assistance of **Google DeepMind's AI**.\nAll code and design decisions were reviewed and finalized manually.\n\n---\n\n## 📄 License\n\nThis project is licensed under the **MIT License**.\nYou are free to use, modify, and contribute.\n\n---\n\n## 🤝 Contributing\n\nPull requests and feature suggestions are welcome!\nFeel free to open an issue if you encounter bugs or have ideas.\n\n---\n\n## ⭐ Support the Project\n\nIf you enjoy this plugin, consider leaving a star on GitHub — it helps a lot!\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 66,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

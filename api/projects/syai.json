@@ -1,0 +1,34 @@
+{
+  "id": "NPd5KSsB",
+  "slug": "syai",
+  "title": "SyAI",
+  "description": "Let the ai be integrated into your server, ai chat and take over games",
+  "body": "# SyAI - AI Integration Plugin for Minecraft\n\n\nSyAI connects Minecraft players to AI models, enabling AI-powered chat conversations and autonomous task execution directly in-game.\n\n---\n\n## Supported AI Models\n\n| Model | Provider | API Format |\n|---|---|---|\n| `deepseek-v4-pro` | DeepSeek | OpenAI |\n| `deepseek-v4-flash` | DeepSeek | OpenAI |\n| `kimi-k2-6` | Kimi (Moonshot) | OpenAI |\n| `qwen3.7-plus` | Qwen (Alibaba) | OpenAI |\n| `qwen3.7-max` | Qwen (Alibaba) | OpenAI |\n| `glm-5.1` | GLM (ZhipuAI) | OpenAI |\n| `minimax-m3` | MiniMax | Anthropic |\n\n---\n\n## Installation\n\n1. Download `SyAI.jar` and place it in your server's `plugins/` folder.\n2. Start/restart the server.\n3. Edit `plugins/SyAI/config.yml` to configure API keys (see below).\n4. Use `/syai reload` to reload configuration without restarting.\n\n---\n\n## Configuration (`config.yml`)\n\n```yaml\n# Whether to use admin-provided API keys\n# If true, players will use the keys configured below\n# If false, players must provide their own API keys via /syai api\nuse-admin-api: true\n\n# Admin API keys (only used if use-admin-api is true)\nadmin-api-keys:\n  deepseek-v4-pro: \"sk-your-key-here\"\n  deepseek-v4-flash: \"sk-your-key-here\"\n  kimi-k2-6: \"sk-your-key-here\"\n  qwen3.7-plus: \"sk-your-key-here\"\n  qwen3.7-max: \"sk-your-key-here\"\n  glm-5.1: \"your-key-here\"\n  minimax-m3: \"your-key-here\"\n\n# Default model for chat and tasks\ndefault-model: \"deepseek-v4-flash\"\n\n# Maximum context messages for chat\nmax-context: 100\n\n# AI task settings\ntask:\n  max-rounds: 50\n  action-delay: 10\n```\n\n### Two API Key Modes\n\n**Admin Mode** (`use-admin-api: true`):  \nAll players share the API keys configured by the admin. Players do not need to configure anything.\n\n**Player Mode** (`use-admin-api: false`):  \nEach player must provide their own API key using `/syai api <model> <key>`. Keys are stored in a local JSON file (`api_keys.json`).\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/syai chat true` | Enable AI chat mode — all messages are sent to AI |\n| `/syai chat false` | Disable AI chat mode |\n| `/syai task <requirement>` | Let AI take over your client to complete a task |\n| `/syai task cancel` | Cancel the current AI task |\n| `/syai api <model> <key>` | Set your personal API key for a model |\n| `/syai model [name]` | View or change your active model |\n| `/syai status` | View your current status |\n| `/syai reload` | Reload configuration (admin only) |\n\n---\n\n## AI Chat Mode\n\nWhen chat mode is enabled, every message the player sends in chat is forwarded to the AI. The AI responds with the conversation context.\n\n- **100 messages of context** are maintained per player.\n- The AI is aware of the player's Minecraft username.\n- The AI responds in the same language the player uses.\n- Context is cleared when chat mode is disabled or the player logs out.\n\n---\n\n## AI Task Mode\n\nAI tasks allow the AI to take control of a player's client and perform actions in the world. The AI uses **function calling (tool use)** to interact with the game.\n\n### Available Tools (18 tools)\n\n| Tool | Description |\n|---|---|\n| `execute_command` | Execute a player command (admin commands are **blocked**) |\n| `send_message` | Send a chat message |\n| `move_to` | Teleport to specific coordinates |\n| `move_forward` | Move forward in the facing direction |\n| `look_at` | Change view direction (yaw/pitch) |\n| `get_position` | Get current position and direction |\n| `get_inventory` | View inventory contents |\n| `place_block` | Place a block from inventory |\n| `break_block` | Break a block |\n| `attack_entity` | Attack the nearest entity |\n| `interact_chest` | View/deposit/withdraw chest items |\n| `drop_item` | Drop items from inventory |\n| `switch_hotbar` | Switch held hotbar slot (0-8) |\n| `switch_hand_item` | Swap items between two inventory slots |\n| `use_item` | Consume/use held item |\n| `get_nearby_blocks` | Scan nearby blocks |\n| `get_nearby_entities` | List nearby entities |\n| `finish_task` | Signal task completion |\n\n### Command Security\n\nFor security, **AI cannot execute administrative commands**. The following command types are blocked:\n\n- **Bans/punishment:** `/ban`, `/ban-ip`, `/kick`, `/mute`, `/warn`, `/jail`, `/tempban`, `/ipban`, `/pardon`, `/unban`, `/unmute`\n- **Operator:** `/op`, `/deop`, `/stop`, `/restart`, `/reload`, `/plugins`, `/pl`, `/whitelist`\n- **Game manipulation:** `/kill`, `/gamemode`, `/give`, `/xp`, `/enchant`, `/effect`, `/summon`, `/clear`, `/difficulty`, `/gamerule`, `/time`, `/weather`\n- **World editing:** `/setblock`, `/fill`, `/clone`, `/setworldspawn`, `/worldborder`, `//` (WorldEdit)\n- **Economy manipulation:** `/eco`, `/economy`, `/money give`, `/money take`, `/money set`\n- **Permissions:** `/lp`, `/luckperms`, `/perm`, `/pex`, `/groupmanager`\n- **Server control:** `/save-all`, `/save-off`, `/save-on`, `/timings`, `/spark`, `/paper`, `/purpur`\n- **Invasion:** `/invsee`, `/openinv`, `/vanish`, `/sudo`, `/force`, `/socialspy`, `/spectate`\n\n**Allowed commands** include: `/tpa`, `/tpahere`, `/tpaccept`, `/res tp`, `/money`, `/pay`, `/home`, `/spawn`, `/warp`, `/msg`, `/kit`, `/trade`, `/shop`, `/ah`, `/fly`, `/nick`, and other common player commands.\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `syai.use` | `true` (everyone) | Access to all SyAI commands |\n| `syai.admin` | `op` | Access to `/syai reload` |\n\n---\n\n## API Key Privacy\n\n- Player API keys are stored locally in `plugins/SyAI/api_keys.json` (JSON file).\n- Keys are never transmitted to third parties — they are only used to call the respective AI provider's API.\n- When `use-admin-api` is enabled, individual player keys are not required.\n\n---\n\n.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

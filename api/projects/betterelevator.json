@@ -1,0 +1,36 @@
+{
+  "id": "hRLFdx8l",
+  "slug": "betterelevator",
+  "title": "BetterElevator",
+  "description": "Elevator plugin, similar to a mod !",
+  "body": "# BetterElevator\n![BetterElevator](https://cdn.modrinth.com/data/cached_images/5bfbcda9b0eabdb240916b1e7d6797d18ae45d96_0.webp)\nReal-block elevators with smooth motion, solid walls, and per-elevator speed control. Folia and Paper safe.\n\n---\n\n## Features\n\n- **Build your own cabin** — select any shape with a blaze rod, run `/bet create <name>`, done. No restrictive templates.\n- **Smooth, real-block motion** — the cabin moves as actual FallingBlocks with vanilla physics carrying you up/down. No teleport jank, no \"fall through floor\" bugs.\n- **Solid walls (via ProtocolLib)** — passengers can't walk through cabin walls horizontally. Implemented with client-only block packets — server world untouched, non-passengers see nothing. Predictive packet scheduling compensates for network latency.\n- **Per-elevator speed levels** — `/bet speed <elevator> <level>` switches between configurable speeds (default 2.5 / 5 / 10 / 20 blocks/sec). Persisted per elevator.\n- **Sign and button triggers** — write `[BET] / <elevator> / <floor>` on a sign and right-click rides. Or `/bet bind <elevator>` to turn any block into a call button (opens a floor-picker chest GUI).\n- **Auto floor registration** — writing `[BET] / <elevator> / 5F:+6` on a sign auto-registers a new floor 6 blocks above the highest existing one.\n- **Per-player permission groups** — limit max cabin size, max elevators owned, max speed per group via `permissions/groups.yml`.\n- **World filtering** — whitelist/blacklist worlds where elevators work.\n- **Multi-backend storage** — YAML (default), SQLite, or MySQL. SQL backends auto-migrate schema.\n- **i18n** — bundled `zh_tw` and `en_us`; each player sees their client locale automatically. Drop in your own `lang/<locale>.yml`.\n- **Mixed colour syntax** — every message accepts MiniMessage tags, legacy `&6` codes, and hex `&#FFAA00` / `#FFAA00` freely mixed.\n- **Auto config migration** — new config keys from updates are merged into your existing config on reload, with comments. Existing values are never overwritten.\n\n---\n\n## Requirements\n\n- **Paper 1.21+** (or any Folia build)\n- **ProtocolLib** (soft dependency — only needed for solid walls; without it the plugin runs fine and walls fall back to walk-through)\n- Java 21+\n\n---\n\n## Quick start\n\n1. Drop the jar in `plugins/`.\n2. Restart.\n3. Get a blaze rod. Left-click one corner of your cabin, right-click the opposite corner.\n4. Stand inside the cabin. Run `/bet create lobby`.\n5. Place a sign somewhere with:\n[BET]\nlobby\n2F:+5\n\n\nRight-click it. Cabin moves 5 blocks up.\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/bet create <name>` | Create elevator from current selection + standing position |\n| `/bet floor add <elevator> <floor>` | Register your current position as a floor |\n| `/bet floor remove <elevator> <floor>` | Remove a floor |\n| `/bet bind <elevator>` | Bind the block you're looking at as a call button |\n| `/bet unbind` | Remove the call-button binding from the targeted block |\n| `/bet goto <elevator> <floor>` | Force-call elevator to a floor |\n| `/bet speed <elevator> <level>` | Switch speed level |\n| `/bet list` | List all elevators |\n| `/bet info <elevator>` | Inspect an elevator |\n| `/bet delete <elevator>` | Delete an elevator |\n| `/bet reset <elevator\\|all>` | Clear stuck ride state / orphan blocks |\n| `/bet reload` | Reload config, lang, permissions |\n\n---\n\n## Permissions\n\n- `betterelevator.admin` — full management (default: op)\n- `betterelevator.use` — ride elevators via signs/buttons (default: true)\n- `betterelevator.speed` — change elevator speed level (default: op)\n- `betterelevator.group.<name>` — per-group limits in `permissions/groups.yml`\n\n---\n\n## Configuration highlights\n\n```yaml\nmotion:\ndefault-blocks-per-second: 2.5\nspeed-levels: [2.5, 5.0, 10.0, 20.0]\n\npassengers:\nfake-wall-blocks: true             # solid walls via ProtocolLib\nfake-wall-lookahead-ticks: 2       # latency compensation\ninride-friction: 0.6               # X/Z friction while riding\n\nworlds:\nmode: all                          # all / whitelist / blacklist\nlist: []\n\nstorage:\ntype: yaml                         # yaml / sqlite / mysql\nNotes\nFolia: the plugin uses per-region scheduling for block writes and entity work. Cross-region rides work.\nPassenger limits: by default the cabin carries the player plus any mobs and dropped items inside it. Toggle via passengers.carry-mobs / passengers.carry-items.\nStorage migrates from older versions automatically. Don't lose any existing data.\nBug reports and PRs welcome.",
+  "categories": [
+    "decoration",
+    "folia",
+    "paper",
+    "purpur",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 30,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

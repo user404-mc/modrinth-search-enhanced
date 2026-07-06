@@ -1,0 +1,21 @@
+{
+  "id": "V3TqcUku",
+  "slug": "code-of-copper-x",
+  "title": "Code of Copper Extensions",
+  "description": "Operator focused extensions for GolemScript (Code of Copper).",
+  "body": "# Code of Copper Extensions\n\nThis pack provides a couple additional functions to Code of Copper, aimed at providing functionality for those who would\nprefer to use the language in creative mode, or as an operator.\n\nWhilst made by one of the developers of Code of Copper, this pack is **unofficial**. While some functionality\nprovided by this pack may one day make it upstream, much of it will not.\n\n## Requirements\n- **This datapack will only work in versions 1.20.2 and higher**\n- **This datapack will not work without [Code of Copper](https://modrinth.com/datapack/code-of-copper)**\n\n## Provided Functions\n### Exec\nExec will run any command given to it, in a string. It runs as the bot, positioned at the bot.\nIt allows multiple strings in the same function.\n\n```ruby\nexec(\"time set day\") # Set time to day\nexec(\"weather clear\", \"gamemode adventure @p\") # Set weather to clear, and @p to adventure mode\n```\n\n### Tp\nTeleports the selected entity to the given coordinates.\nCoordinates can be an integer, or a string.\nDefaults to \"@s\" if unset. Tilde `~` is relative to the bot.\n\n```ruby\ntp(0, 64, 0) # Teleport bot (@s) to 0, 64, 0\ntp(0, 64, 0, \"@a\") # Teleport all players (@a) to 0, 64, 0\ntp(\"~\", \"~8\", \"~\", \"@p\") # Teleport nearest player 8 blocks above the bot\ntp(\"~\", 100, \"~\", \"@p\") # Teleport nearest player to Y 100, above the bot\n```\n\n### Setblock\nAlternative to `place()`, doesn't require blocks in inventory.\nCoordinates can be an integer, or a string. Tilde `~` is relative to the bot.\n\n```ruby\nsetblock(:stone, 0, 64, 0) # Sets the block minecraft:stone at 0, 64, 0\nsetblock(:grass_block, \"~\", \"~8\", \"~\") # Sets the block minecraft:grass_block 8 blocks above the bot\n```\n\n### Score\nReturns the score of the selected entity, as an integer. Defaults to \"@p\" if unset.\n\n```ruby\nscore(\"myscoreboard\") # Returns the score of @p, fo scoreboard myscoreboard\nscore(\"myotherscoreboard\", \"Moxvallix\") # Returns the score of Moxvallix, for scoreboard myotherscoreboard\n```\n\n### Scoreset\nSets the score of the selected entity, from a given integer. Defaults to \"@p\" if unset.\nReturns the score set.\n\n```ruby\nscoreset(\"myscoreboard\", 8) # Sets @p to a score of 8 on scoreboard myscoreboard\nscoreset(\"myotherscoreboard\", 123, \"Gears_YT\") # Sets Gears_YT to a score of 123 on scoreboard myotherscoreboard\n```\n\n### Rule\nReturns the value of the given gamerule as an integer.\nIf a value is given as a second argument, it sets the gamerule as such.\nAccepts either a string, integer or boolean as second value.\n\n```ruby\nrule(\"keepInventory\") # Returns the value of gamerule keepInventory (0 if false, 1 if true)\nrule(\"doFireTick\", false) # Sets the gamerule doFireTick to false, returns 0\nrule(\"randomTickSpeed\", 5) # Sets the gamerule randomTickSpeed to 5, returns 5\n```\n\n### Run\nRuns a function given as a resource, and returns the value the function returns.\n\n```ruby\nrun(:foo) # Runs function minecraft:foo, returning what the function returns\nrun(code:bar) # Runs function code:bar, returning what the function returns\n```",
+  "categories": [
+    "datapack",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 96,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

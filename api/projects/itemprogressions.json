@@ -1,0 +1,39 @@
+{
+  "id": "9UMPCB0c",
+  "slug": "itemprogressions",
+  "title": "ItemProgressions",
+  "description": "A customizable plugin to lock away / delay the use  of specific  items until a specific condition is met",
+  "body": "ItemProgressions\n=================\n\nA Minecraft Bukkit/Paper plugin to \"lock\" items and dimensions until a condition is met (realtime, per-player playtime,\nglobal/server playtime). While locked, the plugin blocks using/placing/crafting/consuming and can also block entering\ndimensions. Locked items get a lock lore line; advancements can show progress.\n\n# Features\n\n- Lock items and dimensions until realtime, per-player playtime, or global/server playtime criteria are met.\n- Block use/place/craft/consume of locked items; optionally allow breaking locked blocks via config.\n- Block entering locked dimensions (same logic as items).\n- Optional advancement tab with rule + per-item advancements; multiple layout modes (none, columns, square, auto) with\n  dummy nodes for visibility.\n- Configurable icons/names/description templates for advancements; ability to disable advancement creation entirely.\n\n# How to use\n\n1. Download the jar file and place it in your `plugins/` folder.\n2. Restart the Server.\n3. Edit `config.yml` (common keys):\n    - `locks`: list of rules; each has `items` and `unlock` (type=`realtime|perPlayer|global`; use `at` for timestamps\n      or `seconds` for playtime). Optional per-rule `icon` and `name` apply to the rule advancement.\n    - `allowBreaking`: true lets players break locked blocks.\n    - `disableAdvancementCreation`: true skips creating any custom advancements.\n    - `advancementGridMode`: layout for per-item advancements (`none`, `columns`, `square`, `auto`).\n    - `itemAdvancements.defaults`: description templates and default icon. Placeholders: `%name%`, `%time%`,\n      `%playtime%`, `%servertime%`.\n\n# Config keys (detailed)\n\n- `allowBreaking`: when true, players may break locked blocks; other lock checks still apply.\n- `disableAdvancementCreation`: when true, the plugin does not register custom advancements.\n- `advancementGridMode`: layout for per-item advancements; choose `none` (all under rule), `columns` (fixed-width\n  columns), `square` (square-ish grid with dummies), or `auto` (best-fit grid with dummies per row for visibility).\n- `itemAdvancements.tab`: custom tab info; set `key`, `title`, `description`, `icon`, and `background`.\n- `itemAdvancements.defaults`: description templates and a fallback icon; placeholders: `%name%`, `%time%`,\n  `%playtime%`, `%servertime%`.\n- `locks`: list of lock rules:\n    - `items`: material names/patterns (e.g., `\"DIAMOND_*\"`). Only item materials are used for per-item advancements;\n      block-only materials are skipped.\n    - `unlock.type`: `realtime`, `perPlayer`, or `global`.\n    - `unlock.at`: ISO-8601 timestamp for `realtime` locks.\n    - `unlock.seconds`: duration in seconds for `perPlayer` or `global` locks.\n    - `unlock.icon`: optional rule-advancement icon (namespaced item id). If empty, defaults to a matched item.\n    - `unlock.name`: optional rule-advancement title. If empty, the item’s translated name is used.\n\n# Examples\n\nMinimal config with a realtime lock and a per-player lock:\n\n```yaml\nallowBreaking: false\ndisableAdvancementCreation: false\nadvancementGridMode: auto\n\nitemAdvancements:\n  tab:\n    key: \"itemprogressions:locked_items\"\n    title: \"Locked Items\"\n    description: \"Items managed by ItemProgressions\"\n    icon: \"minecraft:barrier\"\n    background: \"minecraft:textures/gui/advancement/backgrounds/adventure.png\"\n  defaults:\n    realtimeDescription: \"%name% can be used at %time%\"\n    perPlayerDescription: \"%name% can be used after %playtime%\"\n    globalDescription: \"%name% can be used after %servertime%\"\n    icon: \"minecraft:barrier\"\n\ndimensionLocks:\n  - dimension: NETHER\n    unlock:\n      type: realtime\n      at: \"2026-01-01T15:00:00+01:00\"\n      name: \"The Nether\"\n      icon: \"minecraft:netherrack\"\n      description: \"The Nether unlocks on January 1st, 2026\"\n  - dimension: THE_END\n    unlock:\n      type: realtime\n      at: \"2027-01-01T00:00:00+01:00\"\n      name: \"The End\"\n      icon: \"minecraft:end_stone\"\n      description: \"The End unlocks on January 1st, 2027\"\n\nlocks:\n  - items: [ \"DIAMOND_*\" ]\n    unlock:\n      type: perPlayer\n      seconds: 3600\n      icon: \"minecraft:diamond\"\n      name: \"Diamond Gear\"\n\n  - items: [ \"NETHERITE_*\" ]\n    unlock:\n      type: realtime\n      at: \"2026-01-01T00:00:00Z\"\n      icon: \"minecraft:netherite_ingot\"\n      name: \"Netherite Items\"\n```\n\n# Permissions\n\n- `itemprogressions.bypass.<item_name>`: allows bypassing locks for a specific item (e.g.,\n  `itemprogressions.bypass.DIAMOND_SWORD`).\n- `itemprogressions.bypass.*`: allows bypassing all locks.",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 67,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

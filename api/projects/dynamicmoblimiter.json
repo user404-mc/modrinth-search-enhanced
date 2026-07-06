@@ -1,0 +1,23 @@
+{
+  "id": "6sKNf9FW",
+  "slug": "dynamicmoblimiter",
+  "title": "DynamicMobLimiter",
+  "description": "Dynamically throttles natural mob spawning based on server TPS — keeps your server smooth under load, with zero impact when TPS is healthy.",
+  "body": "# DynamicMobLimiter\n\n**Automatic, TPS-aware mob spawn throttling for Paper servers.**\n\nDynamicMobLimiter watches your server's performance in real time and dynamically scales down natural mob spawning when TPS starts to drop — then automatically restores normal spawn rates once performance recovers. No manual intervention, no permanent spawn caps, no wasted potential.\n\n## ✨ Features\n\n- **Live TPS monitoring** — uses Paper's built-in 1-minute TPS average, checked on a configurable interval.\n- **Stepped throttling** — define multiple TPS thresholds, each with its own spawn-allow percentage (e.g. 75%, 50%, 20%, 0%).\n- **Automatic recovery** — as soon as TPS climbs back above your threshold, spawn rates return to 100% on their own.\n- **Selective spawn reasons** — choose exactly which spawn reasons are affected (`NATURAL`, `CHUNK_GEN`, `BREEDING`, `EGG`, etc.).\n- **Mob whitelist** — exempt specific entities (e.g. `WITHER`, `ENDER_DRAGON`) so boss fights and important spawns are never blocked.\n- **Built for performance** — the spawn handler runs in O(1): two set lookups, one volatile read, and at most one random roll. No Bukkit API calls, no allocations, no async hops in the hot path.\n- **Admin command** — `/dml status` shows live TPS and current spawn rate; `/dml reload` reloads the config without a restart.\n\n## ⚙️ How It Works\n\n1. Every `check-interval-seconds`, the plugin reads the server's 1-minute TPS average.\n2. If TPS is **above** `min-tps-threshold`, spawning runs at 100% — the plugin does nothing.\n3. If TPS **drops below** the threshold, the plugin looks up your configured throttling steps and applies the matching spawn percentage.\n4. Each `CreatureSpawnEvent` with a configured spawn reason then has a chance (equal to that percentage) to proceed — otherwise it's cancelled before the mob ever spawns.\n\n## 🛠️ Configuration\n\n```yaml\nsettings:\n  check-interval-seconds: 5\n  min-tps-threshold: 18.0\n\ntps-throttling-steps:\n  19.0: 1.0   # 100% spawns (normal)\n  18.0: 0.75  # 75% allowed\n  17.0: 0.50  # 50% allowed\n  16.0: 0.20  # 20% allowed\n  15.0: 0.00  # spawning stopped\n\naffected-spawn-reasons:\n  - NATURAL\n  - CHUNK_GEN\n  - BREEDING\n  - EGG\n\nwhitelist-mobs:\n  - WITHER\n  - ENDER_DRAGON\n```\n\n## 💬 Commands & Permissions\n\n| Command | Permission | Description |\n|---|---|---|\n| `/dml status` | `dynamicmoblimiter.status` | Shows current TPS, active spawn rate, and configured steps |\n| `/dml reload` | `dynamicmoblimiter.reload` | Reloads `config.yml` without restarting |\n\nDefault for both: `op`\n\n## 📋 Requirements\n\n- Paper (or Paper-fork) **1.20+**\n- Java 21+\n\n## 🐞 Issues & Suggestions\n\nFound a bug or have an idea for a feature? Open an issue on the [GitHub repository](https://github.com/Crqzy-Cat/DynamicMobLimiter).",
+  "categories": [
+    "bukkit",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

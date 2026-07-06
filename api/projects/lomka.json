@@ -2,8 +2,8 @@
   "id": "bd9cFfiC",
   "slug": "lomka",
   "title": "Lomka",
-  "description": "A less powerful optimization mod. Performs various optimizations: chunks, culling, opengl, nbt and network.",
-  "body": "# Lomka\n\n<div align=\"center\">\n    <img src=\"https://img.shields.io/badge/Fabric-Loader-orange?style=for-the-badge&logo=fabric&logoColor=white\" alt=\"Fabric\">\n    <img src=\"https://img.shields.io/badge/Quilt-Loader-blue?style=for-the-badge&logo=quilt&logoColor=white\" alt=\"Quilt\">\n    <img src=\"https://img.shields.io/badge/NeoForge-Loader-purple?style=for-the-badge&logo=neoforge&logoColor=white\" alt=\"NeoForge\">\n    <br>\n    <a href=\"https://modrinth.com/mod/lomka\">\n        <img src=\"https://img.shields.io/modrinth/dt/lomka?style=for-the-badge&logo=modrinth&logoColor=white&label=Modrinth&color=00AF5C\" alt=\"Modrinth Downloads\">\n    </a>\n    <a href=\"https://www.curseforge.com/minecraft/mc-mods/lomka\">\n        <img src=\"https://img.shields.io/curseforge/dt/1462263?style=for-the-badge&logo=curseforge&logoColor=white&label=CurseForge&color=F16436\" alt=\"CurseForge Downloads\">\n    </a>\n</div>\n\n<br>\n\nLomka is a lightweight client-side optimization mod for Minecraft. It boosts FPS and reduces lag by optimizing multiple subsystems: block-entity and entity frustum, occusion culling, OpenGL state management, NBT processing, network packet handling, and chunks processes - all without changing gameplay or breaking visual quality.\n## Java 25 is recommended!\n## Benchmarks\n\n*Test Hardware: Intel CC150, 16GB DDR4, GTX 1050 TI*\n*Note: All mod options enabled during testing.*\n\n### Singleplayer World (1000 mobs)\n\n| Setup | Average FPS |\n| :--- | :--- |\n| **Vanilla** | 53 FPS |\n| **With Lomka** | **76 FPS** |\n\n### Iris Shaders (ComplementaryReimagined_r5.7.1, High)\n\n| Setup | Max FPS |\n| :--- | :--- |\n| **Without Lomka** | 32 FPS |\n| **With Lomka** | **38 FPS** |\n\n### Multiplayer Server w/ lots of entities\n\n| Setup | Average FPS |\n| :--- | :--- |\n| **Vanilla** | 197 FPS |\n| **With mod** | **254 FPS** |\n\n### Multiplayer Server w/ lots of *CEMT (tested on CounterMine 2)\n\n| Setup | Average FPS |\n| :--- | :--- |\n| **Vanilla** | 220 FPS |\n| **With mod** | **418 FPS** |\n\n### Multiplayer Server, if too close to server\n\n| Setup | Average ping |\n| :--- | :--- |\n| **Vanilla** | 40 ms |\n| **With mod** | **39 ms** |\n\n### Multiplayer Server, if too far away from server\n\n| Setup | Average ping |\n| :--- | :--- |\n| **Vanilla** | 197 ms |\n| **With mod** | **192 ms** |\n\nCEMT - Custom Entity Model Textures\n\n## Options\nLomka uses properties config only: `config/lomka.properties` (created on first launch).\n\n- `culling.frustum_camera_cube_mode` : Controls frustum camera cube culling mode. Values: `vanilla` (default, vanilla behavior), `none`/`off`/`false`/`0` (disables optimization), or any other value (aggressive mode).\n- `java25Optimizations` : Enables experimental optimizations for Java 25. (default: false)\n\n### ✅ Compatibility\n\nLomka is designed to be highly compatible with the modloader ecosystem. It works alongside most other mods and optimization tools (Sodium, Lithium, etc.).\n\n### ❌ Known incompatibilities\n- VulkanMod\n",
+  "description": "Applies various, compatible optimizations to improve perfomance and stability. Ready for client, server or both uses!",
+  "body": "## Summary\n\n- Reduces micro-stutters\n- Slightly improves FPS and decreases texture loading (feels diffrent on some systems)\n- Could decrease RAM usage sometimes\n\n## What actually does the mod do?\n\n- Speeds up some calculations (colors engine, maths, texture loading)\n- Fixes code's bugs\n- Prevents unnecessary allocations (sounds, calcs and rendering)\n- Improves hashCode() game's caches \n- Slightly improves threading system\n- Disables GL/Vk debug\n- Caching JOML calls (experimental)\n\n## FAQ\n\n**Q: I'm having performance issues, and removing Lomka fixes them!**\n\nA: Make sure you are using the latest version. Lomka targets hot-paths across multiple Minecraft versions — if you encounter a compatibility issue, please report it. **At the moment the most perfomance friendly mod versions are 0.2.0 and 0.3.0.**\n\n**Q: Can I run Lomka on the server-side?**\n\nA: Yes. \n\n**Q: Forge support?**\n\nA: No. Just no, please... (Only 1.20.1, maybe)\n\n**Q: Any backports? (<1.21 or <1.20.1)**\n\nA: No. The mod's current functionality largely follows Minecraft version 1.21.11 and its structure.\n\n**Q: Does Lomka require Fabric API or any other dependencies?**\n\nA: No. Lomka depends only on Fabric Loader or NeoForge Loader, without any dependencies.\n\n**Q: Mobile devices support?**\n\nA: Is it actually starts with Lomka? Cool. That's all.\n\n**Q: Can I use Lomka in a modpack?**\n\nA: Yes. Lomka is absolutely free and open-source. :sunglasses:\n\n**Q: Does Lomka have a config file? (Lomka v0.3.0>=)**\n\nA: Soon as possible. Againly the maintained version is 1.21.11. Maybe with time will be added but currently mixins can be disabled by editing *lomka.mixins.json* inside the mod's archive.\n\n## Bug Reporting\n\nWhen reporting a bug that only appears with Lomka installed:\n- Report it on the project's issue tracker (not to other mod authors — Lomka's mixins are surgical and unlikely to cause crashes in unrelated systems).\n- Try to reproduce the issue without mod Lomka first.",
   "categories": [
     "fabric",
     "neoforge",
@@ -12,14 +12,18 @@
   ],
   "client_side": "required",
   "server_side": "unsupported",
-  "downloads": 11444,
+  "downloads": 13355,
   "followers": 0,
   "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.9",
     "1.21.10",
     "1.21.11",
     "26.1",
     "26.1.1",
-    "26.1.2"
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

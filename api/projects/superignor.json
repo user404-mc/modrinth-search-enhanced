@@ -1,0 +1,41 @@
+{
+  "id": "neqi3n2R",
+  "slug": "superignor",
+  "title": "Super Ignore",
+  "description": "Allows blocking the connection of certain players when you are on the server.",
+  "body": "## EN\n\n**SuperIgnor** is an advanced server protection plugin for 1.20-1.21.x that allows server administrators to control player access with flexible rules, realistic kick messages, and **full in-game management**.\n\nThe plugin creates a \"whitelist-like\" or \"blacklist\" environment depending on who is online, perfect for private servers or trolling unwanted guests with fake connection errors.\n\n### 🚀 Features\n\n#### **🛡️ Smart Protection Modes**\n\n* **`when_online`** - Ignored players cannot join **only** when Main Users (admins/owners) are online.\n* **`always`** - Ignored players are blocked permanently, regardless of who is online.\n\n#### **⚙️ Full In-Game Management**\n\n* No need to edit config files manually!\n* Add/Remove admins and ignored players via commands.\n* Switch operation modes instantly without reloading.\n\n#### **🔔 Admin Notifications**\n\n* Main users receive a notification in chat when an ignored player tries to join and gets kicked.\n* Know exactly when your \"enemies\" are trying to connect.\n\n#### **🎭 Stealth & Kick Types**\n\n* **`custom`** - Customizable message with color support (`&c`, `&l`, etc.).\n* **`random`** - **Realistic connection errors** (Java Exceptions, Timeouts) to make the player think it's their internet, not a ban.\n\n### 💻 Commands\n\n| Command | Arguments | Description |\n| --- | --- | --- |\n| `/si add` | `<main/ignore> <nick>` | Add a player to the Main or Ignored list |\n| `/si remove` | `<main/ignore> <nick>` | Remove a player from the lists |\n| `/si list` | None | View all Main and Ignored users |\n| `/si mode` | `<always/when_online>` | Switch the plugin operation mode |\n| `/si reload` | None | Reload configuration from file |\n\n**Aliases:** `/superignor`, `/si`\n\n### 🔐 Permissions\n\n| Permission | Description | Default |\n| --- | --- | --- |\n| `superignor.admin` | Allows using all plugin commands and receiving notifications | `op` |\n| `superignor.bypass` | Players with this permission are never kicked, even if they are in the ignore list | `false` |\n\n### 📋 Configuration Example\n\n```yaml\n# Operation mode: \"when_online\" or \"always\"\noperation-mode: \"when_online\"\n\n# Notify main users when an ignored player tries to join?\nnotify-main-users: true\n\n# Main server users (nicknames)\n# Can be managed via /si add main <nick>\nmain-users:\n  - \"OwnerSteve\"\n\n# Ignored users (nicknames)\n# Can be managed via /si add ignore <nick>\nignored-users:\n  - \"BadPlayer1\"\n\n# Kick message type: \"custom\" or \"random\"\nkick-type: \"custom\"\n\n# Custom kick message (supports color codes with &)\nkick-custom-message: \"&cYou cannot join the server while main administrators are online!\"\n\n# Random realistic errors\nkick-random-messages:\n  - \"Internal Exception: java.io.IOException: Connection reset by peer\"\n  - \"Internal Exception: java.net.SocketException: Connection timed out\"\n\n```\n\n### 🔧 Installation\n\n1. Place the JAR file in your `plugins/` folder.\n2. Restart the server.\n3. Use `/si add main YourNick` to add yourself as a main user.\n4. Use `/si add ignore BadGuy` to block someone.\n\n---\n\n<details>\n<summary>RU (описание на русском)</summary>\n\n**SuperIgnor** - это продвинутый плагин защиты для серверов 1.20-1.21.x, который позволяет администраторам контролировать доступ игроков с помощью гибких правил, реалистичных сообщений об ошибках и **полного управления из игры**.\n\nПлагин идеально подходит для приватных серверов, позволяя блокировать нежелательных гостей только тогда, когда вы находитесь на сервере, или путать их фейковыми ошибками подключения.\n\n### 🚀 Возможности\n\n#### **🛡️ Умные режимы защиты**\n\n* **`when_online`** - Игнорированные игроки не могут зайти, **только** когда \"Главные пользователи\" (админы) онлайн.\n* **`always`** - Игнорированные игроки не могут зайти никогда (бан).\n\n#### **⚙️ Управление из игры**\n\n* Больше не нужно лезть в конфиг для добавления игроков!\n* Добавляйте/удаляйте админов и игнорируемых игроков командами.\n* Переключайте режимы работы \"на лету\".\n\n#### **🔔 Уведомления для админов**\n\n* Главные пользователи получают сообщение в чате, когда игнорируемый игрок пытается зайти и его кикает.\n* Вы всегда будете знать, когда ваши \"враги\" пытаются подключиться.\n\n#### **🎭 Скрытность и типы кика**\n\n* **`custom`** - Настраиваемое сообщение с поддержкой цветов (`&c`, `&l` и т.д.).\n* **`random`** - **Реалистичные ошибки подключения** (Java Exceptions, Timeouts). Игрок будет думать, что у него проблемы с интернетом, а не бан.\n\n### 💻 Команды\n\n| Команда | Аргументы | Описание |\n| --- | --- | --- |\n| `/si add` | `<main/ignore> <ник>` | Добавить игрока в список Главных или Игнорируемых |\n| `/si remove` | `<main/ignore> <ник>` | Удалить игрока из списка |\n| `/si list` | Нет | Показать списки игроков |\n| `/si mode` | `<always/when_online>` | Переключить режим работы |\n| `/si reload` | Нет | Перезагрузить конфиг из файла |\n\n**Алиасы:** `/superignor`, `/si`\n\n### 🔐 Права (Permissions)\n\n| Право | Описание | По умолчанию |\n| --- | --- | --- |\n| `superignor.admin` | Доступ ко всем командам и получение уведомлений | `op` |\n| `superignor.bypass` | Игроки с этим правом никогда не будут кикнуты, даже если они в черном списке | `false` |\n\n### 📋 Пример конфигурации\n\n```yaml\n# Режим работы: \"when_online\" или \"always\"\noperation-mode: \"when_online\"\n\n# Уведомлять главных пользователей при попытке входа игнорируемого?\nnotify-main-users: true\n\n# Главные пользователи (можно добавить через /si add main)\nmain-users:\n  - \"OwnerSteve\"\n\n# Игнорированные пользователи (можно добавить через /si add ignore)\nignored-users:\n  - \"BadPlayer1\"\n\n# Тип кика: \"custom\" или \"random\"\nkick-type: \"custom\"\n\n# Кастомное сообщение (поддерживает цвета через &)\nkick-custom-message: \"&cВы не можете зайти на сервер, пока администрация онлайн!\"\n\n# Случайные ошибки (для режима random)\nkick-random-messages:\n  - \"Internal Exception: java.io.IOException: Connection reset by peer\"\n  - \"Internal Exception: java.net.SocketException: Connection timed out\"\n\n```\n\n### 🔧 Установка\n\n1. Поместите JAR файл в папку `plugins/`.\n2. Перезагрузите сервер.\n3. Введите `/si add main ВашНик`, чтобы добавить себя в главные пользователи.\n4. Введите `/si add ignore НикВрага`, чтобы заблокировать кого-то.\n\n</details>",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 72,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,38 @@
+{
+  "id": "aaVe6DOy",
+  "slug": "crystalladmin",
+  "title": "CrystallAdmin",
+  "description": "This plugin adds extensive capabilities for server administration.",
+  "body": "# 🛡️ CrystallAdmin\n\n**Advanced administration toolkit for Minecraft servers with built-in anti-cheat, moderation tools, and monitoring systems.**\n\n[![Modrinth Downloads](https://img.shields.io/modrinth/dt/crystalladmin?style=for-the-badge&logo=modrinth&color=00AF5C)](https://modrinth.com/plugin/crystalladmin)\n[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)](https://github.com/crystallbloom/crystalladmin)\n[![Minecraft](https://img.shields.io/badge/minecraft-1.21.x-green?style=for-the-badge)](https://purpurmc.org)\n\n---\n\n## ✨ Features\n\n### 🔨 **Moderation System**\n- **Custom Punishment Screens** - Beautiful kick/ban/mute messages with server branding\n- **Punishment History** - Full database tracking of all punishments\n- **Warnings System** - Timed warns with auto-expiration\n- **Report System** - Player reports with GUI, claim/close, teleport to location\n- **Freeze & Vanish** - Staff utilities for moderation\n\n### 🕵️ **Anti-Cheat (Lightweight)**\n- **Reach Detection** - Lag-compensated with ping filtering\n- **FastPlace Detection** - Block placement speed monitoring\n- **AutoClicker Detection** - CPS threshold checking\n- **X-Ray Monitor** - Smart ore/stone ratio analysis with server-wide statistics\n- **Client Detection** - Identifies Fabric/Forge/cheat clients via brand packets\n- **Configurable Alerts** - Toggle per-check alerts and auto-kick/ban thresholds\n\n### 👤 **Player Management**\n- **Player Cards** (`/cp <player>`) - Detailed info: UUID, IP, client, ping, alts, punishments, warns, staff notes\n- **Staff Notes** - Internal annotations on players (`/note <player> <text>`)\n- **Screenshare Mode** (`/ss <player>`) - Freeze player, show contact info, auto-ban on disconnect\n- **Inventory Inspection** - View player inventory and ender chest in real-time\n- **Spy Mode** - Monitor player commands\n\n### 📊 **Server Tools**\n- **Statistics Dashboard** - TPS, RAM, uptime, player count\n- **Lagg Clear** - Auto-cleanup with configurable warnings and filters\n- **Admin Chat** - Toggle mode or quick prefix `#message`\n- **Anonymous Messages** - Send messages to players without revealing sender\n- **Broadcast System** - Server-wide announcements with formatting\n\n### 🌍 **Localization**\n- **Full i18n Support** - English and Russian included\n- **Easy to Translate** - Add your own language via `messages_<lang>.yml`\n- **Switch in Config** - Change `general.language: en` or `ru`\n\n### 🔗 **Integrations**\n- **Discord Webhooks** - Log all admin actions, punishments, reports to Discord\n- **LuckPerms Integration** - Quick group assignment via `/adm class <player> <group>`\n\n---\n\n## 📥 Installation\n\n1. **Download** the latest `.jar` from [Modrinth](https://modrinth.com/plugin/crystalladmin)\n2. **Place** in your server's `plugins/` folder\n3. **Restart** your server\n4. **Configure** in `plugins/CrystallAdmin/config.yml`\n\n### Requirements\n- **Purpur/Paper 1.21.x** (tested on Purpur 1.21.1)\n- **Java 21** or higher\n\n---\n\n## 🎮 Commands\n\n### Main Command\n- `/adm` or `/ca` - Main command (alias)\n- `/adm help [page]` - Command help (3 pages)\n\n### Quick Commands (No `/adm` prefix needed)\n- `/cp <player>` - Player info card\n- `/checkore <player>` - X-Ray statistics\n- `/ss <player>` - Start screenshare check\n- `/note <player> <text>` - Add staff note\n- `/invsee <player>` - View inventory\n- `/ec <player>` - View ender chest\n- `/ac` - Toggle admin chat\n\n### Punishment Commands\nAll work **without** `/adm` prefix and override Essentials:\n- `/ban <player> <reason>` - Permanent ban\n- `/tempban <player> <time> <reason>` - Temporary ban\n- `/mute <player> <time/perm> <reason>` - Mute player\n- `/warn <player> <time/perm> <reason>` - Warn player\n- `/kick <player> <reason>` - Kick with custom screen\n- `/unban <player>`, `/unmute <player>`, `/unwarn <player> <#>`\n\n**Time formats:** `30m`, `1h`, `12h`, `1d`, `7d`, `30d`, `1mo`, `perm`\n\n### Admin Tools\n- `/adm bc <text>` - Broadcast message\n- `/adm a <player> <text>` - Anonymous message\n- `/adm reports` - Open reports GUI\n- `/adm v` or `/adm vanish` - Toggle vanish\n- `/adm freeze <player>` - Freeze/unfreeze\n- `/adm spy <player>` - Spy on commands\n- `/adm history <player>` - Punishment history\n- `/adm alert <text>` - Title to all players\n- `/adm tpo <player>` - Silent teleport\n- `/adm stats` - Server statistics\n- `/adm lc` - Manual lagg clear\n- `/adm reload` - Reload config\n\n---\n\n## ⚙️ Configuration\n\n### Anti-Cheat Fine-Tuning\n```yaml\nanticheat:\n  enabled: true\n  show-alerts: true\n  modules:\n    reach:\n      enabled: true\n      max-distance: 3.5    # blocks\n      min-violations: 5    # consecutive hits before flag\n      max-ping: 300        # ignore high-ping players\n    fast-place:\n      enabled: true\n      max-blocks-per-second: 15\n    auto-clicker:\n      enabled: true\n      max-cps: 20\n    xray:\n      enabled: true\n      notify-threshold: 3.0      # percent\n      deviation-multiplier: 2.5  # flag if >2.5x server average\n```\n\n### Language Switching\n```yaml\ngeneral:\n  language: ru  # or 'en'\n```\n\n### Discord Integration\n```yaml\ndiscord:\n  enabled: true\n  webhook-url: \"https://discord.com/api/webhooks/...\"\n  log-commands: true\n  log-punishments: true\n  log-anticheat: true\n```\n\n---\n\n## 🔐 Permissions\n\n- `crystalladmin.admin` - Full access (default: op)\n- `crystalladmin.report` - Send reports (default: true)\n- `crystalladmin.anticheat.alerts` - Receive AC alerts (default: op)\n- `crystalladmin.bypass.mute` - Bypass mute (default: op)\n- `crystalladmin.bypass.freeze` - Bypass freeze (default: op)\n- `crystalladmin.bypass.anticheat` - Bypass AC checks (default: op)\n\n---\n\n## 📝 Support & Contributing\n\n- **Issues/Bugs:** [GitHub Issues](https://github.com/crystallbloom/crystalladmin/issues)\n- **Feature Requests:** Open an issue or discussion\n- **Discord:** [Join our server](https://discord.gg/crystallbloom)\n\n---\n\n## 📜 License\n\nThis project is licensed under **MIT License** - free to use, modify, and distribute.\n\n---\n\n## 🙏 Credits\n\nDeveloped by **_l1stok_**  \nSpecial thanks to all testers!\n\n---\n\n### 🌟 If you like this plugin, please like it.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

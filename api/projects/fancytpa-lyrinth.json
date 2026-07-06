@@ -1,0 +1,37 @@
+{
+  "id": "Me7EaUfj",
+  "slug": "fancytpa-lyrinth",
+  "title": "FancyTPA",
+  "description": "FancyTPA brings modern TPA, HOME, and WARP features to your server with sleek GUIs, countdowns, and fully configurable behavior.",
+  "body": "# FancyTPA\n\nFancyTPA is a Paper plugin for Minecraft 1.21+ that adds a polished teleport system with GUI menus, configurable countdowns, safety checks, homes, warps, and `/back` support. The codebase is split into small layers so commands stay thin and the actual logic lives in managers.\n\n## Features\n\n- **TPA / TPAHere** with request expiry, withdraw support, toggle, and auto-accept.\n- **GUI player selector** for `/tpagui`, built with `InventoryHolder` menus instead of title checks.\n- **Homes** with per-player slot limits driven by permissions like\n`fancytpa.home.max.<number>`.\n- **Warps** with GUI browsing, tab completion, and case-insensitive lookup.\n- **/back** for returning to a previous teleport or death location.\n- **Countdown teleport flow** for TPA, homes, warps, and `/back`.\n- **Safety checks** that prevent unsafe destinations and can fall back to a nearby safe location.\n- **Config-driven sounds** and **MiniMessage**-based messages.\n- **PlaceholderAPI support** for `%fancytpa_tpatoggle%` and `%fancytpa_tpaauto%`.\n\n## Installation\n\n1. Download the plugin JAR and place it in your server's `plugins/` folder.\n2. Install PlaceholderAPI only if you want to use placeholders.\n\n## Commands and Permissions\n\n### TPA\n![TPA GUI](https://media.lyrinth.com/MCplugin-assert/Plugins/fancytpa_tpa_gui.png)\n![AcceptMSG](https://media.lyrinth.com/MCplugin-assert/Plugins/fancytpa_tpa_msg1.png)\n![WithdrawMSG](https://media.lyrinth.com/MCplugin-assert/Plugins/fancytpa_tpa_msg2.png)\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/tpa <player>` | Send a teleport request to another player. | `fancytpa.tpa` |\n| `/tpahere <player>` | Request another player to teleport to you. | `fancytpa.tpahere` |\n| `/tpaccept` / `/tpyes` | Accept the latest pending request. | `fancytpa.accept` |\n| `/tpacancel` / `/tpdeny` / `/tpno` | Deny or cancel a pending request. | `fancytpa.deny` |\n| `/tpawithdraw` / `/tpaundo` | Withdraw a request you sent. | `fancytpa.withdraw` |\n| `/tpatoggle` | Toggle whether you receive TPA requests. | `fancytpa.toggle` |\n| `/tpaauto` | Toggle auto-accept for TPA requests. | `fancytpa.auto` |\n| `/tpagui` | Open the player selection GUI. | `fancytpa.gui` |\n| `/tpareload` | Reload config, messages, homes, and warps. | `fancytpa.reload` |\n\n### Homes\n![Home GUI](https://media.lyrinth.com/MCplugin-assert/Plugins/fancytpa_home_gui.png)\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/home` / `/homes` / `/fhome` | Open the home GUI. | `fancytpa.home` |\n| `/sethome [slot]` | Save your current location into a home slot. | `fancytpa.home.set` |\n| `/delhome <slot>` | Delete a home slot. | `fancytpa.home.delete` |\n\n### Warps\n![Warp GUI](https://media.lyrinth.com/MCplugin-assert/Plugins/fancytpa_warp_gui.png)\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/warp [name]` / `/warps` / `/fwarp` | Open the warp GUI or teleport to a warp. | `fancytpa.warp` |\n| `/setwarp <name> [displayName] [lore...]` | Create a new warp at your current location. | `fancytpa.admin` |\n| `/delwarp <name>` / `/deletewarp` / `/removewarp` | Delete a warp. | `fancytpa.admin` |\n\n### Back\n\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/back` / `/fback` | Return to your previous location. | `fancytpa.back` |\n\n## Configuration Highlights\n\n### `config.yml`\n\n- `settings.teleport-delay`: countdown before teleporting.\n- `settings.request-expiry`: how long a pending TPA request stays valid.\n- `settings.cancel-on-move`: cancel countdown when the player changes block coordinates.\n- `settings.back.back-on-death` and `settings.back.back-on-teleport`: control what `/back` stores.\n- `settings.back.allowed-worlds`: restrict `/back` to specific worlds, or use `*` for all worlds.\n- `world-restriction.enabled` and `world-restriction.type`: apply a global whitelist/blacklist for all plugin commands.\n- `sounds.*`: fully configurable sounds for GUI open, request sent/received, countdown, teleport success, cancellation, and home/back actions.\n\n### `messages.yml`\n\n- Uses **MiniMessage** formatting.\n- Messages are versioned and automatically merged when the plugin ships new keys.\n- `{prefix}` is cached and injected into messages automatically.\n\n## Storage and Runtime Files\n\nFancyTPA creates and manages these files in the plugin data folder:\n\n- `config.yml`\n- `messages.yml`\n- `homes.yml`\n- `warps.yml`\n\nHome data is stored per player UUID and warp names are saved case-insensitively.\n\n## PlaceholderAPI\n\nFancyTPA registers a PlaceholderAPI expansion with the identifier `fancytpa`.\n\nAvailable placeholders:\n\n- `%fancytpa_tpatoggle%`\n- `%fancytpa_tpaauto%`\n\nEach placeholder returns `Enabled` or `Disabled` based on the player's current state.\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

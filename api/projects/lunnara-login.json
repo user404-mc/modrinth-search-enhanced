@@ -1,0 +1,36 @@
+{
+  "id": "eTGlIhqq",
+  "slug": "lunnara-login",
+  "title": "Lunnara login",
+  "description": "A secure authentication plugin for Minecraft 1.21.x. Players must register and login with BCrypt-hashed passwords. Full lockdown until authenticated. Admin tools included. Works on Spigot, Paper, Purpur, and all forks.",
+  "body": "<div align=\"center\">\n\n# ✦ LunnaraLogin ✦\n\n**Authentication plugin for Lunnara Network**\n\nSpigot · Paper · Purpur · All Forks · 1.21.x · Secure BCrypt · MiniMessage Styled\n\n---\n\n</div>\n\n## Supported Platforms\n\n| Platform | Status |\n|---|---|\n| **Paper** 1.21.x | ✔ Fully supported (native Adventure) |\n| **Spigot** 1.21.x | ✔ Fully supported (shaded Adventure) |\n| **Purpur** 1.21.x | ✔ Fully supported |\n| **Pufferfish** 1.21.x | ✔ Fully supported |\n| **Any Spigot/Paper fork** | ✔ Should work out of the box |\n\n> Requires **Java 21** or higher.\n\n## Features\n\n-  **BCrypt Password Hashing** — Passwords are securely salted & hashed, never stored in plain text\n-  **MiniMessage Support** — All messages fully customizable with gradients, colors & formatting\n-  **Full Lockdown** — Players can't move, chat, interact, build, or take damage until authenticated\n-  **Blindness Effect** — Optional blindness + slowness applied before login\n-  **Auto Kick** — Players who don't authenticate within the timeout get kicked\n-  **Login Reminders** — Periodic messages reminding players to `/login` or `/register`\n-  **JSON Storage** — Per-player data files, no database needed\n-  **Async Operations** — Password hashing runs off the main thread, zero lag\n\n---\n\n## Commands\n\n### Player Commands\n\n| Command | Aliases | Description |\n|---|---|---|\n| `/register <password> <password>` | `/reg` | Register a new account (first join) |\n| `/login <password>` | `/l` | Log in to your account |\n| `/changepass <old> <new>` | `/changepassword` | Change your own password |\n\n### Admin Commands\n\nAll admin commands use `/lunaralogin` (aliases: `/ll`, `/llogin`)\n\n| Command | Permission | Description |\n|---|---|---|\n| `/ll changepass <player> <newpass>` | `lunaralogin.admin.changepass` | Force-change a player's password |\n| `/ll delacc <player>` | `lunaralogin.admin.delacc` | Delete a player's account (kicks if online) |\n| `/ll forcelogin <player>` | `lunaralogin.admin.forcelogin` | Force-login an online player without a password |\n| `/ll status <player>` | `lunaralogin.admin.status` | Check if a player is registered / logged in |\n| `/ll reload` | `lunaralogin.admin.reload` | Reload config & messages |\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `lunaralogin.admin` | OP | Access to admin help |\n| `lunaralogin.admin.changepass` | OP | Change another player's password |\n| `lunaralogin.admin.delacc` | OP | Delete a player's account |\n| `lunaralogin.admin.forcelogin` | OP | Force-login a player |\n| `lunaralogin.admin.status` | OP | View player auth status |\n| `lunaralogin.admin.reload` | OP | Reload configuration |\n\n---\n\n## Configuration\n\n### config.yml\n\n| Option | Default | Description |\n|---|---|---|\n| `session-timeout` | `60` | Session duration in minutes |\n| `login-timeout` | `120` | Seconds before unauthenticated players are kicked |\n| `max-login-attempts` | `5` | Failed login attempts before kick |\n| `min-password-length` | `6` | Minimum password length |\n| `max-password-length` | `32` | Maximum password length |\n| `allow-movement-before-auth` | `false` | Allow movement before logging in |\n| `blind-before-auth` | `true` | Apply blindness + slowness before auth |\n| `reminder-interval` | `5` | Seconds between login/register reminders |\n| `allowed-commands` | `/login, /register, /l, /reg` | Commands usable before authenticating |\n\n### messages.yml\n\nAll messages use **MiniMessage** formatting. Supports gradients, hex colors, bold, etc.\n\nExample from the default config:\n```\nlogin-success: \"<color:#ff7ae6>✔ <color:#ffffff>Logged in successfully! <color:#aaaaaa>Welcome back.\"\n```\n\n---\n\n## Installation\n\n1. Build the plugin:\n   ```bash\n   cd LunnaraLogin && ./gradlew build\n   ```\n2. Copy `build/libs/LunnaraLogin-1.0.0.jar` to your server's `plugins/` folder\n3. Start the server — config files will be generated\n4. Edit `config.yml` and `messages.yml` to your liking\n5. Run `/ll reload` to apply changes\n\n---\n\n## How It Works\n\n1. **First join** — Player is frozen & blinded, prompted to `/register <password> <password>`\n2. **Return visit** — Player is frozen & blinded, prompted to `/login <password>`\n3. **On success** — Effects removed, full server access granted\n4. **Too slow?** — Kicked after `login-timeout` seconds\n5. **Wrong password?** — Kicked after `max-login-attempts` failed tries\n\nPlayer data is stored in `plugins/LunnaraLogin/playerdata/<uuid>.json`.\n\n---\n\n<div align=\"center\">\n\n**Lunnara Network** · Spigot / Paper / Purpur · 1.21.x · Java 21\n\n</div>\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 53,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

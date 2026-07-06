@@ -1,0 +1,32 @@
+{
+  "id": "piaMUZcC",
+  "slug": "pinger",
+  "title": "pinger",
+  "description": "Real-time ping indicator in the tab list.",
+  "body": "# Pinger\n\nDisplays each player's real-time ping in the tab list, color-coded by latency threshold. Includes a private `/ping` command and full runtime control via admin commands.\n\n---\n\n## Features\n\n- Live ping indicator in the tab list, refreshed on a configurable interval\n- Color-coded thresholds — configurable colors, values, and bracket style\n- Private `/ping` command — response is only visible to the sender\n- Runtime toggle for tab display and `/ping` command without a server restart\n- Full internationalization — drop any `.yml` into `lang/` and point config to it\n- Bundled languages: **English** (`en_US`) and **Custom**\n\n---\n\n## Ping Thresholds\n\n| Range | Color | Default |\n|---|---|---|\n| Excellent | Green | ≤ 35 ms |\n| Good | Gold | 36 – 99 ms |\n| Warning | Red | 100 – 999 ms |\n| Critical | Dark Red, bold | ≥ 1000 ms |\n\nAll values and colors are editable in `config.yml`.\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/ping` | Show your current ping | `pinger.ping` |\n| `/pinger help` | List all commands | — |\n| `/pinger reload` | Reload config and language | `pinger.admin` |\n| `/pinger on tab` | Enable tab ping display | `pinger.admin` |\n| `/pinger off tab` | Disable tab ping display | `pinger.admin` |\n| `/pinger on ping` | Enable `/ping` command | `pinger.admin` |\n| `/pinger off ping` | Disable `/ping` command | `pinger.admin` |\n| `/pinger status` | Show current plugin state | `pinger.admin` |\n\n`/pinger on` and `/pinger off` without an argument toggle both at once.\nRuntime changes reset to `config.yml` values on `/pinger reload`.\n\n---\n\n## Permissions\n\n| Node | Default | Description |\n|---|---|---|\n| `pinger.admin` | OP | All `/pinger` admin subcommands |\n| `pinger.ping` | true | Use `/ping` |\n| `pinger.see` | true | See ping in tab list |\n\n---\n\n## Configuration\n\nGenerated automatically on first launch with full inline documentation.\n\n```yaml\ngeneral:\n  enabled: true\n  update-interval: 20        # 20 ticks = 1 second\n  language: en_US\n\ndisplay:\n  show-in-tab: true\n  ping-command-enabled: true\n  show-ms-suffix: true\n  brackets:\n    open: \"[\"\n    close: \"]\"\n    color: GRAY\n    bold: true\n\nthresholds:\n  excellent:  { max: 35,   color: GREEN    }\n  good:       { max: 99,   color: GOLD     }\n  warning:    { max: 999,  color: RED      }\n  critical:   { min: 1000, color: DARK_RED, bold: true, text: \"CRITICAL\" }\n```\n\n---\n\n## Custom Language\n\n1. Create `plugins/pinger/lang/your_lang.yml` — use `en_US.yml` as a template\n2. Set `language: your_lang` in `config.yml`\n3. Run `/pinger reload`\n\n`&` color codes and placeholders (`{ping}`, `{player}`, etc.) are fully supported.\n\n---\n\n## Requirements\n\n- Paper 1.21+ (or any Paper fork)\n- Java 21+\n\n---\n\n*by pozii*\n",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 63,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

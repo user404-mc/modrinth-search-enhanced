@@ -1,0 +1,30 @@
+{
+  "id": "93X4mj73",
+  "slug": "minimessagebridge",
+  "title": "MiniMessageBridge",
+  "description": "Legacy to MiniMessages",
+  "body": "**MiniMessageBridge**\nGlobal Legacy-to-MiniMessage Translation Layer\n\n\n![e](https://i.postimg.cc/PryMTjbs/MMB.png)\n\n\nTransform every plugin's colors without touching a single config file\n\n\n**What is MiniMessageBridge?**\n\nMiniMessageBridge is a **high-performance packet interceptor** that globally translates legacy Minecraft color codes (§ and &) into modern **MiniMessage format** in real-time.\n\n**The Problem:**\nOld plugins use ugly §c&l formatting that looks terrible on modern servers. You want vibrant hex colors, gradients, and hover effects, but those plugins don't support MiniMessage.\n\n**The Solution:**\nMiniMessageBridge sits between your plugins and your players. It intercepts every outgoing chat packet, detects legacy formatting, and instantly translates it to your custom MiniMessage definitions.\n\n\n```\nPlugin sends:        §c§lHello World\nPlayer sees:         Hello World\n                     (Hot pink bold text)\n```\n\n\n\n**Features**\n\n\n- **Zero Configuration Required** - Works out of the box with sensible defaults\n- **Packet-Level Interception** - Modifies output at the protocol level, affects ALL plugins\n- **Universal Compatibility** - Works with hardcoded messages from any plugin\n- **High Performance** - Caffeine caching with 5000 entry LRU cache\n- **Runtime Configurable** - Reload configs without restart\n- **Modern Paper Support** - Fully compatible with Paper 1.20+ Adventure API\n- **Advanced MiniMessage** - Support for gradients, rainbows, hover events, click events\n- **Selective Interception** - Choose which packet types to modify\n- **Debug Mode** - Detailed logging for troubleshooting\n- **bStats Integration** - Anonymous usage statistics\n\n\n\n\n**How It Works**\n\n\n![e](https://i.postimg.cc/Z56Drgp2/image.png)\n\n\n**1. Detection**\nPlugin sends a message using legacy codes: \n```\n§cError: Invalid command\n```\n\n\n**2. Interception**\nProtocolLib catches the outgoing SYSTEM_CHAT packet before it reaches the player\n\n**3. Serialization**\nThe packet's Adventure Component is converted back to legacy format to detect formatting codes\n\n**4. Translation**\nLegacy codes are matched against your config mappings and converted to MiniMessage tags\n\n**5. Rendering**\nMiniMessage deserializes the tags into a modern Adventure Component with hex colors\n\n**6. Delivery**\nThe modified packet is sent to the player with beautiful modern formatting\n\n**Installation**\n\n**Requirements:**\n\n- Paper 1.20+ (or forks like Purpur, Pufferfish)\n- ProtocolLib 5.1.0+\n- Java 17+\n\n\n\n**Steps:**\n\n1. Download [ProtocolLib](https://ci.dmulloy2.net/job/ProtocolLib) and place it in your **plugins/** folder\n2. Download MiniMessageBridge and place it in your **plugins/** folder\n3. Start your server\n4. Edit **plugins/MiniMessageBridge/config.yml** to customize your color scheme\n5. Run **/mmb reload** or restart to apply changes\n\n**Default Config Structure:**\n\n\n```\nlegacy-mappings:\n  \"&c\": \"<#ff3860>\"      # Map &c to hot pink\n  \"&a\": \"<#00ff41>\"      # Map &a to neon green\n  \"§c\": \"<#ff3860>\"      # Also map section symbol variant\n\nformat-mappings:\n  \"&l\": \"<bold>\"         # Bold formatting\n  \"&r\": \"<reset>\"        # Reset all formatting\n\nsettings:\n  enable-cache: true     # Enable translation caching\n  debug: false           # Debug logging\n \npacket-interception:\n  system-chat: true      # Intercept server messages\n  action-bar: true       # Intercept action bar\n```\n\n\n**Advanced Example - Gradients:**\n\n\n```\nlegacy-mappings:\n  \"&c\": \"<gradient:#ff3860:#ff0000>\"  # Red gradient\n  \"&a\": \"<rainbow>\"                    # Rainbow cycling\n  \"&6\": \"<hover:show_text:'<gold>Click!'><gold>\"  # Hover text\n```\n\n\n**Performance**\n\n\n- Translation cache eliminates re-parsing of identical messages\n- Concurrent data structures for thread safety\n- Average overhead: <0.1ms per message\n- Memory usage: ~10MB for 5000 cached entries\n- Zero impact when processing modern MiniMessage plugins (bypass mode)\n\n\n\n**Support**\n\n[Github](https://github.com/GodlyCow203/MiniMessageBridge)\n[Discord](https://discord.gg/3wu8B2j7 )",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 70,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

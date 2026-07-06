@@ -1,0 +1,31 @@
+{
+  "id": "Qy2HL6LF",
+  "slug": "explosioncontrolz",
+  "title": "Explosion Control",
+  "description": "Take full control of every explosion on your server. ExplosionControl lets you tune creeper, TNT, and End Crystal blasts independently — adjust blast radius, block drops, and player damage per explosion type. Amazing stuff: Pet Protection.",
+  "body": "##  💥 ExplosionControl\n\n> **Fine-grained control over explosions on your server.**\n> Tune block damage, drop rates, player damage, and blast radius — per source, per world — all without restarting.\n\n---\n\n## ✨ What It Does\n\nExplosionControl lets you configure **Creeper**, **TNT**, and **End Crystal** explosions independently.\nEach source has its own set of rules you can adjust live from in-game commands or the config file.\n\n- Toggle **block destruction** on or off per explosion type\n- Scale **blast radius** (shrink craters or make them massive)\n- Control **block drop chance** (no drops, vanilla drops, or everything drops)\n- Toggle **player damage** per type\n- Multiply **damage dealt** to players\n- Adjust how far the **damage reaches**\n- Restrict the plugin to specific **worlds** (whitelist or blacklist)\n- Enable **pet protection** to keep tamed animals safe from all explosions\n\n---\n\n## ⚙️ Configuration\n\nEvery setting lives in `config.yml` and can also be changed live using `/ec` commands.\n\n```yaml\nworlds:\n  mode: whitelist       # whitelist or blacklist\n  list:\n    - world\n\npet-protection: false   # true = tamed animals immune to all explosions\n\nexplosions:\n\n  creeper:\n    block-damage:\n      enabled: true\n      radius-multiplier: 1.0   # 0=off  0.5=half  2.0=double\n      drop-chance: 0.3         # 0.0=none  0.3=vanilla  1.0=all drop\n    player-damage:\n      enabled: true\n      damage-multiplier: 1.0   # 0=no dmg  2.0=double\n      radius-multiplier: 1.0   # 0.5=shorter reach  2.0=longer\n\n  tnt:        # same structure as creeper\n  end_crystal: # same structure as creeper\n```\n\n---\n\n## 🔧 Commands\n\nAll commands require the `explosioncontrol.use` permission (default: **OP**).\n\n| Command | Description |\n|---|---|\n| `/ec status [type]` | Show current settings |\n| `/ec reload` | Reload `config.yml` without restarting |\n| `/ec <type\\|all> block radius <x>` | Set crater size multiplier |\n| `/ec <type\\|all> block drop <0–1>` | Set block drop chance |\n| `/ec <type\\|all> player damage <x>` | Set player damage multiplier |\n| `/ec <type\\|all> player radius <x>` | Set player damage reach |\n| `/ec worlds mode <whitelist\\|blacklist>` | Change world mode |\n| `/ec worlds add/remove/list <world>` | Manage world list |\n| `/ec pets <on\\|off>` | Toggle pet protection |\n\n**Aliases:** `/ec` · `/cc` · `/explosioncontrol`\n\n**Types:** `creeper` · `tnt` · `crystal` · `all`\n\n---\n\n## 📋 Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `explosioncontrol.use` | OP | Access to all ExplosionControl commands |\n\n---\n\n## 📦 Installation\n\n1. Download `ExplosionControl-x.x.x.jar`\n2. Drop it into your server's `/plugins/` folder\n3. Restart the server\n4. Edit `plugins/ExplosionControl/config.yml` as needed, or use `/ec` commands in-game\n\n---\n\n## 🖥️ Requirements\n\n| | |\n|---|---|\n| **Platform** | Paper 1.21.4+ |\n| **Java** | 21+ |\n\n---\n\n## 📝 Changelog\n\n### v0.1.2\n- Updated Paper API target to `1.21.4-R0.1-SNAPSHOT`\n- Fixed TNT and End Crystal player damage not applying on Paper 1.21.4+ (now correctly handled via `EntityDamageEvent`)\n- Fixed a memory leak where explosion data could accumulate when no players were nearby\n- Replaced deprecated `ChatColor` API with Adventure `LegacyComponentSerializer` to silence Paper warnings\n\n---\n\n*Made by **reval_911** · Discord: `reval_911`*",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 65,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

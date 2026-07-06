@@ -1,0 +1,22 @@
+{
+  "id": "GTqVByIl",
+  "slug": "mmcp",
+  "title": "MMCP",
+  "description": "MMCP is a Fabric mod that exposes Minecraft world capabilities to AI assistants through MCP tools and resources.",
+  "body": "# MMCP\n\nMMCP is a Fabric mod that exposes your Minecraft world to AI assistants through the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). It runs a local MCP server inside Minecraft, allowing AI tools like Claude, Codex, or any MCP-compatible client to read and interact with your game in real time.\n\n---\n\n## What it does\n\nThe mod starts an HTTP-based MCP server at `http://127.0.0.1:47355/mcp` while Minecraft is running. A lightweight stdio proxy (`mmcp.jar`) bridges your AI client to this server. Once connected, the AI can call tools to observe the world around your player.\n\n**Available tools:**\n\n| Tool | Description |\n| --- | --- |\n| `get_player_position` | Player coordinates, rotation, dimension, and server address. |\n| `get_player_health_hunger` | Health, absorption, hunger, and saturation values. |\n| `get_inventory` | All non-empty inventory slots including armor and offhand. |\n| `get_nearby_blocks` | Blocks around the player within a configurable radius. |\n| `get_nearby_entities` | Nearby entities sorted by distance, with type and position. |\n| `get_biome` | Current biome at the player's position. |\n| `get_time_weather` | World time, day index, daytime state, rain, and thunder. |\n\nAll tools are read-only in this release. Control tools are planned for future versions.\n\n---\n\n## Why you'd want this\n\nIf you use AI assistants in your workflow, this mod gives them real context about your Minecraft world. Instead of describing your situation in chat, your AI can see your inventory, health, surroundings, and more and help you accordingly.\n\nIt also opens the door for autonomous AI gameplay. Future control tools will allow an AI to move, mine, build, and navigate on its own.\n\n---\n\n## Requirements\n\n- Minecraft 1.21.1\n- Fabric Loader 0.18.4+\n- Java 21\n- Fabric Language Kotlin 1.13.9+kotlin.2.3.10\n\n---\n\n## Quick Setup\n\n1. Drop `minecraft-mcp-<version>.jar` into your `mods` folder.\n2. Launch Minecraft. The MCP server starts automatically.\n3. Point your MCP client to `mmcp.jar`:\n\n```bash\njava -jar mmcp.jar\n```\n\nFor Codex CLI:\n\n```bash\ncodex mcp add mmcp -- java -jar path/to/mmcp.jar\n```\n\n4. Keep Minecraft running while using MCP tools.\n\n---\n\n## Important Notes\n\n- The MCP server only listens on `127.0.0.1` (localhost). No data is sent to any remote server.\n- This mod is intended for singleplayer use or servers you own and control.",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

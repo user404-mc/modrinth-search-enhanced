@@ -1,0 +1,18 @@
+{
+  "id": "vMAgNOgn",
+  "slug": "applied-channel-management",
+  "title": "Applied Channel Management",
+  "description": "应用频道管理 is an Applied Energistics 2 addon for Minecraft 1.21.1 and NeoForge.\nIt treats every geometrically exposed face of a valid ME Controller multiblock as one shared 32-channel source. Wired devices are assigned first; wireless distributor branches the",
+  "body": "# Applied Channel Management\n\n**应用频道管理** is an Applied Energistics 2 addon for Minecraft 1.21.1 and NeoForge.\n\nIt treats every geometrically exposed face of a valid ME Controller multiblock as one shared 32-channel source. Wired devices are assigned first; wireless distributor branches then receive the remaining capacity by descending priority and stable distributor UUID.\n\n## Requirements\n\n- Minecraft 1.21.1\n- NeoForge 21.1.169\n- Applied Energistics 2 19.2.17 exactly\n- Java 21\n\nThe AE2 dependency is intentionally locked because the mod applies a narrow Mixin to AE2 channel pathing.\n\n## Devices\n\n### ME Channel Hub\n\n- One active hub per controller grid.\n- Does not consume a channel; drains 32 AE/t by default.\n- Stores a globally unique, case-insensitive name, owner UUID, and whitelist.\n- Shows total capacity, wired use, wireless use, and remaining capacity.\n\n### ME Channel Distributor\n\n- Binds to an authorized hub by name.\n- Exposes at most 32 channels total across all connected faces.\n- Drains 16 AE/t in the same dimension or 64 AE/t across dimensions.\n- Never chunk-loads either endpoint and disconnects when an endpoint unloads or loses power.\n- Rejects remote grids containing a controller, another hub, or a previously claimed distributor subnet.\n\nRight-click either device to open its configuration screen. Hub whitelist entries accept online player names or UUIDs separated by commas.\n\nBoth devices appear in the Applied Energistics 2 creative tab. Their standard shaped recipes are discovered automatically by JEI; no separate JEI plugin is required.\n\n## Channel Model\n\n```text\npool capacity = exposed controller faces * 32\navailable wireless capacity = pool capacity - wired channels - wireless channels\n```\n\nOnly faces touching another controller are internal. Covers, opaque blocks, and missing cable connections do not reduce the pool. AE2's local 8-channel and dense 32-channel cable bottlenecks remain unchanged.\n\nThe Mixin defers ACM virtual controller roots until AE2 finishes native wired allocation, then processes them by priority. It also enforces the global pool and the 32-channel per-distributor ceiling.\n\n## Development\n\n```bash\n./gradlew build\n./gradlew runData\n./gradlew runGameTestServer\n./gradlew runClient\n```\n\nThe development environment uses the Gradle wrapper and downloads all dependencies automatically. The built jar is written to `build/libs/`.\n\n## Configuration\n\nThe generated server config can override:\n\n- Hub AE/t usage\n- Same-dimension distributor AE/t usage\n- Cross-dimension distributor AE/t usage\n- Maximum hub name length\n- Cross-dimension linking\n\n## License\n\nMIT\n",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

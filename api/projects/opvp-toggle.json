@@ -1,0 +1,33 @@
+{
+  "id": "IP3EOofn",
+  "slug": "opvp-toggle",
+  "title": "oPvP-Toggle",
+  "description": "oPvP-Toggle is a lightweight PvP management plugin that allows players to disable PvP combat for added safety. It also includes mob protection, preventing hostile mobs from targeting or damaging protected players.",
+  "body": "# oPvP-Toggle\n\n**Lightweight per-player PvP toggle for Paper 1.21.x / 26.1.x.** No combat tagging — only answers *\"can these two players damage each other right now?\"* Pairs with any combat tag plugin like [DeluxeCombat](https://builtbybit.com/resources/deluxecombat.12400/) or CombatLogX.\n\n---\n\n## Features\n\n- **Per-player toggle** — each player independently enables/disables PvP via `/pvp`\n- **Toggle cooldown** — configurable delay between toggles (default: 5s), bypassable with permission\n- **Warmup system** — delayed toggle effect with cancel-on-damage (optional, default: instant)\n- **Mob & environment protection** — when PvP is OFF, mobs, fall, fire, etc. are also blocked (configurable)\n- **World overrides** — force PvP ON or OFF in specific worlds (arenas, resource worlds, etc.)\n- **WorldGuard region integration** — per-region PvP rules (ALLOW / DENY / FORCE_ON / FORCE_OFF / INHERIT) via reflection (no compile dependency)\n- **State persistence** — saves player states to disk (`data/pvp-state.bin`) across restarts\n- **Reset on death** — optionally reset PvP state when a player dies\n- **Fully configurable messages** — every message string, color, and placeholder is customizable\n- **Reload** — `/opvp reload` to apply config changes without restart\n\n---\n\n## Commands\n\n| Command | Aliases | Description | Permission |\n|---|---|---|---|\n| `/opvp toggle [player]` | `t`, `switch` | Toggle your own (or another's) PvP state | `opvp.command.toggle` (+ `opvp.admin` for others) |\n| `/opvp status [player]` | `s`, `check` | Check PvP state | `opvp.command.status` |\n| `/opvp help` | `?` | Show help menu | `opvp.command.help` |\n| `/opvp reload` | `rl` | Reload plugin config | `opvp.command.reload` |\n\n**Shortcuts:** `/pvp` and `/pvptoggle` are aliases for `/opvp toggle`.\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `opvp.use` | Basic access to `/opvp` | `true` |\n| `opvp.command.toggle` | Use `/opvp toggle` | `true` |\n| `opvp.command.status` | Use `/opvp status` | `true` |\n| `opvp.command.help` | Use `/opvp help` | `true` |\n| `opvp.command.reload` | Reload plugin config | `op` |\n| `opvp.admin` | Toggle **other** players' PvP state | `op` |\n| `opvp.bypass.cooldown` | Skip toggle cooldown | `op` |\n| `opvp.bypass.region` | Bypass WorldGuard region rules | `op` |\n\n---\n\n## Configuration\n\n### Core (`config.yml`)\n\n```yaml\ntoggle-cooldown: 5           # Seconds between toggles\nreset-on-death: false         # Reset PvP state on death\npersist-state: true           # Save states to disk\nmob-protection: true          # Block mob/environment damage when PvP OFF\n\ntoggle-warmup: 0              # Seconds before toggle takes effect (0 = instant)\ncancel-warmup-on-damage: true # Cancel warmup on damage taken/dealt\n\nforce-enabled-worlds: []      # Worlds where PvP is always ON\nforce-disabled-worlds: []     # Worlds where PvP is always OFF\n```\n\n### WorldGuard Region Rules\n\n```yaml\nregions:\n  enabled: false\n  default-pvp: INHERIT\n  rules: []\n```\n\nRule values: `ALLOW` | `DENY` | `FORCE_ON` | `FORCE_OFF` | `INHERIT`\n\n### Messages\n\nAll 20+ messages are fully customizable with `&`-color codes and placeholders (`%player%`, `%attacker%`, `%target%`, `%state%`, `%seconds%`).\n\n---\n\n## Installation\n\n1. Place the JAR in your server's `plugins/` folder.\n2. Restart the server (or run `/reload`).\n3. Optionally install [WorldGuard](https://dev.bukkit.org/projects/worldguard) for region-based rules.\n4. Edit `plugins/oPvP-Toggle/config.yml` to your liking.\n5. Run `/opvp reload` to apply changes.\n\n**Requirements:**\n- Paper 1.21.4+ (or Paper 26.1.x / Folia fork)\n- Java 21\n\n---\n\n## Design Philosophy\n\noPvP-Toggle is intentionally **small and focused**. It does one thing — decide whether two players can PvP — and does it well. Combat tagging (preventing toggling during combat) is left to dedicated plugins. This keeps the codebase lean (~880 lines), predictable, and compatible with any combat tag system you choose.\n\n---\n\n## Support\n\nReport issues or get support on Discord: **334ms.exe**\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

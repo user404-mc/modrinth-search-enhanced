@@ -1,0 +1,20 @@
+{
+  "id": "3dptJ1KS",
+  "slug": "blaze3dlinuxfix",
+  "title": "Blaze3DLinuxFix",
+  "description": "Handles a NullPointerException in Minecraft 26.1 preventing it from starting on some Linux distros, such as CachyOS.",
+  "body": "# Blaze3DLinuxFix\n\nHandles a NullPointerException in Minecraft 26.1 preventing it from starting on some Linux distros, such as CachyOS.\n\nNot always needed. All it does is replace `setupKeyboardCallbacks` in `com.mojang.blaze3d.platform.InputConstants` with a version that try/catches each line, ignoring NullPointerException.\n\nLicensed MIT.\n\nError log for vanilla Minecraft 26.1 on CachyOS with GLFW 3.4. (same error happens on GLFW 3.5, though that isn't released yet as far as I can tell)\n\n```\nThread: Render thread\nStacktrace:\n\tat org.lwjgl.system.Checks.check(Checks.java:188) ~[lwjgl-3.4.1.jar:build 2] {}\n\tat org.lwjgl.glfw.GLFW.nglfwSetPreeditCallback(GLFW.java:1911) ~[lwjgl-glfw-3.4.1.jar:build 2] {}\n\tat org.lwjgl.glfw.GLFW.glfwSetPreeditCallback(GLFW.java:1920) ~[lwjgl-glfw-3.4.1.jar:build 2] {}\n\tat TRANSFORMER/minecraft@26.1.2/com.mojang.blaze3d.platform.InputConstants.setupKeyboardCallbacks(InputConstants.java:208) ~[minecraft-client-patched-26.1.2.30-beta.jar:?]\n```",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 113,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

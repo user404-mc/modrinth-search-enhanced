@@ -1,0 +1,36 @@
+{
+  "id": "MALioFqL",
+  "slug": "itemblacklist",
+  "title": "Item Blacklist",
+  "description": "Allows blacklisting certain items.",
+  "body": "# 🚫 ItemBlacklist\n\n**Permanently ban specific ItemStacks from your server — with full NBT precision.**\n\nItemBlacklist lets you blacklist exact items (including custom names, enchantments, lore, and NBT data) and automatically purges them from player inventories in real time. No more worrying about contraband items slipping through — if it's on the list, it's gone.\n\n---\n\n## ✨ Features\n\n- **Hold-to-blacklist** — add any item you're holding with a single command\n- **NBT-aware matching** — distinguishes between items by name, lore, enchantments, and all custom data\n- **Multi-layer removal** — items are caught on pickup, inventory interaction, hand-swap, login, and via a continuous background scan\n- **Named entries** — every blacklisted item gets a human-readable ID you choose, making management easy\n- **Persistent storage** — blacklist survives restarts, stored in `blacklist.yml` using full ItemStack serialization\n- **Bypass permission** — grant trusted players or staff immunity from removal\n- **Tab completion** — commands auto-complete entry IDs\n\n---\n\n## 📋 Commands\n\n| Command | Description |\n|---|---|\n| `/itemblacklist add <id>` | Blacklist the item in your main hand |\n| `/itemblacklist remove <id>` | Remove a blacklist entry by ID |\n| `/itemblacklist list` | List all currently blacklisted items |\n\n**Alias:** `/ibl`\n\n---\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `itemblacklist.manage` | OP | Use all `/itemblacklist` commands |\n| `itemblacklist.bypass` | false | Items are never removed from this player |\n\n---\n\n## 🛡️ How Removal Works\n\nItemBlacklist uses **five separate enforcement layers** to ensure no blacklisted item survives:\n\n1. **Pickup cancellation** — the item entity is destroyed before it ever enters an inventory\n2. **Inventory click interception** — caught on shift-click, drag, and any cursor movement\n3. **Hand-swap detection** — blocks F-key offhand swaps involving blacklisted items\n4. **Login scan** — inventories are checked 5 ticks after a player joins, catching items saved to disk while offline\n5. **Repeating background scan** — all online players are scanned every second as a safety net\n\n---\n\n## 🚀 Getting Started\n\n1. Drop the `.jar` into your `plugins/` folder and restart the server\n2. Hold the item you want to ban\n3. Run `/ibl add my_item_id`\n4. Done — that item will now be removed from every player's inventory automatically\n\nTo undo it: `/ibl remove my_item_id`\n\n---\n\n## ⚙️ Config & Storage\n\nThe blacklist is saved at `plugins/ItemBlacklist/blacklist.yml`. Entries are stored as Base64-encoded serialized ItemStacks, preserving all item data exactly as-is. You don't need to edit this file manually — the commands handle everything.\n\n---\n\n## 🔧 Requirements\n\n- **Paper** 1.21.4+ (or any fork — Purpur, Folia\\*)\n- **Java** 21+\n\n> \\*Folia compatibility is not officially tested but may work for the listener and command portions.\n\n---\n\n## 📦 Source Code\n\nSource is available on [GitHub](https://github.com/JuusK/ItemBlacklist). Contributions and issue reports are welcome!\n\n---",
+  "categories": [
+    "bukkit",
+    "economy",
+    "equipment",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 56,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

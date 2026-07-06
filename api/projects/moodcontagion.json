@@ -1,0 +1,36 @@
+{
+  "id": "QP5NFQBu",
+  "slug": "moodcontagion",
+  "title": "Mood Contagion",
+  "description": "Mobs gain a hidden emotional state (calm, panic, or rage) that spreads through same-type herds and decays. Hit one sheep and the flock stampedes; enrage a wolf and its pack turns. Server-side, Paper/Spigot/Bukkit/Purpur 1.21+.",
+  "body": "# Mood Contagion\n\nMobs now carry a hidden emotional state: CALM, PANIC, or RAGE. Combat seeds the state, it spreads\nto nearby mobs of the same type, and it fades back to calm over time.\n\n- Hit a mob and it panics. It runs from you, and the fear spreads to others nearby: one scared\n  sheep can set off the whole flock.\n- Hit a wolf, a bee, or any hostile and it rages instead. Raging mobs move faster and hit harder,\n  and a neutral animal will turn and come for you. Rage spreads the same way.\n- Kill a mob and nearby mobs of the same type panic.\n\nPanicking mobs give off yellow particles and enraged mobs give off red ones, so you can read the\nstate at a glance.\n\n## How it works\n\n- Each mob's state and a timestamp are stored on the mob in its `PersistentDataContainer`, so moods\n  survive chunk unloads and restarts and never leak memory.\n- A task runs about once a second and processes mobs round-robin with a per-tick budget, so the\n  feature stays cheap on TPS no matter how crowded the world is.\n- Emotional mobs have a chance to infect same-type neighbours within a radius. Moods decay back to\n  calm after a configurable time.\n- PANIC adds Speed and makes the mob flee the nearest player. RAGE adds Speed and Strength, and\n  makes neutral mobs target the nearest player.\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/moodcontagion info` | Show the current tunables. | `moodcontagion.use` (default: all) |\n| `/moodcontagion here` | Count CALM/PANIC/RAGE mobs within 16 blocks of you. | `moodcontagion.admin` (default: OP) |\n| `/moodcontagion reload` | Reload `config.yml`. | `moodcontagion.admin` (default: OP) |\n\nAliases: `/mood`, `/contagion`.\n\n## Permissions\n\n| Node | Default | Grants |\n|---|---|---|\n| `moodcontagion.use` | everyone | the `info` and `here` sub-commands |\n| `moodcontagion.admin` | OP | `reload` (and includes `moodcontagion.use`) |\n\n## Configuration (`config.yml`)\n\n| Key | Default | Meaning |\n|---|---|---|\n| `spread-radius` | `8.0` | Blocks within which a mood spreads to same-type mobs (also the flee/retarget scan range, x2). |\n| `spread-chance` | `0.35` | Per-neighbour, per-second chance to infect a same-type neighbour. |\n| `decay-seconds` | `12` | How long an emotional mood lasts before it decays to CALM. |\n| `max-processed-per-tick` | `40` | TPS guard: max mobs handled per processing pass (round-robin). |\n| `panic-flee-speed` | `0.45` | How hard a PANIC mob is shoved away from the nearest player. |\n| `max-horizontal-velocity` | `1.5` | Hard cap on any velocity the plugin sets (anti-launch safety). |\n| `death-seed-radius` | `8` | Blocks around a dying mob in which same-type mobs are seeded PANIC. |\n| `effects.enabled` | `true` | Master switch for all potion effects. |\n| `effects.speed` | `true` | PANIC and RAGE mobs gain Speed. |\n| `effects.strength` | `true` | RAGE mobs gain Strength. |\n| `effects.rage-retarget` | `true` | Neutral RAGE mobs target the nearest player (only when they have no valid target). |\n| `effects.particles` | `true` | Mood-coloured particle puffs above emotional mobs. |\n\nAll values are clamped to safe ranges on load.\n\n## Compatibility\n\nPaper, Spigot, Bukkit, and Purpur 1.21.1 to 1.21.11 and the 26.1.x line (verified on 26.1.2),\nJava 21. Built against the Spigot API with no Paper-only classes, so the single jar works on all\nfour server types.\n\n---\n\nOriginal concept, an internal test idea. Not sourced from a Reddit post.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "mobs",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 15,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

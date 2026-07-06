@@ -1,0 +1,26 @@
+{
+  "id": "4pEQqQM7",
+  "slug": "force-stop",
+  "title": "Force Stop",
+  "description": "Ensure the server process Stop completely.",
+  "body": "# Force Stop\n\n`Force Stop` is a server-side utility mod for Minecraft designed to ensure that the server process fully exits after receiving `ServerStoppedEvent`.\n\nIn some cases, the main server flow has already ended and the event has already been fired, but the Java process still does not actually terminate due to lingering threads, unreleased resources, or other unexpected issues. In this situation, this mod will waits for a specified period of time and then forcibly terminates the process, preventing the server from getting stuck in a “stopped but not exited” state.\n\n## Features\n\n*   Listens for Forge's `ServerStoppedEvent`\n*   Starts a delayed shutdown routine after the event is fired\n*   Forcibly terminates the process if the server is still running after the configured delay\n*   Suitable for scenarios where the server must be guaranteed to exit after stopping\n\n## Configuration\n\nThe mod uses the following configuration file:\n\n`forcestop.toml`\n\n## Notes\n\n*   This mod is a **fallback solution for server shutdown**, not a fix for the root cause\n*   If your server has threads that do not shut down properly or resource leaks, you should still investigate the actual source of the problem\n*   Forcibly terminating the process may interrupt unfinished background tasks, so the wait time should be configured carefully",
+  "categories": [
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

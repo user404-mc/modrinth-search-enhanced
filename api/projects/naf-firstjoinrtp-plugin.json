@@ -1,0 +1,37 @@
+{
+  "id": "5TVhL53O",
+  "slug": "naf-firstjoinrtp-plugin",
+  "title": "FirstJoinRTP",
+  "description": "A lightweight plugin that RTP upon their first join and automatically saves their destination as a spawnpoint, perfectly compatible with lobby or authentication setups.",
+  "body": "# FirstJoinRTP\n\nFirstJoinRTP is a lightweight and robust Minecraft server plugin. It facilitates Random Teleport (RTP) for players upon their first time joining a specific world, and automatically executes a configurable command to save their destination as their spawnpoint or home. This is especially useful for servers using Limbo or Lobby authentication plugins (like LibreLogin), where you only want the RTP to trigger when they actually enter the survival world.\n\n## ✨ Features\n\n- **First Join RTP**: Triggers a customizable random teleport command only on their first time joining.\n- **Auto-Save Spawnpoint / Home**: Execute customizable commands (e.g., vanilla `/spreadplayers` / `/spawnpoint` or CMI `/cmi setspawn` / `/cmi sethome`) at the player's RTP landing spot.\n- **Safe Teleportation**: Hides the player during the RTP process, provides temporary invulnerability, and prevents mobs from targeting them while chunks load.\n- **Persistent Data**: Uses Minecraft's native `PersistentDataContainer` to track RTP completion, meaning no database configuration is required.\n\n## ⚙️ Configuration\n\nA default `config.yml` is generated upon first startup.\n\n```yaml\n# Target world to check for first join RTP\ntarget-world: \"world\"\n\n# Whether to enable the custom Random Teleport command execution\nrtp-command-enabled: true\n\n# Command to execute for Random Teleport\n# Used when the player enters the target world for the first time.\n#\n# Placeholders: %player%, %world%\n#\n# Default (Vanilla): \"spreadplayers 0 0 150 10000 false %player%\"\n# CMI Recommendation: \"cmi rt %player% %world%\"\nrtp-command: \"spreadplayers 0 0 150 10000 false %player%\"\n\n# Whether to enable the custom spawnpoint command execution\nspawnpoint-command-enabled: true\n\n# Command to set the player's spawnpoint or home after successful RTP.\n#\n# Placeholders: %player%, %world%, %x%, %y%, %z%\n#\n# Default (Vanilla): \"spawnpoint %player% %x% %y% %z%\"\n# CMI Recommendation: \"cmi sethome firstspawn %player% -p -l:%world%;%x%;%y%;%z% -overwrite\"\nspawnpoint-command: \"spawnpoint %player% %x% %y% %z%\"\n\n# The amount of ticks to wait after the RTP teleport finishes before unhiding the player.\n# 20 ticks = 1 second.\ndelay-after-teleport-ticks: 20\n```\n\n## 🚀 Installation\n\n1. Place the `FirstJoinRTP.jar` into your server's `plugins` folder.\n2. Restart your server.\n3. Adjust `plugins/FirstJoinRTP/config.yml` as needed.\n4. Restart your server or reload the plugin to apply config changes.\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 15,
+  "followers": 0,
+  "game_versions": [
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "7LKlZUK6",
+  "slug": "slackbridge",
+  "title": "Slackbridge",
+  "description": "A simple Fabric Slack <-> Minecraft chat relay",
+  "body": "# Slackbridge\n\nSlackbridge is a Fabric Minecraft <-> Slack chat relay for Minecraft 1.21.\n\n![Minecraft example](https://cloud-2f95io9t9-hack-club-bot.vercel.app/0image.png)\n![Slack example](https://cloud-2f95io9t9-hack-club-bot.vercel.app/1image.png)\n\n## Download\n\nSlackbridge is available to download on:\n- [Modrinth](https://modrinth.com/mod/slackbridge)\n- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/slackbridge)\n- [GitHub Releases](https://github.com/DillonB07/Slackbridge/releases)\n\n## Features\n\n- Relay\n  - Relay messages from Slack to Minecraft (excludes threads)\n  - Relay messages from Minecraft to Slack\n  - Displays player join/leave messages in Slack\n  - Displays death messages in Slack\n  - Displays advancement messages in Slack\n  - Displays server start/stop messages in Slack\n- Slack Commands\n  - `/slackbridge-info` - Displays online players and performance stats\n- Minecraft Commands\n  - `/shrug <message>` - Appends a shrug to the end of the message\n\n## Setup\n\n### Create a Slack App\n- Go to [Slack API](https://api.slack.com/apps) and create a new app in your workspace using the \n  following manifest. You may want to change the bot name and the command `/slackbridge-info` to something else. **If you are using this in the Hack Club Slack workspace, you must change the \n  command name.**\n```json\n{\n    \"display_information\": {\n        \"name\": \"SlackBridge\"\n    },\n    \"features\": {\n        \"bot_user\": {\n            \"display_name\": \"SlackBridge\",\n            \"always_online\": false\n        },\n        \"slash_commands\": [\n            {\n                \"command\": \"/slackbridge-info\",\n                \"description\": \"See current server status\",\n                \"should_escape\": false\n            }\n        ]\n    },\n    \"oauth_config\": {\n        \"scopes\": {\n            \"bot\": [\n                \"channels:history\",\n                \"chat:write\",\n                \"chat:write.customize\",\n                \"users:read\",\n                \"commands\"\n            ]\n        }\n    },\n    \"settings\": {\n        \"event_subscriptions\": {\n            \"bot_events\": [\n                \"message.channels\"\n            ]\n        },\n        \"interactivity\": {\n            \"is_enabled\": true\n        },\n        \"org_deploy_enabled\": false,\n        \"socket_mode_enabled\": true,\n        \"token_rotation_enabled\": false\n    }\n}\n```\n- Once you have created the app, go to the \"OAuth & Permissions\" page and install the app to your workspace.\n- Note down the Bot User OAuth Token.\n- Go to the Basic Information page and create an app token. Note down the app token.\n- In Slack, invite the bot to the channel you want to relay messages to.\n- Right click on the channel and click \"Copy Link\". Note down the channel ID from the link. (It should look like `C01A2B3C4D5`)\n- That's it on the Slack side! Let's get your server setup now.\n\n### Setup the Mod\n- Install the mod on your server by adding the jar to the mods folder.\n- Restart the server to generate the config file.\n- Open the config file (`config/slackbridge.json`) and fill in the following fields:\n  - `slackBotToken` - The Bot User OAuth Token\n  - `slackAppToken` - The App Token\n  - `relayChannelId` - The Channel ID\n  - `infoCommand` - The command name you set in the manifest. This will default to \n    `/slackbridge-info` - if you didn't change the manifest, you can leave this alone.\n- Restart the server again and you should be good to go!\n",
+  "categories": [
+    "fabric",
+    "management",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 80,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

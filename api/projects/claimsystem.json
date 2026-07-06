@@ -1,0 +1,22 @@
+{
+  "id": "3m04LfGa",
+  "slug": "claimsystem",
+  "title": "ClaimSystem",
+  "description": "ClaimSystem is a Minecraft 1.8 Bukkit/Spigot plugin that lets server administrators manage an item claiming system for players, allowing them to claim items that can be distributed when the player is either online or offline.",
+  "body": "# TebexClaimSystem\n\nTebexClaimSystem is a Minecraft 1.8 Bukkit/Spigot plugin that lets players claim Tebex purchases in-game through a custom GUI and allows players to collect their purchases the next time they are online.\n\n## What it does\n\n- Accepts Tebex-delivery style commands from console: `tebexclaimsystem add <username> <productName> <quantity>`\n- Stores pending claims in a flat YAML file so claims survive restarts\n- Notifies players on join when they have pending items\n- Sends online reminder messages every 30 minutes to players with pending claims\n- Opens a GUI with one entry per pending product plus a **Claim All** button\n- Checks free inventory space before claiming\n- Executes configurable product commands with `{player}` placeholders\n- Logs each claim with timestamp, player, product, and quantity\n\n## Installation\n\n1. Build the plugin jar.\n2. Put the jar in your server's `plugins/` folder.\n3. Start/restart the server.\n4. Edit `plugins/TebexClaimSystem/config.yml` to match your products/commands.\n5. Reload/restart after config changes.\n\n## Commands\n\n- `/tebexclaimsystem` - Opens the claim GUI for players.\n- Aliases: `/tcs`, `/claimstore`, `/claims`, `/webstoreclaim`, `/wsc`.\n- `tebexclaimsystem add <username> <productName> <quantity>` - Console-only command (intended for Tebex delivery).\n- `/tebexclaimsystem reload` - Reloads `config.yml` without restarting the server (`tebexclaimsystem.reload`, default `op`).\n\n### Tebex example\n\n```text\ntebexclaimsystem add Notch vip_rank 1\ntebexclaimsystem add Notch starter_kit 2\n```\n\n## Configuration\n\nMain config file: `plugins/TebexClaimSystem/config.yml`\n\n### `products`\n\nDefine each claimable product by ID. The ID must match what Tebex sends as `<productName>`.\n\n- `displayName` - Name shown in GUI\n- `itemMaterial` - GUI icon material\n- `requiredSlotsPerUnit` - Space check amount per purchased unit\n- `commands` - Commands run on claim (supports `{player}` and `{quantity}`)\n\nExample:\n\n```yaml\nproducts:\n  vip_rank:\n\tdisplayName: \"&6VIP Rank\"\n\titemMaterial: \"EMERALD\"\n\trequiredSlotsPerUnit: 1\n\tcommands:\n\t  - \"lp user {player} parent set vip\"\n  starter_kit:\n\tdisplayName: \"&bStarter Kit\"\n\titemMaterial: \"CHEST\"\n\trequiredSlotsPerUnit: 2\n\tcommands:\n\t  - \"give {player} diamond_sword 1\"\n\t  - \"give {player} bread 16\"\n```\n\n### `gui`\n\n- `title` - Inventory title\n- `size` - Inventory size (9-54, rounded to a multiple of 9)\n- `claimAllSlot` - Slot index for Claim All button\n- `claimAllName` / `claimAllMaterial` - Claim All button display\n- `quantityLore` - Lore line for quantity text\n\n### `messages`\n\nAll player-facing and feedback messages are configurable.\n\n- Prefix token: `{prefix}`\n- Color support: `&` color codes\n\n## Runtime data files\n\nCreated in `plugins/TebexClaimSystem/`:\n\n- `pending-claims.yml` - Current pending claims per player/product\n- `claim-log.txt` - Claim audit log entries\n\n`pending-claims.yml` is updated immediately whenever claims are added or removed.\n\n## Claim System\n\n1. Tebex (or console) runs `tebexclaimsystem add ...`\n2. TebexClaimSystem stores pending quantity for that player/product\n3. Player joins and gets a notification if pending claims exist\n4. Player opens `/tebexclaimsystem` (or any configured alias)\n5. Player clicks one item or **Claim All**\n6. Plugin validates available inventory slots\n7. If valid, product commands are dispatched and pending entry is removed\n8. Claim is written to `claim-log.txt`\n\n## Troubleshooting\n\n- `unknown product` message: ensure Tebex product ID exactly matches a key under `products`.\n- Player cannot claim due to space: increase empty inventory slots or tune `requiredSlotsPerUnit`.\n- Console command denied in-game: `add` is intentionally restricted to console senders.\n- No GUI items: verify `pending-claims.yml` has entries and product IDs exist in `config.yml`.\n\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.8"
+  ],
+  "date_updated": null
+}

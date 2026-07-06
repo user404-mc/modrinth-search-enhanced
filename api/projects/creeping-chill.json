@@ -1,0 +1,21 @@
+{
+  "id": "XtrtUXfo",
+  "slug": "creeping-chill",
+  "title": "Creeping Chill",
+  "description": "The land wants not for ghosts, only for warmth.",
+  "body": "This mod converts normal fire light sources to soul fire light sources under three conditions:\n\n- It is cold enough to snow.\n- It is dark enough to sleep.\n- The light source is exposed to enough sky light.\n\nIn practice, this means that in snowy biomes, light sources such as torches and lanterns will be converted to soul torches and soul lanterns when outside at night, or during thunderstorms. Though, the bounds of \"outside\" remain fuzzy and imperfect. During world generation, light sources in applicable circumstances will be automatically converted, so for instance when you walk into a snowy village, the torches and lanterns that normally generate should already be in their soul forms.\n\nThis mod also has built-in support for the excellent [Soul Candles](https://modrinth.com/mod/soul-candles) mod. Converting Jack o'Lanterns to soul Jack o'Lanterns is however not supported, admittedly due mainly to technical limitations, but feel free to imagine whatever lore to justify it.\n\n## Extended Biome Support\n\nBy default, counter to what one might expect, Creeping Chill does not convert fire light sources to soul fire light sources in soul sand valleys. This however can be enabled by adding it, or any other biome, to the `creeping-chill:is_always_creeping` biome tag. Doing so will make it so fire light sources will *always* convert to soul fire light sources, regardless of biome temperature or sky light level, or any other factors.\n\nFor instance, to apply this tag to soul sand valleys, one would create a file in their data pack at `my-epic-data-pack/data/creeping-chill/tags/worldgen/biome/is_always_creeping.json` with the following contents:\n\n```json\n{\n    \"replace\": false,\n    \"values\": [\n        \"minecraft:soul_sand_valley\"\n    ]\n}\n```\n\n## Custom Soul Conversions\n\nCreeping Chill also allows users to provide their own custom soul conversions, that is, a conversion from a fire light source to a soul fire light source. This is handled via the `creeping-chill:soul_conversion` dynamic registry, and is how the support for the [Soul Candles](https://modrinth.com/mod/soul-candles) mod is implemented.\n\nTo add a custom conversion, for the sake of example let's say from a redstone torch to a soul torch, one would create a file in their data pack at `my-epic-data-pack/data/my-epic-namespace/creeping-chill/soul_conversion/redstone_torch.json`, with the following contents:\n\n```json\n{\n    \"input\": {\n        \"Name\": \"minecraft:redstone_torch\",\n        \"Properties\": {\n            \"lit\": true\n        }\n    },\n\n    \"output\": {\n        \"Name\": \"minecraft:soul_torch\"\n    }\n}\n```\n\nUsing this as-is will work, but it would error if either `minecraft:redstone_torch` or `minecraft:soul_torch` did not exist. That isn't really a consideration for vanilla blocks, but it is for blocks that are added by mods. So for instance if, instead of a redstone torch, you wanted to add a conversion for some mod's own `their-epic-mod:their_epic_torch` (which let's say can be either lit or unlit), but without requiring that that mod is installed, you could add a `required` field set to `false` in the conversion, like so:\n\n```json\n{\n    \"required\": false,\n\n    \"input\": {\n        \"Name\": \"their-epic-mod:their_epic_torch\",\n        \"Properties\": {\n            \"lit\": true\n        }\n    },\n\n    \"output\": {\n        \"Name\": \"minecraft:soul_torch\"\n    }\n}\n```\n\nThis would then only become active if `their-epic-mod:their_epic_torch` in fact exists in the game.\n\nDo keep in mind however, that since the sky light test for soul conversions is performed inside the to-be-converted block, blocks which block skylight will not end up being converted, since the sky light level at their positions will always be 0.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 75,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

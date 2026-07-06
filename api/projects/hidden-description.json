@@ -1,0 +1,25 @@
+{
+  "id": "TApbjHFk",
+  "slug": "hidden-description",
+  "title": "Hidden description",
+  "description": "Item description hidden, hold shift to view",
+  "body": "feat(tooltip): Implement conditional tooltip expansion with Shift key\n\nThis commit introduces a new client-side quality-of-life feature that\nmodifies how item tooltips are displayed in the game. When a player is\nviewing an item's tooltip, a placeholder message \"Hold Shift for\ndetails...\" is shown by default. Pressing and holding the Shift key\nreveals the full, complete tooltip, providing an organized and clean\ninventory browsing experience.\n\nBackground / Problem:\n- Tooltips in Minecraft can become excessively long, especially in\n  modded environments where items often carry detailed descriptions,\n  enchantment information, and mod-specific metadata.\n- A cluttered tooltip obstructs the player's view and makes inventory\n  management cumbersome, as crucial information is always visible\n  whether needed or not.\n- There is currently no vanilla or standard Forge method to toggle\n  tooltips or hide them behind a modifier key.\n\nImplementation Details:\n- Created a new event handler that listens to the `ItemTooltipEvent`\n  (Forge's API event for tooltip construction).\n- When the event is triggered, the handler checks the state of the\n  Shift key using `Screen.hasShiftDown()` (client-side) to determine\n  if the player is holding the key while hovering over the item.\n- If the key is pressed, the original, unmodified tooltip text list\n  (List<Component>) is added to the tooltip, showing every line of\n  information.\n- If the key is not pressed, the default tooltip is cleared and\n  replaced with a single-line component: \"Hold Shift for details...\".\n- The tooltip is automatically updated and re-rendered each time the\n  player's key state changes while the item is hovered over.\n\nChanges in Behavior:\n- Players can now quickly glance at an item without being overwhelmed\n  by lengthy text.\n- The full tooltip is instantly revealed when needed, without any\n  additional keybinds or configuration menus.\n- The placeholder text is localized and can be adapted or\n  internationalized by future updates.\n- This feature works on all items, including those from other mods,\n  because it intercepts the tooltip event at a generic level.\n\nTesting Performed:\n- Verified on Forge 1.20.1 with both vanilla and modded items (e.g.,\n  items with enchantments, modded equipment).\n- Confirmed that the Shift key detection works reliably in all game\n  screens (inventory, creative menu, containers).\n- Tested the responsiveness of the tooltip when the key is pressed,\n  released, and pressed again while the mouse remains on the same\n  item.\n- Ensured compatibility with other mods that also modify\n  `ItemTooltipEvent` through event priority adjustments.\n\nAdditional Notes:\n- This mod is fully client-side and does not require any server-side\n  installation.\n- The `Screen.hasShiftDown()` method is used over `keyBindSneak` to\n  accurately reflect GUI-related key presses without interfering\n  with movement controls.\n- Future consideration: Adding a configurable keybind to toggle this\n  behavior or customize the placeholder message.\n\nResolves: #ISSUE-42 (Replace with actual issue ticket number if applicable)",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

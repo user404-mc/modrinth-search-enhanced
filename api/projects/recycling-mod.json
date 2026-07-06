@@ -1,0 +1,24 @@
+{
+  "id": "6IPTxr7t",
+  "slug": "recycling-mod",
+  "title": "Recycling Mod",
+  "description": "A Simple mod to economize materials. Beta State",
+  "body": "# Recycling Mod\n\nThis mod allows people to recycle Items\n\nThis mod is the successor of the [Recycling Mod](https://modrinth.com/mod/recycling_mod)\n\nMade by the same author, but this one was Rewritten for Fabric, and now adds more mechanics, and it is now in Beta, no longer in alpha\n\n## Disclaimer\n\n**THIS MOD IS CURRENTLY IN BETA AND BUG/GLITCHES MAY OCCOUR**\n\n**`v1.0.0-beta` WAS MADE FOR Minecraft 1.21.4, OTHER Minecraft VERSIONS MAY NOT BE SUPPORTED**\n\n## How to Recycle Items\n\nTo recycle them you use an Powder Recycler\n\n![Powder Recycler](https://cdn.modrinth.com/data/6IPTxr7t/images/7d1f05b5c666eda1342e8ac6b0911f13db8a8e36_350.webp)\n\nTo recycle items open the GUI and put the items you want to recycle, and click the recycle button:\n\n![Interface](https://cdn.modrinth.com/data/6IPTxr7t/images/76a41d56db242bdf93e7adfa2d8516d55fc82843.png)\n\nIn the image above the Chest is the input item, and the other 8 planks are inside the output slots;\n\nIn the GUI we have 9 output slots, 1 input slot and 1 modifer slot;\n\n### Modifiers\n\nModifiers modify the output of the recipe, they are inserted in the modifier slot\n\nCurrently we have only one modifer, which is the Diamond Modifier(Also Known As Diamontifier)\n\nModifiers are registered using Java code\n\n#### Diamontifier\n\nThis modifier changes some of the output items to Diamonds.\n\nThe Diamontifier has 32 of Durability, and everytime the recipe is modified one durability is consumed;\n\n```java\n\nnew PowderRecyclerModifer() {\n\n        @Override\n        public ItemStack[] modifyOutput(ItemStack modifierStack, ItemStack[] outputs) {\n          double d = RND.nextDouble();\n          if (d > 0.4) {\n            return outputs;\n          }\n          boolean mod = false;\n          for (int i = 0; i < outputs.length; i++) {\n            ItemStack output = outputs[i].copy();\n            if (output.getItem() == Registries.ITEM.get(Identifier.ofVanilla(\"diamond\"))\n                || output.getItem() == Registries.ITEM.get(Identifier.ofVanilla(\"air\")))\n              continue;\n            d = RND.nextDouble();\n            if (d < (0.5d / Math.pow(1.5, output.getCount()))) {\n              outputs[i] = new ItemStack(Registries.ITEM.getEntry(Identifier.ofVanilla(\"diamond\")).get(),\n                  output.getCount(), output.getComponentChanges());\n              if (mod == false) {\n                mod = true;\n              }\n              LOGGER.info(\"Modified stack(\" + output.getItem().toString() + \")\");\n            }\n          }\n          if (mod == true) {\n            LOGGER.info(\"Modifer got damaged\");\n            modifierStack.setDamage(modifierStack.getDamage() + 1);\n          }\n          return outputs;\n\n        }\n\n      }\n```\n\nAs seen in the code above, we see that the chance of Replacing one item slot with an Diamond is:\n\n`0.5 / (1.5 ^ count)`\n\n`count` is the item count\n\nAnd that the chance of attemping to modify the slot is: `0.4`\n\nTo craft a Diamontifier you need to use the following Recipe:\n\n![Crafting](https://cdn.modrinth.com/data/6IPTxr7t/images/ba9a9f964fa9043fd20eb5eed10ad67456b09fa4.png)\n\n## Why Recycling?\n\nRecycling is a mod that allows you to define custom recipes for recycling, and allows you to re-use items.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 79,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7"
+  ],
+  "date_updated": null
+}

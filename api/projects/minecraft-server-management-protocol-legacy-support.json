@@ -1,0 +1,39 @@
+{
+  "id": "38WxG5ix",
+  "slug": "minecraft-server-management-protocol-legacy-support",
+  "title": "Minecraft Server Management Protocol Legacy Support",
+  "description": "Adds legacy version support for Minecraft Server Management Protocol",
+  "body": "# Minecraft Server Management Protocol Legacy Support\n\nAdds a Minecraft Server Management Protocol endpoint to server software that does not provide Mojang's native implementation.\n\nThe Minecraft Server Management Protocol is the newer management API for Minecraft servers. It exposes server information and management actions through JSON-RPC over WebSocket, instead of relying on older mechanisms such as server-list ping or RCON. This plugin brings that protocol shape to older server versions and proxy environments so external tools can speak one management protocol across mixed infrastructure.\n\n## What it provides\n\n- A WebSocket endpoint for Minecraft Server Management Protocol clients.\n- JSON-RPC request and response handling compatible with the protocol model documented on the Minecraft Wiki.\n- Discovery through `rpc.discover`, so clients can inspect which methods are available.\n- Server/proxy status support, including online player list and version information.\n- Management operations for Bukkit-based servers, including players, allowlist, bans, operators, selected server settings, gamerules, save, stop, and system messages.\n- Proxy management operations for Velocity and BungeeCord, including players, kick, status, stop, and system messages.\n- Authentication by shared secret, with browser-origin checks for WebSocket subprotocol authentication.\n- Optional TLS using a PKCS12 keystore.\n\nReference: https://minecraft.wiki/w/Minecraft_Server_Management_Protocol\n\n## Platform Status\n\n| Platform | Status |\n| --- | --- |\n| Spigot / Paper | Main supported runtime. Built against the Spigot 1.8.8 API for legacy compatibility. |\n| Velocity | Proxy runtime support for discovery, players, kick, proxy status, proxy stop, system messages, and proxy/player notifications. |\n| BungeeCord | Proxy runtime support for discovery, players, kick, proxy status, proxy stop, system messages, and proxy/player notifications. |\n\nFor legacy SpaceChunks usage, install the Spigot/Paper build on the backend server when you need live server status and online player counts from old Minecraft versions.\n\n## Supported Methods\n\n| Method group | Spigot / Paper | Velocity | BungeeCord |\n| --- | --- | --- | --- |\n| `rpc.discover` | yes | yes | yes |\n| `minecraft:players` | yes | yes | yes |\n| `minecraft:players/kick` | yes | yes | yes |\n| `minecraft:server/status` | yes | yes, proxy status | yes, proxy status |\n| `minecraft:server/stop` | yes | yes, stops proxy | yes, stops proxy |\n| `minecraft:server/system_message` | yes | yes, proxy players | yes, proxy players |\n| `minecraft:server/save` | yes | no | no |\n| `minecraft:allowlist/*` | yes | no | no |\n| `minecraft:bans/*` | yes | no | no |\n| `minecraft:ip_bans/*` | yes | no | no |\n| `minecraft:operators/*` | yes | no | no |\n| `minecraft:serversettings/*` | partial | no | no |\n| `minecraft:gamerules/*` | yes | no | no |\n\nSpigot/Paper server settings are limited to APIs available through the Spigot 1.8.8 API. Implemented settings are `autosave`, `difficulty`, `use_allowlist`, `player_idle_timeout`, `allow_flight` read-only, `motd` read-only, `spawn_protection_radius`, `game_mode`, and `view_distance` read-only.\n\n## Supported Notifications\n\n| Notification group | Spigot / Paper | Velocity | BungeeCord |\n| --- | --- | --- | --- |\n| `minecraft:notification/server/started` | yes | yes | yes |\n| `minecraft:notification/server/stopping` | yes | yes | yes |\n| `minecraft:notification/server/status` | yes | yes | yes |\n| `minecraft:notification/server/activity` | yes | yes | yes |\n| `minecraft:notification/players/joined` | yes | yes | yes |\n| `minecraft:notification/players/left` | yes | yes | yes |\n| `minecraft:notification/server/saving` | yes | no | no |\n| `minecraft:notification/server/saved` | yes | no | no |\n| `minecraft:notification/allowlist/*` | management API changes only | no | no |\n| `minecraft:notification/bans/*` | management API changes only | no | no |\n| `minecraft:notification/ip_bans/*` | management API changes only | no | no |\n| `minecraft:notification/operators/*` | management API changes only | no | no |\n| `minecraft:notification/gamerules/*` | management API changes only | no | no |\n\n## Configuration\n\nThe service is disabled by default. Enable it only after setting a secret and deciding where it should listen.\n\nSpigot/Paper uses `plugins/MinecraftServerManagementProtocolLegacySupport/config.yml`:\n\n```yaml\nmanagement-server-enabled: true\nmanagement-server-host: localhost\nmanagement-server-port: 25585\nmanagement-server-secret: 'replaceWithExactly40AlphaNumericCharacters'\nmanagement-server-allowed-origins: ''\nmanagement-server-tls-enabled: false\nmanagement-server-tls-keystore: ''\nmanagement-server-tls-keystore-password: ''\n```\n\nVelocity and BungeeCord create `management-server.properties` in the plugin data folder with the same setting names.\n\n### Settings\n\n- `management-server-enabled`: Starts or disables the management endpoint.\n- `management-server-host`: Interface to bind. Use `localhost` when only local tooling or a reverse proxy should connect.\n- `management-server-port`: Port for the WebSocket server. Use a fixed port for production.\n- `management-server-secret`: Required shared secret. It must be exactly 40 alphanumeric characters.\n- `management-server-allowed-origins`: Comma-separated list of allowed browser origins when authenticating through `Sec-WebSocket-Protocol`.\n- `management-server-tls-enabled`: Enables `wss://`. Requires a valid keystore.\n- `management-server-tls-keystore`: Path to a PKCS12 keystore.\n- `management-server-tls-keystore-password`: Keystore password. It can also be supplied through `MINECRAFT_MANAGEMENT_TLS_KEYSTORE_PASSWORD` or the JVM property `management.tls.keystore.password`.\n\n## License\n\nLicensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).\n",
+  "categories": [
+    "bukkit",
+    "bungeecord",
+    "management",
+    "paper",
+    "spigot",
+    "technology",
+    "utility",
+    "velocity",
+    "waterfall"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.8.8",
+    "1.9.4",
+    "1.10.2",
+    "1.11.2",
+    "1.12.2",
+    "1.13.2",
+    "1.14.4",
+    "1.15.2",
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.4",
+    "1.20.6",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

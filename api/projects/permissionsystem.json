@@ -1,0 +1,38 @@
+{
+  "id": "7jwF44Et",
+  "slug": "permissionsystem",
+  "title": "PermissionSystem",
+  "description": "A lightweight, lag-free permission and rank system for Minecraft servers. Easily manage player permissions, prefixes, suffixes, and temporary ranks with high-performance MySQL synchronization and smart tablist compatibility.",
+  "body": "# 🛡️ PermissionSystem\n\nThis is my custom PermissionSystem, I hope you enjoy it! I built this to be a clean, incredibly fast, and simple permission and rank system for modern Spigot/Paper servers. It does exactly what it needs to do without any unnecessary bloat or lag.\n\n---\n\n### 💖 Support\n\n*   **Donations / Spenden:** [soon...](https://paypal.me/your-link-here)\n*   **Modrinth Profile:** [nicomods on Modrinth](https://modrinth.com/user/nicomods)\n*   **CurseForge Profile:** [nicomods on CurseForge](https://curseforge.com/members/nicomods)\n\n---\n\n## ✨ Features\n\n- ⚡ **Super Fast & Lightweight** — Built to run completely lag-free. Database queries (MySQL/MariaDB) run asynchronously in the background so your server never lags.\n- 👥 **Group Hierarchies & Inheritance** — Create unlimited ranks with weights and inherit permissions from other groups.\n- ⏳ **Temporary Ranks** — Assign VIP or temporary ranks easily (e.g. `/rank username VIP 30 days`). Expiries are handled automatically.\n- 💬 **Premium Chat Formatter** — Easy and beautiful display of prefixes, suffixes, and colors directly in chat.\n- 🎨 **Smart TAB-List Hook** — Automatically detects if you are using other tablist plugins (like *TAB* or *NametagEdit*) and yields scoreboard control to prevent conflicting nametags and flickering.\n- 🔌 **Vault & PlaceholderAPI Support** — Fully integrates with Vault and PlaceholderAPI out of the box so all your other plugins sync up perfectly.\n- 📦 **Fully Customizable** — Edit every single message, command output, and error in `messages.yml` with full color code support.\n\n---\n\n## 📋 Commands & Information\n\n### ℹ️ General Commands\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/perm groups` | List all groups | `permissionsystem.permission` |\n| `/perm users` | List all cached player UUIDs | `permissionsystem.permission` |\n| `/perm config <chat/tablist> <true/false>` | Toggle chat formatting or tablist features | `permissionsystem.permission` |\n\n---\n\n### 👥 Group Commands\n*Manage server groups, prefixes, and inheritance.*\n\n| Command | Description |\n| :--- | :--- |\n| `/perm group <name> create` | Create a new group |\n| `/perm group <name> delete` | Delete a group |\n| `/perm group <name> list` | List all permissions of a group |\n| `/perm group <name> clear` | Remove all permissions from a group |\n| `/perm group <name> add <permission>` | Add a permission to a group (supports `*` and `.*`) |\n| `/perm group <name> remove <permission>` | Remove a permission from a group |\n| `/perm group <name> addmember <player>` | Add a player to a group |\n| `/perm group <name> removemember <player>` | Remove a player from a group |\n| `/perm group <name> setDefault <true/false>` | Set a group as the default group for new players |\n| `/perm group <name> setweight <weight/none>` | Set weight for Tablist sorting and Vault |\n| `/perm group <name> setparent <parent>` | Set parent group to inherit permissions from |\n| `/perm group <name> setprefix <value>` | Set group prefix |\n| `/perm group <name> setsuffix <value>` | Set group suffix |\n\n---\n\n### 👤 User Commands\n*Modify individual player permissions, prefixes, and ranks.*\n\n| Command | Description |\n| :--- | :--- |\n| `/perm user <player> list` | Show all permissions and groups of a player |\n| `/perm user <player> clear` | Clear all custom permissions from a player |\n| `/perm user <player> add <permission>` | Give a custom permission to a player |\n| `/perm user <player> remove <permission>` | Remove a custom permission from a player |\n| `/perm user <player> setgroup <group>` | Set the primary group of a player |\n| `/perm user <player> setgroup <group> <time> <unit>` | Give a temporary group (e.g. `30 days`, `10 minutes`) |\n| `/perm user <player> setprefix <prefix>` | Set a custom prefix for a player (overrides group prefix) |\n| `/perm user <player> setsuffix <suffix>` | Set a custom suffix for a player (overrides group suffix) |\n\n---\n\n### 👑 Shorthand Command\n*A fast, simple command to set player groups.*\n\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/rank <player> <group>` | Set the group of a player | `permissionsystem.rank` |\n| `/rank <player> <group> <time> <unit>` | Give a temporary group to a player | `permissionsystem.rank` |\n\n> 💡 **Supported Units for temporary ranks:** `seconds`, `minutes`, `hours`, `days`, `months`, `years`\n\n---\n\n## 🔑 Permissions\n\n- **`permissionsystem.*`** — Wildcard access to all features and commands.\n- **`permissionsystem.permission`** — Gives access to the `/perm` command.\n- **`permissionsystem.rank`** — Gives access to the `/rank` command.\n\n---\n\n## 🧩 PlaceholderAPI Placeholders\n\nUse these placeholders in any PAPI-compatible plugin (like Tab, Scoreboards, Holograms, etc.):\n\n| Placeholder | Description |\n| :--- | :--- |\n| `%permissionsystem_group%` | Returns the primary group of the player |\n| `%permissionsystem_group_weight%` | Returns the weight of the primary group |\n| `%permissionsystem_group_expiry%` | Returns the remaining time of the temporary group (e.g. `29 days 23 hours`) |\n| `%permissionsystem_prefix%` | Returns the player's active prefix (personal first, falls back to group) |\n| `%permissionsystem_suffix%` | Returns the player's active suffix (personal first, falls back to group) |\n| `%permissionsystem_group_prefix%` | Returns the raw group prefix |\n| `%permissionsystem_group_suffix%` | Returns the raw group suffix |\n| `%permissionsystem_group_chat_prefix%` | Returns the group chat prefix |\n| `%permissionsystem_group_chat_suffix%` | Returns the group chat suffix |\n| `%permissionsystem_chat_prefix%` | Returns the player's chat prefix |\n| `%permissionsystem_chat_suffix%` | Returns the player's chat suffix |\n\n---\n\n## ⚙️ Requirements\n\n| Requirement | Version |\n| :--- | :--- |\n| Minecraft Server | **1.21 - 1.21.8+** (Paper / Spigot / Purpur) |\n| Java Version | **Java 21** |\n| Vault | *Optional (for external plugin integration)* |\n| PlaceholderAPI | *Optional (for dynamic placeholders)* |\n\n---\n\n## 📜 License & Terms of Service\n\nThis plugin is proprietary software. All rights reserved by **NicoMods**.\n\nBy downloading and using this plugin, you agree to the following terms:\n- You are allowed to use this plugin on your own servers (both personal and commercial).\n- You are **not** allowed to redistribute, resell, or share this plugin binary.\n- Decompiling, modifying, or copying parts of the code is strictly prohibited without explicit written permission from the author.\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "library",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

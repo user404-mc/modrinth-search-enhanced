@@ -1,0 +1,26 @@
+{
+  "id": "EyvYUdRu",
+  "slug": "dimension-separator",
+  "title": "Dimension Separator",
+  "description": "Minecraft Forge mod (1.20.1) for modpack makers — restrict which mods can interact with which dimensions. Block mob spawning, loot tables, world generation and item usage per dimension via a simple JSON config.",
+  "body": "# Dimension Separator\nThis mod is created to separate what can appear in wich dimension.\nTested on **Minecraft 1.20.1** with **Forge 47.1.3+**.\n\n## What does it do?\n\nI wanted to make a RP server where all the \"magic\" was forbiden in the overworld for lore purposes but I struggled to prevent some structures to appear in the overworld while still be in my custom dimension.\n\nSo I tried to create a mod to help me just do that.\n\nIt's still in testing but you can use a simple json config to tell the mod what exactly you want to let appear in wich dimension.\n\nFor each dimension, you can blacklist or whitelist mod namespaces to block:\n- **World generation features** (ores, plants, structures...)\n- **Mob spawning**\n- **Loot tables** (chests, mob drops...)\n- **Item usage** (right-click on blocks, in the air, or on entities)\n- **Structure generation**\n\n## Configuration\n\nThe config file is located at `config/dimensionseparator.json`.~~~~\nHere is an example :\n```JSON\n{\n    \"dimensions\": {\n        \"minecraft:overworld\": {\n            \"mode\": \"blacklist\",\n            \"bypassLevel\": 2,\n            \"namespaces\": [\"ars_nouveau\", \"iceandfire\"],\n            \"blacklistedIds\": [\"minecraft:zombie\"],\n            \"whitelistedIds\": [\"ars_nouveau:bookwyrm_familiar\"],\n            \"features\": true,\n            \"mobs\": true,\n            \"loot\": true,\n            \"items\": true,\n            \"structures\": true\n        }\n    }\n}\n```\n### Fields\n\n| Field            | Type         | Description                                                                                |\n|------------------|--------------|--------------------------------------------------------------------------------------------|\n| `mode`           | string       | `\"blacklist\"` to block listed mods, `\"whitelist\"` to allow only listed mods                |\n| `bypassLevel`    | int          | Minimum operator level allowed to `/summon` blocked entities (-1 or absent = no bypass)    |\n| `namespaces`     | string array | Mod IDs to block or allow depending on `mode`                                              |\n| `blacklistedIds` | string array | Specific IDs always blocked, regardless of `mode` (e.g. `\"minecraft:zombie\"`)              |\n| `whitelistedIds` | string array | Specific IDs always allowed, regardless of `mode` (e.g. `\"ars_nouveau:bookwyrm_familiar\"`) |\n| `features`       | boolean      | Block world generation features (ores, plants...) from listed mods                         |\n| `mobs`           | boolean      | Block mob spawning from listed mods                                                        |\n| `loot`           | boolean      | Block loot tables from listed mods (chests, mob drops...)                                  |\n| `items`          | boolean      | Block item usage (right-click) from listed mods                                            |\n| `structures`     | boolean      | Block structure generation from listed mods                                                |\n\nSetting a category to `false` disables blocking for that category, even if the namespace is listed.\n\n## Known Limitations\n\n- **`/locate` on a blocked structure** will search indefinitely without result. This is vanilla Minecraft behavior when no matching structure exists in the dimension.\n- **Client-side keybinds** (e.g. opening a mod's GUI with a custom key) are not blocked — only right-click interactions are covered. In practice, opening an interface without being able to interact with the dimension is harmless.\n- **Item usage via custom keybinds** is client-side and cannot be intercepted server-side.\n\n## Compatibility\n\nThis mod uses Mixins and event handlers and should be compatible with most Forge mods. If you encounter a conflict, please open an issue.\n\n## Issues & Contributions\n\nFound a bug or have a suggestion? Open an issue on [GitHub](https://github.com/LayraAlixis/dimension-separator/issues).",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 54,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

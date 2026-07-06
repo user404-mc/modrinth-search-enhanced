@@ -1,0 +1,40 @@
+{
+  "id": "y7XGer4N",
+  "slug": "onedropcore",
+  "title": "OneDropCore",
+  "description": "All in one optimization, players view plugins, inventory checkpoint plugins.",
+  "body": "### Inventory Checkpoints\n\nPlayer inventories are automatically saved every **30 minutes** by default.\n\nEach checkpoint can save:\n\n* Main inventory\n* Hotbar\n* Armor\n* Offhand\n* XP level\n* XP progress\n* Health\n* Food level\n* Saturation\n* Game mode\n* World and location\n* Timestamp\n\nEach player keeps up to **10 checkpoints**. When a new checkpoint is created after the limit, the oldest one is removed.\n\nPerfect for recovering items after accidents, deaths, bugs, or mistakes.\n\n---\n\n### Inventory Rollback\n\nAdmins can restore a player’s previous inventory using a simple command:\n\n```text\n/rollinv checkpoint <player> <1-10>\n```\n\nExample:\n\n/rollinv checkpoint Kelvin 1\n\n`1` means the newest checkpoint.\n`10` means the oldest saved checkpoint.\n\nBefore restoring, OneDropCore can create a backup of the player’s current inventory for safety.\n\n---\n\n### Web Inventory Viewer\n\nOneDropCore includes a lightweight browser-based inventory viewer.\n\nDefault address:\n\nhttp://server-ip:8906/?token=YOUR_TOKEN\n\nThe web viewer shows:\n\n* Online players\n* Username\n* UUID\n* Health\n* Food\n* XP level\n* World\n* Location\n* Armor slots\n* Offhand slot\n* Hotbar\n* Full inventory grid\n* Item amount\n* Durability indicator\n* Item details\n\nThe viewer is protected with a token system so only authorized admins can view player inventories.\n\n\n### AutoTools\n\nPlayers can toggle AutoTools with:\n\n/autotools\n\nWhen enabled, OneDropCore automatically selects the best tool from the player’s hotbar when mining blocks.\n\nIt can consider:\n\n* Correct tool type\n* Tool material tier\n* Efficiency enchantment\n* Fortune preference\n* Silk Touch preference\n* Durability protection\n\nThis makes mining smoother without requiring players to manually switch tools all the time.\n\n---\n\n### AutoMiner\n\nPlayers can toggle AutoMiner with:\n\n/autominer\n\n\nAutoMiner can safely mine connected blocks such as ore veins or logs, depending on configuration.\n\nSafety limits include:\n\n* Max blocks per activation\n* Blocks per tick\n* Cooldowns\n* Blacklisted blocks\n* Tool durability checks\n* Inventory full checks\n* TPS/memory safety checks\n* Protected block checks\n\nAutoMiner is designed to be useful without destroying server performance.\n\n---\n\n## Commands\n\n| Command                               | Description                             |\n| ------------------------------------- | --------------------------------------- |\n| `/odc`                                | Main plugin command                     |\n| `/odc status`                         | View plugin/server status               |\n| `/odc reload`                         | Reload plugin config                    |\n| `/odc optimize now`                   | Run optimization manually               |\n| `/odc optimize status`                | View optimization status                |\n| `/odc web status`                     | View web server status                  |\n| `/odc web token`                      | Show web access token                   |\n| `/rollinv save <player>`              | Save checkpoint for a player            |\n| `/rollinv saveall`                    | Save checkpoints for all online players |\n| `/rollinv list <player>`              | List saved checkpoints                  |\n| `/rollinv checkpoint <player> <1-10>` | Restore a checkpoint                    |\n| `/rollinv restorelatest <player>`     | Restore newest checkpoint               |\n| `/autotools`                          | Toggle AutoTools                        |\n| `/autotools status`                   | View AutoTools status                   |\n| `/autominer`                          | Toggle AutoMiner                        |\n| `/autominer status`                   | View AutoMiner status                   |\n| `/autominer mode vein`                | Use vein mining mode                    |\n| `/autominer mode tunnel`              | Use tunnel mode if enabled              |\n\n---\n\n## Permissions\n\n| Permission                     | Description                   |\n| ------------------------------ | ----------------------------- |\n| `onedropcore.admin`            | Full admin access             |\n| `onedropcore.optimize`         | Use optimization commands     |\n| `onedropcore.rollback`         | Restore inventory checkpoints |\n| `onedropcore.checkpoint.save`  | Save checkpoints              |\n| `onedropcore.checkpoint.list`  | List checkpoints              |\n| `onedropcore.autotools`        | Use AutoTools                 |\n| `onedropcore.autominer`        | Use AutoMiner                 |\n| `onedropcore.autominer.tunnel` | Use tunnel mode               |\n| `onedropcore.web`              | Access web-related commands   |\n\n---\n\n## Web Inventory Icons\n\nThe web inventory viewer supports item icons.\n\nPlace PNG files inside:\n\nplugins/OneDropCore/web/assets/items/\n\nExample:\n\ndiamond_sword.png\niron_pickaxe.png\ndirt.png\ngolden_apple.png\n\nIf an icon is missing, the web viewer will show a clean fallback item box instead.\n\n---\n\n## Safety Notes\n\nOneDropCore is designed to be safe for real survival servers.\n\nIt avoids:\n\n* Deleting important mobs by default\n* Breaking protected blocks\n* Running huge laggy loops\n* Accessing Bukkit API from unsafe web threads\n* Fake TPS boosting\n* Fake network optimization\n* Unsafe AutoMiner behavior\n\nThe plugin focuses on realistic server-side improvement, not fake performance numbers.\n\n---\n\n## Important Limitation\n\nA server-side Paper plugin **cannot directly detect raw keyboard keys** like `J` from a normal vanilla Minecraft client.\n\nThat means AutoMiner is toggled with:\n\n/autominer\n\nIf you want a `J` key toggle, you need a separate client-side mod, macro, or launcher keybind that runs `/autominer`.\n\n---\n\n## Requirements\n\n* Paper server\n* Java 21+\n* Minecraft 1.20.6+ / 1.21.x recommended\n\n---\n\n## Installation\n\n1. Download the plugin jar.\n2. Place it into your server’s `plugins` folder.\n3. Restart the server.\n4. Edit the config if needed.\n5. Use:\n\n/odc status\n/odc web token\n\n6. Open the inventory viewer:\n\nhttp://server-ip:8906/?token=YOUR_TOKEN\n\n---\n\n## Perfect For\n\n* Survival servers\n* SMP servers\n* Private friend servers\n* Small-to-medium Paper servers\n* Servers that need inventory recovery\n* Servers that want admin web inventory viewing\n* Servers that want safer automation tools\n\n---\n\n## Summary\n\n**OneDropCore** gives server owners a powerful set of tools in one plugin:\n\n* Optimize server load\n* Save player inventories\n* Restore lost inventories\n* View inventories from a browser\n* Auto-switch tools\n* Auto-mine safely\n* Protect the server from overload\n\nOne plugin. Many useful systems. Built for practical Minecraft server management.\n",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

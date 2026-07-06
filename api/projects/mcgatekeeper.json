@@ -1,0 +1,20 @@
+{
+  "id": "xBmo8JIs",
+  "slug": "mcgatekeeper",
+  "title": "Gatekeeper",
+  "description": "A Fabric mod for Minecraft that replaces username/password login with cryptographic key authentication.",
+  "body": "**Gatekeeper** replaces username/password login on offline-mode servers with **cryptographic key authentication**. Every player holds a unique digital key that the server recognises — no password to guess, share, or steal.\n\nDesigned for small offline-mode servers where the operator personally knows every player.\n\n---\n\n## How it works\n\nWhen you connect to a Gatekeeper server for the first time, the mod silently generates a unique key pair for that server and stores it on your computer. Every subsequent connection your game proves — cryptographically — that it holds the right key, without ever transmitting it over the network. The server checks your key against its approved list and lets you in.\n\nNo passwords. No shared secrets. Nothing to forget or leak.\n\n---\n\n## Requirements\n\n- The [Fabric](https://fabricmc.net/) mod loader\n- [Fabric API](https://modrinth.com/mod/fabric-api)\n- **Both the server and every connecting client** must have the mod installed\n- The server must run with `online-mode=false` in `server.properties`\n\n---\n\n## Installation\n\n### Server\n\n1. Install [Fabric](https://fabricmc.net/use/server/) and [Fabric API](https://modrinth.com/mod/fabric-api).\n2. Drop `gatekeeper-<version>.jar` into the `mods/` folder.\n3. Set `online-mode=false` in `server.properties`.\n4. Start the server — a `config/mcgatekeeper/` directory is created automatically.\n\n> **Important:** `online-mode=false` without Gatekeeper means anyone who knows a player's username can impersonate them. Gatekeeper eliminates that risk, but it means you must approve every new player before they can join.\n\n### Client\n\n1. Install [Fabric](https://fabricmc.net/use/installer/) and [Fabric API](https://modrinth.com/mod/fabric-api).\n2. Drop `gatekeeper-<version>.jar` into your `mods/` folder.\n3. That's it — keys are generated and stored automatically.\n\n---\n\n## First connection\n\nThe first time a player connects:\n\n1. A key pair is generated for that server in the background.\n2. The connection screen shows a message saying the server is waiting for admin approval.\n3. An operator (level 3+) runs `/gate allow <username> <label>` to approve the player and register their key.\n\nThe player is let in immediately and their key is remembered for all future connections from that device.\n\n---\n\n## Admin commands\n\n| Command | What it does |\n|---|---|\n| `/gate allow <player> <label>` | Approves a waiting player and registers their key |\n| `/gate list <player>` | Lists all registered keys for a player with fingerprints |\n| `/gate reset <player>` | Removes all keys for a player |\n| `/gate reset <player> <label>` | Removes a single key (e.g. a lost device) |\n\nTab-complete on `/gate allow` suggests players currently awaiting approval.\n\n---\n\n## Key management\n\nYou can view and manage your stored keys via **Mods → Gatekeeper → Manage Keys** (requires [Mod Menu](https://modrinth.com/mod/modmenu)). Each entry shows the server address the key was last used with, plus short fingerprints for both the server and client keys.\n\n---\n\nFor full technical documentation, the security model, and source code, see the [GitHub repository](https://github.com/TheGameratorT/McGatekeeper).\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 52,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

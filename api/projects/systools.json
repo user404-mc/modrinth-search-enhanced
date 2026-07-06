@@ -1,0 +1,19 @@
+{
+  "id": "HOp4bRmH",
+  "slug": "systools",
+  "title": "SysTools",
+  "description": "The SysTools mods adds a new MineScript language and a few new commands like /shoot, /multicmd and /itemcommand",
+  "body": "adds a few new commands like /shoot, /itemcommand (links a command to an item you're holding), /multicmd (a few commands in one using ;, like /multicmd say hi; say hello -> hi/hello)\nand a new MineScript Language\nit uses basic minecraft commands with a custom logic chain\n\nthere's a few examples:\n\n\n```\nevent Player_Chat [forge_armor]:\n    has_funds = player.Inventory.has(\"diamond\")\n    if has_funds == true:\n        clear @p minecraft:diamond 1\n        tellraw @p {\"text\":\"[Blacksmith] I took your Diamond. Let me forge that for you...\",\"color\":\"yellow\"}\n        execute positioned ~ ~ ~ run playsound block.anvil.use master @p\n        wait 2 seconds\n        execute positioned ~ ~ ~ run playsound block.anvil.use master @p\n        \n        wait 2 seconds\n        give @p minecraft:iron_chestplate 1\n        tellraw @p {\"text\":\"[Blacksmith] Here is your new armor! Have a safe journey.\",\"color\":\"green\"}\n        execute positioned ~ ~ ~ run playsound entity.player.levelup master @p\n    else:\n        tellraw @p {\"text\":\"[Blacksmith] You don't have a Diamond! No money, no armor.\",\"color\":\"red\"}\n        execute positioned ~ ~ ~ run playsound entity.villager.no master @p\n```\n\n```\nevent Entity_Death [minecraft:zombie]:\n    give @p diamond 1\n```\n\n```\nevent Player_Sneak:\n    shoot fireball 2.0\n```\n\n```\nevent Player_Chat [hi]:\n    tellraw @p {\"text\":\"Hello World!\",\"color\":\"green\"}\n```\n\n```\nevent Player_Sneak:\n    if entity @p[distance=..5]:\n        summon lightning_bolt ~ ~ ~\n    else:\n        say No MSE here\n```\n\n```\nevent Player_Sneak:\n    has_diamonds = player.Inventory.has(\"diamond\")\n    if has_diamonds == true:\n        say You have diamonds!\n        give @p gold_ingot 1\n```",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

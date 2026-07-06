@@ -1,0 +1,38 @@
+{
+  "id": "pTin4vZr",
+  "slug": "hereengy",
+  "title": "HereEngy",
+  "description": "A paper plugin to create and place blueprints from existing buildings",
+  "body": "# HereEngy\n\nA premium [Paper](https://papermc.io) Minecraft plugin for **automated building, schematic recording, and construction animation** — capture structural blueprints using a Compass selection tool, view material lists, dynamically preview building footprints using local client particle outlines, and watch structures construct block-by-block with sound and particle effects!\n\n---\n\n## Features\n\n- **Compass Selection Tool** — Left-click a block with a standard **Compass** to set Point A (Anchor/relative origin), and Right-click to set Point B (opposite corner). Receives structural size and volume summaries instantly in chat.\n- **Global Blueprint Sharing** — Blueprints are saved to a shared global directory (`plugins/HereEngy/blueprints/<name>.json`). Any player can load, view, and construct any blueprint on the server.\n- **Shopping Lists (`/he info`)** — Detailed blueprint viewer displaying dimensions, block count, creator, and a compiled material list indicating the exact blocks and quantities required for construction.\n- **Visual Bounding Box Previews (`/he preview`)** — Project a glowing bounding box particle outline around the target footprint before building. Alignment updates dynamically as you adjust your line of sight.\n- **Gradual Build Tasks** — Constructs blueprints layer-by-layer (sorted Y-ascending, from the foundation up) at a safe rate of 10 blocks per tick. Minimizes server lag, avoids anti-cheat blocks, and creates a satisfying building animation with sound effects and block particles.\n- **Double-Block Optimization** — Intelligently detects and manages multi-block items (doors, beds, double tall plants) so they only count and consume **one** inventory item instead of two.\n- **HereRolePlay Integration** — Integrates with the **HereRolePlay** plugin, granting players **Crafting/Engineering Experience** upon completing blueprint constructions.\n- **Security Protection** — Only the original creator of a blueprint or a server Operator (`/op`) can delete saved blueprints from the server.\n\n---\n\n## Commands\n\nAll commands can be prefixed with `/hereengy`, `/he`, or `/engy`.\n\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/he select` | Start a real-time visual selection box session targeting the block in sight. | `hereengy.use` |\n| `/he save <name>` | Save current selection area as a blueprint. | `hereengy.use` |\n| `/he load <name>` | Load blueprint as the player's active build template. | `hereengy.use` |\n| `/he rotate <left\\|right\\|mirror\\|flip>` | Rotate or mirror the loaded blueprint in memory (supports `/he blueprint rotate <op>`). | `hereengy.use` |\n| `/he list` | List all saved blueprints and their creators. | `hereengy.use` |\n| `/he info [name]` | View blueprint details and required item quantities. | `hereengy.use` |\n| `/he preview` | Toggle dynamic visual particle bounding box of loaded blueprint. | `hereengy.use` |\n| `/he cancel` | Stop the player's running active building task. | `hereengy.use` |\n| `/he delete <name>` | Delete a blueprint (Creator or Operator only). | `hereengy.use` |\n\n---\n\n## How to Use (Step-by-Step HOWTO)\n\n### 1. Selecting and Saving a Building\n1. Stand near the building you want to capture.\n2. Look at the base/ground block directly below the starting corner of your building, and run `/he select`.\n   - A green particle bounding box will instantly render around the target block.\n   - An interactive selection session starts in your chat (with a 60-second inactivity timeout).\n3. **Adjust the Selection Box**: Type sizing commands in chat to wrap your building:\n   - **Multi-axis assignment**: Type `x 10 y 15 z 12` to instantly resize.\n   - **Negative / Inverted Selection**: You can select underground or backwards by typing negative numbers! For example, `x 20 y -10 z -20` to select down into the ground.\n   - **Quick Adjustments**: Type `x` or `x+` to expand the X-axis by 1 block, `x-` to shrink it by 1 block (works for `y` and `z` too).\n4. **Compass Adjustment**: You can also hold a **Compass** in your main hand and click blocks:\n   - **Left-click** a block to update/re-center the starting anchor point.\n5. **Filters & Conversions**: When saving, HereEngy automatically:\n   - Ignores water, lava, grass, and non-placeable clutter blocks (like portal gates or frogspawn) so they aren't written to the blueprint.\n   - Converts farmland (`FARMLAND`) and grass/dirt paths (`DIRT_PATH`) into normal `DIRT` blocks.\n6. **Save**: Once the green particle outline perfectly wraps your building, type a single word in chat (e.g. `stone_tower` or `cozy_cabin`). This automatically verifies the box has blocks, saves the blueprint to disk, and ends selection mode. (You can also type `cancel` at any time to abort).\n\n### 2. Loading and Orienting the Blueprint\n1. Load your saved blueprint using `/he load <name>`.\n2. **Rotate or Mirror**: You can dynamically rotate or flip the building before placing it:\n   - `/he rotate right` (or `/he blueprint rotate right`) — Rotates the structure 90 degrees clockwise (swaps width/depth).\n   - `/he rotate left` (or `/he blueprint rotate left`) — Rotates the structure 90 degrees counter-clockwise.\n   - `/he rotate mirror` — Mirrors the structure along the X-axis.\n   - `/he rotate flip` — Flips the structure along the Z-axis.\n   - *Note: This rotation is applied in-memory for your session (not on disk). Directional blocks (stairs, chests, doors, etc.) automatically rotate their block states.*\n\n### 3. Previewing and Placing\n1. Look at the ground block where you want to construct the building and run `/he preview`.\n   - A red particle outline will appear showing exactly where the blueprint will build.\n   - **Notice**: The outline automatically sits **+1 block above** the ground block you target, so the building sits nicely on top of the soil instead of sinking.\n2. Walk to your desired placement spot.\n3. Make sure you have the required materials in your inventory (check `/he info`). If you are in Creative Mode, materials are not consumed.\n4. Hold a **Compass** in your main hand, sneak, and **Shift+Right-click** the ground block.\n5. The building will construct block-by-block, sitting perfectly on top of the ground block you clicked! You can cancel the construction task at any time using `/he cancel`.\n\n",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

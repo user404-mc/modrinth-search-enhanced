@@ -1,0 +1,43 @@
+{
+  "id": "cNJzxWVb",
+  "slug": "portaiscore",
+  "title": "PortaisCore",
+  "description": "Advanced portal plugin with warp and MVTP support.",
+  "body": "# PortaisCore – Advanced Custom Portal Plugin for Minecraft\n\n**Version:** 1.1.0\n**Compatibility:** Paper / Spigot 1.20.x\n**Java:** 17+\n\nCreate fully customizable portals for your Minecraft server with advanced teleportation systems, permissions, particles, sounds, VIP destinations, random teleports, command execution, and much more.\n\nPortaisCore allows server owners to create immersive and optimized portal systems without requiring complicated setups.\n\n---\n\n# Features\n\n✅ **Custom Portal Regions**\nCreate portals using a selection tool and define custom areas where players are teleported instantly.\n\n✅ **Multiple Portal Types**\n\n* **Warp portals** (`/warp`)\n* **Multiverse teleport portals** (`/mvtp`)\n* **Command portals** (execute any command)\n\n✅ **Instant Teleport System**\nPlayers are teleported immediately when touching the portal region.\n\n✅ **VIP Destinations**\nVIP players can be redirected to special destinations automatically.\n\n✅ **Random Destinations**\nCreate mining portals, dungeon systems, or random teleport hubs.\n\n✅ **Custom Sounds & Particles**\nAdd immersive visual and sound effects to your portals.\n\n✅ **Portal Permissions**\nRestrict portals to specific players or permission groups.\n\n✅ **Custom Messages**\nSend messages using:\n\n* Chat\n* ActionBar\n* Titles\n\n✅ **Cooldown System**\nPrevent portal spam with configurable cooldowns.\n\n✅ **Highly Configurable**\nCustomize nearly everything using `config.yml` and `portais.yml`.\n\n---\n\n# Dependencies\n\n| Plugin                | Required   | Usage                         |\n| --------------------- | ---------- | ----------------------------- |\n| Paper / Spigot 1.20.x | ✅ Yes      | Server base                   |\n| EssentialsX           | ❌ Optional | Warp system (`/warp`)         |\n| Multiverse-Core       | ❌ Optional | World teleportation (`/mvtp`) |\n| PlaceholderAPI        | ❌ Optional | Dynamic placeholders          |\n\n---\n\n# Commands\n\n| Command                                      | Description                  | Permission       |\n| -------------------------------------------- | ---------------------------- | ---------------- |\n| `/portais criar <name> <type> <destination>` | Create a portal              | `portais.create` |\n| `/portais deletar <name>`                    | Delete a portal              | `portais.delete` |\n| `/portais editar <name> <property> <value>`  | Edit portal properties       | `portais.edit`   |\n| `/portais listar`                            | List all portals             | `portais.use`    |\n| `/portais info <name>`                       | View portal details          | `portais.use`    |\n| `/portais reload`                            | Reload plugin configurations | `portais.reload` |\n\n---\n\n# Portal Types\n\n### `warp`\n\nTeleport players using a warp plugin:\n\n```text\n/warp <destination>\n```\n\nExample:\n\n```text\n/portais criar spawn warp spawn\n```\n\n---\n\n### `mvtp`\n\nTeleport players between worlds using Multiverse:\n\n```text\n/mvtp <player> <world>\n```\n\nExample:\n\n```text\n/portais criar mines mvtp mines_world\n```\n\n---\n\n### `comando`\n\nExecute any custom command.\n\nUse `{player}` as a placeholder.\n\nExample:\n\n```text\n/portais criar vip comando /warp vip\n/portais criar kit comando /kit vip {player}\n```\n\n---\n\n# Portal Selection System\n\nCreating portals is simple:\n\n### Step 1\n\nGet the selection tool:\n\n```text\nGOLDEN_AXE\n```\n\n### Step 2\n\n**Left-click** a block to set **Position 1**\n\n### Step 3\n\n**Right-click** a block to set **Position 2**\n\n### Step 4\n\nCreate the portal:\n\n```text\n/portais criar <name> <type> <destination>\n```\n\nThe selected region becomes an active portal area. Players entering the region will be teleported automatically.\n\n---\n\n# Permissions\n\n| Permission       | Description                                  | Default  |\n| ---------------- | -------------------------------------------- | -------- |\n| `portais.admin`  | Full access (includes all permissions below) | OP       |\n| `portais.create` | Create portals                               | OP       |\n| `portais.delete` | Delete portals                               | OP       |\n| `portais.edit`   | Edit portals                                 | OP       |\n| `portais.reload` | Reload configurations                        | OP       |\n| `portais.use`    | Use portals                                  | Everyone |\n\nRestrict a portal to specific players:\n\n```text\n/portais editar myPortal permissao portais.vip\n```\n\nThen give the permission:\n\n```text\nportais.vip\n```\n\nto your VIP group.\n\n---\n\n# Editable Portal Properties\n\nUse:\n\n```text\n/portais editar <name> <property> <value>\n```\n\n| Property            | Description                     |\n| ------------------- | ------------------------------- |\n| `destino`           | Portal destination              |\n| `delay`             | Teleport delay                  |\n| `cooldown`          | Cooldown between uses           |\n| `permissao`         | Required permission             |\n| `ativo`             | Enable/disable portal           |\n| `mensagem`          | Teleport message                |\n| `tipo-mensagem`     | CHAT / ACTIONBAR / TITLE        |\n| `cancelar-se-mover` | Cancel teleport if player moves |\n| `particulas`        | Enable particles                |\n| `tipo-particula`    | Bukkit particle type            |\n| `som`               | Enable sounds                   |\n| `som-entrada`       | Portal enter sound              |\n| `som-teleporte`     | Teleport sound                  |\n| `destino-vip`       | VIP destination                 |\n| `permissao-vip`     | VIP permission                  |\n| `mundo-permitido`   | Allowed world                   |\n| `destino-aleatorio` | Enable random destinations      |\n\n---\n\n# Advanced Examples\n\n## Random Mining Portal\n\n```text\n/portais criar mines comando /tp {player} 0 65 0\n/portais editar mines destino-aleatorio true\n/portais editar mines adicionar-destino /mvtp {player} mines1\n/portais editar mines adicionar-destino /mvtp {player} mines2\n/portais editar mines adicionar-destino /mvtp {player} mines3\n```\n\n---\n\n## VIP Portal\n\n```text\n/portais criar hub warp hub\n/portais editar hub destino-vip warp hubvip\n/portais editar hub permissao-vip group.vip\n```\n\n---\n\n## Confirmation Portal\n\n```text\n/portais criar dungeon mvtp dungeon_world\n/portais editar dungeon delay 5\n/portais editar dungeon cancelar-se-mover true\n/portais editar dungeon mensagem &aWelcome to the dungeon!\n/portais editar dungeon tipo-mensagem TITLE\n```\n\n---\n\n# Configuration Files\n\n### `config.yml`\n\nCustomize:\n\n* Messages\n* Sounds\n* Particles\n* Titles\n* Cooldowns\n* Teleport settings\n* General plugin behavior\n\n---\n\n### `portais.yml`\n\nAll portals are automatically saved in:\n\n```text\nportais.yml\n```\n\nFeatures:\n\n* Automatic save every 5 minutes *(configurable)*\n* Save on server shutdown\n* Persistent portal system\n\n---\n\n**PortaisCore is designed to be lightweight, optimized, and easy to configure while providing advanced portal features for survival, prison, RPG, factions, and network servers.**\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "technology",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "e44IM4Y2",
+  "slug": "live-musical-instruments",
+  "title": "Live Musical Instruments",
+  "description": "A plugin that lets you play electronic instruments live and broadcast the performance to players in real time.",
+  "body": "# LiveMusicalInstruments\n\n## About\nMinecraft plugin that lets you play electronic instruments live and broadcast the performance to players in real time.\n\n**Note**:\n\nThis plugin is **not intended for most shared Minecraft hosting providers** and may require some basic computer skills (running a Python script, configuring your router, editing a JSON file).\n\nThe plugin, originally developed for personal use, is now public and configurable for your own equipment (currently only drums are supported) and your own audio kit.  \nSome latency may occur between playing and hearing the audio, due to the transfer of information from your electronic device to the Minecraft server.\n\nSince Minecraft doesn't allow audio streaming, **MIDI is used instead**, combined with an audio kit inside a resource pack (a default drum kit is already included).\n\nFuture updates may include support for additional instruments if requested by users.\n\n## Download\n`LiveMusicalInstruments.jar` plugin [[Download on Modrinth](https://modrinth.com/plugin/live-musical-instruments)] [[Download on GitHub](https://github.com/TheoDgb/LiveMusicalInstruments/releases/tag/v1.0.0)]\n\nTo work properly, this plugin requires:\n- A `LiveMusicalInstrumentsPack.zip` server resource pack [[Download](https://github.com/TheoDgb/LiveMusicalInstruments/releases/download/v1.0.0/LiveMusicalInstrumentsPack.zip)]\n- A first `ListDevices.py` script to detect the exact name of your MIDI-connected module [[Download](https://github.com/TheoDgb/LiveMusicalInstruments/releases/download/v1.0.0/ListDevices.py)]\n- A second `LiveMidiToMinecraft.py` script to capture and send MIDI data to the plugin (tested on Windows 10) [[Download](https://github.com/TheoDgb/LiveMusicalInstruments/releases/download/v1.0.0/LiveMidiToMinecraft.py)]\n- Python to run both scripts [[Download](https://www.python.org/downloads/)]\n\n## Installation\nThe plugin opens a **Web Socket server** to receive MIDI data from the script. You'll therefore need to configure your router to create a **NAT/PAT FTP Data rule** on port **3000 TCP**.\n\n1. Connect your device to your PC via MIDI.\n2. Run the script `ListDevices.py` to check if your device is detected and to get its exact name.\n3. On your router, create a NAT/PAT FTP Data rule for port 3000 TCP.\n4. Open the script `LiveMidiToMinecraft.py` in a text editor and configure the following:\n    - The public IP of your Minecraft server with `:3000`\n    - Your Minecraft username (so the sound propagates from your player in-game)\n    - The name of your MIDI device retrieved in step 2\n    > By default, the plugin is configured for an Alesis Crimson II drum kit. You can configure your own device by editing `ǸOTE_MAP` (only modify the numbers, not the names). Other parameters can also be customized if needed.\n5. Install the `LiveMusicalInstruments.jar` into the `plugins` folder of your Minecraft server and start your server once to generate the config file in `plugins/LiveMusicalInstruments/`.  \nEdit if needed (restart the server after changes).\n6. Download the `LiveMusicalInstrumentsPack.zip` resource pack in your `.minecraft/resourcepacks/` folder.  \nThere is already a default kit but,  \nFor custom kits:\n    - In your resource pack, under `assets/minecraft/sounds/drums/`, create your own folder following the same structure and naming convention as `drum_kit_default`.\n    - Then, in `assets/minecraft/sounds.json`, add your custom audio files by following the `drum_kit_default` example.\n    - Configure your custom kit in `config.yml`.\n7. Run in Minecraft `/live start drums`, then launch `LiveMidiToMinecraft.py`.  \nA message should appear in Minecraft chat confirming that you are connected and ready to play.  \n(All players must have the resource pack installed in order to hear you perform.)  \n`/live stop drums` to stop.\n\nIf an error appears indicating that the WebSocket server is still running, restart the server and close the WebSocket properly.",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "paper",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 74,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

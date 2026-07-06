@@ -1,0 +1,20 @@
+{
+  "id": "GwEuWiVO",
+  "slug": "axhud",
+  "title": "AXHud",
+  "description": "A HUD Mod for my plugins",
+  "body": "# AXHud\n\nThis mod is a HUD mod for some of my plugins.\n\n## Features:\n\n- Currently the mod can display a text next to an item at the top of the users screen\n\n### Commands\n\n- `/axhud test diamond`: Test the display\n- `/axhud clear`: Clear the display\n\n## Required for:\n\n- [Force Item Plugin](https://modrinth.com/project/forceitemplugin)\n\nYou can use this mod for your own mods/plugins. <br />\n\n<details>\n<summary>See how</summary>\n[Paper/Spigot 1.21.x]\n  \n```java\npackage <your_package>;\n\nimport org.bukkit.entity.Player;\nimport org.bukkit.plugin.java.JavaPlugin;\n\nimport java.io.ByteArrayOutputStream;\nimport java.io.DataOutputStream;\nimport java.io.IOException;\n\npublic class CommunicationInterface {\n    private final JavaPlugin plugin;\n\n    /**\n     * Constructor - pass your plugin instance\n     *\n     * Usage in your main plugin class:\n     * \n     * public class <your_plugin> extends JavaPlugin {\n     *     private CommunicationInterface commInterface;\n     *\n     *     @Override\n     *     public void onEnable() {\n     *         this.getServer().getMessenger().registerOutgoingPluginChannel(this, \"axhud:display_item\");\n     *         this.commInterface = new CommunicationInterface(this);\n     *     }\n     *\n     *     public CommunicationInterface getCommInterface() {\n     *         return commInterface;\n     *     }\n     * }\n     * \n     */\n    public CommunicationInterface(JavaPlugin plugin) {\n        this.plugin = plugin;\n    }\n\n    /**\n     * Send item display data to a player's client\n     *\n     * @param player The player to send to\n     * @param itemId The item ID (e.g., \"minecraft:diamond\", \"minecraft:emerald\")\n     * @param displayName The name to display next to the item (supports color codes like §a, §b, etc.)\n     */\n    public void sendItemDisplay(Player player, String itemId, String displayName) {\n        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();\n        DataOutputStream out = new DataOutputStream(byteStream);\n\n        try {\n            // Write item ID string\n            writeString(out, itemId);\n\n            // Write display name string\n            writeString(out, displayName);\n\n            // Send the plugin message\n            player.sendPluginMessage(plugin, \"axhud:display_item\", byteStream.toByteArray());\n        } catch (IOException e) {\n            plugin.getLogger().warning(\"Failed to send item display to player: \" + e.getMessage());\n        }\n    }\n\n    /**\n     * Write a string to DataOutputStream in Minecraft's format\n     * (VarInt length + UTF-8 bytes)\n     */\n    private void writeString(DataOutputStream out, String str) throws IOException {\n        byte[] bytes = str.getBytes(java.nio.charset.StandardCharsets.UTF_8);\n        writeVarInt(out, bytes.length);\n        out.write(bytes);\n    }\n\n    /**\n     * Write a VarInt to DataOutputStream (Minecraft protocol format)\n     */\n    private void writeVarInt(DataOutputStream out, int value) throws IOException {\n        while ((value & 0xFFFFFF80) != 0) {\n            out.writeByte((value & 0x7F) | 0x80);\n            value >>>= 7;\n        }\n        out.writeByte(value & 0x7F);\n    }\n}\n```\n</details>",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.21.7"
+  ],
+  "date_updated": null
+}

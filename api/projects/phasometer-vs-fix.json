@@ -1,0 +1,18 @@
+{
+  "id": "XwGRdRrr",
+  "slug": "phasometer-vs-fix",
+  "title": "Phasometer VS Fix",
+  "description": "Fixes the Wither Storm Mod Phasometer not detecting the Wither Storm when Valkyrien Skies is installed.",
+  "body": "This project was purely vibe coded using Claude. Please don't ask me for any technical details for this mod.\n\nMy understanding: When you use the phasometer, wither storm mod checks if you are looking at the wither or not. If yes: put the information of the wither into phasometer nbt data (like: {Phase: 3}), if no: then delete it. All of this happens serverside. Then the client takes that information from the phasometer and puts it on screen. What the valkyrien skies mod does is that it modifyes some server side things and breaks it.\n\nDescription from Claude:\n\nRoot cause: Valkyrien Skies hooks into Level.getEntities() and transforms the search bounding box into ship-space coordinates. The Phasometer uses ProjectileUtil.getEntityHitResult() internally, which calls Level.getEntities() — so its entity search always returns empty regardless of how close the Wither Storm is.\n\nFix: Replaces the entity search with ServerLevel.getAllEntities(), which iterates the entity storage directly and is not intercepted by Valkyrien Skies.",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

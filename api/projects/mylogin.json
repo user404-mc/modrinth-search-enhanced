@@ -1,0 +1,35 @@
+{
+  "id": "fLOWgMNp",
+  "slug": "mylogin",
+  "title": "MyLogin",
+  "description": "MyLogin is a lightweight authentication plugin for Minecraft servers. It provides secure password-based login, strong pre-login protection, IP-based auto login.",
+  "body": "# 🔐 MyLogin\n\nMyLogin is a lightweight authentication and account-protection plugin for Minecraft Paper servers.\n\nIt provides password-based authentication, migration from Passky, offline-mode account protection, duplicate session protection, and administrative account management tools.\n\n---\n\n# 📖 Project Background\n\nMyLogin was created as a modern alternative to Passky, allowing server owners to continue using existing player login data while maintaining compatibility with current Paper releases.\n\nThe plugin supports migration of existing Passky SHA-256 password data, allowing players to keep their existing passwords after migration.\n\n---\n\n# ✨ Features\n\n* Password-based player authentication\n* Passky SHA-256 migration support\n* Configurable login timeout\n* Maximum login attempt protection\n* Optional IP-based auto-login\n* Logout support\n* Admin password management\n* Blindness protection before login\n* Firework effect after successful login\n* Username case protection for offline-mode servers\n* Duplicate session protection\n* Username collision detection and reporting\n* YAML-based storage\n* Configuration migration support\n\n---\n\n## 📦 Requirements\n\n* Server: Paper\n* Supported Versions: 1.21.x\n* Java: 21+\n\n### Compatibility Notes\n\nMyLogin uses only the standard Bukkit/Paper API and does not use NMS or CraftBukkit internals.\n\nBecause of this, the plugin is expected to work on newer Paper builds, including current 26.1.x releases, but only Paper 1.21.x is officially supported.\n\n---\n\n# 📜 Player Commands\n\n| Command                           | Description                     |\n| --------------------------------- | ------------------------------- |\n| `/register <password> <password>` | Register a new account          |\n| `/login <password>`               | Log into your account           |\n| `/changepassword <old> <new>`     | Change your password            |\n| `/logout`                         | Log out of your current session |\n\n---\n\n# 🛠 Admin Commands\n\n| Command                                 | Permission      | Description                                 |\n| --------------------------------------- | --------------- | ------------------------------------------- |\n| `/migrate`                              | `mylogin.admin` | Migrate Passky user data                    |\n| `/resetpassword <player> <newpassword>` | `mylogin.admin` | Reset a player's password                   |\n| `/deleteplayer <player>`                | `mylogin.admin` | Delete a player's account                   |\n| `/mylogin reload`                       | `mylogin.admin` | Reload configuration                        |\n| `/mylogin scannamecollisions`           | `mylogin.admin` | Scan users.yml for username case collisions |\n| `/mylogin checkplayer <player>`         | `mylogin.admin` | View player login information               |\n| `/mylogin stats`                        | `mylogin.admin` | View MyLogin statistics                     |\n\n---\n\n# ⚙️ Configuration\n\nExample:\n\n```yaml\nlogin-timeout-seconds: 300\n\nmax-login-attempts: 5\n\nmin-password-length: 4\nmax-password-length: 32\n\nip-remember: true\nip-remember-timeout: 86400\n\neffects:\n  blind: true\n  firework: true\n\nsecurity:\n  enforce-name-case: false\n  scan-name-collisions-on-startup: true\n  block-duplicate-sessions: true\n\nmigration:\n  skip-existing-users: true\n```\n\n---\n\n# 🔒 Username Case Protection\n\nOffline-mode servers treat usernames with different capitalization as different accounts.\n\nExamples:\n\n```text\nSkyBuilder\nSKYBUILDER\nsKyBuIlDeR\n```\n\nWhen enabled:\n\n```yaml\nsecurity:\n  enforce-name-case: true\n```\n\nPlayers must reconnect using the exact username capitalization originally registered.\n\nExample:\n\n```text\nRegistered:\nSkyBuilder\n\nJoining:\nSKYBUILDER\n```\n\nResult:\n\n```text\nThis name is already registered as 'SkyBuilder'.\nPlease reconnect using that exact name.\n```\n\nThis helps prevent:\n\n* Duplicate inventories\n* Duplicate economy accounts\n* Duplicate claims\n* Duplicate permissions\n* Duplicate backup records\n\n---\n\n# 🛡 Duplicate Session Protection\n\nWhen enabled:\n\n```yaml\nsecurity:\n  block-duplicate-sessions: true\n```\n\nIf a player is already online:\n\n```text\nSkyBuilder\n```\n\nand another client attempts to connect using:\n\n```text\nSkyBuilder\n```\n\nthe new connection is denied and the original player remains online.\n\n---\n\n# 🔍 Username Collision Scanner\n\nWhen enabled:\n\n```yaml\nsecurity:\n  scan-name-collisions-on-startup: true\n```\n\nMyLogin scans users.yml for username case collisions.\n\nExample:\n\n```text\nSkyBuilder\nSKYBUILDER\nsKyBuIlDeR\n```\n\nResults are written to:\n\n```text\nplugins/MyLogin/data/name-collision-log.yml\n```\n\n---\n\n# 🔄 Migration From Passky\n\nRequirements:\n\n* Passky encoder must be SHA-256\n* Player identifier must use player names\n\nMyLogin can import existing Passky accounts without requiring players to register again.\n\nMigration files:\n\n```text\nplugins/MyLogin/Migration/old-users.yml\nplugins/MyLogin/Migration/migration-log.yml\n```\n\nMigration protection:\n\n```yaml\nmigration:\n  skip-existing-users: true\n```\n\nExisting MyLogin accounts are not overwritten by default.\n\n---\n\n# 💾 Data Storage\n\nMain data files:\n\n```text\nplugins/MyLogin/data/users.yml\nplugins/MyLogin/data/name-collision-log.yml\nplugins/MyLogin/Migration/old-users.yml\nplugins/MyLogin/Migration/migration-log.yml\n```\n\n---\n\n# 📄 License\n\nMIT License\n",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 75,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

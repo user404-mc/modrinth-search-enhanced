@@ -1,0 +1,38 @@
+{
+  "id": "WyPpW5vO",
+  "slug": "player-mutations",
+  "title": "Player Mutations",
+  "description": "A behavioral evolution system that mutates players based on their playstyle. Every cycle (default 3 days), the plugin analyzes player behavior and triggers mutations that fundamentally change how they play.",
+  "body": "# PlayerMutations - Minecraft Java Plugin\n\n**PLUGIN IS STILL IN VERY DEVELOPMENT.**\n\n# [Website](https://mutation-plugin.pages.dev/)\n\nA behavioral evolution system that mutates players based on their playstyle. Every cycle (default 3 days), the plugin analyzes player behavior and triggers mutations that fundamentally change how they play.\n\n## Features\n\n### ⚠️ IMPORTANT: One Mutation Rule\n**Players can only have ONE mutation active at a time!** This is by design for game balance. When a new mutation evolves, it replaces the old one (unless the old one is permanent). This creates meaningful choices and prevents overpowered combinations.\n\n### 🧬 8 Unique Mutations\n\n| Mutation | Trigger Behavior | Effects | Downside |\n|----------|-----------------|---------|----------|\n| **⛏ Miner (Deep-Sight)** | Mining blocks, time underground | Night vision, ore detection through walls, haste | None |\n| **🗡 Predator (Lethal Claws)** | PvP kills, damage dealt | Increased damage, devastating crits | Cannot use shields |\n| **🌿 Harvester (Nature's Embrace)** | Farming crops, breeding animals | Animals follow you, luck effect | None |\n| **💎 Hoarder (Weighted Greed)** | Hoarding diamonds/netherite | None (pure curse) | Permanent slowness |\n| **🌀 Void-Walker (Dimension Shifter)** | Ender pearls, time in End/Nether | Blink teleport (sneak), fall immunity | Water/rain deals damage |\n| **⚗ Chemist (Volatility)** | Splash/lingering potions, TNT | Explosion immunity, extended potions | No natural health regen |\n| **🍖 Glutton (Bottomless)** | Eating food, overeating | Extra hearts, strength after eating | Slowness/weakness when hungry |\n| **🔥 Pyromaniac (Ember-Born)** | Starting fires, fire damage | Fire resistance, ignite on punch | Cold biomes deal damage |\n\n### ⚡ Activated Abilities\n\nEach mutation grants a powerful activated ability. **Hold the activation item + Sneak + Right-click** to use:\n\n| Mutation | Ability | Activation Item | Effect |\n|----------|---------|-----------------|--------|\n| **⛏ Miner** | Seismic Stun | Diamond Pickaxe | Stun all nearby enemies for 2s, reveal ores in 15-block radius |\n| **🗡 Predator** | Blade Cyclone | Netherite Sword | Throw spectral swords in 360°, deal massive damage + Bleed |\n| **🌿 Harvester** | Overgrowth Slam | Diamond Hoe | Root all enemies within 7 blocks for 4 seconds |\n| **💎 Hoarder** | Greed Pulse | Gold Ingot | Massive knockback based on inventory item count |\n| **🌀 Void-Walker** | Rift Step | Ender Pearl | Teleport 8 blocks, deal void damage + Wither II to enemies passed through |\n| **⚗ Chemist** | Lingering Cloud | Brewing Stand | 10x10 toxic cloud (Poison/Wither/Slowness), heals you inside it |\n| **🍖 Glutton** | Berserker Roar | Cooked Beef | Consume all hunger for Resistance V + Strength III for 10s |\n| **🔥 Pyromaniac** | Fire Ring | Blaze Powder | Expanding fire ring, massive damage + unextinguishable burn |\n\n### ⚡ Core Mechanics\n\n- **Evolution Cycles**: Every 72 hours (configurable), player behavior is analyzed\n- **Progressive Levels**: Each mutation has 5 levels - stronger effects with progression\n- **Permanent Mutations**: High-level mutations have a chance to become permanent (written into DNA!)\n- **Decay System**: Inactive players will see their mutations fade (unless permanent)\n- **Visual Feedback**: Particles, sounds, and titles for immersive evolution events\n\n## Commands\n\n### Player Commands\n| Command | Description |\n|---------|-------------|\n| `/mutations` | View your current mutations |\n| `/mutations check` | View your activity statistics |\n| `/mutations list` | List all available mutations |\n| `/mutations help` | Show help menu |\n\n**Aliases:** `/mut`, `/evolve`\n\n### Admin Commands\n| Command | Description |\n|---------|-------------|\n| `/mutationadmin give <player> <mutation> [level]` | Grant a mutation (level 1-5) |\n| `/mutationadmin remove <player> <mutation>` | Remove a mutation |\n| `/mutationadmin reset <player>` | Reset all mutations, permanent status, and stats |\n| `/mutationadmin permanent <player> <mutation>` | Make a mutation permanent |\n| `/mutationadmin force-evolve <player>` | Force an evolution check |\n| `/mutationadmin reload` | Reload configuration |\n| `/mutationadmin debug <player>` | Show debug info |\n\n**Mutation Names:** `MINER`, `PREDATOR`, `HARVESTER`, `HOARDER`, `VOIDWALKER`, `CHEMIST`, `GLUTTON`, `PYROMANIAC`\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `mutations.use` | Use basic mutation commands | true |\n| `mutations.admin` | Use admin commands | op |\n| `mutations.bypass` | Bypass mutation effects | op |\n\n## Configuration\n\nAll settings are customizable in `config.yml`:\n\n- Evolution cycle timing (default: 72 hours)\n- Behavior thresholds for each mutation\n- Effect strengths and multipliers\n- Permanent mutation chances\n- Decay settings\n- Messages\n\n\n## Changelog\n\n### v1.1.1\n- **CRITICAL FIX**: Mutations are now mutually exclusive - only ONE active at a time\n- Evolution cycle now picks the dominant playstyle behavior\n- New mutations replace old ones (unless permanent)\n- Fixed balance issues from stacking multiple mutations\n\n### v1.1.0\n- Added 8 unique activated abilities (one per mutation)\n- Seismic Stun, Blade Cyclone, Overgrowth Slam, Greed Pulse\n- Rift Step, Lingering Cloud, Berserker Roar, Fire Ring\n- Full ability configuration in config.yml\n- Cooldown system with level-based reduction\n- Activation via Sneak + Right-click with specific items\n\n### v1.0.0\n- Initial release with 8 mutations\n- Full configuration system\n- Admin commands\n- Permanent mutation system\n- Decay system\n\n## Strategic Gameplay\n\nThis plugin creates emergent faction strategies:\n\n- **Mining Guilds**: Players with Deep-Sight become invaluable scouts for resources\n- **Assassin Clans**: Predator-mutated players deal massive damage but cannot defend with shields\n- **Farming Communes**: Harvesters attract animals, making them perfect for food production\n- **Dimension Raiders**: Void-Walkers can blink around but must avoid water at all costs\n- **Alchemist Corps**: Chemists are immune to explosions but need potions to heal\n- **Tank Units**: Gluttons have massive health pools but must stay fed\n- **Arsonists**: Pyromanics are fire-immune but vulnerable in cold biomes\n- **The Cursed Hoarders**: Those who can't let go of loot become slow but wealthy\n\nFactions must balance their roster - a team of all Predators has no defense!\n\nShorten headers\n4 headers in your description are too long. Headers should be concise and act as section titles, not full sentences.",
+  "categories": [
+    "cursed",
+    "equipment",
+    "game-mechanics",
+    "library",
+    "magic",
+    "minigame",
+    "paper",
+    "purpur",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

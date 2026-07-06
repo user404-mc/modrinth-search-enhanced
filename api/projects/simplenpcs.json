@@ -1,0 +1,36 @@
+{
+  "id": "1nMqwxpN",
+  "slug": "simplenpcs",
+  "title": "SimpleNPCs",
+  "description": "a simple npc plugin. really really simple. :P",
+  "body": "\n<details>\n<summary>简体中文</summary>\n\n# SimpleNPC\n\n**SimpleNPC** 是一款极其轻量的 Minecraft 实体 NPC 插件，它唯一的功能就是右键配置过的实体时，执行一系列命令。你几乎不需要学习任何新的内容，也不需要花费时间调节配置文件，就能立刻掌握其使用方式。\n\n本插件不依赖外部数据库，采用纯标签驱动架构。它不负责实体的生成或物理属性的修改，而是将交互逻辑直接储存在实体的 PDC 中。任何非玩家实体均可作为 NPC，数据与原版区块同步保存与销毁。\n\n---\n\n## 核心特性\n\n* **无外部状态：** 不使用 MySQL 或 SQLite。所有命令和行为数据直接存储在实体的 PDC 中。当实体被清除时，数据随之销毁，不会产生数据残留。\n* **泛用实体支持：** 推荐配合 1.21.9+ 原生的玩家模型 (`minecraft:mannequin`) 使用，同时也支持任何非玩家实体。只需通过命令添加 PDC 标签即可将其转换为 NPC。\n* **交互防抖：** 内置交互冷却机制，防止因网络延迟或连点导致的命令重复执行。\n* **指令执行：** * 支持 `%player_name%` 等基础变量，并兼容 PlaceholderAPI。\n* 带有 `player:` 前缀的指令将以玩家身份执行，无前缀则默认以控制台身份执行。\n\n\n* **技术规范：** 基于 Paper API 1.21.11+ 与 Kotlin 编写。使用 Brigadier 构建命令树，通过 MiniMessage 处理文本格式化。\n* **视觉附加功能 (计划中)：** 计划引入 PacketEvents，通过发包实现特定玩家视角的皮肤镜像与目光追随功能。\n\n---\n\n## 快速上手\n\n**第一步：生成实体**\n使用原版命令或生成蛋召唤一个实体，并配置所需的属性（如无敌、无重力等）：\n\n```mcfunction\n/summon minecraft:mannequin ~ ~ ~ {Invulnerable:1b,NoGravity:1b}\n\n```\n\n**第二步：绑定命令**\n使用插件提供的选择器，向该实体注入需要触发的命令：\n\n```mcfunction\n/npc add @n[type=mannequin] say 欢迎来到这里，%player_name%！\n/npc add @n[type=mannequin] player:spawn\n\n```\n\n**第三步：玩家交互**\n玩家右键点击该实体，系统将按顺序执行绑定的命令。\n\n---\n\n## 命令与权限\n\n所有命令默认需要 `pronpc.admin` 权限。命令目标 `<target>` 支持 Minecraft 原版目标选择器。\n\n| 命令 | 说明 |\n| --- | --- |\n| `/npc reload` | 重载配置文件。 |\n| `/npc list <target>` | 列出目标实体 PDC 中绑定的所有命令。在聊天框输出，点击对应行可复制内容。 |\n| `/npc add <target> <command>` | 向目标实体追加交互命令。若目标原先无 PDC 标签，会自动初始化。 |\n| `/npc remove <target> <index>` | 根据列表索引移除指定命令。若列表被清空，实体的 NPC 标签将被移除。 |\n\n> 注：目标选择器仅允许选择一个实体。\n\n---\n\n## 配置文件 (config.yml)\n\n```yaml\n# NPC 交互全局冷却时间（单位：秒）\ncooldown-seconds: 3.0\n\n```\n\n---\n\n## 开发者参考\n\n插件的底层数据结构如下：\n\n* **命名空间 (Namespace):** `npc`\n* **核心键值:** `commands` 对应类型 `PersistentDataType.LIST.strings()`\n* **视觉扩展键值 (计划中):** * `mirror_skin` 对应类型 `PersistentDataType.BYTE`\n* `look_at` 对应类型 `PersistentDataType.BYTE`\n\n</details>\n\n\n\n<details>\n<summary>English</summary>\n\n*Translated by AI，Sorry for possible grammar mistakes.*\n\n# SimpleNPC\n\n**SimpleNPC** is an extremely lightweight Minecraft entity NPC plugin. Its sole function is to execute a series of commands when a player right-clicks a configured entity. You needn't to learn much new things or spent lots of time configuring it to master its usage.\n\nThis plugin does not rely on any external database; it uses a purely tag-driven architecture. It does not handle entity spawning or modify physical attributes — instead, it stores interaction logic directly in the entity's PDC. Any non-player entity can serve as an NPC, and the data is saved and destroyed synchronously with vanilla chunks.\n\n---\n\n## Core Features\n\n* **No External State:** No MySQL or SQLite. All command and behavior data is stored directly in the entity's PDC. When the entity is removed, the data is destroyed alongside it, leaving no residual data.\n* **Universal Entity Support:** Designed to work best with the native player model (`minecraft:mannequin`) introduced in 1.21.9+, but also supports any non-player entity. Simply add the PDC tag via a command to turn it into an NPC.\n* **Interaction Debounce:** Built-in interaction cooldown mechanism prevents duplicate command execution caused by network latency or rapid clicking.\n* **Command Execution:** \n  * Supports basic variables like `%player_name%` and is compatible with PlaceholderAPI.\n  * Commands prefixed with `player:` are executed as the player; commands without a prefix are executed as the console by default.\n* **Technical Specifications:** Built on Paper API 1.21.11+ and written in Kotlin. Uses Brigadier for command tree construction and MiniMessage for text formatting.\n* **Planned Visual Additions:** Plans to introduce PacketEvents to implement per-player skin mirroring and gaze-following features via packet manipulation.\n\n---\n\n## Quick Start\n\n**Step 1: Spawn an entity**  \nUse a vanilla command or a spawn egg to summon an entity and configure desired attributes (e.g., invulnerable, no gravity):\n\n```mcfunction\n/summon minecraft:mannequin ~ ~ ~ {Invulnerable:1b,NoGravity:1b}\n```\n\n**Step 2: Bind commands**  \nUse the plugin's selectors to inject commands that should be triggered by the entity:\n\n```mcfunction\n/npc add @n[type=mannequin] say Welcome, %player_name%!\n/npc add @n[type=mannequin] player:spawn\n```\n\n**Step 3: Player interaction**  \nWhen a player right-clicks the entity, the system executes the bound commands in order.\n\n---\n\n## Commands & Permissions\n\nAll commands require the `pronpc.admin` permission by default. The command target `<target>` supports Minecraft native target selectors.\n\n| Command | Description |\n| --- | --- |\n| `/npc reload` | Reloads the configuration file. |\n| `/npc list <target>` | Lists all commands bound in the target entity's PDC. Outputs to chat; clicking a line copies its content. |\n| `/npc add <target> <command>` | Appends an interaction command to the target entity. If the target has no PDC tag yet, it will be initialized automatically. |\n| `/npc remove <target> <index>` | Removes the command at the given list index. If the list becomes empty, the entity's NPC tag is removed. |\n\n> Note: The target selector must match exactly one entity.\n\n---\n\n## Configuration (config.yml)\n\n```yaml\n# Global interaction cooldown for NPCs (in seconds)\ncooldown-seconds: 3.0\n```\n\n---\n\n## Developer Reference\n\nThe underlying data structure of the plugin is as follows:\n\n* **Namespace:** `npc`\n* **Core Key:** `commands` — type `PersistentDataType.LIST.strings()`\n* **Planned Visual Extension Keys:**  \n  * `mirror_skin` — type `PersistentDataType.BYTE`\n  * `look_at` — type `PersistentDataType.BYTE`\n\n</details>\n\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

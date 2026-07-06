@@ -1,0 +1,42 @@
+{
+  "id": "iCIBf92Q",
+  "slug": "cancelblockupdate",
+  "title": "CancelBlockUpdate",
+  "description": "Per-world block update suppression plugin for Paper servers, with Multiverse support, LuckPerms-compatible permissions, YAML config, i18n, and /cbu commands.",
+  "body": "# CancelBlockUpdate\n\nCancelBlockUpdate is a Bukkit-compatible plugin that suppresses selected block updates on a per-world basis.\n\n这是一个 Bukkit 兼容的方块更新抑制插件，支持按世界开启或关闭指定方块的更新抑制，适配 Multiverse 多世界场景，并使用 Bukkit 权限节点兼容 LuckPerms。\n\n## Compatibility\n\n- Minecraft `1.20.x` through current `26.x` servers.\n- Bukkit / CraftBukkit-compatible servers.\n- Paper and Purpur servers.\n- Plugin `api-version` is `1.20` so older supported servers do not reject the plugin at load time.\n- Built against the Spigot/Bukkit `1.20` API and Java `17` bytecode. Run the server with the Java version required by that server release.\n\nThe latest Paper release checked while updating this plugin was `26.1.2`.\n\n## Features\n\n- Per-world block update control.\n- Multiverse-compatible world handling through Bukkit world names.\n- LuckPerms-compatible permissions through standard Bukkit permission nodes.\n- `/cbu` command prefix with tab completion.\n- Runtime reload for config and locale files.\n- Configurable chat message prefix.\n- 10 bundled i18n files under `locals/`.\n- Player messages follow the player's Minecraft client language when a bundled locale matches.\n- Console messages default to English.\n- Configurable suppressed block material list.\n- Efficient suppression lookup using a material set and early per-world checks.\n\n\n## Installation\n\n1. Build the plugin jar.\n2. Copy `build/libs/CancelBlockUpdate-1.1.0.jar` into your server's `plugins/` directory.\n3. Restart the server.\n4. Edit `plugins/CancelBlockUpdate/config.yml` as needed.\n5. Run `/cbu reload` after editing config or locale files.\n\n## Commands\n\n| Command | Permission | Description |\n| --- | --- | --- |\n| `/cbu help` | `cbu.help` | Show command help. |\n| `/cbu reload` | `cbu.reload` | Reload config and locale files. |\n| `/cbu world enable` | `cbu.world` | Enable normal block updates in the executor's current world. Player-only. |\n| `/cbu world disable` | `cbu.world` | Disable configured block updates in the executor's current world. Player-only. |\n| `/cbu block add <ID>` | `cbu.block.add` | Add a block material id to the suppressed block list. Extra arguments after `<ID>` are ignored. |\n| `/cbu block add` | `cbu.block.add` | Add the non-air block the player is looking at. Player-only. |\n\nMaterial IDs may use Bukkit material names, lower-case names, hyphenated names, or a `minecraft:` namespace, for example:\n\n```text\nGRASS_BLOCK\nsand\nminecraft:redstone_wire\n```\n\n## Permissions\n\n| Permission | Default | Description |\n| --- | --- | --- |\n| `cbu.admin` | `op` | Grants all plugin permissions. |\n| `cbu.help` | `op` | Allows `/cbu help`. |\n| `cbu.reload` | `op` | Allows `/cbu reload`. |\n| `cbu.world` | `op` | Allows `/cbu world enable` and `/cbu world disable`. |\n| `cbu.block.add` | `op` | Allows `/cbu block add`. |\n\nLuckPerms can manage these nodes directly.\n\n## Configuration\n\nDefault `config.yml`:\n\n```yaml\nmessages:\n  prefix: \"&bCBU &7>> &r\"\n\ndefault-block-updates-enabled: true\nmax-target-distance: 8\n\nsuppressed-blocks:\n  - GRASS_BLOCK\n\nworlds: {}\n```\n\nExample per-world configuration:\n\n```yaml\nworlds:\n  world:\n    block-updates-enabled: false\n  world_nether:\n    block-updates-enabled: true\n```\n\n`block-updates-enabled: false` means updates for materials in `suppressed-blocks` will be cancelled in that world.\n\n## Config Tolerance\n\nThe plugin tolerates common manual edit mistakes, but it is not a full config repair tool:\n\n- If `config.yml` is malformed YAML on startup, bundled defaults are used and a warning is logged.\n- If `config.yml` becomes malformed during `/cbu reload`, the previous valid settings are kept and a warning is logged.\n- Boolean strings such as `true`, `false`, `on`, and `off` are accepted.\n- `suppressed-blocks` may be a YAML list or a single comma-separated string.\n- `worlds.<name>: false` is accepted as a shorthand for `worlds.<name>.block-updates-enabled: false`.\n- Invalid material ids and wrong value types are logged and ignored or replaced by defaults.\n\n## Locale Files\n\nLocale files are copied to:\n\n```text\nplugins/CancelBlockUpdate/locals/\n```\n\nBundled locales:\n\n- `en_US.yml`\n- `zh_CN.yml`\n- `zh_TW.yml`\n- `es_ES.yml`\n- `fr_FR.yml`\n- `de_DE.yml`\n- `pt_BR.yml`\n- `ru_RU.yml`\n- `ja_JP.yml`\n- `ko_KR.yml`\n\nThe locale matcher accepts exact bundled locales and language-level fallbacks. For example, `es_mx` falls back to `es_ES`, `pt_pt` falls back to `pt_BR`, Simplified Chinese locales use `zh_CN`, and Traditional Chinese locales such as `zh_tw`, `zh_hk`, `zh_mo`, and `zh_hant` use `zh_TW`.\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

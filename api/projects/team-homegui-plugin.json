@@ -1,0 +1,37 @@
+{
+  "id": "G9WejUAk",
+  "slug": "team-homegui-plugin",
+  "title": "Team-HomeGUI Plugin",
+  "description": "A lightweight team system with team homes, private team chat, personal homes, and a clean home GUI",
+  "body": "# Team-HomeGUI-Plugin\n\n**Version 1.3.0** | PaperMC 1.21 | Java 21\n\nA feature-rich PaperMC plugin combining a **team system** with a **GUI-based home manager**,\ncooldowns, economy support, PlaceholderAPI integration, and Essentials override.\n\n---\n\n## Features\n\n| Category | Feature |\n|----------|---------|\n| Teams | Create, invite, leave, kick, disband |\n| Roles | Owner / Admin / Member hierarchy |\n| Team Chat | Toggle private/global chat per-player |\n| Team Home | Set and teleport to team home |\n| Personal Homes | Up to 5 personal homes via inventory GUI |\n| Confirm Delete | Confirmation GUI before deleting a home |\n| Cooldowns | Per-player teleport cooldown |\n| Warmup | XP-bar countdown with optional freeze |\n| Economy | Vault-based charges for set / teleport / create |\n| Anti-PvP | Disable friendly fire between team members |\n| PlaceholderAPI | `%team_*%` placeholders |\n| Essentials | Intercepts `/home` and `/sethome` to open the GUI |\n\n---\n\n## Requirements\n\n| Dependency | Required |\n|------------|----------|\n| PaperMC 1.21 | ✅ |\n| Java 21 | ✅ |\n| Vault | Optional (economy features) |\n| PlaceholderAPI | Optional |\n| EssentialsX | Optional (GUI override) |\n\n---\n\n## Installation\n\n1. Build with Maven: `mvn clean package`\n2. Copy the resulting `.jar` from `target/` to your server's `plugins/` folder\n3. Start the server — config files are generated automatically\n4. Edit `plugins/Team-HomeGUI-Plugin/team-config.yml` and `home-config.yml`\n5. Reload with `/reload confirm` or restart\n\n---\n\n## Commands\n\n### Player Commands\n\n| Command | Description |\n|---------|-------------|\n| `/team create <name>` | Create a new team |\n| `/team invite <player>` | Invite a player to your team |\n| `/team invite accept` | Accept a pending invite |\n| `/team invite deny` | Deny a pending invite |\n| `/team leave` | Leave your team (owner must confirm) |\n| `/team kick <player>` | Kick a member (owner/admin) |\n| `/team info [team]` | Show team info |\n| `/team members [team]` | List team members |\n| `/team list [page]` | Browse all teams |\n| `/team home` | Teleport to team home |\n| `/team sethome` | Set the team home (owner/admin) |\n| `/team chat enable\\|disable` | Toggle team-only chat |\n| `/team msg <message>` | Send a team message |\n| `/team color <color>` | Change team display color |\n| `/team settings name <name>` | Rename your team |\n| `/team settings color <color>` | Change color |\n| `/team settings members-can-invite <on\\|off>` | Toggle invite permissions |\n| `/team settings promote <player>` | Promote to Admin |\n| `/team settings demote <player>` | Demote from Admin |\n| `/team settings transfer <player>` | Transfer ownership |\n| `/home` | Open home GUI |\n| `/sethome [name]` | Set a home (opens GUI) |\n| `/delhome <name>` | Delete a home |\n\n### Admin Commands\n\n| Command | Description |\n|---------|-------------|\n| `/team admin create <password>` | Create the admin team |\n| `/team admin add <player>` | Add player to admin team |\n| `/team admin ban <player>` | Ban from admin commands |\n| `/team admin unban <player>` | Unban from admin commands |\n| `/team admin manage <team>` | Show team details |\n| `/team admin remove <team>` | Disband a team |\n| `/team admin list` | List all teams |\n| `/team admin settings <team> <option> [value]` | Modify any team's settings |\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `teamplugin.create` | Create a team | true |\n| `teamplugin.admin` | Admin commands | op |\n| `teamplugin.sethome` | Set team home | true |\n| `teamplugin.homes.3` | Unlock 3 personal homes | false |\n| `teamplugin.homes.4` | Unlock 4 personal homes | false |\n| `teamplugin.homes.5` | Unlock 5 personal homes | false |\n| `teamplugin.color` | Change team color | true |\n\n---\n\n## Home GUI Layout\n\n```\n[ ][ ][ ][ ][T][ ][ ][ ][ ]    ← T = Team Home\n[ ][1][2][3][4][5][ ][ ][ ]    ← Personal homes (bed icons)\n[ ][ ][ ][ ][ ][ ][ ][ ][ ]\n[ ][S][S][S][S][S][ ][ ][ ]    ← S = Set (lime dye) or Delete (red dye)\n[ ][ ][ ][ ][ ][ ][ ][ ][ ]\n```\n\n### Delete Confirmation GUI (new in 1.3.0)\n```\n[ ][ ][ ][ ][ ][ ][ ][ ][ ]\n[ ][ ][🔴][ ][🛏][ ][🟢][ ][ ]\n[ ][ ][ ][ ][ ][ ][ ][ ][ ]\n    No      Delete?    Yes\n  (slot 12) (slot 14) (slot 16)   ← user-visible slot numbers (1-indexed)\n```\n\n---\n\n## PlaceholderAPI\n\n| Placeholder | Returns |\n|-------------|---------|\n| `%team_name%` | Team display name |\n| `%team_color%` | Team color code |\n| `%team_role%` | Player role (Owner/Admin/Member) |\n| `%team_count%` | Number of members |\n| `%team_has_home%` | true / false |\n| `%team_homes_count%` | Number of personal homes set |\n\n---\n\n## Building\n\n```bash\ngit clone <repo>\ncd Team-HomeGUI-Plugin\nmvn clean package\n# Output: target/Team-HomeGUI-Plugin-1.3.0.jar\n```\n",
+  "categories": [
+    "bukkit",
+    "cursed",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 113,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

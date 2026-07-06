@@ -1,0 +1,27 @@
+{
+  "id": "epQxTQoi",
+  "slug": "enchantment-splitting",
+  "title": "Enchantment Splitting",
+  "description": "Hit enchanted items with a mace to move/split enchantments",
+  "body": "# Enchantment Splitting\n\nHit your enchanted items with a mace to move/split their enchantments!\n\n## How to use (in-game)\n\n1. Drop an enchanted item and an unenchanted item onto an enchanting table\n2. Hit the items with a mace\n3. That's it! The enchantments will be evenly distributed across both items.\n\n## How it works\n\nAn interaction entity is spawned whenever an enchanted and unenchanted item are on top of an enchanting table at the same time. The instant it is hit, the game checks to see if a nearby player is holding a mace, and if so, it begins the enchantment splitting process.\n- The originally enchanted item will be referred to as item 0.\n- The originally unenchanted item will be referred to as item 1.\n\n### Enchantment Splitting Process\n\n1. Identify each item as item 0 and item 1, and tag them accordingly. This is to simplify identifying them in future commands.\n2. Summon an armor stand and clone item 0 to its mainhand. This armor stand is used as an enchantment list, and will be destroyed as soon as the splitting process is over.\n3. Remove all enchantments from item 0.\n4. Initiate a scoreboard toggle that decides which item receives the next enchantment. This always begins with item 1.\n5. Begin distributing.\n6. After distribution is complete, kill the armor stand and interaction entity, and remove tags from the items involved.\n\n### Distribution\n\n- A registry has been made containing all vanilla enchantments.\n- For each enchantment in the registry, a function is run storing its value as a score on the armor stand. If the score is greater than 0, the enchantment is present on the enchantment list.\n- If an enchantment is present, a function is run to copy the enchantment's value to the item, remove it from the enchantment list, and toggle which item gets the next enchantment.\n- Once all enchantments in the registry have been checked, all remaining enchantments on the enchantment list are merged to item 1.\n\nAll of this happens within a single game tick.\n\n## Quick Answers\n\n**What happens if I \"split\" an item with only one enchantment?**  \nThe enchantment is moved from item 0 to item 1.\n\n**Can I split enchantments across different items (e.g. splitting multiple sword enchantments across a Diamond Sword and Netherite Sword)?**  \nYes.\n\n**Can I split enchantments onto items that can't have certain enchantments (e.g. splitting Infinity onto a Crossbow)?**  \nYes.\n\n**Can I split enchantments onto items that can't normally be enchanted (e.g. splitting Knockback onto a Stick)?**\nYes.",
+  "categories": [
+    "datapack",
+    "equipment",
+    "magic",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

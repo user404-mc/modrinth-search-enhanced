@@ -1,0 +1,38 @@
+{
+  "id": "s0lEVsmg",
+  "slug": "auto-broadcaster",
+  "title": "Auto Broadcaster",
+  "description": "AutoBroadcaster is a lightweight and feature-rich PaperMC plugin that automates server announcements. It allows you to schedule broadcasts at specific intervals or at exact server times.",
+  "body": "# AutoBroadcaster\n\nAutoBroadcaster is a lightweight and feature-rich PaperMC plugin that automates server announcements. It allows you to schedule broadcasts at specific intervals or at exact server times.\n\n## Features\n- **Interval Messages**: Broadcast messages sequentially or randomly at a set interval (e.g., every 5 minutes).\n- **Scheduled Messages**: Broadcast specific messages at an exact server time (e.g., daily at 14:00 or 20:30).\n- **In-Game Management**: Add, remove, list, and reload messages and configurations directly from the game without needing to edit files manually.\n- **Modern Formatting**: Fully supports Paper's [MiniMessage](https://docs.advntr.dev/minimessage/format.html) formatting out of the box (e.g., `<red>Hello</red>`), while seamlessly falling back to legacy color codes (e.g., `&cHello`) if preferred.\n\n## Commands & Usage\nThe main command is `/autobroadcaster` (aliases: `/abroadcaster`, `/ab`).\n*All commands require the `autobroadcaster.admin` permission.*\n\n| Command | Description | Example |\n|---|---|---|\n| `/ab reload` | Reloads the configuration from disk and restarts the timers. | `/ab reload` |\n| `/ab list` | Displays all currently active interval and scheduled messages along with their IDs/Indices. | `/ab list` |\n| `/ab add interval <message>` | Adds a new interval message to the rotation. | `/ab add interval <green>Join our Discord!</green>` |\n| `/ab add <HH:mm> <message>` | Adds a new scheduled message at the specified time. | `/ab add 14:30 <gold>Daily event starting!</gold>` |\n| `/ab remove interval <index>` | Removes an interval message by its index (use `/ab list` to find the index). | `/ab remove interval 1` |\n| `/ab remove time <HH:mm>` | Removes a scheduled message for that specific time. | `/ab remove time 14:30` |\n\n## Permissions\n- `autobroadcaster.admin` - Grants full access to all plugin commands. Defaults to server Operators (`op`).\n\n## Configuration (`config.yml`)\nYou can configure the plugin directly via the `config.yml` file located in `plugins/AutoBroadcaster/config.yml`.\n\n```yaml\n# AutoBroadcaster Configuration\n\n# The prefix for all plugin messages\nprefix: \"<gray>[<gradient:#ff0000:#ff7f00>AutoBroadcaster</gradient>] <reset>\"\n\n# Messages that are broadcasted at a specific interval.\n# interval_seconds: How often in seconds the messages should be broadcasted.\n# random_order: If true, picks a random message. If false, goes in order.\ninterval_messages:\n  enabled: true\n  interval_seconds: 300\n  random_order: false\n  messages:\n    - \"<green>Welcome to our server!</green> Remember to read the rules.\"\n    - \"Join our discord at <aqua><click:open_url:'https://discord.gg/example'>discord.gg/example</click></aqua>\"\n\n# Messages that are broadcasted at specific server times (HH:MM).\n# Make sure the time matches the server's time zone.\nscheduled_messages:\n  enabled: true\n  messages:\n    \"12:00\": \"<gold>It is noon! Don't forget to grab your daily rewards!</gold>\"\n    \"20:00\": \"<light_purple>Evening event is starting now!</light_purple>\"\n```\n\n## Compilation / Building\nThis plugin targets PaperMC `26.1.2.build.69-stable` and **requires Java 25** to compile and run.\nTo build it yourself:\n1. Clone the repository.\n2. Ensure you have a Java 25 JDK installed.\n3. Run `./gradlew build`.\n4. The `.jar` will be generated in `build/libs/`.",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 99,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

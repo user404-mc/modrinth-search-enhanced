@@ -1,0 +1,22 @@
+{
+  "id": "R4ZmW11s",
+  "slug": "lastwords-fabric",
+  "title": "LastWords",
+  "description": "Replaces the 'You Died!' headline on the vanilla death screen with a random line from your own config file.",
+  "body": "**LastWords** is a tiny, client-only Fabric mod that swaps out the giant \"You Died!\" headline on the vanilla death screen for a custom message picked at random from a list you control. Make every wipe a little more personal — or a little more annoying for your friends watching the stream.\n\n### Features\n- **Custom death title.** Whenever the death screen opens, the big red headline is replaced with a random line from your config.\n- **Random pool.** Provide as many messages as you want; the mod picks one uniformly at random per death.\n- **Vanilla fallback.** If your message list is empty or the file is missing, the mod silently falls back to the vanilla \"You Died!\".\n- **Zero setup.** On first launch the mod writes a default `config/lastwords.json` with ten sample lines so you can see it work immediately, then edit them later.\n- **Client-only.** Works on any server — singleplayer or multiplayer. No server install needed, no game rules touched.\n\n### Configuration\nEdit `config/lastwords.json`:\n\n```json\n{\n  \"messages\": [\n    \"GAME OVER\",\n    \"You blinked.\",\n    \"Skill issue.\",\n    \"Press F to respawn.\",\n    \"Maybe next time.\",\n    \"That was avoidable.\",\n    \"Gravity wins.\",\n    \"RIP.\",\n    \"Better luck next life.\",\n    \"Oof.\"\n  ]\n}\n```\n\nAdd, remove, or replace lines freely. Each entry is plain text. The list is loaded once at game start; reload the game after edits to pick up changes.\n\n### How it works\nA single Mixin intercepts the `super(Text)` call in `DeathScreen`'s constructor and substitutes a random message from your config in place of the vanilla title. The death cause line (\"Player was killed by …\") below the title is untouched.\n\n### Cross-version\nTested on **1.21.8, 1.21.9, 1.21.10, 1.21.11**. One JAR, one install.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 34,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

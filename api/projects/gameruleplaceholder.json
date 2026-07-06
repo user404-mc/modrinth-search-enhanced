@@ -1,0 +1,30 @@
+{
+  "id": "ZD3AIDIh",
+  "slug": "gameruleplaceholder",
+  "title": "GamerulePlaceholder",
+  "description": "Lightweight Paper plugin that exposes Minecraft gamerule values through PlaceholderAPI placeholders.",
+  "body": "# GamerulePlaceholder\nLightweight Paper plugin that exposes Minecraft gamerule values through PlaceholderAPI placeholders. Supports querying any world by name and the player’s current world.\n\n# Requirements\nPaper 1.21.x (tested on 1.21.6).\n\nPlaceholderAPI installed on the server.\n\nJava 21 to run Paper 1.21.x.\n\n# Installation\nPlace the plugin JAR into the server’s plugins/ folder.\n\nEnsure PlaceholderAPI is installed and enabled.\n\nRestart the server; the expansion registers automatically at startup.\n\n# Placeholders per world scheme\n```%gamerule_<rule>_<world>%```\n\nReturns the value of gamerule <rule> in world <world>.\n\nExample: ```%gamerule_keepInventory_world%``` → “true” or “false”.\n\n\n# Placeholders scheme for current world\n```%gamerule_currentworld_<rule>%```\n\nReturns the gamerule value from the requesting player’s current world.\n\nRequires player context (e.g., scoreboards, chat, GUIs that resolve placeholders for a player).\n\nExample: ```%gamerule_currentworld_doDaylightCycle%```\n\n# Notes\n\n<rule> must match the exact gamerule name as in the server version (e.g., keepInventory, doDaylightCycle, playersSleepingPercentage).\n\nIf the world or gamerule doesn’t exist, the placeholder returns an empty string.\n\nBoolean/Integer gamerules are returned as plain text (e.g., “true”, “100”).\n\n# Usage Examples\nScoreboard: Show whether players keep inventory in the overworld: ```%gamerule_keepInventory_world%```\n\nPlayer context: Show if day/night cycle runs in the player’s current dimension: ```%gamerule_currentworld_doDaylightCycle%```\n\n# Performance\nThe plugin only reads values via the Paper API and performs no I/O, loops, or async tasks. Overhead is negligible even when placeholders update frequently (e.g., in scoreboards).\n\n# Building From Source\nPrerequisites: JDK 21 and Maven.\n\nIn the project root, run: mvn clean package.\n\nThe plugin JAR will be produced in target/ and can be copied to plugins/.\n\nPaper API and PlaceholderAPI are declared with provided scope; they must exist as plugins on the server.\n\n# Troubleshooting\nPlugin loads but placeholders are empty: verify the world name and gamerule spelling; ensure a player context exists for gamerule_currentworld_.\nJava version errors: use Java 21 for Paper 1.21.x.\n\n# Credits\nAuthor: CrooLyyCheck\n\nBuilt for Paper + PlaceholderAPI.\n",
+  "categories": [
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

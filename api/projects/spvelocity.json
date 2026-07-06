@@ -1,0 +1,22 @@
+{
+  "id": "SvLKZLYF",
+  "slug": "spvelocity",
+  "title": "spvelocity",
+  "description": "A plugin that allows you to use velocity as a spigot plugin",
+  "body": "\n\nSpvelocity — a Paper / Spigot plugin that **downloads and launches a Velocity proxy**\n------------------------------------------------------------------------------------\n\n![Java](https://img.shields.io/badge/Java-21-blue) ![Paper](https://img.shields.io/badge/Paper-1.21.x-green) ![License](https://img.shields.io/badge/License-MIT-lightgrey)\n\n---\n\n## What is it?\n\nSpvelocity is a Paper / Spigot plugin that automatically:\n\n1. Downloads a Velocity jar from a given URL  \n2. Starts Velocity in a separate process  \n3. Lets you control it in-game / from console with `/proxy start|stop|status`\n\nPerfect for quick network testing, CI pipelines, or ad-hoc test servers.\n\n---\n\n## Features\n\n* **Auto-download** of `velocity.jar` on the very first `/proxy start`\n* Works on Paper / Spigot 1.12 – latest (built against the 1.21.4 API)\n* Requires only Java 11+, recommended Java 17 or 21\n* Runs in a background thread – won’t block the main server\n* Stops Velocity automatically when the Paper server stops\n* Simple configuration via `plugins/Spvelocity/config.yml`\n\n---\n\n## Requirements\n\n* A Paper or Spigot server  \n  (1.12 – latest, built against Paper-1.21.4)  \n* Java 11 or newer (Velocity itself needs 11+)  \n* Internet access the first time you run `/proxy start` (to download Velocity)\n\n---\n\n## Getting started (pre-built jar)\n\n1. Download `spvelocity-<version>-shaded.jar` from the Releases page  \n2. Drop it into `<server>/plugins`  \n3. Start your Paper / Spigot server with **Java 17 / 21** etc.  \n4. Run in-game or in console:\n   ```text\n   /proxy start\n   ```  \n   → `velocity.jar` is downloaded to `plugins/Spvelocity/proxy/` and booted on port 25577\n\n---\n\n## Building from source\n\n```bash\ngit clone https://github.com/<YOUR-USER>/spvelocity.git\ncd spvelocity\nmvn clean package    # produces target/spvelocity-*-shaded.jar\n```\n\n---\n\n## Configuration — `config.yml`\n\n```yml\nvelocity:\n  download-url: \"https://api.papermc.io/v2/projects/velocity/versions/3.3.0-SNAPSHOT/builds/261/downloads/velocity-3.3.0-SNAPSHOT-261.jar\"\n  jar-name: \"velocity.jar\"\n  port: 25577\n```\n\n* Copy the download URL from PaperMC’s downloads page:  \n  <https://papermc.io/downloads#Velocity>  \n* Stable versions (`3.2.0`, etc.) keep the same URL.  \n* For SNAPSHOTs you may want a script that queries the API for the latest build or update the URL manually.\n\n---\n\n## Commands & permissions\n\n| Command            | Description                         | Permission              | Default |\n|--------------------|-------------------------------------|-------------------------|---------|\n| `/proxy start`     | Download & start Velocity           | `spvelocity.command`    | OP      |\n| `/proxy stop`      | Stop the running Velocity instance  | `spvelocity.command`    | OP      |\n| `/proxy status`    | Show proxy status                   | `spvelocity.command`    | OP      |\n\n---\n\n## How it works\n\n1. `SpvelocityManager` checks whether `plugins/Spvelocity/proxy/velocity.jar` exists  \n2. If not, it downloads it via **Apache Commons IO** from the configured URL  \n3. Runs `java -jar velocity.jar --port <port>` through **ProcessBuilder**  \n4. Redirects proxy output to the Paper console  \n5. When the Paper server shuts down, the child process is destroyed via `destroy()`\n\n---\n\n## License\n\nMIT License — see `LICENSE` for details.  \nFork, modify, redistribute, enjoy!",
+  "categories": [
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 75,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.2",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "date_updated": null
+}

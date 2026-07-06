@@ -1,0 +1,42 @@
+{
+  "id": "sqYtP2lc",
+  "slug": "mapvnc",
+  "title": "MapVNC",
+  "description": "A powerful plugin that brings a fully interactive VNC client directly into the Minecraft world.",
+  "body": "# MapVNC - Your VNC Client, inside Minecraft\n\n![License](https://img.shields.io/badge/License-MIT-blue.svg)\n![Minecraft Version](https://img.shields.io/badge/Minecraft-1.19.3+-green.svg)\n![Status](https://img.shields.io/badge/Status-beta-orange.svg)\n\nMapVNC is a powerful plugin that brings a fully interactive VNC client directly into the game world. Using the robust MapEngine API, it renders a remote desktop onto a dynamic grid of in-game maps, allowing players to view and control a remote computer from within Minecraft.\n\nWhether for server administration, remote monitoring, or just for fun, MapVNC provides a seamless and unique integration between Minecraft and any VNC-enabled machine.\n\n## Features\n\n- **Dynamic Display Creation**: Create VNC screens of any size, anywhere in the world.\n- **Real-Time Rendering**: View a remote desktop with configurable color depth for performance tuning.\n- **Full Interactivity**:\n    - **Mouse Control**: Point and click on the maps to control the remote cursor.\n    - **Mouse Dragging**: A sneak-based system to simulate clicking and dragging.\n    - **Text Input**: Type text directly into the remote session via commands.\n    - **Key Presses**: Send special key events like Enter, Shift, and Escape.\n- **In-Game Management**: Easily move, resize, and remove VNC displays without restarting.\n- **Proximity-Based Rendering**: Displays are only rendered for nearby players to ensure optimal server performance.\n- **Quick Target Selector**: Use `-1` as an ID to automatically target the nearest screen.\n- **Detailed Permission System**: Fine-grained control over who can create, manage, and interact with displays.\n- **User-Friendly Commands**: Intuitive commands with rich tab-completion to guide users.\n\n## Prerequisites\n\n- **Server Software**: Paper, Spigot, or a compatible fork (1.21+ recommended).\n- **Java**: Java 21 or higher.\n- **Dependency**: **[MapEngine 1.8.10+](https://modrinth.com/plugin/mapengine)** is a **required** dependency. MapVNC will not start without it.\n\n## Installation\n\n1.  Ensure you have **MapEngine 1.8.10+** installed on your server.\n2.  Download the latest `MapVNC-*-all.jar` file from the \"Versions\" tab.\n3.  Place the downloaded JAR file into your server's `plugins` directory.\n4.  Restart or reload your server.\n\n## Commands & Usage\n\nThe main command is `/mapvnc`, which can be shortened to `/mvnc`.\n\n---\n\n### Targeting the Nearest Screen\n\nFor convenience, you don't always need to know a display's specific ID. For any command that requires an `<id>`, you can use **`-1`** as a special placeholder.\n\nWhen you use `-1`, the plugin will automatically find and target the nearest VNC display within a **16-block radius** of your location. The distance is measured from the display's anchor point (its top-left corner).\n\n**Example:** Stand near a screen and type `/mvnc connect -1` to connect it, without ever needing to run `/mvnc list`.\n\nThis feature works for: `remove`, `set`, `connect`, `disconnect`, `input`, and `key`.\n\n---\n\n### Command List\n\n| Command                                            | Description                                          | Permission                |\n| -------------------------------------------------- | ---------------------------------------------------- | ------------------------- |\n| `/mvnc create <x> <y> <z> <width> <height>`        | Creates a new VNC display at the specified coordinates. | `mapvnc.command.create`   |\n| `/mvnc remove <id>`                                | Removes the VNC display with the given ID.           | `mapvnc.command.remove`   |\n| `/mvnc list`                                       | Lists all active VNC displays.                       | `mapvnc.command.list`     |\n| `/mvnc set <id> address <ip> <port>`               | Sets the VNC server address for a display.           | `mapvnc.command.set`      |\n| `/mvnc set <id> password [password]`               | Sets or clears the password for a display.           | `mapvnc.command.set`      |\n| `/mvnc set <id> colordepth <8\\|16\\|24>`             | Sets the connection quality (bits per pixel).        | `mapvnc.command.set`      |\n| `/mvnc set <id> pos <x> <y> <z>`                   | Moves a display to a new location.                   | `mapvnc.command.set`      |\n| `/mvnc set <id> size <width> <height>`             | Resizes a display.                                   | `mapvnc.command.set`      |\n| `/mvnc connect <id>`                               | Connects the display to its configured VNC server.   | `mapvnc.command.connect`  |\n| `/mvnc disconnect <id>`                            | Disconnects the display from the VNC server.         | `mapvnc.command.disconnect`|\n| `/mvnc input <id> <text...>`                       | Types the given text into the connected display.     | `mapvnc.command.input`    |\n| `/mvnc key <id> <keyName>`                         | Sends a single key press (e.g., `ENTER`, `SHIFT`).   | `mapvnc.command.key`      |\n\n---\n\n### Mouse Dragging\n\nYou can simulate clicking and dragging (e.g., to select text or move a window) with a special sneak-based mechanic:\n\n1.  **Aim** at the spot on the map where you want to start the drag.\n2.  **Hold down your Sneak key** (L-SHIFT by default).\n3.  While still sneaking, **Left-Click** on the map. A \"Mouse Down\" event is sent, and an ActionBar message will appear confirming you are in dragging mode.\n4.  To move the mouse while dragging, simply **click on other parts of the map**. You must remain in sneak mode.\n5.  When you are finished, **Release the Sneak key**. This sends the \"Mouse Up\" event, completing the drag operation.\n\n---\n\n## Permissions\n\n| Permission Node           | Description                                                        | Default |\n| ------------------------- | ------------------------------------------------------------------ | ------- |\n| `mapvnc.*`                | Grants access to all MapVNC features and commands.                 | OP      |\n| `mapvnc.command.*`        | Grants access to all MapVNC subcommands.                           | OP      |\n| `mapvnc.command.base`     | Allows using MapVNC's main command.                                | OP      |\n| `mapvnc.command.create`   | Allows creating new VNC displays.                                  | OP      |\n| `mapvnc.command.remove`   | Allows removing VNC displays.                                      | OP      |\n| `mapvnc.command.list`     | Allows listing active VNC displays.                                | OP      |\n| `mapvnc.command.set`      | Allows modifying display properties (address, size, etc.).         | OP      |\n| `mapvnc.command.connect`  | Allows connecting a display to a VNC server.                       | OP      |\n| `mapvnc.command.disconnect`| Allows disconnecting a display.                                    | OP      |\n| `mapvnc.command.input`    | Allows typing text into a display.                                 | OP      |\n| `mapvnc.command.key`      | Allows sending key presses to a display.                           | OP      |\n\n## License\n\nThis project is licensed under the MIT License. See the LICENSE file for details.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

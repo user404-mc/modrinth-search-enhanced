@@ -1,0 +1,43 @@
+{
+  "id": "lcLitpw9",
+  "slug": "freerank",
+  "title": "FreeRank",
+  "description": "This plugin was made to add to your server so that users can get a free rank.",
+  "body": "A Free Minecraft plugin to give the users a Free Rank for a limit amount of time based on a end date, You can configure everything in the Files or with commands in the game and you can manage if a player has claimed the reward or not and you can resset the reward to a player with Commands or in the Files\n\nFeatures ↴\n\n- One-time free rank claim per player.\n- Compatibility with LuckPerms and optional hook with AquaCore.\n- Confirmation GUI for claims (/freerank).\n- Language system (messages/messages_en.yml and messages/messages_es.yml).\n- Configurable anti-abuse (account age, time played, IP limit).\n- Storage in SQLite or MySQL using storage.yml.\n- Event history (claim/reset) and history query.\n- Discord webhook for complaints and admin resets.\n- Admin commands to refresh, view information, and reset claims.\n\nCommands ↴\n\n- /freerank - Open the claim GUI.\n- /freerank help - Help Command Custom\n- /freerank reload - Reload settings.\n- /freerank reset <player|uuid> - Restart a player's claim.\n- /freerank info <player|uuid> - Displays claim status information.\n- /freerank history <player|uuid> [limit] - Display event history\n\nPermission ↴\n\n- freerank.use - Allows the use of /freerank.\n- freerank.admin.reload - Allow /freerank reload.\n- freerank.admin.reset - Allow /freerank reset <player|uuid>.\n- freerank.admin.info - Allow /freerank info <player|uuid>.\n- freerank.admin.history - Allow /freerank history <player|uuid> [limit].\n- freerank.bypass.antifraud - Skip anti-abuse validations.\n\n\n```yaml\nconfig-version: 1\n\nlanguage: \"en\" # en, es\n\nclaim-window:\n  enabled: false\n  start: \"20/03/2026\"\n  end: \"27/03/2026\"\n  timezone: \"Europe/Jersey\"\n\nfree-rank-group: leviatan\nHOOK: \"LuckPerms\" # LUCKPERMS, AQUACORE\n\nhooks:\n  luckperms:\n    use-uuid: false\n    duration: \"30d\"\n    server: \"global\" # global or server specified\n    reason: \"FreeRank\"\n    commands:\n      - \"lp user {user} parent addtemp {rank} {time}\"\n  aquacore:\n    duration: \"30d\"\n    server: \"global\" # global or server specified\n    reason: \"FreeRank\"\n    commands:\n      - \"setrank {player} {rank} {duration} {server} {reason}\"\n\nanti-abuse:\n  enabled: true\n  minimum-account-age-hours: 24\n  minimum-playtime-minutes: 60\n  block-same-ip: true\n  max-claims-per-ip: 1\n  exempt-permission: \"freerank.bypass.antifraud\"\n\ngui:\n  enabled: true\n  size: 27\n  confirm-slot: 11\n  info-slot: 13\n  close-slot: 15\n\nwebhook:\n  enabled: false\n  url: \"\"\n  username: \"FreeRank\"\n  avatar-url: \"\"\n  send-on-claim: true\n  send-on-admin-reset: true\n```\n\n\nDocuments ↴\n\nComing soon for working\n\nSupport ↴\n\nIn case you have any problems you can communicate through discord. [Discord](https://discord.gg/pNrAYfuwAS)`",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 71,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

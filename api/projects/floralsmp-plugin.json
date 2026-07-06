@@ -1,0 +1,33 @@
+{
+  "id": "8b5iHJh9",
+  "slug": "floralsmp-plugin",
+  "title": "FloralSMP Plugin",
+  "description": "The plugin made by Abusefully for the FloralSMP!",
+  "body": "## 🌸 FloralSMP Plugin\n\nA powerful Bukkit/Spigot plugin by **Abusefully** that turns simple flowers (and mushrooms!) into unique magical abilities. Equip up to two “flowers” at a time to gain passive buffs or unleash spectacular active powers.\n\n---\n\n### 📦 Installation\n\n1. **Download** the compiled JAR and place it in your server’s `plugins/` folder.  \n2. **Restart** or **reload** the server.  \n3. Upon startup, the plugin will automatically register its commands, event listeners, and begin its background tasks (action-bar updater, passive effect applier, cleanup routine).\n\n---\n\n### ⚙️ Core Concepts\n\n- **Flower Types**  \n  Defined in `initializeFlowers()`. Each has:\n  - A unique **name** and **icon** (`Material`)\n  - **Display name** & **lore** (shown on hover)\n  - An **ability type**:\n    - **PASSIVE** → always-on (`INFINITE_DURATION` potion effects or automatic enhancements)\n    - **ACTIVE** → triggered on sneak‑click (`triggerActiveAbility()`), with individual cooldowns\n  - **Cooldown** (ms), optional **potion effect**, **amplifier**, **value** (e.g., healing %), and—if “unique”—a required Minecraft **advancement**\n\n- **Player Data** (`PlayerFlowerData`)  \n  Tracks equipped flowers (`flower1`, `flower2`), per-flower cooldown timers, and flags for special abilities (e.g., hypnosis state, masking). Holds rate-limit timestamps and original state for flight/skin.\n\n- **Ownership**  \n  Unique flowers (tied to achievements) can only exist once. Ownership is stored in `flowerOwners` and released on death or drop.\n\n- **Cleanup Routine**  \n  Every 24 h asynchronously, purges offline players’ data after 7 days, and frees up orphaned unique‑flower ownerships.\n\n---\n\n### ✨ Flower Abilities\n\n- **Wind Flower** (ACTIVE)  \n  • Launch yourself upward  \n  • White spiral + cloud/firework particles  \n  • 25 s cooldown  \n  • **Unlock**: `minecraft:adventure/sleep_in_bed`\n\n- **Hypnosis Mushroom** (ACTIVE)  \n  • Make nearby players holding writable books “sign” & drop them, plus knockback  \n  • 60 s cooldown  \n  • **Unlock**: `minecraft:story/enchant_item`\n\n- **Shadow Flower** (ACTIVE)  \n  • Invisibility + flight for 15 s  \n  • Dark smoke/spell particles  \n  • 180 s cooldown  \n  • **Unlock**: `minecraft:nether/get_wither_skull`\n\n- **Teleport Flower** (ACTIVE)  \n  • Teleport to targeted block (raycast up to 100 blocks)  \n  • Purple portal/dragon‑breath effects  \n  • 45 s cooldown  \n  • **Unlock**: `minecraft:end/enter_end_gateway`\n\n- **Mage Flower** (ACTIVE)  \n  • Summon lightning at cursor (up to 50 blocks)  \n  • Enchanted‑hit & crit effects  \n  • 20 s cooldown  \n  • **Unlock**: `minecraft:adventure/lightning_rod_with_villager_no_fire`\n\n- **Masking Flower** (ACTIVE)  \n  • Disguise self (and nearby allies) as “Unknown” (Steve skin) for 180 s  \n  • 5 min cooldown  \n  • **Unlock**: `minecraft:nether/find_fortress`\n\n- **Rose of Strength** (PASSIVE)  \n  • Strength I buff (infinite)  \n  • **Unlock**: none\n\n- **Warrior Flower** (PASSIVE)  \n  • Strength II buff (infinite)  \n  • **Unlock**: `minecraft:adventure/kill_all_mobs`\n\n- **Speed Flower** (PASSIVE)  \n  • Speed III buff (infinite)  \n  • **Unlock**: `minecraft:story/deflect_arrow`\n\n- **Vampiric Flower** (PASSIVE)  \n  • Heals 30% of melee damage dealt, with heart/blood particles  \n  • **Unlock**: `minecraft:story/enter_the_nether`\n\n- **Effect Flower** (PASSIVE)  \n  • Doubles amplifier of **all** potion effects (capped at amp 10) and newly‑applied effects  \n  • **Unlock**: `minecraft:nether/all_potions`\n\n> _Passive effects are (re)applied on login and plugin reload via scheduled updaters._\n\n---\n\n### 🎮 Commands & Permissions\n\n- `/floral help` (`floral.use`)  \n  Show in‑game usage guide.\n\n- `/floral list` (`floral.use`)  \n  List all flowers, their unlocks, and current ownership status.\n\n- `/floral bypass` (`floral.bypass`)  \n  Toggle cooldown bypass for active abilities (self only).\n\n- `/floral give <player> <flower>` (`floral.admin`)  \n  Grant any flower item to a player (unique flowers only if unowned).\n\n- `/floral reload` (`floral.admin`)  \n  Reload flower definitions & reapply passive effects to online players.\n\n- `/unequip <flower_name>` (`floral.use`)  \n  Unequip a flower slot and return the item to your inventory.\n\n\n### 🙏 Credits\n\n- **Author**: Abusefully  ",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 59,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

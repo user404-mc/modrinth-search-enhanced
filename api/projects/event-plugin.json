@@ -1,0 +1,22 @@
+{
+  "id": "rHXalFCY",
+  "slug": "event-plugin",
+  "title": "Event Plugin",
+  "description": "This system lets you define multiple timed “event phases” in the config where each phase runs console commands after a specified number of ticks from the event starting.",
+  "body": "# EVENT PHASE SYSTEM (BACKEND OVERVIEW)\n\n# PURPOSE:\nAllows a Paper plugin event system to execute console commands at timed intervals after /event start.\n\n------------------------------------------------------------\n# SUMMARY\n\n- Event starts\n- Players teleported\n- Phases loaded from config\n- Each phase scheduled using Bukkit scheduler\n- Console commands executed at defined ticks\n- \n------------------------------------------------------------\n# CONFIG STRUCTURE (config.yml)\n------------------------------------------------------------\n\nstart:\n  phases:\n    - after: <ticks>\n      commands:\n        - \"command 1\"\n        - \"command 2\"\n\n    - after: <ticks>\n      commands:\n        - \"command 3\"\n\n# NOTES:\n- phases is a LIST (not a map)\n- each entry is an independent timed phase\n- after = delay in ticks from event start\n- commands = list of console commands\n\n------------------------------------------------------------\n# ADMIN COMMANDS\n------------------------------------------------------------\n\n1. SET CENTER POSITION\n   /event cornucopia center\n\n   - Sets the center of the circle to the player's current location\n   - This is the origin point for all spawn calculations\n\n------------------------------------------------------------\n\n2. SET RADIUS\n   /event cornucopia radius <number>\n\n   Example:\n   /event cornucopia radius 15\n\n   - Controls distance from center to each spawn point\n   - Larger radius = more spread out players\n   - Smaller radius = tighter cornucopia\n\n------------------------------------------------------------\n\n3. ENABLE AUTO MODE\n   /event mode auto\n\n   - Switches spawn system from manual coordinates to generated circle spawns\n   - Required for cornucopia system to activate\n\n   /event mode manual\n   - Disables circle generation and uses saved spawn points instead\n\n------------------------------------------------------------\n4. START EVENT\n------------------------------------------------------------\n\n   /event start\n\n   BEHAVIOR:\n   - Counts online players\n   - Generates N evenly spaced points on a circle\n   - Teleports each player to a unique position\n   - Spawns are distributed using angular spacing\n\n------------------------------------------------------------\n# BACKEND\n------------------------------------------------------------\n\n1. Player runs:\n   /event start\n\n2. EventManager.startEvent() executes:\n   - Teleports players (manual or auto circle)\n   - Calls runStartPhases()\n\n3. runStartPhases():\n\n   FOR each phase in config \"start.phases\":\n\n       read:\n           delay = phase.after\n           commands = phase.commands\n\n       schedule task:\n           BukkitScheduler.runTaskLater(plugin, task, delay)\n\n4. When delay expires:\n\n   FOR each command in phase.commands:\n       Bukkit.dispatchCommand(CONSOLE, command)\n\n------------------------------------------------------------\n# SCHEDULING BEHAVIOR\n\nExample:\n\nphase A:\n  after: 1\n  commands:\n    - \"pvp disable\"\n\nphase B:\n  after: 20\n  commands:\n    - \"say Event started\"\n\nRESULT:\n\ntick 1  -> pvp disabled\ntick 20 -> message broadcast\n\nIMPORTANT:\n- delays are relative to EVENT START\n- phases do NOT chain automatically\n- each phase schedules independently\n\n------------------------------------------------------------\n# COMMON ERRORS FIXED\n\nWRONG (invalid YAML):\nstart:\n  phases:\n    after: 1\n    commands:\n    after: 20\n    commands:\n\nCAUSE:\n- duplicate keys\n- not a list structure\n\nCORRECT EXAMPLE:\nstart:\n  phases:\n    - after: 1\n      commands:\n        - \"clear\"\n    - after: 20\n      commands:\n        - \"say This is 1 second after the event start!\"",
+  "categories": [
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

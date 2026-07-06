@@ -1,0 +1,39 @@
+{
+  "id": "bIC64kUf",
+  "slug": "namemcapi",
+  "title": "NameMCAPI",
+  "description": "NameMCAPI is a lightweight Paper/Folia-safe plugin that exposes several of NameMC’s undocumented public API endpoints as a shared Bukkit service.",
+  "body": "# NameMCAPI (EarthPol)\n\nNameMCAPI is a lightweight Paper/Folia-safe plugin that exposes several of NameMC’s **undocumented public API endpoints** as a shared **Bukkit service**.\n\nIt is designed to be used by other plugins in the EarthPol ecosystem (or elsewhere) without scraping HTML or blocking the main server thread.\n\nAll requests are asynchronous and optionally cached.\n\n---\n\nFeatures\n\n- Async, non-blocking HTTP requests\n- Bukkit Services API integration\n- Optional TTL-based response caching\n- Cache bypass for “fetch latest” calls\n- Paper & Folia compatible\n- Clean separation between API and implementation\n\n---\n\nSupported NameMC Endpoints\n\nThe following NameMC endpoints are currently supported:\n\n- `GET /profile/{uuid}/friends`\n- `GET /profile/{uuid}/friends?with={uuid}`\n- `GET /server/{domain}/likes`\n- `GET /server/{domain}/likes?profile={uuid}`\n\n---\n\nInstallation\n\n1. Place `NameMCAPI.jar` into your `/plugins` directory\n2. Restart the server\n3. The API service will register automatically\n\nNo commands or permissions are required.\n\n---\n\nConfiguration\n\n```yml\nnamemc:\n  base-url: \"https://api.namemc.com\"\n  http-timeout-ms: 6000\n  cache-ttl-ms: 60000\n```\n\n### Configuration Options\n\n- `base-url`\n  - Defaults to `https://api.namemc.com`\n\n- `http-timeout-ms`\n  - HTTP request timeout in milliseconds\n\n- `cache-ttl-ms`\n  - Time-to-live for cached responses\n  - Set to `0` to disable caching entirely\n\n---\n\nUsing NameMCAPI in Other Plugins\n\nNameMCAPI exposes a Bukkit service called `NameMCAPIService`.\n\n1. Obtaining the Service\n\n```java\nimport com.earthpol.namemc.api.NameMCAPIService;\nimport org.bukkit.Bukkit;\n\nNameMCAPIService nameMC =\n        Bukkit.getServicesManager().load(NameMCAPIService.class);\n\nif (nameMC == null) {\n    getLogger().severe(\"NameMCAPI not found! Is the plugin installed?\");\n    return;\n}\n```\n\nThis should typically be done once in `onEnable`.\n\n---\n\n2. Fetching a Player’s Friends List\n\n```java\nUUID uuid = UUID.fromString(\"d550441b-5fcf-448c-a756-5fa391b89a46\");\n\n// false = fetch latest, true = use cache\nnameMC.getFriends(uuid, false).thenAccept(friends -> {\n    getLogger().info(\"Friend count: \" + friends.size());\n});\n```\n\n---\n\n3. Checking if Two Profiles Are Friends\n\n```java\nUUID a = UUID.fromString(\"403e6cb7-a6ca-440a-8041-7fb1e579b5a5\");\nUUID b = UUID.fromString(\"ac62cc72-ce09-4fd4-9018-38b92ef4d619\");\n\nnameMC.areFriends(a, b, true).thenAccept(areFriends -> {\n    if (areFriends) {\n        getLogger().info(\"They are friends on NameMC\");\n    }\n});\n```\n\n---\n\n4. Getting Server Like Count\n\n```java\nnameMC.getServerLikes(\"play.earthpol.com\", true)\n      .thenAccept(likes ->\n          getLogger().info(\"Server likes: \" + likes)\n      );\n```\n\n---\n\n5. Checking if a Player Liked a Server\n\n```java\nUUID profile = UUID.fromString(\"3bd5b91a-7532-4acf-bd2a-2a739206865b\");\n\nnameMC.hasProfileLikedServer(\"play.earthpol.com\", profile, false)\n      .thenAccept(liked -> {\n          if (liked) {\n              getLogger().info(\"Player has liked the server\");\n          }\n      });\n```\n\n---\n\nThreading Notes (IMPORTANT)\n\nAll callbacks run **off the main thread**.\n\nIf you need to interact with Bukkit objects (players, worlds, scoreboards, etc.), you must switch back to the main thread:\n\n```java\nnameMC.getFriends(uuid, true).thenAccept(friends -> {\n    Bukkit.getScheduler().runTask(this, () -> {\n        player.sendMessage(\"You have \" + friends.size() + \" NameMC friends\");\n    });\n});\n```\n\n---\n\nMaven Dependency (BitworksMC Nexus)\n\nNameMCAPI is published to the BitworksMC Nexus repository and can be consumed directly via Maven.\n\n1. Add the repository\n\n```xml\n<repositories>\n    <repository>\n        <id>bitworksmc-releases</id>\n        <url>https://nexus.bitworksmc.com/repository/maven-releases/</url>\n    </repository>\n</repositories>\n```\n2. Add the dependency\n\n```xml\n<dependency>\n    <groupId>com.earthpol</groupId>\n    <artifactId>NameMCAPI</artifactId>\n    <version>2.0.0</version>\n    <scope>provided</scope>\n</dependency>\n```\n\n\n---\n\nDesign Notes\n\n- NameMCAPI does **not** scrape HTML\n- Uses NameMC’s publicly accessible JSON endpoints\n- Responses and endpoints are undocumented and may change\n- Failures are not cached\n- Cache deduplicates in-flight requests to avoid stampedes\n\n---\n\nLicense / Disclaimer\n\nThis project is **not affiliated with NameMC** or Mojang/Microsoft.\n\nNameMC endpoints are undocumented and may change or disappear at any time.\n\nUse at your own risk.",
+  "categories": [
+    "folia",
+    "library",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

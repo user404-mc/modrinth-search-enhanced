@@ -1,0 +1,26 @@
+{
+  "id": "Jw1Ncjmy",
+  "slug": "pointcontrol",
+  "title": "PointControl",
+  "description": "capture points with minimalism design",
+  "body": "# PointControl\n\nA lightweight **Forge mod** that adds **capture points** to Minecraft.  \nPlayers can fight for control of areas, and teams can **capture and hold points** to gain dominance.\n\nPerfect for:\n\n- PvP servers\n- mini-games\n- faction battles\n- territory control systems\n- adventure maps\n\nPoints can be created anywhere and will automatically track nearby players and determine which team controls the area.\n\n---\n\n## Features\n\n- Create capture points anywhere in the world\n- Automatic **team dominance detection**\n- Configurable **capture duration**\n- Customizable **capture animations**\n- Client HUD showing point status\n- Persistent points saved with the world\n- Event API for other mods\n\n---\n\n## How It Works\n\nA **Point** is a area in the world.\n\nPlayers inside the area contribute to their **team's dominance**.\n\nIf one team has more players inside the area than others:\n\n1. The point starts **assimilating**\n2. Progress increases until **capture duration** is reached\n3. The team becomes the **owner of the point**\n\nIf another team enters the area:\n\n- capture progress can **decrease**\n- the point can become **contested**\n- the point can be **lost**\n\n---\n\n## Commands\n\nAll commands require **operator**.\n\n### Create a Point\n\nCreates a new capture point at the player's position.\n\n```\n/point create <id> <radius>\n```\n\nExample:\n\n```\n/point create alpha 10\n```\n\nCreates a point with:\n\n- id: `alpha`\n- radius: `10` blocks\n\n### Remove a Point\n\nDeletes an existing point.\n\n```\n/point remove <id>\n```\n\nExample:\n\n```\n/point remove alpha\n```\n\n### List Points\n\nDisplays all existing points.\n\n```\n/point list\n```\n\nExample output:\n\n```\nPoints: alpha, bravo, charlie\n```\n\n### Change Capture Duration\n\nSets how long it takes to capture a point.\n\n```\n/point assimilation duration <id> <ticks>\n```\n\nExample:\n\n```\n/point assimilation duration alpha 60\n```\n\nDefault value:\n\n```\n30 ticks\n```\n\nHigher values make capturing slower.\n\n### Change Capture Animation\n\nSets the animation used in the HUD.\n\n```\n/point assimilation animation <id> <animation>\n```\n\nAvailable animations:\n\n```\nup\ndown\nin\nout\n```\n\nExample:\n\n```\n/point assimilation animation alpha out\n```\n\n---\n\n## Configuration\n\nConfig file:\n\n```\nconfig/pointcontrol.json\n```\n\nExample configuration:\n\n```json\n{\n  \"enableDeassimilationWhenNoPlayers\": true,\n  \"deassimilationPeriod\": 6\n}\n```\n\n#### enableDeassimilationWhenNoPlayers\n\nIf enabled, capture progress will slowly decrease when no players are present.\n\n#### deassimilationPeriod\n\nControls how quickly capture progress decays.\n\nLower values = faster decay.\n\n---\n\n## HUD\n\nWhen points exist, players will see a **capture HUD** on the screen.\n\nThe HUD displays:\n\n- point identifier\n- capture progress\n- controlling team color\n- capture animation\n\n---\n\n## Team Support\n\nThe mod uses **Minecraft scoreboard teams**.\n\nExample:\n\n```\n/team add red\n/team add blue\n```\n\nPlayers must belong to teams for capture logic to work.\n\n---\n\n## Developer API\n\nPointControl provides simple events for mod integration.\n\n#### Events\n\n```\nPointCaptureEvent\nPointCapturedTickEvent\nPointLostEvent\n```\n\nExample usage:\n\n```java\nEventManager.POINT_CAPTURE.add(event -> {\n    Point point = event.getPoint();\n    Team team = event.getTeam();\n});\n```",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "minigame",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 56,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

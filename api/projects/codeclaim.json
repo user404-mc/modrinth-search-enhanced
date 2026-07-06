@@ -1,0 +1,31 @@
+{
+  "id": "DER3FUVI",
+  "slug": "codeclaim",
+  "title": "CodeClaim",
+  "description": "A server-side Fabric mod for Minecraft 1.21.1 that allows players to redeem codes for rewards.\nNo client mod required. No database required",
+  "body": "<div align=\"center\">\n\n# CodeClaim\n\nA server-side Fabric mod for Minecraft 1.21.1 that allows players to redeem codes for rewards.\nNo client mod required. No database required.\n\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62b47a?style=flat-square)](https://minecraft.net)\n[![Fabric](https://img.shields.io/badge/Fabric-Loader-dbb37d?style=flat-square)](https://fabricmc.net)\n[![Java](https://img.shields.io/badge/Java-21-orange?style=flat-square)](https://adoptium.net)\n[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)\n[![Server Side](https://img.shields.io/badge/Side-Server%20Only-informational?style=flat-square)](https://fabricmc.net)\n\n</div>\n\n---\n\n## Overview\n\n\nCodeClaim lets server administrators create redeemable codes that reward players with any server command — give items, Pokemon, broadcast titles, and more. Each player can only redeem each code once, and each code can have a global usage limit. All data is stored in simple JSON files with no external database setup required.\n\n![Replace this with a description](https://cdn.modrinth.com/data/cached_images/4b0c345be38e5cd28b01c5842a4be899cb4ad45e.png)\n---\n\n## Features\n\n- Any player can use `/claim` without operator permissions\n- Each player can only redeem each code once, enforced by UUID\n- Per-code global usage limit via `max_uses`\n- Set `max_uses: -1` for unlimited redemptions\n- Execute any server command as a reward using `%player%` as a placeholder\n- All data auto-saves to a local JSON file\n- Hot-reload config and data without restarting the server\n- Server-side only — players do not need to install anything\n\n---\n\n## Requirements\n\n- Minecraft 1.21.1\n- Fabric Loader 0.15.0 or later\n- Fabric API 0.102.0+1.21.1\n- Java 21\n\n---\n\n## Installation\n\n1. Download `codeclaim-1.0.0.jar` from the [Releases](../../releases) page\n2. Download all required dependencies: Fabric Language Kotlin, Fabric API\n3. Place the file in your server's `mods/` folder alongside Fabric API\n4. Start the server — the config file will be automatically generated at `config/codeclaim.json`\n5. Edit the config to define your codes and rewards\n6. Use `/claimadmin reload` to apply any changes without restarting\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/claim <code>` | All players | Redeem a code and receive its reward |\n| `/claimadmin reload` | OP level 2 | Reload config and player data from disk |\n| `/claimadmin info <code>` | OP level 2 | View usage statistics for a code |\n\n---\n\n## Configuration\n\nConfig file location: `config/codeclaim.json`\n\n```json\n{\n  \"messages\": {\n    \"invalid_code\":    \"&cCode '&4{code}&c' does not exist!\",\n    \"already_claimed\": \"&cYou have already redeemed '&4{code}&c'!\",\n    \"max_uses\":        \"&cCode '&4{code}&c' has reached its usage limit!\",\n    \"success\":         \"&aSuccessfully redeemed code '&2{code}&a'!\",\n    \"reloaded\":        \"&aCodeClaim config reloaded!\"\n  },\n  \"codes\": {\n    \"WELCOME2024\": {\n      \"max_uses\": -1,\n      \"commands\": [\n        \"give %player% minecraft:bread 16\"\n      ]\n    },\n    \"SHINY_EVENT\": {\n      \"max_uses\": 100,\n      \"commands\": [\n        \"givepokemonother %player% moltres form=galarian\",\n        \"title @a title {\\\"text\\\":\\\"A player claimed SHINY_EVENT!\\\",\\\"color\\\":\\\"gold\\\"}\"\n      ]\n    },\n    \"GRAND_PRIZE\": {\n      \"max_uses\": 1,\n      \"commands\": [\n        \"give %player% minecraft:netherite_ingot 3\",\n        \"say %player% claimed the Grand Prize!\"\n      ]\n    }\n  }\n}\n```\n\n### Field Reference\n\n| Field | Description |\n|-------|-------------|\n| `max_uses` | Maximum total redemptions across all players. `-1` means unlimited. |\n| `commands` | List of server commands to execute when the code is successfully redeemed. |\n| `%player%` | Placeholder replaced with the redeeming player's username at runtime. |\n| `{code}` | Placeholder replaced with the entered code in message strings. |\n| `&a`, `&c` | Standard Minecraft color codes supported in all message fields. |\n\n---\n\n## Data Storage\n\nPlayer redemption history is automatically saved to:\n\n```\ndata/codeclaim_data.json\n```\n\nThis file tracks which players have redeemed which codes, and the total usage count per code. Back up this file regularly to preserve redemption history across server migrations.\n\n---\n\n## Building from Source\n\nRequirements: JDK 21, Gradle 8.8 or later\n\n```bash\ngit clone https://github.com/YOUR_USERNAME/codeclaim\ncd codeclaim\n\n# Linux / macOS\n./gradlew build\n\n# Windows\ngradlew.bat build\n```\n\nThe compiled jar will be output to `build/libs/codeclaim-1.0.0.jar`.\n\n---\n\n## Compatibility\n\n| Mod | Status |\n|-----|--------|\n| Cobblemon | Compatible — use `givepokemonother %player%` |\n| LuckPerms | Compatible |\n| Any server-side command mod | Compatible |\n\n---\n\n## License\n\nThis project is licensed under the MIT License. See [LICENSE](LICENSE) for details.",
+  "categories": [
+    "economy",
+    "fabric",
+    "social",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 30,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

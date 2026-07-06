@@ -1,0 +1,23 @@
+{
+  "id": "42xffPPv",
+  "slug": "per-player-timer",
+  "title": "Per Player Timer",
+  "description": "This project adds a timer, which can be started by the player or by a commandblock. The timer is unique to the player and each player can have their own timer running. It is a server-side only installation for running minigames and timed challenges.",
+  "body": "# PlayerTimer\n\nA Paper plugin providing per-player timers for Minecraft minigames and SMP events.\n\nEach player has their own independent timer which can run simultaneously with timers belonging to other players. Timers may count up or count down and can be controlled using Brigadier commands.\n\nDesigned for:\n- minigame servers\n- puzzle maps\n- speedrun challenges\n- escape rooms\n- timed parkour\n- multiplayer events where players participate independently\n\n---\n\n# Features\n\n- Independent timer per player\n- Countup and countdown modes\n- Brigadier command support\n- Pause and resume support\n- Timer visibility control\n- Countdown completion notification\n- Action bar display\n- Built for Paper servers\n\n---\n\n# Commands\n\n| Command | Description |\n|---|---|\n| `/playertimer start` | Start a countup timer |\n| `/playertimer start countup` | Explicitly start a countup timer |\n| `/playertimer start countdown` | Start a 5 minute countdown |\n| `/playertimer start countdown <seconds>` | Start a countdown with custom duration |\n| `/playertimer pause` | Pause the current timer |\n| `/playertimer resume` | Resume a paused timer |\n| `/playertimer stop` | Stop the timer and reset to 00:00 |\n| `/playertimer reset` | Reset the timer to 00:00 and set it to READY state |\n| `/playertimer hide` | Hide the timer display |\n| `/playertimer show` | Show the timer display |\n\n---\n\n# Timer States\n\nThe plugin internally tracks timers using a state system.\n\n| State | Meaning |\n|---|---|\n| `READY` | Timer exists but has not yet started |\n| `RUNNING` | Timer is actively counting |\n| `PAUSED` | Timer is temporarily halted |\n| `STOPPED` | Timer was manually stopped |\n| `FINISHED` | Countdown timer reached zero |\n\nThis prevents invalid operations such as:\n- resuming a stopped timer\n- resuming a finished countdown\n- starting multiple timers simultaneously\n\n---\n\n# Visibility Behaviour\n\nTimers can be visible or hidden independently of their running state.\n\nCurrent behaviour:\n\n| Action | Visibility Result |\n|---|---|\n| Start timer | Timer becomes visible |\n| Pause timer | Timer remains visible |\n| Resume timer | Timer becomes visible/remains visible |\n| Stop timer | Timer remains visible for 1 second, then hides |\n| Reset timer | Timer remains visible |\n| Hide command | Timer becomes hidden |\n| Show command | Timer becomes visible |\n\n---\n\n# Countdown Completion\n\nWhen a countdown timer reaches zero:\n- the timer enters the `FINISHED` state\n- the timer stops automatically\n- the player receives a chat notification\n- a sound effect is played\n\n---\n\n# Planned Features\n\n- Region-based automatic timer triggering\n- Button-triggered timers\n- API for minigame developers\n- Boss bar support\n- Scoreboard support\n- Configurable sounds\n- Persistence across relogs/restarts\n- PlaceholderAPI support",
+  "categories": [
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 22,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

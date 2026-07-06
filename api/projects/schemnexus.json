@@ -1,0 +1,25 @@
+{
+  "id": "smCbbfMv",
+  "slug": "schemnexus",
+  "title": "SchemNexus",
+  "description": "Configurable automatic scheduled schematic saving.",
+  "body": "Place a Schematic Nexus block, mark out what you want in the GUI, and the server saves `.schem` files on a timer. Pull them in with WorldEdit or FAWE when you want to paste stuff back in.\n\n## What it does\n\n**The block.** Right-click as an admin, set your two corners (offsets are right / up / back from how the block faces), pick a paste origin and filename. Stack multiple copies along the back axis with a gap if you need repeats. Writes `.schem` files that WorldEdit and FAWE understand.\n\n**On a schedule.** Flip export on and it runs from `config/schemnexus.json` (every minute out of the box). It loads chunks in small bites so a huge build does not freeze the server.\n\n**Export now.** Skips waiting for the next cron tick and runs the same export job for just that nexus.\n\n**Check.** Closes the menu and draws boxes in the world so you can see if you got the schematic area right.\n\n**Saving.** Each nexus is tracked in SQLite in the world folder. Break the block and that entry is marked dead.\n\n## Requirements\n\n- Minecraft 1.20.1\n- Fabric Loader\n- Fabric API\n\n## Recommended\n\n- WorldEdit or FastAsyncWorldEdit\n\n## Optional\n\n- LuckPerms if you want to hand out `schemnexus.admin` properly\n\n## Setup\n\n1. Drop Fabric API and SchemNexus in the server `mods/` folder. Boot once so `config/schemnexus.json` exists.\n2. Put SchemNexus on the client too.\n3. Schematics are saved in in `schemnexus-exports/schem/` unless you point `exportRoots.SCHEM` at something like `config/worldedit/schematics`. Stacked setups get `name0.schem`, `name1.schem`, and so on.\n4. OP yourself (level 4+) or get `schemnexus.admin`, grab a **Schematic Nexus** from the creative tab, place it, fill in the panel, hit **Done**. Turn export on for the timer, or **Export now** if you want the schematic now.\n\n## Files\n\n- `config/schemnexus.json`\n- export folder from `exportRoots` (default `schemnexus-exports/schem/`)\n- `<world>/schemnexus/schemnexus.db`\n\n## Config\n\nWorth tweaking: `exportCron`, `exportBatchSize`, `exportChunksPerTick`\n\n## Credits\n\n- Haydn for the idea.\n- Sean for beta testing.\n- Tenne for the model and icon.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 6009,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

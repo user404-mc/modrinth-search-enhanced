@@ -1,0 +1,31 @@
+{
+  "id": "PxdDGZkP",
+  "slug": "worldpreventer",
+  "title": "WorldPreventer",
+  "description": "Prevents your Worlds from being downloaded",
+  "body": "# WorldPreventer – Advanced Anti-Exploit & World Protection\n\n⚠️ **Early Development Notice**\nWorldPreventer is still in a very early stage of development. Many systems are functional, but the **machine learning (ML) detection system does not ship with a trained model**.\n\n* Do **not enable ML detection** unless you have trained your own model.\n* If you see the notification `REQUEST_STATS observed (WorldTools signature)`, this likely indicates that a client is attempting to download your world.\n\n---\n\n## Overview\n\nWorldPreventer is a **high-performance anti-exploit and world protection plugin** designed to safeguard your server from a wide range of threats, including:\n\n* **World downloads**\n* **Chunk exploitation**\n* **Suspicious client behavior**\n\nIt combines **packet-level monitoring**, **behavioral analysis**, and **adaptive responses** to protect your server from malicious activity.\n\n---\n\n##  Features\n\n###  Core Protection Systems\n\n1. **Chunk Exploit Prevention**\n\n   * Detects & prevents rapid chunk loading/unloading\n   * Monitors chunk interaction patterns\n   * Stops chunk boundary exploits\n\n2. **WorldTools Blocker**\n\n   * Blocks WorldTools client functionality\n   * Prevents unauthorized world downloads\n   * Detects & blocks rapid join/leave patterns\n\n3. **Deep Packet Inspection**\n\n   * Analyzes network traffic for suspicious patterns\n   * Detects & blocks malicious packet sequences\n   * Monitors data volume & timing anomalies\n\n4. **Adaptive Response System**\n\n   * Dynamic threat-level scoring\n   * Escalating responses (warn → kick → ban)\n   * Fully configurable actions\n\n---\n\n###  Machine Learning Detection (Optional)\n\n **Important:** The ML system is disabled by default and ships **without a trained model**. Do not enable it unless you train your own.\n\nWhen configured properly, the ML system provides:\n\n* **Anomaly Detection** – Spotting unusual player behavior\n* **Behavioral Analysis** – Learning normal server patterns\n* **Real-time Scoring** – Constantly evaluating actions\n* **Adaptive Thresholds** – Adjusting to server conditions\n\n**Tracked Features (12 total):**\nChunk transitions, container interactions, movement volume, entity spawn rates, packet bursts, systematic movement, join surges, client brand, timing precision, data volume variance, interaction patterns, movement entropy.\n\n---\n\n##  Commands & Permissions\n\n### Admin Commands\n\n* `/worldpreventer reload` – Reload configuration\n* `/worldpreventer status` – View protection status\n* `/worldpreventer simulate <player> <test>` – Run simulation tests\n* `/worldpreventer ml [enable|disable|status]` – Manage ML system\n\n### Permissions\n\n* `worldpreventer.admin` – Full access & bypass\n* `worldpreventer.staff` – Receive suspicious activity alerts\n* `worldpreventer.bypass` – Exclude player from detection\n\n---\n\n##  Configuration\n\nExample `config.yml`:\n\n```yaml\n# Grace period after join\njoin_grace_period_seconds: 120\n\n# Escalation actions\nactions:\n  on_exceed: WARN  # WARN, KICK, BAN\n\n# Suspicion scoring\nscoring:\n  enabled: true\n  decay_per_minute: 10.0\n  thresholds:\n    warn: 100.0\n    kick: 500.0\n\n# Machine Learning (disabled by default)\nml:\n  enabled: false\n  direct_kicks: false\n  score_threshold: 3.0\n  points_on_exceed: 20.0\n  kick_message: \"§cKicked by ML anti-cheat system\"\n  window_seconds: 60\n  autosave_minutes: 5\n  decay: 0.98\n\n# ProtocolLib-based packet blocking\npacket_blocking:\n  enabled: true\n  block_stats_request: false\n  block_statistics: false\n  block_map_data: false\n  corrupt_block_entities: false\n  inject_fake_data: false\n```\n\n---\n\n##  Integration\n\n### Dependencies\n\n* **Required:** ProtocolLib\n* **Recommended:** Vault\n\n### API Example\n\n```java\nWorldPreventer plugin = (WorldPreventer) Bukkit.getPluginManager().getPlugin(\"WorldPreventer\");\n\n// Get suspicion score\ndouble score = plugin.getSuspicionScorer().getScore(player.getUniqueId());\n\n// Add custom detection points\nplugin.getSuspicionScorer().addScore(player.getUniqueId(), 10.0, \"CUSTOM_EVENT\");\n```\n\n---\n\n##  Staff Notifications\n\nStaff with permission receive alerts for:\n\n* Suspicious activity\n* ML system detections\n* Config changes\n* Warnings & errors\n\n---\n\n##  Bypass Options\n\nPlayers excluded from detection:\n\n* `worldpreventer.bypass` permission holders\n* Players in Creative mode\n* Players in Spectator mode\n\n---\n\n##  Support\n\nFor bug reports, feature requests, or support, please visit the [GitHub repository](https://github.com/yourusername/WorldPreventer).\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 90,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

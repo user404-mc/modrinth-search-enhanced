@@ -1,0 +1,24 @@
+{
+  "id": "ymQtCggO",
+  "slug": "slip-of-a-tongue",
+  "title": "Slip of a Tongue",
+  "description": "Put words in list so when players say the word (via mic), a series of commands will be run",
+  "body": "# Slip of a Tongue\n\n_Voice-controlled command execution for Minecraft._\n\n**Slip of a Tongue** allows players to trigger server-side commands and custom narrations using their actual voice. By leveraging the **VoskLib** client-side speech recognition engine, your spoken words are translated to text locally and sent to the server for secure validation and execution.\n\n***\n\n## 🎤 How it Works\n\n1.  **The Client:** Uses **VoskLib** (locally) to turn your microphone input into a string of text.\n2.  **The Bridge:** The client sends this string to the server.\n3.  **The Server:** Validates the word against a pre-defined list. If it matches, the server executes the linked commands and narrations.\n\n \n\n***\n\n## 🛠 Installation\n\n### Client-Side (Required)\n\n1.  Install [VoskLib](https://www.curseforge.com/minecraft/mc-mods/vosklib).\n2.  Install **Slip of a Tongue**.\n3.  **Important:** Open the VoskLib config in-game _(by clicking Mods -> VoskLib -> Config)_ and download a language model for the speech recognition to work.\n4.  The voice recognition will be automatically enabled upon joining a world.\n\n \n\n### Server-Side (Required)\n\n1.  Install **Slip of a Tongue** (VoskLib is **not** required on the server).\n2.  Configure your word list in the server's config folder.\n\n \n\n***\n\n## ⚙️ Command Syntax\n\nThe server-side configuration uses a specific format to map voice triggers:\n\n`word:[command1, command2, command3 %player%]text to narrate`\n\n### Breakdown:\n\n*   **`word`**: The keyword detected by the client's STT.\n*   **`[...]`**: A list of server commands (no `/` needed).\n*   **`%player%`**: Replaced by the name of the player who spoke.\n*   **`text to narrate`**: The message that will be narrated/sent back upon success.\n\n### Example Entry:\n\n> `ascend:[effect give %player% levitation 5 1, say %player% is ascending!]Up we go!`\n\n***\n\n## 🔒 Security & Privacy\n\n*   **Client-Side STT:** Speech processing is handled entirely on your computer via VoskLib. No audio data is ever sent to the server or the cloud.\n*   **Server-Side Validation:** To prevent players from spoofing commands, the server only executes actions for words explicitly defined in the server-side configuration file.\n\n***\n\n## 📜 Credits\n\n*   **VoskLib:** Created by [InfinityTwo](https://www.curseforge.com/members/infinitytwo/projects)\n*   **Speech Engine:** Powered by [Vosk](https://alphacephei.com/vosk/).\n*   **License:** GNU General Public License v3.0",
+  "categories": [
+    "forge",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

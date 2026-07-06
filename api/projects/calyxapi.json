@@ -1,0 +1,30 @@
+{
+  "id": "kjp8taYz",
+  "slug": "calyxapi",
+  "title": "CalyxAPI",
+  "description": "Modular Paper plugin for server management, economy, chat, homes, minigames and cosmetics — extensible module API for addons (DE/EN, Brigadier commands, SQLite/MySQL).",
+  "body": "# CalyxAPI\n\nModular **Paper 1.21+** server system (Java 21) for CalyxMC — admin, economy, chat, homes, minigames, and cosmetics. Extend with addon plugins via the developer API (PlaceholderAPI-style).\n\n**MiniMessage** (DE/EN), **Brigadier commands**, SQLite or MySQL/MariaDB.\n\n---\n\n## Versions\n\n| Component | Version | Distribution |\n|-----------|---------|--------------|\n| **Plugin** (server) | **1.0.0** | Modrinth → `CalyxAPI-1.0.0.jar` in `plugins/` |\n| **API** (developers) | **1.0.0** | Maven `de.calyx:CalyxAPI:1.0.0` |\n\nPlugin and API versions may diverge in future releases. Match the **API version** in Gradle/Maven.\n\n---\n\n## Features\n\n### Core\n- Modular architecture — toggle modules in `config.yml`\n- German & English messages (`messages_de.yml` / `messages_en.yml`)\n- `/calyx` admin hub (reload, version, module branches)\n- SQLite by default, optional MySQL/MariaDB (HikariCP)\n- Optional hooks: Vault, PlaceholderAPI, LuckPerms\n\n### Modules\nBuilt-in modules in plugin **1.0.0**:\n\n| Module | Examples |\n|--------|----------|\n| **admin** | `/calyx admin`, `/ban`, `/kick` |\n| **economy** | `/balance`, `/pay`, `/baltop` |\n| **chat** | `/msg`, `/r` |\n| **homes** | `/home`, `/sethome`, `/warp`, `/tpa` |\n| **games** | `/game`, `/leave` |\n| **cosmetics** | `/cosmetics` |\n\n> Several commands are **skeletons** in 1.0.0 and will be implemented in later updates.\n\n---\n\n## Requirements\n\n- **Paper** 1.21.4+ (or compatible fork)\n- **Java 21**\n- Optional: Vault, PlaceholderAPI, LuckPerms\n\n---\n\n## Installation\n\n1. Download **CalyxAPI** from Modrinth: **`CalyxAPI-1.0.0.jar`** (plugin version **1.0.0**).\n2. Place in your server's `plugins/` folder.\n3. Start the server — files are created under `plugins/CalyxAPI/`.\n4. Edit `config.yml` and enable/disable modules.\n5. Run `/calyx reload` after config changes (or restart).\n\n---\n\n## Developer API\n\nFor addon plugins.\n\n**Repository:** [DerGamer09 Repository](https://repo.dergamer09.at/)  \n**URL:** `https://repo.dergamer09.at/releases` (public, no login)  \n**Coordinates:** `de.calyx:CalyxAPI:1.0.0` (API version **1.0.0**)\n\nUse **`compileOnly`** — the CalyxAPI **plugin JAR** must still be installed on the server.\n\n### Maven\n\n`pom.xml`:\n\n```xml\n<repositories>\n    <repository>\n        <id>dergamer09-repository</id>\n        <name>DerGamer09 Repository</name>\n        <url>https://repo.dergamer09.at/releases</url>\n    </repository>\n    <repository>\n        <id>papermc</id>\n        <url>https://repo.papermc.io/repository/maven-public/</url>\n    </repository>\n</repositories>\n\n<dependencies>\n    <dependency>\n        <groupId>de.calyx</groupId>\n        <artifactId>CalyxAPI</artifactId>\n        <version>1.0.0</version>\n        <scope>provided</scope>\n    </dependency>\n    <dependency>\n        <groupId>io.papermc.paper</groupId>\n        <artifactId>paper-api</artifactId>\n        <version>1.21.4-R0.1-SNAPSHOT</version>\n        <scope>provided</scope>\n    </dependency>\n</dependencies>\n```\n\n### Gradle Kotlin\n\n`build.gradle.kts`:\n\n```kotlin\nrepositories {\n    mavenCentral()\n    maven(\"https://repo.papermc.io/repository/maven-public/\")\n    maven {\n        name = \"dergamer09Repository\"\n        url = uri(\"https://repo.dergamer09.at/releases\")\n    }\n}\n\ndependencies {\n    compileOnly(\"io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT\")\n    compileOnly(\"de.calyx:CalyxAPI:1.0.0\")\n}\n```\n\n### Gradle Groovy\n\n`build.gradle`:\n\n```groovy\nrepositories {\n    mavenCentral()\n    maven { url 'https://repo.papermc.io/repository/maven-public/' }\n    maven {\n        name 'dergamer09Repository'\n        url 'https://repo.dergamer09.at/releases'\n    }\n}\n\ndependencies {\n    compileOnly 'io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT'\n    compileOnly 'de.calyx:CalyxAPI:1.0.0'\n}\n```\n\n### Addon dependency\n\n`paper-plugin.yml`:\n\n```yaml\ndependencies:\n  server:\n    CalyxAPI:\n      load: BEFORE\n      required: true\n      join-classpath: true\n```\n\n### API usage\n\n```java\n// Extend AbstractCalyxModule and register in onEnable():\nnew MyModule(this).register();\n\n// Or:\nde.calyx.serversystem.api.CalyxAPI.registerModule(new MyModule(this));\n```\n\n- Brigadier commands via `registerCommands(ModuleCommandRegistrar)`\n- Events: `CalyxModuleRegisterEvent`, `CalyxModuleUnregisterEvent`\n\n---\n\n## Permissions\n\n| Permission | Description |\n|------------|-------------|\n| `calyx.admin` | `/calyx` base access |\n| `calyx.admin.reload` | `/calyx reload` |\n| `calyx.module.<id>` | `/calyx <module>` branch |\n| `calyx.economy.*` | Economy commands |\n| `calyx.homes.*` | Homes / warps / tpa |\n| `calyx.test` | Test addon (if installed) |\n\n---\n\n## Disclaimer\n\nEarly release — core framework and module skeletons are stable; individual gameplay features are still being implemented.",
+  "categories": [
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

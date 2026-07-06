@@ -1,0 +1,36 @@
+{
+  "id": "rG2iBS4K",
+  "slug": "serverprotection",
+  "title": "ServerProtection",
+  "description": "ServerProtection is a lightweight plugin that protects your server from new players attempting to grief using dangerous items and blocks.",
+  "body": "# ServerProtection\n\n**ServerProtection** is a lightweight plugin that protects your server from new players attempting to grief using dangerous items and blocks.\n\n## 🔒 How it works\nNew players are restricted from using certain blocks and items until they reach a configured playtime threshold. Once they've played long enough, all restrictions are lifted automatically.\n\n## ✨ Features\n- **Playtime-based restriction** — players are blocked until they reach the required playtime\n- **Fully configurable blacklist** — block any item or block completely\n- **World-based rules** — restrict blocks only in specific dimensions (beds in Nether/End, respawn anchors in Overworld)\n- **Placement rules** — restrict items to specific blocks and faces (flint & steel only on top of obsidian)\n- **Discord webhook alerts** — get notified instantly when a player triggers a restriction\n- **Hot reload** — reload config without restarting the server\n\n## 📋 Commands & Permissions\n\n| Command | Description | Permission |\n|---|---|---|\n| `/serverprotection reload` | Reload the config | `serverprotection.reload` |\n\n| Permission | Description |\n|---|---|\n| `serverprotection.bypass` | Bypass all restrictions |\n| `serverprotection.reload` | Reload the config |\n\n\n## ⚙️ Configuration\n\n\n<details>\n<summary>config.yml</summary>\n\n```yaml\nserver:\n  id: \"Survival\"\n\nwebhook:\n  url: \"https://discord.com/api/webhooks/...\"\n  message: >-\n    ⚠️ Player **%player%** tried to use **%item%**\n    on **%block%** in world **%world%**\n    (x: %pos_x%, y: %pos_y%, z: %pos_z%)\n    on server **%server%**, playtime: **%playtime_minutes%** min.\n\nplaytime:\n  required-hours: 5\n  requirement-message: \"<red>⚠ You have not played enough time. Minimum: %playtime_hours% h.\"\n\nrules:\n  # Fully blocked blocks and items\n  blocked:\n    - TNT\n    - END_CRYSTAL\n    - TNT_MINECART\n    - WITHER_SKELETON_SKULL\n    - LAVA_BUCKET\n\n  # Blocked only in certain worlds\n  world-restricted:\n    - materials: [RESPAWN_ANCHOR]\n      requires-item: GLOWSTONE # optional\n      blocked-in: [NORMAL, THE_END]\n\n    - materials: [RED_BED, ORANGE_BED, YELLOW_BED, LIME_BED, GREEN_BED, CYAN_BED, LIGHT_BLUE_BED, BLUE_BED, PURPLE_BED, MAGENTA_BED, PINK_BED, WHITE_BED, LIGHT_GRAY_BED, GRAY_BED, BLACK_BED, BROWN_BED]\n      blocked-in: [NETHER, THE_END]\n\n  # Allowed only on a specific block and face\n  placement-restricted:\n    - materials: [FLINT_AND_STEEL, FIRE_CHARGE]\n      allowed-block: [OBSIDIAN]\n      allowed-face: UP # optional\n```\n\n</details>\n\n\n\n\n## 📦 Requirements\n\n- Java 21+",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 27,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

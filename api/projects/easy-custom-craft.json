@@ -1,0 +1,34 @@
+{
+  "id": "fjQLwbei",
+  "slug": "easy-custom-craft",
+  "title": "Easy Custom Craft",
+  "description": "A Minecraft Forge mod that lets admins create their own recipes in-game — no files, no JSON. Recipes are stored per world/server and applied instantly.",
+  "body": "Easy Custom Craft\nA Minecraft Forge 1.20.1 mod that lets admins create their own recipes in-game — no files, no JSON. Recipes are stored per world/server and applied instantly.\n\nFeatures\nCrafting table – shaped & shapeless (commands + 3×3 GUI)\nCooking – furnace, blast furnace, smoker, campfire (xp + time)\nSmithing table & stonecutter\nTags – use tag:… ingredients anywhere + create your own tags\nAny modded machine (Create, Mekanism, Thermal…) – scans every recipe type, detects its options, with command auto-complete, multiple inputs and fluids — all without JSON\nNBT results and modded items supported\nCommands (/ecc)\nPublic: list, preview <name>\nAdmin (OP): reload, remove <name>, and create …:\ncreate craft_with_gui\ncreate craft crafting_table shaped|shapeless …\ncreate craft furnace|blastfurnace|smoker|campfire|smithing|stonecutting …\ncreate tag <name> <values…>\ncreate modded_craft types [filter]\ncreate modded_craft <type> <name> <input[,input2,…]> <output> [count] [key=value…]\nDocumentation (advanced)\nValue grammar\nEvery \"ingredient\" position accepts:\n\nSyntax\tMeaning\nminecraft:stick / stick\titem (namespace defaults to minecraft)\ntag:<ns:path>\titem tag → {\"tag\":\"…\"}\nempty / air\tblank crafting cell (shaped only)\nResult positions take a concrete item (via the vanilla item argument, so NBT like minecraft:diamond_sword{…} works). In modded_craft only, key=value values additionally accept: fluid:<ns:path>[:amount] (default amount 1000), true/false, numbers, plain strings, and comma lists a,b,c (→ JSON array).\n\nRecipe names are sanitized to [a-z0-9/._-] (other chars → _).\n\nCrafting table\nshaped <name> <s1>[ s2..s9] result <item> [count]\nIngredients come first; the literal result ends the grid. Trailing empty cells are optional (omit them); use empty/air only for internal gaps.\nGrid is filled left→right, top→bottom; the pattern is auto-trimmed to its bounding box. Up to 16 distinct ingredients.\nshapeless <name> <ing1>[ ing2..ing9] result <item> [count]\ncount is optional (default 1, max 64).\nCooking\n<station> <name> <ingredient> <result> [experience] [cookingtime]\n\nStations & default cook time: furnace 200, blastfurnace 100, smoker 100, campfire 600 ticks.\nexperience default 0.0. Result supports count + NBT (Forge object result).\nSmithing & stonecutting\nsmithing <name> <template> <base> <addition> <result> [count] → minecraft:smithing_transform; all three inputs required (1.20.1 rule). Result count/NBT supported.\nstonecutting <name> <ingredient> <result> [count] → result is a plain item id, so NBT on the result is not supported (vanilla serializer limitation).\nTags\ncreate tag <name> <value1> [value2…] writes data/easycustomcraft/tags/items/<name>.json (replace:false). Values are items or tag: references (nested as #ns:path). The tag becomes usable everywhere as tag:easycustomcraft:<name>. Referencing an unknown tag elsewhere fails loudly (validated against the live tag manager).\n\nModded recipes (modded_craft)\nDiscovery\n\ntypes with no filter → one line per mod with a type count.\ntypes <filter> → matching type ids; a single match prints a full analysis: input/output field names, fluid usage, and every detected option with its observed values (e.g. heatRequirement = heated, superheated).\nTab-completion after the output suggests all detected option keys, then their values.\nCreation <type> <name> <input[,…]> <output> [count] [key=value…] The builder works by learning from a real recipe of that type and editing it:\n\nPicks a template recipe of the type, preferring one in the type's own namespace and without conditions.\nStrips conditions (so your recipe never inherits a forge:mod_loaded dependency on another mod).\nReplaces item inputs with your list (fluid inputs from the template are kept); replaces the first item output with yours (secondary/fluid outputs kept).\nApplies each key=value override onto the JSON (any top-level field; lists via commas).\nValidates with the mod's own RecipeSerializer — invalid recipes are rejected with the mod's error, never written.\nWrites + reloads, then reports the options kept from the example (e.g. heatRequirement=heated) so you can override them.\nScope & limits\n\nBest for 1→N item machines plus scalar/enum options; Create mixing-style recipes typically need ≥2 inputs or heat.\nSchemas are learned from loaded recipes only (Forge 1.20.1 serializers are not introspectable), so a field never used by any installed recipe won't be suggested — but you can still type any key=value manually.\nThe full type schema is built in one pass over all recipes and cached (first types/tab may take a moment); string fields with >16 distinct values are treated as free-form.\nStorage & runtime\nEach recipe is a data-pack file in <world>/datapacks/easycustomcraft/data/easycustomcraft/recipes/<name>.json.\nAfter every create/remove the mod runs a programmatic resource reload mirroring vanilla /reload, auto-enabling the pack on first use — changes are live immediately, no restart.\nThis makes recipes inherently per world (single-player) or per server (dedicated).\nPermissions & sides\nRoot /ecc is public; list/preview are open. Everything under create, plus reload/remove, requires permission level 2 (OP).\nCustom command argument types (ingredient, ingredients) are registered with Forge, so the command tree syncs correctly. Install on the server for functionality and on the client for the GUI and command auto-complete.\n",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 11,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

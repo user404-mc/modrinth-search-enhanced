@@ -1,0 +1,19 @@
+{
+  "id": "hkAW7bCM",
+  "slug": "aeronautics-levitite-server-fix",
+  "title": "Aeronautics Levitite Server Fix",
+  "description": "Lets Levitite Blend crystallize on dedicated servers for Create: Aeronautics 1.2.1 and older (fixed upstream in 1.3.0).",
+  "body": "# Aeronautics Levitite Server Fix\n\nA tiny **server-side fix** for [Create: Aeronautics](https://modrinth.com/mod/create-aeronautics) that lets **Levitite Blend crystallize on dedicated servers**.\n\n> **Do you need this?**\n> Only if you run **Create: Aeronautics 1.2.1 or older** on a **dedicated server**.\n> **This bug is already fixed upstream in Aeronautics 1.3.0** — if you can update to 1.3.0+, do that instead and you don't need this mod. (1.3.0 requires Sable 2.0, so this exists for packs that are pinned to Aeronautics ≤1.2.1 / Sable 1.x.)\n\n## The problem\n\nOn a dedicated server, right-clicking Levitite Blend with a catalyzer (torch, flint & steel, fire charge, campfire) does nothing, and the server log throws:\n\n```\njava.lang.RuntimeException: Attempted to load class\n  net/minecraft/client/player/LocalPlayer for invalid dist DEDICATED_SERVER\n    at net.neoforged.fml.common.asm.RuntimeDistCleaner.processClassWithFlags\n    at dev.eriksonn.aeronautics.network.packets.LevititeCatalystCrystallizationPacket.handle(:38)\n→ Failed to process a synchronized task of the payload: aeronautics:levitite_blend_crystallize\n```\n\nIt works in singleplayer because the integrated server shares the client distribution.\n\n**Why:** the server-side crystallization packet handler called `LevititeCatalyzerHandler.isCatalyzer(...)`. That class is *client-tainted* — its `onUse` references the client-only `LocalPlayer` — so loading it on a dedicated server trips NeoForge's `RuntimeDistCleaner`, the packet fails, and crystallization never happens.\n\n(Tracked upstream as [Simulated-Project issue #664](https://github.com/Creators-of-Aeronautics/Simulated-Project/issues/664); fixed by commit `a86bd1d`, released in Aeronautics 1.3.0.)\n\n## The fix\n\nA single Mixin redirects that one tainted call to a server-safe inline item-tag check — exactly what `isCatalyzer` computes internally (`item.is(#aeronautics:levitite_catalyzer) || item.is(#aeronautics:levitite_soul_catalyzer)`). The dedicated server therefore never loads the client-tainted class, and the rest of the handler (which is already dist-safe) crystallizes normally.\n\n- No compile-time dependency on Aeronautics — the Mixin targets it by name.\n- The Mixin config is **non-required**: on Aeronautics 1.3.0+ (where the method was refactored away) it simply finds no target and **no-ops harmlessly** instead of crashing. So it's safe to leave installed across an Aeronautics update.\n\n## Install\n\n- **NeoForge 1.21.1** only.\n- Put the jar in your **server's** `mods/` folder. Clients don't need it (singleplayer already works), though it's harmless if present.\n- Requires Create: Aeronautics to do anything; does nothing on its own.\n\n## Compatibility\n\n| Aeronautics version | Effect of this mod |\n|---|---|\n| ≤ 1.2.1 | **Fixes** server-side levitite crystallization |\n| ≥ 1.3.0 | No-ops (already fixed upstream) — safe to remove |\n\n## License\n\nMIT. Contains no Create: Aeronautics code — the Mixin references it by name only.\n\n## Credits\n\n- Create: Aeronautics by Eriksonn / The Creators of Aeronautics.\n- Root-cause writeup and fix by DaciteRocks.\n",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 63,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

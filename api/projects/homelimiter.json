@@ -1,0 +1,42 @@
+{
+  "id": "eT7gbibF",
+  "slug": "homelimiter",
+  "title": "HomeLimiter",
+  "description": "Automatically enforces EssentialsX home limits when a player’s rank changes. If a player is downgraded and their new rank allows fewer homes, the plugin removes the most recently created homes to match the EssentialsX limits.",
+  "body": "# HomeLimiter\n\n## Overview\nHomeLimiter works with **EssentialsX** and **LuckPerms** to automatically enforce player home limits based on their highest active permission group.\nWhen a player is promoted or downgraded, the plugin checks how many homes their new rank allows and adjusts accordingly. This ensures players never exceed the number of homes permitted by their current rank — and if their limit increases again later, their homes are automatically restored.\nHomeLimiter also supports existing servers — all players are validated on startup to make sure their home count matches their rank.\n\n---\n\n## How It Works\n* Home limits are read directly from **EssentialsX's** `sethome-multiple` config (no duplicate configuration needed)\n* The plugin checks the player's highest matching LuckPerms permission (`essentials.sethome.multiple.<key>`)\n* When a player's rank changes, their new limit is applied instantly\n* On server startup, all players are automatically validated\n* If a player exceeds their limit, the **oldest homes are locked** — the most recently created homes are always kept\n\n### Smart & Safe Locking\n* Oldest homes are locked first; newest homes are always preserved\n* Homes without timestamps (set before installation) are sorted Z → A as a tiebreaker\n* Protected home names (like `home`) are **never** locked\n* Locked homes are **stored and restored automatically** if the player's limit increases again\n\nOnly the exact number of excess homes are locked — nothing more, nothing less.\n\n---\n\n## Example\nIf the **VIP** rank allows 5 homes and a player is downgraded to a rank that allows only 2 homes, the 3 **oldest** homes are locked automatically.\nIf the player is later re-promoted to VIP, those same 3 homes are restored — no data is lost.\nNo manual action required.\n\n---\n\n## Why Use This Plugin?\n* Prevents abuse of temporary ranks\n* Fully automatic — no staff intervention needed\n* Locked homes are safely restored if a player's rank increases again\n* Works on already established servers with no migration needed\n* Keeps progression balanced and fair\n* Lightweight and performance-friendly\n* Designed specifically for EssentialsX home systems\n\nPerfect for servers that use EssentialsX for rank-based perks and want reliable, hands-free home limit enforcement.\n\n---\n\n## Requirements\n* EssentialsX 2.20+\n* LuckPerms 5.4+\n* Java 21+\n* Spigot / Paper 1.21–26.1+",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 83,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1"
+  ],
+  "date_updated": null
+}

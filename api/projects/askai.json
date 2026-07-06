@@ -1,0 +1,34 @@
+{
+  "id": "8IbLnSTj",
+  "slug": "askai",
+  "title": "AskAI",
+  "description": "Chat with your favorite AI models in game!",
+  "body": "# AskAI\n\n![GitHub Release](https://img.shields.io/github/v/release/rohan-dogra/AskAI-MC?label=version) ![bStats Servers](https://img.shields.io/bstats/servers/29560) [![Modrinth Downloads](https://img.shields.io/modrinth/dt/8IbLnSTj?logo=modrinth)](https://modrinth.com/plugin/askai)\n\nThis plugin lets you chat with your favourite AI models in-game. Supports OpenAI, Anthropic, and Google Gemini.\n\nOn 'player' mode, each player picks a provider and model, sends messages with `/chat`, and gets private AI responses. On 'server' mode, the server sets a single API key and model for all players to use freely.\n\n## Note\n\nThis plugin is not meant for long conversations. It operates as a single shot Q&A format. Each message is sent with fresh context.\n\n## Requirements\n\n- Paper or Purpur 1.20.6+\n\n## Commands\n\n| Command | Description |\n|---------|-------------|\n| `/chat <message>` | Send a message to your active AI provider |\n| `/chat setkey <provider> <key>` | Set your API key for a provider |\n| `/chat setmodel <provider> <model>` | Set which model to use for a provider |\n| `/chat provider <provider>` | Switch your active provider |\n| `/chat status` | Show your current config and key status |\n| `/chat reload` | Reload config.yml without restarting |\n\nProviders: `openai`, `anthropic`, `gemini`\n\n## Permissions\n\n| Permission | Default | Description |\n|-----------|---------|-------------|\n| `askai.use` | All players | Use `/chat` and `/chat status` |\n| `askai.setkey` | All players | Manage keys, models, and provider selection |\n| `askai.admin` | OP only | Set server-wide API keys in server-key mode, reload config |\n\n## Key Modes\n\n### Player mode (default)\n\nEach player sets and manages their own API keys. This is the default behavior.\n\n### Server mode\n\nOne set of API keys is shared by all players, managed by admins. Players can still choose their own provider and model, but the API key comes from the server.\n\nTo enable, set `key-mode: \"server\"` in `config.yml` and run '/chat reload'. Only players with `askai.admin` permission can set keys in this mode.\n\n## Configuration\n\n```yaml\n# Encryption seed for API key storage. Set this once before first use.\n# Changing it after players have set keys makes their keys unrecoverable.\nencryption:\n  seed: \"CHANGE-ME-use-a-long-random-string-here\"\n\n# \"player\" (each player sets own keys) or \"server\" (admin sets shared keys)\nkey-mode: \"player\"\n\n# Rate limiting per player\nrate-limit:\n  requests: 10\n  window-seconds: 60\n\n# Message limits\nmax-message-length: 2000\nmax-response-tokens: 1024\n\n# System prompt prepended to all conversations\nsystem-prompt: \"You are a helpful assistant in a Minecraft server.\"\n\n# Which providers are enabled\nallowed-providers:\n  - openai\n  - anthropic\n  - gemini\n```\n",
+  "categories": [
+    "paper",
+    "purpur",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

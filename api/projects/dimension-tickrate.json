@@ -1,0 +1,21 @@
+{
+  "id": "OzJaYIaU",
+  "slug": "dimension-tickrate",
+  "title": "Dimension Tickrate",
+  "description": "Dimension Tickrate 是一个适用于 Minecraft NeoForge 1.21.1 的服务端优化辅助模组。",
+  "body": "This mod allows server administrators to configure independent target TPS values for different dimensions, transforming performance optimization from a global slowdown into dimension-based performance management.\n\nOverview\n\nThe core idea of this mod is to isolate heavy server load into specific dimensions.\n\nServer owners can create dedicated machine, industrial, or resource dimensions and encourage players to place high-load structures there, such as:\n\n* Large automation systems\n* Industrial machines\n* Pipe networks\n* Mob farms\n* Automatic production lines\n* High-frequency ticking block entities\n\nThe TPS of these dimensions can then be reduced independently, minimizing their impact on commonly used dimensions such as the Overworld, Nether, and End.\n\nExample\n\n/tickrate set minecraft:overworld 20\n/tickrate set custom:machine_dimension 10\n/tickrate set ad_astra:moon 5\n\nThis means:\n\n* Overworld runs at vanilla speed (20 TPS)\n* Machine dimension runs at 10 TPS\n* Moon runs at 5 TPS\n\nEach dimension is processed independently.\n\nReducing TPS in one dimension will not affect gameplay smoothness in other dimensions.\n\nCommands\n\nSet dimension TPS\n\n/tickrate set <dimension> <value>\n\nValue range: 1–20\n\nExamples:\n\n/tickrate set custom:machine_dimension 10\n/tickrate set custom:factory_dimension 5\n\nGet dimension TPS\n\n/tickrate get <dimension>\n\nList all configured dimensions\n\n/tickrate list\n\nReset dimension TPS\n\n/tickrate reset <dimension>\n\nResetting restores vanilla behavior (20 TPS).\n\nWhat is affected\n\nLowering a dimension’s TPS affects all server-side ticking logic inside that dimension, including:\n\n* Block ticks\n* Fluid ticks\n* Entity ticks\n* Mob AI\n* Item updates\n* Modded machines\n* Automation systems\n* Other tick-dependent mechanics\n\nTo avoid completely freezing players in slowed dimensions, the mod preserves low-frequency player updates even when full dimension ticks are skipped.\n\nInstallation\n\nMinecraft Version: 1.21.1\nLoader: NeoForge\nInstallation Target: Server-side\n\nDedicated servers only require server installation.\n\nFor singleplayer or LAN worlds, install on the local client since Minecraft runs an integrated server.\n\nData Persistence\n\nDimension TPS settings are stored using world persistent data.\n\nConfigured TPS values are automatically preserved after server restart.\n\nRecommended Usage\n\nRecommended setup:\n\n* Keep Overworld, Nether, and End at 20 TPS\n* Create dedicated machine or factory dimensions\n* Move heavy automation into those dimensions\n* Start testing at 15 or 10 TPS\n* Adjust gradually based on MSPT and player feedback\n\nExample:\n\n/tickrate set custom:machine_dimension 15\n\nIf needed:\n\n/tickrate set custom:machine_dimension 10\n\nAvoid setting extremely low TPS immediately, as machines and farms will noticeably slow down.\n\nNotes\n\nThis mod does not increase Minecraft’s maximum TPS beyond vanilla’s 20 TPS.\n\nIt reduces server load by decreasing tick frequency in selected dimensions.\n\nSome mods that rely on high-frequency ticking may behave differently under reduced TPS.\n\nIf issues occur, check configuration with:\n\n/tickrate list\n\nThen reset if necessary:\n\n/tickrate reset <dimension>\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 85,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

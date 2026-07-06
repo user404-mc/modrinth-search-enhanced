@@ -1,0 +1,28 @@
+{
+  "id": "8WxdFLQR",
+  "slug": "betterchunkloader",
+  "title": "BetterChunkLoader",
+  "description": "Minecraft plugin for keeping selected chunks loaded.",
+  "body": "**BetterChunkLoader** is a Minecraft server plugin that lets administrators place special chunk loader blocks to keep an area loaded even when players are not nearby.\n\nThe plugin is useful for servers that need important areas to keep running, such as farms, machines, storage systems, or technical builds that should continue working without requiring a player to stand in the chunk.\n\n## Features\n\n- **Chunk loader blocks**  \n  Place a special block to keep the surrounding server-defined chunk area loaded.\n\n- **Persistent chunk loaders**  \n  Chunk loaders are saved to plugin storage and restored after a server restart.\n\n- **Owner tracking**  \n  Every chunk loader stores the UUID of the player who placed it.\n\n- **Admin control**  \n  Administrators can give chunk loader blocks, open the admin menu, view active loaders, and manage access through permissions.\n\n- **Admin GUI**  \n  The admin menu shows a list of active chunk loaders with their world and coordinates.\n\n- **Teleport from GUI**  \n  Admins can click a listed chunk loader to teleport directly to its location.\n\n- **Custom language file**  \n  Plugin messages, item names, lore, and GUI text are stored in `lang.yml` and support Minecraft color formatting.\n\n## How It Works\n\n1. An administrator gives a player a chunk loader block.\n2. The player places the block at the center of the area they want to keep active.\n3. BetterChunkLoader saves the chunk loader location and owner.\n4. The plugin creates a fake server player at that location, so the server loads chunks around it using the same distance rules configured in `server.properties`.\n5. When the block is removed by the owner or an administrator, the chunk loader is removed from storage.\n\n## Installation\n\n1. Download or build the plugin jar.\n2. Place the jar file into your server's `plugins` folder.\n3. Restart the server.\n4. Configure generated files if needed:\n   - `plugins/BetterChunkLoader/lang.yml`\n   - `plugins/BetterChunkLoader/chunks/`\n\n## Commands\n\n### `/chunkloader admin`\n\nOpens the BetterChunkLoader admin menu.\n\nUse this menu to view active chunk loaders and teleport to their locations.\n\n**Permission:** `chunkloader.admin`\n\n### `/chunkloader giveblock <player> <amount>`\n\nGives chunk loader blocks to an online player.\n\nExample:\n\n```text\n/chunkloader giveblock Steve 3\n```\n\nThis gives `Steve` 3 chunk loader blocks.\n\n**Permission:** `chunkloader.admin`\n\n## Permissions\n\n### `chunkloader.admin`\n\nGrants access to BetterChunkLoader admin features.\n\nPlayers with this permission can:\n\n- Use the admin menu\n- Give chunk loader blocks\n- Place chunk loader blocks\n- Break chunk loaders owned by other players\n\nBy default, this permission is available to server operators.\n\n## Usage Guide\n\n### Giving a Chunk Loader Block\n\nUse:\n\n```text\n/chunkloader giveblock <player> <amount>\n```\n\nExample:\n\n```text\n/chunkloader giveblock Alex 1\n```\n\nThe target player will receive a special chunk loader block.\n\n### Placing a Chunk Loader\n\nPlace the chunk loader block at the center of the area you want to keep loaded.\n\nOnce placed, the plugin registers the block, saves it to storage, and loads nearby chunks according to your server's configured distance settings.\n\n### Removing a Chunk Loader\n\nBreak the chunk loader block.\n\nThe loader can be removed by:\n\n- The player who placed it\n- A player with `chunkloader.admin`\n\nAfter removal, the plugin deletes the loader from storage.\n\n### Viewing Active Chunk Loaders\n\nUse:\n\n```text\n/chunkloader admin\n```\n\nOpen the chunk loader list from the admin menu. Each listed loader displays:\n\n- World name\n- X coordinate\n- Y coordinate\n- Z coordinate\n\nClick a listed loader to teleport to it.\n\n## Language Customization\n\nBetterChunkLoader creates a `lang.yml` file in the plugin folder.\n\nYou can edit this file to customize:\n\n- Plugin prefix\n- Command messages\n- Placement and removal messages\n- Chunk loader item name\n- Chunk loader item lore\n- GUI titles\n- GUI item descriptions\n\nThe language file supports Minecraft color codes and gradient formatting through the Liba `MinecraftColor.format()` system.\n\n## Notes\n\n- Chunk loaders are stored as individual files inside the plugin's `chunks` folder.\n- The loaded area is controlled by the server's chunk loading rules, such as the distances configured in `server.properties`.\n- Removing a chunk loader block also removes its saved data.\n- Only players with the correct permission can place chunk loader blocks.\n- Server operators have admin permission by default.\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 95,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

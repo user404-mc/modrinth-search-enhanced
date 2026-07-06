@@ -1,0 +1,32 @@
+{
+  "id": "lDGXXIBe",
+  "slug": "namlesscheck",
+  "title": "NamlessCheck",
+  "description": "Spigot/Paper plugin to log sensitive build/combat actions: monitored block placements, fire ignitions, and End Crystal placements, with output to console, file, or both.",
+  "body": "# NamlessCheck\n\nSpigot/Paper plugin to log sensitive build/combat actions: monitored block placements, fire ignitions, and End Crystal placements, with output to console, file, or both.\n\n## V3 Updates\n\n*   Added fire interaction logging for ignitions caused by `FLINT_AND_STEEL` and `FIRE_CHARGE`.\n*   Added End Crystal placement logging from player interaction (right-click on `OBSIDIAN`/`BEDROCK`).\n*   Kept whitelist behavior for block placements via `monitored-blocks`.\n\n## Features\n\n*   Monitored player block-place logging (whitelist-based).\n*   Fire ignition logging (`FLINT_AND_STEEL` / `FIRE_CHARGE` interactions).\n*   End Crystal placement logging from interaction.\n*   Configurable block whitelist (`monitored-blocks`).\n*   Configurable output: `CONSOLE`, `FILE`, `BOTH`.\n*   Live config reload command (no restart required).\n*   Bypass permission for specific players/staff.\n*   Startup log rotation with `.gz` compression.\n*   Multi-language support with separate files (`it_it` / `us_en`).\n*   Async log queue to reduce main-thread I/O impact.\n\n## Installation\n\n1.  Copy the jar into `plugins/`.\n2.  Start the server once to generate default files.\n3.  Edit `plugins/NamlessCheck/config.yml`.\n4.  (Optional) edit language files in `plugins/NamlessCheck/lang/`.\n5.  Run `/namlesscheck reload` to apply changes.\n\n## Configuration (`config.yml`)\n\nMain keys:\n\n*   `log-mode`: `FILE`, `CONSOLE`, `BOTH`\n*   `log-file`: path relative to plugin folder (example `logs/blocks.log`)\n*   `async-log-interval-ticks`: async flush interval (default `20`)\n*   `archive-on-startup`: if `true`, archives the previous log on startup\n*   `archive-directory`: destination folder for compressed archives\n*   `language`: active language (`it_it` or `us_en`)\n*   `monitored-blocks`: list of `Material` values to monitor for block placements\n\nExample:\n\n```\nlog-mode: BOTH\nlog-file: \"logs/blocks.log\"\nasync-log-interval-ticks: 20\narchive-on-startup: true\narchive-directory: \"logs/old\"\nlanguage: \"it_it\"\n\nmonitored-blocks:\n  - CHEST\n  - HOPPER\n```\n\nNote: `monitored-blocks` only filters `BlockPlaceEvent` logs. Fire ignite and End Crystal logs are tracked independently (unless player has `namlesscheck.bypass`).\n\n## Languages (`lang/`)\n\nAvailable files:\n\n*   `plugins/NamlessCheck/lang/it_it.yml`\n*   `plugins/NamlessCheck/lang/us_en.yml`\n\nMain keys:\n\n*   `messages.reload-success`\n*   `messages.no-permission`\n*   `messages.usage`\n*   `logs.block-place`\n*   `logs.fire-ignite`\n*   `logs.end-crystal-place`\n\nYou can customize messages directly in these files.\n\n## Commands\n\n*   `/namlesscheck reload`\n*   Aliases: `/nc reload`, `/check reload`\n\n## Permissions\n\n*   `namlesscheck.reload` (default: `op`)\n*   `namlesscheck.bypass` (default: `false`)\n\n## Log Format\n\nExample line:\n\n```\n[2026-02-12 21:10:00] Steve placed CHEST in world [120, 64, -44]\n```\n\n## Log Rotation\n\n*   If `archive-on-startup: true`, on startup the current log is:\n*   compressed to `.gz`\n*   moved to `archive-directory`\n*   replaced with a new fresh log file\n\n## Notes\n\n*   Whitelist is handled case-insensitively.\n*   If `log-mode` is invalid, the plugin falls back to `BOTH`.\n*   File writer does not flush every event to reduce I/O; flush is guaranteed on close/reload.\n\n\n\n## 🔗 Links\n\n[![Portfolio](https://media.forgecdn.net/attachments/description/1431298/description_08eb12c5-0810-4bc4-9e04-97568852ffce.png)](https://davi-k-portfolio.netlify.app/)\n\n<div>Portfolio<br>--------------------------------------</div>\n\n[![LinkedIn](https://media.forgecdn.net/attachments/description/1431298/description_3aa4aa27-839a-44a4-bed5-f1866d92361b.png)](https://www.linkedin.com/in/davide-k-9a7a99375/)\n\n<div>LinkedIn<br>--------------------------------------<br><a href=\"mailto:info.davi.lav@gmail.com\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_48dp.png\" alt=\"Email\" width=\"64\"></a></div>\n\n<div>Email<br>--------------------------------------</div>\n\n[![Buy me a beer on BuyMeACoffee](https://media.forgecdn.net/attachments/description/1431298/description_4a3a93ae-5d63-4880-8a0f-95bba08ab917.png)](https://buymeacoffee.com/infodavik)\n\n<div>Buy me a beer<br>--------------------------------------</div>\n\n[![Support me on Ko-fi](https://media.forgecdn.net/attachments/description/1431298/description_6e867e66-3219-466c-b28d-98604176ae7d.webp)](https://ko-fi.com/infodavik)\n\n<div>Ko-fi</div>",
+  "categories": [
+    "management",
+    "optimization",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

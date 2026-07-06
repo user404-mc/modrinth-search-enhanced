@@ -1,0 +1,23 @@
+{
+  "id": "zjU2X6wb",
+  "slug": "rdpmouse",
+  "title": "RDPMouse",
+  "description": "Fixes mouse look when playing over RDP (Remote Desktop Protocol), and allows camera rotation with the keyboard.",
+  "body": "Minecraft uses raw relative mouse input, which Windows blocks over Remote Desktop. The result is a camera that spins uncontrollably the moment you try to look around. This has been a known bug since 2016 - [MC-107122](https://bugs.mojang.com/browse/MC-107122) and [MC-126875](https://bugs.mojang.com/browse/MC-126875) (open since 2018) - with no fix from Mojang.\n\nIf you've ever wanted to check in on a running game from another room, or do mod development and testing remotely on a machine with a better GPU, this mod makes that possible.\n\nI initially believed this mod would only be useful on Windows when using RDP. However I recently found that the same issue exists when running Minecraft under Xvnc on Linux, and RDPMouse actually works to fix it! So if you're crazy enough to play Minecraft through VNC it can help there too.\n\n## How it works\n\nRDPMouse replaces raw mouse input with absolute cursor position tracking, which RDP does support. It's not perfect. RDP has inherent latency and the cursor can reach the edge of the window and lose focus, but the game becomes controllable.\n\n## Usage\n\nPress **F8** to toggle RDP Mode on or off. A message will confirm the current state.\n\nWhen RDP Mode is active:\n- Mouse movement controls the camera normally (within the window bounds)\n- If the camera stops turning, the cursor has hit the edge of the window. Hold **Alt** to release the cursor, recenter it, then release Alt to resume\n- **Arrow keys** can also be used to turn the camera, as an alternative to the mouse\n\n**Tip:** Turn mouse sensitivity up significantly in Minecraft's settings. RDP compresses cursor movement, so higher sensitivity helps compensate.\n\n## Key Bindings\n\n| Key | Action |\n|-----|--------|\n| F8 | Toggle RDP Mode |\n| Alt (hold) | Release cursor to recenter |\n| Arrow keys | Pan camera |\n\nAll bindings can be changed in Options → Controls → RDP Mouse.\n\n## Compatibility\n\nAvailable for both Fabric and NeoForge.",
+  "categories": [
+    "fabric",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 136,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.11",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

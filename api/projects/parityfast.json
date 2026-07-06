@@ -1,0 +1,19 @@
+{
+  "id": "JkvCW0DO",
+  "slug": "parityfast",
+  "title": "ParityFast",
+  "description": "Vanilla parity math, random, and lookup optimizations aimed to increase server performance",
+  "body": "![Parity Fast Logo](https://cdn.modrinth.com/data/cached_images/e6fed23404de74564aabafc1d7c2a8d5c7b076e8.png)\n\nParityFast is a lightweight Fabric optimization mod for Minecraft 1.14.4.\n\nIt optimizes selected vanilla helper paths used by math, random, lookup, and position-related code. The mod is designed to preserve vanilla-compatible behavior while reducing overhead in specific hot paths.\n\nParityFast does not claim to improve every server, every world, or every workload. Performance impact depends on the world, entity count, tick load, installed mods, JVM, and hardware.\n\n## Optimized Areas\n\nParityFast currently targets:\n\n- `MathHelper` sine/cosine lookup behavior verified against vanilla table values\n- Selected exact helper methods such as floor, ceil, sqrt, abs, clamp, lerp, wrapping, angle, color, hash, and binary-search helpers\n- Selected `BlockPos` encode/decode and offset helper paths\n- Selected direction lookup helpers\n- Random handling paths designed to preserve vanilla sequence behavior where applicable\n- Cached enum/list/hash lookups used by entity ticking, chunk tickets, and block-neighbor checks\n  \n## Benchmarks\nThese benchmarks show one synthetic stress scenario, not a general performance guarantee.\n\nTested on a superflat world with a high entity count (roughly 200), active random ticking, and `/gamerule randomTickSpeed 5000`. Tested using Carpet `/tick health`.\n\n| Metric | Vanilla | ParityFast | Difference |\n|---|---|---|---|\n| Avg MSPT | 48.46ms | 39.97ms | -17.5% |\n| Block Tick Time | 20.90ms | 12.97ms | -37.9% |\n| Entity Tick Time | 15.55ms | 15.83ms | roughly unchanged |\n\nResults may vary depending on workload, hardware, JVM settings, and other installed mods.\n\n## Test Environment\n- Minecraft 1.14.4\n- Fabric\n- Ryzen 9 9950X3D\n\n## Vanilla Parity\n\nParityFast keeps Java Random's vanilla 48-bit LCG algorithm instead of switching to Java 17 LXM or SplitMix. When possible, it copies the existing random seed and continues from the same state.",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 30,
+  "followers": 0,
+  "game_versions": [
+    "1.14.4"
+  ],
+  "date_updated": null
+}

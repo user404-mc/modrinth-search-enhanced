@@ -1,0 +1,39 @@
+{
+  "id": "tB9kGJOT",
+  "slug": "netherexile",
+  "title": "NetherExile",
+  "description": "Exile players to the Nether on death by creating a lodestone/head marker at their death spot and blocking Nether escape until they’re revived. It includes configurable revival rules, timed auto-revive options, anti-grief/safe-teleport protections etc.",
+  "body": "# NetherExile (Paper 1.21.x)\n\n![NE](https://i.imgur.com/eZPg9yD.png)\n\nNetherExile is a Paper plugin that turns death into a temporary \"Nether exile\".\n\nBy default, exile starts when a player dies in the Overworld: a lodestone + their head is placed at/near the death location, they respawn in the Nether, and cannot leave until revived (by breaking the lodestone/head marker, by auto-break timeout, or by lava flowing onto the marker).\n\nOptionally, if `nethernetherdeath_enabled=true`, exile can also start from a player's first death in the Nether.\n\n![Status](https://i.imgur.com/zw9GYCy.png)\n\n## Features\n\n- **Death marker**\n  - Places a **lodestone** and **player head** at the death location.\n  - If the player dies in the air, the marker is placed on the **ground below**.\n  - If the player dies in lava, the marker is placed **on top of the lava surface**.\n- **Nether exile**\n  - On respawn, the player is teleported to the Nether at the **Overworld-equivalent** location (`x/8`, `z/8`), searching for a safe position and avoiding the Nether roof.\n  - Exiled players cannot leave the Nether (portals are extinguished; teleporting to other dimensions is blocked).\n  - If an exiled player dies in the Nether, they are sent back to their original Nether entry location and shown a \"no escape\" message (if enabled).\n- **Nether -> Nether exile (optional)**\n  - If `nethernetherdeath_enabled=true`, a player's first death in the Nether also starts the exile.\n  - Their lodestone/head marker is placed at/near the Nether death location (same air/lava placement rules).\n  - On respawn, they are sent back to where they last entered the Nether via portal (Overworld -> Nether).\n- **Revival**\n  - Breaking the lodestone or head revives the player.\n  - The breaker receives the dead player's head item.\n  - Lightning strikes the lodestone, and the revived player is struck with lightning on return to the Overworld.\n  - Revived players get **30s Regeneration**.\n  - Anti-grief: if the dead player stayed near their Nether entry point, they are revived ~**100 blocks away** from the original death spot (random direction).\n- **Marker rules**\n  - Dead players cannot break their own lodestone/head marker to revive themselves.\n- **Break Lodestone With Arrow (optional)**\n  - If `breakwitharrow_enabled=true`, shooting the lodestone with an arrow can trigger revival.\n- **World border safety**\n  - Revive teleports are clamped inside the world border and moved to a safe standing spot.\n- **Auto-break (optional)**\n  - If nobody breaks the marker after a timeout, the plugin auto-breaks it and revives the player.\n  - Timers are based on **in-game time while the player is online** (so logging out does not advance the timer).\n  - Optional **progressive** mode: each new exile can **double** that player's timeout.\n- **Skeleton mode (optional)**\n  - Dead players spawning in the Nether are equipped with a skeleton skull named with death coords and time.\n\n## Commands\n\nAll commands are under `/netherexile`.\n\n- `/netherexile help`\n- `/netherexile status`\n- `/netherexile enable`\n- `/netherexile disable`\n  - Disabling clears current \"dead\" state (markers are not removed).\n- `/netherexile revive <player>`\n  - Revives a currently-dead player (same effect as breaking their marker).\n- `/netherexile autobreak <status|on|off|set> [duration]`\n  - Duration supports: `s`, `m`, `h`, `d` (examples: `60s`, `30m`, `1h`, `1d`)\n- `/netherexile progressive <status|on|off|cap> [value]`\n  - Progressive (doubling) controls, including optional max cap (via `cap`). Only meaningful when auto-break is enabled.\n- `/netherexile netherpenalty <status|on|off|set|cap> [value]`\n  - Optional: add time to the remaining auto-break timer when a dead player dies in the Nether.\n- `/netherexile messages <on|off>`\n  - Toggle player-facing messages (trap/revive/etc).\n- `/netherexile bedreturn <on|off>`\n  - If enabled, revived players return to their bed/respawn point when available.\n- `/netherexile skeleton <on|off>`\n  - Toggle skeleton helmet feature.\n- `/netherexile nethernetherdeath <on|off>`\n  - If enabled, a player's first death in the Nether can start the exile too.\n- `/netherexile breakwitharrow <on|off>`\n  - If enabled, shooting a lodestone with an arrow can trigger revival.\n\n## Permissions\n\n- `netherexile.toggle` (default: op)\n- `netherexile.revive` (default: op)\n- `netherexile.autobreak` (default: op)\n\n## Configuration\n\n`plugins/NetherExile/config.yml` (defaults are in `src/main/resources/config.yml`):\n\n- `netherexile_enabled`: master enable/disable\n- `messages_enabled`: player-facing messages\n- `revive_to_bed_enabled`: revive to bed/respawn location if available\n- `autobreak_enabled`: enable auto-break timeout\n- `autobreak_after`: base timeout (e.g. `1h`)\n- `autobreak_progressive_enabled`: double timeout each new exile\n- `autobreak_progressive_max`: optional max cap for progressive doubling (e.g. `12h`, or `off`)\n- `nether_death_penalty_enabled`: add time when a dead player dies in the Nether (optional)\n- `nether_death_penalty`: how much time to add per Nether death (e.g. `5m`)\n- `nether_death_max_remaining`: cap on remaining time after penalties (e.g. `6h`, or `off`)\n- `skeleton_enabled`: equip skeleton skull in Nether for dead players\n- `nethernetherdeath_enabled`: start exile on first Nether death too\n- `breakwitharrow_enabled`: allow breaking lodestone by shooting it with an arrow\n- `near_entry_threshold_blocks`: controls anti-grief \"revive 100 blocks away\" behavior\n- `revive_offset_blocks`: the revive offset distance when near-entry\n- `regen_seconds`, `regen_amplifier`: revival buff\n- `portal_extinguish_radius`: how far to search around a dead player for a portal block to extinguish\n- `portal_extinguish_max_blocks`: max connected portal blocks to remove (safety cap)\n\n## Data files\n\nIn `plugins/NetherExile/`:\n\n- `dead.yml`: current exiled player state (marker locations, nether entry, etc.)\n- `history.yml`: per-player progressive timeout history (used when `autobreak_progressive_enabled=true`)\n- `entries.yml`: last known Nether portal entry locations (used by `nethernetherdeath_enabled`)\n\n## Install\n\n1. Put the jar into your server's `plugins/` folder.\n2. Start the server once to generate `plugins/NetherExile/config.yml`.\n3. Configure as desired and restart/reload.\n\n## Notes / Known behavior\n\n- Marker placement replaces blocks where it is placed (for lava deaths it places above lava rather than replacing lava).\n- Auto-break countdown only progresses while the dead player is online (in-game time).\n- If your server runs in offline mode, player skin rendering for heads may be inconsistent depending on client/cache behavior.\n",
+  "categories": [
+    "bukkit",
+    "cursed",
+    "folia",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 66,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

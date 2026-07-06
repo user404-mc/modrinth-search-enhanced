@@ -1,0 +1,37 @@
+{
+  "id": "hPzUhj1u",
+  "slug": "openziti-mc",
+  "title": "OpenZiti MC",
+  "description": "Share your server with friends without opening firewall holes using an OpenZiti overlay network. Friends need just the service name and identity -- no port forwarding, no public listeners, no public IP.",
+  "body": "# OpenZiti MC\n\nShare a Java Edition server with friends without opening firewall holes. OpenZiti MC routes the game's network traffic\nover an [OpenZiti](https://openziti.io) zero-trust overlay. This means the dedicated server never needs a public IP, a\npublic DNS name, or an open TCP port. Connect by OpenZiti service name. The OpenZiti overlay network will then\nauthenticate and authorize any connections to your server before a packet ever reaches it.\n\n## What it does\n\n- **Client side:** when you type an OpenZiti service name into \"Add Server\", the mod intercepts the Netty dial and\n  connects over the overlay instead of TCP.\n- **Server side:** when enabled in config, the dedicated/integrated server binds on an OpenZiti service instead of a\n  normal TCP listener. Only authorized identities on the overlay can reach it.\n\n## Why it works the way it does\n\nThe whole mod is three Mixins hooking Netty's `Bootstrap`/`ServerBootstrap` calls and swapping in `ZitiChannelFactory`\n+ `ZitiAddress.Dial` / `ZitiAddress.Bind`. Minecraft's packet pipeline is untouched. The OpenZiti JVM SDK is bundled\nin the jar, so no extra installs.\nIdentities are loaded from a standard OpenZiti identity file in `config/openziti/identity.json`. Drop yours in, you\nare done.\n\n## Requirements\n\n- Java Edition 1.20.1\n- Fabric Loader 0.16.10+\n- [Fabric API](https://modrinth.com/mod/fabric-api)\n- [Architectury API](https://modrinth.com/mod/architectury-api)\n- A running OpenZiti controller and at least one edge router. If you don't have an OpenZiti overlay,\n  [set one up by following a get-started guide](https://netfoundry.io/docs/openziti/get-started/network/).\n\n## OpenZiti Setup\n\nThe repo includes a `setup-ziti.ps1` script that does all of this interactively and is the recommended way to set up\nthe OpenZiti overlay.\n\n- create a service (`openziti-mc` by default)\n- one identity tagged `#minecraft-server` for the dedicated server, plus one or more identities tagged\n  `#minecraft-clients` for each player\n- create the matching Bind/Dial service policies\n\n## Server Setup\n\nEnsure the server identity is enrolled and drop the enrolled server `.json` into `config/openziti/identity.json`, then\nset `\"serverBind\": { \"enabled\": true, \"serviceName\": \"openziti-mc\" }` in the `config/openziti.json` file.\n\n## Client Setup\n\nFor each client running the OpenZiti MC mod, ensure the client identity is enrolled and then drop the enrolled client\nidentity into `config/openziti/identity.json`.\n\n## Using the Mod\n\nAfter starting Minecraft, choose: Multiplayer -> Add Server -> Server Address `openziti-mc` -> Done -> Join.\n\n## Additional Information\n\nFor additional information or more details see the project's main page on GitHub at\nhttps://github.com/dovholuknf/openziti-mc/. There you'll find a full step-by-step (controller + identities +\npolicies + dev runs) guide as well in [the SETUP.md](https://github.com/dovholuknf/openziti-mc/blob/main/SETUP.md).\n\n## Limitations\n\n- This release targets MC 1.20.1 only. NeoForge support is planned for a future MC bump.\n- The OpenZiti SDK and Kotlin standard library are bundled, so the jar is around 28 MB. Larger than most utility mods, smaller than most content mods.\n- Annotation-processor warnings about Netty mapping targets are cosmetic; they do not affect runtime behavior.\n\n## Architecture\n\nFor a technical deep-dive (Netty channel-factory hook, the smuggler `InetSocketAddress` pattern, the three Mixin classes, the `ZitiContext` warmup wait, the dial-retry loop) see\n[BLOG.md](https://github.com/dovholuknf/openziti-mc/blob/main/BLOG.md) in the repo.\n\n## Credits\n\n- [openziti/ziti](https://github.com/openziti/ziti) -- the OpenZiti overlay network\n- [openziti/ziti-sdk-jvm](https://github.com/openziti/ziti-sdk-jvm) -- the SDK whose `ziti-netty` module made this a small mod instead of a large one.\n- [vgskye/e4mc-minecraft-architectury](https://github.com/vgskye/e4mc-minecraft-architectury) -- the smuggler-InetSocketAddress pattern and the Mixin shapes for `Connection` / `ServerConnectionListener`.\n\nApache-2.0 licensed. Source at [github.com/dovholuknf/openziti-mc](https://github.com/dovholuknf/openziti-mc).\n",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "unknown",
+  "server_side": "unknown",
+  "downloads": 67,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "mmfPcjZ6",
+  "slug": "vrestart",
+  "title": "Vrestart",
+  "description": "Vrestart – Lightweight server restart plugin with soft and forced restart options",
+  "body": "# Vrestart\n\n\n<details>\n<summary>🇷🇺 Rus</summary>\n\nVrestart – лёгкий плагин для серверов Minecraft (Paper 1.21+), который позволяет администраторам выполнять запланированные или немедленные рестарты сервера. Поддерживаются мягкие рестарты с голосованием игроков и принудительные рестарты.\n\n**Возможности:**\n\n* Мягкий рестарт с обратным отсчётом и уведомлениями для игроков\n* Система голосования игроков для отмены мягкого рестарта\n* Принудительный рестарт с сообщением о причине\n* Полная совместимость с Paper 1.21+\n* Настраиваемые сообщения и плейсхолдеры\n\n**Использование:**\n\n* `/vrestart [soft|force] [seconds]` – запускает мягкий или принудительный рестарт с необязательным таймером\n* `/vrestart cancel [soft|force]` – отменяет мягкий или принудительный рестарт\n* `/vrestart reload` - перезагрузить config.yml, а так же изменения в файлах локазизации\n\n**Лицензия:** GPLv3\n\n<details>\n<summary>Файл локализации /lang/ru.yml</summary>\n\n```\nprefix: \"[VRESTART] \" # Префикс плагина (Оставьте пустым если не хотите его видеть)\nconfig_reloaded: \"Конфигурация перезагружена.\"\n\nforced_warning: \"&c⚠ Принудительный рестарт через 1 минуту!\"\nforce_warning: \"&c⚠ Принудительный рестарт!\"\n\nforce_started: \"Принудительный рестарт запланирован через %time% сек.\"\nforced_countdown: \"&cРестарт через &e%seconds%&c сек.\"\nforced_restart: \"Сервер перезапускается...\"\nforce_cancel: \"&aПринудительный рестарт отменён админом!\"\n\nsoft_restart: \"&eЭтот рестарт ради &6%player%&e! Сервер будет перезапущен, если вы не отмените.\"\nsoft_started: \"Непринудительный рестарт запланирован через %time% сек. (игроки могут отменить).\"\nsoft_cancel_vote: \"Непринудительный рестарт отменён игроками!\"\nsoft_cancel_admin: \"Непринудительный рестарт отменён админом!\"\n\ncancel_button: \"&c[Отменить рестарт]\"\ncanceled: \"&aРестарт отменен большинством игроков.\"\nvote_progress: \"[%current%/%required%] проголосовали за отмену рестарта\"\n\nreason_format: \"&7Причина: &f%reason%\"\n\nschedule_header: \"&6📅 Расписание рестартов:\"\nschedule_forced: \"&cПринудительные: &f%times%\"\nschedule_soft: \"&eНепринудительные: &f%times%\"\n\nno_permission: \"&cУ вас нет прав для выполнения этой команды.\"\n\n```\n</details>\n\n⚠️ Вы можете добавить свои переводы, создав новые файлы в папке /lang/. Плагин автоматически загрузит их при старте.\n</details>\n\n\n\n<details>\n<summary>🇬🇧 Eng</summary>\n\nVrestart is a lightweight plugin for Minecraft servers (Paper 1.21+) that allows server administrators to perform scheduled or immediate server restarts. It supports both soft restarts (with player voting) and forced restarts.\n\n**Features:**\n\n* Soft restart with countdown and player notifications\n* Player voting system to cancel soft restarts\n* Forced restart with optional reason messages\n* Fully compatible with Paper 1.21+ servers\n* Customizable messages and placeholders\n\n**Usage:**\n\n* `/vrestart [soft|force] [seconds]` – starts a soft restart with optional timer\n* `/vrestart cancel [soft|force]` – cancels a soft or forced restart\n* `/vrestart reload` - reload config.yml and make changes to localization files.\n\n**License:** GPLv3\n\n\n<details>\n<summary>Localization file /lang/en.yml</summary>\n\n```\nprefix: \"[VRESTART] \" # Plugin prefix (Leave blank if you don't want to see it)\nconfig_reloaded: \"Config reloaded.\"\n\nforced_warning: \"&c⚠ Forced restart in 1 minute!\"\nforce_warning: \"&c⚠ Forced restart!\"\n\nforce_started: \"Forced restart scheduled in %time% seconds.\"\nforced_countdown: \"&cRestart in &e%seconds%&c seconds.\"\nforced_restart: \"Server is restarting now...\"\nforce_cancel: \"&aForced restart canceled by admin!\"\n\nsoft_restart: \"&eThis restart is for &6%player%&e! The server will restart if not canceled.\"\nsoft_started: \"Soft restart scheduled in %time% seconds (players can cancel).\"\nsoft_cancel_vote: \"Soft restart cancelled by players!\"\nsoft_cancel_admin: \"Soft restart cancelled by admin!\"\n\ncancel_button: \"&c[Cancel restart]\"\ncanceled: \"&aRestart canceled by majority of players.\"\nvote_progress: \"[%current%/%required%] voted to cancel the restart\"\n\nreason_format: \"&7Reason: &f%reason%\"\n\nschedule_header: \"&6📅 Restart schedule:\"\nschedule_forced: \"&cForced: &f%times%\"\nschedule_soft: \"&eSoft: &f%times%\"\n\nno_permission: \"&cYou do not have permission to perform this command.\"\n```\n</details>\n\n⚠️ You can add your own translations by creating new files in the /lang/ folder. The plugin will automatically load them on startup.\n</details>\n\n\n<details>\n  \n<summary>⚙️ Configuration / ⚙️ Конфигуратор</summary>\n\n```\n# Язык интерфейса\n# Interface language\nlanguage: \"en\"\n\n# Таймеры по умолчанию для команд\n# Default Timers for Commands\ndefaults:\n  force-time: 60   # сек\n  soft-time: 60    # сек\n\n# Процент игроков, необходимый для отмены soft рестарта\n# Percentage of players required to cancel a soft restart\nsoft-cancel-percent: 50\n\n# Расписание принудительных рестартов (HH:mm)\n# Schedule of forced restarts (HH:mm)\nforced-restarts:\n  - \"03:00\"\n  - \"18:00\"\n\n# Расписание непринудительных рестартов (HH:mm)\n# Schedule of soft restarts (HH:mm)\nsoft-restarts:\n  - \"09:00\"\n  - \"15:10\"\n\n```\n\n</details>\n\nSpanish (🇪🇸):\n⚠️ Puedes agregar tus propias traducciones creando nuevos archivos en la carpeta /lang/. El plugin los cargará automáticamente al iniciar.\n\nFrench (🇫🇷):\n⚠️ Vous pouvez ajouter vos propres traductions en créant de nouveaux fichiers dans le dossier /lang/. Le plugin les chargera automatiquement au démarrage.\n\nGerman (🇩🇪):\n⚠️ Du kannst eigene Übersetzungen hinzufügen, indem du neue Dateien im Ordner /lang/ erstellst. Das Plugin lädt sie beim Start automatisch.\n\nLicense: GPLv3",
+  "categories": [
+    "bukkit",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

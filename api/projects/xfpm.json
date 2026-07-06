@@ -1,0 +1,34 @@
+{
+  "id": "nNwl7RW8",
+  "slug": "xfpm",
+  "title": "XFPoolManager",
+  "description": "XFPoolManager (XFPM) is a custom loot pool manager created by xfinity",
+  "body": "![xfinity Pool Manager Logo](https://cdn.modrinth.com/data/cached_images/7f882886876dfd0065683a28ce5db21a65a2bcfa.png)\n\n# 🎣 XFPoolManager (XFPM)\n\n**XFPoolManager** is a **custom loot pool manager**.\nIt is designed primarily for **CosmicSMP** and servers with **advanced fishing systems**, but it can also be used as a general-purpose loot pool manager.\n\n## 💡 Soft Dependencies:\n- **NBT API**\n- **Vault**\n- **PlaceholderAPI** \n> These plugins are **optional**. XFPM will integrate with them if present, but will function normally without them.\n\n## 📜 General Description\n\nXFPM allows you to define **main pools**, with **mini pools** inside them, and finally **items** inside those mini pools.  \nIt also introduces **custom fishing enchantments** (stored as lore on fishing rods, not real enchantments) that affect loot behavior when rolling with `/xfpm loot`.\n\n✅ If no fishing rod with the required lore is present → normal loot rules apply.  \n✅ If a fishing rod contains specific enchantments in its lore → the plugin modifies loot generation accordingly.  \n✅ Enchantments marked with `[X]` in the list below are **ignored** by XFPM.  \n\n\n\n## ✨ Features\n- 🎲 **Configurable loot pools** with:\n  - Main pools → mini pools → items.\n  - Item rarities: `common, uncommon, rare, epic, mythic, legendary` (and anything rarer).\n  - Drop chances per item.\n  - Fixed or ranged amounts with optional **weighted probability**.\n  - Full **NBT tag** support (complex JSON supported).\n  - Custom messages (`%nl%` = line break).\n  - Console commands executed per reward.\n\n- 🪝 **Custom Fishing Enchantments (for CosmicSMP)**:\n  - Work only if the player holds a fishing rod with the correct lore.\n  - Levels are expressed in Roman numerals (`I–VI` or `MAX`).\n  - No need for additional enchantment plugins.\n  - Modify loot roll logic dynamically:\n    - Rarer fish.\n    - More treasure.\n    - Increased amounts of fish or trash.\n    - Bonus XP.\n\n- 🔄 Reload config on the fly: `/xfpm reload`.  \n- 📦 Works out-of-the-box with **CosmicSMP setups** and similar systems.  \n\n---\n\n## 🧩 Custom Enchantments\n\n### 🎲 Chance Boosts\n- **Rare Catch** → Boosts chance of catching rarer items.  \n- **Treasure Finder** → Unlocks or increases chance for rolls in the `treasure` mini pool.  \n- **Bountiful Haul** → Increases amount of fish (+20% per level). Not compatible with *Wasteful Haul*.  \n- **Wasteful Haul** → Increases amount of trash (+15% per level). Not compatible with *Bountiful Haul*.  \n- **Angler’s Fortune** → Grants extra XP per successful catch.  \n\n### ⚡ Utility & Other (ignored by XFPM)\n- Gambler’s Worth [X]  \n- Swift Bite [X]  \n- Endless Line [X]  \n\n📌 If the enchantment is **not present in lore** → no effect.  \n📌 If it is **present but marked [X]** → ignored safely.  \n\n---\n\n## ⚙️ Commands\n\n| Command | Description |\n|---------|-------------|\n| `/xfpm loot <player> <pool_name> <mini_pool_name> <amount>` | Rolls loot for a player, applying enchantment modifiers if their fishing rod lore qualifies. |\n| `/xfpm reload` / `/xfpmreload` | Reloads the plugin configuration without restarting the server. |\n\n---\n\n## 🛠️ Example `config.yml`\n\n```yaml\npool_main:\n  fish:\n    salmon_common:\n      item: salmon\n      rarity: common\n      nbt:\n        - 'custom_name=[{\"text\":\"Common Salmon\",\"italic\":false,\"color\":\"white\"}]'\n      message: \"You caught a common salmon!\"\n      amount: \"1-2\"\n      amount_weighted: false\n      chance: 0.5\n      commands:\n        - \"say %player% caught a salmon!\"\n\n  treasure:\n    golden_pearl:\n      item: ender_pearl\n      rarity: legendary\n      nbt:\n        - 'custom_name=[{\"text\":\"Golden Pearl\",\"italic\":false,\"color\":\"gold\"}]'\n      message: \"§6You fished up a Golden Pearl!%nl%§7Unbelievable luck!\"\n      amount: \"1\"\n      amount_weighted: false\n      chance: 0.05\n      commands:\n        - \"give %player% diamond 1\"\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

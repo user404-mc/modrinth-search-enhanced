@@ -1,0 +1,36 @@
+{
+  "id": "OsPydya9",
+  "slug": "antisignedit",
+  "title": "AntiSignEdit",
+  "description": "Minecraft plugin that locks signs after a player finishes writing on them, preventing any future edits",
+  "body": "# AntiSignEdit\n\nA simple Folia-compatible Minecraft 1.21.x plugin that locks signs after a player finishes writing on them, preventing any future edits.\n\n---\n\n## Features\n\n- Locks signs the moment the sign GUI closes after placement\n- Automatically locks pre-existing signs (placed before the plugin was installed) on first interaction\n- Works with all sign types: classic signs, wall signs, and all hanging sign variants\n- Signs can still be broken normally\n- Ops and players with `antisignedit.bypass` can still edit signs freely\n- Configurable message shown when a player is blocked (or disable the message entirely)\n- Folia compatible via `RegionScheduler`\n\n---\n\n## Permissions\n\n| Permission            | Default | Description                              |\n|-----------------------|---------|------------------------------------------|\n| `antisignedit.bypass` | op      | Allows the player to bypass sign locking |\n\n---\n\n## Configuration\n\nLocated at `plugins/AntiSignEdit/config.yml` after first run.\n\n```yaml\nmessages:\n  # Set to false to silently block without sending any message\n  send-on-block: true\n\n  # Supports full MiniMessage formatting\n  edit-blocked: \"<red>This sign has been locked and cannot be edited.\"\n```\n\n## How It Works\n\n**New signs:** When a player closes the sign editing GUI, `SignChangeEvent` fires. A region-scheduled task (Folia-safe) immediately waxes the sign block after the event resolves. Waxed signs cannot be opened for editing in vanilla Minecraft.\n\n**Pre-existing signs:** When a player right-clicks any unwaxed sign, the plugin waxes it on the spot before cancelling the interaction. This means old signs are retroactively locked on first touch.\n\n**Bypass:** If the interacting player is an op (`player.isOp()`) or has the `antisignedit.bypass` permission, the interaction is not cancelled and they may edit freely.\n",
+  "categories": [
+    "cursed",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

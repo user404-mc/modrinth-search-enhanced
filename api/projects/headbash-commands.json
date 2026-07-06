@@ -1,0 +1,20 @@
+{
+  "id": "G1cqa3fO",
+  "slug": "headbash-commands",
+  "title": "HeadBash Commands",
+  "description": "Various command utilities, including /bash",
+  "body": "\n# HeadBash Commands\n\n### (So named because I had to bash my head on my computer to get some of this stuff to work.)\n\nHeadBash Commands is a small mod that adds a few simple command utilities. In addition to basic commands such as\n`/save` and `/load`, the main feature of this mod is the `/bash` command, which allows you to do limited in-command scripting\nin a format similar to `/execute`. The permission level of each command is configurable, and the `/bash` command\ndoesn't natively allow players to bypass permission restrictions like `/execute` would.\n\n## `/bash`\n\nFormatted similar to `/execute`, with the following options:\n\n`let <var> eq <value>` - Replace all future occurrences of `$<var>` with `<value>`. Only supports numeric types.\n\n`let <var> eq (add|sub|mul|div|pow|log) <val_a> <val_b>` - Same as above, but performs the specified calculation\nand assigns the result to `$<var>`.\n\n`let <var> eq int <value>` - Same as above, but converts the number to an integer. Useful for `floor` operations\nand pretty-print.\n\n`for <var> in range <start> <stop> <step>` - Forks the command into multiple instances with `let <var> eq <value>`\nfor each step in the for-loop. Ordering is not guaranteed, but is generally consistent.\n\n`(if|unless) <val_a> (eq|ne|gt|ge|lt|le) <val_b>` - The command is continued only if/unless the specified\ncomparison condition is true. Otherwise, the branch stops.\n\n`delay <duration>` - Suspends execution of the current branch for `<duration>` ticks.\n\n`run <cmd>` - Runs another command. Works similarly to `/execute`'s `run` option, but doesn't support autocomplete\nto allow for lazy numeric parsing (waiting for previous options to be processed before parsing the command),\nrather than having the command fail with errors like \"`$i` is not a double\".\n\n## `/save`\n\nFormat: `/save <path> <pos1> <pos2> [noentities]`\n\nSaves the area as a structure block would to `<path>.nbt`.\n\n## `/load`\n\nFormat: `/load <path> <pos>`\n\nLoads the specified structure (from `<path>.nbt`) at `<pos>`.",
+  "categories": [
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 45,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "jmWaSNP3",
+  "slug": "mwhisperlib",
+  "title": "WhisperLib",
+  "description": "A fork of VoskLib that uses WhisperAI instead of VOSK for voice recognition",
+  "body": "# 🎤 WhisperLib\n\nAn Event-based voice recognition mod that uses [WhisperAI](https://whisperai.com/) to transcript audio to text. Forked from [VoskLib](https://www.curseforge.com/minecraft/mc-mods/vosklib).\n\n***\n\n## ✨ Features\n\n1.  **Offline Recognition**: Uses WhisperAI offline. No audio is sent to servers!\n2.  **Completely Client-side**: The mod does not run WhisperAI to any Minecraft server.\n3.  **Built-in Model Manager**: The mod includes a built-in Model Manager.\n4.  **Dynamic Loading**: Displays avaliable models from HuggingFace.\n5.  **Adjustable Microphone Settings**: Added settings screen to adjust mic related settings that wasn't in VoskLib yet.\n6.  **Security Feature**: Immediately gets you notified when WhisperLib is listening.\n\n***\n\n## 📦 Installation for Users\n\n1.  Download this mod from Curseforge.\n2.  Launch the game and click `Mods` button.\n3.  Locate `WhisperLib` and press `Config`.\n4.  Select your model and press `Download`.\n5.  After downloading, click your downloaded model.\n6.  Pres `Save & Exit`.\n\nThat's it.\n\n***\n\n## 🔨 Installation for Developers\n\n1.  Locate `build.gradle`.\n    \n2.  Add the following:\n    \n    ```\n    dependencies {\n        // ...your dependencies\n        // Make sure it's in our Runtime (Do not shade these libraries)\n        implementation 'io.github.givimad:whisper-jni:1.7.1'\n        runtimeOnly 'io.github.givimad:whisper-jni:1.7.1'\n    \n        // Include the dev mod jar\n        implementation fg.deobf(files(\"libs/whisperlib--dev.jar\"))\n    }\n    ```\n    \n3.  Build the project and check if there's any issues.\n    \n4.  If there's, you can contact me via Curseforge PMs or GitHub issues.\n    \n\n***\n\n## 🔌 WhisperLib API\n\n```\n// Start Listening\nVoiceManager.startListening();\n\n// Stop Listening\nVoiceManager.stopListening();\n```\n\nWhisperLib and VoskLib are posting their results in **Forge Event Bus** at Client-side.\n\n```\n@Mod.EventBusSubscriber(modid = \"examplemod\", bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)\npublic class VoiceEvents {\n    @SubscribeEvent\n    public static void onResult(WhisperVoiceResult event) {\n        // Get the full text. \n        String result = event.getText();\n\n        if (result.toLowerCase().contains(\"hello\")) {\n            System.out.println(\"Hi!\");\n        }\n\n        // Use the following method to exclude messages like:\n        // [MUSIC], [upbeat music], etc. (does not exclude *laughing*)\n\n        String filteredText = event.getSpokenText();\n        // do more processing...\n    }\n}\n```\n\n***\n\n## 📜 Credits\n\n*   **Fork of:** [VoskLib](https://www.curseforge.com/minecraft/mc-mods/vosklib) by [InfinityTwo](https://www.curseforge.com/members/infinitytwo/).\n*   **WhisperAI API**: [OpenAI (WhisperAI)](https://whisperai.com/)\n\n***",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 70,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

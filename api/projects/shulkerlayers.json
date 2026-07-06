@@ -1,0 +1,22 @@
+{
+  "id": "FV4ChpkJ",
+  "slug": "shulkerlayers",
+  "title": "ShulkerLayers",
+  "description": "Pack shulker boxes inside shulker boxes. Configurable nesting depth via a layer-based system.",
+  "body": "# ShulkerLayers\n\nA Fabric mod for Minecraft that lets you pack shulker boxes inside shulker boxes, with a configurable nesting depth.\n\n\n## What it does\n\nVanilla Minecraft blocks placing a shulker box into another shulker box. ShulkerLayers lifts that restriction in a controlled way: every shulker box gets a hidden **layer** value, and a higher-layer box can hold lower-layer boxes inside it. This lets you build compact, organized storage without spiraling into infinite recursion.\n\n![Placing a shulker box into another shulker box](https://cdn.modrinth.com/data/cached_images/5cacc66b415375009a0a6c962ab19d237c6abbaf.gif)\n\n## How it works\n\n- **Layers.** Every shulker box has an integer `layer` (0 by default). A regular crafted/looted shulker box is layer 0.\n- **Upgrade recipe.** Surround any shulker box with shulker shells in a `+` pattern (same as the original shulker box recipe) to bump its layer up by 1. The output keeps the input box's color, contents, and custom name.\n- **Nesting rule.** A box may be placed inside another shulker box only if the inner box's layer is *lower* than the outer box's layer. So a layer-0 box fits into a layer-1 box; a layer-1 box fits into a layer-2 box; and so on. Boxes of equal or higher layer are rejected. This guarantees you can never nest infinitely.\n- **Tooltip.** A box with layer ≥ 1 shows its layer in its tooltip.\n\n![Crafting recipe: shulker box surrounded by shulker shells](https://cdn.modrinth.com/data/cached_images/68748311e8fc5b8ca368a9feaa8e3f24989f5741_0.webp)\n\nThe upgrade recipe (where `S` = shulker shell, `B` = any shulker box):\n\n```\n  S\nS B S\n  S\n```\n\n## Configuration\n\nA config file is created at `<game>/config/shulkerlayers.json` on first launch:\n\n```json\n{\n  \"maxDepth\": 3\n}\n```\n\n| Key        | Type | Default | Range  | Description                                                                          |\n| ---------- | ---- | ------- | ------ | ------------------------------------------------------------------------------------ |\n| `maxDepth` | int  | `3`     | 0 – 64 | Highest layer a shulker box can be upgraded to. `0` effectively disables the recipe. |\n\n### Mod Menu Support\n\nWith [Mod Menu](https://modrinth.com/mod/modmenu) installed, `maxDepth` can also be edited in-game from the mod list — changes apply immediately (singleplayer), no restart needed. Mod Menu is optional: without it the JSON file is used.\n\n![ShulkerLayers Max Depth configuration screen in Mod Menu](https://cdn.modrinth.com/data/cached_images/63168c9161628cf891c05e457f3f02fd3c5115fe_0.webp)",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 62,
+  "followers": 0,
+  "game_versions": [
+    "26.2-snapshot-6",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "NTLCSaEM",
+  "slug": "pearlkeeper",
+  "title": "PearlKeeper",
+  "description": "Lightweight plugin that fixes Ender Pearls disappearing with AuthMe on relog. Also saves pearls on death and server restart.",
+  "body": "# PearlKeeper\n\nA lightweight Paper plugin that ensures ender pearls survive everything — logouts, deaths, and server restarts. Built specifically to patch AuthMe's broken pearl handling, but works as a standalone solution on any Paper server.\n\n## The Problem\n\nOn cracked/offline servers using AuthMe, ender pearls in stasis chambers get destroyed when players log off. AuthMe's built-in `recreateEnderPearls` option attempts to fix this but frequently fails with \"Failed to spawn player ender pearl\" errors when the chunk isn't loaded.\n\nThis breaks stasis chamber-based mechanisms entirely.\n\n## What PearlKeeper Does\n\n- **On logout** — saves all your active pearls to disk and removes the live entities\n- **On login** — waits for AuthMe to finish authentication, then respawns pearls exactly where they were with their original velocity\n- **On death** — intercepts pearls before vanilla Minecraft deletes them, restores them on respawn\n- **On server restart** — pearls persist across full server shutdowns\n- **Force-loads chunks** before respawning to prevent the \"skipping\" errors\n\n## Setup\n\n1. Drop the jar into `plugins/`\n2. Restart your server\n3. (Recommended) Set `recreateEnderPearls: false` in your AuthMe config to prevent pearl duplication.\n\nNo commands, no permissions, no configuration needed.\n\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

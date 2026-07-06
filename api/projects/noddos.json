@@ -1,0 +1,36 @@
+{
+  "id": "WFdyxPYH",
+  "slug": "noddos",
+  "title": "NoDDoS",
+  "description": "High-performance 1.21+ Anti-Bot and Packet Limiter using Atomic Sliding Window for maximum CPU efficiency and seciyi.",
+  "body": "NoDDoS v6.2.9 Technical Overview\n\nNoDDoS is a lightweight security utility for Minecraft 1.21+ designed to mitigate packet-based exploits and automated bot joins. The system uses an Atomic Sliding Window algorithm to monitor incoming traffic per-player, ensuring that rate limits cannot be bypassed by timing packets at the end of a second. It operates with high concurrency safety using ConcurrentHashMap and Atomic variables to maintain server stability during high-load events.\n\nCore Functionality:\n\nPacket Filtering: Specifically monitors CUSTOM_PAYLOAD, CHAT, and WINDOW_CLICK packet types.\nJoin Rate Limiting: Implements a two-tier threshold (Normal and Burst) to distinguish between server restarts and bot attacks.\nProgressive Punishment: Increases ban duration based on the frequency of violations from a specific IP address.\nResource Efficiency: Uses asynchronous cleanup tasks and single-kick scheduling to minimize main-thread impact.\n\nConfiguration (config.yml):\n\n\n```\nsettings:\n  # Maximum allowed player joins per second under normal conditions\n  joins-per-second: 5\n  \n  # Burst join limit - Reaching this triggers the progressive ban system\n  burst-limit: 15\n  \n  # Maximum simultaneous connections allowed from a single IP address\n  max-connections-per-ip: 2\n  \n  # Maximum packets (Chat, Click, Payload) allowed per second per player\n  max-packets-per-second: 300\n\nmessages:\n  prefix: \"&8[&6NoDDoS&8] \"\n  \n  # Message when the normal join limit is reached\n  global-cooldown: \"&cThe server is currently busy! Please wait a few seconds and try again.\"\n  \n  # Message when an IP exceeds the connection limit\n  ip-limit: \"&cToo many connections from this IP. Please logout from your other accounts.\"\n  \n  # Kick message for packet flooding\n  packet-spam: \"&cSuspicious packet traffic detected! Connection closed for security.\"\n  \n  # Message for players currently blocked by the progressive ban system\n  blacklisted: \"&cYour IP has been temporarily blocked due to suspicious activity. Please wait.\"\n  \n  # Message sent to admins after reloading the plugin\n  reload: \"&aConfiguration reloaded and violation records cleared!\"\n```\n\n\nTechnical Requirements:\n\nJava 21 and Java 25\nProtocolLib dependency required for packet interception.",
+  "categories": [
+    "bukkit",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 86,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

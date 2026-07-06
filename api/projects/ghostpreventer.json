@@ -1,0 +1,23 @@
+{
+  "id": "561kxWuu",
+  "slug": "ghostpreventer",
+  "title": "GhostPreventer",
+  "description": "Tries to prevent totem ghosts by delaying player death + tracking item swaps using packetevents",
+  "body": "**What is Totem Ghosting?**\nIn PVP, a player might swap to a totem at the millisecond they are about to die. Because of ping/latency, their client shows the totem in their hand, but the server processes their death before the item swap packet arrives. So, the player dies while holding a totem, leading to unfair deaths.\n\n**The Solution**\nThis plugin tries to prevent this issue using an active scheduler.\n\nWhen a player is about to die, the plugin checks their exact ping and scans the queue for item swaps. If a swap is detected from the client, the plugin dynamically cancels their death for a fraction of a second (usually 1–3 ticks, or 50–150ms). This gives the server enough time to process the swap, and after the delay we manually damage the player using the original death reason.\n\nThis does not prevent ghosting 100% as the player might still be able to 'ghost' if they put a totem in their main-hand or off-hand after the delay.\n\n**Features**\n\nPing-Compensated: Controls the delay based on the player's ping. Good connections process instantly (1 tick), while laggy players get a fair delay.\n\nHighly Optimized: Uses an active, asynchronous system to catch packets without having an impact on the server tps.\n\nFake Damage: We have to damage the player after the delay because we're cancelling the damage. This fake damage does not affect the armor of the player by not making the player take a lot of damage but by setting the player's health to a low amount and also damaging the player by a small amount, still ensuring the player dies or pops depending on if they have a totem.\n\nBarely noticeable: The 50-150ms delay shouldn't be annoying or frustrating for players as it is only visual, and required to try to prevent ghosting.\n\n**Dependencies:**\n    PacketEvents (Required for item swap packets)",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "An9fPdwP",
+  "slug": "chattabs-reloaded",
+  "title": "ChatTabs Reloaded",
+  "description": "Adds customizable tabs to the Minecraft chat UI with filters, notifications, profiles and more!",
+  "body": "# ChatTabs Reloaded\n\nA modern Minecraft mod that adds tabbed chat organization. Filter messages into separate tabs per server, with per-tab send modifiers, color rules, and drag-and-drop management.\n\n## Features\n\n- **Chat tabs** — messages are filtered into separate tabs based on regex rules\n- **Per-server profiles** — different tab sets for different servers, configured in `config/chattabs-profiles.json`\n- **Send modifiers** — auto-prepend/suffix when chatting from a specific tab (e.g. `!` for global chat)\n- **Drag & drop** — reorder tabs by dragging\n- **Unread counter** — shows number of unread messages per tab\n- **Fade animation** — tabs fade when chat closes\n- **Right-click context menu** — create, edit, delete, reorder tabs\n- **Tab editor** — in-game screen to configure name, filter regex, hex color, send modifier\n- **Server profile detection** — automatically loads and notifies about profile changes\n- **Config export/import** — share your configurations with friends\n- **In-game commands** — `/chattabs` (alias `/ct`)\n- **NeoForge config screen** — accessible from Mods menu\n\n## Commands\n\n| Command | Description | Example |\n|---|---|---|\n| `/chattabs help` | Show command list | `/ct help` |\n| `/chattabs reload` | Reload config from disk | `/ct reload` |\n| `/chattabs save` | Save current config | `/ct save` |\n| `/chattabs list` | List all tabs | `/ct list` |\n| `/chattabs select <name>` | Switch to a tab | `/ct select Global` |\n| `/chattabs tab add <name>` | Create a new tab | `/ct tab add Private` |\n| `/chattabs tab remove <name>` | Delete a tab | `/ct tab remove Private` |\n| `/chattabs toggle <feature>` | Toggle features | `/ct toggle unreadcounter` |\n| `/chattabs filter <tab> <regex>` | Set tab filter | `/ct filter Private ^\\\\[PRIVATE\\\\]` |\n| `/chattabs profile list` | List server profiles | `/ct profile list` |\n| `/chattabs profile current` | Show active profile | `/ct profile current` |\n| `/chattabs profile gui` | Open profile editor | `/ct profile gui` |\n| `/chattabs export [file]` | Export config | `/ct export my-config.json` |\n| `/chattabs import <file>` | Import config | `/ct import my-config.json` |\n\n`/ct` is a shorthand alias for `/chattabs`.\n\n## Examples\n\n### Filter by prefix\n```\nTab: Global\nFilter: ^\\[GLOBAL\\]\n```\nMatches messages starting with `[GLOBAL]`\n\n### Filter by sender (case-insensitive)\n```\nTab: Friends\nFilter: (?i)(alice|bob|charlie).*:\n```\nMatches chat from friends (case-insensitive)\n\n### Filter private messages\n```\nTab: Private\nFilter: ^From .* whispers: \n```\nMatches whisper format from most servers\n\n### Complex regex with multiple conditions\n```\nTab: Spam Filter (inverse)\nFilter: ^(?!.*\\b(spam|ignore|trash)\\b).*$\n```\nMatches messages that do NOT contain spam keywords\n\n## Configuration\n\n### `config/chattabs.json`\nMain mod settings: enabled state, tab colors, chat dimensions, animation toggle.\n\n### `config/chattabs-profiles.json`\nPer-server tab profiles. Structure:\n\n```json\n{\n  \"profiles\": [\n    {\n      \"serverIp\": \"mc.hypixel.net\",\n      \"name\": \"Hypixel\",\n      \"tabs\": [\n        {\n          \"id\": \"all\",\n          \"name\": \"All\",\n          \"visibleByDefault\": true,\n          \"filter\": { \"regex\": \".*\", \"hexColor\": 16777215 },\n          \"sendModifier\": { \"prefix\": \"\", \"suffix\": \"\" }\n        }\n      ]\n    }\n  ],\n  \"defaultProfile\": {\n    \"name\": \"Default\",\n    \"tabs\": [ ... ]\n  }\n}\n```\n\n- `profiles[]` — list of server-specific tab sets (matched by IP suffix)\n- `defaultProfile` — fallback tabs when no server matches  \n- Each tab supports: `id`, `name`, `visibleByDefault`, `filter` (regex + hexColor), `sendModifier` (prefix + suffix)\n\n### Sharing Configurations\n1. Use `/ct export myconfig.json` to save your setup\n2. Share the `myconfig.json` file with others\n3. They can import with `/ct import myconfig.json`\n\n## Regex Filter Guide\n\n### Basic patterns\n- `.*` — match everything (catch-all)\n- `^text` — starts with text\n- `text$` — ends with text\n- `[abc]` — any single character: a, b, or c\n- `\\d+` — one or more digits\n\n### Common server filters\n```\nHypixel levels:    ^(\\[[\\dMVP]+\\])?\nMinotar names:     ^<\\w+>\nGeneric channels:  ^\\[\\w+\\]\nWhispers:          ^(From|To) .*:\n```\n\n### Modifiers\n- `(?i)` — case-insensitive mode\n- `(?-i)` — case-sensitive mode\n- `\\b` — word boundary\n- `\\s` — whitespace\n- `\\S` — non-whitespace\n\n## Languages\n\n- English (default), Russian, Spanish, Chinese (Simplified)",
+  "categories": [
+    "decoration",
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

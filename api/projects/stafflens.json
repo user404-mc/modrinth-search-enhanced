@@ -1,0 +1,38 @@
+{
+  "id": "U42khYED",
+  "slug": "stafflens",
+  "title": "StaffLens",
+  "description": "Staff audit & anti-abuse logging for Paper, Spigot & Folia. Logs every staff moderation and admin action to SQLite or MySQL, detects abuse (self-OP, mass punishments), keeps a tamper-proof log, and sends Discord alerts. MC 1.21–26.1.",
+  "body": "# StaffLens — Staff Audit, Logging & Anti-Abuse\n\n**StaffLens** is a lightweight yet powerful **staff audit and anti-abuse plugin** for **Paper, Spigot and Folia** servers, supporting **Minecraft 1.21 – 26.1**.\n\nIt logs every **staff moderation and administration action**, stores them in **SQLite or MySQL**, and gives admins instant access in-game. Beyond passive **staff command logging**, StaffLens **actively detects suspicious behaviour** and **protects the audit log from tampering** — so you always know exactly what your staff is doing.\n\n> Catch staff abuse, keep a verifiable audit trail, and review moderation history in seconds.\n\n[![Support StaffLens on Ko-fi](https://img.shields.io/badge/Support%20StaffLens-Ko--fi-29C7FF?style=for-the-badge&logo=kofi&logoColor=white&labelColor=101826)](https://ko-fi.com/erotoro)\n---\n\n## ✨ Key Features\n\n- 📝 **Staff action logging** to SQLite or MySQL\n- 🧭 **Full context** for every action: world, coordinates, executor IP, and server name (great for networks/proxies)\n- 🔎 **Anomaly detection** — flags staff abuse: self-granting OP/permissions/items, mass punishments, repeated inventory checks, creative→give\n- 🔐 **Tamper-evident log** — SHA-256 hash chain + `/sl verify` detects entries edited or deleted directly in the database\n- 📣 **Discord webhook** alerts for critical actions and anomalies\n- 🔧 **Powerful filters** — `action:`, `time:`, `target:`, `staff:`, `flagged`\n- 📊 **Per-staff statistics** with `/sl stats`\n- ⌨️ **Tab completion** for commands, players and filters\n- 🧩 **Custom command tracking** — map any plugin's commands to actions via config, no code needed\n- 📤 **Export** history to a text file\n- 🔔 In-game notifications for critical actions\n- ♻️ Reload configuration without restarting\n\n---\n\n## 🔌 Integrations\n\nWorks out of the box with the most popular moderation and admin plugins:\n\n- **Vanilla** (command parser + custom mapping)\n- **LiteBans**\n- **BanManager**\n- **AdvancedBan**\n- **EssentialsX**\n- **CMI**\n- **LuckPerms** (accurate executor attribution)\n- **LibsDisguises** (disguise / undisguise)\n- **SuperVanish / PremiumVanish** (vanish)\n\nEvery integration can be toggled in the config.\n\n---\n\n## 🧾 Logged Actions\n\nban, unban, mute, unmute, kick, warn, grant/remove OP, permission & group changes, teleports, fly, god, vanish, disguise, socialspy, inventory & ender chest inspection, item giving, inventory clearing, heal, feed, repair, jail, unjail, nick, sudo, broadcast, lookup commands (`seen`, `history`), gamemode changes, and more — see `ActionType` for the full list.\n\n---\n\n## ⚙️ Requirements\n\n- **Java 21**\n- **Paper / Spigot / Folia 1.21.x – 26.1**\n\n---\n\n## 📥 Installation\n\n1. Download the latest **StaffLens** JAR from Modrinth.\n2. Drop it into your `plugins` folder.\n3. Start the server.\n4. Edit `plugins/StaffLens/config.yml`.\n5. Run `/sl reload` if needed.\n\n---\n\n## 🗄️ Database\n\nSupports **SQLite** (default, zero setup) and **MySQL**. Tables, indexes and column migrations are created automatically — upgrading from older versions is safe.\n\nFor MySQL, set `database.type: mysql` and the `database.mysql.*` values in `config.yml`.\n\n---\n\n## 💻 Commands\n\nMain command: `/stafflens` (alias `/sl`)\n\n| Command | Description |\n|---|---|\n| `/sl log <player> [page] [filters]` | actions performed by a staff member |\n| `/sl who <player> [page] [filters]` | actions performed against a target |\n| `/sl search <text> [filters]` | search the log |\n| `/sl today [filters]` | actions performed today |\n| `/sl stats <player> [time:..]` | summary of a staff member's actions |\n| `/sl export <player>` | export history to a file |\n| `/sl verify` | check log integrity (hash chain) |\n| `/sl reload` | reload configuration and integrations |\n\n**Filters** (combine freely): `action:BAN`, `time:7d`, `target:Steve`, `staff:Alex`, `flagged`\nExample: `/sl log Alex action:op_give time:30d`\n\n---\n\n## 🔑 Permissions\n\n| Permission | Description |\n|---|---|\n| `stafflens.use` | view logs and statistics |\n| `stafflens.export` | export logs |\n| `stafflens.admin` | `/sl reload` and `/sl verify` |\n| `stafflens.notify` | notifications for critical actions |\n| `stafflens.alerts` | alerts for detected anomalies |\n\nAll permissions default to **OP**.\n\n---\n\n## 🛡️ Anomaly Detection & Log Integrity\n\nStaffLens turns raw logs into **active oversight**:\n\n- Suspicious actions are **flagged**, broadcast to staff with `stafflens.alerts`, logged, and optionally sent to Discord.\n- Every entry is chained with a **SHA-256 hash**. `/sl verify` re-walks the chain and reports the exact entry if someone tampered with the database — perfect for trustworthy audits.\n\n---\n\n## 🌍 Localization\n\nLocale files in the `locale` folder: `en.yml`, `ru.yml`, `ua.yml`. Choose the language with the `locale` option.\n\n---\n\n## 📊 Metrics\n\nStaffLens uses [bStats](https://bstats.org) for anonymous usage statistics. Opt out with `metrics: false` in `config.yml` or globally in `plugins/bStats/config.yml`.\n\n---\n\n**Tags:** staff logger, staff audit, anti-abuse, moderation logs, command logger, admin monitor, staff activity, audit trail, Paper, Folia",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 38,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

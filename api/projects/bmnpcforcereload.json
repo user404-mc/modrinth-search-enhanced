@@ -1,0 +1,39 @@
+{
+  "id": "ZDRqDkaw",
+  "slug": "bmnpcforcereload",
+  "title": "BMNpcForceReload",
+  "description": "Automatically reapplies BetterModel templates to NPC Citizens when the server starts up and at regular intervals to prevent NPCs without templates.",
+  "body": "![Servers using BMNpcForceReload](https://img.shields.io/bstats/servers/30359?style=for-the-badge&label=Servers)\n![Players on servers using BMNpcForceReload](https://img.shields.io/bstats/players/30359?style=for-the-badge&label=Players)\n\n# BMNpcForceReload\n\n**BMNpcForceReload** is a lightweight plugin for **Paper** designed for servers using **Citizens** and **BetterModel**.\n\nIts purpose is simple: some Citizens NPCs can sometimes lose their BetterModel after a restart, reload, or simply over time.  \nThis plugin allows you to **automatically reapply the correct models** to your configured NPCs so that they always retain their correct appearance.\n\n## Features\n\n- Automatically reapplies BetterModel models to Citizens NPCs\n- Runs automatically when the server starts\n- Automatic restart at configurable intervals\n- Supports multiple NPCs with their own model names\n- Simple configuration in YAML\n- Based on command execution for maximum compatibility\n- Very useful if your BetterModel models randomly disappear from your NPCs\n\n## How it works\n\nThe plugin reads a list of **NPC ID + model** from the configuration file, then automatically executes the necessary command(s) to put the correct model back on each NPC.\n\n### Example of use\n\n- NPC `50` → `adventure_npc`\n- NPC `43` → `cubee_evil`\n- NPC `25` → `seller`\n\nWhen the server starts up, and then at each configured interval, the plugin automatically reapplies the models to all defined NPCs.\n\n## Why this plugin exists\n\nOn some configurations, BetterModel templates attached to NPC Citizens do not always remain applied correctly.  \n**BMNpcForceReload** acts as an automatic safety net to avoid having to reapply the templates manually.\n\n## Dependencies\n\n- **Citizens**\n- **BetterModel**\n\n## Configuration\n\nThe plugin is fully configurable:\n\n- activation or deactivation of the automatic system\n- startup delay\n- interval between each restart\n- delay between each NPC\n- command template\n- list of NPCs and models to reapply\n\n## Command\n\n`/bmnpcforcereload reload`\n\nReloads the plugin configuration and immediately restarts the application of models on all configured NPCs.\n\n## Permission\n\n`bmnpcforcereload.admin`\n\n## Notes\n\nThis plugin does not replace **BetterModel** or **Citizens**.  \nIt is a utility plugin designed to improve the reliability of your NPCs when their models do not remain loaded correctly.\n\n## Configuration example\n\n```yaml\nsettings:\n  enabled: true\n  interval-seconds: 7200\n  startup-delay-seconds: 15\n  debug: true\n  command-template: “npc select %npc_id% && npc model %model%”\n  delay-between-npcs-ticks: 10\n\nnpcs:\n  - npc-id: 50\n    model: “adventure_npc”\n  - npc-id: 43\n    model: “cubee_evil”\n  - npc-id: 25\n    model: “seller”\n\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

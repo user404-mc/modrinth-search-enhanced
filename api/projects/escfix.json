@@ -1,0 +1,29 @@
+{
+  "id": "LH5Sao2S",
+  "slug": "escfix",
+  "title": "EscFix",
+  "description": "Closes any GUI with 0+Back combo on MojoLauncher / PojavLauncher",
+  "body": "EscFix\n\nA lightweight client-side mod that fixes the inability to close GUIs on mobile Minecraft launchers such as **MojoLauncher** and **PojavLauncher**.\n\n The problem\nMobile launchers like MojoLauncher and PojavLauncher intercept the Android **Back** button at the system level and never pass it to the game as ESC. On top of that, both launchers don't allow you to bind the **ESC** key to an on-screen button - any attempt to assign it automatically gets replaced with **Back**. This makes it impossible to close any mod GUI that relies on ESC to exit, such as item radial menus, custom config screens, or any mod that doesn't provide its own close button.\n\n The fix\nEscFix listens to keyboard events directly inside open GUIs and closes the screen when it detects the **0 + Back** combo - before the launcher can interfere.\n\n How to use\n1. In your launcher's on-screen button settings, create a **combo button** that sends both **Back** and **0** simultaneously\n2. Open any GUI in-game\n3. Tap that button - the GUI will close\n\n> Creating a combo on-screen button is the most convenient way to use this mod on mobile, since holding two separate buttons while playing can be awkward.\n\n Compatibility\n- ✅ Minecraft **Any version**\n- ✅ MojoLauncher\n- ✅ PojavLauncher\n- ✅ Any other launcher that remaps Back to key 1\n- ✅ Client-side only - no server installation needed\n- ✅ Compatible with all mods that use standard Forge GUI system\n\n Technical details\nThe mod hooks into `GuiScreenEvent.KeyboardInputEvent.Pre` - a Forge event that fires before the GUI processes input. When the combo is detected, the event is cancelled (preventing any other action) and the current screen is closed via reflection, making it compatible even with obfuscated builds.",
+  "categories": [
+    "forge",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 45,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.13",
+    "1.14",
+    "1.15",
+    "1.16",
+    "1.17",
+    "1.18",
+    "1.19",
+    "1.20",
+    "1.21"
+  ],
+  "date_updated": null
+}

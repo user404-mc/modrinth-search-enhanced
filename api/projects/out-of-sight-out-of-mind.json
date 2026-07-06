@@ -1,0 +1,21 @@
+{
+  "id": "YUJBsbgK",
+  "slug": "out-of-sight-out-of-mind",
+  "title": "Out Of Sight Out Of Mind",
+  "description": "A server-side Minecraft Fabric mod that allows players to ignore other players' chat messages",
+  "body": "## Features\n\n- `/ignore add <player>` - Add a player to your ignore list\n- `/ignore remove <player>` - Remove a player from your ignore list\n- `/ignore list` - View all players you're currently ignoring\n- `/ignore reload` - Reload configuration files (operator or 'outofsightoutofmind.reload' permission)\n\nMessages from ignored players are filtered server-side before being sent to you, so they won't appear in your chat at all.\n\n## Compatibility\n\nThis mod is compatible with:\n- **Vanilla Minecraft** - Works out of the box\n- **[StyledChat](https://modrinth.com/mod/styled-chat)** - Fully compatible, messages are filtered at the network level\n- **[FabrixProxy-Lite](https://modrinth.com/mod/fabricproxy-lite)** - Compatible if option `hackMessageChain` is disabled.\n\n## How It Works\n\nThe mod intercepts chat messages at the network handler level (`ServerGamePacketListenerImpl.sendPlayerChatMessage`) before they are sent to each player. If the recipient has the sender on their ignore list, the message is cancelled for that specific player.\n\nIgnore lists are stored persistently in `config/outofsightoutofmind/ignores.json`. Saving occurs during server shutdown.\n\nAll user-facing messages can be customized in `config/outofsightoutofmind/messages.json` for localization or personalization.\n",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 88,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

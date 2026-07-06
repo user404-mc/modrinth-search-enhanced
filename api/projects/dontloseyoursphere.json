@@ -1,0 +1,42 @@
+{
+  "id": "Ebhmr3qs",
+  "slug": "dontloseyoursphere",
+  "title": "DontLoseYourSphere (NoPlayerHeads)",
+  "description": "A simple plugin to prevent players from losing their sphere's effects by placing it on the ground.",
+  "body": "## DontLoseYourSphere (also NoPlayerHeads)\nA simple plugin to prevent players from losing their sphere by placing it on the ground.\n\n![Plugin preview](https://i.ibb.co/WvLHS8C6/ezgif-com-optimize.gif)\n\n## How does it work?\nBecause all players equip the sphere in their offhand, they have a change of accidentally placing it down and losing all the effects of the sphere and the money they spent on the sphere itself. This plugin prevents all of that by cancelling the place event:\n```\n@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)\npublic void onPlayerHeadPlace(BlockPlaceEvent event) {\n    Material type = event.getBlockPlaced().getType();\n\n    if (type == Material.PLAYER_HEAD ||\n        type == Material.PLAYER_WALL_HEAD ||\n        (type.name().startsWith(\"PLAYER_\") && type.name().endsWith(\"HEAD\"))) {\n\n        event.setCancelled(true);\n\n        ...\n        }\n    }\n}\n```",
+  "categories": [
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

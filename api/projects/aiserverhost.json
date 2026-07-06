@@ -1,0 +1,34 @@
+{
+  "id": "LSFmDNq2",
+  "slug": "aiserverhost",
+  "title": "AIServerHost",
+  "description": "An AI-powered server host plugin for Minecraft",
+  "body": "# AIServerHost\n\nAn AI-powered server host plugin for Minecraft\n\n## Overview\n\nAIServerHost integrates DeepSeek AI into your Minecraft server to act as an intelligent server host. It monitors player chat, detects conflicts, mediates disputes, enforces rules, and even initiates conversations when players are idle.\n\n## Features\n\n- **AI Chat Monitoring** — Every player message is analyzed by the AI in real time.\n- **Conflict Detection & Mediation** — When players argue, the AI steps in to mediate.\n- **Evidence Gathering** — The AI can @ players for testimony and query CoreProtect logs (3-day limit) before taking action.\n- **Automated Punishment** — The AI can issue temporary bans (up to 10 minutes) via AdvancedBan. Punishments exceeding 10 minutes are logged for admin review instead of auto-executed.\n- **Idle Chat** — When the server is quiet and players seem bored, the AI can start friendly conversations.\n- **Token Saving** — The AI can pause chat monitoring when conversations are casual and don't require supervision.\n- **Full Action Logging** — Every AI analysis step is recorded in `whataido.yml` with configurable retention.\n- **Severe Punishment Logging** — Punishments over 10 minutes are recorded in `log.yml` with time, player, and details for admin review.\n- **Async Processing** — API calls and heavy operations run on separate threads to prevent server lag.\n\n## Safety Restrictions\n\nThe AI is **hardcoded** to never perform these actions:\n\n- Setting admin/op status\n- Banning players for more than 10 minutes directly\n- Shutting down the server\n- Deleting chunks\n- Filling blocks\n- Giving items to players\n- Executing arbitrary server commands\n\n## Requirements\n\n- **Server**: Purpur or Paper 1.21.x\n- **Java**: 21+\n- **DeepSeek API Key** — Required for AI functionality\n- **[Optional] CoreProtect** — For block log queries\n- **[Optional] AdvancedBan** — For punishment execution (falls back to kick if unavailable)\n\n## Installation\n\n1. Download `AIServerHost-1.0.0.jar`\n2. Place it in your server's `plugins/` directory\n3. Start the server — default config will be generated\n4. Edit `plugins/AIServerHost/config.yml` and set your DeepSeek API key\n5. Run `/aiserverhost reload` or restart the server\n\n## Configuration\n\n### config.yml\n\n```yaml\n# DeepSeek API Configuration\napi:\n  key: \"YOUR_API_KEY_HERE\"           # Your DeepSeek API key (required)\n  base-url: \"https://api.deepseek.com\"  # API base URL\n  model: \"deepseek-chat\"             # Model name (deepseek-chat for V3)\n  timeout: 30                        # Request timeout in seconds\n\n# AI Behavior Settings\nai:\n  max-context: 100                   # Maximum chat history messages to keep\n  max-pause-duration: 30             # Maximum pause duration (minutes)\n  idle-chat:\n    enabled: true                    # Enable idle chat feature\n    min-players: 2                   # Minimum online players to trigger\n    check-interval: 120              # Check interval in seconds\n    max-idle-time: 300               # Max idle time before AI chats (seconds)\n\n# Punishment Settings\npunishment:\n  max-direct-duration: 10            # Max direct punishment (minutes)\n  log-threshold: 10                  # Log threshold for severe punishment (minutes)\n\n# Logging Settings\nlogging:\n  whataido-retention-days: 30        # Days to keep whataido.yml records\n```\n\n### Generated Files\n\n| File | Description |\n|------|-------------|\n| `config.yml` | Plugin configuration |\n| `whataido.yml` | AI action log (auto-cleaned based on retention days) |\n| `log.yml` | Severe punishment log (for admin review) |\n\n## Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/aiserverhost reload` | `aiserverhost.admin` | Reload configuration |\n| `/aiserverhost` | `aiserverhost.admin` | Show plugin info |\n\nAliases: `/ash`, `/aishost`\n\n## AI Actions\n\nThe AI responds in JSON format and can perform these actions:\n\n| Action | Description |\n|--------|-------------|\n| `chat` | Send a public chat message |\n| `ask_player` | Ask a specific player a question publicly |\n| `ask_witness` | Ask an online player for evidence/testimony |\n| `query_coreprotect` | Query CoreProtect block logs (3-day limit) |\n| `punish` | Issue a temporary ban (max 10 minutes) |\n| `request_ban` | Request a ban over 10 minutes (logged, not auto-executed) |\n| `mediate` | Mediate a conflict between players |\n| `pause` | Pause chat monitoring to save tokens |\n| `idle_chat` | Initiate a casual conversation |\n| `no_action` | No action needed |\n\n## How It Works\n\n1. When a player sends a chat message, it's added to the AI's context\n2. The AI analyzes the message along with recent chat history\n3. Based on its analysis, the AI decides on an action (or no action)\n4. Actions are executed on the main server thread (game operations) or async threads (API calls)\n5. Every step is logged in `whataido.yml`\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

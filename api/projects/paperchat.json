@@ -1,0 +1,26 @@
+{
+  "id": "vV2xfFAq",
+  "slug": "paperchat",
+  "title": "PaperChat",
+  "description": "A PaperMC plugin letting server users play Minecraft and have an LLM baked right in!",
+  "body": "# PaperChat - AI-Powered Minecraft Plugin\n\nPaperChat is a Minecraft server plugin that integrates AI language models directly into Minecraft. It allows players to send messages to AI assistants and get answers quickly, creating natural conversation experiences powered by Google Gemini and OpenAI models, with the ability to add your own!\n\nBuilt for PaperMC servers, PaperChat maintains conversation history per player and provides a seamless bridge between Minecraft players and modern AI capabilities.\n\n## Project Philosophy\n\nPaperChat follows the \"run it yourself\" philosophy. By requiring your own AI API credentials and local deployment, you get:\n\n- No Rate Limits - Your API keys, your usage quotas\n- Complete Privacy - Player conversations never leave your infrastructure  \n- Full Control - Customize AI behavior, system prompts, and response filtering\n- No Dependencies - No external services beyond the AI providers themselves\n\n## Features\n\n- **Multi-Provider AI Support**: Automatic registration of Google Gemini and OpenAI providers with easy extensibility\n- **Persistent Conversation History**: Per-player chat sessions with configurable history limits\n- **Smart Error Handling**: User-friendly error messages with automatic response recovery\n- **Configurable System Prompts**: Define AI behavior and response formatting rules\n- **Input Validation**: Character limits\n- **Asynchronous Processing**: Non-blocking AI requests to maintain server performance\n- **Docker Ready**: Complete containerized deployment with Minecraft server bundled in\n\n## Configuration\n\nPaperChat is configured through either environment variables:\n\n| Variable | Description | Value |\n|----------|-------------|-------|\n| `PAPERCHAT_API_KEY` | Your AI provider API key | `your-api-key` (required only by your provider. If an AI provider does not require an API key, you can leave this blank) |\n| `PAPERCHAT_MAX_HISTORY` | Max number of past requests to be saved per player | Conversation history limit |\n| `PAPERCHAT_PROVIDER` | One of the available AI providers | AI provider (see more at [**Available Providers**](#available-providers)) |\n| `PAPERCHAT_MODEL` | Any LLM that a provider provides | Model to use (required only by your provider. If an AI provider does not require a model to be set, you can leave this blank) |\n| `PAPERCHAT_TEMPERATURE` | Response creativity (0.0-1.0) | 0.7 |\n| `PAPERCHAT_TIMEOUT` | Request timeout in seconds | 30 |\n| `PAPERCHAT_MAX_INPUT_CHARACTERS` | Maximum input message length | 100 |\n| `PAPERCHAT_MAX_OUTPUT_TOKENS` | Maximum response length | 4096 |\n| `PAPERCHAT_SYSTEM_PROMPT` | Custom system prompt for AI behavior | Your custom prompt (leaving empty uses default system prompt) |\n\nOr `config.yml` file located in the `data/plugins/PaperChat/` directory:\n\n```yaml\nai:\n  api-key: \"\"  # You can leave it empty if your provider does NOT require an API key\n  provider: \"google\"\n  model: \"gemini-2.5-flash\"  # You can leave it empty if your provider does NOT require a model parameter. However, at the moment this is only true for HackClub provider\n  temperature: 0.7\n  timeout: 30\n  max-output-tokens: 4096\n  system-prompt: \"\"  # Include your custom system prompt here\n\n# NOTE: setting a system prompt here will overwrite the current prompt\n# If left empty, the default system prompt will be used\n\n# Chat Configuration\nchat:\n  max-history: 5\n  max-input-characters: 100\n```\n\nConfiguration in `config.yml` matches the environment variables. If both are set, the environment takes precedence.",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 108,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

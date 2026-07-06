@@ -1,0 +1,21 @@
+{
+  "id": "8yQLrtw5",
+  "slug": "terralib",
+  "title": "TerraLib",
+  "description": "Library for the mod \"seasons\" made by Elias",
+  "body": "# 🌍 TerraLib\n\nA lightweight Fabric utility library for seasons, temperature, and world-persistent data. Designed to power seasonal survival mechanics with ease.\n\n## 🚀 Features\n* **Season API**: Track days and transition between Spring, Summer, Autumn, and Winter.\n* **Temperature API**: Per-player temperature simulation with built-in effects (freezing/overheating).\n* **TerraWorldData**: Easy, namespaced NBT storage for saving data directly to world files.\n* **Events**: Custom hooks for `SEASON_CHANGED`, `DAY_CHANGED`, and `PLAYER_TEMP_CHANGED`.\n\n## 🛠 Setup for Developers\nAdd the following to your `build.gradle`:\n```gradle\nrepositories {\n    maven { url = \"[https://api.modrinth.com/maven](https://api.modrinth.com/maven)\" }\n}\n\ndependencies {\n    modImplementation \"maven.modrinth:terralib:YOUR_VERSION\"\n    include \"maven.modrinth:terralib:YOUR_VERSION\" // Recommended: bundle the lib\n}\n```\n\n## 📖 Quick Start\nCheck Current Season\n```Java\nSeasonAPI.Season current = SeasonAPI.getSeason();\n  if (current == SeasonAPI.Season.WINTER) {\n    // Do winter stuff\n}\n```\n\n## Save Custom World Data\n```Java\nTerraWorldData data = TerraWorldData.get(world);\ndata.putInt(\"my_mod\", \"some_value\", 100);\n```\n\n## Listen for Season Changes\n```Java\nTerraLibEvents.SEASON_CHANGED.register((world, oldSeason, newSeason) -> {\n    System.out.println(\"The world shifted from \" + oldSeason + \" to \" + newSeason);\n});\n```\n\n## 🖥️ Commands\nTerraLib includes a debug suite for testing seasonal and temperature logic:\n\n- /terralib season get: Displays current season, day, and forced status.\n\n- /terralib season set <season>: Forces a specific season and anchors the time offset.\n\n- /terralib season skip: Skips to the next season.\n\n- /terralib temp get <player>: Views detailed temperature data and status labels.\n\n## 📄 License\nThis library is available under the `MIT License`. Feel free to bundle it in your modpacks or use it as a dependency for your own Fabric mods.",
+  "categories": [
+    "fabric",
+    "library",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

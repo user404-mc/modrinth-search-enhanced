@@ -1,0 +1,24 @@
+{
+  "id": "rRWhL7s1",
+  "slug": "incremental-player-save",
+  "title": "Incremental Player Save",
+  "description": "Implements incremental player saving to smooth out MSPT spikes from saving player data to disk in PlayerManager.saveAllPlayerData()",
+  "body": "# Incremental Player Save\n\nA mod to eliminate MSPT spikes caused by player data auto-save on Minecraft servers.\n\n## What It Does\n\nMinecraft's auto-save calls `net.minecraft.server.PlayerManager.saveAllPlayerData()` once per save interval, writing every online player's data to disk in a single tick. On servers with many players or with a lot of player data, this can cause a large MSPT spike.\n\nIncremental Player Save fixes this by spreading player saves across multiple ticks, saving a small batch of players per tick rather than all at once. This mod was inspired by [Paper's incremental player saving feature](https://github.com/PaperMC/Paper/blob/76d2ac758cb3abe75aceefa88207443768f585c6/paper-server/patches/features/0020-Incremental-chunk-and-player-saving.patch).\n\n\n## Who This Is For\n\nInstall this mod if you see any of the following:\n\n- Regular MSPT spikes every auto-save interval (default: every 6000 ticks / 5 minutes)\n- `net.minecraft.server.PlayerManager.saveAllPlayerData` appearing in Spark profiler results during spikes\n\nThis mod targets only player `.dat` file writes. It will not reduce spikes from chunk saving or other auto-save work.\n\n\n## Configuration\n\nAll options are in the mod's config file in ``config/incrementalplayersave.json``\n\n| Option | Description | Default |\n|---|---|---|\n| `ticksBetweenSaveAttempts` | How often (in ticks) the mod checks which players are due for a save | 20 |\n| `ticksBetweenSavesPerPlayer` | Minimum ticks between saves for any individual player | 6000 |\n| `maxPlayersSavedPerAttempt` | Maximum number of players saved per attempt. Controls per-tick save cost | 3 |\n| `enableDebugLog` | Log save actions to console | `false` |\n\n\n## Other Notes\n\n- Some optimization mods may include similar functionality. Use Spark to confirm whether `saveAllPlayerData` still appears in your profiles before installing. On my server with many optimization mods like Lithium, none of them alleviated the tick spike caused by PlayerManager.saveAllPlayerData().\n\n- `net.minecraft.server.PlayerManager.saveAllPlayerData()` is `net.minecraft.server.players.PlayerList.saveAll()` in Mojang Mappings.\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 43,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

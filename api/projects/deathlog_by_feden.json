@@ -1,0 +1,43 @@
+{
+  "id": "D7E3N4DP",
+  "slug": "deathlog_by_feden",
+  "title": "DeathLog_By_FeDen",
+  "description": "This project adds a complete death tracking system for Minecraft servers. It records player deaths, including lost items, coordinates, cause of death, and killer, and provides an intuitive GUI for administrators to review and manage death history.",
+  "body": "## DeathLog - Death History & Item Recovery\nLightweight death history and item recovery plugin for Paper/Spigot servers.\n\nDeathLog is a lightweight admin plugin for Paper/Spigot that stores player death history,\ndisplays lost items through a convenient GUI, and allows staff to safely restore lost items.\n\n---\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/QNqSsSK2qcg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n---\n\n# ✨ Features\n- Logs player deaths using `PlayerDeathEvent`\n- Death history GUI\n- View lost items for each death\n- Full `ItemStack` saving:\n  - meta\n  - NBT\n  - enchantments\n  - lore\n  - custom item data\n- Saves:\n  - world\n  - coordinates\n  - death time\n- Detects:\n  - death cause\n  - killer\n  - player / mob / projectile\n- Teleport staff to death locations\n- Restore items directly through GUI\n- Inventory free-space check before restore\n- One-time restore protection\n- Logs the administrator who restored items\n- Removes tracked world drops after restore\n- Removes items from players who picked up someone else's death loot\n- Removes equipped stolen items from:\n  - armor slots\n  - offhand\n- Removes placed blocks created from death loot\n- Attempts block rollback at death location\n- Configurable death limit per player with FIFO cleanup\n- Player opt-out system for death saving\n- EN/RU language support\n- Configurable prefix and core settings\n\n---\n\n# 📜 Commands\n\n```bash\n/deathlog\n```\n\nOpen your death history.\n\n```bash\n/deathlog <player>\n```\n\nOpen another player's death history.\n\n```bash\n/deathlog clear\n```\n\nClear your death history.\n\n```bash\n/deathlog clear <player>\n```\n\nClear another player's death history.\n\n```bash\n/deathlog nosave <deathId>\n```\n\nUsed by the opt-out button to remove a saved death.\n\n---\n\n# 🔑 Permissions\n\nBy default, only OP has access.\n\n```txt\ndeathlog.view\n```\n\nAccess your own history.\n\n```txt\ndeathlog.others\n```\n\nView and manage other players' histories.\n\n```txt\ndeathlog.restore\n```\n\nRestore items.\n\n---\n\n# ♻️ Restore\n\n## Before Restore\n\n- Player must be online\n- Free inventory space is checked\n- Death must not already be restored\n\n## After Restore\n\n- Items are returned to the dead player\n- Armor is restored to armor slots if available\n- Offhand items are restored to the offhand slot if free\n- Inventory items return to original slots if available\n- Occupied slots fallback to free inventory space\n- Tracked drops are removed from the world\n- Picked-up items are removed from other players\n- Equipped stolen items are removed from:\n  - inventory\n  - armor\n  - offhand\n- Blocks placed from death loot are removed\n- Restore administrator is logged\n\n---\n\n# 💀 Death Saving\n\nAfter death, the player receives a chat message:\n\n```txt\nDeath info saved for staff. [Do not save]\n```\n\n## Behavior\n\n- If the player does nothing:\n  - the death remains saved for staff\n- If the player clicks:\n\n```txt\n[Do not save]\n```\n\nthe death record is deleted and hidden from staff.\n\n---\n\n# ⚙️ Config\n\nFile:\n\n```txt\nplugins/DeathLog/config.yml\n```\n\n```yml\nlanguage: \"en\"\nprefix: \"&8[&cDeathLog&8] &7\"\n\nstorage:\n  max_deaths_per_player: 10\n  date_format: \"dd.MM.yyyy HH:mm:ss\"\n  auto_save_on_death: true\n  allow_player_opt_out: true\n\nrestore:\n  require_player_online: true\n  check_inventory_space: true\n  one_time_restore: true\n  remove_world_drops: true\n  remove_picked_items: true\n  remove_picked_items_on_join: true\n  remove_placed_blocks: true\n  block_rollback: true\n  notify_target: true\n\ntracking:\n  dropped_item_search_radius: 4.0\n  track_picked_items: true\n  track_placed_blocks: true\n\ngui:\n  history_size: 54\n  details_size: 54\n  teleport_slot: 45\n  restore_slot: 49\n  back_slot: 53\n```\n\n---\n\n# 🌍 Languages\n\nDefault language:\n\n```txt\nEnglish\n```\n\n## Available Languages\n\n```txt\nen — English\nru — Русский\n```\n\n## Language Files\n\n```txt\nplugins/DeathLog/lang/en.yml\nplugins/DeathLog/lang/ru.yml\n```\n\n## Russian Language\n\n```yml\nlanguage: \"ru\"\n```\n\nAfter changing the language, restart the server.\n\n---\n\n# 💾 Storage\n\nAll deaths are stored in:\n\n```txt\nplugins/DeathLog/deaths.yml\n```\n\n## Saved Data\n\n- Player UUID and nickname\n- Death time\n- World and coordinates\n- Yaw/Pitch\n- Death cause\n- Killer\n- Lost items\n- Original item slots\n- Tracked drop UUIDs\n- Players who picked up items\n- Blocks placed using death loot\n- Restore status\n- Restore administrator and timestamp\n\n---\n\n# 📦 Installation\n\n## 1. Download\n\n```txt\nDeathLog.jar\n```\n\n## 2. Move\n\nPlace the jar into:\n\n```txt\nplugins/\n```\n\n## 3. Restart\n\nStart or restart your server.\n\n## 4. Configure\n\nEdit:\n\n```txt\nplugins/DeathLog/config.yml\n```\n\n## 5. Language\n\n```yml\nlanguage: \"ru\"\n```\n\n---\n\n# 🧩 Compatibility\n\n```txt\nMinecraft: 1.20+ / 1.21+\nPlatform: Paper / Spigot\nJava: 17+\n```\n\n---\n\n# 🎯 Use Cases\n\nDeathLog is useful for:\n\n- Survival servers\n- Grief-control systems\n- Staff utility servers\n- Hardcore gameplay\n- Administrative moderation\n- Any server where staff need fast and safe item recovery tools\n\n---\n\n# ❤️ DeathLog\n\nSimple. Safe. Staff-friendly death recovery.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 29,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

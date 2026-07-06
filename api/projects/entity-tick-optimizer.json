@@ -1,0 +1,19 @@
+{
+  "id": "9243kybs",
+  "slug": "entity-tick-optimizer",
+  "title": "Entity Tick Optimizer (ETO)",
+  "description": "Optimizes Entity Ticks, which helps with performance and optimization",
+  "body": "**Entity Tick Optimizer** is a powerful, highly configurable server-side performance mod for Fabric that intelligently throttles entity AI and ticking based on distance to players.\n\n### Overview\nInstead of ticking every mob at full intensity all the time, **Entity Tick Optimizer** uses a **4-tier activation system** to dramatically reduce server CPU usage in large worlds, mob farms, or high-entity-count servers, while keeping gameplay responsive near players.\n\n### Core Features\n\n- **4-Tier Activation System**:\n  - **FULL** — Normal vanilla behavior (close range)\n  - **REDUCED** — AI runs at reduced frequency\n  - **INACTIVE** — Very minimal AI + throttled base ticking\n  - **MINIMAL** — Physics-only (extremely distant entities)\n\n- **Highly Configurable**:\n  - Separate settings for each mob category (`monster`, `creature`, `ambient`, `water_creature`, etc.)\n  - Full per-entity overrides (e.g. make zombies more active than skeletons)\n  - Adjustable ranges and AI intervals\n\n- **Smart Lithium Compatibility**:\n  - Automatically disables main throttling when Lithium is detected (recommended)\n  - Can be forced on if desired\n\n- **Performance Statistics & Commands**:\n  - `/entitytickoptimizer stats` — View detailed throttling statistics\n  - `/entitytickoptimizer stats reset` — Reset counters\n  - `/entitytickoptimizer reload` — Reload config\n  - `/entitytickoptimizer debug <entityType>` — Check activation level of nearby mobs\n\n### How It Works\nThe mod intercepts the main entity ticking loop and applies distance-based rules before entities even begin their normal tick cycle. This is significantly more effective than simple AI skipping for distant mobs.\n\nAdditional optimizations are applied via mixins to `LivingEntity` and `Mob` for further savings on block checks, base ticking, etc.\n\n### Configuration\nEdit `config/entity-tick-optimizer.json` for full control. The config is well-documented and supports:\n- Custom ranges for each tier\n- Per-entity overrides using entity IDs (e.g. `minecraft:zombie`)\n- Global enable/disable and debug options\n\n### Compatibility\n- **Minecraft 1.21.11**\n- **Fabric Loader**\n- Works alongside Lithium (recommended to keep default compatibility mode)\n- High mixin priority to compete with other optimizers\n\n**Note**: This is a **server-side** mod. Clients do not need it.\n",
+  "categories": [
+    "fabric",
+    "optimization"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 64,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "jPIVbCDg",
+  "slug": "folia-for-all",
+  "title": "Folia For All",
+  "description": "Add folia support to unsupported plugins",
+  "body": "# FoliaForAll\n\n**Run your Paper plugins on Folia - no source changes required.**\n\nFolia rejects any plugin that doesn't explicitly declare `folia-supported: true`, and replaces the standard `BukkitScheduler` with a stub that throws `UnsupportedOperationException` on every call. FoliaForAll removes both of these barriers so that the vast majority of legacy Bukkit/Paper plugins work out of the box.\n\n---\n\n## How it works\n\nFoliaForAll ships as both a **Java agent** and a **plugin** that work together.\n\n**Java agent**\n- Patches `PluginDescriptionFile.isFoliaSupported()` to always return `true`, bypassing Folia's load-time compatibility check for every installed plugin\n- Patches `CraftServer.waitForAsyncTasksShutdown()` to avoid a crash on server stop caused by scheduler type incompatibility\n\n**Plugin**\n- Injects a `BukkitScheduler` compatibility adapter into the server at startup, routing calls to Folia's native scheduler APIs\n\nThe scheduler adapter maps the full `BukkitScheduler` API surface:\n- **Sync tasks** → `GlobalRegionScheduler` (closest equivalent to Paper's main thread for non-world operations)\n- **Async tasks** → `AsyncScheduler`\n- Delays and periods are converted from ticks to milliseconds (1 tick = 50 ms)\n\n---\n\n## Installation\n\n1. Drop latest `FoliaForAll-x.x.x.jar` into your `plugins/` folder.\n2. Add the Java agent to your server start command:\n\n```\njava -javaagent:plugins/FoliaForAll-x.x.x.jar -jar server.jar\n```\n\nBoth steps are required. Without the `-javaagent` flag, plugins that don't declare `folia-supported: true` will still be rejected by Folia before the compatibility layer can help them.\n\n---\n\n## Limitations\n\n- **Sync tasks run on the global region thread**, not a specific chunk region. Plugins that read or write block/entity data for a particular chunk may still encounter thread-safety errors. Use Folia's native `RegionScheduler` or `EntityScheduler` APIs for correct region-aware scheduling.\n- Task IDs are generated internally and are not shared with Folia's own task tracking.\n- This is a best-effort compatibility shim. Plugins with deep assumptions about Paper's single-threaded model may still misbehave on Folia's regionized architecture.\n\n---\n\n## Requirements\n\n- **Folia or a fork** 1.20.4 or newer\n- Java 21+\n\n---\n\n## Disclaimer\n\nFoliaForAll is provided as-is, without any warranty or guarantee of functionality. While it aims to improve compatibility between legacy Bukkit/Paper plugins and Folia and its forks, we make no guarantees that any specific plugin will work correctly. Plugin crashes, data corruption, or unexpected behaviour caused by incompatible plugins remain the responsibility of the server operator. Use at your own risk.",
+  "categories": [
+    "folia",
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 95,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

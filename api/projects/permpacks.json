@@ -1,0 +1,29 @@
+{
+  "id": "4JJte3V9",
+  "slug": "permpacks",
+  "title": "PermPacks",
+  "description": "Use permission nodes to manage your resourcepack stack!",
+  "body": "<p style=\"text-align: center\"><img src=\"https://github.com/Pectics/PermPacks/blob/main/assets/logo_180x.png?raw=true\" width=\"180\" alt=\"PermPacks Logo\"></p>\n<h1 style=\"text-align: center\"><b>PermPacks</b></h1>\n\n<p style=\"text-align: center\">\n  <span>English</span> | \n  <a href=\"https://github.com/Pectics/PermPacks/blob/main/README.md\">中文</a>\n</p>\n\nA Paper plugin that distributes a layered resource-pack stack to players based on permissions. It supports both remote URLs and local files, ships with self-host and Amazon S3 upload backends, and can optionally block external packs for consistency.\n\n## Highlights\n\n- Permission-driven pack stack: filter packs from `packs.yml` by player permissions, load in ascending priority; later packs override earlier ones.\n- Unified delivery for multiple sources: `url` and `file` items are unified into a single client request.\n- Pluggable upload services: built-in `self_host` (embedded HTTP server) and `amazon_s3`; SHA-1 is auto-computed and reused to avoid duplicate uploads.\n- External pack blocking: with ProtocolLib installed, block any resource pack not marked by this plugin.\n- Hot reload and diagnostics: reload configs and redistribute online players; inspect pack details and player stack state.\n\n## Requirements\n\n- Paper 1.21+, Java 21\n- Optional: ProtocolLib (recommended for external-pack blocking)\n\n## Installation\n\n1) Drop `PermPacks-<version>-all.jar` into `plugins/`\n2) Start the server to generate `config.yml` and `packs.yml`\n3) Edit configs as needed, then run `/permpacks reload packs` to apply\n\nNote: the plugin creates cache/repository directories (e.g., `.filerepo/`). They are safe to delete; they will be re-created automatically.\n\n## Configuration (`config.yml`)\n\n```yaml\nblock_other_packs: false\n\nfile_upload:\n  enabled: false\n  cleanup: false\n  service: self_host # amazon_s3, self_host\n  self_host:\n    host: 127.0.0.1\n    port: 7077\n  amazon_s3:\n    endpoint: s3.amazonaws.com\n    region: cn-north-1\n    bucket: your-bucket-name\n    directory: uploads\n    access_key_id: \"\"\n    secret_access_key: \"\"\n    path_style_access: false\n    chunked_encoding: true\n```\n\n- `block_other_packs`: if enabled, block any resource pack not marked by this plugin (requires ProtocolLib).\n- `file_upload.enabled`: enable usage of `file` items in `packs.yml`; when disabled, `file` items are ignored.\n- `file_upload.service`: choose `self_host` (embedded HTTP) or `amazon_s3`.\n- `file_upload.cleanup`: on startup, remove unreferenced objects from the repository/bucket; keep only those referenced by current config.\n- `self_host.*`: listen address and port for the embedded HTTP server.\n- `amazon_s3.*`: S3 client and bucket settings; supports path-style addressing and chunked encoding.\n\n## Packs (`packs.yml`)\n\nPriority rules: default is 0; negatives allowed. Packs are loaded in ascending priority; items with equal priority are loaded in file order, with later items overriding earlier ones.\n\n```yaml\nexample:\n  permission: permpacks.pack.example\n  priority: 10\n  items:\n    - url: https://example.com/high.zip\n      hash: d41d8cd98f00b204e9800998ecf8427e\n    - file: plugins/OtherPlugin/assets.zip\n      hash: 900150983cd24fb0d6963f7d28e17f72\n```\n\n- `permission`: players owning this permission receive the pack (and its items).\n- `priority`: lower loads earlier; later packs override earlier ones.\n- `items.url`: direct download URL; providing official SHA-1 is recommended.\n- `items.file`: local file path; requires upload service. The plugin validates, computes SHA-1, and uploads to self-host or S3 to generate an accessible URL.\n\nApply changes with: `/permpacks reload packs`.\n\n## Commands & Permissions\n\n- `/permpacks reload configs` (`permpacks.admin`): reload `config.yml` and `packs.yml`.\n- `/permpacks reload packs` (`permpacks.admin`): re-cache and redistribute based on current config.\n- `/permpacks info <PACK_ID>` (`permpacks.admin`): show permission and item details (URL/File and hashes) for a pack.\n- `/permpacks check <PLAYER>` (`permpacks.admin`): compare player permissions with actually distributed packs; shows ✔/✘.\n\nAliases: `/ppacks`, `/pp`\n\n## How It Works (Internals)\n\n- Startup: `PermPacks` initializes `Options`, `BinaryCache`, and upload services (`SelfHostService`/`S3Service`), then reads and caches packs.\n- Distribution: `Packer.distribute(player)` filters `Pack`s by permissions, builds a single request, and sends all items; each item is marked in `PackPacketTracker`.\n- Blocking: when `block_other_packs` is enabled, `PackBlocker` (via ProtocolLib) blocks any outgoing resource pack not previously marked.\n- Cleanup: with `file_upload.cleanup` enabled, unreferenced files/objects are cleaned up on self-host/S3 during startup.\n\n## Build From Source\n\n```bash\n./gradlew build\n```\n\n- Artifact: `build/libs/PermPacks-<version>-all.jar`\n- Dev server: `./gradlew runServer` (Paper 1.21)\n\n## License\n\nGPL-3.0. Contributions via Issues/PRs are welcome.\n\n\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 89,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

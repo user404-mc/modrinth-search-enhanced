@@ -1,0 +1,38 @@
+{
+  "id": "2P7Howh6",
+  "slug": "vafkzone",
+  "title": "V AFKZone",
+  "description": "V-AfkZone - AFK Zone tracker with WorldGuard integration and configurable rewards.",
+  "body": "# 🏗️ V-AfkZone \n**Timed AFK Rewards for Paper Servers**\n\n> Simple vertical transportation for Paper 1.21.1+ servers\n\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-blue.svg)](https://papermc.io)\n[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net)\n\n\n</div>\n\n---\n\n## ✨ Features\n\n- 🎯 **WorldGuard Integration** — Create AFK zones using existing WorldGuard regions\n- 🌍 **AFK Everywhere** — Permission-based rewards outside designated zones\n- ⏱️ **Flexible Timers** — Configure reward intervals per zone or profile\n- 📊 **Visual Feedback** — Boss bars, action bars, titles, and chat messages\n- 🖱️ **Admin GUI** — In-game management with `/afkzone`\n- 🔌 **PlaceholderAPI** — Full expansion with 13+ placeholders\n- 🔔 **Custom Events** — Developer API with cancellable events\n- 🔄 **Auto Migration** — Seamless upgrades from legacy configs\n- ⚡ **Zero Lag** — Optimized scheduler with configurable intervals\n- 🔒 **Protected Zones** — Prevent double-rewarding with zone priority system\n\n---\n\n## 🚀 Installation\n\n1. **Download** the latest `V-AfkZone-1.0.0.jar`\n2. **Place** the jar in your server's `plugins/` folder\n3. **Ensure** WorldGuard and WorldEdit are installed\n4. **Start** the server to generate default configs\n5. **Configure** zones in `plugins/V-AfkZone/area/`\n6. **Reload** with `/afkzone reload` or restart\n\n---\n\n## 🎮 Quick Start\n\n### Creating Your First AFK Zone\n\n```bash\n# 1. Create a WorldGuard region first\n/region define spawn_afk\n\n# 2. Create the zone config\n/afkzone create zone spawn_afk\n\n# 3. Edit plugins/V-AfkZone/area/spawn_afk.yml\n```\n\n### Enabling AFK Everywhere\n\n```bash\n# 1. Create the profile\n/afkzone create everywhere afk\n\n# 2. Grant permission to players\n/lp user <player> permission set vafkzone.everywhere.use true\n\n# 3. Reload the plugin\n/afkzone reload\n```\n\n---\n\n## ⌨️ Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/afkzone` | `vafkzone.admin` | Opens admin GUI |\n| `/afkzone menu` | `vafkzone.admin` | Opens main GUI |\n| `/afkzone reload` | `vafkzone.admin` | Reloads all configs |\n| `/afkzone info` | `vafkzone.info` | Shows your active sessions |\n| `/afkzone sessions` | `vafkzone.admin` | Shows all active sessions |\n| `/afkzone sessions <player>` | `vafkzone.admin` | Shows player's sessions |\n| `/afkzone create zone <name>` | `vafkzone.admin` | Creates zone config |\n| `/afkzone create everywhere <name>` | `vafkzone.admin` | Creates everywhere profile |\n| `/afkzone edit <name>` | `vafkzone.admin` | Opens editor (auto-detects) |\n| `/afkzone edit zone <name>` | `vafkzone.admin` | Opens zone editor |\n| `/afkzone edit everywhere <name>` | `vafkzone.admin` | Opens profile editor |\n| `/afkzone delete <name>` | `vafkzone.admin` | Deletes zone/profile |\n| `/afkzone delete zone <name>` | `vafkzone.admin` | Deletes zone |\n| `/afkzone delete everywhere <name>` | `vafkzone.admin` | Deletes profile |\n| `/afkzone setup <name>` | `vafkzone.admin` | Shortcut for zone create |\n| `/afkzone everywhere <name>` | `vafkzone.admin` | Shortcut for everywhere create |\n\n---\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `vafkzone.admin` | `op` | Full admin access |\n| `vafkzone.info` | `true` | View own AFK info |\n| `vafkzone.use` | `true` | Use AFK zones |\n| `vafkzone.everywhere.use` | `false` | Use default everywhere profile |\n\n> 💡 **Tip:** Custom everywhere profiles can use any permission node (e.g., `vafkzone.everywhere.vip`)\n\n---\n\n## ⚙️ Configuration\n\n### Zone Config (`area/spawn_afk.yml`)\n\n```yaml\n### Zone identification\nzoneName: spawn_afk\nworldGuardRegion: spawn_afk\nworldName: world\n\n### Reward settings\nrequiredSeconds: 60\nenabled: true\n\n### Visual feedback\nshow-bossbar: true\nshow-actionbar: true\nshow-reward-received-message: true\n\n### Sound effects\nsound: false\nsound-type: level_up\n\n### Protection - blocks AFK Everywhere in this zone\ndisable-afk-everywhere: false\n\n### Commands run as console when reward fires\nrewardCommands:\n  - give %player% diamond 1\n  - broadcast %player% earned a reward from AFK zone spawn_afk!\n```\n\n### Everywhere Profile (`everywhere/afk.yml`)\n\n```yaml\nenabled: true\npermission: vafkzone.everywhere.use\npriority: 0\n\n### Movement detection\nwalking: true\nidle-threshold-seconds: 60\n\n### Reward settings\nrequiredSeconds: 60\n\n### Visual feedback\nshow-bossbar: true\nshow-actionbar: true\nshow-reward-received-message: true\n\n### Sound effects\nsound: false\nsound-type: level_up\n\n### Commands\nrewardCommands:\n  - give %player% diamond 1\n  - broadcast %player% earned a reward from AFK Everywhere!\n```\n\n### Global Config (`config.yml`)\n\n```yaml\nsettings:\n  check-interval-seconds: 1  # Scheduler tick rate\n  show-bossbar: true         # Master boss bar switch\n  notify-admin-on-reward: false  # Log to online admins\n  debug: false              # Extra console logging\n\nmessages:\n  ### MiniMessage format supported\n  prefix: \"<gradient:#3b82f6:#8b5cf6>[V-AfkZone]</gradient> \"\n```\n\n---\n\n## 🔌 PlaceholderAPI\n\nWhen PlaceholderAPI is installed, the `vafkzone` expansion is auto-registered:\n\n| Placeholder | Description |\n|-------------|-------------|\n| `%vafkzone_in_zone%` | true/false if in any zone |\n| `%vafkzone_zone_name%` | Current zone name |\n| `%vafkzone_zone_names%` | All active zone names |\n| `%vafkzone_next_reward%` | Seconds until next reward |\n| `%vafkzone_rewards_total%` | Total rewards earned |\n| `%vafkzone_time_in_zone%` | Seconds in current zone |\n| `%vafkzone_required_seconds%` | Required seconds for zone |\n| `%vafkzone_in_everywhere%` | true/false if in everywhere mode |\n| `%vafkzone_everywhere_name%` | Active everywhere profile |\n| `%vafkzone_everywhere_next_reward%` | Seconds until everywhere reward |\n| `%vafkzone_everywhere_rewards_total%` | Total everywhere rewards |\n| `%vafkzone_any_active%` | true/false any AFK active |\n| `%vafkzone_active_count%` | Number of active sessions |\n\n---\n\n\n\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 61,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

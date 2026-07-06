@@ -1,0 +1,37 @@
+{
+  "id": "q8GHfCzX",
+  "slug": "zenfights",
+  "title": "ZenFights",
+  "description": "This adds a Sandbox PVP to your game.\n\nOur motto: Wanna fight? Fight here. Now.",
+  "body": "# ZenFights 2.0.7\n\n[![Supported Loaders](https://img.shields.io/badge/Loaders-Bukkit%20%7C%20Spigot%20%7C%20Paper%20%7C%20Purpur-blue)](#)\n[![Minecraft Versions](https://img.shields.io/badge/MC-1.21.x%20–%2026.1.x-brightgreen)](#)\n[![Java](https://img.shields.io/badge/Java-21%20%7C%2025-orange)](#)\n\n**ZenFights** is a high-performance, competitive duel engine built exclusively for the every ecosystem including Paper, Spigot, Bukkit and Purpur. It transforms standard PvP into a highly isolated, professional matchmaking experience, supporting all modern server versions.\n\nVersion 2.0.7 introduces network-level combat isolation, dynamic Elo-style \"Zen\" ratings, a fully integrated AI Practice Bot, and an active Discord gateway bridge.\n\n\n[![Discord](https://cdn.modrinth.com/data/cached_images/05fe664c676a12a0c6ee7a86b31d81be49b09a5c.png)](https://discord.gg/ReqqvMpuHh)\n\n[Wiki](https://zenstudios.xo.je)\n\n\n## 🌟 Key Features\n\n* **Universal Version Support:** Fully optimized for seamless performance across modern PaperMC releases (1.20.x – 1.21.x).\n* **Network-Level Arena Isolation:** When a duel begins, bystanders vanish. Fighters are network-isolated, preventing third-party interference, stray projectiles, and visual clutter.\n* **Smart Rollback Sandbox:** Explosions from end crystals/beds and broken blocks are visually hidden from the rest of the server and instantly rolled back when the match concludes.\n* **AI Practice Bot (Zen Master):** Train your pacing offline. The practice bot features an action-bar virtual health pool (2000 HP), automatic boundary containment, and mimics your selected kit.\n* **Advanced Spectator Mode:** Server members can spectate live matches using a dedicated `/fight spec` routing engine that bypasses network invisibility while safely locking their commands.\n* **Elo \"Zen\" Rating System:** A mathematical ranking system. Players start at `3000` Zen, gaining or losing points dynamically based on the skill gap of their opponent.\n* **Discord Integration:** A built-in JDA Discord Bot that syncs your server's live match data, offering `/zfbot-top` and `/zfbot-stats` slash commands straight from your Discord server.\n* **High-Precision Kit Serialization:** Admins can save their entire current state—**Inventory, Armor, and Offhand**—as custom, reusable kits directly from the game.\n\n---\n\n## 🚀 Getting Started\n\n### Installation\n1. Download the latest `ZenFights-2.0.x.jar` file.\n2. Ensure you have **PlaceholderAPI** installed on your server.\n3. Place ZenFights into your server's `plugins/` folder.\n4. Restart your server to generate the default `config.yml`.\n\n### Commands & Permissions\n\n#### Player Commands\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/fight <player>` | Opens the Kit Selection GUI to challenge a player. | `zenfights.fight` |\n| `/fight accept <player>` | Accept an incoming duel request. | `zenfights.fight` |\n| `/fight practice <kit>` | Start an isolated combat simulation against the AI. | `zenfights.fight` |\n| `/fight practice exit` | Forcibly exit your active simulation early. | `zenfights.fight` |\n| `/fight spec <player>` | Spectate an active duel in Gamemode 3. | `zenfights.command.spectate` |\n| `/fight spec leave` | Safely disconnect from the spectator perspective. | `zenfights.command.spectate` |\n\n#### Admin Commands\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/zf savekit <name>` | Saves your current inventory layout as a global kit. | `zenfights.admin` |\n| `/zf deletekit <name>` | Permanently deletes a kit profile. | `zenfights.admin` |\n| `/zf listkits` | View all active kit templates loaded in memory. | `zenfights.admin` |\n| `/zf reload` | Reloads the configuration and memory state safely. | `zenfights.admin` |\n| `/zf loadkit <name>` | Manually equip a saved server kit profile. | `zenfights.base` |\n\n*(Note: Give staff members the `zenfights.spectate.bypasscommands` permission to allow them to execute other server commands while locked in spectator mode).*\n\n---\n\n## 📊 PlaceholderAPI Integration\n\nZenFights comes with a built-in expansion. You do **not** need to download anything from the eCloud. Use these anywhere (Scoreboards, TAB, Holograms, Chat):\n\n| Placeholder | Output / Description |\n| :--- | :--- |\n| `%zenfights_zen%` | Displays the player's current Elo/Zen score (Default: 3000). |\n| `%zenfights_status%` | Returns `§bIn Fight` or `§7Idle` based on combat state. |\n| `%zenfights_wins%` | Total number of recorded duel victories. |\n| `%zenfights_losses%` | Total number of recorded duel defeats. |\n| `%zenfights_deaths%` | Alias for losses. |\n| `%zenfights_matches_played%` | The combined total of all historical matches logged. |\n\n---\n\n## ⚙️ Default Configuration (`config.yml`)\n\nThe configuration file handles your physical arena parameters, reward hooks, and database tracking. \n\n```yaml\n# ==============================================================================\n#                         ZENFIGHTS CONFIGURATION\n# ==============================================================================\n\narena:\n  # The maximum blocks a practice bot can wander before bouncing off the border\n  border-radius: 15.0\n\n# sandbox-radius: How far the worldborder extends from the duel center\nsandbox-radius: 32.0\n# spawn-immunity-seconds: Invulnerability window in seconds upon match start\nspawn-immunity-seconds: 3\n# match-timeout-minutes: Max duration in minutes before a duel is auto-cancelled\nmatch-timeout-minutes: 20\n\n# zen-k-factor: Determines how much Zen is won/lost (higher = more volatile)\nzen-k-factor: 32.0\n# default-zen: The starting score for new players\ndefault-zen: 3000\n\n# win-commands: Commands executed by Console when a player wins.\n# Use %player% to target the winner.\nwin-commands:\n  - \"eco give %player% 100\"\n\ndiscord-bot:\n  enabled: false\n  bot-token: \"YOUR_BOT_TOKEN_HERE\"\n  embed-color-leaderboard: \"#FFD700\"\n  embed-color-stats: \"#00FF7F\"\n```\n## Discord Bot Setup\n\n```\n🤖 Discord Bot Setup Guide\nZenFights includes a native Discord gateway hook to display leaderboards and live match stats directly in your Discord server.\n\nCreating the Bot: Go to the Discord Developer Portal, create a new application, and generate your Bot Token under the \"Bot\" tab. Paste this into your config.yml.\n\nPrivileged Gateway Intents: Under the \"Bot\" tab, toggle ON Server Members Intent and Message Content Intent.\n\nInviting the Bot: Navigate to the OAuth2 > URL Generator tab, select bot and applications.commands scopes, and add the Send Messages and Embed Links permissions. Use the generated link to add it to your server.\n\nSet enabled: true in your config.yml and run /zf reload to register commands.\n```",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 70,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

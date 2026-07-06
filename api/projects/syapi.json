@@ -1,0 +1,35 @@
+{
+  "id": "RL7GBkJw",
+  "slug": "syapi",
+  "title": "SyAPI",
+  "description": "Provides some obscure APIs for the development of other plugins",
+  "body": "# SyAPI\n\nSyAPI is a server statistics API plugin for Minecraft Purpur/Paper 1.21.1, providing server runtime status, player statistics, and more.\n\n## Features\n\n- 📊 Server uptime statistics\n- 📈 Yesterday's login count statistics\n- 👥 Historical maximum online players record\n- 📝 Total login count statistics\n- ⚡ Server minimum TPS monitoring\n- 🌐 Player latency detection (highest latency player)\n\n## Supported Versions\n\n- **Server**: Paper, Purpur 1.21.1\n- **Java Version**: Java 17+\n- **API Version**: 1.21\n\n## Usage\n\n### Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/syapi` | View server statistics | `syapi.use` |\n| `/syapi info` | View server statistics | `syapi.use` |\n| `/syapi reload` | Reload plugin configuration | `syapi.admin` |\n| `/syapi help` | Display help information | `syapi.use` |\n\n### API Usage\n\nOther plugins can call SyAPI in the following way:\n\n```java\nimport cn.shiyuan.syapi.SyAPI;\nimport cn.shiyuan.syapi.SyAPIProvider;\n\n// Get API provider\nSyAPI syapi = SyAPI.getInstance();\nSyAPIProvider api = syapi.getApiProvider();\n\n// Get server start time\nlong startTime = api.getServerStartTimeMillis();\nString uptime = api.getServerUptime();\nString startTimeFormatted = api.getServerStartTimeFormatted();\n\n// Get player statistics\nint yesterdayJoins = api.getYesterdayJoinCount();\nint maxOnline = api.getMaxOnlinePlayers();\nint totalJoins = api.getTotalJoinCount();\n\n// Get server performance data\ndouble minTps = api.getMinTps();\n\n// Get latency information\nPlayer highestLatencyPlayer = api.getHighestLatencyPlayer();\nString playerName = api.getHighestLatencyPlayerName();\nlong highestLatency = api.getHighestLatency();\nlong playerLatency = api.getPlayerLatency(player);\n```\n\n### API Method Reference\n\n#### Server Time Related\n\n| Method | Return Value | Description |\n|--------|--------------|-------------|\n| `getServerStartTimeMillis()` | `long` | Get server start timestamp (milliseconds) |\n| `getServerUptime()` | `String` | Get server uptime (formatted string, e.g., \"2 days 5 hours 30 minutes\") |\n| `getServerStartTimeFormatted()` | `String` | Get server start time (formatted date, e.g., \"2026-04-03 12:30:00\") |\n\n#### Player Statistics Related\n\n| Method | Return Value | Description |\n|--------|--------------|-------------|\n| `getYesterdayJoinCount()` | `int` | Get yesterday's login count (unique players) |\n| `getMaxOnlinePlayers()` | `int` | Get historical maximum online players |\n| `getTotalJoinCount()` | `int` | Get total login count |\n\n#### Server Performance Related\n\n| Method | Return Value | Description |\n|--------|--------------|-------------|\n| `getMinTps()` | `double` | Get server minimum TPS |\n| `getHighestLatencyPlayer()` | `Player` | Get player object with highest latency |\n| `getHighestLatencyPlayerName()` | `String` | Get name of player with highest latency |\n| `getHighestLatency()` | `long` | Get maximum latency value (milliseconds) |\n| `getPlayerLatency(Player player)` | `long` | Get specified player's latency (milliseconds) |\n\n## Project Structure\n\n```\nSyAPI/\n├── src/\n│   └── main/\n│       ├── java/cn/shiyuan/syapi/\n│       │   ├── SyAPI.java              # Main class\n│       │   ├── SyAPIProvider.java      # API provider\n│       │   ├── StatsManager.java       # Statistics manager\n│       │   ├── PlayerListener.java     # Player event listener\n│       │   └── SyAPICommand.java       # Command handler\n│       └── resources/\n│           ├── plugin.yml              # Plugin configuration\n│           └── data.yml                # Data storage\n├── pom.xml                             # Maven configuration\n└── README.md                           # Documentation\n```\n\n## Permission Nodes\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `syapi.admin` | Admin permissions (reload, etc.) | OP |\n| `syapi.use` | Usage permissions (view statistics) | All players |\n\n## Data Storage\n\nThe plugin uses YAML files to store data, located at `plugins/SyAPI/data.yml`:\n\n- `total-join-count`: Total login count\n- `max-online-players`: Historical maximum online players\n- `yesterday-join-count`: Yesterday's login count\n- `today-join-count`: Today's login count (automatically resets daily)\n- `current-date`: Current date\n- `yesterday-players`: Yesterday's player UUID list\n\n## Scheduled Tasks\n\nThe plugin automatically runs the following scheduled tasks after startup:\n\n- **TPS Monitoring**: Updates minimum TPS every second\n- **Latency Update**: Updates player latency data every second\n- **Date Check**: Checks for date changes every minute, automatically resets today's statistics\n- **Data Save**: Automatically saves data to file every 5 minutes\n",
+  "categories": [
+    "game-mechanics",
+    "library",
+    "management",
+    "paper",
+    "purpur",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

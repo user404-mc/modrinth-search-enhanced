@@ -1,0 +1,20 @@
+{
+  "id": "n6fKuTjr",
+  "slug": "bedrockrestrictor",
+  "title": "Bedrock Restrictor",
+  "description": "Velocity Bedrock Whitelist for servers",
+  "body": "# BedrockRestrictor\n\nA lightweight and efficient Velocity proxy plugin designed to restrict Bedrock players (connecting via Geyser/Floodgate) from joining specific backend servers on your network.\n\n### Why use BedrockRestrictor?\nIf you run a cross-play network, you might have certain servers that are strictly for Java players (for example, an RPG server that requires a complex Java-only resource pack). \n\nWhile you can block Bedrock players directly on the backend server, it causes unnecessary load.\n\n**BedrockRestrictor solves this by intercepting the connection at the Velocity proxy level.** The connection is blocked instantly before the backend server is even pinged or awoken.\n\n### Features\n* **Proxy-Level Blocking:** Intercepts the `ServerPreConnectEvent` to save backend resources.\n* **100% Accurate Detection:** Uses the official Floodgate API to detect Bedrock players. It works flawlessly even if players use Global Linking and share a Java UUID.\n* **Customizable Blacklist:** Easily define which backend servers (as named in your `velocity.toml`) are restricted.\n* **Custom Messages:** Supports legacy color codes (`&`) and MiniMessage for the deny message.\n* **Plug & Play:** Extremely lightweight with zero impact on proxy performance.\n\n### Dependencies\n* **Velocity** (Proxy)\n* **Floodgate** (Velocity version must be installed on the proxy)\n* **GeyserMC** (Velocity version must be installed on the proxy)\n\n### Configuration\nThe plugin generates a simple `config.yml` where you can toggle the system, add servers to the blacklist, and customize your message:\n\n```\n# BedrockRestrictor configuration\n# Whether the restriction logic is enabled at all.\nenabled: true\n\n# Names of backend servers (from velocity.toml) that Bedrock players\n# are NOT allowed to join. Case-insensitive.\nblocked-servers:\n  # - RPG\n  # - classic\n\n# Message sent to Bedrock players when they are denied.\n# Supports legacy '&' color codes or MiniMessage formatting.\ndeny-message: \"&cBedrock players when they are denied.\"\n\n```\n\nI use this plugin on my own server and don't plan on supporting it for older versions of Velocity. I'll update the plugin whenever I run into issues myself.",
+  "categories": [
+    "management",
+    "optimization",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

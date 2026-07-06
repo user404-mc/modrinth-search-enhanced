@@ -1,0 +1,20 @@
+{
+  "id": "cPWMitYy",
+  "slug": "transport-lib",
+  "title": "Transport-Lib",
+  "description": "A simple library allowing modders to create custom pipe networks",
+  "body": "# Transport Lib\n\nA library to streamline the process of creating transport networks for any resource.\n\nThe library supports the following parameters by default:\n\n*   Resource loss per block (Energy loss, Fluids leaking…)\n*   Custom Transport Handlers for merging/splitting resources\n*   Syncing resource amounts to the client for visual display\n*   Accessing resources in cables through block capabilities (WIP)\n\nHere is a concrete example of [how to register a network](https://github.com/Thepigcat76/transport-lib/blob/main/src/main/java/com/thepigcat/transportlib/example/ExampleNetworkRegistry.java).\n\n```\n    public static final DeferredHolder<TransportNetwork<?>, TransportNetworkImpl<Integer>> MANA_NETWORK = NETWORKS.register(\"mana\",\n            () -> TransportNetworkImpl.builder(ManaTransportingHandler.INSTANCE)\n                    .synced(ByteBufCodecs.INT)\n                    .lossPerBlock((level, node) -> 1f)\n                    .transferSpeed(TransferSpeed::instant)\n                    .interactorCheck(((level, pos, direction) -> level.getBlockEntity(pos.relative(direction)) instanceof ManaBatteryBlockEntity))\n                    .build());\n```",
+  "categories": [
+    "library",
+    "neoforge",
+    "transportation"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 139,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

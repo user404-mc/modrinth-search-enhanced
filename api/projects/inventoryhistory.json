@@ -1,0 +1,25 @@
+{
+  "id": "9f5fHs3k",
+  "slug": "inventoryhistory",
+  "title": "InventoryHistory",
+  "description": "Records inventory history of players, especially useful for laggy servers where players false-die often.",
+  "body": "# InventoryHistory - PaperMC Plugin\n\nA PaperMC 1.21.1 plugin that tracks player inventory history and allows administrators to view, restore, and duplicate inventory snapshots.\n\n## Features\n\n- **Automatic Inventory Tracking**: Saves inventory snapshots every 5 minutes for all online players\n- **Disconnect Snapshots**: Saves a final snapshot when players log out\n- **History Viewing**: View any player's inventory history with pagination and clickable links\n- **GUI Interface**: Interactive inventory GUI to browse snapshot contents\n- **Inventory Restoration**: Restore a player's inventory from any historical snapshot\n- **Item Duplication**: Copy items from a snapshot to your own inventory\n- **Automatic Cleanup**: Snapshots older than 1 month are automatically removed\n- **SQLite Database**: Lightweight, file-based storage - no external database required\n\n## Requirements\n\n- PaperMC 1.21.1 or later\n- Java 21 or later\n\n## Installation\n\n1. Download the JAR file\n2. Place it in your server's `plugins` folder\n3. Start the server\n4. The plugin creates a database at `plugins/InventoryHistory/inventory_history.db`\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/invhist <player> [page]` | View player's inventory history | `inventoryhistory.view` |\n| `/invhist open <player> <id>` | Open snapshot in GUI | `inventoryhistory.view` |\n| `/invhist restore <player> <id>` | Restore player's inventory | `inventoryhistory.restore` |\n| `/invhist duplicate <player> <id>` | Copy items to your inventory | `inventoryhistory.duplicate` |\n| `/invhist cleanup` | Delete old snapshots | `inventoryhistory.admin` |\n\n**Aliases**: `/inventoryhistory`, `/invhist`, `/ih`\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `inventoryhistory.view` | View inventory history | OP |\n| `inventoryhistory.restore` | Restore inventories | OP |\n| `inventoryhistory.duplicate` | Duplicate inventory items | OP |\n| `inventoryhistory.admin` | Full admin access | OP |\n\n## Usage Examples\n\n### View a player's inventory history\n```\n/invhist Notch\n/invhist Notch 2\n```\nShows a paginated list with clickable links to view, restore, or copy each snapshot.\n\n### Open a snapshot in GUI\n```\n/invhist open Notch 123\n```\nOpens an interactive inventory showing all items, armor, and off-hand slot with action buttons.\n\n### Restore a player's inventory\n```\n/invhist restore Notch 123\n```\nRestores Notch's inventory to exactly how it was in snapshot #123. Player must be online.\n\n### Copy items to your inventory\n```\n/invhist duplicate Notch 123\n```\nCopies all items from the snapshot to your inventory. Overflow drops on the ground.\n\n### Cleanup old snapshots\n```\n/invhist cleanup\n```\nManually deletes snapshots older than 30 days.\n\n## How It Works\n\n- Snapshots are saved every 5 minutes for online players\n- A final snapshot is saved when players disconnect\n- Snapshots older than 30 days are automatically deleted hourly\n- Data is stored in SQLite at `plugins/InventoryHistory/inventory_history.db`\n\n## License\n\nThis plugin is provided as-is for personal and server use.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 86,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

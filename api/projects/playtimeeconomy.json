@@ -1,0 +1,32 @@
+{
+  "id": "Jv9bM9RF",
+  "slug": "playtimeeconomy",
+  "title": "PlaytimeEconomy",
+  "description": "Reward your players with money just for playing.",
+  "body": "# PlaytimeEconomy\n\n**Reward your players with money just for playing with smart boosts, AFK detection, and a gorgeous in-game GUI.**\n\nPlaytimeEconomy integrates seamlessly with **LuckPerms** and **Vault** to give every player a steady income based on their rank, how long they've been online, and any boosts they've earned. Idle players are automatically skipped via **EssentialsX** AFK detection — rewarding genuine engagement.\n\n---\n\n## Features\n\n- **Rank-based rewards** - Each LuckPerms group gets its own configurable base reward amount.\n- **Rank multipliers** - Higher ranks receive an additional reward multiplier on top of their base.\n- **Day-of-week boosts** - Set weekend or weekday multipliers to spike activity on specific days.\n- **Permission boosts** - Grant players custom multipliers through simple permission nodes (great for donor perks or vote rewards).\n- **Playtime streak boosts** - The longer a player stays online without going AFK, the higher their multiplier climbs - rewarding loyalty and real engagement.\n- **AFK detection** - Integrates with EssentialsX to pause rewards while a player is AFK. Configurable bypass permission available.\n- **In-game GUI** - A clean, premium-quality GUI lets players view their stats, active boosts, streak progress, and next reward - no commands needed.\n- **Admin panel** - Admins can reload the config, force a reward cycle, give money, and reset player data all from within the game.\n- **Fully configurable messages** - Every message supports [MiniMessage](https://docs.advntr.dev/minimessage/format.html) formatting - gradients, hover events, and more.\n- **Per-player data storage** - Player statistics are saved locally and persist across restarts.\n\n---\n\n## Requirements\n\n| Dependency   | Type     | Notes                              |\n|--------------|----------|------------------------------------|\n| Paper        | Required | 1.21 or later                      |\n| Vault        | Required | Any Vault-compatible economy plugin (e.g. EssentialsX Economy, CMI) |\n| LuckPerms    | Required | Group detection                    |\n| EssentialsX  | Optional | AFK detection — disable in config if not installed |\n\n---\n\n## Installation\n\n1. Drop `PlaytimeEconomy.jar` into your `/plugins` folder.\n2. Make sure **Vault**, **LuckPerms**, and a Vault economy plugin are installed.\n3. *(Optional)* Install **EssentialsX** if you want AFK detection.\n4. Start the server - the default config is generated automatically.\n5. Edit `plugins/PlaytimeEconomy/config.yml` and `messages.yml` to your liking.\n6. Run `/pteadmin reload` to apply changes without a restart.\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/pte gui` | `playtimeeconomy.use` | Open the main GUI |\n| `/pte stats` | `playtimeeconomy.use` | View your stats in chat |\n| `/pte boosts` | `playtimeeconomy.use` | View your active boosts |\n| `/pte help` | `playtimeeconomy.use` | Show the help menu |\n| `/pteadmin reload` | `playtimeeconomy.admin` | Reload config & messages |\n| `/pteadmin give <player> <amount>` | `playtimeeconomy.admin` | Give money to a player |\n| `/pteadmin reset <player>` | `playtimeeconomy.admin` | Reset a player's earnings data |\n| `/pteadmin forcereward` | `playtimeeconomy.admin` | Immediately trigger a reward cycle |\n| `/pteadmin gui` | `playtimeeconomy.admin` | Open the admin panel GUI |\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `playtimeeconomy.use` | Everyone | Use the `/pte` command |\n| `playtimeeconomy.admin` | OP | Use the `/pteadmin` command |\n| `playtimeeconomy.bypass.afk` | Nobody | Receive rewards while AFK |\n| `playtimeeconomy.boost.small` | Nobody | Grant a ×1.25 permission boost |\n| `playtimeeconomy.boost.medium` | Nobody | Grant a ×1.50 permission boost |\n| `playtimeeconomy.boost.large` | Nobody | Grant a ×2.00 permission boost |\n\n> You can add any custom permission to the `permission-boosts` section in `config.yml`.\n\n---\n\n## Configuration Overview\n\n```yaml\nsettings:\n  reward-interval: 300       # Seconds between each reward payout\n  afk-check: true            # Skip AFK players (requires EssentialsX)\n  min-online-seconds: 60     # Seconds online before first reward this session\n  currency-symbol: \"$\"       # Display symbol in messages and GUI\n  broadcast-reward: false    # Announce rewards in global chat\n\ngroups:\n  default:\n    display-name: \"Default\"\n    base-reward: 10.0\n  vip:\n    display-name: \"VIP\"\n    base-reward: 25.0\n  # Add as many groups as you need...\n\nrank-boosts:\n  enabled: true\n  groups:\n    vip: 1.10       # VIP players earn an extra 10% on top of their base\n\nday-boosts:\n  enabled: true\n  days:\n    SATURDAY: 2.00  # Double rewards on Saturday\n    SUNDAY: 1.75\n\npermission-boosts:\n  enabled: true\n  boosts:\n    playtimeeconomy.boost.small: 1.25\n    playtimeeconomy.boost.large: 2.00\n    my.custom.permission: 1.60  # Any permission works here\n\nstreak-boosts:\n  enabled: true\n  milestones:\n    30:  1.10   # 30 minutes online → +10%\n    60:  1.25\n    120: 1.50\n    240: 2.00   # 4 hours online → double multiplier\n```\n\n### How Multipliers Stack\n\nAll active boosts are combined using an **additive bonus** system:\n\n```\nTotal = 1.0 + (rank_bonus) + (day_bonus) + (perm_bonus) + (streak_bonus)\n```\n\n**Example:** A VIP player on Saturday with a streak of 90 minutes:\n- Rank boost: ×1.10 -> +0.10\n- Day boost: ×2.00 -> +1.00\n- Streak boost (60m tier): ×1.25 -> +0.25\n- **Total: ×2.35**\n\n---\n",
+  "categories": [
+    "economy",
+    "game-mechanics",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 80,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

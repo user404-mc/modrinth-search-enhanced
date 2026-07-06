@@ -1,0 +1,19 @@
+{
+  "id": "kY9BLrP4",
+  "slug": "tenreg",
+  "title": "Tenreg",
+  "description": "A registration tool for modern Minecraft",
+  "body": "# Tenreg\n\nA registration tool for modern Minecraft\n\nDo registration, datagen, and manage your blocks and items from one place\n\n## Installation\n### For developers\nA [Welltemplate template](https://gitlab.nexusrealms.de/farpo/welltemplate) exists, but Welltemplate needs manual compilation.\n\nUse the new Nexusrealms maven repository, hosted on our Gitlab\n[Find the version you want to use](https://gitlab.nexusrealms.de/nexusrealms/tenreg/-/packages/) and click install to see instructions for your gradle / maven configuration\n**Important**\nIn the install instructions, replace `implementation` with `modImplementation`\n## Usage\nCreate a Reg instance\n```java \n//In your mod initializer\npublic class Mod implements ModInitializer {\n    public static final String MOD_ID = \"your mod id goes here\";\n    public static final Reg REG = Reg.create(MOD_ID);\n    @Override\n    public void onInitialize() {\n        //Needed to load the class with your items and blocks\n        ModItems.init();\n        ModBlocks.init();\n        //Register the entries\n        REG.register();\n    }\n}\n```\nCreate your Subregs\n```java\n//In your ModBlocks.java\npublic class ModBlocks {\n    private static final BlockReg BLOCKS = Mod.REG.getBlockReg();\n}\n```\nSetup your datagen\n```java\n//In your data generation entrypoint\npublic class ModDataGenerator implements DataGeneratorEntrypoint {\n    @Override\n    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {\n        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();\n        Mod.REG.genData(pack);\n    }\n}\n```\nCreate your entries - you can use builders for more advanced patterns\n```java\n//In your ModBlocks.java\npublic class ModBlocks {\n    private static final BlockReg BLOCKS = Mod.REG.getBlockReg();\n    public static final BlockEntry<Block> AWESOME_BLOCK = BLOCKS.builder()\n            .constructor(Block::new)\n            .transform(BlockToolTransformers.pickaxeOnly())\n            .dropsSelf()\n            .simpleCubeAll()\n            .simpleItem()\n            .name(\"Awesome block\")\n            .build(\"awesome_block\");\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 89,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

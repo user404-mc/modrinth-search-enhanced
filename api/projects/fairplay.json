@@ -1,0 +1,22 @@
+{
+  "id": "KtGPgidl",
+  "slug": "fairplay",
+  "title": "FairPlay",
+  "description": "Validates the client mod list to keep gameplay fair",
+  "body": "# FairPlay\nValidates the client mod list to keep gameplay fair. FairPlay is designed for server administrators and players who want to ensure clients are running a legitimate, unmodified game environment.\n\n## Features\n\n- **Client Mod List**: Lists active client mods if the client has the mod installed\n- **Mod Blacklist**: Configurable blacklist of prohibited mods\n- **Auto-kick**: Optionally automatically kick players using blacklisted mods or does not have FairPlay installed\n- **Time Flexibility**: Adjustable timeframe for mod validation during server join\n\n## Commands\n\n- `/fairplay`: Check if the mod is installed on the server\n- `/fairplay reload`: Reloads the mod configuration from JSON file\n- `/fairplay modlist <player_username>`: View the active client mods of a player (requires the player to have the mod installed)\n\n## Configuration\n\nFairPlay is configured via `fairplay.json` in the server config directory. The file is regular JSON, so list values are saved as arrays and the current schema looks like this:\n\n```json\n{\n  \"configVersion\": 2,\n  \"enabled\": true,\n  \"requiredEnforcementMode\": \"OFF\",\n  \"whitelistPlayers\": [\"never_a_cheater\"],\n  \"blacklistPlayers\": [\"history_of_cheating\"],\n  \"handshakeWindowMS\": 3000,\n  \"modEnforcementMode\": \"BLACKLIST\",\n  \"modWhitelist\": [],\n  \"modBlacklist\": [\"meteor-client\"]\n}\n```\n\n### Config Options\n\n- **configVersion**: Internal schema version used for migration\n- **enabled**: Master enable/disable switch for FairPlay\n- **requiredEnforcementMode**: Controls whether the FairPlay mod itself is required on clients\n  - `OFF`: never require the mod\n  - `ALL`: require the mod from everyone\n  - `WHITELIST`: require the mod from everyone except whitelisted players\n  - `BLACKLIST`: require the mod from only blacklisted players\n- **whitelistPlayers**: Players exempted from `requiredEnforcementMode = WHITELIST`\n- **blacklistPlayers**: Players forced into `requiredEnforcementMode = BLACKLIST`\n- **handshakeWindowMS**: Time window, in milliseconds, for the client/server mod handshake\n- **modEnforcementMode**: Controls which client mods are allowed\n  - `OFF`: do not check client mods\n  - `WHITELIST`: only allow mods listed in `modWhitelist`\n  - `BLACKLIST`: block mods listed in `modBlacklist`\n- **modWhitelist**: Allowed client mod IDs when `modEnforcementMode = WHITELIST`\n- **modBlacklist**: Blocked client mod IDs when `modEnforcementMode = BLACKLIST`\n\n## Dependencies\nRequires [Fabric API](https://modrinth.com/mod/fabric-api)\n\n## Credits\nP3nguinMinecraft\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

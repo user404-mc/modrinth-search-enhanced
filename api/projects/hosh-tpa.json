@@ -1,0 +1,43 @@
+{
+  "id": "DUGFDhFh",
+  "slug": "hosh-tpa",
+  "title": "HOSH Tpa",
+  "description": "Clean GUI-based TPA system with smart UX and zero spam.",
+  "body": "# HOSH TPA\n\nA lightweight, feature-rich teleport-request plugin for Spigot servers. Send, accept, and deny `/tpa` and `/tpahere` requests with a polished GUI, clickable chat actions, titles, sounds, and configurable timeouts.\n\n---\n\n## Requirements\n\n- **Paper** (or compatible) — **1.19.x / 1.20.x / 1.21.x**\n- **Java 17+**\n- **Hosh Loader (mandatory)** — This plugin **will not stay enabled** without it. If `HoshLoader.jar` is missing, HOSH TPA disables itself and **server operators** get a message on join. Use **`/hosh tpa reload`** (via Hosh Loader) to reload this plugin after config changes.\n- **Auto updates via loader** — Use `/hosh update all` to prepare newest compatible HOSH plugin updates for next restart.\n\n## Downloads\n\n| | Modrinth |\n|---|----------|\n| **Hosh Loader** (install first) | [Download Hosh Loader](https://modrinth.com/plugin/hosh-loader) |\n| **HOSH TPA** (this plugin) | [Download HOSH TPA](https://modrinth.com/plugin/hosh-tpa) |\n\n---\n\n## Features\n\n- **Dual command aliases** — `/tpa` and `/htpa` (same for `/tpahere` / `/htpahere`) behave identically\n- **Confirmation GUI** — Before a request is sent, the requester sees a small inventory GUI with Accept / Cancel buttons and the target's player head\n- **Clickable chat actions** — Targets receive `[ACCEPT]` / `[DECLINE]` clickable messages in chat\n- **Title & sound feedback** — Configurable titles on request received / accepted / denied, plus success and error sounds\n- **Teleport countdown** — Configurable delay before the teleport executes; cancelled on movement (toggleable)\n- **Request timeout** — Pending requests automatically expire after a configurable number of seconds; both parties are notified\n- **Toggle system** — Players can block incoming requests with `/tpatoggle`\n- **Target self-check** — Players cannot send requests to themselves\n- **Tab completion** — All player-facing commands support tab-completing online player names\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/tpa <player>` | Open the confirmation GUI to send a teleport-to-player request |\n| `/htpa <player>` | Same as `/tpa` |\n| `/tpahere <player>` | Open the confirmation GUI to send a teleport-here request |\n| `/htpahere <player>` | Same as `/tpahere` |\n| `/tpaaccept [player]` | Accept the latest pending request (optionally from a specific player) |\n| `/tpadeny [player]` | Deny the latest pending request (optionally from a specific player) |\n| `/tpatoggle` | Toggle whether you accept incoming teleport requests |\n\n---\n\n## Configuration\n\nAll settings live in the default `config.yml` generated on first run.\n\n```yaml\nprefix: \"&8[&bHOSH TPA&8] \"\n\nteleport:\n  delay-seconds: 5            # Countdown before teleport (0 = instant)\n  cancel-on-move: true        # Cancel countdown if the player moves\n  request-timeout-seconds: 60 # How long a pending request stays valid\n\nfeedback:\n  sounds-enabled: true\n  sound-success: ENTITY_EXPERIENCE_ORB_PICKUP\n  sound-error: ENTITY_VILLAGER_NO\n  titles-enabled: true\n  title-received: \"&eTPA Request\"\n  subtitle-received: \"&7From &f{player}\"\n  title-accepted: \"&aAccepted\"\n  subtitle-accepted: \"&7Teleport starting...\"\n  title-denied: \"&cDeclined\"\n  subtitle-denied: \"&7Request denied\"\n\ngui:\n  title: \"HOSH Tpa Confirm\"\n  accept-slot: 11\n  head-slot: 13\n  deny-slot: 15\n  accept-name: \"&aAccept\"\n  deny-name: \"&cCancel\"\n  head-name: \"&eTarget: &f{player}\"\n\nmessages:\n  player-only: \"&cThis command can only be executed by a player.\"\n  usage-htpa: \"&7Usage: /htpa <player>\"\n  usage-htpahere: \"&7Usage: /htpahere <player>\"\n  player-not-found: \"&cPlayer '{player}' not found.\"\n  self-target: \"&cYou cannot send a request to yourself.\"\n  target-blocked: \"&c{player} is currently not accepting requests.\"\n  request-already-exists: \"&cYou already have a pending request to {player}.\"\n  request-sent: \"&aRequest sent to {player}.\"\n  request-received-tpa: \"&e{player} wants to teleport to you.\"\n  request-received-tpahere: \"&e{player} wants you to teleport to them.\"\n  request-cancelled: \"&7Request cancelled.\"\n  request-expired: \"&cRequest expired.\"\n  no-pending-request: \"&cYou have no pending requests.\"\n  teleport-cancel-offline: \"&cThe other player is no longer online.\"\n  teleport-countdown: \"&7Teleporting in {seconds} seconds... Don't move.\"\n  teleport-started: \"&aTeleporting...\"\n  teleport-cancel-move: \"&cTeleport cancelled — you moved.\"\n  toggle-enabled: \"&aYou are now blocking incoming teleport requests.\"\n  toggle-disabled: \"&aYou are now accepting incoming teleport requests.\"\n  request-accepted-target: \"&aYou accepted the request from {player}.\"\n  request-accepted-sender: \"&a{player} accepted your request.\"\n  request-denied-target: \"&cYou denied the request from {player}.\"\n  request-denied-sender: \"&c{player} denied your request.\"\n```\n\n### Config Sections\n\n| Section | Purpose |\n|---|---|\n| `prefix` | Prepended to every chat message |\n| `teleport` | Delay, move-cancellation, and request expiry |\n| `feedback` | Sounds, titles, and subtitles for every interaction state |\n| `gui` | Inventory title, slot positions, and item display names |\n| `messages` | Every user-facing message with `{player}` / `{seconds}` placeholders |\n\n---\n\n## Permissions\n\nNo permissions are required — all commands are open by default. Restrict access with your preferred permission plugin if needed.\n\n---\n\n## Installation\n\n1. Download and install **[Hosh Loader](https://modrinth.com/plugin/hosh-loader)** in `plugins/` (required).\n2. Download **[HOSH TPA](https://modrinth.com/plugin/hosh-tpa)** and place `hosh-tpa-<version>.jar` in `plugins/`.\n3. Restart the server (full restart recommended after first install).\n4. Edit `plugins/HOSH_Tpa/config.yml` (folder name matches the plugin) to your liking.\n5. Apply config changes with **`/hosh tpa reload`** or another restart.",
+  "categories": [
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 45,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

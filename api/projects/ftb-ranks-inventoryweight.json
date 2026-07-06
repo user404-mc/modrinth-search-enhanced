@@ -1,0 +1,29 @@
+{
+  "id": "m19NcF8X",
+  "slug": "ftb-ranks-inventoryweight",
+  "title": "FTB Ranks - MT Inventory Weight",
+  "description": "FTB Ranks InventoryWeight connects FTB Ranks with MT Inventory Weight, allowing server admins to grant flat, percent, or multiplier-based carry capacity bonuses through FTB Ranks meta keys.",
+  "body": "# FTB Ranks InventoryWeight\n\n**FTB Ranks InventoryWeight** is a server-side add-on for **MT Inventory Weight** and **FTB Ranks**.\n\nIt lets server admins give players more maximum inventory weight through FTB Ranks rank permission values.\n\nThis mod is **not standalone**.\n\n## Required Dependencies\n\nThis add-on requires:\n\n- [MT Inventory Weight](https://modrinth.com/mod/inventory-weight)\n- [FTB Ranks](https://www.curseforge.com/minecraft/mc-mods/ftb-ranks-fabric)\n- [FTB Library](https://www.curseforge.com/minecraft/mc-mods/ftb-library-fabric)\n- [Architectury API](https://modrinth.com/mod/architectury-api)\n- [Fabric API](https://modrinth.com/mod/fabric-api)\n\n> FTB Ranks requires **FTB Library** and **Architectury API**. Make sure all of them are installed, or FTB Ranks will not load.\n\n## Server-side Only\n\nFTB Ranks InventoryWeight is designed to run on the **server**.\n\nIt does not add client UI, keybinds, screens, HUD elements, or tooltips. It only modifies the server-side max weight calculation used by MT Inventory Weight.\n\nThis works for both an integrated server (single player / Open to LAN) and a dedicated server.\n\n## Features\n\n- Integrates **FTB Ranks** with **MT Inventory Weight**\n- Lets admins configure carry capacity bonuses using FTB Ranks permission nodes\n- Supports flat max-weight bonuses\n- Supports percentage bonuses\n- Supports direct multiplier bonuses\n- Server-side only\n\n## Supported FTB Ranks Permission Nodes\n\nThe add-on reads these FTB Ranks permission nodes:\n\n```text\ninventoryweight.maxweight.add\ninventoryweight.maxweight.percent\ninventoryweight.maxweight.multiplier\n```\n\n### Flat Bonus\n\n```text\n/ftbranks node add vip inventoryweight.maxweight.add 50\n```\n\nGives:\n\n```text\n+50 max weight\n```\n\n### Percent Bonus\n\n```text\n/ftbranks node add vip inventoryweight.maxweight.percent 25\n```\n\nGives:\n\n```text\n+25% max weight\n```\n\n### Multiplier Bonus\n\n```text\n/ftbranks node add vip inventoryweight.maxweight.multiplier 1.5\n```\n\nGives:\n\n```text\n1.5x max weight\n```\n\n## Formula\n\nThe final result is calculated like this:\n\n```text\nfinal max weight = (current max weight + add) * (1 + percent / 100) * multiplier\n```\n\nExample:\n\n```text\nCurrent max weight: 100\nAdd: 50\nPercent: 25\nMultiplier: 1.5\nFinal: (100 + 50) * 1.25 * 1.5 = 281.25\n```\n\n## Example Rank Setup\n\n```text\n/ftbranks node add default inventoryweight.maxweight.add 0\n/ftbranks node add vip inventoryweight.maxweight.add 50\n/ftbranks node add vip inventoryweight.maxweight.percent 10\n/ftbranks node add elite inventoryweight.maxweight.add 100\n/ftbranks node add elite inventoryweight.maxweight.percent 25\n/ftbranks node add elite inventoryweight.maxweight.multiplier 1.5\n```\n\nYou can also set these directly in `config/ftbranks/ranks.snbt`:\n\n```snbt\nvip {\n    permissions: {\n        \"inventoryweight.maxweight.add\": 50\n        \"inventoryweight.maxweight.percent\": 10\n    }\n}\n```\n\n## Documentation\n\nFull documentation is available in:\n\nhttps://megatrex4.github.io/inventory-weight/guide/addons/ftb-ranks\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 94,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

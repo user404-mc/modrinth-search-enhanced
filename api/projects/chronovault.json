@@ -1,0 +1,20 @@
+{
+  "id": "wt9G0TGr",
+  "slug": "chronovault",
+  "title": "Chrono Vault",
+  "description": "A Minecraft NeoForge mod providing incremental backup for worlds.",
+  "body": "# ChronoVault \n\nChronoVault is a incremental backup mod for Minecraft worlds with deduplication and compression\n\n## Content-Addressable Storage\n\nUnlike traditional backup tools that copy entire worlds, ChronoVault uses content-addressable storage (CAS):\n\n**How It Works:**\n- Each 512×512 chunk is hashed with BLAKE3\n- Chunks are stored by their hash, not by filename\n- Zstd compression is applied to each chunk individually\n- A snapshot manifest records which chunks existed at that point in time\n\n**Storage Efficiency:**\n- **Incremental saves** — Only modified chunks consume new storage\n- **Cross-snapshot deduplication** — Identical chunks are stored once, shared by all snapshots\n- **Per-world isolation** — Each world's objects are stored separately\n\n## Features\n- **Async backups** — Non-blocking, runs while you play\n- **In-game GUI** — Browse and restore snapshots without leaving the game\n- **Auto backup** — Schedule automatic snapshots\n- **Safe restoration** — Restores to a new world; original is untouched\n\n## Commands\n- `/chronovault backup [description]` — Create snapshot\n- `/chronovault list [world]` — List all snapshots  \n- `/chronovault info <id>` — Snapshot details\n- `/chronovault restore <id> [name]` — Restore to new world\n\n## How to Restore (GUI)\n1. Open the **Edit World** screen (click \"Edit\" on a world in the world list)\n2. Click **\"Restore Backups\"** button\n3. Select a snapshot from the list\n4. Confirm restoration\n5. A new world is created with the restored data",
+  "categories": [
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 29,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "RWQYcqFx",
+  "slug": "warfactory-ultimate-weight",
+  "title": "Warfactory Ultimate Weight",
+  "description": "Weight mod for minecraft that prioritizes compatibility and performance",
+  "body": "# Warfactory Ultimate Weight\n\n`WarFactory Ultimate Weight` is a multi-version Minecraft mod focused on inventory weight, movement penalties, and stamina.\n\nIt is designed around performance-first inventory tracking rather than the brute-force full inventory iteration used by many older weight mods and predecessors.\n\nIt is built around a shared core with version-specific runtime hooks. The mod currently targets:\n\n| Minecraft          | Loaders          |\n|--------------------|------------------|\n| `1.12.2`           | Legacy Forge     |\n| `1.20.1`           | Fabric, Forge    |\n| `1.21.1 (planned)` | NeoForge, LexForge |\n\n## Features\n\n- Configurable item and inventory weight system\n- HUD and tooltip weight display\n- Weight-based movement and jump penalties\n- Hard-lock threshold for blocking pickups and transfers\n- Config sync from server to client\n- Delta-based inventory weight updates where supported\n- Stamina system with:\n  `totalStamina`, `staminaLossRate`, `staminaGainRate`\n- Weight-aware stamina drain penalties\n- Optional stamina drain from sprinting and jumping\n- Nested inventory weight support\n- Mod compatibility patches and API for mod developers\n\n## Supported Mods\n\nUltimate Weight reads the contents of modded storage items so an item's weight scales with what it holds, and counts items worn in extra equipment slots (Baubles / Curios). **Any item that exposes a standard item-handler capability is supported automatically**; the mods below additionally get dedicated handling for their custom storage. Compatibility patches load only when the target mod is present and are safe when it is absent.\n\n### 1.12.2\n| Mod | Supported |\n|---|---|\n| Baubles | Worn bauble items counted toward weight |\n| Traveler's Backpack | Worn + carried backpack contents |\n| Retro Sophisticated Backpacks | Backpack contents and installed upgrades |\n| GregTech (CE Unofficial) | Machine / item inventories |\n| HBM's Nuclear Tech | Storage crate contents |\n| Storage Drawers | Drawer contents |\n| *Any item with an `IItemHandler`* | Nested contents counted generically |\n\n### 1.20.1 (Forge)\n\n| Mod | Supported |\n|---|---|\n| Curios | Worn curio items counted toward weight |\n| Sophisticated Backpacks | Worn (Curios/chest) + carried contents, click-to-stash |\n| Traveler's Backpack | Worn + carried backpack contents |\n| GregTechCEu Modern | Machine inventories, including crates |\n| Superb Warfare | Ammo box (per-type ammo counts) |\n| Storage Drawers | Drawer contents |\n| *Any item with an `IItemHandler`* | Nested contents counted generically |\n\nThe same registry the patches use is exposed as a public API, so other mods can register their own weight providers. On the 1.20.1 **Fabric** build, vanilla nested containers are counted, but the mod-specific handlers and the generic item-handler reader above are Forge-only. (Subject to change)\n\n## Configuration\n\nConfiguration is version-specific:\n\n- `1.12.2`\n  `config/wfweight/weight_config_1_12.yaml`\n- `1.20.1`\n  `config/wfweight/weight_config_modern.yaml`\n\nFull reference:\n\n- [`CONFIGURATION.md`](https://github.com/Warfactory-Official/Ultimate-Weight/blob/master/CONFIGURATION.md)\n\n## License\n\nThis project is licensed under `GPLv3`.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

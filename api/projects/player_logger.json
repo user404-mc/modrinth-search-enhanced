@@ -1,0 +1,32 @@
+{
+  "id": "Tp4EtCZA",
+  "slug": "player_logger",
+  "title": "PlayerLogger",
+  "description": "PlayerLogger logs player joins, quits, commands, playtime, and online status to a SQLite or MySQL database and provides admin commands for statistics and management.",
+  "body": "# PlayerLogger – Advanced Playtime & Command Logging\n\n**PlayerLogger** is a lightweight yet powerful Paper plugin that logs player activity to a database, including joins, quits, commands, total playtime, and online status.\n\nDesigned for server administrators who need accurate tracking, moderation insights, or statistical data.\n\nSupports **SQLite and MySQL** out of the box.\n\n\n## What Does PlayerLogger Track?\n\n- Player Join & Quit Events\n- Total Playtime (with live session calculation)\n- Online / Offline Status\n- Command Execution Logs\n- First Seen & Last Seen timestamps\n- Historical Session Data\n\nAll data is stored efficiently in a database with optimized indexing for performance.\n\n\n## Features\n\n⚡ Optimized for Paper 1.21+\n\n💾 SQLite (default) or MySQL support\n\n🔄 Real-time playtime calculation\n\n🌍 Multi-language support (English & German)\n\n📃 Configurable command filtering (e.g., ignore /login, /register)\n\n🧵 Async database handling (non-blocking)\n\n🧹 Automatic offline correction after crashes\n\n📈 Top 10 playtime ranking\n\n✒️ Admin tools for adjusting or deleting data\n\n\n## Commands\n\n\n```\n/plog stats\n/plog stats <player>\n/plog top\n/plog reload\n/plog delete <player>\n/plog add <player> <time>\n```\nPermissions included for each subcommand.\n\n## Permissions\n\n### Player Permissions\n\n| Permission               | Description                            |\n| :----------------------: | :------------------------------------: |\n|    playerlogger.stats    |      Allows viewing own playtime       |\n| playerlogger.stats.other | Allows viewing other players' playtime |\n|     playerlogger.top     |     Allows viewing the top ranking     |\n\n### Admin Permissions\n\n| Permission                | Description                        |\n| :-----------------------: | :--------------------------------: |\n| playerlogger.Admin.reload |    Allows reloading the plugin     |\n| playerlogger.Admin.delete | Allows deleting stored player data |\n|  playerlogger.Admin.add   |   Allows viewing the top ranking   |\n\n\n## Database Structure\n\nTables:\n```\nplayer\nsessions\ncommand_logs\n```\n- UPSERT support (MySQL + SQLite)\n- Indexed queries\n- Foreign keys\n- Optimized schema for large servers\n\n## Configuration\n\n- SQLite or MySQL\n- Command logging toggle\n- Join/Quit logging toggle\n- Command blacklist filter\n- Language selection\n\n\n<details>\n<summary>config.yml</summary>\n\n\n```\ndatabase:\n  type: SQLITE # SQLITE or MYSQL\n  sqlite-file: playerlogger.db\n\n  mysql:\n    host: localhost\n    port: 3306\n    database: minecraft\n    user: minecraft\n    password: \"\"\n\nlanguage: de #de or en\nlanguage-auto: false\n\nlogging:\n  join-quit: true\n  commands: true\n\ncommand-filter:\n  enabled: true\n  deny-prefixes:\n    - \"/login\"\n    - \"/register\"\n    - \"/changepassword\"\n\n```\n\n\n</details>\n\n\n## Use Cases\n\n- Staff activity monitoring\n- Player engagement tracking\n- Server statistics\n- Moderation investigation\n- Playtime-based rewards\n- Admin auditing\n\n\n## Performance\n\n- Uses a dedicated async database thread\n- No main-thread blocking queries\n- Safe shutdown handling\n- Scales well for medium to large servers\n\n## Compatibility\n\n- Paper 1.21+\n- Java 21\n- Works on Windows, Linux, and hosting providers\n- Compatible with MySQL & MariaDB\n\n## Why Choose PlayerLogger?\n\nUnlike simple playtime plugins, PlayerLogger provides:\n\n- Command history logging\n- Persistent session tracking\n- Database-level integrity\n- Clean and structured codebase\n- Multilingual support\n\n\nIf you're looking for a reliable, database-driven player tracking solution for Paper servers — PlayerLogger delivers.",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

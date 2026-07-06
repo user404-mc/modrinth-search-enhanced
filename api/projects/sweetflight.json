@@ -1,0 +1,39 @@
+{
+  "id": "iaeoEUQ5",
+  "slug": "sweetflight",
+  "title": "SweetFlight",
+  "description": "A daily flight time/energy manager to limit player flying ability.",
+  "body": "# SweetFlight\n\nA Minecraft plugin for timed flight.\n\n> Default configurations are in Chinese. Check [localization](https://github.com/mcio-dev/localization) repository for English or other language.  \n\n## Introduction\n\nThis plugin can properly limit players' daily flight time.\n\n- You can set a base daily flight time for players, which will be automatically reset at a specified time every day.\n- You can also give players extra flight time via commands, allowing them to redeem more flight time.\n\nPlayers in different flight groups ([groups.yml]([src/main/resources/groups.ym](https://github.com/MrXiaoM/SweetFlight/blob/main/src/main/resources/groups.yml)l)) have different base daily flight times. Stackable flight time is supported. Using the default configuration as an example:\n\n- The `default` flight group has `5m` flight time.\n- The `vip` flight group has `+1h` flight time.\n\nIf a player has permissions for both `default` and `vip` groups, their base flight time will be `1 hour and 5 minutes`.\n\nWhen a player is flying, extra flight time will be consumed first. Only when extra flight time is exhausted will daily base flight time be consumed.\nThis consumption mechanism prevents players from hoarding excessive extra flight time. Of course, you can modify the flight time consumption priority in the config if needed.\n\n## Compatibility\n\nThis plugin is currently compatible with:\n\n- [Residence](https://www.spigotmc.org/resources/11480/) -- Supports zone flags. Flight is disabled in zones with `nofly` flag and unlimited flight is enabled in zones with `fly` flag.\n- [Dominion](https://www.minebbs.com/resources/7933/) -- Supports zone flags. Flight is disabled in zones without `fly` flag.\n\nWant to add more plugin compatibility? Refer to [ResidenceSupport.java](https://github.com/MrXiaoM/SweetFlight/blob/main/src/main/java/top/mrxiaom/sweet/flight/depend/ResidenceSupport.java) and submit a Pull Request to this plugin!\n\n> ⚠️WARNING\n> \n> The **flight control behavior** in Dominion's default configuration **breaks** most flight management plugins, **even when the player is not inside a plugin zone**! Please make sure you have properly configured `fly-permission-nodes` in the Dominion config.\n>\n\n## Commands\n\nRoot command: `/sweetflight`\nAliases: `/sweetfly`, `/sflight`, `/sfly`, `/sf`\nParameters wrapped in `<>` are required; parameters wrapped in `[]` are optional.\n\n### Player Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/sf toggle` | Toggle flight mode | `sweet.flight.toggle` |\n| `/sf on` | Enable flight | `sweet.flight.toggle` |\n| `/sf off` | Disable flight | `sweet.flight.toggle` |\n| `/sf check` | View current flight group and available flight time | `sweet.flight.check` |\n\n### Admin Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/sf toggle [player]` | Toggle flight mode for yourself or another player | `sweet.flight.toggle.other` |\n| `/sf on [player]` | Enable flight for yourself or another player | `sweet.flight.toggle.other` |\n| `/sf off [player]` | Disable flight for yourself or another player | `sweet.flight.toggle.other` |\n| `/sf check [player]` | View flight group and available time for yourself or another player | `sweet.flight.check.other` |\n| `/sf reset <player>` | Reset the player's today base flight time | OP/Console |\n| `/sf set <player> <time>` | Set the player's extra flight time | OP/Console |\n| `/sf add <player> <time>` | Add extra flight time to the player | OP/Console |\n| `/sf reload database` | Reconnect to the database | OP/Console |\n| `/sf reload` | Reload plugin configuration | OP/Console |\n\n### Time Format Explanation\n\nThe time format used in commands is `value + unit`. Available units: `h` (hour), `m` (minute), `s` (second). Examples:\n\n- `1m` – one minute\n- `2h3m` – two hours and three minutes\n- `4h5m6s` – four hours, five minutes and six seconds\n\n## Placeholders\n\nThis plugin registers the following placeholders for PlaceholderAPI:\n```\n%sweetflight_standard_time%   Player's daily base flight time (formatted)\n%sweetflight_standard_time_seconds%   Player's daily base flight time (seconds)\n%sweetflight_status_time%   Player's remaining base flight time (formatted)\n%sweetflight_status_time_seconds%   Player's remaining base flight time (seconds)\n%sweetflight_extra_time%   Player's remaining extra flight time (formatted)\n%sweetflight_extra_time_seconds%   Player's remaining extra flight time (seconds)\n%sweetflight_time%   Player's total remaining flight time (formatted)\n%sweetflight_time_seconds%   Player's total remaining flight time (seconds)\n```\n\n## Developer\n\n[![jitpack](https://jitpack.io/v/MrXiaoM/SweetFlight.svg)](https://jitpack.io/#MrXiaoM/SweetFlight)\n\n```kotlin\nrepositories {\n    maven(\"https://jitpack.io/\")\n}\ndependencies {\n    compileOnly(\"com.github.MrXiaoM:SweetFlight:$VERSION\")\n}\n```\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.8",
+    "1.9",
+    "1.10",
+    "1.11",
+    "1.12",
+    "1.13",
+    "1.14",
+    "1.15",
+    "1.16",
+    "1.17",
+    "1.18",
+    "1.19",
+    "1.20",
+    "1.21",
+    "26.1"
+  ],
+  "date_updated": null
+}

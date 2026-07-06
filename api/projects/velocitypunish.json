@@ -1,0 +1,42 @@
+{
+  "id": "9tP0tqRm",
+  "slug": "velocitypunish",
+  "title": "VelocityPunish",
+  "description": "A professional, network-wide punishment management plugin for Velocity proxy servers.",
+  "body": "# PunishSystem\n\n**A professional, network-wide punishment management plugin for Velocity proxy servers.**\n\n*by mcaffe13*\n\n---\n\nPunishSystem gives your moderation team everything they need to keep the network clean: permanent bans, temporary bans, IP bans, network bans, kicks, warnings, predefined punishment presets, automatic multi-account detection, VPN/proxy blocking, and Discord webhook notifications — all without touching a single line of code.\n\n---\n\n## ✨ Features\n\n### Core Punishment Commands\n- **`/ban`** — Permanently ban a player with UUID tracking\n- **`/tempban`** — Temporarily ban with flexible duration syntax (`30m`, `7d`, `1y`, `2w3d`, …)\n- **`/kick`** — Disconnect an online player with a configurable message\n- **`/unpunish`** / **`/unban`** — Lift any active ban\n\n### Extended Moderation Tools\n- **`/punish <player> <preset>`** — Apply a predefined punishment in one command — configure presets in `config.json` with reason, type, and duration, no recompile needed\n- **IP Bans** — Block an IP address from connecting to the network\n- **Network Bans** — Permanent server-wide ban with a dedicated appeal screen\n\n### Warn System\n- **`/warn <player> <reason>`** — Issue a formal warning; the player receives an in-game warning screen\n- **`/warnings <player>`** — List all active warnings for a player\n- **`/clearwarnings <player>`** — Remove all active warnings for a player\n\n### Smart Detection\n- **Multi-account detection** — When a player is banned, all accounts that have ever shared the same IP are automatically banned too\n- **VPN / Proxy blocking** — Detects VPNs and proxies via ip-api.com with a configurable per-ISP whitelist and bypass permission\n\n### Staff Tools\n- **`/history <player>`** — Full punishment history (up to 50 entries)\n- **`/check <player>`** — Active punishments at a glance\n- **`/lookup <player>`** — Complete player profile: UUID, known IPs, linked accounts, ban history, online status\n- **Staff notifications** — Every punishment is broadcast to online staff with the `punishsystem.notify` permission\n\n### Integrations\n- **Discord webhooks** — Automatic embeds for ban, tempban, unban, kick, IP ban, warn, and VPN events\n- **LabyMod** — Native LabyMod Protocol support\n- **bStats** — Anonymous usage statistics\n- **Mojang API fallback** — Resolves UUIDs for offline players automatically\n- **MySQL / MariaDB** — Reliable storage with HikariCP connection pooling\n- **File storage fallback** — Works out of the box without a database\n\n### Admin Friendly\n- **`/punishreload`** — Hot-reload configuration without a server restart\n- **Fully configurable messages** — Every player-facing text, the prefix, and all permission nodes are defined in `config.json`\n- **Table prefix support** — Share a database with other plugins without conflicts\n\n---\n\n## 📋 Requirements\n\n| | |\n|-|-|\n| **Velocity** | 3.x |\n| **Java** | 21 or newer |\n| **Database** | MySQL 5.7+ or MariaDB 10.4+ *(optional)* |\n\n---\n\n## ⚡ Quick Start\n\n1. Drop `punishsystem-x.x.x.jar` into your `plugins/` folder\n2. Start Velocity once — a default `config.json` is generated in `plugins/punishsystem/`\n3. *(Optional)* Configure the `database` section with your MySQL credentials\n4. Restart or run `/punishreload`\n5. Assign permissions to your staff groups\n\n---\n\n## 🔧 Commands & Permissions\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/ban <player> <reason>` | Permanently ban a player | `punishsystem.ban` |\n| `/tempban <player> <duration> <reason>` | Temporarily ban a player | `punishsystem.tempban` |\n| `/unban <player>` | Remove an active ban | `punishsystem.unban` |\n| `/kick <player> <reason>` | Kick an online player | `punishsystem.kick` |\n| `/punish <player> <preset>` | Apply a preset punishment | `punishsystem.punish` |\n| `/unpunish <player>` | Remove active punishment | `punishsystem.unpunish` |\n| `/warn <player> <reason>` | Warn a player | `punishsystem.warn` |\n| `/warnings <player>` | Show active warnings | `punishsystem.check` |\n| `/clearwarnings <player>` | Clear all warnings | `punishsystem.clearwarnings` |\n| `/history <player>` | Show punishment history | `punishsystem.history` |\n| `/check <player>` | Show active punishments | `punishsystem.check` |\n| `/lookup <player>` | Full player profile | `punishsystem.lookup` |\n| `/punishreload` | Reload config | `punishsystem.reload` |\n\n**Special permissions:**\n\n| Permission | Effect |\n|------------|--------|\n| `punishsystem.ipban` | Issue IP bans |\n| `punishsystem.notify` | Receive staff notifications for every punishment |\n| `punishsystem.bypass` | Bypass active bans (useful for admins) |\n| `punishsystem.vpn.bypass` | Exempt from VPN / proxy detection |\n\n---\n\n## ⏱️ Duration Syntax\n\n`30s` · `15m` · `6h` · `7d` · `2w` · `1y` — combinations like `1d12h` are supported.\n\n---\n\n## 📁 Configuration Overview\n\nEverything is configured in `plugins/punishsystem/config.json`:\n\n```json\n{\n  \"database\":    { \"enabled\", \"host\", \"port\", \"database\", \"username\", \"password\" },\n  \"network\":     { \"name\", \"prefix\", \"unbanUrl\", \"discordUrl\" },\n  \"permissions\": { all permission nodes — fully overridable },\n  \"vpn\":         { \"enabled\", \"kickOnDetect\", \"whitelistedISPs\" },\n  \"webhooks\":    { \"enabled\", \"ban\", \"tempban\", \"unban\", \"kick\", \"warn\", \"vpn\" },\n  \"messages\":    { every player-facing string, with {placeholder} support },\n  \"punishments\": { named presets: type, duration, reason }\n}\n```\n---\n## ✦ Partner\n[![NexoMaker — Use code MCAFFE13 for 15% discount](https://nmchest.ams3.digitaloceanspaces.com/media/images/nm-banner.png)](https://nexomaker.com/?ref=MCAFFE13)\n\n### 🎨 Create Custom Minecraft Content with NexoMaker\n\nCreate custom items, mobs, blocks, recipes, and more — **without coding**.  \nCompatible with **Nexo**, **ItemsAdder**, and other modern custom-content systems.\n\n💜 **Use code `MCAFFE13` to get 15% off!**\n👉 **[Get started with NexoMaker](https://nexomaker.com/?ref=MCAFFE13)**\n\n> ⚠️ **ItemsAdder or Nexo required for exported content.**\n\n---\n\n## 📜 License\n\nPunishSystem is open source under the **Mozilla Public License 2.0**.\nYou are free to use it on private and public servers.\nForks published publicly must use a different name — see TRADEMARKS.md for details.\n\n---\n\n## 🐛 Issues & Contributions\n\nFound a bug or have a feature request? Open an issue on **GitHub**.\nPull requests are welcome!\n",
+  "categories": [
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 23,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

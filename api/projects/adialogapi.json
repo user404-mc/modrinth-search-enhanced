@@ -1,0 +1,28 @@
+{
+  "id": "ktZRZUVi",
+  "slug": "adialogapi",
+  "title": "ADialogAPI",
+  "description": "A flexible dialog API for Minecraft plugins with configurable buttons and actions.",
+  "body": "# ADialogAPI\n\n![Modrinth Downloads](https://img.shields.io/modrinth/dt/adialogapi?style=for-the-badge&logo=modrinth&color=blue)\n![License](https://img.shields.io/github/license/isArkaDarkTime/ADialogAPI?style=for-the-badge&color=blue)\n![Java Version](https://img.shields.io/badge/Java-17%2B-orange?style=for-the-badge&)\n![Platform](https://img.shields.io/badge/Platform-Paper%20-green?style=for-the-badge&)\n\n**ADialogAPI** is a modern, high-performance interactive dialog system for Minecraft servers. It allows you to create immersive RPG-like conversations, complex menus, and user-input forms using simple YAML or a powerful Java API.\n\n---\n\n## ✨ Features\n\n* **MiniMessage Integration:** Full support for modern formatting (RGB, gradients, hover/click events).\n* **Action System:** Trigger commands, sounds, titles, potion effects, and inventory changes directly from dialog buttons.\n* **Dynamic Inputs:** Capture player input through the dialog interface and use it in commands or messages.\n* **Cooldown Support:** Prevent dialog spam with per-player cooldowns defined in config.\n* **Developer API:** Custom events for opening, clicking, and closing dialogs to build complex logic.\n\n---\n\n## 🚀 Quick Start (For Admins)\n\n### 1. Installation\n1. Download the latest `.jar` from [Modrinth](https://modrinth.com/plugin/adialogapi/versions).\n2. Place it in your server's `plugins` folder.\n3. Restart the server.\n\n### 2. Configuration Example\nDialogs are stored in the `dialogs/` folder.\n<details>\n  <summary>Basic example of dialog yaml</summary>\n\n  ```yaml\n# ─────────────────────────────────────────────\n# Dialog: notice example\n# A simple informational window with a single OK button.\n# Recommended for announcements, tips, or welcome messages.\n# ─────────────────────────────────────────────\n\n# Displayed at the top of the dialog window.\ntitle: \"<gold><bold>✦ Welcome to the Server!\"\n\n# true  - Player can press ESC to close the dialog.\n# false - Player must click the OK button to close.\ncan_close_with_escape: false\n\n# Cooldown in seconds before the same player can open this dialog again.\n# 0 = no cooldown (default).\ncooldown: 0\n\n# Dialog type:\n# - notice: single OK button\n# - confirmation: Yes / No buttons\ntype: notice\n\n# Optional: register a command that opens this dialog.\n# Leave empty (\"\") to skip.\nopen_command: \"welcome\"\n\n# Optional: permission required to use open_command.\n# Leave empty (\"\") to allow all players.\nopen_permission: \"\"\n\nbody:\n  # Simple text line in the dialog.\n  - type: text\n    content: \"<gray>Hello, traveler! We're glad to see you here.\"\n\n  # Empty text used as spacer.\n  - type: text\n    content: \"\"\n\n  - type: text\n    content: \"<yellow>Explore, build, and have fun!\"\n```\n</details>\n\n---\n\n## 🛠 Developer API (In Future)\n\n### Events\n\nListen to custom events to integrate ADialogAPI with your systems:\n\n- `DialogOpenEvent`: Fired when a dialog is about to open (Cancellable).\n- `DialogButtonClickEvent`: Captures button clicks and any associated user inputs.\n- `DialogCloseEvent`: Fired when a dialog is closed (supports reasons like ESCAPE or PLUGIN).\n\n### Accessing the Manager\n\nYou can open dialogs via the `DialogManager`:\n\n```java\nADialogAPI.getApi().showDialog(player, \"dialog_id\");\n```\n\n---\n\n## 📜 Commands & Permissions\n\nThe main command is `/adialogapi` (aliases: `/adapi`).\n\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/adialogapi help` | View all available commands | `adialogapi.command.help` \n| `/adialogapi show <id> [player]` | Open a dialog for yourself or others | `adialogapi.command.show` \n| `/adialogapi list` | List all loaded dialogs | `adialogapi.command.list` \n| `/adialogapi reload [id]` | Reload all or a specific dialog | `adialogapi.command.reload` \n| `/adialogapi create <id>` | Create a new dialog template | `adialogapi.command.create` \n| `/adialogapi delete <id>` | Remove an existing dialog | `adialogapi.command.delete` \n| `/adialogapi info <id>` | View detailed info about a dialog | `adialogapi.command.info` \n\n---\n\n## 🤝 Support\n\n- **Issues:** Report bugs or request features via [GitHub Issues](https://github.com/isArkaDarkTime/ADialogAPI/issues).\n- **Discussions:** Ask questions and share your configs in the [Discussions](https://github.com/isArkaDarkTime/ADialogAPI/discussions) tab.\n- **Discord server:** My official discord server for support, bug-reports and fun - [ArkaDarkTime Hub](https://dsc.gg/arkadarktimehub)\n\n---\n\n## ⚖️ License\n\nDistributed under the **GNU GPL v3 License**. See [LICENSE](https://github.com/isArkaDarkTime/ADialogAPI/blob/master/LICENSE) for details.\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "xCQXBrF8",
+  "slug": "backstabbing-fix",
+  "title": "Backstabbing-Fix",
+  "description": "A lightweight server-side fix for Farmer's Delight knives and similar mods, validating attack angles to prevent backstabbing exploits.",
+  "body": "## Overview\n\nBackstabbing Fix is a server-side Forge mod for Minecraft 1.20.1 that patches the backstabbing damage exploit from Farmer's Delight. It keeps the enchantment behavior limited to standard player melee attacks instead of allowing amplified damage from unrelated sources.\n\nThe mod is intentionally small and focused. It does one job: prevent the backstabbing bonus from being abused by modded damage sources such as spells, projectiles, or other non-melee attacks.\n\n## The Problem\n\nFarmer's Delight backstabbing is meant to reward proper melee positioning. Without a fix, the damage bonus can be triggered by sources that were never intended to count as normal knife attacks.\n\nThat means players can sometimes:\n\n1.  Use spells instead of melee hits\n2.  Trigger the bonus with projectiles or other modded damage\n3.  Bypass the intended combat rules of the enchantment\n\nIn modded servers, that creates inconsistent and unfair damage behavior.\n\n## How It Works\n\nBackstabbing Fix listens to the Farmer's Delight backstabbing hook and validates the incoming damage source before the bonus is applied.\n\nThe fix only allows the amplification when the damage source is a standard player melee attack. If the hit comes from anything else, the backstab bonus is cancelled.\n\nThis keeps the enchantment tied to the combat style it was designed for.\n\n## Features\n\n*   Server-side only\n*   Lightweight and focused\n*   Prevents backstabbing amplification from non-melee damage\n*   Compatible with modded combat setups\n*   Optional behavior: the mod can load even if Farmer's Delight is not installed\n\n## Configuration\n\nThe mod includes a simple server config:\n\n```\n[fixes]\nfixBackstabbingExploit = true\n```\n\nWhen enabled, the fix is active.\n\n## Compatibility\n\n*   Minecraft Version: 1.20.1\n*   Mod Loader: Forge 47.4.x+\n*   Side: Server-side\n*   Related Mod: Farmer's Delight\n\nThe fix only matters when Farmer's Delight is installed, because that is the mod providing the backstabbing enchantment hook.\n\n## Why This Mod?\n\nThis mod is useful if you want the backstabbing enchantment to stay balanced in modded environments.\n\nIt helps keep:\n\n*   melee damage consistent\n*   knife backstabs tied to proper hits\n*   spells and ranged attacks from abusing melee-only effects\n\n## Credits\n\n**Author**: [SatDPhoe](https://x.com/SatPhoe)\n\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/satdphoe)\n \n[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/SatDPhoe)",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

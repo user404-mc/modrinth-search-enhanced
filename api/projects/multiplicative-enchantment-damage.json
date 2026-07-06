@@ -1,0 +1,22 @@
+{
+  "id": "tUImqe5i",
+  "slug": "multiplicative-enchantment-damage",
+  "title": "Multiplicative Enchantment Damage",
+  "description": "Changes Sharpness, Smite, Bane of Arthropods and Impaling damage calculations to be percentage based. This mod aims to lessen the gap between enchanted heavy vs light weapons.",
+  "body": "Changes Sharpness, Smite, Bane of Arthropods and Impaling damage calculations to be percentage based. This mod aims to lessen the gap between enchanted heavy vs light weapons.\n\nMods often add \"fast and weak\" vs \"slow and powerful\" and even 2-handed weapons. When the additional damage from enchantments is all linear, the balance falls apart and fast weapons almost always win out in DPS in lategame. Because of the flat additions, the % DPS increase for 1 handed is much greater than 2 handed due to faster attack rate.\n\n## Fully Configurable!\nSo you can fine tune the balance:\n\n1. Whether to run the multiplier logic at all for this enchant.\n2. Whether to override the default enchantment behavior (undo flat additions)\n3. What the first level multiplier is.\n4. What each additional level adds to that multiplier.\n\n## Default Settings\nThis mod changes the following enchantments by default (Based on Vanilla scaling at 6 damage from a lighter weapon, Knives, + vanilla enchants scaled to percentage instead):\n\n1. Sharpness changed from, +1 first level, +0.5 per additional: +16.8% level 1, + 8.3% per additional. (x1.5 at level 5)\n2. Bane of Arthropods, Smite, Impaling changed from 2.5 per level: +41.6% per level. (x3.08 base damage at level 5 vs specific mobs)\n\nKeep in mind this stacks on top of crits (e.g. 1.5x from crit times 3.08x)\n\nNote: For modded enchantments from my experience (Illager's Bane and Sculk's Smite, will vary per mod), they don't have hardcoded damage scaling logic and will work through a Data Pack.\nReplace their damage minecraft:add effect(s) with the following:\n\n```\n\"type\": \"minecraft:multiply\",\n\"factor\": {\n\"type\": \"minecraft:linear\",\n\"base\": 1.416,\n\"per_level_above_first\": 0.416\n}\n```\n\nI recommend unzipping the given mod jar(s) to find the data folder path to their \"enchantments\" folder. Until I find a mod that doesn't work with a datapack, I don't see the need to make config support for modded enchantments specifically. If you find a modded enchantment that doesn't work through a Datapack, feel free to bring up an issue on the GitHub!",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "magic",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 115,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

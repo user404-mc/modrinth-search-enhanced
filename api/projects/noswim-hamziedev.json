@@ -1,0 +1,35 @@
+{
+  "id": "JczTnuzj",
+  "slug": "noswim-hamziedev",
+  "title": "NoSwim",
+  "description": "Restrict players from waters in various ways. Good for events.",
+  "body": "## NoSwim\n\n**NoSwim** is a Minecraft plugin made for event hosts and server administrators. It prevents players from swimming freely, ensuring a more controlled experience during in-game events. This utility is especially useful in scenarios where swimming could give players an unfair advantage or disrupt the flow of an event, such as in obstacle courses, survival challenges, or an island where players are not allowed to go out of.\n\n## Features\n\n- **Control Player Behavior in Water (All configurable in the config)**:  \n   - **Min Water Height**: Prevent swimming in deep water by setting a minimum water depth.\n   - **Player Damage**: Option to apply poison or drowning damage when players enter deep water.\n   - **Downforce**: Control the sinking speed when players are in deep water.\n   - **Water Breathing Exemption**: Exempt players with the Water Breathing effect from sinking.\n- **Building Restrictions Above Water**: Prevent players from building above water areas that are restricted. (Not fully developed yet)\n\n## Commands\n\nThe plugin supports the following commands:\n\n- `/noswim enable`: Enables the NoSwim plugin's behavior (prevents swimming in deep water).\n- `/noswim disable`: Disables the NoSwim plugin's behavior.\n- `/noswim reload`: Reloads the plugin configuration from the `config.yml`.\n\n## Permissions\n\n- `noswim.admin`: Allows players to use the `/noswim` command (for enabling, disabling, and reloading the plugin).\n- `noswim.bypass`: Allows players to bypass the sinking mechanic and swim in deep water.\n\n## Configuration Options\n\nThe `config.yml` file allows you to customize the plugin's behavior. Below are the available configuration settings:\n\n```yaml\n# NoSwim Configuration File - Version 0.1-BETA-B1\n# It is highly recommend to regenerate the config file after downloading a new version.\n# To regenerate the config file: delete this config file and restart the server.\n\n# Minimum water height (depth) to activate the sinking effect\nmin-water-height: 2                # Number\n\n# Exempt players with the Water Breathing effect\nwater-breath-exemption: true       # Options: true, false\n\n# Damage options: poison, drowning, or none\nplayer-damage:\n  enabled: false                   # Options: true, false\n  type: poison                     # Options: poison, drowning, none\n  damage-interval: 40              # Ticks (20 ticks = 1 second)\n\n# Sinking effect\ndownforce:\n  enabled: true                    # Toggle sinking effect on/off | Options: true, false\n  amount: 0.25                     # Default sinking speed (0.1 is slower, 0.5 is faster)\n\n# [BETA] Allow building above water\n# This feature is still in development and contains bugs,\n# players can easily bypass this restriction.\n# It is recommended to let players build above water until the bugs are fixed.\nallow-building-above-water: true   # Options: true, false (Default: true)\n```\n\n### Configuration Variables:\n\n- **`min-water-height`**: Defines the minimum height of water required for the sinking effect to be triggered. Players in water less than this height won’t experience the sinking effect.\n  \n- **`water-breath-exemption`**: If set to `true`, players with the Water Breathing effect won’t be affected by the sinking behavior.\n\n- **`player-damage`**:\n  - **`enabled`**: Set to `true` to enable player damage effects (e.g., poisoning or drowning). \n  - **`type`**: Determines the type of damage inflicted. Options are `poison`, `drowning`, or `none`.\n  - **`damage-interval`**: Defines the interval (in ticks) between each damage application.\n\n- **`downforce`**:\n  - **`enabled`**: Controls whether the sinking effect is active. If set to `false`, the player will float.\n  - **`amount`**: Determines the rate at which players sink. Values closer to 0 make players sink slower, and higher values make them sink faster.\n\n- **`allow-building-above-water`**: Allows or blocks players from building above water. This feature is still in development, and players can bypass the restriction. Use with caution until future updates.\n\n## Troubleshooting\n\n- **Players are not sinking in deep water**: Make sure the `min-water-height` is set correctly and that the `downforce` value is configured correctly.\n- **Damage isn't applied**: Verify that the `player-damage` setting in the config is set to `true` and that a valid damage type (`poison` or `drowning`) is specified.\n- **Players can still build above water**: This is because the plugin only checks for water one block under the placed block. That's why I recommend to keep building above waters enabled for now. This will be fixed in later versions, when I figure out a good way to implement a check for this.\n\n## Contribution\n\nFeel free to fork this plugin and submit pull requests if you'd like to contribute new features or fixes. Contributions are always welcome!\n\n## License\n\nNoSwim is licensed under the MIT License. See the LICENSE file for more details.",
+  "categories": [
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 105,
+  "followers": 0,
+  "game_versions": [
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20"
+  ],
+  "date_updated": null
+}

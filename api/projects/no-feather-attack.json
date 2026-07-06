@@ -1,0 +1,22 @@
+{
+  "id": "VBGGWVEf",
+  "slug": "no-feather-attack",
+  "title": "No Feather Attack",
+  "description": "A small Paper plugin that makes feather hits deal no damage, only applying light (configurable) knockback.",
+  "body": "# No Feather Attack \n## _[aka Feather Attack Cancel]_\n\n\nFeather hit is not an attack — a small Paper plugin that turns feather hits into knockback-only interactions. It cancels damage (so villagers don’t get angry and no damage side-effects fire) while still applying a light custom knockback.\n\n## Features\n- Knockback-only feather hits: cancels the damage event and applies custom push.\n- Per-player toggle via command `/featherhit`.\n- Auto-enable on player join (and on plugin reload for already-online players).\n- Client language message support: `en_us`, `de_de`, `fr_fr`, `es_es`, `hu_hu`.\n- Builds for multiple MC versions via Maven profiles (1.21.7 and 1.21.8).\n\n## Requirements\n- Java 21 (Paper 1.21+ requires Java 21).\n- PaperMC server 1.21.7 or 1.21.8 (matching the built JAR).\n\n## Installation\n1. Download/build the JAR for your server version (see Build section).\n2. Place the JAR into your server’s `plugins/` folder.\n3. Start the server. The plugin will create:\n   - `plugins/NoFeatherAttack/config.yml`\n   - `plugins/NoFeatherAttack/lang/*.yml`\n\n## Commands\n- `/featherhit` — Toggle feather knockback-only mode for yourself.\n\nPermissions: none (by default all players can use the command).\n\n## Configuration\nFile: `plugins/NoFeatherAttack/config.yml` (use spaces only, no TABs)\n\nKeys\n- trigger-item: Uppercase Bukkit material name for the item that triggers the knockback-only hit. Default: FEATHER\n\n- knockback:\n  - min-charge: Number (0.0–1.0). Minimum attack cooldown required to apply knockback. 1.0 = fully charged. Default: 0.9\n  - horizontal: Number. Base horizontal strength of the knockback vector. Default: 0.6\n  - min-upward: Number. Ensures at least this upward (Y) component so hits don’t push targets downward. Default: 0.35\n  - scale-by-charge: Boolean. If true, scales horizontal strength by the current attack charge (prevents weak spam from being as strong as full hits). Default: false\n  - clamp-velocity: Boolean. If true, clamps the target’s final velocity magnitude to avoid “stacking” launches. Default: true\n  - max-velocity: Number. Maximum final velocity magnitude when clamping is enabled. Default: 1.2\n\n- behavior:\n  - auto-enable-on-enable: Boolean. When the plugin enables (e.g., server start/reload), automatically enables the feature for players already online. Default: true\n  - auto-enable-on-join: Boolean. Automatically enables the feature for players when they join. Default: true\n\nApplying changes\n- There is no reload subcommand; `/featherhit` only toggles the feature for the executing player.\n- To apply config changes, restart the server (or stop/start).\n\nLanguage files\n- Path: `plugins/NoFeatherAttack/lang/`\n- Fallback order: exact client tag (e.g., `de-de.yml`) → underscore form (e.g., `de_de.yml`) → `en_us.yml`.\n- Color codes: use `&` (e.g., `&6`, `&a`).\n\nExamples\n```yaml\n# Softer knockback that scales with charge\ntrigger-item: FEATHER\nknockback:\n  min-charge: 0.9\n  horizontal: 0.45\n  min-upward: 0.30\n  scale-by-charge: true\n  clamp-velocity: true\n  max-velocity: 1.0\nbehavior:\n  auto-enable-on-enable: true\n  auto-enable-on-join: true\n```\n\n## Notes on Namespaced Command Suggestions\nIf tab-complete shows a namespaced command like `/nofeatherattack:featherhit`, this comes from the plugin name namespace. On Paper, you can hide namespaced suggestions by setting `send-namespaced=false` in `paper-global.yml` (or relevant Paper config for your version).\n\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 62,
+  "followers": 0,
+  "game_versions": [
+    "1.21.7",
+    "1.21.8",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

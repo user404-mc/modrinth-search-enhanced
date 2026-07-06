@@ -1,0 +1,22 @@
+{
+  "id": "pqc2qIMJ",
+  "slug": "handswing",
+  "title": "HandSwing Toggle",
+  "description": "Toggle the first-person hand-swing animation that plays every time you attack or place a block. Great for accessibility (motion sickness) and clean stream feeds. Press K to switch on/off.",
+  "body": "**HandSwing Toggle** is a tiny client mod that lets you turn off the first-person *hand swing* animation — the quick down-and-up arc your held item makes every time you swing, attack, or place a block. Vanilla offers no setting for it: *View Bobbing* controls walking sway, but the per-swing arm flick is always on.\n\n### What it does\n- A single key (**K** by default) toggles the first-person hand-swing animation on or off.\n- When **off**, your held item stays steady in your view while you mine, attack, and place blocks. Damage, block breaking, item use, hit registration, and packet timing are **completely unaffected** — only the local animation is suppressed.\n- Other players still see your normal arm swing in third-person — the server-side swing packet is sent as usual, so multiplayer behavior is identical.\n- Action-bar message confirms the new state every time you toggle.\n\n### Why\n- **Accessibility / motion sickness.** Some players get queasy from the constant per-click arm flick, especially during fast mining or PvP. Vanilla *View Bobbing: off* doesn't disable swing arcs — this mod does.\n- **Clean stream feed.** Streamers and recorders who want a calmer first-person view (especially with high-attack-speed combat or rapid building) can flatten the held item completely.\n- **Focus.** With the hand-swing arc gone, the crosshair area stays visually quiet — easier to read HUDs, durability bars, or aim with a bow.\n\n### Controls\n- **K** — toggle hand-swing animation on/off. Default is **on** (vanilla behavior). The action-bar shows `Hand swing: ON` / `Hand swing: OFF` when you press it.\n\n### Notes\n- Pure client-side, no server install needed. Works on any Fabric server, fully vanilla compatible — the server can't tell the mod is there.\n- One small mixin into `LivingEntity.swingHand(Hand)` that no-ops only for the local client player when toggled off. Other entities and the network packet path are untouched.\n- No config file; the setting is per-session (resets on restart). Default-on so installing the mod doesn't change your game until you actually press K.\n- ~80 lines of code, no extra dependencies beyond Fabric API.\n\n### Compatibility\n**Minecraft 1.21.8, 1.21.9, 1.21.10, 1.21.11** — Fabric Loader 0.16+. One JAR covers all four. Drop into your `mods/` folder alongside Fabric API.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "UQLWLfFB",
+  "slug": "minecraft-lua-scripts",
+  "title": "MLS (Minecraft Lua Scripts)",
+  "description": "Minecraft Lua Scripts Framework is a lightweight mod that lets you use Lua to automate tasks and create dynamic systems, custom maps, and minigames beyond vanilla Minecraft.",
+  "body": "# MLS (Minecraft Lua Scripts)\n\n**Minecraft Lua Scripts (MLS)** is a Forge mod that lets you write and run Lua scripts in Minecraft without creating a mod.\n\nMLS is essentially a Lua adapter for the Forge API. Instead of setting up a mod project and recompiling on every change, you write `.lua` files, put them in the `<game_dir>/luascripts/` folder, and execute them in-game with `/script run`. Scripts run in named threads, can be stopped individually or all at once, and have access to the game through a straightforward API — worlds, entities, players, redstone, commands, and more.\n\nIt's primarily aimed at **map and minigame development**. Complex event sequences, player detection zones, score tracking, coordinated multi-system logic — things that are painful or outright impossible to build with command blocks alone become quick to write and easy to iterate on.\n\n```lua\n-- detect players entering an area and trigger a command\nlocal corner1 = {x = 100, y = 64, z = 100}\nlocal corner2 = {x = 120, y = 70, z = 120}\n\nwhile true do\n    local players = world.getPlayersInSquare(corner1, corner2)\n    if #players > 0 then\n        world.executeCommand(\"say Welcome to the arena!\")\n    end\n    local t = os.time() + 1\n    while os.time() < t do end\nend\n```\n\nNo build tools. No Java. Just scripts.\n\n#### For API documentation, please refer to the [**Website**](https://tkrartem.github.io/MLS_MinecraftLuaScripts).\n\n#### WARNING\nThis project is currently in its **ALPHA** stage, meaning it may contain bugs or incomplete features. If you encounter any issues, please report them via the `Issues` tab on GitHub.\n\n**Contributions are welcome! Feel free to submit pull requests or suggest improvements.**",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "library",
+    "management",
+    "minigame",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5"
+  ],
+  "date_updated": null
+}

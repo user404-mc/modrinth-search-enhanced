@@ -1,0 +1,37 @@
+{
+  "id": "sc6SYC6P",
+  "slug": "sorekillrtp",
+  "title": "SorekillRTP",
+  "description": "High-performance RTP and respawn routing for large networks.",
+  "body": "# 🌍 SorekillRTP\n\n**SorekillRTP** is a high-performance, cross-server Random Teleport (RTP) and respawn management plugin built for modern Minecraft networks.  \nIt supports local and cross-server RTP, **cross-server respawns**, multiple worlds (Overworld, Nether, End), Redis-backed coordination, and strict safety checks designed for large SMP environments.\n\nDesigned for **Paper / Spigot backends** behind **Velocity** or **BungeeCord / Waterfall**.\n\n---\n\n## ✨ Features\n\n- 🌐 **Cross-server RTP**\n  - Teleport players between backend servers using Redis and proxy messaging\n\n- ☠️ **Cross-server respawns**\n  - Respawn players on a different server than where they died\n  - Ideal for hub → SMP or lobby-based networks\n  - Fully configurable per server\n\n- 🌍 **Multi-world support**\n  - Overworld, Nether, and End\n  - Per-world radius and distribution settings\n\n- 🧭 **Advanced RTP distribution**\n  - Square ring (uniform or biased)\n  - Circular annulus (uniform area or radius)\n  - Gaussian-clamped distributions\n\n- 🛡️ **Strict safety checks**\n  - Avoid lava, fire, dangerous blocks, liquids, and void-adjacent areas\n  - Prevent teleports near hostile mobs or other players\n\n- ⏳ **Teleport countdown with movement detection**\n  - Cancels on movement or jumping\n  - Configurable countdown duration\n\n- 🧠 **Smart chunk handling**\n  - Async chunk loading on Paper\n  - Safe sync fallback on Spigot\n\n- 🔁 **Cross-server cooldowns**\n  - Redis-backed cooldowns shared across servers\n\n- 🔊 **Configurable sounds & messages**\n  - Fully customizable via `config.yml` and `messages.yml`\n\n- 🔄 **Safe reload support**\n  - Reload config, messages, Redis, and listeners without restarting the server\n\n---\n\n## ☠️ Respawn Behavior\n\nSorekillRTP can fully control where players respawn after death.\n\nSupported behaviors include:\n\n- Respawn on the **same server**\n- Respawn on a **different server**\n- Respawn at **spawn**, **bed**, or **random teleport**\n- Cross-server respawns with optional RTP on respawn\n\nThis allows setups such as:\n- Dying on a hub sends players to an SMP\n- SMP respawns always perform RTP\n- Private servers keep respawns local only\n\nAll respawn behavior is controlled via configuration and can differ per server.\n\n---\n\n## 🧩 Supported Platforms\n\n**Backends**\n- Paper (recommended)\n- Spigot\n\n**Proxies**\n- Velocity\n- BungeeCord\n- Waterfall\n\n> Note: SorekillRTP is a backend plugin.  \n> It does not run as a proxy plugin but communicates with the proxy using plugin messaging.\n\n---\n\n## 📦 Requirements\n\n- Java 17 or newer\n- Paper or Spigot server\n- (Optional) Redis server for cross-server RTP and respawns\n\n---\n\n## ⚙️ Installation\n\n1. Place `SorekillRTP.jar` into your backend server’s `plugins` folder\n2. Start the server once to generate config files\n3. (Optional) Configure Redis in `config.yml` for cross-server RTP and respawns\n4. Restart or reload the server\n\n---\n\n## 🔧 Configuration\n\nMain configuration file:\n- `config.yml`\n\nMessage customization:\n- `messages.yml`\n\nAll RTP and respawn behavior (radius, cooldowns, countdowns, distributions, safety rules, and respawn routing) is configurable per server and per world.\n\n---\n\n## 🧪 Commands\n\n- `/rtp`\n  - Randomly teleport yourself\n\n- `/rtp <world>`\n  - Randomly teleport within a specific world\n\n- `/rtp <player> <server> <world>` (admin)\n  - Teleport another player across servers\n\n---\n\n## 🔐 Permissions\n\n- `sorekillrtp.use` – Use RTP\n- `sorekillrtp.cooldown.bypass` – Bypass RTP cooldown\n- `sorekillrtp.tptimer.bypass` – Bypass RTP countdown\n- `sorekillrtp.admin` – Admin RTP commands\n\n---\n\n## 🧠 How Cross-Server RTP & Respawn Works\n\n1. Player requests RTP or dies\n2. Source server determines target server and world\n3. Target server computes a safe location\n4. Location is shared via Redis\n5. Player is transferred through the proxy\n6. Final teleport occurs on the destination server\n\n---\n\n## Planned Features\n\n- Folia Support\n\n## 🧾 License\n\nThis project is licensed under the Apache 2.0 License.\n\n---\n\n## ❤️ Credits\n\nDeveloped by **Sorekill**  \nBuilt for modern SMP networks that need fast, safe, and scalable RTP and respawn handling.\n",
+  "categories": [
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 55,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,26 @@
+{
+  "id": "MorzcJtM",
+  "slug": "smaug-plugin",
+  "title": "smaug",
+  "description": "an interactive crafting plugin",
+  "body": "## Smaug\nAn interactive crafting plugin for Minecraft servers to create custom items. The plugin allows you to define custom items either in it's own plugin configuration or register your items externally using the API. \n\n### Features\nThis plugin's primary purpose is to allow you to: \n- Define recipes/conversions to create custom items by interacting with stations (plans to integrate MythicMobs/Crucible)\n- Define custom items in-configuration as well as register items externally\n\nExample Usage:\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/aLXckUpuREM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n### Usage\nDefining an item in-configuration can be done like so:\n\nitem.yml\n```\ntest:\n    material: DIAMOND\n    display-name: <#000000>This is a test item! \n    item-model: minecraft:stone\n```\nNote: all text-based fields such as display-name, or lore can use [MiniMessage](https://docs.advntr.dev/minimessage/format) format.\n\nYou can inherit properties additively by using the key 'inherits'\n\n```\ntest2:\n    display-name: <#0000ff>This is the second test item!\n    inherits: test\n```\n\nDefining a recipe: \n\na) Recipes accept item keys in the format <namespace>:<key> for output, or the keys of the items section. <namespace> is optional, as the plugin will infer if the key is a member of the minecraft namespace it will default to that, an example is given in the recipe under 'test.output'.\n\nb) Alternatively, if you want to specify a registered item from a specific namespace, e.g. smaug, you can refer to it either by test, or smaug:test if there is a conflict with a key in another namespace.\n\nc) Recipes also allow for forward references, as this is the only way currently to register a recipe, meaning, the recipe expects that the item referenced will be present in the registry at the time the recipe is parsed. \n\nrecipe.yml\n```\ntest:\n  output: gold_ingot # a)\n  amount: 2 # output amount\n  actions: 10 # optional, defaults to 0\n  ingredients: \n    items:\n      #item_key: amount\n      test2: 2\n      test_hammer: 9\n  type: smaug:anvil #station type\n```\n\n### Links\n- Support for the plugin and it's API are available on [discord](https://discord.gg/yrnqw5S2). Any questions that cannot be answered with the content on this page can be asked there. \n- Reporting a bug? [please open a ticket on github](https://www.github.com/mintychochip/smaug).\n### Credits\n- [icon](https://www.deviantart.com/elizabethholmes/art/Smaug-s-eye-No-2-702282394)\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

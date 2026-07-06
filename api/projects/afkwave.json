@@ -1,0 +1,22 @@
+{
+  "id": "AXnPdOjM",
+  "slug": "afkwave",
+  "title": "AFK Wave",
+  "description": "Marks you as away with an AFK badge and an idle timer, and makes your character wave so others can tell you've stepped away.",
+  "body": "**AFK Wave** turns \"did they leave or are they just standing there?\" into something you can actually see. When you stop providing any input - no movement, no mouse-look, no clicks - for a configurable amount of time, AFK Wave marks you as away: a small **AFK** badge with an idle timer shows up in the top-left corner, and your character begins **waving** its hand on a loop so other players (and your own third-person view) get an unmistakable \"be right back\" signal.\n\n### What it does\n- Watches for genuine inactivity - it tracks your **position, look direction, mouse cursor and mouse buttons**. The moment any of them change, you're \"back\" and the idle timer resets to zero.\n- Once you've been idle past the threshold, a top-left **AFK** badge appears showing how long you've been away (`AFK 1m 12s`). It pulses gently so it's easy to spot.\n- While AFK, your character periodically calls the vanilla swing animation, so in third-person and to other players on a server you visibly **wave** instead of standing frozen.\n- Stops the instant you do anything - one mouse twitch or key press clears the AFK state and the wave.\n\n### Commands & controls\n- **O** - toggle AFK Wave on/off. An action-bar message confirms the new state. The setting persists across restarts.\n- **`/afkwave`** - print the current state and idle threshold in chat.\n- **`/afkwave threshold <seconds>`** - set how long you must be idle (1-3600 s, default **300** = 5 minutes) before you're marked AFK. Persisted to `config/afkwave.json`.\n- The badge respects **F1** (hide HUD) and only renders while you're in a world.\n\n### Why\nOn servers, people can't tell whether you're AFK or just thinking. A frozen avatar reads the same as a lagged-out one. AFK Wave gives a clear, friendly tell - the badge for you, the wave for everyone else - without you having to type \"brb\" every time you go grab a drink.\n\n### Notes\n- Pure client-side - install on your client only. Works on any Fabric server, fully vanilla compatible; the server can't tell it's there. The wave uses the normal hand-swing packet, so other players see it naturally.\n- Not a macro or anti-kick: it only animates an idle indicator and never sends movement or keeps you logged in. If a server kicks for inactivity, AFK Wave won't stop that.\n- No mixins, no extra dependencies beyond Fabric API. Negligible performance cost (a handful of comparisons per tick).\n\n### Compatibility\n**Minecraft 1.21.8, 1.21.9, 1.21.10, 1.21.11** - Fabric Loader 0.16+. One JAR covers all four. Drop into your `mods/` folder alongside Fabric API.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

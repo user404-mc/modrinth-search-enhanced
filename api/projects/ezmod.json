@@ -1,0 +1,33 @@
+{
+  "id": "8SHJhAmk",
+  "slug": "ezmod",
+  "title": "ezmod",
+  "description": "A custom Paper 1.21.11 moderation plugin",
+  "body": "# Moderation\n\nA custom **Paper 1.21.11** moderation plugin (Java 21). Provides gamemode, vanish,\nmute, freeze, warning, and inventory-management tools for staff.\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/gms [player]` | Set gamemode to survival | `moderation.gamemode` |\n| `/gmc [player]` | Set gamemode to creative | `moderation.gamemode` |\n| `/gmsp [player]` | Set gamemode to spectator | `moderation.gamemode` |\n| `/vanish` | Toggle invisibility to other players | `moderation.vanish` |\n| `/mute <player> [time] [reason]` | Mute a player (timed or permanent) | `moderation.mute` |\n| `/unmute <player>` | Remove a mute | `moderation.mute` |\n| `/freeze <player>` | Lock a player in place | `moderation.freeze` |\n| `/unfreeze <player>` | Release a frozen player | `moderation.freeze` |\n| `/warn <player> [reason]` | Warn a player (tracks count) | `moderation.warn` |\n| `/warnings <player>` | View a player's warning history | `moderation.warn` |\n| `/invsee <player>` (alias `/inventorysee`) | Open an editable inventory GUI | `moderation.invsee` |\n\nAll permissions default to **op**.\n\n## Features\n\n### Mutes\n- Durations parse units `s m h d w`, combinable (e.g. `1d12h`, `30m`); permanent if no time given.\n- Smart argument handling: `/mute Steve being rude` treats the whole tail as the reason\n  when no valid duration is detected.\n- Persists to `mutes.yml`, expires automatically, and survives restarts.\n- Blocks chat and chat-style commands (`/me`, `/msg`, `/tell`, etc.). Works on offline players.\n\n### Vanish\n- Hides you from other players via `hidePlayer`/`showPlayer`.\n- Re-hides vanished players from anyone who joins while you're hidden.\n- Staff with `moderation.vanish.see` can still see vanished players.\n\n### Freeze\n- Persists to `frozen.yml`, so a frozen player who logs out comes back **still frozen**\n  (no alt-F4 escape).\n- Blocks movement, command usage, and all self-initiated teleports — including the\n  chorus-fruit exploit (both the eating and the teleport are cancelled).\n- Staff `PLUGIN`-cause teleports are still allowed so frozen players can be repositioned.\n\n### Warnings\n- Persists to `warnings.yml` with reason, issuer, and timestamp.\n- Reports a running warning count to both staff and the warned player.\n\n### InvSee\n- 54-slot GUI showing main inventory, armor, and offhand.\n- Items keep full durability, enchantments, and NBT (they are real `ItemStack`s).\n- Fully editable: add, move, or remove items and changes write straight back to the\n  player's live inventory.\n- Filler slots and ambiguous shift-clicks are locked to prevent accidental item loss.\n- Target must be online.\n\n## Technical notes\n\n- Built with Gradle (wrapper pinned to 9.3.1); compiled against `paper-api 1.21.11`.\n- Teleport-cause blocking matches enum **names as strings** rather than constants, so it\n  stays robust across Paper SNAPSHOT builds that add or rename teleport causes.\n- All commands provide tab completion for online player names.\n\n## Data files\n\nStored under `plugins/Moderation/`:\n\n- `mutes.yml` — active mutes\n- `frozen.yml` — currently frozen players\n- `warnings.yml` — warning history\n- `config.yml` — reserved for future options\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

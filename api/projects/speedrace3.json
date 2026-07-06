@@ -1,0 +1,26 @@
+{
+  "id": "npxhLzMW",
+  "slug": "speedrace3",
+  "title": "Speedrace III",
+  "description": "The 3rd generation of Speedrace minigame",
+  "body": "# Speedrace3\n\nA Minecraft Paper plugin that allows server administrators to organize speed races where players compete to reach a specific location.\n\n## Features\n\n- Start races at specific X/Z coordinates with customizable radius\n- Broadcasts player arrival messages with their rank\n- Configurable particle effects to mark the destination area\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/speedrace3 start <x> <z> [radius]` | Start a new race at coordinates X/Z with optional radius | `speedrace3.admin` |\n| `/speedrace3 stop` | Stop the current race | `speedrace3.admin` |\n| `/speedrace3 query` | Check the status of the current race | `speedrace3.query` |\n| `/speedrace` | Alias for `/speedrace3` | - |\n| `/spr` | Short alias for `/speedrace3` | - |\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `speedrace3.admin` | Allows access to race management commands (start/stop) | OP |\n| `speedrace3.query` | Allows checking race status | All players |\n\n## Configuration\n\nThe plugin's configuration file (`config.yml`) can be found in the plugin directory. Here are the available options:\n\n```yaml\n# Accepted maximum Chebyshev distance to the center\ndefault-offset-radius: 8.0\n\nparticles:\n  enabled: false\n  # Namespaced key\n  type: minecraft:end_rod\n  # Per block\n  count: 3\n  # Possible options: `edge`, `all`\n  position: edge\n  # Force display on clients\n  force: true\n  interval: 60  # ticks\n  height: 10  # blocks\n\nlang: en\n```\n\n### Configuration Details\n\n- **`default-offset-radius`**: The default radius for race areas when not specified in the start command. Minimum value is 1.0.\n\n- **`particles.enabled`**: Whether to show particle effects around the race area.\n\n- **`particles.type`**: The particle type to use. Must be a valid Minecraft particle namespaced key (e.g., `minecraft:end_rod`, `minecraft:firework`).\n\n- **`particles.count`**: Number of particles to spawn per block in the area.\n\n- **`particles.position`**: Where to place particles:\n  - `edge`: Only on the edges of the race area\n  - `all`: Throughout the entire race area\n\n- **`particles.force`**: Whether to force particles to be visible to all players, even if they're far away.\n\n- **`particles.interval`**: How often (in ticks) to update the particle effects. Minimum value is 10 ticks.\n\n- **`particles.height`**: The height (in blocks) at which particles should appear.\n\n- **`lang`**: The language to use for plugin messages:\n  - `en`: English\n  - `zh`: Chinese\n\n## Game Mechanics\n\n1. **Race Setup**: Admins use `/speedrace3 start <x> <z> [radius]` to define a race area\n2. **Player Participation**: All online players automatically participate in the race\n3. **Winning Condition**: Players must reach within the specified radius around the target coordinates\n4. **World Restriction**: Only the overworld is considered for race completion\n5. **Arrival Tracking**: Players are marked as arrived once they enter the area, and their arrival is broadcast to all players\n6. **Race End**: Admins can stop the race at any time using `/speedrace3 stop`\n\n## Compatibility\n\n- **Minecraft Version**: 1.21.4+\n- **Server Software**: PaperMC only (not compatible with Spigot or Bukkit)\n\n## Development\n\nTo compile the plugin yourself:\n\n1. Clone this repository\n2. Run `./gradlew build`\n3. The compiled JAR will be in the `build/libs` directory\n\n## Support\n\nIf you encounter any issues or have questions, please:\n\n1. Check the plugin's configuration\n2. Ensure you're using a compatible Minecraft and Paper version\n3. Look for similar issues on the project's issue tracker\n\n## License\n\nThis plugin is released under the Apache 2.0 License.\n\n## Credits\n\n- Author: teddyxlandlee\n",
+  "categories": [
+    "minigame",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

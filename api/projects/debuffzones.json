@@ -1,0 +1,21 @@
+{
+  "id": "oT87mITo",
+  "slug": "debuffzones",
+  "title": "Debuff Zones",
+  "description": "Adds a softer alternative/add-on to the vanilla worldborder system.",
+  "body": "# Debuff Zones\n\nAdds a softer alternative/add-on to the vanilla worldborder system.\n\n## Usage\n\nEdit the configuration file in `config/debuffzones.json`. Each element in the `zones` array represents one zone object, which has the following syntax:\n\n```json\n{\n  \"dimension\": \"minecraft:overworld\", // The dimension where this zone applies\n  \"center\": [\n    0.0, // Center X\n    0.0  // Center Z\n  ],\n  \"distance_type\": \"SQUARE\", // can be SQUARE or CIRCLE\n  \"radius\": 1000.0, // Radius (either Euclidean distance or distance on either axis, with the type CIRCLE and SQUARE respectively)\n  \"effects\": [ // List of \"effect instance\" objects \n    {\n      \"identifier\": \"minecraft:slowness\", // Effect ID\n      \"potency\": 1, // Effect level (starting from 0)\n      \"time\": 10, // The duration of the effect (generally doesn't matter, it's applied each tick but some laggier servers may benefit from a higher value here)\n      \"ambient\": true, // Makes swirls *less* visible (like beacons)\n      \"particles\": false, // Makes swirls *not* visible\n      \"show_icon\": true // Makes the icon show in the top right\n    }\n  ],\n  \"damage\": 0.0, // How much damage should happen each tick\n  \"difficulty\": 0.0 // This is added on to the clamped regional difficulty (see https://minecraft.wiki/w/Difficulty#Regional_difficulty)\n  // NOTE: Regional clamped difficulty is a value from 0.0 - 1.0, so values above this won't change anything.\n  \"regeneration_bypass\": false // If having Regeneration should disable this zone's effects\n}\n```",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 84,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

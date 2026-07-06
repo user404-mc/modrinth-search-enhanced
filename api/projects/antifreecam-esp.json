@@ -1,0 +1,36 @@
+{
+  "id": "nUqRQ2eh",
+  "slug": "antifreecam-esp",
+  "title": "AntiFreecam",
+  "description": "Hides blocks below a Y-level from surface players so freecam and ESP only see void, while normal underground play stays fully vanilla.",
+  "body": "AntiFreecam — Anti-Freecam & Anti-ESP protection for Paper 1.21.x\n\n📖 OVERVIEW\nAntiFreecam is a lightweight, server-side anti-cheat that shuts down Freecam and ESP/X-ray vision cheats. It hides every block below a configurable Y-level from players who are on the surface, so a freecam or ESP camera flying underground sees nothing but solid stone — while normal underground gameplay stays completely vanilla. No client mod required; everything runs on the server through PacketEvents.\n\n✨ FEATURES\nFreecam blocker — surface players are sent stone for everything below your Y-threshold.\nAnti-ESP — caves, bases, ores and entities underground are invisible from the surface.\nVanilla-like reveal — when a player actually goes underground, the area around them is revealed smoothly.\nAuto re-mask — areas are hidden again the moment the player returns to the surface.\nEntity hiding — mobs and players below the threshold are hidden from surface players.\nMod detection — best-effort client-brand check (Wurst) with auto-kick and admin alerts.\nStaff bypass — give your staff full vision with a single command.\nClean, reloadable configuration.\n\n⚙️ HOW IT WORKS\n1. The server intercepts outgoing chunk packets.\n2. For surface players, all blocks below hideBelowY are rewritten to stone before reaching the client.\n3. When a player descends, nearby chunks are re-sent un-masked so mining looks normal.\n4. When they climb back up, those chunks are re-masked.\n\n📦 REQUIREMENTS\nPaper / Purpur 1.21.x\nJava 21\nPacketEvents plugin installed (required dependency)\n\n🚀 INSTALLATION\n1. Install PacketEvents into your plugins/ folder.\n2. Drop AntiFreecam.jar into plugins/.\n3. Restart the server — a config.yml is generated.\n4. Tune the settings and run /antifreecam reload.\n\n🔧 COMMANDS & PERMISSIONS\n/antifreecam reload — reload the config (antifreecam.reload)\n/antifreecam bypass [player] — toggle masking bypass for staff (antifreecam.bypass)\n\n🛠️ KEY CONFIG OPTIONS\nhideBelowY — hide everything below this Y from surface players\nrevealBelowYWhenUnder — Y at which a player counts as \"underground\"\nlazyUnmask.distance — how far ahead is revealed underground (set near view-distance × 16 for full vanilla feel)\nmaskEntities — hide below-Y entities from surface players\nmodDetection — enable/disable Wurst detection, auto-kick and alerts\n\nThis plugin requires PacketEvents to run.\n\nPacketEvents (free, required):\nModrinth: https://modrinth.com/plugin/packetevents\nGitHub: https://github.com/retrooper/packetevents\n\nInstall PacketEvents into your plugins/ folder before using AntiFreecam.\n\nWhy \"Invisible Walls\" After Freecam Are Expected\n\nThis is not lag or a server bug — it is an intentional part of the protection system.\n\nThe server only reveals real blocks around a player's actual position. Any area below the protected Y-level that the player has not legitimately reached is sent as fake stone. When a freecam mod moves only the camera, the server still sees the player standing in the original location and continues sending masked block data.\n\nBecause of this, a player may appear to discover caves, ores, or tunnels with freecam, but those locations are not actually revealed by the server. Attempting to mine there will fail because the client's view does not match the server's real block data.\n\nIn some cases, even after moving the real character to that location, the affected chunks may remain desynced because they were previously loaded through freecam. The player may see missing terrain, void-like areas, or blocks that cannot be mined.\n\nHow to Fix It\n\nThere are only two ways to refresh those chunks:\n\n1. Move far enough away for the affected chunks to unload, then return without using freecam.\n2. Reconnect to the server, which forces a complete chunk resynchronization.\n\nOnce the chunks are refreshed normally, the real terrain will be revealed and mining will work as expected.\n\nIn short, freecam can show areas that the player has not legitimately reached, but those areas remain inaccessible until the server properly refreshes the chunk data.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 55,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

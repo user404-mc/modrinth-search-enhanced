@@ -1,0 +1,37 @@
+{
+  "id": "szG8ciiy",
+  "slug": "schemimporter",
+  "title": "SchemImporter",
+  "description": "Import a schematic from a download URL into the FAWE/WORLDEDIT schematics folder",
+  "body": "# SCHEM IMPORTER\n\nIs a Minecraft plugin for [PaperMC](https://papermc.io/downloads/paper) that allows importing schematics from download URLs into the FAWE schematics folder.\n\n**Features:**\n- Import schematics from HTTP/HTTPS URLs\n- URL rewriting for schematic sharing sites (IntellectualSites, schem.sn, BuiltByBit, ...)\n- Host whitelist with bypass permission\n- File size limits and download timeouts\n- Overwrite protection with bypass permission\n- Custom filename support\n- Async downloads to prevent server lag\n- Logging to console on successful imports\n- Config reload command\n- All messages are editable\n- Supports .schem, .schematic, and .nbt extensions\n\n**Permissions:**\n- `schemimporter.import`: Allows using /import to download schematics\n- `schemimporter.import.other`: Allows importing schematics on behalf of other players (reserved for future features)\n- `schemimporter.bypass.whitelist`: Allows downloading from any host, bypassing the whitelist\n- `schemimporter.bypass.overwrite`: Allows overwriting existing schematic files\n- `schemimporter.reload`: Allows reloading the SchemImporter config via /import reload\n\n**Config:**\n<details>\n<summary>Spoiler</summary>\n\n```yaml\n# ─────────────────────────────────────────────────────────────────────────────\n#  SchemImporter — config.yml\n#  Plugin by DippyCoder\n# ─────────────────────────────────────────────────────────────────────────────\n\n# ── Schematic Directory ───────────────────────────────────────────────────────\n# Path where downloaded schematics will be saved.\n# Relative paths are resolved from the server root.\n# Default points to the standard FAWE schematics folder.\n#\n# Examples:\n#   plugins/FastAsyncWorldEdit/schematics    ← FAWE (default)\n#   plugins/WorldEdit/schematics             ← vanilla WorldEdit\n#   schematics                               ← server root /schematics folder\n#\nschematic-directory: \"plugins/FastAsyncWorldEdit/schematics\"\n\n\n# ── URL Whitelist ─────────────────────────────────────────────────────────────\n# Controls which hosts players are allowed to download schematics from.\n# Set enabled: false to allow any host (not recommended on public servers).\n# Players with the schemimporter.bypass.whitelist permission ignore this list.\n#\n# Matching rules:\n#   - \"example.com\"       matches example.com and any subdomain (sub.example.com)\n#   - Comparison is case-insensitive\n#\nwhitelist:\n  enabled: true\n  hosts:\n    # ── FAWE / WorldEdit schematic sharing sites ───────────────────────────\n    - \"schem.intellectualsites.com\"\n    # ── Generic trusted file hosts ─────────────────────────────────────────\n    - \"cdn.discordapp.com\"\n    - \"media.discordapp.net\"\n    - \"github.com\"\n    - \"raw.githubusercontent.com\"\n    - \"objects.githubusercontent.com\"\n    - \"drive.google.com\"\n    - \"dropbox.com\"\n    - \"dl.dropboxusercontent.com\"\n    - \"paste.gg\"\n    - \"transfer.sh\"\n    # ── Add your own server/CDN here ───────────────────────────────────────\n    # - \"yourserver.net\"\n    # - \"cdn.yoursite.com\"\n\n\n# ── Download Limits ───────────────────────────────────────────────────────────\nlimits:\n  # Maximum allowed file size in bytes.\n  # The download will be aborted if the file exceeds this size.\n  # Default: 52428800 = 50 MB\n  max-file-size-bytes: 52428800\n\n  # Connection and read timeout in seconds for each download attempt.\n  # Increase if you are downloading from slow hosts.\n  download-timeout-seconds: 15\n\n  # Whether to allow overwriting an existing schematic with the same filename.\n  # If false, players need the schemimporter.bypass.overwrite permission to overwrite.\n  allow-overwrite: false\n\n\n# ── Permissions (node names only — adjust in plugin.yml for defaults) ─────────\n# These keys define which permission nodes the plugin checks at runtime.\n# Change these if you want to use a custom permission string without recompiling.\n#\npermissions:\n  import: \"schemimporter.import\"\n  bypass-whitelist: \"schemimporter.bypass.whitelist\"\n  bypass-overwrite: \"schemimporter.bypass.overwrite\"\n  reload: \"schemimporter.reload\"\n\n\n# ── Messages ──────────────────────────────────────────────────────────────────\n# All user-facing messages. Supports '&' color codes and the following\n# placeholders where indicated.\n#\nmessages:\n\n  # Prefix prepended to every plugin message.\n  prefix: \"&8[&5SchemImporter&8] &r\"\n\n  # Shown when the command is used incorrectly.\n  usage: \"&cUsage: &f/import <url> &7| &f/import reload\"\n\n  # Shown when the player lacks the required permission.\n  no-permission: \"&cYou do not have permission to do that.\"\n\n  # Shown when a non-player (e.g. console) tries to run a player-only action.\n  # (Currently unused — console is supported — kept for future features.)\n  player-only: \"&cThis command can only be used by players.\"\n\n  # Shown immediately after the download is initiated.\n  # Placeholder: {url}\n  download-start: \"&7Downloading schematic from &f{url}&7...\"\n\n  # Shown when the download completes and the file is saved.\n  # Placeholder: {filename}\n  download-success: \"&aSuccessfully imported &f{filename} &ainto the schematics folder!\"\n\n  # Shown when the download fails for any reason.\n  # Placeholder: {reason}\n  download-failed: \"&cDownload failed: &f{reason}\"\n\n  # Shown when the provided URL is malformed or uses an unsupported protocol.\n  # Placeholder: {url}\n  invalid-url: \"&cInvalid URL: &f{url}&c. Make sure it starts with https:// or http://\"\n\n  # Shown when the host of the URL is not on the whitelist.\n  # Placeholder: {host}\n  host-blocked: \"&cThe host &f{host} &cis not whitelisted. Ask an admin to add it.\"\n\n  # Shown when the downloaded file exceeds the configured size limit.\n  # Placeholder: {max_mb} — the limit in megabytes\n  file-too-large: \"&cDownload aborted: file exceeds the maximum allowed size of &f{max_mb} MB&c.\"\n\n  # Shown when a schematic with the same name already exists and overwrite is disabled.\n  # Placeholder: {filename}\n  file-exists: \"&cA schematic named &f{filename} &calready exists. Delete it first or rename the file.\"\n\n  # Shown when the configured schematic directory does not exist and cannot be created.\n  schem-dir-missing: \"&cThe schematics directory does not exist and could not be created. Check your config and server file permissions.\"\n\n  # Shown when the download times out.\n  timeout: \"&cDownload timed out. The host may be slow or unreachable.\"\n\n  # Shown when the config is reloaded via /import reload.\n  reloaded: \"&aConfiguration reloaded successfully.\"\n\n  # Shown when the URL does not end with a recognised schematic extension.\n  invalid-extension: \"&cThe URL does not point to a valid schematic file (.schem / .schematic / .nbt).\"\n```\n\n</details>",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 83,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

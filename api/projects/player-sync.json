@@ -1,0 +1,32 @@
+{
+  "id": "jYv55aE2",
+  "slug": "player-sync",
+  "title": "Player Sync",
+  "description": "A Bukkit/Spigot/Paper plugin that synchronizes player inventories and Ender Chest data across multiple Minecraft servers.",
+  "body": "# PlayerSync\n\nA Bukkit/Spigot/Paper plugin that synchronizes player inventory and Ender Chest data across multiple Minecraft servers.\n\n## Overview\n\nPlayerSync uses a MySQL database to synchronize player inventory and Ender Chest data across multiple servers. It automatically loads data when a player joins a server and saves data when they leave.\n\n## Supported Versions\n\n- **Minecraft**: 1.21.x\n- **Server**: Bukkit, Spigot, Paper\n- **Java**: Java 21 or higher\n\n## Installation\n\n1. Download the latest `PlayerSync-X.X.X.jar` from the [release page](https://github.com/Harukoto-Project/Player-Sync/releases)\n2. Place it in the server's `plugins` folder\n3. Start the server to load the plugin\n4. Edit `plugins/PlayerSync/config.yml` to configure the database\n5. Restart the server\n\n## Database Setup\n\nPlayerSync requires a MySQL database.\n\n### Creating the MySQL Database\n\n```sql\nCREATE DATABASE player_sync CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n```\n\n## Configuration File\n\n### config.yml\n\nEdit `plugins/PlayerSync/config.yml` to configure settings.\n\n```yaml\nmysql:\n  # MySQL server hostname\n  host: localhost\n  \n  # MySQL server port number\n  port: 3306\n  \n  # MySQL username\n  username: root\n  \n  # MySQL password\n  password: password\n  \n  # Database name to use\n  database: player_sync\n  \n  # Use SSL connection\n  useSSL: false\n\nsettings:\n  # Read-only mode (true: read data only, false: read/write)\n  read-only: false\n  \n  # UUID for server identification (left blank, it will be auto-generated)\n  uuid: “”\n  \n  # Auto-sync interval (in seconds)\n  # Automatically saves all online players' data at the specified interval\n  auto-sync-interval: 60\n```\n\n#### settings\n\n**read-only** (default: false)\n- `true`: Read only from the database (does not save)\n- `false`: Performs both read and write operations to the database\n- When using multiple servers, it is possible to set only one server to `false` and leave the others at `true`\n\n**uuid** (optional)\n- UUID for server identification\n- If left blank, it will be generated automatically\n- Once generated, it is saved in `config.yml`\n\n**auto-sync-interval** (Recommended: 60)\n- Automatic sync interval (in seconds)\n- Automatically saves all online players' data at the specified interval\n- Player data is always saved when they leave, so this setting is for periodic backups\n- Setting this to `0` or lower disables auto-sync\n\n## Message File\n\n`plugins/PlayerSync/messages.yml` contains log messages output by the plugin. You can customize these messages by editing this file.\n\n## Usage\n\n### Basic Usage\n\n1. Set up the database\n2. Configure database connection details in `config.yml`\n3. Start the server\n4. When a player joins, their inventory and ender chest data are automatically loaded\n5. When a player leaves, their data is automatically saved\n\n### Using Multiple Servers\n\n1. Configure all servers to use the same database\n2. Set each server's `uuid` to a unique value (auto-generated is acceptable)\n3. Typically set `read-only: false` on all servers\n4. If only one server saves data, set other servers to `read-only: true`\n\n## Troubleshooting\n\n### Database Connection Errors\n\n- Verify MySQL server is running\n- Confirm hostname, port, username, and password are correct\n- Verify MySQL ports are open in the firewall\n\n### Data Not Syncing\n\n- Confirm all servers use the same database\n- Check `read-only` settings\n- Verify database permissions\n\n### Performance Issues\n\n- Increase `auto-sync-interval` value (e.g., 120 seconds)\n- Adjust MySQL connection pool settings\n\n## License\n\nThis project is released under the Apache License 2.0.\n\nFor details, see the [LICENSE](LICENSE) file.\n\n## Support\n\nIf you encounter issues, please report them via [GitHub Issues](https://github.com/Harukoto-Project/Player-Sync/issues).\n\n## Links\n- [Discord](https://discord.gg/CbNpGK8VV6)\n- [Official Website](https://www.harukoto.jp/project/minecraft/player-sync)\n- [GitHub](https://github.com/Harukoto-Project/Player-Sync)",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

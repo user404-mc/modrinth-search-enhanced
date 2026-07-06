@@ -1,0 +1,24 @@
+{
+  "id": "O7hhGoWf",
+  "slug": "customeyeslib",
+  "title": "CustomEyesLib",
+  "description": "Add eyes that point to any structure in the game, just like how ender eyes point to strongholds. Supports vanilla and modded structures.",
+  "body": "A mod that adds custom eye items that locate and point toward **ANY** structure made for modpack developers. Define as many eyes as you want in a highly configurable toml file, inputting the structure, item texture, search radius, and the particle color.\n\n## **Planned features**\n- Custom textured eyes using resource packs instead of kubejs allow for more flexibility and easier configuration.\n\n## **Configuration**\nEyes are defined in .minecraft/config/structureeye-eyes.toml. The file is created automatically on first launch just add [[eye]] blocks to it.\nFields:\n\n- name — registry name for the item, no spaces. This is what shows up in /give commands.\n- displayName — what the item is called in-game. Defaults to name if omitted.\n- textureItem — any item's texture to use for the eye. Works with modded items too.\n- targetStructure — the structure's registry key. Use /locate or to find IDs for modded structures.\n- searchRadius — how many chunks out to search. Defaults to 128, max 256. Higher values are slower.\n- glowColor — ARGB hex color for the particle trail (e.g. #FFFF0000 for red).\n- showCoordinates — set to true to print Found \"Name\" at X, Y, Z in chat when a structure is found.\n-skipVisited — once you've visited a structure, the eye won't lead you there again. It will always find the next nearest one instead.\n\n### **Example:**\n\n```\n[[eye]]\n  name            = \"fortress_eye\"\n  displayName     = \"Eye of the Fortress\"\n  textureItem     = \"minecraft:blaze_powder\"\n  targetStructure = \"minecraft:fortress\"\n  searchRadius    = 128\n  glowColor       = \"#FFFF6600\"\n  showCoordinates = true\n  skipVisited     = true\n\n[[eye]]\n  name            = \"temple_eye\"\n  displayName     = \"Eye of the Desert Temple\"\n  textureItem     = \"minecraft:gold_nugget\"\n  targetStructure = \"minecraft:desert_pyramid\"\n  searchRadius    = 96\n  glowColor       = \"#FFFFFF00\"\n  showCoordinates = false\n  skipVisited     = false\n```\n\n###Custom Textures\nThere are two ways to give an eye a custom texture.\nOption 1: Resource Pack (recommended)\nCreate a zip file with this structure:\n```\nMyResourcePack.zip\n  pack.mcmeta\n  assets/structureeye/textures/item/\n    your_eye_name.png\n```\n\n### The pack.mcmeta should look like this:\n```\n{\n  \"pack\": {\n    \"pack_format\": 15,\n    \"description\": \"My custom eye textures\"\n  }\n}\n```\n\nDrop the zip into .minecraft/resourcepacks/ and enable it in-game. Then in your config, use texturePath instead of textureItem:\n\n```\n[[eye]]\n  name            = \"my_eye\"\n  displayName     = \"My Custom Eye\"\n  texturePath     = \"structureeye:item/your_eye_name\"\n  targetStructure = \"minecraft:stronghold\"\n  searchRadius    = 128\n  glowColor       = \"#FF00FFFF\"\n  showCoordinates = false\n  skipVisited     = true\n```\n\n## **Custom Textures with KubeJS**\nFor custom eye textures, [KubeJS](https://modrinth.com/project/umyGl7zF) can be used as a replacement for texture packs. Register an item with the texture you want for your eye and set the \"textureItem\" in the config to your KubeJS item.\n\n### **How to create a kubejs item:**\n```\n// kubejs/startup_scripts/items.js\nStartupEvents.registry('item', event => {\n    event.create('ItemId')\n        .displayName('ItemName')\n        .texture('kubejs:item/ItemId') // this isnt required, if the file name is the same then it would automatically register it\n})\n```\n\nPut your texture at kubejs/assets/kubejs/textures/item/**ItemId** and set textureItem = \"kubejs:**ItemId**\" in the config.\n",
+  "categories": [
+    "adventure",
+    "forge",
+    "game-mechanics",
+    "library",
+    "management",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

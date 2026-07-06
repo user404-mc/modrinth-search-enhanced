@@ -1,0 +1,20 @@
+{
+  "id": "nuHuMHm5",
+  "slug": "hopper-lock-visualizer",
+  "title": "Hopper Lock Visualizer",
+  "description": "Client-side debugging tool that highlights redstone-locked hoppers with a red wireframe. Instantly see which hoppers are disabled — no more guessing why your item sorter stopped working.",
+  "body": "# Hopper Lock Visualizer\n\n**Built an item sorter and something isn't working? One of your hoppers is probably receiving an unintended redstone signal.** This client-side mod wraps every locked hopper near you in a bright red outline, so you can spot the culprit at a glance.\n\n## What \"Locked\" Means\n\nA hopper has two states controlled by the `enabled` block property:\n\n- **Enabled (default):** pulls items in from above, pushes items out the spout. Normal behavior.\n- **Disabled (locked):** frozen. Completely stops item transfer. Triggered by any redstone signal reaching the hopper — a torch, a pressure plate, a comparator, a stray wire from a neighboring circuit...\n\nWhen a big contraption stops working, 9 times out of 10 the cause is a hopper accidentally receiving a redstone signal from something nearby. This mod makes that invisible problem visible.\n\n## Features\n\n- **One-key toggle** — default `H` (rebindable in Options > Controls)\n- **32-block radius scan** around the player, refreshed twice per second\n- **Smart culling** — distance + cone-based visibility check, so only hoppers in view get drawn\n- **Red wireframe rendering** using Minecraft 1.21.11's new Gizmo API\n- **Client-only** — works on any server, no server-side install needed\n- **Zero configuration** — install and press H\n\n## Usage\n\n1. Install this mod and [Fabric API](https://modrinth.com/mod/fabric-api)\n2. Drop both into your `.minecraft/mods/` folder\n3. Launch Minecraft, join any world or server\n4. Press **H** → nearby locked hoppers get wrapped in a red outline\n5. Press **H** again to disable\n\n## Compatibility\n\n| Feature | Support |\n|---------|---------|\n| Minecraft | **1.21.11** |\n| Mod Loader | **Fabric** (Loader 0.18.0+) |\n| Fabric API | Required |\n| Java | 21+ |\n| Side | Client-only |\n\n## Untested\n\n- **Quilt:** Not tested, but should work since Quilt supports Fabric mods\n- **Forge/NeoForge:** Not supported\n\n## Performance\n\nThe scan runs 2× per second, not every frame. Each scan reads block states only (no block entities, no inventories), so even in large bases with hundreds of hoppers the overhead is negligible. The render pass culls with distance + cone checks before calling Minecraft's Gizmo API — no manual matrix math, no state leaks",
+  "categories": [
+    "fabric",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

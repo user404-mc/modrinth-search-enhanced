@@ -1,0 +1,36 @@
+{
+  "id": "pdIAXZgn",
+  "slug": "serverseekerblocker",
+  "title": "ServerSeekerBlocker",
+  "description": "This plugin adds into your server to block server",
+  "body": "# ServerSeekerBlocker\n\n**ServerSeeker** is a publicly available tool that mass-scans the internet for open Minecraft servers, logs player data, and lets anyone look up which servers a player has visited. If you run a private or semi-private server, ServerSeeker bots will find you, join, collect data, and leave — and by default, your server logs every one of those visits.\n\n**ServerSeekerBlocker** stops them cold — silently, and without a trace.\n\nBlocked connection attempts are intercepted before the player ever fully joins, so no `joined the game` message is broadcast, no log entry is written, and to blocked IPs, your server appears completely offline in the multiplayer list.\n\nNot just ServerSeeker — block **any** unwanted connection by name, IP, or UUID. Scanner bots, griefers, banned players, or anyone else you don't want on your server.\n\n---\n\n## Features\n\n- **🔇 Silent blocking** — blocked players are denied at the pre-login stage. No join message, no console output, nothing.\n- **🌐 Ping hiding** — blocked IPs receive no server list response. Your server looks offline to them entirely.\n- **🗂️ Three blocking methods** — block by player name, IP address, or UUID. Each can be toggled independently.\n- **🚪 Transfer mode** — instead of kicking, silently redirect blocked players to another server using Minecraft's built-in Transfer Packet.\n- **📋 Log suppression** — a Log4j2 filter intercepts any log message containing a blocked name or IP before it reaches the console or log file.\n- **🌍 Multi-language support** — all plugin messages are defined in swappable `lang/` YAML files. English and Korean are bundled.\n- **🔄 Live reload with diff** — `/ssb reload` applies changes instantly and prints a color-coded diff showing exactly what changed.\n\n---\n\n## Requirements\n\n| Item | Requirement |\n|------|-------------|\n| Server software | Paper or Purpur (Spigot / CraftBukkit not supported) |\n| Minecraft version | 1.20.6 or higher |\n| Java version | Java 21 or higher |\n\n---\n\n## Installation\n\n1. Drop the JAR into your server's `plugins/` folder.\n2. Start the server — `plugins/ServerSeekerBlocker/` will be created automatically.\n3. Edit `config.yml` to add the names, IPs, or UUIDs you want to block.\n4. Run `/ssb reload` to apply changes without restarting.\n\n---\n\n## config.yml\n\n```yaml\nlanguage: en_US\ndebug: false\n\nblocking:\n  name:\n    enabled: true\n    list:\n      - \"BotUsername\"\n  ip:\n    enabled: true\n    list:\n      - \"0.0.0.0\"\n  uuid:\n    enabled: true\n    list:\n\ntransfer:\n  enabled: false\n  host: \"\"\n  port: 25565\n\nhide-ping:\n  enabled: true\n\nsuppress-logs:\n  enabled: true\n```\n\n### Options\n\n| Key | Default | Description |\n|-----|---------|-------------|\n| `language` | `en_US` | Language file to use (filename in the `lang/` folder) |\n| `debug` | `false` | Log blocked/transferred players to console when `true` |\n| `blocking.name.enabled` | `true` | Enable name-based blocking |\n| `blocking.name.list` | `[]` | List of player names to block |\n| `blocking.ip.enabled` | `true` | Enable IP-based blocking |\n| `blocking.ip.list` | `[]` | List of IP addresses to block |\n| `blocking.uuid.enabled` | `true` | Enable UUID-based blocking |\n| `blocking.uuid.list` | `[]` | List of UUIDs to block |\n| `transfer.enabled` | `false` | Redirect blocked players to another server instead of kicking |\n| `transfer.host` | `\"\"` | Target server address for transfer |\n| `transfer.port` | `25565` | Target server port for transfer |\n| `hide-ping.enabled` | `true` | Make the server appear offline to blocked IPs |\n| `suppress-logs.enabled` | `true` | Suppress console logs related to blocked players |\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/ssb reload` | OP | Reloads `config.yml` and displays a color-coded diff of changes |\n\n---\n\n## Language Support\n\nLanguage files are automatically extracted to `plugins/ServerSeekerBlocker/lang/` on first start.\nChange the `language` value in `config.yml` and run `/ssb reload` to switch instantly.\n\n**Bundled languages**\n- `en_US` — English\n- `ko_KR` — Korean\n\nTo add a new language, create a `lang/yourlanguage.yml` file using the same keys as an existing file.\n\n---\n\n## How It Works\n\n### Block mode (`transfer.enabled: false`)\nPlayers are blocked at the `AsyncPlayerPreLoginEvent` stage — before they fully join the server. No `joined the game` message is ever logged or broadcast.\n\n### Transfer mode (`transfer.enabled: true`)\nAt `PlayerJoinEvent`, the join message is suppressed and the player is immediately redirected to the configured server using Minecraft's Transfer Packet.\n\n### Ping hiding (`hide-ping.enabled: true`)\nWhen a blocked IP pings the server from the multiplayer list, the response is dropped entirely. The server appears offline to that client.\n\n> Only the IP list is checked — usernames and UUIDs are not available at the ping stage.\n\n### Log suppression (`suppress-logs.enabled: true`)\nA Log4j2 filter is installed on the root logger at startup. Any log message containing a blocked name or IP is intercepted before it reaches the console or log file.\n\n---\n\n## Notes\n\n- **Paper / Purpur only.** The plugin uses Paper-exclusive APIs and will not load on Spigot or CraftBukkit.\n- `hide-ping` only checks the IP list — name/UUID filtering is not possible at the ping stage.\n",
+  "categories": [
+    "management",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "LZHLmFNO",
+  "slug": "fire-suppressing-cauldrons",
+  "title": "Fire Suppressing Cauldrons",
+  "description": "Server-side fabric mod that prevents fire from spreading within 100+ blocks of cauldrons. For use by technical players in servers that have fire tick enabled.",
+  "body": "# Fire Suppressing Cauldrons\n\nServer-side fabric mod that prevents fire from spreading around cauldrons. For use by technical players in servers that have fire tick enabled.\n\nThe effect is spherical, centered around the bottommost north-west corner of the cauldron, with a radius controlled by the `fire_spread_radius_around_player` gamerule.\n\n\n## Technical details\n\nThis mod hooks `ServerLevel.canSpreadFireAround` to make an additional check for any PoI-registered cauldrons.  Additionally, this mod hooks `PoiManager.remove` to persist the fire suppressing effect to any cauldrons that are broken.  This is to account for cauldrons moved by flying machines, and lasts for 8 ticks.\n\nWhile there may be some non-zero performance impact, it should be mitigated by the fact that fire spread should be a relatively rare occurrance.  (Hopefully.)\n\n\n## TODO\n\n- Fill level to control effect radius. May require registering different PoI types, as to account for the case in which an attempt is made to ignite an air block that is covered by an unloaded cauldron.\n\n- Add other versions of Minecraft to build system. The fire tick game rule and behavior has changed drastically a few times in its history.\n\n- Add Forge variant. Or something.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

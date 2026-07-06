@@ -1,0 +1,25 @@
+{
+  "id": "w7YRZokS",
+  "slug": "scafall",
+  "title": "scafall",
+  "description": "Simple wrappers for Minecraft classes that make it easier to develop cross-platform APIs, as well as extra tools to help with cross-platform plugin and mod development.",
+  "body": "The main goal of scafall is to provide a lightweight wrapping solution for creating cross-platform APIs.  \nA secondary goal is to provide utils for the most used parts of each platform, such as Tasks & Scheduling or Kotlin-specific convenience utils for libraries like Adventure.\n\nNote: Scafall is a development library not meant to be used by players or provide gameplay features. Other plugins/mods may require it as a dependency.\n\n### Proxy Interfaces\nScafall avoids wrapping every Platform/Minecraft feature by providing simple wrapper interfaces, that are only used as a kind of proxy.  \n\n1. The API (created by the plugin/mod dev) accepts wrappers as arguments (e.g. `ScafallItemStack`) in functions.   \n2. The implementations of those functions `unwrap()` the wrapper arguments to the native Minecraft object, work with those (e.g., `ItemStack`), and `wrap()` any return value.\n3. Other Mods/Plugins `wrap()` their platform-specific objects (e.g., `org.bukkit.inventory.ItemStack`) and pass those into the API.\n\nThese interfaces are lightweight and provide access to very few properties of the wrapped object.\nThe idea is to purely use them as a transfer between Mods/Plugins, API, and Implementation, allowing for easier sharing of common code between platforms.\n\n![Wrapping and Unwrapping: Third-Party Mods/Plugins <--unwrap/wrap--> API <--wrap/unwrap--> Implementation](https://github.com/user-attachments/assets/d752060d-2e59-4d30-a756-a0540923c005)\n\nScafall uses Minecraft as the ground truth, so proxies always wrap the native Minecraft types.  \nWhen wrapping other platform types, those are first converted into the native MC types.  \n(Spigot/Paper objects are usually wrappers themselves, in which case it just uses that wrapped value)\n\n#### Limitations & Memory Concerns\nThe same limitation applies to wrappers as they do to native types. That means one should never attempt to store a wrapper in a list or map, as that would lead to memory leaks.\nThey are intended to be used only as parameters or return values to/from API calls.\n\n## Work in Progress \nThis is still a work-in-progress project, so don't expect anything to work seamlessly.\nThere is no guarantee of API compatibility yet, but it will be provided eventually.\nThe current API is still unstable and **likely to change at anytime without notice!**\n\n## Additional Modules/Libraries\nThe goal of this project is to really just provide the basic scaffolding and assist in the development process.  \nAdditional Modules/Libraries may use scafall to provide more niche APIs and Utils.  \n* [viewportl](https://github.com/WolfyScript/viewportl) - Minecraft UI Framework based on Compose Runtime, for powerful, reactive and efficient UIs.  \n  (Uses scafall to make it possible to create cross-platform UIs)\n",
+  "categories": [
+    "bukkit",
+    "fabric",
+    "library",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 324,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

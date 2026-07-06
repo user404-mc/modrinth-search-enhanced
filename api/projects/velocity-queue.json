@@ -1,0 +1,20 @@
+{
+  "id": "P6GUvpBb",
+  "slug": "velocity-queue",
+  "title": "Velocity Queue",
+  "description": "The best free Velocity Queue you`ll find.",
+  "body": "# SecVers Queue System\n\nA powerful Velocity queue system supporting multiple priority queues with full LuckPerms integration.\n\n---\n\n## FEATURES\n\n- Supports multiple queues: Premium, VIP, Default, and Softban\n- Fully compatible with LuckPerms MySQL database\n- Modular queue enabling/disabling via config\n- Automatic fallback to limbo server\n- Queue priority processing: Premium -> VIP -> Default -> Softban (after 5min)\n- Individual queue position messages for each player\n- Designed for cracked and premium servers, with LibreLogin Support\n- Lightweight, optimized for 500+ concurrent queued players\n\n---\n\n## HOW IT WORKS\n\n1. Player joins the limbo/queue server (configure this in Velocity with limboserver setting).\n2. The queue system checks the player's group via LuckPerms database (MySQL only).\n3. The player is assigned to their respective queue:\n   - Premium -> VIP -> Default -> Softban\n4. Every tick (5s by default), the system checks if the target server is online and has available slots.\n5. Players are sent to the target server based on queue priority.\n\n---\n\n## CONFIGURATION (config.yml)\n\n```yaml\n# SecVers Queue config.yml\n\n# Enable LuckPerms support.\n# Requires a MySQL or MariaDB connection without SSL.\nenablelp: false\n\n# The server players join to wait in queue\nlimboserver: queue\n\n# The target server players will be sent to\ntargetserver: survival\n\n# Group configuration\n# Group names are retrieved from the 'luckperms_user_permissions' table.\n# Example: use 'premium' not 'group.premium'.\nGroups:\n  softban: badgroup\n  default: default\n  vip: vip\n  premium: premium\n  displayname_softban: badgroup\n  displayname_default: default\n  displayname_vip: VIP\n  displayname_premium: Premium\n\n# Queue settings\n# Enable or disable queues individually\n# SoftbanQueueEnabled defaults to allowing join after 5 minutes if other queues are empty\nQueueGroupSettings:\n  premiumQueueEnabled: true\n  vipQueueEnabled: true\n  QueueEnabled: true\n  SoftbanQueueEnabled: true\n\n# Database connection for LuckPerms integration\ndatabase:\n  host: 127.0.0.1\n  port: 3306\n  name: luckperms\n  user: root\n  pass: ''\n```\n\n---\n\n## EXAMPLE FLOW\n\n1. Player joins the limbo server queue.\n2. Queue system retrieves their group from LuckPerms MySQL.\n3. Adds them to their queue (Premium -> VIP -> Default -> Softban).\n4. Every 5 seconds:\n   - Checks target server status\n   - Moves next player in priority order if slots are available.\n\n---\n\n## NOTES\n\n- LuckPerms support requires MySQL or MariaDB.\n- Softban queue enforces a 5-minute wait if other queues are empty.\n- Designed for Velocity and supports LibreLogin setups.\n",
+  "categories": [
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 73,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.20",
+    "1.21"
+  ],
+  "date_updated": null
+}

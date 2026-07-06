@@ -1,0 +1,41 @@
+{
+  "id": "anGuoMal",
+  "slug": "discord-verification",
+  "title": "Discord Verification",
+  "description": "A production-ready Velocity plugin that forces players to link their Discord account before joining your server. Players are placed in a beautiful Limbo world where they receive a verification code to send to your Discord bot.",
+  "body": "Velocity Discord Verification — Discord verification system for Velocity proxy\n\n**What this project does**\n\nVelocity Discord Verification is a plugin that requires players to link their Discord account before accessing your Minecraft server. When a player connects for the first time, they are placed in a custom Limbo world where they receive a 4-digit verification code. The player sends this code to the Discord bot via direct message, after which their accounts are linked and they gain access to the server.\n\n**Why you should download**\n\nThe plugin provides server security by requiring identity verification through Discord. It is fully integrated into a single JAR file, requires no separate bot hosting, automatically synchronizes Discord roles and nicknames, and operates with high performance even on large servers. The system includes brute-force protection, a beautiful interface with gradient messages and sound effects.\n\n**Important information before downloading**\n\nRequires Velocity 3.0+, Java 17+, and the LimboAPI plugin. You need a Discord bot token with required intents enabled. The plugin supports SQLite (by default) and MySQL for multi-proxy setups. All messages are fully customizable through config files.\n\n**Key features**\n\n- Discord verification before server access\n- Built-in Discord bot (no separate hosting required)\n- Automatic Discord role and nickname synchronization\n- Beautiful interface with gradient messages, action bar, and sound effects\n- Attack protection: attempt limiting, code expiration, brute-force protection\n- High performance using HikariCP\n\n**How to install**\n\n1. Download velocity-discord-verification.jar\n2. Place the file in the plugins/ folder\n3. Install the LimboAPI plugin\n4. Start the server to generate config files\n5. Edit config.yml and messages.yml\n6. Restart the server\n\n**Discord bot setup**\n\n1. Create an application on Discord Developer Portal\n2. Create a bot and copy the token\n3. Enable intents: MESSAGE CONTENT INTENT, SERVER MEMBERS INTENT, DIRECT MESSAGES\n4. Invite the bot to your server via OAuth2\n\n**How it works**\n\nWhen a player connects for the first time, the system checks their UUID in the database. If not found, a 4-digit code is generated and the player is teleported to the Limbo world. There they see instructions and a action bar with a countdown (30 seconds). The player sends the code to the Discord bot via direct message. The bot verifies the code, links the accounts, and the player receives a success message. Upon reconnection, the player goes directly to the server.\n\nFor returning players, the system checks if they are on the Discord server. If yes, they are automatically assigned the verification role and can connect.\n\n**Limbo world**\n\nVerification takes place in a special world with a void, an invisible barrier cage (5x5x4), disabled chat and block interaction. The player sees a action bar with countdown, periodic reminders every 5 seconds, and sound effects.\n\n**Security**\n\nThe system includes attempt limiting (3 per minute), cryptographically secure code generation, one-time codes with expiration (30 seconds), automatic cleanup of expired codes, and ensures that one Discord account is linked to only one Minecraft UUID.\n\n**Configuration**\n\nThe plugin uses config.yml for main parameters: bot token, Discord server ID, verification role ID, code length, expiration time, attempt limit, database type (SQLite or MySQL). All messages are fully customizable in messages.yml with MiniMessage formatting support.\n\n**Performance**\n\nThe plugin is optimized for large servers using HikariCP for connection pooling, asynchronous Discord API calls, efficient code cleanup scheduler, and minimal memory consumption. For servers with less than 100 players, SQLite is recommended; for large servers and multi-proxy setups — MySQL.\n\n**Troubleshooting**\n\nIf the bot doesn't start, verify the token is correct and intents are enabled in Discord Developer Portal. If players can't verify, ensure the bot has direct message permissions and the server ID is correct. For database errors, check your credentials and ensure MySQL is running (if using MySQL).\n\n**License**\n\nMIT\n\n**Credits**\n\nLimboAPI, JDA (Discord Java API), Velocity\n",
+  "categories": [
+    "management",
+    "social",
+    "storage",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 60,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "jtDgB7vj",
+  "slug": "lskillgui",
+  "title": "LsKillGui",
+  "description": "Simple GUI-based kill confirmation plugin for survival servers",
+  "body": "# LsKillGui\n\nA lightweight and fully configurable **confirmation GUI for `/kill`** on Minecraft servers.\n\nLsKillGui prevents accidental deaths by showing a confirmation menu when players use `/kill`. Server owners can fully customize the menu items, names, lore, and behavior through the configuration.\n\nThe plugin is designed to be **simple, lightweight, and modern Paper-compatible**.\n\n---\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/lopikss/lsplugins/refs/heads/main/images/killguimenu.png\">\n</p>\n\n---\n# Features\n\n* Confirmation GUI when using `/kill`\n* Optional GUI for `/kill <player>`\n* Fully configurable GUI items\n* Support for **player heads** in the GUI\n* Supports **hex colors** (`&#ffffff`) and normal color codes (`&`)\n* Placeholder support for `%player%` and `%target%`\n* Tab completion for commands\n* Lightweight and dependency-free\n* Clean and simple configuration\n\n---\n\n# Commands\n\n### `/kill`\n\nOpens the confirmation GUI to kill yourself.\n\n### `/kill <player>`\n\nKills another player (requires permission).\n\n### `/killgui reload`\n\nReloads the plugin configuration.\n\n---\n\n# Permissions\n\n| Permission       | Description              | Default |\n| ---------------- | ------------------------ | ------- |\n| `killgui.use`    | Allows use of `/kill`    | OP      |\n| `killgui.other`  | Allows `/kill <player>`  | OP      |\n| `killgui.reload` | Allows `/killgui reload` | OP      |\n\n---\n\n# Configuration\n\nThe GUI is fully customizable through `config.yml`.\n\nExample:\n\n```yaml\n# =========================================================\n# LsKillGui - config-guide.yml\n# =========================================================\n#\n# This file explains every option in the normal config.yml.\n#\n# ITEM NAMES:\n# Use valid Bukkit / Paper Material names such as:\n#   LIME_WOOL\n#   RED_WOOL\n#   PAPER\n#\n# Full material list:\n# https://jd.papermc.io/paper/1.21.11/org/bukkit/Material.html\n#\n# SPECIAL CUSTOM ITEM VALUES SUPPORTED BY THIS PLUGIN:\n#   SELF_HEAD   -> shows the head of the player opening the menu\n#   TARGET_HEAD -> shows the head of the target player in /kill <player>\n#\n# PLACEHOLDERS:\n#   %player% -> the player opening the GUI\n#   %target% -> the target player in /kill <player>\n#\n# OTHER NOTES:\n# - Names and lore support normal color codes with & and also Hex codes like: &#55ff55Hello\n# - Lore can have as many lines as you want\n# =========================================================\n\n\n# If enabled, a confirmation GUI opens for /kill <player>.\n# If disabled, /kill <player> instantly kills the target player.\nother-gui: true\n\nmenus:\n  self:\n    items:\n      cancel:\n        # The item shown on the left side.\n        # Valid examples: RED_WOOL, BARRIER, GRAY_STAINED_GLASS_PANE\n        item: RED_WOOL\n\n        # Display name of the item.\n        name: \"&c&lCancel\"\n\n        # Lore lines under the item name.\n        lore:\n          - \"&7Close this menu.\"\n\n      info:\n        # Special value:\n        # SELF_HEAD = head of the player opening the menu\n        # You can also replace this with a normal item like PAPER\n        item: SELF_HEAD\n\n        name: \"&e&lConfirm Suicide\"\n\n        lore:\n          - \"&7You are about to kill yourself.\"\n          - \"&7Click &aYes &7to continue.\"\n          - \"&7Click &cCancel &7to go back.\"\n\n      confirm:\n        item: LIME_WOOL\n        name: \"&a&lYes\"\n        lore:\n          - \"&7Kill yourself instantly.\"\n\n  # This menu is only used when:\n  # other-gui: true\n  other:\n    items:\n      cancel:\n        item: RED_WOOL\n        name: \"&c&lCancel\"\n        lore:\n          - \"&7Close this menu.\"\n\n      info:\n        # Special value:\n        # TARGET_HEAD = head of the target from /kill <player>\n        # You can also replace this with a normal item like PAPER\n        item: TARGET_HEAD\n\n        name: \"&6&lKill %target%\"\n\n        lore:\n          - \"&7You are about to kill &f%target%&7.\"\n          - \"&7Click &aYes &7to confirm.\"\n          - \"&7Click &cCancel &7to go back.\"\n\n      confirm:\n        item: LIME_WOOL\n        name: \"&a&lYes\"\n        lore:\n          - \"&7Instantly kill &f%target%&7.\"\n```\n\n---\n\n# Special Item Types\n\nThe plugin supports special item placeholders:\n\n| Item value    | Result                                        |\n| ------------- | --------------------------------------------- |\n| `SELF_HEAD`   | Shows the head of the player opening the menu |\n| `TARGET_HEAD` | Shows the head of the target player           |\n\n---\n\n# Placeholders\n\n| Placeholder | Description                       |\n| ----------- | --------------------------------- |\n| `%player%`  | Player opening the GUI            |\n| `%target%`  | Target player in `/kill <player>` |\n\n---\n\n# Compatibility\n\n* Paper\n* Spigot\n* Purpur\n* Minecraft **1.21+**\n\n---\n\n# Installation\n\n1. Download the plugin `.jar`\n2. Place it in your server's `plugins` folder\n3. Restart the server\n4. Configure `config.yml` if desired\n\n---\n\n# Support\n\nIf you encounter issues or have suggestions, feel free to open an issue or contact the developer.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

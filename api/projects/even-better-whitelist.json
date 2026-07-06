@@ -1,0 +1,36 @@
+{
+  "id": "89beS55w",
+  "slug": "even-better-whitelist",
+  "title": "Even Better Whitelist",
+  "description": "A professional whitelist workflow with Discord actions, dual VPN/Proxy detection, GeoIP, optional captcha, Discord account linking, and statistics. Built for production servers.",
+  "body": "# EvenBetterWhitelist - Plugin\n\n[![Modrinth](https://img.shields.io/badge/Modrinth-Project-green?style=flat-square&logo=modrinth)](https://modrinth.com/plugin/even-better-whitelist)\n[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-brightgreen?style=flat-square)](https://papermc.io/)\n![Discord](https://img.shields.io/badge/Discord-Integration-5865F2?style=flat-square&logo=discord)\n\nA modern whitelist system for Minecraft Paper 1.21.x with Discord integration. When a player attempts to join and is not whitelisted, a structured request is posted to your Discord channel. Admins can accept, deny, or ban directly from Discord using buttons.\n\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-green?style=flat-square&logo=minecraft)\n![Paper](https://img.shields.io/badge/Paper-API-blue?style=flat-square)\n![Discord](https://img.shields.io/badge/Discord-Integration-5865F2?style=flat-square&logo=discord)\n![Java](https://img.shields.io/badge/Java-21-orange?style=flat-square&logo=openjdk)\n\n\n### Installation Steps\n\n1. Place `WhitelistPluginButBetter-1.0.0.jar` in your server's `plugins/` folder\n2. Start/restart your server\n3. Edit `plugins/WhitelistPluginButBetter/config.yml`\n4. Download [GeoLite2-City.mmdb](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) and place it in the plugin folder\n5. Reload with `/wlp reload` or restart the server\n\n## 🤖 Discord Bot Setup\n\n### 1. Create a Discord Application\n\n1. Go to [Discord Developer Portal](https://discord.com/developers/applications)\n2. Click \"New Application\" and give it a name\n3. Go to \"Bot\" section and click \"Add Bot\"\n4. Copy the **Bot Token** (keep this secret!)\n5. Enable these **Privileged Gateway Intents**:\n   - Message Content Intent\n\n### 2. Invite the Bot\n\n1. Go to \"OAuth2\" → \"URL Generator\"\n2. Select scopes: `bot`, `applications.commands`\n3. Select permissions: `Send Messages`, `Embed Links`, `Read Message History`\n4. Copy the generated URL and open it to invite the bot\n\n### 3. Get Your IDs\n\nEnable Developer Mode in Discord (Settings → Advanced → Developer Mode)\n\n- **Server ID**: Right-click your server → Copy Server ID\n- **Channel ID**: Right-click the channel → Copy Channel ID\n- **Admin User ID**: Right-click yourself → Copy User ID\n\n### 4. (Optional) Create a Webhook\n\n1. Right-click your channel → Edit Channel\n2. Go to Integrations → Webhooks\n3. Create a webhook and copy the URL\n\n## ⚙️ Configuration\n\n```yaml\ndiscord:\n  bot-token: \"YOUR_BOT_TOKEN_HERE\"\n  webhook-url: \"YOUR_WEBHOOK_URL_HERE\"\n  server-id: \"YOUR_SERVER_ID_HERE\"\n  channel-id: \"YOUR_CHANNEL_ID_HERE\"\n  admin-user-ids: \"USER_ID_1,USER_ID_2\"\n  ping-admins: true\n\ncooldowns:\n  deny-cooldown: 60        # Minutes before denied player can try again\n  pending-cooldown: 5      # Minutes between join attempts while pending\n  ip-cooldown: 10          # Minutes before same IP can make new request\n\ngeoip:\n  enabled: true\n  database-path: \"plugins/WhitelistPluginButBetter/GeoLite2-City.mmdb\"\n```\n\nSee the full [config.yml](src/main/resources/config.yml) for all options!\n\n## 📝 Commands\n\n| Command | Description |\n|---------|-------------|\n| `/wlp accept <player>` | Accept a pending whitelist request |\n| `/wlp deny <player>` | Deny a pending whitelist request |\n| `/wlp pending` | View all pending requests |\n| `/wlp list [page]` | View whitelisted players |\n| `/wlp add <player>` | Manually add a player to whitelist |\n| `/wlp remove <player>` | Remove a player from whitelist |\n| `/wlp info <player>` | View detailed player info |\n| `/wlp status` | View plugin status |\n| `/wlp reload` | Reload configuration |\n\n## 🔐 Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `whitelistplugin.admin` | Access to all commands | OP |\n| `whitelistplugin.bypass` | Bypass whitelist check | OP |\n\n## Discord Embed Preview\n\nWhen a player tries to join, admins receive an embed like this:\n\n```\n┌─────────────────────────────────────────┐\n│ New Whitelist Request                   │\n├─────────────────────────────────────────┤\n│ Player: Steve                           │\n│ UUID: 069a79f4-...                      │\n│ IP: ||192.168.1.1||                     │\n│ Location: New York, United States       │\n│ Client: fabric                          │\n│ Language: en_US                         │\n│ Requested: 2024-01-15 14:30 UTC         │\n│                                         │\n│ Same IP as: Alex (1 other request)      │\n│                                         │\n│ [Accept]  [Deny]  [Ban]                 │\n└─────────────────────────────────────────┘\n```\n\n## 🗂️ File Structure\n\n```\nplugins/WhitelistPluginButBetter/\n├── config.yml              # Main configuration\n├── whitelist.json          # Whitelisted players\n├── pending-requests.json   # Pending requests\n├── denied-players.json     # Denied players (for cooldowns)\n├── requests.log            # Action log\n└── GeoLite2-City.mmdb      # GeoIP database (you provide this)\n```\n\n## Troubleshooting\n\n### Bot not responding to buttons?\n- Make sure the bot token is correct\n- Ensure the bot has permissions in the channel\n- Check console for connection errors\n\n### GeoIP not working?\n- Download GeoLite2-City.mmdb from MaxMind\n- Place it in the plugin folder\n- Check the path in config.yml\n\n### Players not being kicked?\n- Make sure the plugin is loaded (`/plugins`)\n- Check if player has `whitelistplugin.bypass` permission\n- Look for errors in console\n\n### Seeing Private IP (10.x.x.x, 192.168.x.x)?\nThis happens when using a **reverse proxy** (BungeeCord, Velocity, TCPShield, etc.)\n\n**For BungeeCord:**\n1. Set `bungeecord: true` in `spigot.yml`\n2. Restart the server\n\n**For Velocity:**\n1. Edit `config/paper-global.yml`\n2. Set `proxies.velocity.enabled: true`\n3. Set the `secret` to match Velocity's forwarding secret\n4. Restart the server\n\n**For TCPShield/Other:**\nFollow your proxy's documentation for IP forwarding.\n\n### Client/Language shows \"N/A (Pre-login)\"?\nThis is expected! The plugin intercepts players **before** they fully connect, so client brand and locale data isn't available yet. This is a Minecraft limitation, not a bug.\n\nThe data we DO capture (IP, UUID, GeoIP location) is still very useful for identifying players and alts!\n\n## 📜 License\n\nAll Rights Reserved.Any modifications without informing is illegal.\n\nMade for the Minecraft community!\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 63,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

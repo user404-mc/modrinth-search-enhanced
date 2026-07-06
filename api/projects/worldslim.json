@@ -1,0 +1,35 @@
+{
+  "id": "7cyR8p4W",
+  "slug": "worldslim",
+  "title": "WorldSlim",
+  "description": "A lightweight chunk save optimization plugin for Paper servers. WorldSlim reduces your world file size by automatically cleaning up chunks that players have barely visited.",
+  "body": "# WorldSlim\n\nReduce Minecraft world file size by automatically cleaning chunks that players barely visit. Three layers of defense catch what vanilla autosave would otherwise commit to disk.\n\n---\n\n## What it does\n\nModern Minecraft (1.18+) keeps chunks loaded much longer than a player's view distance, and autosave writes them all to disk regardless of activity. WorldSlim hooks every layer of that pipeline:\n\n1. **ChunkUnloadListener** — when a chunk does unload, intercept the save if `InhabitedTime` is low.\n2. **AutosaveShield** *(new in 2.0)* — every 2 seconds, pre-emptively clear the dirty flag on loaded low-`InhabitedTime` chunks so autosave skips them.\n3. **ChunkCleaner** — periodically rewrite region files, removing chunks that slipped through the first two layers.\n\nPlayer activity (placing blocks, attacking mobs, opening containers, picking up / dropping items) marks chunks as \"force-save\" so they survive cleanup.\n\n---\n\n## Highlights\n\n- **Three-layer architecture** — unload + autosave + region rewrite. Aggressive without being unsafe.\n- **File-based ChunkRegistry** — managed/force-save state stored in `plugins/WorldSlim/data/`, survives server restarts and Leaf/Moonrise's chunk-PDC strip. Crash-safe (lost marks degrade to \"leave it alone\").\n- **Aggressive mode** *(`cleanup.aggressive: true`)* — restores the pre-1.0.6 cleanup logic, achieves 90%+ cleanup rate on fresh servers. Off by default to protect builds on established worlds.\n- **Diagnostics** — `/worldslim diagnose` for runtime counters, `/worldslim scan` for raw-NBT inspection of any region file, `/worldslim chunk` for full decision-tree of the chunk you're standing in.\n- **Daily-rotating file logger** at `plugins/WorldSlim/logs/`, configurable level.\n- **Config migration** *(new in 2.0.1)* — new fields auto-injected on upgrade, preserving your edits and comments.\n- **Async + bounded** — every disk operation runs off the main thread, with a 5-second timeout that safely skips when the server is busy.\n\n---\n\n## Compatibility\n\n| Server | PDC Persistence | Registry | AutosaveShield |\n|--------|-----------------|----------|----------------|\n| Paper 1.21.x | Yes | Yes | Yes |\n| Purpur 1.21.x | Yes | Yes | Yes |\n| Folia 1.21.x | Yes | Yes | Partial |\n| Leaves 1.21.x | Yes | Yes | Yes |\n| Leaf 1.21.x | Stripped | **Load-bearing** | Limited |\n\nRequires Minecraft 1.21.x and Java 21.\n\n---\n\n## Commands\n\n| Command | Description |\n|---------|-------------|\n| `/worldslim status` | Show plugin status and active configuration |\n| `/worldslim stats` | Total chunks scanned/cleaned and space saved |\n| `/worldslim chunk` | Full decision tree for the chunk you're standing in |\n| `/worldslim cleanup` | Run a cleanup pass immediately |\n| `/worldslim diagnose [here]` | Runtime diagnostic snapshot. Append `here` for current-chunk details |\n| `/worldslim scan` | Parse the current region file's raw NBT and report what tags survived |\n| `/worldslim reload` | Reload `config.yml` (also runs config migration) |\n| `/worldslim reset` | Reset cleanup statistics |\n\nAliased to `/ws`. Permission: `worldslim.admin` for mutating commands; `worldslim.use` for the read-only ones.\n\n---\n\n## Quick start\n\n1. Drop the jar in `plugins/`, restart.\n2. Default config is conservative (preserves any chunks that look pre-existing). Works without configuration on most servers.\n3. **On a fresh server** — set `cleanup.aggressive: true` for the best cleanup rate.\n4. **On an established server with builds** — leave `aggressive: false` (default) and let the registry track new chunks going forward.\n\n---\n\n## Configuration highlights\n\n```yaml\n# Chunk lifetime threshold. Below this, chunks may be cleaned.\n# Default 1200 ticks = 60 seconds.\nmin-inhabited-time: 1200\n\ncleanup:\n  interval-minutes: 30\n  run-on-startup: false\n  # Pre-1.0.6 cleanup behavior. Highly recommended for fresh servers.\n  aggressive: false\n\nautosave-shield:\n  enabled: true\n  interval-ticks: 40   # 2s\n\nlogging:\n  file-enabled: true\n  level: INFO          # DEBUG / INFO / WARN / ERROR\n\nworlds:\n  enabled: []          # if non-empty, ONLY these worlds are managed\n  disabled: []         # always-skipped worlds\n```\n\nFull default config (with all comments) is generated on first run.\n\n---\n\n## Reporting issues\n\nPlease include:\n- `/worldslim diagnose` screenshot\n- Latest log from `plugins/WorldSlim/logs/`\n- Server type and version",
+  "categories": [
+    "folia",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 101,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

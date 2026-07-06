@@ -1,0 +1,20 @@
+{
+  "id": "KKuMrYyB",
+  "slug": "tgauth2",
+  "title": "TgAuth2",
+  "description": "Server-side Telegram authentication for NeoForge 1.21.1. Players verify via Telegram bot on every login with 12-hour device sessions.",
+  "body": "# TgAuth — Telegram Authentication\n\n> **Server-side only.** Players authenticate via Telegram on every login. No client mod needed.\n\n---\n\n## How it works\n\n### New player — first time setup\n\n1. Player opens Telegram → sends `/start` to the bot\n2. Bot checks the whitelist → issues a **6-digit code**\n3. Player joins the server → types `/tgauth link <code>`\n4. Account is permanently linked to their Telegram\n\n### Returning player — every login\n\n```\nJoin server\n    │\n    ▼\nSame device as last time? (IP-based session, valid 12 hours)\n    ├── YES → Auto login, no Telegram needed ✅\n    └── NO  → Bot sends confirmation to Telegram:\n                  [✅ Yes]   [❌ No]\n                  │              │\n              Logged in ✅    Kicked ❌\n```\n\n---\n\n## Features\n\n- 🔐 **Per-login Telegram confirmation** — every new device requires approval\n- 💾 **12-hour device sessions** — same IP = no prompt within the session window\n- 📋 **Whitelist by Telegram ID** — only approved users can register\n- 🤖 **Inline keyboard buttons** — Yes/No directly in Telegram chat\n- ⏱ **Configurable timeout** — kick if no response within N seconds\n- 🔧 **Admin commands** — manage whitelist, force-approve, clear sessions\n- 💿 **Persistent data** — links survive server restarts (`world/data/tgauth_players.json`)\n\n---\n\n## Setup\n\n**1. Create a Telegram bot**\n\nOpen [@BotFather](https://t.me/BotFather) → `/newbot` → copy the token.\n\n**2. Get Telegram IDs of your players**\n\nEach player writes to [@userinfobot](https://t.me/userinfobot) → copies their `Id`.\n\n**3. Configure** `config/tgauth-server.toml`\n\n```toml\n[bot]\n    botToken    = \"1234567890:AAH...\"\n    botUsername = \"MyServerAuthBot\"\n\n[whitelist]\n    telegramIds = [\"123456789\", \"987654321\"]\n\n[session]\n    durationHours = 12\n```\n\n**4. Restart the server.** Done.\n\n---\n\n## Commands\n\n### Players\n\n| Command | Description |\n|---|---|\n| `/tgauth link <code>` | Link Telegram account (new players) |\n| `/tgauth status` | Show link status and active session |\n\n### Operators (OP 2+)\n\n| Command | Description |\n|---|---|\n| `/tgauth admin whitelist list` | List all whitelisted Telegram IDs |\n| `/tgauth admin whitelist add <id>` | Add a Telegram ID |\n| `/tgauth admin whitelist remove <id>` | Remove a Telegram ID |\n| `/tgauth admin unlink <player>` | Unlink a player's Telegram account |\n| `/tgauth admin force <player>` | Force-approve a pending login |\n| `/tgauth admin sessions <player>` | Show active device sessions |\n| `/tgauth admin clearsessions <player>` | Invalidate all device sessions |\n| `/tgauth admin reload` | Reload whitelist from config |\n\n---\n\n## Compatibility\n\n| | |\n|---|---|\n| **Minecraft** | 1.21.1 |\n| **Loader** | NeoForge |\n| **Side** | Server only |\n| **Java** | 21+ |\n\n---\n\n## FAQ\n\n**Can players be on the same network?**\nYes. The fingerprint combines IP + UUID, so two players from the same NAT have different fingerprints.\n\n**What happens if a player uses a VPN?**\nTheir IP changes → session invalidated → Telegram confirmation required on next login.\n\n**Does this work with offline mode servers?**\nYes, matching is done by UUID which NeoForge provides in both online and offline mode.\n\n**Is the bot token stored securely?**\nIt lives in `config/tgauth-server.toml` on your server — keep that file private.",
+  "categories": [
+    "neoforge",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 36,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

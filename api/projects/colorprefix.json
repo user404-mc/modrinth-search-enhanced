@@ -1,0 +1,34 @@
+{
+  "id": "y1Ojzk0t",
+  "slug": "colorprefix",
+  "title": "ColorPrefix",
+  "description": "Give your players the power to choose their own rank color — with a beautiful GUI, gradient support, and full compatibility with LuckPerms and PlaceholderAPI.",
+  "body": "# ColorPrefix\n\n**Give your players the power to choose their own rank color — with a beautiful GUI, gradient support, and automatic compatibility with TAB, LPC, and more.**\n\n---\n\n## Features\n\n### Color Selection GUI\nPlayers open a sleek inventory GUI (`/colorprefix`) showing all colors they have permission for. Leather chestplates serve as dyed previews, the active color glows, and pagination handles large color lists cleanly.\n\n### Solid Colors & Gradients\nSupports single hex colors as well as multi-stop MiniMessage gradients — Adventure interpolates gradient colors per character automatically. Add as many colors as you want in `colors.yml` with just a few lines.\n\n### Automatic Multi-Plugin Support\nColorPrefix detects your installed chat and tab plugins at startup and applies the correct color format for each one — simultaneously. No manual configuration required.\n\n| Plugin | Format used | How it's applied |\n|---|---|---|\n| TAB by neznamy 4.x+ | MiniMessage (native) | TAB API `setPrefix()` |\n| LPC | `&#RRGGBB` per character | LuckPerms prefix node |\n| EssentialsXChat | `&#RRGGBB` per character | LuckPerms prefix node |\n| ChatControl / Red | `&#RRGGBB` per character | LuckPerms prefix node |\n| CMI | `§x` hex per character | LuckPerms prefix node |\n| VentureChat | `&#RRGGBB` per character | LuckPerms prefix node |\n| None found | — | PlaceholderAPI only |\n\nHaving TAB **and** LPC installed at the same time? No problem — both get the right format simultaneously.\n\n### PlaceholderAPI Support\nUse `%colorprefix_prefix%` anywhere PlaceholderAPI is supported to render the colored prefix without touching LuckPerms directly.\n\n| Placeholder | Returns |\n|---|---|\n| `%colorprefix_prefix%` | Colored LP prefix (wrapped in chosen color) |\n| `%colorprefix_tag%` | Opening MiniMessage color tag |\n| `%colorprefix_close_tag%` | Closing MiniMessage tag |\n| `%colorprefix_color_id%` | ID of the selected color, or `none` |\n\n### Multi-Language\nShips with **German** (`de`) and **English** (`en`). All messages and GUI texts are fully configurable via MiniMessage. Add your own language by dropping a `lang/xx.yml` into the plugin folder.\n\n### Config Auto-Migration\nWhen you update the plugin, new config keys are added automatically — without ever overwriting your existing settings. The migration runs silently on startup and logs what was added.\n\n---\n\n## Installation\n\n1. Drop `ColorPrefix.jar` into your `plugins/` folder\n2. Install LuckPerms and PlaceholderAPI *(recommended)*\n3. Restart the server — the plugin detects everything automatically\n4. Give players color permissions via LuckPerms (see below)\n5. Players use `/colorprefix` to open the GUI\n\nThat's it. No chat format changes needed if you use TAB or LPC.\n\n---\n\n## Permissions\n\n| Permission | Description |\n|---|---|\n| `colorprefix.use` | Open the color GUI *(default: true)* |\n| `colorprefix.color.<id>` | Access a specific solid color |\n| `colorprefix.gradient.<id>` | Access a specific gradient |\n| `colorprefix.color.*` | Access all solid colors |\n| `colorprefix.gradient.*` | Access all gradients |\n| `colorprefix.*` | Full access including admin commands |\n| `colorprefix.admin.reload` | Reload config and colors |\n| `colorprefix.admin.reset` | Reset a player's color |\n| `colorprefix.admin.give` | Give a color to a player |\n\n---\n\n## Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/cp` | `colorprefix.use` | Open color GUI |\n| `/cp reload` | `colorprefix.admin.reload` | Reload config & colors |\n| `/cp reset [player]` | `colorprefix.admin.reset` | Reset a player's color |\n| `/cp give <player> <id>` | `colorprefix.admin.give` | Give a color to a player |\n\nAliases: `/colorprefix`, `/color`, `/farbe`\n\n---\n\n## Adding Colors\n\nOpen `colors.yml` and add a block — then run `/cp reload`, no restart needed:\n\n**Solid color:**\n```yaml\nmy_color:\n  display-name: \"My Color\"\n  permission: \"colorprefix.color.my_color\"\n  gradient: false\n  colors:\n    - \"#FF0099\"\n```\n\n**Gradient:**\n```yaml\nmy_gradient:\n  display-name: \"My Gradient\"\n  permission: \"colorprefix.gradient.my_gradient\"\n  gradient: true\n  colors:\n    - \"#FF0000\"\n    - \"#FF8800\"\n    - \"#FFFF00\"\n```\n\n---\n\n## Configuration\n\n```yaml\n# Language: en or de (or your own lang/xx.yml)\nlanguage: en\n\n# Chat plugin integration\nchat-plugins:\n  auto-apply: true   # set false to use PlaceholderAPI only\n\n# LuckPerms prefix node weight\nluckperms:\n  prefix-weight: 100\n```\n\n---\n\n## Requirements\n\n- Paper / Purpur 1.21.x\n- Java 21+\n- LuckPerms *(optional but strongly recommended)*\n- PlaceholderAPI *(optional)*\n- TAB / LPC / EssentialsChat / CMI / etc. *(optional — auto-detected)*\n\n---\n\n*Made with ♥ by itsLarss*",
+  "categories": [
+    "decoration",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 84,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

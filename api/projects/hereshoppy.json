@@ -1,0 +1,39 @@
+{
+  "id": "Mm1XEJuk",
+  "slug": "hereshoppy",
+  "title": "HereShoppy",
+  "description": "A paper server plugin that adds a shop that requires using it more and more to unlock new items!",
+  "body": "# HereShoppy\n\nA comprehensive economy, shop progression, and item generation plugin for [Paper](https://papermc.io).\n\n## Features\n\n- **Centralized Economy**: A robust Bank API (`HereshoppyAPI`) used by other plugins like **HereMobby**.\n- **Shop Progression**: A quadratic leveling system ($TotalXP = 5N^2 + 15N$) that gates access to higher-tier items.\n- **Dynamic Shop Pricing**: Buy prices scale with the required shop level. Enchantments increase item value by 10% per level.\n- **Interactive Search & Filter Dashboard**: Click the Search anvil to open a comprehensive 54-slot Chest GUI dashboard. Filter items dynamically by name query (via private chat session), starting letter (A-Z selector drawer), category, required level range, or availability. Matches are sorted dynamically (purchasable items first, locked preview items after) for a premium, zero-experience-cost search!\n- **Shipping Bin**: A virtual sales chest accessed via signs labeled `[Here Sell!]`. Sell any item for 1 Kroin per stack (plus enchant bonuses).\n- **Categorized Sales**: Items and prices are defined in YAML files within the `sales/` directory.\n- **Preview Gated Items**: View items above your current level right inside their categories as previews. Search results also list all matches, sorting purchasable items first and locked preview items immediately after.\n\n## Requirements\n\n- Paper `1.21+` *(plugin `api-version: '1.21'`; built against Paper `1.21.4` API)*\n- Java `21`\n\n## Setup & Usage\n\n### Shipping Bin (Sales Chest)\nThe Shipping Bin allows players to sell items in bulk for a flat rate.\n\n#### Virtual Shipping Bin\n1. Place a **Sign** on any block.\n2. Write `[Here Sell!]` on the **first line** (front or back).\n3. **Right-click** the sign to open a virtual GUI.\n4. Place items inside and **close the inventory** to receive payment.\n\n#### Physical Shipping Bin (Automated)\n1. Place a **Sign** on a **Chest, Barrel, or other Container**.\n2. Write `[Here Sell!]` on the **first line**.\n3. Any items placed in this container (by players, hoppers, or other plugins like **HereCroppy**) will be sold automatically every 5 seconds.\n4. **Ownership**: The player who placed the sign will receive the payment.\n\n**Pricing**: 1 Kroin per stack/slot + 10% bonus per enchantment level.\n\n## Commands & Permissions\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/hereshoppy shop` (or `/hs shop`, `/shop`) | Open the tiered shop GUI | `hereshoppy.use` |\n| `/hereshoppy info` (or `/hs info`) | View economy stats and leaderboards | `hereshoppy.use` |\n| `/hereshoppy reload` (or `/hs reload`) | Reload configuration files | `hereshoppy.admin` |\n\n## Configuration\n\n### Sales Data (`sales/`)\nOrganize items into categories (e.g., `weapons_and_shields.yml`). \nExample entry:\n```yaml\nDIAMOND_SWORD:\n  material: DIAMOND_SWORD\n  required_shop_level: 20\n```\n\n### Player Data (`data/players.yml`)\nStores balances, XP, and levels for all players.\n\n## API for Developers\nPlugins can interact with the economy via `com.hereshoppy.hereshoppy.api.HereshoppyAPI`:\n- `getKroins(UUID uuid)`\n- `addKroins(UUID uuid, double amount)`\n- `removeKroins(UUID uuid, double amount)`\n- `getLevel(UUID uuid)`\n\n## Recent Changes (v1.2.4)\n\n- **Modern Items Catalog Synchronization** — Synchronized the shop catalog with the latest Minecraft features (1.21 Tricky Trials & 26.1 \"Tiny Takeover\" visual/QoL drop), introducing **Wind Charge** (`WIND_CHARGE`) to the mob drops category and the **Golden Dandelion** (`GOLDEN_DANDELION`) age-halting flower to the flower category.\n- **Robust Auto-Merging Configurations** — Built-in automated synchronization detects missing default items on plugin startup and safely merges them into existing server configuration files, maintaining custom economy balances.\n\n## Previous Changes (v1.2.2)\n\n- **Search & Filter Dashboard GUI** — Replaced the virtual Anvil search GUI with a comprehensive, highly interactive 54-slot Chest GUI.\n- **Dynamic Multi-Criteria Filters** — Implemented concurrent filtering using Compass (Private Chat Name Search), Paper (A-Z starting letter selector drawer), Chest (Category cycle), Exp Bottle (Level range cycle: 1-20, 21-50, 51-80, 81-100), and Lever (Availability cycle: Purchasable vs Locked).\n- **Private Chat Capture Session** — Captures player name queries privately in chat, cancelling the chat event to prevent broadcasting, then seamlessly re-opens the dashboard.\n- **Session-Based State Management** — Utilizes a non-persistent session-based state tracker associated with the inventory holder, preventing server memory leaks.\n\n## Older Changes (v1.2.1)\n\n- **Anvil Search GUI Integration** — Replaced the legacy chat-based search prompt with a custom virtual Anvil typing GUI. Typed search terms are captured natively and processed with zero experience cost to the player.\n- **Deep Recursive Merging** — Replaced the flat key merge utility with a recursive, deep-merge system. Newly introduced default items and property fields are merged seamlessly into existing server `.yml` configurations without overwriting admin custom edits or being skipped.\n- **Smart Search Matching & Preview Sorting** — Restructured search results to return matches across keys, materials, potions, and enchants. Matches now sort purchasable items first, followed by locked preview items, providing clear, immersive visual feedback.\n\n- **PersistentDataContainer unique key refactor** — Solved a Spigot limitation where multiple items sharing the same Material type (like potions and books) overwrite each other in the shop registry. Tagged GUI items with a NamespacedKey `\"shop_item_key\"` for robust click-to-purchase resolution.\n- **Massive Potion Catalog** — Added an exhaustive selection of potion types (standard 3m, long 8m, strong II) including 1.21 Trial Chamber effects (Infested & Oozing at level 80; Weaving & Wind Charged at level 90) under the single combined `potions` category.\n- **Enchanted Books Section** — Added a combined single enchanted book category ranging from basic level 20 utility enchants to level 99 Mace trial enchants (*Wind Burst III*), presented in the GUI with premium Roman numeral display names.\n- **Exclusions** — Explicitly kept dragon eggs and music discs out of the shop to preserve exploration incentive.\n\n## Version\n\nCurrent release: **`1.2.4`**\n\n## License\nLicensed under [GNU GPLv3](LICENSE).\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "food",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

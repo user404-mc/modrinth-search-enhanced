@@ -1,0 +1,30 @@
+{
+  "id": "v6eDKsnd",
+  "slug": "rays-admin-utils",
+  "title": "ray's admin utils",
+  "description": "AdminPunish plugin that lets ops use /punish commands (ban, tempban, kick, and jail)",
+  "body": "AdminPunish\nA lightweight, self-contained punishment system for Paper 1.21.1 servers.\nNo dependencies. No database setup. Drop the jar in, restart, and your staff team has a full punishment toolkit available immediately.\n\nOverview\nAdminPunish is an OP-only punishment plugin that covers every common moderation action through a single unified command interface. All data is stored locally in JSON files, persists across restarts, and is indexed by UUID so player records survive name changes. The plugin was written as a direct Java port of a battle-tested Skript script, preserving every behaviour precisely while gaining the performance and reliability of compiled code.\n\nFeatures\nPermanent Ban\nIssues an indefinite ban. The banned player is immediately kicked with a formatted disconnect screen showing the reason, issuing staff member, and an appeal prompt. The ban is enforced on every subsequent login attempt until lifted with /unban.\nTemporary Ban\nIssues a time-limited ban using a compact duration format: 30s, 15m, 12h, 7d, 2w. The player is kicked on issuance and blocked on login with a screen showing the time remaining. When the ban expires it is lifted automatically the next time the player attempts to connect, requiring no manual intervention.\nKick\nDisconnects an online player with a formatted reason screen. The action is broadcast to all online players.\nNumbered Warnings\nIssues a warning that is numbered sequentially per player and stored permanently. The warned player receives a visible chat notification, then is kicked three seconds later with a warning screen showing the warning number, reason, and issuing staff. Warnings can be reviewed in full with /warnings and erased with /clearwarnings.\nJail\nFreezes a player at their current position without requiring any jail location to be configured in advance. Jailed players are switched to Adventure mode, receive a persistent action bar message every second, and are fully restricted:\n\nBlock-level movement is prevented while head rotation is still allowed\nAll teleportation is blocked, including ender pearls, chorus fruit, /tp, and stasis chamber pulls\nEnder pearl throws are cancelled at the source\nBlock breaking and placing is prevented\nAll inventory interaction is prevented\nItem dropping and picking up is prevented\nCombat is blocked in both directions — jailed players cannot be hit and cannot hit others\nCommand usage is blocked for non-OP jailed players\n\nIf a jailed player disconnects, a 30-minute temporary ban is automatically issued and broadcast to the server. On their next login the ban is checked: if it has expired, the jail is also cleared and they join freely; if it has not expired, they are blocked at the login screen with the remaining time. When a staff member issues /unjail, the player is restored to Survival mode and receives a release notification.\n\nCommands\nCommandDescription/punish <player> ban [reason]Permanently ban a player/punish <player> tempban <duration> [reason]Temporarily ban a player/punish <player> kick [reason]Kick an online player/punish <player> warn [reason]Issue a numbered warning/punish <player> jail [reason]Jail a player at their current position/unban <player>Lift any active ban/unjail <player>Release a jailed player/warnings <player>View the full warning history for a player/clearwarnings <player>Erase all warnings for a player\nAll commands support tab-completion for online player names. /unban and /unjail additionally suggest names from the stored UUID cache, allowing offline players to be targeted by name.\nDuration format for /punish tempban: append a unit character to a positive integer. Supported units are s (seconds), m (minutes), h (hours), d (days), and w (weeks). Examples: 30m, 12h, 7d, 2w.\n\nPermissions\nAll commands require the adminpunish.use permission, which defaults to OP. No configuration file is needed; permissions work out of the box on any standard Paper server.\n\nData Storage\nAll records are stored as human-readable JSON files inside the plugin's data folder:\n\nbans.json — active and expired ban records keyed by UUID\nwarnings.json — warning history lists keyed by UUID\njail.json — active jail records keyed by UUID\nplayers.json — UUID-to-name and name-to-UUID cache populated on every join\n\nRecords are written to disk immediately on every change. No scheduler or batch-write delay is involved.\n\nCompatibility\n\nServer software: Paper 1.21.1 (API version 1.21)\nJava version: Java 21\nDependencies: None — Gson is shaded into the jar\nSoft dependencies: None\n\n\nInstallation\n\nDownload AdminPunish-2.4.0.jar\nPlace it in your server's plugins/ folder\nRestart the server\n\nNo configuration is required. The plugin is operational immediately after the first restart.",
+  "categories": [
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 49,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

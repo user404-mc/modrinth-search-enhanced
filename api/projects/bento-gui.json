@@ -1,0 +1,20 @@
+{
+  "id": "RwyP68zY",
+  "slug": "bento-gui",
+  "title": "Bento GUI",
+  "description": "The expressive GUI library from Bento Box",
+  "body": "# Bento GUI\n\nBento GUI is an expressive GUI library that makes building dynamic screens fast and easy. It is a replacement for Minecraft’s UI widgets that is inspired by HTML and CSS.\n\nFeatures:\n\n- [Many UI elements](https://docs.chailotl.dev/bento/gui/elements/bento-element/) provided out of the box\n- Build elements using the builder pattern\n- Robust layout engine with min/max and auto-computed dimensions\n- [Customizable element rendering](https://docs.chailotl.dev/bento/gui/render-operations/)\n\nBento GUI is documented in-code with JavaDocs and on [my wiki](https://docs.chailotl.dev/bento/gui/getting-started/).\n\n```java\n@Environment(EnvType.CLIENT)\npublic class MyScreen extends Screen {\n   public MyScreen() {\n      super(Text.literal(\"My Screen\"));\n   }\n\n   @Override\n   protected void init() {\n      Window window = client.getWindow();\n      int width = window.getScaledWidth();\n      int height = window.getScaledHeight();\n\n      // The root panel that will contain everything\n      Panel root = Panel.builder()\n         .dimensions(width, height)\n         .spacing(1)\n         .build();\n\n      // Add elements to root\n      Label title = Label.builder()\n         .text(Text.literal(\"My Screen\"))\n         .dimensions(true, 32)\n         .build();\n      ScrollPanel body = ScrollPanel.ofMenu()\n         .dimensions(true, true)\n         .alignCenter()\n         .padding(10, 0)\n         .spacing(10)\n         .build();\n      Panel footer = Panel.builder()\n         .dimensions(true, 32)\n         .alignCenter()\n         .alignMiddle()\n         .padding(20, 0)\n         .spacing(8)\n         .flowAxis(FlowAxis.HORIZONTAL)\n         .build();\n\n      root.addChild(title);\n      root.addChild(body);\n      root.addChild(footer);\n\n      // Add elements to footer\n      TextField<String> searchField = TextField.ofString()\n         .palceholder(Text.literal(\"Search...\"))\n         .width(true)\n         .maxWidth(200)\n         .build();\n      Button doneButton = Button.builder()\n         .text(Text.literal(\"Done\"))\n         .onPress(self -> close())\n         .build();\n\n      footer.addChild(searchField);\n      footer.addChild(doneButton);\n\n      // Add root as drawable child\n      addDrawableChild(root);\n   }\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

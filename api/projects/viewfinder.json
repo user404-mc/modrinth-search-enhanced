@@ -1,0 +1,19 @@
+{
+  "id": "MWEDgOoS",
+  "slug": "viewfinder",
+  "title": "Viewfinder",
+  "description": "A shader debugging mod for Iris on Fabric that exposes an HTTP API and in-game commands for external tools and scripts to inspect, test, and automate shader development workflows.",
+  "body": "# Viewfinder\n\nA shader debugging mod for [Iris](https://irisshaders.dev/) on Fabric that exposes an HTTP API and in-game commands for external tools and scripts to inspect, test, and automate shader development workflows.\n\n## Features\n\n- **Shader reload and error list** - trigger shader reloads and capture compilation errors\n- **GPU timing metrics** - collect per-pass GPU timing data (collects multiple frames to average out noise)\n- **Texture dumping** - export textures as PNG or raw binary by name (colortex0, or custom texture)\n- **SSBO buffer dumping** - dump shader storage buffer objects to disk for analysis\n- **Screenshot scheduling** - schedule screenshots with configurable frame delay (for PT)\n- **Patched shader listing** - find which patched shader errored programmatically by listing all and searching for \"errored\"\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/) (≥ 0.18.4) for Minecraft 26.1\n2. Install [Fabric API](https://modrinth.com/mod/fabric-api) and [Iris](https://modrinth.com/mod/iris) (which requires [Sodium](https://modrinth.com/mod/sodium))\n3. Drop the Viewfinder `.jar` into your `mods/` folder\n\n## Usage\n\n### In-game commands\n\nAll commands are registered under `/viewfinder`:\n\n| Command | Description |\n|---|---|\n| `/viewfinder status` | Show current shaderpack name, error count, and API address |\n| `/viewfinder reload` | Reload shaders and report any compilation errors |\n| `/viewfinder errors` | List all captured shader errors |\n| `/viewfinder screenshot [frames]` | Take a screenshot (optionally delayed by N frames) |\n| `/viewfinder screenshot result` | Show the path of the last screenshot |\n| `/viewfinder metrics` | Display per-pass GPU timings |\n| `/viewfinder ssbo list` | List active SSBO buffers |\n| `/viewfinder ssbo dump <index>` | Dump an SSBO buffer to `ssbo_dumps/` |\n| `/viewfinder texture list` | List available colortex and custom textures |\n| `/viewfinder texture dump name <name> [raw]` | Dump a texture by name (PNG or raw) |\n| `/viewfinder texture dump id <id> [raw]` | Dump a texture by GL id (PNG or raw) |\n| `/viewfinder patched_shaders` | List Iris patched shader files |\n\n### HTTP API\n\nViewfinder starts an HTTP server on `localhost:7150`. A full OpenAPI 3.0 spec is available at `GET /`.\n\n| Method | Endpoint | Description |\n|---|---|---|\n| `GET` | `/` | OpenAPI 3.0 specification |\n| `GET` | `/status` | Shaderpack status (loaded pack name) |\n| `POST` | `/reload` | Reload shaders, returns success and errors |\n| `GET` | `/errors` | List captured shader errors |\n| `POST` | `/screenshot?frames=N` | Schedule a screenshot (default: next frame) |\n| `GET` | `/screenshot/result` | Path to the last saved screenshot |\n| `GET` | `/metrics` | GPU timing metrics |\n| `GET` | `/list-ssbo` | List active SSBO buffers |\n| `POST` | `/ssbo?index=N` | Dump SSBO at given index |\n| `GET` | `/list-textures` | List available textures |\n| `POST` | `/texture?name=...&raw=bool` | Dump texture by name |\n| `POST` | `/texture?id=...&raw=bool` | Dump texture by GL id |\n| `GET` | `/patched_shaders` | List patched shader files |\n\nAll responses are JSON. Dumped files (textures, SSBOs, screenshots) are written to subdirectories inside the Minecraft game directory.\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 106,
+  "followers": 0,
+  "game_versions": [
+    "26.1"
+  ],
+  "date_updated": null
+}

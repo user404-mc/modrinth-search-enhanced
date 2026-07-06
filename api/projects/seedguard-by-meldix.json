@@ -1,0 +1,21 @@
+{
+  "id": "RmmbTbwu",
+  "slug": "seedguard-by-meldix",
+  "title": "SeedGuard",
+  "description": "Security plugin for Paper 1.21.11 that makes world-seed leaks much harder by replacing hashed seed data and blocking common leak paths.",
+  "body": "# SeedGuard\n\n**SeedGuard** is a security plugin for **Paper 1.21.11** that helps protect SMP servers from common methods used to obtain the world seed.\n\nThe plugin is designed for server owners who want to significantly increase the difficulty of seed extraction by players using seed-cracker mods, exploits, packet-based methods, and technical abuse of structure/NBT mechanics.\n\n## About the plugin\n\nSeedGuard **does not promise absolute mathematical impossibility** of recovering the seed in every theoretical scenario.\n\nInstead, it blocks and complicates the most common and practical seed leak paths on multiplayer servers.\n\n## Features\n\n### 1. Fake seed\nThe plugin intercepts important outgoing packets and replaces the real `hashed seed` with a fake value.\n\nProtection is applied in key scenarios:\n- joining the server\n- respawning / state changes where the client receives world data again\n\nThis makes it harder for client-side mods and tools to read the real seed directly from network data.\n\n### 2. Command blocking\nThe plugin blocks:\n- `/seed`\n- `/minecraft:seed`\n- `/bukkit:seed`\n- `/spigot:seed`\n- `/paper:seed`\n\n### 3. Command hiding\nBlocked commands are removed from:\n- the list of available commands\n- tab-completion suggestions\n- command suggestions where possible\n\n### 4. Structure and Jigsaw\nThe plugin can block:\n- `placing structure blocks`\n- `breaking structure blocks`\n- `interacting with structure blocks`\n- `placing jigsaw blocks`\n- `breaking jigsaw blocks`\n- `using jigsaw-related functionality`\n\n### 5. Packet protection\nSeedGuard blocks technical packets related to:\n- `block/entity NBT queries`\n- `structure update/generate`\n- `jigsaw update`\n- `debug subscription-like requests`\n\n### 6. Fake seed modes\nThe following modes are supported:\n- `per_player_stable` — a stable fake seed for each player\n- `random_each_join` — a new fake seed on every join\n- `fixed` — the same configured fake seed for everyone\n\n## Recommended mode\n\nFor most SMP servers, it is recommended to use:\n\n```yml\nfake-seed:\n  mode: \"per_player_stable\"\n````\n\n## Configuration\n\nThe plugin allows you to individually enable or disable:\n\n* join packet protection\n* respawn packet protection\n* structure packet blocking\n* jigsaw packet blocking\n* NBT query packet blocking\n* debug packet blocking\n* command list updating on player join\n* console logging of blocked attempts\n\n## Permission\n\n`seedguard.bypass`\n\nPlayers with this permission bypass the plugin’s restrictions.\n\n## Compatibility\n\n* **Server:** Paper\n* **Minecraft version:** 1.21.11\n* **Java:** 21 recommended\n\n## Important\n\nSeedGuard is a **hardening plugin**, not a “magic button”.\nIt is designed to make real-world seed leak methods much less convenient and to block the most common practical seed leak paths on SMP servers.\n\n## Installation\n\n1. Download the latest version\n2. Move the `.jar` file into the `plugins` folder\n3. Start or restart the server\n4. Configure `config.yml` if needed\n5. Make sure to replace the default `salt` with your own long random string\n\n## Recommendations\n\n* Use **Paper 1.21.11**\n* Use **Java 21**\n* Replace the default salt in the config before using the plugin on a live server\n\n## Why use SeedGuard\n\n**SeedGuard is a good choice if you want to:**\n\n* make seed-cracker mods less effective\n* close easy seed leak paths\n* improve the security of a public or private SMP\n* limit technical abuse related to structure/NBT packet paths",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 130,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "f5y1AXvp",
+  "slug": "c-erva-core",
+  "title": "C-erva Core",
+  "description": "Shared Fabric library providing text, registry, networking, inventory and permission utilities for AndrewImm mods.",
+  "body": "# 🧱 C-erva Core\n\n**Shared utility library for C-erva Fabric mods.**\n\nC-erva Core provides a set of common building blocks — text formatting, registration helpers, networking, inventory utilities, permissions, and more — so that individual mods stay small and don't reinvent the wheel.\n\n**You don't use this mod directly.** Install it as a dependency when another mod (e.g. [PhotoChat](https://modrinth.com/mod/photo-chat)) requires it.\n\n---\n\n## 📦 What's inside\n\n### 💬 CervaText\nPrefixed chat messages with consistent styling.\n\n```java\nCervaText.success(\"MyMod\", \"Item given!\");   // [MyMod] Item given!  (green)\nCervaText.warning(\"MyMod\", \"Low durability\"); // [MyMod] Low durability  (yellow)\nCervaText.error(\"MyMod\", \"Not found\");        // [MyMod] Not found  (red)\n```\n\n### 🏷️ CervaRegistry\nOne-liner registration for identifiers, items, blocks, sounds, and entity types.\n\n```java\nCervaRegistry.id(\"mymod\", \"ruby\");\nCervaRegistry.item(\"mymod\", \"ruby\", new Item(settings));\nCervaRegistry.sound(\"mymod\", \"ding\");\n```\n\n### 🌐 CervaNetworking\nBroadcast a custom payload to all players who have the mod, with an automatic text fallback for everyone else.\n\n```java\nCervaNetworking.broadcastWithFallback(server, TYPE, payload, fallbackText);\n```\n\n### 🎒 CervaItems\nInventory helpers — give items, drop stacks, count slots, check for space.\n\n```java\nCervaItems.give(player, stack);         // give or drop if full\nCervaItems.hasSpace(player, stack);     // check before giving\nCervaItems.countItem(player, Items.DIAMOND);\n```\n\n### 🔐 CervaPermissions\nSimple permission checks for commands and players.\n\n```java\nCervaPermissions.hasPermission(source, permission);\n```\n\n### 🌍 CervaWorld\nWorld and sound utilities.\n\n```java\nCervaWorld.playSound(world, pos, soundEvent);\nCervaWorld.isServerWorld(world);\n```\n\n### ⏱️ CervaCooldowns\nUUID + key based cooldown map with automatic expiry.\n\n```java\nif (CervaCooldowns.isReady(player.getUuid(), \"ability\", 60)) {\n    // 60-tick cooldown passed\n}\n```\n\n### 🖼️ CervaTooltips *(client)*\nTooltip builder for item descriptions.\n\n```java\nCervaTooltips.builder()\n    .line(\"Rare artifact\", Formatting.GOLD)\n    .line(\"+5 attack\", Formatting.GREEN)\n    .build(tooltip);\n```\n\n### 📁 CervaPaths\nPath parsing with quote and space support — useful for commands that accept file paths.\n\n### 📂 CervaFilePicker *(client)*\nNative OS file dialog via TinyFD — open/save dialogs with format filters.\n\n### 🛡️ CervaSafe\nQuick checks for client/server side, null world, null player — guards against common crashes.\n\n---\n\n## 📋 Requirements\n\n- Minecraft **1.21.11**\n- Fabric Loader **≥ 0.19.3**\n- Fabric API\n- Java **21+**\n\n---\n\n## ⚙️ For mod developers\n\nAdd C-erva Core as a dependency in your `build.gradle`:\n\n```groovy\nmodImplementation \"com.andrewimm:cerva_core:1.2.91\"\n```\n\nAnd in your `fabric.mod.json`:\n\n```json\n\"depends\": {\n    \"cerva_core\": \">=1.2.91\"\n}\n```\n\n---\n\n## 🔗 Mods using C-erva Core\n\n- [PhotoChat](https://modrinth.com/mod/photo-chat) — send images directly into Minecraft chat\n",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

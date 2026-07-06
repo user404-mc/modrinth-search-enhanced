@@ -1,0 +1,21 @@
+{
+  "id": "sdEUAVuj",
+  "slug": "allmusic_lyrics",
+  "title": "AllMusic_Lyrics",
+  "description": "Addon mod for AllMusic Client3 by color_yr.Automatically fetches synced lyrics from NetEase Cloud Music / LRCLIB and displays them on screen when songs play.",
+  "body": "Addon mod for AllMusic Client3 by color_yr(https://github.com/Coloryr/AllMusic) .\nAutomatically fetches synced lyrics from NetEase Cloud Music / LRCLIB and displays them on screen when songs play.\n\nThe current lyrics fetching has the following log chains:\n\n### Normal Path (with Song ID)\n\n\n```\n[AllMusic3]正在解析歌曲[123456]     ← Caught by ClientReceiveMessageEvents.GAME\n\n  ↓ LyricsDisplay.onSongParsing()\n  ↓ LyricsFetcher.fetchById(123456)  → Direct LRC fetch\n  ↓ Log: \"后台获取歌词 ID=123456\"\n  ↓ Log: \"歌词已缓存: 35 行 (等待播放)\"\n```\n\n```\n[AllMusic3]正在播放：歌名 | 歌手     ← Caught by ClientReceiveMessageEvents.GAME\n\n  ↓ LyricsDisplay.onNowPlaying()\n  ↓ pendingLines has cache → use directly\n  ↓ Log: \"正在播放: 歌名 | 歌手\"\n  ↓ Log: \"歌词显示已激活: 歌名 | 歌手\"\n```\n### Fallback Path (No Cache, Search by Name)\n\nIf the \"parsing song\" message never appeared, and \"now playing\" arrives directly:\n\n```\n[AllMusic3]正在播放：歌名 | 歌手\n\n  ↓ LyricsDisplay.onNowPlaying()\n  ↓ pendingLines == null → fallback to search\n  ↓ Log: \"无缓存，用歌名搜索...\"\n  ↓ LyricsFetcher.fetch(message)\n    ├─ Match NOW_PLAYING regex → extract \"歌名 | 歌手\"\n    ├─ Split: name=\"歌名\", artist=\"歌手\"\n    ├─ neteaseSearch(\"歌名\", \"歌手\")  → search API\n    ├─ neteaseSearch(\"歌名\", \"\")       → name only (fallback)\n    └─ lrclib(\"歌名\", \"歌手\")          → LRCLIB (final fallback)\n```\n### Third Path (packDo Fallback)\n```\nAllMusicCore.packDo(INFO, \"歌名 | 歌手\")   ← Mixin TAIL interception\n\n  ↓ LyricsDisplay.onNowPlaying(data)\n  ↓ Same search flow as above\n```\n### Key Regex (LyricsFetcher)\n\n| Regex | Matches | Action |\n|-------|---------|--------|\n| `正在解析歌曲[：:]?\\s*(\\d+)` | `正在解析歌曲[123456]` | `Direct ID fetch` |\n| `music\\.163\\.com.*[/#]song\\?id=(\\d+)` | `NetEase URL` | `Direct ID fetch` |\n| `正在播放[：:]\\s*(.+?)(?:\\s+by:.*)?$` | `正在播放：Song Name` | `Search by name` |\n|`Search log keywords: `|`搜索歌词:, 网易云搜索, LRCLIB, ✘ 未找到歌词.`| |\n\n>Currently, this module does not generate English log files.\n\n***\n\n### 中文用户：\nAllMusic Client 歌词附属模组。\n自动获取网易云/LRCLIB同步歌词并显示在HUD\n\n当前歌词获取有以下日志链路：\n\n正常路径（有歌曲ID）\n```\n[AllMusic3]正在解析歌曲[123456]     ← ClientReceiveMessageEvents.GAME 捕获\n\n  ↓ LyricsDisplay.onSongParsing()\n  \n  ↓ LyricsFetcher.fetchById(123456)  → 直接获取 LRC\n  \n  ↓ 日志: \"后台获取歌词 ID=123456\"\n  \n  ↓ 日志: \"歌词已缓存: 35 行 (等待播放)\"\n```  \n```\n[AllMusic3]正在播放：歌名 | 歌手     ← ClientReceiveMessageEvents.GAME 捕获\n\n  ↓ LyricsDisplay.onNowPlaying()\n  \n  ↓ pendingLines 有缓存 → 直接使用\n\n  ↓ 日志: \"正在播放: 歌名 | 歌手\"\n  \n  ↓ 日志: \"歌词显示已激活: 歌名 | 歌手\"\n```  \n后备路径（无缓存，歌名搜索）\n如果\"正在解析歌曲\"消息没出现，直接来了\"正在播放\"：\n```\n[AllMusic3]正在播放：歌名 | 歌手\n\n  ↓ LyricsDisplay.onNowPlaying()\n  \n  ↓ pendingLines == null → 走搜索\n  \n  ↓ 日志: \"无缓存，用歌名搜索...\"\n  \n  ↓ LyricsFetcher.fetch(message)\n  \n    ├─ 匹配 NOW_PLAYING 正则 → 提取 \"歌名 | 歌手\"    \n    ├─ 拆分: name=\"歌名\", artist=\"歌手\"    \n    ├─ neteaseSearch(\"歌名\", \"歌手\")  → 搜索API    \n    ├─ neteaseSearch(\"歌名\", \"\")       → 仅歌名（后备）    \n    └─ lrclib(\"歌名\", \"歌手\")          → LRCLIB（最终后备）\n```\n    \n第三路径（packDo 后备）\n```\nAllMusicCore.packDo(INFO, \"歌名 | 歌手\")   ← Mixin TAIL 拦截\n\n  ↓ LyricsDisplay.onNowPlaying(data)\n  \n  ↓ 同上搜索流程\n```  \n关键正则（LyricsFetcher）\n\n|正则\t|匹配内容\t|动作|\n|-------|---------|--------|\n|`正在解析歌曲[：:]?\\s*(\\d+)`|`正在解析歌曲[123456]`|`直接ID获取`|\n|`music\\.163\\.com.*[/#]song\\?id=(\\d+)`|`网易云URL`|`直接ID获取`|\n|`正在播放[：:]\\s*(.+?)(?:\\s+by:.*)?$`|`正在播放：歌名`|`歌名搜索`|\n|`搜索的日志关键词：`|`搜索歌词:、网易云搜索、LRCLIB、✘ 未找到歌词。`| |\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 136,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

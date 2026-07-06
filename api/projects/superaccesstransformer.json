@@ -1,0 +1,35 @@
+{
+  "id": "GnOzvftf",
+  "slug": "superaccesstransformer",
+  "title": "SuperAccessTransformer",
+  "description": "Set the modifiers of most classes to public and non-final runtime attributes, and support their use during the development.",
+  "body": "# English\n\nSuperAccessTransformer (SAT) is an open-source coremod for Minecraft 1.21+ that modifies access modifiers at runtime by injecting a Java Agent, converting most `private`, `protected`, and `final` members to `public`. It also includes a Gradle plugin, allowing the transformations to work in development environments without extra JVM arguments.\n\n## Core Functionality\n\n**Runtime Bytecode Transformation**: Uses the `java.lang.instrument` API along with the ASM library to intercept class loading and modify bytecode. The transformation:\n\n+   Removes `private`, `protected`, and `final` modifiers from fields and adds `public` \n    \n+   Removes `private`, `protected`, and `final` modifiers from methods (except `<clinit>`) and adds `public`\n    \n+   Skips interfaces and enum `$VALUES` fields\n    \n\n## Development Environment Support\n\n**Gradle Plugin Integration**: Add the SAT Gradle plugin to your project to enable transformation at development time. The plugin is compatible with both Fabric and NeoForge modules.\n\n```\nbuildscript {\n    dependencies {\n        classpath 'io.github.yiyuyan:SuperAccessTransformerPlugin:1.000'\n    }\n}\napply plugin: 'io.github.yiyuyan.sat-plugin'\n```\n\nYou can also find an example setup for Architectury NeoForge 1.21 at the `test` branch: [yiyuyan/SuperAccessTransformer (test)](https://github.com/yiyuyan/SuperAccessTransformer/tree/test)\n\n## Known Limitations & Notes\n\n+   **Fabric Loader Dev Environment**: `Mob::rotlerp` and `WitherBoss::rotlerp` methods will **not** be transformed.\n    \n+   **NeoForge Mod List**: As a coremod using the `lowcodefml` loader, SAT does **not** appear in the NeoForge mod list.\n    \n\n# 简体中文\n\nSuperAccessTransformer（SAT）是一个面向 Minecraft 1.21+ 的开源 coremod，通过在运行时注入 Java Agent，将大多数 `private`、`protected` 和 `final` 修饰符转换为 `public`。该模组还提供 Gradle 插件，使得转换在开发环境中也能直接生效，无需额外 JVM 参数。\n\n## 核心功能\n\n**运行时字节码转换**：利用 `java.lang.instrument` API 与 ASM 库拦截类加载过程并修改字节码。转换规则如下：\n\n+   移除字段的 `private`、`protected` 和 `final` 修饰符，并添加 `public`\n    \n+   移除方法（`<clinit>` 除外）的 `private`、`protected` 和 `final` 修饰符，并添加 `public`\n    \n+   跳过接口和枚举的 `$VALUES` 字段\n    \n\n## 开发环境支持\n\n通过 Gradle 插件可在开发环境中启用运行时转换，同时适用于 Fabric 与 NeoForge 模块.\n\n```\nbuildscript {\n    dependencies {\n        classpath 'io.github.yiyuyan:SuperAccessTransformerPlugin:1.000'\n    }\n}\napply plugin: 'io.github.yiyuyan.sat-plugin'\n```\n\n你也可以参考针对 Architectury NeoForge 1.21 的示例项目：[yiyuyan/SuperAccessTransformer at test](https://github.com/yiyuyan/SuperAccessTransformer/tree/test)\n\n## 已知限制与提示\n\n+   **Fabric Loader 开发环境**：`Mob::rotlerp` 和 `WitherBoss::rotlerp` 这两个方法不会被转换。\n    \n+   **NeoForge 模组列表**：该模组基于 `lowcodefml` 加载器，作为 coremod 不会出现在 NeoForge 模组列表中。",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

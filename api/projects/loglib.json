@@ -1,0 +1,23 @@
+{
+  "id": "jP32NrlN",
+  "slug": "loglib",
+  "title": "LogLib",
+  "description": "A simple library for making logs",
+  "body": "![LogLib banner](https://cdn.modrinth.com/data/cached_images/622814f1d016a9eadc2851d7373c65ccd6f66ac5.png)\n## What is this?\nJust something I made while making a log, which I thought would be good to make a library so other people could do it more easily\n\n## How to use:\n### 1. Make your log strippable\n   Just add your log to the ```LogMap``` list in ```commonSetup``` like so: \n```\n  private void commonSetup(final FMLCommonSetupEvent event) {\n    event.enqueueWork(() -> {\n      LogEvents.LogMap.put(YOUR_MOD.YOUR_LOG.get(), YOUR_MOD.YOUR_STRIPPED_LOG.get())\n    });\n  }\n```\n### 2. **Optional:** Add a loot table for bark\n\n1.Add your bark to a log\n```\n  private void commonSetup(final FMLCommonSetupEvent event) {\n    event.enqueueWork(() -> {\n        LogEvents.BarkMap.put(YOUR_MOD.YOUR_LOG.get() /*Can actually be any log*/, The resource location of your loot table);\n    });\n  }\n```\n2.Add a loot table\n  In datagen, add this:\n```\n  this.add(YOUR_MOD.YOUR_LOG.get()\n      () -> BarkLootMethods.CreateDefaultLootTable(YOUR_MOD.YOUR_BARK.get()));\n```\n  Or alternatively, this:\n```\n  this.add(YOUR_MOD.YOUR_LOG.get()\n      () -> BarkLootMethods.CreareRangeLootTable(YOUR_MOD.YOUR_BARK.get(), MinimumAmount, MaximumAmount));\n```\n\nAnd you're done!\n\nThis mod also has a datagen method for log models.\n  In datagen:\n```\nLogMethods.logBlockWithItem(this, (RotatedPillarBlock) YOUR_MOD.YOUR_LOG,\n    Name of the texture for the side of the block (usually just the block's name),\n    Name of the texture for the tip of the block (usually \"[block's name]_top\"),\n    the name of the block)\n```",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 46,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

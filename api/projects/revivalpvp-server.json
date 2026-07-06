@@ -1,0 +1,38 @@
+{
+  "id": "zqAVTEPu",
+  "slug": "revivalpvp-server",
+  "title": "RevivalPVP Server",
+  "description": "Paper / Purpur plugin that adds /pvp to any Minecraft server. Players queue against opponents from across the RevivalPVP network; the actual duel runs on our arena server and they're returned to your server when it ends.",
+  "body": "# RevivalPVP - Server Mod\n\nPaper / Purpur plugin that adds `/pvp` to any Minecraft server. Players\nqueue against opponents from across the RevivalPVP network; the actual\nduel runs on our arena server and they're returned to your server when\nit ends.\n\n**For operators**: <https://play.revivalsmp.net/pvp/host>\n**Discord**: <https://discord.gg/revival-smp>\n\n## What this plugin does\n\n- Adds `/pvp` (chest GUI to pick kit, scope, ranked/unranked, queue).\n- Adds `/pvpaccept` (accept a friend's duel invite from chat).\n- Adds `/pvpadmin reload|status|key`.\n- Heartbeats to the RevivalPVP backend every ten minutes so the\n  operator dashboard at `play.revivalsmp.net/pvp/host/dashboard`\n  shows your server as connected.\n- Fetches the kit catalog from the backend on demand, so kit\n  additions and renames don't require a plugin update.\n\n## What this plugin does NOT do\n\n- It does not run duels itself. When a match starts, players are\n  transferred to our arena server (`pvp.revivalpvp.net`) and back to\n  yours when the match ends. The arena code, maps, and kit-delivery\n  logic are not part of this plugin.\n- It does not store player data locally beyond per-session caches.\n  Stats, ratings, friends, sponsor coins live on the backend.\n\n## Requirements\n\n- Paper or a Paper fork (Purpur recommended) on Minecraft 1.21+.\n- Java 21+ (Java 25 if you're on Minecraft 26.1+).\n- Internet access from the server host to `api.revivalpvp.net`.\n- A free tenant key from <https://play.revivalsmp.net/pvp/host>.\n\n## Install\n\n1. Download the latest `RevivalPVPServerMod-X.Y.Z.jar` from\n   [Releases](../../../releases).\n2. Drop it in your server's `plugins/` folder.\n3. Restart the server. The plugin will generate a default\n   `plugins/RevivalPVPServerMod/config.yml`.\n4. Sign up at <https://play.revivalsmp.net/pvp/host> if you haven't\n   already. You'll get a tenant key by email.\n5. Edit `plugins/RevivalPVPServerMod/config.yml` and paste the key:\n\n   ```yaml\n   tenant-key: \"rpvp_xxxxxxxxxxxxxxxxxx\"\n   backend-url: \"https://api.revivalpvp.net\"\n   origin-server: \"yourserver.example.com:25565\"\n   default-scope: \"global\"\n   ```\n\n   - `origin-server` is how your server is reachable from the public\n     internet — used to transfer players back after a duel ends.\n6. Restart the server. You should see in the console:\n   ```\n   [RevivalPVPServerMod] RevivalPVPServerMod enabled — /pvp ready\n   [RevivalPVPServerMod] Kit catalog refreshed: N kits loaded.\n   [RevivalPVPServerMod] Dashboard connection registered — plan=free, status=trial.\n   ```\n7. Visit your operator dashboard — the install panel collapses to a\n   green \"Server connected\" banner once the heartbeat lands.\n\n## License\n\nPolyForm Shield 1.0.0 — see [../LICENSE.md](../LICENSE.md) and\n[../NOTICE.md](../NOTICE.md). Permissive for paid Minecraft server\noperators (you're a *customer* of the RevivalPVP service, not a\ncompetitor). The license restricts **Competing Uses** — running a\nrival cross-server PVP matchmaking service. See NOTICE.md for the\nplain-language rundown.\n",
+  "categories": [
+    "management",
+    "minigame",
+    "paper",
+    "purpur",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 38,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

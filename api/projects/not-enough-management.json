@@ -1,0 +1,23 @@
+{
+  "id": "wbyIAwO2",
+  "slug": "not-enough-management",
+  "title": "Not Enough Management",
+  "description": "Extends and enhances Minecraft's built-in Server Management Protocol (JSON-RPC over WebSocket).",
+  "body": "A server-side Fabric Mod for Minecraft [25w35a](https://www.minecraft.net/en-us/article/minecraft-snapshot-25w35a) / 1.21.9+ that adds more features to the **Minecraft Server Management Protocol** (MSMP).\nThe MSMP provides an API over websocket that allows you to get live updates, change values, and request information from/to a Minecraft server without much hassle.\nCommunication is done both-ways with JSON objects.\n\n![GIF showing chat message notifications in a terminal using this mod.](https://github.com/Dan-Mizu/Not-Enough-Management/blob/update/.github/media/chat_message_notification.gif?raw=true)\n\n## 🧩 Features\n\n[The vanilla Server Management Protocol features can be found on the wiki.](https://minecraft.wiki/w/Minecraft_Server_Management_Protocol)\n\n### Notifications\n\n| Path            | Description           | Parameters                             | Example Response                                                                                                                                                |\n|-----------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| `/chat_message` | Player's Chat Message | message: [Chat Message](#chat-message) | ```{\"jsonrpc\":\"2.0\",\"method\":\"notification:chat_message\",\"params\":[{\"id\":\"e68e2363-f1bb-446c-aeef-cccd23aeafb7\",\"name\":\"DanMizu\",\"message\":\"Hello World!\"}]}``` |\n\n### Schema\n\n#### Chat Message\n- 🆔 `id`: string\n- 👤 `name`: string\n- 💬 `message`: string\n\n## ⬇️ Installation\n\n1- Enable the Server Management Protocol/Management Server in your `server.properties` file.\n- `management-server-enabled`\n  - default `false`\n  - **set to** `true`\n- `management-server-host`\n  - default `localhost`\n  - **keep set to** `localhost`\n\n  > ⚠️ **Warning**\n  > Ideally you keep this set to `localhost` and only run services that need to access the server on the same machine.\n  > If you trust everyone that's connected to your local network *(you shouldn't!)*,\n  > then set to `0.0.0.0` to allow other machines on the same network to access the server.\n- `management-server-port`\n  - default `25585`\n  - **set to an unused port if the default port is taken by another service on your machine**\n\n  > 🚫 **Caution**\n  > DO NOT FORWARD THIS PORT (Port-forwarding).\n  > There is no authentication built into the management server and anyone that can connect essentially has full control over your server.\n  > You're recommended to run services that use it on the same machine and keep `management-server-host` set to `localhost`.\n\n2- Download this mod, making sure to match it to the minecraft version of your fabric server.\n\n3- Add the downloaded `.jar` file of this mod into your `mods` folder in your server, and start/restart.\n\n## ▶️ Usage\n\nYou can use this with anything that can connect over websockets. \nThis example uses [Node.js](https://nodejs.org/en), specifically the [wscat](https://www.npmjs.com/package/wscat) package. \nIf you want to follow along, make sure to first install Node.js and NPM \n*(NPM should be automatically installed alongside Node.js)*.\n\n1. Install properly onto your Fabric Minecraft server as detailed in [Installation](#-installation) and run the server.\n2. Open a terminal application.\n3. Install wscat globally using NPM if you haven't already: `npm install -g wscat`.\n4. Run the command `wscat -c ws://<management-server-host>:<management-server-port>`\n5. Log into your Fabric Minecraft server with your Microsoft account.\n6. Send a chat message in-game, and you should see a notification pop up in the terminal application with relevant information.",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 44,
+  "followers": 0,
+  "game_versions": [
+    "25w35a",
+    "25w36a",
+    "25w36b"
+  ],
+  "date_updated": null
+}

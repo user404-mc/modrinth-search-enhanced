@@ -1,0 +1,26 @@
+{
+  "id": "7RXyt6DW",
+  "slug": "minecoloniesentityfix",
+  "title": "MinecoloniesEntityFix",
+  "description": "The plugin makes Minecolonies citizens work even when the player is far away, bypassing the Spigot restriction.",
+  "body": "## # **What Is This**\nIf you've ever run a server with Minecolonies, you've probably run into this problem: as soon as a player moves more than a couple of chunks away from their colony, everything stops. Citizens stop going to work, builders stop building, farmers stop planting. The colony just \"goes to sleep.\"\n\nThe culprit is Spigot's optimization mechanic — entity-activation-range. It's great for regular mobs, but for Minecolonies it does more harm than good. By default, the server stops processing entity AI when the player is more than 32 blocks away.\n\nThis plugin fixes that. It makes sure the server always \"sees\" your colony citizens, no matter where the player is.\n\n## # **How It Works**\nThe plugin runs a background task that periodically \"wakes up\" all Minecolonies citizens on the server. It works directly with the server's internal mechanics (NMS) to bypass Spigot's default distance checks. Builders keep building, guards keep patrolling, and citizens keep working — even when the player is far away or has logged off.\n\nThe plugin only affects living entities, so it won't waste resources on items, experience orbs, or minecarts.\n\n## **Configuration**\nThe config.yml file gives you control over how the plugin behaves:\n\nactivation-interval-ticks: How often the plugin checks and activates citizens. 20 ticks = 1 second. Set to 40 if you have a large server and want to reduce load.\n\nmax-entities-per-tick: How many citizens the plugin processes in one cycle. If you have 300 citizens and set this to 100, they'll be activated in batches over several cycles. Lower values reduce CPU spikes.\n\ndebug: Turn this on if you want to see what the plugin is doing in console. Useful for testing, but best kept off during normal operation.\n\ntrack-builder-actions: Logs what blocks builders are breaking and placing. Only needed if you're troubleshooting whether builders are actually working.\n\nkeep-chunks-loaded-when-no-players: Set to true if you want colonies to keep running 24/7, even when the server is empty.\n\nkeep-chunks-loaded-when-players-online: Set to true if you want colonies to stay active even when players are far away but still online.\n\nchunk-ticket-update-interval-ticks: How often the plugin updates chunk loading tickets. This runs less frequently than citizen activation to save resources.\n\nenable-ownership-check-for-force-load: When true, the plugin only loads chunks for citizens whose owners are currently online. Saves resources by not loading inactive colonies.\n\nmake-invulnerable-when-force-loaded: Makes citizens invulnerable to damage when their chunks are force-loaded. Prevents them from dying to mobs when the player isn't around to protect them.\n\n## **Commands**\nMain command: /mcfix or /minecoloniesfix\nPermission required: minecoloniesfix.admin (default: operators)\n\n/mcfix — Shows a list of available commands.\n\n/mcfix status — Displays current plugin status: whether the task is running, how many entities are cached, how many chunks are force-loaded, and current settings.\n\n/mcfix reload — Reloads config.yml without restarting the server. Use this after making changes to the config file.\n\n/mcfix scan — Forces the plugin to rescan the server for Minecolonies entities and update its cache. Useful after new colonies are created.\n\n/mcfix run — Manually triggers one activation cycle. Good for testing if everything is working as expected.\n\n/mcfix debug on/off/toggle — Turns debug mode on, off, or toggles it. Changes are saved to config.yml immediately.\n\nCompatibility\nServer cores: Spigot, Paper, Purpur (1.20.1 and above, should work with versions back to 1.18)\n\nMod: Minecolonies (any version that uses standard entity mechanics)\n\nPerformance Tips\nFor servers with 5+ colonies and over 300 citizens, consider setting activation-interval-ticks to 40 and max-entities-per-tick to 200. This spreads out the workload and keeps things running smoothly.\n\nThe plugin is designed to be lightweight. It only touches Minecolonies citizens and leaves everything else alone, so it won't interfere with other plugins or mods.\n\nWhy This Exists\nMinecolonies is a fantastic mod, but it wasn't built with Spigot-style entity activation limits in mind. Without a fix like this, players are forced to stay near their colonies for them to make any progress. That's fine for singleplayer, but on a multiplayer server where people explore, build in different areas, or log off at different times, it becomes a real problem.\n\nThis plugin lets colonies thrive naturally, even when players aren't standing right next to them.",
+  "categories": [
+    "bukkit",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

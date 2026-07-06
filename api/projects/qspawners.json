@@ -1,0 +1,41 @@
+{
+  "id": "mMNdtjWM",
+  "slug": "qspawners",
+  "title": "qSpawners",
+  "description": "Allows players to break spawners with a special pickaxe, featuring configurable drop chances and mob type preservation.",
+  "body": "[![Support me on Ko-fi](https://cdn.modrinth.com/data/cached_images/c00c3aa5826e038f3497c8a2509f77db9a82bd52.png)](https://ko-fi.com/qustaneu)\n# qSpawners\n\n## Features\n\n- **Special Spawner Pickaxe** — only this tool can break spawners; regular pickaxes cannot drop them\n- **Configurable Drop Chance** — set a global default and per-mob-type percentages\n- **Fortune Bonus** — each Fortune enchantment level adds an extra drop chance\n- **Silk Touch Support** — optionally require Silk Touch on the pickaxe\n- **Mob Type Preservation** — the dropped spawner remembers its mob type; placing it back restores the original mob\n- **Crafting Recipe** — the special pickaxe is craftable with a fully configurable recipe\n- **Cooldown System** — prevents players from spamming spawner breaks; configurable per-server\n- **Sounds & Particles** — custom feedback on success and failure\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/qspawners reload` | Reload the configuration | `qspawners.reload` |\n| `/qspawners give <player>` | Give the special pickaxe to a player | `qspawners.give` |\n\n**Alias:** `/qs`\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `qspawners.use` | Allows using the Spawner Pickaxe | `true` |\n| `qspawners.reload` | Allows reloading the config | `op` |\n| `qspawners.give` | Allows giving the pickaxe | `op` |\n\n---\n\n## Configuration\n\n```yaml\n# qSpawners Configuration\nenabled: true\n\n# Drop chances (percentage 0–100)\ndrop-chances:\n  default: 20\n  ZOMBIE: 25\n  SKELETON: 30\n  CREEPER: 10\n\n# Require Silk Touch on the pickaxe\nsilk-touch-required: false\n\n# Special pickaxe appearance\npickaxe:\n  material: GOLDEN_PICKAXE\n  name: \"&bSpawner Pickaxe\"\n  lore:\n    - \"&7Allows breaking spawners\"\n    - \"&7with a chance to drop them.\"\n\n# Crafting recipe\nrecipe:\n  shape:\n    - \"DDD\"\n    - \" S \"\n    - \" S \"\n  ingredients:\n    D: GOLD_BLOCK\n    S: STICK\n\n# Fortune bonus per enchantment level\nfortune-bonus:\n  enabled: true\n  per-level: 5\n\n# Cooldown between break attempts (per player)\ncooldown:\n  enabled: true\n  seconds: 5\n\n# Sounds\nsounds:\n  success:\n    sound: BLOCK_ANVIL_LAND\n    volume: 1.0\n    pitch: 1.0\n  failure:\n    sound: BLOCK_GLASS_BREAK\n    volume: 1.0\n    pitch: 1.0\n\n# Particles\nparticles:\n  success:\n    type: VILLAGER_HAPPY\n    count: 20\n  failure:\n    enabled: true\n    type: SMOKE_NORMAL\n    count: 15\n\n# Messages (supports & color codes)\nmessages:\n  success: \"&aSpawner dropped!\"\n  fail: \"&cSpawner destroyed!\"\n  no-permission: \"&cYou don't have permission to do that!\"\n  reload: \"&aConfiguration reloaded!\"\n  give-success: \"&aGave Spawner Pickaxe to &b%player%&a!\"\n  player-not-found: \"&cPlayer &b%player% not found!\"\n  cooldown: \"&ePlease wait &6%seconds%s &ebefore trying again!\"\n  usage: \"&cUsage: /qspawners <reload|give <player>>\"\n```\n\n---\n\n## How Drop Chance Works\n\n1. The base chance is taken from `drop-chances` (by mob type, or `default` if not listed)\n2. If Fortune is enabled, `per-level × fortune_level` is added\n3. The result is capped at 100%\n4. A random roll decides whether the spawner drops or is destroyed\n\n**Example** — Zombie spawner, Fortune III, `per-level: 5`:\n```\n25% (base) + 15% (Fortune III bonus) = 40% drop chance\n```\n\n---",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 27,
+  "followers": 0,
+  "game_versions": [
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

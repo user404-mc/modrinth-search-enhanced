@@ -1,0 +1,37 @@
+{
+  "id": "PM2j1xwl",
+  "slug": "fastjson4yacl",
+  "title": "FASTJSON2 Serializer for YACL",
+  "description": "A config serializer for YetAnotherConfigLib using FASTJSON2",
+  "body": "<div align=\"center\">A serializer for <a href=\"https://modrinth.com/mod/yacl\">YetAnotherConfigLib</a> made using <a href=\"https://github.com/alibaba/fastjson2\">FASTJSON2</a>.</div>\n\n### Useage\n<br>\n\n<div align=\"center\"><i>Add as a dependancy as outlined on the version page*</i></div>\n\n```java\n// >= 1.21.11\n    public static ConfigClassHandler<Config> HANDLER = ConfigClassHandler.createBuilder(Config.class)\n            .id(Identifier.fromNamespaceAndPath(MOD_ID, \"config\"))\n            .serializer(config -> FastJsonConfigSerializerBuilder.create(config)\n                    .setPath(YACLPlatform.getConfigDir().resolve(\"modid.json\"))\n                    .build())\n            .build();\n\n// <= 1.21.10\n    public static ConfigClassHandler<Config> HANDLER = ConfigClassHandler.createBuilder(Config.class)\n            .id(ResourceLoccation.fromNamespaceAndPath(MOD_ID, \"config\"))\n            .serializer(config -> FastJsonConfigSerializerBuilder.create(config)\n                    .setPath(YACLPlatform.getConfigDir().resolve(\"modid.json\"))\n                    .build())\n            .build();\n```\n\n<br>\n\n### JSON5\n<br>\n\n<p align=\"center\">FastJSON2 doesn't offer any support for JSON5. If you need/want JSON5 for any reason, I would suggest continuing to use YACL's built-in Gson serializer. If you are migrating from a Json5 config back to a regular Json here is an example of how to auto migrate your user's configs from my mod <a href=\"https://modrinth.com/mod/aiutd\">Am I Up To Date?</a>:</p>\n\n\n<details>\n<summary>Example</summary>\n\n```java\n// Replace file & field names with your mod's\n\npublic class ConfigMigration {\n    public static void migrate(){\n        try {\n            if (Files.exists(Path.of(YACLPlatform.getConfigDir() + \"/aiutd.json5\"))){\n                AIUTD.LOG.info(\"Pre-2.5.0 config found. Migrating...!\");\n\n                String JSONContent = Files.readString(Path.of(YACLPlatform.getConfigDir() + \"/aiutd.json5\"));\n                JSONObject oldConfig = JSON.parseObject(JSONContent, JSONReader.Feature.AllowUnQuotedFieldNames);\n\n                Config.HANDLER.load();\n                Config.menuAlert = Boolean.parseBoolean(oldConfig.getString(\"menuAlert\"));\n                Config.chatAlert = Boolean.parseBoolean(oldConfig.getString(\"chatAlert\"));\n                Config.multiLoaderBool = Boolean.parseBoolean(oldConfig.getString(\"multiLoaderBool\"));\n                Config.multiLoader = Config.LoaderEnum.valueOf(oldConfig.getString(\"multiLoader\"));\n                Config.localVersion = oldConfig.getString(\"localVersion\");\n                Config.modpackId = oldConfig.getString(\"versionAPI\");\n                Config.multiVersion = Boolean.parseBoolean(oldConfig.getString(\"multiVersion\"));\n                Config.useModpackName = Boolean.parseBoolean(oldConfig.getString(\"useModpackName\"));\n                Config.modpackName = oldConfig.getString(\"modpackName\");\n                Config.useCustomMessage = Boolean.parseBoolean(oldConfig.getString(\"useCustomMessage\"));\n                Config.customMessage = oldConfig.getString(\"customMessage\");\n                Config.linkChangelog = Boolean.parseBoolean(oldConfig.getString(\"linkChangelog\"));\n                Config.ignoreColor = Config.colorEnum.valueOf(oldConfig.getString(\"ignoreColor\"));\n                Config.messageColor = Config.colorEnum.valueOf(oldConfig.getString(\"messageColor\"));\n                Config.changelogColor = Config.colorEnum.valueOf(oldConfig.getString(\"changelogColor\"));\n                Config.HANDLER.save();\n                AIUTD.LOG.info(\"Config migrated, please double check it for accuracy!\");\n                Files.deleteIfExists(Path.of(YACLPlatform.getConfigDir() + \"/aiutd.json5\"));\n                AIUTD.LOG.info(\"Old config has been deleted\");\n            }\n        } catch (IOException e) {\n            AIUTD.LOG.error(\"Failed to migrate config! Please do so manually!\", e);\n        }\n\n        try {\n            if (Files.exists(Path.of(YACLPlatform.getConfigDir() + \"/aiutd-enduser.json5\"))){\n                AIUTD.LOG.info(\"Pre-2.5.0 end user config found. Migrating...!\");\n\n                String JSONContent = Files.readString(Path.of(YACLPlatform.getConfigDir() + \"/aiutd-enduser.json5\"));\n                JSONObject oldUserConfig = JSON.parseObject(JSONContent, JSONReader.Feature.AllowUnQuotedFieldNames);\n\n                EndUserConfig.USERCONFIG.load();\n                EndUserConfig.shouldIgnore = Boolean.parseBoolean(oldUserConfig.getString(\"shouldIgnore\"));\n\n                AIUTD.LOG.info(\"End user config migrated, please double check it for accuracy!\");\n                Files.deleteIfExists(Path.of(YACLPlatform.getConfigDir() + \"/aiutd.json5\"));\n                AIUTD.LOG.info(\"Old end user config has been deleted\");\n            }\n        } catch (IOException e) {\n            AIUTD.LOG.error(\"Failed to migrate end user config! Please do so manually!\", e);\n        }\n    }\n}\n\n```\n\n</details>\n\n### FAQ\n\n- Is this faster than using the built-in Gson serializer?\n  - In a word, [yes](https://github.com/fabienrenaud/java-json-benchmark). In a few more words, based on pure library performance, yes. In practice it's a bit harder to say and will likely depend on the size of the config in question. Will it make a massive difference in anything when used in a single mod? Not noticeably; if you get several using it, you may start to see something a bit more tangible.\n- Why make it if it wont improve performance much?\n  - IDK, becuse I can? Free will and what not.\n- WAST has a better score on 3/4 of the tests, why not use it?†\n  - Becuse I was already familiar with FastJSON and didn't need to learn anything new to make it. If I need (or want) to learn WAST one day maybe I'll make something for it then.\n\n\n<sub>*Until I set up another maven</sub>\n<br>\n<sub>†As of June 28th, 2026</sub>",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge",
+    "optimization",
+    "quilt"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

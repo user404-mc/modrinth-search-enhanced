@@ -1,0 +1,20 @@
+{
+  "id": "z3IelKQ3",
+  "slug": "destiny-constellations",
+  "title": "Destiny Constellations",
+  "description": "A highly configurable Forge 1.20.1 mod that adds a Genshin-style constellation progression system, custom items, and creative tab.",
+  "body": "\n# Touhou Destiny Constellations\n\n## Overview\n\n* Perfect for RPG-style modpacks\n* Adds a 7-level (C0-C6) constellation progression system.\n* Press the **C** key (Default) to open the constellation interface.\n* Requires Fate Crystals (crafted with 1x Nether Star, 4x Netherite Ingots, and 4x Diamond Blocks) to unlock constellation levels.\n* Unlock constellation phases to acquire corresponding abilities, distinct background imagery, and exclusive lore stories (fully configurable).\n\n## Configuration Guide\n\n### 1. Titles, Stories, and Descriptions\n\nConfiguration files generate in `config/touhou_destiny/` after the first launch. You can open these `.txt` files and write your custom text in UTF-8 format:\n\n* `stories/title_x.txt`: Change the constellation's title.\n* `stories/story_x.txt`: Change the background story.\n* `descriptions/ability_x.txt`: Change the ability description shown in the UI.\n\n### 2. Background Images & Star Positions\n\nOpen `config/touhou_destiny-client.toml` to configure visual settings:\n\n* `[background_textures]`: Change the texture paths for the backgrounds (`background_0` to `background_6`). You can replace the default images by creating a Resource Pack and placing your custom PNG files at `assets/touhou_destiny/textures/gui/background_x.png`.\n* `[star_positions]`: Adjust the X and Y coordinates (from `0.0` to `1.0`) of the stars on the GUI.\n\n## KubeJS Integration (Recommended)\n\nWhile the mod provides simple vanilla attributes by default, it is highly recommended to use **KubeJS** to script complex or custom constellation abilities for your modpack.\nYou can query a player's current constellation level (0 to 6) using the provided Java API: `com.touhou.destiny.integration.ConstellationHelper.getLevel(player)`.\n**KubeJS Example (Server-side `server_scripts`):**\n\n```javascript\nEntityEvents.hurt(event => {\n    let player = event.entity;\n    if (player.isPlayer()) {\n        // Query the player's unlocked constellation level\n        let level = Java.resolve('com.touhou.destiny.integration.ConstellationHelper').getLevel(player);\n        if (level >= 1) {\n            // Example: Reduce incoming damage by 20% if level is 1 or higher\n            event.damage = event.damage * 0.8;\n        }\n    }\n});\n\n```\n\n## Dependencies\n\n* **Required Dependency**: [ModernUI](https://modrinth.com/mod/modernui) (Must be installed on the client side)\n* **Environment**: Forge 1.20.1![show](https://cdn.modrinth.com/data/cached_images/cb57792c32bbd7dd52b09de7cab1cc9826f73f90_0.webp)![show](https://cdn.modrinth.com/data/cached_images/7ccb1533cc9e0ad3edea5fa80294d4b2e5a4d8cc_0.webp)![show](https://cdn.modrinth.com/data/cached_images/7897e0d8ef1426e1e018e4b72b10dbd497f487db_0.webp)",
+  "categories": [
+    "adventure",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

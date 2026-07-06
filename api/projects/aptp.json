@@ -1,0 +1,20 @@
+{
+  "id": "vUhmqfSi",
+  "slug": "aptp",
+  "title": "Accurate Projectile Trajectory Preview",
+  "description": "Accurate Projectile Trajectory Preview is a NeoForge client-side Minecraft mod that displays a real-time projectile trajectory preview. LikePTP, but with improved trajectory accuracy and without multiplayer restrictions. Forked from ptp by maDU59 (MIT)",
+  "body": "<div align=\"center\">\n  <h1>Accurate Projectile Trajectory Preview</h1>\n  \n  Forked from [Projectile Trajectory Preview](https://github.com/maDU59/ProjectilesTrajectoryPreview) by maDU59 ([MIT License](https://github.com/maDU59/ProjectilesTrajectoryPreview/blob/main/LICENSE))\n  \n</div>\n\nEver wondered where your arrow, snowball, or potion will land? This mod provides a visual preview of projectile trajectories, similar to PTP, but with improved prediction accuracy and no multiplayer limitations.\n\n## 🔎 Features\n\n- Trajectory Visualization: Displays the expected path of your projectile before launching.\n- Target Highlighting: Trajectory color indicates a higher likelihood of hitting a target.\n\n## ⚠️ Limitations and Notes\n\n- Minecraft projectile physics include random spread offsets, so the actual impact position may slightly differ from the preview.\n- However, trajectory prediction is designed to be more precise than the original PTP implementation.\n\n## 🔬 Technical Changes Compared to Original PTP\n\n- This fork modifies both the simulation logic and multiplayer behavior:\n\n## Multiplayer behavior\n\n- Removed the server handshake check (serverHasMod)\n\n- Removed networking validation logic\n\n- Trajectory preview is now always available client-side (no server requirement)\n\n## Simulation changes\n\n1. Removed projectileInfo.order-based update system\nThe original implementation updated motion using a configurable order array.\nThis fork replaces it with a fixed per-tick update sequence:\n\n- position update\n\n- drag application\n\n- gravity application\n\nThis makes motion simulation consistent and closer to vanilla projectile behavior.\n\n2. Reworked entity collision handling\n\n- Reduced broad-phase AABB inflation from 1.0 to 0.3\n\n- Added distance-based spread-aware entity hit detection\n\n- Added a “guaranteed hit” detection flag when the ray intersects the true bounding box\n\n3. Improved spread simulation\n\n- Added distance-based spread offset:\n\n`spreadOffset = normalizedVelocity * (distanceFromStart * maxSpreadFactor)`\n\n- Adjusted spread multiplier from `* 3.0` to `* 2.0`\n\n- Spread is now simulated dynamically per step instead of being approximated\n\n4. Refined water physics handling\n\n- More explicit switching between normal drag/gravity and underwater values\n\n- Applied consistently during simulation loop\n\n5. Minor stability improvements\n\n- Early velocity zero-check `(vel.lengthSqr() < 1e-8)`\n\n- Added `startPos` tracking for spread calculation\n\n## 📦 Modpacks\n\nFeel free to include this mod in your modpacks.\n\n---\n\n<div align=\"center\" style=\"margin-top: 30px; font-size: 0.9em; opacity: 0.8;\">\n  <p><strong>Legal Information / Impressum:</strong> <a href=\"https://github.com/siakinnik/siakinnik/blob/main/impressum.md\" target=\"_blank\" rel=\"noopener noreferrer\">View Impressum on GitHub</a></p>\n</div>",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 108,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

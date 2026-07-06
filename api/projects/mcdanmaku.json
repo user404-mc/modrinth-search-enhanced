@@ -1,0 +1,29 @@
+{
+  "id": "hVwMtb2p",
+  "slug": "mcdanmaku",
+  "title": "MCDanmaku",
+  "description": "Bilibili danmaku but in Minecraft!",
+  "body": "# MCDanmaku\n\nMCDanmaku is a Fabric client-side mod for Minecraft `26.2-snapshot-7+`. It displays real-time danmaku messages from a specified Bilibili live room in the in-game chat.\n\n## Requirements\n\n- Fabric Loader `>=0.19.2`\n- Fabric API `>=0.149.1+26.2`\n\n## Usage\n\n### Log in to Bilibili\n\n```text\n/danmaku login\n```\n\nLogin flow:\n\n1. The mod requests a Bilibili QR login session;\n2. A temporary local HTTP server is started on your machine;\n3. A `http://127.0.0.1:<port>/` link is shown in the chat;\n4. Click the link or manually copy it into your browser;\n5. Scan the QR code on the page with the Bilibili mobile app;\n6. Confirm the login on your phone;\n7. After a successful login, the cookie will be saved to the local config directory.\n\n### Check login status\n\n```text\n/danmaku loginstatus\n```\n\n### Log out from Bilibili\n\n```text\n/danmaku logout\n```\n\nThis removes the locally saved Bilibili login information.\n\n### Set live room\n\n```text\n/danmaku set <roomId>\n```\n\nIf the danmaku client is already running, the new room ID will not take effect immediately. You need to stop and start the client again.\n\n### Start receiving danmaku\n\n```text\n/danmaku start\n```\n\nAfter starting, danmaku messages from the currently configured live room will be displayed in the in-game chat.\n\n### Stop receiving danmaku\n\n```text\n/danmaku stop\n```\n\nAfter stopping, the current WebSocket connection will be closed, and stale messages from old connections will be discarded.\n\n### Check status\n\n```text\n/danmaku status\n```\n\nShows the current danmaku client status and room ID.\n\n## Debug Logs\n\nBy default, detailed danmaku parsing logs, authentication responses, and statistics are not printed.\n\nTo enable debug logs, add the following JVM argument when launching Minecraft:\n\n```text\n-Dmcdanmaku.debug=true\n```\n\n## Notes\n\n- Bilibili live danmaku APIs and login flows may change and break compatibility;\n- Login information is only used to request Bilibili danmaku and user-related data;\n- Do not publicly share `bilibili-auth.properties` or any file containing cookies;\n- If the live room is offline or the Bilibili WebSocket node is unavailable, danmaku messages may not be received.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 29,
+  "followers": 0,
+  "game_versions": [
+    "26.2-snapshot-7",
+    "26.2-snapshot-8",
+    "26.2-pre-1",
+    "26.2-pre-2",
+    "26.2-pre-3",
+    "26.2-pre-4",
+    "26.2-pre-5",
+    "26.2-pre-6",
+    "26.2-rc-1",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "mOIDKWOa",
+  "slug": "flashbacksettings",
+  "title": "Flashback Settings",
+  "description": "Adds missing settings to the Flashback mod (Fabric) - starting with choosing the replay save folder. Anonymous opt-out telemetry.",
+  "body": "# Flashback Settings\n\nA small **Fabric client mod** that adds missing settings to Moulberry's\n[Flashback](https://modrinth.com/mod/flashback) mod.\n\n## ⭐ First feature: choose where replays are saved\n\nBy default, Flashback saves replays in `.minecraft/flashback/replays`. Flashback Settings lets you\nredirect that location to any folder you want (another drive, a shared folder, a dedicated SSD for\nediting, etc.).\n\n### How to use\n1. Install Fabric Loader, **Flashback**, and Flashback Settings in `.minecraft/mods`.\n2. Launch the game once: the file `config/flashbacksettings.json` is created.\n3. Set your path in `settings.replay_folder`, then restart:\n\n```json\n{\n  \"telemetry\": true,\n  \"settings\": { \"replay_folder\": \"D:/Replays/Minecraft\" }\n}\n```\n\nLeave it empty to fall back to Flashback's default folder. *(An in-game config menu is planned.)*\n\n## Compatibility\n- **Loader:** Fabric only (Flashback is Fabric-exclusive).\n- **Minecraft versions:** 1.21.11 (26.1.x coming soon).\n- **Required dependency:** [Flashback](https://modrinth.com/mod/flashback).\n\n## How it works\nA Mixin intercepts `com.moulberry.flashback.Flashback#getReplayFolder()` and returns the configured\nfolder when one is set; otherwise Flashback's default behavior is kept.\n\n## Telemetry\nAnonymous usage statistics are **enabled by default** (EU region) to track adoption and versions in\nuse. They can be **turned off** in three ways: `\"telemetry\": false` in the config file,\nthe JVM flag `-Dflashbacksettings.telemetry=false`, or automatically in a development environment.\nNo IP address or geolocation is collected; an anonymous, persistent `install_id` is used as the\nidentifier.\n\n## License\nPolyForm Noncommercial 1.0.0 — source-available, non-commercial use.\n",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 857,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

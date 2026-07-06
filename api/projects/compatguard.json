@@ -1,0 +1,32 @@
+{
+  "id": "rOHDPWtr",
+  "slug": "compatguard",
+  "title": "CompatGuard",
+  "description": "Intelligent plugin compatibility auditor & update manager. Auto-detects outdated plugins, estimates risk, and supports one-click in-game updates.",
+  "body": "---\n\n# CompatGuard\n\n**The intelligent plugin manager for Paper 1.21.x servers.**\n\nCompatGuard helps server administrators instantly see which plugins are outdated\nor incompatible — with zero configuration required. It auto-detects update\nsources, estimates compatibility risk, and lets you update plugins with a single\nclick, right from the game.\n\n---\n\n## ✨ Features\n\n### 🔍 Plugin Compatibility Scanning\n- Scans every installed plugin's metadata on startup (or on demand)\n- Classifies each plugin into five risk levels:\n  - ✅ **SAFE** — current api-version, no issues detected\n  - 🟩 **LIKELY SAFE** — slightly old api-version but stable\n  - 🟡 **REVIEW NEEDED** — old api-version or missing metadata\n  - 🟠 **HIGH RISK** — very old api-version, high incompatibility chance\n  - 🔴 **FAILED / DISABLED** — plugin failed to load\n- Configurable scoring rules in `rules.yml`\n- Detailed per-plugin reports with `/cg report <name>`\n\n### 🔄 Intelligent Auto-Update Detection\n- **Zero manual configuration** — automatically finds update sources:\n  1. Parses the plugin's `website` field for a GitHub URL\n  2. Searches Modrinth by plugin name (fuzzy match)\n  3. Searches Spiget (SpigotMC) by plugin name\n  4. Probes common GitHub release filename patterns as a fallback\n- Manual overrides available via `sources.yml` for niche or private plugins\n\n### ⬆️ Safe In-Game Updates\n- Clickable `[✔ Update Now]` / `[✘ Skip]` buttons when you join (if updates exist)\n- Updates are staged in `plugins/update/` — the running server JAR is **never touched**\n- Applied on the next server restart via Paper's built-in update mechanism\n- Clickable `[✔ Restart Now]` / `[✘ Later]` prompt after staging\n- Backup old JAR to `plugins/backup/` before downloading (configurable, on by default)\n\n### 🤖 Auto-Update on Startup\n- Enable `auto-update: true` to automatically download all available updates on startup\n- Optional `auto-restart-after-update: true` for fully hands-off update cycles\n- Configurable delay so async checks complete before downloads begin\n\n### 🔔 Discord Webhook Notifications\n- Posts a rich embed to your Discord channel when updates are found\n- Colour-coded: 🟠 orange for updates, 🟢 green for all-clear\n- Lists each outdated plugin with old → new version and source type\n- Configurable per-server name in footer\n\n### 📋 Admin Tools\n| Command | Description |\n|---------|-------------|\n| `/cg` | Open paginated GUI or console summary |\n| `/cg scan` | Re-scan all plugins immediately |\n| `/cg checkupdates` | Check updates (async) and print results |\n| `/cg update <name>` | Download & stage update for a specific plugin |\n| `/cg debug <name>` | Full update status: version, source, URL, JAR path |\n| `/cg report [name]` | Server-wide or per-plugin report + JSON export |\n| `/cg reload` | Reload all config files |\n\n### 📁 Reports\n- JSON reports saved to `plugins/CompatGuard/reports/`\n- Includes version, status, score, warnings, and update result per plugin\n\n---\n\n## ⚙️ Configuration Highlights\n\n```yaml\n# Auto-detect sources (GitHub, Modrinth, Spiget) — no manual setup needed\nauto-detect-sources: true\n\n# Plugins to exclude from all checks\nignore:\n  - SomePrivatePlugin\n\n# Download updates automatically on startup\nauto-update: false\n\n# Notify OPs with clickable update prompts when they join\nnotify-ops-on-join: true\n\n# Backup old JAR before staging new version (strongly recommended)\nbackup-before-update: true\n\n# Re-scan every N hours automatically (0 = off)\nauto-scan-interval-hours: 0\n\n# Discord webhook for update reports\ndiscord:\n  enabled: false\n  webhook-url: \"\"\n  server-name: \"My Server\"\n```\n\n---\n\n## 🛡️ Safety Guarantees\n- **Read-only by default** — no files are touched unless you use the update feature\n- **HTTPS-only downloads** — HTTP URLs are refused\n- **50 MB download cap** — prevents accidental large file downloads\n- **Atomic staging** — files are written to a temp file then renamed, preventing corruption\n- **Backup before update** — old JAR saved to `plugins/backup/` for easy rollback\n\n---\n\n## 📋 Requirements\n- **Paper 1.21.x** (Purpur should work too)\n- **Java 21+**\n\n---\n\n## 🤝 Contributing & Support\n- **Discord:**     [https://discord.com/invite/pDPJ92VVv8] \n\n---",
+  "categories": [
+    "library",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

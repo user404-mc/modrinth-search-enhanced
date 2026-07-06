@@ -1,0 +1,28 @@
+{
+  "id": "7zWOMu4Q",
+  "slug": "bentianjia-vote",
+  "title": "Vote",
+  "description": "A Paper GUI voting plugin with persistent votes, command actions, and flexible approval thresholds.",
+  "body": "Vote is a simple Paper voting plugin for Minecraft servers. Players can vote in a GUI or with commands, all vote records are saved permanently, and approved votes can run server commands automatically.\n\n## Features\n\n- GUI vote menu with admin create, edit, and remove actions.\n- Direct command voting with `/vote accept` and `/vote reject`.\n- Persistent vote storage for active, passed, and expired votes.\n- Approval thresholds: `amount:1/2`, fixed vote counts like `amount:10p`, or `amount:all`.\n- Optional expiry: `timeout:30m`, `timeout:1.5h`, or `timeout:2d`.\n- Approved votes dispatch `command:` as console commands, compatible with EssentialsX-style commands.\n- Fake-player exclusion through `vote.fake`, metadata keys, and configured name patterns.\n- Automatic language detection from each player's Minecraft locale.\n- Built-in language support for English, Simplified Chinese, Spanish, French, Russian, and Arabic.\n- Optional PlaceholderAPI support for plugin messages, GUI text, vote details, and approved commands.\n![Vote GUI](https://cdn.modrinth.com/data/cached_images/2ea3f11f380981c7269cc6a867f7a499d519f0c3.png)\n\n## Commands\n\n```text\n/vote\n/vote accept [title-or-id]\n/vote reject [title-or-id]\n/vote create summary:<title> details:<details> [command:<command;command>] [timeout:<time|none>] amount:<ratio|countp|all>\n/vote edit <title-or-id> [summary:<new-title>] [details:<new-details>] [command:<command;command|none>] [timeout:<time|none>] [amount:<ratio|countp|all>]\n/vote remove <title-or-id>\n/vote confirm\n/vote list\n```\n\nParameters use a CoreProtect-like `key:value` style. `summary`, `details`, and `amount` are required when creating a vote. `command` and `timeout` are optional. Use `amount:10p` to require 10 support votes.\n\n## Examples\n\n```text\n/vote create summary:Restart details:Restart the server at 23:00 command:say Vote passed;restart timeout:2h amount:1/2\n/vote create summary:OpenNether details:Open the Nether portal amount:10p\n/vote create summary:Whitelist details:Enable whitelist amount:all\n/vote accept Restart\n/vote reject Restart\n/vote edit Restart command:none timeout:none amount:2/3\n/vote remove Restart\n/vote confirm\n```\n\nCommands after `command:` do not need `/`. If `/eco give Steve 100` is entered by mistake, the plugin removes the leading `/` automatically.\n\n## Permissions\n\n| Permission | Default | Description |\n| --- | --- | --- |\n| `vote.vote` | `true` | Open the menu and vote |\n| `vote.accept` | `true` | Cast support votes |\n| `vote.reject` | `true` | Cast oppose votes |\n| `vote.admin` | `false` | Manage votes; OP level >= 2 also works |\n| `vote.fake` | `false` | Mark fake players so they are ignored |",
+  "categories": [
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

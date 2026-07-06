@@ -1,0 +1,36 @@
+{
+  "id": "qcK9q97H",
+  "slug": "stellar-enchantments",
+  "title": "Stellar Enchantments",
+  "description": "This plugin has 3 unique custom enchantments that is vein miner, tree capitator and smelt touch!",
+  "body": "# Stellar Enchants\nA custom enchantment plugin for Paper 1.21.x\n\nIt adds three shift-activated tool enchantments that obtain via the\nenchanting table (best odds at the 30-level slot), villager trades,\nand the /stellarenchant command.\n\n## ✨ Enchantments\nEnchantment\tTool\tEffect\nVein Miner\tPickaxe\tMines an entire connected ore vein. Each extra block consumes one point of tool durability.\nTree Capitator\tAxe\tChops down a whole tree and automatically replants a matching sapling where it stood.\nSmelt Touch\tPickaxe\tOres drop their smelted ingot/result instantly (iron, gold, copper, ancient debris, …). Overrides Silk Touch; compatible with Fortune.\nImportant: all three effects only trigger while the player is sneaking\n(holding Shift). Normal mining is never affected, so you won't accidentally\nblow up a vein or fell a tree. Each enchanted tool's lore reminds the player:\n\"Shift and mine to …\".\n\nSmelt Touch + Vein Miner stack on the same pickaxe — shift-mining one iron ore\nbreaks the whole vein and smelts every block into iron ingots.\n\n### Enchantment compatibility\nSmelt Touch ✗ Silk Touch — mutually exclusive. Smelt Touch always smelts\nthe ore, so Silk Touch can't be added to a Smelt Touch tool (and vice-versa)\nvia command, anvil, or the enchanting table.\nSmelt Touch ✓ Fortune — fully compatible. Fortune multiplies the smelted\noutput for iron, gold and copper ores (so a Fortune pickaxe yields extra\ningots), plus coal/diamond/emerald/redstone/lapis/quartz which keep their\nnormal vanilla Fortune drops. Ancient Debris is excluded — Fortune never\nmultiplies netherite scrap.\nTree replanting\nTree Capitator replants a sapling on every base trunk column. For the four\n2×2 trees (jungle, dark oak, spruce, acacia) it restores all four\nsaplings so the giant variant can regrow, instead of just one.\n\n## 🎮 Command\ntext\n\n/stellarenchant <enchantment> [level]\nAliases: /se, /stellarenchants\nPermission: stellarenchantment.enchant (default: OP)\nApplies the chosen enchantment to the item held in your main hand.\n<enchantment> is one of: veinminer, treecapitator, smelttouch\n(tab-completion is provided).\nExamples:\n\n/stellarenchant veinminer\n/se treecapitator\n/se smelttouch\nThe command validates the tool type — e.g. Tree Capitator can only go on an\naxe, Vein Miner / Smelt Touch only on a pickaxe.\n\n### 📦 Obtaining enchantments in survival\nEnchanting Table — eligible pickaxes/axes and books can roll a\nStellar enchantment. The chance scales with the chosen slot and is highest at\nthe 30-level enchant, exactly as requested. Books can roll any of the\nthree enchants.\nEnchanted Books — books carry Stellar enchants with full lore + glint.\nCreate one with the command on a held book, roll one from the enchant table,\nor trade for tools that already have the enchant.\nVillager Trades — Toolsmith villagers may sell pre-enchanted pickaxes\n(Vein Miner / Smelt Touch) and Weaponsmith villagers may sell axes\n(Tree Capitator), purchasable for emeralds.\nCommand — see above (admins / creative). Works on tools and books.\n🔨 Anvil & Grindstone\nAnvil — combine Stellar enchants like vanilla:\nBook → Tool: apply a Stellar book's enchant to a matching tool.\nTool → Tool (same type): merges, keeping the higher level of each\nshared enchant.\nBook → Book: merges two enchanted books.\nA vanilla-style XP level cost is charged (scales with what transfers);\nsurvival players who can't afford it can't take the result.\nEnchants only land where they belong (e.g. Vein Miner won't apply to an axe).\nGrindstone — strips all Stellar enchants from an item, just like it\nremoves vanilla enchants. A disenchanted book reverts to a plain book.\n\n## 🧱 How it works (technical)\nEnchantments are stored in each item's PersistentDataContainer (PDC) as\nintegers keyed under stellarenchants:enchant_<id>. This is fully version\nstable and never collides with vanilla enchantment registries (which changed\nheavily in 1.20.5+).\nThe visible lore is rebuilt from the PDC whenever an enchantment is added\nor removed. The plugin tracks how many leading lore lines it owns via a PDC\ncounter (stellarenchants:lore_lines) and strips exactly those on refresh —\nso it never disturbs other plugins' lore and never writes a stray marker\nglyph into the text (this fixes the unsupported-character icon some clients\nrendered).\nEnchanted items receive the enchanted glint via\nsetEnchantmentGlintOverride.\nCascading block breaks are fired as real BlockBreakEvents (so land-claim /\nprotection plugins like WorldGuard still apply), with a re-entrancy guard to\nprevent infinite recursion. A hard cap of 256 blocks per activation keeps\nperformance safe.\nTool durability respects the vanilla Unbreaking enchantment.\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

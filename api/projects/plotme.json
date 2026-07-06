@@ -1,0 +1,41 @@
+{
+  "id": "qhghrXgb",
+  "slug": "plotme",
+  "title": "PlotMe",
+  "description": "Plot management plugin for Paper 1.21+ — modernized maintenance fork of the abandoned WorldCretornica PlotMe, with the default plot-world generator bundled in.",
+  "body": "# PlotMe (modernized fork)\n\nA maintenance fork of [WorldCretornica/PlotMe-Core](https://github.com/WorldCretornica/PlotMe-Core), brought forward to Paper 1.21+ and Java 21. The original project was archived by its owner in March 2020.\n\n## Features\n\n- Full `/plotme` command set from upstream (claim, auto, home, info, biome, trust, like, clear, list, buy, sell, dispose, done, deny, reset, middle, admin tools), all preserved.\n- Chest-GUI menu via `/plotme menu` with a built-in Biome page.\n- Manual plot merging with a configurable cluster cap (`merge-max`, default 4) and permission tiers (`plotme.merge.limit.4 / 6 / 9 / 16 / *`).\n- `/plotme dispose` rebuilds the road grid block-for-block, exact chunk-generator parity including gold inlays at intersections.\n- Per-plot flag system (`/plotme flag <name> [value]`).\n- Web-map markers for BlueMap and squaremap. Facade pattern means servers without either map plugin no longer hit a NoClassDefFoundError on startup.\n- Colorized chat with a `[PlotMe]` prefix. Plain-text mode via `use-legacy-texts: true`.\n- Colored Adventure signs for claimed and merged plots (gold bold header, aqua owner, yellow plot id).\n- Permission tree (`plotme.use.*`, `plotme.admin.*`, `plotme.limit.*`, `plotme.merge.limit.*`) unchanged from upstream where it overlaps.\n- Built-in plot-world generator: configurable plot size, path width, road blocks, wall blocks, plot floor, fill block.\n- Owner / for-sale / protected wall recoloring on the plot border.\n- bStats metrics (relocated, no namespace clashes).\n\n## Setup\n\n1. Drop the jar into `plugins/` and start the server once so the default config is written.\n2. Create a plot world. With Multiverse-Core:\n   ```\n   /mv create plots normal -g PlotMe\n   ```\n   Without Multiverse, add it under `worlds:` in `bukkit.yml`:\n   ```yaml\n   worlds:\n     plots:\n       generator: PlotMe\n   ```\n3. Teleport in and `/plotme claim`.\n\nBlock keys in `worlds.<world>` accept either modern Material names (`OAK_PLANKS`, `QUARTZ_SLAB`) or the legacy `<id>[:<data>]` form (`5`, `44:7`), so old PlotMe configs migrate without edits.\n\n## Key config flags\n\n- `use-legacy-texts: false`. Set to `true` for plain ascii chat.\n- `merge-enabled: true`. Master switch for `/plotme merge`.\n- `merge-max: 4`. Cluster cap. Tier permissions override per player.\n- `mergeCost: 100.0`. Vault price per merge when economy is enabled.\n- `webmap.bluemap` / `webmap.squaremap`. Toggle markers independently. `marker-color` is the hex RGB fill.\n\n## Compatibility\n\n- Server: Paper 1.21.4+ (the modern ChunkGenerator API. Older servers won't load it.)\n- Java: 21\n- Optional integrations (soft-deps):\n  - Vault for claim/clear/biome/home/sell pricing\n  - WorldEdit 7 for WE-anywhere permission and per-plot edit guard\n  - BlueMap for web-map markers on the BlueMap frontend\n  - squaremap for web-map markers on the squaremap frontend\n  - Multiverse-Core for easy plot-world creation\n\n## What changed vs upstream\n\n- Java 1.7 to 21, Bukkit 1.8 to Paper 1.21.4 API, WorldEdit 6 to 7\n- McStats to bStats 3.0.2 (shaded + relocated)\n- Sponge platform, LWC integration, and the pre-1.13 schematic engine removed (~2,500 lines of dead code)\n- PlotMe-DefaultGenerator merged in. No separate companion plugin needed.\n- ChunkGenerator rewritten on Paper 1.21's `generateNoise(WorldInfo, Random, int, int, ChunkData)` API\n- Plot clear no longer relies on `World#regenerateChunk` (which Paper 1.21 stubbed to throw). It resets the plot interior directly.\n- Commands run on the right threads. Async teleport, Player.remove, etc. all addressed.\n- Plot id off-by-one at eastern/southern plot edges fixed. The old formula returned the next tile's id at `X = plotSize - 1`.\n- Auto-link on claim disabled. Merging is a manual decision now.\n- BlueMap and squaremap hooks split into facade + Impl classes so the JVM doesn't link softdep classes at startup.\n\n## Credits\n\nOriginal authors: ZachBora, MattBDev, and the rest of the WorldCretornica PlotMe team. This fork only ports their work forward. The design and command surface are theirs.\n\n## License\n\nGPL-3.0-only\n\n## Links\n\n- Source: https://github.com/Melocet/PlotMe\n- Issues: https://github.com/Melocet/PlotMe/issues\n- Releases: https://github.com/Melocet/PlotMe/releases",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "economy",
+    "game-mechanics",
+    "paper",
+    "social",
+    "spigot",
+    "storage",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 135,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

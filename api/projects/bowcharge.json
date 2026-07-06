@@ -1,0 +1,22 @@
+{
+  "id": "ItS6sJ8f",
+  "slug": "bowcharge",
+  "title": "BowCharge",
+  "description": "Centered HUD bar showing the exact draw % of your bow and charge % of a crossbow, with a red-yellow-green gradient and a clear DRAWN!/LOADED! cue at full power. Toggle with B.",
+  "body": "**BowCharge** answers a question vanilla never quite does: *\"is my bow ready yet?\"* When you start drawing a bow — or charging a crossbow — a thin progress bar fades in above your hotbar showing the exact charge percentage. A red->yellow->green gradient tracks the pull, and the moment you hit full draw the bar locks green and the label flips to **DRAWN!** (or **LOADED!** for crossbows). Release; bar disappears. No fluff, no config screens, just the one number you actually want to see while aiming.\n\n### What it shows\nWhile drawing a bow the bar shows `Draw: 73%`; at full draw it locks green and reads **DRAWN!**. For a crossbow being cranked it shows `Load: 60%`, flipping to **LOADED!** when it locks in.\n\n### How it works\n- Bow draw progress uses vanilla's own pull curve `(t^2 + 2t) / 3`, so the bar lines up *exactly* with when your shot becomes a power-3 arrow.\n- Crossbow progress is a straight 25-tick charge (the vanilla unenchanted load time).\n- The HUD is drawn through Fabric's `HudRenderCallback`, so it respects **F1** (hide HUD) automatically and never overlaps the hotbar.\n- Everything is read-only — no mixins, no input interception, no movement changes. Drop it on any server.\n\n### Controls\n- **B** — toggle the bar on / off (default: on)\n\nThe key is read via raw GLFW polling so it works identically on every supported Minecraft version without a separate rebind screen.\n\n### Compatibility\nWorks on **Minecraft 1.21.8, 1.21.9, 1.21.10, and 1.21.11** (Fabric Loader 0.16+). One JAR for all four versions — install with Fabric API and drop into your `mods/` folder.\n\n- Pure client-side — install on the client only, works on any server, no anti-cheat impact.\n- Hides automatically when you press **F1** to hide the rest of the HUD.\n- Zero config files; nothing to set up.\n\n### Why\nVanilla gives you a hand-animation hint that the bow is drawn, but no precise feedback — and crossbows give you almost nothing until the click. BowCharge turns \"feel\" into a number you can read at a glance, which matters in PvP, long-shot archery, and anywhere you want to time a max-power release.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 401,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

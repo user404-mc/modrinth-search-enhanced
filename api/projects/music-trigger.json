@@ -1,0 +1,20 @@
+{
+  "id": "KwhJwbnk",
+  "slug": "music-trigger",
+  "title": "Music Trigger",
+  "description": "A mod that lets you play specific music whenever an FTB Quest is completed.",
+  "body": "# Overview\n\nThis mod allows you to play a custom music track when an FTB Quest is completed. Usage is as follows:\n\n\n```\n    // kubejs/server_scripts/example.js\n    \n    /**\n     * Play music upon quest completion\n     * \n     * @param {string} questLinkObjectId - The quest ID (can be copied from the quest UI)\n     * @param {string} fileName          - Name of the audio file .mp3, .wav, or .flac (must be in config/music_trigger/audio/)\n     * @param {number} volume            - Playback volume, range: [0.0, 1.0]\n     * @param {string} scope             - Playback scope (\"self\", \"nearby\", or \"all\")\n     * @param {boolean} stopVanillaMusic - Whether to suppress vanilla Minecraft background music while playing (may cause unexpected behavior)\n     */\n    \n    MusicTriggerEvents.registerMusicTriggers(event => {\n        // Basic usage: play music for all players when the quest is completed\n        event.register(\"#67C8AAFC31D6F28B\", \"victory.mp3\", 1.0);\n    \n        // Advanced usage: only the completing player hears it, and vanilla music is stopped\n        event.register(\"#67C8AAFC31D6F28B\", \"secret_theme.mp3\", 0.8, \"self\", true);\n    \n        // Or play only for nearby players\n        event.register(\"#67C8AAFC31D6F28B\", \"boss_music.flac\", 1.0, \"nearby\");\n    });\n```\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 57,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

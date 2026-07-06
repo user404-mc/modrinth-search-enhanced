@@ -1,0 +1,33 @@
+{
+  "id": "Bq14yV8I",
+  "slug": "simple-minions",
+  "title": "Minions",
+  "description": "Skyblock-style placeable minions that gather resources into their own storage on an upgradeable timer. Right-click a block to place, right-click the minion to manage: fuel, upgrade tiers, auto-smelt and compactor modules, and offline catch-up.",
+  "body": "# Minions\n\nSkyblock-style placeable minions that automatically gather resources for you. Give yourself a minion item, right-click a block to place it, and the minion sits there producing its resource into its own storage on a timer - faster and with more capacity as you upgrade it.\n\n## What it does\n\n- A minion is a small, invulnerable, clickable ArmorStand wearing a themed head with a floating name like `Iron Minion V`.\n- On a per-tier interval it produces its configured item into an internal storage, with a little arm swing and particle each time.\n- When its storage fills up it stops producing, and resumes as soon as you empty it.\n- It keeps working while you are away: production is time-based, so when the chunk loads again (or the server comes back up) the minion is credited for the elapsed time, capped by how much storage it had free.\n\n### Server-safe by design\n\nBy default minions do **not** dig or place real blocks. They produce the output item straight into storage (`place-blocks: false`). This keeps the plugin TPS-friendly and never touches the world, your protections, or your terrain.\n\n## Placing, using, and picking up\n\n- Get a minion item with `/minion give <player> <type> [tier]` (admin).\n- **Right-click a block** with the minion item to place the minion on top of it. One item is consumed (not in creative).\n- **Right-click the minion** to open its management GUI.\n- **Sneak + right-click** (or sneak + left-click) the minion to pick it up. You get back the minion item (with its tier), its fuel, its modules, and everything in its storage.\n\n## The GUI\n\n| Element | What it does |\n|---|---|\n| Storage area (top rows) | Mirrors the minion's storage. Click a stack to collect it. Locked panes are capacity you have not unlocked yet. |\n| Collect All (hopper) | Moves everything that fits into your inventory. |\n| Fuel slot | Drop in the configured fuel item for a speed boost while it lasts. |\n| Module slot x2 | Install Auto-Smelt (smelts ore/raw output) or Compactor (packs output into blocks). |\n| Upgrade (anvil) | Pay the listed cost to raise the tier (faster + more storage). |\n| Info (paper) | Shows type, tier, slots, interval, fuel state, owner. |\n\n## Commands\n\nAll under `/minion` (alias `/minions`).\n\n| Command | Description |\n|---|---|\n| `/minion give <player> <type> [tier]` | Give a placeable minion item. (admin) |\n| `/minion list` | List your placed minions and where they are. |\n| `/minion info` | Plugin info, type/tier list, and your minion count. |\n| `/minion reload` | Reload `config.yml`. (admin) |\n\nTab completion is provided for subcommands, online players, types, and tiers.\n\n## Permissions\n\n| Permission | Default | Grants |\n|---|---|---|\n| `minion.use` | everyone | Place, open, upgrade, and pick up your own minions. |\n| `minion.admin` | op | `give` and `reload`, plus open/pick up any minion. (includes `minion.use`) |\n\nWith `owner-only: true` (default), only the owner, an op, or `minion.admin` may open or pick up a given minion.\n\n## Types and tiers\n\nShipped types: Cobblestone, Coal, Iron, Gold, Diamond, Redstone, Lapis, Emerald, Wheat. Each defines its output item, amount, base interval, and head skin.\n\nTiers I through XI. Higher tiers act faster (lower interval multiplier) and hold more (more storage slots). Each tier has an upgrade cost; XI is the cap. All of this lives in `config.yml`, so you can retune, add, or remove types and tiers.\n\n## Configuration (`config.yml`)\n\n| Key | Default | Meaning |\n|---|---|---|\n| `settings.place-blocks` | `false` | Physically edit terrain. Not implemented (stub) - leave off. |\n| `settings.owner-only` | `true` | Only owner/op/admin may open or pick up a minion. |\n| `settings.tick-period-ticks` | `20` | How often the engine checks minions (20 = 1s). |\n| `settings.autosave-seconds` | `120` | How often all minion data is flushed to disk. |\n| `settings.max-minions-per-chunk` | `8` | Cap per chunk. |\n| `settings.max-minions-per-player` | `100` | Cap per player (ops are exempt). |\n| `settings.show-particles` | `true` | Show the action particle. |\n| `fuel.material` | `BLAZE_POWDER` | Accepted fuel item. |\n| `fuel.speed-boost` | `0.25` | Interval reduction while fuel is present. |\n| `fuel.seconds-per-unit` | `1800` | Real run-time one fuel unit powers before it is consumed. |\n| `tiers.<n>` | I..XI | Per-tier roman, interval-multiplier, storage-slots. |\n| `types.<id>` | 9 types | display, head-owner, output, amount, base-interval. |\n\nInvalid materials or malformed entries are logged and skipped/defaulted rather than aborting the load.\n\n## Notes\n\n- **`place-blocks` is a stub.** Terrain editing is intentionally not implemented; production into storage is the supported mode.\n- **Head skins** use the head-owner name via the Bukkit SkullMeta API. On offline-mode servers heads may render as the default Steve head; the minion still works.\n- **The storage grid is collection-only.** You take items out (click a stack or Collect All); you cannot deposit your own items. Shift-clicking, double-click-gathering, and dragging into the grid are intentionally blocked so a produced item can never be reverted or duplicated.\n\n## Compatibility\n\nPaper / Spigot / Bukkit / Purpur, Minecraft 1.21.1-1.21.11. One jar, built against the 1.21.1 API (Java 21, class 65); no Paper-only classes, no NMS, no dependencies.\n\n---\n\nOriginal concept by u/hykeemssecondphone on Reddit (r/Minecraft). Built by BeansNToast.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 46,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

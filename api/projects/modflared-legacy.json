@@ -1,0 +1,18 @@
+{
+  "id": "Rf3eVYac",
+  "slug": "modflared-legacy",
+  "title": "Modflared Legacy",
+  "description": "Automatically connects you to a Cloudflare tunnel without having to install cloudflared separately.",
+  "body": "# Modflared\nAutomatically connects you to a [Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/) without having to install [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/) separately.\n#### This mod has not yet been fully tested!\n\n## How to use\nTo be able to use the mod you have to be on the operating system Windows, Linux, or MacOS.\n\n## Other resources\nFor more detailed instructions, you can read [Adalie's blog post](https://dacubeking.com/2024/02/28/Proxying-Minecraft.html).\n\n## Configuring Cloudflared\nYou need to set up cloudflare on your server for this to work. There's plenty of guides on how to do this elsewhere.  \nMake sure in your config file (possibly in `/etc/cloudflared/config.yml`) you have the lines:\n```YML\n- hostname: example.domain.net\n  service: tcp://localhost:25565\n```\nReplace `example.domain.net` with the correct subdomain you want to use. If you're running multiple instances (eg. with docker), change the port 25565 to whatever port you're using.  \nRestart the cloudflare daemon (`sudo systemctl restart cloudflared`) to apply the changes.\nAdd the correct DNS entry: go to [Cloudflare dashboard](https://dash.cloudflare.net), go to your website and DNS entries, then add a new CNAME DNS entry with your subdomain and set the target to `&lt;tunnelID&gt;.cfargotunnel.com`, with the tunnel ID found in the cloudflare config.yml file.\n### Example DNS Entries\n![Example CNAME](https://raw.githubusercontent.com/HttpRafa/modflared/multi/latest/.github/images/dns_cname.png)\n![Example TXT](https://raw.githubusercontent.com/HttpRafa/modflared/multi/latest/.github/images/dns_txt.png)\n\n### For Players\nIf your server admin has properly configured their server you should be able to connect to the server as usual. \nNo extra configuration is needed.\n\nIf your server admin has not properly configured their server, you will need to add their server to the `forced_tunnels.json` file in the modflared config folder. \n#### Example configuration (modflared/forced_tunnels.json)\n```JSON\n[\"example.domain.net\", \"example2.domain.net\"]\n```\n\n### Server Admins (Setting Up cloudflared)\nInstall Cloudflared as described in the “Configuring Cloudflared” part above.\n\n#### Telling modflared to use connect to your server using cloudflared\nFor the hostname that you want your players to connect to (eg. `example.domain.net`), create a TXT dns record with either of the following values:\n- `cloudflared-use-tunnel` - This will make modflared connect to the tunnel on the hostname itself (eg. `example.domain.net`)\n- `cloudflared-route=&lt;route&gt;` - This will make modflared connect to the tunnel under the hostname of `&lt;route&gt;`. \n(ex. setting `cloudflared-route=example2.domain.net` will make modflared connect to the tunnel on `example2.domain.net` instead of `example.domain.net`)",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 60,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10"
+  ],
+  "date_updated": null
+}

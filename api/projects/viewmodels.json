@@ -1,0 +1,36 @@
+{
+  "id": "mRTz0PJv",
+  "slug": "viewmodels",
+  "title": "Viewmodel",
+  "description": "This datapack makes animating viewmodels with OBJMC easier!",
+  "body": "<iframe align=\"center\" width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/NVDQlf6r3xE\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n```\n```\n# About Me\nVanilla Viewmodels is a Datapack Library which adds an \"animation controller\" for your OBJMC rendered viewmodels ingame. To work with the datapack, you must have:\n- An Animated (Generic in Blockbench) Model.\n- [objmc](https://github.com/Godlander/objmc) installed locally.\n- A Basic Understanding of How Resourcepacks and Datapacks work.\n```\n```\n\n# Using Viewmodel?\n## Pros\n- Seamless Item Animations that can be ran per function.\n- Thanks to OBJMC, the models can be extremely High-Resolution.\n\n## Cons\n- The OBJMC shader doesn't work with an IRIS shader on.\n- The Resourcepack Size may bloat due to high res textures exported by objmc\n\n\n# Utility:\n- ## How it works.\n  Since objmc only exports model+texture, it should be noted that the datapack adopts certain conventions to make sure that it works as intended. OBJMC, by default, will not \"prepare you a datapack/resourcepack\" like how plugins like AnimatedJava does. Hence, creating a resourcepack that correctly follows this datapack's convention is CRUCIAL.\n\n### Model in Resourcepack\nThe optional 'id' parameter accepted in the \"play-animation\" utils command requires a valid item_model component value. Since every objmc animation exports into its own model+texture, you must:\n- Create an Item Model JSON that resembles the model. `e.g. 'first_person:weapons/glock' at assets/first_person/items/weapons/glock.json`\n- Animations for the Model MUST be included in this item_model folder, where the \"model with animation\" is a model toggled when **STRING CUSTOM-MODEL-DATA value === ANIMATION-NAME**.\n![code snippet](https://cdn.modrinth.com/data/cached_images/b78abdc2a361919693921e38f729714d987f31bf.png)\nHence, every animation is a CustomModelData string in the item_model JSON file. Obviously, this implies that adding multiple animations would mean that you'll have to export every animation into its OBJ sequences => put them through OBJMC.py => take the condensed model and mention it in the item_model component.\n\n### Registering Models in Datapack.\nTo Register an OBJMC Animated Model in the datapack, open the function file `vm:global/load` and add a registry in the data modify line!\n![code snippet](https://cdn.modrinth.com/data/cached_images/7ed5ff9777292c1a3e8a6a5320d5e819c47781b7.png)\n\nHere's how a registry entry's structure looks like:\n```\n{\n  id: \"first_person:weapons/glock\", // item_model component\n  animations: [\n      {\n          \"name\":\"equip\",\n          \"start\": 0,\n          \"end\": 30,\n          \"duration\": 27,\n          keyframe_functions: [\n            { at: 0, function_file: 'test:equip' },       // Run a function file @ 0th keyframe.\n            { at: 30, function_file: 'test:end_animation' },\n            { at: 25, function_file: 'test:gun_sfx' }\n          ]\n      },\n      {\n          \"name\": \"shoot1\",\n          \"start\": 0,\n          \"end\": 8,\n          \"duration\": 6,\n          \"keyframe_functions\": [\n              { at: 0, function_file: 'gun:shoot' }\n          ]\n      }\n  ]\n}\n```\nTo register an animation that loops infinitely, set the \"end\" value to -1\n\n- ## Playing an Animation\nto play an Animation, run the command:\n```\nfunction vm:animations/play {args:{}}\n```\nthe `args:{}` field is used to tweak parameters, namely:\n```\nid: it stores/applies the *item_model* component value\nanimation: it stores the name of the animation.\nframe: the frame at which the animation should start.\n```\nan example command: \n```\nfunction vm:animations/play {args:{id:\"first_person:weapons/glock\", animation: \"equip\", frame: 10}}\n```\nThis command will,\n- change the item model of the potion item to first_person_weapons/glock\n- set the animation-to-be-played to \"equip\" (this is handled by setting animation name equal to custom_model_data string that changes the model into one with different animation texture data)\n- set the starting frame to 0 (potion color is set to [8388608+10](https://github.com/Godlander/objmc#controlling-animation))\n```\n```\n- ## Stopping an Animation\nto stop an animation, simply run the command: \n```\nfunction vm:animations/stop\n```\n```\n```\n# Credits\n- [Godlander](https://github.com/Godlander) [& the contributors on objmc github repository.] —— For Making OBJMC (and thus, viewmodels) in Minecraft possible!\n- GhostScoutW (@ghostscout on discord) —— For making a [Guide on how to setup a working viewmodel project with OBJMC](https://www.youtube.com/watch?v=Kmbc9LyhDoA)!\n- pinkiuses (creator of [ATMOS: Minecraft Edition](https://modrinth.com/modpack/atmos_roguelike)) —— For coming up with the idea of using OBJMC as viewmodels!\n- And you!",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 79,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

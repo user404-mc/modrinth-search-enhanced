@@ -1,0 +1,40 @@
+{
+  "id": "LW8KbA7k",
+  "slug": "flagger",
+  "title": "Flagger",
+  "description": "Flagger is a Paper admin-moderation plugin for reviewing flagged players, teleporting to investigate, and applying escalating punishments.",
+  "body": "# Flagger\n\nFlagger is a Paper admin-moderation plugin for reviewing flagged players, teleporting to investigate, and applying escalating punishments with SQLite-backed history.\n\n## Features\n\n- Flag players with reasons using `/flaggeradd <player> <reason>`.\n- Open a paginated flagged-player GUI using `/flagger`.\n- Consolidate multiple flags for the same player into one report.\n- Group similar flag reasons automatically.\n- Review flag details and punishment history in GUI menus.\n- Teleport to flagged players in spectator mode for safe investigation.\n- Punish from GUI with chat-entered reason and confirm step.\n- Escalating ban durations:\n  - 1st offense: 14 days\n  - 2nd offense: 30 days\n  - 3rd+ offense: permanent\n- Configurable messages, GUI items, titles, sizes, and permissions.\n\n## Commands\n\n- `/flagger`\n  - Opens the flagged-player GUI.\n- `/flagger reload`\n  - Reloads plugin configuration.\n- `/flaggeradd <player> <reason>`\n  - Adds or increments a grouped flag report for a player.\n\n## Permissions\n\n- `flagger.use` - Use `/flagger`\n- `flagger.add` - Use `/flaggeradd`\n- `flagger.manage` - Manage moderation GUI actions\n- `flagger.reload` - Use `/flagger reload`\n\n## Data Storage\n\n- Database: SQLite\n- Default file: `plugins/Flagger/flagger.db`\n- Tracks:\n  - grouped flag reports per player\n  - grouped reasons/counts per report\n  - punishment history and offense counts\n\n## Build\n\n```powershell\n.\\gradlew.bat build\n```\n\nOutput jar:\n\n- `build/libs/flagger-1.0.0.jar`\n\n## Configuration\n\nMain config file:\n\n- `src/main/resources/config.yml`\n\nYou can customize:\n\n- Punishment day lengths\n- Punishment execution mode:\n  - `BAN_THEN_KILL` (default, ban first then kill)\n  - `BAN_ONLY`\n  - `COMMANDS` (run custom console commands instead of built-in ban/kill)\n- GUI titles, sizes, and button materials\n- Messages and placeholders\n- Permission node mapping\n\nCommand placeholders for `punishments.execution.commands`:\n\n- `%player%`\n- `%reason%`\n- `%offense%`\n- `%punished_by%`\n- `%ban_until%`\n\nExample custom command mode:\n\n```yml\npunishments:\n  execution:\n    mode: COMMANDS\n    commands:\n      - \"advancedban:ban %player% Flagger: %reason%\"\n```\n\n## Compatibility\n\n- Paper `1.21.4`\n- Java `21`\n\n## License\n\nSee `LICENSE`.\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

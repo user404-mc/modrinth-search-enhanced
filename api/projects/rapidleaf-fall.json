@@ -1,0 +1,33 @@
+{
+  "id": "tyGQMYWN",
+  "slug": "rapidleaf-fall",
+  "title": "RapidLeaf-Fall",
+  "description": "RapidLeafFall removes leaves that are no longer connected to a log shortly after the wood is broken — staggered with a small random delay so canopies fade away naturally instead",
+  "body": "**RapidLeafFall** makes chopped-down trees disappear the way they should — fast, but smooth. When a player breaks the last log holding up a canopy, the disconnected leaves fade away after a short, slightly random delay instead of lingering for minutes like vanilla. No more floating leaf blocks, and no lag spikes.\n\nIt uses only the stable Bukkit/Paper API — **no NMS, no reflection, no version-locked internals** — so the same build runs across the whole 1.21 line on both Paper and Leaf.\n\n## Features\n\n**Fast but smooth decay** — each leaf is removed after its own random delay, so big trees melt away gradually instead of popping in a single frame.\n\n**Zero lag** — removals are spread across ticks with a configurable per-tick cap. A whole canopy is never deleted in one tick.\n\n**Vanilla-accurate** — a leaf only decays when it is genuinely disconnected from a tree (its vanilla distance reaches the decay threshold). Living trees are never touched.\n\n**Every leaf type** — oak, spruce, birch, jungle, acacia, dark oak, cherry, mangrove, azalea and flowering azalea are all supported through the Bukkit leaves tag, so new leaf types keep working automatically.\n\n**Respects player builds** — persistent (player-placed) leaves are left alone by default.\n\n**Drops or clean removal** — drop leaf loot via `breakNaturally()`, or simply clear the leaves to air.\n\n**Multi-world** — enable everywhere, or whitelist only the worlds you want.\n\n**Protection-friendly** — listens at monitor priority and ignores cancelled breaks, so it never fights WorldGuard or other land-protection plugins.\n\n## Requirements\n\nPaper or Leaf **1.21.x** (targets 1.21.11), running on **Java 21+**.\n\n## Installation\n\nDrop the jar into your server's `plugins/` folder and restart. A default `config.yml` is generated under `plugins/RapidLeafFall/`. Edit it as you like, then run `/rlf reload`.\n\n## Configuration\n\nEvery option lives in `plugins/RapidLeafFall/config.yml`:\n\n- **radius** — block radius around a broken log scanned for decaying leaves (default `7`).\n- **min-decay-delay** / **max-decay-delay** — each leaf is removed after a random delay in this range, in ticks (defaults `10` / `60`).\n- **blocks-per-tick** — safety cap on leaves removed per tick (default `64`).\n- **check-diagonal-leaves** — propagate decay through diagonal neighbours too (default `true`).\n- **ignore-persistent-leaves** — never decay player-placed leaves (default `true`).\n- **drop-items** — drop leaf loot, or clear to air when `false` (default `true`).\n- **decay-effects** — play vanilla break particles and sound on decay (default `false`).\n- **enabled-worlds** — world whitelist; leave empty to enable everywhere (default `[]`).\n- **debug** — verbose console logging (default `false`).\n\nTo flatten the load on very large trees, lower **blocks-per-tick** or raise **max-decay-delay**.\n\n## Commands and permissions\n\n- `/rlf reload` — reload the configuration.\n- `/rlf status` — show current settings and the pending queue size.\n\nThe alias `/qld` also works. All subcommands require the permission **rapidleaffall.admin** (default: op).\n\n## How it works\n\nA log break fires a block-break event (after protection plugins have had their say). Nearby leaves are scheduled for a check, each with its own random delay. When that check runs, the leaf's vanilla distance is read; if it is no longer supported by a log, the leaf is removed and its neighbours are re-checked. The decay cascades outward exactly like vanilla — just much faster — while the per-tick cap keeps the server smooth.\n\nMade by **ZiTr_** · released under the **MIT License**.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

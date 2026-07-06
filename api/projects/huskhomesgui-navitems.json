@@ -1,0 +1,27 @@
+{
+  "id": "TlXRWf5o",
+  "slug": "huskhomesgui-navitems",
+  "title": "HuskHomesGUI Navitems",
+  "description": "Compass opens warps, Recovery Compass opens homes, Goat Horn sets a new home named home, and Book shows public homes. The plugin always adds concise usage lore to those items.",
+  "body": "# NavItems — item shift right-click shortcuts for HuskHomes\n\n**Summary**\nTurns a few vanilla items into fast travel tools. NavItems adds concise usage **lore** to those items (without renaming) and runs HuskHomes commands on **shift + right-click**:\n\n* **Compass** → `/warplist`\n* **Recovery Compass** → `/homelist`\n* **Goat Horn** → `/sethome home-<number>` (number is global, never re-used)\n* **Book** → `/phomeslist` (public homes)\n\n---\n\n## Features\n\n* **Shift+Right-click while holding item to trigger**\n* **Always-on instructive lore**\n* **Unique home names**: `home-1`, `home-2`, `home-3`… stored in `plugins/NavItems/data.yml` so numbers never repeat across restarts.\n* **Namespaced command first, fallback second** (e.g. `huskhomes:warplist` → `warplist`).\n* **Light cooldown** (configurable) to prevent accidental double-fires.\n* `/navitems [player]` helper command to hand out the four items (with lore).\n\n---\n\n## Dependencies\n\n* **Required:** **HuskHomes** https://modrinth.com/plugin/huskhomes (the commands this plugin runs come from HuskHomes).\n* **Required:** **Updated HuskHomes GUI** https://modrinth.com/plugin/updated-huskhomesgui — if missing, it will only list warps and homes by triggering `/warplist`, `/homelist`, or `/phomeslist`\n\n> Players still need the relevant HuskHomes permissions to use the lists or set homes. NavItems only triggers the commands; HuskHomes handles access.\n\n---\n\n## Commands & permissions\n\n**Commands**\n\n* `/navitems [player]` — gives Compass, Recovery Compass, Goat Horn, Book (all with usage lore)\n\n**Permissions**\n\n* `navitems.use` — allow using the items (right-click actions)\n* `navitems.give` — allow `/navitems` (default: op)\n\nExample (LuckPerms):\n\n```\n/lp group default permission set navitems.use true\n/lp user <you> permission set navitems.give true\n```\n\n---\n\n## Configuration\n\n`plugins/NavItems/config.yml`\n\n```yaml\ncommands:\n  warplist: \"huskhomes:warplist\"\n  homelist: \"huskhomes:homelist\"\n  phomeslist: \"huskhomes:phomeslist\"\n  sethome: \"huskhomes:sethome %name%\"\n\nhomeNamePrefix: \"home-\"\ncooldownMs: 600\n```\n\n* Change the command strings or the name prefix if you like.\n* Namespaced commands ensure HuskHomes is targeted even if other plugins add similar commands.\n\n---\n\n## Compatibility\n\n* **Server:** Paper / Purpur (Paper recommended)\n* **Minecraft:** 1.21.x\n* **Java:** 21\n\n---\n\n## Installation\n\n1. Drop the JAR into `/plugins`.\n2. Start the server once (generates `config.yml` & `data.yml`).\n3. Grant `navitems.use` (and, if desired, `navitems.give`).\n4. (Optional) Install the **updated unofficial HuskHomes GUI** to get menu UIs for the lists.\n\n---\n\n## FAQ\n\n**Does this rename items?**\nNo — only lore is added. Names remain vanilla.\n\n**What if another plugin uses these items too?**\nNavItems cancels the interaction after firing the command and has a short cooldown. You can also withhold `navitems.use` from groups that shouldn’t trigger it.\n\n**Can I map different items or commands?**\nYes — edit `config.yml`. The code is small and easy to extend if you want deeper customization.\n\n---\n\n## Changelog (latest)\n\n**1.2.0**\n\n* Right-click actions for Compass / Recovery Compass / Goat Horn / Book\n* Always-on lore for those vanilla items\n* Global, persistent `home-<number>` naming\n* Namespaced HuskHomes commands with fallback\n* `/navitems` helper command\n\n---\n",
+  "categories": [
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 99,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

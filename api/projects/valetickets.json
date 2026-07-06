@@ -1,0 +1,20 @@
+{
+  "id": "2wp7eQwZ",
+  "slug": "valetickets",
+  "title": "ValeTickets",
+  "description": "ValeTickets intends to make it easy for players to ask for help and for staff to keep track of it. It’s a small plugin with in‑game commands and a tiny web page for staff. I run this in my spare time, so I try to keep it practical and safe.",
+  "body": "# ValeTickets - simple ticketing for your server\n\nValeTickets intends to make it easy for players to ask for help and for staff to keep track of it. It’s a small plugin with in‑game commands and a tiny web page for staff. I run this in my spare time, so I try to keep it practical and safe.\n\n## ▶️ Quick start\n1. Drop the jar in `plugins/` and start the server once.\n2. In‑game (as OP), run `/ticketsetup` to create the owner account.\n3. Visit `http://<server-ip>:<configured-port>/admin` and sign in.\n4. Add admins with `/ticketadmin add <username>`.\n5. Players use `/ticket` to file tickets and `/ticket check` to see updates.\n\nIf `/admin` returns 401, the owner account may not exist yet or the credentials are wrong.\n\n## 📖 What it does\n- Players can open tickets in chat with a short guided flow.\n- Staff can view tickets on a small web dashboard.\n- Optional file uploads (screenshots/logs) with type/size limits.\n- Simple roles: `OWNER` (can manage accounts) and `ADMIN`.\n- Basic rate limiting on the public form to reduce spam.\n- In-game notifications when tickets are updated.\n- *DiscordSRV integration support planned for future versions.*\n\n## 🎮 Commands\nPlayers\n- `/ticket` - start a short guided flow to create a ticket\n- `/ticket check` - view your tickets and their status\n\nAdmins\n- `/ticketadmin passwd` - change your own password\n\nOwner\n- `/ticketsetup` - create the first owner account (permission: `valetickets.setup`)\n- `/ticketadmin add <username>` - add an admin\n- `/ticketadmin reset <username>` - reset an admin’s password\n- `/ticketadmin list` - list accounts\n- `/ticketreload` - reload plugin config and restart the web server (permission: `valetickets.reload`)\n\nExamples\n- `/ticketadmin add alice`\n- `/ticketadmin reset bob`\n\n## 🌐 Web interface\n- Public form: `http://<server-ip>:8765/`\n- Admin dashboard: `http://<server-ip>:8765/admin`\n- Change password: `http://<server-ip>:8765/change-password`\n\n## 🔒 Security\n- Passwords are hashed with **Argon2id**. No plaintext, ever.\n- The plugin ships as a single jar with needed libraries inside.\n\n## ⚙️ Config\n`plugins/ValeTickets/config.yml`\n\n```yml\nweb:\n  enabled: true\n  bind: 0.0.0.0\n  port: 8765\n  # How to show ticket URLs to players\n  urlDisplay:\n    mode: \"ip\"                                # \"ip\", \"domain\", or \"custom\"\n    domain: \"your-server.com\"                 # Used when mode is \"domain\"\n    customMessage: \"Check our website!\"       # Used when mode is \"custom\"\n  uploads:\n    enabled: true\n    dir: uploads\n    maxBytesPerTicket: 104857600   # 100 MB total\n    maxBytesPerFile:   10485760    # 10 MB per file\n    allowedTypes: [\"png\", \"jpg\", \"jpeg\", \"txt\"]\n  rateLimit:\n    windowSeconds: 600\n    maxTicketsPerWindow: 3\n```\n\nIf anything’s unclear, feel free to open an issue. The plugin is intended to be simple to run on a normal Paper server.\n\nThis Plugin was built with the use of GPT-5, Gemini 2.5, and Claude Sonnet 4. As such, profiting off this plugin through redistribution or use in servers with P2W features is **prohibited**. \nPlease see license file for more information.",
+  "categories": [
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 78,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

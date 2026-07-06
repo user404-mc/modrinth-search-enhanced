@@ -1,0 +1,34 @@
+{
+  "id": "e9Zvyh0K",
+  "slug": "dogecoin",
+  "title": "Dogecoin",
+  "description": "Just Dogecoin, Dogecoin memecoin, to the moon",
+  "body": "# Dogecoin Mod\n\n[](https://fabricmc.net)\n[](#supported-versions)\n[](LICENSE)\n\nA lightweight Fabric mod that adds **Dogecoin** to Minecraft — craft it by feeding gold to a wolf, store it in your wallet, and use an ATM-style GUI to manage your crypto.\n\n---\n\n## Features\n\n- **Dogecoin item** — 2D flat item model, smeltable back to a gold ingot\n- **Wolf crafting** — right-click a wolf with a gold ingot to receive a Dogecoin (the dog \"mines\" it for you)\n- **Wallet system** — persistent per-player wallet stored in `config/dogecoin_wallets.json`\n- **ATM GUI** — `/wallet open` opens a custom ATM screen (no vanilla container textures)\n  - Deposit / Withdraw / Deposit All / Withdraw All\n  - Quick amount buttons (1, 10, 64, All)\n  - Custom amount input field\n  - Real-time balance display\n- **Commands** — `/wallet`, `/wallet open`, `/wallet deposit <amount>`, `/wallet withdraw <amount>`\n- **Configurable** — `config/dogecoin.json` with `walletEnabled` and `startingBalance`\n\n---\n\n## Installation\n\n1. Install **Fabric Loader** for your Minecraft version\n2. Download the **Fabric API** jar for your MC version\n3. Download the **Dogecoin Mod** jar from [Releases](https://github.com/yourname/dogecoin-mod/releases)\n4. Place all jars in your `mods/` folder\n5. Launch the game\n\n**Requirements:**\n\n- Minecraft 1.20.1, 1.21.1, or 1.21.4\n- Fabric Loader ≥0.16\n- Fabric API ≥0.92.0 (1.20.1) / ≥0.100.0 (1.21.x)\n\n---\n\n## Usage\n\n### Dogecoin Item\n\n| Action | Result |\n| --- | --- |\n| Right-click a wolf with a **gold ingot** | Gold consumed → 1 Dogecoin dropped/added to inventory |\n| Smelt Dogecoin in a furnace | 1 Dogecoin → 1 gold ingot (200 ticks) |\n| Blast Dogecoin in a blast furnace | 1 Dogecoin → 1 gold ingot (100 ticks) |\n\n### Wallet Commands\n\n| Command | Description |\n| --- | --- |\n| `/wallet` | Show your wallet balance and inventory count |\n| `/wallet open` | Open the ATM GUI |\n| `/wallet deposit <amount>` | Deposit Dogecoins from inventory to wallet |\n| `/wallet withdraw <amount>` | Withdraw Dogecoins from wallet to inventory |\n\n### ATM GUI\n\nRun `/wallet open` to open the ATM. The screen shows:\n\n- **Balance** — your wallet balance in DOGE\n- **Inventory** — how many Dogecoins you're carrying\n- **Amount field** — type a custom amount\n- Quick-set buttons: 1, 10, 64, All\n- **DEPOSIT** — move Dogecoins from inventory → wallet\n- **WITHDRAW** — move Dogecoins from wallet → inventory\n- **DEPOSIT ALL** — move all carried Dogecoins to wallet\n- **WITHDRAW ALL** — move entire wallet balance to inventory\n- **CLOSE** — close the ATM\n\nAll operations update the screen in real time via Fabric CustomPayload networking.\n\n---\n\n## Configuration\n\nConfig file: `config/dogecoin.json`\n\n```json\n{\n  \"walletEnabled\": true,\n  \"startingBalance\": 0\n}\n```\n\n| Option | Type | Default | Description |\n| --- | --- | --- | --- |\n| `walletEnabled` | boolean | `true` | Enable/disable the wallet system |\n| `startingBalance` | int | `0` | Initial wallet balance for new players |\n\nWallet data is stored in `config/dogecoin_wallets.json` (per-player UUID → balance).\n\n---\n\n## Building from Source\n\n**Prerequisites:** JDK 21+\n\n```bash\n# Clone the repository\ngit clone https://github.com/yourname/dogecoin-mod.git\ncd dogecoin-mod\n\n# Build for all supported versions\n./gradlew buildAll\n\n# Build for a specific version\n./gradlew build -PmcVersion=1.21.1\n\n# Output jars in build/libs/\n```\n\n> [!NOTE]\n> Multi-version builds download separate Minecraft jars for each target version.\n> The first build will take longer.\n\n---\n\n## Supported Versions\n\n| MC Version | Status | Notes |\n| --- | --- | --- |\n| 1.20.1 |   | Old networking API (`PacketByteBuf`) |\n| 1.21.1 |  | Current target (CustomPayload API) |\n| 1.21.4 |  | Latest 1.21.x (CustomPayload API) |\n\nSupport for additional versions can be added by creating a version-specific source directory in `src/versioned/`.\n\n---\n\n## Project Structure\n\n```\nsrc/\n├── main/java/          # Shared code (items, commands, config, GUI)\n│   └── com/pikmintea/dogecoin/\n└── versioned/          # Version-specific implementations\n    ├── 1.20.1/         # Fabric networking with PacketByteBuf\n    ├── 1.21.1/         # Fabric CustomPayload networking\n    └── 1.21.4/         # Fabric CustomPayload networking\n```\n\n---\n\n## License\n\n[MIT](LICENSE) — feel free to use, modify, and distribute.",
+  "categories": [
+    "cursed",
+    "decoration",
+    "economy",
+    "fabric",
+    "game-mechanics",
+    "social",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

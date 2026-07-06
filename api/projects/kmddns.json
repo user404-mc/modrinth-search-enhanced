@@ -1,0 +1,29 @@
+{
+  "id": "3JqNGnrA",
+  "slug": "kmddns",
+  "title": "KmDDNS",
+  "description": "Automatically keeps your KmDDNS record updated with your Minecraft server's IP and port.",
+  "body": "Automatically keeps your [KmDDNS](https://ddns.kmathers.co.uk) record up to date so players can always find your server — even when your IP changes.\n\nNo router config. No static IP. Just install and run.\n\n---\n\n### What it does\n\nKmDDNS gives your Minecraft server a permanent address like `myserver.ddns.kmathers.co.uk`. Whenever your server starts, the mod checks your current public IP and updates the DNS record automatically. Players always connect to the same address.\n\n**Tunnel mode** takes this further — if you can't or don't want to forward ports, the mod connects to a relay that routes player traffic through KmDDNS infrastructure. No port forwarding required at all.\n\n---\n\n### Features\n\n- Keeps your subdomain pointing at your current IP automatically\n- Sends your server's MOTD and player count to the KmDDNS API (shown on the lookup page)\n- **Tunnel mode** — no port forwarding needed, traffic is proxied through a relay\n- In-game setup wizard — register or configure everything without leaving the game\n- `/kmddns status` to see your current address, IP, and connection state at a glance\n- Configurable heartbeat interval, port, and tags\n\n---\n\n### Setup\n\n#### 1. Get a subdomain\n\nRun `/kmddns setup` in-game to open the wizard. You can:\n\n- **Register a new subdomain** — pick a name and get a token on the spot\n- **Use an existing token** — if you already have a KmDDNS account\n\nThe wizard walks you through port detection, update interval, and whether to use tunnel mode. When you confirm, it saves the config and starts immediately.\n\n#### 2. That's it\n\nYour server will now appear at `yourname.ddns.kmathers.co.uk`. Players connect using that address.\n\n---\n\n### Tunnel mode\n\nIf you're behind CGNAT, a strict firewall, or just don't want to mess with port forwarding, enable tunnel mode during setup.\n\nIn tunnel mode:\n- The mod keeps a WebSocket connection open to KmDDNS\n- When a player connects to your subdomain, the relay routes them through to your server\n- Your server doesn't need to be reachable from the internet directly\n\nEnable it during `/kmddns setup`, or set `tunnel = true` in the config and toggle it on via the API.\n\n---\n\n### Commands\n\n| Command                       | Description                                                    |\n| ----------------------------- | -------------------------------------------------------------- |\n| `/kmddns status`              | Show current IP, subdomain, tunnel state, and last update time |\n| `/kmddns setup`               | Open the interactive setup wizard                              |\n| `/kmddns setup token <token>` | Configure with an existing token                               |\n| `/kmddns setup new`           | Register a new subdomain                                       |\n\n---\n\n### Config\n\nThe config file is created automatically at `config/kmddns.toml` on first launch.\n\n```toml\n[kmddns]\nenabled = true\ntoken = \"your-token-here\"\napi_base = \"https://ddns.kmathers.co.uk/v1\"\nport = 0                  # 0 = auto-detect from server.properties\nupdate_interval = 300     # seconds between heartbeats (minimum 30)\ntags = [\"minecraft\"]\nmetadata_motd = true      # send server MOTD to the API\nmetadata_player_count = true\nlog_updates = true\ntunnel = false            # set true to use tunnel mode\n```\n\n---\n\n### Requirements\n\n- **Server-side only** — players do not need this mod\n- Fabric or NeoForge\n- Minecraft 1.21.1, 1.21.4, 1.21.5, or 1.21.11\n- A KmDDNS account (free, created via `/kmddns setup new`)\n\n---\n\n### A quick note\n\nI build these tools for fun and for the community. Keeping everything running does have real maintenance costs, and even $1 goes a long way.\n\nIf you enjoy the tools and want to give back, you can support me here: [Buy me a coffee](https://buymeacoffee.com/kohanmathers). No pressure either way — thanks for being here.\n",
+  "categories": [
+    "fabric",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 65,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

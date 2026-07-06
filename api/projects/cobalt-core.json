@@ -1,0 +1,31 @@
+{
+  "id": "scp3dIqS",
+  "slug": "cobalt-core",
+  "title": "Cobalt Core",
+  "description": "Run commands from items",
+  "body": "# Run commands from custom item data!\nCobalt core is a datapack that allows for items to run commands from custom data!\n\n**To Use**:\nEnter the command you want to run into the proper custom data path:\n```json\n{\n    \"components\": {\n        \"custom_data\": {\n            \"cobalt\": {\n                \"onUse\": {\n                    \"command\": \"say Hello World!\"\n                }\n            }\n        }\n    }\n}\n```\n# \nBelow are all current uses for Cobalt Core, along with example commands:\n\n`onUse`: runs on item use when in mainhand (item must have `consumable` component with `consume_seconds:2147483647,animation:\"block\"`)\n```mcfunction\n/give @s stick[consumable={consume_seconds:2147483647,animation:\"block\"},custom_data={cobalt:{onUse:{command:\"say Hello world!\"}}}]\n```\n`onShiftUse`: runs on item use when in mainhand while sneaking (same requirements as `onUse`)\n```mcfunction\n/give @s nether_star[consumable={consume_seconds:2147483647,animation:\"block\"},custom_data={cobalt:{onShiftUse:{command:\"say Goodbye world!\"}}}]\n```\n`onAttack`: runs upon successfully attacking a mob when in mainhand\n```mcfunction\n/give @s iron_sword[custom_data={cobalt:{onAttack:{command:\"effect give @n[nbt={HurtTime:10s},distance=..8] poison\"}}}]\n```\n`onBlock`: runs upon successfully blocking damage when held (item must have `blocks_attack` component (1.21.5+) or be a shield)\n```mcfunction\n/give @s shield[custom_data={cobalt:{onBlock:{command:\"execute on attacker at @s run summon lightning_bolt\"}}}]\n```\n`onDamage`: runs upon taking damage from a mob when held or worn\n```mcfunction\n/give @s diamond_chestplate[custom_data={cobalt:{onDamage:{command:\"execute on attacker run damage @s 2\"}}}]\n```\n`projectile.onHitMob`: runs when a thrown or shot projectile from this item hits a mob\n```mcfunction\n/give @s crossbow[custom_data={cobalt:{projectile:{onHitMob:{command:\"summon tnt ~ ~ ~ {fuse:0}\"}}}}]\n```\n`projectile.onHitBlock`: runs when a thrown or shot projectile from this item hits a block\n```mcfunction\n/give @s bow[custom_data={cobalt:{projectile:{onHitBlock:{command:\"execute on origin run tp @s ~ ~ ~\"}}}}]\n```\n`onHold`: runs every tick when held or worn\n```mcfunction\n/give @s lantern[custom_data={cobalt:{onHold:{command:\"effect give @e[distance=..50] glowing 1 0 true\"}}}]\n```\n`projectile.onSpawn`: runs for a single tick when the projectile is spawned\n```mcfunction\n/give @s trident[custom_data={cobalt:{projectile:{onSpawn:{command:\"summon lightning_bolt\"}}}}]\n```\n`projectile.onTravel`: runs for every tick the projectile is travelling\n```mcfunction\n/give @s bow[custom_data={cobalt:{projectile:{onTravel:{command:\"execute on origin run tp @s ~ ~ ~\"}}}}]\n```",
+  "categories": [
+    "datapack",
+    "equipment",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 48,
+  "followers": 0,
+  "game_versions": [
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

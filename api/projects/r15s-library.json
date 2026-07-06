@@ -1,0 +1,34 @@
+{
+  "id": "a92Qz3sG",
+  "slug": "r15s-library",
+  "title": "R15's Library",
+  "description": "A library that I use for my mods",
+  "body": "![banner](https://cdn.modrinth.com/data/cached_images/0cb182309236582bd8ea02b50a286a353c738103_0.webp)\n# Docs\nThis library includes animation player, Create 0.5.1/6.0.0, Create: Copycats and CC:Tweaked compatibility\n# Animations\nAnimation player with a lot of uses\n\n### Registering clip in code\n\n```java\nAnimationClip clip = AnimationClip.builder(\"myaddon:drill_pose\", 20.0F)\n    .looping(true)\n    .track(new TimelineTrack(\"right_arm\", List.of(\n        new Keyframe(0.0F, Transform.IDENTITY, Easing.LINEAR),\n        new Keyframe(10.0F, new Transform(Float3.ZERO, new Float3(-0.5F, 0.0F, 0.0F), Float3.ONE), Easing.EASE_IN_OUT),\n        new Keyframe(20.0F, Transform.IDENTITY, Easing.EASE_IN_OUT)\n    )))\n    .build();\n\nLibraryApi.registerAnimation(new ResourceLocation(\"myaddon\", \"drill_pose\"), clip);\n```\n\n### Playing on server\n\n```java\nLibraryApi.playAnimation(serverPlayer, new ResourceLocation(\"myaddon\", \"drill_pose\"), 1.0F, true);\n```\n\n### Triggering from client\n\n```java\nLibraryApi.requestSelfAnimation(new ResourceLocation(\"myaddon\", \"drill_pose\"), 1.0F, true);\n```\n\nThis sends a client->server packet and is controlled by config (`allowClientAnimationTriggerPacket`).\n\n### Data-driven clips\n\nDrop JSON into `data/<namespace>/r15lib_animations/<name>.json`.\n\n### Example shape:\n\n```json\n{\n  \"length\": 12.0,\n  \"looping\": false,\n  \"tracks\": {\n    \"right_arm\": [\n      { \"tick\": 0.0, \"rotation\": [0.0, 0.0, 0.0], \"easing\": \"LINEAR\" },\n      { \"tick\": 4.0, \"rotation\": [-0.95, 0.1, 0.0], \"easing\": \"EASE_OUT\" },\n      { \"tick\": 12.0, \"rotation\": [0.0, 0.0, 0.0], \"easing\": \"EASE_IN_OUT\" }\n    ]\n  }\n}\n```\n\n### Commands\n\n- `/r15lib play <targets> <clip> [looping] [speed]`\n- `/r15lib stop <targets>`\n- `/r15lib clips`\n\n# CC:Tweaked\n\n### Key pieces\n\n- `@LuaPeripheralMethod` annotation for exposed methods.\n- `CcTweakedApi.registerPeripheral(...)` to bind a `BlockEntity` class to a peripheral type.\n- Reflection bridge creates an `IDynamicPeripheral` proxy when CC is installed.\n- Auto capability attach via Forge event hooks.\n\n### Quick example\n\n```java\npublic class CrusherPeripheralOwner {\n    private final MyCrusherBlockEntity blockEntity;\n\n    public CrusherPeripheralOwner(MyCrusherBlockEntity blockEntity) {\n        this.blockEntity = blockEntity;\n    }\n\n    @LuaPeripheralMethod(\"get_progress\")\n    public int getProgress() {\n        return blockEntity.getProgress();\n    }\n\n    @LuaPeripheralMethod(\"set_enabled\")\n    public void setEnabled(boolean enabled) {\n        blockEntity.setEnabled(enabled);\n    }\n}\n\nCcTweakedApi.registerPeripheralFromOwnerClass(\n    MyCrusherBlockEntity.class,\n    \"myaddon_crusher\",\n    CrusherPeripheralOwner::new,\n    CrusherPeripheralOwner.class\n);\n```\n\n### Commands\n\n- `/r15lib cc`\n- `/r15lib cc bindings`\n- `/r15lib cc methods <binding-class>`\n\n# Create: Copycats Plus\n\n## What is included\n\n- Compat detection with multiple candidate mod ids\n- Copycat block/block entity detection helpers\n- Material scanning (`getMaterial`)\n- Area survey service returning:\n  - scanned block count\n  - copycat block count\n  - copycat block entity count\n  - materialized entry count\n  - material id (dominant one)\n\n### API\n\n- `CopycatsApi.isLoaded()`\n- `CopycatsApi.isCopycat(state)`\n- `CopycatsApi.isCopycat(blockEntity)`\n- `CopycatsApi.material(blockEntity)`\n- `CopycatsApi.survey(level, center, radius)`\n\n### Config\n\n- `enableCopycatsReflection`\n- `maxCopycatsSurveyRadius`\n\n### Commands\n\n- `/r15lib copycats`\n- `/r15lib copycats inspect`\n- `/r15lib copycats survey [radius]`\n\n# Create\n\n`CreateCompatService` auto-detects Create and exposes:\n\n- `installed()`\n- `line()` -> `V0_5` / `V0_6` / `UNKNOWN`\n- `version()`\n- `isKineticBlockEntity(BlockEntity)`\n- reflection reads:\n  - `readStressImpact(...)`\n  - `readStressCapacity(...)`\n  - `readSpeed(...)`\n  - `isOverStressed(...)`\n\n### API usage\n\n`CreateAddonApi.snapshot(blockEntity)` returns a `CreateKineticSnapshot` with:\n\n- impact\n- capacity\n- usage ratio\n- speed\n- overstressed\n- stress tier (`IDLE`, `LIGHT`, `MEDIUM`, `HEAVY`, `CRITICAL`)\n\n`CreateAddonApi.survey(level, center, radius)` aggregates a local kinetic network area.\n\n### Commands\n\n- `/r15lib create`\n- `/r15lib create inspect`\n- `/r15lib create survey [radius]`\n- `/r15lib create plan <capacity> <machineImpact>`\n- `/r15lib create profile list`\n- `/r15lib create profile calc <profile> <capacity>`",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 55,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

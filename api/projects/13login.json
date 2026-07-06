@@ -1,0 +1,21 @@
+{
+  "id": "j232efch",
+  "slug": "13login",
+  "title": "13LOGIN",
+  "description": "This module is a cross-server login plugin created by 134528.",
+  "body": "**简要介绍 | Brief Introduction**\n\n中文：\n\n这是一款跨服务器登录插件，作者 134528，基于 _Velocity_ 代理端运行。\n\n硬编码限制（无法修改）：\n\n· 主服务器名称必须是 _factions_\n· _Velocity_ 转发模式必须设为 NONE\n\n为什么强制 NONE？\n登录服务器可以部署在独立端口（如 25566），用防火墙只允许 _Velocity_ 代理访问，玩家无法直连。这种架构下不需要转发真实 IP。\n\n如果确实需要真实 IP？\n可以用 _Velocity_ 的 forwarding-secret + MODERN 模式配合其他插件实现。本插件本身不依赖真实 IP。\n\n使用流程：\n玩家进入 _lobby_ 验证密码，通过后自动跳转到 _factions_。跳转前有 5 秒时间，按 SHIFT 可取消跳转。本插件只需在 _lobby_ 安装一次，其他服务器无需再装登录插件。首次进入的玩家会收到设置密码的提示。\n\nEnglish：\n\nA cross-server login plugin by 134528, running under _Velocity_ proxy.\n\nHardcoded limits (cannot be changed):\n\n· Main server name must be _factions_\n· _Velocity_ forwarding mode must be NONE\n\nWhy NONE?\nThe login server can run on a separate port (e.g., 25566) with a firewall rule allowing only the _Velocity_ proxy to connect. Players cannot reach it directly. This setup does not require real IP forwarding.\n\nIf you need real IP?\nYou can use _Velocity's_ forwarding-secret + MODERN mode with other plugins. This plugin itself does not rely on real IP.\n\nHow it works:\nPlayers join _lobby_ to authenticate, then are automatically sent to _factions_. There is a 5-second window; pressing SHIFT cancels the teleport. Install this plugin only on _lobby_. No other login plugins needed on other servers. First-time players will be prompted to set a password.\n\n---\n\n**安装 | Installation**\n\n中文：\n\n1. 打开 Velocity 的 velocity.toml，将 player-info-forwarding-mode 设为 \"NONE\"\n2. 确保代理中配置了 lobby（登录服）和 factions（主服）两个服务器\n3. 保存并重启 Velocity\n4. 将插件放入 lobby 服务器的 plugins 文件夹\n5. 重启 lobby 服务器\n\n本插件无配置文件，放进去即可运行。\n\nEnglish：\n\n1. Open velocity.toml and set player-info-forwarding-mode to \"NONE\"\n2. Ensure your proxy has two servers: lobby (login) and factions (main)\n3. Save and restart Velocity\n4. Put the plugin into the lobby server's plugins folder\n5. Restart the lobby server\n\nNo config file. Just drop it in and it works.\n\n---\n**推荐部署架构 | Recommended Setup**\n\n中文：\n\n· 让 lobby 监听独立端口（如 25566），不公开给玩家\n· 使用防火墙（如 iptables、ufw）只允许 Velocity 代理的 IP 访问该端口\n· factions 正常公开访问\n\nEnglish：\n\n· Run lobby on a separate port (e.g., 25566), do not expose it to players\n· Use a firewall (e.g., iptables, ufw) to allow only your Velocity proxy's IP to access that port\n· Keep factions public as normal\n\n---\n\n**注意事项 | Notes**\n\n中文：\n\n· 仅支持 Minecraft 1.21.8\n· 兼容 Paper、Purpur、Pufferfish 等服务端\n· 其他版本或其他服务端核心可能无法正常运行\n· NONE 模式下无法获取玩家真实 IP，详见上方说明\n\nEnglish：\n\n· Only supports Minecraft 1.21.8\n· Compatible with Paper, Purpur, Pufferfish, and similar servers\n· Other versions or server software may not work correctly\n· Real IP is not available under NONE mode. See explanation above.\n\n---\n\n**联系方式 | Contact**\n\n中文： 邮箱 tp13652024@outlook.com | QQ 3047450260 | 回复时间约 7 个工作日\n\nEnglish： Email tp13652024@outlook.com | QQ 3047450260 | Response time: about 7 business days",
+  "categories": [
+    "management",
+    "paper",
+    "spigot",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

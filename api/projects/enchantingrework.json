@@ -1,0 +1,33 @@
+{
+  "id": "XDSLY92J",
+  "slug": "enchantingrework",
+  "title": "Enchanting Rework",
+  "description": "A custom enchanting-table GUI that replaces the vanilla gamble. Forge reusable enchanted books from ingredient blueprints (the ingredients are not consumed), then apply them to gear for a flat level cost. Deterministic and craft-y. 25 default recipes.",
+  "body": "# Enchanting Rework\n\nA custom enchanting-table GUI that replaces the vanilla \"gamble on three options\"\nflow with something deterministic and craft-y. Right-click an enchanting table\n(or run `/enchanting`) to open a 54-slot interface with two functions: a **Book\nForge** that mints enchanted books from ingredient blueprints, and an **Apply**\nstation that puts a book onto an item for a flat level cost.\n\n## What it does\n\n### Book Forge\n\nPlace a recipe's ingredient items in the three forge slots and some lapis in the\nlapis slot. The ingredients are a **blueprint** - they are *not* consumed. When\nthey match a configured recipe, a preview of the resulting enchanted book appears\nin the output. Click it (with an empty cursor) to mint the book; you pay the\nrecipe's level and lapis cost, and the ingredients stay where they are so you can\nforge again.\n\nRecipes can require specific materials (CACTUS, DIAMOND), a potion\n(`potion:strength`), or whole categories (any sword, any armor, any pickaxe...).\nThe two shipped example recipes are:\n\n* `cactus + any armor + any sword` -> Thorns\n* `any sword + potion of strength + grindstone` -> Sharpness\n\n(The original idea's \"sharpening station\" is mapped to a vanilla **grindstone**.)\nA broad default set covers common combat, tool, armor, and bow enchants - see\n`/enchanting recipes` in game or `config.yml`.\n\n### Apply\n\nPut an item in the target slot and an enchanted book in the book slot. A preview\nof the enchanted item appears in the output; click it to enchant the item for a\nflat level cost (default 5). Conflicting enchants are skipped, and a stored\nenchant only upgrades the item if it is a higher level than what is already there.\n\nBy default, books minted by the forge are **reusable** - they are not consumed\nwhen applied. That is the intended buff. Books from other sources (loot, trades)\nare consumed on apply like normal. Set `reusable-books: false` to make every book\nsingle-use.\n\nMinted books are genuine vanilla enchanted books, so anvils and grindstones still\nwork with them.\n\n## Opening the GUI\n\n* Right-click any vanilla **enchanting table** (can be turned off).\n* Run `/enchanting` (can be turned off).\n\nPlayers without `enchanting.use` always fall through to the vanilla enchanting\ntable, so disabling permission never locks anyone out of enchanting entirely.\n\n## Commands\n\nAll under `/enchanting` (aliases: `/erework`, `/ench`).\n\n| Command | Description |\n|---|---|\n| `/enchanting` | Open the Enchanting Rework GUI. |\n| `/enchanting recipes` | List the configured book-forge recipes. |\n| `/enchanting info` | Plugin info and current toggles. |\n| `/enchanting reload` | Reload `config.yml`. (admin) |\n\n## Permissions\n\n| Permission | Default | Grants |\n|---|---|---|\n| `enchanting.use` | true | Open the GUI, forge books, apply enchants, list recipes. |\n| `enchanting.admin` | op | `reload` (includes `enchanting.use`). |\n\n## Configuration (`config.yml`)\n\n| Key | Default | Meaning |\n|---|---|---|\n| `open-via-command` | `true` | Allow opening the GUI with `/enchanting`. |\n| `intercept-enchanting-table` | `true` | Right-clicking a vanilla table opens this GUI. |\n| `reusable-books` | `true` | Forged books are not consumed on apply. |\n| `apply-cost-levels` | `5` | Flat level cost to apply a book to an item. |\n| `default-level-weaker-than-max` | `true` | Recipes with no explicit level use vanilla max minus one. |\n| `recipes.<id>` | (see file) | A forge recipe: `ingredients`, `result-enchant`, optional `level`, `cost-levels`, `cost-lapis`. |\n\nIngredient tokens accepted in a recipe: a material name (`CACTUS`,\n`minecraft:diamond`), a potion (`potion`, `potion:strength`), or a category\n(`any_sword`, `any_axe`, `any_pickaxe`, `any_shovel`, `any_hoe`, `any_tool`,\n`any_armor`, `any_helmet`, `any_chestplate`, `any_leggings`, `any_boots`,\n`any_bow`, `any_book`). Result enchants accept a modern key (`sharpness`,\n`minecraft:thorns`) or a legacy Bukkit name (`DAMAGE_ALL`). Bad recipes are\nlogged and skipped on load, never partially applied.\n\n## Compatibility\n\nPaper / Spigot / Bukkit / Purpur, Minecraft 1.21.1-1.21.11. One jar, built\nagainst the 1.21.1 API (Java 21, class 65), load-tested on Paper 1.21.11; no\nPaper-only classes, no NMS, no dependencies. Action-bar feedback uses the\nbundled BungeeCord chat component API, which is part of the Spigot API.\n\n## Known gaps / not yet verified\n\n* **Not playtested in a live client.** The build is verified (compiles, jar,\n  bundled `plugin.yml`, all classes are Java-21 class version 65), but no\n  in-client GUI test was possible in this environment. The inventory-event logic\n  is the highest-risk area and should be smoke-tested on a server before relying\n  on it (forge a book, apply it, shift-click items in and out, close the GUI\n  mid-edit and confirm nothing is lost or duplicated).\n* **Cursor-on-close.** Items in input slots are returned on close; an item left\n  on the *cursor* is handled by the server's own cursor-drop behaviour, which is\n  the normal Bukkit path.\n* **Potion keyword matching** keys on the potion type / effect / display-name\n  string. Exotic custom potions named oddly might not match a `potion:<keyword>`\n  token; a plain `potion` token always matches any potion.\n* **One enchant per recipe** by design. A book minted by the forge holds a single\n  enchant. Applying a multi-enchant book obtained elsewhere will apply all of its\n  compatible enchants in one go (still a flat cost).\n\n---\n\nOriginal concept by u/Ciryl_Lynyard on Reddit (r/Minecraft). Built by BeansNToast.",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

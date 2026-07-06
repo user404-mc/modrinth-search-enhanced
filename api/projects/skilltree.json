@@ -1,0 +1,36 @@
+{
+  "id": "PFIUJ0dq",
+  "slug": "skilltree",
+  "title": "Skill Tree",
+  "description": "A lightweight RPG skill tree for survival servers. Spend XP levels (and/or resource items) in a GUI to permanently unlock and level up passive skills: speed, faster mining, ore and crop bonuses, more health, better fishing. Per-player, persistent.",
+  "body": "# SkillTree\n\nA lightweight RPG-style **skill tree** for survival servers. Players spend vanilla\nXP levels (and/or resource items) to permanently unlock and level up passive\nupgrades. Everything persists per-player across restarts.\n\nOpen `/skills` to browse the tree in a chest-GUI; click an affordable node to\nunlock or level up that skill.\n\n## Skills\n\n| Skill | What it does | Default tiers |\n|-------|--------------|---------------|\n| **Swiftness** | Permanent movement-speed boost | 4 (+5% / +10% / +15% / +20%) |\n| **Efficient Mining** | Mine blocks faster (ambient hidden Haste) | 3 (Haste I / II / III) |\n| **Prospector** | Fortune-style bonus ore drops without a Fortune pickaxe | 3 (Fortune I / II / III) |\n| **Cultivator** | Extra yield when harvesting mature crops | 3 (+1 / +2 / +3 produce) |\n| **Iron Stomach** | Chance to negate hunger loss | 3 (20% / 40% / 60%) |\n| **Vitality** | More maximum health | 5 (+2 HP per tier, up to +10) |\n| **Angler's Luck** | Chance for an extra fishing catch | 3 (15% / 30% / 50%) |\n\nAll magnitudes, tier counts, and costs are configurable in `config.yml`.\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/skills` | Open the skill tree GUI | `skilltree.use` (default: all) |\n| `/skills info` | List your unlocked skills | `skilltree.use` |\n| `/skills grant <player> <skill> <tier>` | Set an online player's tier (0 = remove) | `skilltree.admin` |\n| `/skills reset <player>` | Clear all of a player's skills | `skilltree.admin` |\n| `/skills reload` | Reload `config.yml` and re-apply effects | `skilltree.admin` |\n\nAliases: `/skill`, `/skilltree`, `/st`. All subcommands and arguments tab-complete\n(skill names, online players, valid tiers).\n\n`<skill>` accepts the config keys: `swiftness`, `efficient-mining`, `prospector`,\n`cultivator`, `iron-stomach`, `vitality`, `anglers-luck`.\n\n## Permissions\n\n| Permission | Default | Grants |\n|------------|---------|--------|\n| `skilltree.use` | true (everyone) | Open the GUI, view skill info, buy skills |\n| `skilltree.admin` | op | grant / reset / reload (implies `skilltree.use`) |\n\n## Configuration\n\n`config.yml` (created on first run). Highlights:\n\n- `currency.use-xp-levels` (default true) - tiers cost vanilla XP levels.\n- `currency.use-items` (default false) - tiers also require resource items. Set\n  per tier under `item-cost` as a list of `MATERIAL:amount` (e.g. `DIAMOND:4`).\n  If both currency modes are on, the player pays both.\n- `gui-title` - the chest-GUI title (supports `&` colour codes).\n- Per skill: `enabled`, `max-tier`, GUI `slot`, `icon`, and a `tiers:` map where\n  each tier sets `magnitude`, `xp-cost`, and `item-cost`.\n- `prospector.resource-blocks` - the ore list eligible for bonus drops\n  (coal/iron/copper/gold/diamond/emerald/lapis/redstone + deepslate variants,\n  nether gold, nether quartz, ancient debris by default).\n- `cultivator.crops` - the crop list (wheat / carrots / potatoes / beetroots /\n  nether wart by default).\n\nRun `/skills reload` after editing to apply changes without a restart.\n\n### Magnitude meanings\n\n- Swiftness: fraction of base speed (`0.15` = +15%).\n- Efficient Mining: Haste amplifier (`0` = Haste I, `1` = Haste II ...).\n- Prospector: effective Fortune level for the bonus-drop roll.\n- Cultivator: number of extra produce items dropped.\n- Iron Stomach / Angler's Luck: chance from `0.0` to `1.0`.\n- Vitality: bonus max health in half-hearts (`2` = one heart).\n\n## Persistence\n\nPer-player tiers are saved to `plugins/SkillTree/data/players.yml`, keyed by UUID.\nWritten on every change and on shutdown; loaded on startup. Survives restarts.\n\n## Compatibility\n\nPaper / Spigot / Bukkit / Purpur, Minecraft 1.21.1-1.21.11. One jar, built\nagainst the 1.21.1 API (Java 21, class 65), load-tested on Paper 1.21.11; no\nPaper-only classes, no NMS, no dependencies.\n\n## Known gaps / notes\n\n- **Not playtested in a live client.** Built and verified to compile cleanly with\n  the bundled `plugin.yml` and Java class version 65; behaviour is from code\n  review, not in-game testing.\n- **Efficient Mining + beacons.** Efficient Mining is implemented as an ambient\n  Haste effect. A nearby beacon providing Haste can overwrite or refresh the\n  effect (vanilla keeps the higher amplifier / refreshes duration). When the\n  player leaves the beacon range the plugin's infinite Haste is restored on the\n  next join/respawn; if a stronger plugin/beacon Haste is active it takes\n  precedence while it lasts. This is an inherent limitation of stacking a single\n  potion-effect type and is documented rather than worked around.\n- **Prospector bonus is an approximation.** It mimics a Fortune distribution by\n  dropping the extra items a Fortune pick of the rolled level would have added; it\n  does not perfectly replicate every per-ore vanilla loot table (e.g. redstone /\n  lapis count ranges), and it does not interact with other plugins that also\n  modify ore drops. Redstone-ore \"lit\" state is treated the same as unlit.\n- **Online-only admin targets.** `/skills grant` and `/skills reset` operate on\n  online players (effects must be applied to a live entity). Offline edits would\n  require editing `players.yml` directly.\n- **Attribute names.** Compiled against the 1.21.1 attribute constants\n  (`GENERIC_MOVEMENT_SPEED`, `GENERIC_MAX_HEALTH`); these resolve to the same\n  registry attributes on 1.21.1-1.21.11.\n\n---\n\nOriginal concept by u/ColdFire0415 on Reddit (r/Minecraft). Built by BeansNToast.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 133,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

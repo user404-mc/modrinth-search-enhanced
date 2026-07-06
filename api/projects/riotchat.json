@@ -1,0 +1,29 @@
+{
+  "id": "j2dHFjSR",
+  "slug": "riotchat",
+  "title": "RiotChat",
+  "description": "A Basic general purpose chat and Tablist plugin with Luckperms and PlaceholderAPI Support",
+  "body": "# RiotChat\n\nRiotChat is a lightweight, moderation-focused chat plugin for Spigot/Paper. It provides formatted chat, mentions, a persistent ignore system, clear/announce utilities, tablist headers/footers, and a persistent mute system with database backing and tab-completion for moderation commands.\n\nThis README documents features, installation (binary/JAR), configuration, database, commands, permissions and how to report issues.\n\n---\n\n## Features\n\n- Formatted chat with prefix/suffix support (LuckPerms integration)\n- Mentions highlighting and processing\n- Private messages (`/msg`, `/reply`)\n- Persistent ignore system (database-backed)\n- Clear chat with optional announcement and sound\n- Server-wide announcements using MiniMessage templates\n- Tablist header/footer support\n- Persistent mute system with DB storage:\n  - `/mute <player> [duration] [reason]`\n  - `/unmute <player>`\n  - Mutes stored in `riotchat_mutes` table\n  - Tab-completion for `/mute` (player names + durations)\n- Config-driven behavior and H2/MySQL support\n\n---\n\n## Installation (JAR / release repository)\n\nThis repository is intended to host the plugin releases (JAR files) and does not necessarily include the source code. To install the plugin on your server:\n\n1. Download the release JAR from this repository's Releases page or Modrinth, SpigotMC, Hangar.\n2. Copy the JAR file into your Paper/Spigot server's `plugins/` directory.\n3. Start or restart the server. The plugin will generate default configuration files on first run.\n\nIf a compiled JAR is not present in the repository, check the Releases tab or the project's website for binary downloads.\n\n---\n\n## Configuration\n\nMain config file (generated on first run): `config.yml` in the plugin folder. Important config keys (examples):\n\n- `enable-chat` (boolean) — Global switch for chat features.\n- `chat.separator` (string) — Separator between name and message.\n- `chat.name-hover` / `chat.name-click` (boolean) — Enable hover/click behaviour on player names.\n- `clearchat.lines` (int) — Number of blank lines to send for `/clearchat`.\n- `announce.format` (MiniMessage block) — Template used for broadcast announcements.\n- `database.type` — `H2` or `MYSQL`.\n- `database.h2.file` — H2 file path (without `.mv.db`).\n- `database.mysql.*` — MySQL connection settings.\n\nExample excerpt:\n\n```yaml\ndatabase:\n  type: \"H2\"\n  h2:\n    file: \"plugins/RiotChat/riotchat\"\n\nclearchat:\n  lines: 120\n  message: |\n    <dark_gray>━━━━━━━━━━━━━━━━━━━━━━━━</dark_gray>\n    <gradient:#00ffff:#00bcd4><bold>CHAT CLEARED</bold></gradient>\n    <gray>The chat has been cleared by <b><cyan>%player_name%</cyan></b></gray>\n    <dark_gray>━━━━━━━━━━━━━━━━━━━━━━━━</dark_gray>\n```\n\n---\n\n\n\n## Commands\n\n- `/msg <player> <message>` — Send a private message.\n- `/reply <message>` — Reply to last private message.\n- `/announce <message>` — Broadcast an announcement (permission: `riotchat.announce`).\n- `/clearchat [silent]` — Clears chat; `silent` suppresses broadcast (permission: `riotchat.clearchat`).\n- `/togglechat` — Toggle global chat state (permission: `riotchat.chat.toggle`).\n- `/ignore <player>` — Toggle ignoring a player (permission: `riotchat.ignore`).\n- `/ignorelist` — Show the players you currently ignore.\n- `/mute <player> [duration] [reason]` — Mute a player (permission: `riotchat.mute`).\n  - Duration examples: `10s`, `5m`, `1h`, `1d`, or `perm` for permanent.\n  - The plugin provides a `MuteTabCompleter` that suggests players and common durations.\n- `/unmute <player>` — Unmute a player (permission: `riotchat.unmute`).\n\n---\n\n## Permissions\n\nSuggested default permission nodes (adjust in your permissions system):\n\n- `riotchat.color` — Use color codes in chat (default: op)\n- `riotchat.reload` — Reload configuration (default: op)\n- `riotchat.announce` — Use `/announce` (default: op)\n- `riotchat.ignore` — Use ignore commands (default: op)\n- `riotchat.clearchat` — Clear chat (default: op)\n- `riotchat.clearchat.bypass` — Bypass clear chat effects (default: false)\n- `riotchat.chat.bypass` — Bypass global chat-disabled state (default: op)\n- `riotchat.chat.toggle` — Toggle chat on/off (default: op)\n- `riotchat.mute` — Mute players (default: op)\n- `riotchat.unmute` — Unmute players (default: op)\n- `riotchat.mute.bypass` — Bypass mutes (for staff) (default: op)\n\n---\n\n## Troubleshooting\n\n- DB connection errors: verify your `config.yml` database settings and reachability.\n\nIf you need further help, open an issue on the repository with server logs and configuration excerpts.\n\n---\n\n## Contributing & Source\n\nThis repository is intended to host plugin releases (binary JARs). It may not contain the plugin source code. If you want to contribute or request the source, please open an issue or check the project page for a link to the source repository. Pull requests against compiled-release repositories are not accepted.\n\n---\n\n## License\n\nThis project is provided under the MIT License by default. \n\n---\n\n## Changelog (short)\n\n- v0.1 — Core chat formatting, ignore, messaging, announce, clear-chat, tablist\n- v0.2 — Persistent mute system, `/mute`/`/unmute`, `MuteTabCompleter`",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

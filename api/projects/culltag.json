@@ -1,0 +1,25 @@
+{
+  "id": "Lf5UXIxZ",
+  "slug": "culltag",
+  "title": "CullTag",
+  "description": "Server-side mod that hides player nametags through walls",
+  "body": "<h1 align=\"center\">CullTag</h1>\n<h3 align=\"center\">True Server-Side Nametag Culling for Fair Play</h3>\n\nVanilla Minecraft gives every player a free, built-in wallhack: nametags visible through solid blocks. **CullTag** fixes this unfair advantage with highly optimized, server-side raycasting. \n\nIf a player is hiding behind a wall, their nametag is gone. It’s that simple. \n\nBecause all calculations and packet interceptions happen entirely on the server, **your players don't need to install anything.** They can connect with a 100% vanilla client and immediately experience fairer gameplay, making it perfect for SMPs, PvP arenas, and hardcore survival servers.\n\n## Key Features\n\n* **Zero Client Setup:** 100% server-side. Vanilla and modded clients both see the correct, culled nametags automatically.\n* **Engineered for Performance:** Raycasting can be heavy, so CullTag is built to protect your server's TPS. It utilizes **symmetric LOS** (calculating only one ray per pair of players instead of two) and only runs a sweep every few ticks - typical cost is well under a millisecond.\n* **Crouch to Hide:** Crouching players have their nametag hidden from everyone entirely, regardless of line of sight - great for staying unseen. Enabled by default and fully optional.\n* **Live Configuration:** Tweak maximum tracking distance, tick frequency, and crouch-hiding in `config/culltag.properties`.\n* **Hot-Swappable:** Toggle the entire system or reload config changes live without ever needing to restart your server.\n* **Built-in Profiling:** Monitor exactly how the mod is operating under the hood with built-in performance metrics.\n\n## How It Works\n\nEvery few ticks, the server quietly casts a ray between each pair of online players. If that ray intersects with a block, the server intercepts the vanilla network packets and hides the target's nametag from the viewer. The exact moment a player steps out of cover and Line of Sight (LOS) is restored, the server updates the packet and the nametag seamlessly reappears.\n\nWhen `crouch_hides_nametag` is enabled (the default), a crouching player's nametag is hidden from everyone outright - no line-of-sight check needed.\n\n## Commands\n\nManage the mod entirely in-game (requires appropriate permissions):\n* `/culltag enable` & `/culltag disable` - Toggle the culling system live. Your choice automatically persists to the config file.\n* `/culltag reload` - Hot-reload any changes made to `culltag.properties`.\n* `/culltag stats` - View real-time raycast performance metrics and active tracking data.\n\n## Requirements\n\n* **Environment:** Server-side ONLY (Drop it in your server's `mods` folder and you're done)\n* **Dependencies:** [Fabric API](https://modrinth.com/mod/fabric-api)\n\n## Known Incompatibilities\n\n* **[PassableFoliage](https://modrinth.com/mod/passable-foliage)** - mutates leaf collision shapes on both client and server, desynchronising LOS raycasts through foliage and producing erratic nametag visibility.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "minigame",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 121,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

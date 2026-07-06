@@ -1,0 +1,38 @@
+{
+  "id": "MAkhHBQM",
+  "slug": "vmythicbetonaddon",
+  "title": "vMythicBetonAddon",
+  "description": "Adds a bqtag condition to MythicMobs to check BetonQuest 3.0 player tags inside skills, targeters and TargetConditions.",
+  "body": "# vMythicBetonAddon\n\nvMythicBetonAddon seamlessly connects **MythicMobs** with **BetonQuest 3.0** by adding powerful native conditions for player tags, player points, global tags, and global points.\n\nInstead of setting up complex workarounds, this lightweight addon lets you check BetonQuest data directly inside MythicMobs skills, inline targeters, and `TargetConditions` blocks.\n\n## Support the Project\n\nvMythicBetonAddon is developed and maintained with care as part of the vPlugins project. If this addon helps your server, consider making a donation to support future updates, bug fixes, documentation and new projects.\n\n[![Become a Patron](https://img.shields.io/badge/Become_a_Patron-FF424D?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/EullerAkoz)\n\n## Community & Support\n\nNeed help configuring conditions, want to report a bug, or suggest a feature? Join our community or check the documentation:\n\n[![Discord Server](https://img.shields.io/badge/Discord_Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/vudhK6Q6hZ) [![Official Wiki](https://img.shields.io/badge/Official_Wiki-1A202C?style=for-the-badge&logo=wikipedia&logoColor=white&color=3182ce)](https://vorpix.net/vplugins/wiki/vMythicBetonAddon)\n\n## Main Features\n\n- **Native Integration:** Check player tags and points directly within MythicMobs mechanics.\n- **Global Data Support:** Read global tags and global points natively without overhead.\n- **Flexible Syntax:** Full compatibility with inline targeters and standard `TargetConditions` blocks.\n- **Advanced Comparisons:** Built-in support for flexible numeric evaluations (`<`, `>`).\n- **Logical Grouping:** Check multiple conditions at once using efficient AND logic.\n- **Plug and Play:** Zero configuration files needed—just drop it into your plugins folder and go.\n\n## Conditions Included\n\n- `bqtag` → Checks a player-specific tag.\n- `bqpoint` → Checks a player-specific point balance.\n- `gbqtag` → Checks global BetonQuest tags.\n- `gbqpoint` → Checks global BetonQuest points.\n\n## Requirements\n\n| Requirement | Supported Version |\n| :--- | :--- |\n| **Paper** (or forks) | 1.21+ |\n| **MythicMobs** | 5.6.1+ |\n| **BetonQuest** | 3.0.0+ |\n| **Java** | 21+ |\n\n---\n\n## How to Use\n\n### Check if a player HAS a tag\n```yml\nTargetConditions:\n  - isplayer\n  - bqtag{tag=mypackage>my_tag}\n```\n\n### Check if a player does NOT have a tag\n```yml\nTargetConditions:\n  - bqtag{tag=mypackage>my_tag} false\n```\n\n### Inside an inline targeter\n```yml\n- throw{v=10} @PlayersInRadius{r=6;conditions=[- bqtag{tag=mypackage>my_tag} false]}\n```\n\n### Multiple tags (all must match)\n```yml\n- bqtag{tag=mypackage>tag_a,mypackage>tag_b}\n```\n\n---\n\n## Point Conditions\n\n### Syntax\n```yml\n- bqpoint{point=(package)>(point);value=(comparison)}\n```\n\n### Comparison Format\n`bqpoint` and `gbqpoint` use flexible value evaluation structures:\n- `10` → Exactly `10`\n- `<10` → `10` or less\n- `10>` → `10` or more\n\n### Check if a player has exactly 10 points\n```yml\nTargetConditions:\n  - isplayer\n  - bqpoint{point=mypackage>my_point;value=10}\n```\n\n### Check if a player has 10 or less points\n```yml\nTargetConditions:\n  - isplayer\n  - bqpoint{point=mypackage>my_point;value=<10}\n```\n\n### Check if a player has 10 or more points\n```yml\nTargetConditions:\n  - isplayer\n  - bqpoint{point=mypackage>my_point;value=10>}\n```\n\n### Invert the point check with `false`\n```yml\nTargetConditions:\n  - isplayer\n  - bqpoint{point=mypackage>my_point;value=10>} false\n```\n\n### Multiple points (all must match)\n```yml\n- bqpoint{point=mypackage>point_a,mypackage>point_b;value=10>,<5}\n```\n\n---\n\n## Global Conditions\n\n### Check if a global tag exists\n```yml\nTargetConditions:\n  - gbqtag{tag=mypackage>global_tag}\n```\n\n### Check if a global point has a value\n```yml\nTargetConditions:\n  - gbqpoint{point=mypackage>global_point;value=5>}\n```\n\n### Invert global checks\n```yml\nTargetConditions:\n  - gbqtag{tag=mypackage>global_tag} false\n  - gbqpoint{point=mypackage>global_point;value=<3} false\n```\n\n---\n\n## Technical Notes\n\n- `bqtag` and `bqpoint` evaluate data directly from the **target player**.\n- `gbqtag` and `gbqpoint` pull strictly from **global BetonQuest data**.\n- Multiple comma-separated elements listed inside tag/point conditions use **AND logic**.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "mobs",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

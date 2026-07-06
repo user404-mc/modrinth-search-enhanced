@@ -1,0 +1,43 @@
+{
+  "id": "H4qOGS2r",
+  "slug": "datalens",
+  "title": "DataLens",
+  "description": "Real-time data inspector for Minecraft",
+  "body": "<div align=\"center\">\n  \n  # 🔍 DataLens\n  \n  *Real-time data inspector for Minecraft — inspect, edit, compare and export any block, entity or item.*\n    \n  [![PaperMC](https://img.shields.io/badge/Compatible%20with-1.20.x%20|%201.21.x-lightgrey.svg)](#)\n  [![CodeFactor](https://www.codefactor.io/repository/github/parallax-development/datalens/badge)](https://www.codefactor.io/repository/github/parallax-development/datalens)\n  \n</div>\n\n---\n\n## Overview\n\n**DataLens** is a Paper plugin that gives server operators and developers a powerful lens into the internal data structures of Minecraft objects. Point at any block, entity or player, and instantly explore its full data tree — PDC tags, attributes, potion effects, enchantments, block states and more — through both a **paginated chest GUI** and **chat commands**.\n\nUnlike simple NBT viewers, DataLens provides a complete **inspect → edit → validate → diff → export** pipeline with automatic rollback on failure, a built-in changelog, and a public API for third-party schema registration.\n\n### **Supported platforms:** Bukkit / Spigot / Paper 1.20.x – 1.21.x · Java 21+\n\n---\n\n## Features\n\n### 🔎 Deep Inspection\n- **Blocks, Entities, Items & Players** — inspect any object via raytrace targeting or by player name.\n- **Full data tree extraction** — PDC keys, block states, entity attributes, potion effects, equipment, enchantments, lore, and more are captured into a hierarchical `DataNode` tree.\n- **Version-adaptive** — pluggable adapter layer auto-detects the server version and loads the appropriate reader/writer.\n\n### ✏️ Safe In-Place Editing\n- **Set / Remove** any primitive value by dot-notation path (e.g. `pdc.myplugin:level`).\n- **Type validation & coercion** — raw string inputs are validated against the target node's `DataType` before committing.\n- **Atomic rollback** — a deep-copy snapshot is taken before every write; if persistence fails the tree is restored automatically.\n\n### 📊 Diff Engine\n- Compare the **live** data tree against your **working copy** to see exactly what changed — additions, removals and modifications are displayed with color-coded chat output.\n\n### 📤 Export\n- Dump the complete data tree as **JSON** or **YAML** directly to chat.\n\n### 🖥️ Inspector GUI\n- 54-slot paginated inventory with navigation breadcrumbs.\n- Click into compound/list nodes to drill down; use **Back** to navigate up.\n- Color-coded type indicators, pagination controls, and one-click export.\n\n### 📝 Changelog\n- Every `SET` and `REMOVE` operation is logged to `plugins/DataLens/changelog.log` with timestamps, actor, path, and old/new values.\n- Configurable — can be disabled entirely.\n\n### 🔐 Permission System\n- Granular permission nodes (`datalens.inspect`, `datalens.edit`, `datalens.admin`).\n\n### 🧩 Public API\n- Third-party plugins can register **schemas** for their PDC namespaces to improve labelling and validation.\n- Programmatic access to `InspectorService` and `SessionService` via `DataLensPlugin.getAPI()`.\n\n### ⚡ Performance\n- Per-player sessions backed by a **Caffeine** LRU cache with configurable TTL and capacity.\n- Read operations are thread-safe; writes enforce main-thread execution.\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/inspect` | Inspect the block/entity you are looking at (raytrace) | `datalens.inspect` |\n| `/inspect <player>` | Inspect a named online player directly | `datalens.inspect` |\n| `/data set <path> <value>` | Edit a primitive value at the given path | `datalens.edit` |\n| `/data remove <path>` | Delete the node at the given path | `datalens.edit` |\n| `/data export [json\\|yaml]` | Export the inspected data tree to chat | `datalens.inspect` |\n| `/data diff` | Show differences between live data and working copy | `datalens.inspect` |\n\nBoth commands include **context-aware tab completion** — paths are autocompleted from the live data tree, and values suggest type-appropriate options.\n\n---\n\n## Permissions\n\n| Node | Description | Default |\n|---|---|---|\n| `datalens.inspect` | Inspect blocks, entities and items | `op` |\n| `datalens.edit` | Edit inspected data values | `op` |\n| `datalens.admin` | Full administrative access (inherits inspect + edit) | `op` |\n\n---\n\n## Configuration\n\nConfiguration is stored in `plugins/DataLens/config.yml`:\n\n```yaml\ndebug: false\n\ncache:\n  session-ttl-seconds: 60     # Idle timeout for player sessions\n  max-sessions: 100            # Maximum concurrent inspection sessions\n\ninspect:\n  max-ray-distance: 5.0        # Raytrace distance in blocks for /inspect\n\nchangelog:\n  enabled: true                # Enable/disable edit logging\n  max-entries: 10000           # Maximum changelog entries\n```\n---\n\n## 📚 Documentation and support\n\nAll documentation, source code, and examples are available in the official repository:  \n👉 https://github.com/Parallax-Development/DataLens\n",
+  "categories": [
+    "bukkit",
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "9erlPQII",
+  "slug": "docker-companion",
+  "title": "Docker Companion",
+  "description": "Server and Docker are best friends now!",
+  "body": "This mod makes dedicated server more friendly for docker usecases, allowing easily create isolated server setup within seconds without using bloated third-party images and pieces of software.\n\nIt can:\n- apply server properties from SERVER_PROPERTIES env varibale\n- auto-op players from SERVER_OPERATORS env varibale\n- handles process signals correctly and gracefully shut-down server process\n\n\n<details>\n<summary>example Dockerfile</summary>\n\nNote, entrypoint must `exec` java binary in order to handle signals properly and have nice graceful shutdown.\n```\nFROM eclipse-temurin:25-jre-alpine-3.23 AS server-build\nRUN mkdir /server && apk update && apk add wget\nWORKDIR /server\nRUN wget -O /installer.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.217/neoforge-21.1.217-installer.jar\nRUN java -jar /installer.jar --installServer\nRUN echo \"eula=true\" > eula.txt\n\nFROM eclipse-temurin:25-jre-alpine-3.23\nCOPY --from=server-build /server /server\n\nRUN cat <<'EOF' > /server/entrypoint.sh\n#/usr/bin/env sh\nset -e\n\nUSER_ID=${USER_ID:-1000}\nGROUP_ID=${GROUP_ID:-1000}\nUSERNAME=${USERNAME:-appuser}\n\nif ! getent group \"$GROUP_ID\" >/dev/null 2>&1; then\n    addgroup -g \"$GROUP_ID\" \"$USERNAME\"\nfi\n\nif ! id -u \"$USER_ID\" >/dev/null 2>&1; then\n    adduser -D -u \"$USER_ID\" -G \"$USERNAME\" -s /bin/bash \"$USERNAME\"\nfi\n\necho \"$SERVER_JAVA_OPTS\" > user_jvm_args.txt\nchown -R \"$USER_ID\":\"$GROUP_ID\" .\nexec su-exec \"$USERNAME\" sh -c 'exec java @user_jvm_args.txt @libraries/net/neoforged/neoforge/21.1.217/unix_args.txt'\nEOF\n\nRUN chmod +x /server/entrypoint.sh\nRUN apk add --no-cache su-exec\nWORKDIR /server\nCMD [\"/server/entrypoint.sh\"]\n```\n\n\n</details>\n\n\n<details>\n<summary>example docker-compose.yml</summary>\n\n```\nservices:\n  minecraft-server:\n    build: ./container\n    container_name: minecraft-server\n    stdin_open: true\n    tty: true\n    ports:\n      - \"25565:25565\"\n    volumes:\n      - ./data/mods:/server/mods\n      - ./data/world:/server/world\n    environment:\n      SERVER_JAVA_OPTS: |2\n        -Xms2G\n        -Xmx10G\n        -XX:+UseZGC\n        -XX:+ZGenerational \n        -XX:+AlwaysPreTouch \n        -XX:+UseStringDeduplication\n      SERVER_OPERATORS: |2\n        op-player-uuid\n        another-op-player-uuid\n      SERVER_PROPERTIES: |2\n        max-players=20\n        motd=Welcome to the Minecraft Server!\n        online-mode=false\n        difficulty=normal\n        gamemode=survival\n        spawn-monsters=true\n        view-distance=10\n        white-list=false\n        pvp=true\n        generate-structures=true\n        max-world-size=29999984\n        enable-query=false\n        enable-rcon=false\n        enable-status=false\n    restart: unless-stopped\n```\n\n</details>\n\n\n\n",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 53,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

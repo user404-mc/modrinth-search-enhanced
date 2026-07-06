@@ -1,0 +1,22 @@
+{
+  "id": "HHpCzF66",
+  "slug": "critindicator",
+  "title": "CritIndicator",
+  "description": "Flashes a big \"CRIT!\" on screen on every critical hit and tracks your crit streak + personal best in a bottom-right HUD. Toggle with V, reset with Shift+V.",
+  "body": "**CritIndicator** turns vanilla's nearly invisible crit sparkle into something you can actually feel. When you land a critical hit on a living entity, a large yellow **CRIT!** flashes in the upper-third of your screen and fades out over 1.5 seconds — and a small bottom-right counter ticks up your current streak. Miss a crit and the streak resets; nail a clean run and you'll watch your personal best climb.\n\n### What it shows\n```\nCrit streak: 7\nBest:        21\n14/26 (54%)\n```\n\n- **Crit streak** — consecutive crits since your last non-crit attack on a mob.\n- **Best** — highest streak this session.\n- **`hits/total (%)`** — running crit ratio: how many of your attacks were crits.\n\n### How it detects crits\nSame conditions vanilla uses when computing critical hits, evaluated the moment you swing at a living entity:\n\n- Player is falling (`fallDistance > 0`)\n- Player is **not** on ground, climbing, in water, in a vehicle or sprinting\n- Player is **not** under Blindness\n- Attack cooldown is at least ~90% recharged\n- Target is a `LivingEntity`\n\nThis means the indicator agrees with the server's actual crit calculation — if vanilla would crit, **CRIT!** flashes; if not, nothing fires and your streak breaks.\n\n### Controls\n- **V** — toggle the HUD on / off\n- **Shift + V** — reset streak, best, and ratio counters\n\nBoth keys are read via raw GLFW polling, so they work the same on every supported Minecraft version without a rebind UI.\n\n### Compatibility\nWorks on **Minecraft 1.21.8, 1.21.9, 1.21.10, and 1.21.11** (Fabric Loader 0.16+). One JAR for all four versions — install with Fabric API and drop into your `mods/` folder.\n\n- Pure client-side — install on the client only, works on any server, no game-state changes, no anti-cheat impact.\n- Hides automatically when you press **F1** to hide the rest of the HUD.\n- Counters live in memory only — they reset when you quit (this is a session streak, not a lifetime stat).\n\n### Why\nCritical hits in vanilla are subtle: a small particle puff and a slightly higher damage number. CritIndicator gives you instant, glanceable feedback that your timing was right — and a streak counter you can chase.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 49,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,22 @@
+{
+  "id": "sJi0grep",
+  "slug": "xporbs",
+  "title": "XpOrbs HUD",
+  "description": "Tiny top-left HUD that counts experience orbs within 16 blocks and their total XP value, so you never miss orbs that scattered out of view after a fight. Toggle with X.",
+  "body": "**XpOrbs HUD** is a one-line indicator that tells you whether there are still experience orbs in the area worth picking up. Vanilla Minecraft only shows orbs visually — and they often fly off behind blocks, drop down a cliff, or scatter into tall grass after a mob fight. By the time the XP-bar flash settles down you have no idea whether there's still anything left to grab. XpOrbs answers that at a glance.\n\n### What it shows\nA small badge in the top-left corner:\n```\nOrbs: 8 (~52 XP)\n```\n- **Orbs** — how many `ExperienceOrbEntity` entities are alive within 16 blocks of you.\n- **~XP** — the sum of their values (what you would gain if you collected them all).\n\nWhen there are no orbs nearby, the badge dims to a muted `Orbs: 0` so you can tell the mod is still active without it shouting.\n\n### How it works\nEvery 5 client ticks (≈4 times per second) the mod queries the client world for nearby `ExperienceOrbEntity` instances inside a 16-block cube around the player, then filters by squared-distance so the radius is a true sphere. Each orb's value is read from `getValue()` and summed. The count and total are cached between scans so the HUD render itself is essentially free.\n\n### Controls\n- **X** — toggle the HUD on / off. A chat message confirms the new state.\n\nThe key uses raw GLFW polling so it behaves identically on every supported Minecraft version, no rebind UI required.\n\n### Compatibility\nWorks on **Minecraft 1.21.8, 1.21.9, 1.21.10, and 1.21.11** (Fabric Loader 0.16+). One JAR covers all four versions — install via Fabric and drop into your `mods/` folder.\n\n- Pure client-side: install on the client only, works on any server, no game-state changes.\n- Hides automatically when you press **F1** to hide the rest of the HUD, and while any GUI screen is open.\n- Counts only orbs you can already reach in the loaded world chunks; orbs in unloaded chunks aren't included.\n\n### Why\nXP orbs are easy to miss. After clearing a mob spawner room, killing a few zombies near a ravine, or breaking a vein of ore, orbs scatter and float around for a couple of minutes. XpOrbs HUD lets you know whether there's still a meaningful XP haul waiting nearby — without doing a slow lap of the room or hunting through tall grass.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

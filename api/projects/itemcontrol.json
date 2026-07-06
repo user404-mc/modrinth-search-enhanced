@@ -1,0 +1,33 @@
+{
+  "id": "NiJ6gIEq",
+  "slug": "itemcontrol",
+  "title": "ItemControl",
+  "description": "Advanced server management tool that enforces strict global and player-specific limits on items and enchantments via a sleek GUI.",
+  "body": "# ItemControl\n\nItemControl is a comprehensive administrative tool designed for Minecraft servers that require strict economy balancing and item rarity management. This plugin allows server operators to define hard limits on the quantity of specific items and enchantments that can exist, either globally across the server or individually within a player's inventory.\n\nUnlike basic limiters, ItemControl offers a complete in-game GUI for management, active inventory scanning, and persistent tracking of limited items to ensure distinct rarity levels are maintained.\n\n## Features\n\n### Global Server Limits\nEstablish a definitive maximum count for specific items or enchantments on the entire server.\n* **Circulation Control:** When the global limit for an item is reached, players cannot craft, fish, enchant, or find more of that item.\n* **Dynamic Tracking:** The plugin tracks when limited items are destroyed (burned, despawned, voided) and automatically lowers the count, allowing new instances to be found or created.\n\n### Player Inventory Limits\nRestrict the number of specific items a single player can carry.\n* **Pickup Prevention:** Players cannot pick up items if they exceed their defined limit.\n* **Active Inventory Scanning:** A configurable background task monitors player inventories every second. If a player exceeds a limit (e.g., via trading or admin commands), the excess items are immediately removed from their inventory and dropped on the ground.\n* **Strict Enforcement:** Limits apply to all acquisition methods, including crafting, anvil repairs, grindstone usage, and trading.\n\n### Precision Enchantment Control\nManage enchantments with level-specific granularity.\n* **Level Gating:** You can allow standard levels of an enchantment (e.g., Sharpness I-IV) freely, but set a global limit on higher levels (e.g., Sharpness V).\n* **Downgrading:** If a player attempts to enchant an item with a level that exceeds their personal limit, the plugin can automatically downgrade the enchantment to the maximum allowed level.\n\n### In-Game Management GUI\nConfiguration files are optional. The plugin features a robust GUI to manage all aspects of the system.\n* **Visual Editor:** View current counts, max limits, and status percentages visually.\n* **Easy Addition:** Click items in your inventory within the GUI to instantly create a new limit.\n* **Settings Toggle:** Enable or disable broadcasts, logs, inventory checks, and bypass systems directly from the menu.\n\n---\n\n## How It Works\n\nThe plugin operates on two distinct scopes:\n\n1. **Player Scope:** This checks the local inventory of a user. It ensures that no single player creates a monopoly on resources like Diamond Blocks or God Apples. If the \"Inventory Check\" setting is enabled, the server actively scans inventories to enforce this rule.\n2. **Global Scope:** This maintains a server-wide counter. When a Global Item is generated, the counter increases. When that item is destroyed (e.g., thrown in lava), the counter decreases. This creates a true \"economy of rarity.\"\n\n**Conflict Resolution:**\nIf an item has both a Player Limit and a Global Limit, the plugin enforces the stricter of the two. For example, if the Global Limit allows 1 more item, but the player is full, they cannot acquire it.\n\n---\n\n## Commands\n\n* `/itemcontrol menu` - Opens the main administration interface.\n* `/itemcontrol reload` - Reloads the `limits.yml` configuration file from disk.\n* `/itemcontrol help` - Displays the available commands.\n\n---\n\n## Permissions\n\n* `itemcontrol.admin` - Grants full access to the plugin, including the GUI and reload commands.\n* `itemcontrol.bypass.*` - Grants bypass rights for all limits.\n* `itemcontrol.bypass.<item>` - Bypasses limits for a specific item (e.g., `itemcontrol.bypass.oak_planks`).\n* `itemcontrol.bypass.<enchantment>` - Bypasses limits for a specific enchantment (e.g., `itemcontrol.bypass.sharpness`).\n\n---\n\n## Configuration\n\nThe `limits.yml` file handles data storage, but also offers core settings:\n\n* **Broadcasts:** When enabled, the server announces when a limited global item is found or lost.\n* **Console Log:** Toggles detailed logging of plugin actions to the server console.\n* **Bypass Enabled:** A master switch to enable or disable the permission-based bypass system entirely.\n* **Inventory Check:** Toggles the active background task that scans player inventories for limit violations.\n\n---\n\n## Installation\n\n1. Download the plugin JAR file.\n2. Place it into your server's `plugins` folder.\n3. Restart the server.\n4. Use `/itemcontrol menu` to start configuring limits.",
+  "categories": [
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 121,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

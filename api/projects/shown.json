@@ -1,0 +1,19 @@
+{
+  "id": "U9aIswpv",
+  "slug": "shown",
+  "title": "Shown!",
+  "description": "An easy-to-use widget-based UI library!",
+  "body": "## Shown!\nShown! is a widget-based UI library for Minecraft, allowing simple creation of interfaces for all sorts of purposes!\n\n## Screens\nJust like Minecraft, you need to start with a Screen. The Screen is where your entire interface is created, and handled.\nThe most basic screen can be created as follows:\n```java\npublic class ExampleScreen extends ShownScreen {\n    public ExampleScreen() {\n        super();\n    }\n\n    @Override\n    protected void init() {\n        super.init();\n    }\n}\n```\nWhen creating and adding widgets, you should make them in `init()`. Your call to `super.init()` should also always be at the bottom, as this runs the initialization for all of the added widgets, as well as updates the dimensions of each widget.\n\n## Widgets\nAdding widgets is extremely simple, as well as how they function. First, we should go over how to position and scale them.\n\nWidgets use a custom Vector class called `UIVec` to handle position and scale. `UIVec` has two values for each axis, scale and offset. Scale is the value of the axis relative to the parent widget, while offset is a constant value. An example of how this works can be shown here:\n![Layout Example](https://cdn.modrinth.com/data/cached_images/e3d134202867b51b2f303a2d0402dcdf8a48baa6.png)\n\nAs seen above, the entire width of the panel is 100px while the height of the box is only 80px. The elements contained within the panel are as follows:\n* A red box, parented to the main panel. It has a position of (0, 0, 0, 0) and a size of (0.5, 0.5, 0, 0), therefore being 50x40px large.\n* A green box, parented to the main panel. It has a position of (0.5, 0.25, 0, 0) and a size of (0.25, 0.75, 0, 0), therefore being 25x60px large, while also being positioned at (50, 20)\n* A blue box, parented to the red box. It also has a position of (0, 0, 0, 0) and a size of (0.5, 05, 0, 0), therefore it is 25x20px large.\n\nPositioning and scaling widgets this way allows for exact relativity for all screen sizes, and also specific sized elements, such as a 20px tall header bar.\n\nUsing this understanding, placing a simple panel widget in the center of the screen that is half of the size in each axis can be done as follows:\n```java\n@Override\nprotected void init() {\n    PanelWidget panel = new PanelWidget(\n            new UIVec(0.25, 0.25, 0, 0),\n            new UIVec(0.5, 0.5, 0, 0)\n    );\n    this.addWidget(panel);\n\n    super.init();\n}\n```",
+  "categories": [
+    "fabric",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 92,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

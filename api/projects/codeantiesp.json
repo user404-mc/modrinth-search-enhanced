@@ -1,0 +1,40 @@
+{
+  "id": "wU0cbYuH",
+  "slug": "codeantiesp",
+  "title": "CodeAntiESP",
+  "description": "CodeAntiESP is a premium Anti-ESP tool specialized for SMP servers.",
+  "body": "# CodeAntiESP\n\n**Version:** 1.0.0  \n**Author:** CodeTeam \n**Server:** Paper 1.20+  \n**Java:** 17+  \n\nA server-side anti-cheat packet filter that neutralizes ESP, X-Ray, Freecam and structure-detection cheats — without installing anything on the client. CodeAntiESP intercepts and rewrites outgoing packets via ProtocolLib so that malicious clients never receive the data they need to cheat.\n\n## How It Works\n\nCodeAntiESP hooks into the server's packet pipeline at the highest priority and rewrites or cancels outgoing packets per-player, in real time. It tracks each player's actual position, view distance and underground status to determine exactly which blocks, entities and structures they are legitimately allowed to see — and hides everything else.\n\n## Core Modules\n\n### Underground Block Obfuscation (Anti-X-Ray)\n- Replaces all underground block states below a configurable Y level (default: Y=16) with stone in outgoing chunk, block-change and multi-block-change packets\n- Two modes: safe **post-chunk masking** (default) sends fake block-change overlays after chunk load — no risk of client disconnects. Optional **raw map-chunk rewriting** for maximum throughput, gated behind a safety flag\n- Strips hidden block-entity data (chests, spawners, vaults, etc.) from chunk packets so container ESP cannot read them\n- Zeros block-light data for hidden sections to prevent light-based ESP from mapping caves\n- **Local mining reveal**: when a player actually breaks a block underground, only that block's real state is sent back — and it reverts after a configurable timeout\n- **Nearby reveal**: real blocks within a small radius around the player are restored so legitimate gameplay looks normal\n\n### Entity Hider (Anti-Entity-ESP)\n- Cancels all entity-related packets (spawn, movement, metadata, equipment, effects, animation, etc.) for entities below the deepslate Y level that the player cannot legitimately see\n- Budgeted per-tick scanning with configurable throughput to keep MSPT cost low\n- Handles entity destroy, mount/passenger references and tab-list packets to prevent ghost entities\n\n### Player Hider (Anti-Player-ESP)\n- Hides other players from viewers who cannot actually see them (no line-of-sight or too far away)\n- Uses server-side `hasLineOfSight` checks with a configurable distance threshold\n- Caches visibility decisions per viewer/target pair with a TTL to avoid redundant raycasts\n- Keeps hidden players in the tab list (so they still appear online) while suppressing their in-world entity packets\n\n### Freecam Detection\n- Validates incoming position packets against the server's cached player position\n- If a movement packet reports a position farther than the configured desync threshold (default: 48 blocks), the player is quarantined — new chunk packets are temporarily blocked for that player\n- Detects chunk, block-change and multi-block-change packets targeting chunks outside the server's view matrix\n- All violations trigger admin alerts with per-player cooldown to prevent spam\n\n### ESP Decoys (Honeypot)\n- Sends short-lived fake entity spawn packets (zombies, skeletons, creepers, armor stands — fully configurable) at random underground locations around each player\n- ESP clients render these as real entities, making ESP overlays unreliable and confusing\n- Decoys auto-expire after a configurable lifetime and are never real server entities — zero world impact\n\n### Fake Block Decoys (Honeypot)\n- Sends fake block-change packets for high-value blocks (diamond ore, ancient debris, chests, spawners, vaults, etc.) at random underground positions\n- X-Ray clients see fake ores and containers that don't actually exist\n- Blocks are restored to their real state when the player gets close enough\n- Fully configurable block types, spawn rate, lifetime, distance and Y range\n\n### Amethyst Cluster Hider\n- Hides amethyst blocks, budding amethyst and amethyst clusters/buds from ESP clients until the player is actually nearby\n- Scans a configurable Y range and replaces amethyst with stone in outgoing packets\n- Reveals real amethyst when the player enters the render distance, then re-hides it when they leave\n\n### Structure Hider\n- Blocks custom payload packets on channels that leak structure data: `debug/`, `structure`, `worldgen`, `poi`, `village`, `stronghold`, `mineshaft`, `monument`, `fortress`, `bastion`, `end_city`, `ancient_city`, `trail_ruins`, `trial_chambers`, `jigsaw`\n- Cancels debug sample payloads that can expose structure bounding boxes\n- Near-zero MSPT cost — pure packet cancellation\n\n### Admin Alerts\n- Real-time in-game alerts to staff with the `codeantiesp.alerts` permission when a player is flagged for suspicious behavior\n- Console logging of all flagged events (configurable)\n- Per-player alert cooldown to prevent chat spam\n- `/codeantiesp status` shows live runtime statistics (tracked players, active modules, config values)\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/codeantiesp` | Shows runtime status and all active module states |\n| `/codeantiesp reload` | Reloads `config.yml` without restarting the server |\n| `/codeantiesp status` | Same as `/codeantiesp` — displays current configuration and tracked player count |\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `codeantiesp.admin` | `op` | Manage the plugin (reload, status) |\n| `codeantiesp.alerts` | `op` | Receive real-time suspicious-player alerts in chat |\n\n## Configuration\n\nCodeAntiESP ships with sensible defaults — drop the jar in, and it works. Every module can be individually toggled and tuned in `config.yml`:\n\n- `deepslate-y-level` — Y level below which underground data is hidden (default: 16)\n- `post-chunk-mask` — safe fake-block overlay after chunk load (default: on)\n- `nearby-reveal-radius-blocks` — real blocks restored within this radius of the player (default: 5)\n- `entity-hider` — hide underground entities from surface players (default: on)\n- `player-hider` — hide players without line-of-sight (default: on)\n- `freecam-detection` — validate movement packets and block out-of-range chunks (default: on)\n- `esp-decoys` — send fake entity honeypots to poison ESP (default: on)\n- `fake-block-decoys` — send fake ore/container honeypots to poison X-Ray (default: off)\n- `amethyst-cluster-hider` — hide amethyst geodes from ESP (default: off)\n- `structure-hider` — block structure-revealing payload channels (default: on)\n- `disabled-worlds` — worlds where CodeAntiESP does nothing (default: spawn, afk)\n\n## Dependencies\n\n- **ProtocolLib** 5.3.0+ (required)\n\n## Performance\n\n- Post-chunk masking is budgeted: configurable sections-per-tick, layers-per-step and a nanosecond tick budget (default: 0.75 ms) ensure masking never spikes MSPT\n- Entity hiding is budgeted: configurable players-per-tick with a rotating cursor for even distribution\n- Visibility caches with TTLs prevent redundant raycasts and distance checks\n- Structure hiding is pure packet cancellation — effectively zero cost\n",
+  "categories": [
+    "economy",
+    "management",
+    "paper",
+    "purpur",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

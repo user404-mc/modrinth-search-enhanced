@@ -1,0 +1,30 @@
+{
+  "id": "awzl5Yi9",
+  "slug": "stamp-fabric",
+  "title": "Stamp",
+  "description": "Client-side Fabric mod for repeating sign texts.",
+  "body": "![Banner](https://cdn.modrinth.com/data/cached_images/51033a944e0f4ba38b39625eda8272204bd8e871_0.webp)\n<table>\n      <h1>Stamp</h1>\n      <p>A minimal, client-side Fabric utility mod for Minecraft 1.21.1 designed for automated sign text repetition on anarchy servers like 2B2T.</p>\n      <p>Stamp intercepts outgoing chat commands, caches manually entered sign text, and automatically pre-fills and submits subsequent signs with a safety cooldown to avoid server-side packet filters.</p>\n    </td>\n  </tr>\n</table>\n\n## Features\n\n*   **Client-Side Commands**: Commands (`.stamp on`, `.stamp off`, `.stamp`) are intercepted inside the client's network handler before packets are constructed, making them completely invisible to server-side chat logs or plugins.\n*   **Vanilla-Compliant Packet Flow**: Stamp modifies the GUI's native `messages` array during initialization. The text is submitted using Minecraft's own `finishEditing` pipeline, maintaining perfect vanilla packet compliance to bypass strict anti-cheat heuristics.\n*   **Cooldown-Based Auto-Submit**: Once the sign screen opens pre-filled, the mod waits 500ms before triggering submission. This delay prevents rapid-packet rate-limit kicks on high-frequency server filters.\n*   **Survival Hand Detection**: Intelligently handles survival placing where placing the last sign in a stack leaves the hand empty before the GUI initializes, ensuring the auto-signer does not deactivate prematurely.\n\n![demo](https://raw.githubusercontent.com/alfredsaveron/stamp/refs/heads/main/demo.gif)\n\n## Usage\n\n1. Type `.stamp on` in chat to enable the utility.\n2. Place a sign and write your text manually. Pressing **Done** caches the lines.\n3. Every next sign placed will open pre-filled with the cached text and automatically submit after a 500ms delay.\n4. Type `.stamp off` to disable the mod and clear the cache. Re-enabling starts with a fresh cache.\n\n### Chat Commands\n*   `.stamp on` - Enables the mod and readies the cache.\n*   `.stamp off` - Disables the mod and clears the active cache.\n*   `.stamp` - Prints the help usage locally.",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 27,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "S02iitcR",
+  "slug": "soft-worldborder",
+  "title": "Soft Worldborder",
+  "description": "Worldborder prevents healing rather than exploration!",
+  "body": "Prevents healing outside of the worldborder instead of preventing exploration outside of it.\nPlayers who leave the worldborder will recieve the status effect \"Desolation\" and not be able to heal in any capacity.\n### Features\nDesolation prevents recieving healing from sources like:\n- Eating\n- Totem of Undying\n- Potions (Regeneration, Instant Healing, etc)\n- Absorption _(configurable)_\n- etc..\n\n### Usage\n\nIn a new world (as op) you might run:\n```python\n/swb set minecraft:overworld enabled true\n/swb set minecraft:overworld halfWidth 500\n```\n\n### Images\n_As you get close to the border:_\n\n![World Border](https://cdn.modrinth.com/data/cached_images/d5f7b1fce6bc707a9d8703043fe7f811362009f9.png)\n\n_When you pass through the border you will be given the status effect:_\n\n![Status Effect](https://cdn.modrinth.com/data/cached_images/474d453b658293748813c7c537dc56a1e3472d12.png) ![Heart Shader Effect](https://cdn.modrinth.com/data/cached_images/6a584cddb9b80d6f4b693800c777594adf1088fb.gif)\n\n### Configuration\n\nOperator's level >=2 are able to call the commands:\n```python\n# enables/disables the border in the specified dimension\n/swb set modid:dimension_name enabled <true|false>\n# determines the number of blocks out from the origin in which the walls are placed\n/swb set modid:dimension_name halfWidth <number>\n# determines the center\n/swb set modid:dimension_name origin <x, z>\n# returns current configuration for a dimension\n/swb get modid:dimension_name\n# returns the current configuration for all dimensions\n/swb list\n# reloads currently set configuration file into server, only necessary if commands were not used\n/swb reload\n```\n\nThe configuration file itself can also be directly modified if you would rather do that:\n```jsonc\n{\n  \"dimensions\": {\n    // supports modded dimensions via modid:dimension_name\n    \"minecraft:overworld\": {\n      \"enabled\": true,\n      \"origin\": {\n        \"x\": 0.0,\n        \"z\": 0.0\n      },\n      // distance from origin to the wall\n      \"halfWidth\": 250.0\n    }\n  },\n  // not reccomended, does hard clamping on health every tick\n  \"clampEnforcement\": false,\n  // prevents bonus hearts given from absorption effecet\n  \"blockAbsorption\": false\n}\n```\n\n\n### Credits:\nInspired by, but didn't have the version I wanted this mod to be used in:\nhttps://modrinth.com/mod/no-heal-border",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "minigame"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 26,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

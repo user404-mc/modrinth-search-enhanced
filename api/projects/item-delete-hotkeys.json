@@ -1,0 +1,35 @@
+{
+  "id": "Nw1qXh1F",
+  "slug": "item-delete-hotkeys",
+  "title": "Item Delete HotKeys",
+  "description": "ItemDelete is a Minecraft plugin that allows players to delete items directly from their inventory using a specific click action, featuring a double-press confirmation system to prevent accidental deletion.",
+  "body": "# ItemDelete\n\nItemDelete is a server-side Spigot/Paper plugin that allows players to permanently delete items from their inventory using a configurable click action or key combination (default: `Ctrl + Q`).\n\nIt is designed for inventory cleanup, with several safety features to prevent accidental item deletion.\n\n## Features\n\n* **Inventory Deletion:** Delete hovered items directly from the inventory using the configured hotkey.\n* **Safety Toggle:** Players must run `/itemdelete toggle` to enable/disable deletion. While disabled, the hotkey retains its default Minecraft behavior (e.g., dropping item stacks).\n* **Double-Press Confirmation:** Requires the player to trigger the deletion action twice within a configurable timeframe (default: 1.5s) to confirm.\n* **Item Blacklist:** Block specific item types (e.g., bedrock, barrier) from being deleted.\n* **World Filters:** Restrict deletion functionality to specific worlds using a whitelist or blacklist.\n* **Audio Feedback:** Optional sound effects for confirmation prompts and successful deletion.\n* **Customizable Messages:** All messages and colors can be customized in the configuration file.\n\n## Commands & Permissions\n\n| Command | Description | Permission |\n| :--- | :--- | :--- |\n| `/itemdelete toggle` | Enable or disable item deletion mode | `itemdelete.use` |\n| `/itemdelete reload` | Reload the configuration | `itemdelete.admin` |\n\n* **Aliases:** `/id`, `/idelete`\n\n## Configuration (`config.yml`)\n\n```yaml\n# The action required to delete the item when hovered in the inventory.\n# By default, this is CONTROL_DROP (Ctrl + Q).\ndelete-action: \"CONTROL_DROP\"\n\n# Double click/tap check to prevent accidental deletion.\ndouble-press:\n  enabled: true\n  time-window-ms: 1500\n\n# Require players to run /itemdelete toggle to enable deleting.\nrequire-toggle: true\n\n# Permission settings\nrequire-permission: false\npermission: \"itemdelete.use\"\n\n# Sound settings. Set to \"NONE\" to disable.\ndelete-sound: \"ENTITY_ITEM_BREAK\"\nconfirm-prompt-sound: \"BLOCK_NOTE_BLOCK_PLING\"\n\n# World restriction settings\nworlds:\n  mode: \"BLACKLIST\" # BLACKLIST or WHITELIST\n  list:\n    - \"example_disabled_world\"\n\n# Block specific items from being deleted\nblacklisted-items:\n  - \"BEDROCK\"\n  - \"BARRIER\"\n  - \"COMMAND_BLOCK\"\n\n# Message customization (supports color codes)\nmessages:\n  prefix: \"&8[&cItemDelete&8] &7\"\n  deleted: \"&aItem &e%item% &ahas been deleted.\"\n  confirm-prompt: \"&6Press again within %time%s to confirm deletion of &e%item%&6.\"\n  blacklisted: \"&cYou cannot delete this item!\"\n  no-permission: \"&cYou do not have permission to delete items.\"\n  reload: \"&aConfiguration reloaded successfully.\"\n  toggle-on: \"&aDelete Mode ENABLED! Hovering and pressing Ctrl+Q will delete items.\"\n  toggle-off: \"&cDelete Mode DISABLED! Normal Minecraft key functions restored.\"\n```\n\n## Installation\n\n1. Place `ItemDelete.jar` in your server's `plugins/` folder.\n2. Restart the server.\n3. Configure settings in `plugins/ItemDelete/config.yml` and run `/itemdelete reload` to apply.\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

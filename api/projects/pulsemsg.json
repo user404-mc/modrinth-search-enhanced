@@ -1,0 +1,29 @@
+{
+  "id": "n43FRKVD",
+  "slug": "pulsemsg",
+  "title": "PulseMsg",
+  "description": "Send custom scheduled messages in chat",
+  "body": "# ⚡ PulseMsg\n\n> Timed broadcast & advertisement plugin — clickable links, hex colors, priority overrides, and a smart flood guard.\n\n![Spigot 1.20+](https://img.shields.io/badge/Spigot-1.20+-5865f2?style=flat-square)\n![Paper](https://img.shields.io/badge/Paper-compatible-00aa88?style=flat-square)\n![Java 17](https://img.shields.io/badge/Java-17-f39c12?style=flat-square)\n![Author](https://img.shields.io/badge/by-rradajbi-555?style=flat-square)\n\n---\n\n<p align=\"center\">\n  <img src=\"https://cdn.modrinth.com/data/n43FRKVD/images/9f6c8377cc0913e43d48b5283718e633d4157548.png\" alt=\"EliminationPlus\" width=\"600\"/>\n  <br/>\n  <em></em>\n</p>\n\n---\n\n## 📖 What is PulseMsg?\n\nPulseMsg is a lightweight but powerful broadcast plugin that lets server owners schedule timed advertisement messages with full color control, clickable links, hover tooltips, and a smart flood guard so players never get spammed.\n\nEach message runs on its own independent timer — no more messages colliding or overflowing chat at the same time.\n\n---\n\n## ✨ Features\n\n| Feature | Description |\n|---|---|\n| ⏱ **Per-message timers** | Each message has its own `interval-seconds` — completely independent |\n| 🔗 **Clickable links** | Open URLs, suggest commands, run commands, or copy text to clipboard |\n| 🎨 **Full color support** | Legacy `&x` codes **and** hex `&#RRGGBB` both supported on every line |\n| 🚨 **Priority messages** | Mark a message as `priority: true` to always fire, even alongside others |\n| 🛡 **Flood guard** | At most one non-priority message per scheduler tick — no chat spam |\n| 🔒 **Permission gating** | Send specific messages only to players with a given permission node |\n| 🔀 **Random or sequential** | Send messages in order or shuffle them with `random-order: true` |\n| 👥 **Minimum players** | Skip broadcasts when fewer than N players are online |\n| ♻ **Hot reload** | `/pm reload` applies all config changes with zero server restart |\n\n---\n\n<p align=\"center\">\n  <img src=\"https://cdn.modrinth.com/data/n43FRKVD/images/cc4b284504117e804d476365d73bf4f46c607d93.png\" alt=\"EliminationPlus\" width=\"600\"/>\n  <br/>\n  <em></em>\n</p>\n\n\n## 📋 Commands\n\nAll commands require the `pulsemsg.admin` permission (default: OP).  \nAliases: `/pulsemsg`, `/pm`, `/pulse`\n\n| Command | Description |\n|---|---|\n| `/pm reload` | Reload config and restart the scheduler |\n| `/pm list` | List all messages with enabled/disabled status |\n| `/pm send <id>` | Manually fire a message immediately |\n| `/pm info <id>` | Show details and next-fire countdown for a message |\n| `/pm toggle` | Pause or resume all broadcasts |\n| `/pm help` | Show the help menu |\n\n---\n\n## 🔑 Permissions\n\n| Node | Default | Description |\n|---|---|---|\n| `pulsemsg.admin` | OP | Full access to all PulseMsg commands |\n| `pulsemsg.bypass` | false | Player will never receive any broadcasts |\n\n---\n\n## ⚙ Configuration\n\nPulseMsg generates a fully documented `config.yml` on first run. Here's a taste:\n```yaml\nglobal-interval-seconds: 60\nglobal-prefix: '&#5865f2&l[PulseMsg]&r '\nrandom-order: false\nminimum-players: 0\n\nmessages:\n\n  discord-ad:\n    enabled: true\n    title: '&#7289da&l⚡ Join Our Discord ⚡'\n    body:\n      - '&7Stay connected with the community!'\n      - '&7Get support, updates, and giveaways.'\n      - ' '\n      - '&#7289da&l&nJoin Now&r &7— discord.gg/example'\n    interval-seconds: 300\n    priority: true                  # always fires even alongside other messages\n    prefix: '&#7289da[Discord]&r '  # overrides the global prefix\n    click:\n      action: OPEN_URL\n      value: 'https://discord.gg/example'\n      hover: '&9Click to join our Discord!'\n\n  store-ad:\n    enabled: true\n    title: '&#f1c40f&l★ Support The Server ★'\n    body:\n      - '&7Ranks, cosmetics and more at our store!'\n    interval-seconds: 1200\n    priority: false\n    click:\n      action: OPEN_URL\n      value: 'https://store.example.com'\n      hover: '&eClick to open the store!'\n```\n\n### Click actions\n\n| Action | Effect |\n|---|---|\n| `OPEN_URL` | Opens a URL in the player's browser |\n| `SUGGEST_CMD` | Puts text into the player's chat box |\n| `RUN_CMD` | Runs a command as the player |\n| `COPY_TEXT` | Copies text to the player's clipboard |\n\n### How scheduling works\n\nPulseMsg ticks every `global-interval-seconds`. Each tick it counts down every message's own timer independently. When a message is due:\n\n- **Priority messages** always fire — even if another message is also due that tick.\n- **Non-priority messages** are flood-guarded — only **one** fires per tick. If multiple are due simultaneously, the others simply wait for their next natural interval.\n\n---\n\n## 🖥 Requirements\n\n- **Minecraft:** 1.20+\n- **Server:** Spigot or Paper\n- **Java:** 17 or newer\n\n---\n\n*Made with care by rradajbi — open an issue on GitHub for bugs or feature requests.*",
+  "categories": [
+    "decoration",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

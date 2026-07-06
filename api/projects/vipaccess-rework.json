@@ -1,0 +1,37 @@
+{
+  "id": "ATV34SbM",
+  "slug": "vipaccess-rework",
+  "title": "VIPAccess Rework",
+  "description": "Secure your server with style. VIPAccess Rework restricts entry to authorized players only, featuring intelligent bot mitigation and multi-language support.",
+  "body": "# 🛡️ VIPAccess Rework\n**VIPAccess Rework** is a completely rewritten and improved version of the server access restriction plugin. It is the ideal solution for maintenance work, private servers, or creating exclusive access for donors.\n\nUnlike simple whitelists, VIPAccess Rework includes powerful protection against bot attacks, beautiful message formatting (MiniMessage), Temporary Access system, and a Full In-Game GUI Dashboard.\n\n**Check out the original version of the plugin:**\n[click](https://modrinth.com/plugin/vipaccess)\n\n## ✨ Why the Rework version?\n- **Advanced GUI Dashboard:** Forget about config files! Manage settings, anti-bot sensitivity, and players directly from the game via a beautiful inventory menu (``/vipa gui``).\n- **Temporary Access:** Grant players access for a specific time (e.g., 1 hour or 2 days) using ``/vipa grant``. The plugin automatically revokes access when time expires.\n- **Panic Mode:** A big red button in the GUI. Instantly locks down the server for everyone except admins during severe bot attacks.\n- **Modern Formatting:** Full MiniMessage support. Use gradients, RGB colors, and clickable links in kick messages (e.g., ``<gradient:red:blue>Text``).\n- **Multilingual:** Fully translatable. The plugin automatically generates translation files (EN, RU).\n- **Proxy Support:** Works perfectly on backend servers (Spigot/Paper/Purpur 1.21+) in a BungeeCord/Velocity network.\n\n## 🚀 Commands and Permissions\n**Management**\n- ``/vipa gui`` — Open the main Dashboard.\n  - **Permission:** ``vipaccess.gui``\n- ``/vipa reload`` — Reload configuration and languages.\n  - **Permission:** ``vipaccess.reload``\n\n**Temporary Access**\n- ``/vipa grant <player> <time>`` — Give temporary access (e.g., ``1h``, ``30m``, ``1d``).\n  - **Permission:** ``vipaccess.admin``\n\n**Access Control**\n- Entry Permission: ``server.vip`` (Configurable in ``config.yml``)\n- Bypass Check: ``vipaccess.bypass`` (Always allows entry)\n- Full Admin Access: ``vipaccess.admin``\n  \n## 🛡️ Intelligent Protection (Anti-Bot)\nThe plugin analyzes incoming traffic in real-time.\n\n1. **Auto-Protection:** If failed login attempts exceed the threshold (default 50/sec), the plugin enables protection mode.\n2. **Panic Mode:** Can be triggered manually via GUI. Blocks **ALL** non-admin connections instantly.\n3. **Punishment Modes:** Switchable in-game:\n   - ``KICK`` - Low resource usage.\n   - ``BAN_IP`` - Temporary IP ban (10 min).\n   - ``WHITELIST`` - Only whitelisted players can join.\n\n## 📂 Configuration (config.yml)\n\n```yaml\n# Is the plugin enabled\nenabled: true\n\n# Message language (en, ru)\nlanguage: ru\n\n# Permission required for player entry\nrequired-permission: \"server.vip\"\n\n# Anti-bot protection settings\nanti-bot:\n  enabled: true\n  threshold: 50           # Connection threshold per second to activate protection\n  protection-duration: 60 # Protection mode duration (sec)\n  punishment: KICK        # Punishment type: KICK, BAN_IP, or WHITELIST\n```\n## 💻 API for Developers\nYou can interact with VIPAccess Rework in your own plugins. Since there is no public repository, simply add ``VIPAccess.jar`` as a library to your project.\n\n**Events:**\n\n- ``VIPLoginEvent`` - Called when a player is about to be kicked due to full server/no permission.\n- ``TempAccessGrantEvent`` - Called when temporary access is granted.\n\n```java\nimport com.sunrisestudio.vipaccess.api.VIPLoginEvent;\n\n@EventHandler\npublic void onVipLogin(VIPLoginEvent event) {\n    Player player = event.getPlayer();\n    \n    // Example: let the player in if they have a specific advancement\n    if (player.getAdvancementProgress(advancement).isDone()) {\n        event.setCancelled(true); // Allow entry by cancelling the kick\n    }\n}\n```",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

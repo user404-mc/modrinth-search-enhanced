@@ -1,0 +1,27 @@
+{
+  "id": "3ZfZAH3u",
+  "slug": "no-item-shadow",
+  "title": "No Item Shadow",
+  "description": "Remove the vanilla shadow of item model \"easly\"",
+  "body": "# This resource pack is a template that allows you to completely disable vanilla shadow on item.\n\n## How does it work ?\nIt works using core shaders which allow in vanilla resource pack to change how the game render\n\n## How to use ?\n1. Copy the folder \"shaders\" in your ressource-pack (or copy your texture-pack in my ressource-pack)\n\n2. Then to disable shadow go to `items/*your_item*.json` and add those lines :\n\n```\n,\n          \"tints\": [\n            {\n              \"type\": \"minecraft:constant\",\n              \"value\": [1.0, 0.0, 0.0]\n            }\n          ]\n```\nfor example :\n`paper.json` \\\\/\n\n```\n{\n  \"model\": {\n    \"type\": \"select\",\n    \"property\": \"custom_model_data\",\n    \"fallback\": {\n      \"type\": \"model\",\n      \"model\": \"item/paper\"\n    },\n    \"cases\": [\n      {\n        \"when\": \"example\",\n        \"model\": {\n          \"type\": \"model\",\n          \"model\": \"item/example\",\n          \"tints\": [\n            {\n              \"type\": \"minecraft:constant\",\n              \"value\": [1.0, 0.0, 0.0]\n            }\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n. 3. Next go to `models/item/*your_model*.json` and add this line after `\"texture\": \"#[]\"`:\n\n```\n, \"tintindex\": 0\n```\nfor example :\n`example_model.json` \\\\/\n\n```\n{\n\t\"textures\": {\n\t\t\"1\": \"item/example_model\",\n\t\t\"particle\": \"example_model\"\n\t},\n\t\"elements\": [\n\t\t{\n\t\t\t\"from\": [4, 0, 4],\n\t\t\t\"to\": [8, 7, 12],\n\t\t\t\"rotation\": {\"angle\": 0, \"axis\": \"y\", \"origin\": [8, 3.5, 8]},\n\t\t\t\"faces\": {\n\t\t\t\t\"north\": {\"uv\": [9.5, 8, 11.5, 11.5], \"texture\": \"#1\", \"tintindex\": 0},\n\t\t\t\t\"east\": {\"uv\": [4.5, 0, 8.5, 3.5], \"texture\": \"#1\", \"tintindex\": 0},\n\t\t\t\t\"south\": {\"uv\": [11, 0, 13, 3.5], \"texture\": \"#1\", \"tintindex\": 0},\n\t\t\t\t\"west\": {\"uv\": [4.5, 3.5, 8.5, 7], \"texture\": \"#1\", \"tintindex\": 0},\n\t\t\t\t\"up\": {\"uv\": [4.5, 12, 2.5, 8], \"texture\": \"#1\", \"tintindex\": 0},\n\t\t\t\t\"down\": {\"uv\": [11.5, 4, 9.5, 8], \"texture\": \"#1\", \"tintindex\": 0}\n\t\t\t}\n\t\t},\n    ...\n```",
+  "categories": [
+    "core-shaders",
+    "cursed",
+    "entities",
+    "environment",
+    "items",
+    "minecraft",
+    "models",
+    "tweaks",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 56,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1"
+  ],
+  "date_updated": null
+}

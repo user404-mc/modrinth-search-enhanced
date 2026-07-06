@@ -1,0 +1,40 @@
+{
+  "id": "9uxpPi8f",
+  "slug": "realinvest",
+  "title": "RealInvest",
+  "description": "Banking & stocks for Paper 1.21 (Vault required). Create IBAN accounts, transfer funds, and trade dynamic stocks. Beta – not production-ready!",
+  "body": "# RealInvest – Banking & Stock Market for Paper 1.21\n\n> **⚠️ BETA WARNING**  \n> This plugin is currently in **beta** and has **not been thoroughly tested**. It may contain bugs, instabilities, or unfinished features. **Do not use on production servers** unless you are prepared for potential issues. Use at your own risk.\n\n*Right now this project is closed‑source. I plan to release the code later.*\n\n---\n\n**RealInvest** brings a full-featured **banking system** with unique **IBAN accounts** and a **dynamic stock market** to your Minecraft server. Built for **Paper 1.21** and **Vault**, it lets players create bank accounts, deposit/withdraw money, transfer funds, and trade stocks with prices that change based on the issuer’s real‑time wealth.\n\n## ✨ Features\n\n### 🏦 Banking System\n- Create personal bank accounts with a **unique IBAN** (e.g., `RI123456789012`)\n- **Deposit** and **withdraw** money directly from your Vault economy balance\n- **Transfer** funds between IBANs (configurable fee)\n- **Authorize other players** with `VIEW` or `MANAGE` permissions on your accounts\n- List all your accounts and check balances\n- Fully **YAML‑based data storage** (bankdata.yml)\n\n### 📈 Stock Market\n- Players can **create their own stocks** with a ticker (e.g., `AAPL`, `RIOT`)\n- Set total shares and initial price (price limits configurable)\n- **Buy** shares from the issuer (money goes to issuer’s pocket)\n- **Sell** shares back to the issuer (issuer must have enough funds)\n- **Dynamic pricing** – stock price = base price × (current issuer wealth / reference wealth)\n- Price drivers: can use **bank balance only** or **bank + pocket money**\n- Automatic price updates every X minutes (configurable)\n\n### 🔌 Integrations\n- **Vault** – required for economy handling\n- **PlaceholderAPI** – dozens of placeholders for bank balances, IBANs, top rankings, stock prices, and share amounts\n\n### 🛠️ Commands & Permissions\nDetailed permission nodes for fine‑grained control (see plugin.yml). Defaults give most players access to basic commands; ops get management rights.\n\n### 🌍 Configurable Messages (New)\n- All player-facing messages are now stored in **`messages.yml`** – you can edit colors, wording, and even create translations without touching the code.\n- A **custom prefix** can be set in `config.yml` (default `&6[RealInvest] &r`), making it easy to change the plugin’s chat tag.\n\n## 📋 Commands\n\n### `/bank`\n```\n/bank create                     – create a new account (cost configurable)\n/bank list [player]              – list your accounts (or another’s with permission)\n/bank balance [iban]             – show balance of an account\n/bank deposit <iban> <amount>    – deposit from your pocket into the account\n/bank withdraw <iban> <amount>   – withdraw from account to your pocket\n/bank transfer <toIban> <amount> [fromIban] – transfer between accounts\n/bank adduser <iban> <player> <view/manage> – grant access\n/bank removeuser <iban> <player> – revoke access\n```\n\n### `/stock`\n```\n/stock create <ticker> <totalShares> <price> – create a new stock\n/stock buy <ticker> <amount>                – buy shares at current price\n/stock sell <ticker> <amount>               – sell shares at current price\n/stock info <ticker>                        – view stock details and real-time price\n/stock portfolio [player]                   – view your (or another’s) holdings\n```\n\n## 📊 PlaceholderAPI Expansion\n\n**Identifier:** `realinvest`\n\n| Placeholder | Description |\n|-------------|-------------|\n| `%realinvest_bank_balance%` | Total sum of all your bank accounts (comma‑formatted) |\n| `%realinvest_bank_balance_plain%` | Same as above but with **plain decimal** (no commas) |\n| `%realinvest_bank_balance_<IBAN>%` | Balance of a specific IBAN |\n| `%realinvest_bank_balance_<IBAN>_plain%` | Same as above, plain format |\n| `%realinvest_bank_iban%` | IBAN of your first account |\n| `%realinvest_top_bank_<rank>_name%` | Player name at that rank (by total bank balance) |\n| `%realinvest_top_bank_<rank>_balance%` | Bank balance at that rank |\n| `%realinvest_top_bank_<rank>_balance_plain%` | Plain format balance at that rank |\n| `%realinvest_stock_shares_<ticker>%` | Number of shares you own of a stock |\n| `%realinvest_stock_price_<ticker>%` | Current price of a stock (comma‑formatted) |\n| `%realinvest_stock_price_<ticker>_plain%` | Current price (plain decimal) |\n\n## ⚙️ Configuration (config.yml) *(Last Updated on Version beta-1.1)*\n\n```yaml\n# RealInvest Configuration\n# All messages can be edited in messages.yml\nprefix: \"&6[RealInvest] &r\"\n\nupdate-check-interval: 30     # minutes\nupdate-check-unit: minutes\n\nbank:\n  creation-cost: 1000.0\n  max-accounts-per-player: 3\n  iban-prefix: \"RI\"\n  transfer-fee: 0.0\n\nstock:\n  creation-cost: 5000.0\n  max-stocks-per-player: 5\n  minimum-price: 1.0\n  maximum-price: 1000000.0\n  price-driver: bank           # \"bank\" or \"total\"\n  update-interval-minutes: 1\n```\n\nAll message texts are in `messages.yml` – edit colors and wording freely.\n\n## 🔒 Permissions (excerpt)\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `realinvest.bank.create` | true | Create bank accounts |\n| `realinvest.bank.use` | true | Use basic bank commands |\n| `realinvest.bank.transfer` | true | Transfer funds |\n| `realinvest.bank.manage` | op | Add/remove authorized users |\n| `realinvest.bank.viewothers` | op | View other players’ accounts |\n| `realinvest.stock.create` | true | Create a stock |\n| `realinvest.stock.buy` | true | Buy shares |\n| `realinvest.stock.sell` | true | Sell shares |\n| `realinvest.stock.portfolio` | true | View portfolios |\n| `realinvest.stock.viewothers` | op | View others’ portfolios |\n| `realinvest.update.notify` | op | Receive update notifications |\n\n## 📦 Dependencies\n\n- **Required:** [Vault](https://www.spigotmc.org/resources/vault.34315/) or [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) with an economy plugin (e.g., EssentialsX, CMI, etc.)\n- **Optional:** [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) – for placeholders\n\n## 🧪 Beta Status\n\nRealInvest is currently in **early beta**. The code has been tested only in basic scenarios. You may encounter:\n- Data loss or corruption (always make backups!)\n- Performance issues with many stocks/accounts\n- Unexpected price calculations\n- Missing features or incomplete commands\n\n**Please report bugs** on the [issue tracker](https://github.com/minemeer/RealInvest-nocode/issues). Use on production servers **at your own risk**.\n\n---\n\n**RealInvest** – bring real‑world investing and banking to your Minecraft world. Create a thriving economy with IBAN accounts, dynamic stock prices, and full integration with Vault & PlaceholderAPI.",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

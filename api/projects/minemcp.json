@@ -1,0 +1,31 @@
+{
+  "id": "KemmI7Uv",
+  "slug": "minemcp",
+  "title": "MineMCP",
+  "description": "An MCP server implementation bridging AI agents and Minecraft.",
+  "body": "# MineMCP\n\n[![License: MIT](https://img.shields.io/github/license/AxenoDev/MineMCP)](https://opensource.org/licenses/MIT)\n[![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21-brightgreen.svg)](https://www.minecraft.net/)\n[![Paper API](https://img.shields.io/badge/Paper-API-blue.svg)](https://papermc.io/)\n\nA Minecraft Paper plugin that implements the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server, enabling AI agents to control and monitor a Minecraft 1.21 server via HTTP.\n\n## 🛠️ Available Tools\n\n### World Manipulation\n- `pose_block` - Place a block at specific coordinates\n- `break_block` - Break a block at specific coordinates\n- `fill_block` - Fill a region with blocks\n\n### Command Execution\n- `execute_command` - Execute any Minecraft command with output capture\n\n### File System\n- `read_file` - Read text files from the server\n- `write_file` - Write text files to the server\n- `read_file_base64` - Read binary files as Base64\n- `write_file_base64` - Write binary files from Base64\n- `list_directory` - List directory contents\n\n### Server Information\n- `list_plugins` - Get all installed plugins\n- `get_logs` - Retrieve recent server logs\n- `get_online_players` - List all online players\n- `get_player` - Get detailed information about a specific player (health, inventory, location, effects, etc.)\n\n## 📋 Requirements\n\n- **Java 21** or higher\n- **Minecraft 1.21** server\n- **Paper** or **Purpur** server software (Spigot may work but not officially supported)\n\n## 🚀 Installation\n\n### Download Pre-built JAR\n\n1. Download the latest release from the [Releases](../../releases) page\n2. Place `MineMCP-1.0.0-all.jar` in your server's `plugins/` folder\n3. Start/restart your server\n4. Configure the token in `plugins/MineMCP/config.yml`\n\n## ⚙️ Configuration\n\nAfter the first run, edit `plugins/MineMCP/config.yml`:\n\n```yaml\nserver:\n  port: 3000\n  token: \"your-secret-token-here\"  # Change this to a secure random token!\n```\n\n**Important**: Always change the default token for security!\n\n### Generating a Secure Token\n\n```bash\n# Linux/macOS\nopenssl rand -hex 32\n\n# Or use any password generator to create a strong token\n```\n\n## 🔌 Usage\n\n### Starting the Server\n\n1. Start your Minecraft server with MineMCP installed\n2. The MCP server will automatically start on port 3000 (configurable)\n3. Check the console for: `[MineMCP] MCP server started on port 3000`\n\n### Connecting with an MCP Client\n\n#### Using VS Code with MCP Extension\n\nCreate or edit `.vscode/mcp.json` in your project:\n\n```json\n{\n  \"mcpServers\": {\n    \"minecraft\": {\n      \"url\": \"http://localhost:3000/sse?token=your-secret-token-here\"\n    }\n  }\n}\n```\n\n## 📚 API Examples\n\n### Execute a Command\n\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"execute_command\",\n    \"arguments\": {\n      \"command\": \"time set day\"\n    }\n  }\n}\n```\n\n### Place a Block\n\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 2,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"pose_block\",\n    \"arguments\": {\n      \"world\": \"world\",\n      \"x\": 100,\n      \"y\": 64,\n      \"z\": 200,\n      \"material\": \"DIAMOND_BLOCK\"\n    }\n  }\n}\n```\n\n### Get Player Information\n\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 3,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"get_player\",\n    \"arguments\": {\n      \"player\": \"PlayerName\",\n      ...\n    }\n  }\n}\n```\n\n## 🔒 Security Considerations\n\n1. **Token Protection**: Never commit your token to version control\n2. **Network Security**: By default, the server binds to `0.0.0.0` (all interfaces)\n3. **Firewall Rules**: Restrict port 3000 access to trusted IPs only\n4. **File System Access**: Tools have access to the entire server directory - use with caution\n\n## 🤝 Contributing\n\nContributions are welcome! Please follow these steps:\n\n1. Fork the repository\n2. Create a feature branch (`git checkout -b feature/amazing-feature`)\n3. Commit your changes (`git commit -m 'Add amazing feature'`)\n4. Push to the branch (`git push origin feature/amazing-feature`)\n5. Open a Pull Request\n\n### Adding a New Tool\n\n1. Create a new class extending `McpTool` in `src/main/java/me/axeno/minemcp/tools/impl/`\n2. Implement the required methods (`getSchema()` and `execute()`)\n3. Register the tool in `ToolHandler.java` constructor\n\nExample:\n\n```java\npublic class MyTool extends McpTool {\n    public MyTool() {\n        super(\"my_tool\", \"Description of my tool\");\n    }\n\n    @Override\n    public ObjectNode getSchema() {\n        ObjectNode schema = mapper.createObjectNode();\n        schema.put(\"type\", \"object\");\n        // Define your schema...\n        return schema;\n    }\n\n    @Override\n    public ObjectNode execute(JsonNode args) throws Exception {\n        CompletableFuture<String> future = new CompletableFuture<>();\n        \n        Bukkit.getScheduler().runTask(MineMCP.getInstance(), () -> {\n            try {\n                // Your Bukkit operations here\n                future.complete(\"Success!\");\n            } catch (Exception e) {\n                future.completeExceptionally(e);\n            }\n        });\n        \n        String result = future.get(10, TimeUnit.SECONDS);\n        return createTextResult(result);\n    }\n}\n```\n\n## 📄 License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n\n## 📞 Support\n\n- **Issues**: [GitHub Issues](../../issues)\n\n---\n\nMade with ❤️ for the Minecraft and AI communities\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "nB7R4SAP",
+  "slug": "create-toolbox-input-fix",
+  "title": "Create Toolbox Input Fix",
+  "description": "Fixes the Create Toolbox double-open bug on Fabric 1.20.1 by preventing the GUI from opening twice on key press/release.",
+  "body": "# Create Toolbox Input Fix\n\nA tiny client-side fix mod for Create on Fabric 1.20.1.\n\nThis mod fixes the annoying Toolbox bug where the Toolbox GUI opens twice during a single key press:\n\n* once when pressing the key\n* again when releasing it\n\nThe issue happens because Create receives both press and release input events and incorrectly opens the Toolbox menu twice.\n\n## What this mod does\n\nThis mod patches Create's Toolbox input handler and allows the Toolbox GUI to open only once per key press.\n\n### Fixed behavior\n\n* Toolbox opens normally on key press\n* Releasing the key no longer reopens the GUI\n* No more stuck Toolbox menu\n* No need to press ESC to close it\n\n## Features\n\n* Client-side only\n* Lightweight\n* No config required\n* No gameplay changes\n* Safe for existing worlds\n* Compatible with Create 6.0.8.1 on Fabric 1.20.1\n\n## Compatibility\n\n* Minecraft 1.20.1\n* Fabric Loader\n* Create Fabric 6.0.8.1\n* Fabric API\n\n## Technical details\n\nThe mod injects into:\n`ToolboxHandlerClient.onKeyInput`\n\nIt filters duplicate release-triggered open events while preserving normal key behavior.\n\n## Notes\n\nThis mod only affects Toolbox input handling.\nIt does NOT modify:\n\n* inventory behavior\n* chat\n* other GUI screens\n* gameplay mechanics\n\n## Credits\n\nOriginal Create mod by the Create team.\nThis project is only a small compatibility/input fix.\n\n\n## Funny backstory\n\nI am not a mod developer at all.\nI actually made this fix with the help of ChatGPT and Cursor because my perfectionism absolutely could NOT tolerate the Toolbox opening twice every single time.\n\nAfter spending way too many hours testing configs, removing mods, changing keybinds, reinstalling Create, and searching for fixes that did not exist, I ended up making a tiny fix mod myself just to restore my sanity.\n\nSo if this bug was driving you crazy too — you're welcome.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 23,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "raB3z1Mw",
+  "slug": "livingpatina",
+  "title": "Living Patina",
+  "description": "The world ages as you use it. Walked routes wear grass into dirt paths, stone beside lava chars to blackstone, logs by water grow moss. A TPS-friendly aging system for Paper, Spigot, Bukkit, and Purpur 1.21+.",
+  "body": "# Living Patina\n\nThe world ages as you use it. Walk the same route enough times and the grass wears down to dirt,\nthen to a packed dirt path. Stone left next to lava chars to blackstone. Water sitting against logs\ngrows moss, and cobblestone in a dark, damp corner turns mossy over time.\n\n## What it does\n\n**Trodden paths**\n\nA block counts your steps only when you actually move onto it from another block. Grass blocks (plus\nconfigurable soft ground like mycelium, podzol, coarse dirt, and rooted dirt) wear to dirt, and dirt\nwears into a dirt path. Sprinting wears the ground faster. You can set sneaking to leave no trail.\n\n**Environmental aging**\n\nA periodic sweeper runs near players and ages blocks in place:\n\n- Stone-family blocks touching lava char toward blackstone.\n- Logs and leaves touching water grow a moss carpet on top.\n- Cobblestone and stone bricks in dark, damp spots turn into their mossy versions.\n\nEvery change runs on the main thread, only in loaded chunks, and is capped per sweep so your TPS\nstays protected.\n\n## Note for server owners\n\nEnvironmental aging does not tell the difference between player builds and naturally placed blocks.\nStone near a lava feature will char, and cobble in a dark, damp base can go mossy, whether or not you\nplaced it. If that is not what you want, you can turn environmental aging off\n(`environment.enabled: false`) and keep only the trodden paths, or tune the sweep settings. The\nfootstep map is kept in memory, so accumulated paths reset when the server restarts.\n\n## Commands\n\n`/patina` (aliases: `/livingpatina`, `/lp`)\n\n| Subcommand        | Permission     | Description                                              |\n|-------------------|----------------|---------------------------------------------------------|\n| `/patina info`    | `patina.use`   | Plugin info and live totals (entries tracked, blocks aged). |\n| `/patina stats`   | `patina.use`   | Step count recorded for the block directly under you.   |\n| `/patina reload`  | `patina.admin` | Reload `config.yml` and restart the timers.             |\n| `/patina sweep`   | `patina.admin` | Force one environmental sweep right now.                |\n| `/patina clear`   | `patina.admin` | Clear the in-memory step map.                           |\n\n## Permissions\n\n| Node           | Default | Grants                                  |\n|----------------|---------|-----------------------------------------|\n| `patina.use`   | `true`  | The informational subcommands.          |\n| `patina.admin` | `op`    | `reload`, `sweep`, `clear` (plus `patina.use`). |\n\n## Configuration (`config.yml`)\n\nKey tunables (see the file for the full annotated set):\n\n- `paths.steps-to-dirt`, `paths.steps-to-path` set the wear thresholds.\n- `paths.sprint-multiplier`, `paths.wear-while-sneaking`, `paths.also-wear-to-dirt`.\n- `environment.sweep-interval-ticks`, `environment.chunk-radius`, `environment.max-changes-per-sweep`,\n  `environment.samples-per-chunk`, `environment.vertical-radius`.\n- `environment.lava-charring`, `environment.water-moss`, `environment.damp-dark-moss` (plus `max-light`).\n- `maintenance.prune-interval-ticks`, `maintenance.prune-entry-age-ms`.\n\nEither system can be turned off on its own with `paths.enabled` and `environment.enabled`.\n\n## Compatibility\n\nPaper, Spigot, Bukkit, and Purpur 1.21.1 through 1.21.11, plus the 26.1.x line (verified on 26.1.2).\nJava 21, compiled to class version 65, Bukkit API only.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

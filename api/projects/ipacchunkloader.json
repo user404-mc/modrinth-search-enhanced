@@ -1,0 +1,32 @@
+{
+  "id": "SKfNk4fk",
+  "slug": "ipacchunkloader",
+  "title": "IpacChunkLoader",
+  "description": "A simple chunk loader plugin for Minecraft.",
+  "body": "# IpacChunkLoader\nA simple chunk loader plugin for Minecraft.\n\nhttps://modrinth.com/plugin/ipacchunkloader\n\nThis is a simple alternative to fake players, allowing players to use force-loaded chunks in a relatively safe way to keep machines running.  \nIf you need stable AFK and do not want to use highly automated tools like fake players, then consider this plugin.\n\n### Usage\n\nActivate a chunk loader by naming an armor stand `ID ChunkLoad N`.\n- `ID` is optional and is used to name the loader.\n- `N` ranges from `0` to `10`. `0` loads the single chunk where the armor stand is located; `1` loads a 3x3 area (9 chunks).\n\nEach naming activates the loader for 4 hours. Renaming can accumulate the duration up to a maximum of 24 hours.  \nThe chunk loader works by setting chunks to be constantly loaded. The loaded area follows the armor stand's movement and updates every 20 ticks.  \nIt does not trigger mob spawning as a player would.  \nA notification will be sent 2 hours before expiration.\n\n### Naming Rules\n- `^\\s*(?<id>.{0,24}?)\\s*(?:ChunkLoad|ChunkLoader)\\s*(?<radius>\\d+)\\s*$`\n- `ChunkLoad 10`\n- `FurnaceArray ChunkLoad 4`\n\n### Commands\n\n- `/icl` - Help and statistics\n- `/icl reload` - Reload the plugin\n- `/icl list` - View the list of active loaders\n- `/icl clear` - Clear all force-loaded chunks and loaders (Including those added by non-plugins)\n- `/icl tp <UUID>` - Teleport to an active loader\n\n### Permissions\n\n```yaml\npermissions:\n\n  IpacChunkLoader.reload:\n    description: 'Reload the plugin'\n    default: op\n  IpacChunkLoader.list:\n    description: 'View the list of active loaders'\n    default: op\n  IpacChunkLoader.clear:\n    description: 'Clear all force-loaded chunks and loaders'\n    default: op\n  IpacChunkLoader.tp:\n    description: 'Teleport to an active loader'\n    default: op\n```\n\n### Configuration File\n```yaml\n\n# Regex to identify armor stand names\nname-regex: '^\\s*(?<id>.{0,24}?)\\s*(?:ChunkLoad|ChunkLoader)\\s*(?<radius>\\d+)\\s*$'\n\n# Inherit the previous ID if the nametag does not match a new one\ninherit-id: true\n\n# Default value used when the ID matcher finds no content\ndefault-id: 'Unnamed'\n\n# Armor stand name format after activation: %id% %radius% %time%\ndisplay-format: '%id% [ChunkLoader] %radius% - %time%'\n\n# Armor stand name format after expiration: %id% %radius% %time%\nexpiry-format: '%id% [ChunkLoader] %radius% - %time%'\n\n# Initial/accumulated duration in hours\nadd-hours: 4\n\n# Maximum duration in hours\nmax-hours: 24\n\n# Maximum loading radius\nmax-radius: 10\n\n# Maximum number of concurrent active loaders\nmax-count: 10\n\n# Persistence settings\n# true:  Restore previously active loaders after server start, and do not release chunks when the plugin is unloaded\n# false: Actively release all chunks when the plugin is unloaded, and clear any residual force-loaded chunks at startup\npersistence: true\n\n# Execute commands when remaining time falls below specified hours\nwarn-hours: 2\n# Placeholders: %world% %x% %y% %z% %name% %id% %radius% %time%\nwarn-commands:\n  - 'say Chunk loader about to expire [%world%/%x%/%y%/%z%] [%id%] %radius% - %time%'\n\n# Dimension display names\n# If defined, the %world% variable will use the corresponding display name; otherwise, the default dimension name is used.\nworld-names:\n  world: 'Overworld'\n  world_nether: 'Nether'\n  world_the_end: 'The End'\n\nmsg:\n  activate: '§bIpacEL §f> §aChunk loader activated'\n  quant-limit: '§bIpacEL §f> §bChunk loader limit reached'\n  list-header: '§bIpacEL §f> §aActive loaders list:'\n  list-line: '  §7- [%world%/%x%/%y%/%z%] [%id%] %radius% - %time%' # %world% %x% %y% %z% %name% %id% %radius% %time%\n  list-hover: 'Click to teleport'\n\n```\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 104,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

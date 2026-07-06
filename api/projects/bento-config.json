@@ -1,0 +1,20 @@
+{
+  "id": "hCpAsFXJ",
+  "slug": "bento-config",
+  "title": "Bento Config",
+  "description": "The declarative config library from Bento Box",
+  "body": "# Bento Config\n\nBento Config is an annotation-driven configuration system built using [Bento GUI](https://modrinth.com/mod/bento-gui). It aims to be simple yet powerful, with no magic pre-processors or arbitrary limitations.\n\nFeatures:\n\n- Automatic Mod Menu registration\n- [Translation key-driven](https://docs.chailotl.dev/bento/config/getting-started/#translations) descriptions and comments\n- [Automatically sources images](https://docs.chailotl.dev/bento/config/getting-started/#images) from the assets folder\n- Annotation-driven [constraints](https://docs.chailotl.dev/bento/config/constraints/)\n- [JSON5](https://json5.org/) config file format\n- [Supports many types](https://docs.chailotl.dev/bento/config/supported-types/) out of the box\n\nBento Config is documented in-code with JavaDocs and on [my wiki](https://docs.chailotl.dev/bento/config/getting-started/).\n\n![](https://cdn.modrinth.com/data/hCpAsFXJ/images/88ee5f3a236315ca158a17e9672c618dd5417c6b.png)\n\n```java\npublic class MyConfig extends BentoConfig<MyConfig> {\n    public boolean spawn_creepers = true;\n    @Regex(\"[a-z]{1,10}\")\n    public String creeper_name = \"creeper\";\n    @Header(\"spawn_settings\")\n    @Range(min = 1, max = 10)\n    public int spawn_amount = 3;\n    @Percentage\n    public float spawn_chance = 0.5f;\n    @Header(\"loot_settings\")\n    public Item creeper_loot = Items.GUNPOWDER;\n}\n```\n\n```java\npublic class MyModInitializer implements ModInitializer {\n   ...\n   public static final MyConfig CONFIG = new MyConfig.register(\"my_mod_id\");\n   ...\n}\n```",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

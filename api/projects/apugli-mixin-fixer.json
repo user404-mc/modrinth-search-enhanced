@@ -1,0 +1,20 @@
+{
+  "id": "ik09N2zr",
+  "slug": "apugli-mixin-fixer",
+  "title": "Apugli Mixin Fixer",
+  "description": "A lightweight mixin compatibility shim for Minecraft 1.20.1 (Fabric) that fixes a crash when using Apugli 2.10.x with Origins 1.10.2 (Apoli 2.9.2).",
+  "body": "# Apugli Fixer\n\nA lightweight mixin compatibility shim for **Minecraft 1.20.1 (Fabric)** that fixes a crash when using [Apugli](https://modrinth.com/mod/apugli) 2.10.x with [Origins](https://modrinth.com/mod/origins) 1.10.2 (Apoli 2.9.2).\n\n## The Problem\n\nApugli 2.10.4's `EntityConditionsMixin` uses `@Redirect` to intercept `EnchantmentHelper.getLevel()` and `EnchantmentHelper.getEquipmentLevel()` calls inside Apoli's `EntityConditions.lambda$register$47`. However, in Apoli 2.9.2, those calls live in `lambda$register$45` instead. Lambda method numbers are compiler-generated and shift between Apoli versions, so the redirect finds 0 targets and crashes:\n\n```\nInjectionError: Critical injection failure: Redirector apugli$useModifiedEnchantmentLevelSum\nin apugli.fabric.mixins.json:common.EntityConditionsMixin from mod apugli failed injection\ncheck, (0/1) succeeded. Scanned 0 target(s).\n```\n\n## The Fix\n\nThis mod uses a single `@Overwrite` mixin (priority 100, applied before Apugli's redirect at priority 1000) to replace `lambda$register$47` with:\n\n1. The **original logic** (entity_on_block bientity condition), fully preserved\n2. **No-op calls** to `EnchantmentHelper.getLevel()` and `EnchantmentHelper.getEquipmentLevel()`, which Apugli's redirect intercepts and replaces with its modified enchantment level system\n\nThe result: Apugli's redirect finds its targets, the game launches, and enchantment-based origin powers work correctly.\n\n## Requirements\n\n| Dependency | Version |\n|---|---|\n| Minecraft | 1.20.1 |\n| Fabric Loader | >= 0.14.0 |\n| Origins | 1.10.2 (Apoli 2.9.2) |\n| Apugli | 2.10.0+ |\n\n## How It Works\n\n```\nMixin priority order when EntityConditions class loads:\n\n100  [Apugli Fixer]   @Overwrite lambda$register$47\n                       -> original logic + EnchantmentHelper calls\n\n1000 [Apugli]          @Redirect on those calls\n                       -> replaces with ModifyEnchantmentLevelPowerFactory\n\nResult: redirect finds targets, no crash, modified enchantment levels work\n```\n\n## License\n\n[MIT](LICENSE)\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 87,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

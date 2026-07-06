@@ -1,0 +1,28 @@
+{
+  "id": "A5FbGJEb",
+  "slug": "anvilplus",
+  "title": "AnvilPlus",
+  "description": "A plugin that rebalance anvil and add new feature to anvil.",
+  "body": "**Require [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/)**\n\n## Features:\nAll features can be disable with config\n\n- Uses a new formula for calculating the required experience levels for anvils.\n-  Allows anvil usage beyond the vanilla level 39 cap.\n-  Disable mending (default off)\n-  Gives you the ability to skin armor using other armor pieces (see gallery for how)\n\n## Why change the anvil formula?\n\nWith the vanilla formula for level calculation, book with low enchants level are useless as it could lead to being too expensive.\n\nYou need a calculator to calcualte what book to put on first, which is annoying.\n\nRepairing with ores are not practical due to the xp requirement and mending are too unbalanced.\n\n## Anvil level formula:\n\n**This is not required for gameplay**, please check code for more clearity.\n\n**TL;DR: Levels are calculated base on changes in enchantment.**\n\nBasic formula ([code](https://codeberg.org/cutebear/AnvilPlus/src/commit/84f7c4c2f1726041958c5afd0ecc11fdbaacc1ff/src/main/java/dev/_0w0b/anvilPlus/AnvilPlus.java#L53)):\n\n```\nCost​=∑(Level×3)+[Mending Bonus (5)]\n```\n\nIf enchantment books are used ([code](https://codeberg.org/cutebear/AnvilPlus/src/commit/84f7c4c2f1726041958c5afd0ecc11fdbaacc1ff/src/main/java/dev/_0w0b/anvilPlus/AnvilPlus.java#L137)):\n```\nRepair Cost=[Cost calculation of book]×Multiplier\n```\n\nIf not ([code](https://codeberg.org/cutebear/AnvilPlus/src/commit/84f7c4c2f1726041958c5afd0ecc11fdbaacc1ff/src/main/java/dev/_0w0b/anvilPlus/AnvilPlus.java#L142)):\n```\nFinal Repair Cost=max(1,[Result Cost]​−max([Item1 Cost]​​,[Item2 cost]​​))×Multiplier\n```\n\nRename and repair always cost 1 level.\n\n### Examples:\n\nNote level of enchants are represent with roman numerals for clearity, value calculate with multiplier of 1.\n\nUnenchanted pickaxe + Unbreaking III require 9 levels (`III * 3`)\n\nUnbreaking III pickaxe + Mending require 8 level (`I * 3 + 5`)\n\nEfficiency V pickaxe + Unbreaking III pickaxe require 9 level (`(V*3 + III*3)-max(V*3,III*3)`)\n\n\n## Config:\n| Name             | Description                          | default |\n|------------------|--------------------------------------|---------|\n| disableMending   | disable mending                      |  false  |\n| maxCost          | Max level allowed                    |  32767  |\n| multiplier       | Level multiplier (require rebalance) |  1      |\n| disableRebalance | disable rebalance                    |  false  |\n| disableSkinning  | disable skinning                     |  false  |\n\n\n## Credit:\n[Anvil Unlocker](https://modrinth.com/plugin/anvilunlocker) for showing infomation about how level unlock work",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

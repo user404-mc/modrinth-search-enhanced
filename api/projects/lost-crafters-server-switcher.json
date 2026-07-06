@@ -1,0 +1,38 @@
+{
+  "id": "ajlK45vO",
+  "slug": "lost-crafters-server-switcher",
+  "title": "Lost Crafters Server Switcher",
+  "description": "Customizable /server command and connection management velocity plugin",
+  "body": "# LostCrafters Server Plugin\n\nA Velocity plugin that provides a customizable `/server` command with support for server groups, GUIs (via Protocolize), and text-based selection.\n\n## Features\n\n- **Server Groups**: Define groups of servers. Players only see servers within their current group.\n- **GUI Support**: Use Protocolize to show an interactive inventory for server selection.\n- **Text-based Selection**: Fallback to clickable chat messages if GUIs are disabled.\n- **Customizable Messages**: All messages support MiniMessage and can be fully customized in the config.\n- **LuckPerms Integration**: Fine-grained permission control.\n- **MiniPlaceholders Support**: Integration with MiniPlaceholders for dynamic placeholders from other plugins.\n\n## Commands\n\n- `/server [server]`: Opens the server selection GUI/menu or connects directly to the specified server.\n- `/lcserver reload`: Reloads the plugin configuration.\n\n## Permissions\n\n- `lostcrafters.server.use`: Allows use of the `/server` command.\n- `lostcrafters.server.reload`: Allows use of the `/lcserver reload` command.\n- `lostcrafters.serveraccess.<server>`: Grants access to connect to a specific server, where `<server>` is the internal Velocity server name.\n- `lostcrafters.serveraccess.*`: Grants access to all servers.\n\n**Note**: By default, players have no access to any server. You must explicitly grant access via these permissions.\n\nIf a player's permission is revoked while they are connected to a server, they will be automatically redirected to a fallback server (as defined in `velocity.toml`) or disconnected if no fallback is available.\n\n## Configuration\n\nThe configuration is located at `plugins/lostcrafters/server/config.yml`.\n\n### Example Configuration\n\n> **Note**: For GUI items, it is recommended to use vanilla Minecraft IDs (e.g., `minecraft:compass`). Modded items may not be supported by the GUI library and will default to a diamond sword if not found.\n\n```yaml\nserver-groups:\n  survival_group:\n    name: \"<green>Survival Group</green>\"\n    show-gui: true\n    enable-switch-broadcast: true\n    servers:\n    - lobby:\n        name: \"Lobby\"\n        item: \"minecraft:compass\"\n    - survival:\n        name: \"Survival\"\n        item: \"minecraft:iron_pickaxe\"\n    - creative:\n        name: \"Creative\"\n        item: \"minecraft:grass_block\"\n    - staff_lounge:\n        name: \"Staff Lounge\"\n        hide-from-list: true\n  minigames_group:\n    name: \"<yellow>Minigames Group</yellow>\"\n    show-gui: false\n    servers:\n    - minigames_lobby:\n        name: \"Minigames Lobby\"\n        item: \"minecraft:clock\"\n```\n\n### Configuration Breakdown\n\n#### Server Groups\nEach entry under `server-groups` defines a collection of servers.\n- `name`: (String) The display name of the group. Supports MiniMessage.\n- `show-gui`: (Boolean) If `true`, a GUI (chest menu) will be shown when using `/server`. If `false`, a text-based selection message will be sent in chat.\n- `enable-switch-broadcast`: (Boolean, Optional, Default: `true`) If `true`, a message will be broadcast to all players within the group when a player switches from one server in the group to another.\n\n#### Server Entries\nEach server within a group is defined by its internal Velocity name and the following properties:\n- `name`: (String) The display name of the server.\n- `item`: (String, Optional, Default: `minecraft:diamond_sword`) The Minecraft item ID for the GUI representation (e.g., `minecraft:compass`).\n- `hide-from-list`: (Boolean, Optional, Default: `false`) If `true`, this server will be hidden from the GUI and the text selection list. The server remains accessible via `/server <name>` if the player has the appropriate permission. This is useful for servers like limbo lobbies or staff-only areas that you don't want to advertise in the general list.\n\n### Message Configuration\n\nYou can customize all plugin messages in the `messages` section of the config. The following placeholders are available and valid per message as indicated:\n\n- `%servername%`: The display name of the server as configured in `server-groups`.\n- `%playercount%`: The current number of players online on that server.\n- `%players%`: A comma-separated list of names of players currently on that server.\n- `%server%`: The internal ID/name of the server.\n- `%player%`: The name of the player who is switching servers.\n- `%previousserver%`: The internal ID of the previous server.\n- `%previousservername%`: The display name of the previous server.\n\n#### Valid Placeholders per Message:\n\n| Message | Default Message | Valid Placeholders |\n| :--- | :--- | :--- |\n| `select-server` | `<yellow>Select a server: </yellow>` | (none) |\n| `server-format` | `[<green>%servername%</green>]` | `%servername%`, `%playercount%`, `%players%` |\n| `current-server-format` | `[<gray>%servername%</gray>]` | `%servername%`, `%playercount%`, `%players%` |\n| `hover-text` | `<aqua>%servername%</aqua><newline><white>Players (%playercount%): %players%</white>` | `%servername%`, `%playercount%`, `%players%` |\n| `no-permission` | `<red>You do not have permission to use this command.</red>` | (none) |\n| `reloaded` | `<green>Configuration reloaded.</green>` | (none) |\n| `server-not-found` | `<red>Server %server% not found.</red>` | `%server%` |\n| `already-connected` | `<red>You are already connected to %servername%.</red>` | `%server%`, `%servername%` |\n| `connecting` | `<green>Connecting to %servername%...</green>` | `%server%`, `%servername%` |\n| `no-server-permission` | `<red>You do not have permission to connect to %servername%.</red>` | `%server%`, `%servername%` |\n| `no-fallback-server` | `<red>You no longer have permission to be on this server and no fallback server is available.</red>` | (none) |\n| `server-switch-broadcast` | `<gray>%player% has switched from %previousservername% to %servername%</gray>` | `%player%`, `%server%`, `%servername%`, `%previousserver%`, `%previousservername%` |\n\nExample usage in `hover-text`:\n```yaml\nhover-text: \"<aqua>%servername%</aqua><newline><white>Players (%playercount%): %players%</white>\"\n```\n\n## Dependencies\n\n- **Velocity API**: 3.4.0-SNAPSHOT\n- **Protocolize**: 2.4.1 (Optional, required for GUIs)\n- **MiniPlaceholders**: (Optional, for additional placeholders)\n- **LuckPerms**: For permission management\n- **Configurate (YAML)**: For configuration management",
+  "categories": [
+    "management",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 52,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

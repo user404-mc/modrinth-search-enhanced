@@ -1,0 +1,23 @@
+{
+  "id": "JNFl3QKb",
+  "slug": "courierapi",
+  "title": "CourierAPI",
+  "description": "CourierAPI is a Fabric mod library that lets any mod send animated HUD notification cards to players — via the Java API, JSON files, or in-game commands. Supports server-to-client broadcasting and client-side local display.",
+  "body": "![CourierAPI Logo.](https://i.imgur.com/sBPv1NS.png)\n\n**CourierAPI** is a Fabric mod library that lets any mod send animated HUD notification cards to players — via the Java API, JSON files, or in-game commands. Supports server-to-client broadcasting and client-side local display.\n\n---\n\n## Features\n\n- Animated slide-in / slide-out cards in the top-right corner of the HUD\n- Fully customizable colors — title, description, background, and border accent (ARGB)\n- Configurable display duration per notification\n- Up to 4 notifications visible at once; extras queue automatically\n- Description wraps to a second line when text is too long\n- **Server → Client** — send notifications via Java API or JSON files, no coding required\n- **Client-only** — display notifications locally from another client mod without a server\n- Drop-in `/courier` command for operators\n- Auto-creates a sample `couriernotifications.json` on first server start\n\n---\n\n## For Developers\n\nAdd to your `gradle.properties`:\n\n```properties\ncourierapi_version=0.1\n```\n\nThen in `build.gradle`:\n\n```gradle\nrepositories {\n    maven {\n        name = \"LunazStudios\"\n        url  = \"https://maven.lunazstudios.com/releases\"\n    }\n}\n\ndependencies {\n    modImplementation \"com.lunazstudios:CourierAPI:${project.minecraft_version}-${project.courierapi_version}\"\n}\n```\n\nFull documentation and API usage examples are available on the [GitHub repository](https://github.com/lunazstudios/CourierAPI).\n\n---\n\n## Server API\n\n```java\nNotification n = Notification.builder(\"Event Started!\", \"Head to the arena.\")\n        .durationSeconds(6)\n        .borderColor(0xFFFF4444)\n        .build();\n\nCourierAPI.send(player, n);        // single player\nCourierAPI.broadcast(server, n);   // all online players\n```\n\n## Client API\n\n```java\n// Client-side only — do not call on a dedicated server\nCourierClientAPI.showLocal(n);\n```\n\n---\n\n## JSON — No Coding Required\n\nPlace `couriernotifications.json` in your server root to define reusable notifications:\n\n```json\n{\n  \"restart_warning\": {\n    \"title\": \"Server Restart\",\n    \"description\": \"The server restarts in 5 minutes.\",\n    \"duration\": 8,\n    \"border_color\": \"#FF5555\"\n  }\n}\n```\n\nTrigger them in-game with `/courier send restart_warning`, or drop entries into\n`couriernotifications_queue.json` to dispatch from external scripts or RCON — no restart needed.\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/courier send <id>` | Broadcast a notification to all online players |\n| `/courier reload` | Reload `couriernotifications.json` from disk |\n\n*Requires permission level 2 (operator).*\n",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "optional",
+  "downloads": 96,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

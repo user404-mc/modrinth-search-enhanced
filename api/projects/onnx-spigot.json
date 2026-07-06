@@ -1,0 +1,22 @@
+{
+  "id": "bXTr4S3R",
+  "slug": "onnx-spigot",
+  "title": "ONNX Spigot",
+  "description": "Run local ONNX models in Spigot.",
+  "body": "# onnx-spigot\n\nA Spigot plugin that runs local ONNX LLM models, provides in-game chat via a trigger, and exposes a Bukkit service API for dependent plugins.\n\n## Features\n\n- Local ONNX inference from `plugins/onnx-spigot/models/`\n- In-game chat trigger (default: `@llm <message>`)\n- Single permission gate: `onnxspigot.llm.use`\n- Public Bukkit API registered through `ServicesManager`\n\n## Model Folder\n\nPlace your model files in:\n\n`plugins/onnx-spigot/models/<model-name>/`\n\nRequired files:\n\n- `*.onnx` (for example `model.onnx`)\n- Tokenizer data:\n  - `tokenizer.json`, or\n  - `vocab.json`\n\nOptional files:\n\n- `merges.txt` (used for better BPE merges when `vocab.json` is used)\n- `tokenizer_config.json` (special token IDs)\n- `config.json` (model metadata)\n\nSet `<model-name>` in `plugins/onnx-spigot/config.yml` under `llm.model`.\n\n## Model Support\n\n- Supported: Qwen 2 ONNX models\n- Supported: Qwen 3 ONNX models\n- Not supported: Gemma models\n\n## Qwen3-0.6B-ONNX (Confirmed Working)\n\n1. Download the model from: https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX\n2. Create a folder at `plugins/onnx-spigot/models/Qwen3-0.6B-ONNX/`.\n3. Copy the model files into that folder:\n   - `*.onnx` (for example `model.onnx`)\n   - `tokenizer.json` or `vocab.json`\n   - Optional: `merges.txt`, `tokenizer_config.json`, `config.json`\n4. Set this in `plugins/onnx-spigot/config.yml`:\n\n   ```yaml\n   llm:\n     model: \"Qwen3-0.6B-ONNX\"\n   ```\n\n## API Usage (from another plugin)\n\n```java\nimport org.bukkit.Bukkit;\nimport org.bukkit.plugin.RegisteredServiceProvider;\nimport tr.alperendemir.onnxSpigot.api.OnnxChatApi;\n\nRegisteredServiceProvider<OnnxChatApi> registration =\n        Bukkit.getServicesManager().getRegistration(OnnxChatApi.class);\nif (registration != null) {\n    OnnxChatApi api = registration.getProvider();\n    api.generate(\"Explain redstone clocks in one paragraph.\")\n            .thenAccept(response -> Bukkit.getLogger().info(response));\n}\n```\n\n## Build\n\n```powershell\n./gradlew.bat clean build\n```\n",
+  "categories": [
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "wAJtsuUu",
+  "slug": "better-happy-ghast-lite",
+  "title": "Better Happy Ghast - Lite",
+  "description": "Adds a toggleable \"parked\" state to the Happy Ghast. Use a Blaze Rod with a harnessed Happy Ghast to make it stay still or fly faster when mounted.",
+  "body": "# Better Happy Ghast\n\nAdds a **parked** state to the vanilla **Happy Ghast** (1.21.x):\n- Toggle **parked** with a **Blaze Rod** (only if the ghast has a **harness**).\n- While parked and **unmounted**, it stays perfectly still.\n- While parked and **mounted**, it flies **faster** (configurable multiplier).\n- Optional visual feedback (glow + particles when toggling).\n- Includes simple JSON config.\n\n> Fabric mod for Minecraft **1.21.x**.\n\n## Requirements\n- **Fabric Loader** ≥ 0.15.0  \n- **Fabric API** for your Minecraft 1.21.x version\n\n## Installation\n1. Install Fabric Loader and Fabric API.\n2. Download the mod JAR from the [Releases](https://github.com/ivaanortega/better-happy-ghast/releases).\n3. Drop the JAR into your `mods/` folder:\n   - Windows: `%AppData%/.minecraft/mods`\n   - Linux: `~/.minecraft/mods`\n   - macOS: `~/Library/Application Support/minecraft/mods`\n4. Launch the game.\n\n## How to use\n- Put a **Harness** on a Happy Ghast (vanilla behavior).\n- **Right-click with a Blaze Rod** to toggle **parked** on/off.\n  - Parked (unmounted): stays in place.\n  - Parked (mounted): flies faster than normal.\n- Right-click with empty hand to mount as usual (vanilla).\n\n## Configuration\nA JSON file is created on first run:\n\n```\n.minecraft/config/better-happy-ghast.json\n```\n\nDefault fields:\n```json\n{\n  \"parkedSpeedMultiplier\": 2.0,\n  \"sprintMultiplier\": 1.25,\n  \"maxSpeed\": 1.6,\n  \"debugLogs\": true,\n  \"debugEveryTicks\": 20\n}\n```\n\n- `parkedSpeedMultiplier` – base speed multiplier when **parked + mounted**.  \n- `sprintMultiplier` – extra multiplier if sprint/jump signal is detected (kept for future; not required if you disabled sprint logic).  \n- `maxSpeed` – hard cap on velocity length to avoid runaway speeds.  \n- `debugLogs` – prints diagnostic info to `latest.log`.  \n- `debugEveryTicks` – how often to print periodic speed logs (20 = ~1 sec).\n\n> After editing the JSON, **restart the game**.\n\n## Compatibility\n- Minecraft: **>= 1.21, < 1.22**\n- Loader: **Fabric**\n- Not tested with Forge/NeoForge.\n- Should be compatible with most content mods; anything replacing Happy Ghast internals might conflict.\n\n## Building from source\n```bash\n# Windows PowerShell\n.\\\\gradlew.bat clean build\n# macOS/Linux\n./gradlew clean build\n```\nArtifacts will be in `build/libs/`.  \nPublish the **remapped** jar (no `-dev` / `-sources` suffix).\n\n## Troubleshooting\n- “Incompatible mods / requires ${minecraft_version}”: make sure your `fabric.mod.json` expands placeholders (or use a fixed range like `>=1.21 <1.22`).\n- If the Blaze Rod mounts you instead of toggling parked: ensure the ghast **has a harness**; the Blaze Rod action is intercepted only in that case.\n- Speed feels off: adjust `parkedSpeedMultiplier` and `maxSpeed`. Enable `debugLogs` to see live speed in `latest.log`.\n\n## License\n[MIT](./LICENSE)\n\n## Credits\n- Code & idea: **Ivaanortega**\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 92,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9"
+  ],
+  "date_updated": null
+}

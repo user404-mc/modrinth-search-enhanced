@@ -1,0 +1,36 @@
+{
+  "id": "3bv6UAKc",
+  "slug": "1.18-1.21-superasks",
+  "title": "SuperAsks",
+  "description": "✅ NEW | A great plugin for the question system",
+  "body": "The [PlaceholdeAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) is required for SuperAsks to work​\n\n[![Discord](https://cdn.modrinth.com/data/cached_images/3b4f22cfd533362883c44e7bbe542adfa445a57e.png)](https://discord.gg/huvEtpz7EY)\n\n## Overview\n\nThe SuperAsks plugin is designed to send administration/moderation questions, as well as their answers. The plugin can be useful for servers where there is no \"Question - answer\" section, or just for other information about the server/something else.\n\n## Information\n\n\n<details>\n<summary>Commands</summary>\n\n- **/ask {question}** - This command sends a question on behalf of the player. Instead of \"{question}\", you need to write your question, and then press Enter to send it to the administrators/moderators so that they answer it\n\n- **/asks** - This command is designed to open a list of questions, as well as answer/clear them. You can set up word filters (search) and also delete all questions. In order to access the command, you need the permission \"superasks.asks\"\n\n</details>\n\n<details>\n<summary>Permissions</summary>\n\n- **superasks.asks** - A permission that allows the user to open a menu of questions, as well as answer them, but not receive notifications about new questions, as well as deleting questions. It also does not allow you to delete questions\n- **superasks.delete** - A permission that allows the user to delete questions individually, as well as all questions at once\n- **superasks.notify-deleted** - A permission that allows the user to delete questions individually, as well as all questions at once\n- **superasks.notify-ask** - A permission that allows the user to receive notifications when a new question arrives\n\n</details>\n\n\n<details>\n<summary>config.yml</summary>\n\n\n```\ndatabase:\n # The type of database to be used for connection (Allowed: H2, MySQL, Fortgres)\n  type: \"MySQL\"\n  # Database address\n  url: \"localhost\"\n  # Connection port\n  port: \"3306\"\n  # The name of the database (not the tables!)\n  name: \"database\"\n\n  # Data for authorization in the database\n\n  # Username\n  username: \"\"\n  # Password\n  password: \"\"\n\non-question-solved:\n - 'msg %asker%, you get reply from %admin%: %reply%'\n  # Change this if you don't have EssebtialsX installed or something similar.\n\nmessages:\n  ask-timed-out: \"&6&lSuperAsks &8» &7The timeout of &630 seconds &7for the response has expired. The question has been returned to the menu, the chat restrictions have been lifted\"\n  ask-await-reply: \"&6&lSuperAsks &8» &7Your next chat message will be counted as an answer to the selected question. Question: &c%question%&f.\"\n  ask-sent: \"&6&lSuperAsks &8» &7Your question has been submitted to moderation.\"\n  ask-deleted: \"&6&lSuperAsks &8» &7The question has been deleted.\"\n  ask-deleted-by-admin: \"&8[&c!&8] &6&lSuperAsks &8» &7The question from &c%sender%&7 is addressed by the administrator &c%admin%! &8(ASK ID: %ask_id%)\"\n  notify-new-ask: \"&6&lSuperAsks &8» &c%sender% &7has sent a new question!\"\n\n  deleted-all-asks: \"&6&lSuperAsks &8» &c%count%&7 of questions have been deleted.\"\n  notify-deleted-all-asks: \"&8[&c!&8] &6&lSuperAsks &8» &7Admin &c%admin%&7 deleted all questions! &8(Total: %count%)\"\n\n  action-not-allowed: \"&6&lSuperAsks &8» &7You can't do this right now!\"\n\n  filter-set: \"&6&lSuperAsks &8» &7The filter is installed: &c%filter%\"\n  filter-reset: \"&6&lSuperAsks &8» &7The filter has been reset.\"\n  await-filter: \"&6&lSuperAsks &8» &7Your next message will be counted as a new value for the question filter.\"\n\n  # Item Management\n\n  # name - name of the item\n  # amount - item quantity\n  # lore - description of the item\n  # type - the material of the item (for example, STONE)\n  # enchantments - enchantment of an item (in MENDING:2 format)\n  # hideEnchantments - hide enchantments (the glow remains)\n  # hideAttributes - hide attributes\n  # hideItemFlags - hide other item flags (for example, what is being set or potion effects)\n  # hideUnbreakable - hide the inviolability of an object\n  # hideAll - hide the 4 above parameters together\n\n  items:\n    ask-item:\n      name: \"&7Question from &6%name% &6(%time% ago)\"\n      amount: 1\n      type: PAPER\n      lore:\n       - \"&r \"\n        - \"&f%question%\"\n        - \"&r \"\n        - \"&7Answer the question - &6LBM\"\n        - \"&7Delete a question - &6RMB\"\n    asks-prev-page:\n      name: \"&fBack &c#%page%\"\n      amount: 1\n      type: ARROW\n    asks-next-page:\n      name: \"&fForward &c#%page%\"\n      amount: 1\n      type: ARROW\n    asks-clear-all:\n      name: \"   &c&lClear everything   \"\n      amount: 1\n      type: RED_TERRACOTTA\n      lore:\n       - \"              &c&m   \"\n        - \"&r\"\n        - \"  &fCompletely clears all  \"\n        - \"  &fexisting issues  &f\"\n        - \"&r\"\n    asks-filter:\n      name: \"   &e&lFilter out questions  &f\"\n      amount: 1\n      type: SPYGLASS\n      lore:\n       - \"                &e&m   \"\n        - \"&r\"\n        - \"  &fFilters questions by\"\n        - \"  &fthe given word/words    &f\"\n        - \"&r\"\n        - \"  &fCurrent filter:\"\n        - \"  &c%filter%\"\n        - \"&r\"\n        - \"  &fReset the filter - &eRMB\"\n        - \"&r\"\n```\n\n\n</details>\n\n\n<details>\n<summary>Screenshots</summary>\n\n![#1](https://cdn.modrinth.com/data/cached_images/f5409566500fa544c165e3e4393f33206ddcee2c.png)\n![#2](https://cdn.modrinth.com/data/cached_images/5d67248f29069af4be17a6a821ed8c3822bda591.png)\n![#3](https://cdn.modrinth.com/data/cached_images/cc5d6e0b0bb42399254251238742005cdd1ddd67.png)\n![#4](https://cdn.modrinth.com/data/cached_images/c11c322fe57784c88a29b487c902a14cb962d1e0.png)\n\n</details>\n\n## Support\n\nIf you need help, or you find a bug/typo, then you can always contact our support so that we, in turn, can help solve all your problems related to our plugin! In order to contact our support, you must log into our Discord server",
+  "categories": [
+    "bukkit",
+    "management",
+    "purpur",
+    "social",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 69,
+  "followers": 0,
+  "game_versions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.21",
+    "1.21.3"
+  ],
+  "date_updated": null
+}

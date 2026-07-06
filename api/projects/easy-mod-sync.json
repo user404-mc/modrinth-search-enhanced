@@ -1,0 +1,32 @@
+{
+  "id": "AEEuHcyv",
+  "slug": "easy-mod-sync",
+  "title": "Easy Mod Sync",
+  "description": "Automatically sync files from servers to client or clients to clients upon joining with end to end encryption.",
+  "body": "# **Easy Mod Sync**\n\n![alt text](https://cdn.modrinth.com/data/AEEuHcyv/images/53f07593df7ba82a72f1d4d4e48e82ae24a46998.gif)\n\n**Easy Mod Sync** is a Fabric mod designed to synchronize specified files and directories from a Minecraft server or another client to connecting clients. It ensures that players have the necessary configs, mods, resource packs, or other assets required by the server before joining.\n\n## Features\n\n* **Delta Synchronization:** The mod calculates MD5 hashes of the server's tracked files and compares them against the client's local files. The client only downloads files that are missing or differ from the server's version.\n* **Transfer Methods:**\n  * **MINECRAFT (Default)(Slow):** Transfers files using standard Minecraft custom payload packets, split into chunks. Suitable for configs or a handful of mods.\n  * **EXTERNAL (Fast):** Spawns a lightweight, internal HTTP server to handle file transfers. This method is optimized for larger files (such as big resource packs or hundreds of mods) to prevent stalling the main server thread.\n* **Security & Encryption:**\n  * When using the `EXTERNAL` transfer method, file payloads are encrypted using AES-GCM with single-use Session IDs generated per client connection.\n  * The server enforces strict whitelisting, clients can only request files explicitly added to the sync registry. Directory traversal protections are built-in.\n* **Client Interface & Isolation:**\n  * Connecting players are presented with a prompt detailing the risks, giving them the option to accept the download or disconnect.\n  * Files are initially downloaded to a temporary directory (`config/easymodsync/temp/`). They are only moved to the active game directory when the transfer is 100% complete without errors and the player clicks \"Finalize\".\n  * There's a scrollable event log on the progress screen to see live file transfers. Players can safely abort the transfer at any time using the Exit button.\n\n## Commands\n\nEasyModSync includes in-game commands to manage the file sync registry (`config/easymodsync/file_tree.json`). These commands require Operator (OP) level 3 or higher.\n\n* `/easymodsync add_files <path>`\n  Adds a specific file or recursively adds a directory to the sync list. The path must be relative to the server's root directory.\n  *Example:* `/easymodsync add_files config/mypack/`\n\n* `/easymodsync remove_files <path>`\n  Removes a specific file or all files within a directory from the sync list.\n  *Example:* `/easymodsync remove_files config/old_settings.json`\n\n*(Note: Command arguments support dynamic tab-completion for both local server files and currently tracked files to reduce lag that might come from recursively checking the full directory tree of the server. Due to this after typing a folder's name press space and then backspace to get an updated list of files and directories within the folder)*\n\n## Configuration\n\nThe mod's config is stored in `config/easymodsync.json` and can be edited directly or via Mod Menu/Cloth Config.\n\n| Option | Type | Default | Description |\n| :--- | :--- | :--- | :--- |\n| `offerAdditionalFiles` | Boolean | `true` | Toggles whether the server will prompt joining clients to download tracked files. |\n| `fileTransferMethod` | Enum | `MINECRAFT` | Determines the protocol used to send files. Options are `MINECRAFT` (packet-based) or `EXTERNAL` (HTTP-based). |\n| `externalPort` | Integer | `25652` | The port utilized by the built-in HTTP server if the `EXTERNAL` transfer method is selected. This port must be accessible to connecting clients (i.e the port needs to be open on the server or the client offering the files). |\n\n## Requirements\n* Fabric Loader\n* Fabric API\n* Cloth Config API\n",
+  "categories": [
+    "fabric",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 83,
+  "followers": 0,
+  "game_versions": [
+    "26.2-snapshot-7",
+    "26.2-snapshot-8",
+    "26.2-pre-1",
+    "26.2-pre-2",
+    "26.2-pre-3",
+    "26.2-pre-4",
+    "26.2-pre-5",
+    "26.2-pre-6",
+    "26.2-rc-1",
+    "26.2-rc-2",
+    "26.2",
+    "26.3-snapshot-1"
+  ],
+  "date_updated": null
+}

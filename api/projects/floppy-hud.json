@@ -1,0 +1,21 @@
+{
+  "id": "hOBPP3ED",
+  "slug": "floppy-hud",
+  "title": "Floppy HUD",
+  "description": "A DOOM-like HUD clientside mod!",
+  "body": "**Fabric version coming soon, follow the project to get notified when a new update drops!**\n\n**Floppy HUD** is a total client-side HUD conversion mod for Minecraft **NeoForge 1.21.1**. It completely replaces the vanilla Minecraft interface with a nostalgic, fully functional retro UI inspired by the legendary 1993 Doom shareware release.\nThis mod is a port of the HUD from the official April Fools 2019 Minecraft version '3D Shareware v1.34' with new features.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/07ykpNiKKGc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n\n## Features\n\n* **The Classic Panel:** A custom, fully transparent 256x64 retro hotbar panel that anchors beautifully to the bottom of the screen.\n* **Live 3D Player Face:** A fully animated, 3D rendering of the player's face right in the center of the HUD. The model features custom rotation math to simulate \"looking around\" while perfectly freezing the actual entity's hitboxes in the game world.\n* **Dynamic Pixel-Perfect Status Bars:** \n  * **Hunger:** A classic meat shank icon that gradually slices itself away pixel-by-pixel as you starve, using exact bounding-box UV math.\n  * **Oxygen:** A custom bubble icon that seamlessly appears and shrinks when diving underwater.\n* **Clean Text & Translations:** Features native Minecraft localization support (fully translatable `HEALTH` and `ARMOR` text) and dynamic percentage tracking.\n* **Seamless Vanilla Integration:** Automatically shifts vanilla overlays (like XP levels and item names) to fit the new layout, while safely assassinating conflicting vanilla HUD elements (Armor, Food, Health) using custom Mixins and the NeoForge Event Bus.\n\n## Installation\n\nSince this is a **client-side only** mod, it does not need to be installed on servers.\n\n1. Ensure you have [NeoForge 1.21.1](https://neoforged.net/) installed.\n2. Download the latest `.jar` file from the [Releases](#) tab.\n3. Drop the mod into your `.minecraft/mods` folder.\n4. Boot up the game and enjoy the Doom-like HUD!\n\n## Under the Hood (For Developers)\n\nThis mod was built with a heavy focus on clean, modern rendering practices and optimized code structure:\n* **GuiGraphics & Z-Layers:** Utilizes modern `GuiGraphics.blit` and matrix stack translations (`pose().translate`) for flawless Z-layer sorting and Alpha Blending.\n* **Smart UI Math:** Drops the buggy vanilla 1.14 integer-division traps in favor of pure float percentage calculations for UI shrinking effects. \n* **Safe Overrides:** Uses a combination of `@Mixin(Gui.class)` to outright kill unnecessary vanilla rendering calls before they happen, and `RenderGuiLayerEvent.Pre` to safely shift necessary vanilla text elements without breaking other mods.\n\n## Localization\n\nThe mod natively supports Minecraft's `.json` language system. It currently has support for `en_us`; `en_gb`; `pt_pt` and `pt_br`. To add a translation for your language, simply create a new language file (e.g., `es_es.json`) in the mod's asset folder with the following keys:\n```json\n{\n  \"gui.floppyhud.health\": \"HEALTH\",\n  \"gui.floppyhud.armor\": \"ARMOR\"\n}",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 84,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

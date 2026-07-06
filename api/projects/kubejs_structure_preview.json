@@ -1,0 +1,20 @@
+{
+  "id": "UnkHszZ7",
+  "slug": "kubejs_structure_preview",
+  "title": "kubejs_structure_preview",
+  "description": "KubeJS 6 is an accessory module, which previews the. nbt structure file in real time with translucent texture box in MC 1.20.1 Forge.",
+  "body": "# **这是一个KubeJS 6 的附属模组**\n功能：以半透明纹理方块实时预览 .nbt 结构\n\n1.可以方便你展示预览你用kubejs自定义的预制结构。\n\n2.能方便你向玩家展示结构，了解结构样子。\n\n3.展示你设计的多方块结构，方便玩家搭建，类似蓝图。\n\n## **提供的方法**\n// 显示预览\n\nStructurePreview.show(\"minecraft:igloo/top\", x, y, z)\n\n// 完整参数\n\nStructurePreview.show(\"minecraft:end_city/ship\", x, y, z, \"clockwise_90\", 0.7)\n\n//  rotation: \"none\" | \"clockwise_90\" | \"clockwise_180\" | \"counterclockwise_90\"\n\n//  alpha: 0.05 ~ 1.0\n\nStructurePreview.hide()\n\nStructurePreview.rotate(90)\n\nStructurePreview.setAlpha(0.5)\n\nStructurePreview.isActive()\n\n\n## **兼容性**\n\nEmbeddium / Oculus / Rubidium — 等兼容\n\n## **代码案例**\n\n\n```\n// server_scripts\n\n// 手持木棍右键方块 → 渲染原版冰屋结构幽灵预览\n\n// Ctrl+滚轮旋转 | 再右键切换隐藏\n\n\nlet STRUCTURE = \"minecraft:igloo/top\"\n\n\nBlockEvents.rightClicked(event => {\n\n    let player = event.player\n    \n    let item = event.item\n    \n    if (event.hand !== \"MAIN_HAND\" || !item || item.id !== \"minecraft:stick\") return\n    \n    let pos = event.block.pos.above()\n    \n    if (StructurePreview.isActive()) {\n    \n        StructurePreview.hide()\n        \n        player.displayClientMessage(\"预览已隐藏\", true)\n        \n        return\n        \n    }\n    if (StructurePreview.show(STRUCTURE, pos.getX(), pos.getY(), pos.getZ())) {\n    \n        player.displayClientMessage(`${STRUCTURE} 预览 | Ctrl+滚轮旋转`, true)\n        \n    }\n    \n})\n\n\n```\n\n\nStructure Preview —— KubeJS 6 Addon for Ghost Structure Previews\n\nThis is an addon for KubeJS 6.\nFunction: Real-time preview of .nbt structures with semi-transparent ghost blocks.\n1. Preview your custom KubeJS structures during development.\n2. Show structures to players so they can see what they look like.\n3. Display multiblock designs as blueprints for players to build.\n\nAvailable Methods:\n// Show preview\nStructurePreview.show(\"minecraft:igloo/top\", x, y, z)\n// Full parameters\nStructurePreview.show(\"minecraft:end_city/ship\", x, y, z, \"clockwise_90\", 0.7)\n// rotation: \"none\" | \"clockwise_90\" | \"clockwise_180\" | \"counterclockwise_90\"\n// alpha: 0.05 ~ 1.0\nStructurePreview.hide()\nStructurePreview.rotate(90)\nStructurePreview.setAlpha(0.5)\nStructurePreview.isActive()\n\nCompatibility:\nEmbeddium / Oculus / Rubidium compatible.\n\nCode Example:\n// server_scripts\n// Right-click a block with a stick -> renders igloo ghost preview\n// Ctrl+Scroll to rotate | Right-click again to toggle hiding\n\nlet STRUCTURE = \"minecraft:igloo/top\"\n\nBlockEvents.rightClicked(event => {\n    let player = event.player\n    let item = event.item\n    if (event.hand !== \"MAIN_HAND\" || !item || item.id !== \"minecraft:stick\") return\n    let pos = event.block.pos.above()\n    if (StructurePreview.isActive()) {\n        StructurePreview.hide()\n        player.displayClientMessage(\"Preview hidden\", true)\n        return\n    }\n    if (StructurePreview.show(STRUCTURE, pos.getX(), pos.getY(), pos.getZ())) {\n        player.displayClientMessage(`${STRUCTURE} preview | Ctrl+Scroll to rotate`, true)\n    }\n})",
+  "categories": [
+    "decoration",
+    "forge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 11,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

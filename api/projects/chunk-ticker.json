@@ -1,0 +1,36 @@
+{
+  "id": "hit56flB",
+  "slug": "chunk-ticker",
+  "title": "Chunk Ticker",
+  "description": "Keeps selected chunks permanently loaded and fully ticking",
+  "body": "## ⏱️ ChunkTicker\n\nWant your farms to keep running when no players are online? This lightweight Paper plugin keeps selected chunks permanently loaded and **fully ticking** — mobs spawn, Redstone fires, villagers work.\n\nNo libraries, no bloat. Mark a chunk and go.\n\n---\n\n### ✨ Features\n\n- **Full entity ticking** — mobs spawn, villager AI runs, Redstone executes, crops grow\n- **Works without players** — iron golem, creeper & hoglin farms run 24/7\n- **Multi-world support** — Overworld, Nether, End and custom worlds\n- **Radius selection** — register one chunk or an entire N×N area in one command\n- **Persistent** — chunk list survives server restarts via `config.yml`\n- **Global toggle** — pause all tickets without losing your list\n- **LuckPerms-compatible permissions** — per-subcommand control\n\n---\n\n### ⚙️ Configuration\n\n```yaml\n# Whether ChunkTicker is globally active\nglobal-enabled: true\n\n# Ticket mode: plugin | forced | both (recommended)\n#   plugin  → addPluginChunkTicket()  (TicketType.PLUGIN,  Level 31)\n#   forced  → setChunkForceLoaded()   (TicketType.FORCED,  Level 31)\n#   both    → both tickets applied — most reliable for mob farms\nticket-mode: both\n\n# Managed automatically — only edit while the server is stopped\nchunks: []\n```\n\n---\n\n### 🔑 Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `chunksticker.admin` | Grants all permissions below | `op` |\n| `chunksticker.set` | Use `/ct set` | `op` |\n| `chunksticker.delete` | Use `/ct delete` | `op` |\n| `chunksticker.list` | Use `/ct list` | `op` |\n| `chunksticker.toggle` | Use `/ct on` and `/ct off` | `op` |\n| `chunksticker.reload` | Use `/ct reload` | `op` |\n| `chunksticker.status` | Use `/ct status` | `op` |\n\n**LuckPerms examples**\n```\n/lp group admin permission set chunksticker.admin true\n/lp user Steve permission set chunksticker.set true\n```\n\n---\n\n### 💬 Commands\n\n| Command | Description |\n|---|---|\n| `/ct set [radius]` | Register the chunk you're standing in (+ radius) |\n| `/ct delete [radius]` | Remove the chunk you're standing in (+ radius) |\n| `/ct list` | List all registered chunks (world, X, Z) |\n| `/ct on` / `off` | Enable or disable ChunkTicker globally |\n| `/ct reload` | Reload config and re-apply all tickets |\n| `/ct status` | Show active state and chunk count per world |\n\nAlias: `/ct` — full command: `/chunksticker`\n\n---\n\n### 📋 Requirements\n\n| | |\n|---|---|\n| Server | **Paper 1.21 – 1.21.x** (Purpur & Pufferfish also work) |\n| Java | 21+ |\n\n> ⚠️ **Spigot and Folia are not supported.**\n\n---\n\n### 🔧 How it works\n\nPaper exposes two persistent chunk-ticket APIs at entity-ticking level (Level 31): `addPluginChunkTicket()` and `setChunkForceLoaded()`. With `ticket-mode: both`, ChunkTicker applies both to every registered chunk. Level 31 is the same load level used for chunks inside a player's view distance — entities tick, mobs spawn via the natural spawning cycle, and Redstone runs exactly as if a player were standing nearby.\n\n---\n\n### 📦 Source\n\n[github.com/EmilDeuOfficial/ChunkTicker](https://github.com/EmilDeuOfficial/ChunkTicker)\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

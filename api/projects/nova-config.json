@@ -1,0 +1,20 @@
+{
+  "id": "BicKAYPp",
+  "slug": "nova-config",
+  "title": "Nova Config",
+  "description": "A config library for fabric 1.21.5 using elementa",
+  "body": "# NovaConfig\n\n**A high-level configuration system for mod developers—focused on expressiveness, modularity, and zero boilerplate.**\n\n---\n\n## ✨ Features\n\n- ✅ **DSL-Based Config**  \n  Rich Kotlin builder syntax with intuitive declarations  \n\n- 🎛️ **Modular UI Components**  \n  Toggles, sliders, dropdowns, keybinds, color pickers—fully composable\n\n- ♻️ **Live Reloading**  \n  Config changes apply instantly in-game  \n\n- 📘 **Inline Markdown Docs**  \n  Embed documentation and onboarding info right into config UIs\n\n---\n\n## 🧩 Getting Started\n\nAdd this to your `build.gradle.kts`:\n\n```kotlin\nrepositories {\n    maven { url = uri(\"https://repo.essential.gg/public\") }\n    mavenCentral()\n    maven { url = uri(\"https://jitpack.io\") }\n}\n\ndependencies {\n    modImplementation(\"com.github.Eclipse-5214:nova-config:1.0.1\")\n}\n```\n\nAnd in `fabric.mod.json`:\n\n```json\n\"depends\": {\n  \"nova-config\": \"*\"\n}\n```\n\n> JitPack supports version tags and commit hashes—use `1.0.1` or later for the stable DSL.\n\n---\n\n## 🛠 Example\n\n```kotlin\nval config = NovaApi.createConfig(\"example\", \"yourmodid\") {\n    category(\"General\") {\n        toggle {\n            configName = \"enabled\"\n            name = \"Enable Feature\"\n            description = \"Toggle a feature on or off\"\n            default = true\n        }\n        colorpicker {\n            configName = \"themeColor\"\n            name = \"Theme Color\"\n            description = \"Pick your favorite hue\"\n            default = rgba(255, 255, 255, 255)\n        }\n    }\n}\n```\n\nTo access:\n\n```kotlin\nval config = NovaApi[\"example\"]\nval isEnabled = config as Boolean ?: false\nval themeColor = (config as RGBA).getColor(\"themeColor\")\n```\n\n---\n\n## 🙌 Credits\n\n- **[Eclipse (NEXD_)]** – Creator & lead dev  \n- [Elementa UI](https://github.com/gg/elementa)  \n- [Amaterasu](https://github.com/DocilElm/Amaterasu)  \n- [Catppuccin](https://github.com/catppuccin) – Palette  \n- **Stella** – The mod NovaConfig was born for  \n- All contributors, testers, and those giving feedback\n- And DrPepper of course",
+  "categories": [
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 64,
+  "followers": 0,
+  "game_versions": [
+    "1.21.5"
+  ],
+  "date_updated": null
+}

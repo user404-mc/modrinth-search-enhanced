@@ -1,0 +1,21 @@
+{
+  "id": "ernJj3m9",
+  "slug": "geoblock",
+  "title": "GeoBlock",
+  "description": "Country-based connection filter with bypass whitelist . Free GeoIP via db-ip.com. No account required.",
+  "body": "# GeoBlock\n\nA Paper plugin that filters incoming connections by country using a local\nMaxMind GeoLite2 database, with bypass support for trusted IPs and UUIDs,\noptional VPN/proxy detection and Discord webhook notifications.\n\n## Features\n\n- Country-based filtering in `blacklist` or `whitelist` mode (ISO 3166-1\n  alpha-2 codes).\n- IP and UUID bypass list with IPv4/IPv6 CIDR support.\n- Permission integration through the standard Bukkit API: works with\n  LuckPerms when present, falls back to vanilla `/op` otherwise.\n- Async Discord webhook for connection denials, with toggleable IP\n  inclusion for privacy-conscious deployments.\n- Hot configuration reload via `/geoblock reload`.\n\n## Build\n\n```sh\n./gradlew build\n```\n\nThe shaded jar is produced at `build/libs/GeoBlock-<version>.jar` with all\nruntime dependencies relocated under `fr.horizonsmp.geoBlock.lib.*` to\navoid clashes with other plugins.\n\n## Run a development server\n\n```sh\n./gradlew runServer\n```\n\nBoots a Paper development server with the plugin loaded.\n\n## Requirements\n\n- Java 25\n- Paper 1.21.x (Minecraft `26.1.2` API target)\n- A MaxMind GeoLite2 license key for automatic database updates, or a\n  manually provided MMDB file under the plugin data folder.\n\n## Configuration\n\nAfter the first run, edit the files generated under `plugins/GeoBlock/`:\n\n- `config.yml` — filtering mode, country list, GeoIP, VPN and Discord\n  options. Each option is documented inline.\n- `messages.yml` — user-facing strings (kick reasons, command output).\n- `whitelist.yml` — bypass list (managed through commands).\n\nThe plugin reads `config.yml`, `messages.yml` and `whitelist.yml` at\nstartup and through `/geoblock reload`.\n\n## Commands\n\n| Command                                | Permission                | Description                                |\n|----------------------------------------|---------------------------|--------------------------------------------|\n| `/geoblock reload`                     | `geoblock.command.reload` | Reload all configuration files             |\n| `/geoblock bypass add ip <ip\\|cidr>`   | `geoblock.command.bypass` | Add an IP or CIDR to the bypass list       |\n| `/geoblock bypass add uuid <uuid>`     | `geoblock.command.bypass` | Add a player UUID to the bypass list       |\n| `/geoblock bypass remove ip <ip>`      | `geoblock.command.bypass` | Remove an IP/CIDR entry                    |\n| `/geoblock bypass remove uuid <uuid>`  | `geoblock.command.bypass` | Remove a UUID entry                        |\n| `/geoblock bypass list`                | `geoblock.command.bypass` | Show every bypass entry                    |\n| `/geoblock help`                       | `geoblock.admin`          | Print the command summary                  |\n\n`geoblock.admin` (default `op`) implies the two child permissions, so\noperators get full access on a server without LuckPerms.\n\n## License\n\nSee LICENSE file.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 23,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "1vstpFgW",
+  "slug": "jumpboostbar",
+  "title": "JumpBoostBar",
+  "description": "A simple mod to add a charging bar for when jumping with jump boost\nThis mod was made & suggested by/for DashPum4; https://youtube.com/@DashPum4",
+  "body": "# JumpBoostBar\n\nBecause who needs to build leg muscles when you can just... charge up and fly? It's not lazy, it's efficient.\n\n---\n\nThis mod/plugin allows you to charge a jump by sneaking, and then release to perform a super jump! The height of the jump is determined by how long you charge it and your current Jump Boost potion effect.\n\n## Features\n\n- **Chargeable Jumps:** Hold sneak to charge, release to jump.\n- **Jump Boost Integration:** The higher your Jump Boost level, the higher you can jump.\n- **Visual Feedback:** The charge is displayed on your experience bar.\n- **Cross-Platform:** Works on Fabric (client-side), NeoForge (client-side), and Paper servers.\n\n## Installation\n\n### Fabric & NeoForge (Client-Side)\n\n1. Download the appropriate JAR file for your mod loader (Fabric or NeoForge).\n2. Place the JAR file in your `mods` folder.\n3. Run the game.\n\n### Paper (Server-Side)\n\n1. Download the Paper JAR file.\n2. Place the JAR file in your `plugins` folder.\n3. Restart your server.\n\n## Configuration (Paper)\n\nThe Paper plugin can be configured in the `plugins/JumpBoostBar/config.yml` file.\n\n- `enabled`: Enable or disable the plugin.\n- `bar`: The type of bar to use for the jump boost bar. Valid options are `xp` and `bossbar`.\n- `actionbar-message`: The message to display in the action bar when the jump boost bar is active. You can use `{blocks}` to display the number of blocks the player has jumped.\n\n## For Developers\n\nThis project is open source! Feel free to contribute on [GitHub](https://github.com/itarqos5/JumpBoostBarMod).\n\n## What This Setup Gives You\n\n- One shared codebase in `common/src/main/java`\n- Loader-specific bootstrap code in:\n\t- `fabric/src/main/java`\n\t- `neoforge/src/main/java`\n\t- `paper/src/main/java`\n- Independent build targets per loader from the same shared logic\n- Version knobs in `gradle.properties` so you can move across 1.21.x without rewriting code\n\n## Project Layout\n\n```\n.\n|-- common/\n|   `-- src/main/java/gg/literal/jumpboostbar/common/\n|-- fabric/\n|   |-- src/main/java/gg/literal/jumpboostbar/fabric/\n|   `-- src/main/resources/fabric.mod.json\n|-- neoforge/\n|   |-- src/main/java/gg/literal/jumpboostbar/neoforge/\n|   `-- src/main/resources/META-INF/neoforge.mods.toml\n|-- paper/\n|   |-- src/main/java/gg/literal/jumpboostbar/paper/\n|   `-- src/main/resources/paper-plugin.yml\n|-- build.gradle\n|-- gradle.properties\n`-- settings.gradle\n```\n\n## Group And Coordinates\n\n- Group ID: `gg.literal`\n- Base mod id: `jumpboostbar`\n\nConfigured in `gradle.properties`.\n\n## Versioning Strategy (1.21.x Range)\n\nEdit `gradle.properties` to shift target patch versions:\n\n- `mc_version`\n- `fabric_api_version`\n- `neoforge_version`\n- `paper_api_version`\n\nThen build each loader module.\n\nExample (override from command line without editing files):\n\n```powershell\n./gradlew :fabric:build -Pmc_version=1.21.6\n```\n\nNote: each loader ecosystem has its own compatible artifact versions. Keep the 4 properties aligned per target patch.\n\n## Build Commands\n\n```powershell\n./gradlew :fabric:build\n./gradlew :neoforge:build\n./gradlew :paper:build\n```\n\n## Run Dev Servers\n\nFabric dedicated server run config:\n\n```powershell\n./gradlew :fabric:runDedicatedServer\n```\n\nNeoForge dedicated server run config:\n\n```powershell\n./gradlew :neoforge:runServer\n```\n\nPaper is a plugin target; drop the built jar into your Paper server `plugins/` folder.\n\n## Where To Put Shared Logic\n\nPut gameplay/business logic in `common/src/main/java`. Keep only loader adapters and event wiring inside each loader module.\n\nThis is the key part that prevents recoding for every loader/version.\n",
+  "categories": [
+    "fabric",
+    "folia",
+    "neoforge",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1"
+  ],
+  "date_updated": null
+}

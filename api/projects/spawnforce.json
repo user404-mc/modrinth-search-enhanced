@@ -1,0 +1,20 @@
+{
+  "id": "px5AzQza",
+  "slug": "spawnforce",
+  "title": "SpawnForce",
+  "description": "Forces specific entities to spawn by bypassing canSpawn checks. Config-driven, mod-agnostic. Works with AdventureZ, Marium's Soulslike Weaponry, and any mod whose mobs refuse to spawn due to restrictive predicates.",
+  "body": "**SpawnForce** is a lightweight Fabric mod that forces specific entities to spawn by bypassing Minecraft's three `canSpawn` gates. Many modded mobs (AdventureZ orcs/shamans/fungi, Marium's Soulslike Weaponry bosses, and others) ship with strict spawn predicates (light level, specific blocks, biome hardcoded lists) that prevent them from ever appearing in custom biomes - even when a datapack or worldgen mod declares them. SpawnForce lets you whitelist entity IDs in a config file and bypasses those checks only for them.\n\n## Features\n\n- Config-driven whitelist: list any entity ID (`modid:entity_name`) in `config/spawnforce.json` and it will spawn where biome/mobcap allow\n- Bypasses the three vanilla spawn gates:\n  - `SpawnHelper.canSpawn` (location check: ground, block type, light)\n  - `SpawnRestriction.canSpawn` (registered spawn predicate)\n  - `MobEntity.canSpawn` (per-mob override)\n- Each gate has its own toggle - enable only what you need\n- Optional debug logging shows bypass hits per entity and periodic stats\n- Mod-agnostic: works with any mod's mobs, no hardcoded list\n- Does NOT touch mobcap, spawn weight, or biome tags - a mob still needs to be declared in a biome (vanilla spawners or Big Globe `bigglobe_extra_mob_spawns`, etc.)\n\n## Configuration\n\n    {\n      \"enabled\": true,\n      \"debug\": false,\n      \"bypass_spawn_helper_can_spawn\": true,\n      \"bypass_spawn_restriction\": true,\n      \"bypass_mob_entity_can_spawn\": true,\n      \"force_spawn_entities\": [\n        \"adventurez:orc\",\n        \"adventurez:soul_reaper\",\n        \"soulsweapons:draugr_boss\"\n      ]\n    }\n\n- **enabled**: master switch\n- **debug**: logs each bypass + 10s summary to console\n- **bypass_\\***: toggle each gate individually (leave all true unless you want finer control)\n- **force_spawn_entities**: the whitelist. Missing IDs are ignored with a warning\n\nRestart the game after editing.\n\n## Recommended For\n\n- Modpacks combining mob mods with custom worldgen (Big Globe, Terralith, Biomes O' Plenty, etc.) where modded mobs refuse to spawn\n- Adventure/RPG packs that need specific mobs in specific biomes without writing Java patches\n- Anyone using `In Control!` on Forge who needs the equivalent `\"result\":\"allow\"` on Fabric\n\nUsed in the [Legends Reborn: Medieval](https://www.curseforge.com/minecraft/modpacks/legends-reborn-medieval) modpack.\n",
+  "categories": [
+    "fabric",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 32,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

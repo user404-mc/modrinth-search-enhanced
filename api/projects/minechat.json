@@ -1,0 +1,27 @@
+{
+  "id": "bb1NmsAr",
+  "slug": "minechat",
+  "title": "MineChat",
+  "description": "Talk to people without having to log in to a Minecraft account, from other apps via the MineChat platform.",
+  "body": "# MineChat Server\n\nMineChat lets players chat on a Minecraft server without needing to join the server from Minecraft.\n\nThis plugin provides the server-side component of the MineChat platform, connecting in-game chat with external MineChat clients.\n\n> **Note**: This project is currently being updated to follow the official MineChat protocol specification, which improves safety and convenience.\n> \n> The current version still works with older clients but will receive breaking changes in the future.\n\n## Features\n\n* **Client authentication**: MineChat clients authenticate once using a temporary link code.\n* **Chat bridging**: Messages sent in Minecraft chat are broadcast to connected MineChat clients and vice versa.\n* **Persistent storage**: Link codes and client information are saved on disk, persisting across server restarts.\n* **Automatic cleanup**: Expired link codes are removed automatically every minute.\n\n## How to Use\n\n### Linking your account\n\n1. **Generate a link code** in-game:\n   `/link`\n   You will receive a temporary code valid for 5 minutes.\n\n2. **Authenticate from the CLI [client](https://github.com/MineChatPowered/client)** (a GUI client is in the works):\n\n   ```bash\n   minechat-client --server <host:port> --link <code>\n   ```\n\n   This links your MineChat client to your Minecraft account without using Minecraft credentials.\n\n## Advanced: How it Works\n\n* **Server socket**: Listens for connections from MineChat clients on port `25575` by default.\n* **Authentication**: Validates clients using link codes or stored UUIDs and broadcasts join/leave messages.\n* **Message broadcasting**: Sends in-game chat to connected clients and relays client messages to Minecraft chat.\n* **Persistent storage**: Stores client data in JSON files under `plugins/MineChat/` (`link_codes.json` and `clients.json`).\n\n## Contributing\n\nContributions are welcome! Please submit [issues](https://github.com/MineChatPowered/server/issues) or pull requests.",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 108,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

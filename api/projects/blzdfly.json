@@ -1,0 +1,34 @@
+{
+  "id": "GSrtHU1t",
+  "slug": "blzdfly",
+  "title": "BlzdFly",
+  "description": "A flight management plugin featuring Timed Flight, Claim Flight, Permanent Flight, Safe Landing protection, and GriefDefender integration.",
+  "body": "# BlzdFly\n\nA lightweight flight management plugin for Paper and Purpur servers featuring timed flight, permanent flight, claim-based flight, safe landing, Bedrock-style flight controls, and GriefDefender integration.\n\n## Features\n\n### Timed Flight\n\n* Grant players a configurable amount of flight time.\n* Flight time only decreases while actively flying.\n* Automatic safe landing when flight time expires.\n\n### Permanent Flight\n\n* Unlimited flight for players with the appropriate permission.\n\n### Claim Flight\n\n* Allows players to fly within claims they own.\n* Automatic claim boundary detection using GriefDefender.\n* Configurable grace period when leaving a claim.\n* Automatically switches to Timed Flight if available.\n* Safe landing if no other flight mode is available.\n\n### Bedrock Flight\n\n* Optional Bedrock-style flight controls.\n* Players stop instantly when movement keys are released.\n* Uses Purpur's player input API for accurate movement detection.\n\n### Safety Features\n\n* Safe landing on flight expiry.\n* Safe landing after server restarts.\n* Prevents unintended permanent flight after reconnecting.\n* Automatic flight mode tracking.\n\n### Quality of Life\n\n* Tab completion for commands.\n* Flight information command.\n* Configurable settings.\n* Lightweight and simple to use.\n\n---\n\n## Requirements\n\n* Java 21+\n* Paper 1.21.11+\n* Purpur 1.21.11+ (recommended for Bedrock Flight support)\n\n### Optional Dependencies\n\n* GriefDefender (for Claim Flight)\n\n---\n\n## Commands\n\n### Player Commands\n\n| Command     | Description                     |\n| ----------- | ------------------------------- |\n| `/fly`      | Toggle available flight mode    |\n| `/fly info` | View current flight information |\n\n### Admin Commands\n\n| Command                       | Description                 |\n| ----------------------------- | --------------------------- |\n| `/fly give <player> <time>`   | Give flight time            |\n| `/fly remove <player> <time>` | Remove flight time          |\n| `/fly set <player> <time>`    | Set flight time             |\n| `/fly time <player>`          | View remaining flight time  |\n| `/fly reload`                 | Reload plugin configuration |\n\n### Debug Commands (Admin Only)\n\n| Command           | Description                       |\n| ----------------- | --------------------------------- |\n| `/fly claimtest`  | Check if currently inside a claim |\n| `/fly ownercheck` | Check claim ownership             |\n| `/fly claiminfo`  | View claim information            |\n\n---\n\n## Permissions\n\n| Permission          | Description                               |\n| ------------------- | ----------------------------------------- |\n| `blzdfly.timed`     | Allows use of Timed Flight                |\n| `blzdfly.claim`     | Allows use of Claim Flight                |\n| `blzdfly.permanent` | Allows use of Permanent Flight            |\n| `blzdfly.admin`     | Allows access to admin and debug commands |\n\n---\n\n## Time Formats\n\nThe following formats are supported:\n\n```text\n30s\n5m\n30m\n1h\n12h\n24h\n```\n\nExamples:\n\n```text\n/fly give Steve 30m\n/fly give Steve 2h\n/fly set Steve 24h\n```\n\n---\n\n## Configuration\n\nDefault configuration:\n\n```yaml\n# Show flight information in the action bar.\nactionbar:\n  enabled: true\n\nflight:\n  # Bedrock-style flight.\n  # Players stop instantly when movement keys are released.\n  bedrock-flight: false\n\nclaim-flight:\n  # Seconds a player may remain outside their claim\n  # before Claim Flight expires.\n  grace-seconds: 5\n```\n\n---\n\n## Flight Modes\n\n### Timed Flight\n\nPlayers with `blzdfly.timed` may use flight while they have remaining flight time.\n\nFlight time decreases only while actively flying.\n\n### Claim Flight\n\nPlayers with `blzdfly.claim` may fly inside claims they own.\n\nWhen leaving a claim:\n\n1. A configurable grace period begins.\n2. Returning to the claim restores Claim Flight.\n3. If Timed Flight is available, flight automatically switches to Timed Flight.\n4. Otherwise the player is safely landed.\n\n### Permanent Flight\n\nPlayers with `blzdfly.permanent` have unlimited flight access.\n\n---\n\n## Version\n\nCurrent Release: **v1.0.2**\n\n---\n\n## Author\n\nCreated by **Blzd**\n",
+  "categories": [
+    "adventure",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

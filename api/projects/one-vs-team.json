@@ -1,0 +1,35 @@
+{
+  "id": "W5XbHjIe",
+  "slug": "one-vs-team",
+  "title": "One vs Team",
+  "description": "A Minecraft 1.21 PvP plugin where a solo player fights a team of attackers over multiple rounds, featuring kits, points, spectators, and multi-language support.",
+  "body": "# 1vs5 — Minecraft Plugin\n\nA PvP event plugin for Minecraft 1.21 (Paper/Spigot) in which one solo player fights against a team of attackers across multiple rounds. Includes a point system, kit management, spectator support, and a multi-language system.\n\n---\n\n## Requirements\n\n- Paper / Spigot 1.21\n- Two worlds on the server: `lobby` and `fightworld_backup` (the backup is copied automatically before each round)\n\n---\n\n## Installation\n\n1. Drop the `.jar` into your `plugins/` folder.\n2. Start the server once — the plugin creates its config files automatically.\n3. Set up your worlds (see below).\n4. Configure `config.yml` to your liking.\n\n---\n\n## World Setup\n\n| World | Purpose |\n|---|---|\n| `lobby` | Waiting area — PvP, block breaking and placing are disabled here |\n| `fightworld_backup` | The original arena — copied before every round, never modified directly |\n| `fightworld` | Generated automatically from the backup before each round |\n\nThe coordinates for solo and attacker spawns are configured in `config.yml`.\n\n---\n\n## Configuration (`config.yml`)\n\n```yaml\nlanguage: \"en\"          # Language: \"en\", \"de\", or any custom language file\n\n# Lobby Settings\nlobby:\n  world: \"lobby\"\n  spawn:\n    x: 0.5\n    y: 3.0\n    z: 0.5\n    yaw: 0.0\n    pitch: 0.0\n\n# Fightworld Settings\nfightworld:\n  world: \"fightworld\"\n  solo_spawn:\n    x: 20667.5\n    y: 148.0\n    z: 15615.5\n  attackers_spawn:\n    x: 20803.5\n    y: 148.0\n    z: 15615.5\n\ngame:\n  default_rounds: 3         # Number of rounds per match\n  countdown_seconds: 5      # Countdown before each round starts\n  post_round_delay_seconds: 5  # Pause between rounds\n```\n\n---\n\n## Commands\n\nAll admin commands require operator permissions (`/op`).\n\n### Admin — `/1vs5 <subcommand>`\n\n| Subcommand | Description |\n|---|---|\n| `setsolo <player>` | Set the solo player |\n| `addattacker <player>` | Add a player to the attacker team |\n| `removeattacker <player>` | Remove a player from the attacker team |\n| `rounds <number>` | Set the number of rounds |\n| `savekit <name> [true|false]` | Save your current inventory as a kit; `true` enables natural health regeneration, `false` disables it (default: true) |\n| `setkit <name>` | Select a kit for the next match |\n| `deletekit <name>` | Delete a saved kit |\n| `toggledrops` | Toggle whether players drop items on death |\n| `start` | Start the match |\n| `stop` | Abort the running match |\n| `points` | Show the current leaderboard in chat |\n| `resetleaderboard` | Reset all points |\n| `history` | Show past match results |\n| `reload` | Reload `config.yml` and the language file |\n\n### Players — `/spectatefight`\n\nTeleports you to the fight world in spectator mode. Cannot be used by active participants.\n\n---\n\n## Point System\n\n| Event | Points |\n|---|---|\n| Attacker kills the solo player | +10 pts (killer only) |\n| Attacker survives the round | +5 pts (all surviving attackers except the killer) |\n| Solo player kills an attacker | +1 pt per kill |\n| Solo player wins the round (all attackers eliminated) | +7 pts |\n| Attacker dies | Points equal to the number of attackers already eliminated before them |\n\n---\n\n## Kit System\n\nKits save the inventory (items, armor, offhand) of the player who runs `savekit`. After the name of the kit you can optionally specify true or false to enable or disable natural health regeneration. By default it is enabled.\n\nKits are stored in `plugins/1vs5/kits/<name>.yml`.\n\n---\n\n## Language System\n\nThe plugin supports multiple languages. The active language is set via `language:` in `config.yml`.\n\nLanguage files are located in `plugins/1vs5/languages/`. The bundled languages are `en.yml` and `de.yml`.\n\n**Adding a new language:**\n\n1. Create a new file, e.g. `plugins/1vs5/languages/fr.yml`.\n2. Copy the contents of `en.yml` into it and translate all values.\n3. Set `language: \"fr\"` in `config.yml`.\n4. Run `/1vs5 reload` or restart the server.\n\nNo code changes are needed to add new languages.\n\n---\n\n## Friendly Fire Rules\n\n- Melee attacks, projectiles, and explosions **between attackers** are cancelled.\n- The solo player can damage and be damaged by all attackers.\n- Friendly fire in the **lobby** is always disabled for all players.\n\n---\n\n## Combat Logging\n\nIf a participant disconnects during an active round, they are marked as a combat logger. Their inventory is cleared and the round continues as if they had died. When they reconnect, they receive a warning message.\n\n---\n\n## Data & Files\n\n| File | Contents |\n|---|---|\n| `plugins/1vs5/config.yml` | Main configuration |\n| `plugins/1vs5/kits/` | Saved kit files |\n| `plugins/1vs5/history.yml` | Match history with timestamps and results |\n| `plugins/1vs5/languages/` | Language files |\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

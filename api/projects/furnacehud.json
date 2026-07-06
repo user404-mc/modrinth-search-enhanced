@@ -1,0 +1,22 @@
+{
+  "id": "7ULXMU3R",
+  "slug": "furnacehud",
+  "title": "FurnaceHUD",
+  "description": "Look at a furnace, blast furnace, or smoker and a small top-left HUD shows the exact seconds left on the current smelt and how long the fuel will last. Toggle with K.",
+  "body": "**FurnaceHUD** turns the vanilla furnace progress arrow into something you can actually plan around. Aim your crosshair at a furnace, blast furnace, or smoker (within ~7 blocks) and a compact panel appears in the top-left corner:\n\n```\nFurnace\nSmelt: 6.0s left (40%)\nFuel:  15s left\n```\n\nNo GUI to open, no clicking, no waiting for the door to close — just look at it and you know. Walk away, look at a different furnace, glance back; it always reflects whatever your crosshair is on.\n\n### What it shows\n- **Title line** — which kind of furnace you're looking at (`Furnace`, `Blast Furnace`, or `Smoker`).\n- **Smelt line** — seconds remaining on the current item plus the % complete. Shows `idle` when nothing is cooking and `paused (no fuel)` when an item is queued but the fire is out.\n- **Fuel line** — seconds left on the currently burning fuel, or `empty` when there's none.\n\nTimes are computed from live tick counters, so a `6.0s left` line really means six seconds — no rough estimates.\n\n### Why\nThe vanilla furnace screen only tells you what's happening when the GUI is open, and the progress arrow has no numeric scale. If you're running four blast furnaces in parallel, or you want to start a long smoker batch before logging off, eyeballing arrows is annoying. FurnaceHUD lets you stand back and read a number.\n\n### How it works\n- Reads `cookTime`, `cookTimeTotal`, and `burnTime` straight from the furnace's `PropertyDelegate` (the same fields the in-game UI uses). Cross-version safe — no hardcoded field names.\n- Renders through Fabric's `HudRenderCallback`, so **F1** (hide HUD) hides it like any vanilla overlay.\n- Read-only — never opens the furnace, never changes a block, never sends a packet.\n- Singleplayer only: dedicated servers do not sync furnace progress to clients, so the HUD will simply not appear when looking at a server-side furnace. (This is a vanilla limitation, not a bug.)\n\n### Controls\n- **K** — toggle the HUD on / off (default: on)\n\nThe key is polled via raw GLFW so it works identically across every supported version without a rebind screen.\n\n### Compatibility\nWorks on **Minecraft 1.21.8, 1.21.9, 1.21.10, and 1.21.11** with Fabric Loader 0.16+. One JAR for all four versions — install with Fabric API and drop into your `mods/` folder.\n\n- Pure client-side; safe to install on any server (HUD simply hides itself on multiplayer furnaces).\n- Zero config files; nothing to set up.\n- Hides automatically with the rest of the HUD on **F1**.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

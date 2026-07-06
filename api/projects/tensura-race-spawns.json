@@ -1,0 +1,22 @@
+{
+  "id": "NPyBwafe",
+  "slug": "tensura-race-spawns",
+  "title": "Tensura Race Spawn Settings (TRSS)",
+  "description": "A small addon for Tensura Reincarnated that lets you configure custom spawn locations for each race.",
+  "body": "# Tensura Race Spawn Settings\n(Tensura Race Spawns or just TRSS for short)\n\nA small addon for **Tensura Reincarnated** that lets you configure custom spawn locations for each race.\nThe main idea is simple: different races can start in different dimensions, biomes, or structures. This also works with races added by other addons, as long as you know their registry id.\n\n## What it does\nThe addon can:\n- set a race-specific initial spawn point;\n- search for configured biomes (or tags);\n- search for configured structures (or tags);\n- optionally use **Async Locator Refined** for async biome/structure search;\n- assign found spawn locations to specific players if configured;\n\n\nConfiguration is stored in:\n```text\nconfig/tensura/race_spawns.toml\n```\n\nExample:\n```toml\n[settings]\n    spawnRadius=6400\n    useAsyncLocator=true\n\n[Races]\n    [Races.slime]\n        spawnDimension=\"minecraft:overworld\"\n        spawnBiome=[\"#minecraft:is_overworld\"]\n        spawnStructure=[]\n        onlyInitial=true\n        assignedToPlayer=false\n\n    [Races.\"exampleaddon:custom_race\"]\n        spawnDimension=\"minecraft:overworld\"\n        spawnBiome=[\"minecraft:swamp\", \"#is_taiga\"]\n        spawnStructure=[\"#minecraft:village\", \"minecraft:mineshaft\"]\n        onlyInitial=false\n        assignedToPlayer=true\n```\n\n## Config behavior\nEmpty values mean “ignore this option and use the default spawn logic”.\n\n```toml\nspawnDimension=\"\"\nspawnBiome=[]\nspawnStructure=[]\n```\n\nIf all three spawn fields are empty, the player uses the normal world spawn.\n`onlyInitial=true` means the found point is used like a normal `/spawnpoint` or bed spawn.\n`onlyInitial=false` makes the configured spawn behave more like a personal world spawn for that player.\n`assignedToPlayer=true` prevents the same configured biome/structure location from being reused for another player.\n\n\nAlso you can hot-reload your config in-game:\n```mcfunction\n/tensuraracespawns reload\n```\n\n## Optional dependency\n- [Async Locator Refined](https://modrinth.com/project/LUIHK4LD)\nIt is optional, but highly recommended. The addon should still work without it.",
+  "categories": [
+    "game-mechanics",
+    "magic",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 104,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

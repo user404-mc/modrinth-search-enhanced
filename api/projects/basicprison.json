@@ -1,0 +1,18 @@
+{
+  "id": "AwPqMeL4",
+  "slug": "basicprison",
+  "title": "BasicPrison",
+  "description": "A simple Prison Plugin. Admins can put players into a Prison. In the Prison, the Player cannot brake/place/interact with blocks and cannot use commands. You can have multiple cells with one player per cell.",
+  "body": "# BasicPrison\n\nA lightweight prison/jail plugin for Paper 1.21+ servers. Temporarily imprison players in designated cells with full restriction enforcement and automatic timed release.\n\n## Features\n\n- **Multiple prison cells** — define as many named cells as you need with `/setprisoncell <id>`\n- **Timed sentences** — jail players with human-readable durations (`10s`, `5m`, `1h`, `2d`)\n- **Automatic cell assignment** — prisoners are placed in the first available (unoccupied) cell\n- **Full restriction** — jailed players cannot use commands, break/place blocks, or interact with anything\n- **Auto-release** — a background task checks for expired sentences every few seconds and releases players automatically\n- **Offline support** — players whose sentence expires while offline are released upon rejoining\n- **Persistent data** — jail data survives server restarts via `data.yml`\n- **Fully configurable messages** — all player-facing messages are customizable in `config.yml` with `&` color codes\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/prison <player> <time>` | Jail a player for the specified duration | `basicprison.jail` |\n| `/setprisoncell <id>` | Create a cell at your current location | `basicprison.setcell` |\n| `/listprisoncells` | List all defined prison cells | `basicprison.listcells` |\n| `/deleteprisoncell <id>` | Delete a prison cell | `basicprison.deletecell` |\n\nAll permissions default to **op**.\n\n## Time Format\n\n| Suffix | Unit | Example |\n|--------|------|---------|\n| `s` | Seconds | `30s` |\n| `m` | Minutes | `10m` |\n| `h` | Hours | `1h` |\n| `d` | Days | `2d` |\n\n## Configuration\n\n### config.yml\n\n```yaml\n# Prison cells (set in-game with /setprisoncell <id>)\nprison-cells: {}\n\n# How often (in ticks) the release checker runs. 60 ticks = 3 seconds.\nrelease-check-interval-ticks: 60\n\n# All messages are customizable with & color codes\nmessages:\n jailed: \"&cYou are imprisoned and cannot use commands!\"\n sent-to-prison: \"&cYou have been sent to prison for &e%time%&c!\"\n released: \"&aYour sentence has expired. You are free!\"\n # ... and more\n```\n\n### data.yml\n\nAutomatically managed — stores prisoner UUIDs, original locations, assigned cell IDs, and sentence expiration timestamps. Do not edit manually while the server is running.\n\n## Quick Start\n\n```\n1. /setprisoncell cell1       — stand where you want the cell, run the command\n2. /setprisoncell cell2       — create additional cells as needed\n3. /prison Steve 10m          — jail Steve for 10 minutes\n4. /listprisoncells           — see all your cells\n5. /deleteprisoncell cell2    — remove a cell\n```\n\n## Requirements\n\n- **Paper** 1.21+\n- **Java** 21+\n\n",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 60,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,41 @@
+{
+  "id": "TDNddMps",
+  "slug": "potioncombine",
+  "title": "PotionCombine",
+  "description": "Shapeless, UI-free potion brewing inside vanilla water cauldrons. No GUIs, no NMS.",
+  "body": "\n  <div align=\"center\">\n\n  # PotionCombine\n\n  **A water cauldron. A handful of ingredients. A bit of patience. That's the whole plugin.**\n\n  Shapeless potion brewing in vanilla cauldrons — no GUI, no NMS.\n\n  `Paper 1.20.4 – 1.21.x` · `Java 17`\n\n  </div>\n\n  Every \"advanced brewing\" plugin I tried felt like a spreadsheet wearing a wizard hat. So I built the one I actually\n  wanted.\n\n  You shift-click stuff into a cauldron, the cauldron does its thing, you walk away with a potion. No menus to design\n  around, no brewing-stand timers to babysit, no NMS hacks waiting to break on the next Paper update. The plugin uses\n  only the public Paper API, so it survives Mojang's minor updates without a recompile. If you've ever wanted a brewing\n  system that feels like it belongs in vanilla — not bolted on with command blocks — you're in the right place.\n\n  ## How it actually plays\n\n  Plop down a vanilla cauldron, fill it with water, and hold an ingredient. **Shift + left-click** to toss it in;\n  recipes are *shapeless*, so order never matters — only what's inside. Want something back? **Shift + right-click**\n  pulls the last thing you added, LIFO, like an undo stack.\n\n  Stop adding, and after a short grace period the cauldron decides what to do:\n\n  - matches a recipe exactly → brewing starts, with bubbles, particles, and a live progress bar floating over the water;\n  - on the way to a recipe but not there yet → the brew fails, and your ingredients sink as alchemical sludge;\n  - nothing matches at all → same fate, faster.\n\n  When the brew finishes, a glowing potion bottle hovers and slowly spins above the cauldron. **Right-click** to grab\n  it. Don't dawdle, though — leave it sitting too long and it spoils into whatever you've set (or just evaporates, your\n  call).\n\n  ## Cauldrons that talk to each other\n\n  This is the part you'll actually show your players. Turn **synergy** on and a finished brew stops waiting to be\n  carried by hand — it pours itself straight into the cauldron beside it, the one loaded with the rest of a higher-tier\n  recipe and waiting on exactly that bottle.\n\n  Brew a **Phoenix Elixir** in one cauldron. Load ghast tear and glowstone dust into the cauldron next door, one\n  ingredient short of a **Phoenix Crown**. Walk away. The elixir flows over, the Crown starts on its own. The downstream\n  cauldron even *waits* for its neighbour to finish instead of failing as \"incomplete,\" so you're not standing there\n  timing the hand-off. And the matcher knows the difference between *a* healing potion and *the* elixir you brewed three\n  minutes ago — nobody's substituting a vanilla bottle.\n\n  ## A block under the cauldron matters\n\n  Stand a cauldron over a campfire, magma block, or pool of lava and that **heat** speeds the brew up — and softens the\n  spoil-roll from accumulated grime. Defaults are sane (campfire a small win, lava the most generous), and the whole\n  list lives in the config. Flip on *area heat* and the search widens past the single block underneath, so a ring of\n  lava around the base beats one block under it.\n\n  ## Cauldrons get dirty (if you want them to)\n\n  Every brew leaves a little residue; failures and spoiled brews leave a lot more. Past a threshold the cauldron refuses\n  new ingredients until you **right-click it with a brush** to scrub it down. A clean cauldron behaves exactly like it\n  always did; a filthy one tells you so. It's off by default — switch it on when you actually want brewing to have\n  consequences.\n\n  ## Make it yours\n\n  The recipe schema is small on purpose. Each ingredient is either a vanilla item, a specific potion variant, or\n  **another of your own recipes** — that last one is how chains exist. No conditions, no scripting, no quest tags.\n\n  ```yaml\n  phoenix_crown:\n    display_name: \"&e&lPhoenix Crown\"\n    brew_time_ticks: 320\n    color: \"#ffd24a\"\n    ingredients:\n      - { recipe: phoenix_elixir }          # a finished potion as an ingredient\n      - { material: GHAST_TEAR }\n      - { material: GLOWSTONE_DUST, amount: 2 }\n    effects:\n      - { type: FIRE_RESISTANCE, duration: 9600, amplifier: 0 }\n      - { type: STRENGTH,        duration: 3600, amplifier: 1 }\n  ```\n\n  And everything else is a single line in the config — most of it shipped **off by default** so a fresh install just\n  brews:\n\n  ```yaml\n  # PotionCombine 1.2.0 — every feature is a toggle\n  #   settings   — language, cooldowns, world filter, notifications\n  #   brewing    — timings, sludge and spoil materials, break-stage drops\n  #   automation — hopper auto-extract\n  #   heat       — heat sources under (and around) the cauldron\n  #   synergy    — multi-cauldron brewing chains (off by default)\n  #   sounds     — every sound key the plugin plays\n  #   display    — visuals, progress bar template, particle bursts\n  #   pollution  — grime mechanic (off by default)\n  #   cleaning   — brush rules for the pollution mechanic\n  ```\n\n  There's a table of contents at the top of the file, so you're never grepping for a section name.\n\n  ## Commands\n\n  Aliases: **`/pc`** and **`/pcombine`**. Tab-completion works for player names and recipe IDs.\n\n  | Command | What it does |\n  |---|---|\n  | `/pc help` | the cheat sheet |\n  | `/pc info` | version, recipe count, active brews, PAPI hook state |\n  | `/pc reload` | reload config, recipes & locale on the fly (active brews left alone on purpose) |\n  | `/pc give <player> <recipe_id> [amount]` | hand out a finished custom potion — handy for testing chains |\n\n  ## What you need\n\n  - **Paper 1.20.4 → 1.21.x.** No NMS, no shaded libraries, no reflection.\n  - **Java 17.** Same as Paper itself.\n  - **Spigot / CraftBukkit are not supported** — the plugin relies on Adventure, MiniMessage and display entities. Run\n  real Paper.\n  - **PlaceholderAPI** is optional. If it's on the server, the expansion registers itself. If it isn't, nothing happens.\n\n  ## For developers\n\n  A small, stable public API — events (`BrewStartEvent`, `BrewSuccessEvent`, `BrewFailEvent`, `BrewCollectEvent`,\n  `BrewChainEvent`, `PollutionChangeEvent`) plus a static `PotionCombineAPI` facade. Nothing in those packages gets a\n  breaking change across 1.x patches.\n\n  Permissions are the obvious three: `potioncombine.use` (default `true`), `potioncombine.admin` and\n  `potioncombine.cooldown.bypass` (both `op`).\n\n  ---\n\n  <div align=\"center\">\n\n  Open-source, MIT. Built because every \"advanced brewing\" plugin I'd tried felt like a spreadsheet in a wizard hat —\n  this one tries to feel like *brewing*.\n\n  **Bug reports, recipe ideas, and \"this broke because…\" messages all welcome.**\n\n  </div><iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/y3m5tckzqg8\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>",
+  "categories": [
+    "adventure",
+    "food",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 10,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

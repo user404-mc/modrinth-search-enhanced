@@ -1,0 +1,19 @@
+{
+  "id": "4CE2q6cm",
+  "slug": "nanbeiluduo",
+  "title": "nanbeiluduo",
+  "description": "Automatically search for structures and connect them using roads",
+  "body": "# Automatic Structure Road Generator\n\nThis mod automatically detects structures in **loaded chunks** and records their data.  \nWhen at least two valid structures are found, the mod generates **roads connecting them**.\n\nTo avoid damaging important blocks, generated roads **do not extend into the center of structures**.  \nInstead, they stop at the outer boundary of each structure.\n\nRoad generation adapts to the **current biome**:\n\n*   Different blocks are used depending on the biome\n*   In oceans, roads are generated **directly on the seabed**\n\n## Limitations & Rules\n\n*   Roads are generated **only in the Overworld**\n*   A structure is eligible **only if its lowest Y value is greater than 55**,  \n    preventing issues with underground or mountain structures\n\n## Technical Details\n\n*   All calculations are performed **server-side**\n*   The mod uses Minecraft’s built-in **world persistent storage**\n*   Stored data includes:\n    *   Structures already connected to the road network\n    *   Newly discovered but unconnected structures\n    *   Road generation tasks currently in progress\n\nAll stored data is very small, so **world save file size will not noticeably increase**.\n\n## Configuration\n\nThe configuration system supports **both English and Chinese**.\n\n*   In **singleplayer**, configurations can be edited via a **visual configuration screen**\n*   **Changes require a restart** to take effect\n\n### Server Configuration\n\nAfter installing the mod on a server, a configuration file will be generated at:\n\n# mod介绍\n\n此mod主要功能是在已加载区块中获取结构体数据并记录，在至少为两个的结构体之间生成道路，生成的道路不会蔓延到结构中心，会在结构体外围停止避免顶掉某些重要方块。根据生物群系来放置不同的方块，在海中会直接把道路沉到海底。此mod现在只能在主世界生成道路且结构的最低点y值要大于55才会把该结构纳入道路中，以此避免结构在山体或者地下所造成的问题。所有运算都在server端，mod使用了 Minecraft 自带的世界持久化机制，用来存储接入“道路网络”的结构坐标和新出现、但还没接入道路的结构坐标，以及正在处理的道路坐标，都很小所以不需要担心存档膨胀产生问题\n\n# 配置部分支持英语和中文\n\n# 配置解释\n\n## 在单人模式下使用可视化界面即可修改配置，\n\n```\n修改配置需要保存后重启才能生效\n```\n\n![配置页面展示](https://cdn.modrinth.com/data/cached_images/588c2de6e79ccf0ecb7066799b600eb14bd90975_0.webp)\n\n## 服务器端配置在添加mod后会在config文件夹生成nanbeiluduo-server.toml，修改后重启即可，默认为英文，以下时中文对照版本\n\n```\n# 每个游戏刻（Tick）最多放置的道路方块数量。\n# 数值越大，道路生成速度越快，但可能导致服务器卡顿。\n# 默认值: 50\n# 范围: 1 ~ 10000\nblocksPerTick = 50\n\n# 生成道路的最终可见宽度（单位：方块）。\n# 道路以中心线对称生成。\n# 如果输入偶数，将自动修正为最接近的奇数宽度。\n# 默认值: 3\n# 范围: 1 ~ 15\nroadWidth = 3\n\n# 自动连接结构的最大距离（单位：区块）。\n# 超过该距离的结构将不会被自动连接道路。\n# 默认值: 64\n# 范围: > 8\nmaxLinkDistanceChunks = 64\n\n# 是否只允许地表结构参与道路连接（仅在主世界生效）。\n# 启用后，仅当结构最低 Y 值高于指定阈值时，才会被认为是地表结构。\n# 默认值: true\nenableSurfaceStructureCheck = true\n\n# 判定为“地表结构”的最小 Y 值。\n# 结构的包围盒最低 Y 值必须高于该数值，才会被视为地表结构。\n# 默认值: 55\n# 范围: -64 ~ 320\nsurfaceMinY = 55\n\n# 道路任务在被丢弃前的最大重试次数。\n# 当目标区块未加载时，每个游戏刻（Tick）会重试一次。\n# 在 20 Tick/秒 的情况下，200000 次重试约等于 2.8 小时。\n# 超过该次数后，该道路任务将被永久丢弃以避免内存占用。\n# 默认值: 200000\n# 范围: > 10000\nmaxRoadTaskAttempts = 200000\n```",
+  "categories": [
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 63,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

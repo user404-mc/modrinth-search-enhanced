@@ -1,0 +1,36 @@
+{
+  "id": "DH5QSwkK",
+  "slug": "bridgefalls",
+  "title": "BridgeFalls",
+  "description": "BridgeFalls is a Minecraft plugin that adds structural stability rules to placed and nearby blocks.",
+  "body": "# BridgeFalls\n\nBridgeFalls is a Minecraft plugin that adds structural stability rules to placed and nearby blocks.\nIf a block has no valid support, it can be denied on placement or marked unstable and made to fall later.\n\nIt is designed for **Paper/Folia-style servers** and includes configurable support rules, visual instability feedback, and in-game admin commands.\n\n## Features\n\n- **Support simulation** for placed/broken blocks (vertical, horizontal, top support, and anchor checks)\n- **Anchor validation** with 3D connectivity (including diagonals)\n- **Unstable block lifecycle**: mark, warn, persist, and optionally convert to `FallingBlock`\n- **Visual feedback** with configurable particle colors and warning sounds\n- **Large material rule lists** for:\n  - non-supporting vertical blocks\n  - non-supporting horizontal blocks\n  - always-stable blocks\n  - always-stable-but-no-support blocks\n  - floating-on-water support blocks\n- **Gamemode exclusions** (for example Creative/Spectator)\n- **Runtime configuration commands** (`/bf config ...`) with validation and reload\n- **Folia-compatible scheduling** (`GlobalRegionScheduler` + per-region execution)\n- **Persistence** of unstable blocks to `unstable-blocks.yml`\n\n## Compatibility\n\n- **Java**: 21\n- **API target**: Paper API `1.21.11-R0.1-SNAPSHOT`\n- **Declared supported Minecraft versions**: `1.20 - 1.21.11`\n- `folia-supported: true` in `plugin.yml`\n\n## Installation\n\n1. Build or download the plugin jar.\n2. Put the jar in your server `plugins/` folder.\n3. Start the server once to generate default files.\n4. Edit:\n    - `plugins/BridgeFalls/config.yml`\n    - `plugins/BridgeFalls/messages.yml`\n5. Use `/bf reload` or restart the server.\n\n## Commands\n\nMain aliases:\n\n- `/bf`\n- `/bridgeFalls`\n- `/bfCommand`\n- `/bridgeFallsCommand`\n\nPermission:\n\n- `bridgefalls.admin` (default: op)\n\nCore:\n\n- `/bf help`\n- `/bf enable`\n- `/bf disable`\n- `/bf reload`\n\nConfig commands:\n\n- Radius\n  - `/bf config support-radius <value>`\n  - `/bf config top-support-radius <value>`\n  - `/bf config anchor-support-radius <value>`\n- Behavior\n  - `/bf config fall-delay-minutes <minutes>`\n  - `/bf config time-to-check <ticks>`\n  - `/bf config debug [true|false]`\n  - `/bf config allow-placing-unstable-blocks [true|false]`\n  - `/bf config falling-block [enable|disable]`\n  - `/bf config falling-block drop-item [true|false]`\n  - `/bf config falling-block hurt-entities [true|false]`\n- Lists (`list`, `add`, `remove`)\n  - `no-rest-vertical`\n  - `no-rest-horizontal`\n  - `always-stable`\n  - `always-stable-no-support`\n  - `floating-support`\n  - `instability-colors`\n  - `disabled-gamemodes`\n\n## How support works (high level)\n\nBridgeFalls evaluates support from several angles:\n\n1. **Direct vertical support**\n    - checks the 3x3 area below a block\n    - excludes air and materials listed in `no-rest-blocks-vertical`\n2. **Horizontal support**\n    - BFS-style search up to `support-radius`\n    - only traverses blocks allowed as horizontal support providers\n3. **Top support**\n    - optional upward check up to `top-support-radius`\n4. **Anchor check**\n    - connectivity test within `anchor-support-radius`\n    - uses 3D neighboring blocks including diagonals\n\nIf support is missing:\n\n- placement can be denied, or\n- block is accepted but marked unstable (depending on config)\n\nMarked unstable blocks are periodically re-evaluated. If still unstable after `fall-delay-minutes`, they can fall as `FallingBlock` entities.\n\n## Configuration notes\n\nImportant keys in `config.yml`:\n\n- `support-radius`\n- `top-support-radius`\n- `anchor-support-radius`\n- `fall-delay-minutes` (`0` means immediate fall)\n- `time-to-check` (task interval in ticks)\n- `allow-placing-unstable-blocks`\n- `falling-block`\n- `falling-block-drop-item`\n- `falling-block-hurt-entities`\n- `disabled-gamemodes`\n- `instability-colors`\n- `instable-color` (default outline when falling mode is disabled)\n\nMessages are customizable in `messages.yml` with placeholders (for example `{block}`, `{radius}`, `{count}`, `{minutes}`).\n\n## Folia behavior\n\nBridgeFalls uses a **global repeating task only as a dispatcher**.\nAll block/world reads are executed per location on the **region scheduler**, which is the safe model for Folia region threading.\n\n## Build from source\n\n```bash\n# Unix/macOS\n./gradlew clean shadowJar\n\n# Windows\n./gradlew.bat clean shadowJar\n```\n\nOutput jar:\n\n- `build/libs/BridgeFalls-<version>.jar`\n\nLocal Folia run task (project configured with run-paper):\n\n```bash\n# Unix/macOS\n./gradlew runFolia\n\n# Windows\n./gradlew.bat runFolia\n```\n\n## Development quality tools\n\nThe project is configured with:\n\n- Checkstyle\n- PMD\n- SonarQube plugin\n\n## License\n\nSee `LICENSE.md`.\n\n",
+  "categories": [
+    "folia"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

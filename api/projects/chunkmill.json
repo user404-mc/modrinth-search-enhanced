@@ -1,0 +1,24 @@
+{
+  "id": "APIm2c3e",
+  "slug": "chunkmill",
+  "title": "ChunkMill",
+  "description": "A fast, efficient, and easy-to-manage chunk pregenerator — generate your world on command or on a schedule, without lagging the players who are online.",
+  "body": "# ChunkMill\n\nA **fast, efficient, and easy-to-manage** chunk pregenerator — generate your world **on command** or **on a schedule**, without lagging the players who are online.\n\nChunkMill is a lightweight, **server-side** mod with its **own** high-throughput generation engine. Define reusable pregeneration *tasks*, run them whenever you like (or queue several up), and let ChunkMill grind through them at a pace that keeps your server smooth. Big runs even **resume automatically after a restart**. A map view of what's already been generated is planned for a future update.\n\n---\n\n## Why ChunkMill\n\n- **Fast** — generates chunks in tightly-batched bursts and keeps multiple chunks in flight at once, so it pushes hard when there's headroom.\n- **Efficient** — generated chunks are released as it goes, so a huge run won't balloon memory; it only does the work that's actually needed.\n- **Manageable** — everything is named, listed, and controllable: define tasks once, run/queue/pause/cancel them, and watch live progress from a clean in-game panel.\n- **Safe for players** — optional auto-pause means pregeneration never competes with people who are actually playing.\n\n---\n\n## Features\n\n- **Named tasks** — define a job once (`dimension`, `square`/`circle`, center, radius) and reuse it: `task add spawn overworld square 0 0 5000`.\n- **Run on demand or queue** — `run <task>` starts it now, or lines it up behind the current run.\n- **Time scheduler** — fire tasks (or `pause`/`resume`/`cancel`) on `HH:mm` rules for any days (`all`, `mon-fri`, `sat,sun`, …), timezone-aware.\n- **Smart throttling** — pick **adaptive** (auto-paces to hold a target ms/tick) or **fixed** (set chunks/tick); both cap how many chunks are generated at once.\n- **Player-aware** — optionally auto-pause the whole run while players are online, and resume when the server empties.\n- **Restart-safe** — an in-progress run saves its progress and continues where it left off after a restart or crash.\n- **In-game control panel** — just `/chunkmill` opens a live, tabbed screen that **doesn't pause your world**, so you watch generation happen in real time:\n  - **Dashboard** — progress bar with a live **chunks/sec rate and ETA**, plus pause/resume/cancel and the upcoming queue.\n  - **Tasks** — run, delete, or **edit** any task in a dedicated form (name, dimension, shape, center, radius).\n  - **Schedule** — build rules with **hour/minute sliders** and clickable **day toggles** (no typing); pick the task from a list that shows each one's details.\n  - **Settings** — engine, throttle, auto-pause, scheduler, and timezone.\n- **Multi-loader** — one mod for Fabric, Forge, and NeoForge.\n\n---\n\n## Quick start\n\n```\n/chunkmill enable\n/chunkmill task add spawn overworld square 0 0 5000\n/chunkmill run spawn\n/chunkmill status\n```\n\nWant it to run itself overnight?\n\n```\n/chunkmill settings scheduler true\n/chunkmill schedule add 01:00 run spawn mon-fri\n```\n\n---\n\n## Commands\n\n- `/chunkmill enable | disable | status`\n- `/chunkmill task add <name> <dimension> <square|circle> <cx> <cz> <radius>` · `task remove|list|info`\n- `/chunkmill run <task> | pause | resume | cancel`\n- `/chunkmill queue list | clear`\n- `/chunkmill settings throttle <adaptive|fixed>` · `mspt` · `chunkspertick` · `maxconcurrent` · `autopause` · `scheduler` · `timezone`\n- `/chunkmill schedule add <HH:mm> <run|pause|resume|cancel> [task] [days]` · `list|remove|clear|next`\n- `/chunkmill` (no arguments) — open the in-game control panel; `/chunkmill help` for the text list\n\n---\n\n## Requirements\n\n- **CodxLib** — required companion library (listed under Dependencies; most launchers install it automatically). Make sure it's present, or the mod won't load.\n- Works on **Fabric**, **Forge**, and **NeoForge** for Minecraft 26.1.2.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 71,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

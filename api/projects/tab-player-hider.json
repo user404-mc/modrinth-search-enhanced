@@ -1,0 +1,34 @@
+{
+  "id": "BJiNs8h7",
+  "slug": "tab-player-hider",
+  "title": "Tab Player Hider",
+  "description": "Hides specific players from the tab list without removing them from the game world",
+  "body": "## 👁️ TabPlayerHider\n\nHides specific players from the tab list without removing them from the game world.\n\nPerfect for servers running bots — players in `hidden-players` are invisible in the tab list but fully present in-game, unaffected by lag, collision, or visibility.\n\n### ✨ Features\n\n- Removes configured players from every client's tab list on join (1-tick delayed packet)\n- Immediate hide/show via commands — no relog needed\n- Config-driven: add bot names once, persisted across restarts\n- Tab-complete for `/tabh hide` shows online players; `/tabh show` shows currently hidden names\n\n### ⚙️ Configuration\n\n```yaml\n# config.yml\nhidden-players:\n  - \"BotName1\"\n  - \"BotName2\"\n```\n\nNames are **case-sensitive** and must match the exact Minecraft username.\n\n### 🔑 Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `tabplayerhider.admin` | Access to all `/tabh` commands | op |\n\n### 💬 Commands\n\nMain command: `/tabplayerhide` · Alias: `/tph`\n\n| Command | Description |\n|---|---|\n| `/tph on` | Enable hiding (hidden players disappear from tab list) |\n| `/tph off` | Disable hiding (all players visible in tab list again) |\n| `/tph status` | Show current state, hidden player count, and who is online |\n| `/tph hide <player>` | Hide a player from the tab list (saves to config) |\n| `/tph show <player>` | Show a player in the tab list again |\n| `/tph list` | List all currently hidden player names |\n| `/tph reload` | Reload config and re-apply hiding |\n\n### 📋 Requirements\n\n| | |\n|---|---|\n| Server | Paper 1.21.x |\n| Java | 21+ |\n\n### 🔧 How it works\n\nOn every player join, the plugin sends a `ClientboundPlayerInfoRemovePacket` (1 tick after join, after the server's own player-info broadcast) for each hidden player directly to the joining client. Because this only manipulates the tab list packet — and not the entity tracking or scoreboard — hidden players remain fully visible in the world.\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "Jsao4te4",
+  "slug": "pvp-chunk-manager",
+  "title": "PvP Chunk manager",
+  "description": "Admins: Mark chunks with the glowing 'PvP Hoe' to create inescapable PvP 'Cage Match' zones. No logging out, no teleporting, and no crossing the border until the combat timer expires.",
+  "body": "# ⚔️ PvP Chunk Manager\n\n**Advanced Localized PvP Management for Fabric 1.21.x & 26.x**\n\nPvP Chunk Manager is a lightweight, server-side utility designed for server owners who want to create high-stakes PvP zones (like custom arenas or dangerous islands) while keeping the rest of the world completely safe. It allows you to bypass `gamerule pvp false` in specific chunks and enforces strict combat rules to prevent players from chicken-ing out of fights.\n\n---\n\n## ✨ Key Features\n\n* **Multi-Version Combat:** Fully compatible across all **Fabric 1.21.x** releases (including 1.21.11) and the latest **26.x** snapshots/releases.\n* **Localized PvP Bypass:** Enable PvP in specific chunks, even if global PvP is turned off.\n* **Combat Tagging:** Automatically tags players when they deal or take damage.\n* **Mace-Friendly Flight:** Tagged players can still use Elytras and Ender Pearls, but only within a set radius around the PvP zone—perfect for setup and landing those massive Mace smash attacks!\n* **Escape Prevention:** Players attempting to flee the combat zone will hit invisible walls or be teleported back.\n* **Anti-Combat Log:** Punish players who disconnect mid-fight to deny enemies their loot.\n\n---\n\n## 🛠️ Commands & Tools\n\nAll management has been consolidated under the main `/pvpzone` command:\n\n* `/pvpzone hoe` – Gives the operator a **Diamond Hoe** (PvP Chunk Tool).\n* **How to use:** Right-click a block with the tool to toggle that chunk as a **PvP-enabled zone**.\n\n\n* `/pvpzone reload` – Reloads the `pvp_chunks.json` configuration instantly without needing to restart the server.\n\n---\n\n## ⚙️ Configuration (`pvp_chunks.json`)\n\nThe mod generates a config file in your server's `/config` folder. Customize the combat mechanics to fit your server's playstyle:\n\n| Setting | Type | Default | Description |\n| --- | --- | --- | --- |\n| `pvp_border_distance` | Integer | `2` | Number of chunks away from the PvP border where flight/pearls are permitted. |\n| `combat_tag_duration` | Integer | `20` | How long (in seconds) the combat tag lasts. |\n| `action_on_escape` | String | `INVISIBLE_WALL` | What happens when a tagged player leaves the allowed radius. |\n| `action_on_logout` | String | `KILL` | What happens when a tagged player disconnects. |\n\n### 📋 Action Options Breakdowns\n\n* **`action_on_escape` options:**\n* `INVISIBLE_WALL`: Blocks movement at the border (velocity is instantly stopped).\n* `TELEPORT_BACK`: Teleports the player back to the center of the nearest PvP chunk.\n* `KILL`: Instantly kills the player for trying to run away.\n\n\n* **`action_on_logout` options:**\n* `KILL`: Player is dead when they rejoin.\n* `BAN_TEMPORARY`: Player is killed and banned for 30 minutes.\n* `NONE`: No penalty (not recommended for competitive play).\n\n\n\n---\n\n## 🚀 Performance & Tech\n\n> 💡 **Server-Side Only:** Players do not need to install this mod to join your server!\n\nDesigned to run smoothly on modern hardware (optimized for processors like the Ryzen 3 6800H). The mod utilizes `PersistentState` for chunk storage and highly optimized Mixins, ensuring **zero impact on TPS** even with dozens of active, high-population combat zones.\n\n### 📦 Installation\n\n1. Drop the `.jar` into your server's `mods` folder.\n2. Ensure you have the correct **Fabric API** version for your target release (1.21.x or 26.x).\n3. Restart, grab your tool via `/pvpzone hoe`, and start marking your arenas!",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 122,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

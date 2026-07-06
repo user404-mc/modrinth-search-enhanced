@@ -1,0 +1,35 @@
+{
+  "id": "OFTR3qou",
+  "slug": "slipstreamengine",
+  "title": "Slipstream",
+  "description": "Ultra-fast, zero-allocation packet framework for Paper 1.21+. Coroutine-first, ProtocolLib-style API for modern Kotlin developers.",
+  "body": "# ⚡ Slipstream Engine (v2.0.0)\n\n**Slipstream** is a Next-Gen framework for packet interception and physics simulation in Minecraft (Paper).\nBuilt as an ultra-fast, modern alternative to heavy libraries (like ProtocolLib), designed specifically for Kotlin developers with an absolute focus on maximum performance and production stability.\n\nStarting with **v2.0.0**, Slipstream utilizes a **Multi-Module Architecture** with automatic generation of `@JvmInline value class` wrappers directly from NMS, providing **100% type safety**, **Java Records support**, and **Zero-Allocation** access without polluting the global namespace.\n## 🔥 Why Slipstream?\n\n* 🚀 **Zero-Reflection Bytecode Bridge:** Uses `MethodHandles` and Kotlin `value classes`. Packets are processed at the speed of compiled JIT bytecode.\n* 🛡️ **Type-Safe & Clean API:** Forget `packet.isMovePacket()`. Use our beautifully crafted `packet.wrapAs<WrapperMovePacket>()` which uses `inline reified` magic to guarantee zero runtime overhead and a clean autocomplete scope.\n* 📦 **Zero-Allocation Nested Structures:** Automatically generated wrappers for internal NMS types like `BlockPos`, `Vec3`, `ItemStack` ensure no objects are unnecessarily instantiated in the heap.\n* 🧵 **Coroutine-First & Lazy Suspend:** Asynchronous packet processing directly in the Netty thread. Slipstream only launches coroutines when a listener is interested, otherwise, it stays 100% synchronous.\n* 🪄 **Full Packet Mutation:** Mutate packets easily via generated setters for mutable fields, or via `.copy()` for immutable Java Records.\n* 🗺️ **Native Mojang Mappings:** Deeply integrated with Paper's native Mojang-mapped environment (1.21+).\n\n## 📖 Documentation & Wiki\n\n* [🏗️ Architecture](https://github.com/ClCody/Slipstream/blob/main/docs/ARCHITECTURE.md) — Multi-module design, Code Generation, and Pipeline internals.\n* [📖 API Guide](https://github.com/ClCody/Slipstream/blob/main/docs/API_GUIDE.md) — Listeners, Awaiters, `wrapAs`, and Modifiers.\n* [⏱️ Performance](https://github.com/ClCody/Slipstream/blob/main/docs/PERFORMANCE.md) — JMH Benchmarks, Inline Reified optimizations, and MethodHandles.\n## 🚉 Quick Start\n\n**Gradle (JitPack)**\n```kotlin\nrepositories {\n    maven(\"https://jitpack.io\")\n}\n\ndependencies {\n    // You only need to depend on the core module, the generated wrappers are pulled automatically!\n    implementation(\"com.github.ClCody.Slipstream:slipstream-core:2.0.0\")\n}\n```\n\n## 💻 Usage Examples (API)\n\n### 1. Type-Safe Casts (wrapAs) & Synchronous Listeners\nThe core of Slipstream's DX. Check and cast a packet in one single zero-overhead line:\n\n```kotlin\nval manager = SlipstreamPlugin.instance.manager\n\nmanager.registerListener(object : PacketListener {\n    override fun onPacketIn(player: Player, packet: Any): Boolean {\n        // wrapAs<T>() returns null if it's the wrong packet. \n        // Powered by inline reified, so 0 overhead!\n        packet.wrapAs<WrapperServerboundMovePlayerPacket>()?.let { movePacket ->\n            val pos = movePacket.pos // Returns a WrapperBlockPos (zero-allocation)\n            println(\"Player moved to X: ${pos.x}, Y: ${pos.y}\")\n        }\n        return true\n    }\n})\n```\n\n### 2. Asynchronous Listeners (Suspend Listeners)\nDon't block the server and Netty! Make database queries right during packet processing:\n\n```kotlin\nmanager.registerSuspendListener(object : SuspendablePacketListener {\n    override fun interestsInbound(packet: Any): Boolean = packet.wrapAs<WrapperServerboundChatPacket>() != null\n\n    override suspend fun onPacketInSuspend(player: Player, packet: Any): Boolean {\n        // The coroutine can suspend, the order of following packets is strictly preserved!\n        val isMuted = database.checkPlayerMute(player.uniqueId)\n        return !isMuted // false = cancel packet\n    }\n})\n```\n\n### 3. Packet Awaiter\nLinear, non-blocking packet awaiting (e.g., waiting for client transactions):\n\n```kotlin\n// Send a transaction to the client\nplayer.sendPacket(TransactionPacket(id = 1337))\n\n// The coroutine suspends until the client sends a response with the target ID\nval response = manager.awaitPacket<WrapperServerboundPongPacket>(player) { \n    it.packet.id == 1337 \n}\n```\n\n### 4. Modifying Packets (Setters & Records)\n```kotlin\npacket.wrapAs<WrapperClientboundSetEntityDataPacket>()?.let { dataPacket ->\n    // Modifying a mutable packet using generated MethodHandle setters\n    dataPacket.id = 999 \n}\n\npacket.wrapAs<WrapperServerboundSwingPacket>()?.let { swingPacket ->\n    // For immutable Java Records, a copy() method is generated (just like Kotlin data classes)\n    val modified = swingPacket.copy(hand = InteractionHand.OFF_HAND)\n}\n```\n\n## 📄 License\nMIT License.",
+  "categories": [
+    "library",
+    "management",
+    "minigame",
+    "optimization",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

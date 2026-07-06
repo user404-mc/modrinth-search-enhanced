@@ -1,0 +1,21 @@
+{
+  "id": "cju2RfO2",
+  "slug": "ae2-sophisticated-backpacks-fix",
+  "title": "AE2 Sophisticated Backpacks FIX",
+  "description": "A lightweight mixin-based patch to prevent server crashes during AE2 item import.",
+  "body": "**Overview**\n\nThis mod addresses a specific **NullPointerException (NPE)** that occurs when **Applied Energistics 2** (Import Bus) attempts to extract items from certain external inventories, most notably from the **Sophisticated Backpacks** mod on Fabric.\n\n**The Problem**\n\nSome inventories occasionally return a null iterator when queried for their contents. AE2 expects a valid list and immediately attempts to check for items, leading to an instant server crash when it encounters the null value.\n\n**The Solution**\n\nThe mod implements a Redirect Mixin into StorageImportStrategy. It intercepts the internal item check and adds a \"safety gate\":\n\n  If the inventory returns null: The mod catches it and tells AE2 that the inventory is simply empty, allowing the server to continue ticking normally.\n\n  If the inventory is valid: It allows the process to continue without any interference.",
+  "categories": [
+    "fabric",
+    "optimization",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2"
+  ],
+  "date_updated": null
+}

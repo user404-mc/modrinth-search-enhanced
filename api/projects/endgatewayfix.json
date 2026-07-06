@@ -1,0 +1,30 @@
+{
+  "id": "cPfaLRXW",
+  "slug": "endgatewayfix",
+  "title": "EndGatewayFix",
+  "description": "Fixes the alignment in end gateway generation.",
+  "body": "Fixes the End gateway generation to be symmetrical.\n\n\n<details>\n<summary>Technical Explanation</summary>\n\n- Whenever you kill the ender dragon and a gateway spawns, a chunk of code is run that roughly looks like this:\n\n```\nx = floor(diameter * cos(2 * (-pi + toRadians(9) * gatewayNum)));\nz = floor(diameter * sin(2 * (-pi + toRadians(9) * gatewayNum))); \n```\n\n- The issue lies in using `floor` over the entire equation for two reasons.\n\n1. The floor method always rounds down to the nearest integer, which means it will always be offset on any point with a negative decimal that would otherwise be rounded up.\n\n2. The floating point inaccuracies of `pi` cause it to be rounded down where it especially shouldn't, such as on a 0 (for example, creating -1 from -0.00000000000001). \n\n- This mod fixes this issue by instead opting to use the `round` method from the built-in Java Math class, which just rounds down when a number is 0.0 to 0.499…, and up when its 0.5 to 0.99….\n\n</details>\n\n[Before](https://www.desmos.com/calculator/bkkepy9ism):\n![An image depicting the 4 end gateways along the center line aligned improperly.](https://cdn.modrinth.com/data/cPfaLRXW/images/a36c32d83ead223c13fab07ab2a9c9587d858563.png)\n\n[After](https://www.desmos.com/calculator/rrgiw4dphl):\n![An image depicting the 4 end gateways along the center line aligned properly](https://cdn.modrinth.com/data/cPfaLRXW/images/195b86a3afdc4a19a99a42c80d3100c2ad4af6e9.png)",
+  "categories": [
+    "neoforge",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 65,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

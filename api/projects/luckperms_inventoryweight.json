@@ -1,0 +1,39 @@
+{
+  "id": "S2RR6pOR",
+  "slug": "luckperms_inventoryweight",
+  "title": "LuckPerms - MT Inventory Weight",
+  "description": "LuckPerms InventoryWeight connects LuckPerms rank meta values with MT Inventory Weight, allowing server admins to grant flat, percent, or multiplier-based carry capacity bonuses through LuckPerms meta keys.",
+  "body": "# LuckPerms InventoryWeight\n\n**LuckPerms InventoryWeight** is a server-side add-on for **MT Inventory Weight** and **LuckPerms**.\n\nIt lets server admins give players more maximum inventory weight through LuckPerms rank/user meta values.\n\nThis mod is **not standalone**.\n\n## Required Dependencies\n\nThis add-on requires:\n\n- [MT Inventory Weight](https://modrinth.com/mod/inventory-weight)\n- [LuckPerms](https://modrinth.com/mod/luckperms)\n- [Fabric API](https://modrinth.com/mod/fabric-api)\n\n## Server-side Only\n\nLuckPerms InventoryWeight is designed to run on the **server**.\n\nIt does not add client UI, keybinds, screens, HUD elements, or tooltips. It only modifies the server-side max weight calculation used by MT Inventory Weight.\n\n## Features\n\n- Integrates **LuckPerms** with **MT Inventory Weight**\n- Lets admins configure carry capacity bonuses using LuckPerms meta\n- Supports flat max-weight bonuses\n- Supports percentage bonuses\n- Supports direct multiplier bonuses\n- Server-side only\n\n## Supported LuckPerms Meta Keys\n\nThe add-on reads these LuckPerms meta keys:\n\n```text\ninventoryweight.maxweight.add\ninventoryweight.maxweight.percent\ninventoryweight.maxweight.multiplier\n```\n\n### Flat Bonus\n\n```text\n/lp group vip meta set inventoryweight.maxweight.add 50\n```\n\nGives:\n\n```text\n+50 max weight\n```\n\n### Percent Bonus\n\n```text\n/lp group vip meta set inventoryweight.maxweight.percent 25\n```\n\nGives:\n\n```text\n+25% max weight\n```\n\n### Multiplier Bonus\n\n```text\n/lp group vip meta set inventoryweight.maxweight.multiplier 1.5\n```\n\nGives:\n\n```text\n1.5x max weight\n```\n\n## Formula\n\nThe final result is calculated like this:\n\n```text\nfinal max weight = (current max weight + add) * (1 + percent / 100) * multiplier\n```\n\nExample:\n\n```text\nCurrent max weight: 100\nAdd: 50\nPercent: 25\nMultiplier: 1.5\n\nFinal: (100 + 50) * 1.25 * 1.5 = 281.25\n```\n\n## Example Rank Setup\n\n```text\n/lp group default meta set inventoryweight.maxweight.add 0\n/lp group vip meta set inventoryweight.maxweight.add 50\n/lp group vip meta set inventoryweight.maxweight.percent 10\n/lp group elite meta set inventoryweight.maxweight.add 100\n/lp group elite meta set inventoryweight.maxweight.percent 25\n/lp group elite meta set inventoryweight.maxweight.multiplier 1.5\n```\n\n## Documentation\n\nFull documentation is available in:\nhttps://megatrex4.github.io/inventory-weight/guide/addons/luckperms\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "uniA6ZmL",
+  "slug": "artemis-multipack",
+  "title": "Artemis MultiPack",
+  "description": "Lets a server host multiple Resource Packs",
+  "body": "# ArtemisMultipacks\n\n**Send multiple resource packs to players on join — fully leveraging Minecraft's native 1.20.3+ multi-pack stacking system.**\n\nNo hacks. No client mods. No external libraries. ArtemisMultipacks uses Paper's built-in `addResourcePack` API to queue as many packs as you want, stacked cleanly so your players load all of them automatically when they join.\n\n---\n\n## ✦ Features\n\n- **Unlimited packs** — Define as many resource packs as you want in `config.yml`. No hardcoded limits.\n- **Priority ordering** — Packs are applied top-to-bottom. Packs listed lower in the config take higher priority, exactly like vanilla stacking.\n- **Per-pack settings** — Each pack independently configures its URL, SHA-1 hash, required flag, and prompt message.\n- **Required enforcement** — Set `required: true` on any pack to kick players who decline it.\n- **MiniMessage prompts** — The accept/decline dialog supports full MiniMessage formatting per pack (`<gold>`, `<rainbow>`, gradients, etc.).\n- **Join delay** — A configurable tick delay before packs are sent gives the client time to finish spawning in, preventing race conditions.\n- **SHA-1 validation** — Malformed, missing, or placeholder hashes are caught at load time with a clear console warning rather than silently failing at runtime.\n- **URL validation** — URLs are validated to be `http://` or `https://` with a real host before they're registered.\n- **Live reload** — Change your pack list and hit `/multipack reload` — no server restart needed.\n- **Resend command** — Push all packs to yourself or any online player on demand. Useful for testing.\n\n---\n\n## ✦ Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/multipack reload` | Reload config and re-register all packs | `multipack.admin` |\n| `/multipack resend [player]` | Resend all packs to yourself, a named player, or everyone (from console) | `multipack.admin` |\n| `/multipack list` | List all currently loaded packs | `multipack.admin` |\n\n> `multipack.admin` defaults to **OP only**.  \n> All commands support **tab completion**.\n\n---\n\n## ✦ Configuration\n\n```yaml\n# How many ticks after join to send the packs.\n# A small delay prevents race conditions with client loading.\n# 20 ticks = 1 second\nsend-delay-ticks: 20\n\nresource-packs:\n  # Pack keys are just labels — name them anything you want.\n  # Packs are sent in order: top = lowest priority, bottom = highest.\n\n  base_pack:\n    url: \"https://example.com/base.zip\"\n    sha1: \"a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2\"\n    required: true\n    prompt: \"<gold>Please accept the resource pack to play!</gold>\"\n\n  addon_pack:\n    url: \"https://example.com/addon.zip\"\n    sha1: \"0f1e2d3c4b5a0f1e2d3c4b5a0f1e2d3c4b5a0f1e\"\n    required: true\n    prompt: \"\"\n```\n\n**Finding your SHA-1 hash:**\n```\nLinux / Mac:  sha1sum yourpack.zip\nWindows:      certutil -hashfile yourpack.zip SHA1\n```\n\n---\n\n## ✦ Requirements\n\n- **Paper** 1.21.1+ (or any fork — Purpur, Folia, etc.)\n- **Minecraft client** 1.20.3+ (multi-pack stacking was added in this version)\n- No other plugins required\n\n---\n\n## ✦ Why multi-pack instead of merging?\n\nMerging resource packs is tedious and breaks every time you update one of them. Minecraft's native multi-pack system lets you keep your packs modular and independent — update one without touching the others. ArtemisMultipacks makes that system dead simple to manage from a single config file.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

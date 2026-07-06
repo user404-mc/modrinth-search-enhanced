@@ -1,0 +1,22 @@
+{
+  "id": "ED5t49un",
+  "slug": "open-hands-lib",
+  "title": "open-hands-lib",
+  "description": "Open Hands Lib is a library for Minecraft. Each hand has its own hit cooldown, and the damage and tool are passed through the hand that your mod chooses; the same can be enabled for breaking blocks",
+  "body": "# Open Hands Lib\n\nPer-hand melee cooldowns and mining for NeoForge content mods.\n\n> **If you are not a mod developer, this is a dependency mod.**  \n> Install it only when another mod lists `open_hands_lib` as a required dependency. On its own it does not add items, blocks, or gameplay.\n\n---\n\n### What is Open Hands Lib?\n\nA NeoForge library that splits attack and mining logic across **main hand** and **off hand**. Each hand gets its own cooldown timer; your content mod decides when the system is active and which hand to use.\n\nThe library owns timers, mixins, and state. Your mod registers enable conditions and handles events — the library does not pick duelist logic for you.\n\n---\n\n### Features\n\n**Combat** (when enabled for a player)\n\n- Independent cooldown per hand\n- Attacks only land at **full charge** — partial swings are rejected on purpose\n- Hand selection via `ResolveAttackHandEvent` (alternation, best weapon, etc.)\n- Damage, enchantments, and weapon effects use the resolved hand\n- Optional rules to attack with the main hand while the off hand is using an item\n\nCombat activates when **any** registered condition is true (OR).\n\n**Mining** (when enabled)\n\n- Tool, harvest check, speed, and durability follow the resolved hand\n- Hand selection via `ResolveMiningHandEvent`\n- Per-block session cache until mining stops\n\nMining activates when **any** registered condition is true (OR).\n\n---\n\n### Requirements\n\n| | |\n|---|---|\n| Minecraft | 1.21.1 |\n| Java | 21+ |\n| Mod ID | `open_hands_lib` |\n| Version | 0.1.1 |\n| Author | Thow New Error |\n| **NeoForge** | 21.1.219+ · Kotlin for Forge 5.9.0+ |\n| **Fabric** | Loader 0.16.14+ · Fabric API · Fabric Language Kotlin |\n\n---\n\n### Installation\n\n1. Install **NeoForge**\n2. Install **Kotlin for Forge**\n3. Install **Open Hands Lib** and the content mod that depends on it\n\nDo not rename the mod or swap the jar for an unofficial build in public modpacks.\n\n---\n\n### For mod developers\n\nRegister when your gameplay should turn on, then listen for hand events:\n\n```kotlin\nOpenHandsLib.registerEnableCondition(\n    ResourceLocation.fromNamespaceAndPath(\"your_mod\", \"dual_wield\"),\n) { player -> /* your check */ true }\n\nNeoForge.EVENT_BUS.register(object {\n    @SubscribeEvent\n    fun onResolveAttackHand(event: ResolveAttackHandEvent) {\n        event.hand = InteractionHand.MAIN_HAND\n    }\n\n    @SubscribeEvent\n    fun onAttackHandCompleted(event: AttackHandCompletedEvent) {\n        // alternation, etc.\n    }\n})\n```\n\nMining: `registerMiningEnableCondition` + `ResolveMiningHandEvent`.\n\n**Public API**\n\n- `mod.openhandslib.api.OpenHandsLib` — entry point\n- `ResolveAttackHandEvent`, `AttackHandCompletedEvent`, `OpenHandsCombatStateClearEvent`\n- `ResolveMiningHandEvent`\n",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

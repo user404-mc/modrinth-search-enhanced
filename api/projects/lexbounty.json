@@ -1,0 +1,37 @@
+{
+  "id": "BUzSetzV",
+  "slug": "lexbounty",
+  "title": "LexBounty",
+  "description": "A complex plugin for bounty with multi-server support",
+  "body": "# LexBounty\n\nLexBounty is a **professional bounty system** for Paper 1.21+, built to work perfectly on both **single servers and large multi-server networks**. It allows players to place bounties on other players using **Vault economy**, automatically tracks and ranks the highest bounties in a clean **Top Bounties menu**, and pays out rewards only when the target is killed by a real player. In **local mode** (multi-server disabled), LexBounty stores everything in \n```\nplugins/LexBounty/data/bounty.yml\n```\n, making it lightweight and easy to run without any external services. In **network mode** (multi-server enabled), LexBounty uses **MySQL** as the source of truth for all bounty data and Redis to broadcast cross-server events, ensuring that bounty updates and player notifications are delivered instantly even if players are on **different servers**. If a player dies to mobs, fall damage, or any non-player cause, the bounty remains unchanged; only a player kill triggers the payout and resets the bounty, preventing abuse and keeping the system fair.\n\n# 2) Commands\n\n\n```\n/bounty add <player> <amount> — Place or increase a bounty on a player (uses Vault to withdraw money from the sender).\n/bounty remove <player> <amount> — Remove/decrease a bounty from a player (admin only).\n/bounty — Open the Top Bounties GUI.\n/bounty reload — Reload configuration/messages and reconnect services if needed (admin only).\n```\n\n\n# 3) Permissions\n\n\n```\nlexbounty.admin — default: op\n- Allows admin actions such as /bounty remove and /bounty reload.\nlexbounty.protected — default: op\n- Players with this permission cannot have bounties placed on them by anyone.\n```\n\n# 4) Dependency\n\n**- Vault**\n\n\n# 5) Tutorial\n\n1 - **Install LexBounty** on every Paper 1.21+ server where you want the bounty system to be available.\n\n2 - **Restart each server** once to generate the plugin files and the data folder.\n\n3 - If you want **single-server** mode only, disable multi-server mode in the config and make sure the plugin stores data locally in plugins/LexBounty/data/bounty.yml.\n\n4 - If you want **multi-server** mode, enable multi-server mode in the config.\n\n5 - Enter your **MySQL credentials** in the config so LexBounty can store and read bounty data from the database.\n\n6 - Enter your **Redis credentials** in the config so LexBounty can broadcast events and notify players across servers.\n\n7 - Make sure all servers in the network use the **same MySQL database and the same Redis** instance for consistent syncing.\n\n8 - **Restart all servers** to connect to MySQL and Redis and enable cross-server notifications and updates.\n\n**By LExtremeTY**",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "minigame",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

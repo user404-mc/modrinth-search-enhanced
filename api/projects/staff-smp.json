@@ -1,0 +1,35 @@
+{
+  "id": "vF7Fs1sa",
+  "slug": "staff-smp",
+  "title": "Staff SMP",
+  "description": "Adds 5 staffs to your smp all with different features",
+  "body": "# StaffSMP\n\n>  ![icon](https://cdn.modrinth.com/data/cached_images/0618db7ba38d7c9b5060e219c840b06a321a77d6.webp)\n\n**Class-based magic staves for SMP servers.** Five distinct classes, each with a unique 3D staff, two active abilities, and a class-defining passive. Pick your class manually with `/class`, or fire up `/staffsmp start` to randomly roll one for every player on the server. Don't like your class? Craft a **Reroller** to swap into another.\n\nBuilt for **Paper 1.21.x** with a companion resource pack (1.21.4+) for the custom staff and projectile models — grab it here: **[StaffSMP Resource Pack](https://modrinth.com/project/staff-smp-resource-pack)**.\n\n---\n\n## The five classes\n\n| Class | Right-click | Shift + Right-click | Passive |\n|---|---|---|---|\n| **Electric Wizard** | Strike a lightning bolt at your crosshair (60 blocks) | Teleport through space, damaging any entity caught in the path | — |\n| **Mage** | Launch a fireball with a custom 3D model | Brief levitation, then slow-falling for aimed fire | — |\n| **Monk** | Quick forward dash (0.4s cooldown) | Leap toward the nearest player; shockwave knockback + damage on landing | Double jump · No fall damage |\n| **Druid** | Throw a healing AOE ball that explodes into hearts | Buff your target (or self) with Speed + Haste | +2 hearts max health |\n| **Ranger** | Channel a thin laser beam that ticks damage on target | Drop a wind-charge under you — radial knockback + guaranteed rocket-jump | — |\n\nAll abilities have configurable cooldowns, ranges, and damage values.\n\n---\n\n## Features\n\n### Class locking\nAfter your first `/class` pick, you're committed. Only operators can change your class via `/staffadmin give`.\n\n### Random SMP mode\nRun **`/staffsmp start`** and every online player is instantly re-rolled into a random class with a totem-of-undying screen flash and the Ender Dragon death roar. Every new joiner from that point on is auto-rolled on connect. Effects only play on each player's first-ever staff give — no cacophony on rerolls.\n\n### Class Reroller\nCraft a **Class Reroller** to change your class:\n\n```\nNetherite    Diamond            Netherite\nDiamond      Heart of the Sea   Diamond\nNetherite    Diamond            Netherite\n```\n\nRight-click the reroller to open a class-picker GUI showing all 5 staves — click the one you want to become. The reroller is consumed on use and respects a configurable cooldown.\n\nDon't want the GUI? Set `reroller.gui: false` in config and the reroller will instantly roll a random class (20% chance per class, current class included).\n\n### Per-ability boss bar cooldowns\nEvery ability cooldown shows as its own colored boss bar at the top of your screen — and stacks alongside other active cooldowns, so you always know exactly what's available. Color-coded by class:\n\n- 🟦 **Wizard** — blue\n- 🟥 **Mage** — red\n- 🟨 **Monk** — yellow\n- 🟩 **Druid** — green\n- ⬜ **Ranger** — white\n- 🟪 **Reroller** — purple\n\n### Trust system\n`/staff trust <player>` makes your staff abilities pass through that player harmlessly. `/staff untrust <player>` reverses it. `/staff list` shows who you're trusting. Trust is directional and persists across restarts.\n\n### No more dropped staves\nStaves and rerollers can't be dropped via Q, drag-and-dropped into chests, shift-clicked into containers, placed in item frames, or stuck on armor stands. The restriction is absolute — even operators can't drop them (use `/staffadmin reset` to clean a player's inventory instead). The crafting table is exempt so you can actually use the reroller recipe.\n\n### Keep on death\nDie with your staff and it's automatically returned to you on respawn. The staff is stripped from your death drops so it can't be looted.\n\n### Self-damage immunity\nYour own abilities never hurt you — no rocket-jumping yourself into the void by accident, no lightning-bolting yourself on close-range strikes.\n\n### One staff per player\nClass changes always strip old staves and give a new one cleanly. Toggleable in config if you want stackable staves.\n\n---\n\n## Commands\n\n### Player\n- **`/class <wizard|mage|monk|druid|ranger>`** — Pick your starting class (one-shot)\n- **`/staff trust <player>`** — Trust a player; your staff won't damage them\n- **`/staff untrust <player>`** — Revoke trust\n- **`/staff list`** — Show who you're trusting\n\n### Operator (`staffsmp.admin`, default op)\n- **`/staffsmp start`** — Begin SMP mode: roll all online players + auto-roll joiners\n- **`/staffsmp stop`** — Halt auto-rolling on join (existing classes preserved)\n- **`/staffsmp status`** — Check SMP mode state\n- **`/staffadmin give <player> <class|reroller>`** — Force-assign a class or grant a reroller\n- **`/staffadmin reset <player>`** — Wipe a player's class, passives, and staves\n- **`/staffadmin info <player>`** — View a player's current class\n- **`/staffadmin reload`** — Reload `config.yml`\n\n---\n\n## Configuration\n\nEverything is tunable in `plugins/StaffSMP/config.yml`:\n\n- Per-ability cooldowns, ranges, damage values, projectile counts\n- Reroller cooldown and whether the GUI opens or instant-rolls\n- Drop restrictions (`no-drop`, `one-staff`, `keep-on-death`) — each individually toggleable\n- Wizard bolt damage and radius, mage fireball yield, monk shockwave knockback, ranger laser duration, druid heal amount, etc.\n\n---\n\n## Installation\n\n1. Drop `StaffSMP-1.0.0.jar` into your server's `plugins/` folder\n2. Start the server (generates `plugins/StaffSMP/config.yml`)\n3. **For the visuals**: install the **[StaffSMP Resource Pack](https://modrinth.com/project/staff-smp-resource-pack)** on your client (or distribute via server resource pack). The pack uses the new 1.21.4+ item-model format and includes:\n   - 5 unique 3D staff models bound to `minecraft:blaze_rod` via custom model data\n   - Custom fireball + healing-ball projectile models that follow the spell entities in flight\n   - 3D Class Reroller model\n4. `/class wizard` (or any class) — receive your blaze-rod staff\n5. To kick off random-roll SMP mode: `/staffsmp start`\n\n---\n\n## Requirements\n\n- **Paper 1.21.x** (built against 1.21.1 API; runs on later 1.21.x versions)\n- Resource pack requires **Minecraft 1.21.4+** (uses the modern `items/` model selector)\n- Java 21\n\n---\n\n## Credits\n\nThanks to **Yoink1975** for the idea and models.",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "equipment",
+    "food",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 32,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

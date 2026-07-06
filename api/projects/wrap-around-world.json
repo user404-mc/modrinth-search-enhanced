@@ -1,0 +1,35 @@
+{
+  "id": "dxwloogU",
+  "slug": "wrap-around-world",
+  "title": "Wrap Around World",
+  "description": "Seamlessly wrap players to the opposite side of a configurable boundary.",
+  "body": "# Wrap Around World\n \n**Seamlessly wrap players to the opposite side of a configurable boundary — no mods, no plugins, just a datapack.**\n \n---\n \n## Overview\n \nWrap Around World adds a fully configurable fake border to your world. When a player crosses the boundary on any axis, they are instantly teleported to the opposite side — creating a wrap-around, toroidal world effect similar to classic arcade games, or a globe earth.\n \nThe boundary size is adjustable at any time with a single command, and the effect is completely invisible to the player aside from the actionbar notification.\n \n---\n \n## Features\n \n- 🔁 **Wrap-around teleportation** — crossing `+X`, `-X`, `+Z`, or `-Z` sends you to the opposite side\n- 📐 **Fully configurable boundary** — change the border size live with one command, no reload required\n- 💾 **Persistent config** — border size survives world reloads\n- ⚡ **Lightweight** — a single scoreboard check per player per tick, nothing more\n- 🧱 **No mods required** — pure vanilla datapack, compatible with any server\n---\n \n## Installation\n \n1. Download the `.zip` file\n2. Place it in your world's `datapacks/` folder:\n```\n   saves/<your-world>/datapacks/wbtp_datapack.zip\n```\n3. Run `/reload` in-game, or load into the world\n4. You should see the confirmation message in chat\n> **Note:** The datapack must remain as a `.zip` — do not extract it.\n \n---\n \n## Usage\n \n### Check the current border size\n```\n/function wbtp:set_border\n```\nPrints the current boundary distance and the command to change it.\n \n### Set a custom border size\n```\n/scoreboard players set #border wbtp.config <size>\n```\n \n**Examples:**\n \n| Command | Effect |\n|---|---|\n| `/scoreboard players set #border wbtp.config 3500` | Default — 7000×7000 block play area |\n| `/scoreboard players set #border wbtp.config 1000` | Compact — 2000×2000 block play area |\n| `/scoreboard players set #border wbtp.config 10000` | Large — 20000×20000 block play area |\n \nThe change takes effect immediately — no reload needed.\n \n---\n \n## How It Works\n \nEvery tick, each player's X and Z coordinates are read into scoreboards and compared against the configured `#border` value. If a player meets or exceeds the threshold in any direction, they are teleported to `(border - 10)` on the opposite side, landing safely 10 blocks inside the boundary to prevent a re-trigger loop.\n \nTeleportation uses Minecraft's [function macro](https://minecraft.wiki/w/Function_(Java_Edition)#Macros) system (`$tp`) introduced in 1.20.2, which is the correct modern approach for coordinate-based teleportation since direct NBT position writes were removed in 1.20.5.\n \n---\n \n## Compatibility\n \n| Version | Status |\n|---|---|\n| 1.21.1 | ✅ Fully supported |\n| 1.20.5 – 1.20.6 | ✅ Should work (untested) |\n| 1.20.2 – 1.20.4 | ⚠️ Requires macro support — untested |\n| Below 1.20.2 | ❌ Not supported |\n \n---\n \n## Known Limitations\n \n- Coordinates are stored as **integers** — sub-block precision is not preserved on teleport. Players land at whole-block coordinates.\n- The boundary applies to **all dimensions** (Overworld, Nether, End). If you only want it in the Overworld, this would require a small modification.\n- The Minecraft world border and this datapack's fake border are **independent** — this does not replace or interact with `/worldborder`.\n---\n \n## License\n \nThis datapack is free to use on any server, in any modpack, or as a base for your own projects. Credit is appreciated but not required.",
+  "categories": [
+    "adventure",
+    "datapack",
+    "game-mechanics",
+    "social",
+    "transportation",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 5,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

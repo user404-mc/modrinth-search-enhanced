@@ -1,0 +1,33 @@
+{
+  "id": "kJdcP3bz",
+  "slug": "urldrop",
+  "title": "URLDrop",
+  "description": "In-game async download manager for Paper servers. Download large files directly to your server via URL — with GUI, progress tracking & Discord webhooks.",
+  "body": "---\n\n<div align=\"center\">\n\n# 📥 URLDrop\n\n### In-game async download manager for Servers\n\n**Download large files directly to your server via URL — without touching the console.**\n\n</div>\n\n---\n\n## ✨ What is URLDrop?\n\nURLDrop is an admin-focused plugin that turns your Minecraft server into a download station.\nInstead of SSH-ing into your machine to `wget` a backup or a world archive, you open a\nchest GUI in-game, paste a URL, choose a destination, and let the server do the rest.\n\nPerfect for:\n- 📦 Downloading server backups from remote storage\n- 🌍 Pulling world archives or data packs\n- 🔌 Staging plugin updates without leaving the game\n- 📁 Migrating large files between servers via URL\n\n---\n\n## 🖥️ GUI Overview\n\nOpen with `/urldrop` or `/ud`:\n\n| Screen | Description |\n|--------|-------------|\n| **Main Menu** | Hub for all actions |\n| **New Download** | 5-step wizard: URL → path → filename → checksum → confirm |\n| **Active Downloads** | Live progress bars, speed, ETA, cancel button |\n| **Queue** | Reorder, start-now, or remove pending jobs |\n| **History** | Re-download or purge completed entries |\n| **Settings** | Toggle runtime options without reloading |\n\n---\n\n## ⚡ Features\n\n### Downloads\n- ✅ Async downloads on **Java 21 virtual threads** — zero main-thread blocking\n- ✅ HTTP streaming directly to disk — no RAM spike for large files\n- ✅ **HTTP Range resume** — picks up where it left off if interrupted\n- ✅ Configurable **retry with exponential back-off**\n- ✅ Automatic **progress tracking** (speed, ETA, % complete)\n- ✅ **Auto-unzip** `.zip` archives after download\n- ✅ Backup existing files before overwrite (with retention limit)\n\n### Security\n- 🔒 Path traversal prevention (`..` blocked before and after normalization)\n- 🔒 URL validation — `http`/`https` only, optional domain whitelist/blacklist\n- 🔒 Blocked file extensions / content-type filtering\n- 🔒 Optional **SHA-256 checksum verification** before file is placed\n- 🔒 Downloads stage to a temp file first, then **atomically move** to destination\n- 🔒 File size hard cap (default 2 GB)\n\n### Destinations\n- 📂 **Any path** the server process can reach (relative or absolute)\n- 📂 Works with Pterodactyl (`/home/container/...`)\n- 📂 Configurable path **aliases** (e.g. type `backup` → resolves to `backups/`)\n\n### Notifications\n- 💬 Clickable in-game Adventure messages with `[Retry]` / `[History]` buttons\n- 🔔 Operator join reminders for downloads that finished while you were offline\n- 🟣 **Discord webhook** support with rich embeds\n\n### Commands\n```\n/ud                         Open GUI\n/ud download <url> <path>   Start immediately\n/ud queue <url> <path>      Add to queue\n/ud status [id]             Show progress\n/ud cancel <id>             Cancel\n/ud retry <id>              Retry failed download\n/ud history                 Recent history in chat\n/ud debug <id>              Full diagnostics\n/ud reload                  Reload config\n```\n\n---\n\n## ⚙️ Configuration\n\nFour config files are generated on first run:\n\n| File | Purpose |\n|------|---------|\n| `config.yml` | Limits, timeouts, retry, security, notifications |\n| `messages.yml` | All messages (MiniMessage format — fully customisable) |\n| `paths.yml` | Aliases, sensitive paths, blocked fragments |\n| `webhook.yml` | Discord webhook URL and event toggles |\n\n### Quick example — `config.yml`\n```yaml\nmax-simultaneous-downloads: 3\nmax-file-size-mb: 2048\nallow-resume: true\nauto-unzip: false\nrequire-checksum-for-sensitive-paths: false\noperator-notify-on-complete: true\n```\n\n### Quick example — `paths.yml` aliases\n```yaml\naliases:\n  backup: \"backups\"\n  update: \"plugins/update\"\n  home:   \"/home/container\"\n```\n\n---\n\n## 🔐 Permissions\n\n| Permission | Description |\n|------------|-------------|\n| `urldrop.admin` | All permissions |\n| `urldrop.open` | Open the GUI |\n| `urldrop.download` | Start downloads |\n| `urldrop.queue` | Queue downloads |\n| `urldrop.cancel` | Cancel downloads |\n| `urldrop.history` | View history |\n| `urldrop.settings` | Toggle settings |\n| `urldrop.reload` | Reload config |\n| `urldrop.debug` | View diagnostics |\n\nAll permissions default to **operator only**.\n\n---\n\n## 📋 Requirements\n\n| Requirement | Version |\n|-------------|---------|\n| Server | Paper 1.21.x |\n| Java | 21+ |\n\nNo other plugins required. Gson is bundled inside the JAR.\n\n---\n\n<div align=\"center\">",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

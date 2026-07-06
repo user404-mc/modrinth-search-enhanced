@@ -1,0 +1,39 @@
+{
+  "id": "9ZThmsdv",
+  "slug": "packs-shop",
+  "title": "Packs Shop",
+  "description": "Manange donate/shop packs (case) with animation and full customization",
+  "body": "A good plugin that provides the ability to create paid packs (cases) for in-game currency or link them for donations. Packs have full customization, choice of in-game currency, pack distribution; almost anything can be added to a pack. It copies the entire NBT tag of the item to display it in the pack.  \n\nCommands:  \n\n\n```\n/packs - open the pack purchase menu  \n/packs admin - open the pack editor menu  \n/givepack <user> <count> - give a pack to a player (even if they are offline)  \n```\n\n\nThe plugin was developed specifically for one SMP server and will receive updates if the server needs them. Currently, a non-final version of the plugin is being released, as it still requires menu design improvements and other adjustments.\n\n\n<details>\n<summary>config.yml</summary>\n\nshop:\n  currency-material: DIAMOND_ORE\n  currency-name: \"&bалмазной руды\"\n\npack-item:\n  name: \"&6Пак: &f%pack%\"\n  lore:\n    - \"&7Цена: &b%price% %currency%\"\n    - \"&8Поставьте шалкер и откройте его\"\n\neffects:\n  blindness:\n    ambient: false\n    particles: true\n    icon: true\n\nanimation:\n  ticks-per-step: 15\n  total-steps: 27\n\nsounds:\n  enabled: true\n  buy:\n    sound: minecraft:entity.experience_orb.pickup\n    volume: 0.45\n    pitch: 1.05\n\n  pack-place:\n    sound: minecraft:block.shulker_box.open\n    volume: 0.45\n    pitch: 0.8\n\n  pack-open-start:\n    sound: minecraft:block.ender_chest.open\n    volume: 0.4\n    pitch: 0.95\n\n  pack-open-step:\n    sound: minecraft:block.note_block.hat\n    volume: 0.22\n    pitch: 1.5\n\n  pack-open-reward:\n    sound: minecraft:ui.toast.challenge_complete\n    volume: 0.55\n    pitch: 1.0\n\n  offline-delivery:\n    sound: minecraft:entity.player.levelup\n    volume: 0.45\n    pitch: 1.0\n\ndefaults:\n  pack-material: SHULKER_BOX\n  animation-material: NETHER_STAR\n  icon-material: CHEST\n  reward-material: DIAMOND\n  price-ores: 1\n  blindness-ticks: 60\n  blindness-amplifier: 0\n\n\n</details>\n\n\n<details>\n<summary>gui.yml</summary>\n\ntitles:\n  shop: \"&0&lМагазин паков\"\n  editor: \"&0&lРедактор пака\"\n  rewards: \"&0&lНаграды пака\"\n  opening: \"&0&lОткрытие пака\"\nshop:\n  info:\n    material: EMERALD\n    name: \"&a&lПокупка\"\n    lore:\n      - \"&7Нажмите на пак, чтобы купить его\"\n  pack-lore:\n    - \"&fЦена: &b%price% %currency%\"\n    - \"&fНаград в паке: &e%rewards%\"\n    - \"&aНажмите для покупки\"\neditor:\n  create-pack:\n    material: LIME_CONCRETE\n    name: \"&a&lСоздать новый пак\"\n    lore:\n      - \"&7Будет создан пак вида &fpack-N\"\n  pack-lore:\n    - \"&fЦена: &b%price% %currency-short%\"\n    - \"%enabled%\"\n    - \"&eНажмите для редактирования\"\n  icon:\n    name: \"&6&lИконка пака\"\n    lore:\n      - \"&7Возьмите предмет в руку и нажмите\"\n  display-name:\n    material: NAME_TAG\n    name: \"&d&lНазвание пака\"\n    lore:\n      - \"&7Нажмите и введите название в чат\"\n  price:\n    material: DIAMOND_ORE\n    name: \"&b&lЦена: &f%value%\"\n    lore:\n      - \"&7Нажмите и введите число в чат\"\n  blindness-ticks:\n    material: INK_SAC\n    name: \"&7&lСлепота: &f%value% тиков\"\n    lore:\n      - \"&7Нажмите и введите число в чат\"\n  blindness-level:\n    material: FERMENTED_SPIDER_EYE\n    name: \"&8&lУровень слепоты: &f%value%\"\n    lore:\n      - \"&7Нажмите и введите число в чат\"\n  animation-item:\n    name: \"&e&lПредмет анимации\"\n    lore:\n      - \"&7Возьмите предмет в руку и нажмите\"\n  pack-material:\n    name: \"&5&lМатериал пака\"\n    lore:\n      - \"&7Возьмите шалкер в руку и нажмите\"\n  enabled-on:\n    material: LIME_DYE\n    name: \"&a&lПак включен\"\n    lore:\n      - \"&7Нажмите для переключения\"\n  enabled-off:\n    material: GRAY_DYE\n    name: \"&c&lПак выключен\"\n    lore:\n      - \"&7Нажмите для переключения\"\n  rewards:\n    material: CHEST_MINECART\n    name: \"&6&lНаграды\"\n    lore:\n      - \"&7Открыть редактор наград\"\n  delete:\n    material: TNT\n    name: \"&c&lУдалить пак\"\n    lore:\n      - \"&7Удаляет пак без восстановления\"\n  preview:\n    material: ENDER_CHEST\n    name: \"&b&lВыдать себе пак\"\n    lore:\n      - \"&7Получить предмет этого пака\"\n  back:\n    material: ARROW\n    name: \"&f&lНазад\"\n    lore:\n      - \"&7Вернуться к списку\"\nrewards:\n  add:\n    material: LIME_CONCRETE\n    name: \"&a&lДобавить награду\"\n    lore:\n      - \"&7Возьмите предмет в руку и нажмите\"\n      - \"&7Шанс задается потом через чат\"\n  back:\n    material: ARROW\n    name: \"&f&lНазад\"\n    lore:\n      - \"&7Вернуться в редактор пака\"\n  reward-lore:\n    - \"\"\n    - \"&fШанс: &b%chance%%\"\n    - \"&7ЛКМ: изменить шанс в чате\"\n    - \"&7ПКМ: заменить на предмет в руке\"\n    - \"&7Shift+ПКМ: удалить награду\"\nopening:\n  running-item:\n    name: \"&e&lОткрытие...\"\n    lore:\n      - \"&7Звезда проходит по наградам\"\nstatus:\n  enabled: \"&aВключен\"\n  disabled: \"&cВыключен\"\n  reward-default-name: \"&fНаграда #%index%\"\n\n</details>\n\nI don't see the point of adding the other files, since they are inserted incorrectly on the platform anyway; in general, you'll figure it out yourself, everything is intuitively clear there",
+  "categories": [
+    "decoration",
+    "game-mechanics",
+    "library",
+    "magic",
+    "management",
+    "minigame",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 99,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

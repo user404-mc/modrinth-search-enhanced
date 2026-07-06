@@ -1,0 +1,34 @@
+{
+  "id": "DHapK7kp",
+  "slug": "vanillaguard",
+  "title": "VanillaGuard",
+  "description": "VanillaGuard\nA lightweight, vanilla-respecting anti-cheat for Paper 1.21.x.",
+  "body": "VanillaGuard\nA lightweight, vanilla-respecting anti-cheat for Paper 1.21.x. Catches cheaters without false-flagging your friends.\nMost anti-cheats are either too aggressive (banning players for sprint-jumping or playing on ice) or too complex to configure. VanillaGuard takes a different approach: it knows what's actually possible in vanilla Minecraft and only flags what physically isn't.\n✨ Features\n\n🏃 Speed detection — state-aware, accounts for Speed potions, Soul Speed, ice, swimming, and more\n🪽 Fly detection — catches hovering and unnatural ascending without flagging legit falls\n⚔️ Reach detection — flags attacks beyond vanilla's 3-block range (with latency buffer)\n⛵ BoatFly detection — closes the boat-flying bypass that most anti-cheats miss\n📊 Violation buffer system — sustained cheating accumulates evidence; brief lag spikes don't false-flag\n🚫 Auto-ban — configurable temp ban after threshold reached (default: 5 flags = 1-day ban)\n👮 Live staff alerts — see violations in chat as they happen\n\n🎯 Why VanillaGuard?\nNo false positives on legitimate play.\nVanillaGuard knows that:\n\nSprint-jumping briefly hits ~8.5 bps from momentum impulses\nSpeed II + sprint-jumping reaches ~10.5 bps\nSoul Speed III + Speed II on soul sand hits ~12.7 bps\nBoats on blue ice can reach 70+ bps\nRiptide tridents create huge velocity bursts\nKnockback, teleports, and elytra all break normal movement rules\n\nAll of this is exempt automatically. Your friends can play without getting banned for the game's actual mechanics.\n🛡️ Checks in detail\nSpeed\nCalculates the maximum legitimate speed for the player's current state every tick (potions, blocks underfoot, swimming, ice, etc.) with a 30% latency buffer. Uses a violation buffer that decays over time — sustained cheating accumulates faster than it can decay, but brief network spikes don't false-trigger.\nFly\nTracks airborne Y-accumulation. Only flags hovering and ascending patterns — falls of any speed are never evaluated, eliminating false positives from packet jitter. Catches even slow levitation cheats (0.04 dy/tick) by accumulating evidence over time.\nExemptions: elytra, riptide, levitation, slow-falling, water, ladders, vines, scaffolding, cobweb, powder snow, bubble columns, vehicles, knockback, teleports, recent join.\nReach\nMeasures distance from attacker eye to nearest point on victim's hitbox (same math vanilla uses). Vanilla survival is 3.0 blocks; VanillaGuard flags at >4.0 to allow ~150ms latency.\nBoatFly\nDetects boats that aren't falling when they physically must. Tracks consecutive ticks where the boat is unsupported (no water/ice/lily pad/solid block beneath); flags after 5 such ticks with vertical motion >-0.12.\n⚙️ Configuration\nplugins/VanillaGuard/config.yml:\nyamlflag-threshold: 5    # flags before temp ban\nban-days: 1          # ban duration\n🔑 Permissions\nPermissionDefaultDescriptionvanillaguard.bypassopFully exempt from all checksvanillaguard.alertsopReceive in-game violation alerts\nServer operators, creative/spectator players, and anyone with vanillaguard.bypass are fully exempt automatically.\n📋 Requirements\n\nPaper 1.21.x (other forks like Purpur/Pufferfish should work too)\nJava 21+\n\n📦 Installation\n\nDownload VanillaGuard-1.0.0.jar\nDrop it in your server's plugins/ folder\nRestart your server\nDone — check console for VanillaGuard v1 enabled.\n\n⚠️ Scope\nVanillaGuard is a lightweight anti-cheat for small to medium servers. It focuses on common cheats (fly, speed, reach, boatfly) with zero false positives on legitimate vanilla play. It does not include:\n\nKillAura / hit detection\nNoFall / NoSlow\nPacket-level analysis\nPhase / NoClip detection\nAuto-clicker detection\n\nFor larger servers running competitive PvP, consider Vulcan, Grim, or Matrix. For smaller SMPs and friend servers where you just want to stop the obvious cheaters without breaking gameplay — that's where VanillaGuard shines.\n💬 Feedback\nFound a bug? Got a false positive? Drop a comment or open an issue. The plugin is actively improved based on real-world testing.\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 25,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

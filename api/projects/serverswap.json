@@ -1,0 +1,37 @@
+{
+  "id": "zCeE16N6",
+  "slug": "serverswap",
+  "title": "ServerSwap",
+  "description": "Allows both manual and automatic redirection of players to other servers.",
+  "body": "![Banner with ServerSwap logo and text saying \"ServerSwap\"](https://cdn.modrinth.com/data/cached_images/416fe4517dce709496cee39d13fc60dfeb62149b_0.webp)\nBelieve it or not, Minecraft actually has this functionallity built in through the `TRANSFER` packet (`0x7F`). This packet allows a server to tell a client to disconnect from it and connect to another instead. Clients as low as 1.20.5 support this packet, and you might be able to go even lower under specific circumstances, more info about this can be found in the compatability \n\n![Banner with ServerSwap logo and text saying \"Usage\"](https://cdn.modrinth.com/data/cached_images/6f3bd7a301eb3717e4c6ab25ca7e3f7d288cd188_0.webp)\nUsing this plugin is as simple as can be. There's a fairly limited amount of permissions, commands, and config. Below is the main command of the plugin (/serverswap)\n\n/serverswap <br/>\n┣ swap <server> [players]<br/>\n┖ reload<br/>\n\nDo note that the `serverswap` command is also accessible via the alias of `ss`. Whilst swapping your own server requires that a player be running the command (else who are transfer). Transfering whilst specifying players and reloading can be run by any executor with sufficent permissions such as console or even if you wanted a really enthusiastic pig.\n\n![Banner with ServerSwap logo and text saying \"Config\"](https://cdn.modrinth.com/data/cached_images/4d989fba1f25ad14dab07de4bdb6bc5f2bc587d4_0.webp)\nBy default the plugin ships with this config file:\n```yaml\n# ServerSwap configuration - list your target servers here\n# The plugin will create permissions for each entry automatically:\n#   serverswap.use.<server>\n#   serverswap.use.others.<server>\n# You can also grant the wildcard permissions:\n#   serverswap.use.*\n#   serverswap.use.others.*\n\nservers:\n  Hub:\n    address: hub.example.com\n    port: 25565\n  Minigames:\n    address: minigames.example.com\n    port: 25565\n\nautoRedirect:\n  play.example.com: Hub\n  pvp.example.com: Minigames\n```\n\nLet's break this down each property at a time. First up we have the `servers` block which is where you tell the plugin where to find each server, it will have an address and a port associated with it. In the default config file there is two servers configured one being called \"Hub\" which links to a server at hub.example.com on port 25565 (The default minecraft port).<br/>\nThen we have the `autoRedirect` section, this is similar to Velocity's [forced-hosts](https://docs.papermc.io/velocity/configuration/#forced-hosts-section). In short if someone connects to your server by joining the hostname specified as the objects name (in this case being `play.example.com`) it will transfer them automatically to the corrisponding server such as `Hub`.\n\n![Banner with ServerSwap logo and text saying \"Permissions\"](https://cdn.modrinth.com/data/cached_images/61d8cb97f67cb47031d2801eaf5b0a26ee09d4fd_0.webp)\nThere are some default permisisons that the plugin creates and then there are dynamic permissions based off your config file. Let's start off by listing the static permissions:\n* `serverswap.use` / `serverswap.use.*`: Allows the player to transfer them to any server specified within the config file. *Default: True*\n* `serverswap.use.others` / `serverswap.use.others.*`: Allows the executor to transfer other players to any server specified within the config file. *Default: OP*\n* `serverswap.reload`: Allows the user to simply reload the config file for the plugin and regenerate permissions based on it. *Default: OP*\n\nNow as for the dynamic permissions:\n* `serverswap.use.[serverName]`: Allows the player to swap themselves to the specified server.\n* `serverswap.use.others.[serverName]`: Allows the exector to transfer other players to the server specified in the permission.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,21 @@
+{
+  "id": "S8yfKmO3",
+  "slug": "create-cursor-anchor-fix",
+  "title": "Create Cursor Anchor Fix",
+  "description": "Fixes cursor positioning in Create mod's settings screen on Linux Wayland/X11 via mixins with anchor-offset model.",
+  "body": "# Create Cursor Anchor Fix\n\n**Fixes the cursor in Create's value settings screens on Linux — including native Wayland.**\n\nWhen you open a Create value settings window (Rotation Speed Controller, creative motors, anything\nusing `ValueSettingsScreen`), Create warps the OS cursor onto the current value and reads it back\nto decide which value you picked. On Linux that breaks:\n\n- **X11 / XWayland** — Minecraft sometimes hands Create stale cursor coordinates, so the **wrong\n  value gets saved**.\n- **Native Wayland** — the compositor forbids moving a visible cursor, so the warp does nothing\n  and the value **snaps to zero / a wrong number**.\n\nThis client-side mod fixes both.\n\n## What it does\n\n- **X11 / XWayland** — feeds Create the live cursor position, so the saved value always matches\n  where your cursor is.\n- **Native Wayland** — uses an **anchor/offset model** instead of relying on the (forbidden)\n  cursor warp. The value highlight lands on the current setting when the screen opens and follows\n  your mouse relatively, with no cursor teleporting. While the screen is open the system cursor is\n  hidden and the highlight itself acts as the pointer — so there is no mismatch between an\n  un-movable arrow and the highlight (this also fixes setups using cursor-pinning GLFW patches like\n  `glfw-wayland-minecraft-cursor`).\n\n## Power Grid compatibility\n\nPower Grid's settings screens subclass Create's screen and override the save logic to read the\nslider/cursor on their own, so the base fix doesn't reach them and they'd still save the raw\ncursor position. This mod includes a compatibility layer that applies the same correction to Power\nGrid's screens, so values save correctly there too. Power Grid is **not required** — the compat\nlayer is skipped automatically when it isn't installed.\n\n## Requirements\n\n- Minecraft **1.21.1**\n- NeoForge **21.1.219+**\n- Create **6.0.9+** (tested on 6.0.10)\n\n**Client-side only** — not needed on the server.\n\n## Open source\n\nClean-room implementation, MIT licensed. Source, issues and builds:\nhttps://github.com/LowaSC/create-cursor-anchor-fix\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "optimization",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 55,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "rCfAOz97",
+  "slug": "exai",
+  "title": "ExAI",
+  "description": "An AI Assistant Plugin for Minecraft Server",
+  "body": "# ExAI — AI Assistant Plugin for Minecraft\nExAI brings an LLM-powered, in-game AI assistant to your Minecraft server. It quickly builds your server's knowledge base through automatic uploads and chat monitoring, and uses RAG to give accurate, server-specific answers. Everything happens inside a chest GUI — no command memorization required.\n\nProject: https://github.com/Crossroadscodes/MC-ExAI\n\n## Features\n- Chest GUI assistant — players talk to the AI through a clean menu, no chat spam.\n- Public chat response — auto-replies to questions in public chat via keyword triggers (configurable cooldown); stays silent when no grounded answer is available to avoid spam.\n- Auto knowledge collection — watches the \"ask → answer → thanks\" flow in public chat and automatically queues AI‑vetted Q&A pairs for OP review.\n- Player knowledge submission — players submit Q&A using a written book → AI pre‑filters junk → OP approves/rejects in GUI → approved entries go into the vector store.\n- Reward system — Vault currency + custom items granted upon approval.\n- RAG semantic retrieval — uses DashScope text-embedding-v3 (1024‑dim) with adjustable similarity threshold.\n- OP tools — chat history viewer, knowledge base editor, one‑click promotion of chat logs to knowledge.\n- Flexible storage — switch between MySQL and pure local YAML via storage.type; zero database setup for small servers.\n- LLM backend — OpenAI‑compatible API (default Aliyun DashScope/Qwen, easily swappable for OpenAI, DeepSeek, etc.).\n- Low cost — achieved via configurable cooldown settings and output truncation to minimize AI calls.\n\n## Screenshots\nMain menu — Start a chat\nHover the player head and click to begin a single-turn dialogue with the assistant.\n### Start Chat\n![Start Chat](https://cdn.modrinth.com/data/cached_images/1bf5c70a15c1d26ea7c00e097a88ed759c464e25.png)\n\n### Main menu — Upload knowledge\n![Main menu — Single-turn chat notice](https://cdn.modrinth.com/data/cached_images/b167c131e18483893c3119972bc475521e57a6a2.png)\n\nThe paper item shows usage info and the current cooldown.\n\n### Upload Knowledge\n![Upload Knowledge](https://cdn.modrinth.com/data/cached_images/750a2228bd4b9b41fceee01a0dea3cfee28516a6.png)\n\nClick the book to receive a writable book; fill in Q: ... A: ... and close it to submit for review.\n\n### Main menu — Reviewer panel (OP)\n![Reviewer Panel](https://cdn.modrinth.com/data/cached_images/3595f2df2d5210195eb99bd00b3d5d08102bb6e8.png)\n\nOpen the per-page review GUI. Left-click to approve (writes to the knowledge base and pays rewards), right-click to reject.\n\n### Main menu — Chat history (OP)\n![Chat history](https://cdn.modrinth.com/data/cached_images/f838ea1c888ecb230fa9cc2c7891cc4ca596a079.png)\n\nBrowse player questions and AI replies; left-click to edit and promote a record into the knowledge base, right-click to delete.\n\n### Main menu — Knowledge base (OP)\n![knowledge base](https://cdn.modrinth.com/data/cached_images/4fef879bac3fecbc6959c02114a5827aae1bd5e6.png)\n\nView and edit every accepted entry. Left-click to edit, right-click to delete; the knowledge base auto-reloads.\n\n### Public chat in action\n![Public chat in action](https://cdn.modrinth.com/data/cached_images/c5ceee6df1a9c806a8f1fd8b5042d1113af980c4.png)\n\nType a question with a configured keyword (?, how, what, etc.) and the assistant replies on broadcast.\n\n## Commands & Permissions\nCommand\tDescription\n/exai opengui\tOpen the assistant GUI\n/exai question <player> <q>\tSend a question to a player (OP)\n/exai reload\tReload config (OP)\n/exai help\tShow help\nPermission node: exai.op (knowledge review).\n\n## Quick Setup\n1. Drop ExAI.jar into plugins/.\n1. Start the server once → edit plugins/ExAI/config.yml:\n1. Choose storage.type: yml (default, no DB) or mysql.\n1. If mysql, fill in MySQL credentials.\n1. Fill in your LLM API key (llm.apiKey).\n1. Adjust assistant name / language / rewards.\n1. (Optional) Edit plugins/ExAI/knowledge.yml to seed your knowledge base.\n1. /exai reload.\n## Storage modes\n- yml (default)\t\n- mysql\t\n## Requirements\n- Spigot/Paper 1.12.2 or compatible\n- Java 8+\n- MySQL 5.7+ — only if storage.type: mysql\n- Vault — optional, for currency rewards\n- An OpenAI-compatible LLM endpoint + embedding endpoint",
+  "categories": [
+    "bukkit",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13,
+  "followers": 0,
+  "game_versions": [
+    "1.12",
+    "1.13",
+    "1.14",
+    "1.15",
+    "1.16",
+    "1.17",
+    "1.18",
+    "1.19",
+    "1.20"
+  ],
+  "date_updated": null
+}

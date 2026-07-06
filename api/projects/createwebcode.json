@@ -1,0 +1,25 @@
+{
+  "id": "yA8yhYEy",
+  "slug": "createwebcode",
+  "title": "Create:WebCode",
+  "description": "Create: Web Code adds a block-based network dataflow system to Minecraft, letting players assemble URLs, send HTTP GET requests, parse JSON responses, debug live data, and drive redstone with real web data.",
+  "body": "# Create: Web Code\n\nCreate: Web Code adds a block-based network dataflow system to Minecraft. It lets you build URL pipelines with in-game devices, send HTTP GET requests to web services you choose, parse\nreturned data, debug live packet contents, and use the result to drive redstone.\n\nThis mod is designed as a network peripheral system, not an in-game computer. Complex logic should live in your own external API or service, while Minecraft handles routing, filtering,\ndebugging, and redstone interaction.\n\n## Features\n\n- Build request URLs from in-game text variables\n- Send HTTP GET requests through an Upload Network Port\n- Receive responses through a paired Download Network Port\n- Extract JSON fields with Filters\n- Convert JSON values into redstone output with Evaluators\n- Inspect live pipeline data with Debug Screens\n- Cache, split, throttle, and gate data pipelines\n- Connect devices using a point-to-point Connector tool\n- Render connection lines only while holding the Connector\n\n## Important network disclosure\n\nCreate: Web Code can make HTTP or HTTPS GET requests from the Minecraft server to URLs assembled in-game by players.\n\nThe mod does **not** provide a built-in remote service and does **not** send data to the developer by default. Requests are made only to URLs that players build and send through the in-\ngame pipeline.\n\nServer owners should only allow this mod on servers where they are comfortable with players creating outbound web requests.\n\n## Basic workflow\n\nA typical pipeline looks like this:\n\n```text\nText Source -> Encoder -> Upload Network Port\nDownload Network Port -> Filter -> Evaluator -> Redstone\n```\n\nExample concept:\n\n1. A Text Source outputs a variable such as machine = main.\n2. An Encoder builds a URL like https://api.example.com/status?machine={machine}.\n3. The Upload Network Port sends the HTTP GET request.\n4. The paired Download Network Port outputs the response body.\n5. A Filter extracts a JSON field.\n6. An Evaluator compares the value and emits redstone.\n\n## Devices\n\n- Text Source: outputs fixed text when triggered by redstone\n- Encoder: assembles strings and URLs from named variables\n- Upload Network Port: sends HTTP GET requests\n- Download Network Port: outputs response bodies from its paired upload port\n- Filter: extracts one top-level JSON field\n- Evaluator: compares a single JSON value and emits redstone\n- Cache: stores the latest packet and outputs it on redstone trigger\n- Splitter: copies one packet to multiple outputs\n- Throttle: rejects inputs during cooldown\n- Redstone Valve: allows data through only while powered\n- Debug Screen: displays recent incoming packets\n- Connector: installs, removes, and pairs data connections\n\n## Requirements\n\n- Minecraft Forge\n- Installed on both client and server\n\nCreate is optional/recommended for thematic gameplay, but this version does not require Create to run.\n\n## Status\n\nThis is an alpha release. Device behavior, UI, textures, and compatibility rules may still change before a stable release.\n\n## License\n\nAll Rights Reserved.\n\nThis mod is not open source at this time. The distributed jar is provided for gameplay use only. Redistribution, modification, or reuse of code/assets is not permitted without permission.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

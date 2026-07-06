@@ -1,0 +1,28 @@
+{
+  "id": "4prvY2rb",
+  "slug": "aurus-menus",
+  "title": "Aurus",
+  "description": "A packet based 3D menu system for modern Paper servers.",
+  "body": "![Features](https://cdn.modrinth.com/data/cached_images/e031bf21a81726da721456a4ad16e0f5d84984ca.png)\n\n![Information](https://cdn.modrinth.com/data/cached_images/13ca0897ef33422d209c9eb8cafb0ed184897f0f.png)\n\nAurus is a packet-based 3D menu system for modern Paper servers.\n\nIt renders interactive menus directly in front of the player using fake entities and a custom camera, instead of classic chest inventories.\n\n\nBuilt for Paper 1.20+, designed to be flexible, animated, and fully configurable through YAML.\n\n## How it works\n\nWhen a menu is opened:\n\n\n    - The player is mounted on an invisible camera entity\n    - Fake entities (text, items, blocks, players, mobs) are spawned via packets — only the viewer can see them\n    - A floating cursor follows the player's head movement\n    - Clicks are detected through packet listening\n\n\nNo inventory windows. No chest GUI. Just world-space menus.\n\n![Showcases-banner](https://cdn.modrinth.com/data/cached_images/191f51718061a4f96259ed4a2021902ec404bd0d.png)\n\n![Showcases](https://i.imgur.com/w5APSzm.gif)\n\n![Installation](https://cdn.modrinth.com/data/cached_images/d697e5a833ecce75b5c54ff2bf942134149e5320.png)\n\n1. Install PacketEvents 2.x on your Paper server.\n\n2. Drop [ICODE]Aurus-1.1.4-BETA.jar[/ICODE] into your [ICODE]plugins/[/ICODE] folder.\n\n3. Start the server — default menus are created in [ICODE]plugins/Aurus/menus/[/ICODE].\n\n4. Open a menu in-game: [ICODE]/au open welcome_server[/ICODE]\n\n![Quick-Example](https://cdn.modrinth.com/data/cached_images/406b5ec9eb1a7db837bf19a8442e53af9756430e.png)\n\n```yaml\nwelcome_menu:\n  distance: 2.5\n  update-in-ticks: 20\n  on-open:\n    - \"[sound] entity.player.levelup, 1.0, 1.5\"\n    - \"[message] <green>Welcome to the server!\"\n  on-close:\n    - \"[message] <red>See you later!\"\n  components:\n    title:\n      type: TEXT\n      text: \"<gold>Welcome, <aqua>%player_name%!\"\n      x: 0.0\n      y: 2.0\n      size: 2.0\n      background: false\n    play_btn:\n      type: BUTTON\n      text: \"<green>[ Play ]\"\n      x: 0.0\n      y: 0.0\n      size: 1.5\n      sound: \"ui.button.click\"\n      actions:\n        - \"[close]\"\n        - \"[player] spawn\"\n        - \"[sound] entity.player.levelup, 1.0, 1.2\"\n        - \"[message] <green>Teleported!\"\n    npc:\n      type: PLAYER\n      skin: \"Notch\"\n      nametag: \"<gold>Notch\"\n      x: 2.0\n      y: -0.5\n      rotation:\n        x: -30\n        x-head: -45\n        y-head: 10\n```\n\n![Commands-Permission](https://cdn.modrinth.com/data/cached_images/a810ec1b50b0794cfbc19cc71aa0aa958cf32154.png)\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/au open <menu_id> [player]` | Opens a menu for yourself or a target player |\n| `/au close [player]` | Closes the active menu |\n| `/au reload` | Reloads config and menus |\n| `/au debug` | Toggles debug mode |\n\nAlias: `/au`\n\n## Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `aurus.admin` | Access to all `/au` subcommands | op |\n\n\n![Warning](https://cdn.modrinth.com/data/cached_images/efe48a950ae6aafbf9d230c1ddb487afaab65645.png)\n\nThis plugin is currently in beta. If you find bugs, please open an issue on GitHub or report in the official discord server\n\n~ Fendrixx",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 24,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

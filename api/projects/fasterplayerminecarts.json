@@ -1,0 +1,21 @@
+{
+  "id": "URLNeBdo",
+  "slug": "fasterplayerminecarts",
+  "title": "Faster Player Minecarts",
+  "description": "Adds configurable options for minecarts speeds so long as the player is riding on the cart and the cart is named.",
+  "body": "A modified version of a nother plugin: https://modrinth.com/plugin/lynx-minecarts to function under more strict requirements (i.e. carts need players inside, and the cart must be named).\n\nI've also added addition configuration options to allow adding custom cart speeds (under custom names), supporting speeds from 0-30 blocks per second.\n\n\n```yaml\n# default speed of minecarts\ndefaultSpeed: 8.0\n\n# 0 = disable, 1 = player directly in minecart, > 2 = player indirectly in minecart\nmaxIterations: 2\n\n# \"speed\" can be from 0 - 30 (after 30 the speed doesn't change, probably friction or something)\n# the double represents blocks per second as the calculation is: (blocks/second) / (ticks/second)\ncarts:\n  mediumSpeed:\n    speed: 12.0\n    name: \"MediumSpeed\"\n  fastSpeed:\n    speed: 20.0\n    name: \"FastSpeed\"\n  fastestSpeed:\n    speed: 30.0\n    name: \"FastestSpeed\"\n# break speed\n# this speed is how fast to take turns and slopes, I believe going above 14 causes \"bounce backs\"\n# 12 is the sweet spot, 13 is pushing it\nbreakSpeed: 12.0\n```\n\nto add a new speed simply add a new entry under \"carts\", add the yml name \"mediumSpeed\" as an example, then under that, add the in-game name you want to activate the speed, and the speed that it should go at. speeds 0-30 are supported, after that -- you're on your own bud.\n\nThe \"maxIterations\" allows you to have riddable mobs in the minecarts and so long as the cart is named and you are riding the mob, then the speed affect should still apply. This allows you to put happy ghasts or pigs for example in the cart and still have it function. The number is how tall the stack can be:\n- 0 means the check will not run and the speed will never be applied\n- 1 means only the player being directly in the minecart will apply the speed boost\n- 2 and over means that the player can be in a stack of mobs riding eachother up to N-1 creatures\n\n(Icon is a screenshot from a server using the \"Sketchbound\" shader on painter mode)",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

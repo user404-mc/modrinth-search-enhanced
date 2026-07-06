@@ -1,0 +1,37 @@
+{
+  "id": "tkl3OmLC",
+  "slug": "authcord",
+  "title": "AuthCord",
+  "description": "A Discord-based authorization/verification system for Paper and Folia.",
+  "body": "# <center>🛡️ AuthCord</center>\n\nAuthCord Whitelist is a plugin for securing your Minecraft server. This plugin combines server whitelisting with an authentication system powered by a Discord bot.\n\n### 🔥 Key Features:\n\n- Two Operation Modes: Full support for online-mode=true/false servers. \n\n- SSO (Passwordless Login): Links a player's in-game account to their Discord profile and IP address. If a player connects from a trusted IP, they are authenticated automatically. \n\n- Discord Notifications: If someone attempts to log in using your username from a different IP address, the bot will instantly send you a notification via direct message. \n\n- Full Folia Compatibility: The plugin is designed with Folia's multi-threaded architecture in mind and works perfectly on standard Paper servers. \n\n- Features a cooldown system for code requests and limited code validity periods (protecting against brute-force attacks and spam). \n\n### 🔧 Operation Modes\n\n**online-mode=true**\n\n  - When a player not currently on the whitelist attempts to join, the server kicks them while displaying a unique verification code on their screen. \n\n  - The player enters this code into a direct message to the bot on Discord. \n\n  - The bot verifies the player's license via the Mojang API and adds them to the server whitelist.\n\n**online-mode=false**\n\n  - A secure alternative to traditional password-based plugins. \n\n  - The player joins the server but remains \"frozen\": they cannot move, chat, or break blocks. \n\n  - The player types `/getcode` in-game to receive a verification code, then sends that code to the bot. \n\n  - The bot links a player's Discord ID and IP address to their in-game nickname. \n\n  - **Protection:** If the IP address changes (or if a different person attempts to log in), the plugin will freeze the player again and send a notification to the account owner via Discord, including a button to confirm the new IP address.\n\n### 🗒️ Commands\n\n**In-game:**\n\n  - /getcode — Obtain a temporary code for Discord verification.\n\n**In Discord:**\n\n  - /verify [code] — Confirm account ownership and join the whitelist.\n\n### 🤖 Installation Instructions\n\n- Install the plugin on your server. \n- Create a bot in the [Discord Developers Portal](https://discord.com/developers/). \n- Enable the \"Server Members Intent\" in the bot's settings. \n- Enter the bot's token and your server's Guild ID into the `config.yml` file. \n- Select an operating mode (ONLINE or OFFLINE) and customize the messages to your liking. \n- Restart the server.\n\n## ⚙️ config.yml\n\n\n```\ndiscord:\n  token: \"token\"\n  guild-id: \"guild id\"\n\nsettings:\n  # ru/en console output\n  language: \"en\"\n  auth-mode: \"OFFLINE\" #ONLINE/OFFLINE\n  code-expiration-minutes: 5\n  request-cooldown-seconds: 30\n  discord-invite-url: \"https://discord.gg/your-invite\"\n\nmessages:\n  in-game:\n    messages:\n      in-game:\n        kick-online: \"<red>You are not on the whitelist!</red>\\n<white>Your code: <yellow>%code%</yellow></white>\\n<gray>Verify it in our Discord server > <blue><underlined>%url%</underlined></blue></gray>\"\n        not-registered: \"<red>You are not registered!</red>\\n<white>Enter <yellow>/getcode</yellow> and confirm it in </white><click:open_url:'%url%'><hover:show_text:'<aqua>Open Discord Link</aqua>'><blue>[Discord]</blue></hover></click>\"\n        action-blocked: \"<red>To play you need to confirm Discord: </red><click:open_url:'%url%'><hover:show_text:'<aqua>Join our Discord</aqua>'><blue><underlined>[Click here]</underlined></blue></hover></click>\"\n        new-ip: \"<red>A new IP address has been detected!</red>\\n<white>For security reasons, enter <yellow>/getcode</yellow> and confirm your login via Discord.</white>\"\n        auth-success: \"<green>IP authentication successful!</green>\"\n        getcode-success: \"<white>Your code: <yellow>%code%</yellow></white>\\n<gray>Send <aqua>/verify %code%</aqua> in Discord.</gray>\"\n        verify-success: \"<green>Authentication successful!</green> <white>Your IP address has been saved.</white>\"\n        cooldown: \"<red>Please wait <yellow>%time%</yellow> seconds before requesting another code!</red>\"\n        code-expired: \"<red>The code has expired! Request a new one in-game.</red>\"\n\n  discord:\n    discord-already-used: \"This Discord account is already linked!\"\n    invalid-code: \"Invalid or expired code!\"\n    already-linked: \"This username is already linked to another Discord user!\"\n    verify-success: \"Account **%player%** successfully verified!\"\n    player-offline: \"The player must be online on the server during verification!\"\n    dm-alert: |\n      **ATTENTION! LOGIN ATTEMPT!**\n      Someone is attempting to log in to your Minecraft account **%player%**. **IP Address:** `%ip%`\n  \n      **If this is you:** Type `/getcode` in-game and confirm the new IP using the `/verify` command on the Discord server.\n      **If this is NOT you:** Simply ignore this message. The intruder has been frozen on the server and cannot do anything!\n```\n\n## ⚙️ data.yml\n\n\n```\nusers:\n  nickname:\n    discord: 'discord_id'\n    ip: player's last IP // 'mojang_verified' if auth-mode: \"ONLINE\"\n```",
+  "categories": [
+    "folia",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

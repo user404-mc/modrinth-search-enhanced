@@ -1,0 +1,34 @@
+{
+  "id": "lY9tz5oX",
+  "slug": "tesutos-auraskills-lore",
+  "title": "Tesuto's AuraSkills Lore",
+  "description": "A plugin that adds descriptions for all items with level requirements.",
+  "body": "# TesutoAuraLore\n\n**TesutoAuraLore** is a lightweight addon for **AuraSkills** that automatically shows **skill level requirements** directly in item lore.\n\nIt reads requirements from **AuraSkills** (global config + per-item requirements) and renders them in a clean format like:\n\n> `Requires Mining: 6`\n> `Требуется Шахтёрство: 6`\n\nLore updates dynamically — **no server restart required**.\n\n---\n\n## ✨ Features\n\n* 📜 Adds **skill requirement lore** to items (tools, weapons, armor)\n* ⚙️ Supports **global requirements** from `plugins/AuraSkills/config.yml`\n* 🛠 Supports **per-item requirements** added via AuraSkills commands\n* 🔄 **Hot reload** with `/tesu reload`\n* 🧼 Automatically **replaces outdated requirement lines** (no duplication)\n* 🧩 Supports **multiple requirements per item**\n* 🧱 Updates correctly in **crafting/anvil/smithing previews** and after taking the result\n* 🗂 Uses **AuraSkills messages_xx.yml** for skill names (e.g. `messages_ru.yml`)\n\n---\n\n## 📦 Requirements\n\n* **Minecraft 1.21.x** (tested up to 1.21.11)\n* **Java 21**\n* **AuraSkills 2.x**\n\n---\n\n## 🔧 Installation\n\n1. Install **AuraSkills**\n\n2. Install **TesutoAuraLore**\n\n3. Start the server once\n\n4. Configure requirements in:\n\n   ```\n   plugins/AuraSkills/config.yml\n   ```\n\n5. Configure plugin language in:\n\n   ```\n   plugins/TesutoAuraLore/config.yml\n   ```\n\n---\n\n## 🌍 Localization\n\n### 1) Plugin language setting\n\nIn:\n\n```\nplugins/TesutoAuraLore/config.yml\n```\n\nSet the language code (default is English):\n\n```yml\nlanguage: en_US\n```\n\n### 2) Plugin language files\n\nPlugin translations are stored here:\n\n```\nplugins/TesutoAuraLore/lang/\n```\n\nExample:\n\n* `en_US.yml`\n* `ru_RU.yml`\n\nThese files control phrases like:\n\n* `Requires`\n* formatting template (e.g. `Requires {skill}: {level}`)\n\n### 3) Skill names come from AuraSkills\n\n`{skill}` is localized using AuraSkills message files:\n\n```\nplugins/AuraSkills/messages/messages_xx.yml\n```\n\nExample:\n\n* `messages_en.yml`\n* `messages_ru.yml`\n\nSo if your plugin language is `ru_RU`, TesutoAuraLore will try to use AuraSkills `messages_ru.yml` skill names.\n\n---\n\n## ⚙️ Configuration (AuraSkills)\n\nTesutoAuraLore reads requirements directly from **AuraSkills**.\n\n### Example: Global item requirements\n\n```yml\nrequirement:\n  enabled: true\n  override_global: true\n  item:\n    global:\n      - STONE_PICKAXE MINING:6\n      - IRON_PICKAXE MINING:14\n      - DIAMOND_PICKAXE MINING:25\n```\n\nSupported formats:\n\n* `MATERIAL SKILL:LEVEL`\n* `MATERIAL <custom colored text> SKILL:LEVEL`\n\nIf custom text is provided, it will be shown **as-is**, and `{skill}` localization may not apply (because you override the phrase manually).\n\n---\n\n## 🧾 Commands\n\n### `/tesu reload`\n\nReloads requirements and language files and updates item lore **without restarting the server**.\n\n**Permission:**\n\n```\ntesu.reload\n```\n\n(Default: OP)\n\n---\n\n## 🔁 How Lore Updates Work\n\n* Old requirement lore added by TesutoAuraLore is **removed**\n* New requirements are **re-applied**\n* Prevents duplicates and outdated lines\n* Can update items already in player inventories\n\n---\n\n## 🎯 What This Plugin Does NOT Do\n\n* ❌ Does not block item usage\n* ❌ Does not change AuraSkills mechanics\n* ❌ Does not enforce restrictions\n\nTesutoAuraLore is **visual-only** — it improves clarity without affecting gameplay logic.\n\n---\n\n## 🧩 Intended Use Case\n\nUse TesutoAuraLore if you want players to:\n\n* immediately see **why** an item requires a certain skill level\n* have consistent requirement info on items\n* support a server language (RU/EN/etc.) regardless of client settings\n",
+  "categories": [
+    "equipment",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 94,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

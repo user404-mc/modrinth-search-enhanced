@@ -1,0 +1,23 @@
+{
+  "id": "JCaafxDA",
+  "slug": "mc-122477-fix",
+  "title": "MC-122477 Fix",
+  "description": "Fixes MC-122477 (Linux/GNU: Opening chat sometimes writes 't')",
+  "body": "## MC-122477 Fix\n\nThis mod fixes [MC-122477](https://bugs.mojang.com/browse/MC/issues/MC-122477) Linux/GNU: Opening chat sometimes writes 't'.\n\n### Bug\nThe bug is caused by an upstream bug in GLFW tracked at [GLFW#1794](https://github.com/glfw/glfw/issues/1794). When the \"Open Chat\" keybind is pressed the next `glfwPollEvents()` call should fire a `KeyCallback` and a `CharCallback` for the key. Due to the bug the `CharCallback` isnt fired immediately and instead fires at the next but one `glfwPollEvents()` call. At this time the ChatScreen might already be open and the character associated with the \"Open Chat\" keybind (often a \"t\" is typed into the chat).\n\n### Fix\nThis mod simply cancels the next `CharCallback` that appears one to three `glfwPollEvents()` calls after the \"Open Chat\" or \"Open Command\" keybind is pressed (only if the chat is actually opened).",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 159,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

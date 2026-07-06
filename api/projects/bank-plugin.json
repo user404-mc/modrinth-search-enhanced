@@ -1,0 +1,32 @@
+{
+  "id": "xpM3lY2H",
+  "slug": "bank-plugin",
+  "title": "bank Plugin",
+  "description": "A full-featured banking plugin with deposits, compound interest, loans, and player transfers. Vault & Bedrock ready.",
+  "body": "# 🏦 BankPlugin\n\n**A fully-featured banking system for economy servers — deposits, interest, loans, transfers, and more.**\n\n> 預金・利子・ローン・送金を備えた、本格派サーバー銀行プラグイン。\n\n---\n\n## ✨ Features / 機能一覧\n\n### 💰 Deposit & Withdraw / 預金・引き出し\n- Separate your **in-hand money** (Vault wallet) from your **bank savings**\n- Deposit and withdraw any amount via GUI or command\n- Auto account creation on first deposit\n\n> 所持金（Vault残高）と銀行預金を分けて管理。GUIまたはコマンドで即時操作。初回預金時に口座が自動開設されます。\n\n---\n\n### 📈 Interest System / 利子システム\n- Configurable **compound or simple interest**\n- Set interval (e.g. every 24 hours), minimum balance, and per-cycle interest cap\n- Online players receive a notification when interest is applied\n\n> 複利・単利を選べる利子システム。付与間隔・最低預金額・上限額をすべて設定可能。オンライン時にはチャットで通知されます。\n\n---\n\n### 🏦 Loan System / ローンシステム\n- Players can borrow money up to a configurable maximum\n- Daily loan interest accumulates automatically\n- **Overdue penalties** — extra interest charges after the repayment deadline\n- **Force collection** — if a loan is severely overdue, the remaining balance is automatically deducted from the player's Vault wallet\n- Optional **deposit ratio screening** — require players to hold a minimum savings balance before borrowing\n\n> 最大借入額・金利・返済期限・延滞ペナルティをすべて設定可能。延滞が続くとVault残高から強制徴収されます。審査機能（預金比率）もオプションで有効化できます。\n\n---\n\n### 💸 Transfer System / 送金システム\n- Send money **directly to another player's bank account**\n- Configurable transfer fee (%) and maximum transfer amount\n- Recipient receives an in-game notification when online\n\n> プレイヤー間で銀行口座に直接送金できます。手数料・上限額も設定可能。受取人がオンラインであれば即時通知されます。\n\n---\n\n### 📋 Transaction History / 取引履歴\n- Paginated GUI showing all past transactions\n- Records: deposits, withdrawals, transfers, interest, loan borrows & repayments\n- Configurable retention limit (number of records and days)\n\n> 預金・引き出し・送受金・利子・ローンすべての取引をページ付きGUIで確認できます。保持件数・保持日数も設定可能。\n\n---\n\n### 🏆 Wealth Ranking / 資産ランキング\n- In-game GUI leaderboard showing the top players by bank balance\n- Great for competitive economy servers\n\n> 銀行預金残高のトップランキングをGUIで表示。経済競争サーバーに最適です。\n\n---\n\n### 📱 Bedrock Support / Bedrock対応\n- Full **Geyser + Floodgate** compatibility via native Form UI\n- Bedrock players see mobile-friendly forms instead of inventory GUIs\n\n> Geyser・Floodgate経由のBedrockプレイヤーにはフォームUIを表示。Java・Bedrock両対応のクロスプレイサーバーで動作します。\n\n---\n\n### 🔌 PlaceholderAPI Support / PlaceholderAPI対応\n\n| Placeholder | Description |\n|---|---|\n| `%bank_balance%` | Bank savings balance / 預金残高 |\n| `%bank_vault%` | Vault wallet balance / Vault所持金 |\n| `%bank_total%` | Wallet + savings combined / 所持金＋預金の合計 |\n| `%bank_loan%` | Remaining loan amount / ローン残債 |\n| `%bank_loan_status%` | Loan status (active/overdue/none) / ローン状態 |\n\n---\n\n## 📜 Commands / コマンド\n\n| Command | Description |\n|---|---|\n| `/bank` | Open the bank GUI / 銀行GUIを開く |\n| `/bank deposit <amount>` | Deposit money / 預金 |\n| `/bank withdraw <amount>` | Withdraw money / 引き出し |\n| `/bank transfer <player> <amount>` | Transfer to a player / 送金 |\n| `/bank loan <amount>` | Take out a loan / ローン借入 |\n| `/bank repay <amount>` | Repay your loan / ローン返済 |\n| `/bank balance` | Check balances / 残高確認 |\n| `/bank history` | View transaction history / 取引履歴 |\n| `/bank ranking` | View wealth ranking / ランキング |\n\n**Aliases:** `/b`, `/銀行`\n**Japanese subcommand aliases:** `預金`, `引出`, `送金`, `ローン`, `返済`, `残高`, `履歴`, `ランキング`\n\n---\n\n## 🔐 Permissions / 権限\n\n| Permission | Default | Description |\n|---|---|---|\n| `bank.use` | Everyone | Basic bank access / 基本利用 |\n| `bank.transfer` | Everyone | Transfer money / 送金 |\n| `bank.loan` | Everyone | Take out loans / ローン |\n| `bank.admin` | OP | Admin access / 管理者権限 |\n\n---\n\n## ⚙️ Configuration Highlights / 設定ハイライト\n\n```yaml\ninterest:\n  enabled: true\n  rate: 0.5          # Interest rate (%) / 利率(%)\n  interval-hours: 24 # How often interest is applied / 付与間隔（時間）\n  type: compound     # compound or simple / 複利 or 単利\n  min-balance: 100.0 # Minimum balance to earn interest / 最低預金額\n\nloan:\n  enabled: true\n  max-amount: 100000.0    # Max borrowable amount / 最大借入額\n  interest-rate: 1.0      # Daily loan interest (%) / 日次金利(%)\n  repayment-days: 30      # Days to repay / 返済期限（日）\n  late-penalty-rate: 0.5  # Extra penalty rate when overdue / 延滞ペナルティ(%)\n  max-late-days: 7        # Days before force collection / 強制徴収までの日数\n\ntransfer:\n  enabled: true\n  fee-percent: 0.0     # Transfer fee (%) / 送金手数料(%)\n  max-amount: 0.0      # Max per transfer, 0 = unlimited / 上限額(0=無制限)\n\ndatabase:\n  type: sqlite         # sqlite or mysql / SQLite or MySQL\n```\n\n---\n\n## 📦 Requirements / 必要環境\n\n- **Paper 1.21.x**\n- **Vault** (required / 必須)\n- **PlaceholderAPI** (optional / 任意)\n- **Geyser + Floodgate** (optional, for Bedrock support / Bedrock対応)\n\n---\n\n## 🔗 Plugin Integration / プラグイン連携\n\nBankPlugin exposes a reflection-friendly API so other plugins can interact with bank accounts silently:\n\n- `depositBank(uuid, amount, note)` — deposit directly into a bank account\n- `withdrawBank(uuid, amount, note)` — withdraw from a bank account\n- `getLoanRemaining(uuid)` — check a player's remaining loan\n- `takeLoanSilent(uuid, amount)` / `repayLoanSilent(uuid, amount)` — for instalment integrations\n\n> 他プラグインからリフレクション経由で口座操作・ローン連携が可能です。MarketPlugin等との統合を想定した設計です。\n\n---\n\n*Made for economy-focused Minecraft servers. Perfect as a standalone bank or as part of a larger economy plugin suite.*\n\n> 経済サーバー向けに設計された銀行プラグイン。単体でも、複数プラグインで構成されるエコノミースイートの一部としても機能します。",
+  "categories": [
+    "bukkit",
+    "economy",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

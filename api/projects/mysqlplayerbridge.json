@@ -1,0 +1,40 @@
+{
+  "id": "cYxXuksC",
+  "slug": "mysqlplayerbridge",
+  "title": "MySqlPlayerBridge",
+  "description": "Sync Player data across servers using a MySql database, the FREE modern alternative",
+  "body": "# MySqlPlayerBridge\n\n![MySqlPlayerBridge](MySqlPlayerBridge_Logo.png)\n\nModern player data sync for Minecraft servers with MySQL. Built for current Paper/Bukkit and Folia servers, with modular sync and admin tooling. Designed for multi-server setups where a single database should be the source of truth.\n\n## [GitHub](https://github.com/Lostes-Burger/MySqlPlayerBridge)\n\n## Highlights\n\n- **Folia and Bukkit/Paper compatible** with async-first design.\n- **Module-based sync** to enable only what you need.\n- **Admin edit tools** to inspect and change player data directly in the database, including GUI editors for inventories.\n- **Fail-safe logging** and local error snapshots for troubleshooting and recovery.\n- **No-entry protection** to avoid overwriting data from the wrong server.\n\n## Features\n\n- **Cross-server sync** with a shared MySQL database. Each module stores its own table for isolation and safety.\n- **Selective modules** (enable only what you want):\n  - Inventory\n  - Offhand\n  - Ender Chest\n  - Armor\n  - Location\n  - Gamemode\n  - Experience\n  - Health\n  - Saturation\n  - Economy (Vault)\n  - Potion Effects\n  - Advancements\n  - Statistics\n  - Hotbar slot selection\n- **Admin commands** for operations and recovery:\n  - `/mpb sync` manual sync\n  - `/mpb clear` wipe player data\n  - `/mpb edit` edit player data (includes GUI inventory editors and direct numeric edits)\n- **Automatic sync task** for periodic saving.\n- **Error handling** with structured logs and data backups (stored under the plugin folder).\n\n## Installation\n\n1. Download and install **NBTAPI**.\n   - Required for inventory, armor, ender chest, and offhand serialization.\n2. Put `MySqlPlayerBridge` in your server `plugins/` folder.\n3. Start the server once to generate configs.\n4. Configure MySQL in `plugins/MySqlPlayerBridge/mysql.yml`.\n5. Enable the modules you want in `plugins/MySqlPlayerBridge/config.yml`.\n6. Restart the server.\n\n### MySQL Setup (native server)\n\nCreate a database and user with minimal privileges. Example for a local MySQL server:\n\n```sql\nCREATE DATABASE mpb;\nCREATE USER 'mpb_user'@'%' IDENTIFIED BY 'your_password';\nGRANT ALL PRIVILEGES ON mpb.* TO 'mpb_user'@'%';\nFLUSH PRIVILEGES;\n```\n\nThen set `mysql.yml`:\n\n```yaml\nhost: \"127.0.0.1\"\nport: 3306\ndatabase: \"mpb\"\nuser: \"mpb_user\"\npassword: \"your_password\"\nmain-table-name: \"player_data\"\n```\n\n## Admin Edit Feature\n\nThe edit system is designed for real-world operations:\n- Edit any supported module values directly in the database.\n- Inventory, armor, ender chest, and offhand are edited via GUI.\n- Numeric fields validate input before saving.\n- Offline players can be edited using database entries.\n\nExample:\n\n```\n/mpb edit <player> inventory\n/mpb edit <player> offhand\n/mpb edit <player> location <world> <x> <y> <z> [yaw] [pitch]\n/mpb edit <player> exp <value>\n/mpb edit <player> exp_level <value>\n```\n\n## Requirements\n\n- MySQL or MariaDB\n- Java 21\n- NBTAPI (required for inventory serialization)\n- Vault (optional, for economy sync)\n\n## Languages\n\nBuilt-in translations:\n- English: `src/main/resources/lang/en-us.yml`\n- German: `src/main/resources/lang/de-de.yml`\n- Chinese: `src/main/resources/lang/zh-cn.yml`\n\nYou can submit new translations any time via PR. Keep the key structure and formatting consistent with existing files.\n\n## Notes\n\n- Cross-version syncing between different Minecraft versions is not guaranteed.\n- Folia and Bukkit/Paper support remains a core focus.\n\n## License\n\nSee `LICENSE`",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 34,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "cbj1c1qP",
+  "slug": "silence_by_free",
+  "title": "silence_by_free",
+  "description": "Allows you to improve the RP component on private servers.",
+  "body": "Provides the following functions:\n\nLocal chat only.\n\nIf no one has read the message, then \"no one has heard you\" is written\n\nWhen someone logs in or out, they disable the nickname for the global chat, it is written like: \"someone logged in\" and \"someone is disabled\", if the nickname is within 100 blocks.\n\nDisable player management in TAB (only for players, but not for admins, you can configure the rights) according to the same principle. \n\nIf the players are within the radius of the local chat, go to TAB. If not, use the nicknames \"someone\" or \"entity\" instead.\n\n/msg without auto-enabling nicknames.\n\nA message is written only to those who were within a radius of 100 blocks - the \"player\" has been killed.\n\n<details>\n<summary>Ru</summary>\n\nПредоставляет следующие функции:\n\nТолько локальный чат.\n\nЕсли сообщение никто не прочитал, то пишется \"вас никто не слышал\"\n\nКогда кто-то заходит или выходит - Отключает для глобального чата никнейм, пишется по типу: «кто-то зашел» и «кто-то отключен», если в пределах 100 блоков - то никнейм пишет.\n\nОтключить управление игроками в TAB (только для игроков, но не для админов, можно настроить права) по такому же принципу. \n\nЕсли игроки находятся в радиусе локального чата - в TAB. Если нет - вместо никнеймов «кто-то» или «сущность».\n\n/msg без авто подключения никнеймов.\n\nТолько тем, кто находился в радиусе 100 блоков пишется сообщение - «игрок» убит.\n\n</details>\n\n\n![\"Вас никто не услышал\"](https://cdn.modrinth.com/data/cached_images/4278ba868d620c856dc8474f1d6ad2d927c03ac2_0.webp)\n\nThe configuration file provides the following settings\n\n```\n# Радиус локального чата\n# The radius of the local chat\nlocal-radius: 100\n\n# Сообщения о входе/выходе (для тех кто дальше local-radius блоков)\n# можно легко поменять например на:\n# \"сущность присоединилась\"\n# \"сущность покинула нас\"\n# Entry/exit messages (for those further away from local-radius blocks)\n# can be easily changed, for example, to:\n# \"the entity has joined\"\n# \"the entity has left us\"\njoin-message: \"%player% присоединился\"\nquit-message: \"%player% покинул нас\"\n\n# Сообщения о смерти игрока.\n# Шаблон сообщения, где %player% заменяется на имя игрока.\n# \"%player% умер\" - используется по умолчанию.\n# Reports of a player's death.\n# A message template where %player% is replaced with the player's name.\n# \"%player% is dead\" is used by default.\ndeath-message: \"%player% умер\"\n\n# Тики для обновления видимости (TAB и show/hide)\n# Они определяют как часто будет выполняться поиск в радиусе 100\n# Чем больше значение - тем лучше оптимизация, но хуже игровой опыт\n# Рекомендуемые значения от 10 до 100\n# Ticks for updating visibility (TAB and show/hide)\n# They determine how often the search will be performed within a radius of 100\n# The higher the value, the better the optimization, but the worse the gaming experience\n# Recommended values are from 10 to 100\ntab-refresh-ticks: 20\n# 20 тиков = 1 секунда - это значение по умолчанию.\n# 20 ticks = 1 second is the default value.\n\n# TAB-комплит для /msg:\n# Если true — в списке предложений только игроки в радиусе local-radius\n# Если false — показываются все онлайн-игроки\n# TAB-complit for /msg:\n# If true, only players within the local—radius range are in the list of offers.\n# If false, all online players are shown\ntab-filter-radius: true\n\n# разрешение для админов видеть всех\n# permission for admins to see everyone\n# /lp user <user> permission set silence.admin true\nadmin-permission: \"silence.admin\"\n```\nCompatible with the TAB plugin, however, the installation steps change to the following:\n\nIn TAB config:\n* Enable per-world-playerlist: enabled: true.\n* Allow allow-bypass-permission: true.\n* Set use-bukkit-permissions-manager: true.\n* Disable the global global-playerlist.\n* Configure scoreboard-teams.can-see-friendly-invisibles: false.\n \nIn the game:\n* Give admins the right to silence.admin\n\nNot tested with CMI and EssentialX, use it together under your responsibility!\n\n<details>\n<summary>Ru</summary>\n\nСовместим с плагином TAB, однако шаги по установке меняются на следующие:\n\nВ TAB config:\n* Включить per-world-playerlist: enabled: true.\n* Разрешить allow-bypass-permission: true.\n* Установить use-bukkit-permissions-manager: true.\n* Отключить глобальный global-playerlist.\n* Настроить scoreboard-teams.can-see-friendly-invisibles: false.\n \nВ игре:\n* Дать админам право silence.admin\n\nНе тестировался с CMI и EssentialX, использовать совместно под свою ответсвенность!\n\n</details>\n\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 34,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

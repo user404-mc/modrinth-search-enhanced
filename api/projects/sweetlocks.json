@@ -1,0 +1,40 @@
+{
+  "id": "ERvu6JUD",
+  "slug": "sweetlocks",
+  "title": "SweetLocks",
+  "description": "A old-fasion vault money paid doors mechanism for new server!",
+  "body": "# SweetLocks\n\nA nostalgic recreation of an old-fashion paid iron door plugin.\n\n> Default configurations are in Chinese. Check [localization](https://github.com/mcio-dev/localization) repository for English or other language.  \n\n## Introduction\n\nBack when I played on a 1.6 server around the 1.8 era, there was a feature called **Paid Door**.\nYou simply placed a sign on the block above an iron door:\n\n- First line: `[lock]` (something like that, similar to the `[Private]` lock sign in Lockette)\n- Second line: `Vault money price`, e.g. `100`\n- Third line: empty\n- Fourth line: flag - `I`, `O`, `E`, `NM`, `NP` mean:\n  - `I` = Allow entry\n  - `O` = Allow exit\n  - `E` = Require empty inventory\n  - `NM` = Require 0 Vault money\n  - `NP` = Require no potion effects\n\nThis creates a paid door. Players pay Vault money to teleport to the other side,\nperfect for lottery machines, security gates, etc.\n\nAs far as I know, the original paid door plugin has been abandoned for a long time,\nso I decided to reimplement and improve it. The logic is actually quite simple.\n\n## Legacy Version Compatibility Note\n\nVersions **below 1.14** only receive **limited support**.\nThey are more likely to conflict with other plugins, and it is hard to identify which plugin causes the conflict.\n\nIf any plugin runs `block.getState().update();` on a sign,\nthe paid door will stop working.\n\nThis is due to Bukkit's old API.\nOlder versions only use the deprecated `§` color code for formatting,\nwhich erases text components the plugin uses to store data.\n\n## Commands\n\nRoot command: `/sweetlocks`\nAliases: `/slocks`, `/locks`, `/sl`\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/locks` | Show help | None |\n| `/locks reload` | Reload config | OP/Console |\n\n## Permissions\n\n- `sweet.locks.create` — Allow creating paid doors\n- `sweet.locks.bypass.tax` — Bypass tax on Vault money collected by the door creator\n- `sweet.locks.bypass.distance` — Bypass distance limit for using paid doors (default: within 2.6 blocks)\n\n## Usage\n\nJust write `$lock` (or your custom keyword in config) on the **first line of a sign**.\nOnce you finish placing the sign, a paid door with price `0 money` and allow entry/exit will be created,\nand the edit menu will open.\n\nThe creator can **Shift + Right-click** the sign to open the edit menu,\nwhere they can set the price and flags for the door.\n\nWhen a player **right-clicks** the door, it shows:\n\"Costs X coins to enter. Hold Shift + Right-click to enter/exit.\"\nRight-click the sign to view door info.\n\n## Mechanism\n\nAll paid door data is saved to the sign block using `item-nbt-api` which embedded into plugin.\nTransaction notifications are stored in a local data file and sent/cleared when the player logs in.\n\n- For **1.14+**: Data is stored in the block's **PersistentDataContainer**.\n- For versions **below 1.14**: Data is stored in the `insertion` field of the first sign line.\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "folia",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.8",
+    "1.9",
+    "1.10",
+    "1.11",
+    "1.12",
+    "1.13",
+    "1.14",
+    "1.15",
+    "1.16",
+    "1.17",
+    "1.18",
+    "1.19",
+    "1.20",
+    "1.21",
+    "26.1"
+  ],
+  "date_updated": null
+}

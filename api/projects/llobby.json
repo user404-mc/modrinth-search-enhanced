@@ -1,0 +1,41 @@
+{
+  "id": "veP5UjVQ",
+  "slug": "llobby",
+  "title": "LLobby",
+  "description": "A lite lobby plugin. Offers features including delivery points and proxy server players display.",
+  "body": "# LLobby\n\n*This is a lightweight lobby plugin, primarily featuring teleport points and sub-server player display*\n\n## Dependency\n\n[ProtocolLib](https://hangar.papermc.io/dmulloy2/ProtocolLib)  \n[PlaceholderAPI](https://modrinth.com/plugin/placeholderapi)（optional）\n\n## Proxy\n\nThis plugin's feature to display players on sub-servers depends on the BungeeCord messaging channel; make sure the proxy is enabled\n\n## Permission\n\nllobby.admin：Management permission node, default operator role  \nllobby.ping：Default Ping permissions included\n\n## Command\n\n### /llobby\n\n```\nTeleport\n/llobby [world] [location]\n```\n`world`：The world in which the teleportation point is located; leave empty for completely random selection  \n`location`：Teleportation point name; if left empty, a random location within the world will be selected\n\nAutomatically teleports when joining the world or respawning\n\n### /llobbyadmin\n\n```\nAdd a teleportation point\n/llobbyadmin add <name> [nick]\nRemove teleport point\n/llobbyadmin remove <name>\nReload settings\n/llobbyadmin reload\n```\n`name`：Teleportation point name  \n`nick`：Nickname for the teleportion point, used to display as the title\n\n### /lping\n\n```\nRefresh the server status\n/lping server\n```\n`server`：Address of the target server\n\n## Configuration\n\n```yaml\n# Teleportation point settings\nworlds:\n  - name: world # World name\n    nick: \"Overworld\" # Optional, used to display as the title\n    locations:\n      - name: example1_1 # Teleportation point name  \n        nick: \"主城\" # Optional, used to display as the title\n        position: [0, 64, 0 , 0, 0] # x y z yaw pitch\n      - name: example1_2\n        nick: \"末地门\"\n        position: [100, 64, 100 , 0, 0]\n  - name: world_nether\n    nick: \"下界\"\n    locations:\n      - name: example2_1\n        position: [0, 64, 0 , 0, 0]\n# Display settings for sub-account players\nservers:\n  - server: lobby # Server name\n    prefix: \"§e[大厅] \" # Player prefix\nyggdrasil-api: https://littleskin.cn/api/yggdrasil # API to fetch player avatars; defaults to Mojang if not specified\n# Ping API\nping-api: https://api.jsumc.fun/ping/ # API to get server status\n```\n`nick` and `prefix` can use the `§` symbol to indicate color  \nSet `worlds: []` to turn off the teleport feature  \nServers that are not included in the `servers` list will not show players\n\n## PlaceholderAPI variable\n\n`llobby_prefix`：Player prefix  \n`llobby_prefix_Example`：Player prefix  \n`llobby_world`：Player's nickname in the world  \n`llobby_server_version_example.com:12345`：Server version name  \n`llobby_server_online_example.com`：Number of users currently online on the server  \n`llobby_server_max_example.com`：Maximum capacity of the server  \n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 110,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

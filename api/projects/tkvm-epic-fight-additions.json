@@ -1,0 +1,25 @@
+{
+  "id": "lZ2gTOMn",
+  "slug": "tkvm-epic-fight-additions",
+  "title": "TKVM Epic Fight Additions",
+  "description": "Additions/tweaks to Epic Fight (Made for FalchionMC)",
+  "body": "Hello, this is a small array of changes I deemed neccesary for my modpack!\n\n## List of changes (All tweaks are configurable in the json file.) \n\n\n### Custom Disarm + Stun (Can be toggled both seperately)\n```\n  \"enableCustomDisarm\": true,\n  \"playStunOnDisarm\": false ,\n  \n```\n\nWhen you run out of stamina with custom disarm, and get hit during a block, your weapon will fly out of your hand, and (by default) you can immediately try to recover it.\n\nYou can enable stun on disarm, but this is probably massively unfair to players, as it would both stun them and drop their weapon.\n\n### Stamina regeneration interruption (Toggle : true/false) \n\nThis is simply a true/false if any damage can interrupt stamina regen.\nIf you get poisoned / wither for example, you wouldnt be able to regen stamina at all, despite doing everything else correctly, I just found this edge case to be annoying. \n\n\n### Stamina gain on hit (Can be toggled : true/false) \n- This is directly proportional to the determined weight. If a weapon weight is 5.0 and you hit an entity, you will gain 5.0 stamina back, +0.5 extra. \n\n### Jump Cost (self explanatory)\n```\n  \"jumpCost\": 0.25,\n```\n\n\n### Passive stamina drain on held block (Can be configured numerically)\n- Holding block by default drains stamina by 0.1 every tick. You can set this to practically any useful value, even something tiny like 0.01. \n\nOr, if you want to disable it, just set it to 0. \n\n\n### Max Attack up & down  Angle (0 - 90)\n\nThis is pretty simple, and is connected to `  \"enableVerticalAim\": true,`\nIt just lets you choose how far up and down you can aim swings, and this enables vertical aiming with ANY attack, so stabs, even from other addons, can be aimed up and down. \n\nI dont recommend 90 degrees, because it just looks very visually bad.\n\nif you want to disable this completely, just set `  \"enableVerticalAim\": true,` to false.\n\n### Max Stun Ticks\n\nJust the maximum amount of time you can be stunned before the game forces a bailout, this was just to help prevent some bugs with very long stuntimes with some weapons. \n\n\n### Stamina drain on swing (Can be toggled : true/false) for all weapons. \n  - This is on a per-weapon basis dictated in the config file. \nIf the weapon used is not found in the config file, the mod will default to a \"weight\" of 1.0.\n(1.0 stamina drain per swing) \n\nExample: Format is \"weapon_id\": \"weight value\", \n```\n  \"weaponCosts\": {\n\t\"minecraft:wooden_sword\": 0.5,\n\t\"minecraft:stone_sword\": 0.5,\n  },\n```\nThis will make a wooden sword and stone sword drain 0.5 stamina per swing. \n\n### Stamina gain on parry/ Parry Effectiveness (Can be toggled : true/false) \n- This is again proportional to weight. But, there's a secondary value called \"Parry effectiveness\" in the config. \n\nThe parry reward is (weight + 2.5) x (effectiveness x0.10)\nThis simply means every 1.0 increase in parry effectiveness means 10% more stamina gained back on parry. a value of 10 means your stamina gain on parry is doubled.\n\nThis also works with negative values , so you can make a weapon less effective at parrying.\n\nHere's an example. \n\n```\n  \"parryEffectiveness\": {\n    \"minecraft:golden_sword\": 5.0,\n    \"minecraft:iron_sword\": 1.0\n  }\n```\nThe iron sword will have a 10% increase in the output of its stamina regain on parry. Meanwhile, the golden sword will have a 50% boost in the stamina increase.\n\n### Block Stamina Penalty\nAgain, this is another value that is tied directly to a weapon's weight. \n\nStamina Drain=[1.0+(EnemyDamage×0.05)]×[1.0−(Weight×0.10)]\n\nEvery 1.0 higher weight reduces the block stamina drain by 10%.\n\n\n###  \"disableSweepAttacks\": true,\n\nSelf-explanatory : disables sweep attacks. \n\n###  \"enableCustomCrits\": true,\n\nIf true, dash and air attacks will always do 1.5x base damage. Even if its a custom datapacked animation set. \n\n\n\n\n\n",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

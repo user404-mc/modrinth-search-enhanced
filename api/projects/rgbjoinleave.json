@@ -1,0 +1,25 @@
+{
+  "id": "C3GH5Ar4",
+  "slug": "rgbjoinleave",
+  "title": "RGBJoinLeave",
+  "description": "RGBJoinLeave is a welcome message plugin designed for servers, supporting RGB gradient colors and special characters, making your server's join or leave messages more vivid and beautiful.\nRGBJoinLeave 是一款为服务器设计的欢迎消息插件，支持 RGB 渐变色彩和特殊字符，让您的服务器欢迎或退出消息更加生动美观。",
+  "body": "## # Main Features\n\n\n\n\n**🎨 Support for RGB gradient welcome and leave messages**\n\n**🔄 Customizable message content, supports player name variable <player>**\n\n**🚫 Optionally hide original join/leave messages**\n\n**💫 Custom particle effects displayed when joining to enhance visual experience**\n\n**🎯 Supports command to reload configuration**\n\n**👑 Support for exclusive welcome messages and gradient colors for different permission groups**\n\n\n\n\n\n\n\n\n\n\n## Configuration Instructions\n\n\n\n\nThe plugin configuration file is located at plugins/RGBJoinLeave/config.yml:\n\n\n```\n# Welcome message content (server-wide broadcast)\nwelcome-message: \"<player> joined the server\"  # Default message, only used when there are no specific permissions\n# Exit message content (server-wide broadcast)\nQuit-message: \"< player > exited the server\"\n# Whether to hide the original server entry prompt\nhide-default-join-message: true\n#Whether to hide the original version unloading prompt\nhide-default-quit-message: true\n# Particle effect settings (triggered only when a player joins)\nparticles:  \nEnabled: true #Whether to enable particle effects  \ntype: \"FIREWORKS_SPARK\" # Particle type (supports FIREWORKS_SPARK, FLAME, HEART, etc.)\noffset-x: 0.5           # X-axis offset\noffset-y: 1.0           # Y-axis offset (recommended to be above the player's head)\noffset-z: 0.5           # Z-axis offset\nCount: 50 #Number of particles\n# Exclusive welcome message and gradual change color settings for permission groups\npermission-messages:  \ndefault:    \nmessage: \"<player> joined the server!\"\njoin-gradient:      \nStart-color: \"#FF0000\" #Start color (e.g. #FF0000 represents red)      \nEnd-color: \"#0000FF\" #End color (e.g. #0000FF represents blue)  \nrgbjoinleave.vip:    \nmessage: \"<player> - VIP player makes a dazzling entrance!\"\njoin-gradient:      \nStart-color: \"#FFD700\" #Start color (e.g. #FFD700 represents gold)      \nend-color: \"#00FF00\"    # End color (e.g., #00FF00 represents green)\nrgbjoinleave.admin:    \nmessage: \"<player> - The administrator has arrived!\"\njoin-gradient:      \nstart-color: \"#800080\"  # Starting color (e.g., #800080 represents purple)\nend-color: \"#FF4500\"    # End color (e.g., #FF4500 represents orange-red)\n```\n\n\n\n\n\n\n\n\n\n\nUsage\n\n\n\n\nCommand\n/RGBJoinLeave reload - Reload configuration file (Permission required: welcome.reload)\n/rl reload - Abbreviated command, same function\nPermission nodes\nwelcome.use - Use basic plugin functions (Default: true)\nwelcome.reload - Reload configuration (Default: op)\nrgbjoinleave.vip - Enable VIP exclusive welcome message and gradient colors (Default: false)\nrgbjoinleave.admin - Enable admin exclusive welcome message and gradient colors (Default: false)\n\n\n## # 主要功能\n\n\n**🎨 支持 RGB 渐变色彩的欢迎和退出消息**\n\n**🔄 可自定义消息内容，支持玩家名称变量 <player>**\n \n**🚫 可选择性隐藏原版进服/退服提示消息**\n\n**💫 加入时显示自定义粒子效果，增强视觉体验**\n\n**🎯 支持命令重新加载配置**\n\n**👑 不同权限组支持专属欢迎消息和渐变颜色**\n\n\n\n\n\n## 配置说明\n\n\n插件配置文件位于 plugins/RGBJoinLeave/config.yml：\n\n```\n# 欢迎消息内容 (全服广播)\nwelcome-message: \"<player>加入服务器\"  # 默认消息，仅在无特定权限时使用\n\n# 退出消息内容 (全服广播)\nquit-message: \"<player>退出了服务器\"\n\n# 是否隐藏原版进服提示\nhide-default-join-message: true\n\n# 是否隐藏原版退服提示\nhide-default-quit-message: true\n\n# 粒子效果设置 (仅在玩家加入时触发)\nparticles:\n  enabled: true           # 是否启用粒子效果\n  type: \"FIREWORKS_SPARK\" # 粒子类型 (支持FIREWORKS_SPARK, FLAME, HEART等)\n  offset-x: 0.5           # X 轴偏移\n  offset-y: 1.0           # Y 轴偏移 (建议高于玩家头顶)\n  offset-z: 0.5           # Z 轴偏移\n  count: 50               # 粒子数量\n\n# 权限组专属欢迎消息和渐变颜色设置\npermission-messages:\n  default:\n    message: \"<player>加入了服务器！\"\n    join-gradient:\n      start-color: \"#FF0000\"  # 起始颜色 (例如 #FF0000 代表红色)\n      end-color: \"#0000FF\"    # 结束颜色 (例如 #0000FF 代表蓝色)\n  rgbjoinleave.vip:\n    message: \"<player> - VIP玩家闪亮登场！\"\n    join-gradient:\n      start-color: \"#FFD700\"  # 起始颜色 (例如 #FFD700 代表金色)\n      end-color: \"#00FF00\"    # 结束颜色 (例如 #00FF00 代表绿色)\n  rgbjoinleave.admin:\n    message: \"<player> - 管理员驾到！\"\n    join-gradient:\n      start-color: \"#800080\"  # 起始颜色 (例如 #800080 代表紫色)\n      end-color: \"#FF4500\"    # 结束颜色 (例如 #FF4500 代表橙红色)\n```\n\n\n\n\n\n使用方法\n\n\n命令\n/RGBJoinLeave reload - 重新加载配置文件 (需要权限: welcome.reload)\n/rl reload - 缩写命令，功能相同\n权限节点\nwelcome.use - 使用插件基本功能 (默认: true)\nwelcome.reload - 重新加载配置 (默认: op)\nrgbjoinleave.vip - 启用 VIP 专属欢迎消息和渐变颜色 (默认: false)\nrgbjoinleave.admin - 启用管理员专属欢迎消息和渐变颜色 (默认: false)",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 88,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

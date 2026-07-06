@@ -1,0 +1,37 @@
+{
+  "id": "LcrKhpH1",
+  "slug": "trail-timer",
+  "title": "Trail Timer",
+  "description": "Reduces the Trial Spawner cooldown from the vanilla 30 minutes to a configurable duration — fully server-side, no client mods required.",
+  "body": "# ⏱ TrialTimer\n\n> Configurable Trial Spawner cooldown — because 30 minutes is way too long.\n\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-green?style=flat-square)\n![Paper](https://img.shields.io/badge/Paper%20%2F%20Purpur-supported-blue?style=flat-square)\n![Version](https://img.shields.io/badge/Version-1.1.0-orange?style=flat-square)\n![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)\n\n---\n\n## 🔧 What does it do?\n\nVanilla Trial Spawners have a **hardcoded 30-minute cooldown** after a wave is completed.\nTrialTimer lets you set that to whatever you want — down to a few seconds if needed.\n\nNo client-side mods required. Works fully server-side.\n\nWhen a spawner finishes its cooldown, nearby players receive a **broadcast message** so they know it's ready to fight again.\n\n---\n\n## ⚙️ How does it work?\n\nThe 30-minute rule is hardcoded in Minecraft's source code, so datapacks can't touch it.\nTrialTimer works around this by hooking into the spawner's internal state via **NMS reflection**:\nwhen a spawner enters cooldown, the plugin overwrites `cooldownEndsAt` to your configured duration.\nMinecraft then reads that value and considers the cooldown over — simple and clean.\n\n---\n\n## 📦 Installation\n\n1. Drop `TrialTimer-x.x.x.jar` into your `plugins/` folder\n2. Restart the server\n3. Edit `plugins/TrialTimer/config.yml`\n4. Run `/trialtimer reload`\n\n---\n\n## 🗂 config.yml\n\n```yaml\n# Cooldown duration in minutes. Supports decimals (e.g. 0.5 = 30 seconds).\n# Vanilla default: 30 minutes\ncooldown-minutes: 5.0\n\n# Language for plugin messages.\n# Available: en, de\nlanguage: en\n\n# Broadcast a message to nearby players when a Trial Spawner finishes its cooldown.\nbroadcast:\n  enabled: true\n  radius: 64  # in blocks\n\n# Debug mode — logs every cooldown modification to the console.\ndebug: false\n```\n\n### Quick reference — Minutes → Ticks\n\n| Minutes | Seconds | Ticks  |\n|---------|---------|--------|\n| 0.5     | 30s     | 600    |\n| 1       | 60s     | 1,200  |\n| 5       | 300s    | 6,000  |\n| 10      | 600s    | 12,000 |\n| 30      | 1800s   | 36,000 *(vanilla)* |\n\n---\n\n## 💬 Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/trialtimer help` | Shows command overview | `trialtimer.use` |\n| `/trialtimer info` | Shows current cooldown | `trialtimer.use` |\n| `/trialtimer reload` | Reloads config + language | `trialtimer.reload` |\n\n**Alias:** `/tt`\n\n---\n\n## 📢 Broadcast\n\nWhen a Trial Spawner finishes its cooldown, all players within the configured radius receive a message:\n\n```\n[TrialTimer] A Trial Spawner at 42, 63, -128 is ready to fight again!\n```\n\nThe message is fully customizable in the language files (`lang/messages_en.yml` / `lang/messages_de.yml`).\n\n---\n\n## 📊 PlaceholderAPI\n\nTrialTimer supports **PlaceholderAPI** (optional — works without it too).\n\n| Placeholder | Description |\n|-------------|-------------|\n| `%trialtimer_cooldown_minutes%` | Configured cooldown in minutes |\n| `%trialtimer_cooldown_seconds%` | Configured cooldown in seconds |\n| `%trialtimer_cooldown_ticks%` | Configured cooldown in ticks |\n\nUse these in scoreboards, holograms, or any plugin that supports PlaceholderAPI.\n\n---\n\n## 🌍 Language Support\n\nTrialTimer ships with **English** and **German** out of the box.\nSwitch via `language: de` in `config.yml`.\n\nLanguage files are saved to `plugins/TrialTimer/lang/` and can be edited freely.\n\n---\n\n## 🔌 Compatibility\n\n| Software | Supported |\n|----------|-----------|\n| Paper 1.21.x | ✅ |\n| Purpur 1.21.x | ✅ |\n| PlaceholderAPI | ✅ *(optional)* |\n| Spigot | ❌ |\n| Folia | ❌ |\n\n> **Note:** The NMS reflection targets Mojang-mapped Paper/Purpur builds (1.21+).\n> Enable `debug: true` if you run into issues — it logs the exact field names found at runtime.\n\n---\n\n## 📄 License\n\nMIT — free to use, fork, and redistribute.",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 77,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "uXj1Pvdu",
+  "slug": "forcerender",
+  "title": "ForceRender",
+  "description": "Custom models and item frames disappearing at the edge of your screen? Fixed.",
+  "body": "# ForceRender\n\n**Custom models and item frames disappearing at the edge of your screen? Fixed.**\n\nA tiny client-side mod that prevents armor stands and item frames from being frustum-culled by Minecraft's renderer when you're nearby. No commands, no tags, no server install just install and configure.\n\n![ON AND OFF comperation](https://cdn.modrinth.com/data/cached_images/e6d30cf56e09c908a4103cf8f601feca297a95b8.gif)\n---\n\n## The Problem\n\nMinecraft decides whether to render an entity based on its **bounding box**, not its actual visible size. Armor stands have a tiny hitbox, so the moment it slips off the edge of your screen, the whole model vanishes therefore even if a massive custom decoration is still clearly visible.\n\nThis hits especially hard with:\n- 🪑 ItemsAdder / Oraxen furniture\n- 🖼️ Item frames used as wall decorations\n- 🌴 Any large custom resource pack model attached to an armor stand\n\n![The Problem (Missing  Model Off Screen)](https://cdn.modrinth.com/data/cached_images/1e5ecd65794adb04df6272f698f343fd264f9ed5.png)\n---\n\n## The Fix\n\nForceRender overrides the culling check for armor stands and item frames within a configurable distance. If you're close enough, they always render. Step further away and vanilla culling takes over again. So no wasted performance on distant entities.\n\n![Working Mod](https://cdn.modrinth.com/data/cached_images/01325e664ccd10552ea1f3f21693ac3ab9976b65.png)\n---\n\n## Config (Mod Menu)\n\nOpen **Mod Menu → ForceRender → Settings** to configure:\n\n| Option | Default | Description |\n|--------|---------|-------------|\n| Enabled | On | Master toggle for the mod |\n| Render Distance | 5 blocks | Force-render within this range |\n| Affect Armor Stands | On | Fix culling for armor stands |\n| Affect Item Frames | On | Fix culling for item frames (normal + glow) |\n\nChanges apply immediately on config screen close.\n\n---\n![Not Unloaded](https://cdn.modrinth.com/data/cached_images/9fdeba1fed805f7471007a054fe84896295f7df9.png)\n\n## Features\n\n-  Client-side only, no server install needed\n-  Works with any resource pack (ItemsAdder, Oraxen, vanilla CIT, etc.)\n-  Distance-based for zero cost on far away entities\n-  Covers armor stands and item frames\n-  Mod Menu config screen (requires Mod Menu + Cloth Config)\n-  Fully open source (MIT License)\n\n---\n\n## Requirements\n\n- [Fabric Loader](https://fabricmc.net/use/installer/)\n- [Fabric API](https://modrinth.com/mod/fabric-api)\n- [Mod Menu](https://modrinth.com/mod/modmenu)\n(https://modrinth.com/mod/cloth-config)\n\n---\n\n## FAQ\n\n**Does the server need this mod?**\nNo. Pure client-side.\n\n**Will it hurt performance?**\nOnly entities within your configured distance are affected. Everything else culls normally.\n\n**Does it work with Display Entities?**\nNo. this targets `ArmorStandEntity` and `AbstractDecorationEntity` only. Display entities use a different renderer.\n\n**Does it work with Sodium / Iris?**\nYes, compatible with both.\n\n---\n\n## Source Code\n\nGitHub: [github.com/ReimaginedPixel/ForceRender](https://github.com/ReimaginedPixel/ForceRender)\n\nIssues and PRs welcome.\n\n---\n\n*Made by ReimaginedPixel*",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

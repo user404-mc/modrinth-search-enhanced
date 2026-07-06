@@ -1,0 +1,25 @@
+{
+  "id": "OCQ3MOnJ",
+  "slug": "mixinruntime",
+  "title": "MixinRuntime",
+  "description": "A minecraft mod to make mixins more powerful.\nIt can make mixins can inject the classes that cannot be injected before and make mixinClasses can be directly use.",
+  "body": "# English\n\n# MixinRuntime\n\nMixinRuntime is a NeoForge mod that enables dynamic injection of Mixin configurations at runtime, bypassing the standard Mixin library's requirement that configurations be defined during early game launch.\n\n## Features\n\n- **Runtime Mixin Injection**: Dynamically register new Mixin configurations without requiring a game restart by leveraging the Java Instrumentation API to retransform classes already resident in memory.\n- **Internal Class Modification**: Patches core platform classes including `MixinProcessor`, `ModuleClassLoader`, `ModLauncher`, and `ClassTracker` to enable runtime injection capabilities.\n- **Utility Classes**: Provides comprehensive utilities for interacting with Mixin internals, including `MixinAgentUtils`, `MixinTransformerUtils`, `MixinProcessorUtils`, and `MixinConfigUtils` for reflective access to internal Mixin structures.\n- **Module System Bypass**: Utilizes `ModuleUtils` to bypass Java Platform Module System (JPMS) restrictions by opening all modules for deep reflection access.\n\n## How It Works\n\nThe mod operates through a multi-stage bootstrap process:\n\n1. **Agent Loading**: The `MixinRuntimePlugin` extracts an embedded `MixinRuntimeAgent.jar` and self-attaches it to the JVM using the Attach API, granting access to `java.lang.instrument.Instrumentation`.\n2. **Environment Patching**: Applies class transformers to modify `ModuleClassLoader`, class trackers, and the `MixinProcessor` itself to suppress errors during runtime injection.\n3. **Mixin Configuration Injection**: Uses `MixinProcessorUtils` to dynamically inject new `IMixinConfig` instances into the active Mixin processor's configuration lists.\n\n## Compatibility\n\n- **Minecraft Version**: 1.20.1, 1.21 and 1.21.10\n- **License**: MIT\n\nThis mod is a core prerequisite for VulkanModNeoForge and has currently only been tested for compatibility with that specific mod. Since MixinRuntime modifies internal classes within ModLauncher and ModLoader, compatibility with other mods is currently unknown and may cause conflicts.\n\n\n# 简体中文\n\n# MixinRuntime\n\nMixinRuntime 是一款 NeoForge 模组，为 Mixin 提供了在运行时动态直接引用和注入配置的能力，无需重启游戏。该模组附带大量工具类，已在 GitHub 开源。\n\n它绕过了标准 Mixin 库要求在游戏启动早期定义配置的限制，通过 Java Instrumentation API 实现运行时动态注册新的 Mixin 配置，甚至能重转换已加载到内存中的类。\n\n## 特性\n\n- **运行时 Mixin 注入**：利用 Java Instrumentation API，无需重启游戏即可动态注册新的 Mixin 配置，重转换已驻留内存的类。\n- **内部类修改**：对核心平台类进行补丁，包括 `MixinProcessor`、`ModuleClassLoader`、`ModLauncher` 和 `ClassTracker`，以支持运行时注入能力。\n- **实用工具类**：提供丰富的工具类用于与 Mixin 内部交互，包括 `MixinAgentUtils`、`MixinTransformerUtils`、`MixinProcessorUtils` 和 `MixinConfigUtils`，通过反射访问 Mixin 内部结构。\n- **模块系统绕过**：利用 `ModuleUtils` 打开所有模块进行深度反射访问，从而绕过 Java 平台模块系统 (JPMS) 的限制。\n\n## 工作原理\n\n模组通过多阶段引导流程运行：\n\n1. **Agent 加载**：`MixinRuntimePlugin` 提取内嵌的 `MixinRuntimeAgent.jar`，并使用 Attach API 将其自附加到 JVM，从而获得 `java.lang.instrument.Instrumentation` 的访问权限。\n2. **环境修补**：应用类转换器修改 `ModuleClassLoader`、类追踪器以及 `MixinProcessor` 自身，抑制运行时注入期间的错误。\n3. **Mixin 配置注入**：利用 `MixinProcessorUtils` 将新的 `IMixinConfig` 实例动态注入到活跃的 Mixin 处理器的配置列表中。同时支持使用 `MixinUtils.reapply(mixinClass)` 来注入原本无法直接注入的类，例如 `GL11`。\n\n## 兼容性\n\n- **Minecraft 版本**：1.20.1，1.21 和 1.21.10\n- **许可证**：MIT\n\n该模组是正在制作的 VulkanModNeoForge 的核心前置模组之一，目前仅测试了与 VulkanModNeoForge 的兼容性。由于 MixinRuntime 修改了 ModLauncher 和 ModLoader 的内部类，与其他模组的兼容性目前未知，可能会引起冲突。",
+  "categories": [
+    "forge",
+    "management",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 180,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

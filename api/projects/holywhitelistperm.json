@@ -1,0 +1,35 @@
+{
+  "id": "hd7SyYxo",
+  "slug": "holywhitelistperm",
+  "title": "HolyWhitelistPerm",
+  "description": "A Minecraft Plugin to Whitelist players with a permission",
+  "body": "# HolyWhitelistPerm User Guide\n\nThis guide is intended for server owners, admins, and moderators who want to install and use `HolyWhitelistPerm` on a Paper or Folia server.\n\n## What the Plugin Does\n\n`HolyWhitelistPerm` works like a permission-based whitelist.\n\nPlayers can only join your server when at least one of the following is true:\n\n- they have the configured join permission\n- they are OP and `allow-ops` is enabled in the config\n\nThis lets you control server access with your permission system instead of the vanilla whitelist.\n\nThe plugin also supports Folia.\n\n## Installation\n\n1. Put the plugin JAR into your server's `plugins/` folder.\n2. Start the server once.\n3. Open `plugins/HolyWhitelistPerm/config.yml`.\n4. Adjust the permission name or messages if needed.\n5. Restart the server or use the reload command.\n\nThe same setup works on Folia servers.\n\n## Default Join Permission\n\nBy default, the plugin checks for:\n\n```text\nholywhitelist.join\n```\n\nOnly players with this permission can join.\n\n## Recommended Setup\n\nIf you use a permission plugin such as LuckPerms, create one group that is allowed to join and grant the permission there.\n\nExample with LuckPerms:\n\n```bash\n/lp group default permission set holywhitelist.join false\n/lp group member permission set holywhitelist.join true\n```\n\nYou can also change the permission name in `config.yml` if you want to use a different node.\n\n## Configuration Overview\n\nExample configuration:\n\n```yaml\nsettings:\n  required-permission: \"holywhitelist.join\"\n  allow-ops: true\n\nformat:\n  prefix: \"<gradient:#148217:#6F32A8><bold>HolyWhitelist</bold></gradient><dark_gray>»</dark_gray><white> \"\n\nmessages:\n  kick-no-permission: \"<gray>You do not have permission to join this server!\"\n  reload-success: \"<green>Configuration reloaded successfully.\"\n  reload-no-permission: \"<red>You do not have permission to use this command.\"\n  reload-usage: \"<yellow>Usage: /holywhitelistperm reload\"\n```\n\n### `settings.required-permission`\nThe permission node a player needs to join.\n\n### `settings.allow-ops`\nIf set to `true`, server operators can always join even without the permission.\n\n### `format.prefix`\nThis prefix is added in front of player-facing messages.\n\n### `messages.*`\nAll player-visible and console messages can be changed here.\n\n## MiniMessage Support\n\nPlayer messages support MiniMessage formatting.\n\nExample:\n\n```yaml\nmessages:\n  kick-no-permission: \"<red><bold>Access denied!</bold></red> <gray>You need <permission>.\"\n```\n\nSupported placeholders:\n\n- `<player>`\n- `<permission>`\n\n## Commands\n\n### Reload the Config\n\n```text\n/holywhitelistperm reload\n```\n\nAliases:\n\n```text\n/holywhitelist reload\n/hwp reload\n```\n\nRequired permission:\n\n```text\nholywhitelist.reload\n```\n\nThis reloads `config.yml` without restarting the server.\n\n## Permissions\n\n### Join Permission\n\n```text\nholywhitelist.join\n```\n\nGrants access to the server.\n\n### Reload Permission\n\n```text\nholywhitelist.reload\n```\n\nAllows use of the reload command.\n\n## Common Use Cases\n\n### Private Server Access\nGrant `holywhitelist.join` only to your internal member group.\n\n### Staff-Only Development Server\nGrant the permission only to staff members and leave `allow-ops` enabled.\n\n### Temporary Closed Server\nRemove the join permission from normal groups until maintenance is finished.\n\n## Troubleshooting\n\n### Players cannot join even though they should\n\nCheck the following:\n\n- the player really has the configured permission\n- the permission name in `config.yml` matches your permission setup\n- the player is OP if you rely on `allow-ops: true`\n- the server was restarted or the config was reloaded after changes\n\n### The reload command does not work\n\nCheck the following:\n\n- you used `/holywhitelistperm reload`\n- you have the `holywhitelist.reload` permission\n- there are no syntax errors in `config.yml`\n\n### Messages look wrong\n\nIf you use MiniMessage formatting, make sure all tags are valid and properly closed.\n\n## Summary\n\n`HolyWhitelistPerm` is meant to be simple:\n\n- one permission controls access\n- OP support is optional\n- all messages are configurable\n- config changes can be applied with a reload command\n\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

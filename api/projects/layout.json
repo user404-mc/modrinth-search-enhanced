@@ -1,0 +1,42 @@
+{
+  "id": "tyBlgeLY",
+  "slug": "layout",
+  "title": "layout",
+  "description": "A simple and powerful library for creating customizable inventories on the Bukkit API.",
+  "body": "# layout\n\n---\n<p align=\"center\">\n  <a href=\"license\">\n    <img src=\"https://img.shields.io/badge/License-MIT-yellow.svg\" alt=\"License\"/>\n  </a>\n  <a href=\"https://discord.com/invite/3K9yrZQRmS\">\n    <img src=\"https://img.shields.io/discord/1350369915521204276?label=Discord&color=7289DA&logo=discord&logoColor=white\" alt=\"Discord\"/>\n  </a>\n</p>\n\n\n**Layout** is a modern, modular library designed to simplify the creation and management of interactive inventories in Minecraft using the Bukkit API. It provides a fluid syntax and complete control over your menu's behavior, allowing you to build GUIs quickly and efficiently.\n\n---\n\n<br>\n<p align=\"center\">\n    <a href=\"https://discord.com/invite/3K9yrZQRmS\">\n        <img src=\"https://imgur.com/DvyC4jL.png\" width=\"600\" alt=\"nothing\">\n    </a>\n    <br/>\n    <i>If you need help, join the discord server.</i>\n</p>\n<br>\n\n## Key Features\n\n### Sized and Fixed Inventories\nCreate inventories of variable size (like chests) or fixed size (like crafting tables and anvils), adapting to your project's needs.\n\n### Full Customization\nControl every aspect of your menus:\n\n* **Interactive Items**: Define items with custom click logic for click events (left, right, middle).\n* **Inventory Behaviors**: Assign actions for events like opening, closing, or general clicks within the inventory.\n* **Flexible Patterns**: Design complex menus using character-based patterns to visually organize your items.\n\n### Modular Design\nThe library is divided into modules that facilitate organization and scalability:\n\n* **`layout`**: Contains the core logic for inventory construction and management.\n* **`item`**: Handles the creation and manipulation of items used in inventories.\n* **`plugin`**: Includes code examples that demonstrate the library's practical use. This module is ideal for learning the syntax and seeing how different concepts are applied.\n\n---\n\n## Developer Benefits\n\n* **Rapid Development**: Drastically simplifies the menu creation process, allowing you to focus on your plugin's functionality.\n* **Clean Code**: The fluid syntax results in more readable and maintainable code.\n* **Great Potential**: Supports multiple inventory types and behaviors, making it a robust solution for a wide range of plugins.\n\n## Example usage\n[Click here for more usage examples and documentation.](https://github.com/Bytephoria/layout/blob/main/docs/layout-usage.md)\n\n```java\nfinal LayoutSizedInventory layoutSizedInventory = Layout.sized()\n        .title(Component.text(\"This is a sized example menu!\", NamedTextColor.BLACK))\n        .size(5)\n\n        // Add a clickable item with multiple click handlers\n        .item(22, ClickableItemLayout.builder()\n                .material(Material.NETHERITE_PICKAXE)\n                .displayName(Component.text(\"Netherite Pickaxe\", NamedTextColor.GREEN))\n                .lore(\n                        Component.text(\"Line 1\", NamedTextColor.GREEN),\n                        Component.text(\"Line 2\", NamedTextColor.LIGHT_PURPLE)\n                )\n                .onLeftClick(clickContext -> clickContext.player().sendMessage(\"Left click!\"))\n                .onRightClick(clickContext -> clickContext.player().sendMessage(\"Right click!\"))\n                .onMiddleClick(clickContext -> clickContext.player().sendMessage(\"Middle click!\"))\n                .build()\n        )\n\n        // Fill specific rows and columns with items\n        .row(1, ItemLayout.display(Material.RED_STAINED_GLASS_PANE))\n        .row(3, ItemLayout.display(Material.GREEN_STAINED_GLASS_PANE))\n        .column(2, ItemLayout.display(Material.LIME_STAINED_GLASS_PANE).buil)\n        .column(6, ItemLayout.display(Material.LIGHT_BLUE_STAINED_GLASS_PANE))\n\n        // Define inventory behavior\n        .behavior(layoutBehaviorBuilder -> layoutBehaviorBuilder\n                .cancelAllClicks(false)\n                .cancelLayoutClicks(true)\n                .allowPlayerInventoryClicks(true)\n                .ignoreEmptySlots(true)\n                .onClick(context -> context.player().sendMessage(\"Clicked on inventory!\"))\n                .onOpen(openContext -> openContext.player().sendMessage(\"Inventory opened!\"))\n                .onClose(closeContext -> closeContext.player().sendMessage(\"Inventory closed!\"))\n        )\n\n        .build();\n\nlayoutSizedInventory.open(player);\n```",
+  "categories": [
+    "library",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 90,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

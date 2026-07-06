@@ -1,0 +1,18 @@
+{
+  "id": "3RMPyNE3",
+  "slug": "dimensional-inventories-extension-warp",
+  "title": "Dimensional Inventories Extension: Warp",
+  "description": "An extension for Dimensional Inventories that adds warp commands to teleport players between dimension pools.",
+  "body": "# Dimensional Inventories Extension: Warp\n\nExtension addon for Dimensional Inventories that adds `/warp` commands for teleporting players between dimension pools while preserving their exact last location, dimension, and camera angle.\n\nWhen players return to a pool, they continue exactly where they left off — including coordinates and rotation — while inventory switching is handled automatically by Dimensional Inventories.\n\n## Features\n\n* Warp between configured dimension pools\n* Remembers the last dimension used inside each pool\n* Restores exact coordinates and camera rotation\n* Supports teleporting other players\n* Fabric Permissions API support\n* Automatic pool ID autocompletion\n* Persistent per-player JSON storage\n* Compatible with portals and normal dimension travel\n* Integrated `/diminv warp` command tree\n\n## Commands & Permissions\n\n| Command                               | Permission Node      | Default    |\n| ------------------------------------- | -------------------- | ---------- |\n| `/warp <pool>`                        | `diminv.warp.self`   | OP level 4 |\n| `/warp player <player> <pool>`        | `diminv.warp.others` | OP level 4 |\n| `/diminv warp <pool>`                 | `diminv.warp.self`   | OP level 4 |\n| `/diminv warp player <player> <pool>` | `diminv.warp.others` | OP level 4 |\n\nThe mod uses Fabric Permissions API (bundled inside the jar).\nWith LuckPerms installed, permission nodes can be granted to non-operators:\n\n```mcfunction\n/lp group vip permission set diminv.warp.self true\n/lp group admin permission set diminv.warp.others true\n```\n\nWithout a permissions mod, both permission nodes default to operator level 4.\n\n## Position Memory\n\nEach player's last known state in every pool is automatically saved and restored.\n\n### Stored Data\n\n* Last used dimension inside each pool\n* Exact X/Y/Z coordinates\n* Camera rotation (yaw and pitch)\n\n### Behavior\n\n* Players return to the exact location where they last left the pool\n* Positions are updated during portals, warps, and normal dimension travel\n* Creative pools (`gameMode: creative`) always restore players at Y=100 while preserving X/Z\n* First-time visits fall back to world spawn in the pool's first dimension\n\n### Storage\n\nPlayer data is stored as JSON files at:\n\n```text\n<world>/dimensional-inventories-extension-warp/<uuid>.json\n```\n\nData survives server restarts.\n\n## Requirements\n\n* Minecraft 1.26.1\n* Fabric Loader 0.19.2+\n* Fabric API\n* Dimensional Inventories 2.2.1+26.1\n\n## Installation\n\n1. Install Dimensional Inventories.\n2. Place `dimensional-inventories-extension-warp-<version>.jar` into your `mods/` folder.\n\n## License\n\nMIT\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 32,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "qM8gVvQh",
+  "slug": "neogeckojs",
+  "title": "NeoGeckoJS",
+  "description": "Use GeckoLib to create animatable block/item/armor by KubeJS now on NeoForge!",
+  "body": "# Gecko JS\n\nUse GeckoLib to create animatable block/item/armor by simply using KubeJS!\n\nThis mod was originally made for Forge 1.20.1 and had no Modrinth Version, however this both ports and updates the mod for NeoForge 1.21.1 with just about perfect 1:1 replication so any original scripts and assets work almost the same!\n\n# What're some examples?\n\nAny of the original examples should work pretty much the exact same, again it's just about 1:1.\n\n## Startup Script:\n\n```\nStartupEvents.registry(\"block\", event => {\n\n    const rotating = RawAnimation.begin().thenLoop(\"rotating\");\n\n    event.create(\"geckojs:example_block\", \"animatable\")\n\n        .box(1, 1, 1, 15, 15, 15, true)\n\n        .animatableBlockEntity(blockEntity => {\n\n            blockEntity.addController(state => state.setAndContinue(rotating))\n\n        })\n\n        .defaultGeoModel()\n\n})\n\n```\n\n## Item Example:\n\n\n```\nStartupEvents.registry('item', event => {\n    event.create('cool_sword', 'anim_sword')\n        .tier('diamond')\n        .defaultGeoModel()\n        .addController(controller => {\n            controller.addAnimation(state => {\n                if (state.isMoving()) {\n                    return state.setAndContinue(RawAnimation.begin().thenLoop(\"walk\"))\n                }\n                return state.setAndContinue(RawAnimation.begin().thenLoop(\"idle\"))\n            })\n        })\n})\n\n```\n\n## Armor Example:\n\n\n```\nevent.create('fancy_helmet', 'anim_helmet')\n    .material('iron')\n    .defaultGeoModel()\n    .armorItemUseGeoModel() // Makes the item icon use the 3D model\n    .boneVisibility((renderer, slot) => {\n        // Hide a specific bone on the armor model\n        renderer.hideBone(\"extra_antenna\") \n    })\n\n```\n\n## Blocks Example:\n\n```\nStartupEvents.registry('block', event => {\n    event.create('animated_pillar', 'animatable')\n        .defaultGeoModel()\n        .addController(controller => {\n            controller.addAnimation(state => {\n                return state.setAndContinue(RawAnimation.begin().thenLoop(\"spin\"))\n            })\n        })\n})\n\n```",
+  "categories": [
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 64,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

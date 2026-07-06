@@ -1,0 +1,43 @@
+{
+  "id": "VixPQRjg",
+  "slug": "hosh-duels",
+  "title": "HOSH Duels",
+  "description": "Modern duel system with temporary worlds and zero map damage.",
+  "body": "# HOSH Duels\n\nA fully-featured 1v1 duel system for Spigot servers with kit management, WorldEdit-powered arenas, isolated temporary worlds, rematches, and persistent fight stats — all driven through an intuitive GUI and a single `/hoshd` command.\n\n---\n\n## Requirements\n\n- **Paper** (or compatible) — **1.19.x / 1.20.x / 1.21.x**\n- **Java 17+**\n- **Hosh Loader (mandatory)** — This plugin **will not stay enabled** without it. If `HoshLoader.jar` is missing, HOSH Duels disables itself and **server operators** get a message on join.\n- **WorldEdit (mandatory)** — Required for arena selection and copying. If WorldEdit is missing, the plugin disables and ops are notified on join.\n- Use **`/hosh duels reload`** (via Hosh Loader) to reload this plugin after config changes.\n- Use **`/hosh update all`** (via Hosh Loader) to prepare newest compatible HOSH updates for next restart.\n\n## Downloads\n\n| | Modrinth |\n|---|----------|\n| **Hosh Loader** (install first) | [Download Hosh Loader](https://modrinth.com/plugin/hosh-loader) |\n| **HOSH Duels** (this plugin) | [Download HOSH Duels](https://modrinth.com/plugin/hosh-duels) |\n| **WorldEdit** (dependency) | [Download WorldEdit](https://modrinth.com/plugin/worldedit) |\n\n---\n\n## Features\n\n- **Temporary isolated worlds** — Every duel spawns in its own void world. The arena layout is copied from your WorldEdit selection, and the world is automatically deleted after the fight ends\n- **Kit system** — Save, edit, and delete kits from your current inventory via GUI or commands. Full armor + inventory support with a visual editor\n- **Arena system** — Define arenas using WorldEdit selections and player spawn points. Arenas are persisted to YAML and loaded on startup\n- **Countdown & invulnerability** — Players are invulnerable during the configurable countdown. Once the fight goes live, damage is tracked\n- **Rematch system** — After a fight ends, either player can request a rematch. Both players must request within 60 seconds for the rematch to start\n- **Fight statistics** — Wins and total damage dealt are tracked per player and saved to `stats.yml`\n- **State restoration** — Player location, gamemode, inventory, and armor are saved before the fight and fully restored afterward\n- **Disconnect handling** — If a player leaves mid-fight, the fight is aborted and the temp world is cleaned up\n- **Full GUI** — Main menu, kit list, arena list, and kit editor inventories with intuitive click actions\n- **Chat-based naming** — Create kits and arenas by clicking a GUI button and typing the name in chat\n- **Tab completion** — All subcommands support tab-completing kit names, arena names, and online players\n\n---\n\n## Commands\n\nAll commands are subcommands of `/hoshd` (alias: `/hoshduels`).\n\n| Command | Permission | Description |\n|---|---|---|\n| `/hoshd` | — | Show all available commands |\n| `/hoshd gui` | — | Open the main duel GUI |\n| `/hoshd kit create <name>` | — | Create a kit from your current inventory |\n| `/hoshd kit delete <name>` | — | Delete a saved kit |\n| `/hoshd arena create <name>` | `hoshd.arena.create` | Start an arena setup session |\n| `/hoshd arena setarea` | `hoshd.arena.setarea` | Use your WorldEdit selection as the arena area |\n| `/hoshd arena setpos1` | `hoshd.arena.setpos1` | Set player 1 spawn at your current location |\n| `/hoshd arena setpos2` | `hoshd.arena.setpos2` | Set player 2 spawn at your current location |\n| `/hoshd arena confirm` | `hoshd.arena.confirm` | Finalize and save the arena |\n| `/hoshd arena delete <name>` | `hoshd.arena.delete` | Delete a saved arena |\n| `/hoshd cancel` | `hoshd.cancel` | Cancel your current arena setup session |\n| `/hoshd fight <kit> <arena> <p1> <p2>` | `hoshd.fight` | Start a duel between two players |\n| `/hoshd rematch <player>` | `hoshd.fight` | Request a rematch with a previous opponent |\n\n---\n\n## Arena Setup Guide\n\nSetting up an arena takes four steps:\n\n1. **Create** — Run `/hoshd arena create <name>` to start a setup session\n2. **Set area** — Make a WorldEdit selection, then run `/hoshd arena setarea`\n3. **Set spawns** — Stand where each player should spawn and run `/hoshd arena setpos1` and `/hoshd arena setpos2`\n4. **Confirm** — Run `/hoshd arena confirm` to save the arena\n\nYou can cancel at any time with `/hoshd cancel`.\n\n---\n\n## Configuration\n\nAll settings live in the default `config.yml` generated on first run.\n\n```yaml\nprefix: \"&8[&bHOSH Duels&8] \"\n\ndefaults:\n  max-name-length: 24\n  duel-countdown-seconds: 5\n\nfeatures:\n  delete-temp-worlds: true\n  restore-player-inventory-after-fight: true\n  auto-set-survival-in-duel: true\n  rematch-enabled: true\n  fight-stats-enabled: true\n```\n\n### Config Options\n\n| Option | Default | Description |\n|---|---|---|\n| `max-name-length` | `24` | Maximum characters for kit and arena names |\n| `duel-countdown-seconds` | `5` | Countdown before players become vulnerable (0 = instant) |\n| `delete-temp-worlds` | `true` | Delete temporary duel worlds after fights end |\n| `restore-player-inventory-after-fight` | `true` | Restore player inventory and armor after a fight |\n| `auto-set-survival-in-duel` | `true` | Force players into Survival gamemode during duels |\n| `rematch-enabled` | `true` | Allow rematch requests after fights |\n| `fight-stats-enabled` | `true` | Track wins and damage dealt per player |\n\n---\n\n## Data Files\n\n| File | Purpose |\n|---|---|\n| `kits.yml` | Persistent storage for all saved kits |\n| `arenas.yml` | Persistent storage for all arena definitions |\n| `stats.yml` | Per-player win count and total damage dealt |\n\n---\n\n## Dependencies\n\n| Plugin | Required | Why |\n|---|---|---|\n| **WorldEdit** | Yes | Arena area selection and copying arenas to temporary worlds |\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `hoshd.arena.create` | None | Create new arenas |\n| `hoshd.arena.setarea` | None | Set arena area from WorldEdit selection |\n| `hoshd.arena.setpos1` | None | Set player 1 spawn point |\n| `hoshd.arena.setpos2` | None | Set player 2 spawn point |\n| `hoshd.arena.confirm` | None | Confirm and save an arena |\n| `hoshd.arena.delete` | None | Delete arenas |\n| `hoshd.cancel` | None | Cancel arena setup sessions |\n| `hoshd.fight` | None | Start fights and request rematches |\n\n---\n\n## Installation\n\n1. Download and install **[Hosh Loader](https://modrinth.com/plugin/hosh-loader)** in `plugins/` (required).\n2. Install **[WorldEdit](https://modrinth.com/plugin/worldedit)** on your server (required).\n3. Download **[HOSH Duels](https://modrinth.com/plugin/hosh-duels)** and place `hosh-duels-<version>.jar` in `plugins/`.\n4. Restart the server (full restart recommended after first install).\n5. Edit `plugins/HOSH_Duels/config.yml` to your liking.\n6. Start creating kits and arenas with `/hoshd gui`. Use **`/hosh duels reload`** when you change config files.",
+  "categories": [
+    "minigame",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 70,
+  "followers": 0,
+  "game_versions": [
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

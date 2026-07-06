@@ -1,0 +1,22 @@
+{
+  "id": "3XOA1CAc",
+  "slug": "sscript",
+  "title": "SScript",
+  "description": "Fabric mod that adds a Python/Lua-like scripting language to your Minecraft server. Write game logic with events, built-in functions, HTTP requests and file I/O — no Java required.",
+  "body": "# SScript — Server Scripting Language for Minecraft\n\n**SScript** is a lightweight programming language for Minecraft server automation. Write scripts in Python/Lua-like syntax to execute commands, automate tasks, and control server behavior without touching Java code.\n\n## What It Does\n\n**Core Purpose:** Execute automated commands and logic on your Minecraft server.\n\n- 🎯 **Command Execution** — Run commands programmatically (`/say`, `/give`, `/setblock`, etc.)\n- ⚙️ **Task Automation** — Run initialization scripts, scheduled tasks, bulk operations\n- 🔧 **Server Logic** — React to player actions (join/leave, chat, block breaks, deaths, sleep)\n- 📝 **Simple Syntax** — Python-like language anyone can learn\n- ⚡ **Non-blocking** — Tasks run without freezing the server\n\n## Quick Start\n\n**1. Create a script** in `sscripts/boom.ss`:\n\n```python\nlog \"BOOM SPAWN!\"\n\nfunc boom():\n    run \"fill 10 50 10 -10 90 -10 air destroy\"\n    # boom! >:3\nend\n\nboom()\n```\n\n**2. Create event handler** in `sscripts/handlers.event.ss`:\n\n```python\non player_join(player):\n    run \"say \" + player.name + \" joined\"\n    run \"execute at \" + player.name + \" run fill ~10 50 ~10 ~-10 90 ~-10 air\"\nend\n\non player_chat(player, message):\n    log player.name + \": \" + message\nend\n```\n\n**3. Load and run:**\n\n```\n/sscript run boom.ss\n/sscript debug on\n/sscript debug off - no spam [Server]: ...\n```\n\nDone! Scripts execute without restart.\n\n## Language Features\n\n- **Variables & Types:** Strings, numbers, booleans, lists, objects\n- **Control Flow:** `if/elif/else`, `for`, `while`, `try/catch`\n- **Functions:** Define with `func` or `def`, call sync or async\n- **Events:** React to player actions, server events\n- **Built-ins:** 60+ functions for players, blocks, math, strings, files\n- **Async Support:** Background tasks with `wait` keyword\n\n## Commands\n\nExecute scripts and control execution:\n\n```\n/sscript run <file>                    # Execute script\n/sscript run <file> function <name>    # Call specific function\n/sscript monitor [all|<id>| ]            # View running tasks\n/sscript stop [all|<id>|<file>]               # Stop running task\n/sscript reload [all|<id>|<file>]             # Restart task\n/sscript debug [on|off]                # Toggle debug output server\n```\n\n## Documentation\n\n📖 Full documentation with examples and API reference:\n\n- **English:** [docs/en](https://l-log-l.github.io/SScript/en)\n- **Русский:** [docs/ru](https://l-log-l.github.io/SScript/ru)\n\n## What Else?\n\nBeyond command execution, SScript can:\n\n- 📊 **Store Data** — Global variables persist across restarts (`globals.json`)\n- 📡 **HTTP Requests** — Fetch data from APIs or send webhooks\n- 💾 **File I/O** — Read/write files and JSON\n- 🎮 **Player Data** — Access health, gamemode, coordinates, NBT data\n- 🏷️ **Tag System** — Organize players with custom tags\n- 🔍 **Selectors** — Query players dynamically (`@a[tag=admin]`, `@a[distance=..100]`)\n\n## Performance\n\n- ⚡ **Tick-safe** — Tasks automatically spread across server ticks to prevent lag\n- 🔄 **Non-blocking** — Event handlers run asynchronously (don't freeze gameplay)\n- 💪 **Limits** — 500 max processes, 20 spawn/tick, 50 statements/tick\n\n## Requirements\n\n- **Java 21+**\n- **Fabric Loader 0.14+**\n- **Minecraft 1.21.11** \n\n## Installation\n\n1. Download the mod JAR\n2. Put in `mods/` folder\n3. Start server\n4. Place scripts in `sscripts/`\n\n## Example: Chat Logger\n\n```python\n# sscripts/chat_logger.event.ss\n\nfunc log_chat(player_name, message):\n    file_mkdirs(\"sscripts/logs\")\n    line = \"[\" + player_name + \"] \" + message\n    file_append(\"sscripts/logs/chat.log\", line + \"\\n\")\nend\n\non player_chat(player, message):\n    log_chat(player.name, message)\nend\n```\n\n## Links\n\n- Documentation: [docs](https://l-log-l.github.io/SScript)\n- Source: [GitHub](https://github.com/l-log-l/sscript)\n\n\nAI generation Description D:",
+  "categories": [
+    "cursed",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "minigame"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 91,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

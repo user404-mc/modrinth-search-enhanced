@@ -1,0 +1,20 @@
+{
+  "id": "VYAwjEml",
+  "slug": "item-sanitizer",
+  "title": "Item Sanitizer",
+  "description": "Lightweight server side Minecraft mod that removes banned items from player inventories",
+  "body": "Item Sanitizer allows server administrators to define a list of blacklisted items in a configuration file\n\n### Features:\n- **Blacklist Enforcement**: Automatically removes blacklisted items from players' inventories.\n- **Player Notifications**: Displays a message to players when a blacklisted item is removed.\n- **Player Whitelist**: Allows specific players to use specific blacklisted items via `playersWhitelist`.\n- **Configurable**: Easily define blacklisted items in the configuration file.\n- **OP Bypass**: Optionally allow server operators to use blacklisted items.\n- **Dual-Side Sync**: Configuration is synced from server to clients, ensuring consistent enforcement.\n\n### Use Cases:\n- Prevent the use of overpowered or disruptive items in survival or competitive servers.\n- Enforce server rules and maintain a balanced gameplay environment.\n- Grant specific players access to certain items (e.g., staff members, builders).\n\n### Compatibility:\n- Compatible with Minecraft 1.20.1 and Forge.\n- Requires installation on both server and client for full functionality (blacklist sync and tooltip blocking).\n\n### Installation:\n1. Place the mod's JAR file in the `mods` folder of both your server and clients.\n2. Start the server to generate the configuration file.\n3. Edit the configuration file to define your blacklist and player whitelists.\n4. Restart the server to apply changes.\n\n### Commands:\n- `/itemsanitizer reload`: Reloads the configuration file without restarting the server.\n\n### Permissions:\n- Server operators (OPs) can bypass item restrictions if enabled in the configuration file.\n- Players listed in `playersWhitelist` can use their whitelisted items regardless of the blacklist.\n\n### Configuration:\nThe configuration file is located at `config/itemsanitizer.json`. You can define blacklisted items using the `blacklistedItems` list. Each entry in the list can be either a specific item ID or a pattern using regular expressions.\n\n#### Example Configuration:\n```json\n{\n  \"blacklistedItems\": [\n    \"minecraft:tnt\",\n    \"minecraft:tnt_minecart\",\n    \"!minecraft:.*_spawn_egg\",\n    \"tfmg:advanced_potato_cannon\",\n    \"tfmg:segmented_display\"\n  ],\n  \"allowOpsUseBlacklistedItems\": true,\n  \"playersWhitelist\": {\n    \"BuilderSteve\": [\"minecraft:bedrock\", \"minecraft:command_block\"],\n    \"AdminAlex\": [\"*\"]\n  }\n}\n```\n\n- **Specific Item**: Add the exact item ID (e.g., `minecraft:tnt`).\n- **Pattern**: Use `!` followed by a regular expression to match multiple items (e.g., `!minecraft:.*_spawn_egg` matches all spawn eggs).\n- **Player Whitelist**: A map of player names to lists of item IDs they are allowed to use despite the blacklist.\n  - Use `\"*\"` as the only entry to allow all items for a specific player.\n  - Players not listed in `playersWhitelist` are subject to the normal blacklist rules.\n\n### Notes:\n- Changes to the configuration file require a server restart or the `/itemsanitizer reload` command to take effect.\n- Ensure the item IDs or patterns are valid to avoid errors.\n- The mod must be installed on clients to receive synced configuration and prevent blacklisted items from appearing in tooltips.\n",
+  "categories": [
+    "forge",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

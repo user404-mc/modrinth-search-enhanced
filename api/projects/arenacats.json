@@ -1,0 +1,29 @@
+{
+  "id": "oZ3hejZS",
+  "slug": "arenacats",
+  "title": "ArenaCats",
+  "description": "Manage arenas on your Minecraft server",
+  "body": "# ArenaCats\n![Time](https://hackatime-badge.hackclub.com/U0922GMGGTU/ArenaCats?label=Time+I+spent+on+this)\n\n**You need [LibCats](https://modrinth.com/plugin/libcats) and [WorldEdit](https://modrinth.com/plugin/worldedit) for this plugin to work**\n\n**Commands**:\\\nThere is only one command:\\\n/arena:\n- permission: arenacats.command.arena\n- does by default: open a gui of all arenas created. if you have permission you can place one by clicking on them (lore shows up if you do)\n- subcommands:\n  - create:\n    - permission: arenacats.command.arena.create\n    - does: open a gui where you can make a new arena\n    - explanation:\n\n      When you click the brick, you get put into a world where you can build your arena.\\\n      Once you're done with that, you need to select it with WorldEdit\\\n      (I personally recommend using FastAsyncWorldEdit instead of the normal one so placing big arenas won't freeze your server that much)\\\n      and then do **//copy where you want the center to be**\\\n      ArenaCats also save the WorldGuard regions which are in the selection,\\\n      but only the flags of it, and the priority (so no members, owners etc. saved)\n  - delete:\n    - permission: arenacats.command.arena.delete\n    - does: delete an arena\n  - place:\n    - permission: arenacats.command.arena.place\n    - does: place an arena and teleport you to it\n    - you need this permission to place it from the gui\n  - waypoint:\n    - permission: arenacats.command.arena.waypoint\n    - does: place a waypoint if you are making an arena, tp to a waypoint if you are in a placed arena\n    - you need to be in one of those editors to run it\n\n**Building**:\n```shell\ngit clone https://github.com/JGJ52/ArenaCats.git\ncd ArenaCats\n./gradlew build\n```\n\n**Include it in your project**:\n```xml\n  <repositories>\n  <repository>\n    <id>jgj52-repo</id>\n    <url>https://maven.jgj52.hu/repository/maven-releases/</url>\n  </repository>\n</repositories>\n\n<dependencies>\n<dependency>\n  <groupId>hu.jgj52</groupId>\n  <artifactId>ArenaCats</artifactId>\n  <version>1.1</version>\n  <scope>provided</scope>\n</dependency>\n</dependencies>\n```\n\n**API Usage**:\n```java\nimport hu.jgj52.arenaCats.Types.*;\n\nimport java.util.UUID;\n\nclass yourClass {\n  public void getAnArenaByNameAndPlaceIt(String arena) {\n    Arena arena = Arena.of(name);\n    if (arena == null) return; // arena doesnt exists\n    PlacedArena placed = arena.place();\n  }\n\n  public void arenaExplanationVoid() {\n    Arena arena = Arena.of(\"name\");\n    // with this you can only place or delete or get its name\n    arena.place();\n    arena.delete();\n  }\n\n  public void placedArenaExplanationVoid() {\n    PlacedArena placed = Arena.of(\"name\").place();\n    // you can do a bit more with this\n    // worldguard regions:\n    // you need to put worldguard in pom.xml to use this one\n    placed.getRegions(); // list of regions\n    placed.getRegion(\"region name\"); // region by name\n    // waypoints:\n    // the idea is the same\n    placed.getWaypoints(); // list of waypoints\n    placed.getWaypoint(\"waypoint name\"); // waypoint name\n    placed.teleportToWaypoint(myPlayer, placed.getWaypoint(\"my waypoint\")); // teleport a player to a waypoint\n\n    placed.getWorld(); // get the world where the arena got placed\n    PlacedArena.getPlacedArena(UUID.fromString(myPlayer.getWorld().getName().replace(\"_map_placed_arenacats\"))); // get it from outside of this method just by a player\n\n    placed.teleportToCenter(player); // teleport a player to center (center is where you wrote //copy)\n  }\n\n  public void waypointExplanationVoid() {\n    Waypoint waypoint = Arena.of(\"name\").place().getWaypoint(\"name\");\n    // you can get these:\n    waypoint.x();\n    waypoint.y();\n    waypoint.z();\n    waypoint.yaw();\n    waypoint.pitch();\n    waypoint.name();\n    waypoint.location(); // bukkit location. you can get x,y,z,yaw,pitch from this too\n  }\n\n  public void regionExplanationVoid() {\n    // read worldguard docs\n  }\n}\n```",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 57,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

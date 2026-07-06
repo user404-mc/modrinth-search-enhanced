@@ -1,0 +1,37 @@
+{
+  "id": "c0VaHHmw",
+  "slug": "vanillapoints",
+  "title": "VanillaPoints",
+  "description": "Lightweight plugin adding spawn, home, and warp commands without tp. Easy to configure and dependency-free.",
+  "body": "# VanillaPoints\n\nVanillaPoints is a lightweight Paper plugin for private survival servers. It lets players save and view coordinates for spawn, homes and warps without teleportation, preserving vanilla-style navigation.\n\n## Requirements\n\n- Paper API 1.21+\n- Java 21+\n- Maven for building from source\n\n## Features\n\n- No teleportation, only coordinate display.\n- Click displayed coordinates to copy them to clipboard.\n- YAML storage in `data.yml`.\n- Optional SQLite and MySQL storage backends.\n- Async persistence queue for command/API mutations.\n- Safer data saves using `data.yml.tmp` and `data.yml.bak`.\n- Public Bukkit `ServicesManager` API and cancellable point events.\n- Configurable messages with bundled English and Russian translations.\n- Configurable copy format.\n- Data validation when loading saved points.\n- Admin reload command.\n\n## Commands\n\n| Command | Description | Permission |\n| --- | --- | --- |\n| `/spawn` | Show spawn coordinates. | none |\n| `/setspawn` | Save the spawn point at your current location. | `vanillapoints.setspawn` |\n| `/home` | Show your home coordinates. | none |\n| `/sethome` | Save your home at your current location. | none |\n| `/warp [name]` | List warps without a name, or show coordinates for one warp. | none |\n| `/warps` | List available warps. | none |\n| `/setwarp <name>` | Save a warp at your current location. | `vanillapoints.setwarp` |\n| `/delwarp <name>` | Delete a warp. | `vanillapoints.delwarp` |\n| `/vp reload` | Reload config, messages and data. | `vanillapoints.reload` |\n\nWarp names may contain only Latin letters, numbers, underscores and hyphens, up to 32 characters.\n\n## Configuration\n\n`config.yml`:\n\n```yml\nsettings:\n  language: en\n  save-immediately: true\n  normalize-to-block: true\n  copy-format: '{x} {y} {z}'\n\nstorage:\n  backend: yaml # yaml | sqlite | mysql\n  migrate-yaml-on-first-run: true\n  sqlite:\n    file: storage.db\n  mysql:\n    host: localhost\n    port: 3306\n    database: vanillapoints\n    username: root\n    password: ''\n    pool-size: 8\n    use-ssl: true\n```\n\nAvailable bundled languages:\n\n- `en` uses `messages.yml`.\n- `ru` uses `messages_ru.yml`.\n\n`copy-format` supports `{x}`, `{y}`, `{z}`, `{world}` and `{warp}` where applicable.\n\n`settings.save-immediately` queues writes asynchronously after point changes. When disabled, pending data is flushed during `/vp reload` and plugin shutdown.\n\n`storage.backend` defaults to `yaml` for compatibility. Switching to `sqlite` or `mysql` keeps point data cached in memory for fast commands and persists snapshots asynchronously. If `storage.migrate-yaml-on-first-run` is enabled and the selected SQL backend is empty, existing `data.yml` points are imported once and the YAML file is left in place as a backup.\n\n## Public API\n\nOther plugins can access VanillaPoints through Bukkit services:\n\n```java\nRegisteredServiceProvider<VanillaPointsAPI> provider = Bukkit.getServicesManager()\n        .getRegistration(VanillaPointsAPI.class);\nVanillaPointsAPI api = provider == null ? null : provider.getProvider();\n```\n\nThe public API package is `dev.vaniley.vanillapoints.api`. Mutation methods and `Location`-returning methods must be called on the server main thread. Mutation methods fire cancellable Bukkit events from `dev.vaniley.vanillapoints.api.event`; `PointInfo` methods return immutable DTOs for safer reads.\n\n## Installation\n\n1. Build or download the plugin `.jar`.\n2. Place it in the server `plugins` folder.\n3. Restart the server.\n4. Edit `plugins/VanillaPoints/config.yml` and `messages*.yml` if needed.\n5. Use `/vp reload` after config/message changes.\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

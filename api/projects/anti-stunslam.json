@@ -1,0 +1,33 @@
+{
+  "id": "PxHbtEqj",
+  "slug": "anti-stunslam",
+  "title": "Anti Stunslam",
+  "description": "This plugin is used to disable stunslams, there are 2 settings!",
+  "body": "# NoStunSlam\n\n## Short description\nPrevents axe shield-break → mace follow-up \"stun-slam\" combos in PvP, configurable per-world and per-server.\n\n## Long description\nNoStunSlam blocks immediate follow-up mace hits after a player breaks another player's shield with an axe, preventing instant \"stun-slam\" combos that are commonly abused in PvP. It is lightweight, configurable, and intended for Bukkit-compatible servers.\n\nFeatures:\n\n- Per-world enable/disable toggles.\n- Two blocking modes: `TICK_WINDOW` (blocks for N ticks) and `REQUIRE_LANDING` (blocks until attacker lands).\n- Bypass permission for trusted players.\n- Runtime commands for toggling and reloading config.\n- Minimal dependencies - compiled against Paper API 1.21.11.\n\n## Commands\n\n- `/nostunslaM toggle` - Toggle protection for your current world.\n- `/nostunslaM toggle <world>` - Toggle protection for a specific world (use from console or with permission).\n- `/nostunslaM status` - Show enabled/disabled status for your current world.\n- `/nostunslaM reload` - Reload config and worlds file.\n\n## Permissions\n\n`nostunslaM.admin` - Management (toggle/status/reload). Default: `op`.\n`nostunslaM.bypass` - Allows player to bypass stunslam blocking. Default: `false`.\n\nSee `src/main/resources/plugin.yml` for the authoritative command/permission declarations.\n\n## Example config\n\nThe plugin generates a default `config.yml` on first-run. Example contents:\n\n```yaml\nmode: TICK_WINDOW\nblock-window-ticks: 10\nblocked-message: \"&cYou cannot mace so quickly after breaking a shield!\"\nlog-blocks: false\n```\n\n## Example worlds file\n\n```yaml\ndisabled-worlds:\n  - example_world\n```\n\n## Admin notes\n\n- Give moderators the `nostunslaM.admin` permission via your permissions plugin (e.g., LuckPerms):\n\n```bash\nlp group moderator permission set nostunslaM.admin true\n```\n\n- To exempt a user from blocking:\n\n```bash\nlp user <username> permission set nostunslaM.bypass true\n```\n\n- Use `/nostunslaM toggle <world>` from console to change per-world state without being online in that world.\n\n## Compatibility & installation\n\n- Target platform: Bukkit-compatible servers (Paper/Spigot/CraftBukkit) implementing the Bukkit API for Minecraft 1.21.\n- Built against Paper API `1.21.11-R0.1-SNAPSHOT` (see `build.gradle.kts`). The plugin declares `api-version: '1.21'` in `plugin.yml`.\n- It should run on other 1.21.x server builds, but functionality is not guaranteed across major Minecraft versions (e.g., 1.20 or 1.22).\n\nInstallation:\n\n1. Download the plugin JAR from the releases or Modrinth.\n2. Drop `NoStunSlam-<version>.jar` into your server `plugins/` folder.\n3. Restart the server.\n\n## Support / Source\n\nIf you find bugs or issues, message Mexz on Discord.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

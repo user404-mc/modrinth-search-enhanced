@@ -1,0 +1,33 @@
+{
+  "id": "BzXiA0Tf",
+  "slug": "omni-space",
+  "title": "Omni Space",
+  "description": "A Minecraft Paper plugin that provides players with private storage dimension spaces.",
+  "body": "# Omni Space\n\n![Version](https://img.shields.io/badge/Version-1.0.0--R-blue)\n![Paper](https://img.shields.io/badge/Paper-1.21.1--1.21.11+-purple)\n![Java](https://img.shields.io/badge/Java-17+-orange)\n\nA Minecraft Paper plugin that provides players with private dimension spaces using custom void End world generation.\n\n---\n\n## Overview\n\nOmni Space is a dimension management plugin for Paper 1.21+ servers. Each player receives a personal void dimension with a customizable room (3x3 to 9x9) containing up to 9 inventory blocks (Chest, Barrel, Hopper, etc.). Players can access their items from outside the dimension through a GUI system.\n\n---\n\n### Portal System\n\n- **Circle Portal**: Particle-based vertical circle using `Particle.PORTAL` and `Particle.END_ROD`\n- **Item Absorption**: Items thrown into portal radius are automatically absorbed and stored in dimension\n- **Exit Method**: Players can exit dimension by looking up and right-clicking, or by using `/os back` command\n\n### GUI System\n\n- **Main Menu**: Interactive GUI using Bukkit Inventory API (27 slots)\n- **Chest Selector**: Dynamic chest selection based on registered blocks\n- **Virtual Chest**: View-only access from `/os inventory` command\n- **Physical Chest**: Fully usable when right-clicked in dimension\n\n### Block Management\n\n- **Auto-Registration**: Blocks automatically register when placed in dimension via `BlockPlaceEvent`\n- **Auto-Removal**: Blocks unregister when destroyed via `BlockBreakEvent`\n- **Ownership Validation**: Only dimension owner can add/remove blocks\n- **Supported Blocks**: Chest, Barrel, Hopper, Dispenser, Dropper, Furnace, Blast Furnace, Smoker, Crafting Table, Brewing Stand, Lectern, turn into inventory blocks\n\n---\n\n## Features\n\n| Feature | Description |\n|---------|-------------|\n| **Personal Dimensions** | Each player gets their own dimension space |\n| **Physical Blocks** | Place and use chests directly in dimension |\n| **Virtual Inventory** | View chest contents from outside via GUI |\n| **Auto-Registration** | Blocks automatically register when placed |\n| **Per-Chest Storage** | Each block has independent item storage |\n| **Dimension Upgrade** | Expand from 3x3 to 9x9 with Diamond |\n| **Portal System** | Circle particle portal with item absorption |\n| **Throw to Portal** | Save items by throwing them into the portal |\n| **Teleport Back** | Return to original location after dimension visit |\n| **Look Up + Right Click** | Exit dimension by looking up and right-clicking |\n\n---\n\n## Commands\n\n### Player Commands\n\n| Command | Description |\n|---------|-------------|\n| `/os` or `/omnispace` | Open main GUI menu |\n| `/os open` | Open portal to your dimension |\n| `/os close` | Close active portal |\n| `/os inventory` or `/os inv` | View dimension inventory (virtual, view-only) |\n| `/os back` | Return to original world |\n| `/os upgrade` | Upgrade dimension size (costs Diamonds) |\n| `/os info` | Show dimension information |\n\n### Admin Commands\n\n| Command | Description |\n|---------|-------------|\n| `/osadmin <player>` | View player's dimension storage |\n\n---\n\n## Configuration\n\n### config.yml\n\n```yaml\nportal:\n  radius: 1.5                    # Portal circle radius (blocks)\n  duration: 30                  # Portal open duration (seconds, 0 = permanent)\n  particle-color: \"PURPLE\"      # Particle color\n  item-absorb-radius: 1.5       # Item absorption radius\n  cooldown: 5                   # Cooldown between opens (seconds)\n\nspace:\n  default-size: 3               # Initial dimension size\n  max-size: 9                   # Maximum upgrade size\n  upgrade-cost:\n    material: DIAMOND\n    amount: 5\n  world-name: \"omnispace_world\"\n```\n\n---\n\n### YAML Structure\n\n```yaml\nuuid: <player-uuid>\nsize: 3\nhome:\n  world: omnispace_world\n  x: <x-coordinate>\n  y: <y-coordinate>\n  z: <z-coordinate>\norigin:\n  world: <original-world>\n  x: <x-coordinate>\n  y: <y-coordinate>\n  z: <z-coordinate>\nchests:\n  chest_<x>_<y>_<z>:\n    x: <x-coordinate>\n    y: <y-coordinate>\n    z: <z-coordinate>\n    items: <base64-encoded-item-list>\n```\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `omnispace.use` | true | Basic OmniSpace access |\n| `omnispace.admin` | op | Admin access (view other players' storage) |\n\n---\n\n## License\n\nMIT License - Free to use and modify.\n\n---\n\n## Support",
+  "categories": [
+    "game-mechanics",
+    "magic",
+    "paper",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 34,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

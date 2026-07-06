@@ -1,0 +1,18 @@
+{
+  "id": "EKTGblub",
+  "slug": "brainless-lib",
+  "title": "Brainless Lib",
+  "description": "AI Library for Better than Adventure",
+  "body": "# Brainless Library\n\nGame AI framework and utilities, WIP!\n\n### Btw\nIt started as a code experiment, maybe it will end up as such.\n\n### Warning:\nIt has nothing to do with generative AI or complex neural networks.\n\n### Example of villagier AI\n```java\nAI ai = AI.create(brain -> {\n    brain.inputs()\n        .add(\"hunger\",  0.0)\n        .add(\"fatigue\", 0.0)\n        .add(\"danger\",  0.0)\n        .add(\"work\",    0.0);\n\n    brain.layer(\"desires\", layer -> {\n        layer.mix(\"desire_eat\")\n            .add(\"hunger\", 1.0).sub(\"danger\", 0.7).sigmoid(6);\n        layer.mix(\"desire_sleep\")\n            .add(\"fatigue\", 1.0).sub(\"danger\", 0.9).sigmoid(6);\n        layer.mix(\"desire_flee\")\n            .add(\"danger\", 1.0).sigmoid(8);\n        layer.mix(\"desire_work\")\n            .add(\"work\", 1.0).sub(\"hunger\", 0.5).sub(\"fatigue\", 0.4).sigmoid(5);\n    });\n});\n\nJobQueue queue = ai.queue(JobQueue.Mode.HIGHEST_WINS, 0.25, 3);\nqueue.register(\"Eat\",   ai.getBrain().getNode(\"desire_eat\"),   () -> System.out.println(\"Villager eats\"));\nqueue.register(\"Sleep\", ai.getBrain().getNode(\"desire_sleep\"), () -> System.out.println(\"Villager sleeps\"), () -> System.out.println(\"Sleep interrupted\"));\nqueue.register(\"Flee\",  ai.getBrain().getNode(\"desire_flee\"),  () -> System.out.println(\"Villager flees!\"), () -> System.out.println(\"Flee interrupted\"));\nqueue.register(\"Work\",  ai.getBrain().getNode(\"desire_work\"),  () -> System.out.println(\"Villager works\"));\n\n// Each game tick:\nai.update(in -> in\n    .set(\"hunger\",  0.8)\n    .set(\"fatigue\", 0.3)\n    .set(\"danger\",  0.0)\n    .set(\"work\",    0.5));\n```\n\n### Queue modes\n\n| Mode | Behavior |\n|------|----------|\n| `HIGHEST_WINS` | Most urgent desire always first |\n| `FIFO_TIERED` | Sorted into high/mid/low tiers, FIFO within each |\n| `WEIGHTED_RANDOM` | Higher desire = higher chance, not guaranteed |\n\nQueue pre-calculates next N jobs. If total desire delta exceeds threshold, discards and rebuilds.\n\n### Connection ops\n\nBuilt-in: `add`, `sub`, `mul`, `div`, `max`, `min`.  \nCustom:\n```java\nlayer.mix(\"desire_eat\").op(\"hunger\", (a, b) -> a + b * 1.5, 0.8);\n```\n````\n",
+  "categories": [
+    "bta-babric"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "b1.7.3"
+  ],
+  "date_updated": null
+}

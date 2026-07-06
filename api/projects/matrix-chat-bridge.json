@@ -1,0 +1,38 @@
+{
+  "id": "he7n8Zgo",
+  "slug": "matrix-chat-bridge",
+  "title": "Matrix Chat Bridge",
+  "description": "A powerful, private, and secure bridge between your Minecraft server and a Matrix home server. A self hosted Discord like experience",
+  "body": "# 🧊 Minecraft Matrix Chat Bridge\n\n![Java](https://img.shields.io/badge/Java-21-orange) ![Spigot](https://img.shields.io/badge/Spigot-1.20.6+-yellow) ![Matrix](https://img.shields.io/badge/Matrix-Synapse-blue) ![License](https://img.shields.io/badge/License-MIT-green)\n\n**A powerful, private, and secure bridge between your Minecraft server and a Matrix homeserver.**\n\n---\n\n## 🛡️ Why Matrix?\n\nIn an era where data privacy and user safety are paramount, **Matrix** stands out as the superior choice for gaming communities. Unlike Discord or other centralized platforms, Matrix allows you to:\n\n*   **Own Your Data**: Host your own server. No third party is mining your players' chat history.\n*   **Ensure Safety**: Create a private, isolated environment perfect for players of all ages. You control who joins and what they see.\n*   **Stay Secure**: Industry-standard encryption and open-source transparency.\n\nThis plugin integrates your Minecraft server directly into this secure ecosystem, providing a seamless experience that feels native to both platforms.\n\n---\n\n## ✨ Key Features\n\n*   **🔄 Two-Way Chat Bridge**\n    *   Messages flow instantly between Minecraft and Matrix.\n    *   Experience a unified community, whether in-game or on mobile.\n\n*   **🎭 True User Impersonation**\n    *   Forget generic bot messages!\n    *   When a player chats in-game, the message in Matrix appears to come **from their actual account**, complete with their avatar and name.\n\n*   **🚀 Automatic Onboarding & Syncing**\n    *   **Auto-Account Creation**: A passwordless Matrix account is automatically created for every player the first time they join.\n    *   **Auto-Avatar Sync**: On every join, the plugin checks if the player's skin has changed and updates their Matrix avatar accordingly.\n    *   **Auto-Room Sync**: On every join, players are automatically added to the correct Matrix rooms based on their permissions.\n\n*   **🔐 Role-Based Access**\n    *   Automatically manage room memberships based on in-game permissions (e.g., VIPs, Staff).\n    *   No need for manual invites; the plugin handles the heavy lifting.\n\n*   **🧱 Bedrock Player Support**\n    *   Differentiate Bedrock players (e.g., from Geyser) by adding a configurable suffix to their Matrix username (e.g., `.Steve` becomes `steve.b`).\n\n*   **🕊️ Lightweight & Native**\n    *   Built using raw Matrix/Synapse APIs.\n    *   **Zero external dependencies** or bloated libraries.\n\n---\n\n## 🛠️ Prerequisites\n\n*   **Minecraft Server**: Spigot, Paper, or Purpur (1.20.6 or newer).\n*   **[Matrix Homeserver](https://matrix.org/)**: A **Synapse** server where you have Admin access.\n*   **Bot Account**: A Matrix account with **Admin privileges** on your homeserver (required for impersonation and user management).\n\n---\n\n## 📥 Installation\n\n1.  **Download** the latest `matrix-chat-1.0.jar` from the releases page.\n2.  **Drop** the jar file into your server's `plugins` folder.\n3.  **Restart** the server to generate the default configuration file.\n4.  **Configure** `plugins/MatrixChat/config.yml` (see below).\n5.  **Important**: Manually invite your bot account to the configured `bridgeRoom` and any other rooms listed in the config. The bot cannot join private rooms automatically without an invite.\n6.  **Reload** or restart to apply changes.\n\n---\n\n## ⚙️ Configuration\n\nEdit `plugins/MatrixChat/config.yml` to connect your worlds.\n\n```yaml\nmatrix:\n  # 🌐 Your Matrix homeserver URL\n  homeserver: \"https://chat.yourdomain.com\"\n  \n  # 🤖 The Bot Account\n  # IMPORTANT: Must be a Synapse Admin for impersonation to work.\n  username: \"@bot:chat.yourdomain.com\"\n  password: \"your_secure_password\"\n  \n  # 🌉 The Bridge Room\n  # The main channel where chat is shared. The bot must be a member.\n  bridgeRoom: \"!roomid:chat.yourdomain.com\"\n\n  # 📏 Maximum length of a Matrix message to be bridged to Minecraft.\n  maxMessageLength: 256\n\n  # 🧱 Bedrock Support\n  bedrock:\n    prefix: \".\"\n    matrixSuffix: \".b\"\n\n  # 📢 Announcements\n  announcements:\n    join: true\n    quit: true\n    death: true\n    firstJoin: true\n\n  # 📂 Room Management\n  rooms:\n    # Rooms everyone joins automatically\n    default:\n      - \"!generalid:chat.yourdomain.com\"\n      - \"!updatesid:chat.yourdomain.com\"\n      \n    # 👮 Role-Based Rooms\n    # Map permission nodes to specific rooms\n    roles:\n      mchat.group.staff:\n        - \"!staffroomid:chat.yourdomain.com\"\n      mchat.group.vip:\n        - \"!viproomid:chat.yourdomain.com\"\n```\n\n---\n\n## 💻 Commands & Permissions\n\n| Command | Permission | Description |\n| :--- | :--- | :--- |\n| `/mchat register <password>` | `mchat.register` | Sets the password for your auto-created Matrix account, allowing you to log in to clients like Element. |\n| `/mchat help` | None | Display the help menu. |\n\n---\n\n## 🧠 How It Works\n\n### The Impersonation Magic\nInstead of relaying messages like `[Bot] Player: Hello`, this plugin leverages the **Synapse Admin API**. It obtains a temporary login token for the specific user and sends the message **as them**.\n*   **Result**: A native chat experience.\n*   **Fallback**: If the user isn't registered, it gracefully falls back to a bot message format.\n\n### Echo Prevention\nTo prevent the \"infinite loop\" of messages repeating themselves, the plugin tags bridged messages with a hidden `[MC]` prefix. The Minecraft listener detects this tag and knows to ignore the message, ensuring a clean chat stream.\n\n---\n\n## 🏗️ Building from Source\n\n```bash\ngit clone https://github.com/yourusername/matrix-chat.git\ncd matrix-chat\nmvn clean package\n```\n\n---\n\n## 📄 License\n\nDistributed under the **MIT License**. See `LICENSE` for more information.\n",
+  "categories": [
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 41,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

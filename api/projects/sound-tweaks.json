@@ -1,0 +1,22 @@
+{
+  "id": "Do7RJcw9",
+  "slug": "sound-tweaks",
+  "title": "Sound Tweaks",
+  "description": "Per-sound and per-block volume control. Silence, or fine-tune any Minecraft sound individually. Create presets and bind shortcuts.",
+  "body": "# SoundTweaks\nA client-side Fabric mod for adjusting the volume of individual sounds and blocks, independent of each other and the game's master volume.\n\n---\n\n## What it does\n\n### Per-sound volume control\nEvery sound event gets its own volume slider, from **0% (silent) to 100% (default)**. Changing one sound doesn't affect anything else.\n\n### Per-block volume control\nSome blocks make sounds that Minecraft's built-in categories can't separate — pistons, dispensers, note blocks, observers, and others. SoundTweaks adds its own volume layer for those. Block volumes run from **0% to 100%**.\n\n### Category and object filtering\nThe main screen has two dropdown filters: **Category** (Block, Entity, Item, Ambient, Music, Music Disc, UI, Weather, Enchant, Event, Redstone, Others) and **Object** (the specific entity, item, or block within that category). There's a text search bar too.\n\n**Redstone** is a cross-cutting category — it groups sounds from redstone-adjacent blocks (pistons, comparators, levers, note blocks, dispensers, sculk sensors, etc.) regardless of their base sound prefix.\n\n### Simple View / Detail View\nTwo ways to browse the list:\n- **Simple View** — one entry per sound event\n- **Detail View** — the individual `.ogg` files within each event, so you can target the exact sounds that play\n\n### Mute button\nThe speaker icon in the top-left mutes everything currently visible (based on your active filters). Click again to restore. Nothing gets written to your saved config — it's a temporary layer.\n\n---\n\n## Presets\nA preset stores a set of sound and block volume overrides. When active, its values take priority over the base config. If multiple presets are active and both define a value for the same sound, whichever deviates most from 100% wins.\n\n**Creating a preset:** go to the Presets screen and click \"New Preset\". It starts as a copy of your current base config — only entries that aren't at 100% get carried over.\n\n**Editing a preset:** select it from the list to open the detail panel. Available tabs:- **Open Config Folder** (Presets screen footer): opens the `.minecraft/config/` folder in the system file manager.\n\n---\n\n## Config files\n\nAll config is stored in `.minecraft/config/` as plain JSON:\n\n| File | Contents |\n|---|---|\n| `soundtweaks.json` | Base sound volumes (key: sound event ID, value: float 0–1) |\n| `soundtweaks_blocks.json` | Base block volumes (key: block ID, value: float 0–1) |\n| `soundtweaks_presets.json` | All presets, active state, and favorites list |\n\nConfig is saved automatically ~300ms after the last change. You can also edit the JSON files directly while the game is closed.\n\n---\n\n## Volume resolution order\n\nFor any given sound, the effective volume is determined in this order:\n\n1. **Volatile mute layer** — set by the mute button; cleared when toggled off or the game restarts\n2. **Active presets** — if multiple presets define the same sound, the one with the biggest deviation from 100% wins\n3. **Base config** — `soundtweaks.json` / `soundtweaks_blocks.json`\n4. **Default** — 100% (no change)\n\n---\n\n## How to open the UI\n\nPress **K** (default keybind, rebindable in Minecraft's controls settings) to open the SoundTweaks screen.\n\n---\n\n## Compatibility\n\n- **Client-side only** — the server doesn't need the mod installed\n- **Fabric** loader only\n- Minecraft **26.1.2**\n- Does not replace or wrap the sound engine — intercepts volume at playback time via mixin\n\n---\n\n*Made by scr0ols — MIT",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 69,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "XI9NABWW",
+  "slug": "pitysystem",
+  "title": "PitySystem",
+  "description": "Pity System Add-on for CrazyCrates",
+  "body": "给[CrazyCrates](https://modrinth.com/plugin/crazycrates/versions)插件写了一个保底功能\n\nThis addon introduces a pity system to the [CrazyCrates](https://modrinth.com/plugin/crazycrates/versions) plugin.\n## 保底机制\n可以自定义保底次数，保底奖品，抽到后清空计数\n\nCustomize the pity counter threshold (number of pulls) and the guaranteed reward.\nThe pity counter resets automatically once the player receives the guaranteed prize.\n\n请注意配置:\n\nImportant Configuration Notes:\n\n保底奖池就是将此的文件名,\n保底奖品是序号，而不是名字\n\nThe \"ExampleCrate\" is defined by the configuration file's name.\n\nSpecify the guaranteed reward by its slot/index number, not its display name.\n![演示](https://cdn.modrinth.com/data/cached_images/38a664bc7c649f9602d319a7892b2a307062bf72.png)\n可设置pity-group参数，如果不同奖池公用一个pity-group，那么它们的将共同计数\n\nThe pity-group parameter can be set. If different prize pools share the same pity-group, they will count together\n![计数](https://cdn.modrinth.com/data/cached_images/db5899c60e131f9510e10b7503671c0a3d37dc36.png)\n\n## 钥匙转换\n奖池之间可以自动转化钥匙，示例: 开B箱时没有钥匙，就自动转化A箱的10把钥匙转化为B箱钥匙使用\n```\n# Key Conversion Configuration:\n# auto-convert: If true, when a player interacts with a crate but lacks keys,\n# it will automatically check rules and consume 'from' keys to give 1 'to' key.\nkey-conversion:\n  auto-convert: true\n  rules:\n    - from: \"CrateA\"\n      to: \"CrateB\"\n      ratio: 10\n      message: \"&a[PitySystem] &f你没有 &bCrateB &f钥匙，已自动消耗 &e10 &f把 &bCrateA &f钥匙进行兑换！\"\n```\n## 数据库支持(todo)\n等我将CrazyCrates接上数据库后，再更新此插件\n## 命令\n\n/pityreset 玩家名字 可以重置玩家保底次数\n\n/pitydebug 开/关测试模式\n\n/pityreload 更改配置后的重载\n\n/pityconvert <源抽奖箱> <目标抽奖箱> [数量]：手动进行钥匙转化\n\n/pityreset <player>: Resets a specific player's pity counter.\n\n/pitydebug: Toggles debug/test mode.\n\n/pityreload: Reloads the configuration file after changes.\n\n/pityconvert <form pity box> <to pity box> [quantity]: Manually convert keys\n\n## 变量\n你可以通过[PlaceholderAPI](https://modrinth.com/plugin/placeholderapi)变量查看玩家的保底信息:\n\n%pitysystem_count_<crate>% - 玩家当前的保底计数。\n\n%pitysystem_max_<crate>% - 该奖池设定的最大保底次数。\n\n%pitysystem_left_<crate>% - 距离下一次保底还剩多少次（计算方式：max - count）\n\n%pitysystem_groupcount_<CommonPool>% - 如果使用了共享保底，获取该组的共享计数\n\n示例： 如果你的奖池名为 ExampleCrate，则可以使用 %pitysystem_count_ExampleCrate%\n",
+  "categories": [
+    "economy",
+    "management",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 54,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

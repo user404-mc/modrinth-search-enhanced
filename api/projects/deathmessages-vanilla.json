@@ -1,0 +1,35 @@
+{
+  "id": "WkH99zeJ",
+  "slug": "deathmessages-vanilla",
+  "title": "DeathMessages",
+  "description": "Vanilla messages with custom colors",
+  "body": "# DeathMessages\n\nA Paper plugin that recolorizes death, join, and quit messages with per-player toggles and blacklisting.\n\n## Features\n\n- **Custom colors** — Set separate MiniMessage colors for death messages (main text, player, killer, weapon), join messages, and quit messages.\n- **Per-player toggle** — Each player can hide/show all death messages (including their own) or hide/show join/quit messages. Toggle controls what *you* see, not what others see of you.\n- **Blacklist** — Blacklist a player so you no longer see their death messages. Others still see them, and the blacklisted player still sees their own death.\n- **Global toggles** — Disable death, join, or quit messages globally via config.\n- **Cooldown** — Per-player cooldown between death messages (configurable, default 10s).\n- **Min-playtime** — Only show messages from players who have played for at least N minutes (configurable, 0 = disabled).\n- **Folia support** — `folia-supported: true`.\n\n## Commands\n\n| Command | Aliases | Permission | Description |\n|---------|---------|------------|-------------|\n| `/deathmessages reload` | `/dm reload` | `deathmessages.command.reload` | Reload config and user data |\n| `/deathmessages toggle` | `/dm toggle` | `deathmessages.command.toggle` | Toggle death messages on/off (including your own) |\n| `/deathmessages blacklist <player>` | `/dm blacklist <player>` | `deathmessages.command.blacklist` | Add/remove a player from your personal blacklist |\n| `/toggleconnectionmsg` | `/togglejoins` | `deathmessages.command.toggleconnectionmsg` | Toggle join/quit messages on/off for yourself |\n| `/deathmessagestoggle` | `/dmtoggle`, `/dmt` | `deathmessages.command.toggle` | Shortcut for toggling death messages |\n\n## Permissions\n\n| Node | Default | Description |\n|------|---------|-------------|\n| `deathmessages.command.toggle` | `op` | Allows toggling death messages |\n| `deathmessages.command.toggleconnectionmsg` | `op` | Allows toggling join/quit messages |\n| `deathmessages.command.blacklist` | `op` | Allows blacklisting a player |\n| `deathmessages.command.reload` | `op` | Allows reloading the plugin |\n\n## Configuration\n\n### `config.yml`\n\n```yaml\nColors:\n  Death:\n    Main: \"<dark_red>\"\n    Player: \"<dark_aqua>\"\n    Killer: \"<dark_aqua>\"\n    Weapon: \"<gold>\"\n  Join:\n    Main: \"<gray>\"\n    Player: \"<gray>\"\n  Quit:\n    Main: \"<gray>\"\n    Player: \"<gray>\"\n\nSettings:\n  Min-Playtime-Minutes: 0\n  Death-Message-Cooldown-Seconds: 10\n  Death-Messages-Enabled: true\n  Join-Messages-Enabled: true\n  Quit-Messages-Enabled: true\n\nCommands:\n  DeathMessages:\n    Prefix: '&7[DeathMessages]&r '\n    # ... messages ...\n```\n\nAll colors use [MiniMessage format](https://docs.advntr.dev/minimessage/).\n\n### `UserData.yml`\n\nStored in the plugin data folder. Automatically created when a player runs a toggle or blacklist command. Contains per-UUID data:\n- `messages-enabled` (default: `true`)\n- `connection-messages-enabled` (default: `true`)\n- `is-blacklisted` (default: `false`)\n\n## Building\n\nRequires Java 21 and Maven.\n\n```bash\nmvn clean package\n```\n\nThe output jar is `target/DeathMessages-1.0.jar`.\n\n## Requirements\n\n- Paper 1.21.11+ (api-version `26.1.2`)\n- Java 21\n",
+  "categories": [
+    "folia",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

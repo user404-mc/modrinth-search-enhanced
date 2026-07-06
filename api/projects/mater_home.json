@@ -1,0 +1,42 @@
+{
+  "id": "vklOkP07",
+  "slug": "mater_home",
+  "title": "Mater_Home",
+  "description": "This plugins is a tiny home plugins wich chestui\n中文：这个插件为 Minecraft 添加了 “保存家的地址” 拥有 Chest UI(我原本想把她上传到GitHub 但是有人倒卖我的插件)",
+  "body": "# Home插件 - 家庭传送系统\n\n## English\n\n### 📋 Description\nA lightweight and feature-rich home management system for Minecraft servers running Bukkit/Paper 1.17+. Players can set multiple homes, teleport with GUI or commands, fully configurable with cooldown system and PlaceholderAPI support.\n\n### ✨ Features\n- **Multiple Homes** - Set unlimited homes with custom names\n- **Dual Interface** - Choose between GUI menu or text commands\n- **Cooldown System** - Configurable teleport cooldown (default 3s)\n- **Cross-World Support** - Teleport between different worlds\n- **Fully Configurable** - Customize messages, limits, and more\n- **PlaceholderAPI** - Support for placeholders like %home_count%\n- **YAML Storage** - Lightweight and reliable data storage\n\n### 📋 Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/sethome [name]` | Set a home (default: \"home\") | home.set |\n| `/home [name]` | Teleport to home (default: \"home\") | home.use |\n| `/delhome <name>` | Delete a home | home.delete |\n| `/homes` | Open GUI to choose home | home.use |\n| `/homelist` | View all homes as text list | home.use |\n\n### 🔐 Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `home.use` | Basic teleport permission | `true` |\n| `home.set` | Set home permission | `true` |\n| `home.delete` | Delete home permission | `true` |\n| `home.multiple` | Multiple homes permission | `true` |\n| `home.bypass.cooldown` | Bypass cooldown | `false` |\n| `home.*` | All permissions | `op` |\n\n### ⚙️ Configuration\n\nFile location: `plugins/Home/config.yml`\n\n```yaml\n# Cooldown settings (seconds)\ncooldown:\n  enabled: true\n  time: 3\n\n# Cross-world teleport\ncross-world:\n  enabled: true\n\n# Home limit (-1 = unlimited)\nhome-limit: -1\n\n# Customize all messages with color codes\nmessages:\n  prefix: \"&8[&aHome&8] &r\"\n  home-set: \"&aSuccessfully set home &e{name}&a!\"\n  home-teleport: \"&aTeleporting to home &e{name}&a...\"\n  home-cooldown: \"&cPlease wait &e{time}&c seconds!\"\n  # ... more messages\n```\n\n### 🎮 Usage Examples\n\n```minecraft\n# Set default home\n/sethome\n\n# Set a named home\n/sethome base\n\n# Teleport to default home\n/home\n\n# Teleport to named home\n/home base\n\n# Open GUI to choose home\n/homes\n\n# View all homes as text list\n/homelist\n\n# Delete a home\n/delhome base\n```\n\n### 🔌 PlaceholderAPI Variables\n\n| Variable | Description |\n|----------|-------------|\n| `%home_count%` | Number of homes |\n| `%home_limit%` | Home limit |\n| `%home_cooldown%` | Remaining cooldown |\n| `%home_has_<name>%` | Check if has specific home |\n\n### 📦 Installation\n\n1. Download `home-plugin-1.0.0.jar`\n2. Place it in your server's `plugins` folder\n3. Restart the server or use `plugman load Home`\n4. Configure in `plugins/Home/config.yml`\n\n### 💾 Data Storage\n\n- Player data stored in `plugins/Home/playerdata/`\n- Each player has a YAML file named by UUID\n- Contains home name, world, coordinates, yaw, pitch\n- Auto-save and auto-load\n\n### 📌 Notes\n\n- Default teleport cooldown is 3 seconds (configurable)\n- Default home limit is unlimited (configurable)\n- Cross-world teleport enabled by default (configurable)\n- Console cannot use these commands\n\n---\n\n## 中文\n\n### 📋 插件介绍\n一个轻量级且功能丰富的家庭管理系统，适用于运行 Bukkit/Paper 1.17+ 的 Minecraft 服务器。玩家可以设置多个家，通过 GUI 或命令传送，支持冷却系统、跨世界传送和 PlaceholderAPI。\n\n### ✨ 功能特点\n- **多家庭支持** - 可设置无限数量的命名家\n- **双界面选择** - 支持 GUI 菜单和文本命令两种方式\n- **冷却系统** - 可配置的传送冷却时间（默认3秒）\n- **跨世界传送** - 支持在不同世界之间传送\n- **完全可配置** - 自定义消息、数量限制等\n- **PlaceholderAPI** - 支持占位符如 `%home_count%`\n- **YAML存储** - 轻量可靠的数据存储方式\n\n### 📋 命令列表\n\n| 命令 | 描述 | 权限 |\n|------|------|------|\n| `/sethome [名称]` | 设置家（默认：\"home\"） | home.set |\n| `/home [名称]` | 传送到家（默认：\"home\"） | home.use |\n| `/delhome <名称>` | 删除家 | home.delete |\n| `/homes` | 打开 GUI 选择家 | home.use |\n| `/homelist` | 文本列表查看所有家 | home.use |\n\n### 🔐 权限节点\n\n| 权限 | 描述 | 默认值 |\n|------|------|--------|\n| `home.use` | 基础传送权限 | `true` |\n| `home.set` | 设置家权限 | `true` |\n| `home.delete` | 删除家权限 | `true` |\n| `home.multiple` | 多家庭功能权限 | `true` |\n| `home.bypass.cooldown` | 绕过冷却权限 | `false` |\n| `home.*` | 所有权限 | `op` |\n\n### ⚙️ 配置说明\n\n配置文件位置：`plugins/Home/config.yml`\n\n```yaml\n# 冷却时间设置（秒）\ncooldown:\n  enabled: true\n  time: 3\n\n# 跨世界传送设置\ncross-world:\n  enabled: true\n\n# 家庭数量限制（-1 表示无限制）\nhome-limit: -1\n\n# 所有消息都可以自定义颜色\nmessages:\n  prefix: \"&8[&aHome&8] &r\"\n  home-set: \"&a成功设置家 &e{name}&a！\"\n  home-teleport: \"&a正在传送到家 &e{name}&a...\"\n  home-cooldown: \"&c请等待 &e{time}&c 秒！\"\n  # ... 更多消息\n```\n\n### 🎮 使用示例\n\n```minecraft\n# 设置默认家\n/sethome\n\n# 设置命名家\n/sethome 基地\n\n# 传送到默认家\n/home\n\n# 传送到命名家\n/home 基地\n\n# 打开 GUI 选择家\n/homes\n\n# 文本列表查看所有家\n/homelist\n\n# 删除家\n/delhome 基地\n```\n\n### 🔌 PlaceholderAPI 变量\n\n| 变量 | 说明 |\n|------|------|\n| `%home_count%` | 家庭数量 |\n| `%home_limit%` | 家庭上限 |\n| `%home_cooldown%` | 剩余冷却时间 |\n| `%home_has_<名称>%` | 检查是否有指定家 |\n\n### 📦 安装方法\n\n1. 下载 `home-plugin-1.0.0.jar`\n2. 放入服务器的 `plugins` 文件夹\n3. 重启服务器或使用 `plugman load Home`\n4. 配置文件在 `plugins/Home/config.yml`\n\n### 💾 数据存储\n\n- 玩家数据保存在 `plugins/Home/playerdata/` 目录\n- 每个玩家一个 YAML 文件，以 UUID 命名\n- 包含家名称、世界、坐标、朝向\n- 自动保存和加载\n\n### 📌 注意事项\n\n- 默认传送冷却 3 秒（可配置）\n- 默认家庭数量无限制（可配置）\n- 跨世界传送默认开启（可配置）\n- 控制台无法使用这些命令\n\n---\n\n## 📝 Version History / 版本历史\n\n**v1.0.0** (2026-05-13)\n- Initial release / 首次发布\n- Basic home system / 基础家系统\n- GUI support / GUI 支持\n- Cooldown system / 冷却系统\n- PlaceholderAPI support / PlaceholderAPI 支持\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 22,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

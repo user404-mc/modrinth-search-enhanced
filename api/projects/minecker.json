@@ -1,0 +1,34 @@
+{
+  "id": "iCqbVdmw",
+  "slug": "minecker",
+  "title": "MineCker",
+  "description": "This plugin allows Docker to be remotely controlled by OP",
+  "body": "# About MineCker 关于MineCker\n\n## 中文 (zh-cn)\n\n### 概述\n本模组为 Minecraft Java 版（NeoForge 加载器、Spigot 服务端、Paper服务端、Purpur服务端）提供了一种在游戏内直接执行 Docker 命令的方式。服务端 OP 只需在聊天栏输入以 `!docker` 开头的消息，即可将后续参数传递给系统的 Docker CLI 并执行，执行结果（标准输出和错误输出）会实时返回给玩家。\n\n### 功能特性\n- **仅限OP**：仅拥有 OP 权限（等级 4）的玩家可以使用，防止未授权执行。\n- **跨平台支持**：自动识别操作系统（Windows / Linux），分别使用 `cmd /c` 或 `bash -c` 执行命令，确保兼容性。\n- **安全防护**：内置危险符号黑名单（如 `|`、`&`、`&&`、`;`、`$`、`` ` `` 等），阻止命令注入攻击。\n- **完整输出**：同时捕获命令的标准输出和错误输出，若执行成功无输出则提示“命令执行成功，无输出内容”。\n- **无额外依赖**：仅需服务端已安装 Docker 环境（Docker Engine 或 Docker Desktop），模组自身不携带 Docker 二进制文件。\n\n### 使用方法\n1. 确保服务端的 `docker` 命令可用（在命令行执行 `docker ps` 能正常返回）。\n2. 将模组放入 `mods` 文件夹，启动服务端。\n3. 以 OP 身份进入游戏，在聊天栏输入：**!docker ps**，即可列出所有运行中的容器。\n4. 支持任何 Docker 子命令，例如：\n- `!docker images`\n- `!docker run hello-world`\n- `!docker stop 容器ID`\n\n### 安全提示\n- **请勿在不可信的环境中使用**：任何 OP 都可以执行任意 Docker 命令，请确保你的 OP 名单完全可信。\n- **危险符号已被拦截**：包含 `|`、`&&` 等符号的命令会被拒绝执行，但这并不能完全避免所有风险（例如 `docker rm -f $(docker ps -aq)` 仍然危险）。建议仅授予可信玩家 OP。\n\n### 环境要求\n- 服务端：Minecraft 1.21.8/1.21.1 + NeoForge 或 Minecraft 1.21.x + Spigot/Paper/Purpur\n- 操作系统：Windows（需安装 Docker Desktop）或 Linux（需安装 Docker Engine 并确保当前用户有执行权限）\n- Docker：任何版本均可，只要 `docker` 命令在系统 PATH 中可用\n\n### 文件自动生成\n模组在服务端首次加载时，会在服务端根目录下创建 `LocalDockerAPI` 文件夹（可用于存放脚本或配置），不干扰原有文件。\n\n### 开源与许可\n本模组采用 [MIT 许可证]。Docker 商标归 Docker, Inc. 所有，模组使用其 Logo 遵循 [Docker 媒体资源使用条款](https://www.docker.com/company/newsroom/media-resources/)\n\n### 其他\n由 DeepSeek 协助开发，使用 MCreator 开发。\n如果你想要在你的模组中使用这个库，非常简单，只需要发送一个消息\"!docker (命令)\"就可以了！\n\n---\n\n## English (en-uk)\n\n### Overview\nThis mod allows Minecraft Java Edition (NeoForge/Spigot/Paper/Purpur) server operators to execute Docker commands directly from in-game chat. By typing a message starting with `!docker`, the rest of the message is passed to the system’s Docker CLI, and the output (both stdout and stderr) is sent back to the player.\n\n### Features\n- **OP Only**: Only players with OP level 4 can use the command.\n- **Cross‑platform**: Automatically detects Windows or Linux and uses `cmd /c` or `bash -c` accordingly.\n- **Security**: Blocks dangerous symbols (`|`, `&`, `&&`, `;`, `$`, `` ` ``, etc.) to prevent command injection.\n- **Full Output**: Captures both standard output and error output. If the command succeeds but produces no output, a friendly message is shown.\n- **No Bundled Docker**: The mod does not ship Docker binaries; it relies on a working `docker` command on the host system.\n\n### Usage\n1. Ensure `docker ps` works from the server’s command line.\n2. Place the mod in the `mods` folder and start the server.\n3. Join as an OP and type in chat:**!docker ps**,this will list all running containers.\n4. Any Docker subcommand works, for example:\n- `!docker images`\n- `!docker run hello-world`\n- `!docker stop <container-id>`\n\n### Security Notice\n- **Use only in trusted environments**: Any OP can run arbitrary Docker commands. Make sure your OP list is fully trusted.\n- **Dangerous symbols are blocked** (e.g., `|`, `&&`), but this does not prevent all malicious commands (e.g., `docker rm -f $(docker ps -aq)` is still dangerous). Only grant OP to players you trust.\n\n### Requirements\n- Server: Minecraft 1.21.8/1.21.1 + NeoForge Or Minecraft 1.21.x + Spigot/Paper/Purpur\n- OS: Windows (with Docker Desktop) or Linux (with Docker Engine, and the server user must have permission to run Docker)\n- Docker: Any version that provides a working `docker` command in system PATH.\n\n### Auto‑created Folder\nOn the first server start, the mod creates a `LocalDockerAPI` folder in the server root directory (can be used for scripts or configurations).\n\n### License & Trademarks\nThis mod is licensed under the [MIT License]. Docker is a trademark of Docker, Inc. The use of the Docker logo in compliance with [Docker’s media resources guidelines](https://www.docker.com/company/newsroom/media-resources/)\n\n### Other\nDeepSeek help me create this mod.Made by MCreator.\nIf you want to use this lib for you mod, it's very easy, you just need to send a message \"!docker (command)\"!",
+  "categories": [
+    "library",
+    "neoforge",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

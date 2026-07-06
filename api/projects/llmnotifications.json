@@ -1,0 +1,26 @@
+{
+  "id": "uhNi3QN6",
+  "slug": "llmnotifications",
+  "title": "LLMNotifications",
+  "description": "Plugin that generates player customized join/quit messages using AI.",
+  "body": "![header](https://cdn.modrinth.com/data/cached_images/110cffd00abeea54b5294f8d4cd24cf599e77ec8.png)\n# Plugin to Create AI Customized Join & Quit Messages\n\nLLMNotifications generates funny, customised join and quit messages for players using AI.\n\nIt can use:\n\n* a **local AI** running on your server (Ollama), or\n* **cloud AI** such as OpenAI or Anthropic.\n\nMessages can include player and server information such as name, world, playtime and more.\n\nExample prompt:\n\n> Write a funny 4-line rhyme to welcome @player to the server. Mention their world (@world).\n\nYou can also store extra information about players using the **player memory** feature, such as hobbies or favourite music, allowing the AI to personalise messages even more.\n\n---\n\n# Quick Start\n\n1. Put the plugin jar in your server `plugins` folder.\n2. Start the server once.\n3. Open `plugins/MinecraftLLMNotifications/config.yml`.\n4. Choose an AI provider and model.\n5. Edit the prompts.\n6. Run `/llmnotifyreload`.\n\n---\n\n# Features\n\n* AI generated messages for:\n\n  * first join\n  * returning join\n  * player quit\n* Multiple prompts per event (chosen randomly)\n* Works with **local AI or cloud AI**\n* Placeholder support for player and server information\n* Safe fallback messages if the AI fails\n* Optional player memory system for personalised messages\n\n---\n\n# Configuration\n\nWhen the plugin first runs it creates:\n\n```\nplugins/MinecraftLLMNotifications/config.yml\n```\n\nIn this file you can:\n\n* choose your AI provider\n* select the model\n* customise prompts\n* configure fallback messages\n* enable or disable player memory\n\nLook through the file for comments explaining each option.\n\n---\n\n# Example Prompts\n\nFirst Join\n\n* Welcome @player to the server with a short funny rhyme.\n\nJoin\n\n* Write a sarcastic welcome back message for @player.\n\nQuit\n\n* Write a dramatic goodbye message for @player leaving @world.\n\nKeeping messages short usually works best for chat.\n\n---\n\n# Player Memory\n\nYou can store extra information about players that the AI can use when generating messages.\n\nExamples:\n\n* favourite music\n* hobbies\n* running jokes on the server\n\nExample:\n\n```\n/llmnotifymemory add Steve loves cheese\n```\n\nThe AI will automatically see this information when generating messages.\n\n---\n\n# Supported Prompt Placeholders\n\nYou can use these in prompts and fallback messages:\n\n* `@player`\n* `@display_name`\n* `@uuid`\n* `@world`\n* `@x`, `@y`, `@z`\n* `@health`\n* `@food`\n* `@level`\n* `@gamemode`\n* `@online_count`\n* `@is_op`\n* `@first_join`\n* `@last_played`\n* `@playtime_hours`\n* `@player_memory`\n\n---\n\n# Tips for Better Prompts\n\n* Keep output short so it fits in chat.\n* Ask for a specific number of lines if needed.\n* Describe the tone you want (funny, sarcastic, dramatic, etc).\n\nExample:\n\n```\nWrite a short medieval themed welcome message for @player in 3 lines.\n```\n\n---\n\n# Commands\n\n| Command                                   | Description                     |\n| ----------------------------------------- | ------------------------------- |\n| `/llmnotifyreload`                        | Reload the plugin configuration |\n| `/llmnotifymemory list <player>`          | Show stored memory for a player |\n| `/llmnotifymemory add <player> <item>`    | Add information about a player  |\n| `/llmnotifymemory remove <player> <item>` | Remove a memory item            |\n| `/llmnotifymemory clear <player>`         | Clear a player's memory         |\n| `/llmnotifymemory clearall`               | Clear memory for all players    |\n\n---\n\n# Ollama Help\n\nIf you choose to use your own locally hosted ollama server (you will need to know how to set this up). There are some Ollama specific settings in the config file that is created when the plugin first loads:\n\n```\n  ollama:\n    base-url: \"http://127.0.0.1:11434\"\n    # there are some great small models designed for humour and sarcasm\n    model: \"MeaTLoTioN/LisaBot\"\n    # Optional: how long Ollama should keep the model loaded (examples: \"5m\", \"30m\", \"1h\", \"0\")\n    keep-alive: \"1h\"\n    # Optional: periodically ping Ollama with a tiny generation request to keep model warm\n    keepalive-ping-enabled: true\n    # Frequency for keepalive ping task when enabled\n    keepalive-ping-interval-seconds: 300\n```\n\nThe keep alives stop your Ollama model from unloading as the initial load time for some models may be slow enough that the plugin times out. You can also increase the `request-timeout-seconds` setting in the config file.\n\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

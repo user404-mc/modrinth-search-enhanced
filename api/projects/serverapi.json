@@ -1,0 +1,33 @@
+{
+  "id": "p6NUQDF0",
+  "slug": "serverapi",
+  "title": "ServerAPI",
+  "description": "ServerAPI is a REST api plugin that provides server info like deaths, kills, player balance, crate keys, tps, and much more on a HTTP server. It provides a secure bridge for external applications to fetch real-time server-info easily.",
+  "body": "![logo](https://cdn.modrinth.com/data/cached_images/185a1ceb900e5c6eedb1f9357ec8138b79d88473.png)\n\n \n **ServerAPI** is a high-performance **REST API plugin** that exposes real-time Minecraft server metrics, player statistics, and third-party plugin data through a secure, token-protected interface.\n\n![preview](https://cdn.modrinth.com/data/cached_images/e2f8df56b004288affcefd830c97b996ab4e3bcf.png)\n\nIt works by running an asynchronous HTTP server on a separate thread, using reflection to safely retrieve deep server information without impacting game performance or TPS.\n\n##  Usage Guide\n1.Installation & Build\nPlace ServerAPI-1.0.jar into your **plugins/folder**.\nStart the server to generate the config.yml\n\n2. API Endpoints & Data Info \n \nStatus (GET /status)\nProvides a general overview of the server:\n\n- online: Server accessibility status.\n- version: Server software version.\n- paper_version: Specific implementation version.\n- players: Sub-object containing online and max counts.\n- tps: Current Ticks Per Second (1-minute average).\n- mspt: Milliseconds Per Tick (Average).\n- uptime: Total server uptime in seconds.\n- worlds: List of loaded world names.\n\n Performance (GET /performance)\n Detailed resource and health metrics:\n\n- tps: Precise 1m, 5m, and 15m averages.\n- mspt: Average tick time (highly accurate).\n- lag_warning: Boolean that flags true if TPS drops below 18.0.\n\n Player Info (GET /player/{name})\nComprehensive data for online and offline players:\n\n- name, uuid, online status.\n- lastSeen: Human-readable time (e.g., \"2 hours ago\").\n- playtime: Formatted total time in hours.\n- kills / deaths: Secure stats (safely returns 0 if data isn't loaded/tracked yet).\n- money: Formatted balance using Vault.\n- alts: IP-matched alt accounts from EssentialsX.\n- crates: List of specific crate types and how many virtual keys the player owns.\n\n Miscellaneous Endpoints\n\n- /misc/balancetop: Top 10 richest players (cached based on config).\n- /misc/statistics: Global Top 10 for kills/deaths (cached).\n- /misc/warps: All available EssentialsX warps.\n- /misc/crates: All registered ExcellentCrates IDs.\n- /misc/projectkorra: All bending abilities grouped by element.\n\n Configuration (config.yml)\n\n- Security: All requests require Authorization: Bearer YOUR_TOKEN.\n- Toggles: Every endpoint and sub-endpoint listed above can be individually disabled.\n- Caching: Heavy lookups like BalTop and Global Stats have configurable cache durations (default 5 mins) to protect your server's TPS.\n- Asynchronous: The API runs on a separate thread pool to ensure zero impact on your Minecraft server performance.\n\n\nAn image that gives an example of a use-case of the plugin:\n\n![use-case](https://cdn.modrinth.com/data/cached_images/6eed14bb262f8b70b2df7abd8772d68ab151314b.png) \n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

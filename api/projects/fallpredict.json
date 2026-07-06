@@ -1,0 +1,22 @@
+{
+  "id": "bv5xp4WN",
+  "slug": "fallpredict",
+  "title": "FallPredict",
+  "description": "A tiny HUD that predicts the fall damage of the drop directly below your feet, before you step off.",
+  "body": "**FallPredict** answers one question every time you're standing on a ledge: *\"Would I die if I jumped from here?\"* — without making you count blocks or do mental math.\n\n### What it does\n- Every client tick it casts a ray **straight down from your feet** to the first solid block or fluid surface below.\n- It converts that drop height into the **exact vanilla fall damage** you'd take and shows it in the **top-left** of your HUD: e.g. *\"Fall: 12b -> 4.5 hrt\"*.\n- The readout is **color-coded**: yellow = survivable, orange = half your health or more, red **\"LETHAL\"** = the fall would kill you at your **current** health.\n- Over a bottomless drop it reads *\"Fall: void -> LETHAL\"*.\n- The badge only appears when there's an actual drop below you (more than the vanilla 3-block safe height), so it stays out of your way on flat ground.\n\n### Controls\n- **J** — toggle the readout on/off. An action-bar message confirms the state.\n\n### How it's built\n- Uses a downward `RaycastContext` (collider + fluid surface) from the player's feet — landing in water reads as a safe, low number.\n- Damage uses the real vanilla formula `ceil(fallDistance - 3)` in health points, so the prediction matches what the game would actually deal.\n- Lethality compares predicted damage against your **live** health, not max health.\n\n### Notes\n- Pure client-side — install on your client only. Works on any Fabric server, fully vanilla compatible.\n- Shows the **base** vanilla fall damage; it does not subtract Feather Falling, so treat it as a worst-case estimate for enchanted boots.\n- The badge respects F1 (hide HUD) and hides while a menu is open.\n- No config files, no dependencies beyond Fabric API.\n\n### Compatibility\n**Minecraft 1.21.8, 1.21.9, 1.21.10, 1.21.11** — Fabric Loader 0.16+. One JAR covers all four. Drop into your `mods/` folder alongside Fabric API.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 25,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

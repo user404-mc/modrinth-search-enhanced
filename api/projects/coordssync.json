@@ -1,0 +1,40 @@
+{
+  "id": "CD8EQIQr",
+  "slug": "coordssync",
+  "title": "CoordsSync",
+  "description": "A lightweight, high-performance Spigot/Bukkit plugin that synchronizes player coordinates across multiple Minecraft servers in real-time using Redis.",
+  "body": "# CoordsSync\n\n**Multi-server player coordinate synchronization for Minecraft Spigot/Bukkit servers**\n\n## Overview\n\nCoordsSync is a lightweight plugin that keeps player coordinates synchronized across multiple Spigot/Bukkit servers using Redis. With automatic MySQL fallback, your player data is never lost even if Redis goes down.\n\n## Features\n\n✨ **Real-time Synchronization** - Player coordinates instantly synced across servers via Redis  \n📍 **Teleport on Join** - Auto-teleport players to their last location  \n💾 **Automatic Backup** - MySQL fallback when Redis is unavailable  \n🔔 **Sync Notifications** - Optional chat alerts for coordinate updates  \n⚙️ **Easy Configuration** - Simple YAML setup for Redis and MySQL  \n🛠️ **Admin Commands** - Built-in reload and status commands  \n🔄 **Async Operations** - Non-blocking database calls prevent server lag  \n\n## Requirements\n\n- **Minecraft**: 1.21+\n- **Server Software**: Paper, Spigot, CraftBukkit, or compatible\n- **Java**: 21 or higher\n- **Redis**: 5.0+ (primary database)\n- **MySQL**: 5.7+ (optional fallback, recommended)\n\n## Quick Setup\n\n### 1. Download & Install\nPlace the JAR in your `plugins/` folder and restart the server.\n\n### 2. Configure Redis\nEdit `plugins/CoordsSync/config.yml`:\n```yaml\nredis:\n  host: localhost\n  port: 6379\n  password: \"\"\n```\n\n### 3. Configure MySQL (Optional but Recommended)\n```yaml\ndatabase:\n  type: mysql\n  enabled: true\n  host: localhost\n  port: 3306\n  database: coordssync\n  username: root\n  password: \"\"\n  \n  pool:\n    max-connections: 10\n    min-idle: 2\n    connection-timeout: 5000\n```\n\n### 4. Enable Features\n```yaml\nfeatures:\n  teleport-on-join: true\n  periodic-save: true\n  sync-alerts: true\n  use-mysql-fallback: true  # Enable MySQL backup\n```\n\n### 5. Restart Server\n\n## Commands\n\n- `/coordssync reload` - Reload configuration\n- `/coordssync status` - View database status\n\n**Permission**: `coordssync.admin` (OP only by default)\n\n## How It Works\n\n1. **Primary**: Saves to Redis (fast, real-time sync)\n2. **Fallback**: Automatically uses MySQL if Redis fails\n3. **Redundancy**: Data saved to both databases when available\n4. **Recovery**: Retrieves from MySQL if Redis is unavailable\n\n## Configuration\n\n### Redis Section\n- `host` - Redis server IP/hostname\n- `port` - Redis port (default: 6379)\n- `password` - Redis authentication (leave empty if none)\n\n### MySQL Section\n- `host` - MySQL server IP/hostname\n- `port` - MySQL port (default: 3306)\n- `database` - Database name (will be created if needed)\n- `username` - MySQL user\n- `password` - MySQL password\n- `pool.max-connections` - Connection pool size\n- `pool.min-idle` - Minimum idle connections\n- `pool.connection-timeout` - Connection timeout in ms\n\n### Features\n- `teleport-on-join` - Teleport players to saved location\n- `periodic-save` - Auto-save every 30 seconds\n- `sync-alerts` - Show sync notifications\n- `use-mysql-fallback` - Enable MySQL fallback\n\n## Multi-Server Network Example\n\n**Server 1 (Survival 1):**\n```yaml\nserver-id: suvival-1\nredis:\n  host: 192.168.1.100\ndatabase:\n  host: 192.168.1.100\n```\n\n**Server 2 (Survival 2):**\n```yaml\nserver-id: survival-2\nredis:\n  host: 192.168.1.100\ndatabase:\n  host: 192.168.1.100\n```\n\nBoth servers connect to the same Redis and MySQL, coordinates are shared automatically.\n\n## Performance\n\n- ⚡ Async operations prevent server lag\n- 🔄 Connection pooling for efficient resource use\n- 📊 Configurable save intervals\n- 💨 Throttled move events (5 second minimum)\n\n## Troubleshooting\n\n**Redis connection fails**\n- Check Redis is running: `redis-cli ping`\n- Verify host/port in config\n- Check firewall allows Redis port\n\n**MySQL connection fails**\n- Verify MySQL is running\n- Check credentials in config\n- Ensure database user has proper permissions\n- Run schema.sql to create tables\n\n**Coordinates not syncing**\n- Check `/coordssync status`\n- Verify at least one database is connected\n- Check server logs for errors\n- Reload with `/coordssync reload`\n\n## Support\n\nIssues, suggestions, or questions? Visit the [GitHub repository](https://github.com/exponentdev).\n\n## Changelog\n\n**v1.1.0** - MySQL Fallback Release\n- Added MySQL database as fallback to Redis\n- HikariCP connection pooling\n- Automatic fallback on Redis failure\n- Database status monitoring\n\n**v1.0.0** - Initial Release\n- Redis coordinate synchronization\n- Teleport on join\n- Admin commands\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

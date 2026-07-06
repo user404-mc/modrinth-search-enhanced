@@ -1,0 +1,30 @@
+{
+  "id": "uIzWquvo",
+  "slug": "dialogueseconomy-plugin",
+  "title": "DialoguesEconomy Plugin",
+  "description": "The Ultimate RPG Dialogue & Economy Integration Plugin",
+  "body": "\n<p align=\"center\">\n  <b>RPG Dialogue & Economy Plugin</b><br>\n  <i>ระบบบทสนทนา + เศรษฐกิจสำหรับ Minecraft RPG</i>\n</p>\n\n---\n\n## 🇬🇧 English Description\n\n**DialoguesEconomy** is a powerful system designed for Minecraft 1.21+ servers.\n\nWhether you're creating an RPG world or just want interactive NPCs, this plugin manages text, choices, items, and money seamlessly.\n\n### ✨ Key Features\n* **Interactive Dialogues:** Chat, ActionBar, and Title support.\n* **Smart Choices:** Clickable options with HoverEvents (supports multi-line).\n* **Economy Integration:** Check, give, or take money using Vault.\n* **Item Management:** Give or remove items during conversations.\n* **Fully Customizable:** Supports **PlaceholderAPI** (e.g., `%player_name%`).\n* **Command Actions:** Run console commands based on player choices.\n\n### 📦 Dependencies\n* **Java:** 21+\n* **Vault:** 1.7.6+\n* **PlaceholderAPI:** 2.11.5+\n\n---\n\n## 🇹🇭 คำอธิบายภาษาไทย\n<details>\n\n**DialoguesEconomy** คือระบบ Dialogue สำหรับ Minecraft 1.21+ ที่ผสานระบบ **Economy (Vault)** ได้อย่างสมบูรณ์แบบ  \nเหมาะทั้งเซิร์ฟเวอร์ RPG และ NPC แบบเลือกตอบ\n\n### ✨ คุณสมบัติเด่น\n* แสดงบทสนทนาได้หลายรูปแบบ: Chat, ActionBar, Title  \n* ตัวเลือกคลิกได้ พร้อม Hover ข้อความ  \n* เชื่อมต่อ Vault: ตรวจสอบ/ให้/ยึดเงิน  \n* จัดการไอเทมระหว่างคุย  \n* รองรับ PlaceholderAPI  \n* รันคำสั่ง Console ตามตัวเลือก\n\n</details>\n\n---\n\n## 🛠️ Installation / การติดตั้ง\n1. Put the `.jar` in your `plugins` folder  \n2. Install **Vault** และ **PlaceholderAPI**  \n3. Restart server  \n4. Done!\n\n---\n\n## 💻 Commands / คำสั่ง\n\n| Command | Description (EN) | คำอธิบาย (TH) |\n| :--- | :--- | :--- |\n| `/dia start <player> <file>` | Start a dialogue | เริ่มบทสนทนา |\n| `/dia click <player> <file> <section>` | Internal click event | ใช้ภายใน |\n| `/dia stop <player>` | Stop dialogue | หยุดบทสนทนา |\n| `/dia reload` | Reload configs | รีโหลดการตั้งค่า |\n| `/dia create <file>` | Create dialogue file | สร้างไฟล์ Dialogue |\n\n> Aliases: `/dialogue`, `/dia`\n\n---\n\n## 📝 Example Configuration\n\n<details>\n<summary><b>📄 Click to view example (ตัวอย่างไฟล์)</b></summary>\n\n```yaml\n# first_encounter.yml\nstart:\n  lines:\n    - type: text\n      line: \"[&aJenriur&f] : &fHello! My name is Jenriur.\"\n      delay: 60\n      goto: \"introduction\"\n\nintroduction:\n  lines:\n    - type: text\n      line: \"[&aJenriur&f] : &fYou must be &a%player_name%&f, right?\"\n      delay: 60\n    - type: text\n      line: \"[&aJenriur&f] : &fWelcome to &eNonKungSMP&f!\"\n      delay: 70\n      goto: \"sword_offer\"\n\nsword_offer:\n  lines:\n    - type: text\n      line: \"Take this sword, you’ll need it.\"\n      delay: 60\n    - type: choice\n      line: \"&6Choose an option:\"\n      choices:\n        - \"1. Accept | receive_sword\"\n        - \"2. Reject | reject_sword\"\n\nreceive_sword:\n  lines:\n    - type: text\n      line: \"&aJenriur &f gives you a wooden sword.\"\n      delay: 60\n    - type: give_item\n      item: WOODEN_SWORD\n      amount: 1\n    - type: text\n      line: \"Good luck!\"\n      delay: 60\n      goto: \"warp_player\"\n\nwarp_player:\n  lines:\n    - type: console_command\n      command: \"mvtp %player_name% worlds\"\n    - type: end\ncentertails>\n</details>\n---\n\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "oDv9gwh3",
+  "slug": "box-outlines-api",
+  "title": "Box Outlines Api",
+  "description": "Controll the client-tweaks' box outlines with server-side commands",
+  "body": "This is an api for one of my other mod [**client-tweaks**](https://modrinth.com/mod/fancy-some-client-tweaks).\n\nIt allows the server to summon box outlines from client-tweaks for a tick to those with both mods installed.\n\n# Usage\n## Commands\n\n```\n/boxoutline 0.0 0.0 0.0 1.0 1.0 1.0 red\n```\nthis draws a box for a single tick from 0 0 0 to 1 1 1. Be aware that box outlines api, unlike client tweaks, uses decimals for the coordinates.\n## Java Code\nfirst publish this mod's source code to your local maven\n\n```\n# clone the repo\ngit clone git@github.com:Spit365/box-outlines-api-1.21.6.git\n# publish to maven\ncd box-outlines-api-1.21.6\n./gradlew publishToMavenLocal\n```\n\nthen include Box Outlines Api in your mod\n\nbuild.gradle:\n\n```\nrepositories {\n  mavenLocal()\n}\n\ndependencies {\n  modImplementation(\"net.spit365:box-outlines-api:1.0.0\")\n}\n```\nfabric.mod.json:\n\n```\n\"depends\": {\n  \"client-tweaks\": \"*\"\n}\n```\n\nFinally, you can use the following methods in your mod:\n\n```\nimport net.spit365.boa.BoxOutline;\nimport net.minecraft.util.math.Box;\nimport java.util.Collection;\n\nBoxOutline.add(Box box, int color /* argb */)\nBoxOutline.addAll(Collection<Box> box, int color /* argb */)\n \n```\nThis acts the same way, first specify a box, and then a color in hexadecimal format (0xFFFF0000 -> red, full opacity). Again, this will persist a single tick, so for continuous rendering put it in a tick callback\n\n# Building\nto build this mod from scratch, first clone both this mod's and client-tweaks' repositories. Then, in the directory of client-tweaks run\n\n```\n./gradlew publishToMavenLocal\n```\nThis will publish it to your local maven. Then run\n\n```\n./gradlew build\n```\nin the box outlines api directory\n\nWhy this extra step before building? Box Outlines Api needs the source code of client-tweaks available to compile. I did not set up a global maven, hosting client-tweaks, so you need to do it locally.\n\n# Other\n\nInstall this mod, if you find any of the above features intriguing.\n\nIf you dont know how to install mods / the fabric loader / anithing else fabric modding related visit this amazing page from the official [fabric wiki](https://wiki.fabricmc.net/player:tutorials:start#installing_fabric_loader).\n\nIf you have any issues, wishes, etc, go to the source code on github and open up an issue.\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 57,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

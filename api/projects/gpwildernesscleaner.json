@@ -1,0 +1,33 @@
+{
+  "id": "7TCP1NxC",
+  "slug": "gpwildernesscleaner",
+  "title": "GPWildernessCleaner",
+  "description": "Scheduled wilderness entity cleanup for GriefPrevention servers — never touches claimed land",
+  "body": "![GPWCImage](https://cdn.modrinth.com/data/cached_images/62dc7247083244eabc74f5cb2a07542f39002266.jpeg)\n\nGPWildernessCleaner reduces lag from entity buildup on survival servers that use GriefPrevention. It runs on a timer and removes selected entity types only outside GP claims (wilderness). Anything inside a player or admin claim is left alone.\n\nUnlike generic clear-lag plugins, this plugin is built around claim boundaries: it uses GriefPrevention’s claim data so farms, bases, villagers, and builds inside claims stay safe while wilderness areas are trimmed.\n\n## Why use it?\n- Large wilderness farms and mob caps can push servers to thousands of passive mobs and dropped items.\n- Full-world entity clears are risky on GP servers — they can wipe animals in unclaimed areas players rely on, or conflict with claim logic.\n- GPWildernessCleaner targets wilderness only, with configurable filters and per-chunk caps so land and aquatic mobs don’t disappear entirely (helping natural respawn feel better).\n\n### Removed in wilderness (when enabled):\n\n- Dropped items\n- Hostile mobs\n- Land passive mobs (with optional per-chunk cap)\n- Aquatic mobs — fish, squid, dolphins, etc. (with optional per-chunk cap)\n- Projectiles, XP orbs, area effect clouds, falling blocks, primed TNT\n- Extra entity types via config list\n\n### Never removed (defaults):\n\n- Players\n- Villagers and wandering traders\n- Tamed animals\n- Named or scoreboard-tagged mobs\n- Armor stands, item frames, paintings\n- Anything inside a GriefPrevention claim (when claim respect is enabled)\n\nVehicles are off by default; you can enable them if you want.\n\n### Per-chunk caps (passive & aquatic)\nInstead of deleting every passive or fish in a chunk, you can keep a small number per wilderness chunk and only remove the excess. That cuts lag while leaving some animals for spawning. Set caps to 0 for full wipe in that category (older, harsher behavior).\n\n### Scheduling & announcements\n\n- Automatic runs every N minutes (default: 10)\n- Optional countdown broadcasts before each run\n- Optional summary after auto-runs (removed count, claim-skipped count, kept-by-cap count)\n- Optional run on server startup\n\n### Commands and Description\n\n- /gpwclean or /gpwclean status\n> Show enabled state, interval, time until next run, chunk caps\n- /gpwclean run\n> Run cleanup immediately\n- /gpwclean reload\n> Reload config\n\nPermission: gpwildernesscleaner.admin (default: OP)\n\n### Safety\nIf GriefPrevention is required by config but not loaded, cleanup does not run — avoids clearing the whole world when claim detection isn’t available.\n\nPlugMan-friendly: scheduled tasks are cancelled on disable so reloads don’t stack duplicate timers.\n\n### Requirements\nServer: Paper (or compatible fork) 1.21+ (built against 1.21.11 API; Java 21)\nSoft dependency: GriefPrevention — strongly recommended; claim checks depend on it\n\n### Installation\n- Drop <latest version>.jar in your server’s plugins/ folder.\n- Ensure GriefPrevention is installed.\n- Start or restart the server.\n- Edit plugins/GPWildernessCleaner/config.yml as needed.\n- Use /gpwclean reload after config changes.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

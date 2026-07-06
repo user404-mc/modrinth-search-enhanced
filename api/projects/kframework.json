@@ -1,0 +1,29 @@
+{
+  "id": "tEQ06Fzn",
+  "slug": "kframework",
+  "title": "KFramework",
+  "description": "Lightweight Kotlin framework for Paper plugin development",
+  "body": "# KotlinFramework\n\nLightweight Kotlin framework for Paper plugin development. Less boilerplate, more plugin.\n\nI built this because I kept copy-pasting the same `companion object`, `instance` setup, and `registerEvents` into every single plugin. It's not trying to replace anything, it just removes the repetitive parts.\n\n---\n\n## Features\n\n- Base class (`KotlinFramework`) with automatic `instance`, startup logging, and safe error handling\n- Inline command registration: no separate class for simple commands\n- Inline event listening: no `@EventHandler`, no separate Listener class\n- `KotlinCommand` base class for commands that need their own file\n- Scheduler helpers: `runLater`, `runTimer`, `runAsync`\n- Config helpers: `saveLocation`, `getLocation`, `config`, `setConfig`\n- Message helpers: `msg`, `broadcastMsg`, `colorize` with `&` color support\n\n---\n\n## Installation\n\nAdd JitPack to your repositories and the framework as a dependency:\n\n```kotlin\nrepositories {\n    maven(\"https://jitpack.io\")\n}\n\ndependencies {\n    implementation(\"com.github.kolerz:kframework:1.0.0\")\n}\n```\n\n> ⚠️ Use `shadowJar` to bundle the framework into your plugin jar, otherwise it won't load.\n\n---\n\n## Quick example\n\n```kotlin\nclass MyPlugin : KotlinFramework() {\n\n    override fun onStart() {\n\n        registerCommand(\"heal\", playerOnly = true) {\n            player!!.health = 20.0\n            reply(\"&aHealed!\")\n        }\n\n        registerCommand(\"broadcast\", permission = \"myplugin.broadcast\") {\n            requireArgs(1, \"/broadcast <message>\") {\n                broadcastMsg(\"&8[&cBroadcast&8] &f${args.joinToString(\" \")}\")\n            }\n        }\n\n        registerListener {\n            on<PlayerJoinEvent> {\n                player.msg(\"&aWelcome, &f${player.name}&a!\")\n            }\n        }\n\n        runTimer(0L, 20L * 60L * 5L) {\n            broadcastMsg(\"&eRemember to vote!\")\n        }\n    }\n}\n```\n\n---\n\n## Requirements\n\n- Paper 1.21+\n- Java 21+\n- Kotlin 2.x\n\n---\n\n## Source\n\n[github.com/kolerz/kframework](https://github.com/kolerz/kframework)\n\n---\n\n## License\n\nMIT",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 14,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

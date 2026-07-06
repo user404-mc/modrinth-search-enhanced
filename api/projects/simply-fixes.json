@@ -1,0 +1,18 @@
+{
+  "id": "iLE5SFD9",
+  "slug": "simply-fixes",
+  "title": "Simply Fixes",
+  "description": "A Fabric mod designed to patch a cooldown exploit in the Simply Swords mod",
+  "body": "# Simply Fixes\n\nA Fabric mod designed to patch a cooldown exploit in the [Simply Swords](https://www.curseforge.com/minecraft/mc-mods/simply-swords) mod.\n\n## Overview\n\nIn the original Simply Swords mod, certain weapon abilities had cooldowns that could be bypassed if the player swapped hotbar slots or otherwise interrupted the ability mid-use. \n\nThis mod implements robust, server-side fixes to ensure that cooldowns are always applied and mobility states are cleaned up, regardless of how the ability ended.\n\n## Fixed Weapons\n\nThis mod currently provides fixes for:\n\n- **Thunderbrand**: Fixes dash cooldown bypass and ensures velocity is reset on completion/interruption.\n- **Arcanethyst**: Prevents cooldown bypass and ensures properly timed ability termination.\n- **Icewhisper**: Ensures the ice-related ability triggers its cooldown even if the item is swapped out.\n\n## How it Works\n\nThe mod uses **Mixins** to inject logic into the weapon item classes:\n\n1.  **Usage Tracking**: When an ability starts (`usageTick`), an NBT flag (`simplyswords_fix.active`) is applied to the item stack.\n2.  **Inventory Monitoring**: The `inventoryTick` method is used to detect if an item with an active flag is no longer being used by the player (e.g., due to a hotbar swap).\n3.  **Forced Cleanup**: If an \"abandoned\" ability is detected, the mod manually applies the weapon's cooldown and performs the necessary cleanup (like resetting velocity).\n4.  **Mainhand Guard Bypass**: It overrides the default `onStoppedUsing` check that often limits cleanup to the main hand, ensuring the fix works even during rapid transitions.\n\n## Requirements\n\n- [Fabric Loader](https://fabricmc.net/)\n- [Simply Swords](https://www.curseforge.com/minecraft/mc-mods/simply-swords) (and its dependencies)\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 38,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "24Q1FlAk",
+  "slug": "mkn-server-management-on-discord",
+  "title": "Mkn Server Management On Discord",
+  "description": "A Velocity plugin that allows you to manage Minecraft servers via Discord",
+  "body": "### --日本語\n\nこのプラグインはバックエンドサーバーをディスコードで管理とインゲームでのQOLを向上させられるプラグインです。\n\n## 主な機能\n1. ディスコードとゲーム内からバックエンドサーバーをコマンドで起動させる機能。\n1. ディスコードからゲーム内コマンドを実行できる機能。\n1. ディスコードから専用コマンドの/whitelist /stop を実行できる機能\n1. 各サーバーとディスコード間でのチャット同期機能。\n1. /<サーバー名>　でサーバー間を移動できる機能。\n1. グローバルタブリスト\n\n\n### コンフィグファイルの説明\n\nディスコードからインゲームコマンドを実行するには、Minecraft標準機能のrconを使用しています。\nrconのポートは必ず”閉じて”ください。　\nrconを使うには**server.properties**で有効にする必要があります。\n\n1. enable-rcon=false をtrueに。\n2. rcon.password 難攻不落なパスワードを指定してください。\n3. rcon.port=25575  他と被らないポートを指定してください。必ずポートは閉じてください。\n\n```\ndiscord {\n    token=\"YOUR_BOT_TOKEN_HERE\" 　　　　　　　//VelocityのメインBOT。チャットの同期もこのBOTが担います。\n    channel-id=\"000000000000000000\" 　　　　　//チャットを同期したいチャンネルIDを入力してください。\n}\nstatus-check {\n    interval=5 //下記BOTの更新頻度\n}\nstatus-bots=[  \n    {\n        server-name=lobby 　　　　　　　　　　　 //サーバーの名前を入力してください。プラグインはこのサーバー名を参照しています。\n        token=\"BOT_TOKEN\"　　　　　　　　　　　　//このBOTはサーバーのステータスと、バックエンドサーバーのコマンド入力用です。\n        start-bat-path=\"C:\\\\path\\\\to\\\\start.bat\" //サーバーのbatファイルのディレクトリを指定してください。パスの区切りには必ず\\\\ を使用してください。\n        rcon-address=\"127.0.0.1\" 　　　　　　　　//サーバ機のアドレスを入力してください。すべて同じローカルマシンならデフォルトのままでOKです。\n        rcon-port=25575　　　　　　　　　　　　　 //他のポートと被らないアドレスを入力してください。\n        rcon-password=password 　　　　　　　　　//パスワードを入力してください。\n    }\n]\n```\n### BOTの導入方法\n下記URLより作成してください。\nBOTタブにある \"Server Members Intent\" と \"Message Content Intent\"　を有効にしてOAuth2から \"bot\" \"applications.commands\" \"管理者\"　を有効にしてご自身のサーバーにBOTを招待してください。\n\nhttps://discord.com/developers/applications\n\n### コマンドの使い方\n\nディスコード\n/を入力して使いたい機能があるBOTのアイコンを選択し、実行したいコマンドを選択してください。\n\nインゲーム\n/start-server <servername> でサーバーを起動できます。\n\nこのMODを作成するのに膨大な時間をかけてきました、このMODを気に入ってもらえたなら支援してもらえると助かります。\nhttps://www.paypal.com/paypalme/MikankanTPF2\n\n\n### --English\n\nThis plugin allows you to manage your backend server via Discord and improves in-game quality of life.\n\n## Main Features\n1. Ability to start the backend server via commands from both Discord and within the game.\n1. Ability to execute in-game commands from Discord.\n1. A feature that allows you to execute the dedicated commands “/whitelist” and “/stop” from Discord\n1. Chat synchronization between each server and Discord.\n1. Ability to switch between servers using `/<server name>`.\n1. Global Tab List\n\n### Configuration File Explanation\n\nTo execute in-game commands from Discord, this plugin uses Minecraft’s standard rcon feature.\nPlease ensure the rcon port is “closed.”\nTo use rcon, you must enable it in **server.properties**.\n\n1. Change `enable-rcon=false` to `true`.\n2. `rcon.password`: Specify a strong, unbreakable password.\n3. `rcon.port=25575`: Specify a port that does not conflict with others. Be sure to close the port.\n\n```\ndiscord {\n    token=\"YOUR_BOT_TOKEN_HERE\"　　　　　　　//Velocity's main bot. This bot also handles chat synchronization.\n    channel-id=“000000000000000000”　　　　　//Enter the channel ID for which you want to synchronize chat.\n}\nstatus-check {\n    interval=5 // Update frequency for the bot below\n}\nstatus-bots=[  \n    {\n        server-name=lobby 　　　　　　　　　　　 // Enter the server name. The plugin references this server name.\n        token=\"BOT_TOKEN\"　　　　　　　　　　　　// This bot is used for server status and command input to the backend server.\n        start-bat-path=“C:\\\\path\\\\to\\\\start.bat” // Specify the directory of the server's batch file. Be sure to use \\\\ as the path separator.\n        rcon-address=“127.0.0.1”　　　　　　　　//Enter the server machine's address. If everything is on the same local machine, the default setting is fine.\n        rcon-port=25575　　　　　　　　　　　　　 //Enter an address that does not conflict with other ports.\n        rcon-password=password 　　　　　　　　　//Enter the password.\n    }\n]\n``` \n### How to Set Up the Bot\nPlease create the bot using the URL below.\nEnable “Server Members Intent” and “Message Content Intent” in the ‘Bots’ tab, then enable “bot applications.commands” under “Administrators” in OAuth2 and invite the bot to your server.\n\nhttps://discord.com/developers/applications\n\n### How to Use Commands\n\nDiscord\nType `/`, select the icon of the bot with the feature you want to use, and then select the command you want to execute.\n\nIn-Game\nYou can start a server with `/start-server <servername>`.\n\nI’ve spent a tremendous amount of time creating this mod, so if you like it, please consider supporting me.\nhttps://www.paypal.com/paypalme/MikankanTPF2\n",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "9iVdgeRi",
+  "slug": "regionmusic",
+  "title": "RegionMusic",
+  "description": "A Paper/Purpur plugin that plays configured music when a player enters WorldGuard regions (regions are typically created/managed using WorldEdit + WorldGuard).",
+  "body": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/O_vyFYO9Dw0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# RegionMusic\n\nA Paper/Purpur plugin that plays configured music when a player enters WorldGuard regions (regions are typically created/managed using WorldEdit + WorldGuard).\n\n## Requirements\n\n- Server: Paper/Purpur (`api-version` in `plugin.yml`: `1.21`)\n- Java: 21\n- WorldGuard: 7.x (the plugin declares `depend: [WorldGuard]`)\n- A client resource pack (if you use custom sounds like `namespace:key`)\n\n## Installation\n\n1. Put the plugin jar into `plugins/`.\n2. Make sure WorldGuard is installed and loads before RegionMusic.\n3. Start the server once, edit `plugins/RegionMusic/config.yml`, then restart the server.\n\n## Region Selection (Important)\n\nIf multiple WorldGuard regions apply at the player's location, the plugin selects the **best** region like this:\n\n1. Only regions that have a config section `regions.<regionId>` in `config.yml` are considered.\n2. The region with the highest WorldGuard `priority` wins.\n3. If priorities are equal, the choice is stabilized by region `id` (alphabetical order).\n\nMusic is played for that selected region.\n\n## Configuration\n\nFile: `plugins/RegionMusic/config.yml`\n\nMinimal setup (1 track per region):\n\n```yml\nregions:\n  spawn:\n    sound: \"msr:spawn_theme\"\n    category: \"MUSIC\"\n    volume: 1.0\n    pitch: 1.0\n    stopOnExit: true\n```\n\n### Multiple Tracks (Shuffled, No Repeats Until Exhausted)\n\nYou can define a playlist via `sounds:`. Tracks are played in a shuffled order **without repeats** until the list is exhausted, then the list is reshuffled.\n\n```yml\nregions:\n  spawn:\n    sounds:\n      - \"msr:spawn_theme\"\n      - \"msr:hscene2\"\n      - \"msr:hscene3\"\n    category: \"MUSIC\"\n    volume: 1.0\n    pitch: 1.0\n    stopOnExit: true\n```\n\n### Continuous Playback (continuous)\n\nPaper/Spigot does not provide a “sound finished” event, so to automatically play the next track you must configure durations.\n\n```yml\nregions:\n  spawn:\n    sounds:\n      - \"msr:spawn_theme\"\n      - \"msr:hscene2\"\n    category: \"MUSIC\"\n\n    continuous: true\n    durations:\n      \"msr:spawn_theme\": 2400 # ticks (20 ticks = 1 second)\n      \"msr:hscene2\": 1360\n    gapTicks: 0\n    stopPreviousOnNext: true\n```\n\nSupported duration options:\n\n- `durationTicks`: default duration for any track in this region (ticks).\n- `durationSeconds`: same, but in seconds.\n- `durations:`: a map `soundKey -> ticks` (overrides the default per track).\n\nIf durations are inaccurate:\n\n- Duration **longer** than the real track: you will get silence until the next track starts.\n- Duration **shorter** than the real track: the next track starts early; with `stopPreviousOnNext: true` the previous track will be stopped (audible cut).\n\n### Repeat A Track N Times (repeats)\n\nYou can force a given track to repeat N times consecutively before advancing to the next one:\n\n```yml\nregions:\n  spawn:\n    sounds:\n      - \"msr:spawn_theme\"\n      - \"msr:hscene2\"\n    continuous: true\n    durations:\n      \"msr:spawn_theme\": 2400\n      \"msr:hscene2\": 1360\n    repeats:\n      \"msr:hscene2\": 3\n```\n\nValues `< 1` are treated as `1`.\n\n### Stop Vanilla Music On Enter\n\nTo prevent region music from overlapping vanilla background music, you can stop the `MUSIC` category on enter:\n\n```yml\nregions:\n  spawn:\n    stopVanillaMusicOnEnter: true\n```\n\nNotes:\n\n- Vanilla background music is client-side; the plugin does a best-effort stop of `SoundCategory.MUSIC`.\n- The region track is started on the next tick after stopping `MUSIC` to avoid rare client packet-order races.\n\n### Full Per-Region Options\n\n- `sound: string` - a single track (legacy).\n- `sounds: [string]` - a list of tracks (recommended).\n- `category: string` - Bukkit category (`MUSIC`, `RECORDS`, ...), default: `MUSIC`.\n- `volume: number` - default: `1.0`.\n- `pitch: number` - default: `1.0`.\n- `stopOnExit: boolean` - stop the currently playing track when leaving all configured regions, default: `true`.\n- `stopVanillaMusicOnEnter: boolean` - stop `SoundCategory.MUSIC` when entering, default: `true`.\n- `continuous: boolean` - keep playing the playlist while the player stays in the region, default: `false`.\n- `durationTicks: int` / `durationSeconds: number` - default duration for `continuous`.\n- `durations: { \"<soundKey>\": <ticks> }` - per-track durations (ticks).\n- `gapTicks: int` - silence gap between tracks, default: `0`.\n- `stopPreviousOnNext: boolean` - stop the previous track right before starting the next one, default: `true`.\n- `repeats: { \"<soundKey>\": <count> }` - repeat a specific track N times consecutively.\n\n## Resource Pack (Custom Sounds)\n\nIf you use custom sounds like `msr:spawn_theme`, clients must have a resource pack enabled that contains:\n\n- `assets/msr/sounds.json` (or another namespace instead of `msr`)\n- `assets/msr/sounds/<name>.ogg`\n\nImportant:\n\n- `.ogg` must be **Ogg Vorbis** (not an MP3 renamed to `.ogg`).\n- `soundKey` must be **lowercase** (Minecraft `ResourceLocation` rule).\n\nQuick client-side test:\n\n```\n/playsound msr:spawn_theme music @s ~ ~ ~ 1 1\n```\n\nIf you get silence or an “unknown soundEvent” error, the issue is in the resource pack / key, not the plugin.",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "management",
+    "minigame",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 49,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "ofgN4Prx",
+  "slug": "26.1+-dolphin-item-throwing-fix",
+  "title": "26.1+ Dolphin Item Throwing Fix",
+  "description": "Fixes a silent regression in 26.1 where dolphin item throughput dropped from ~4M to ~140k items/hour, restoring and exceeding 1.21.11 behavior (~4.6M items/hour).",
+  "body": "When updating from 1.21.x to 26.1, dolphins picking up and throwing items dropped from ~4,000,000 items/hour to ~140,000 items/hour — a 28x reduction. This change was not listed in any patch notes or Mojang changelogs, making it a silent regression that breaks any contraption relying on dolphin item throughput. In 26.1, the dolphin's PlayWithItemsGoal is throttled by the goal selector system — goals re-evaluate every 2 ticks, require full stop/restart cycles between items, and are blocked by the isInWater() check from a changed fluid interaction system. The result is item pickup happening in slow batches instead of a continuous stream. This mod bypasses the goal system entirely and injects directly into Dolphin.tick(), handling item pickup and throw every server tick. Vanilla behavior is preserved — items are picked up and thrown identically to before, just at full speed; the despawn timer refresh mechanic is also preserved.\n\n\nNotes:\nServer-side only — no client installation required\nVanilla item despawn behavior is preserved — thrown items receive a fresh despawn timer\nNo item duplication — pickup discards the original entity, throw creates a new one (same as vanilla mechanic)\nOnly affects dolphins — no other mobs are modified\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "mobs",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

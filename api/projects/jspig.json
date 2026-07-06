@@ -1,0 +1,27 @@
+{
+  "id": "XYXwoJF4",
+  "slug": "jspig",
+  "title": "JsPig",
+  "description": "JsPig provides complete access to the Bukkit API via GraalVM, allowing developers to efficiently create and manage Minecraft plugins using JavaScript's flexibility and simplicity.",
+  "body": "<div style=\"text-align:center;\"><img height=\"320\" width=\"200\" src=\"https://img.shields.io/badge/JsPig-package?style=flat-square&link=JsPig\"/></div>\n\n# Description\n\nJsPig provides complete access to the Bukkit API via GraalVM, allowing developers to efficiently create and manage Minecraft plugins using JavaScript's flexibility and simplicity.\n\n# Getting Started\n\n> Before you start, please use `GraalVM JDK 21` as your development environment and the environment for running Java programs.\n\n1.  Place the plugin in the `plugins` folder of your `bukkit`\\-series server.\n2.  Start the server, and the plugin will automatically generate a folder with the same name as the plugin in the `plugins` directory. Enter the command `JsPig declare` in the console to generate the declaration file `global.d.ts`.\n3.  Open the plugin's data folder with `VSCode` to start writing `JavaScript` plugins.\n\n## Advanced Features\n\n*   Create a new folder in the plugin's data directory, naming it according to general naming conventions. Within this folder, create a `package.json` file and include the following code:\n\n```\n{\n  \"main\": \"./block.js\",\n  \"modules\": [\n    \"registry\",\n    \"scripts-manager\",\n    \"console\",\n    \"timer\"\n  ]\n}\n```\n\n*   Then, create a file named `block.js` in the folder to enable advanced plugin development.\n\n`block.js` is just an example file; you can name it anything.\n\n### Configurable Options in `modules`:\n\n*   `registry` for event registration.\n*   `scripts-manager` for script management.\n*   `console` for logging.\n*   `timer` for precise timing, adding support for `setTimeout`, `setInterval`, `clearTimeout`, and `clearInterval`.\n\n# Custom Commands\n\nEach `package.json` in a folder can define custom commands. An example configuration is as follows:\n\n```\n{\n  \"command\": {\n    \"command\": \"list\",\n    \"description\": \"List all subcommands\",\n    \"usage\": \"Use /<main command> list\",\n    \"permission\": \"JsPig.JsExtend.List\",\n    \"permissionMessage\": \"You do not have permission to use this command.\"\n  }\n}\n```\n\n```\n// JsExtend.list corresponds to \"command\": \"list\". JsExtend. is a fixed prefix and is case-sensitive.\nregistry.on(\"JsExtend.list\", (sender, command, args) => {\n\n})\n```\n\n**Note: A `package.json` can only define one command.**\n\nTo allow players to use the command correctly, such as the `list` command above, you need a permission management plugin like `LuckPerms-Bukkit`.\n\nAdd a permission node like `JsPig.JsExtend.List` (case-insensitive), set the value of the permission node to `true`, and reload permissions on the server. Players will then be able to use the command.\n\nIn the game, enter the command: `/jsextend list` or `/jse list`.\n\nIf your custom command has additional options, use `/jse <command> <command option> <option>`. You can retrieve these options via `args`.\n\nBelow is the full `package.json` configuration for using a custom command:\n\n```\n{\n  \"main\": \"./block.js\",\n  \"modules\": [\n    \"registry\"\n  ],\n  \"command\": {\n    \"command\": \"list\",\n    \"description\": \"List all subcommands\",\n    \"usage\": \"Use /<main command> list\",\n    \"permission\": \"JsPig.JsExtend.List\",\n    \"permissionMessage\": \"You do not have permission to use this command.\"\n  }\n}\n```\n# plugin Commands\n\npermission: JsPig.op\n\ndefault: op\n\n- jspig reload\n- jspig load <js>\n- jspig unload <js>\n- jspig list\n- jspig declare\n\npermission: JsPig.JsExtend\n\ndefault: default\n\n- jse <command>\n\n# Example\n[github](https://github.com/I-Mortals/jspig-example)",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "spigot",
+    "technology",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 103,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

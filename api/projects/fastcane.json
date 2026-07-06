@@ -1,0 +1,36 @@
+{
+  "id": "lAgsScjZ",
+  "slug": "fastcane",
+  "title": "FastCane",
+  "description": "Control sugar cane growth speed with a simple tick command. Zero TPS impact.",
+  "body": "# 🌾 FastCane\n### The sugar cane growth controller for Paper servers\n![🌾 FastCane](https://i.imgur.com/SzoZGwZ.gif)\n> **Tired of waiting 3+ minutes for sugar cane to grow one block?**\n> FastCane gives you full control — from vanilla speed to near-instant, with zero TPS cost.\n\n---\n\n## ✨ Features\n\n- 🚀 **Configurable growth speed** — any tick interval from 1 to 100,000\n- ⚡ **Zero TPS impact** — event-driven architecture, no chunk scanning loops\n- 🌿 **Sugar cane only** — every other plant stays 100% vanilla\n- ⏸ **Stop / Start** — pause and resume growth anytime\n- 🔄 **Reset** — back to vanilla speed in one command\n- 🌍 **Multi-language** — English, Français, 中文\n- 💾 **Persistent** — your settings survive restarts\n- 🎯 **Tab completion** — smart presets built into the command\n\n---\n\n## ⚡ Commands\n\n| Command | Description |\n|---|---|\n| `/cane` | Show current settings panel |\n| `/cane tick <ticks>` | Set growth speed |\n| `/cane tick` | Show current speed & tracked canes |\n| `/cane stop` | Stop all cane growth |\n| `/cane start` | Resume cane growth |\n| `/cane reset` | Reset to vanilla speed (4096 ticks) |\n| `/cane lang <en\\|fr\\|zh>` | Change language |\n| `/cane info` | Show info panel |\n\n**Aliases:** `/sugarcane`, `/sc`\n\n---\n\n## ⏱ Speed Reference\n\n| Command | Interval | Feel |\n|---|---|---|\n| `/cane tick 1` | ~0.05s | 🟢 Near-instant |\n| `/cane tick 20` | 1s | 🟢 Ultra fast |\n| `/cane tick 100` | 5s | 🟡 Very fast |\n| `/cane tick 1000` | 50s | 🟡 Fast |\n| `/cane tick 4096` | ~3.4 min | 🔵 Vanilla |\n| `/cane tick 10000` | ~8.3 min | ⚪ Default |\n\n> 💡 20 ticks = 1 second\n\n---\n\n## 🔐 Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `fastcane.use` | Use `/cane` & view speed | OP |\n| `fastcane.admin` | Change speed, stop, start, reset, lang | OP |\n\n---\n\n## ⚙️ How It Works\n\nInstead of scanning every block in every loaded chunk each tick *(which destroys TPS)*, FastCane uses an **event-driven index**:\n\n- 📦 Chunk loads → cane bases indexed **once**\n- 🌱 Player places cane → added to index\n- ⛏ Player breaks cane → removed from index\n- ⏱ Every X ticks → **only indexed bases** are grown\n\nThe vanilla `BlockGrowEvent` for sugar cane is cancelled — FastCane is the **sole controller** of cane growth speed.\n\n---\n\n## 📁 Configuration\n\nThe config file is automatically generated at `plugins/FastCane/config.yml` on first launch. You can edit it directly or use the in-game commands — changes made with `/cane tick`, `/cane stop`, `/cane lang`, etc. are saved automatically without needing to touch the file.\n\n```yaml\n# plugins/FastCane/config.yml\n\n# Growth interval in ticks (20 ticks = 1 second)\n# Vanilla default: ~4096 ticks (~3.4 min per block)\n# Lower = faster. Range: 1 - 100000\ngrowth-ticks: 10000\n\n# Vanilla tick value — used by /cane reset\nvanilla-ticks: 4096\n\n# Language: en, fr, zh\nlang: en\n\n# Is growth active?\nenabled: true\n```\n\n---\n\n## 📋 Requirements\n\n| | |\n|---|---|\n| 🖥 Server | [Paper](https://papermc.io/) 1.21.x |\n| ☕ Java | 21+ |\n| 🌍 Environment | Server-side only |\n\n---\n\n## ❓ FAQ\n\n**Does this work with piston farms?**\nYes — FastCane only controls when cane *grows*, not how it's *harvested*.\n\n**Will `/cane tick 1` lag my server?**\nWith thousands of canes it can add up. Test with `/cane tick 20` first and adjust.\n\n**Does this affect bamboo or kelp?**\nNo. Only `SUGAR_CANE` is affected.\n\n**The speed I set resets after restart?**\nIt shouldn't — the value is saved automatically to `config.yml`. Check that your server has write permissions to the plugins folder.\n\n---\n\n## 🐛 Issues & Suggestions\n\nFound a bug? Open an issue and include:\n- Your Paper version (`/version`)\n- FastCane version\n- What you expected vs what happened\n- Any console errors\n\n---\n\n---\n<details>\n<summary>🇫🇷 Voir en Français</summary>\n# 🌾 FastCane — Version Française\n\n> **Fatigué d'attendre 3+ minutes pour que la canne à sucre pousse d'un bloc?**\n> FastCane te donne le contrôle total — de la vitesse vanilla à quasi-instantané, sans impact sur les TPS.\n\n---\n\n## ✨ Fonctionnalités\n\n- 🚀 **Vitesse configurable** — n'importe quel intervalle de 1 à 100 000 ticks\n- ⚡ **Zéro impact TPS** — architecture event-driven, aucun scan de chunks\n- 🌿 **Canne à sucre uniquement** — toutes les autres plantes restent en vanilla\n- ⏸ **Stop / Start** — pause et reprise de la croissance à tout moment\n- 🔄 **Reset** — retour à la vitesse vanilla en une commande\n- 🌍 **Multi-langue** — English, Français, 中文\n- 💾 **Persistant** — les paramètres survivent aux redémarrages\n- 🎯 **Tab completion** — suggestions automatiques intégrées\n\n---\n\n## ⚡ Commandes\n\n| Commande | Description |\n|---|---|\n| `/cane` | Afficher le panneau de paramètres |\n| `/cane tick <ticks>` | Définir la vitesse de croissance |\n| `/cane tick` | Voir la vitesse actuelle |\n| `/cane stop` | Arrêter toute croissance |\n| `/cane start` | Reprendre la croissance |\n| `/cane reset` | Réinitialiser au vanilla (4096 ticks) |\n| `/cane lang <en\\|fr\\|zh>` | Changer la langue |\n| `/cane info` | Afficher le panneau d'info |\n\n**Alias:** `/sugarcane`, `/sc`\n\n---\n\n## ⏱ Référence de vitesse\n\n| Commande | Intervalle | Ressenti |\n|---|---|---|\n| `/cane tick 1` | ~0.05s | 🟢 Quasi-instantané |\n| `/cane tick 20` | 1s | 🟢 Ultra rapide |\n| `/cane tick 100` | 5s | 🟡 Très rapide |\n| `/cane tick 1000` | 50s | 🟡 Rapide |\n| `/cane tick 4096` | ~3.4 min | 🔵 Vanilla |\n| `/cane tick 10000` | ~8.3 min | ⚪ Défaut |\n\n> 💡 20 ticks = 1 seconde\n\n---\n\n## 📁 Configuration\n\nLe fichier de config est généré automatiquement dans `plugins/FastCane/config.yml` au premier démarrage. Tu peux l'éditer directement ou utiliser les commandes en jeu — les changements faits avec `/cane tick`, `/cane stop`, `/cane lang`, etc. sont sauvegardés automatiquement.\n\n---\n\n## ❓ FAQ\n\n**Ça marche avec les fermes à pistons?**\nOui — FastCane contrôle uniquement quand la canne *pousse*, pas comment elle est *récoltée*.\n\n**Est-ce que `/cane tick 1` va lagger le serveur?**\nAvec des milliers de cannes ça peut s'accumuler. Teste avec `/cane tick 20` d'abord.\n\n**Ça affecte le bambou ou les algues?**\nNon. Uniquement `SUGAR_CANE` est affecté.\n\n---\n\n*Fait avec ❤️ par [belyxzor](https://modrinth.com/user/belyxzor)*",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

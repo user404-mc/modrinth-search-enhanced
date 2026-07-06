@@ -1,0 +1,33 @@
+{
+  "id": "CYYqZ5kU",
+  "slug": "trust-api",
+  "title": "Trust API",
+  "description": "This project adds an optimized trust api for plugins and skripts.",
+  "body": "# Trust API\n\nDirectional trust API for Paper plugins with optional Skript syntax.\n\n## Features\n\n- Java API: `TrustService` (`trust`, `untrust`, `trusts`, `getTrusted`)\n- Service registration through Bukkit `ServicesManager`\n- Persistence to `plugins/Trust API/trusts.yml`\n- Skript effect:\n  - `make %player% trust %player%`\n  - `make %player% to trust %player%`\n  - `make %player% not trust %player%`\n- Skript condition:\n  - `%player% trusts %player%`\n- Command:\n  - `/trust add <player> [trusted]`\n  - `/trust remove <player> [trusted]`\n  - `/trust list [player]` (opens chest GUI with trusted player heads)\n\n## Skript usage\n\n```skript\ncommand /testtrust:\n  trigger:\n    make player to trust arg-1\n\ncommand /testuntrust:\n  trigger:\n    make player not trust arg-1\n\non damage:\n  attacker is a player\n  victim is a player\n  if attacker trusts victim:\n    send \"You trust this player.\" to attacker\n```\n\n## Java usage\n\n```java\nimport me.thesnowbound.trustAPI.api.TrustApiProvider;\n\nTrustApiProvider.get().ifPresent(service -> {\n    if (service.trusts(attacker.getUniqueId(), victim.getUniqueId())) {\n        // your logic\n    }\n});\n```\n\n",
+  "categories": [
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

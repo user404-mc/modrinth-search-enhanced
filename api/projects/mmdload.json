@@ -1,0 +1,19 @@
+{
+  "id": "36CIHX8I",
+  "slug": "mmdload",
+  "title": "mmdload",
+  "description": "Pulls compressed MMD-related files (for MmdSkin) via a link from the internet.",
+  "body": "# mmdload\n\nPulls MMD model files (or zip bundles of them) into `.minecraft/3d-skin/` such that [mmdskin](https://modrinth.com/mod/mmdskin) picks them up.\n\nFor an example of an MMD auto-publishing compression workflow (for forgejo/gitea), look at [mmdload-repo](https://forgejo.toe.quest/kiki/mmdload-repo).\n\n## Commands\n\n`/mmdload <url>`: fetch a URL once. Single MMD file or `.zip`. Chat reports progress and where it landed.\n\n`/mmdload` (no args)`: fetches the URL saved in the config. Errors if nothing is set.\n\n`/mmdload-config <url>`: saves the URL to config and fetches it immediately. Persists across restarts; the same URL is auto-fetched on every client startup.\n\n## Config\n\n`config/mmdload-client.toml`, generated on first launch:\n\n```toml\n# URL to fetch on client startup. Accepts a single MMD file or a .zip.\n# Leave empty to disable startup auto-download.\nautoDownloadUrl = \"\"\n```\n\nSet it manually or via `/mmdload-config`.\n\n## Accepted files\n\n`.pmx` `.pmd` `.png` `.jpg` `.jpeg` `.bmp` `.tga` `.vmd` `.vpd`\n\nAnything else in a zip is skipped. \nZip entries with `../` are rejected (no zip-slip). 200 MB cap on download size.\n\n## Notes\n\nFiles extract into `3d-skin/` preserving the zip's internal directory structure, so a zip with `EntityPlayer/MyModel/model.pmx` lands at `3d-skin/EntityPlayer/MyModel/model.pmx`. mmdskin reads from there directly.\n",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 62,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

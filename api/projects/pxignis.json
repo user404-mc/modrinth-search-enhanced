@@ -1,0 +1,21 @@
+{
+  "id": "SYYlZZEi",
+  "slug": "pxignis",
+  "title": "PxIgnis",
+  "description": "A Lua framework for Minecraft Fabric servers with instant hot reload. Define chat commands, events, and server logic in Lua, no Java/Kotlin required using API made for humans.",
+  "body": "A Lua runtime for Fabric servers, with hot-reload. Edit scripts in `config/ignis/`,\nrun `/ignis reload`, and changes apply instantly.\n\nFull documentation at **[ignis.pyxiion.ru](https://ignis.pyxiion.ru)**.\n\n---\n\n## About\n\nPxIgnis is developed in tandem with a fully Vanilla custom Roguelike server. The API\nreflects what the project itself needed.\n\n---\n\n## Key Features\n\n* **Hot-reload Lua runtime** — `/ignis reload` re-runs scripts in milliseconds. Commands\n  are re-registered into the live Brigadier dispatcher without restarting the server.\n* **Command registration** — `register(\"cmd <name:type> [<name:type>]\", handler, permission?)`.\n  Built-in argument types: `int`, `double`, `float`, `bool`, `text`, `word`, `player`,\n  `block_pos`, `choice=...`. Tab completion and permissions (`admin.cmd`) are part\n  of the API.\n* **Events, with cancellation** — 15+ hooks: `player_block_break`, `player_chat`,\n  `player_attack_entity`, `entity_hurt`, `entity_death`, and more. Returning `false`\n  cancels.\n* **Regions and scripted mob AI** — spatial areas with enter/exit/move/death\n  events, and API for custom mob AI.\n* **Coroutines, persistence, UI** — `mc.fetch` / `mc.sleep` for sequential async code,\n  `player.data` / `mc.data` / storage backends for persistent state, plus holograms,\n  sidebars, and the `chestgui` library for custom containers.\n\nAnd more, and more.\n\n---\n\n## Examples\n\n### 1. Region + async\n\n```lua\nlocal arena = world:createRegion(vec(-50, 64, -50), vec(50, 80, 50))\n\narena:on(\"entity_enter\", function(entity)\n    if entity:isPlayer() then\n        mc.broadcast(entity.name .. \" entered the arena\")\n        \n        coroutine.wrap(function()\n            local res = mc.fetch(\"https://api.example.com/arena/log\")\n            if not res.ok then\n                mc.broadcast(\"log failed: \" .. res.error, true)\n            end\n        end)()\n    end\nend)\n```\n\n### 2. Mob AI\n\n```lua\n--# nova syntax\n-- enabling cool custom syntax for trailing lambdas (just like Kotlin)\nmc.registerBehaviour(\"zombie_chase\") \\{ self, mob ->\n    local p = mc.players[1]\n    if p then\n        local pos = p.pos\n        mob:navigateTo(pos.x, pos.y, pos.z, 1.0)\n    end\n}\n\nmc.on(\"entity_spawn\", function(entity)\n    if entity:isMob() and entity.type == \"minecraft:zombie\" then\n        entity:setAI(\"zombie_chase\")\n    end\nend)\n```\n\n### 3. Command with permission\n\n```lua\nregister(\"pay <amount:int> <target:player>\", function(ctx, amount, target)\n    ctx.player.data.balance = (ctx.player.data.balance or 0) - amount\n    target.data.balance     = (target.data.balance or 0) + amount\n    \n    target:sendMessage(\"Received \" .. amount .. \" from \" .. ctx.player.name)\nend, \"pxrp.economy\")\n```\n\n---\n\n## Installation & Requirements\n\n1. Install Fabric Loader ≥0.19.2, Fabric API ≥0.141.4+1.21.11, and Fabric Language Kotlin ≥1.10.8.\n2. Place `pxignis-*.jar` into the `mods/` folder of your server.\n3. Start the server. `config/ignis/demo.lua` is created on first boot.\n4. Edit scripts under `config/ignis/`, then run `/ignis reload`.\n\n\n## License\n\nGNU Lesser General Public License v3.0",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

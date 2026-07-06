@@ -1,0 +1,26 @@
+{
+  "id": "YHDDkS3M",
+  "slug": "axetothemax",
+  "title": "Axe To The Max!",
+  "description": "A simple configurable tree chopper mod",
+  "body": "**Axe To The Max** is a tree-chopper mod for Minecraft Forge 1.20.1 that brings smart, \nfair, and fully configurable vein-chopping to your game. Works on every tree, including modded ones (probably, it's still work-in-progress), with full multiplayer support and per-player settings.\n\nFEATURES ARE STILL WIP, SOME OF THEM DO NOT WORK PERFECTLY!\n\n## How It Works\n\nHold **Sneak + break any log** and the entire tree comes down at once.\n\nThe chopper uses a BFS flood-fill through `#minecraft:logs`, meaning it works on \nevery vanilla and modded tree without any extra configuration.\n\n## Player-Placed Log Protection\n\nLogs you place yourself are **permanently tagged** as player-placed. \nThe chopper will never vein-chop through them.\n\nThis works globally in multiplayer. If player 1 placed the log, \nplayer 2 can't bypass it either.\n\n---\n\n## Fairness Settings\n\nTwo optional fairness mechanics keep the mod balanced on survival servers:\n\n**Durability Per Log** - the axe loses 1 durability per log chopped, \nnot just 1 total. A 14-log tree costs 14 durability, same as breaking manually.\n\n**Break Time Per Log** - chopping takes as long as it would to break \neach log manually with your current axe tier. A wooden axe on a 14-log \ntree takes 14× the normal break time. Switching to iron speeds it up proportionally.\n\n```java\nfloat RequiredTicks = LogCount / BreakSpeed * 20f;\nif (ElapsedTicks < RequiredTicks) event.setCanceled(true);\n```\n\nTrying to break a log halfway and then shift to trigger the chopper won't work, \nthe timer starts from your very first hit.\n\n---\n\n## Per-Player Config\n\nRun `/config` to open the settings screen in-game. \nEvery setting is saved per-player and persists across restarts and sessions.\n\n---\n\n## All Config Options\n\n**General**\n| Setting | Default | Description |\n|---|---|---|\n| Tree Chopper | ON | Master toggle for all chopper features |\n| Require Axe | OFF | Only trigger when holding an axe |\n| Protect Player Logs | ON | Skip logs tagged as player-placed |\n| Multiple Tree Support | ON | Works on modded trees via tags |\n\n**Gameplay**\n| Setting | Default | Description |\n|---|---|---|\n| Auto Replant | ON | Replants a sapling at the base after chopping |\n| Break Leaves | ON | Instantly breaks all nearby leaves |\n| Drop Saplings | ON | Leaves drop saplings when broken |\n| Drop Apples | ON | Leaves drop apples when broken |\n\n**Fairness**\n| Setting | Default | Description |\n|---|---|---|\n| Durability Per Log | ON | Axe loses 1 durability per log, not 1 total |\n| Break Time Per Log | OFF | Chopping takes proportional time based on log count and axe tier |\n\n---\n\n## Multiplayer\n\n- All data stored server-side via `SavedData`, no client mod required for servers\n- Player-placed log tags are shared globally across all players\n- Config syncs to client on login and on every save\n- No race conditions, all block operations run on the server thread\n\n---\n\n## Compatibility\n\nAll vanilla trees  \nModded trees using `#minecraft:logs` and `#minecraft:leaves` (nearly universal)  \nDead trees with no leaves  \nMultiplayer servers\n\nForge | Client + Server ",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 69,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

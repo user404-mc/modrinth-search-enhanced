@@ -1,0 +1,31 @@
+{
+  "id": "jJEq31xF",
+  "slug": "custom-status-effects",
+  "title": "Custom Status Effects",
+  "description": "Welcome to the Custom Status Effects Datapack\nThis is an easy to use and powerful custom status effect",
+  "body": "# Custom Status Effects\n> Welcome to the Custom Status Effects Datapack\n> You can temporarily modify an entity's attributes by adjusting its values\n> Currently the multiplication formula is supported and more functions and new custom states will be added later\n> Supports adding multiple custom state IDs and attrubute stacking effects that repeatedly apply attributes for duplicate IDs\n\n## How to use?\n\n### Custom Attribute Status\n\n> Apply custom attributes status effects to the target\n\n> attribute: The attributes you want to apply\n> duration: Duration (1t / 0.05s)\n> base: The initial value applied\n> value: The value added upon repeated stacking\n> max: The maximum value limit\n> type: add_value, add_multiplied_base, add_multiplied_total\n> id: You can define the ID as you wish to see the effect, Effects with the same ID and modified attribute will stack; otherwise a new independent one will be created\n\n```hs\nfunction cse:sys/status_effects/use {attribute:\"armor\",duration:40,base:1,value:1,max:5, id:\"global\",type:\"add_value\"}\n```\n\n### Bleeding Status\n\n> When the subject is afflicted with this status\nall accumulated dmg other than Bleeding DoT will be recorded\nand the subject will take base DoT dmg plus the previously accumulated dmg based on the set duration in seconds\n\n> duration: Duration (1t / 0.05s)\n> tick_rate: Interval for Dot Dmg\n> dot: Base bleeding dmg dealt\n> max: The maximum value limit\n\n```hs\nfunction cse:status_effects/apply/bleeding/use {duration:100, tick_rate:40, dot:20, max:100}\n```\n\n### Soul Restraint\n\n> The summoned spear restricts your maximum movement distance for a period of time\n> allowing you to gradually expand the range or decrease it to a fixed range by adjusting that value\n\n> duration: Duration (1t / 0.05s)\n> value: Only int input is allowed. Each tick determines whether to zoom out or zoom in, or you can set it to 0 to keep it stationary\n> max: The maximum value limit\n\n```hs\nfunction cse:status_effects/apply/soul_restraint/use {duration:100, value:1, max: 8}\n```\n\n### Entropy Erosion\n\n> After a specific number of seconds\n> deal 1 point of true dmg in 5 consecutive hits\n> and this dmg ignores injury intervals\n\n> duration: Duration (1t / 0.05s)\n> tick_rate: Interval for Dot Dmg\n> damage: Base dmg dealt\n\n```hs\nfunction cse:status_effects/apply/entropy_erosion/use {duration:305, tick_rate:100, damage: 5}\n```\n",
+  "categories": [
+    "datapack",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 22,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

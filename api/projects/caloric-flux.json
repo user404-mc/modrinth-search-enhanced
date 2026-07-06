@@ -1,0 +1,22 @@
+{
+  "id": "5ZAZa0M6",
+  "slug": "caloric-flux",
+  "title": "Caloric Flux",
+  "description": "A technical energy generation mod for NeoForge 1.21.1 based on thermodynamics and thermal differences.",
+  "body": "# Caloric Flux (Beta)\n\n**Caloric Flux** is a technical energy generation mod for **NeoForge 1.21.1** that brings the laws of thermodynamics to your Minecraft world.\n\n***\n\n## How it works\n\nThe core of the mod is the **Heat-Difference Generator**. Instead of just burning fuel, it produces **FE (Flux Energy)** based on the temperature difference between its two sides. The greater the delta, the more power you get!\n\n## Energy & Logistics\n\n*   **Passive Output:** Without any modules, the generator acts as a simple passive device, outputting only **5 FE/t** to adjacent cables or machines.\n*   **I/O Processing:** Installing a **Logistics I/O Processor** unlocks the generator's true potential, increasing the output limit to **500 FE/t** and allowing full side configuration.\n*   **Efficiency Balance:** Every module installed has a small passive energy drain, requiring you to balance high-speed output with net generation.\n\n## Key Features\n\n*   **Dynamic Thermal Logic:** Balance extreme heat (Lava) against extreme cold (Blue Ice, Packed Ice) to maximize efficiency.\n*   **Realistic Degradation:** Blocks aren't infinite. Ice melts into water, lava cools, and even torches eventually burn out into sticks.\n*   **Immersive Visuals:** Features custom ambient particles (smoke and snowflakes), a fully animated fan, and a detailed industrial GUI with real-time temperature tracking.\n*   **JEI Integration:** Full support for Just Enough Items, showing all thermal recipes and degradation paths.\n\n## Dependencies & Integrations\n\n*   **GeckoLib** _(Required)_ — Powers the smooth animations of the generator's fan. The mod will crash on startup without it!\n*   **GuideME** _(Highly Recommended)_ — Unlocks the guidebook with component lists, and recipes.\n*   **Just Enough Items (JEI)** _(Optional, but Recommended)_ — Essential for viewing exact thermal reactions and custom housing assembly recipes directly in your inventory.\n\n## Technical Documentation for Modpacks\n\nCaloric Flux is fully data-driven. You can add your own thermal sources or machine assembly steps via Datapacks.\n\n### 1\\. Thermal Recipes (caloricflux:thermal)\n\nDefine how blocks affect the generator. Example JSON:\n\n```\n{\n  \"type\": \"caloricflux:thermal\",\n  \"ingredient\": \"minecraft:blue_ice\",\n  \"temperature\": -50.0,\n  \"degrade_result\": \"minecraft:packed_ice\",\n  \"degrade_multiplier\": 0.3,\n  \"drop_result\": \"minecraft:stick\"\n}\n```\n\n*   **ingredient**: Block or fluid ID that acts as a source.\n*   **temperature**: Target temperature (positive for heat, negative for cold).\n*   **degrade\\_result**: The block it transforms into after \"wearing out\".\n*   **degrade\\_multiplier**: Speed of degradation (higher values mean faster consumption).\n*   **drop\\_result** _(Optional)_: Item that drops when the block degrades.\n\n### 2\\. Housing Assembly (caloricflux:housing\\_assembly)\n\nUsed for step-by-step machine frame construction. Example for Stage 0:\n\n```\n{\n  \"type\": \"caloricflux:housing_assembly\",\n  \"stage\": 0,\n  \"ingredient\": { \"item\": \"minecraft:iron_ingot\" },\n  \"base_block\": \"caloricflux:thermalloy_block\",\n  \"result_block\": \"caloricflux:thermalloy_housing\",\n  \"reverse_tool\": { \"tag\": \"minecraft:axes\" },\n  \"reverse_drop\": \"minecraft:iron_ingot\"\n}\n```\n\n*   **stage**: Current construction step index.\n*   **ingredient**: Item required to advance to the next stage.\n*   **base\\_block / result\\_block**: Logic for block transformation at this step.\n*   **reverse\\_tool / reverse\\_drop**: Defines how to deconstruct the frame and what is returned to the player.\n\n## Getting Started\n\n1.  Craft **Thermalloy** components to build your first generator.\n2.  Place a heat source on one side and a coolant on the other.\n3.  Install a **Logistics I/O Processor** to start exporting energy to your machines or cables.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "social",
+    "technology"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 92,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

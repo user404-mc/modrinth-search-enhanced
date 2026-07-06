@@ -1,0 +1,37 @@
+{
+  "id": "LPapxHMB",
+  "slug": "xoxo-anticheat",
+  "title": "xoxo-AntiCheat",
+  "description": "A highly optimised AntiCheat with Tick Flags, Violation Levels (VL), auto Ban and exception List",
+  "body": "# xoxo-AntiCheat\n\n> **Fast, smart, and fair — keeping your server clean.**\n\nxoxo-AntiCheat is a lightweight but powerful server-side anti-cheat plugin for Paper/Bukkit servers. Built with performance in mind, it features a novel tick-based flag queue system, instant rubberbanding, and a velocity simulation layer — so detections are accurate and false positives are kept low.\n\n---\n\n## 🛡️ Detection Modules\n\nxoxo-AntiCheat employs a modular design with specialized checks across multiple categories:\n\n### ⚙️ Core/Packet Checks (1)\n- **TimerA**: Detects abnormal packet rates indicating modified clients or macros\n\n### 🚶 Movement Checks (6)\n- **JesusA**: Detects walking on water without proper support\n- **StepA**: Detects illegitimate step heights\n- **FlyA**: Detects flying without proper support or hovering\n- **JumpA**: Detects abnormally high jumps\n- **SpeedA**: Detects excessive ground speed\n- **NoSlowA**: Detects breaking blocks too quickly while holding items\n\n### ⚔️ Combat Checks (6)\n- **AutoClickerA**: Detects automated clicking with abnormal CPS and low variance\n- **ReachA**: Detects attacking entities beyond normal reach distance\n- **AimAngleA**: Detects attacks when aiming significantly away from target\n- **NoSwingA**: Detects hitting entities without swinging arm\n- **MultiAuraA**: Detects hitting multiple distinct entities rapidly\n- **RotationLockA**: Detects unnatural view angle locking during combat\n\n### 🧱 Block Checks (5)\n- **FastBreakA**: Detects breaking blocks faster than possible with given tools and effects\n- **BlockReachA**: Detects breaking/placing blocks beyond normal reach\n- **BlockSightA**: Detects breaking blocks without looking at them\n- **InteractReachA**: Detects interacting with entities beyond normal reach\n- **ScaffoldA**: Detects suspicious floating block placements\n\n**Total Checks Loaded**: 18\n\n---\n\n## ⚡ Key Features\n\n### 🎯 Tick Flag Queue\nMost anti-cheats process one flag and move on. xoxo-AntiCheat is smarter: **a player can only receive one flag per tick**, but if multiple violations are detected within a single tick, they are queued and distributed across subsequent ticks. No detection is ever dropped — every violation is counted.\n\n### ⚡ Instant Rubberbanding\nThe rubberbanding system triggers **immediately** upon a flag, blocking:\n- Movement\n- Camera rotation\n- Inventory actions\n\nPlayers are snapped back before they can gain any advantage.\n\n### 🚨 Ban System & Auto-Ban\n- Custom, readable **ban messages** that clearly communicate the reason to the player\n- Configurable **auto-ban threshold**: once a player accumulates a set number of flags, they are automatically banned\n\n### 📐 Velocity Level (Simulation Layer)\nxoxo-AntiCheat includes a Velocity Layer - a simulation component that correctly models player physics. This ensures the anti-cheat understands what movement is legitimate before flagging, drastically reducing false positives in edge-case movement scenarios.\n\n### 🔧 `/xoxo` Command\nA built-in management command for server administrators.\n\n| Subcommand                         | Description                                                                            |\n|------------------------------------|----------------------------------------------------------------------------------------|\n| `/xoxo exceptions add <player>`    | Add a player to the exceptions list — they will not be flagged or rubberbanded         |\n| `/xoxo exceptions remove <player>` | Remove a player from the exceptions list — they will be flagged and rubberbanded again |\n| `/xoxo exceptions get`             | List all players currently on the exceptions list                                      |\n| `/xoxo violations <player>`        | List all violation from the specific player                                            |\n\nMore subcommands are planned for future releases.\n\n---\n\n## 📦 Installation\n\n1. Download the latest `.jar` from the [Releases](https://modrinth.com) page\n2. Drop it into your server's `plugins/` folder\n3. Restart your server\n4. The plugin stores ban history locally. Ban durations increase with repeated offenses. To reset a player's ban history, remove their record from the generated ban data files.\n\n---\n\n## 🖥️ Compatibility\n\n| Version                              | Status             |\n|--------------------------------------|--------------------|\n| Paper/Bukkit/Spigot 1.20.5 (Java 21) | ✅ Supported (BETA) |\n| Paper/Bukkit/Spigot 1.20.6 (Java 21) | ✅ Supported        |\n| Paper/Bukkit/Spigot 1.21.1           | ✅ Supported (BETA) |\n| Paper/Bukkit/Spigot 1.21.4           | ✅ Supported (BETA) |\n| Paper/Bukkit/Spigot 1.21.10          | ✅ Supported        |\n| Paper/Bukkit/Spigot 1.21.11          | ✅ Supported        |\n| Paper/Bukkit/Spigot 26.1             | 🔜 Planned         |\n| Paper/Bukkit/Spigot 26.1.2           | 🔜 Planned         |\n\n---\n\n## ⚠️ Known Issues\n\nThese are known bugs being actively investigated. Workarounds or fixes will be included in future updates.\n\n- **Rubberband misfires on certain jumps** — In rare cases the rubberbanding system fires unexpectedly, causing a brief, visible stutter in player movement. This can occur when:\n    - Performing large/long jumps\n    - Jumping out of water\n    - Jumping frame-perfectly down the edge of a block\n\n---\n\n## 📈 Planned Features\n\n- [ ] Support for Version under 1.20 and 26.1, 26.1.2\n- [x] Expanded `/xoxo` command (view flags, manage bans, reload config)\n- [ ] Per-check enable/disable in config\n- [ ] Flag logging to file / database\n- [ ] Rubberband misfire fix for edge-case jumps\n- [x] Fix for leaf/plant blocks in water false positives\n\n---\n\n## 🤝 Contributing\n\nIssues and pull requests are welcome! If you encounter a false positive or a missed detection, please open an issue with as much detail as possible (server version, what the player was doing, any relevant logs).\n\n---\n\n## 📄 License\n\n[MIT](LICENSE) — free to use, modify, and distribute.\n\n---\n\n## 💙 Support\n\nIf you find xoxo-AntiCheat useful, consider starring the repository or contributing to help keep development going!\n\n---\n\n*xoxo-AntiCheat — because your players deserve a fair server.*",
+  "categories": [
+    "bukkit",
+    "bungeecord",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 39,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

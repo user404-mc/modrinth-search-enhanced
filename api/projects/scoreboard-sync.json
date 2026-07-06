@@ -1,0 +1,33 @@
+{
+  "id": "klAvQOS8",
+  "slug": "scoreboard-sync",
+  "title": "Scoreboard Sync",
+  "description": "A plugin that syncs objectives, scores, and teams to a MySQL/MariaDB database so all backend servers in a Velocity or BungeeCord network can share the same scoreboard state. Useful for data packs and cross-server minigames that use vanilla scoreboards.",
+  "body": "# ScoreboardSync\n\nA Paper plugin that syncs objectives, scores, and teams to a MySQL/MariaDB database so all backend servers in a Velocity or BungeeCord network share the same scoreboard state. Useful for data packs and cross-server minigames that use vanilla scoreboards.\n\n## Installation\n\n1. Drop `ScoreboardSync.jar` into every backend server's `plugins/` folder.\n2. Restart each server to generate `plugins/ScoreboardSync/config.yml`.\n3. Set up the database (see below).\n4. Configure each server — same DB credentials, **different `server-name`**.\n5. Restart again (or use `/sbs reload` for config-only changes).\n\n## Database Setup\n\nCreate a single database that all servers connect to:\n\n```sql\nCREATE DATABASE scoreboardsync CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\nCREATE USER 'sbs'@'%' IDENTIFIED BY 'yourpassword';\nGRANT ALL PRIVILEGES ON scoreboardsync.* TO 'sbs'@'%';\n```\n\nScoreboardSync creates its own tables on first start.\n\n## What Gets Synced\n\n| Type | Synced fields |\n|---|---|\n| Objectives | Name, display name, criteria, render type |\n| Scores | Objective, entry (player/entity name), score value |\n| Teams | Name, display name, prefix, suffix, color, friendly fire, see-friendly-invisibles, nametag visibility, collision rule |\n| Team members | Which team each entry belongs to |\n\n## Commands\n\n| Command | Permission | Description |\n|---|---|---|\n| `/sbs status` | `scoreboardsync.admin` | Show server name, sync interval, and DB connection info |\n| `/sbs push` | `scoreboardsync.admin` | Immediately push local scoreboard state to DB |\n| `/sbs pull` | `scoreboardsync.admin` | Immediately pull DB state and apply locally |\n| `/sbs reload` | `scoreboardsync.admin` | Reload config.yml (does not reconnect to DB) |",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "storage",
+    "technology"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

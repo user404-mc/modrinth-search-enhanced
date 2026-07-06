@@ -1,0 +1,35 @@
+{
+  "id": "ZjsgYqqV",
+  "slug": "hardmob",
+  "title": "HardMob",
+  "description": "HardMob makes every mob more dangerous and rewarding as your world ages. Mobs gain a level based on in‑game days, their attributes scale accordingly, and a configurable chance turns them into elite bosses with special loot and visuals.",
+  "body": "# HardMob\n\n[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)\n![Version](https://img.shields.io/badge/version-2.0.0-brightgreen)\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21.*-yellow)\n![Platform](https://img.shields.io/badge/platform-Paper%2FSpigot-lightgrey)\n\n> RPG‑style mob levelling and elite bosses for your Minecraft server.\n\n**HardMob** makes every mob more dangerous and rewarding as your world ages.\nMobs gain a **level** based on in‑game days, their attributes scale accordingly, and a configurable chance turns them into **elite bosses** with special loot and visuals.\n\n![mobs](https://cdn.modrinth.com/data/ZjsgYqqV/images/89100e5297b142bf932d0d157dec3a687e5e90a1_350.webp)\n\n---\n\n## ✨ Features\n\n- 🧮 **Dynamic levels** – mobs scale from 1 to 99 depending on world age.\n- 📈 **Stat modifiers** – health, damage, speed, knockback resistance all grow with level.\n- 👑 **Elite mobs** – bosses with configurable size, full armour, and custom drops.\n- 🎲 **Configurable distributions** – uniform, more low levels, or more high levels.\n- 🧪 **Potion effects** – high‑level mobs can receive random buffs.\n- 🖼 **Visual polish** – custom nameplates showing health & level, dynamic mob sizes.\n- 🌍 **World blacklist** and **mob whitelist** for precise control.\n- ⚙️ **Commands** – spawn custom mobs or bosses manually with `/hardmob`.\n\n---\n\n## 📦 Requirements\n\n- **Server**: Paper 1.21.*\n- **Java**: 17 or newer\n\n---\n\n## 🚀 Installation\n\n1. Download the latest `HardMob.jar` from the [Releases](https://github.com/Mr-Catcraft/hardmob/releases) page.\n2. Place it into the `plugins/` folder of your server.\n3. Restart the server (a full restart is recommended over `/reload`).\n4. Edit `plugins/HardMob/config.yml` to your liking.\n5. Apply changes with `/hardmob reload` (no restart needed).\n\n---\n\n## ⚙️ Configuration\n\nAll settings live in `plugins/HardMob/config.yml`.  \nBelow is the complete reference. You can also read the comments inside the file itself.\n\n<details>\n<summary><b>General</b></summary>\n\n```yaml\ngeneral:\n  enabled: true   # Master switch for the entire plugin\n```\n</details>\n\n<details>\n<summary><b>Level System</b></summary>\n\n```yaml\nlevel_system:\n  enabled: true\n  formula:\n    A: 99.0       # max level after infinite days\n    B: 98.0       # difference at day 0\n    C: 40.0       # days until ~63% of max\n  distribution: uniform   # uniform | weighted_low | weighted_high\n  scaling:\n    health_percent_per_level: 2.0\n    damage_percent_per_level: 1.5\n    speed_percent_per_level: 0.3\n    knockback_resist_per_level: 0.01\n  equipment:\n    thresholds:\n      20: chainmail\n      40: iron\n      60: diamond\n      80: netherite\n    enchant_multiplier: 0.2\n  potion_effects:\n    chance_per_level: 0.5\n    duration_multiplier: 1.0\n    amplifier_base: 0\n    max_duration_seconds: 600\n```\n</details>\n\n<details>\n<summary><b>Elite Mobs</b></summary>\n\n```yaml\nelite_mobs:\n  enabled: true\n  spawn_chance_percent: 0.5     # 0.5% chance to become elite\n  health_multiplier: 2.0\n  damage_multiplier: 2.0\n  speed_multiplier: 0.7\n  size: 2.0\n  always_equipped: true\n  drops:\n    diamonds: { min: 0, max: 4 }\n    gold: { min: 0, max: 20 }\n    music_discs:\n      - MUSIC_DISC_13\n      ...\n    exp_per_level: 10\n```\n</details>\n\n<details>\n<summary><b>Visual</b></summary>\n\n```yaml\nvisual:\n  dynamic_size:\n    enabled: true\n    min: 0.8\n    max: 1.2\n  custom_name:\n    enabled: true\n    visible: false\n    format: \"&8[&c%health%&8/&c%max_health%&8] &f%name% &8[&6%level% lvl&8]\"\n    format_boss: \"&8[&c%health%&8/&c%max_health%&8] &f%name% &8[&4BOSS&8]\"\n    colors:\n      low_level: \"GREEN\"\n      medium_level: \"YELLOW\"\n      high_level: \"RED\"\n      boss: \"DARK_RED\"\n```\n</details>\n\n<details>\n<summary><b>Restrictions & Debug</b></summary>\n\n```yaml\nworld_blacklist:\n  - world_the_end      # worlds where HardMob won't run\nmob_whitelist: []      # empty = all mobs allowed\ndebug_mode: false\n```\n</details>\n\n---\n\n## 🛡 Commands & Permissions\n\n| Command                              | Permission           | Description                                    |\n|--------------------------------------|----------------------|------------------------------------------------|\n| `/hardmob reload`                    | `hardmob.reload`     | Reloads the configuration                      |\n| `/hardmob spawn <mob> <level> [elite]` | `hardmob.spawn`    | Spawns a HardMob mob with specified level      |\n| `/hardmob spawnboss <mob> <level>`   | `hardmob.spawnboss`  | Spawns an elite boss with specified level      |\n\n- `<mob>` – entity type name, e.g. `ZOMBIE`, `SKELETON`, `CREEPER`.  \n- `<level>` – integer between 1 and 99.  \n- `[elite]` – optional flag; if present, the mob is elite (same as `spawnboss`).  \n- All permissions default to **op** (server operators).\n\n---\n\n## ❓ FAQ\n\n**Q: Mobs aren’t changing at all. What should I check?**\nA: Ensure `general.enabled` is `true`, the world isn’t in `world_blacklist`, and the mob type is either in the whitelist or the whitelist is empty (which allows all non‑player entities).\n\n**Q: Can I disable elite drops?**\nA: Yes. Set `elite_mobs.drops.diamonds.max`, `gold.max`, etc., to `0` and clear the `music_discs` list.\n\n**Q: Does HardMob work with MythicMobs / other mob plugins?**\nA: Generally yes, as long as the other plugin doesn’t permanently override the entity’s custom name or the `GENERIC_SCALE` attribute. You can use the `mob_whitelist` to restrict HardMob to only certain mobs.\n\n**Q: How does the level formula work?**\nA: The maximum possible level grows over time:\n`maxLevel = A - B * exp(-days / C)`\nwhere `days = world.getFullTime() / 24000`. The formula asymptotically approaches `A` (default 99). The actual level of a freshly spawned mob is then rolled randomly within `[1, maxLevel]` according to the configured distribution.",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 61,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

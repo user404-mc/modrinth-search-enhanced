@@ -1,0 +1,19 @@
+{
+  "id": "XnPcX7yP",
+  "slug": "vosklib",
+  "title": "VoskLib",
+  "description": "A library mod that ports VOSK to Minecraft",
+  "body": "# 🎙️ VoskLib\n\n\n**VoskLib** is a high-performance, offline voice recognition library for **Minecraft Forge 1.20.1**\n\n---\n\n## ✨ Features\n\n*   **100% Offline:** No API keys or internet connection required for recognition.\n*   **Dual Modes:** Switch between **Literal Mode** (wide vocabulary) and **Grammar Mode** (constrained lists).\n*   **In-Game Model Manager:** Download and manage Vosk models directly from the mod config menu with a built-in progress bar.\n*   **Thread Safe:** Background audio processing automatically synchronized with the Minecraft main thread.\n*   **Developer Friendly:** Easy-to-use events for partial and final speech results.\n\n***\n\n## 🛠️ Installation for Users\n\n1.  Install **Minecraft Forge 1.20.1**.\n2.  Drop the jar file into your `mods` folder.\n3.  **Download a Model:**\n\n*   Open the game and go to **Mods** -> **VoskLib** -> **Config**.\n*   Select a model (Small, Medium, or Large) and click **Download**.\n*   VoskLib will handle the download and extraction automatically.\n\n***\n\n## ⌨️ Keybinds\n\n*   **V (Default):** Toggles voice recognition on/off.\n*   _Configurable in the standard Controls menu under the \"Vosk Voice Library\" category._\n\n***\n\n## 💻 Developer API\n\nTo use VoskLib in your project, add it to your `build.gradle` and start listening for events.\n\n### 1\\. Handling Speech Results\n\nVoskLib fires events on the **Forge Event Bus**. These events are already executed on the **Main Thread**, so you can safely interact with the player or world.\n\n```\n@SubscribeEvent\npublic void onVoiceResult(VoskVoiceEvent.Result event) {\n    String text = event.getResult().toLowerCase();\n\n    if (text.contains(\"fireball\")) {\n        // Your logic: Summon a fireball in front of the player\n    }\n}\n\n@SubscribeEvent\npublic void onPartialSpeech(VoskVoiceEvent.Partial event) {\n    // Useful for real-time UI subtitles\n    String partial = event.getResult();\n}\n```\n\n### 2. Controlling the State\n\nYou can request VoskLib to start or stop listening by using:\n\n```\nString[] spells = {\"ignite\", \"freeze\", \"thunder\", \"heal\"};\nVoskManager.createRecognition(spells); // Create Recognition for Grammar Mode (High Accuracy for specific words)\nVoskManager.createRecognition(); // Create Recognition for Literal Mode (General Dictation)\n\nVoskManager.startListening(); // Start Listening\nVoskManager.stopListening(); // Stop Listening\n```\n\n---\n\n## 📜 Credits\n\n*   **Vosk API:** Developed by [Alpha Cephei](https://alphacephei.com/vosk/).\n*   **Mod Author:** Infinity Two.",
+  "categories": [
+    "forge",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 74,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

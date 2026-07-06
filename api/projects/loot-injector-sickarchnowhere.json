@@ -1,0 +1,25 @@
+{
+  "id": "5oLVwPD0",
+  "slug": "loot-injector-sickarchnowhere",
+  "title": "Loot Injector",
+  "description": "This mod adds a ability to add custom vanilla/modded items in custom chests or modded/vanilla structures.!",
+  "body": "# Loot Injector\n\n**Inject custom loot into any chest in the game — vanilla or modded — using simple JSON config files. No coding required.**\n\n---\n\n## ✦ Features\n\n- **Inject into any loot table** — dungeons, bastions, strongholds, villages, shipwrecks, modded structures, mob drops, fishing loot, and more\n- **Works with every mod** — uses Forge's item registry with a multi-stage lookup so items from any mod are supported\n- **Weighted probability** — each item has its own independent drop chance (0.01%–100%) per chest opening\n- **Float counts** — min/max stack sizes accept decimal values (e.g. `1.5` averages to 2)\n- **Full NBT support** — attach any SNBT tag to items; required for mods that use generic items with NBT variants\n- **Custom Loot Chests** — define named chest configs and give them to players via command; items are pre-rolled per give\n- **In-game GUI editor** — browse, add, edit, and delete loot rules without ever touching a file\n- **Live JSON preview** — Raw JSON tab shows the exact file content as you edit\n- **Hot-reload** — apply config changes without restarting the server via `/structureloot reload`\n- **Import / Export** — share config sets as ZIP profiles with `/structureloot export` and `import`\n- **Validation command** — `/structureloot validate` scans every item ID and reports errors instantly\n- **Debug commands** — `/structureloot debug items ` lists all items from any mod; `debug item ` tests a single lookup\n\n---\n\n## ✦ How It Works\n\nPlace a `.json` file in `.minecraft/config/structureloot/pools/` and the mod injects your items into that loot table at runtime — no data pack, no `/reload`, no restart needed.\n\n```json\n{\n  \"target_loot_table\": \"minecraft:chests/simple_dungeon\",\n  \"enabled\": true,\n  \"inject_items\": [\n    { \"item\": \"minecraft:diamond\",  \"weight\": 10.0, \"min_count\": 1.0, \"max_count\": 3.0 },\n    { \"item\": \"examplemod:rare_sword\", \"weight\": 2.0, \"min_count\": 1.0, \"max_count\": 1.0,\n      \"nbt\": \"{display:{Name:'{\\\"text\\\":\\\"Ancient Blade\\\"}'}}\" }\n  ]\n}\n```\n\nThe `weight` field is a **percentage chance per chest opening** (not a pool weight). `weight: 10.0` means a 10% chance each time that chest is opened.\n\n---\n\n## ✦ Custom Loot Chests\n\nDefine a named chest config in `config/structureloot/chests/` and give it to any player via command:\n\n```\n/structureloot chest get mythic_chest\n```\n\nThe player receives a named chest with pre-rolled items inside. The GUI lets you manage configs, add items, set rolls, and edit everything without editing files directly.\n\n---\n\n## ✦ Commands\n\nAll commands require **OP level 2**.\n\n| Command | Description |\n|---|---|\n| `/structureloot reload` | Reload all JSON configs |\n| `/structureloot list` | List all active pool rules |\n| `/structureloot validate` | Check all item IDs for errors |\n| `/structureloot export ` | Export configs as a ZIP |\n| `/structureloot import ` | Import a ZIP profile |\n| `/structureloot chest get ` | Give a custom loot chest |\n| `/structureloot chest list` | List all chest configs |\n| `/structureloot debug items ` | List registered items from a mod |\n| `/structureloot debug item ` | Test a specific item ID |\n\n---\n\n## ✦ GUI Editor\n\nOpen with the **K** keybind (rebindable in Controls → Structure Loot Injector).\n\nThe editor provides a full three-panel interface:\n- **Loot Pools** — manage injection rules per loot table\n- **Entries tab** — add/edit/remove items with weight bars and count ranges\n- **Raw JSON tab** — live syntax-coloured view of the config file\n- **Custom Chests** — manage named chest configs with guaranteed and weighted random item pools\n\n---\n\n## ✦ Finding Item IDs\n\n1. Press **F3+H** in-game to enable advanced tooltips\n2. Hover over any item — the registry ID appears at the bottom of the tooltip\n3. For mods with NBT-based item variants, the full NBT tag is also shown\n\nOr use the built-in command:\n```\n/structureloot debug items \n```\n\n---\n\n## ✦ Compatibility\n\n- Minecraft **1.20.1** · Forge **47.2.0+**\n- Server-side only (clients do not need the mod installed)\n- Compatible with all mods that use standard Forge item registration\n- Uses Forge's Global Loot Modifier system — no conflicts with other loot mods\n",
+  "categories": [
+    "adventure",
+    "forge",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4"
+  ],
+  "date_updated": null
+}

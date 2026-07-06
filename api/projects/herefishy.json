@@ -1,0 +1,37 @@
+{
+  "id": "BzHwSqrd",
+  "slug": "herefishy",
+  "title": "Herefishy",
+  "description": "A Paper Minecraft plugin for auto-fishing: automatically catch fish and re-cast your rod without manual intervention.",
+  "body": "# HereFishy\n\nA [Paper](https://papermc.io) Minecraft plugin for **auto-fishing** — automatically catch fish and re-cast your rod without manual intervention.\n\n## Features\n\n### Core (always on)\n\n- **Auto-fishing toggle** — `/herefishy start` and `/herefishy stop`.\n- **Automatic re-cast** — After catches or failed attempts the rod is cast again automatically.\n- **Vanilla-ish loot & XP** — Simulated vanilla fishing loot (fish, junk, treasure) plus Minecraft XP (1–6 per catch).\n- **Rod durability protection** — Stops when only a few casts remain (`≤ 5` uses by default).\n- **Inventory-full handling**\n  - *Default:* stops with a chat message when you have **no empty slots** (`firstEmpty`).\n  - *Optional routed setup:* when you bind crates + junk spot (below), teleport **fish stash → trophy chest → junk stand → fishing spot**, then resumes if offload succeeds.\n- **Activity Summary (New in 1.2.1)** — Instead of individual chat messages for every catch, a summary is displayed when auto-fishing stops or after each successful offload.\n  - Breakdowns by category: Fish, Treasure, and Junk.\n  - Displays the number of times inventory was dumped.\n- **Surplus buffering** — If a catch cannot be placed in your inventory (`addItem` overflow) while routed, that stack is routed on the teleport trip instead of spamming drops onshore.\n- **Rod break detection** — Stops if the autofish rod shatters mid-session.\n- **Session persistence** — Loot routing overrides and chest bindings are saved and reloaded automatically when you reconnect.\n- **AuraSkills hooks** *(optional)* — When AuraSkills is installed:\n  - **Better simulated rolls** — More treasure / less junk (+0.25% Fishing level scaling). Capped to ensure standard treasure (books, etc.) remains available at high levels.\n  - **Faster re-casting** — 1 tick shaved per ten Fishing levels.\n  - **Vanilla XP +2% per Fishing level** on each catch plus **bonus AuraSkills XP** (+2% per level multiplier on the Aura XP payload).\n  - **Rarity-based treasure** — Standard, Rare, Epic with scaling bonuses per fishing level.\n- **HereRolePlay integration** *(optional)* — When HereRolePlay is installed, automatically awards Collect experience points directly to the player for each fish caught, helping level up gathering/collecting classes.\n\n### Routed loot dump (Paper 1.2.1)\n\n1. **`/herefishy setup`**:\n   - Starts the setup wizard.\n   - First sneak-click on an inventory block → **treasure** chest/barrel/etc.\n   - Second sneak-click on an inventory block → **fish** stash.\n   - Third sneak-click (**any block**) → anchors your **junk** drop location.\n2. **`/herefishy config`** — GUI for every junk/treasure material in the simulated tables. Toggle whether each stacks into the **treasure chest** vs **junk drops** *(fish ALWAYS use the fish chest)*. Routing updates chat colors & AuraSkills XP weights to reflect the overrides.\n\nLuck of the Sea on the autofish rod still affects simulated treasure/junk probabilities.\n\n## Requirements\n\n- Paper `1.21+` *(plugin `api-version: '1.21'`; built against Paper `1.21.4` API)*\n- Java `21`\n- *(Optional)* AuraSkills `2.x`\n\n## Installation\n\n1. Grab `HereFishy-1.2.4.jar` from Releases (or `./gradlew build` locally — see below).\n2. Drop the JAR in `plugins/`.\n3. Restart the server (recommended over hot-reloads on production worlds).\n\n## Building from Source\n\n```bash\n./gradlew build   # POSIX\n```\n\n```powershell\n.\\gradlew.bat build   # Windows PowerShell/cmd\n```\n\nThe compiled plugin jar is written to:\n\n```\nbuild/libs/HereFishy-1.2.4.jar\n```\n\n## Recent Changes (v1.2.4)\n\n- **Added command alias `/hf`** — Players can now use `/hf` as a short alias for `/herefishy`.\n- **Version bump & clean build** — Bumped version to `1.2.4` to maintain consistency across all plugins.\n\n## Commands & permissions\n\nAll commands can be run with `/hf` instead of `/herefishy`.\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/herefishy start` (or `/hf start`) | Enable autofish mode | `herefishy.use` |\n| `/herefishy stop` (or `/hf stop`) | Disable autofish mode | `herefishy.use` |\n| `/herefishy config` (or `/hf config`) | Open the treasure/junk routing GUI | `herefishy.use` |\n| `/herefishy setup` (or `/hf setup`) | Start the dump routing setup wizard | `herefishy.use` |\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `herefishy.use` | Command + sneak-binding interactions | `true` |\n\n## How to use\n\n1. Hold any fishing rod in main or off-hand.\n2. Run `/herefishy start`.\n3. Cast once manually — the hook automates reels + recasts.\n4. *(Optional)* Configure `/herefishy config` BEFORE or DURING farming to match personal junk vs treasure taxonomy.\n5. *(Optional)* Run `/herefishy setup` and follow chat instructions to bind:\n   - treasure chest → fish chest → lava/junk footing.\n   - Without this trio the plugin behaves like `<1.1.0`: hard stop once inventory lacks space.\n\nAutofishing halts instantly if rods break/nearly snap, inventories overflow without valid routing, offload fails (`chest full` mid-route), `/herefishy stop` fires, or the player logs off.\n\n## Version\n\nCurrent release documented here: **`1.2.4`** (Gradle + `plugin.yml` stay in sync).\n\n## License\n\nLicensed under [GNU GPLv3](LICENSE).\n",
+  "categories": [
+    "bukkit",
+    "food",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 76,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

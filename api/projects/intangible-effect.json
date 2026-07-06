@@ -1,0 +1,28 @@
+{
+  "id": "gudwjZ96",
+  "slug": "intangible-effect",
+  "title": "Intangible Effect",
+  "description": "Added a effect that allows players slow flight and wall phasing.",
+  "body": "# Intangible\n\nWhen you have finally built a huge factory, a complex pipe network, or a deeply nested multiblock machine, only to find that one block, pipe, or interface is buried at the very center, do you really want to tear the whole machine apart just to adjust it?\n\nMaybe you only want to slip into the gaps between buildings, production lines, and machines, fix that one small issue, and get back out without breaking anything unrelated. Wouldn't it be useful to move like a ghost for a short while?\n\n**Intangible** is made for exactly that situation.\n\nInspired by the name of the Intangible buff from *Slay the Spire*, this mod adds a simple but powerful status effect: **Intangible**.\n\n![potion](https://cdn.modrinth.com/data/cached_images/99ea1a8ff37f2a6fbc5eb15a174b28ff8062b8e1.png)\n\nWhile a player has the Intangible effect, they can slowly fly and pass through walls like a ghost, making it much easier to inspect and modify the inside of large buildings, automated machines, and complex structures.\n\nThe mod also recreates the damage-reduction behavior of the Intangible buff from *Slay the Spire*: players can reduce most incoming damage to 1 at the cost of effect duration. This behavior can be disabled in the config.\n\n## Damage Reduction\n\nThe main purpose of Intangible is wall phasing, flight, and structure maintenance. Damage reduction is only an extra feature, and it is **configurable**.\n\nBy default, the mod enables Intangible behavior similar to *Slay the Spire*:\n\n- Most damage above 1 is reduced to 1\n- Each successful damage reduction consumes Intangible effect duration\n- The default cost is `600` ticks, or 30 seconds\n- If the remaining duration is not enough, the effect is removed\n\nIf you only want flight and wall phasing without damage reduction, disable it in `intangible-server.toml`:\n\n```toml\n# intangible-server.toml\n[features]\n    isSlayTheSpire = false\n```\n\nOr change the duration cost:\n\n```toml\n# intangible-server.toml\n[features]\n    intangibleDurationCostOnDamage = 823\n```\n\nThe mod also provides two `damage_type` tags to further control how Intangible interacts with damage types:\n\n- `intangible:bypasses_intangible`: damage types in this tag bypass the Intangible effect and are not handled by it.\n- `intangible:intangible_immune_to`: damage types in this tag are directly ignored while Intangible is active. By default, it includes `minecraft:in_wall` to prevent suffocation damage while phasing through walls.\n\n## Potions and Brewing\n\nThe mod adds two potions:\n\n- Potion of Intangibility\n- Long Potion of Intangibility\n\nTheir durations, recipe input potions, and recipe ingredients can all be adjusted in `intangible-startup.toml`.\n\nThese are startup config options. After changing them, restart the game or server for the changes to apply reliably.\n\n## Rendering\n\nIf you do not want the translucent overlay on Intangible players, or if you want to change its color and transparency, you can configure it in `intangible-client.toml`.\n\nIf you want to change the overlay texture, add `assets/intangible/textures/misc/intangible_overlay.png` in a resource pack.\n",
+  "categories": [
+    "adventure",
+    "food",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 63,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

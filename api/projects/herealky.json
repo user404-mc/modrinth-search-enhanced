@@ -1,0 +1,37 @@
+{
+  "id": "S7UiaMXJ",
+  "slug": "herealky",
+  "title": "HereAlky",
+  "description": "A Paper plugin to automate creating potions",
+  "body": "# HereAlky\n\nA premium [Paper](https://papermc.io) Minecraft plugin for **automated potion brewing** — systematically fill water bottles, feed ingredients sequentially, manage multi-stage in-place brewing, and harvest completed potions while gaining Vanilla and AuraSkills Alchemy experience!\n\n---\n\n## Features\n\n- **Automated In-Place Multi-Stage Brewing**:\n  - Automatically handles the entire brewing pipeline directly within your registered brewing stands.\n  - Takes empty glass bottles, fills them at your mapped water source, and loads them into stands.\n  - Sequentially feeds Stage 1, Stage 2, and Stage 3 ingredients into stands.\n  - Monitors brewing completions using the Spigot `BrewEvent` to advance to the next ingredient automatically.\n  \n- **Flexible Bounding Stand Selection**:\n  - Define a 3D region (Point A & Point B bounding box) surrounding one or more brewing stands.\n  - The plugin automatically registers all stands in the selection, allowing high-throughput parallel batch processing.\n\n- **Dynamic Potion Recipes GUI**:\n  - Interactive double-chest (54 slots) recipe configuration GUI (`/ha config`).\n  - **Dynamic Stained Glass Background Indicators**: Directly beneath each potion item, a stained glass indicator displays availability based on your active inventory items:\n    * **`GRAY_STAINED_GLASS_PANE`** (Available): You have all necessary ingredients.\n    * **`RED_STAINED_GLASS_PANE`** (Missing): At least one ingredient is missing.\n  - Hover tooltips provide a complete green/red list of what is in your inventory.\n\n- **Resilient Fuel-Aware Handling**:\n  - The plugin obeys vanilla physics and does not automate fuel; players must manually supply Blaze Powder in slot 4.\n  - **Smart Fuel Checks**: If a stand runs out of Blaze Powder, the automation loop gracefully **skips** it and continues processing other fueled stands.\n\n- **Graceful Auto-Stopping**:\n  - Automatically shuts down the active brewing run and notifies the player via chat if they deplete bottles, run out of recipe ingredients, or if the Output Box becomes full.\n\n- **Multi-Stage Experience (Vanilla, AuraSkills & HereRolePlay)**:\n  - Connects optionally with AuraSkills' Alchemy skill and HereRolePlay.\n  - Awards Vanilla Brewing XP, AuraSkills Alchemy XP, and HereRolePlay Craft XP **immediately at every completed stage** (Stage 1 completion, Stage 2 completion, and Stage 3 completion) rather than only on final box deposit.\n  - Experience gains automatically respect active player Wisdom statistics and leveling multipliers!\n\n---\n\n## Commands\n\nAll commands can be run with `/ha` or `/alky` instead of `/herealky`.\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/herealky start` (or `/ha start`) | Scans your bounding box, registers stands, and starts active batch-brewing | `herealky.use` |\n| `/herealky stop` (or `/ha stop`) | Stops the active brewing batch or setup wizard | `herealky.use` |\n| `/herealky select` (or `/ha select`) | Toggles selection mode (use Empty Glass Bottle to set Point A & Point B stand boundaries) | `herealky.use` |\n| `/herealky config` (or `/ha config`) | Opens the potion recipe configurations and dynamic checklist GUI | `herealky.config` |\n| `/herealky setup` (or `/ha setup`) | Runs the 4-step wizard to map out containers and water source locations | `herealky.setup` |\n| `/herealky info` (or `/ha info`) | Displays your Alchemy levels, active recipes, and physical mapping slots | `herealky.use` |\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `herealky.use` | Allows use of `/herealky` commands | `true` |\n| `herealky.setup` | Allows use of the setup wizard | `true` |\n| `herealky.config` | Allows use of the config GUI | `true` |\n\n---\n\n## How to Use\n\n### 1. Station Setup\n1. Hold an **Empty Glass Bottle** in your main hand.\n2. Run `/ha setup` to initiate the mapping wizard.\n3. Follow the chat instructions:\n   * **Step 1**: Right-Click the **Ingredient Box** (chest/barrel where all ingredients are stored).\n   * **Step 2**: Right-Click the **Empty Bottle Box** (chest where empty glass bottles are stored).\n   * **Step 3**: Right-Click the **Output Box** (chest where finished potions are deposited).\n   * **Step 4**: Right-Click the **Water Source** (water block, waterlogged block, or cauldron; smart scan detects adjacent blocks).\n4. Setup is complete! Configurations are saved under `setup-configs/{playerId}.yml`.\n\n### 2. Recipe & Stands Configuration\n1. Run `/ha config` to open the recipe menu.\n2. Click on a potion recipe to select it. Hovering over status glass panes shows your available/missing ingredient checks.\n3. Run `/ha select` to enable tool selection mode.\n4. Sneak-Right-Click a block with an Empty Glass Bottle to set **Bounding Point A**.\n5. Normal Right-Click a block to set **Bounding Point B** (ensure the region covers all brewing stands you want to use).\n\n### 3. Start Batch Brewing\n1. Put all recipe ingredients in the mapped Ingredient Box, and empty bottles in the Empty Bottle Box.\n2. Put Blaze Powder directly into the brewing stands (Manual Fueling).\n3. Type `/ha start`.\n4. The plugin will scan the region, register the stands, fill bottles, and run the automated in-place brewing loop!\n5. Run `/ha info` at any time to check levels, XP progress, and active mappings.\n\n---\n\n## Building from Source\n\nBuild using Gradle:\n```bash\n./gradlew build\n```\nThe compiled JAR is generated at `build/libs/HereAlky-1.2.2.jar`.\n\n---\n\n## License\n\nThis project is licensed under the [GNU General Public License v3.0](LICENSE).\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

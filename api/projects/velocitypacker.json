@@ -1,0 +1,36 @@
+{
+  "id": "R3rhO91e",
+  "slug": "velocitypacker",
+  "title": "VelocityPacker",
+  "description": "A easy plugin to send onetime a resourcepack over a proxy for velocity",
+  "body": "# Velocitypacker\n\n[![Kotlin](https://img.shields.io/badge/Kotlin-2.0.20--Beta1-blue.svg)](https://kotlinlang.org)\n[![Velocity](https://img.shields.io/badge/Velocity-3.4.0--SNAPSHOT-blue.svg)](https://velocitypowered.com)\n[![SQLite](https://img.shields.io/badge/SQLite-3.45.0.0-yellow.svg)](https://sqlite.org)\n\nA Velocity plugin that automatically sends resource packs to players and stores their acceptance status in a SQLite database.\n\n## ✨ Features\n\n- 🔄 **Automatic Resource Pack Sending** - Pack is sent on every proxy join\n- 📊 **SQLite Database** - Persistent storage of acceptance status\n- 🚫 **Smart Blocking** - Players cannot connect to servers until pack is accepted/declined\n- ⚡ **Auto-Connect** - Automatic connection to first server after successful acceptance\n- 🔒 **Session Management** - No re-sending when switching between backend servers\n- 🎛️ **YAML Configuration** - Easy customization of all settings\n- 📋 **Detailed Logs** - Comprehensive information about pack status\n\n## 🚀 Installation\n\n### 1. Download Plugin\n```bash\n# Clone repository\ngit clone https://github.com/TheLion102009/Velocitypacker.git\ncd Velocitypacker\n\n# Build plugin\n./gradlew clean shadowJar\n```\n\n### 2. Install JAR\nYou can find the compiled JAR in `build/libs/Velocitypacker-0.1.jar`.\n\nCopy this file to the `plugins/` folder of your Velocity server.\n\n### 3. Start Server\nRestart your Velocity server. The configuration file will be created automatically.\n\n## ⚙️ Configuration\n\nThe `config.yml` is automatically created in the `plugins/velocitypacker/` folder:\n\n```yaml\n# Resource pack URL (REQUIRED)\n# Must be a direct download URL to a .zip file\nresourcePackUrl: https://example.com/resourcepack.zip\n\n# SHA-1 hash of the resource pack (OPTIONAL)\n# Format: 40 hexadecimal characters (e.g. a1b2c3d4e5f6...)\n# Leave empty if you don't want to use a hash\nresourcePackSha1: \"\"\n\n# Message shown to the player\n# Supports Minecraft color codes with §\nresourcePackPrompt: \"§aPlease accept the resource pack to play!\"\n\n# Kick player if the resource pack is declined\nkickOnDecline: true\n\n# Kick player if the download fails\nkickOnFailedDownload: true\n\n# Kick message (supports color codes with §)\nkickMessage: \"§cYou must accept the resource pack to play!\"\n```\n\n### Generate SHA-1 Hash\n\n**Windows:**\n```powershell\ncertutil -hashfile resourcepack.zip SHA1\n```\n\n**Linux/Mac:**\n```bash\nsha1sum resourcepack.zip\n```\n\n## 🔧 How It Works\n\n### Player Join Process:\n1. **Player connects to proxy** → Resource pack is sent immediately\n2. **Server connection blocked** → Player stays in resource pack screen\n3. **Pack accepted** → Automatic connection to first available server\n4. **Pack declined** → Player is kicked (if configured)\n\n### Server Switch Process:\n- **Backend server switch** → No re-sending (stored in session)\n- **Proxy rejoin** → Pack is sent again (new session)\n\n### Database:\n- **Location**: `plugins/velocitypacker/resourcepack.db`\n- **Stored data**: UUID, acceptance status, timestamp\n\n## 📋 Logs\n\nThe plugin provides detailed logs:\n\n```\n[INFO] Initializing Velocitypacker...\n[INFO] Configuration loaded\n[INFO] Database initialized\n[INFO] Event listener registered\n[INFO] Sent resource pack to player Spieler123\n[INFO] Player Spieler123 successfully downloaded the resource pack\n[INFO] Connecting Spieler123 to lobby\n```\n\n## 🛠️ Technical Details\n\n- **Velocity API**: 3.4.0-SNAPSHOT\n- **Kotlin**: 2.0.20-Beta1\n- **SQLite**: 3.45.0.0\n- **SnakeYAML**: 2.2\n- **Shadow Plugin**: For dependency bundling\n\n## 🏗️ Build\n\n```bash\n# Full build with all dependencies\n./gradlew clean shadowJar\n\n# Compile only (without Shadow)\n./gradlew build\n```\n\nThe final JAR is approximately **16 MB** in size and contains all necessary dependencies.\n\n## 📝 Important Notes\n\n- **Resource Pack URL**: Must be a direct `.zip` download URL\n- **No Server Switch Blocks**: Players can freely switch between backend servers\n- **Session Cleanup**: Data is automatically cleaned up on disconnect\n- **Database Backup**: SQLite file can be easily copied/backed up\n\n## 🐛 Troubleshooting\n\n### Plugin doesn't load\n- Make sure Velocity 3.4.0-SNAPSHOT is running\n- Check if all dependencies are correctly bundled\n\n### Resource pack is not sent\n- Check the `resourcePackUrl` in the configuration\n- Make sure the URL is accessible\n\n### Players are not forwarded\n- Check the server logs for errors\n- Make sure backend servers are available\n\n## 📜 License\n\nCreated by **thelion**\n\n## 🤝 Support\n\nFor questions or problems:\n- Create an issue in the GitHub repository\n- Check the logs for error messages\n- Make sure all dependencies are correctly installed\n\n---\n\n**Good luck with your Velocitypacker plugin! 🎮**\n",
+  "categories": [
+    "management",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 97,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "SrmhlBc8",
+  "slug": "smppositionsaver",
+  "title": "SMPPositionSaver",
+  "description": "SMP Position Saver – lightweight Bukkit plugin that auto‑saves/restores player locations in configurable SMP worlds (YAML storage, wildcard support, optional commands).",
+  "body": "# SMP Position Saver\n\nA Bukkit plugin for Minecraft 1.21.8 that saves and restores player positions in SMP worlds.\n\n## Features\n\n- **Auto save**: Saves player position when they leave an SMP world\n- **Auto restore**: Restores the last saved position when a player enters an SMP world\n- **Flexible configuration**: Configurable list of worlds treated as SMP\n- **Multi-world support**: Handles multiple SMP worlds at once\n- **YAML storage**: Positions stored in `positions.yml`\n\n## Installation\n\n1. Compile the plugin with Maven:\n  ```bash\n  mvn clean package\n  ```\n\n2. Copy the generated JAR from `target/` to your server's `plugins/` folder.\n\n3. Restart the server or reload the plugins.\n\n## Configuration\n\nThe `config.yml` file will be generated automatically in the plugin folder:\n\n```yaml\n# SMP worlds configuration\nsmp-worlds:\n  - \"world\"\n  - \"world_nether\"\n  - \"world_the_end\"\n  - \"survival\"\n  - \"survival_nether\"\n  - \"survival_the_end\"\n\n# Customizable messages\nmessages:\n  position-saved: \"§aYour position has been saved in {world}!\"\n  position-restored: \"§aYou have been teleported to your last position in {world}!\"\n  no-position-saved: \"§cNo saved position for this world.\"\n  config-reloaded: \"§aConfiguration reloaded successfully!\"\n\n# Options\noptions:\n  save-on-quit: true\n  restore-on-join: true\n  clear-on-death: true\n  debug: false\n  # Datapack functions executed when entering/exiting an SMP world\n  entry-function: \"datapack:functions/enter_smp\"\n  exit-function: \"datapack:functions/exit_smp\"\n```\n\n### SMP worlds configuration\n\nAdd or remove worlds in the `smp-worlds` section to define which worlds belong to the SMP group.\n\n- Names may be exact or use the wildcard `*`. For instance `world_*` will match `world_1`, `world_nether`, etc.\n\n### Options\n\n- `save-on-quit`: Save the position when the player leaves the server\n- `restore-on-join`: Restore the position when the player joins the server\n- `clear-on-death`: Remove saved coordinates when a player dies in an SMP world\n- `debug`: Enable debug logging\n\n## How it works\n\n### When a player enters an SMP world:\n\n1. The plugin checks if a position was saved for that player in this world\n2. If so, the player is teleported to their last saved position\n3. Otherwise a message informs them that no position is available\n\n### When a player leaves an SMP world:\n\n1. The plugin automatically saves the player's current position\n2. Coordinates (x, y, z), orientation (yaw, pitch) and world are recorded\n3. A message confirms the save\n\n### Data storage\n\nPositions are saved in `plugins/SMPPositionSaver/positions.yml` with this structure:\n\n```yaml\nplayers:\n  <player-uuid>:\n   <world-name>:\n    x: 123.45\n    y: 64.0\n    z: -456.78\n    yaw: 90.0\n    pitch: 0.0\n```\n\n## Permissions\n\n- `smppositionsaver.use`: Allows use of the position saving system (default: true)\n\n## Commands\n\n- `/smp`: Teleports the player to the SMP coordinates defined in the configuration.\n- `/smp reload`: Reloads the configuration file; requires permission `smp.reload` (op by default).\n\nThis command isn't required for normal operation but can be useful after editing `config.yml` without restarting the server.\n\n## Compatibility\n\n- **Minecraft**: 1.21.8\n- **API**: Spigot/Paper 1.21+\n- **Java**: 21+\n\n## Development\n\nThe plugin is structured with the following components:\n\n- `SMPPositionSaver`: Main plugin class\n- `ConfigManager`: Configuration manager\n- `PositionManager`: Player position manager\n- `PlayerWorldChangeListener`: Listener for world change events\n- `PlayerPosition`: Model representing a saved position\n\n## Support\n\nFor any questions or issues, please check the server logs or enable debug mode in the configuration.\n\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 53,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

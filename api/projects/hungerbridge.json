@@ -1,0 +1,41 @@
+{
+  "id": "LYkoD1S0",
+  "slug": "hungerbridge",
+  "title": "HungerBridge",
+  "description": "A secure and lightweight HTTP bridge for Paper & Fabric",
+  "body": "HungerBridge is a **tiny, zero‑noise, multiloader HTTP bridge** that lets external services communicate with your Minecraft server safely and efficiently. Designed for **automation** and engineered to stay completely out of your way.\n\n---\n\n## What it does\n- Exposes a **minimal HTTP API** for remote automation\n- Supports **Paper** and **Fabric** with a shared common module\n- Provides **run** and **log** endpoints _(more coming soon!)_\n- Zero commands, zero chat output, zero clutter\n- Safe by default — **shared secret authentication**, no open RCON, no exposed internals  \n\n---\n\n## Why it exists\nTraditional RCON is slow, fragile, and unsafe to expose publicly.  \nHungerBridge replaces it with a **modern, stateless, authenticated HTTP layer** that works identically across loaders.\n\n---\n\n## Features\n- 🔌 **Unified API** across all loaders\n- 🧩 **Python library**\n- 🔐 **Shared‑secret authentication**\n- ⚡ **Fast, lightweight, no tick overhead**\n- 📝 **Structured logging endpoint**\n- 🏃 **Command execution endpoint**\n\n---\n\n## Usage\nHungerBridge is designed to be paired with **HungerLib** or any external client that can send authenticated HTTP requests.\n\nExample integrations:\n- Automation scripts\n- Server orchestration\n- Custom dashboards\n- Server monitoring tools\n\n---\n\n## HungerLib support\nWhile **HungerBridge** can be used by any HTTP client, **HungerLib** is a Python library built for queries.\n\n### Installation\n```bash\npip install hungerlib\n```\n\n### Usage\n```python\nfrom hungerlib import BridgeClient\n\n# Create the client\nbridge = BridgeClient(url=\"http://example.com:1913\", token=\"YOUR_SECRET\")\n\n# Run a command\nout = bridge.runCommand(\"say Hello from HungerBridge!\", silent=False)\nprint(\"Command output:\", out)\n\n# Log something\nbridge.log(\"Example script ran successfully\", level=\"info\")\n\n# Get status\nbridge.getStatus()\n\n# Get version\nbridge.getVersion()\n```\n\n---\n\n## Supported Platforms\n| Platform | Supported | Version |\n|----------|-----------|---------|\n| Fabric   | ✔ Yes     | 1.21.10+|\n| Quilt    | ✔ Yes     | 1.21.10+|\n| Paper    | ✔ Yes     | 1.21.10+|\n| Purpur   | ✔ Yes     | 1.21.10+|\n\n\n## Security Guide\nHungerBridge is designed to be exposed safely when paired with Cloudflare.\nThis guide shows the minimal, recommended setup for securing your API over HTTPS.\n\n**Put HungerBridge Behind Cloudflare**  \nCreate a DNS record:\n\n| Type | Name |      Value       |         Proxy          |\n|:----:|:----:|:----------------:|:----------------------:|\n|  A   | api  | <your-server-ip> | Proxied (orange cloud) |\n\nThis gives you:\n- HTTPS\n- DDoS protection\n- Firewall\n- IP masking\n\n**Your API will be available at:**  \n```https://api.example.com:1913```",
+  "categories": [
+    "fabric",
+    "folia",
+    "library",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 72,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

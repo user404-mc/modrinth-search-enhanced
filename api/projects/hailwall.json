@@ -1,0 +1,36 @@
+{
+  "id": "80oFcizV",
+  "slug": "hailwall",
+  "title": "HailWall",
+  "description": "Server-side mod whitelist/blacklist: checks each player's client mods on join and kicks disallowed ones. (Install on server + client.)",
+  "body": "# HailWall — Mod Whitelist\n\n**HailWall** checks the mods installed on a player's **client** when they join, and kicks them if they have **disallowed** mods (or are missing a **required** one). It's a modern, lightweight take on the classic *Mod Whitelist* idea.\n\n> ⚠️ **Install it on BOTH the server and every client.** A purely server-side mod cannot read a client's full mod list — vanilla simply doesn't send it. So, like every mod of this kind, HailWall needs a tiny companion running on the client.\n\n## ✨ Features\n\n- **Whitelist mode** (default) — block everything except the mods you allow. The essentials (`minecraft`, the loader, `java`, `hailwall`) are always allowed.\n- **Blacklist mode** — allow everything except specific mods (cheat clients, x-ray, …).\n- **Required mods** — kick players who are *missing* a mandatory mod.\n- **Operator bypass** — server operators are never kicked, even with extra mods (like a `usePermission` toggle).\n- **Transition / monitor mode** (`enforce: false`) — kick nobody, but still record everyone's mods. Perfect for rolling HailWall out without disrupting players while you build your list.\n- **Access log** — one JSON-Lines file per day (kept under `config/`, so it's reachable even on hosts like Aternos) listing who joined and with which mods. Old files are pruned automatically.\n- **Signed handshake** — HMAC + per-connection challenge to stop trivial packet spoofing.\n- **Zero gameplay overhead** — everything happens once, during login; the log is written off-thread. No per-tick cost.\n\n## ⚙️ How it works\n\nDuring the login handshake the server asks the client for its mod list. The client replies with its installed **top-level** mods (id + version), signed with HMAC. The server verifies the signature, compares the list against your config, and either lets the player in or disconnects them — all **before** they enter the world.\n\n| Situation | Result |\n|---|---|\n| Installed on client **and** server | ✅ Full verification |\n| Installed only on the **client** | You can still play on other servers; here it protects nothing |\n| Installed only on the **server** | A client without HailWall can't join (when `requireCompanionMod` is on) |\n\n## 📦 Setup\n\n1. Install the correct version of your chosen mod loader (e.g., Fabric, Forge, or NeoForge) and any required APIs on the server and on every client.\n2. Drop the `hailwall-x.y.z.jar` into the `mods/` folder of the **server** and of **each client**.\n3. Start the server once to generate `config/hailwall.json`, edit it, and restart.\n\n## 🔧 Configuration — `config/hailwall.json`\n\n```jsonc\n{\n  \"mode\": \"whitelist\",          // \"whitelist\" or \"blacklist\"\n  \"enforce\": true,              // false = monitor mode (log only, kick nobody)\n  \"operatorsBypass\": true,      // operators are never kicked\n  \"requireCompanionMod\": true,  // kick clients that don't have HailWall\n  \"verifySignature\": true,\n  \"logModLists\": true,\n  \"enableAccessLog\": true,\n  \"accessLogRetentionDays\": 5,\n\n  \"whitelist\": [\"sodium\", \"iris\", \"modmenu\"],          // YOUR allowed mods\n  \"blacklist\": [\"meteor-client\", \"wurst\", \"baritone\"], // used only in blacklist mode\n  \"requiredMods\": []\n  // + fully customizable / translatable kick messages\n}\n```\n\nFind any mod's id in its `mod.json` (the `id` field). Easier: read it straight from the **access log**, or from the client's `logs/latest.log`, where HailWall prints the reported mod list.\n\n## 🔒 Privacy & data\n\n- The client sends **only mod ids + versions** of top-level mods — **no** file paths, **no** system info, **no** personal data.\n- That data is used to allow/deny the join and is recorded **only in the server's own access log** (default 5-day retention). It's never sent anywhere else, and other players can't see it.\n- **Open source** — you can verify exactly what it does.\n\n## 🛡️ Honest security note\n\nLike **every** client-side mod check, HailWall is not bulletproof: a determined user could still bypass it. The HMAC + challenge stops casual spoofing, not an expert. It works great against normal players and is best paired with `online-mode=true`. Treat it as one solid layer, not a silver bullet.",
+  "categories": [
+    "fabric",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 112,
+  "followers": 0,
+  "game_versions": [
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19.1",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

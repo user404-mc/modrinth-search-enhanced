@@ -1,0 +1,18 @@
+{
+  "id": "4WaVCnfB",
+  "slug": "iafdragonfix",
+  "title": "iafdragonfix",
+  "description": "IAF Dragon Den Fix\nA lightweight Forge mixin mod that fixes a server/client crash caused by Ice and Fire's Dragon Dens and Dragon Roosts generating outside the available chunk region.",
+  "body": "IAF Dragon Den Fix\nA lightweight Forge mixin mod that fixes a server/client crash caused by Ice and Fire's Dragon Dens and Dragon Roosts generating outside the available chunk region.\n\nThe Problem\nIce and Fire's dragon dens and roosts place blocks across a large radius (30+ blocks for caves, 20+ for roosts) during world generation. When these structures generate near the world border or chunk loading boundary, the generation code attempts to access chunks that are not loaded in the WorldGenRegion cache, throwing RuntimeException: We are asking a region for a chunk out of bound and corrupting the save.\n\nHow It Works\nThis mod uses Mixin to intercept two methods in WorldGenRegion:\n\ngetBlockState — Returns air instead of crashing when a feature tries to read a block from a chunk outside the region's cache.\naddFreshEntity — Silently cancels entity spawning (e.g. the dragon itself) when the target position is outside the available chunks.\nDragon dens and roosts still generate normally. Only the portions that extend beyond the loaded region are gracefully truncated. No structures are skipped, and normal world generation (trees, ores, etc.) is completely unaffected.\n\nInstallation\nDrop iafdragonfix-1.0.0.jar into your mods folder.\n\nRequirements\nMinecraft 1.20.1\nForge 47+\nCompatibility\nTested with Ice and Fire 2.1.13-1.20.1-beta-5\nDoes not modify Ice and Fire itself — compatible with other IAF addons\nSafe to add or remove at any time",
+  "categories": [
+    "forge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 165,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

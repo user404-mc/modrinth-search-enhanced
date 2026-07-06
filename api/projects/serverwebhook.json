@@ -1,0 +1,35 @@
+{
+  "id": "eFIPbC6y",
+  "slug": "serverwebhook",
+  "title": "ServerWebhook",
+  "description": "Send webhook when player joined.",
+  "body": "# ServerWebhook Plugin\n\nA simple plugin for Velocity proxies that sends a notification to a configured webhook when a player connects to a specific server.\n\n## Features\n\n- **Per-Server Settings**: Configure webhooks for specific servers or for all servers (\"all\").\n- **HTTP Method Support**: Supports `GET` and `POST` requests.\n- **Dynamic Data Transfer**: Use placeholders like `{player.name}`, `{player.uuid}`, and `{server.name}` in the webhook's URL, body, and headers to send dynamic information.\n\n### Configuration Structure\n\n```json\n{\n  \"webhooks\": [\n    {\n      \"server\": \"ServerName\",\n      \"url\": \"WebhookURL\",\n      \"method\": \"HTTPMethod\",\n      \"body\": \"RequestBody (optional)\",\n      \"headers\": {\n        \"HeaderName\": \"HeaderValue\"\n      }\n    }\n  ]\n}\n```\n\n-   `server`: Specify the name of the server to send the webhook for. Set to `\"all\"` to receive notifications from all servers.\n-   `url`: The URL address to send the webhook request to.\n-   `method`: Supports `GET` or `POST`.\n-   `body`: The body to send with a `POST` request. (optional)\n-   `headers`: Custom headers to include in the request. (optional)\n\n### Available Placeholders\n\nYou can use the following placeholders in the `url`, `body`, and `headers` values to include dynamic information:\n\n-   `{player.name}`: The player's name\n-   `{player.uuid}`: The player's UUID\n-   `{server.name}`: The name of the server the player connected to\n\n### Configuration Example\n\n```json\n{\n  \"webhooks\": [\n    {\n      \"server\": \"limbo\",\n      \"url\": \"http://localhost:8080/webhook\",\n      \"method\": \"POST\",\n      \"body\": \"{\\\"username\\\": \\\"{player.name}\\\", \\\"content\\\": \\\"{player.name} has connected to {server.name}.\\\"}\",\n      \"headers\": {\n        \"X-Auth-Token\": \"your-secret-token\"\n      }\n    },\n    {\n      \"server\": \"main\",\n      \"url\": \"https://discord.com/api/webhooks/your_webhook_id/your_webhook_token\",\n      \"method\": \"POST\",\n      \"body\": \"{\\\"content\\\": \\\"Player {player.name} ({player.uuid}) connected to {server.name}\\\"}\"\n    },\n    {\n      \"server\": \"all\",\n      \"url\": \"http://localhost:8080/player_join?player={player.name}&server={server.name}\",\n      \"method\": \"GET\"\n    }\n  ]\n}\n```\n",
+  "categories": [
+    "management",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 43,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

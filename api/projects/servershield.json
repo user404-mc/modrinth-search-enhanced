@@ -1,0 +1,31 @@
+{
+  "id": "ur8Z078c",
+  "slug": "servershield",
+  "title": "ServerShield",
+  "description": "ServerShield is an all in one automated moderation plugin for minecraft servers!",
+  "body": "# ServerShield — Automatic moderation plugin for Minecraft 1.21+\n\n\n## Short description\nServerShield is a focused, low-latency moderation plugin that prevents slurs and severe profanity from appearing in chat — blocking them before they are sent. Plug-and-play behavior with sensible defaults, fine-tunable thresholds, and built-in admin stats.\n\n### Tagline\nAutomated slur removal & safe chat enforcement for Paper/Spigot (Minecraft 1.21+)\n\n---\n\n## Long description\nServerShield blocks slurs and severe profanity in real-time by sending chat content to a trusted moderation API. When offensive content is detected, the message is prevented from broadcasting and the sender's chat is cleared so the content never appears to other players — or themselves.\n\nServerShield focuses on doing one job well: stop slurs and minimize harmful content in your server chat without manual keyword lists or local slur storage. It integrates with Paper and Spigot (Minecraft 1.21+) and is designed for minimal admin setup.\n\n---\n\n## Key features\n- Instant slur removal — messages flagged as slurs are cancelled before they reach players.\n- Configurable threshold — adjust how aggressive the moderation should be using the `threshold` setting.\n- Two action modes: `delete` (default) and `hashtag` — `delete` simply blocks, `hashtag` replaces content with `########` when you prefer a visible placeholder.\n- Works on Paper 1.21 & Spigot — detects and handles `AsyncChatEvent` or `AsyncPlayerChatEvent` as needed.\n- Stats: `/servershield stats` — admins can view how many messages were blocked and a player breakdown.\n- No local slur list — the plugin relies on an external profanity API for detection.\n- Optional obfuscated release build via `yguard` profile (for plugin authors who distribute a protected jar).\n\n---\n\n## Quick install\n1. Place `ServerShield.jar` into your server `plugins/` folder.\n2. Restart or reload the server.\n3. Edit `plugins/ServerShield/config.yml` to tune settings (see config recipe below).\n\n> Note: Standalone, no external configuration required unless you want to tweak detection sensitivity or stats.\n\n---\n\n## Configuration (config.yml quick reference)\n- action: `delete`  # `delete` or `hashtag`\n- threshold: `0.9`  # higher is stricter; values between 0.0 and 1.0\n- broadcast_for_all: `true`  # broadcast hashtag replacements to everybody if set\n- clear_chat_lines: `100`  # number of blank lines to remove the sender's message from view\n- debug: `false`  # turn on for tuning and troubleshooting\n- persist_stats: `true`  # whether to save stats to `plugins/ServerShield/stats.yml`\n\nTuning: enable `debug: true` to see API responses and scores in server console. That helps you find the ideal `threshold` for your community.\n\n---\n\n## Commands & Permissions\n- `/servershield stats` — Show total blocked messages and top blocked players.\n  - Permission: `servershield.stats` (default: `op`) — view in-game stats.\n- Permission: `servershield.admin` for admin-only access to plugin commands (default: `op`).\n\n---\n\n## Privacy & Data\n- ServerShield sends chat messages to the Profanity API (https://vector.profanity.dev) for moderation decisions. If you do not want to send chat to an external service, do not run the plugin.\n- The plugin does NOT store raw messages in `stats.yml` — it only stores counts and aggregated per-player blocked totals when `persist_stats` is enabled.\n- You can disable persistence by setting `persist_stats: false` in `config.yml`.\n\n---\n\n## Roadmap (planned)\n- Advanced ban system & rules (all-in-one moderation console)\n- Essentials-like feature set (optional replacement for standard tools)\n---\n\n## Changelog (short)\n- 0.01 BETA — Initial public beta with slur detection and basic stats.\n\n---\n\n## FAQ\nQ: What happens when the API is down?\nA: ServerShield handles API failures gracefully: if the API cannot be reached, messages will be treated as safe (no local blocking), so uptime of the external API may impact blocking. Turn on `debug` to monitor API errors.\n\nQ: Does ServerShield use any local slur database?\nA: No — per my choice, the plugin uses the external profanity service only. This avoids maintaining a local list.\n\nQ: Is the plugin compatible with Paper 1.21?\nA: Yes — ServerShield handles `AsyncChatEvent` on Paper and falls back to `AsyncPlayerChatEvent` for Spigot.\n\n---\n\n## Support & contact\n\n- We are working on this.\n\n---\n\n## License\n- See Modrinth for license details.\n\n---\n\n",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

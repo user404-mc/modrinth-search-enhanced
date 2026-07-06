@@ -1,0 +1,20 @@
+{
+  "id": "scSfKqpM",
+  "slug": "alexinds-server-skins",
+  "title": "AlexInd's Server Skins",
+  "description": "A client-side Minecraft 1.7.10 Forge mod that replaces player skins with per-player skins fetched from an API.",
+  "body": "# AlexInd's Server Skins\n\nA client-side Minecraft 1.7.10 Forge mod that replaces player skins with per-player skins fetched from an API.\n\n## How it works\n\n1. For each player in the world, a GET request is sent to the configured API URL with the player's nickname\n2. The API returns a JSON response with a skin URL\n3. The mod downloads the skin PNG and applies it to that specific player via reflection\n\n## Configuration\n\nAfter first launch, edit `config/alexinds_server_skins.cfg`:\n\n```\ngeneral {\n    S:apiUrl=http://localhost:8000/%s\n}\n```\n\nUse `%s` as the placeholder for the player nickname.\n\n## API\n\nThe mod sends a GET request to the configured URL (with `%s` replaced by the player's nickname).\nThe server must return JSON with the following structure:\n\n```json\n{\n    \"SKIN\": {\n        \"url\": \"https://example.com/path/to/skin.png\",\n        \"metadata\": {}\n    }\n}\n```\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `SKIN.url` | string | Direct URL to the player's skin PNG (64x64 or 64x32) |\n| `SKIN.metadata` | object | Reserved for future use, pass an empty object `{}` |\n\nThe skin PNG must be accessible via direct GET request (no redirects, no auth).\n\n## Example server\n\nA minimal Python server is provided in `example-server/server.py`:\n\n```\npython example-server/server.py\n```\n\nPlace 64x64 PNG skins in `example-server/skins/` named as `<nickname>.png` (e.g., `Notch.png`).\nThe server will serve both the JSON endpoint and the skin files.\n\nConfigure the mod to use:\n```\ngeneral {\n    S:apiUrl=http://your-ip:8000/%s\n}\n```\n\n## Build\n\n```\n./gradlew clean build\n```\n\nOutput: `build/libs/SkinReplacer-1.0.0.jar`\n\n## Requirements\n\n- Minecraft 1.7.10\n- Forge 10.13.4.1614+\n- Java 8\n",
+  "categories": [
+    "forge",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 79,
+  "followers": 0,
+  "game_versions": [
+    "1.7.10"
+  ],
+  "date_updated": null
+}

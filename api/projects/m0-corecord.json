@@ -1,0 +1,32 @@
+{
+  "id": "kOdGtPGU",
+  "slug": "m0-corecord",
+  "title": "M0-CoreCord",
+  "description": "Discord integration for the famous Anti-Griefing plugin CoreProtect.",
+  "body": "\nDiscord integration for the famous Anti-Griefing plugin CoreProtect.\n_________________________________________________\n\n# FEATURES\n\n• Lookups for player issued commands;  \n• Lookups for player messages;  \n• Lookups for log ins and log outs;  \n• Lookups for player placed and destroyed blocks;  \n• Lookups for items taken and placed into containers;  \n• Lookups for dropped and picked up items;  \n• Block whitelist using b: for a:block lookups;  \n• PlaceholderAPI support for certain messages;  \n• Customizable Discord BOT prefix;  \n• MySQL & SQLite support;  \n• Customizable date format;  \n• Customizable discord message output;  \n• Customizable allowed roles to use the commands;  \n• Customizable messages, embed;  \n• Output results into a log file;  \n• Action logging via webhooks;  \n_________________________________________________\n\n## ABOUT\n\n### DISCORD COMMAND USAGE  \n`co!lookup u:username a:command t:time`  \n`co!lookup user:username action:command time:time`  \n\nTime variable can be defined as:  \nunseparated: `time:2h30m`, `t:1m16s`, etc.  \ncomma separated: `time:1d,30m` `t:2h,30m,10s`, etc.  \n\nCurrently only supports one user lookup at a time.  \n\n### ADDITIONAL FEATURES\n\n#### LOOKUP COMMAND FILTER\nYou can filter issued commands and other results using `f:` or `filter:` flag:  \nUsage: `co!lookup u:M0dii a:command f:gmc,gmsp t:24h`\n\n#### REVERSE RESULTS\nYou can reverse the lookup results using `-r` or `-reverse` at the end of command:  \nUsage: `co!lookup u:M0dii a:command t:24h -reverse`\n\nYou can reload the configuration with:  \n`co!reload` - in discord.  \n`/corecord reload` - in game.\n\nYou can check plugin and server version with:  \n`co!version` - in discord.  \n`/corecord version` - in game.  \n\n#### LOG FILE\nYou can upload results into a log file instead of an embed using `-f` or `-file` flag:  \nUsage: `co!lookup u:M0dii a:command t:24h -f`\n\n## FEATURES TO BE IMPLEMENTED:\n\nBlock excludes (e:<exclude>)  \nRadius rollbacks from specific XYZ coordinates;  \nPlayer interactions (button clicks, etc.);  \nMob kills;  \nSign messages;  \nRollbacks;  \n\nTo create a discord bot head to Discord Developer Portal at https://discord.com/developers, log in with your account and create a new application.\n\nAfter, go to its settings menu and add a bot user, here you will also find the token that has to be put in the config.\n\nFrom there you can go to OAUTH section and invite your bot to your discord server.\n\nFor more information and more detailed process, go to the wiki page on github:  \n[Discord BOT · M0diis/M0-CoreCord Wiki](https://github.com/M0diis/M0-CoreCord/wiki/Discord-BOT)\n_________________________________________________\n\n# CONFIGURATION\n\nConfiguration is pretty simple and easy to understand.  \nFor more detailed explanation, visit Github wiki page:  \n[Configuration · M0diis/M0-CoreCord Wiki (github.com)](https://github.com/M0diis/M0-CoreCord/wiki/Configuration)\n\n```yml\n## MySQL Configuration\n# Make sure the values are the exact same\n# as in your CoreProtect config.\n# By default table prefix is co_\n# You can also use SQLite, but I strongly recommend\n# using MySQL instead.\nuse-mysql: true\nmysql-host: \"host-name\"\nmysql-port: 3306\nmysql-database: \"database-name\"\nmysql-username: \"database-user\"\n# Leave '' if password not required\nmysql-password: \"user-password\"\n## Discord BOT Token\n# https://discord.com/developers/applications\ndiscord-bot-token: \"your-token\"\ncommand-prefix: \"co!\"\n## Embed configuration\n# Embed page buttons use unicode symbols\n# Leave them as it is if you don't know what you're doing\n# Do not use high values for rows in one page\n# Date format uses Java SimpleDataFormat\n# https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html\ndate-format: \"yyyy-MM-dd HH:mm:ss\"\n# Whether to delete the embed when close button pressed\n# If false, it will only hide the buttons.\ndelete-on-close: false\nembed-page-left: '⬅️'\nembed-page-right: '➡️'\nembed-close: '❌'\nrows-in-page: 5\n# Whether to always show number of results in embed description\n# without need to #count\nalways-show-count: true\n# Role IDs that are allowed to use the commands\n# You have to have developer mode enabled on discord\n# To get the ID right click on the role and copy\nallowed-roles:\n  - 'role-one-id'\n  - 'role-two-id'\n## Debugging\n# Only enable if you need to find out what's wrong\n# Sends a lot of extra messages to the console\ndebug: false\n\nwebhook-loggers:\n  1:\n    url: 'webhook-url-goes-here'\n      actions:\n      - '+block' # Place a block (+block, place)\n      - '-block' # Break a block (-block, break)\n     # - '+item' # Item pickup (+item, pickup, pickupitem)\n     # - '-item' # Item drop (-item, drop, dropitem)\n     # - '-session' # Player join (-session, quit, playerquit)\n     # - '+session' # Player quit (+session, join, playerjoin)\n     # - 'container' # Open a container\n     # - 'chat' # Message send\n     # - 'command' # Command execution\n     # - 'kill' # Monster/animal kill (kill, mobkill)\n```\n_________________________________________________\n\nPlease leave a positive review if the plugin works as intended, if you have an issue contact me on discord provided or open an issue on github.\n\n### METRICS\n\nM0-CoreCord collects anonymous server statistics through bStats, an open-source statistics service for Minecraft software.  \nIf you'd like to disable metrics collection via bStats, you can edit the /plugins/bStats/config.yml file.\n",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 84,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

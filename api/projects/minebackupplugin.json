@@ -1,0 +1,33 @@
+{
+  "id": "LVoEo9KY",
+  "slug": "minebackupplugin",
+  "title": "MineBackupPlugin",
+  "description": "This mod acts as a bridge connecting the powerful MineBackup application with the Minecraft. Backup and Restore your save with just a command!",
+  "body": "# MineBackup-Plugin\n\nMineBackup-Plugin is a Spigot plugin based on Minecraft 1.21. As a complementary component to [MineBackup](https://github.com/Leafuke/MineBackup/releases)/[FolderRewind](https://github.com/Leafuke/FolderRewind/releases), it communicates with the main program through the [KnotLink](https://github.com/hxh230802/KnotLink) protocol, enabling cross-end data synchronization and signal broadcasting. It allows remote control of backup, restoration, automatic backup, and other functions.\n\nFor the mod version, see [MineBackup-Mod](https://github.com/Leafuke/MineBackup-Mod). Compared to the mod version, the plugin version has undergone many optimizations for server-side use.\n\n## Features\n\n- **KnotLink Protocol Support**: Subscribes to broadcast signals from the MineBackup main program via a long-lived TCP connection (default port `6372`), enabling low-latency cross-end communication.\n- **Fully Compatible with 1.21.x**: Developed based on the latest Spigot API 1.21, supporting Java 21.\n- **Lightweight Architecture**: Focuses on signal subscription and command forwarding, consuming minimal server resources.\n\n## Requirements\n\n- **Minecraft Version**: 1.21.x\n- **Server Software**: Spigot / Paper and its forks\n- **Java Version**: Java 21 or higher\n- **Dependencies**: Requires the MineBackup/FolderRewind+MineRewind main program to be running (provides the KnotLink signal source).\n\n## Installation and Usage\n\n1.  Download the latest `.jar` file from the Releases page.\n2.  Place the downloaded `.jar` file into your server's `plugins` folder.\n3.  Start or restart your server.\n4.  Ensure the MineBackup main program is running and that the [KnotLink Server](https://github.com/hxh230802/KnotLink/releases) is installed on your computer. Specifically, Linux/macOS users do not need to install the separate KnotLink Server.\n\n## Commands and Permissions\n\n| Command | Parameters | Description |\n| :--- | :--- | :--- |\n| **/mb save** | (none) | Manually performs a full world save in-game, equivalent to `/save-all`. |\n| **/mb list_configs** | (none) | Lists all configuration profiles you have set up in the MineBackup main program along with their IDs. |\n| **/mb list_worlds** | `<config_id>` | Lists all worlds under the specified configuration along with their index numbers. |\n| **/mb list_backups** | `<config_id> <world_index>` | Lists all available backup files for the specified world. |\n| **/mb backup** | `<config_id> <world_index> [comment]` | Commands the main program to create a backup for the specified world. An optional comment can be attached. |\n| **/mb restore** | `<config_id> <world_index> <filename>` | Commands the main program to restore the world using the specified backup file. If you intend to restore the current world, you **must** use **/mb quickrestore**. |\n| **/mb auto** | `<config_id> <world_index> <interval_time>` | Requests MineBackup to perform automatic backup tasks at the specified interval (in minutes). |\n| **/mb stop** | `<config_id> <world_index>` | Requests MineBackup to stop the automatic backup task. |\n| **/mb quicksave** | `[comment]` | Performs a backup for the current world. |\n| **/mb quickrestore** | `[filename]` | Performs a hot restore for the current world. If no filename is provided, the latest backup file is automatically selected. |\n| **/mb confirm** | (none) | Confirms the execution of a hot restore. |\n| **/mb abort** | (none) | Cancels an impending hot restore. |\n| **/mb reload** | (none) | Reloads the configuration. |\n\n**Please note that the specific execution behavior differs between the plugin and the mod.** Pay close attention during use.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 102,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

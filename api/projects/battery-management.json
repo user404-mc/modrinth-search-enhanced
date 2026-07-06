@@ -1,0 +1,21 @@
+{
+  "id": "sIRsnTVK",
+  "slug": "battery-management",
+  "title": "Battery Management",
+  "description": "A plugin to inform about battery status, save energy after inactivity and inform about low / high battery charge.",
+  "body": "## About\n\nMinecraft Paper Plugin to save energy after inactivity and inform about low / high battery charge. This is thought for\nsmall local servers that are running on old laptops or other devices with a battery. It (currently) has no permission set on it's command(s), which means everyone\nis able to see the battery status.\n\n## Suggestions\n\nIf you have any suggestions, found a bug or have a feature request, please feel free to contact me!\n<br/>\nThe plugin is currently also only available for 1.20.1 on paper, but write me a DM and I can make it available for your desired version.\n<br/>\nMy discord username is `eneas._`.\n\n## Commands\n\n- /battery [<percentage> | <status>]\n\n<p>Requests and returns the current battery percentage, status, or both if no argument is specified.\n\n## Usage\n\nThe plugin can be configured to check the battery every given amount of minutes, and broadcast a warning in the chat if\nthe battery is below a specified threshold and discharging or above another specified threshold and charging (default\nlow is 10% and high is 90%).\n<br/>\nIt also has a feature to stop the server after a given duration of inactivity. This works by testing if no players are online and that the last player left and the last console command was executed, before this duration.\nIf enabled, it also creates a marker file at a given path, so that the server start-script can test if the file exist and trigger further actions, like completely shutting down the device.\n\n## Configuration\n\n### Default plugin config:\n\n```yaml\nbattery:\n  enabled: true # Disable battery checks if set to false\n  warning_thresholds:\n    high: 90  # Warn if battery is above this percentage\n    low: 10   # Warn if battery is below this percentage\n  check_interval: \"5m\" # How often to check battery level\n\ninactivity:\n  enabled: true # Disable auto-shutdown if set to false\n  max_duration: \"15m\"  # Max inactivity time before shutdown\n  check_interval: \"5m\" # How often to check for inactivity\n  shutdown_info:\n    file: \"/tmp/battery_management/shutdown.info\" # File indicating a shutdown request\n```\n\n### Example scripts to start server and shutdown if plugin stopped server:\n\n#### Linux\n\n```bash\n#!/bin/bash\n\njava -Xms2G -Xmx2G -XX:+UseG1GC -jar /Path/to/paper-server.jar --nogui\n\nFILE=\"/tmp/battery_management/shutdown.info\"\n\nif [ -f \"$FILE\" ]; then\n    rm -f \"$FILE\"\n    shutdown now\nfi\n```\n\n#### Windows\n\n```batch\n@echo off\nsetlocal\n\njava -Xms2G -Xmx2G -XX:+UseG1GC -jar C:\\Path\\to\\paper-server.jar --nogui\n\nset \"file=C:\\Windows\\Temp\\battery_management\\shutdown.info\"\nIF EXIST \"%file%\" (\n    del \"%file%\"\n    shutdown -s -t 0\n)\n\nendlocal\n```\n",
+  "categories": [
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 30,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

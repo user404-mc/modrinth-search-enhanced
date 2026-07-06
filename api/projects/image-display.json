@@ -1,0 +1,30 @@
+{
+  "id": "clKgXa3n",
+  "slug": "image-display",
+  "title": "Image Display",
+  "description": "Display images on your server — no resource pack required!",
+  "body": "![logo](https://cdn.modrinth.com/data/cached_images/9c6286564397e5b9b1b69ebd2a82642251347d67.png)\n# Where can it be used?\nTurn any image into a grid of MineSkin-powered head textures, then use it in chat, TAB header/footer, prefixes/suffixes, nametags, holograms, titles, scoreboard and other.\nImage Display is perfect for server logos, icons, decorations, rank visuals, hologram art, lobby branding, and other visual UI elements without forcing a resource pack.\n\n## Features\n* Display images without a resource pack\n* Auto convert PNG/JPG/JPEG/WEBP images into player-head components. You don't need to manually crop images - the plugin will do it for you!\n* You don't need to mess with resource bundles or search for glyphs, just upload your images and use a single placeholder!\n* Use images with simple placeholders like: \n```\n%imagedisplay_<image_name>%\n```\n* Works in any chat through ProtocolLib component replacement\n* Uses local JSON image cache after generation\n* Permission control for usage\n* Fallback text for unsupported clients \n<details>\n<summary>Spoiler</summary>\n\nClients before version 1.21.9 cannot see such images. For them, you can specify a fallback text in the config\n\n</details>\n\n![Example in player list](https://cdn.modrinth.com/data/cached_images/e55327925971fd1170e1160e43bc7068da0778aa.png)\n\n## How to add and use any image?\n\n\n\n**1. Upload your image**\n\nPut your image into:\n\n```text\nplugins/ImageDisplay/pictures/\n```\n\n⚠️ Make sure the image size is a multiple of 8 pixels.\n\nExamples:\n\n```text\n16x16\n32x32\n64x8\n64x64\n80x8\n96x8\n128x64\n128x128\n256x128\n```\n\n**2. Specify your MineSkin API key in the plugin configuration**\nIt's free: [You can get it here](https://mineskin.org/apikey)\n\nPaste API key to:\n\n```\nmineskin-api-key: \"here\"\n```\n\n\n**3. Generate the image data**\n\nRun the command:\n\n```text\n/imagedisplay generate your_image_name.png\n```\n\n**4. Wait generation**\n\nWait for a chat message about successful generation, or check the console.\n\n**5. Use the placeholder**\n\nUse the generated placeholder anywhere supported:\n\n```text\n%imagedisplay_your_image_name%\n```\n\n## Permissions\n\nEvery generated image gets its own permission node:\n\n```text\nimagedisplay_<id>\n```\n\nExample:\n\n```text\n%imagedisplay_logo%\n```\n\nrequires:\n\n```text\nimagedisplay_logo\n```\n\nThis permission check is applied only when players try to use Image Display placeholders in chat. I plan to expand the permissions in the future.\n\n### Required plugins\n\nImage Display requires:\n\n* **[PlaceholderAPI](https://modrinth.com/plugin/placeholderapi) — for placeholders**\n* **[ProtocolLib](https://github.com/dmulloy2/ProtocolLib/releases/tag/dev-build) — for image display and detection client version**\n\nOptional:\n\n* **[ViaVersion](https://modrinth.com/plugin/viaversion) — useful for for detection client version**\n\n### How it works?\n\nImage Display takes an image, splits it into 8x8 pixel tiles, sends those tiles to MineSkin, and receives signed player head textures.\n\nThe plugin then stores the result in local JSON cache files. After generation, the server does not need to process the original image again. The placeholder simply renders the cached head components. Image Display is designed to be lightweight during normal server usage.\n\n### Tested and works with plugins:\n* TAB\n* Chatty\n* ChatEx\n* Citizen\n* FancyNPC\n* DeluxeHub\n* LuckPerms\n* EssentialsX \n* EssentialsX Chat\n* FancyHolograms\n* LPC-Minimessage\n* DecentHolograms\n\nand more....\n\n\n### Notes\n\n* If you use plugin TAB then has  default MiniMessage support enabled for components — image rendering not work in prefixes/suffixes. Disable it in TAB config:\n\n```yaml\ncomponents:\n  minimessage-support: false\n```\n\nThen run the command\n\n```text\n/tab reload\n```\n* Support for multiple localizations\n* I recommend fonts: Minecraftia, Press Start 2P or any bitmap-style.\n",
+  "categories": [
+    "decoration",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 96,
+  "followers": 0,
+  "game_versions": [
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

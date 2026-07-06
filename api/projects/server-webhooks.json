@@ -1,0 +1,19 @@
+{
+  "id": "qdAcOGwb",
+  "slug": "server-webhooks",
+  "title": "Server Webhooks",
+  "description": "Mod sends selected server events to your backend as HTTP POST JSON.",
+  "body": "# Server Webhooks\n\nMinecraft **Forge** mod for **Minecraft 1.20.1**: sends selected server events to your backend as **HTTP POST** JSON, with optional **HMAC-SHA256** (`X-Webhook-Signature`), retries on 5xx / network failures, and bounded concurrency.\n\n## Installation\n\nPlace the built JAR in the dedicated server’s `mods` folder. The mod is intended for the **server**.\n\n## Configuration\n\nOn first run, Forge creates:\n\n`config/serverwebhooks-server.toml`\n\nKey options (see comments in the file):\n\n- **`webhookUrl`** — `http` or `https` only\n- **`secret`** — shared secret for HMAC (empty = no signature header)\n- **`timeoutMillis`**, **`maxConcurrentRequests`**, **`retryExtraAttempts`**, **`retryInitialBackoffMillis`**\n- **`serverId`** — included in JSON payloads\n- **`events.*`** — toggles per event type (`playerJoin`, `playerLeave`, `playerDeath`, `chatMessage`, `serverStarted`, `serverStopping`)\n\nReload from disk without restart (operator, permission level 2):\n\n```text\n/serverwebhooks reload\n```\n\n## Payload\n\nJSON includes `event_id`, `event_type`, `occurred_at`, `server_id`, optional `player` (`uuid`, `name`), and optional `details` depending on the event.",
+  "categories": [
+    "forge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

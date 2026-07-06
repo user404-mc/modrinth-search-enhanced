@@ -1,0 +1,35 @@
+{
+  "id": "h34wc4II",
+  "slug": "boosterrewards",
+  "title": "BoosterRewards",
+  "description": "Synchronize Discord server booster perks with Minecraft. Automate reward distribution and revocation with a high-performance, async architecture.",
+  "body": "**BoosterRewards | Discord-to-Minecraft Synchronization**\n\nBoosterRewards is an architecturally optimized system designed to automate guild booster incentives with surgical precision. It eliminates the friction of manual reward distribution by synchronizing Discord booster telemetry directly with your Minecraft server's internal permission and economy layers.\n\n![banner](https://cdn.modrinth.com/data/cached_images/575c55f7c9290fcddc600660cca2c6acd1aab664.png)\n\n## Premium Features\n\n**Architectural Integrity**\nEngineered for modern server environments, BoosterRewards avoids the structural pathologies of legacy systems by focusing on data persistence and thread safety.\n\n- **Main-Thread Decoupling**: Database I/O (H2/MySQL) and Discord API interactions are strictly offloaded to dedicated worker threads.\n- **Hot-Reload Integration**: Perform atomic bot re-initialization and configuration updates via `/br reload` without server restarts.\n- **Predictive State Sync**: Real-time listening architecture detects boost status changes instantaneously, ensuring revocation logic is prioritized.\n\n**Dynamic Reward Evolution**\nAdd new items to reward pools mid-season without friction. \n\n- **Granular Tracking**: Every item is uniquely indexed via MD5 hashing.\n- **Adaptive Claiming**: Existing boosters will automatically receive *only* newly added items upon their next `/claim`, preventing duplicate distribution of previously obtained rewards.\n\n**Bi-Directional Linking**\nSeamlessly connect identities through intuitive protocols. Supports both **Discord-to-Minecraft** (token handshake) and **Minecraft-to-Discord** flows.\n\n---\n\n## Administration\n\n**Command Registry**\n\n| Command | Alias | Description | Permission |\n| :--- | :--- | :--- | :--- |\n| `/boosterrewards` | `/br`, `/brp` | Main system management. | `boosterrewards.admin` |\n| `/setboosterreward` | `/rewardsadmin` | Configure item-based rewards via GUI. | `boosterrewards.admin` |\n| `/claim` | | Access the reward distribution interface. | None |\n| `/link [code]` | | Initiate identity mapping. | None |\n| `/unlink` | `/logout` | Terminate account link. | None |\n| `/forceunlink <p>` | `/forcelogout` | Administrative link termination. | `boosterrewards.admin` |\n\n**Visual Reward Definition**\nDefine rewards through a direct-manipulation interface. Supports arbitrary NBT, custom metadata, and complex enchantments.\n\n![admingui](https://cdn.modrinth.com/data/cached_images/a8efe342ad8ff1bb35a43f234c49c4d44a18bb11.png)\n![rewardseditor](https://cdn.modrinth.com/data/cached_images/f2177f07bfc9ed8dfd81d87f607f1f46d56bd873.png)\n\n---\n\n## Configuration Patterns\n\n**Multi-Tiered Hierarchies**\nDefine multiple reward paths based on Discord roles or tenure.\n\n```yaml\nrewards:\n  booster:\n    enabled: true\n    permission: \"boosterrewards.booster\"\n    on-boost:\n      - \"lp user %player% parent add booster\"\n      - \"eco give %player% 5000\"\n    on-stop:\n      - \"lp user %player% parent remove booster\"\n    cooldown: 0\n    one-time: false\n",
+  "categories": [
+    "economy",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 67,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

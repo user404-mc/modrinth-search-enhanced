@@ -1,0 +1,34 @@
+{
+  "id": "WoSo1wJZ",
+  "slug": "nightmarket",
+  "title": "NightMarket",
+  "description": "Per-player Night Market with random items & random discounts, reveal-card GUI, full in-game admin setup, Vault economy, command rewards, and custom-item support (Oraxen/ItemsAdder/MMOItems). Paper 1.21.1.",
+  "body": "# NightMarket - Per-Player Random Market Plugin\n\n**A configurable, per-player \"night market\" plugin for Minecraft servers running Paper 1.21.1** — every player gets their own rotating shop of random offers with random discounts, revealed by flipping cards in a clean GUI.\n\n---\n\n## ✨ Key Features\n\n### 🎯 **Core Systems**\n\n- **Per-Player Random Markets** - Each player rolls their own unique set of offers; no two markets are the same\n- **Seasonal Auto-Reset** - Markets stay locked in until the configurable season ends, then regenerate automatically\n- **Random Discounts** - Every offer gets a random discount between your min/max; original price, discount %, and final price are shown and never change until reset\n- **Reveal-Card GUI** - Offers start face-down and flip open with a short animation, then become buyable, then \"Sold Out\"\n- **Interactive GUIs** - Clean, intuitive menus for both players and admins\n\n### 🔧 **Admin Tools**\n\n- **In-Game Item Pool Editor** - Add, edit, and remove offers without touching config files\n- **Add Items from Hand** - Supports vanilla, **Oraxen**, **ItemsAdder**, and **MMOItems** with full NBT preservation\n- **One-Click Command Rewards** - Create command-based offers straight from the pool menu\n- **Player Management** - Reset a single player's market, refresh it, or reset everyone at once\n- **Live Reload** - Update config and language files without restarting\n\n### ⚡ **Performance & Safety**\n\n- **Async Database** - All saves run off the main thread, so the server never stalls on disk I/O\n- **Ordered Write Queue** - A single FIFO queue guarantees a market is saved before any sold-out update, so purchases can never be lost across restarts\n- **In-Memory Caching** - Markets and the item pool are cached for instant access\n- **Anti-Dupe Protection** - Per-player busy guard + sold-out flag prevent double-clicks, race conditions, and item duplication\n- **Graceful Shutdown** - Pending writes are flushed safely on disable\n- **Graceful Disable** - If Vault or an economy provider is missing, the plugin disables itself with a clear console message instead of erroring\n\n### 🎁 **Flexible Rewards**\n\n- **Two Reward Types per Offer:**\n  - **Item** - Give a vanilla or custom item\n  - **Command** - Run one or more console commands on purchase (ranks, kits, money, crate keys, anything)\n- **Custom Item Support** - Oraxen, ItemsAdder, and MMOItems (auto-detected; rebuilt fresh on purchase with a safe fallback)\n- **NBT Preservation** - Custom enchants, lore, and attributes are kept\n- **Placeholders** - `{player}` / `%player%`, `{uuid}`, `{item_name}`, `{price}`; chain commands with `;;`\n\n### 🎨 **Fully Translatable**\n\n```\n✓ All GUI titles        ✓ All item names        ✓ All lore\n✓ All chat messages     ✓ MiniMessage support   ✓ Hex & legacy colors\n✓ en_US included        ✓ id_ID included        ✓ Live language switching\n```\n\n---\n\n## 📦 Installation\n\n1. Install **Vault** and a Vault-compatible economy plugin (e.g. EssentialsX)\n2. Download the latest `.jar` and place it in your server's `plugins` folder\n3. Restart your server — `config.yml` and language files generate automatically\n4. Run `/nightmarket admin` to start adding offers\n5. Reload anytime with `/nightmarket reload`\n\n---\n\n## 🎮 Commands\n\n### **Player Commands**\n\n- `/nightmarket` or `/nm` - Open your Night Market\n\n### **Admin Commands**\n\n- `/nightmarket admin` - Open the admin dashboard\n- `/nightmarket reset <player>` - Reset a player's market\n- `/nightmarket resetall` - Reset every player's market\n- `/nightmarket reload` - Reload config and language files\n\n---\n\n## 🔐 Permissions\n\n- `nightmarket.use` - Open and buy from the market (default: true)\n- `nightmarket.admin` - Admin GUI and management (default: op)\n- `nightmarket.reset` - Reset player markets (default: op)\n- `nightmarket.reload` - Reload the plugin (default: op)\n\n---\n\n## ⚙️ Configuration\n\n**Customizable via `config.yml` — most settings are also editable in-game:**\n\n```yaml\nlanguage: en_US\nmarket:\n  size: 6              # offers per player\n  discount-min: 10     # min random discount (%)\n  discount-max: 70     # max random discount (%)\n  duration-hours: 24   # season length before auto-reset\npurchase:\n  drop-if-inventory-full: true\nhooks:\n  custom-items: true   # Oraxen / ItemsAdder / MMOItems\n```\n\n---\n\n## 🤝 Compatibility\n\n- **Minecraft Version**: 1.21.1 (Paper)\n- **Java Version**: 21+\n- **Required**: Vault + an economy provider\n- **Optional Dependencies**:\n  - Oraxen (custom items)\n  - ItemsAdder (custom items)\n  - MMOItems (custom items)\n\n---\n\n## 🐛 Support & Feedback\n\nFound a bug or have a suggestion? Please report issues with:\n\n- Server version (e.g., Paper 1.21.1)\n- Plugin version\n- Steps to reproduce\n- Console errors (if any)\n\non our discord\n\n---\n\n**Made with ❤️ by ResistanceCore**\n\n*If you enjoy this plugin, please leave a ❤️ and share it with other server owners!*",
+  "categories": [
+    "bukkit",
+    "economy",
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

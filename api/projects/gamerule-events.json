@@ -1,0 +1,21 @@
+{
+  "id": "EC7DlBPJ",
+  "slug": "gamerule-events",
+  "title": "Gamerule Events",
+  "description": "Gamerule Events is a Minecraft mod for NeoForge that allows you to trigger custom actions when game rules change.",
+  "body": "# Gamerule Events\n\nGamerule Events is a Minecraft mod for NeoForge that allows you to trigger custom actions when game rules change. Actions are defined via data packs.\n\n## Features\n\n- **Trigger Actions on GameRule Change**: Execute titles, subtitles, and sounds when a specific game rule is modified.\n- **Data Pack Driven**: Define your own rules and actions in `data/<namespace>/gamerule_events/` JSON files.\n- **Multiple Actions**: Supports setting title/subtitle (with fade timings) and playing sounds.\n\n## Example Configuration\n\nCreate a file at `data/<namespace>/gamerule_events/<name>.json`:\n\n```json\n{\n  \"rules\": [\n    {\n      \"gamerule\": \"minecraft:doDaylightCycle\",\n      \"when\": {\n        \"equals\": \"false\"\n      },\n      \"actions\": [\n        {\n          \"type\": \"broadcast_title\",\n          \"title\": { \"text\": \"Daylight Cycle Stopped\", \"color\": \"red\" },\n          \"subtitle\": { \"text\": \"Gamerule change detected\", \"color\": \"yellow\" },\n          \"fadeIn\": 10,\n          \"stay\": 60,\n          \"fadeOut\": 10\n        },\n        {\n          \"type\": \"broadcast_sound\",\n          \"sound\": \"minecraft:block.note_block.pling\",\n          \"volume\": 1.0,\n          \"pitch\": 1.0\n        }\n      ]\n    }\n  ]\n}\n```\n\nNotes:\n- `gamerule` must match the in-game gamerule identifier (usually namespaced like `minecraft:doDaylightCycle`).\n- `when.equals` is compared to the serialized new gamerule value; booleans should be `\"true\"` / `\"false\"`.\n- After editing JSON, run `/reload` to apply changes.\n\n## Supported Actions\n\nThe datapack schema uses an `actions[]` array. Supported action `type`s:\n\n- `broadcast_title`\n  - `title` (Component JSON) optional\n  - `subtitle` (Component JSON) optional\n  - `fadeIn` (int, default `10`)\n  - `stay` (int, default `40`)\n  - `fadeOut` (int, default `10`)\n\n- `broadcast_sound`\n  - `sound` (string, resource location like `minecraft:block.note_block.pling`)\n  - `volume` (float, default `1.0`)\n  - `pitch` (float, default `1.0`)\n\n## Installation\n\nGamerule Events targets NeoForge **26.1** (Minecraft **26.1**) or later.\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.\n",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 46,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

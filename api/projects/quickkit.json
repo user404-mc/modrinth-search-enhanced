@@ -1,0 +1,21 @@
+{
+  "id": "SNUkWQq5",
+  "slug": "quickkit",
+  "title": "Fast Kits",
+  "description": "QuickKit lets you save your entire Minecraft inventory as named kits and instantly load them whenever you need them. It includes commands, a GUI, and reusable Kit Binders while preserving enchantments, components, armor, offhand items, and custom names.",
+  "body": "QuickKit v1.0.0\n\nMinecraft 1.21.11 (Fabric)\n\nWHAT IT DOES\n\nQuickKit allows you to save your entire inventory as named kits and restore them instantly whenever you need them. Every kit preserves the complete state of your inventory, including your hotbar, armor, offhand items, enchantments, components, lore, custom names, and all other item data.\n\nKits are serialized using Minecraft's ItemStack.CODEC, ensuring accurate and future-proof storage of item information. Each player's kits are stored in individual JSON files located under:\n\npvppractice_kits/<uuid>.json\n\nwithin the server's run directory.\n\nCOMMANDS\n\nAll commands require Operator Level 2.\n\n/kit save <name>\nSaves your current inventory as a named kit. Kit names can be up to 64 characters long.\n\n/kit load <name>\nClears your current inventory and restores the selected kit.\n\n/kit delete <name>\nPermanently deletes the specified kit.\n\n/kit rename <old> <new>\nRenames an existing kit.\n\n/kit list\nDisplays all saved kits in chat.\n\n/kit bind <name>\nCreates a special binder item that instantly loads the selected kit when used.\n\nTab completion is available for kit names on the load, delete, bind, and rename commands.\n\nGUI\n\nPress K (configurable under Controls → PVP Practice Mod) to open the kit management interface.\n\nThe GUI displays all saved kits in a scrollable list.\n\nKit List Actions\n\n• Left-click a kit → Instantly loads the kit and closes the GUI.\n• Right-click a kit → Selects the kit and highlights it in blue for management actions.\n\nButtons\n\nLoad Kit\n• Loads the currently selected kit.\n\nSave Inventory\n• Prompts for a kit name and saves your current inventory.\n\nDelete Kit\n• Opens a confirmation dialog before permanently deleting the selected kit.\n\nRename Kit\n• Prompts for a new name and renames the selected kit.\n\nRefresh\n• Reloads the kit list directly from the server.\n\nKIT BINDERS\n\nRunning:\n\n/kit bind <name>\n\ngives you a glowing Nether Star with:\n\n• Custom Name: \"Kit: <name>\" (gold, bold)\n• Lore: \"Right-click to load kit\" (gray, italic)\n• Hidden component: pvppractice:kit_name\n\nRight-clicking the binder instantly loads the linked kit.\n\nTo prevent accidental loss, if the binder would be overwritten during kit loading, QuickKit automatically moves it to the next available inventory slot, ensuring it remains in your inventory whenever possible.\n\nTECHNICAL DETAILS\n\n• Uses Fabric API networking through custom payloads:\n• C2SKitActionPayload\n• S2CKitListPayload\n\n• Uses a custom data component:\n• pvppractice:kit_name (String type) for binder identification.\n\n• Server-side kit caching is handled through a ConcurrentHashMap per player UUID and persisted to disk.\n\n• Kits are automatically loaded when a player joins and automatically saved when they disconnect.\n\n• Fully server-authoritative architecture — the client only sends requests, while all validation, kit management, and inventory operations are handled exclusively on the server.\n\nREQUIREMENTS\n\n• Java 21\n• Fabric Loader 0.18.4+\n• Fabric API 0.141.3+\n• Minecraft 1.21.11",
+  "categories": [
+    "equipment",
+    "fabric",
+    "mobs",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 62,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

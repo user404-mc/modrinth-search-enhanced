@@ -1,0 +1,36 @@
+{
+  "id": "dLl1UbOy",
+  "slug": "game_mod",
+  "title": "Game Mod",
+  "description": "A full-featured mini-game manager with countdown display, settings GUI, custom spawn radius, and world border control.",
+  "body": "# ⚔ GameMod \n\n— Fabric 1.21.x\n\nA full-featured mini-game manager with countdown display, settings GUI, custom spawn radius, and world border control.\n\n---\n\n## Required Dependencies (install alongside this mod)\n\n| Mod | Download |\n|-----|----------|\n| Fabric API | https://modrinth.com/mod/fabric-api |\n| Cloth Config | https://modrinth.com/mod/cloth-config |\n| ModMenu | https://modrinth.com/mod/modmenu |\n\n---\n\n## Commands (requires op level 2)\n\n### Game Control\n| Command | Effect |\n|---------|--------|\n| `/game start` | Begin countdown (if set) then launch the game |\n| `/game stop` | Cancel countdown or end an active game |\n| `/game cooldown <time>` | Set countdown duration (e.g. `10s`, `5m`, `2h`) |\n| `/game cooldown` | Show current cooldown setting |\n\n### Settings\n| Command | Effect |\n|---------|--------|\n| `/game settings` or `/game settings list` | Print all current settings |\n| `/game settings display actionbar` | Show countdown in the **action bar** |\n| `/game settings display bossbar` | Show countdown in a **boss bar** |\n| `/game settings spawn here` | Set spawn to your current position |\n| `/game settings spawn <x> <y> <z>` | Set spawn to exact coordinates |\n| `/game settings radius <blocks>` | Scatter players within N blocks of spawn (0 = exact) |\n| `/game settings border <size>` | Set world border diameter for the game |\n| `/game settings cooldown <time>` | Same as `/game cooldown <time>` |\n| `/game settings reset` | Reset everything to defaults |\n\n---\n\n## Settings GUI (ModMenu)\n\nOpen the **Mods** screen in-game → find **Game Mod** → click the ⚙ button.\n\nCategories:\n- **Display** — boss bar vs action bar toggle\n- **Spawn Location** — X / Y / Z coordinates + scatter radius\n- **World Border** — game size and post-game reset size\n- **Cooldown** — duration in `s / m / h` format\n\nSettings are saved to `config/gamemod.json` automatically.\n\n---\n\n## How it Works\n\n### `/game start` flow\n1. Checks for an active countdown or game (blocks if already running)\n2. If cooldown > 0: counts down, displaying progress on all players' screens\n3. At zero (or instantly): teleports all online players to a random position within the spawn radius, sets world border centred on the spawn coordinates, sets everyone to Survival\n\n### Random radius teleport\n- If `radius = 0`: all players land on the exact spawn point\n- If `radius > 0`: each player gets a **random angle and distance** within the radius; Y is found automatically using the terrain heightmap (players always land on solid ground, not in mid-air or underground)\n\n### Eliminated players\nWhen a player **dies** while a game is active they are automatically switched to **Spectator** mode.  `/game stop` returns all spectators to Survival.\n\n### Countdown display\n| Remaining | Action bar colour | Boss bar colour |\n|-----------|------------------|-----------------|\n| > 10s | 🟢 Green | Green |\n| 6 – 10s | 🟡 Yellow | Yellow |\n| ≤ 5s | 🔴 Red | Red |\n\n---\n\n## Config file\n\n`config/gamemod.json` — edited by the GUI or commands, reloaded on next server start.\n\n```json\n{\n  \"useBossBar\": false,\n  \"spawnX\": 0.0,\n  \"spawnY\": 64.0,\n  \"spawnZ\": 0.0,\n  \"spawnRadius\": 25,\n  \"gameBorderSize\": 200.0,\n  \"defaultBorderSize\": 60000000.0,\n  \"cooldownSeconds\": 30\n}\n```\n\n---",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "minigame",
+    "neoforge",
+    "social"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 69,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1"
+  ],
+  "date_updated": null
+}

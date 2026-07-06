@@ -1,0 +1,19 @@
+{
+  "id": "vibBe35e",
+  "slug": "redacted-log",
+  "title": "Redacted Log",
+  "description": "Redacts sensitive information like IP's, UUIDS, Coordinates from the logs",
+  "body": "**Log Redact** is a small server-side NeoForge mod that automatically redacts sensitive information from Minecraft server logs.\n\nWhen the server logs messages to the console or `latest.log`, this mod intercepts those messages before they’re printed and replaces sensitive values—such as **IP addresses, player UUIDs, and world coordinates**—with `[REDACTED]` placeholders.\n\nThe server console stays fully live and readable, log structure and log levels are unchanged, and sensitive data never reaches stdout or log files in plain text.\n\n**Example**\n\nBefore:\n\n```\nUUID of player Steve is c482f9e9-16c6-20ad-89e1-dd3216d89b649\nSteve[/194.62.89.122:35904] logged in with entity id 50 at (8.30, 136.0, -6.41)\n```\n\nAfter:\n\n```\nUUID of player Steve is [REDACTED_UUID]\nSteve/[[REDACTED_IP]:35904] logged in with entity id 50 at ([REDACTED_COORDS])\n```\n\nThis approach avoids unreliable stdout piping and unsupported `log4j2.xml` replacements, and it does **not** drop log lines—only the sensitive parts are rewritten.\n\nIntended for server operators who want to share logs (e.g. panels, Discord, bug reports) without leaking private information.\n\nServer-side only. No client required.\n",
+  "categories": [
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 51,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

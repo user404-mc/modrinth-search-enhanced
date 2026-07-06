@@ -1,0 +1,35 @@
+{
+  "id": "EmibqDVx",
+  "slug": "dearu",
+  "title": "DearU",
+  "description": "A paper plugin for mailbox",
+  "body": "<div align=\"center\">\n\n# 📬 DearU\n\n### A modern mailbox plugin for Paper/Folia servers\n\n[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.10-blue?style=flat-square&logo=kotlin)](https://kotlinlang.org/)\n[![Java](https://img.shields.io/badge/Java-21-orange?style=flat-square&logo=openjdk)](https://openjdk.org/)\n[![Paper](https://img.shields.io/badge/Paper-API-green?style=flat-square&logo=papermc)](https://papermc.io/)\n[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)\n\n</div>\n\n## ✨ Features\n\n- 📮 **Mailbox System** - Players can receive and manage their mail through a beautiful GUI\n- 📦 **Package Support** - Send single items or multi-item packages to players\n- 💾 **Database Abstraction** - Built-in support for SQLite and MySQL\n- ⚡ **Async Operations** - Non-blocking mail operations using `CompletableFuture`\n- 🎨 **Modern API** - Clean Java interface for plugin developers\n- 🛠️ **Command Aliases** - Customizable command aliases\n\n## 📁 Project Structure\n\n```\nDearU/\n├── api/                    # Java module with public interfaces\n│   └── DearU              # Main plugin interface\n│   ├── Mailbox            # Async mailbox operations\n│   ├── Mail               # Sealed interface for mail types\n│   │   ├── SingleMail     # Single item mail\n│   │   └── PackageMail    # Multi-item package\n│   ├── MailSender         # Mail sender representation\n│   └── MailboxManager     # Mailbox instance manager\n│\n└── core/                   # Kotlin module with implementations\n    └── DearUPlugin        # Main plugin class\n    ├── DearUConfiguration # Config system\n    ├── DatabaseManager    # Database abstraction\n    ├── MailboxManagerImpl # Mailbox implementation\n    └── MailboxGui         # GUI implementation\n```\n\n## 🚀 Getting Started\n\n### Requirements\n\n- **Java 21** or higher\n- **Paper/Folia** server (latest version)\n\n### Installation\n\n1. Build the plugin:\n   ```bash\n   ./gradlew build\n   ```\n\n2. Find the JAR in `core/build/libs/`\n\n3. Place it in your server's `plugins/` folder\n\n4. Restart your server\n\n### Configuration\n\nEdit `plugins/DearU/config.yml` to customize:\n\n```yaml\n# Database settings (SQLite/MySQL)\ndatabase:\n  sql:\n    type: SQLITE  # or MYSQL\n    mysql:\n      host: localhost\n      port: 3306\n      database: dearu\n      username: root\n      password: password\n\n# Command aliases\ncommands:\n  mailbox:\n    aliases:\n      - mail\n      - 우편함\n```\n\n## 💻 Development\n\n### Build Commands\n\n```bash\n# Build the project\n./gradlew build\n\n# Run test server (Paper)\n./gradlew runServer\n\n# Run Folia test server\n./gradlew runFolia\n\n# Clean build artifacts\n./gradlew clean\n```\n\n### API Usage\n\n#### Sending Mail\n\n```java\nimport com.bindglam.dearu.DearU;\nimport com.bindglam.dearu.mail.*;\n\n// Get plugin instance\nDearU dearU = DearUProvider.get();\n\n// Send single item mail\nMail singleMail = Mail.single(\n    MailSender.server(),\n    itemStack,\n    \"Welcome to our server!\"\n);\ndearu.mailboxManager().getMailbox(playerUUID)\n    .putMail(singleMail);\n\n// Send package mail\nPackageMail.Body body = PackageMail.bodyBuilder()\n    .name(\"Welcome Package\")\n    .content(itemStack1)\n    .content(itemStack2)\n    .build();\n\nMail packageMail = Mail.packaged(\n    MailSender.player(senderUUID),\n    body,\n    \"Here's your starter kit!\"\n);\ndearu.mailboxManager().getMailbox(playerUUID)\n    .putMail(packageMail);\n```\n\n#### Reading Mail\n\n```java\nimport com.bindglam.dearu.Mailbox;\nimport java.util.concurrent.CompletableFuture;\n\nMailbox mailbox = dearU.mailboxManager().getMailbox(playerUUID);\n\n// Get all mail (async)\nCompletableFuture<List<Mailbox.IdentifiedMail>> future = mailbox.mails();\nfuture.thenAccept(mails -> {\n    for (Mailbox.IdentifiedMail identified : mails) {\n        Mail mail = identified.mail();\n        // Process mail...\n    }\n});\n\n// Get specific mail by ID\nCompletableFuture<Mailbox.IdentifiedMail> mailFuture = mailbox.mail(mailId);\nmailFuture.thenAccept(identified -> {\n    if (identified != null) {\n        Mail mail = identified.mail();\n        // Process mail...\n    }\n});\n```\n\n## 🏗️ Architecture\n\n### Managerial Pattern\n\nAll managers implement the `Managerial` interface:\n\n```kotlin\ninterface Managerial {\n    fun start(context: Context)\n    fun end(context: Context)\n}\n```\n\nManagers are initialized in plugin lifecycle:\n```kotlin\nval managers = listOf(DatabaseManager, MailboxManagerImpl)\nmanagers.forEach { it.start(Context(this, dearUConfig)) }\n```\n\n### Database Abstraction\n\nUses `DatabaseLib` for unified SQL operations:\n\n- **SQLite** - Default, uses `database.db` in plugin data folder\n- **MySQL** - Configurable for production use\n\n### Configuration System\n\nNested class-based configuration using `ConfigLib`:\n```kotlin\nclass Commands {\n    val mailbox = createExtendedComplexField { CommandField(\"mailbox\") }\n}\n```\n\n## 🔧 Dependencies\n\n### Runtime Dependencies\n- **ConfigLib** (1.0.0) - Configuration system\n- **DatabaseLib** (1.0.4) - Database abstraction\n- **semver4j** (6.0.0) - Version comparison\n\n### Build Dependencies\n- **Shadow Plugin** - JAR shading and relocation\n- **RunPaper** - Test server management\n\n## 📝 License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n\n## 🤝 Contributing\n\nContributions are welcome! Please feel free to submit a Pull Request.\n\n## 📞 Support\n\n- 🐛 Report bugs via [GitHub Issues](https://github.com/bindglam/DearU/issues)\n- 💡 Feature requests welcome\n- 📖 Check the code documentation for more details\n\n---\n\n<div align=\"center\">\n\nMade with ❤️ for the Minecraft community\n\n</div>\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "eGrAy3CV",
+  "slug": "vespigot",
+  "title": "vespigot",
+  "description": "Run multiple paper servers from velocity",
+  "body": "# Vepaper – run and control standalone Paper servers from Velocity  \n**Version 1.12.4** · requires **Velocity 3.4+** and **Java 17+**\n\n---\n\n## 1. What is Vepaper?\nVepaper is a Velocity proxy plug-in that launches one or more Paper servers as **local\nsub-processes** and lets you manage them directly from the proxy.\n\n* Drop‐in install – just put the jar in *plugins/* and start Velocity.  \n* Latest Paper jar is downloaded automatically.  \n* Generates `server.properties` and silently accepts the Mojang EULA.  \n* Paper console output is relayed to the Velocity console  \n  (can be toggled with a command).  \n* Send any Paper console command from Velocity.  \n* **No file is ever modified** outside the instance folder  \n  (your `velocity.toml`, `paper-global.yml`, secrets, etc. stay untouched).\n\n---\n\n## 2. Installation\n1. Build from source (`mvn clean package`, JDK 17) **or** download the release jar.  \n2. Place `vepaper-*.jar` in Velocity’s `plugins/` folder.  \n3. Start / restart Velocity.  \n   * `plugins/vepaper/` and `config.properties` are created automatically.  \n   * Default settings  \n     * 1 Paper instance  \n     * port **25563**  \n     * **4096 MB** RAM\n4. Modify `config.properties` if needed and restart Velocity.\n\n---\n\n## 3. Configuration (`plugins/vepaper/config.properties`)\n| key            | default | description                                   |\n|----------------|---------|-----------------------------------------------|\n| `instances`    | 1       | How many Paper servers to start               |\n| `startingPort` | 25563   | TCP port for the first instance (next = +1)   |\n| `maxMemoryMb`  | 4096    | Memory (MB) per instance                      |\n\n---\n\n## 4. Commands (proxy console / in-game OP)\n\n| Command                                | Effect                                                                                   |\n|----------------------------------------|------------------------------------------------------------------------------------------|\n| `/paper <index\\|port> <command …>`     | Send arbitrary console command to a Paper instance.<br>• `index` = 0-based order<br>• `port` = TCP port |\n| `/paperlog on` / `/paperlog off`       | Enable / disable log relay (default **on**).                                             |\n\nExamples\n```text\n/paper 0 say Hello from Velocity!\n/paper 25563 stop\n/paperlog off\n```\n\n---\n\n## 5. Files generated per instance\n```\nservers/\n └─ paper-25563/\n     ├─ paper.jar         (auto-downloaded)\n     ├─ eula.txt          (always `eula=true`)\n     ├─ server.properties (port etc.)\n     └─ latest.log        (Paper console output)\n```\n\nVepaper never touches `paper-global.yml`, `spigot.yml`, resource-pack settings, or\nany secret values – you can edit them manually whenever you like.\n\n---\n\n## 6. Uninstallation\nStop Velocity, remove `vepaper-*.jar` and the `plugins/vepaper/` folder.  \nDelete the directories under `servers/` if you no longer need the standalone Paper\ninstances.\n\n---\n\n## 7. License\nReleased under the **MIT License** – see the repository for details.\n```",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 46,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

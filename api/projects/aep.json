@@ -1,0 +1,23 @@
+{
+  "id": "1XY30bSl",
+  "slug": "aep",
+  "title": "Adaptive Entity Prioritization (AEP)",
+  "description": "AEP dynamically reduces lag by throttling mob AI and item merge checks based on server strain.",
+  "body": "### AEP (Adaptive Entity Prioritization)\n\nAEP is a lightweight, server-side performance optimization mod designed to automatically manage and reduce load caused by entity ticking and physics.\n\nUnlike blanket optimizations, AEP uses an **adaptive throttling system**. The mod only steps in to reduce work when the server needs it—primarily during periods of high server load (high MSPT/TPS drops). When the server runs smoothly, entities and item stacks behave normally.\n\nWhen the server strains, AEP selectively and temporarily slows down the tick rate for:\n\n1.  **Mob AI:** Pathfinding and general behavior ticks for non-player entities are throttled (mobs might only tick once every few game ticks).\n2.  **Item Merging:** The process of item entities searching for nearby stacks to merge with is throttled, reducing physics checks.\n\nAEP uses high mixin priority to apply its throttling logic *before* the corresponding vanilla methods run, making it effective at reducing server work immediately upon detection of lag.\n\n***\n\n### 🛑 IMPORTANT COMPATIBILITY NOTE\n\n**AEP is NOT COMPATIBLE with Lithium.**\n\nBoth AEP and Lithium patch the same core server loops. **Lithium's advanced optimizations will completely override and disable AEP's logic,** rendering AEP ineffective, and **crashing Minecraft**. For the best performance, **do not run AEP alongside Lithium.**\n\n**Creator:** Will5Plays",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "storage",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 80,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

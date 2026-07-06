@@ -1,0 +1,20 @@
+{
+  "id": "ZExSsfoR",
+  "slug": "combat-state",
+  "title": "Combat State",
+  "description": "Shared combat-state tracker for Minecraft mods and modpacks.",
+  "body": "# Combat State\n\n**Track when a player is still in combat, even after a mob switches targets.**\n\nCombat State is a small shared dependency for combat-aware Minecraft mods and modpacks. It gives other mods a clear server-side answer to: “is this player still in combat?”\n\n## Combat rules\n\nA player enters combat with a mob when that mob targets the player.\n\nThe player stays in combat with that mob if the mob switches target during the fight. Target switching alone does not end combat.\n\nThe player leaves combat with that mob when either:\n\n- the mob has no target anymore, or\n- the mob is not currently targeting that player and the player is more than 64 blocks away.\n\n## What it provides\n\n- Server-side combat tracking for players.\n- A small API for dependent mods.\n- Configurable disengage distance.\n- Optional yellow indicator for mobs that still keep you in combat but are not currently targeting you.\n- Aggro Indicator compatibility: Aggro Indicator can keep showing the red current-target icon, while Combat State adds the yellow combat-memory icon.\n\n## API\n\nUse `CombatStateApi` on the server:\n\n```java\nCombatStateApi.isInCombat(player);\nCombatStateApi.isActivelyTargeted(player);\nCombatStateApi.getCombatMobIds(player);\n```\n\n## Configuration\n\nConfig file:\n\n```text\nconfig/combat_state-common.toml\n```\n\nDefault values:\n\n```toml\n[combat]\ndisengageDistance = 64\nsyncIntervalTicks = 20\n\n[client]\nrenderYellowIndicator = true\n```\n\n## Requirements\n\n- Minecraft 1.21.1\n- NeoForge\n\nOptional integration:\n\n- Aggro Indicator\n\n## Source and issues\n\n- Source: https://github.com/rinchanai/combat-state\n- Issues: https://github.com/rinchanai/combat-state/issues\n",
+  "categories": [
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 109,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

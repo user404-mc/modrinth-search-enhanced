@@ -1,0 +1,36 @@
+{
+  "id": "ahVElGZP",
+  "slug": "instant-nether-portals",
+  "title": "Instant Nether Portals",
+  "description": "Teleport instantly through Nether portals in both directions. Configurable delay, LuckPerms support, and a toggle command",
+  "body": "## ⚡ InstantNetherPortals\n\nTired of standing in a Nether portal for 4 seconds? This lightweight plugin makes portal teleportation instant — in **both directions** (Overworld → Nether and Nether → Overworld).\n\nNo libraries, no bloat. Drop it in and go.\n\n---\n\n### ✨ Features\n\n- **Instant teleportation** — no more waiting animation\n- **Both directions** — Overworld ↔ Nether\n- **Configurable delay** — set anywhere from 0 ticks (instant) to 80 ticks (vanilla)\n- **Chunk pre-loading** — destination chunks are loaded before you arrive, preventing freeze on arrival\n- **Per-player permissions** — fully compatible with LuckPerms\n- **Toggle command** — enable/disable without restarting\n- **Live reload** — change config without restarting the server\n\n---\n\n### ⚙️ Configuration\n\n```yaml\n# Whether instant nether portals are enabled\nenabled: true\n\n# Time the player must stand in the portal before teleporting (ticks)\n#   0  = instant\n#  20  = 1 second\n#  40  = 2 seconds\n#  80  = vanilla (4 seconds)\nteleport-delay: 0\n\nchunk-preload:\n  # Pre-load destination chunks when a player is near a portal\n  enabled: true\n  # Block radius to search for nearby portals\n  radius: 10\n```\n\n---\n\n### 🔑 Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `instantnetherportals.use` | Instant portal teleportation | `op` |\n| `instantnetherportals.admin` | Use `/instantportal` command | `op` |\n\n**LuckPerms examples**\n```\n/lp group default permission set instantnetherportals.use true\n/lp user Steve permission set instantnetherportals.admin true\n```\n\n---\n\n### 💬 Commands\n\n| Command | Description |\n|---|---|\n| `/instantportal` | Toggle on/off |\n| `/instantportal on` / `off` | Enable or disable |\n| `/instantportal reload` | Reload config |\n| `/instantportal status` | Show status and current delay |\n\nAlias: `/inp`\n\n---\n\n### 📋 Requirements\n\n| | |\n|---|---|\n| Server (full support) | **Paper 1.21.8** (Purpur & Pufferfish also work) |\n| Server (loads, no instant portals) | Spigot / Bukkit 1.21.8 |\n| Java | 21+ |\n\n> **Paper** is required for instant portal teleportation. On Spigot/Bukkit the plugin loads and chunk pre-loading works in basic async mode, but the instant teleport feature requires Paper's NMS access.\n\n---\n\n### 🔧 How it works\n\nPaper 1.21.8 tracks the portal wait timer inside a `PortalProcessor` object. Each server tick the plugin advances that timer to `maxTime − delay`, so the game fires the teleport after exactly `delay` more ticks. At `delay = 0` this takes 1–2 ticks (~50–100 ms) — completely imperceptible.\n\nWhile a player is near a portal, the plugin pre-loads a 17×17 chunk area at the destination coordinates before they step in. This prevents the freeze or lag spike that normally occurs when the server generates destination chunks on arrival.\n\n---\n\n### 📦 Source\n\n[github.com/EmilDeuOfficial/InstantNetherPortals](https://github.com/EmilDeuOfficial/InstantNetherPortals)\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

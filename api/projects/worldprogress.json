@@ -1,0 +1,18 @@
+{
+  "id": "fPyny9fW",
+  "slug": "worldprogress",
+  "title": "World Progress",
+  "description": "An addon mod to AnvilLib. Adds a World Progress system, and the CompeletedProgress predicate for InWorldRecipe.",
+  "body": "# WorldProgress\n\n> A world-level persistent progress / flag system for Minecraft  \n> 一个用于 Minecraft 的**世界级持久化进度 / 标记系统**\n\n---\n\n## 📖 简介 | Introduction\n\n**WorldProgress** 是一个基于 **AnvilLib** 的附属库 Mod。  \n它为 Minecraft 提供了一套**世界级（World-level）进度标记系统**，可用于在整个存档范围内持久化记录“某件事是否已经发生”。\n\n这些进度信息会被**写入世界存档**，并且可以：\n\n- 通过 **API** 在代码中查询 / 设置\n- 通过 **命令** 手动管理\n- 通过 **AnvilLib 的 InWorldRecipe** 作为 predicate 使用，从而控制配方是否可用\n\n---\n\n**WorldProgress** is an addon library mod for **AnvilLib**.  \nIt provides a **persistent world-level progress / flag system**, allowing mods and datapacks to record whether certain events have been completed in a save.\n\nProgress data is **saved to disk with the world**, and can be:\n\n- Queried or modified via **Java API**\n- Managed via **commands**\n- Used as a **predicate in AnvilLib InWorldRecipe**, enabling world-state–dependent recipes\n\n---\n\n## 📦 依赖 | Dependencies\n\n- **NeoForge**\n- **AnvilLib** (required)\n\n---\n\n## ✨ 特性 | Features\n\n- ✅ 世界级进度（与玩家无关）\n- 💾 自动随世界存档持久化\n- 🧩 提供简洁的 Java API\n- 🛠 内置管理指令\n- 🔗 与 AnvilLib `InWorldRecipe` 深度集成\n- 🌍 支持本地化显示名称（通过资源包）\n\n---\n\n## 🧩 API 使用 | API Usage\n\n#### 测试进度是否完成  \nTest whether a world progress is completed:\n\n```java\nboolean completed = WorldProgressAPI.testProgress(server, progressId);\n```\n\n#### 完成某个世界进度\nMark a world progress as completed:\n```java\nWorldProgressAPI.achieveProgress(server, progressId);\n```\n\n#### 移除某个世界进度\nRemove a completed world progress:\n```java\nWorldProgressAPI.removeProgress(server, progressId);\n```\n\n#### 获取所有世界进度\nGet all completed world progress IDs:\n```java\nList<ResourceLocation> list = WorldProgressAPI.getProgressList(server);\n```\n\n#### 获取进度的显示名称\nGet localized display name of a progress:\n```java\nString name = WorldProgressAPI.getProgressString(progressId);\n```\n\n#### 本地化规则 | Localization rule\n在语言文件中添加：\n```\nprogress_name.<namespace>.<path>=\"显示名称\"\n```\n\n如果未提供翻译，则会显示 ```namespace:path```\n\n---\n\n## ⌨ 指令 | Commands\n\n权限等级：2（默认 OP）\n\n#### 列出当前世界中所有已完成的进度\nList all completed world progress in the current world\n```\n/worldprogress list\n```\n\n#### 测试某个进度是否已完成\nTest whether a progress is completed\n```\n/worldprogress test <id>\n```\n\n#### 将某个进度标记为完成\nMark a progress as completed\n```\n/worldprogress achieve <id>\n```\n\n#### 移除某个已完成的进度\nRemove a completed progress\n```\n/worldprogress remove <id>\n```\n\n## 🔧 与 InWorldRecipe 集成 | InWorldRecipe Integration\n\nWorldProgress 提供了一个新的 **InWorldRecipe predicate**：\n```\nworld_progress:complete_progress\n```\n### 示例 | Example\n```json\n{\n  \"type\": \"world_progress:complete_progress\",\n  \"progress_id\": \"world_progress:downed_ender_dragon\"\n}\n```\n\n该 predicate **仅在指定世界进度已完成时才会满足条件**。\n\nThis predicate passes **only if the specified world progress has been completed**.\n\n### 配方示例（节选） | Recipe Example (Excerpt)\n```json\n\"non_conflicting\": [\n  {\n    \"type\": \"anvilcraft:has_cauldron\",\n    \"offset\": [0.0, -1.0, 0.0]\n  },\n  {\n    \"type\": \"world_progress:complete_progress\",\n    \"progress_id\": \"world_progress:downed_ender_dragon\"\n  }\n]\n```\n\n👉 这可以用于：\n\n- 击杀末影龙后解锁配方\n\n- 世界进入某阶段后启用新内容\n\n- 剧情 / 科技线控制\n\n## 🎯 适用场景 | Use Cases\n\n- 🌍 世界阶段系统（World Stages）\n\n- 🐉 Boss 击杀判定\n\n- 🧪 科技线 / 配方解锁\n\n- 📜 剧情 / 事件触发\n\n- 🧩 作为其他 Mod 的底层库\n\n## 📄 许可证 | License\n\nLGPL3\n",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 48,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

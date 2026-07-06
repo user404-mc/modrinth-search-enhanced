@@ -1,0 +1,42 @@
+{
+  "id": "ui6waJbI",
+  "slug": "quickreport",
+  "title": "QuickReport",
+  "description": "Players can report others, track report status, and view history. Admins get instant alerts, manage reports via chat menus, and give rewards for valid reports.",
+  "body": "# QuickReport\n\n**A quick and efficient reporting system for Minecraft servers**\n\n[![Minecraft Version](https://img.shields.io/badge/Minecraft-1.20+-brightgreen.svg)](https://www.spigotmc.org/)\n---\n\n## 📋 Description\n\nQuickReport is a powerful and user-friendly reporting system designed for Minecraft servers. It allows players to report cheaters, rule-breakers, or any misconduct with ease, while providing administrators with comprehensive tools to manage and process reports efficiently.\n\n### ✨ Key Features\n\n- **Easy Report Submission** - Players can report others with a simple command\n- **Admin Review System** - Accept or reject reports with customizable rewards\n- **Report History** - Players can view their submitted reports\n- **Advanced Query System** - Detailed report information for staff members\n- **Cooldown Protection** - Prevents spam with configurable cooldown timers\n- **Clickable Messages** - Interactive admin notifications with click-to-view functionality\n- **SQLite Database** - Lightweight and efficient data storage\n- **Reward System** - Automatically reward players for accepted reports\n- **Multi-Language Support** - Built-in English and Turkish language support\n- **PlaceholderAPI Integration** - Statistics and leaderboard placeholders\n\n---\n\n## 📥 Installation\n\n1. Download the latest `QuickReport-1.0.0.jar` from the releases page\n2. Place the JAR file in your server's `plugins` folder\n3. Restart your server or use a plugin manager to load it\n4. Configure the plugin by editing `config.yml` and `messages.yml` in the `plugins/QuickReport/` folder\n5. Reload the plugin with `/reload confirm` or restart the server\n\n---\n\n## 🎮 Commands\n\n### Player Commands\n\n| Command | Description | Permission | Usage |\n|---------|-------------|------------|-------|\n| `/report` | Submit a report against a player | `quickreport.report` | `/report <player> <reason> [details]` |\n| `/myreports` | View your submitted reports | `quickreport.report` | `/myreports [page]` |\n| `/queryreport` | Query a specific report by ID | `quickreport.report` | `/queryreport <id>` |\n\n### Admin Commands\n\n| Command | Description | Permission | Usage |\n|---------|-------------|------------|-------|\n| `/reports` | View all pending reports | `quickreport.admin` | `/reports [page]` |\n| `/reportaction` | Accept or reject a report | `quickreport.admin` | `/reportaction <accept\\|reject> <id> [reward-code\\|reason]` |\n\n---\n\n## 🔐 Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `quickreport.report` | Allows players to submit and view reports | `true` (all players) |\n| `quickreport.admin` | Allows staff to manage and process reports | `op` (operators only) |\n\n---\n\n## ⚙️ Configuration\n\n### config.yml\n\n```yaml\n# QuickReport Configuration File\n\n# General Settings\nreport-cooldown-seconds: 60 # Cooldown for submitting new reports\nmax-reports-per-cooldown: 1 # Maximum reports within cooldown period\n\n# Report Reasons (Tab-completion support)\nreport-reasons:\n  - \"Fly\"\n  - \"KillAura\"\n  - \"Speed\"\n  - \"Xray\"\n  - \"Griefing\"\n  - \"Swearing\"\n\n# Admin Notification Settings\nadmin-permission: \"quickreport.admin\"\nnotification-sound: \"ENTITY_EXPERIENCE_ORB_PICKUP\"\nnotification-volume: 1.0\nnotification-pitch: 1.0\n\n# Reward System Configuration\nrewards:\n  diamond-reward:\n    name: \"&bDiamond Reward\"\n    command: \"give %player% diamond 5\"\n  money-reward:\n    name: \"&eMoney Reward\"\n    command: \"eco give %player% 1000\"\n  key-reward:\n    name: \"&6Crate Key Reward\"\n    command: \"crate give %player% common 1\"\n```\n\n### Customizing Report Reasons\n\nEdit the `report-reasons` list in `config.yml` to add or remove valid reasons:\n\n```yaml\nreport-reasons:\n  - \"Hacking\"\n  - \"Exploiting\"\n  - \"Toxicity\"\n  - \"Scamming\"\n```\n\n### Admin Notification Sound\n\nChange the sound played to admins when a new report is submitted. See [Spigot Sound List](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html) for available sounds.\n\n---\n\n## 🎁 Reward System\n\nThe reward system allows you to automatically reward players when their reports are accepted.\n\n### Adding a New Reward\n\n1. Open `config.yml`\n2. Add a new reward under the `rewards` section:\n\n```yaml\nrewards:\n  custom-reward:\n    name: \"&aCustom Reward\"\n    command: \"give %player% diamond_block 1\"\n```\n\n3. Use the reward code when accepting a report:\n\n```\n/reportaction accept 123 custom-reward\n```\n\nThe `%player%` placeholder will be replaced with the reporter's username.\n\n---\n\n## 📊 PlaceholderAPI Support\n\nQuickReport integrates with PlaceholderAPI to provide statistics and leaderboard placeholders.\n\n### Available Placeholders\n\n| Placeholder | Description | Example Output |\n|-------------|-------------|----------------|\n| `%quickreport_kabul_edilen%` | Number of accepted reports for a player | `5` |\n| `%quickreport_reddedilen%` | Number of rejected reports for a player | `2` |\n| `%quickreport_top_kabul_isim_<rank>%` | Top reporter name (accepted) | `Player1` |\n| `%quickreport_top_kabul_sayi_<rank>%` | Top reporter count (accepted) | `10` |\n| `%quickreport_top_red_isim_<rank>%` | Top reporter name (rejected) | `Player2` |\n| `%quickreport_top_red_sayi_<rank>%` | Top reporter count (rejected) | `3` |\n\n### Usage Example\n\n```yaml\n# In a scoreboard or hologram\n&6Top Reporter: &e%quickreport_top_kabul_isim_1%\n&7Reports: &a%quickreport_top_kabul_sayi_1%\n```\n\n---\n\n## 🌐 Multi-Language Support\n\nQuickReport supports multiple languages out of the box. The primary language is English (`en`), with Turkish (`tr`) as a secondary language.\n\n### Customizing Messages\n\nEdit `messages.yml` to customize messages:\n\n```yaml\nmessages:\n  report-success:\n    en: \"&aYour report has been submitted successfully!\"\n    tr: \"&aRaporunuz başarıyla gönderildi!\"\n```\n\n### Adding a New Language\n\n1. Open `messages.yml`\n2. Add your language code to any message:\n\n```yaml\nmessages:\n  report-success:\n    en: \"&aYour report has been submitted!\"\n    tr: \"&aRaporunuz gönderildi!\"\n    de: \"&aDein Bericht wurde eingereicht!\"\n```\n\n---\n\n## 📖 Usage Examples\n\n### Player Workflow\n\n1. **Submit a report:**\n   ```\n   /report Cheater123 Fly He was flying in spawn\n   ```\n\n2. **Check your reports:**\n   ```\n   /myreports\n   ```\n\n3. **Query a specific report:**\n   ```\n   /queryreport 5\n   ```\n\n### Admin Workflow\n\n1. **View pending reports:**\n   ```\n   /reports\n   ```\n\n2. **Click on a report** or use:\n   ```\n   /queryreport 5\n   ```\n\n3. **Accept a report with reward:**\n   ```\n   /reportaction accept 5 diamond-reward\n   ```\n\n4. **Reject a report with reason:**\n   ```\n   /reportaction reject 5 Insufficient evidence\n   ```\n\n---\n\n## 🔄 Report Status\n\nReports can have three statuses:\n\n- **PENDING** - Awaiting admin review\n- **ACCEPTED** - Approved by staff (reporter gets rewarded)\n- **REJECTED** - Denied by staff\n\n- **Developer**: Melut\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 79,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

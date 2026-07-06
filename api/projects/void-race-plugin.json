@@ -1,0 +1,24 @@
+{
+  "id": "P4SpyAdt",
+  "slug": "void-race-plugin",
+  "title": "Void Race Plugin",
+  "description": "Every few seconds, each player receives a random item or block. The goal is to travel the greatest distance from the starting block before the timer runs out.",
+  "body": "# Void Race Plugin\n\nVoid Race Plugin is a Paper server plugin for a multiplayer void race minigame.\n\n**Version:** `1.2-beta`\n\nPlayers start on separate one-block lanes in a void world. Every few seconds, each active player lane receives a random item or block. The goal is to travel the greatest distance from the starting block before the timer runs out.\n\n![screenshots](https://cdn.modrinth.com/data/P4SpyAdt/images/26334be2cbe387b7a06c5afaf9f54804debfc502.png)\n\n**Important:** An OP user or the server console must start the challenge with `/voidrace start`. The race does not begin automatically.\n\n## Requirements\n\n- Paper server for Minecraft 1.21.11\n- Java 21\n- A void/air world is recommended\n\n## Void World Setup\n\nUse this setup on your own Paper server if you want the same empty world generation used for Void Race.\n\n1. Stop the server.\n2. Open `server.properties`.\n3. Set or replace these values:\n\n```properties\ngenerate-structures=false\nlevel-type=minecraft:flat\ngenerator-settings={\"layers\":[{\"block\":\"minecraft:air\",\"height\":1}],\"structures\":{\"structures\":{}}}\nallow-flight=true\n```\n\n4. If the world already exists, delete these folders so Paper can regenerate them with the new settings:\n\n```text\nworld\nworld_nether\nworld_the_end\n```\n\n5. Start the server again.\n6. Join as an OP user and run:\n\n```text\n/voidrace start\n```\n\n`allow-flight=true` is recommended because players can be moved through the void during the challenge and some server setups may otherwise kick them for flying.\n\n## Commands\n\nOnly OP players and the server console can use `/voidrace` commands.\n\n| Command | Description |\n|:--|:--|\n| `/voidrace start` | Starts the challenge for the currently online players. |\n| `/voidrace reset` | Stops the challenge, clears dropped items, mobs, bosses, and lane blocks, then returns players to the lobby. |\n| `/voidrace interval <seconds>` | Sets how often random loot drops. Default: `10`. |\n| `/voidrace duration <minutes>` | Sets the race duration. Default: `60`. |\n| `/voidrace keepinventory <true/false>` | Controls whether players keep inventory after falling into the void. Default: `true`. |\n\n## Gameplay\n\n- Each player gets a separate lane.\n- Lanes are separated on the X axis and bounded by red particles.\n- Loot drops only on lanes with active race participants.\n- Distance is tracked on the scoreboard by the farthest grounded distance from the player's start block.\n- Falling into the void teleports the player back to their lane start.\n- Players who join during an active race wait in the lobby and do not receive a lane, bossbar, or scoreboard.\n- When no race is running, the sidebar shows the waiting players instead of race distance.\n- Hunger and portals are disabled during the challenge.\n- On reset, non-player entities are removed so mobs and bosses from spawn eggs do not remain after the round.\n\n## Build\n\n```powershell\nmvn clean package\n```\n\nThe plugin JAR is created in `target/`.\n",
+  "categories": [
+    "adventure",
+    "cursed",
+    "minigame",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 19,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

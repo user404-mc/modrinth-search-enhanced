@@ -1,0 +1,35 @@
+{
+  "id": "FJugjRTB",
+  "slug": "mashstrikedrops",
+  "title": "MashStrikeDrops",
+  "description": "The plugin is aimed at event servers, crates-style mob encounters, grind zones, boss-lite content, and custom reward systems without needing MythicMobs or a larger RPG stack.",
+  "body": "# MashStrikeDrops\n\nMashStrikeDrops is a Paper plugin for building custom \"strike mobs\" that players hit repeatedly for rewards.\n\nInstead of normal combat, each configured mob acts like an event target:\n\n- every successful hit can give an item reward\n- every successful hit can run server commands\n- the final hit can give a separate reward pool\n- the final hit can run a separate command pool\n- mobs can broadcast spawn and death messages\n- admins can create and edit mobs entirely in-game\n\nThe plugin is aimed at event servers, crates-style mob encounters, grind zones, boss-lite content, and custom reward systems without needing MythicMobs or a larger RPG stack.\n\n## Features\n\n- Create reusable mob templates with `/sd create`\n- Spawn strike mobs at your location or fixed coordinates\n- Configure hit count, entity type, scale, AI, knockback, and cooldown\n- Add per-hit item rewards from the item in your hand\n- Add final-hit item rewards from the item in your hand\n- Add grouped command pools for hit rewards and final-hit rewards\n- Configure optional spawn messages and death messages\n- Support for several entity-specific settings:\n  - slime size\n  - sheep color\n  - villager profession\n  - baby/adult state for ageable mobs\n- Optional top-hitter broadcast on death\n- Optional persistence for active mobs across reload/disable\n- Clickable active mob admin controls in `/sd listactive`\n\n## Requirements\n\n- Server software: Paper 1.21.x\n- Java: 21\n\nPaper-compatible forks may also work, but the plugin is built against the Paper API.\n\n## Installation\n\n1. Download `MashStrikeDrops-1.0.0.jar`\n2. Place it in your server's `plugins/` folder\n3. Start the server once\n4. Stop the server if you want to edit the generated config first\n5. Start the server again and configure mobs with commands or YAML files in `plugins/MashStrikeDrops/Mobs`\n\n## Commands\n\nPermission: `mashstrikedrops.admin`\n\n- `/strikedrops`\n- `/sd help`\n- `/sd reload`\n- `/sd list`\n- `/sd listactive`\n- `/sd create <id> <name>`\n- `/sd clone <id> <new-id>`\n- `/sd spawn <id>`\n- `/sd spawn <id> <world|current> <x> <y> <z> [north|south|east|west]`\n- `/sd delete <id>`\n- `/sd modify <id> hits <amount>`\n- `/sd modify <id> display set <name>`\n- `/sd modify <id> display reset`\n- `/sd modify <id> entity <type>`\n- `/sd modify <id> changeid <new-id>`\n- `/sd modify <id> deathmessage set <message>`\n- `/sd modify <id> deathmessage reset`\n- `/sd modify <id> spawnmessage set <message>`\n- `/sd modify <id> spawnmessage reset`\n- `/sd modify <id> nbt common <key> <true|false|reset>`\n- `/sd modify <id> nbt <turtle|slime|sheep|villager> <key> <value|reset>`\n- `/sd modify <id> scale <value>`\n- `/sd modify <id> knockback <true|false>`\n- `/sd modify <id> ai <true|false>`\n- `/sd modify <id> cooldown <seconds>`\n- `/sd modify <id> command <add|delete|list> ...`\n- `/sd modify <id> drops <add|remove|list> ...`\n- `/sd modify <id> finaldrop command <add|list|delete> ...`\n- `/sd modify <id> finaldrop item <add|list|delete> ...`\n- `/sd active tp <active-id>`\n- `/sd active tphere <active-id>`\n- `/sd active kill <active-id>`\n\n## Quick Start\n\nCreate a basic strike mob:\n\n```text\n/sd create zombieboss &6Zombie Boss\n/sd modify zombieboss hits 25\n/sd modify zombieboss entity zombie\n/sd modify zombieboss scale 1.5\n/sd modify zombieboss cooldown 0.4\n/sd spawn zombieboss\n```\n\nAdd per-hit rewards:\n\n1. Hold the reward item in your main hand\n2. Run `/sd modify zombieboss drops add`\n\nAdd a final-hit reward:\n\n1. Hold the final reward item in your main hand\n2. Run `/sd modify zombieboss finaldrop item add`\n\nAdd a per-hit command pool:\n\n```text\n/sd modify zombieboss command add coins eco give %player% 25\n```\n\nAdd a final-hit command pool:\n\n```text\n/sd modify zombieboss finaldrop command add jackpot crate key give %player% rare 1\n```\n\n## Configuration Notes\n\nMain config file: `plugins/MashStrikeDrops/config.yml`\n\nNotable settings:\n\n- `drops.give-directly`: gives rewards straight to the player inventory instead of throwing them from the mob\n- `hit-message.enabled`: sends hit progress messages\n- `active-mobs.persist-on-disable`: keeps active mobs through plugin disable/server stop\n- `active-mobs.persist-on-reload`: keeps active mobs through `/sd reload`\n- `sounds.hit`, `sounds.death`, `sounds.spawn`: sound effects\n- `top-hitters.enabled`: announces the top hitters when a mob dies\n- `global-hit-commands`: commands that run on every successful hit\n\nMobs are stored as separate YAML files in `plugins/MashStrikeDrops/Mobs/`.\n\n## Placeholders\n\nSupported placeholders in messages and commands include:\n\n- `%player%`\n- `%mob%`\n- `%drop%`\n- `%hits%`\n- `%pos%`\n\n## Notes\n\n- Strike damage is handled by the plugin, so normal combat damage against active strike mobs is cancelled.\n- Environmental damage to active mobs is also cancelled and cleaned up by the plugin.\n- Active mobs use persistent data so they can optionally be restored after reload/disable, depending on config.\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "mobs",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 15,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "ouJ68uCh",
+  "slug": "quantumac",
+  "title": "QuantumAC",
+  "description": "This is an anti cheat plugin that supports PaperMC 1.21.x. It has unique features such as AntiFreeCam together with all regular checks other AntiCheats would have.",
+  "body": "# QuantumAC\n**A lightweight, server-side anti-cheat plugin for PaperMC 1.21.x**\n\n---\n\nQuantumAC is a server-side anti-cheat plugin built specifically for PaperMC. It catches the most common cheats through a combination of movement analysis, packet inspection, combat geometry, and world-state occlusion — without relying on client-side modifications.\n\nAll detections happen on the server. There is nothing a cheat client can do about packets that were never sent, or a lagback it never saw coming.\n\n---\n\n## Checks\n\n### Movement\n- **Flight** — detects sustained upward or level movement in air. Lagbacks the player to their last safe ground position.\n- **Speed** — flags horizontal movement beyond vanilla limits, accounting for sprinting, speed potions, ice, soul sand, and post-knockback momentum. Lagbacks on confirmation.\n- **BoatFly** — detects upward boat movement exceeding vanilla physics limits per tick.\n- **Timer** — detects client-side timer speed hacks via sliding-window packet-rate analysis. Only position-carrying packets are counted, eliminating the false positives caused by 1.21.x rotation bursts.\n\n### Combat\n- **KillAura** — detects unnatural attack patterns: inhuman attack rate, multi-target switching within a single swing window, and robotic aim angle consistency via packet analysis.\n- **Reach** — detects attacks and interactions beyond legitimate reach distance. Limits are adjusted per player based on ping so high-latency players are never falsely flagged while low-latency cheaters are caught precisely. Covers combat, block interaction, and entity interaction.\n- **Criticals** — flags critical hits landed while the player is grounded, blocking criticals cheats that fire regardless of jump state.\n- **NoFall** — catches suppressed fall damage. Reapplies blocked damage server-side and lagbacks on confirmed damage-free landings, with mace smash and wind-charge exemptions.\n\n### World\n- **FastBreak** — enforces minimum block break times relative to tool efficiency and block hardness. The block is never removed on flag — no client feedback, no rubberbanding.\n- **AntiScaffold** — three sub-checks: air placement detection, impossible placement angles (catches rotation-injection scaffold clients such as Wurst BackPlace and LiquidBounce RotationMode), and ghost-hand detection for replayed place packets after item switch.\n- **AntiJesus** — detects players walking on water or lava surfaces. Exempts Frost Walker boots, accounts for boat-exit grace periods, and scales tolerance with ping to avoid false positives on laggy connections.\n\n### Occlusion & Packet Integrity\n- **AntiESP** — server-side entity and block entity occlusion. Uses 5 ray probes per entity (centre + 4 top-face corners) to determine visibility. Occluded entities are removed from the client's entity list entirely — no cheat client can render what was never sent.\n- **AntiXRay** — hides fully enclosed ores and storage containers (chests, shulkers, barrels, furnaces, hoppers) via fake block packets on chunk load. Client-side bypass is impossible. Pairs cleanly with Paper's engine-mode 2 for layered protection.\n- **AntiVelocity** — server-side knockback physics verification catches clients that suppress or nullify received velocity.\n- **BadPacket** — blocks malformed rotation data (NaN), spoofed Y-coordinates used for MaceDMG and Freecam exploits, and impossible movement deltas that exceed vanilla limits.\n\n---\n\n## Features\n- **Violation level system** — configurable thresholds per check for alerts, kicks, and bans\n- **VL decay** — violation levels bleed off over time so lag spikes never stack into false punishments\n- **Lagback** — movement violations snap the player to their last safe position cleanly, no teleport spam\n- **Runtime check toggle GUI** — enable or disable any check in-game without a reload\n- **Staff alerts** — broadcast flagged players to online staff above a configurable VL threshold\n- **Per-check configuration** — enable/disable, thresholds, multipliers, VL costs, and lagback behaviour\n- **`quantumac.bypass`** — permission node for staff or trusted players to skip all checks\n\n---\n\n## Requirements\n- [PaperMC](https://papermc.io/downloads/paper) 1.21.x\n- [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/) 5.4.0+\n- [packetevents](https://modrinth.com/plugin/packetevents) 2.12.1+\n\n---\n\n## Commands\n| Command | Description |\n|---|---|\n| `/quantumac checks` | Open the check toggle GUI |\n| `/quantumac reload` | Reload config |\n| `/quantumac alerts` | Toggle staff alerts for yourself |\n| `/quantumac violations <player>` | View a player's current violation levels |\n\n## Permissions\n| Permission | Default | Description |\n|---|---|---|\n| `quantumac.admin` | OP | Access to all admin commands |\n| `quantumac.bypass` | false | Bypass all anti-cheat checks |\n| `quantumac.alerts` | OP | Receive staff alert broadcasts |",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 156,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

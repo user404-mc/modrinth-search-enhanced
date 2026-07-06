@@ -1,0 +1,21 @@
+{
+  "id": "fXXYl7Tv",
+  "slug": "tyrs-fluid-void-stuff",
+  "title": "Tyr's Fluid Void Stuff",
+  "description": "A simple mod that changes how the edge of fluids renders in the void. Also can control how far said fluids fall.",
+  "body": "# Tyr's Fluid Void Stuff\n\nThis mod is all about two things:\n1. Fade out fluids that do not end on a block so that they look pretty in void environments (Clientside, does not require mod on server)\n2. Limit how far a liquid can fall from its source block to prevent huge waterfalls (Serverside, does not require mod on client) \n\nThe client renderer is ported from [FluidVoidFading](https://modrinth.com/mod/fluid-void-fading) (Neoforge 1.21.8) by DaFuqs under the GNU General Public License.\n\n---\n\n## What it does\n\n**On the client**, the bottom of any fluid column fades out smoothly rather than ending with a hard edge. Works on water, lava, and modded fluids. Sodium is supported.\n\n**On the server**, you can set a maximum vertical drop for fluid columns. Once a column hits the limit, it stops spreading downward and leaves air below. The limit is measured as straight vertical distance from the source, so it works the same whether the fluid falls straight down or zig-zags down i.e. a staircase. Individual fluids can be exempted from this via a blacklist.\n\nNeither side requires the other. See below.\n\n---\n\n## The mod is optional on both ends of a connection (Server or Client)\n\n| Setup           | What happens                                                                                                                                              |\n|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|\n| Client + Server | Full functionality with the fade renderer on the client and the column cap on the server.                                                                 |\n| Client only     | Fade renderer works for columns that end in air naturally (e.g. in the void). No other functionality.                                                     |\n| Server only     | Vertical fluid limits only. Players without the mod just see normal fluid rendering, the liquid still stops, it just won't show the fade-out thingamabob. |\n\n---\n\n## Config\n\nConfig file: `config/tyrsfluidvoidstuff-server.toml`.\n\n| Option | Default | What it does |\n|---|---|---|\n| `maxFluidColumnLength` | `0` | Max vertical drop in blocks from the source. `0` = disabled. |\n| `fluidColumnLengthBlacklist` | *(empty)* | Fluid IDs to skip the cap for, e.g. `minecraft:water`. |\n\nIf you have the mod on the client, the config is also reachable from the Mods screen in-game.\n\n---\n\n## Credits\n\n- **Tyrthurey** — column cap, NeoForge port, glue code\n- **DaFuqs** — original fade renderer ([Modrinth](https://modrinth.com/mod/fluidvoidfading)) ([Github](https://github.com/DaFuqs/FluidVoidFading))\n",
+  "categories": [
+    "game-mechanics",
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 106,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

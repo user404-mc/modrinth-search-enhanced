@@ -1,0 +1,31 @@
+{
+  "id": "LPWmYMeg",
+  "slug": "siegecannon",
+  "title": "SiegeCannon",
+  "description": "Ridable single-operator TNT siege cannon for Paper 1.21.11 cooperative PvE servers. Mount, aim within a fan arc, left-click to fire.",
+  "body": "\n## What it does\n\nSiegeCannon is a ridable TNT siege cannon designed for cooperative PvE servers.\n\nUnlike most cannon plugins which lean on redstone build kits and multi-player loading crews, SiegeCannon takes the opposite stance: **one player, one cannon, one trigger**, with a fan-shaped firing arc that rewards positioning over aimbots. Right-click to mount, sneak to dismount, left-click to fire.\n\n## Features\n\n- **Mount-and-fire** — right-click to ride, left-click to shoot, sneak to dismount\n- **±45° fan arc** — turn your body to aim, the cannon doesn't pivot for you\n- **Breakable durability** — cannons take damage from explosions and mobs; destroyed cannons explode dramatically\n- **Two-stage ignition** — left-click triggers a fuse window; TNT actually launches after a configurable delay (default 1s)\n- **Block partitioning** — explosion blocks split into \"fly as falling block / vanilla destroy / preserve\" buckets for battlefield rubble feel\n- **Mob-only AoE damage** — friendly fire is suppressed by default\n- **Recoil feedback** — view kick + cannon-body kickback on every shot\n- **TPS-aware** — global FallingBlock spawn cap protects servers from many-cannon volleys\n- **Resource pack optional** — works with vanilla TNT model out of the box; custom model auto-loaded if your pack provides `siegecannon:cannon_tnt`\n- **Bilingual** — `zh_CN` / `en_US` shipped, auto-resolves by player client locale\n- **Public API** — `CannonFireEvent` (cancellable) + `CannonDestroyEvent` for third-party hooks\n\n## Installation\n\n1. Drop `siegecannon-1.0.0.jar` into your server's `plugins/` folder\n2. Start the server. `plugins/SiegeCannon/config.yml` and `lang/{zh_CN,en_US}.yml` are generated\n3. Run `/cannon spawn` (any player has it by default)\n\n> ⚠️ **Cannons are in-memory only in 1.0.0.** Server restart wipes spawned cannons. Persistence is on the roadmap.\n\n## Commands\n\n| Command | Permission | Description |\n|---------|------------|-------------|\n| `/cannon spawn` | `siegecannon.use` (default true) | Spawn a cannon at your feet |\n| `/cannon spawn <x> <y> <z> [world]` | `siegecannon.admin` | Spawn at explicit coordinates |\n| `/cannon remove` | `siegecannon.use` | Remove the nearest cannon (within 6 blocks) |\n| `/cannon list` | `siegecannon.admin` | List all spawned cannons |\n| `/cannon removeall` | `siegecannon.admin` | Remove every cannon in the world |\n| `/cannon reload` | `siegecannon.admin` | Reload `config.yml` |\n\nAliases: `/sc`, `/siegecannon`.\n\n## Configuration\n\nMost servers only need to tune four \"core\" parameters:\n\n```yaml\ncannon:\n  tnt:\n    cooldown-seconds: 2.5      # fire cooldown\n    yaw-limit-deg: 45.0        # fan arc half-angle\n    damage-multiplier: 1.0     # vs mobs\n    hp: 100.0                  # cannon durability\n    protect-blocks: false      # true = explosions don't damage map\n  model:\n    use-custom: true           # false = vanilla TNT model only\nlanguage:\n  default: en_US\n```\n\nOut-of-range values are clamped to safe bounds at load time and logged as warnings — the plugin won't crash your server because of a config typo.\n\n## API\n\n```java\n// Cancel firing inside a no-fire zone\n@EventHandler\npublic void onFire(CannonFireEvent event) {\n    if (isInsideSafeZone(event.getMuzzle())) {\n        event.setCancelled(true);\n    }\n}\n\n// Tally destroyed cannons\n@EventHandler\npublic void onDestroy(CannonDestroyEvent event) {\n    statsService.recordCannonLoss(event.getLocation());\n}\n```\n\n## Resource pack\n\nThe plugin uses the vanilla TNT model by default. To use a custom model: ship a resource pack with a model at `assets/siegecannon/models/item/cannon_tnt.json` and set `cannon.model.use-custom: true`. Clients without the pack fall back to vanilla TNT seamlessly. A community resource pack is on the roadmap.\n\n## Metrics\n\nThis plugin uses [bStats](https://bstats.org) for anonymous install / version statistics. Opt-out via `plugins/bStats/config.yml`.\n\n## Roadmap\n\n- Bundled resource pack with custom cannon model\n- Persistence: cannons survive server restart\n- Demo GIF / video\n- `CannonRegistry`: third-party plugins register custom cannon types\n- PlaceholderAPI integration\n- WorldGuard region flag (`siegecannon-allowed`)\n- Multi-cannon variants (heavy / light / piercing)\n- More languages (community translations welcome)\n\n## License\n\n[MIT](https://github.com/Yangzhiganlu7/siegecannon/blob/main/LICENSE) — fork, modify, redistribute. Attribution appreciated but not required.\n\n## Source code\n\n[github.com/Yangzhiganlu7/siegecannon](https://github.com/Yangzhiganlu7/siegecannon) — issues / PRs welcome.\n",
+  "categories": [
+    "adventure",
+    "equipment",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

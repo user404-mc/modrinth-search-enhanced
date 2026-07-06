@@ -1,0 +1,23 @@
+{
+  "id": "DxnekKZT",
+  "slug": "awesometaxes",
+  "title": "AwesomeTaxes",
+  "description": "AwesomeTaxes is a survival-friendly taxes and rent plugin for Paper 1.21.4–1.21.8. Admins define house regions, set a tax item/amount, start waves, and players pay with the required items in hand to receive a receipt. Defaulters are tracked automatically.",
+  "body": "# AwesomeTaxes\n\nAwesomeTaxes is a survival-friendly taxes and rent plugin for Paper 1.21.4–1.21.8. Admins define house regions, set a tax item/amount, start waves, and players pay with the required items in hand to receive a receipt. Defaulters are tracked automatically.\n\n## Highlights\n- Non-overlapping house regions with numeric IDs (H-001, H-002…).\n- Admin-only tax setup from the item stack in hand (stack size = required amount).\n- Manual waves plus optional auto-rent cycles via `config.yml`.\n- Payment modes: `save` (store items for admins) or `delete` (remove permanently).\n- Receipts handed directly to payers; vault GUI to review cycles and withdraw saved items.\n- Last three cycles kept; defaulters listed per cycle.\n\n## Quick Start\n1) Claim a house  \n   `/taxes pos1`, `/taxes pos2`, then `/taxes create <name>` → note the ID (e.g., `H-001`).  \n   Check details with `/taxes info H-001` or `/taxes myhouses`.\n2) Configure tax (admin, `awesometaxes.admin.taxes`)  \n   Hold the tax item stack (amount in hand = required amount) and run `/taxes admin setitem H-001`.\n3) Run a wave (admin, `awesometaxes.admin.cycles`)  \n   `/taxes admin startwave <duration>` (examples: `10m`, `1h`, `1200t`).  \n   Players pay during the wave with `/taxes pay <houseId>` while holding the required items; items are removed, and a receipt is given.\n4) Review results  \n   `/taxes admin vault [cycleId]` to view houses (left-click = teleport near the house, right-click = withdraw stored items in `save` mode).  \n   `/taxes admin defaulters [cycleId]` to list unpaid houses.\n\n## Commands\n**Players**\n- `/taxes pos1` & `/taxes pos2` – set region corners.\n- `/taxes create <name>` – create a house.\n- `/taxes myhouses` – list owned/member houses.\n- `/taxes info <houseId>` – details for a house.\n- `/taxes pay <houseId>` – pay taxes with required items in hand (active wave).\n- `/taxes addmember <houseId> <player>` – add member (trusted permission).\n- `/taxes removemember <houseId> <player>` – remove member (trusted permission).\n\n**Admins**\n- `/taxes admin setitem <houseId>` – set required tax item/amount from hand.\n- `/taxes admin startwave <duration>` – start a tax wave.\n- `/taxes admin cancelwave` – cancel the active wave.\n- `/taxes admin status` – wave status/last cycle.\n- `/taxes admin vault [cycleId]` – open the vault GUI.\n- `/taxes admin defaulters [cycleId]` – list unpaid houses.\n- `/taxes admin houseinfo <houseId>` – detailed house info.\n- `/taxes admin setowner <houseId> <player>` – transfer ownership.\n- `/taxes admin markpaid <houseId> <cycleId>` – manually mark paid.\n- `/taxes admin reload` – reload configuration and data.\n\n## Permissions\n- `awesometaxes.player` – base player access.\n- `awesometaxes.player.members` – trusted players can add/remove members.\n- `awesometaxes.admin` – base admin access.\n- `awesometaxes.admin.taxes` – set tax item/amount.\n- `awesometaxes.admin.cycles` – start/cancel waves, view status/defaulters.\n- `awesometaxes.admin.vault` – open the admin vault GUI.\n\n## Configuration\n- `settings.maxHousesPerPlayer` – per-player house cap.\n- `settings.paymentMode` – `save` (store items for vault) or `delete`.\n- `settings.autoCycle.enabled/intervalTicks/durationTicks` – optional repeating rent wave.\n- `settings.storeCycles` – number of recent cycles retained (default 3).\n- Messages/prefix are in `config.yml`.\n",
+  "categories": [
+    "economy",
+    "management",
+    "paper",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

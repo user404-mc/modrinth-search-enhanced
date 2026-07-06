@@ -1,0 +1,28 @@
+{
+  "id": "9UKGJdgG",
+  "slug": "bedrockdialog",
+  "title": "BedrockDialog",
+  "description": "BedrockDialog is a Dialog wrapper for both Paper 1.21.8+ and Geyser (or Floodgate)",
+  "body": "# BedrockDialog\n\nA Paper plugin library that lets you show interactive dialogs to players on both Java Edition and Bedrock Edition (via Geyser/Floodgate) through a single unified API.\n\nIntended to be used as a **dependency library** by other plugins. The bundled `/bdialog` command and `config.yml` dialog definitions are provided as a demo and for simple use cases only.\n\n## Requirements\n\n- Paper 1.21.8+\n- Java 21+\n- [Geyser](https://geysermc.org/) and/or [Floodgate](https://wiki.geysermc.org/floodgate/) (optional, for Bedrock Edition support)\n\n## API Usage\n\nSee [API.md]([API.md](https://github.com/f0reachARR/BedrockDialog/blob/main/API.md)) for details on using BedrockDialog as a library in your own plugin.\n\n## Demo / Standalone Usage\n\nThe plugin ships with a built-in command and `config.yml` for testing dialogs without writing code. This is intended for demonstration and simple use cases.\n\n### Commands\n\n| Command               | Description                       | Permission                      |\n|-----------------------|-----------------------------------|---------------------------------|\n| `/bdialog open <id>`  | Open a dialog defined in config   | `bedrockdialog.dialog.open`     |\n| `/bdialog reload`     | Reload `config.yml`               | `bedrockdialog.dialog.reload`   |\n\nBoth permissions default to **OP only**.\n\n### config.yml Example\n\n```yaml\ndialogs:\n  welcome:\n    type: multi_button\n    title: \"Welcome!\"\n    body: \"Welcome, <player>!\"\n    buttons:\n      - label: \"Go to Spawn\"\n        actions:\n          - type: run_as_player\n            command: \"spawn\"\n      - label: \"Check Rules\"\n        actions:\n          - type: open_dialog\n            dialog_id: \"notice_rules\"\n      - label: \"Close\"\n        actions: []\n\n  confirm_pvp:\n    type: confirm\n    title: \"Join PVP?\"\n    body: \"<player>, do you want to join PVP?\"\n    yes_label: \"Join\"\n    no_label: \"Cancel\"\n    on_yes:\n      - type: run_as_console\n        command: \"pvp join {player}\"\n    on_no: []\n\n  notice_rules:\n    type: notice\n    title: \"Server Rules\"\n    body: \"1. No griefing\\n2. No cheating\\n3. Have fun!\"\n    dismiss_label: \"Got it\"\n    on_dismiss: []\n\n  item_form:\n    type: input\n    title: \"Item Distribution Form\"\n    body: \"Select what you want to receive\"\n    submit_label: \"Submit\"\n    inputs:\n      - type: text\n        key: player_name\n        label: \"Target Player Name\"\n        placeholder: \"e.g. Steve\"\n        default: \"\"\n      - type: slider\n        key: amount\n        label: \"Amount\"\n        min: 1\n        max: 64\n        step: 1\n        default: 1\n      - type: boolean\n        key: checkbox\n        label: \"Checkbox Test\"\n        default: true\n      - type: dropdown\n        key: item\n        label: \"Item\"\n        default: 0\n        options:\n          - id: diamond\n            label: \"Diamond\"\n          - id: gold_ingot\n            label: \"Gold Ingot\"\n    on_submit:\n      - type: run_as_console\n        command: \"give {input.player_name} {input.item} {input.amount}\"\n    on_close: []\n```\n\n### Config Actions\n\n| Type            | Description                          | Fields      |\n|-----------------|--------------------------------------|-------------|\n| `run_as_player` | Execute a command as the player      | `command`   |\n| `run_as_console`| Execute a command as the console     | `command`   |\n| `open_dialog`   | Open another dialog by config ID     | `dialog_id` |\n\n**Placeholders**: `{player}` (player name), `{input.<key>}` (input field value, available in `on_submit`)\n\n## License\n\nMIT License. See [LICENSE](LICENSE) for details.\n",
+  "categories": [
+    "library",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

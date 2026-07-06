@@ -1,0 +1,19 @@
+{
+  "id": "3zMMAa7V",
+  "slug": "canvas-bug-fix",
+  "title": "Canvas Bug Fix",
+  "description": "Forcefully fixes two bugs that are sometimes prominent in modpacks related to NaN saturation values & loot-generated items with incompatible enchantments.",
+  "body": "A mod dedicated for my [Canvas modpack](https://github.com/ConqAra/Canvas) that forcefully fixes two bugs that are sometimes prominent in 1.18.2 fabric modpacks related to NaN saturation values & generated items with incompatible enchantments.\n\n- For whatever reason saturation on the server-side can reach negative or incorrect values, especially in modpacks. This is almost impossible to detect and very annoying to test, even with a thorough binary search. This weird behavior is now fixed. Upon detecting invalid (NaN/Infinite) saturation value, it will reset the player's saturation value back to normal (4).\n\n- Fixed illegal enchanted items from generating; when using mods that add various different enchantments the game would sometimes ignore the coded incompatabilities with one another onto a loot-generated item, including hardcoded ones from vanilla. Even mods like [Enchantment Groups](https://modrinth.com/mod/enchantmentgroups) that restructure enchantment (in)compatibilites for modpacks wouldn't work. This mod automatically reads from the game what enchantments are suppose to be incompatible with one another and properly corrects this behavior. For example, Protection and Fire Protection on an item will have one of them removed randomly when detected on an armor piece. Enchanted books are ignored, but when put into an anvil with an item it will fix itself post-combination. It should be compatible with every enchantment mod.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.18.2"
+  ],
+  "date_updated": null
+}

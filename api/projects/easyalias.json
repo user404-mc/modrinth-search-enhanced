@@ -1,0 +1,21 @@
+{
+  "id": "Vec5huYp",
+  "slug": "easyalias",
+  "title": "EasyAlias",
+  "description": "Easy alias creation for commands in minecraft",
+  "body": "# Aliases\nThis plugin lets you create aliases for your minecraft commands.  Any number of commands can be mapped to one alias, allowing you to easily use multiple commands at once.\n\nAliases are able to overwrite other registered commands.  You can use the overwritten command with namespacing (Generally something like `/<name of the plugin>:<command>`)\n\nAliases cannot have any parameters.\n\n# Commands\n- `/easyalias help`: Prints the help message\n- `/easyalias reload`: Reloads the config and registers/unregisters any commands.\n- `/easyalias get <alias>`: Prints part of \"/easyalias list\" for a specific alias\n- `/easyalias list`: Lists all of the commands available to the player and what they do.\n\n![help message](https://cdn.modrinth.com/data/cached_images/005f8ac193bb8515a74899a4cc541a62e6af04dd.webp)\n\n# The Config\nAll commands should be defined under the \"commands\" section of `config.yml`.  \n\n```yml\ncommands:\n  <alias>:\n    permission: <required permission>\n    run_as_console: <true|false>\n    executes:\n      - <list of commands to run>\n```\n\n- `alias` is the name of the command that executes the alias.  The command can be run with `<alias>`.\n- `permission` is the permission required to run the alias.  If not specified, any player can use the command.\n- `run_as_console` is a boolean that determines if the command will run as the player or as the console.\n- `executes` is the list of commands that the alias will run.  The commands should not have the forward slash (\"/\") at the beginning of each line.  It can also be a string if only one command needs to be executed\n\nExample Config:\n```yml\ncommands:\n  example1:\n    permission: easyalias.example\n    executes:\n      - tellraw @p \"hello!\"\n      - tellraw @p \"this is an example alias!\"\n  example2:\n    executes:\n      - tellraw @p \"hello!\"\n      - tellraw @p \"this is another example alias!\"\n  example3:\n    run_as_console: true\n    executes:\n      - tellraw @p \"hello!\"\n      - tellraw @p \"this is another example alias!\"\nversion: \"1.0.0\"\n```\n\nWhen running `/easyalias reload` then `/easyalias list`, this is what you'll see:\n\n![example config](https://cdn.modrinth.com/data/cached_images/cee706ea9b561834e56642093acf527fead9c723.webp)",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 52,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

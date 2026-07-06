@@ -1,0 +1,28 @@
+{
+  "id": "4Dr56D21",
+  "slug": "displadium",
+  "title": "Displadium",
+  "description": "Draw every think you want with lua.",
+  "body": "The mod introduces 2 blocks and 1 item that allow you to build and control your own digital screens. Using a computer, you can program the display and draw anything you want — from simple text to complex graphics.\n\nFeatures:\n\nDisplay Block – a screen where your graphics are rendered\n\nController Block – connect it to a computer to send code and control the display\n\nWire Item – connect components using positive (+) and negative (–) wires\n\nWith Displadium, you can:\n\nCreate custom interfaces and HUDs\n\nDisplay images, text, or animations\n\nBuild your own in-game control panels\n\nExperiment with programming inside Minecraft\n\nThe wiring system allows you to connect blocks realistically, requiring proper positive and negative connections to function.\n\n\n\nTUTORIAL\nBelow is the full list of available Lua commands, how they are implemented in the code, and an exact usage example.\n\nAll available commands\ntick(t, dt) — a function called by the engine every tick. t is time in seconds, dt is the time step adjusted by speed().\n\npoint(x, y) — sets the position of a point (x, y) within the 0..1 range.\n\nemit(x, y [, color [, glow [, size]]]) — adds a point to the trail with optional parameters. Supports color as #RRGGBB, a number, or r,g,b.\n\nline(x1, y1, x2, y2 [, steps [, color [, glow [, size]]]]) — draws a line using points. steps is limited to 2..200.\n\nrotline(cx, cy, length, angle [, steps [, color [, glow [, size]]]]) — draws a line using center, length, and angle (in radians).\n\ncolor(#RRGGBB) or color(r, g, b) — sets the color. r,g,b can be in range 0..1 or 0..255.\n\nglow(value) — brightness, minimum 0.\n\nsize(value) — point size, minimum 0.05.\n\nalpha(value) — transparency (0..1).\n\nspeed(value) — time speed, minimum 0.05.\n\ntrail(count) — trail length (10..400).\n\nsubtick(value) — trail interpolation (1..20).\n\nshow(true/false) — enables or disables rendering.\n\ntime() — returns current time t (with speed applied).\n\nExact rules and limits\nCoordinates x and y are always clamped to 0..1.\n\nColor can be a #RRGGBB string, a number, or three components r,g,b (0..1 or 0..255).\n\nglow ≥ 0, size ≥ 0.05, alpha 0..1, speed ≥ 0.05, trail 10..400, subtick 1..20.\n\nline / rotline: steps is limited to 2..200.\n\nHow to use\nConnect the computer and display using wires (both + and - must go to the same computer).\n\nOpen the computer interface, paste your Lua code into the field, and press \"Save\".\n\nThe script is loaded, and the tick(t, dt) function is called every client tick.\n\nExample (fully accurate and working)\nfunction tick(t, dt) speed(1.0) trail(120) subtick(6) alpha(0.9) glow(1.2) size(1.0) local x = 0.5 + math.cos(t * 1.3) * 0.35 local y = 0.5 + math.sin(t * 1.3) * 0.35 point(x, y) color(\"#66CCFF\") emit(x, y) local angle = t * 2.0 rotline(0.5, 0.5, 0.7, angle, 30, 1.0, 0.5, 0.2) end\nHow the example works\ntick is called every tick, t is time in seconds (affected by speed).\n\npoint moves the main point in a circle.\n\nemit adds a trail with the chosen color/brightness.\n\nrotline draws a rotating line around the center.",
+  "categories": [
+    "cursed",
+    "forge",
+    "game-mechanics",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 61,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

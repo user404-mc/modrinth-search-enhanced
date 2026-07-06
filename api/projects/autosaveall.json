@@ -3,10 +3,11 @@
   "slug": "autosaveall",
   "title": "AutoSaveAll",
   "description": "AutoSaveAll is a lightweight Paper/Spigot plugin that automatically runs the save-all command at configurable intervals to prevent data loss. It supports Minecraft versions 1.13 through 1.21 and includes features like chat broadcasts, random",
-  "body": "# AutoSaveAll\n\n**A lightweight Paper/Spigot plugin that automatically runs the save-all command at configurable intervals to prevent data loss.**\n\n---\n\n## Features\n\n- Automatic world saves at set intervals (1-60 minutes)\n- Customizable chat broadcasts with color codes\n- Random sound selection from configurable list\n- Console logging with custom messages\n- Admin commands for reload, status, manual save, and sound test\n- Master toggle to enable/disable without unloading\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| /autosave reload | Reload config and restart timer | autosaveall.admin |\n| /autosave status | Show current status and next save time | autosaveall.admin |\n| /autosave now | Trigger save-all immediately | autosaveall.admin |\n| /autosave testsound | Test sound effects (players only) | autosaveall.admin |\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| autosaveall.admin | OP | Allows all /autosave commands |\n\n---\n\n## Configuration\n\n```yaml\n# Interval (minutes)\nsave-interval-minutes: 5\n\n# Broadcast settings\nbroadcast-message: true\nbroadcast-text: \"&a[AutoSave] &eWorld data has been saved automatically.\"\n\n# Sound settings\nplay-sound: true\nsound-volume: 0.8\nsound-pitch: 1.0\n\n# Random sound selection\nrandom-sound:\n  enabled: true\n  sounds:\n    - \"autosave:save_complete_1\"\n    - \"autosave:save_complete_2\"\n\n# Console logging\nlog-to-console: true\nconsole-log-text: \"[AutoSaveAll] Running automatic save-all...\"\n\n# Master toggle\nenabled: true\n\n**Note:** The default sounds (`autosave:save_complete_*`) require a custom resource pack. \nChange to vanilla sounds like `BLOCK_NOTE_BLOCK_PLING` in config.yml if you don't have the pack.",
+  "body": "# AutoSaveAll\n\n**A lightweight Paper/Spigot plugin that automatically runs `save-all` at configurable intervals to prevent data loss — now with lag-aware saving, per-world targeting, save history, Discord notifications, and PlaceholderAPI support.**\n\n---\n\n## Features\n\n- Automatic world saves at configurable intervals\n- Lag-aware saving — postpones saves during low TPS instead of adding load during lag spikes\n- Per-world save filtering — save everything, or just the worlds you choose\n- Save history — track recent save times, durations, and skips\n- Optional Discord webhook notifications (save, skip, update alerts)\n- Optional PlaceholderAPI expansion for scoreboards/TAB\n- Update checker — notifies OPs in chat if a newer version is available\n- Customizable chat broadcasts with color codes\n- Console logging with custom messages\n- Admin commands for reload, status, manual save, history, and sound test\n- Master toggle to enable/disable without unloading\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/autosave reload` | Reload config and restart timer | `autosaveall.admin` |\n| `/autosave status` | Show current status and next save time | `autosaveall.admin` |\n| `/autosave now` | Trigger save-all immediately | `autosaveall.admin` |\n| `/autosave history` | Show recent save history | `autosaveall.admin` |\n| `/autosave testsound` | Test sound effects (players only) | `autosaveall.admin` |\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|------------|---------|-------------|\n| `autosaveall.admin` | OP | Allows all `/autosave` commands |",
   "categories": [
     "bukkit",
     "economy",
+    "folia",
     "game-mechanics",
     "magic",
     "management",
@@ -20,7 +21,7 @@
   ],
   "client_side": "unsupported",
   "server_side": "required",
-  "downloads": 132,
+  "downloads": 162,
   "followers": 0,
   "game_versions": [
     "1.13",
@@ -71,7 +72,8 @@
     "1.21.11",
     "26.1",
     "26.1.1",
-    "26.1.2"
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

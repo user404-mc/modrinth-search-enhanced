@@ -1,0 +1,32 @@
+{
+  "id": "BoTffVgR",
+  "slug": "mcs3-backup",
+  "title": "MCS3-Backup",
+  "description": "Back up your world data with cron(UNIX) format config and uplaod them to AWS S3(optional).",
+  "body": "## MCS3-Backup\n\nA Spigot plugin that can back up Minecraft server worlds and upload them to S3.\n\n### Features\n- Create backups of worlds (schedules configurable using cron format)\n- Automatic deletion of old backups (number of backups to keep configurable in config.yml)\n- Upload backups to S3 (authentication and enable/disable configurable)\n\n### Installation\n1. Download the latest .jar file from [Releases](https://modrinth.com/plugin/mcs3-backup/versions)\n2. and place it in the `plugins` folder.\n3. Restart the server. \n4. Edit `plugins/MCS3-Backup/config.yml` and configure the settings as needed.\n\n### Configuration\n```yaml\nbackup-time: \"0 0 * * *\" # Schedule backups using cron format\nbackup-worlds: # List of directories to back up (relative to the root directory)\n- world\n- world_nether\n- world_the_end\nbackup-keep-count: 1 # Number of backups to keep\n\nS3: # See S3 setup instructions below\nenabled: false # Enable or disable uploading to S3\nbucket: \"your-bucket-name\"\nregion: \"ap-northeast-1\"\nstorage-class: \"STANDARD\"\nupload-prefix: \"backups/\" # Slash at the end is optional\n\naccess-key: \"your-access-key\"\nsecret-access-key: \"your-secret-access-key\"\n```\n\n### S3 Setup\n1. Create an IAM user with `s3:PutObject` permissions and obtain the Access Key and Secret Access Key.\n2. Create a S3 bucket and note the bucket name and region.\n3. Edit the S3 section in `config.yml` and enter the obtained credentials.\n4. Optionally, configure the `storage-class` and `upload-prefix`.\n5. Restart the server.\n\n### Commands and Permissions ( /mcs3 )\nAll /mcs3 commands can be executed with the `MCS3Backup.commands.mcs3` permission.\n\n- reload : Reloads all configuration items from `config.yml`.\n- help : Displays a list of available commands.\n- next : Shows the scheduled time for the next backup.\n\n### Planned Features\n- Manual backup via command\n- List and delete backups\n- Generate download links for backups\n- Automatic deletion of backups in the S3 bucket\n- ~~Reload configuration via command~~\n\n### License\nMCS3-Backup is released under the MIT License.",
+  "categories": [
+    "management",
+    "paper",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 69,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

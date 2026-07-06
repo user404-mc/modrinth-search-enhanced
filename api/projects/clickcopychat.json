@@ -1,0 +1,21 @@
+{
+  "id": "xU4sl74m",
+  "slug": "clickcopychat",
+  "title": "ClickCopyChat",
+  "description": "Allows one click copy of any Paper server message in chat (Server-side only)",
+  "body": "**ClickCopyChat - make every chat line copyable, not just player messages.**\n\n**Requirements / Dependencies**\n\n- **_ProtocolLib (https://www.spigotmc.org/resources/protocollib.1997/) !Required!_**\n- Paper 1.21.x (not tested below 1.21.8)\n- Java 17+ runtime.\n\n**How it works:**\n\nFor player chat, it wraps the rendered Adventure Component.\nFor plugin/system chat, it uses ProtocolLib to intercept PLAY→SERVER chat packets (e.g., SYSTEM_CHAT, DISGUISED_CHAT, CHAT), decorates their payloads (Adventure, WrappedChatComponent, or raw JSON), and writes them back. If mutation isn’t possible, it cancels and resends a decorated copy-avoiding duplicates and action-bar overlays.\n\n**Highlights**\n\n- Click-to-copy on player chat and most plugin messages (Essentials, Skript broadcasts/errors, LuckPerms replies, etc.).\n- Deep application to child components—entire line is copyable.\n- Preserves formatting; adds hover hint; minimal overhead.\n- Built-in diagnostics: /cccdebug (toggle logs), /cccpackets (show hooked packet types).\n- Graceful degrade: without ProtocolLib, still enables copy-to-clipboard for player chat.\n\n**Limitations**\n\n- Client-side constraint: copy_to_clipboard is a Java client feature; Bedrock (via Geyser/floodgate) won’t copy.\n\n- Non-chat UIs (titles/subtitles/action bar, boss bars) aren’t standard chat; optional mirroring can be added if desired.\n\n**Commands / Permissions**\n\n/cccdebug - toggle debug logs (permission: clickcopychat.debug).\n\n/cccpackets - list hooked packet types (permission: clickcopychat.debug).",
+  "categories": [
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 78,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

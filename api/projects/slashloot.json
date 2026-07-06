@@ -1,0 +1,34 @@
+{
+  "id": "mRZVkEL7",
+  "slug": "slashloot",
+  "title": "SlashLoot",
+  "description": "Per-player loot for naturally-generated chests, barrels, shulker boxes, and minecarts — server-side only, requires no client mod.",
+  "body": "# SlashLoot\n\n**Per-player loot for naturally-generated chests, barrels, shulker boxes, and minecarts — server-side only, no client install required.**\n\nEvery player who opens a naturally-generated container gets their own personal copy of the loot. Open a mineshaft chest and get your roll; your friend opens that same chest and gets a separate roll of their own. No more racing to dungeons, and nobody arrives to find an empty chest after someone else already cleared it out.\n\nContainers you place yourself are never touched — chests, barrels, and shulker boxes you build behave exactly like vanilla.\n\n## Server-side only — players install nothing\n\nSlashLoot runs entirely on the server. Players connect with plain vanilla Fabric: they don't install the mod, and they don't have to update when you do. SlashLoot never replaces the block or its block-state, so the container always stays a real `minecraft:chest` (or barrel, shulker, minecart, etc.). Datapack predicates, `/data` queries, scoreboard selectors, and structure saves keep seeing ordinary vanilla blocks.\n\n## Features\n\n- **Per-player instanced loot** for naturally-generated containers. One open = one personal roll.\n- **Persists across server restarts.** Each player's personal loot is saved per-dimension.\n- **Stable on re-open.** Close the menu with items still inside and they're there next time you open it.\n- **Player-placed containers untouched** — full vanilla behavior for anything you build.\n- **Double-chest support.** Each half tracks per-player loot independently; opening either half shows a combined 54-slot view.\n- **Configurable.** Per-dimension and per-loot-table blocklists for adventure-map compatibility.\n- **Admin commands** to wipe personal loot when you need to.\n\n## Container coverage\n\n- Chests, trapped chests, barrels, shulker boxes\n- Chest minecarts, hopper minecarts, chest boats\n- Double chests (combined 54-slot view)\n\n## Installation\n\n1. Drop the JAR matching your Minecraft version into your server's `mods/` folder.\n2. Drop the matching Fabric API version into the same folder.\n3. Restart the server.\n\nThat's it. Clients connect with vanilla Fabric — nothing to install on their end.\n\n## Supported versions\n\nPick the JAR that matches your server's Minecraft version, and use the listed Fabric API build.\n\n| Minecraft | Fabric API |\n| --- | --- |\n| 1.20.1 | 0.92.2+1.20.1 |\n| 1.20.5 | 0.97.8+1.20.5 |\n| 1.21 | 0.102.0+1.21 |\n| 1.21.1 | 0.115.6+1.21.1 |\n| 1.21.2 | 0.106.1+1.21.2 |\n| 1.21.4 | 0.114.0+1.21.4 |\n| 1.21.6 | 0.128.1+1.21.6 |\n| 1.21.9 | 0.134.1+1.21.9 |\n| 1.21.11 | 0.141.2+1.21.11 |\n| 26.1.2 | 0.146.1+26.1.2 |\n\n## Configuration\n\nA `config/slashlootr.json` file is created on first launch:\n\n```json\n{\n  \"dimensionBlocklist\": [],\n  \"lootTableBlocklist\": [],\n  \"playOpenCloseSounds\": true\n}\n```\n\n- **`dimensionBlocklist`** — dimensions (e.g. `\"minecraft:the_nether\"`) where SlashLoot is disabled and vanilla loot behavior applies.\n- **`lootTableBlocklist`** — loot tables (e.g. `\"minecraft:chests/buried_treasure\"`) to skip. Useful for adventure maps with intentionally shared loot.\n- **`playOpenCloseSounds`** — play the chest open sound when the personal menu opens.\n\n## Admin commands\n\nAll require permission level 2 (op).\n\n| Command | Effect |\n| --- | --- |\n| `/slashloot forget here` | Wipe every player's personal loot at the block you're looking at |\n| `/slashloot forget at <x> <y> <z>` | Same, by coordinate |\n| `/slashloot forget player <player>` | Wipe a player's personal loot at every container in the current dim |\n\n## Known limitations\n\n- **No chest lid animation.** The open sound plays, but the lid stays closed — the per-player menu bypasses vanilla's `ContainerOpenersCounter`.\n- **Hoppers don't pull from naturally-generated chests.** The world container is left \"unrolled\" by design, so a hopper attached to one sees an empty container. Player-placed chests are unaffected.\n- **Comparator output reads 0** from naturally-generated chests for the same reason.\n- **Decorated pots and suspicious sand/gravel** are not covered — they use a different (brushing) mechanic.\n\n## Source & links\n\n- **GitHub** (source, issues, architecture deep-dive): https://github.com/mindfulent/SlashLootr\n- **License**: CC-BY-4.0",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 117,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

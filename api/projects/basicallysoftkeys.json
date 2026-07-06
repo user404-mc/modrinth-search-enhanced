@@ -1,0 +1,33 @@
+{
+  "id": "Htwp9gQS",
+  "slug": "basicallysoftkeys",
+  "title": "BasicallySoftKeys",
+  "description": "a mod that allows minecraft to properly use software controlled virtual keys",
+  "body": "this mod injects into minecraft input utils, and allows it to properly use virtual keys, sent by programs like [LuaMacros](https://github.com/me2d13/luamacros)\n\nthis allows you to use keys from f13 to f25 as additional binds for a USB numpad, or any other extra keyboard you might have\n## \nit should work fine with any mods that use minecrafts keybinding\nthis mod will not work for anything that directly uses hardware keybdinds\n\n\n# \nheres an example lua macros script that maps numpad buttons to f13-f22\n\n```lua\nlmc_device_set_name('MACROPAD', '<your device ID>')\n\nlmc_set_handler('MACROPAD', function(button, direction)\n    local vk = nil\n    if     (button == 45)  then vk = 124 -- F13\n    elseif (button == 35)  then vk = 125 -- F14\n    elseif (button == 40)  then vk = 126 -- F15\n    elseif (button == 34)  then vk = 127 -- F16\n    elseif (button == 37)  then vk = 128 -- F17\n    elseif (button == 39)  then vk = 129 -- F18\n    elseif (button == 36)  then vk = 130 -- F19\n    elseif (button == 38)  then vk = 131 -- F20\n    elseif (button == 33)  then vk = 132 -- F21\n    elseif (button == 107) then vk = 133 -- F22\n    end\n\n    if vk then\n        if direction == 0 then\n            lmc_send_input(vk, 0, 2) -- key up\n        else\n            lmc_send_input(vk, 0, 0) -- key down\n        end\n    end\nend)\n```\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 25,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

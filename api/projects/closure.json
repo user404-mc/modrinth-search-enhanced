@@ -1,0 +1,31 @@
+{
+  "id": "AMsuyNRf",
+  "slug": "closure",
+  "title": "Closure",
+  "description": "Closure is an anti-cheat available for 1.21.x",
+  "body": " # Closure\n\n  Closure is a hybrid anti-cheat plugin currently in early Alpha. It attempts to solve a common problem in Minecraft server administration:\n  the balance between blocking cheaters and not punishing legitimate players causing false positives due to lag.\n\n  Most anti-cheats rely solely on static thresholds (e.g., \"if player moves > X speed, pull them back\"). Closure adds a statistical layer to\n  this process. It tracks player behavior over time—aim consistency, packet order, and movement patterns—to build a \"confidence score.\"\n\n  This score doesn't ban players on its own. Instead, it adjusts the strictness of the core physics checks. If a player has a history of\n  legitimate movement, the system grants them a small buffer to account for lag spikes. If a player shows robotic consistency or impossible\n  reaction times, that buffer is removed, and enforcement becomes instant.\n\n # Current Features (Alpha)\n\n   * 1.21+ Support: Uses ProtocolLib to handle modern packet structures (including the new Velocity/Shorts format).\n   * Shadow Player: A specialized verification check for KillAura. It spawns a fake player entity (visible in the tab list, wearing armor)\n     that lunges at the suspect to trigger \"self-defense\" modules in clients that usually filter out static bots.\n   * NoFall Logic: Calculates expected fall distance server-side rather than trusting the client's ground state, fixing false flags on stairs\n     and ledges.\n   * Ping Scaling: Checks automatically adjust thresholds based on the player's connection stability and server TPS.\n\n  Requirements\n\n   * Java 21 or newer.\n   * ProtocolLib (Required for packet interception).\n\n  Roadmap to 1.0\n\n  This project is in active development. Features listed below are planned milestones before the first Stable release.\n\n  Alpha (Current State)\n   * Core combat and movement checks are functional.\n   * The \"Shadow Player\" verification entity is implemented.\n   * Basic statistical profiling is active.\n\n  Beta (v0.5)\n   * False Positive Freeze: A testing phase focused entirely on tuning thresholds with high player counts.\n   * World Checks: Improved detection for Nuker and Scaffolding.\n\n  Release Candidate (v0.9)\n   * API: Allowing other plugins to query a player's trust score.\n   * Optimization: Threading improvements for high-population servers.\n\n  Stable (v1.0)\n   * Full production release.\n   * Codebase freeze and long-term support.\n\n  Disclaimer: As this is an Alpha release, it is intended for testing environments. While we have tested significantly against false\n  positives, edge cases may still exist. Please report issues on the tracker.\n",
+  "categories": [
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 40,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "Rj9NQIGe",
+  "slug": "shield-sync",
+  "title": "Shield Sync",
+  "description": "Shield Sync attempts to simulate how shields feel on lower ping to every player regardless of ping.",
+  "body": "# ShieldSync\n\nShieldSync is a Paper plugin that keeps shield raise timing consistent across different pings.\n\nIn vanilla, shields have a 5 tick (250 ms) raise delay built in, regardless of ping. However, when you are higher ping, the delay that raises your shield will be the 5 tick delay + your ping. What this mod does is subtract your ping from the 5 tick delay, which reduces the shield delay closer to 250 ms regardless of ping, simulating how shielding would be on lower ping.\n\n**NOTE: This mod has only been tested on 1.21.11. Use this version for the best results. DM me on discord (pheological) if you want another version for your server.**\n\n## What It Does\n\n- Fetches a players ping using `keepAlive` packets.\n- Converts ping into shield compensation ticks.\n- Due to how the ticking system works, the ping must be calculated into ticks. **This means that the delay can only be reduced by multiples of 50 ms. For example, if a player is 80 ms, it can only reduce the delay by 50 ms (1 tick), so the shields will feel like what it would on 30 ms, not 0. If they are 180 ms, itll reduce it by 150 ms (3 ticks), and it'll feel like 30 ms.**\n- If ping is over 250 ms, it'll remove all 5 ticks.\n  \n![Pretty much how it works, 150 ms is subtracted so shielding will feel synonymous to someone who's 30 ms.](https://cdn.modrinth.com/data/cached_images/ce032bdd0f9873dec62762588738191bd78ecc51.png)\n150 ms is subtracted so shielding will feel synonymous to someone who's 30 ms.\n\n## Installation\n\n1. Put `ShieldSync` jar in your server `plugins/` folder.\n2. Ensure [PacketEvents](https://modrinth.com/plugin/packetevents/version/2.12.1+spigot) is also in the folder.\n3. Start/restart the server.\n\n## Commands\n\n- `/shieldsync enable` - Enable ShieldSync.\n- `/shieldsync disable` - Disable ShieldSync.\n- `/shieldsync status` - Show whether ShieldSync is enabled.\n- `/shieldsync debug` - Toggle debug output for all players.\n- `/shieldsync debug <player>` - Toggle debug output filtered to one player.\n\n## Notes\n\n- This plugin does not use NMS or reflection.\n- PacketEvents is used as an external dependency plugin (not shaded).\n- Debug output is intended for testing/tuning and can be noisy.\n\n## Credits\n- xSweetJapan for idea (sweetjapan on discord)\n- [Axionize](https://modrinth.com/user/Axionize) for ping fetching implementation, I used the code from [Knockback Sync](https://modrinth.com/mod/knockbacksync).",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 102,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

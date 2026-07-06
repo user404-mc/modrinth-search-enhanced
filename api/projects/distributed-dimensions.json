@@ -1,0 +1,33 @@
+{
+  "id": "FwROjCxo",
+  "slug": "distributed-dimensions",
+  "title": "DistributedDimensions",
+  "description": "A Minecraft plugin system that splits a world across one Paper server per dimension, coordinated by a Velocity proxy.",
+  "body": "# DistributedDimensions\n\nA Minecraft plugin system that splits a world across **one Paper server per dimension**, coordinated by a Velocity proxy.\n\n```\n[Player] ──► [Velocity Proxy (dd-velocity)]\n                  │\n        ┌─────────┼─────────┐\n        ▼         ▼         ▼\n  [Overworld]  [Nether]   [End]\n  (dd-paper)  (dd-paper) (dd-paper)\n```\n\nCrossing a portal feels identical to vanilla: inventory, XP, hunger, gamemode, and chat are preserved across all servers in real time.\n\n---\n\n## How it works\n\n1. Player enters a portal → the Paper plugin cancels the vanilla event\n2. The full player state (inventory, XP, hunger, gamemode…) is serialized and sent to Velocity via a plugin message channel\n3. Velocity routes the player to the target server and forwards the message\n4. The target server deserializes the state, finds a safe spawn location (or builds a portal), and teleports the player\n\nNether coordinate scaling (1:8 ratio) and End platform spawning are handled automatically.\n\n## Requirements\n\n- Java 21\n- A Velocity 3.x proxy\n- Three Paper 1.21.11 servers (one per dimension)\n\n---\n\n## Configuration\n\nEach Paper server declares its dimension in `plugins/DistributedDimensions/config.yml`:\n\n```yaml\nworld: OVERWORLD   # OVERWORLD | NETHER | END\ndebug: false\n```\n\nThe Velocity plugin reads `plugins/distributed-dimensions/config.toml`:\n\n```toml\ndebug = false\n```",
+  "categories": [
+    "management",
+    "optimization",
+    "paper",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

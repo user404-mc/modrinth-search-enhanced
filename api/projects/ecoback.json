@@ -1,0 +1,39 @@
+{
+  "id": "i8frmQ2S",
+  "slug": "ecoback",
+  "title": "EcoBack",
+  "description": "Vault Economy Backup Plugin for Minecraft Servers",
+  "body": "# EcoBack - Simple & Reliable Vault Economy Backups\n\n[![Version](https://img.shields.io/github/v/release/deutschich/EcoBack)](https://github.com/deutschich/EcoBack/releases/latest)\n[![API](https://img.shields.io/badge/API-1.21-blue)](https://papermc.io)\n\n**EcoBack** is a lightweight, open-source Minecraft plugin designed to **backup**, **restore**, and **manage** player balances for any economy plugin hooked into **Vault**. No MySQL database required—everything is stored locally in human-readable **YAML** format.\n\n---\n\n## 📖 Origin Story\n\nEcoBack was born out of a specific need. I added a backup feature to the plugin **BalSync** (a tool for synchronizing economy data across servers via MySQL). I realized that not every server wants to run a MySQL database just to secure their player data. I took that core concept and built **EcoBack** as a **standalone**, **lightweight**, and **database-free** alternative. It provides the same peace of mind for single-server setups and small networks alike.\n\n## ✨ Features\n\n- **💾 On-Demand Backups:** Create an instant snapshot of every player's balance using `/ecoback backup`.\n- **⏱️ Automatic Scheduling:** Configure automated backups at custom intervals (minutes or hours) to run seamlessly in the background.\n- **📂 Local YAML Storage:** Backups are saved in `plugins/EcoBack/backups/` as clean, human-readable `.yml` files. No external database connection required.\n- **🔄 Instant Rollback:** Effortlessly restore all player balances to a previous state with `/ecoback rollback <filename>`.\n- **🌍 Multi-Language Support:** Fully localized messages. Currently supports:\n    - **English** (`en`)\n    - **German** (`de`)\n- **🔔 Update Checker:** Integrated update notifications alert administrators (with the appropriate permission) when a new version is available on GitHub Releases.\n- **🔒 Granular Permissions:** Control exactly who can backup, rollback, reload configs, and receive update alerts.\n- **⚡ Asynchronous Processing:** Backup creation and rollback operations run **asynchronously**, ensuring zero server lag during intensive file writes.\n- **📋 In-Game Management:** List all available backup files and restore them directly from the chat interface.\n- **🛠️ Developer Friendly:** Open Source under the MIT License. Build system uses Gradle Kotlin DSL with preview build support.\n\n## 🚀 Installation\n\n1.  Download the latest `.jar` file from the [Modrinth](https://modrinth.com/plugin/ecoback) page.\n2.  Place the `.jar` file into your server's `plugins/` folder.\n3.  **Ensure you have [Vault](https://www.spigotmc.org/resources/vault.34315/) or [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) installed.** (EcoBack depends on Vault to interact with your economy plugin like EssentialsX, CMI, etc.)\n4.  Restart your server.\n5.  Configure the `config.yml` to set your preferred language and automatic backup interval.\n\n## 📋 Commands & Permissions\n\nAll commands are executed under the base alias `/ecoback`.\n\n| Command | Description | Permission Node |\n| :--- | :--- | :--- |\n| `/ecoback backup` | Manually creates a new economy backup. | `ecoback.backup` |\n| `/ecoback backups` | Lists all available backup files in the backup folder. | `ecoback.admin` |\n| `/ecoback rollback <filename>` | Restores all player balances from a specified backup file. | `ecoback.rollback` |\n| `/ecoback reload` | Reloads the `config.yml` and language files. | `ecoback.admin` |\n\n**Permission Overview:**\n- `ecoback.admin`: Grants access to `reload` and `backups` commands.\n- `ecoback.backup`: Allows manual backup creation.\n- `ecoback.rollback`: Allows restoring data (Use with caution!).\n- `ecoback.update.notify`: Players with this permission will see a chat message upon joining if an update is available.\n\n## ⚙️ Configuration (`config.yml`)\n\n```yaml\n# EcoBack Configuration\n\n# Automatic backup interval (0 = disabled)\nbackup-interval: 30\n\n# Time unit for the interval: \"minutes\" or \"hours\"\ninterval-unit: \"minutes\"\n\n# Language file to use (stored in plugins/EcoBack/lang/lang_<language>.yml)\nlanguage: \"en\"\n```\n\n## 🌐 Language & Localization\n\nEcoBack supports **German** and **English** out of the box. You can easily add more languages by duplicating `lang_en.yml`, renaming it (e.g., `lang_fr.yml`), translating the strings, and setting `language: fr` in the config.\n\n## 🔗 Links & Open Source\n\n- **GitHub Repository:** [https://github.com/deutschich/EcoBack](https://github.com/deutschich/EcoBack)\n- **Issue Tracker:** [Report a Bug or Request a Feature](https://github.com/deutschich/EcoBack/issues)\n\nEcoBack is **Open Source** software. Contributions, translations, and forks are welcome!",
+  "categories": [
+    "economy",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 44,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

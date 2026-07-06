@@ -1,0 +1,39 @@
+{
+  "id": "M1vFyaZL",
+  "slug": "oopsk",
+  "title": "oopsk",
+  "description": "a Skript addon that aims to add limited object-oriented programming tools to Skript in a non-invasive manner.",
+  "body": "# oopsk\n\noopsk is a Skript addon that aims to add limited object-oriented programming tools to Skript in a non-invasive manner. \n\n## Basics\nThe current feature set revolves around `structs`, simple objects that group together a set of typed fields. Structs are defined by struct templates, top-level structures that define their name and the fields they contain:\n```\nstruct Message:\n  contents: string\n  sender: offline player\n  const timestamp: date = now\n  converts to:\n    string via this->contents\n```\nA template's name and field names are case-insensitive. The template name follows the same rules as a function name, while field names can only consist of letters, underscores, and spaces. \nEach field has a name and a type, as well as an optional default value. This default value may be an expression, as it is evaluated when a struct is created, not when the template is registered.\nAdding `const` or `constant` to the start will prevent the field from being changed after creation.\n\nStructs also support conversion expressions, which allow you to define how a struct can be converted to other types. The syntax is \n`<type> via <expression>`, where `<type>` is the type to convert to and `<expression>` is an expression that evaluates to that type. \nThe expression may use `this` to refer to the struct being converted. Multiple conversions can be defined by adding more lines under the `converts to:` section.\n\nCreating a struct involves a simple expression:\n```\nset {_a} to a message struct\n```\n`{_a}` is now a new instance of the Message template, with contents and sender unset and timestamp set to the date the struct was created. Fields can be accessed and modified with the field access expression:\n```\nset field contents of {_a} to \"hello world\"\nbroadcast {_a}'s sender field\nreset {_a}->timestamp\n```\nStructs can also be created with initial values:\n```\nset {_a} to a message struct:\n  sender: player\n  contents: \"hello world\"\n```\n\n### Custom Types\n\nStruct templates automatically create a new Skript type using the template's name + `struct`. \nIn the above example, `message struct` is now a valid Skript type that can be used in function parameters and other struct fields.\n**You should be very careful when reloading templates, as any existing code that used the type may break if the template was modified or removed.**\nALWAYS reload all scripts after modifying templates to ensure all code is properly re-parsed.\n\n### Type Safety\noopsk attempts to ensure type safety at parse time via checking all fields with the given name. This means having unique field names across structs allows oopsk to give you more accurate parse errors, while sharing field names can result in invalid code not causing any errors during parsing. \nAny type violations not caught during parsing should be caught at runtime via runtime errors that cannot be suppressed. Note that code parsed in one script prior to updates to a struct in another script will not show parse errors until it is reloaded again, though it should properly emit runtime errors.\n\n### Modifying the Template of Existing Structs\nAny modifications to a template will be reflected in all structs that have been previously created from that template. This can result in data loss if a field is renamed, removed, or changes type, as existing structs will have their modified fields either removed or re-evaluated as appropriate. \nNote that this means default values need to be re-evaluated and therefore will not have been evaluated when the struct was created. oopsk will print a warning in console if any existing structs were modified as a result of template changes. Adding fields to a template or changing default values will not modify existing structs.\n\nRemoving a template will 'orphan' existing structs, who will function as if the template still existed, though it may be impossible to access their information as the field access expression may not recognize the field names. If a new template is added with the same name, these existing structs will be updated to match the new template.\nIf you remove a template, you should take care to remove structs that depended on it.\n\n**I recommend putting your templates in a separate script file, so you can limit the chances of them being accidentally modified or disabled.**\n\n## Roadmap\nBeta:\n- Reflective expressions for structs and field (get fields, get types, get whether a field is constant...)\n- Expression to dynamically access a field from a string (unsafe)\n- Serialization of structs (unsure on feasibility)\n\nPossibilities:\n- Methods?\n- Allowing fields to accept structs from specific templates, rather than any struct.\n\n## Docs\n\nDocs are available on [skUnity](https://docs.skunity.com/syntax/search/addon:oopsk) or on [SkriptHub](http://skripthub.net/docs/?addon=oopsk).\n\n",
+  "categories": [
+    "library",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 104,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

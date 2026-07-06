@@ -1,0 +1,23 @@
+{
+  "id": "D0TqunEG",
+  "slug": "coderandom-core",
+  "title": "CodeRandom Core",
+  "description": "CodeRandomCore is a robust Bukkit plugin designed to manage various server functionalities for Minecraft, including player UUIDs, MySQL database interactions, and messaging utilities.",
+  "body": "# CodeRandomCore\n###### Current version `v1.0.0-1.21`\n\nCodeRandomCore is a Bukkit plugin designed to manage various aspects of a Minecraft server, including player UUIDs, MySQL database interactions, and messaging utilities. This guide will help you set up and use the API provided by the plugin.\n\n## Table of Contents\n- [Installation](#installation)\n- [Configuration](#configuration)\n- [Usage](#usage)\n  - [UUID Management](#uuid-management)\n  - [MySQL Management](#mysql-management)\n  - [Messaging Utilities](#messaging-utilities)\n  - [Title Utilities](#title-utilities)\n  - [ActionBar Utilities](#actionbar-utilities)\n\n## Installation\n\n1. Download the latest release of the CodeRandomCore plugin.\n2. Place the plugin JAR file in your server's `plugins` directory.\n3. Start your Minecraft server to generate the default configuration files.\n\n## Configuration\n\nThe plugin uses a configuration file located at `plugins/CodeRandomCore/config.yml`. Here is an example of the MySQL configuration section:\n\n```yaml\nMySQL:\n  enabled: false\n  host: localhost\n  port: 3306\n  database: code_random\n  username: root\n  password: \"\"\n```\n\n### Configuration Options\n\n- `enabled`: Set to `true` to enable MySQL support.\n- `host`: The hostname or IP address of your MySQL server.\n- `port`: The port number of your MySQL server (default is 3306).\n- `database`: The name of the database to use.\n- `username`: The username for the MySQL connection.\n- `password`: The password for the MySQL connection.\n\n## Usage\n\n### UUID Management\n\nCodeRandomCore provides utilities for managing player UUIDs, especially for Bedrock players using Floodgate.\n\n#### Fetching UUIDs\n\nTo fetch a player's UUID:\n\n```\nUUID uuid = UUIDFetcher.getUUID(\"playerName\");\n```\n\nThis method will automatically determine if the player is a Bedrock player, an online player, or an offline player, and fetch the UUID accordingly.\n\n### MySQL and JSON File Management\n\nThe plugin uses HikariCP for managing MySQL connections.\n\n#### Initializing MySQL\n\nEnsure that MySQL is enabled in your `config.yml` file. The MySQLManager class manages the connection pool:\n\n```\nMySQLManager mysqlManager = MySQLManager.getInstance();\n\nif (mysqlManager.connect()) {\n    // Connected successfully\n} else {\n    // Connection failed\n}\n```\n\n#### Executing Queries\n\nTo execute queries:\n\n```\nString query = \"SELECT * FROM players\";\ntry (ResultSet rs = mysqlManager.executeQuery(query)) {\n    while (rs.next()) {\n        // Process the result set\n    }\n} catch (SQLException e) {\n    e.printStackTrace();\n}\n```\n\n### Messaging Utilities\n\nThe plugin provides utilities for sending formatted messages to players.\n\n#### Sending Messages\n\nTo send a formatted message:\n\n```\nMessageUtils.formattedMessage(player, \"Your message here\");\n```\n\nTo send a message with a title and lines:\n\n```\nMessageUtils.messageWithTitle(player, \"Title\", \"Line 1\", \"Line 2\" ...);\n```\n\n### Title Utilities\n\nTo send titles to players:\n\n```\nTitleUtils.title(player, \"Main Title\", \"Subtitle\", 20, 100, 20);\n```\n\nThis will display a title with a fade-in time of 20 ticks, stay time of 100 ticks, and fade-out time of 20 ticks.\n\n### ActionBar Utilities\n\nTo send an action bar message:\n\n```\nActionBarUtils.actionBar(player, \"ActionBar Message\", 60);\n```\n\nThis will display an action bar message for 3 seconds (60 ticks).\n\n## License\n\nThis project is Non-Commercial License with API Usage Exception. See the [LICENSE](LICENSE) file for details.",
+  "categories": [
+    "bukkit",
+    "optimization",
+    "paper",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 66,
+  "followers": 0,
+  "game_versions": [
+    "1.21"
+  ],
+  "date_updated": null
+}

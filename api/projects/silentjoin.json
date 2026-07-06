@@ -1,0 +1,34 @@
+{
+  "id": "ggXh6CbG",
+  "slug": "silentjoin",
+  "title": "SilentJoin",
+  "description": "Paper 1.21.11 & 26.1.x+ Plugin that hides operator & specified player join/leave messages.",
+  "body": "# SilentJoin - Minecraft Paper Plugin\n\nA Minecraft Paper plugin for Paper 1.21.11 & 26.1.x+ that hides join and quit messages for operators and configured players.\n\n## Features\n\n- **Hide messages for operators**: Join/quit messages are automatically hidden for server operators\n- **Configurable silent join**: Operators can toggle silent join for any player using `/silentjoin <player>`\n- **Persistent configuration**: Silent join settings are saved to a JSON file and persist across server restarts\n- **UUID-based storage**: Uses UUIDs instead of player names for reliable player identification\n- **Offline player support**: Works with both online and offline players\n\n## Commands\n\n### /silentjoin <player>\nToggle silent join for a player. When enabled, the player's join and quit messages are hidden.\n\n**Permission**: `silentjoin.command` (default: op)\n\n**Usage Examples**:\n- `/silentjoin PlayerName` - Toggles silent join for PlayerName\n- `/silentjoin 12345678-1234-1234-1234-123456789012` - Works with both player names and UUIDs\n\n**Messages**:\n- If enabled: \"Silent join enabled for <player>.\"\n- If disabled: \"Silent join disabled for <player>.\"\n- If no player provided: \"Usage: /silentjoin <player>\"\n\n## Configuration\n\nThe plugin stores silent join settings in `plugins/SilentJoin/silentjoin.json`. The file contains a list of UUIDs for players with silent join enabled.\n\nExample `silentjoin.json`:\n```json\n[\n  \"12345678-1234-1234-1234-123456789012\",\n  \"87654321-4321-4321-4321-210987654321\"\n]\n```\n\n## Behavior\n\n### Join/Quit Message Hiding\n\nMessages are hidden when:\n1. The player has operator status (isOp())\n2. OR the player's UUID is in the silent join configuration list\n\n### Command Behavior\n\nThe `/silentjoin` command allows operators to:\n- Enable/disable silent join for any player (online or offline)\n- Changes are saved immediately to the configuration file\n- Reloading the server maintains these settings\n\n## Permissions\n\n- `silentjoin.command` - Allows usage of the /silentjoin command (default: op)\n\n## Troubleshooting\n\n### Plugin won't load\n- Ensure you're using Paper 1.21.11 or compatible version\n- Check that all dependencies are correctly resolved by Maven\n- Verify the plugin.yml is properly formatted\n\n### Command not working\n- Check that you have the `silentjoin.command` permission\n- Ensure the player name is spelled correctly\n- Check server logs for any error messages\n\n### Configuration not persisting\n- Ensure the plugin has write permissions to the `plugins/SilentJoin/` folder\n- Check that `silentjoin.json` exists and is readable\n- Verify the JSON file format is valid\n\nHaving any issues? DM `frostyy8575` on Discord for support.",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 86,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

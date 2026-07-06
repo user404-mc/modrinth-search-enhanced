@@ -1,0 +1,25 @@
+{
+  "id": "gjFC11A1",
+  "slug": "supportpac",
+  "title": "SupportPac",
+  "description": "This is a support plugin. It's really cool, and please download it.",
+  "body": "# SupportPac\n\n![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)\n![Paper API](https://img.shields.io/badge/Paper-1.21+-green.svg)\n![Java 21](https://img.shields.io/badge/Java-21-blue.svg)\n\n[🇷🇺 Русская версия (Russian Version)](https://github.com/PacHub228/SupportPac/blob/main/READMERU.md)\n\nA lightweight and flexible Minecraft plugin for Paper (1.21+) that allows server staff (helpers, moderators, admins) to toggle their support status on and off. The plugin integrates directly with **LuckPerms** to switch player groups dynamically.\n\n## Features\n\n- **Toggle Support Mode**: Easily switch between an active support role (e.g., `helperon`) and an inactive role (e.g., `helperoff`) with a single command.\n- **LuckPerms Integration**: The plugin uses LuckPerms commands to instantly update player groups.\n- **Permission-Based**: Fully relies on permissions to determine which groups a player can toggle, eliminating the need for hardcoded player names in the config.\n- **Multi-language Support**: Built-in localization support (`en`, `ru`, `uk`, `be`).\n- **Player Inspection**: Includes a quick `/sp check` command to view detailed player information.\n\n## Prerequisites\n\n- Server software: **Paper 1.21+** (or forks).\n- Required plugin: **LuckPerms** (for group management).\n\n## Commands\n\n- `/sp on [group]` - Enable support mode for a specific group. If `[group]` is omitted, the plugin will auto-detect the first available group based on your permissions.\n- `/sp off [group]` - Disable support mode for a specific group.\n- `/sp help` - Show the help message.\n- `/sp check <player>` - View detailed information about a player (UUID, IP, World, Coordinates, Health, Gamemode).\n- `/sp reload` - Reload the plugin's configuration and messages.\n\n## Permissions\n\n- `supportpac.use` - Required to use the base `/sp` command.\n- `supportpac.check` - Allows the use of `/sp check`.\n- `supportpac.reload` - Allows reloading the plugin with `/sp reload`.\n- `sp.<group>.on` - Allows a player to switch to the `on` state for a specific `<group>`.\n- `sp.<group>.off` - Allows a player to switch to the `off` state for a specific `<group>`.\n\n*Example: To allow a player to fully use the `helper` group toggle, grant them `supportpac.use`, `sp.helper.on`, and `sp.helper.off`.*\n\n## Configuration (`config.yml`)\n\nThe configuration file is extremely simple. You only need to define your language and map your plugin groups to your actual LuckPerms groups.\n\n```yaml\nlanguage: en # Available options: en, ru, uk, be\n\ngroups:\n  helper: # The internal name of the group used in permissions (sp.helper.on)\n    on: helperon   # The LuckPerms group assigned when using /sp on\n    off: helperoff # The LuckPerms group assigned when using /sp off\n  moder:\n    on: moderon\n    off: moderoff\n```\n\n### Important Note on YAML formatting\nIn YAML, the keys `on` and `off` are parsed as boolean values (`true` and `false`). The plugin automatically handles this internally, so you can safely use `on:` and `off:` in your configuration as shown above.\n\n## Setup Guide\n\n1. Drop the `SupportPac.jar` into your `plugins` folder.\n2. Restart the server.\n3. Configure your groups in `config.yml`.\n4. Ensure you have the corresponding groups created in LuckPerms (e.g., `helperon`, `helperoff`).\n5. Grant your staff the necessary permissions (e.g., `/lp group helper permission set sp.helper.on true`).\n6. Reload the plugin (`/sp reload`) or restart the server.\n\n## Building from source\n\nTo build the project yourself, you need Java 21 and Maven. Run the following command in the project root:\n\n```bash\nmvn clean package\n```\n\nThe compiled JAR will be located in the `target/` directory.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

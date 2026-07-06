@@ -1,0 +1,21 @@
+{
+  "id": "cKgVWgDT",
+  "slug": "lans-easy-discord",
+  "title": "Lan’s Easy Discord: Bridge+",
+  "description": "Bridge your Minecraft world and community through Discord — a lightweight Discord integration plugin/mod. Just drop it in, configure it, and go.",
+  "body": "\n## Requirements\n- Fabric Loader 0.15.0+\n- Fabric API\n\n---\n\n## Planned Features\n- **Stats Tracker** — query a player's in-game stats (blocks mined, mobs killed, deaths, playtime, etc.) directly from Discord\n- **Advancements Scoreboard** — view and compare completed advancements for any player through Discord\n- **Player Checker** — see who's currently online on the server without having to open Minecraft\n- **More Platform Support** — ports for Spigot/Paper and other mod loaders such as Forge and NeoForge are planned for future releases\n\n---\n\n## Current Features\n\n### Chat Bridge\n- Messages sent in Minecraft appear in Discord, and messages sent in Discord appear in Minecraft\n\n### Player Events\n- Join and leave notifications\n- Death messages with 🪦 for regular deaths and ⚔️ for PvP kills\n- Advancement notifications\n\n### Bot Status\n- Bot presence shows live player count (e.g. `3/20 players online`)\n- Channel topic shows server online status and uptime (e.g. `🟢 Server Online | Online since: 2026-04-19 03:46 UTC | Crashes: 2`)\n- Channel topic switches to `🔴 Server is offline | Crashes: X` when the server stops\n\n### Crash & Lag Alerts\n- Pings a configurable role when the server crashes — works even on watchdog kills\n- Pings a configurable role when the server logs `Can't keep up!` with a 60 second cooldown to prevent spam\n- Crash counter persists across restarts\n\n### Whitelist Command\n- `/whitelist add <username>` — anyone in the whitelist channel can add themselves\n- `/whitelist remove <username>` — restricted to users with the configured alert role\n\n---\n\n## Setup\n\n1. Create a Discord Bot\n- Go to https://discord.com/developers/applications and create a new application\n- Go to the **Bot** tab and click **Add Bot**\n- Under **Privileged Gateway Intents**, enable **Message Content Intent**\n- Copy your bot token — you'll need it for the config\n- Invite the bot to your server with the `bot` and `applications.commands` scopes, and give it permissions to read/send messages and manage channel topics (not reccomended but if you can give admin to the bot if you face any issues)\n\n2. Configure the Mod\nAfter running the server once, a config file will be generated at `config/discordfabric.json`. Fill in your values:\n\nConfig Fields\n- `botToken` — Your Discord bot token\n- `chatChannelId` — Channel ID for the chat bridge and general notifications\n- `whitelistChannelId` — Channel ID where `/whitelist` commands are allowed\n- `alertRoleId` — Role ID to ping for crash and lag alerts. Also controls who can use `/whitelist remove`\n\nGetting IDs\nYou need **Developer Mode** enabled in Discord to copy IDs. Go to **Settings → Advanced → Developer Mode**, then right-click any channel or role and click **Copy ID**.\n\n### Customizing Messages\nAll message templates in the `messages` section are fully customizable. Available placeholders:\n\n- `{player}` — join, leave, death messages\n- `{message}` — chat bridge\n- `{user}` — Discord → Minecraft\n- `{online}` — botStatus\n- `{max}` — botStatus\n- `{online_since}` — channelTopic\n- `{crashes}` — channelTopic\n- `{advancement}` — playerAdvancement\n",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 32,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

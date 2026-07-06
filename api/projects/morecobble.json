@@ -1,0 +1,19 @@
+{
+  "id": "NEfU3wvm",
+  "slug": "morecobble",
+  "title": "MoreCobble",
+  "description": "This mod is designed to support block decimals/per-face and other model particle contents in Cobblemon's rendering system without breaking/modifying/adding to the data pack format, and it comes with a complete API.",
+  "body": "## Introduction\nThis mod is designed to support block decimals/per-face and other model particle contents in Cobblemon's rendering system without breaking/modifying/adding to the data pack format, and it comes with a complete API.\n## API Interface [Example]\n\n```\nimport xiaocaoawa.minecraft.mod.morecobble.api.*;\nimport net.minecraft.resources.ResourceLocation;\n\nResourceLocation pikachu = ResourceLocation.parse(\"cobblemon:pikachu\");\n\n// All Pikachu: Full model rainbow glow\nShimmerAPI.setSpeciesEffects(pikachu, ShimmerEffect.of(ShimmerBand.rainbow()));\n\n// A certain Pokémon: tail stacked with two shiny stripes in different directions\nShimmerEffect tail = ShimmerEffect.builder()\n        .scope(ShimmerScope.bone(\"tail\"))\n        .addBand(ShimmerBand.builder().direction(0,1,0).speed(0.5f).colors(0xFFFF0000,0xFF0000FF).build())\n        .addBand(ShimmerBand.builder().direction(1,0,0).speed(-0.3f).colors(0xFF00FF00,0xFFFFFF00).build())\n        .scope(ShimmerScope.bone(\"tail\"))\n        .addBand(ShimmerBand.builder().direction(0,1,0).speed(0.5f).colors(0xFFFF0000,0xFF0000FF).build())\n        .addBand(ShimmerBand.builder().direction(1,0,0).speed(-0.3f).colors(0xFF00FF00,0xFFFFFF00).build())\n        .build();\nShimmerAPI.setPokemonEffects(pokemonUuid, tail);\n\n// Glare: Shiny Foil Finish on the Whole Model\nSheenAPI.setSpeciesEffects(pikachu, SheenEffect.of(SheenBand.sheen()));\n\n// Particle: Sparks flying from the head\nParticleAPI.setSpeciesEffects(pikachu,\n        ParticleEffectSpec.of(ParticleScope.bone(\"head\"),\n                ParticleEmitter.of(ResourceLocation.parse(\"cobblemon:sparkles\"), 2f)));​\n```\n### Model performance\nSupports block decimals/per-face and other Bedrock Edition models. No prerequisite mods. Added rendering for Cobblemon rendering, no modifications/additions to datapack format or content. Models can be directly referenced, and actions are supported. [You can use YSM's source file models, but YSM's encrypted format is not supported]\n![model-1](https://cdn.modrinth.com/data/cached_images/71ec069a812f0170e1a1fe80ec487dd591792ca9_0.webp)\n![model-2](https://cdn.modrinth.com/data/cached_images/b968bf708592b2ae06f2929ed99e8cfe1a0b7a8d_0.webp)\n![model-3](https://cdn.modrinth.com/data/cached_images/1a60fa90abe52e1b7e5b7071b1f99b7b34f85f7e_0.webp)\n### Particle effects  \nYou can let any Pokémon use Cobblemon's particles. The particle system hasn't changed the data pack format, so you can still customize and add them in the original data pack format.\n​![model-4](https://cdn.modrinth.com/data/cached_images/cfc71d8282ba4dcf51b12237e7faceddb7656a8c.png)\n![model-5](https://cdn.modrinth.com/data/cached_images/0bda4aa35c784f9ce0f45f4207b849c5bb0ab9e9_0.webp)\n### Colorful/Glare Effects\nYou can adjust the direction, stripe colors, multiple different colors, and speed of the colorful/glare effects for the whole model or for different parts, blocks, or block groups of the model.\nColorful [The effect of changing colors on the texture. The stripes are locked to the texture pixels and move with the model. The stripe coordinate space is the texture UV space.]\n![model-7](https://cdn.modrinth.com/data/cached_images/31f03bda92115ba4d9b9adb10bf11724d1e7b636_0.webp)\n",
+  "categories": [
+    "fabric",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

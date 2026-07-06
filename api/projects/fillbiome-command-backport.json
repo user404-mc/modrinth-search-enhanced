@@ -1,0 +1,19 @@
+{
+  "id": "orqgB0aF",
+  "slug": "fillbiome-command-backport",
+  "title": "Fillbiome Command Backport",
+  "description": "Backports \"/fillbiome\" command from 1.19.3 to previous 1.19.2 version",
+  "body": "# Fillbiome Command Backport\n\n## About\n\n/fillbiome is a command for pointwise changing biome types in a specific area, which was introduced in game since 1.19.**3**. It's a perfect tool for map creators, however minecraft version 1.19.2 lacks of it. This mod just backports this command from 1.19.**3** to previous 1.19.**2** version.\n\n## Usage\n\nThe command syntax is `/fillbiome <from> <to> <biome>`. Just replace `<from>` and `<to>` with a x/y/z coordinates of the area and provide a valid biome type in `<biome>`. You can also use an optional alternate syntax when using the replace option : `/fillbiome <from> <to> <biome> replace <filter>`\n\nExamples : \n\n`/fillbiome -87 88 -113 -107 71 -88 minecraft:plains` _(will replace selected area with plains biome type)_\n\n`/fillbiome -87 88 -113 -107 71 -88 minecraft:plains replace minecraft:badlands` _(will replace all badlands biome types in selected area with plains biome type. Biomes other than badlands will remain unchanged)_\n\n## Notes\n\n- Sends full chunk data packets to players with loaded affected chunks, so biome changes appear immediately for them like in 1.19.3. There might be some rare issues when part of affected chunks's apperance is not immediately refreshed for player. In that case they can re-log to world or just travel / teleport somewhere else and than go back.\nThe command only changes the biome type, but not the blocks in it. It will affect such things as grass / water color, specific entity spawn, weather effects e.t.c\n- Biome boundaries are slightly different from selected area as game stores them in cells of 4×4×4 blocks, this command is applied on each selected biome **cell**, not each block, which will result in changes are not applied at the **exact** coordinates specified.\n- 1.19.3 version of this command had a maximum limit of selected area volume, which was hardcoded as **32768** blocks. This was deprecated later in 1.19.4 as `commandModificationBlockLimit` gamerule was added. As there is no such rule for 1.19.2, you can change this limit via config file in mod directory.\n\n## Requirments\n\n[Fabric API 0.76.0+](https://fabricmc.net/use/installer/)\n\n[Fabric loader 0.14.19+](https://fabricmc.net/use/installer/)\n\nInstallation: Drop .jar file into mods folder.\n\n## Credits and License\nYou can freely use this mod in modpacks and do whatever you want with it, a small credit is appreciated.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.19.2"
+  ],
+  "date_updated": null
+}

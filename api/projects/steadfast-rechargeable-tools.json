@@ -1,0 +1,41 @@
+{
+  "id": "UcuMNG4X",
+  "slug": "steadfast-rechargeable-tools",
+  "title": "Steadfast Rechargeable Tools",
+  "description": "Vein Miner, Timber, 3x3 Mining, Tree Felling, Excavator, Auto Harvest - All in one lightweight plugin with a unique charge-based economy system.",
+  "body": "# RechargeableTools\n\nDemo video: https://www.youtube.com/watch?v=Ia9xGDNCbmo\n\n**Vein Miner, Timber, 3x3 Mining, Tree Felling, Excavator, Auto Harvest** - All in one lightweight plugin with a unique charge-based economy system.\n\n## Why RechargeableTools?\n\nMost \"super tools\" plugins give players unlimited power. RechargeableTools adds **resource cost** to every ability use, creating an engaging economy loop where players must farm rare materials to fuel their powerful tools.\n\n**Your existing tools become upgradeable** - no custom items, no recipe conflicts, just upgrade your Netherite pickaxe and keep mining.\n\n---\n\n## Features\n\n### 🔨 Pickaxe - Vein Miner + 3x3 Mining\n- **3x3 Mode**: Mine a 3x3 area based on the face you're looking at\n- **Vein Mode**: Mine entire ore veins (up to 64 connected blocks)\n- Toggle between modes with `/rt`\n\n### 🪓 Axe - Timber / Tree Felling\n- Chop entire trees instantly (up to 128 blocks)\n- Breaks leaves automatically\n- **Auto-replants saplings** on the original stump\n\n### ⛏️ Shovel - Excavator + Flatten\n- **3x3 Mode**: Excavate dirt, sand, gravel in a 3x3 pattern\n- **Flatten Mode**: Level terrain to your Y-level (fills holes, removes hills)\n\n### 🌾 Hoe - Mass Harvest + Till\n- **Harvest Mode**: Harvest 5x5 area of mature crops with **auto-replant**\n- **Till Mode**: Till 5x5 area of dirt into farmland\n\n### 🏗️ Architect's Totem (Bonus Tool)\nConvert a Totem of Undying into a builder's tool:\n- **Extended Reach**: Place blocks up to 12 blocks away\n- **Block Replace**: Swap all blocks of one type in a 7x7x7 area\n- ⚠️ *Trade-off: No longer saves you from death*\n\n---\n\n## Vanilla-Friendly Design\n\n| Feature          | Behavior                                           |\n| ---------------- | -------------------------------------------------- |\n| **Durability**   | Tools take damage normally - Unbreaking helps      |\n| **Enchantments** | Fortune, Silk Touch, Efficiency all work           |\n| **Drops**        | Uses vanilla drop tables and loot                  |\n| **Combat**       | Tools work normally in combat                      |\n| **Death**        | Configurable: drop tool, lose 25% charges, or both |\n\nYour upgraded Netherite pickaxe is still a Netherite pickaxe. It just has extra abilities.\n\n---\n\n## Charge Economy System\n\n### Upgrading\nUpgrade any Netherite tool with **1 Netherite Ingot** via the `/rt` GUI.\n\n### Recharging (Configurable)\n| Material         | Charges | Notes                    |\n| ---------------- | ------- | ------------------------ |\n| Amethyst Shard   | 500     | Renewable, easy to farm  |\n| Heart of the Sea | 3,000   | Treasure hunting reward  |\n| Echo Shard       | 6,000   | Ancient City exploration |\n| Nether Star      | 12,000  | Boss reward, high value  |\n\n**Why these materials?** They're non-minable, preventing infinite charge exploit loops. Players must actually gather resources.\n\n### Charge Usage\n- **1 charge per block** broken with abilities\n- **50,000 max charges** per tool (configurable)\n- **25% charge loss on death** (configurable)\n\n## Configuration Options\n\n### General Settings (`settings:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `show-particles` | Show particles when abilities activate | `true` |\n| `play-sounds` | Play sounds when abilities activate | `true` |\n| `drop-on-death` | Drop upgraded tool on death (true) or keep it (false) | `true` |\n| `lose-charges-on-death` | Lose 25% of charges on death | `true` |\n| `prefix` | Message prefix for all plugin messages | `&6[Tools] &r` |\n\n### Charge Tiers (`charge-tiers:`)\n\n| Tier | Material | Charges | Display Name |\n|------|----------|---------|--------------|\n| tier0 | `AMETHYST_SHARD` | 500 | Amethyst Shard |\n| tier1 | `HEART_OF_THE_SEA` | 3,000 | Heart of the Sea |\n| tier2 | `ECHO_SHARD` | 6,000 | Echo Shard |\n| tier3 | `NETHER_STAR` | 12,000 | Nether Star |\n\n### Tool Abilities (`abilities:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `enabled` | Enable/disable this tool ability | `true` |\n| `ability-name` | Display name of the ability | Varies by tool |\n| `upgrade-material` | Material required to upgrade | `NETHERITE_INGOT` |\n| `upgrade-amount` | Amount of material needed | `1` |\n| `charges-per-use` | Charges consumed per use | `1` |\n| `max-charges` | Maximum charges the tool can hold | `50000` |\n| `initial-charges` | Starting charges when upgraded | `3000` |\n\n#### Pickaxe-Specific (`abilities.pickaxe:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `max-blocks` | Max blocks for vein mining | `64` |\n| `mining.size` | 3x3 mining area size (must be odd) | `3` |\n| `mining.same-block-only` | Only break matching blocks | `false` |\n| `mining.blacklist` | Blocks that won't trigger 3x3 | BEDROCK, OBSIDIAN, SPAWNER, etc. |\n| `mining.whitelist` | Only break these (empty = all) | `[]` |\n\n#### Axe-Specific (`abilities.axe:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `timber.max-blocks` | Max blocks per chop | `128` |\n| `timber.break-leaves` | Break leaves too | `true` |\n| `timber.auto-replant` | Replant saplings automatically | `true` |\n| `timber.log-types` | Log types that trigger timber | All vanilla logs |\n\n#### Shovel-Specific (`abilities.shovel:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `excavate.size` | Excavation area size | `3` |\n| `excavate.shovel-blocks-only` | Only break shovel-appropriate blocks | `true` |\n\n#### Hoe-Specific (`abilities.hoe:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `harvest.size` | Harvest/till area size | `5` |\n| `harvest.auto-replant` | Auto replant crops | `true` |\n| `harvest.crop-types` | Harvestable crops | WHEAT, CARROTS, POTATOES, BEETROOTS, NETHER_WART |\n\n#### Totem-Specific (`abilities.totem:`)\n\n| Option | Description | Default |\n|--------|-------------|---------|\n| `architect.reach-distance` | Extended reach distance | `12` |\n| `architect.replace-radius` | Block replace radius | `3` |\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/rt` | Open the upgrade/recharge GUI | `rechargeabletools.use` |\n| `/rt help` | Show command help | None |\n| `/rt info` | Show info about held tool | `rechargeabletools.use` |\n| `/rt on` | Enable abilities on held tool | `rechargeabletools.use` |\n| `/rt off` | Disable abilities on held tool | `rechargeabletools.use` |\n| `/rt toggle` | Toggle abilities on held tool | `rechargeabletools.use` |\n| `/rt reload` | Reload plugin configuration | `rechargeabletools.admin` |\n| `/rt give <player> <tool> [charges]` | Give an upgraded tool to a player | `rechargeabletools.admin` |\n\n**Command Aliases:** `/rechargetools`, `/rtools`\n\n**Tool types for give command:** `pickaxe`, `axe`, `shovel`, `hoe`, `totem`\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `rechargeabletools.use` | Allows using rechargeable tool abilities | `true` (all players) |\n| `rechargeabletools.upgrade` | Allows upgrading tools via GUI | `true` (all players) |\n| `rechargeabletools.recharge` | Allows recharging tools via GUI | `true` (all players) |\n| `rechargeabletools.admin` | Admin commands (reload, give, etc.) | `op` (operators only) |",
+  "categories": [
+    "bukkit",
+    "economy",
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

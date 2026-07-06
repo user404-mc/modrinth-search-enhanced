@@ -1,0 +1,36 @@
+{
+  "id": "1p1lSsgn",
+  "slug": "mysticplaceholders",
+  "title": "MysticPlaceholders",
+  "description": "A standalone Minecraft plugin for creating custom placeholders with PlaceholderAPI integration, Skript support, and MySQL/MariaDB storage.",
+  "body": "<p align=\"center\">\n  <h1 align=\"center\">🔮 MysticPlaceholders</h1>\n  <p align=\"center\">\n    A standalone Minecraft plugin for creating custom placeholders with PlaceholderAPI integration, Skript support, and MySQL/MariaDB storage.\n  </p>\n</p>\n\n---\n\n## Features\n\n- **Numeric Placeholders** — Store integer values like coins, tokens, kills, deaths, levels, mana, etc.\n- **Text Placeholders** — Store string values like ranks, titles, factions, status, etc.\n- **Max Value Caps** — Configure optional maximum limits per numeric placeholder.\n- **PlaceholderAPI Integration** — Access placeholders via `%mysticplaceholders_<name>%`.\n- **Skript Integration** — Full Skript addon with expressions, structures, and relational placeholder support.\n- **MySQL/MariaDB Storage** — Persistent data via [MysticLib]'s shared database connection (HikariCP pooling).\n- **In-Memory Caching** — Fast O(1) lookups for online players with automatic cache lifecycle.\n- **Async Database Operations** — All database writes are non-blocking, keeping your server lag-free.\n- **MiniMessage Support** — Full support for modern MiniMessage color/gradient formatting.\n- **Customizable Display** — Configure `zero-display` and `normal-display` formats per placeholder.\n- **Thread Safe** — `ConcurrentHashMap` caching with atomic database upserts.\n\n## Requirements\n\n| Requirement | Version |\n|-------------|---------|\n| Paper / Purpur | 1.21.x+ |\n| Java | 21+ |\n| MysticLib | 1.0.0+ (**required** — provides database & logging) |\n| Skript | 2.8+ (**required** — for Skript integration) |\n| PlaceholderAPI | 2.11+ (**required**) |\n| MySQL / MariaDB | 5.7+ / 10.2+ |\n\n## Installation\n\n1. Download the latest `MysticPlaceholders-x.x.x.jar` from Releases.\n2. Ensure **MysticLib** and **Skript** are already installed on your server.\n3. Place the JAR in your server's `plugins/` folder.\n4. Start/restart the server.\n5. Configure your placeholders in `plugins/MysticPlaceholders/config.yml`.\n6. Reload with `/mplaceholder reload` or restart the server.\n\n> **Note:** Database connection is configured in **MysticLib's** `config.yml`, not in this plugin. MysticPlaceholders uses MysticLib's shared database connection.\n\n\n### Configuration Notes\n\n- **Numeric placeholders:** `%value%` is replaced with the number. Optional `max` caps the value.\n- **Text placeholders:** `%value%` is replaced with the stored string. Use `null` to clear.\n- **Colors:** Use MiniMessage format (`<red>`, `<green>`, `<gradient:#hex1:#hex2>`, etc.). Legacy `&` codes are auto-converted.\n- **Text values:** Underscores (`_`) in text values are converted to spaces.\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/mplaceholder set <player> <placeholder> <value>` | Set a placeholder value | `mysticplaceholders.admin` |\n| `/mplaceholder add <player> <placeholder> <value>` | Add to a numeric value | `mysticplaceholders.admin` |\n| `/mplaceholder remove <player> <placeholder> <value>` | Remove from a numeric value | `mysticplaceholders.admin` |\n| `/mplaceholder list` | List all configured placeholders | `mysticplaceholders.admin` |\n| `/mplaceholder reload` | Reload configuration | `mysticplaceholders.admin` |\n\n**Aliases:** `/mph`, `/mysticph`, `/mplh`\n\n## Placeholders\n\nAfter installing PlaceholderAPI, use placeholders anywhere that supports PAPI:\n\n```\n%mysticplaceholders_coins%\n%mysticplaceholders_tokens%\n%mysticplaceholders_kills%\n%mysticplaceholders_deaths%\n%mysticplaceholders_level%\n%mysticplaceholders_mana%\n%mysticplaceholders_rank%\n%mysticplaceholders_title%\n%mysticplaceholders_faction%\n%mysticplaceholders_status%\n```\n\n## Skript Integration\n\nMysticPlaceholders registers as a full Skript addon. Enable/disable via `skript-integration: true` in config.\n\n### Get / Set Values\n\n```applescript\n# Get a placeholder value\nset {_mana} to mystic placeholder \"mana\" of player\n\n# Set a value\nset mystic placeholder \"mana\" of player to 100\n\n# Add to a value\nadd 25 to mystic placeholder \"mana\" of player\n\n# Remove from a value\nremove 10 from mystic placeholder \"coins\" of player\n```\n\n### Define Custom Placeholders in Skript\n\n```applescript\nmystic placeholder with the prefix \"custom\":\n    if the identifier is \"health_display\":\n        set the result to \"&c%health of player%❤\"\n\n    if the identifier is \"mana_bar\":\n        set {_mana} to mystic placeholder \"mana\" of player\n        set the result to \"&b%{_mana}%/100 ✦\"\n```\n\nThese are then usable as `%custom_health_display%` and `%custom_mana_bar%` via PlaceholderAPI.\n\n### Relational Placeholders\n\n```applescript\nmystic relational placeholder with the prefix \"rel\":\n    if the identifier is \"compare_level\":\n        set {_l1} to mystic placeholder \"level\" of first player\n        set {_l2} to mystic placeholder \"level\" of second player\n        if {_l1} > {_l2}:\n            set the result to name of the first player\n        else:\n            set the result to name of the second player\n```\n\n## Database\n\nMysticPlaceholders uses **MysticLib's shared database connection** — you do **not** configure a database in this plugin.\n\n### How it works\n\n1. Configure your MySQL/MariaDB connection in `plugins/MysticLib/config.yml`.\n2. MysticPlaceholders automatically creates two tables:\n   - `mystic_placeholders_numeric` — Stores numeric placeholder values\n   - `mystic_placeholders_text` — Stores text placeholder values\n3. If the database is disabled in MysticLib, the plugin runs in **memory-only mode** (data is lost on restart).\n\n### Performance\n\n- **HikariCP Connection Pool** — Industry-standard, high-performance JDBC pooling (via MysticLib).\n- **Async Operations** — All database writes are asynchronous via `CompletableFuture`.\n- **Atomic Upserts** — Uses `INSERT ... ON DUPLICATE KEY UPDATE` for safe concurrent writes.\n- **Smart Caching** — Online player data is cached in `ConcurrentHashMap` for O(1) lookups.\n- **Max Value Caps** — Enforced at both cache and database level using SQL `LEAST()`.\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "library",
+    "management",
+    "paper",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

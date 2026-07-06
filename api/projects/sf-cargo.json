@@ -1,0 +1,34 @@
+{
+  "id": "nwJvaSA0",
+  "slug": "sf-cargo",
+  "title": "SF-Cargo",
+  "description": "This project is a small standalone reimplementation/tweak of the Slimefun-style cargo network concept for Folia/Paper servers. Its an advanced form of item transport pipes.",
+  "body": "# About SF-Cargo\nSF-Cargo is a lightweight standalone cargo-network plugin inspired by Slimefun-style cargo management. It provides just the cargo system: managers, connectors, input nodes, and output nodes, without the rest of Slimefun’s machines, guide, research, energy, or item ecosystem.\n\nBuild compact storage networks, route items by channel, and move materials safely across connected cargo nodes on Paper and Folia servers. Think of this plugin as a far better version of item transport pipes\n\nWhat’s in the Plugin\nSF-Cargo focuses on a small, server-friendly feature set:\n\nCargo Managers that discover and coordinate connected cargo networks\nCargo Connectors that extend networks up to 6 blocks apart in straight lines\nCargo Input Nodes that pull items from attached inventories\nCargo Output Nodes that insert items into supported storage blocks\n16 cargo channels per network\nInput filters with whitelist/blacklist behavior\nSmart-fill and round-robin movement options\nClickable admin manager list with teleport links\nWorker-loop TPS diagnostics for admins\nFolia-safe inventory handling with Paper fallback support\nFolia And Paper Support\nSF-Cargo coordinates cargo logic on its own worker loop, while all live world and inventory access is scheduled safely back to the owning Folia region. On regular Paper servers, inventory work falls back to the main server thread.\n\nThis keeps the plugin compatible with Folia’s threading rules while still avoiding unnecessary work on the main game loop.\n\nSafety And Anti-Dupe Design\nSF-Cargo is built conservatively around item safety.\n\nBefore an input node removes items, the plugin checks destination capacity and only withdraws the amount that can actually fit. Moves are tracked by an in-memory journal, allowing partial moves to complete or roll back during normal runtime interruptions.\n\nIf a rollback needs to finish and the relevant chunk is no longer loaded, SF-Cargo may temporarily load that chunk, finish the pending rollback, and then release it. This is only used to finish already-started moves, not to keep unloaded cargo networks running.\n\nOutput nodes are currently limited to normal storage-style containers:\n\nChests\nTrapped chests\nBarrels\nShulker boxes\nHoppers\nDroppers\nDispensers\nShulker boxes cannot be inserted into other shulker boxes.\n\nAdmin Tools\nSF-Cargo includes simple admin commands:\n\n/sfcargo give <manager|connector|input|output>\n/sfcargo reload\n/sfcargo list\n/sfcargo tps\n/sfcargo list shows known cargo managers, owners, UUIDs, locations, and clickable teleport links.\n\n/sfcargo tps shows cargo loop health, queued inventory moves, transport wait time, and journal status so admins can tell whether the plugin is keeping up or whether inventory work is backing up behind Folia/Paper scheduling.\n\nRecovery\nCargo block records are stored in plugins/SF-Cargo/blocks.yml. Placed cargo heads also receive a small SF-Cargo marker so that if the YAML file is lost, marked blocks can still drop the correct SF-Cargo item when broken. Re-place the item to register it again.\n\nOld settings like filters, channels, ownership, and manager UUIDs are not recovered from the marker.\n\nScope Notice\nSF-Cargo is not Slimefun and does not include the full Slimefun experience. It is only a standalone cargo management plugin.\n\nIf you want the complete Slimefun gameplay system, install the official Slimefun4 plugin.\n\nHere is a tutorial video on how to use it.\nhttps://www.youtube.com/watch?v=MWBYo7NqPak",
+  "categories": [
+    "folia",
+    "paper",
+    "storage",
+    "technology",
+    "transportation"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 71,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

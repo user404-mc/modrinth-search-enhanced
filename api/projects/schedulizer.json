@@ -1,0 +1,35 @@
+{
+  "id": "OKypxXAm",
+  "slug": "schedulizer",
+  "title": "Schedulizer",
+  "description": "Developed a flexible scheduling plugin for Minecraft servers that allows admins to automate command execution at fixed times or intervals (e.g., daily resets, periodic messages). Includes live editing and in-game configuration.",
+  "body": "# Schedulizer\n\n**Schedulizer** is a Minecraft Paper/Spigot plugin that allows you to schedule and automatically execute in-game commands with flexible scheduling options.\n\n## Features\n\n- ✅ **Once**: Execute once at a specified time\n- ✅ **Daily**: Execute daily at a specified time\n- ✅ **Repeat**: Execute repeatedly at intervals (minutes)\n- ✅ **Cron**: Support for flexible UNIX cron expressions\n- ✅ Easy configuration via YAML files\n- ✅ Custom timezone support\n- ✅ Complete command management\n\n## Requirements\n\n- **Server**: Paper/Spigot 1.21+\n- **Java**: 21+\n\n## Installation\n\n1. Download the `.jar` file from [Releases](https://github.com/virusker/Schedulizer/releases)\n2. Place the file in your server's `plugins` folder\n3. Start the server to let the plugin create configuration files\n4. Edit `plugins/Schedulizer/schedule.yml` to add tasks\n5. Run `/schedulizer reload` to apply changes\n\n## Commands\n\n| Command | Description | Permission |\n|---------|-------------|------------|\n| `/schedulizer help` | Show help information | `schedulizer.command.help` |\n| `/schedulizer list` | List all tasks | `schedulizer.command.list` |\n| `/schedulizer reload` | Reload configuration | `schedulizer.command.reload` |\n| `/schedulizer add <name> <type> <time...> <command>` | Add a new task (overwrite if exists) | `schedulizer.command.add` |\n| `/schedulizer remove <name>` | Remove a task | `schedulizer.command.remove` |\n| `/schedulizer status <name> <true/false>` | Enable/disable task | `schedulizer.command.status` |\n| `/schedulizer cmd <name> <command>` | Update task command | `schedulizer.command.cmd` |\n| `/schedulizer info <name>` | View task details | `schedulizer.command.info` |\n| `/schedulizer execute <name>` | Execute task immediately | `schedulizer.command.execute` |\n\nNotes:\n\n- `once`: time can include a space (e.g. `18/03/2026 20:00`), so it is provided as multiple arguments.\n- `cron`: provide 5 arguments: `minute hour day month weekday` (e.g. `0 0 * * *`).\n\n**Aliases**: `/schedulizer`, `/sched`\n\n## Configuration\n\n### config.yml\n\n```yaml\n# Number of ticks between each check (20 ticks = 1 second)\n# 300 ticks = 15 seconds (default)\ntick: 300\n\n# Timezone (see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)\ntimezone: \"Asia/Ho_Chi_Minh\"\n\n# Date time format\ndatetime-format: \"dd/MM/yyyy HH:mm\"\n```\n\n### schedule.yml\n\n```yaml\nschedules:\n  # One-time task\n  first_time_event:\n    enabled: true\n    type: \"once\"\n    time: \"08/02/2025 15:30\" # dd/MM/yyyy HH:mm\n    command:\n    - \"say One time event!\"\n\n  # Daily task\n  daily_reset:\n    enabled: true\n    type: \"daily\"\n    time: \"12:00\" # HH:mm\n    command:\n    - \"say New daily!\"\n\n  # Repeating task\n  repeating_event:\n    enabled: true\n    type: \"repeat\"\n    interval: 5  # minute\n    command:\n    - \"say Repeating!\"\n\n  # Cron task\n  cron_event:\n    enabled: true\n    type: \"cron\"\n    cron: \"0 0 * * *\"  # Every day at 00:00\n    command:\n    - \"say Cron event!\"\n```\n\n## Time Formats\n\n| Type | Format | Example |\n|------|--------|---------|\n| `once` | `dd/MM/yyyy HH:mm` | `25/12/2025 20:00` |\n| `daily` | `HH:mm` | `14:30` |\n| `repeat` | Minutes (integer) | `5`, `60`, `1440` |\n| `cron` | UNIX cron expression | `0 0 * * *` |\n\n## Cron Expressions\n\nUses standard UNIX cron format: `minute hour day month weekday`\n\nExamples:\n\n| Cron | Description |\n|------|-------------|\n| `0 0 * * *` | Every day at 00:00 |\n| `*/15 * * * *` | Every 15 minutes |\n| `0 8 * * 1-5` | 8:00 AM Monday to Friday |\n| `0 0 1 * *` | 1st day of every month |\n\n👉 Cron generator tool: [crontab.guru](https://crontab.guru/)\n\n## Permissions\n\n```yaml\nschedulizer.use              # Access to all commands\nschedulizer.command.help     # Help command\nschedulizer.command.list     # List tasks\nschedulizer.command.reload   # Reload config\nschedulizer.command.add      # Add tasks\nschedulizer.command.remove   # Remove tasks\nschedulizer.command.status   # Enable/disable\nschedulizer.command.cmd      # Update command\nschedulizer.command.info     # View info\nschedulizer.command.execute  # Execute immediately\n```\n\n## Build\n\n```bash\ngit clone https://github.com/virusker/Schedulizer.git\ncd Schedulizer\n./gradlew build\n```\n\nThe `.jar` file will be in `build/libs/`\n\n## License\n\nThis project is licensed under the [MIT License](LICENSE)\n\n\n## Contributing\n\nContributions are welcome! Feel free to open an issue or submit a pull request on GitHub.\n\n---\n\n## ☕ Support\n\nIf you find this plugin helpful and want to support its development, consider buying me a coffee!\n\n[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/kh4n)\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 47,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

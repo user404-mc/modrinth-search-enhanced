@@ -1,0 +1,36 @@
+{
+  "id": "btBrzyfS",
+  "slug": "thewatchingworld",
+  "title": "The Watching World",
+  "description": "A per-player karma score the world reacts to. Kindness (planting, taming, building) earns favor: animals approach, gifts drop, daylight healing. Cruelty earns dread: monsters hunt you and crops grow slower. Server-side, 1.21+ (Paper/Spigot/Bukkit/Purpur).",
+  "body": "# The Watching World\n\nEvery player has a hidden karma score, and the world reacts to it. Helpful\nactions raise it: planting, trading, taming, breeding, building. Cruel ones\nlower it: killing animals (babies especially), hurting villagers, and stripping\nthe landscape. The higher your karma, the more the world helps you. The lower it\ngets, the more it works against you.\n\n## What it does\n\nEach player starts at 0 karma, stored in their player data and clamped to a\nrange you set in the config. Events move the number up or down. On a timer the\nplugin checks each online player's tier and applies effects to match it.\n\n**High karma:**\n\n- Passive animals drift toward you.\n- Gifts occasionally drop at your feet.\n- Nearby monsters sometimes lose interest in you.\n- You slowly regenerate in daylight.\n\n**Low karma:**\n\n- Monsters spot you from farther away and head toward you.\n- Dark smoke particles follow you around.\n- Crops near you grow more slowly.\n\n**Neutral:** normal vanilla behavior, no effects either way.\n\nWhen you move into a new tier you get a short message on the action bar.\n\n## Commands\n\nBase command: `/karma` (aliases: `/kma`, `/ledger`)\n\n| Command | Who | What |\n|---|---|---|\n| `/karma` | everyone | Show your own karma and standing. |\n| `/karma get [player]` | self free; others need admin | Show a player's karma and tier. |\n| `/karma set <player> <n>` | admin | Set a player's karma to `n`. |\n| `/karma add <player> <n>` | admin | Add `n` (may be negative) to a player's karma. |\n| `/karma top` | everyone | Leaderboard of the highest-karma online players. |\n| `/karma reload` | admin | Reload `config.yml`. |\n\n## Permissions\n\n| Node | Default | Grants |\n|---|---|---|\n| `karma.check` | everyone | View your own karma and tier; `/karma`, `/karma top`. |\n| `karma.admin` | op | View others, `set`/`add`, `reload`. Includes `karma.check`. |\n\n## Configuration\n\n`config.yml` is created on first run. It lets you set:\n\n- `karma.min`, `karma.max`, `karma.default`: the clamp range and starting value.\n- `weights.*`: how much karma each action gives or takes (set any to `0` to turn it off).\n- `natural-blocks`: the blocks whose breaking lowers karma.\n- `tiers.high`, `tiers.low`: the tier thresholds (`high` must be above `low`).\n- `judgment.interval-seconds`, `judgment.radius`: how often the check runs and the effect radius around each player.\n- `effects.*`: an on/off toggle for each high and low effect.\n- `gifts.*`: high-karma gift frequency, item, and amount.\n\nEdit it and run `/karma reload` to apply changes without restarting.\n\n## Compatibility\n\nPaper, Spigot, Bukkit, and Purpur on Minecraft 1.21.1 through 1.21.11 and the\n26.1.x line (verified on 26.1.2), Java 21. It only uses the Bukkit/Spigot API, so\nit runs the same on all four server types.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "mobs",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

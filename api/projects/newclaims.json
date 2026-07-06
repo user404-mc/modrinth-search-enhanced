@@ -1,0 +1,32 @@
+{
+  "id": "l4VlD8q4",
+  "slug": "newclaims",
+  "title": "NewClaims",
+  "description": "Protect your chunks with a robust system of claims, trust, banning, and integrated economy. Simple for players, powerful for administrators",
+  "body": "## Features\n\n### Claim System\n- Protect the current chunk with `/claim`\n- Per-player claim limit configurable via `config.yml` or permission (`newclaims.claims.<n>`)\n- Claim cost integrated with **Vault** (optional, auto-detected)\n- Multi-world support with a whitelist in `config.yml`\n- Visualize chunk borders with particles using `/claim visualize`\n\n### Protections\n- Breaking and placing blocks\n- Interacting with chests, doors, levers, furnaces, etc.\n- PvP between players (configurable)\n- TNT and Creeper explosions\n- Fire spreading\n- Mob griefing (Endermen, Ghasts, etc.)\n- Crop trampling\n- Pistons pushing blocks into/out of claims\n- Liquid flow (optional)\n\n### Trust System\nGrant granular permissions inside your claim:\n- **Full** — build, break, and interact\n- **Build** — break and place blocks only\n- **Interact** — interact only (chests, doors, levers)\n\n### Ban System\nBan specific players from your claim. Banned players are teleported out immediately upon being banned.\n\n### Developer API\nCustom events for integration with other plugins:\n- `ClaimCreateEvent` (cancellable)\n- `ClaimDeleteEvent`\n- `ClaimEnterEvent` (cancellable)\n\nProgrammatic access via `ClaimAPI` exposed by the plugin instance.\n\n---\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/claim` | Protect the current chunk |\n| `/claim list` | List your claims |\n| `/claim info` | Information about the current chunk's claim |\n| `/claim visualize` | Show claim borders with particles |\n| `/claim trust <player> [build\\|interact]` | Add trust to a player |\n| `/claim untrust <player>` | Remove trust |\n| `/claim trustedlist` | List players with access |\n| `/claim ban <player>` | Ban a player from the claim |\n| `/claim unban <player>` | Unban a player |\n| `/claim setname <name>` | Set a custom name for the claim |\n| `/unclaim` | Remove the claim from the current chunk |\n| `/unclaim all` | Remove all your claims |\n| `/claimadmin list <player>` | List a player's claims |\n| `/claimadmin delete <player> [all]` | Delete a player's claim(s) |\n| `/claimadmin bypass` | Toggle bypass mode |\n| `/claimadmin info` | Info about the current chunk's claim |\n| `/claimadmin reload` | Reload configurations |\n| `/claimadmin stats` | Server-wide statistics |\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `newclaims.use` | Access to basic commands | everyone |\n| `newclaims.claim` | Create claims | everyone |\n| `newclaims.unclaim` | Remove claims | everyone |\n| `newclaims.trust` | Manage trust | everyone |\n| `newclaims.visualize` | Visualize borders | everyone |\n| `newclaims.claims.<n>` | Limit of N claims | — |\n| `newclaims.claims.unlimited` | Unlimited claims | op |\n| `newclaims.admin` | Admin commands | op |\n| `newclaims.bypass` | Bypass protections | op |\n| `newclaims.*` | Full access | op |\n\n---\n\n## Configuration\n\nAll options are in `config.yml`. No restart required — use `/claimadmin reload`.\n\n```yaml\ngeneral:\n  max-claims-default: 5\n  enabled-worlds: [world, world_nether, world_the_end]\n  particle-visualize-duration: 10\n  auto-save-interval: 300\n\neconomy:\n  claim-cost-enabled: true\n  claim-cost: 100.0\n\nprotection:\n  protect-explosions: true\n  protect-fire: true\n  protect-mob-griefing: true\n  pvp-in-claims: false\n  protect-crop-trampling: true\n```\n\nAll messages are editable in `messages.yml` with support for color codes (`&a`, `&c`, etc.) and dynamic placeholders.\n\n---\n\n## Storage\n\nData is saved to `plugins/NewClaims/claims.json` **asynchronously** with atomic writes (no risk of corruption on crashes). No external database required.\n\n---\n\n## Dependencies\n\n| Dependency | Type |\n|---|---|\n| [Paper 1.21+](https://papermc.io) | Required |\n| [Vault](https://www.spigotmc.org/resources/vault.34315/) | Optional (economy) |\n\n---\n\n## License\n\nMIT License — free to use, modify, and distribute.",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 22,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,19 @@
+{
+  "id": "7zqMPFHe",
+  "slug": "respawn-backoff",
+  "title": "Respawn Backoff",
+  "description": "After you die, you wait out a real-time cooldown before you respawn. The wait length doubles with each death in a streak.",
+  "body": "This project was tailor-made for a server I ran for a friend group, so we can have something hardcore-ish, but without bleeding players. I'm open to suggestions and bug reports, but don't expect much in terms of support.\n\nI recommend having a keepinventory/grave mod, sice sometimes the wait time will exceed the despawn time.\n\n## How it plays\nWhen you respawn after a death, you are put in spectator at the place you died, with a full-screen blackout and a countdown. You cannot leave that spot: the server keeps you locked there until the timer ends. Then you return to survival at your normal respawn point (bed or world spawn). If you disconnect mid-penalty, the timer keeps ticking.\n\n## Scaling\nEach death in a row makes the next wait longer on a doubling curve, clamped between a minimum and maximum number of minutes the server sets. The death streak resets once per calendar day so the next death starts from the short wait again.\n\n## Operators\nCommands are under `/respawnbackoff` and require permission level 2: `config show` / `config min <minutes>` / `config max <minutes>`, `reset` (clear streak for the next death only; does not cancel an active timer), and `skip` (end the active penalty immediately). Targets can be specified for `reset` and `skip`.\n\n## Requirements\nFabric Loader, Fabric API, and Java 21 (see the published file’s metadata for the supported Minecraft versions).\n\n## Known issues\n\n- The black overlay can be peered through some UI elements, like the chat for example.\n- When using Simple Voice Chat, the dead player can hear the alive players talking near his death location.",
+  "categories": [
+    "fabric",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

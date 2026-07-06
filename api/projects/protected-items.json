@@ -1,0 +1,34 @@
+{
+  "id": "lgKaVEQc",
+  "slug": "protected-items",
+  "title": "Protected Items",
+  "description": "Adds a command to protect items from dropping, loss on death, placement and right-click use.",
+  "body": "# Protected Items\n\n## Overview\n\nProtected Items lets server operators mark any item as protected. A protected item stays with the player no matter what — it cannot be dropped, lost on death, placed, used, or moved into external storage.\n\nThe protection flag is stored in the item's Persistent Data Container (PDC), so it survives server restarts and transfers between inventories.\n\n## Commands\n\n| Command | Permission | Description |\n|---------|-----------|-------------|\n| `/protected add` | `protecteditems.use` | Mark the held item as protected |\n| `/protected remove` | `protecteditems.use` | Remove protection from the held item |\n| `/protected check` | `protecteditems.use` | Check whether the held item is protected |\n| `/protected list` | `protecteditems.use` | List your own protected items |\n| `/protected list <player>` | `protecteditems.admin` | List protected items in another player's inventory |\n| `/protected listall` | `protecteditems.admin` | List all protected items across the server |\n\nAll commands require the item to be in the player's main hand (except `list` and `listall`). Commands can only be executed by players, not from the console.\n\n## Permissions\n\n| Permission | Default | Description |\n|-----------|---------|-------------|\n| `protecteditems.use` | op | Allows using the `/protected` command |\n| `protecteditems.admin` | op | Allows `/protected list <player>` and `/protected listall` |\n| `protecteditems.bypass-store` | op | Allows placing protected items into any container |\n\n## Protected Item Behavior\n\n### Drop\nAttempts to drop a protected item are cancelled. The player receives a message.\n\n### Death\nProtected items are **not** dropped on death. They are restored to the player's inventory upon respawn. If there is not enough space, they are dropped near the player.\n\n### Block Placement\nPlacing a protected item as a block is cancelled.\n\n### Right-Click Use\nRight-click usage of consumable/throwable items (eggs, snowballs, spawn eggs, etc.) is cancelled when the item is protected.\n\n### Containers\nProtected items **cannot** be moved into regular containers (chests, barrels, hoppers, etc.). However, they **can** be stored in ender chests.\n\nPlayers with the `protecteditems.bypass-store` permission can place protected items into any container (useful for distributing items to other players).\n\n### Item Frames\nProtected items cannot be placed into item frames.\n\n## Localization\n\nThe plugin supports English and Russian. The language is selected automatically based on each player's Minecraft client language setting. If the player's locale is not supported, English is used as the fallback.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 42,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

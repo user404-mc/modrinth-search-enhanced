@@ -1,0 +1,32 @@
+{
+  "id": "fxX0AFkT",
+  "slug": "multitool-1.21.x",
+  "title": "Multi-Tool",
+  "description": "A fully configurable, modular multi-mode tool plugin. One item, unlimited modes — each with its own material, name, lore, enchantments, attributes, NBT, sounds, and titles.",
+  "body": "![Multi-Tool GUI](https://cdn.modrinth.com/data/cached_images/093a7d016eb719679a7a7f7e5ba6d2b7492ca574.png)\n\n## **MultiTool** \nPaper 1.21 – 1.21.11 Plugin\n\n**Author:** MrSilent | **Version:** 1.0.0 | **API:** Paper 1.21 – 1.21.11\n\nA fully configurable, modular multi-mode tool plugin. One item, unlimited modes — each with its own material, name, lore, enchantments, attributes, NBT, sounds, and titles.\n\n---\n\n## Features\n\n- ✅ Unlimited multitools via `items/*.yml`\n- ✅ GUI mode selector (Sneak + Right-Click)\n- ✅ Per-type materials, names, lore, enchants, attributes, NBT\n- ✅ Full flag system (12 flags)\n- ✅ PlaceholderAPI integration (`%multitool_id%`, `%multitool_type%`, etc.)\n- ✅ ExcellentEnchants — reflection-based, zero hard dependency\n- ✅ Hex colour + MiniMessage support (`&#RRGGBB`, `&X`)\n- ✅ Switch titles, subtitles, sounds per type\n- ✅ **Zero interference** with other plugins (ExcellentShop, ExcellentCrates, Auction GUIs, chest GUIs)\n- ✅ `/multitool reload` rebuilds held tools for all online players\n\n---\n\n## Installation\n\n1. Drop `MultiTool-1.0.0.jar` into your `plugins/` folder.\n2. *(Optional)* Install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) and/or [ExcellentEnchants](https://www.spigotmc.org/resources/excellentenchants.61693/).\n3. Start/restart your server.\n4. Edit `plugins/MultiTool/config.yml` and `plugins/MultiTool/items/*.yml`.\n5. Run `/multitool reload`.\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/multitool give <id> [player]` | Give a multitool | `multitool.give` |\n| `/multitool list` | List loaded tools | `multitool.list` |\n| `/multitool reload` | Reload config & items | `multitool.reload` |\n| `/multitool create <id>` | Create template YAML | `multitool.create` |\n| `/multitool export excellentshop <id>` | Export for ExcellentShop | `multitool.export` |\n| `/multitool export excellentcrates <id>` | Export for ExcellentCrates | `multitool.export` |\n\nAlias: `/mt`\n\n---\n\n## Permissions\n\n| Permission | Default | Description |\n|---|---|---|\n| `multitool.admin` | OP | All admin commands |\n| `multitool.use` | true | Use any multitool |\n| `multitool.use.<id>.<type>` | true | Use a specific mode |\n| `multitool.give` | OP | Give multitools |\n| `multitool.reload` | OP | Reload plugin |\n\n---\n\n## Flags\n\n| Flag | Effect |\n|---|---|\n| `REQUIRE_PERMISSION` | Needs `multitool.use.<id>.<type>` to switch |\n| `NO_SWITCH` | Mode cannot be selected in GUI |\n| `ONLY_SNEAK_SWITCH` | GUI only opens while sneaking |\n| `UNSTACKABLE` | Forces amount = 1 |\n| `PRESERVE_AMOUNT` | Keeps current stack size on switch |\n| `NO_PLUGIN_GUI_BLOCK` | Doesn't cancel interact event (lets other GUIs also fire) |\n| `NO_DOUBLE_CHEST_PROTECT` | Doesn't block double-chest opening |\n| `HIDE_ATTRIBUTES` | Hides attribute tooltip lines |\n| `NO_ENCHANTS` | Skips all enchant application |\n| `KEEP_CUSTOM_MODEL_DATA` | Preserves CustomModelData on switch |\n| `NO_BREAK` | Prevents block breaking |\n| `NO_PLACE` | Prevents block placing |\n\n---\n\n## PlaceholderAPI Placeholders\n\n| Placeholder | Returns |\n|---|---|\n| `%multitool_id%` | ID of held multitool |\n| `%multitool_type%` | Current mode/type key |\n| `%multitool_owner%` | Player name who was given the tool |\n| `%multitool_has%` | `true` / `false` |\n\n---\n\n## Item YAML Structure\n\n```yaml\nmultitool:\n  id: \"my_tool\"\n  display-name: \"&#FFD700My Tool\"\n  material: NETHERITE_PICKAXE\n  unbreakable: true\n  lore:\n    - \"&7A cool tool\"\n  enchants:\n    - \"mending:1\"\n  excellent-enchants:\n    - \"veinminer:3\"\n  flags:\n    - \"UNSTACKABLE\"\n    - \"ONLY_SNEAK_SWITCH\"\n\n  gui:\n    rows: 2\n    title: \"&bSelect Mode\"\n\n  types:\n    pickaxe:\n      name: \"&bMining Mode\"\n      material: NETHERITE_PICKAXE\n      slot: 10\n      enchants:\n        - \"efficiency:8\"\n      attributes:\n        GENERIC_ATTACK_DAMAGE: 4.0\n      nbt:\n        mode: \"pickaxe\"\n      switch-title: \"&bMining Mode\"\n      switch-subtitle: \"&7VeinMiner Active\"\n      sound: BLOCK_AMETHYST_BLOCK_RESONATE\n```\n\n---\n[**GitHub**] - (https://github.com/Craft-Void/MultiTool/)\n\n```\n\n**Soft dependencies** (not required to compile or run):\n- PlaceholderAPI\n- ExcellentEnchants (reflection-only; no compile dependency)\n\n---\n\n## Compatibility\n\n- Paper 1.21 – 1.21.11 (1.21.1 – 1.21.4)\n- ExcellentShop, ExcellentCrates, Auction GUIs: **fully compatible** — the plugin **never** cancels events unless the player is sneaking + right-clicking while holding a multitool.\n",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 62,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

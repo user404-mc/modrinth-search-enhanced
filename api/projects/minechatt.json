@@ -1,0 +1,24 @@
+{
+  "id": "qEayxfO8",
+  "slug": "minechatt",
+  "title": "Minechat",
+  "description": "Minecraft chat plugin with ranks, friends, groups, MongoDB logging, and a real-time web interface (REST + WebSocket).",
+  "body": "# Minechat\n\nMinechat brings modern, real‑time chat to your Minecraft server with a Minecraft‑themed web interface, REST API, and WebSocket gateway. Players can chat from the browser or in‑game, send offline DMs, manage friends and groups, and see ranks and online status—everything stays in sync.\n\n## Note\n  - You can get the web interface from the minechat repository inside the /web folder \n  - [https://github.com/HarshitKumar9030/minechat/web](https://github.com/HarshitKumar9030/minechat/tree/master/web)\n## Features\n\n- Real‑time chat\n  - WebSocket live updates between web and in‑game\n  - Group chat with announcements and basic moderation\n  - Offline‑friendly DMs (web↔web and web↔MC; messages persist)\n- Friends and groups\n  - Friend list, requests, and removal\n  - Create/join/leave groups, invite flow with membership checks\n  - Group roles (owner/admin/member) and member counts\n- Ranks and presence\n  - Renders Minecraft \"§\" color/style codes on web\n  - Online/offline indicators and member lists\n- Web API + WebSocket\n  - REST for authentication, lists, history\n  - WebSocket for live events and sending messages\n  - CORS enabled for development\n- Production‑ready\n  - Error handling, session tokens, rate limiting basics\n  - Nginx reverse proxy examples and HTTPS guidance\n  - Works great alongside Vault/LuckPerms/PowerRanks (optional for rank data)\n\n## Quick Start\n\n1) Install\n- Drop the plugin jar into your server’s plugins folder.\n- Start the server once to generate configs.\n\n2) Configure\n- In `config.yml`:\n```yaml\nweb:\n  enable-api: true\n  port: 8080          # HTTP REST API\n  websocket-port: 8081 # WebSocket (real-time)\n```\n\n3) Enable web access\n- In-game, each player runs:\n```\n/friend webaccess enable <password>\n```\n\n4) Connect from the web\n- REST API: http://localhost:8080/api/\n- WebSocket: ws://localhost:8081/ws\n\n## Web API (highlights)\n\n- POST `/api/auth` — authenticate with username + web password\n- GET `/api/friends?playerUUID={uuid}`\n- GET `/api/groups?playerUUID={uuid}`\n- GET `/api/messages?groupId={uuid}&limit=50`\n- GET `/api/users`, GET `/api/ranks`\n- Group invites: GET `/api/group-invites`, POST accept/reject\n\nExample login request:\n```json\nPOST /api/auth\n{ \"username\": \"Player\", \"password\": \"web_password\" }\n```\n\n## WebSocket (highlights)\n\n- Connect: `ws://localhost:8081/ws`\n- Authenticate:\n```json\n{ \"type\": \"auth\", \"data\": { \"username\": \"Player\", \"password\": \"web_password\" } }\n```\n- Send:\n  - Friend: `type: \"friend_message\"`\n  - Group: `type: \"group_message\"`\n- Receive:\n  - `friend_message`, `group_message`, `message_sent`, `error`, etc.\n\n## Commands (selection)\n\n- Web access\n  - `/friend webaccess enable <password>`\n  - `/friend webaccess disable`\n- Groups (examples)\n  - `/group create <name> [description]`\n  - `/group join <name>`\n  - `/group leave <name>`\n  - `/group invite <name> <player>`\n  - `/group accept <name>` | `/group deny <name>`\n  - `/group chat <name> <message>`\n\nNote: Admin/owner actions and settings are enforced server‑side.\n\n## Compatibility\n\n- Server: Paper/Spigot/Purpur (Paper recommended)\n- Java: 17+\n- MC versions: 1.20.x–1.21.x (adjust as needed for your environment)\n- Optional: Vault/LuckPerms/PowerRanks for richer rank display\n\n## Security Notes\n\n- Players control web access via an in‑game password.\n- Session tokens and basic rate limiting included.\n- Supports reverse proxy + HTTPS (see Nginx examples).\n- Input is sanitized on the web UI; still validate on integrations.\n\n## Links\n\n- Source: https://github.com/HarshitKumar9030/minechat\n- Issues: https://github.com/HarshitKumar9030/minechat/issues\n- License: MIT\n",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 79,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

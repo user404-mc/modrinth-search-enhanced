@@ -1,0 +1,27 @@
+{
+  "id": "twylVJu4",
+  "slug": "ouch!",
+  "title": "Ouch!",
+  "description": "A menu to select your hurt sound effects",
+  "body": "## Info\nThis datapack allows players to choose a preset of sounds to play when they're hit, or die. It also provides an easy way to add your own sound presets, in addition to the default ones.\n\nThis pack does _not_ disable the vanilla hit sound, it simply plays another sound in addition to it. You can use a resource pack to remove, or decrease the sound of, the vanilla hit sound.\n\n### Default sound presets:\n- None\n- Wolf\n- Cat\n- Villager\n- Allay\n- Bee\n- Dog\n- Zombie\n- Pillager\n- Piglin\n- Enderman\n- Creaking\n- Metal\n- Glass\n- Air\n\nNote: unfortunately, you cannot change what subtitles are shown without using a resource pack to add custom sound effects. This means you may see inaccurate subtitles when using the pack.\n\n## Adding your own sound presets\nSound presets are defined by functions in the `hitsoundpicker:preset_registries` tag. By default, the only such function is `hitsoundpicker:register_default`. To add your own presets, you can create your own functions and add them to `hitsoundpicker:preset_registries`, or you can directly add the presets to `hitsoundpicker:register_default`.\n\nInside a function, sound presets are defined by either calling `hitsoundpicker:api/register_preset` or `hitsoundpicker:api/register_preset_pitched`. Below are examples of calls to both.\n### `register_preset`:\n```\nfunction hitsoundpicker:api/register_preset { \\\n\t\"display\": \"Silverfish\", \\\n\t\"sound\": \"minecraft:entity.silverfish.hurt\", \\\n\t\"death_sound\": \"minecraft:entity.silverfish.death\" \\\n}\n```\n### `register_preset_pitched`:\n```\nfunction hitsoundpicker:api/register_preset_pitched { \\\n\t\"display\": \"Wool\", \\\n\t\"sound\": \"minecraft:block.wool.break\", \\\n\t\"sound_pitch\": 1.0, \\\n\t\"death_sound\": \"minecraft:block.wool.break\", \\\n\t\"death_sound_pitch\": 0.5 \\\n}\n```\nThe arguments `display`, `sound`, and `death_sound` are the same across both functions:\n- `display` is what the preset will display as in the selection menu\n- `sound` is the sound that will play when the player takes regular damage\n- `death_sound` is the sound that will play when the player dies\n\nThe arguments `sound_pitch` and `death_sound_pitch` are present only in `register_preset_pitched`:\n- `sound_pitch` is the speed at which `sound` will play\n- `death_sound_pitch` is the speed at which `death_sound` will play\n\n`register_preset` is a shorthand for calling `register_preset_pitched` with `sound_pitch` and `death_sound_pitch` both set to 1.0\n\nSound presets will show up in the menu in the order that the function calls to register them were made.\n\nNon-vanilla sounds will also work with the datapack, assuming that everyone has the necessary resource pack or mod to provide the sounds.\n\n## Other\nContact me on discord @parax342 with bugs or suggestions\n\nThanks to the Minecraft Commands discord for helping with this project",
+  "categories": [
+    "datapack",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 22,
+  "followers": 0,
+  "game_versions": [
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

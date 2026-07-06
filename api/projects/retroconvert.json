@@ -1,0 +1,20 @@
+{
+  "id": "8bXIXbjV",
+  "slug": "retroconvert",
+  "title": "RetroConvert",
+  "description": "Converts Babric mods to Ornithe mods in an ornithe environment (or as a java agent)",
+  "body": "# RetroConvert\n\n**Drop your Babric mods into an Ornithe instance  RetroConvert converts them automatically at launch.**\n\nBabric and Ornithe both run Fabric Loader on Minecraft Beta 1.7.3, but they use different intermediary mappings, so their mods aren't compatible with each other. RetroConvert fixes that: at launch it rewrites Babric mods' bytecode in place to Ornithe's Calamus gen2 mappings  token for token, with no recompilation, no sources, and no internet required.\n\n## Features\n\n- **Fully automatic**  just put Babric `.jar` files in your `mods` folder alongside RetroConvert and launch. Converted mods appear as `<name>-ornithe.jar`; originals are safely archived in `config/retroconvert/originals/`.\n- **Deep conversion**  rewrites class bytecode, mixin annotations (including refmap-less string targets), refmap JSONs, access wideners, `fabric.mod.json`, string constants used for reflection, and nested jar-in-jar mods, recursively.\n- **No visible restart**  after converting, Fabric Loader is relaunched inside the same JVM over the converted mods folder. The game just starts.\n- **Smart detection**  already-ported Ornithe mods are left untouched, and umbrella mods with nested jars (like StationAPI) are handled per-jar.\n- **Official-build replacements**  a few mods (StationAPI, GlassConfigAPI) changed too much for a bytecode rewrite; for those, the official Ornithe build is downloaded instead, with bytecode conversion as the offline fallback.\n- **Cached**  jars are keyed by SHA-256, so only new files are scanned on later launches.\n\n## Usage\n\n1. Install RetroConvert into an **Ornithe b1.7.3** instance's `mods` folder.\n2. Add your Babric mods to the same folder.\n3. Launch. That's it.\n\n### Optional: Java agent mode (zero-restart, even on first launch)\n\nAdd this to your JVM arguments (Prism Launcher: instance → Settings → Java → JVM arguments):\n\n```\n-javaagent:mods/retroconvert-1.0.1+mcb1.7.3.jar\n```\n\nThis converts mods *before* Fabric Loader scans the folder  no relaunch logic needed at all. The same line works for every instance on Prism, MultiMC, and the vanilla launcher.\n\n### Headless usage\n\nConvert any mods folder without launching the game:\n\n```sh\n./gradlew runConverter --args=\"/path/to/.minecraft/mods\"\n```\n\n## Limitations\n\n- Only **b1.7.3** is supported  by design, since Babric only targets b1.7.3.\n- A Babric mod that fails dependency resolution crashes before RetroConvert can run; remove that jar manually.\n- Don't restore an archived original next to its converted output  the loader will see two mods with the same id.\n\n## License & Source\n\nSource code, issue tracker, and full technical details are available on GitHub.\n",
+  "categories": [
+    "management",
+    "ornithe",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "b1.7.3"
+  ],
+  "date_updated": null
+}

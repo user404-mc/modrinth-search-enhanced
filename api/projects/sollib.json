@@ -1,0 +1,24 @@
+{
+  "id": "EqvAy5kA",
+  "slug": "sollib",
+  "title": "SolLib",
+  "description": "Lets mods shine by bringing a constellation of (mostly) data utilities.",
+  "body": "![Banner](https://cdn.modrinth.com/data/cached_images/2a0d7261ad4912b771e5312395eb5c78acfbb0ac.png)\n\n### This is a core library for Minecraft mods. Yes, we know, very original.\n### Believe it or not, copy-pasting a bunch of classes across every project is neither the most efficient nor the most stable idea.\n\n---\n\n**Sol** offers a whole constellation of common code for mod developpement.\n\nMost of them orbit around data, multiloader and rendering helpers. A few key highlights being:\n\n## Easy config system.\n\nLoaded as soon as you want it, easy to setup and accessible from other mods without the need for hard dependencies.\n\n```java\nSolConfig config = MOD.createConfig(\"sollib/test\", 1.0, builder -> builder\n    .addObject(\"category\", category -> category\n        .comment(\"This is a comment\")\n        .add(\"hello\", \"world\")\n        .add(\"easyconfig\", true)\n    )\n);\n\nMOD.getLogger().info(config.get(\"category.hello\", \"\"));\n// world\n```\n\n## Runtime data, controlled by code.\n\nThis lets you edit datapack files at runtime, potentially allowing to change recipes depending on config values, edit or disable compat recipes if their target mods are not loaded, automatically generate models for dynamically defined items, and much more.\n\n```json\nSolRegistries.Data.RUNTIME.addJson(Identifier.of(\"minecraft\", \"recipe/dropper\"), json -> {\n    if (json == null) return null;\n    if (!config.get(\"recipe.copper_dropper\", false)) return null;\n    \n    json.getAsJsonObject(\"key\")\n            .getAsJsonObject(\"#\")\n            .addProperty(\"item\", \"minecraft:copper_ingot\");\n    return json;\n});\n```\n\n## Rendering helpers.\n\nCentralized and loader agnostic. No need to make more mixins, either.\n\n```java\nResourceLocation TEXTURE = MOD.makeID(\"textures/models/sword_overlay.png\");\n\nSolClientRegistries.Render.ITEM.register(stack -> stack.is(Items.DIAMOND_SWORD) && stack.isEnchanted(),\n        (stack, context, matrices, bufferSource, light, overlay) -> {\n    matrices.scale(1.005f, 1.005f, 1.005f);\n    matrices.translate(0, 0.995, 0.4975);\n    matrices.mulPose(Axis.XP.rotationDegrees(180));\n\n    MockItemRenderer.renderItem(matrices, bufferSource, light, TEXTURE);\n});\n```\n\n## Simplified registry.\n\nThat you can call in the common code, complete with all the syntax sugar you need: define models, burn time, stripping results and everything about a feature at the same time.\n\n```java\nMOD.register(BlockHolder.class, \"block_block\", () -> new Block(BlockBehaviour.Properties.of()))\n    .withItem(item -> item.withFuel(200)).dropsSelf()\n    .withSlab().withStairs().withWall()\n    .withFlammability(20, 5);\n```\n\n---\n\nFor the average user, making this page as flashy as we can won't really matter. It's only a library after all.\n\nBut if you are a developer and are curious about it, the best way to learn is to read the (wip) [Wiki](https://github.com/Lyof429/SolLib/wiki) or join the [Discord](https://discord.gg/khZnX8TRHU).",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 43,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

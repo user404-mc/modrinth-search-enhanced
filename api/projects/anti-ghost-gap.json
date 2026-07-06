@@ -1,0 +1,20 @@
+{
+  "id": "FQr1w270",
+  "slug": "anti-ghost-gap",
+  "title": "Anti Ghost Gap",
+  "description": "A lightweight client-side Fabric mod that eliminates ghost golden apples by forcing a release at the exact tick consumption completes.",
+  "body": "# brlw's Anti Ghost Gap\n\nA lightweight client-side Fabric mod for version 1.21.11 that eliminates ghost golden apples by forcing a release at the exact tick consumption completes, and lets you hold right-click to continuously eat back-to-back- unlike [Xicz Gap Releaser](https://modrinth.com/mod/xiczgapreleaser) which does prevent ghost gaps the same that this mod does, but does not let you eat continuously.\n\n### **The Problem**\n\nGolden apples take **32 ticks (1.6 seconds)** to eat. In unmodded Minecraft, after the timer hits zero, the client keeps holding right-click until the server responds with confirmation. On any amount of latency, those extra ticks of holding can desync the client and server — You ate the golden apple on your screen, but the server didn't detect it. That's a ghost gap.\n\n### **How It Works**\n- Tracks client-side eat timer — monitors itemUseTimeLeft while you're eating a golden apple\n- Waits for server confirmation — listens for inventory slot update packets from the server, which confirm the item was actually consumed\n- Force-releases at the perfect tick — the instant both conditions are met (timer expired + server confirmed), it sets useKey to false, stopping the eat cleanly with zero over-hold\n- Hold-to-gap — after the force-release, if you're still physically holding right-click and have another golden apple, it immediately re-initiates eating on the next tick with no delay\n- This is the same proven approach used by mods like Xicz Gap Releaser and Optimal Eat, but with hold-to-gap built in and no messages in the action bar.\n\n### **Features:**\n\n- Auto-release at the exact completion tick (no ghost gaps)\n- Hold right-click to continuously eat golden apples back-to-back\n- Toggle the entire mod on/off with a keybind\n- Works with both regular and enchanted golden apples\n- Client-side only, no server modifications needed",
+  "categories": [
+    "fabric",
+    "food",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 36,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

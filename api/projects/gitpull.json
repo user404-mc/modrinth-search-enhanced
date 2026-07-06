@@ -1,0 +1,30 @@
+{
+  "id": "R3K4UT9Q",
+  "slug": "gitpull",
+  "title": "gitpull",
+  "description": "Pull the files from the git repository to the folder. 从git仓库拉取文件到文件夹。",
+  "body": "# GitPull\n\nA plugin for Spigot/Paper servers, used to execute pull operations from Git repositories.\n\nSupported Features:\n\n- `/pull`: Pulls all configured repositories.\n- `/pull <name>`: Pulls a specified repository.\n- `/pull reload`: Reloads the configuration file.\n- Supports pulling multiple repositories into different directories respectively.\n- Supports execution by OP (Server Operator) and the server console.\n- Supports Tab completion for repository names and `reload`.\n\n## Installation\n\n1. Place the plugin jar file into the server's `plugins` directory.\n2. Start the server once to generate the default configuration file.\n3. Edit `plugins/gitpull/config.yml`.\n4. Execute `/pull reload` to reload the configuration, or restart the server directly.\n\n## Commands\n\n### `/pull`\n\nPulls all repositories defined in the configuration file.\n\n### `/pull <name>`\n\nPulls the repository with the specified name.\n\n### `/pull reload`\n\nReloads the plugin configuration file.\n\n## Permissions\n\n- `gitpull.pull`: Allows the execution of `/pull` and `/pull <name>`.\n- `gitpull.reload`: Allows the execution of `/pull reload`.\n\nBy default, both permissions are granted to `op`.\n\n## Configuration File\n\nConfiguration file path:\n\n```text\nplugins/gitpull/config.yml\n```\n\nExample configuration:\n\n```yml\ngit-command: git\nclone-if-missing: true\ntimeout-seconds: 300\n\nrepositories:\n  autoop:\n    repository: \"[https://github.com/example/repo.git](https://github.com/example/repo.git)\"\n    directory: \"world/datapacks/repo\"\n    branch: \"master\"\n\n  devpack:\n    repository: \"[https://github.com/example/repo.git](https://github.com/example/repo.git)\"\n    directory: \"world/datapacks/dev\"\n    branch: \"dev\"\n```\n\n### Global Configuration Items\n\n#### `git-command`\n\nThe Git command to be invoked. Default is:\n\n```yml\ngit-command: git\n```\n\nIf the `git` executable cannot be found in the server's environment variables, an absolute path can be provided, for example:\n\n```yml\ngit-command: \"/bin/git\"\n```\n\n#### `clone-if-missing`\n\nWhether to automatically execute `git clone` when the target directory is not a valid Git repository.\n\n```yml\nclone-if-missing: true\n```\n\n#### `timeout-seconds`\n\nThe timeout duration for a single repository operation, in seconds.\n\n```yml\ntimeout-seconds: 300\n```\n\n### Repository Configuration Items\n\nEach repository is defined under `repositories` and is distinguished by a unique name.\n\nFor example:\n\n```yml\nrepositories:\n  example:\n    repository: \"[https://github.com/example/repo.git](https://github.com/example/repo.git)\"\n    directory: \"world/datapacks/repo\"\n    branch: \"master\"\n```\n\n#### `repository`\n\nThe remote repository URL.\n\nHTTPS is supported:\n\n```yml\nrepository: \"[https://github.com/username/repo.git](https://github.com/username/repo.git)\"\n```\n\nSSH is also supported:\n\n```yml\nrepository: \"git@github.com:username/repo.git\"\n```\n\n#### `directory`\n\nThe local target directory for pulling.\n\n- Absolute path: Uses the provided path directly.\n- Relative path: Resolved relative to the server root directory.\n\nFor example:\n\n```yml\ndirectory: \"world/datapacks/AutoOP\"\n```\n\nThis will pull the data to `world/datapacks/AutoOP` under the server root directory.\n\n#### `branch`\n\nThe branch to pull or clone. This field can be empty.\n\n```yml\nbranch: \"master\"\n```\n\nIf left empty, the repository's default branch will be used:\n\n```yml\nbranch: \"\"\n```\n\n## Usage Examples\n\n### Pull All Repositories\n\n```text\n/pull\n```\n\n### Pull a Single Repository\n\n```text\n/pull autoop\n```\n\n### Reload Configuration\n\n```text\n/pull reload\n```\n\n## Private Repositories\n\nThis plugin invokes the `git` executable on the server system, meaning private repository authentication relies strictly on the server machine's local Git configuration.\n\nRecommended methods:\n\n### 1. SSH Key\n\nFormat the repository URL as:\n\n```yml\nrepository: \"git@github.com:username/private-repo.git\"\n```\n\nThen, configure an SSH key on the server machine and add the corresponding public key to your GitHub account or to the repository's Deploy Keys.\n\n### 2. Git Credential Manager\n\nIf using HTTPS, you can manually execute a Git login operation once on the server machine to let the system remember the credentials. The plugin will then reuse them.\n\nIt is highly unrecommended to write the token directly in plain text within the configuration file:\n\n```yml\nrepository: \"[https://username:yourtoken@github.com/username/repo.git](https://username:yourtoken@github.com/username/repo.git)\"\n```\n\n## Notes\n\n- Repository names cannot be named `reload`.\n- When `/pull` is executed for all repositories, they will be processed sequentially in the configured order.\n- If a specific repository fails, it will not prevent subsequent repositories from executing.\n- If a pull task is already running, any new `/pull` requests will be rejected.\n- If the target directory already exists, is not a Git repository, and is not empty, the plugin will not forcefully overwrite the directory.\n\n## Logging Information\n\n- Upon success, a success message will be displayed in the in-game chat or the server console.\n- Detailed `git stdout` (Standard Output) and `git stderr` (Standard Error) will be output to the server logs.\n- After a batch pull is completed, the total number of successes and failures will be displayed.",
+  "categories": [
+    "management",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

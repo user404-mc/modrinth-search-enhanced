@@ -1,0 +1,20 @@
+{
+  "id": "dBdGxEUF",
+  "slug": "highlight-api",
+  "title": "Highlight API",
+  "description": "A Minecraft Forge 1.20.1 library mod that adds support for custom highlights and outlines for blocks, entities and regions.",
+  "body": "# Highlight API\n\n> ⚠️ This is a **developer library**, not a standalone mod. \n> It does nothing on its own - it is intended to be used as a dependency by other mods.\n\nA Minecraft Forge 1.20.1 library mod that adds support for custom highlights and outlines for blocks, entities and regions.\n\n## Features\n- Outline and fill rendering for blocks, entities and AABB regions\n- Region highlighting between two BlockPos points\n- Built-in animations (Pulse, Blink, Fade In)\n- Custom animation support via ICustomAnimation interface\n- Depth modes (HIDE - hidden behind blocks, IGNORE - visible through blocks)\n- Eternal and delayed lifetime support\n- AnimationScope support (ALPHA or COLOR)\n- Custom line width control\n\n## Usage\n\n### Adding as dependency\n\n**JitPack:**\n```gradle\nrepositories {\n    maven { url 'https://jitpack.io' }\n}\n\ndependencies {\n    implementation fg.deobf(\"com.github.NOIST1611:HighlightAPI:v1.0.0\")\n}\n```\n\n**Modrinth Maven:**\n```gradle\nrepositories {\n    maven { url \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n    implementation fg.deobf(\"maven.modrinth:highlight-api:1.0.0\")\n}\n```\n\n### Quick start\n```java\nHighlightHandle handle = HighlightAPI.create(Lifetime.ETERNAL)\n    .setTarget(blockPos)\n    .setOutlineColor(1.0f, 0.0f, 0.0f, 1.0f)\n    .setFillColor(1.0f, 0.0f, 0.0f, 0.3f)\n    .register();\n\n// Remove when done\nhandle.remove();\n```\n\n### Region highlight\n```java\nHighlightAPI.create(Lifetime.ETERNAL)\n    .setRenderMode(RenderMode.REGION)\n    .setTarget(new BlockPos(0, 64, 0))\n    .setTargetEnd(new BlockPos(10, 70, 10))\n    .setOutlineColor(0.0f, 1.0f, 0.0f, 1.0f)\n    .setFillColor(0.0f, 1.0f, 0.0f, 0.2f)\n    .register();\n```\n\n### Animation Scope\n```java\n// Animate alpha (transparency)\nHighlightAPI.create(Lifetime.ETERNAL)\n    .setTarget(blockPos)\n    .setAnimation(AnimationType.PULSE)\n    .setAnimationScope(AnimationScope.ALPHA)\n    .register();\n\n// Animate color (black → original color)\nHighlightAPI.create(Lifetime.ETERNAL)\n    .setTarget(blockPos)\n    .setAnimation(AnimationType.PULSE)\n    .setAnimationScope(AnimationScope.COLOR)\n    .register();\n```\n\n// Custom animation\n```java\nHighlightAPI.create(Lifetime.ETERNAL)\n    .setTarget(blockPos)\n    .setAnimation(new ICustomAnimation() {\n        private float time = 0.0f;\n\n        @Override\n        public float tick(float partialTick) {\n            time += partialTick * 0.05f;\n            return (float)(Math.sin(time) * 0.5 + 0.5);\n        }\n    })\n    .register();\n```\n\n### Depth mode\n```java\n// Visible through blocks\nHighlightAPI.create(Lifetime.ETERNAL)\n    .setTarget(blockPos)\n    .setDepthMode(DepthMode.IGNORE)\n    .register();\n```\n\n## Links\n- [GitHub](https://github.com/NOIST1611/HighlightAPI)\n- [Report Issues](https://github.com/NOIST1611/HighlightAPI/issues)",
+  "categories": [
+    "forge",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

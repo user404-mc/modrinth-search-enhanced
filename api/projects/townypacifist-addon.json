@@ -1,0 +1,43 @@
+{
+  "id": "yTqe7X6b",
+  "slug": "townypacifist-addon",
+  "title": "TownyPacifist - Addon",
+  "description": "Prevents combat involving peaceful Towny towns — bidirectional protection with arena, SiegeWar & TownyCaptureSites support.",
+  "body": "# ☮ TownyPacifist\n\n[![Modrinth](https://img.shields.io/modrinth/dt/townypacifist-addon?logo=modrinth&label=Modrinth&color=00AF5C)](https://modrinth.com/project/townypacifist-addon)\n[![GitHub Release](https://img.shields.io/github/v/release/renan3235/TownyPacifist?logo=github&label=Release)](https://github.com/renan3235/TownyPacifist/releases/latest)\n[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)\n\n> A lightweight [Towny](https://github.com/TownyAdvanced/Towny) addon that enforces peace for peaceful towns — everywhere, not just within their borders.\n\n---\n\n## 📖 About\n\nMany servers struggle with a common problem: players from peaceful towns getting killed by aggressive towns, or peaceful town members attacking others without consequence.\n\n**TownyPacifist** solves this by hooking directly into Towny's own peaceful flag (`/t toggle peaceful`). No custom data, no extra commands — if a town is marked as peaceful in Towny, this plugin enforces that everywhere on the map.\n\n---\n\n## ✨ Features\n\n- **Zero custom storage** — reads directly from Towny's `isNeutral()` flag\n- **Bidirectional protection** — peaceful towns can't attack OR be attacked\n- **Arena support** — peaceful players can still PvP inside Towny arena plots (`/plot set arena`)\n- **EventWar integration** — works naturally alongside EventWar's neutrality system\n- **SiegeWar integration** — respects SiegeWar's own peaceful town system when installed\n- **TownyCaptureSites integration** — allows peaceful players to fight inside capture sites when installed\n- **Multi-language** — ships with 9 languages (en-US, pt-BR, es-ES, fr-FR, de-DE, zh-CN, ru-RU, pl-PL, tr-TR)\n- **Lightweight** — a single event listener, no databases, no commands\n- **Cross-platform** — runs on Bukkit, Spigot, Paper, Purpur and Folia\n\n---\n\n## 🔗 Dependencies\n\n| Plugin | Required |\n|---|---|\n| [Towny](https://github.com/TownyAdvanced/Towny) | ✅ Required |\n| [EventWar](https://townyadvanced.github.io/eventwar.html) | ➕ Optional (integrates automatically) |\n| [SiegeWar](https://github.com/TownyAdvanced/SiegeWar) | ➕ Optional (integrates automatically) |\n| [TownyCaptureSites](https://github.com/LlmDl/SponsorPlugins/blob/main/TownyCaptureSites.md) | ➕ Optional (integrates automatically) |\n\n---\n\n## ⚙️ How It Works\n\nTownyPacifist listens to `TownyPlayerDamagePlayerEvent` and checks both players' towns using Towny's API:\n\n```\nPlayer A hits Player B\n  └─ Is either player from a neutral (peaceful) town?\n       ├─ No  → do nothing, let Towny handle it normally\n       ├─ Yes → are they inside an arena plot?\n       │         ├─ Yes + arenas allowed → permit combat (no spam, notified on entry)\n       │         └─ No  → cancel damage + send message\n       └─ Both peaceful → cancel damage + specific message\n```\n\nThe \"peaceful\" status is set by the town mayor using Towny's own command:\n```\n/t toggle peaceful\n```\n\nNo TownyPacifist commands needed.\n\n---\n\n## 📁 Config\n\n```yaml\n# Enable or disable all protection globally\nenabled: true\n\n# Allow peaceful town members to PvP inside Towny arena plots\nallow-pacifist-in-arenas: true\n\n# Allow peaceful town members to fight inside TownyCaptureSites plots (requires TownyCaptureSites)\nallow-pacifist-in-capture-sites: true\n```\n\n---\n\n## 🌍 Adding a Language\n\nTownyPacifist uses Towny's built-in translation system. Messages are delivered in each player's own language automatically.\n\n1. Go to `plugins/TownyPacifist/lang/`\n2. Copy `en-US.yml` and rename it (e.g. `es-ES.yml`)\n3. Translate the messages\n4. Towny picks it up automatically — no config change needed\n\n---\n\n## 🔨 Building from Source\n\n**Requirements:**\n- JDK 21 (for compilation)\n- Gradle 8.12 (or use the included `gradlew`)\n- Towny JAR → `libs/Towny-x.x.x.x.jar` (download from [Towny releases](https://github.com/TownyAdvanced/Towny/releases))\n- EventWar JAR → `libs/EventWar-x.x.x.jar` *(optional, for IDE support only)*\n\n```bash\n./gradlew build\n# Output: build/libs/TownyPacifist-1.0.jar\n```\n\n---\n\n## 🗺️ Planned Integrations\n\n- [x] Capture sites\n- [x] SiegeWar\n\n---\n\n## 📜 License\n\nApache 2.0 — see [LICENSE](LICENSE)\n\n---\n\n## 👤 Author\n\nMade by **RN_Axol**\n",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 99,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

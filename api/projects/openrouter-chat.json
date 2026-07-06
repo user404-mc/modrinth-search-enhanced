@@ -1,0 +1,33 @@
+{
+  "id": "9HbUN6Gr",
+  "slug": "openrouter-chat",
+  "title": "Openrouter Chat",
+  "description": "A Paper plugin that lets players chat with an OpenRouter model directly from inside the game.",
+  "body": "A Paper plugin that lets players send a prompt to an OpenRouter model and receive the reply in chat. Each `/openrouter` invocation is a single, stateless request — the plugin does not keep conversation history between messages.\n\n## Features\n\n- Direct OpenRouter API integration\n- Single-turn prompts only (no conversation memory between messages)\n- No bundled secrets or API keys\n- Operator command to save the API key from in-game or the server console\n- Configurable model, system prompt, timeout, and chat formatting\n- Permission nodes for normal usage vs management\n- Optional `ops-only-chat` toggle that requires operator status on top of the use permission\n\n## Setup\n\n1. Download the jar from Releases\n2. Put it in your server's `plugins/` folder\n3. Restart the server\n4. Set your OpenRouter API key using either:\n   - config file: `plugins/OpenRouterChat/config.yml`\n   - in-game (as op) or from the server console: `/openrouter add-key <your-key>`\n\n## Commands\n\nThe `/openrouter <message>` form must be run by a player so the response can be delivered to them. The management subcommands (`add-key`, `clear-key`, `reload`, `status`) can be run from either an in-game player with the manage permission or the server console.\n\n- `/openrouter <message>` — send a prompt to the configured OpenRouter model (player only)\n- `/openrouter add-key <api-key>` — save the OpenRouter API key\n- `/openrouter clear-key` — remove the stored API key\n- `/openrouter reload` — reload config\n- `/openrouter status` — view current status\n\nAliases:\n- `/orc`\n- `/llm`\n\n## Permissions\n\n- `openrouterchat.use`\n  - Allows using `/openrouter <message>`\n  - Default: `op`\n- `openrouterchat.manage`\n  - Allows `/openrouter add-key`, `clear-key`, `reload`, and `status`\n  - Default: `op`\n\n## Config\n\n```yaml\napi-key: \"\"\nmodel: \"openai/gpt-4.1-mini\"\nsite-url: \"\"\nsite-name: \"Paper OpenRouter Chat\"\nsystem-prompt: \"You are a helpful Minecraft server assistant. Keep answers concise and useful for in-game chat.\"\nmax-tokens: 300\ntemperature: 0.7\ntimeout-seconds: 45\nresponse-prefix: \"&b[OpenRouter] &f\"\nerror-prefix: \"&c[OpenRouter] &7\"\nthinking-message: \"&e[OpenRouter] &7&oThinking...\"\nops-only-chat: false\n```\n\n`ops-only-chat` is an extra gate on top of the `openrouterchat.use` permission. When set to `true`, only server operators can run `/openrouter <message>`, even if non-op players have been granted `openrouterchat.use`. When `false` (the default), the permission node alone controls access.\n\n## Build\n\n```bash\nmvn clean package\n```\n\nOutput:\n\n```bash\ntarget/paper-openrouter-chat-0.1.0.jar\n```\n\n## Compatibility\n\n- Written for Paper `1.21.4`\n- Confirmed working on Paper `26.1.2`\n- Java `21`",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "paper",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

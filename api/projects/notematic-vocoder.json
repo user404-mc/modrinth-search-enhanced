@@ -1,0 +1,39 @@
+{
+  "id": "1Atthk1d",
+  "slug": "notematic-vocoder",
+  "title": "Notematic Vocoder",
+  "description": "Synthesise vocals in-game with real-time text-to-speech, utilising only vanilla sound effects from note blocks to fire extinguishment. Requires NotematicPlayer.",
+  "body": "# Notematic Vocoder\n\n<div align=\"center\">\n\n[![Modrinth Downloads](https://img.shields.io/modrinth/dt/notematic-vocoder?style=for-the-badge&logo=modrinth&color=24b47e)](https://modrinth.com/plugin/notematic-vocoder)\n[![Minecraft Version Support](https://img.shields.io/badge/Minecraft-1.20.6%20--%2026.1.x-blue?style=for-the-badge&logo=minecraft)](https://www.minecraft.net/)\n[![Server Software](https://img.shields.io/badge/Platform-Paper%20%7C%20Purpur%20%7C%20Spigot-gold?style=for-the-badge)](https://papermc.io)\n\n**Notematic Vocoder** is a unique, fully server-side Minecraft Java plugin that turns text input directly into simulated human speech using in-game note block sounds and sound events. \n\n</div>\n\n---\n\n> [!IMPORTANT]\n> **Prerequisite:** This plugin requires **[Notematic Player](https://modrinth.com/plugin/notematic-player)** to be installed and active on the server. It uses the Notematic Player engine to schedule notes, parse structures, and handle packet playback.\n\nInspired by **Mark Rober's \"Talking Piano\"**, the plugin uses Digital Signal Processing (DSP) to analyze Text-to-Speech audio, extract formant frequencies, and dynamically map them to Minecraft's sound system, allowing note blocks to \"talk\" in real-time.\n\n---\n\n## Video Showcases\n\nSee and hear the Notematic Vocoder in action:\n\n### English Speech Demo (Speaking English)\n<iframe width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/lVXL5CP9Co8\" title=\"Notematic Vocoder English Demo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"max-width: 720px; border-radius: 8px;\"></iframe>\n\n### Chinese Speech Demo (Changing Language)\n<iframe width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/AgM87fM7GgU\" title=\"Notematic Vocoder Chinese Demo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"max-width: 720px; border-radius: 8px;\"></iframe>\n\n---\n\n## Key Features\n\n* **Real-time In-Game Speech:** Speak aloud using note blocks via `/<command> <prompt>`.\n* **6-Octave Voice Range:** Intelligently maps overlapping frequencies across 5 note block instruments (Bass, Guitar, Harp, Flute, Bell) to bypass Minecraft's default 2-octave limit.\n* **Full DSP Pipeline:** Runs Fourier Transforms (FFT), formant-tracking filters, and sibilant/plosive consonant classifiers (using zero-crossing rate and flatness).\n* **Custom Accent Locales & Voices:** Choose between male/female voices and various pronunciation accents (e.g. English, Chinese, French, Japanese, Australian) via Google's TTS API.\n* **Zero-Lag Audio Caching:** Automatically caches generated speech files so repeated phrases play back instantly without contacting the API.\n* **100% Server-Side:** No mods or resource packs required by players. Fully compatible with vanilla clients.\n\n---\n\n## How It Works: The 6-Octave Bypass\n\nVanilla Minecraft note blocks support only 2 octaves (`0.5` to `2.0` pitch scale, MIDI 54-78). To make speech intelligible, **Notematic Vocoder** extends the playable scale to **6 full octaves (72 semitones)** by crossing 5 instruments:\n\n1. **Bass** (MIDI 30 - 54) — For deep vocal formants\n2. **Guitar** (MIDI 42 - 66) — For lower midtones\n3. **Harp** (MIDI 54 - 78) — For center vocal frequencies\n4. **Flute** (MIDI 66 - 90) — For upper vocal range\n5. **Bell** (MIDI 78 - 102) — For high-pitched harmonic overtones\n\nWhen a prompt is sent:\n* Formants are extracted and mapped to the closest overlapping instrument octave.\n* Unvoiced sibilants (like `/s/` and `/sh/`) are simulated using TNT fuse hiss.\n* Plosives (like `/p/` or `/t/`) trigger button clicks and note block snare/hats.\n\n---\n\n## Commands & Permissions\n\n### Command Aliases\nYou can use any of the following base commands interchangeably:\n* `/vocoder` (Primary)\n* `/speech` (Alias)\n* `/vocode` (Alias)\n\n| Command | Permissions | Description | Default |\n| :--- | :--- | :--- | :--- |\n| `/<cmd> <prompt>` | `notematicvocoder.use` | Generates speech for the prompt and plays it. | Everyone |\n| `/<cmd> settings` | `notematicvocoder.use` | Displays your active preferences and global settings. | Everyone |\n| `/<cmd> settings voice <male\\|female>` | `notematicvocoder.use` | Sets your personal voice preference. | Everyone |\n| `/<cmd> settings <language\\|lang> <langCode>` | `notematicvocoder.use` | Sets your accent locale (e.g. `en`, `es`, `fr`, `ja`). | Everyone |\n| `/<cmd> settings default-voice <male\\|female>` | `notematicvocoder.admin` | Updates the global default voice (Admin). | OP |\n| `/<cmd> settings <default-language\\|default-lang> <langCode>` | `notematicvocoder.admin` | Updates the global default language accent (Admin). | OP |\n| `/<cmd> toggle` | `notematicvocoder.admin` | Globally toggles command access for non-admins (Admin). | OP |\n\n<details>\n<summary> Detailed Command Guide & Accent Codes</summary>\n\n### Customizing Voices and Accents\nYou can adjust how the vocoder pronounces your text. \n* **To change your voice:** `/<cmd> settings voice male` or `/<cmd> settings voice female`\n* **To set a different language/accent:** `/<cmd> settings lang en-AU` (Australian English), `/<cmd> settings language es` (Spanish), `/<cmd> settings lang ja` (Japanese).\n\n### Admin Controls\n* To restrict non-admin players from generating speech (e.g. to save bandwidth), run `/<cmd> toggle`.\n* Global defaults can be changed using `/<cmd> settings default-voice <voice>` and `/<cmd> settings default-lang <lang>`.\n</details>\n\n---\n\n## Installation & Setup\n\n1. Make sure you have **[Notematic Player](https://modrinth.com/plugin/notematic-player)** installed.\n2. Download the latest release of **Notematic Vocoder** and drop it into your server's `plugins` folder.\n3. Restart or reload the server to generate the default configuration.\n4. Set up permissions (`notematicvocoder.use` and `notematicvocoder.admin`) using your favorite permissions manager.\n\n---\n\n## FAQ\n\n<details>\n<summary>Does this require a client mod or resource pack?</summary>\nNo. The entire audio translation and playback process happens server-side using vanilla sound packets. Any player can join and hear it.\n</details>\n\n<details>\n<summary>Is there any lag when generating a prompt?</summary>\nAll audio downloads and digital signal processing run asynchronously. This ensures that your server's main tick loop is completely unaffected while a prompt is generating.\n</details>\n\n<details>\n<summary>Can I use this in my modpack?</summary>\nYes! Feel free to include this in any Spigot/Paper server pack or modpack.\n</details>\n",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 8,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

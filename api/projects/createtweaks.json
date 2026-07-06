@@ -1,0 +1,26 @@
+{
+  "id": "E118E4hO",
+  "slug": "createtweaks",
+  "title": "CreateTweaks",
+  "description": "Craft Create Mod ores directly using existing resources. Perfect for pre-existing worlds where new blocks didn't generate. No new chunks needed.",
+  "body": "# Create Tweaks: Retro-Generation Recipes\n\nA Minecraft datapack designed for the **Create Mod**, specifically tailored for worlds that were generated *before* the Create mod was installed. \n\nSince the Create mod introduces new blocks to world generation (like Asurine, Crimsite, Ochrum, Veridium, and Zinc Ores), players usually have to explore far-off, ungenerated chunks to find them. This datapack solves that issue by adding **custom crafting and processing recipes** for all of Create's natural generation blocks! \n\nYou don't need to generate new chunks anymore; you can simply craft or process what you need using existing resources.\n\n**This is a server side datapack. Can be used in singleplayer worlds too.**\n\nFor versions not included here, visit the wiki.\n\n---\n\n## Dependencies\n* **Create Mod** or **Create Fly Mod** (Required)\n* This is a **datapack**. You can install it globally using a tool like *Global Packs*, or drop it directly into your world's `datapacks` folder.\n\n---\n\n## Features\n\nThis datapack includes recipes for the following Create mod materials:\n\n### Zinc Ingot\n![Zinc Ingot Recipe](https://raw.githubusercontent.com/AKwasTaken/createtweaks/refs/heads/main/images/zinc_ingot_recipe.png)\n\n### Asurine\n![Asurine Recipe](https://raw.githubusercontent.com/AKwasTaken/createtweaks/refs/heads/main/images/asurine.png)\n\n### Crimsite\n![Crimsite Recipe](https://raw.githubusercontent.com/AKwasTaken/createtweaks/refs/heads/main/images/crimsite.png)\n\n### Ochrum\n![Ochrum Recipe](https://raw.githubusercontent.com/AKwasTaken/createtweaks/refs/heads/main/images/ochrum.png)\n\n### Veridium\n![Veridium Recipe](https://raw.githubusercontent.com/AKwasTaken/createtweaks/refs/heads/main/images/veridium.png)\n\n---\n\n## Installation\n1. Download the datapack zip file.\n2. Open Minecraft, select your world, click **Edit**, and then **Open World Folder**.\n3. Open the `datapacks` folder and drop the zip file inside.\n4. If you are already in the world, type `/reload` to apply the changes.\n## How It Works & Customization\n\nThe datapack is structured in a standard Minecraft data format. If you want to change what items are required for crafting and what they yield, you can easily tweak it.\n\n### Modifying Recipes\nAll recipes are stored as simple JSON files. To change them:\n1. Navigate to `data/createtweaks/recipe/`.\n2. Open the JSON file for the recipe you want to tweak (e.g., `zinc_ingot.json`, `asurine.json`, etc.).\n3. You will see an `ingredients` section (what you need to craft it) and a `result` section (what you get). \n4. Replace the item IDs (like `minecraft:stone` or `minecraft:iron_nugget`) with whatever items you prefer!\n\n**Example Structure:**\n```json\n{\n  \"type\": \"minecraft:crafting_shapeless\",\n  \"ingredients\": [\n    {\n      \"item\": \"minecraft:iron_ingot\"\n    },\n    {\n      \"item\": \"minecraft:copper_ingot\"\n    }\n  ],\n  \"result\": {\n    \"item\": \"create:zinc_ingot\",\n    \"count\": 1\n  }\n}\n```\n\n### Advanced: Functions (`load.mcfunction` & `tick.mcfunction`)\nThis datapack also hooks into the `#minecraft:load` and `#minecraft:tick` events:\n- **`data/createtweaks/function/load.mcfunction`**: Runs exactly once when the server/client loads the datapack or `/reload` is run. This is where the `/recipe give` command lives to automatically unlock the recipes for players. It's also useful for setting up scoreboards or initial game rules.\n- **`data/createtweaks/function/tick.mcfunction`**: Runs once *every single tick* (20 times a second). Useful for checking player conditions or ongoing events. By default, this is mostly empty to preserve performance, but you can add your custom commands here if needed.\n",
+  "categories": [
+    "datapack",
+    "decoration",
+    "economy",
+    "game-mechanics",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 44,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

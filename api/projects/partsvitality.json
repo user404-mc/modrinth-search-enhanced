@@ -1,0 +1,35 @@
+{
+  "id": "WPAqlPEC",
+  "slug": "partsvitality",
+  "title": "PartsVitality",
+  "description": "A hardcore damage and healing system for Minecraft, inspired by \"Escape from Tarkov.\"",
+  "body": "# PartsVitality\n\n**A hardcore damage and healing system for Minecraft, inspired by \"Escape from Tarkov.\"**\n\nPartsVitality completely overhauls Minecraft's standard health system by introducing a detailed part-based HP system. This plugin demands more tactical thinking, careful injury management, and a new level of awareness from players. Deciding which body part to target and which to protect, constantly monitoring your own condition and surroundings, and engaging in tense gameplay where a single moment of carelessness can be fatal becomes crucial.\n\n> [!NOTE] > **No Resource Pack Required!** All features, including the part HP display, are achieved using vanilla mechanics. Players don't need to download anything extra to get the full experience.\n\n## Key Features\n\n- **Part-Based HP System**: Health is not a single bar but is managed individually across four body parts: \"Head,\" \"Chest,\" \"Legs,\" and \"Feet.\"\n- **Precise Hit Detection**: Using Ray Tracing technology, the plugin accurately determines which body part an attack hits. Tactics like headshots or aiming for the legs become vital!\n- **Realistic Injury Penalties**:\n  - **Debuff Effects**: Taking damage to a specific part triggers corresponding debuffs (e.g., Nausea from head damage, Slowness from leg damage).\n  - **Broken Parts**: When a part's HP drops to 0, it becomes \"broken,\" reducing the player's maximum HP until they respawn.\n- **Manual Healing System**:\n  - **No Natural Regeneration**: Automatic health regeneration from saturation is disabled. All healing must be done manually.\n  - **Part-Specific Healing**: Use items defined in `config.yml` to heal by clicking the corresponding armor piece for the injured part in the inventory.\n  - **Surgery for Critical Injuries**: \"Broken\" parts cannot be healed with regular items. A special \"surgery\" item is required for first aid, making the part treatable again.\n- **Enhanced Importance of Armor**:\n  - **Part Protection**: Armor plays a crucial role in protecting the specific body part it covers.\n  - **Realistic Wear and Tear**: Armor durability can be configured to decrease significantly based on the damage received, making it a critical resource to manage.\n- **Highly Customizable**: Nearly every aspect of the plugin—part HP, damage multipliers, healing items, debuffs, and more—can be freely adjusted in `config.yml`.\n- **Multi-Language Support**: All messages displayed to players are translatable. It supports English (`en`) and Japanese (`ja`) by default.\n\n## Installation\n\n1.  Download the latest `.jar` file.\n2.  Place the downloaded `PartsVitality-v1.0.0-beta.1.jar` file into your server's `plugins/` folder.\n3.  Restart or reload the server. The configuration file (`config.yml`) and language files (`messages_en.yml`, `messages_ja.yml`) will be automatically generated in the `plugins/PartsVitality/` folder.\n\n## Compatibility\n\nThis plugin was developed on the **Paper API 1.20.1** and tested on a **Purpur 1.21.1** server.\n\nIt is expected to work on most modern Paper/Purpur versions, but these are the officially supported environments for this release.\n\n## Configuration (`config.yml`)\n\nYou can edit the `config.yml` file to fine-tune the plugin's behavior to match your server's difficulty and playstyle.\n\n<details>\n<summary><strong>Click to see a detailed explanation of config.yml</strong></summary>\n\n```yaml\n# Set the language to use (e.g., en, ja)\nlanguage: \"en\"\n\n# Max HP for each body part\nparts:\n  head:\n    max-hp: 20.0\n  chest:\n    max-hp: 29.0\n  # ... and so on\n\n# Damage calculation settings\ndamage:\n  # Multiplier to convert vanilla heart damage to part damage.\n  # A higher value makes parts break more easily, increasing difficulty.\n  damage-multiplier: 5.0\n  # Precision of the hit detection. Larger values reduce server load but decrease accuracy. (Recommended: 0.1 ~ 0.5)\n  ray-trace-step: 0.1\n\n# Settings for regular healing\nhealing:\n  # Time required for healing (in seconds).\n  duration-seconds: 3\n  # ... sound settings ...\n\n# Settings for surgery (healing broken parts)\nsurgery:\n  # Time required for surgery (in seconds).\n  duration-seconds: 10\n  # Amount of part HP restored by surgery. Setting this to 1.0 will make the part usable again and allow normal healing.\n  restored-hp: 1.0\n  # ... sound settings ...\n\n# Max health penalty for each broken part (2.0 = 1 heart).\nhealth-penalty-per-broken-part: 5.0 # 2.5 hearts\n\n# Items used for regular healing and their heal amount.\nhealing-items:\n  IRON_INGOT: 10.0\n  GOLD_INGOT: 15.0\n\n# Items used for surgery (only usable on parts with 0 HP).\nsurgery-items:\n  DIAMOND: true\n\n# Debuffs applied when a part's HP falls below a certain threshold.\ndebuffs:\n  head:\n    - threshold: 0.5 # 50% or less\n      effect: CONFUSION\n      level: 0\n  # ... and so on\n\n# Durability settings\ndurability:\n  # If true, armor durability decreases based on the amount of part damage received.\n  use-custom-durability-damage: true\n  # How much part damage equals 1 point of durability damage.\n  # A smaller value means armor wears out faster. 0.4 is balanced around leather armor.\n  damage-per-durability-point: 0.4\n```\n\n</details>\n\n## How to Play\n\n- **Check Part HP**: In your inventory, hover over any armor piece and **Shift + Right-Click** to switch to Part HP display mode. The armor's durability bar will now show the HP of that part. Repeat the action to switch back.\n\n  ![PV_Switch_PartHP](https://i.imgur.com/4pypzyd.gif)\n\n- **Heal a Part**: Hold a healing item (e.g., Iron Ingot) on your cursor and **Left-Click** the armor piece of the part you want to heal in your inventory. A timer will start, and upon completion, the part's HP will be restored.\n\n  ![PV_healing_part](https://i.imgur.com/0ltDtFg.gif)\n\n- **Perform Surgery**: If a part is broken (HP is 0), you must first treat it with a surgery item (e.g., Diamond). This will slightly restore the part's HP, allowing it to be healed with regular healing items again.\n\n  ![PV_surgery_part](https://i.imgur.com/jHg1fqJ.gif)\n\n## License\n\nThis plugin is released under the MIT License.\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 92,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "TH8ZvfuQ",
+  "slug": "staticproperties",
+  "title": "StaticProperties",
+  "description": "Mod to modify static properties of blocks and items",
+  "body": "# Static Properties\n\nMod to modify static properties of blocks and items\n\n## How does it work?\n\nThis mod works by reading `config/staticproperties.txt` rules at runtime and applying them to blocks and items\nduring initialization.\n\nSince the data is usually not needed at runtime, any rule data loaded at memory is freed after initialization.\n\nIf rule data is needed at runtime, it can be kept by adding a `#keepmemory` directive.\n\nThis mod uses very minimal mixins and should be compatible with pretty much everything!\n\n## Examples\n\nBlock static properties change examples:\n\n```\n# Make logs require a tool to break and take longer to break\n#define loglike requiresTool=true destroyTime=2.5\n*_log $loglike\n*_wood $loglike\n*_stem $loglike\n*_hyphae $loglike\n# Make leaves not collide with players or entities\n*_leaves hasCollision=false\n```\n\nItem static properties change examples:\n\n```\n# Change stick stack size to 128\nminecraft:stick stacksTo=128\n# Set diamond rarity to rare (A blue colored name when not modified by other mods)\nminecraft:diamond rarity=RARE\nminecraft:diamond_* rarity=RARE\n```\n\nNote: The max stack size is 999 unless you have another mod extending the stack size limit.\n",
+  "categories": [
+    "fabric",
+    "neoforge",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2-rc-2",
+    "26.2"
+  ],
+  "date_updated": null
+}

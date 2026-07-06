@@ -1,0 +1,41 @@
+{
+  "id": "o6iNkV1D",
+  "slug": "region-signs",
+  "title": "Region Signs",
+  "description": "Region Signs allows you to create regional signs that show text along the radius of the player's entry.",
+  "body": "RegionSigns is a Paper plugin that allows you to turn regular signs into beautiful region displays for players who enter their radius. Perfect for private servers, survival servers, SMP, or MMORPG/RPG projects I originally made this for myself and my [KTO ETO SMP](https://discord.gg/mZ7Uw8XY7G), and didn’t plan to release it… but why not?\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/0bNsT0J4kMg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n**If you notice a bug, or want to suggest some new functionality, write to [my server in Discord](https://discord.gg/jbBmtAzDQ2), in the `#region-signs`, or in private messages to the [Telegram channel](https://t.me/alexei4884)**\n\nWhen a player enters a sign’s radius, a Title/BossBar is displayed using the sign’s text, with customizable sounds and particles.\n\n## Features:\n* 4 region tiers (fully configurable and extendable)\n> * Iron - 25 blocks radius\n> * Gold — 50 blocks radius\n> * Diamond - 100 blocks radius\n> * Netherite - 400 blocks radius\n* Per-player settings\n* PlaceholderAPI\n* MiniMessage\n\n## How to create Region Sign?\n1. Place a sign\n2. Write the region name\n3. Drop one of the following items onto the sign:\n> * Iron - 25 blocks radius\n> * Gold - 50 blocks radius\n> * Diamond - 100 blocks radius\n> * Netherite - 400 blocks radius\nIf a region already exists, it will be upgraded to a higher tier.\nTo remove a region, simply break the sign.\n\n## Commands:\n`/regionsigns <all|titles|bossbar|sounds|particles> [on|off|toggle]`\n\n`/regionsigns reload` - reloads the config\n\n`/regionsigns` - shows current settings\n\n## Permissions:\n`regionsigns.command` - access to commands\n\n`regionsigns.admin` - allows /regionsigns reload\n\n`regionsigns.create` - create and upgrade regions\n\n`regionsigns.remove` - remove regions\n\n`regionsigns.view` - see region display\n\n`regionsigns.view.titles`\n\n`regionsigns.view.bossbar`\n\n`regionsigns.view.sounds`\n\n`regionsigns.view.particles`\n\n## PlaceholderAPI:\n`%regionsigns_name%` - current region name\n\n`%regionsigns_tier%` - region tier\n\n`%regionsigns_world%` - world\n\n`%regionsigns_radius%` - radius\n\n`%regionsigns_material%` - sign (OAK_SIGN)\n\n## Configuration:\n```yaml\nlanguage: \"en_us\" # 1.0.1 upd / or ru_ru\n\nfeatures:\n  enabled: true\n  titles: true\n  consume-items: true # 1.0.1 upd\n  bossbar: true\n  sounds: true\n  actionbar: false # 1.0.1 upd\n  particles: true\n\ncheck-interval-ticks: 20\n\nworlds: []\n\ntitles:\n  header: \"<name>\"\n  subheader: \"\"\n  fade-in: 5\n  stay: 40\n  fade-out: 10\n\nbossbar:\n  text: \"<name>\"\n  color: \"YELLOW\"\n  overlay: \"PROGRESS\"\n\n# 1.0.1 upd\nactionbar:\n  text: \"<name>\"\n\ntiers:\n  IRON:\n    radius: 25\n    effects:\n      enter:\n        sounds:\n          - \"minecraft:block.ender_chest.open 5 0.7\"\n      create:\n        sounds:\n          - \"minecraft:block.amethyst_block.break 2 1\"\n          - \"minecraft:block.bell.resonate 2 2\"\n        particles:\n          - \"WAX_OFF 5 0 0 0 0.15\"\n  GOLD:\n    radius: 50\n    effects:\n      enter:\n        sounds:\n          - \"minecraft:block.ender_chest.open 5 0.7\"\n          - \"minecraft:entity.evoker.prepare_summon 5 0.95\"\n          - \"minecraft:entity.evoker.prepare_summon 5 1.17\"\n      create:\n        sounds:\n          - \"minecraft:block.amethyst_block.break 2 1\"\n          - \"minecraft:block.bell.resonate 2 2\"\n        particles:\n          - \"WAX_OFF 15 0 0 0 0.15\"\n  DIAMOND:\n    radius: 100\n    effects:\n      enter:\n        sounds:\n          - \"minecraft:block.ender_chest.open 5 0.7\"\n          - \"minecraft:entity.evoker.prepare_summon 5 0.8\"\n          - \"minecraft:entity.evoker.prepare_summon 5 0.95\"\n          - \"minecraft:entity.evoker.prepare_summon 5 1.17\"\n      create:\n        sounds:\n          - \"minecraft:block.amethyst_block.break 2 1\"\n          - \"minecraft:block.bell.resonate 2 2\"\n        particles:\n          - \"WAX_OFF 25 0 0 0 0.15\"\n          - \"FLAME 20 0 0.25 0 0.03\"\n  NETHERITE:\n    radius: 300\n    effects:\n      enter:\n        sounds:\n          - \"minecraft:block.ender_chest.open 5 0.7\"\n          - \"minecraft:entity.evoker.prepare_summon 5 0.8\"\n          - \"minecraft:entity.evoker.prepare_summon 5 0.95\"\n          - \"minecraft:entity.evoker.prepare_summon 5 1.17\"\n          - \"minecraft:block.bell.resonate 5 1.15\"\n      create:\n        sounds:\n          - \"minecraft:block.amethyst_block.break 2 1\"\n          - \"minecraft:block.bell.resonate 2 2\"\n        particles:\n          - \"WAX_OFF 50 0 0 0 0.15\"\n          - \"SOUL 20 0 0.25 0 0.03\"\n\ndefaults:\n  empty-sign-name: \"Region\"\n\n```\n\n## Roadmap:\n* backport to older versions? like >1.20, >1.16 <1.8\n* gradients/books?\n* Dynmap / BlueMap?\n* commands for create nosign regions?\n* optimization?\n* more permissions?\n* customization?\n\n**If you notice a bug, or want to suggest some new functionality, write to [my server in Discord](https://discord.gg/jbBmtAzDQ2), in the `#region-signs`, or in private messages to the [Telegram channel](https://t.me/alexei4884)**\n\noriginal idea and implementation: [https://www.planetminecraft.com/data-pack/journey-area-title-generator/](https://www.planetminecraft.com/data-pack/journey-area-title-generator/)\n\n<details>\n<summary>Check also! [Plugins]</summary>\n   ShadowItem Imitation - imitation of item shadowing for paper. **In development.**\n  <iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/ECzlX55ud9k\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n</details>\n\n<details>\n<summary>Check also! [ResourcePacks]</summary>\n\n| CHECK THIS!           | CHECK THIS!           |\n|:---------------------:|:---------------------:|\n| <img src=\"https://cdn.modrinth.com/data/T6IOgKHW/5ccc44a7039df6291ec86d78b3e02ded882ddbac.png\" alt=\"Compact Status\" width=\"100\" height=\"100\"> | <img src=\"https://cdn.modrinth.com/data/wllnR9HP/063026e102fc6a80e6e827ec68e54f2b42be0b69_96.webp\" alt=\"CraftVerse Panaramas\" width=\"100\" height=\"100\">|\n| [Compact Status](https://modrinth.com/resourcepack/compact-status)            | [CraftVerse Panaramas](https://modrinth.com/resourcepack/craftverse-panoramas) |\n</details>\n\n\n",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "decoration",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 27,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

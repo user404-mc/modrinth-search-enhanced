@@ -1,0 +1,38 @@
+{
+  "id": "Zpd9aLSA",
+  "slug": "fire_plugin",
+  "title": "Fire Plugin",
+  "description": "An advanced server utility plugin with world protection, economy, broadcast system, anti-spam, and invite features.",
+  "body": "# 🔥 FirePlugin\n\n[MIT License](https://mit-license.org/)\n\nStarting from version `2.0.0 + MIT`, the source code license has been changed from CC BY-SA 4.0 to the MIT license.\n\n**Version 2.0.0** – A lightweight, high‑performance server utility plugin for Paper 1.21+.  \nIt provides world‑based economy reset, block protection, building restrictions, advanced world rules, anti‑spam, a broadcast credit system, and a clickable invite system.\n\n---\n\n## ✨ Features\n\n- **Economy reset** – Automatically clear players' Vault balances in specified worlds (supports regex/wildcard).\n- **Block protection** – Only blocks placed by players can be broken, burned, or destroyed by explosions.\n- **Build restriction** – Prevent block placement in chosen worlds.\n- **World rules** – Per‑world options:\n  - Disable PvP\n  - Make players invincible\n  - Unlimited saturation (no hunger loss)\n  - Void respawn (teleport back to world spawn instead of dying)\n- **Anti‑spam** – Limit chat messages per time interval.\n- **Broadcast system** – Players spend credits to send server‑wide messages. Credits are stored per player and can be managed by admins.\n- **Invite system** – Send clickable invites to individuals or everyone. Invited players click the message to teleport directly to the inviter's world.\n- **All world rules support regex/wildcard patterns** (e.g. `lobby*`, `pvp-*`, `*`).\n- **Bypass permissions** – Each restriction has its own permission node.\n- **Efficient listener‑based design** – No performance‑heavy persistent storage for placed blocks.\n\n---\n\n## 📥 Installation\n\n1. Download the latest `fire-2.0.0.jar`.\n2. Place it in your server’s `plugins/` folder.\n3. Restart the server.\n4. Configure `plugins/fire/config.yml` to your needs (see below).\n5. Use `/fireadmin reload` to reload the configuration at any time.\n\n---\n\n## 🔧 Commands\n\n| Command & Aliases                                            | Permission             | Description                                                  |\n| ------------------------------------------------------------ | ---------------------- | ------------------------------------------------------------ |\n| `/broadcast <message>` = `/bc <message>`                     | `fire.broadcast.use`   | Send a broadcast (consumes 1 credit).                        |\n| `/broadcastadmin add <player> <amount>` = `/bcadmin add ...` | `fire.broadcast.admin` | Add broadcast credits to a player.                           |\n| `/broadcastadmin set <player> <amount>`                      | `fire.broadcast.admin` | Set a player's credits to a specific amount.                 |\n| `/broadcastadmin clear <player>`                             | `fire.broadcast.admin` | Reset a player's credits to 0.                               |\n| `/broadcastadmin check <player>`                             | `fire.broadcast.admin` | Show a player's remaining credits.                           |\n| `/invite <player\\|all> [world]` = `/inv ...`                 | `fire.invite.send`     | Send an invite to a player or everyone. Optional world name. |\n| `/invite accept <inviter>`                                   | `fire.invite.join`     | Accept an invite and teleport to the inviter's world.        |\n| `/fireadmin reload` = `/fadmin reload`                       | `fire.admin`           | Reload the plugin configuration.                             |\n\n---\n\n## 🔐 Permissions\n\n| Node                   | Default | Description                                            |\n| ---------------------- | ------- | ------------------------------------------------------ |\n| `fire.bypass.clear`    | `op`    | Prevents economy reset in reset worlds.                |\n| `fire.bypass.block`    | `op`    | Allows breaking any block (bypasses block protection). |\n| `fire.bypass.build`    | `op`    | Allows placing blocks in `no-build-worlds`.            |\n| `fire.broadcast.use`   | `true`  | Allows using `/broadcast`.                             |\n| `fire.broadcast.admin` | `op`    | Allows managing broadcast credits.                     |\n| `fire.invite.send`     | `true`  | Allows sending invites.                                |\n| `fire.invite.join`     | `true`  | Allows accepting invites.                              |\n| `fire.admin`           | `op`    | Allows reloading the plugin.                           |\n\n---\n\n## ⚙️ Configuration (`config.yml`)\n\n```yaml\n# Worlds where player balances are cleared (regex/wildcard)\neconomy-reset-worlds:\n  - \"Lobby\"\n  - \"lobby_*\"\neconomy-reset-interval-ticks: 1200 # 20 ticks = 1 sec\n\n# Worlds where only player‑placed blocks can be broken/burned/exploded\nblock-protection-worlds:\n  - \"*\"\n\n# Worlds where block placement is forbidden (requires fire.bypass.build)\nno-build-worlds:\n  - \"Lobby\"\n  - \"hub*\"\n\n# Worlds where PvP is disabled\npvp-disabled-worlds:\n  - \"Lobby\"\n\n# Worlds where players take no damage (invincible)\ninvincible-worlds:\n  - \"Lobby\"\n\n# Worlds where hunger never decreases\nsaturate-worlds:\n  - \"Lobby\"\n\n# Worlds where falling into the void teleports you to world spawn\nvoid-respawn-worlds:\n  - \"*\"\n\n# Anti‑spam settings\nanti-spam:\n  interval-seconds: 3\n  max-messages: 2\n\n# Broadcast system\nbroadcast:\n  default-credits: 3 # Starting credits per player\n\n# Invite cooldown (seconds)\ninvite:\n  cooldown-seconds: 10\n```\n\n> **Note:** Patterns support `*` wildcard and regular expressions. Example: `\"lobby*\"` matches `lobby`, `lobby_1`, `lobby_world`, etc.\n\n---\n\n## 🛠 Building from source\n\n1. Clone or download the source code.\n2. Ensure you have Java 21 and Maven installed.\n3. Run `mvn clean package`.\n4. The compiled JAR will be in `target/fire-2.0.0.jar`.\n\n---\n\n## 📄 License\n\nThis project is licensed under the **MIT** license.\n\n---\n\n## 💬 Support\n\nFor issues or suggestions, please contact the plugin author: `cyx012113` (Discord / GitHub).  \nPull requests and contributions are welcome under the same license.\n",
+  "categories": [
+    "bukkit",
+    "economy",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 21,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

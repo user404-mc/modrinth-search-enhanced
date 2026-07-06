@@ -1,0 +1,26 @@
+{
+  "id": "Z1QQrDA2",
+  "slug": "view-jar-signing",
+  "title": "View Jar Signing",
+  "description": "View jar signing info in NeoForge's mod list",
+  "body": "## View Jar Signing\n\nThis mod enables the ability to view JAR signing info in NeoForge built-in mod list screen.\n\nIt is highly recommended that you have some understanding of JAR signing related details,\nand **its caveats in a modding environment**.\n\nIf you have doubts about a particular signed mod, please verify it\nusing [jarsigner](https://docs.oracle.com/en/java/javase/17/docs/specs/man/jarsigner.html#synopsis) beforehand.\nThis mod only exposes the result produced by NeoForge and does not perform any JAR verification.\n\n## How to read its output\n\n_Only signed mod will have signing information displayed._\n\nStatus: self-explanatory [[_see note_]](#note)\n\nLeaf signer fingerprint: SHA256 fingerprint for the first signer's leaf certificate.\n\nSigner(s) Format: `<CodeSignerN>.<CertificateN> [Type]: <Signer Info> (CertAlg)`\n\n- `CodeSigner` - [Signer that present in the manifest.](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/security/CodeSigner.html)\n- `Certificate` - Certificate in signer's certificate path.\n- `Type`: `CA`- Certificate Authority `Self`- Self-signed.\n- `Signer Info`: [distinguished name information.](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/javax/security/auth/x500/X500Principal.html#getName(java.lang.String,java.util.Map))\n- `CertAlg` - algorithm name that used to create the certificate.\n\n`*` will prefixed for each leaf signer's certificate, except for JAR that has only one signer certificate.\n\nBy default, only leaf certificate will be shown. Configuration is provided to enable listing of all certificate chain.\n\n## Note\n\nThis mod mixin and uses some internal NeoForge and SecureJarHandler APIs to obtain, display the signers' certificate\ndetails. Therefore, stability of this mod is not guaranteed.\n\n- It only verifies `.class` files, other files is ignored.\n- Mod can be **modified in runtime and still be valid**, since verification take place in actual JAR file.\n- Minecraft will always show `Invalid` status since its installation occurred during install-time.\n\n<details>\n<summary>Background</summary>\n\nThe display is mostly based on\n[NeoForge's ModListScreen](https://github.com/neoforged/NeoForge/blob/1.21.1/src/main/java/net/neoforged/neoforge/client/gui/ModListScreen.java#L428-L436).\n\n---\n\nIt is first introduced in 1.16 but disabled in mod list screen due to it not perform actual checks,\nshortly after implemented. https://github.com/MinecraftForge/MinecraftForge/issues/7500\n\nIn 1.17 onwards, verification of .class is performed.\nhttps://github.com/neoforged/NeoForge/blob/1.17.x/fmlloader/src/main/java/net/minecraftforge/fml/loading/moddiscovery/AbstractJarFileLocator.java#L57\n\nIn 1.21, it remains unchanged, although it has moved to a different package.\nhttps://github.com/neoforged/FancyModLoader/blob/1.21.1/loader/src/main/java/net/neoforged/fml/loading/moddiscovery/ModFile.java#L152-L153\n\n</details>\n",
+  "categories": [
+    "cursed",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 72,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7"
+  ],
+  "date_updated": null
+}

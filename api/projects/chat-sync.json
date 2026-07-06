@@ -1,0 +1,21 @@
+{
+  "id": "nbsC5Cvv",
+  "slug": "chat-sync",
+  "title": "Chat Sync",
+  "description": "Syncs client-side Minecraft chat to a Discord webhook.",
+  "body": "# ChatSync - Minecraft to Discord Chat Sync\n\nA client-side Fabric mod for Minecraft 1.21.10 that syncs in-game chat messages to a Discord webhook.\n\n## Features\n\n- 🔄 Syncs both chat messages and game messages to Discord\n- 🎯 Configurable message filtering with regex patterns\n- ⚙️ Easy JSON configuration\n- 🎮 **In-game config screen** via Mod Menu\n- 🚀 Asynchronous webhook sending (doesn't lag the game)\n- 🔒 Client-side only (works on any server)\n\n## Installation\n\n1. Make sure you have [Fabric Loader](https://fabricmc.net/use/) installed for Minecraft 1.21.10\n2. Install [Mod Menu](https://modrinth.com/mod/modmenu) (optional, but required for in-game config)\n3. Download the ChatSync mod JAR file\n4. Place it in your `.minecraft/mods` folder\n5. Launch Minecraft\n\n## Configuration\n\nYou can configure ChatSync in two ways:\n\n### Option 1: In-Game Config Screen (Recommended)\n\n1. Install [Mod Menu](https://modrinth.com/mod/modmenu)\n2. In Minecraft, go to: **Mods → ChatSync → Config**\n3. Enter your Discord webhook URL\n4. Customize the message prefix\n5. Toggle enabled/disabled\n6. Click \"Done\" to save\n\n### Option 2: Manual Configuration File\n\nOn first launch, the mod will create a configuration file at `.minecraft/config/chatsync.json`\n\n### Setting up your Discord Webhook\n\n1. Go to your Discord server settings\n2. Navigate to Integrations → Webhooks\n3. Click \"New Webhook\"\n4. Copy the webhook URL\n5. Open `.minecraft/config/chatsync.json`\n6. Replace `YOUR_WEBHOOK_URL_HERE` with your actual webhook URL\n\n### Configuration File Structure\n\n```json\n{\n  \"webhookUrl\": \"https://discord.com/api/webhooks/YOUR_WEBHOOK_URL_HERE\",\n  \"enabled\": true,\n  \"messagePrefix\": \"> \",\n  \"ignoredMessages\": [\n    \"^\\\\[.*\\\\].*\",\n    \"^>.*\"\n  ]\n}\n```\n\n### Configuration Options\n\n- **webhookUrl**: Your Discord webhook URL\n- **enabled**: Set to `false` to temporarily disable the mod without removing it\n- **messagePrefix**: Text to prepend to every message (default: `\"> \"`)\n  - Use `\"\"` for no prefix\n  - Examples: `\"> \"`, `\"[MC] \"`, `\"🎮 \"`, etc.\n- **ignoredMessages**: Array of regex patterns for messages to ignore\n\n### Ignored Messages Examples\n\nThe `ignoredMessages` array uses regex patterns to filter out unwanted messages:\n\n```json\n\"ignoredMessages\": [\n  \"^\\\\[.*\\\\].*\",           // Ignore messages starting with [brackets]\n  \"^>.*\",                  // Ignore messages starting with >\n  \".*joined the game.*\",   // Ignore join messages\n  \".*left the game.*\",     // Ignore leave messages\n  \"^!.*\",                  // Ignore commands starting with !\n  \"^/.*\"                   // Ignore commands starting with /\n]\n```\n\n## How It Works\n\nThe mod listens to two Minecraft events:\n- **Chat Messages**: Player chat messages\n- **Game Messages**: System messages (deaths, achievements, etc.)\n\nWhen a message is received, it:\n1. Checks if the mod is enabled\n2. Checks if the webhook URL is configured\n3. Checks if the message matches any ignored patterns\n4. If all checks pass, sends the message to Discord asynchronously\n\n## Troubleshooting\n\n### Messages aren't appearing in Discord\n\n1. Check that your webhook URL is correct in the config file\n2. Make sure `enabled` is set to `true`\n3. Check the Minecraft logs for any error messages\n4. Verify your webhook is still active in Discord\n\n### Some messages are being ignored\n\nCheck your `ignoredMessages` patterns - they use regex, so make sure your patterns are correct.\n\n### The mod isn't loading\n\n1. Ensure you have Fabric Loader 0.18.4 or higher\n2. Ensure you have Fabric API 0.138.4+1.21.10 or higher\n3. Check the Minecraft logs for errors\n\n## License\n\nThis project is licensed under the MIT License - see the LICENSE file for details.\n\n## Support\n\nJoin our discord! [Discord](https://discord.gg/axCNwVVZ)\n",
+  "categories": [
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 109,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

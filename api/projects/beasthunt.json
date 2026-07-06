@@ -1,0 +1,33 @@
+{
+  "id": "Rd4cVjyn",
+  "slug": "beasthunt",
+  "title": "BeastHunt",
+  "description": "The ultimate frantic PvP minigame where Hunters chase Beasts across your maps. Tag enemies, survive the clock, or fight off the infection.",
+  "body": "# 🐺 BeastHunt\n\n<!-- SUSTITUYE ESTE LINK POR TU BANNER CUANDO TENGAS UNO -->\n\n\n<div align=\"center\">\n\n![Version](https://img.shields.io/badge/Version-2.2.0-blue?style=for-the-badge&color=2b6cba)\n![Minecraft](https://img.shields.io/badge/Minecraft-1.20%2B-green?style=for-the-badge&logo=minecraft&color=43b02a)\n![Software](https://img.shields.io/badge/Software-Paper%20%7C%20Spigot-orange?style=for-the-badge&color=e67e22)\n![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)\n\n**The ultimate frantic PvP minigame where Hunters chase Beasts across your maps.**\n<br>\nTag enemies, survive the clock, or fight off the infection.\n\n</div>\n\n---\n\n## 📑 Table of Contents\n*   [✨ Features](#-features)\n*   [🎮 Game Modes](#-game-modes)\n*   [🛠️ Setup & Installation](#-setup--installation)\n*   [📜 Commands & Permissions](#-commands--permissions)\n*   [⚙️ Configuration](#-configuration)\n*   [🚀 Pro Tips](#-pro-tips-for-admins)\n\n---\n\n## ✨ Features\n\n| Feature | Description |\n| :--- | :--- |\n| ⚡ **4 Game Modes** | Capture, Kill, Timed, and the new **Infection** mode. |\n| 🌍 **Multi-World** | Fully automated lobby and arena rotation system. |\n| 🔊 **Heartbeat FX** | Dynamic sound system: Beasts hear faster heartbeats as Hunters get closer. |\n| 🏹 **Custom Kits** | Configurable loadouts (Swords, Bows, Potions) per role. |\n| 🛠️ **In-Game Editor** | Visual wands (`/bh tool`) to set spawns and objectives easily. |\n| 📊 **Stats & Top** | Track Wins/Kills and display a global Leaderboard. |\n| 👀 **Smart Spec** | Late joiners get a Compass Menu to teleport to players instantly. |\n\n---\n\n## 🎮 Game Modes\n\n### 🚩 1. Capture Mode\n*Classic Tag with an objective.*\n*   😈 **Beasts:** Must touch the **Objective Token** (Floating Diamond) hidden in the map.\n*   ⚔️ **Hunters:** Tag (hit) all Beasts before they reach the objective or time runs out.\n*   *Mechanic:* Beasts are frozen/eliminated upon being hit.\n\n### ⚔️ 2. Kill Mode\n*Traditional PvP Combat.*\n*   😈 **Beasts:** Survive until the timer runs out. You can fight back!\n*   ⚔️ **Hunters:** Kill all Beasts. You have infinite lives.\n*   *Mechanic:* Standard combat rules apply.\n\n### ⏳ 3. Timed Mode\n*Hide & Seek / Parkour Survival.*\n*   😈 **Beasts:** Run, hide, and parkour. Survive until the timer hits `00:00`.\n*   ⚔️ **Hunters:** Catch all beasts before time is up.\n*   *Mechanic:* No objectives, pure movement and evasion.\n\n### 🧟 4. Infection Mode (NEW!)\n*One vs All. The swarm grows.*\n*   **The Goal:** Starts with one Hunter. When a Beast is caught or killed, **they become a Hunter**.\n*   **Win Condition:** Hunters win if everyone is infected. Beasts win if at least one survives.\n\n---\n\n## 🛠️ Setup & Installation\n\n1.  **Download:** Drop the `BeastHunt.jar` into your `plugins` folder.\n2.  **Worlds:** Import your Lobby and Parkour worlds (ensure the folders are in the server root).\n3.  **Config:** Add your world names to `config.yml`.\n4.  **Setup Spawns (In-Game):**\n\n> **1. Teleport:** `/bh tp <worldname>`\n>\n> **2. Spawn Tool:** `/bh tool spawns`\n> *   **Left Click:** Cycle spawn (Gold = Beast / Emerald = Hunter).\n> *   **Right Click:** Remove spawn.\n>\n> **3. Objective Tool:** `/bh tool objective`\n> *   **Left Click:** Set Objective Token.\n> *   **Right Click:** Remove it.\n>\n> **4. Save:** Just type `/bh stop` or leave.\n\n---\n\n## 📜 Commands & Permissions\n\n| Command | Arguments | Permission | Description |\n| :--- | :--- | :--- | :--- |\n| `/bh capture` | `[num] [t:sec]` | `beasthunt.use` | Start Capture match. |\n| `/bh kill` | `[num] [t:sec]` | `beasthunt.use` | Start Kill match. |\n| `/bh infection` | `[num] [t:sec]` | `beasthunt.use` | Start Infection match. |\n| `/bh countdown` | `[seconds]` | `beasthunt.use` | Start Timed match. |\n| `/bh stop` | - | `beasthunt.stop` | Force stop game. |\n| `/bh tool` | `<mode>` | `beasthunt.tool` | Get editor wands. |\n| `/bh teleport` | `<world>` | `beasthunt.teleport` | Admin TP to maps. |\n| `/bh stats` | - | `beasthunt.stats` | View personal stats. |\n| `/bh top` | - | `beasthunt.stats` | View Leaderboard. |\n\n> 💡 **Tip:** Use `t:120` to force a match to last exactly 120 seconds.\n> *Example:* `/bh infection t:60`\n\n---\n\n## ⚙️ Configuration\n\n<details>\n  <summary>📄 <b>Click to view full config.yml</b></summary>\n\n```yaml\n# Define your maps here\nparkour-worlds:\n  - world: \"map_forest\"\n    weight: 10\n\n# Customize the equipment for Kill/Infection modes\nkits:\n  hunter:\n    - \"DIAMOND_SWORD\"\n    - \"BOW\"\n    - \"ARROW:10\"\n  beast:\n    - \"IRON_SWORD\"\n    - \"SPEED_POTION\"\n\n# Visuals & UI\nscoreboard:\n  enabled: true\n  lines:\n    show-mode: true\n    show-time: true\n\n# Immersion settings\nheartbeat:\n  enabled: true\n  max-distance: 20 # Distance blocks to start hearing the beat\n\n# Nametags (Above Head)\nnametags:\n  hunter-prefix: \"&a&lHUNTER &a\"\n  beast-prefix: \"&c&lBEAST &c\"\n  ```\n</details>\n\n## 🚀 Pro Tips for Admins\n\n> ❗ **TAB / Velocity Users**\n> If you use a TAB plugin and don't see the \"HUNTER/BEAST\" nametags, go to your TAB `config.yml` and add your game worlds to the **disable-features-in-worlds** list (specifically for nametags/teams).\n\n> 🛡️ **Void Respawn**\n> Hunters have infinite lives! If they fall into the void, the plugin automatically teleports them to a safe Hunter spawn point to keep the action going.\n\n> 🏃 **Lobby Parkour**\n> Since players are in adventure mode with no hunger in the lobby, we recommend building a small parkour course to keep them entertained while waiting!\n## ⚖️ License\n\nThis project is licensed under the MIT License.",
+  "categories": [
+    "game-mechanics",
+    "management",
+    "minigame",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 28,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

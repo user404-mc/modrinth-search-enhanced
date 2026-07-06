@@ -1,0 +1,18 @@
+{
+  "id": "OuNont1j",
+  "slug": "animal-weights",
+  "title": "Animal Weights",
+  "description": "A Minecraft NeoForge mod that gives farm animals a weight value driving drop + XP scaling based on living conditions.",
+  "body": "# Animal Weights\n\nA husbandry mechanic for vanilla farm animals. Every cow, pig, sheep, chicken, rabbit, and mooshroom carries an integer **weight** (0–8) that responds to how well they're kept — and that weight scales the meat, leather, and XP they drop when killed.\n\nSuddenly your farm layout matters. Cramped pens of starving animals drop less. Roomy, well-lit, well-watered pastures with grass to graze produce fat, valuable animals.\n\n> Original concept: [u/Axoladdy on Reddit](https://www.reddit.com/r/Minecraft/comments/1te0m69/animal_weights_a_simple_mechanic_to_encourage/).\n\n## How it works\n\nEvery in-game day at dawn, each target-species **adult** is evaluated against four living conditions in its surroundings:\n\n| Condition | What satisfies it |\n|---|---|\n| **Light** | A block within 8 of the mob has brightness ≥ 14 (torch, lantern, full daylight). |\n| **Water** | A water source or filled water cauldron (bucket-filled or rain-filled) is reachable from the mob — horizontally adjacent (or one block below) a cell it can walk to. Fences and walls block reachability. |\n| **Grazing** | A grass or moss block is directly below a cell it can walk to. |\n| **Stretching** | The mob has at least 6 walkable cells reachable around it (no fences or other farm animals blocking). |\n\nThe number of conditions met determines the daily weight change:\n\n| Conditions met | Weight change |\n|---|---|\n| 4 | **+1** (thriving) |\n| 3 | 0 (plateau) |\n| 2 | −1 (slipping) |\n| 0–1 | −2 (suffering) |\n\nWeight is clamped to `[0, 8]`. New mobs spawn at weight 1.\n\n## Drop scaling\n\nWhen a target-species mob is killed, its primary drops and XP are scaled by its weight using an accelerating curve:\n\n| Weight | Drop bonus |\n|---|---|\n| 1 | +0 (vanilla) |\n| 2 | +1 |\n| 3 | +2 |\n| 4 | +3 |\n| 5 | +4 |\n| 6 | +6 |\n| 7 | +8 |\n| 8 | **+11** (peak payoff) |\n\nPrimary drops by species:\n\n- **Cow / Mooshroom** — beef (raw or cooked), leather\n- **Pig** — porkchop (raw or cooked)\n- **Sheep** — mutton (raw or cooked), any-colour wool\n- **Chicken** — raw / cooked chicken, feathers\n- **Rabbit** — raw / cooked rabbit, hide *(rabbit's foot is **not** scaled — it stays rare)*\n\n## Sick state (weight 0)\n\nA mob whose weight falls to 0 is sick:\n\n- **Slowness I** is applied continuously.\n- **Breeding is blocked** — both parents' love state is reset if either is sick.\n- **Drops are penalised** — each primary drop has a 50% chance of being removed entirely, and any stack that does drop is capped to a single item.\n\n## Babies\n\nBaby animals are skipped from all of the above — no weight evaluation, no slowness, no drop scaling. Babies grow up in ~20 real minutes; the mechanic is meant for the long-term husbandry signal of an adult animal.\n\n## Compatibility\n\n- **Minecraft:** 26.1.x\n- **Loader:** NeoForge 26.1.x\n- **Required on:** client and server (both sides need the mod installed)\n\n## Source & licence\n\n[GitHub: joseph-osullivan/animal-weights](https://github.com/joseph-osullivan/animal-weights) — MIT licensed.\n\nBug reports and PRs welcome.\n",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 44,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

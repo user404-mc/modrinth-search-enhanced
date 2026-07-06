@@ -1,0 +1,40 @@
+{
+  "id": "bt9K2kLC",
+  "slug": "wildclaiming",
+  "title": "WildClaiming",
+  "description": "Modern Claiming Plugin for Paper/Folia",
+  "body": "# WildClaiming - Claiming System for Paper and Folia\n\nA sleek, modern, and GUI-driven land protection plugin designed to give players full control over their builds while keeping the server experience seamless and grief-free.\n\nWhether you run a survival SMP or a competitive community server, **WildClaiming** bridges the gap between powerful administration and intuitive player management.\n\n---\n\n## 🚀 Key Features\n\n* **Visual Claim Boundaries:** No more guessing where your land ends. WildClaiming uses customizable blocks (like Froglights) and vibrant particle effects to show exactly where a claim is located.\n* **Fully GUI-Driven Dashboard:** Players can manage their entire claim through an elegant, multi-page inventory menu—no messy multi-line commands required for everyday settings.\n* **Granular Role System:** Protect your assets by assigning distinct roles to your friends:\n* **Owner:** Full control over the land, transfers, and deletion.\n* **Members (Trust):** High-tier access (open containers, manage armor stands, etc.).\n* **Helpers (Add):** Low-tier access (interact with doors/buttons, break/place blocks).\n\n\n* **Extensive Flag System:** Toggle over 30+ unique toggles per claim, including PvP, Mob Spawning, TNT/Creeper Damage, Fluid Flow, Crop Trampling, Weather/Time locks, and entry restrictions!\n* **Playtime Block Rewards:** Reward active players by giving them additional claim blocks automatically for every interval they spend online.\n* **Robust Database Integration:** Support for both lightweight **SQLite** storage and high-performance **MariaDB/MySQL** networks.\n* **Admin Inactivity Cleanup:** Easily track down abandoned or inactive claims through a dedicated admin GUI to keep your game world clean.\n\n---\n\n## 🛠️ Commands & Subcommands\n\nWildClaiming features a highly organized, modular command system (`/claim` or aliases like `/claims`, `/claiming`, `/wildclaiming`).\n\n### Player Commands\n\n* `/claim` – Opens the main menu or dashboard of the claim you are standing in.\n* `/claim create` – Claims the area selected with your claim tool.\n* `/claim delete` – Abandons the current claim and returns your blocks.\n* `/claim description <text>` – Sets a custom description for your claim info menu.\n* `/claim expand <amount>` – Expands the claim by a specified number of blocks in the direction you are facing.\n* `/claim give <player>` – Triggers a secure, irreversible transfer of ownership to another player.\n* `/claim info` – Displays detailed information about the current area (ID, owner, size, active members).\n* `/claim list` – Opens a paginated GUI displaying all claims you own or have access to.\n* `/claim flags` – Directly opens the flag configuration matrix for the claim.\n* `/claim show` – Toggles the visibility of the claim borders and particle grids.\n* `/claim access` – Opens a management screen for trusted players and helpers.\n* `/claim sendblocks <player> <amount>` – Gifts some of your claim blocks to another player.\n\n### Moderation & Punish Subcommands\n\n* `/claim kick <player>` – Kicks an unwanted intruder out of your claim boundary.\n* `/claim kickall` – Forcibly removes all non-trusted players from your claim area.\n* `/claim ban <player>` – Bans a player from stepping foot inside your claim.\n* `/claim banall` – Blacklists all players currently not explicitly trusted.\n* `/claim unban <player>` – Removes a player from your claim's ban list.\n* `/claim unbanall` – Clears your claim's ban list completely.\n\n### Admin Commands (`/claim admin <subcommand>`)\n\n* `/claim admin bypass` – Toggles Admin Bypass mode to modify or manage any claim on the server.\n* `/claim admin claimblocks <add/remove/set> <player> <amount>` – Manages player claim block balances directly.\n* `/claim admin deleteall <player>` – Deletes all claims belonging to a specific player.\n* `/claim admin findabandoned` – Opens the dedicated GUI listing claims belonging to inactive players.\n* `/claim admin list <player>` – Lists all claims registered to a specific player.\n* `/claim admin tp <id>` – Teleports directly to the specified claim ID destination.\n* `/claim admin transfer <id> <player>` – Forcibly transfers a specific claim ID to a new player.\n* `/claimadmin reload` – Safely reloads all plugin configurations, flag defaults, database hooks, and translations.\n\n---\n\n## 🔒 Protect Anything (The Flag List)\n\nEvery claim owner can fine-tune their land dynamics using the intuitive flag matrix GUI. Available flags include:\n\n* **Environment:** `Fluid Flow`, `Fire Spread`, `Leaf Decay`, `Gravity`, `Ice/Snow Formation`, `Ice Melting`.\n* **Interactions:** `Buttons & Levers`, `Pressure Plates`, `Doors & Gates`, `Armor Stands`, `Villager Trading`, `Lecterns`.\n* **Combat & Spawning:** `PvP`, `Mob Spawning`, `Kill Animals`, `Kill Monsters`, `Kill Villagers`.\n* **Cosmetics & Fun:** `Player Time Lock` (Day/Night/Noon), `Player Weather Lock`, `Biome Simulation` (changes grass colors inside the claim), `Custom Enter/Exit Titles` & Actionbar messages.\n\n---\n\n## 🔑 Permissions Nodes\n\n### Player Permissions\n\nGranted by default (`default: true`) unless explicitly revoked:\n\n* `claimsystem.command.*` – Grants access to all base player subcommands.\n* Individual nodes: `create`, `delete`, `info`, `list`, `show`, `kick`, `kickall`, `ban`, `banall`, `unban`, `unbanall`, `expand`, `sendblocks`, `give`, `access`.\n\n\n\n### Management & Protection Flags\n\nAllows players to interact with specific flag configurations inside their claims (`default: true`):\n\n* `claimsystem.flag.*` – Allows toggling all flags (*Defaults to OP*).\n* Individual flag access nodes:\n* `claimsystem.flag.fluid_flow` | `claimsystem.flag.fire_spread` | `claimsystem.flag.tnt_damage`\n* `claimsystem.flag.leaf_decay` | `claimsystem.flag.crop_trample` | `claimsystem.flag.block_smelt`\n* `claimsystem.flag.coral_death` | `claimsystem.flag.crop_grow` | `claimsystem.flag.snow_form`\n* `claimsystem.flag.ice_form` | `claimsystem.flag.pvp` | `claimsystem.flag.mob_spawning`\n* `claimsystem.flag.block_homes` | `claimsystem.flag.player_no_enter` | `claimsystem.flag.teleportation`\n* `claimsystem.flag.player_time` | `claimsystem.flag.player_weather`\n* `claimsystem.flag.enter_actionbar` | `claimsystem.flag.exit_actionbar`\n\n\n\n### Administrator Permissions\n\n* `claimsystem.admin.bypass` – Grants Admin Bypass mode to override protection boundaries everywhere.\n* `claimsystem.admin.manage` – Allows administrators to view, modify, and delete foreign claims via administration GUIs.\n\n---\n\n## 🧩 PlaceholderAPI Support\n\nWildClaiming offers native integration with **PlaceholderAPI** to easily display claim data across scoreboards, chat formatters, or tab lists.\n\n| Placeholder | Description | Output Example |\n| --- | --- | --- |\n| `%claimsystem_claimblocks%` | Displays the player's remaining usable claim blocks. | `1450` |\n| `%claimsystem_owner%` | Displays the name of the claim owner at the player's location. | `JustGino` / `Unclaimed` |",
+  "categories": [
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

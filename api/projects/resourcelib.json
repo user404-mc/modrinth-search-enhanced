@@ -1,0 +1,38 @@
+{
+  "id": "lmufrLoV",
+  "slug": "resourcelib",
+  "title": "ResourceLib",
+  "description": "A Spigot library facilitating the integration of resources without the use of pre-hosted resourcepacks.",
+  "body": "**This plugin does nothing on its own!!**\n\n# 📦 ResourceLib\n**ResourceLib** is a lightweight Spigot/Paper plugin library that allows other plugins to dynamically register resource pack files at startup. It generates and serves a custom ZIP pack over HTTP and automatically sends it to players using Minecraft’s native ``setResourcePack()`` API — no manual file hosting required.\n***\n# ✨ Features\n- 📁 Merge JSON models, textures, and more from multiple plugins\n- 🚀 Hosts the resource pack with an embedded HTTP server (no config needed!)\n- 🧠 JSON merging with conflict resolution (as configured!)\n***\n# 🧩 Usage\n## 1. Install\n### Gradle (Kotlin DSL):\n```kotlin\nrepositories {\n    mavenCentral()\n    maven { url = uri(\"https://jitpack.io\") }\n}\n\ndependencies {\n    implementation(\"com.github.Bogieloo:ResourceLib:v1.0\")\n}\n```\n### Maven:\n```xml\n<repositories>\n    <repository>\n        <id>jitpack.io</id>\n        <url>https://jitpack.io</url>\n    </repository>\n</repositories>\n\n<dependencies>\n    <dependency>\n        <groupId>com.github.Bogieloo</groupId>\n        <artifactId>ResourceLib</artifactId>\n        <version>v1.0</version>\n    </dependency>\n</dependencies>\n```\n## 2. Register Your Resources\nIn your plugin’s ``onEnable()``:\n```java\n@Override\npublic void onEnable() {\n    // Register a single file\n    ResourcePackManager.getInstance().registerResource(\n        \"assets/minecraft/models/item/custom_sword.json\",\n        new File(getDataFolder(), \"custom_sword.json\"),\n        false\n    );\n\n    // Register a whole folder (e.g., src/main/resources/tanks/)\n    ResourcePackManager.getInstance().registerResourceEntry(this, \"tanks\", true);\n}\n```\n## 3. Install ResourceLib on the Server\n- Drop the ResourceLib JAR into the ``plugins/`` folder.\n- Make sure port ``61234`` is open to all players!\n- Enjoy!\n***\nMade with ❤️ by devs for devs.\n\n[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q3LZWWC)",
+  "categories": [
+    "decoration",
+    "library",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 63,
+  "followers": 0,
+  "game_versions": [
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7"
+  ],
+  "date_updated": null
+}

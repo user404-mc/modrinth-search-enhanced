@@ -1,0 +1,26 @@
+{
+  "id": "Zz0BwULF",
+  "slug": "discordlink+",
+  "title": "DiscordLink+",
+  "description": "Better Discord link, with SVC integration",
+  "body": "# DiscordLink+\n\nA **Paper/Bukkit/Folia-compatible** Minecraft plugin that bridges your server with Discord — similar to [DiscordSRV](https://github.com/DiscordSRV/DiscordSRV) — with account linking and **Simple Voice Chat** group bridging.\n\n## Features\n\n### Discord chat bridge\n- Minecraft chat → Discord text channel\n- Discord messages → Minecraft chat\n- Optional join/leave and death notifications\n\n### Discord account linking (optional gate)\n1. Player tries to join the server\n2. If linking is enabled and they are not linked, they are blocked with a **numeric code**\n3. They DM that code to the Discord bot\n4. The bot links their Discord account to their Minecraft UUID, saves it, and assigns the configurable **Verified** role\n\n### Simple Voice Chat ↔ Discord voice bridge\n- Any **public** Simple Voice Chat group (no password) gets a matching Discord voice channel\n- In-game players in that group are heard on Discord\n- Discord users in the bridged channel are heard in-game by group members\n- Empty groups can auto-delete their Discord channels (configurable)\n\n## Requirements\n\n- **Paper**, **Spigot**, or **Folia** server on **Minecraft 26.1.2** (Java 25 recommended for Discord voice/DAVE)\n- [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) plugin (for voice bridging)\n- A Discord bot with these intents enabled in the [Developer Portal](https://discord.com/developers/applications):\n  - Message Content\n  - Server Members\n  - Direct Messages\n\n\n## Setup\n\n1. Create a Discord application/bot and copy the token\n2. Invite the bot to your guild with permissions to:\n   - Read/send messages in your chat channel\n   - Manage roles (for Verified)\n   - Manage channels + Connect/Speak (for voice bridging)\n3. Copy IDs (enable Developer Mode in Discord → right-click → Copy ID):\n   - Guild ID\n   - Chat channel ID\n   - Verified role ID\n   - Voice category ID (recommended)\n4. Place the JAR in `plugins/` and start the server\n5. Edit `plugins/DiscordLink+/config.yml`\n6. Run `/mcdiscord reload`\n\n### Linking flow (players)\n1. Join the server → receive kick message with code (if not linked)\n2. DM the code to the bot on Discord\n3. Rejoin the server\n\nIn-game commands:\n- `/mcdiscord link` — generate a link code without reconnecting\n- `/mcdiscord unlink` — remove your link\n- `/mcdiscord status` — check link status\n\nOps bypass the link requirement by default.\n\n### Voice bridge\n1. Install **Simple Voice Chat** on the server (and clients)\n2. Open UDP port **24454** (or your configured SVC port)\n3. Set `voice-bridge.server-host` / `server-port` in config for reference\n4. Create or join a **public** SVC group in-game — a Discord VC named `VC <group name>` appears\n\n## Folia support\n\nThis plugin sets `folia-supported: true` and uses [FoliaScheduler](https://github.com/CJCrafter/FoliaScheduler) for region-safe task scheduling.\n\n## License\n\nMIT\n\n## Full docs availible at: [Docs](https://docs.sushii.dev/discordlinkplus/)",
+  "categories": [
+    "bukkit",
+    "folia",
+    "paper",
+    "social",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

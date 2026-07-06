@@ -1,0 +1,20 @@
+{
+  "id": "PHqEwJLp",
+  "slug": "filed",
+  "title": "Filed",
+  "description": "Authenticated HTTP access to server files. Read, write and delete via an API.",
+  "body": "# Filed\nFiled is a PaperMC plugin that exposes server files over a REST API with token auth and path whitelisting.\n\nRead, create, delete and modify explicitly allowed server files via an API endpoint hosted by your server. Access is gated, and requires an API key that you generate to be included with all requests.\n\n## Installation\n\n2. Place the JAR in your server's `plugins/` directory`\n3. Restart the server.\n4. Configure `plugins/Filed/config.yml`.\n\n## Configuration\nExample config:\n```yaml\nport: 9847\nmaximum_allowed_file_size: 1000000\nauth_token_file: \"tokens.json\"\n\nallowed:\n  files:\n    - \"server.properties\"\n  directories:\n    - \"world/stats\"\n```\n\n| Option | Description |\n|--------|-------------|\n| `port` | HTTP port for the API |\n| `maximum_allowed_file_size` | Max file size in bytes |\n| `auth_token_file` | Where hashed tokens are stored |\n| `allowed.files` | Exact file paths that can be accessed |\n| `allowed.directories` | Directories (and their contents) that can be accessed |\n\nPaths are relative to the server root (the same directory where `server.properties` lives).\n\n## Authentication\n\nGenerate a token in-game or via console:\n\n```\n/filed generate <name>\n```\n\nRequires op permissions. The token is shown once and cannot be retrieved later.\n\nUse the token in requests by including `Bearer <token>` as the `Authorization` header. \n\n## API\n\n### Read\n\n```\nGET /files?path=<path>&content=<true|false>\n```\n\nExample response for files:\n```json\n{\n  \"type\": \"file\",\n  \"path\": \"server.properties\",\n  \"content\": \"...\"\n}\n```\n\nExample response for directories: [does not include directories nor sub-directory files]\n```json\n{\n  \"type\": \"directory\",\n  \"path\": \"world/stats\",\n  \"files\": [\n    {\"type\": \"file\", \"path\": \"player.json\", \"content\": \"...\"}\n  ]\n}\n```\n\nSet `content=false` to omit file contents.\n\n### Write\n\n```\nPUT /files?path=<path>\nContent-Type: text/plain\n\n<file content>\n```\n\nCreates or overwrites the file. Parent directory must exist. Returns the file contents of the modified file. Only files can be written to.\n\n### Delete\n\n```\nDELETE /files?path=<path>\n```\n\nReturns the deleted file's content in the response. Only files can be deleted, not directories.\n\n### Health Check\n\n```\nGET /health\n```\nThis endpoint can be checked without authorisation, and can be used just to make sure that the API endpoint is up and running. Returns `{\"message\": \"ok\"}` if it's all good.\n\n\n## Errors\nExample unsuccessful response:\n```json\n{\n  \"error\": \"forbidden\",\n  \"message\": \"path not allowed by existing configuration rules\"\n}\n```\n\nThe full list of all error codes and their meaning:\n| Error | Code | Meaning |\n|-------|------|---------|\n| `unauthorized` | 401 | Missing or invalid token |\n| `forbidden` | 403 | Path not in whitelist or symlink escape |\n| `not_found` | 404 | File doesn't exist |\n| `invalid_path` | 400 | Provided path isn't valid |\n| `is_directory` | 400 | Can't write/delete directories |\n| `parent_not_found` | 400 | Parent directory doesn't exist (for writes) |\n| `too_large` | 413 | File exceeds size limit |\n\n## Security\n- Paths are normalized and checked against the whitelist before any operation, escaping any `..` traversal.\n- Symlinks that resolve outside the server root are rejected.\n- Tokens are SHA-256 hashed before storage, and used just to verify access.\n- Configurable file size limits prevent memory exhaustion.\n- Sub-directory traversal is not permitted. If a directory is requested, only the files included in that directory are returned.",
+  "categories": [
+    "management",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

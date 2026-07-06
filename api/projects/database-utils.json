@@ -1,0 +1,38 @@
+{
+  "id": "ypRxcGlZ",
+  "slug": "database-utils",
+  "title": "Database Utils",
+  "description": "A simple mod for developers to make database usage easier",
+  "body": "# Database Utils\n\n---\n\n## 🔎 Explanations\n\nThis mod includes some utilities for working with databases.   \nThe most popular connectors are included directly in the mod JAR, which avoids having to import them into each mod and helps reduce the overall size of your projects.  \n\nTo import this library, you must add the following to your build.gradle file.\n```groovy\nrepositories {\n    maven { url \"https://api.modrinth.com/maven\" }\n}\n\ndependencies {\n    implementation \"maven.modrinth:database-utils:1.0.0\"\n}\n```\n\n## 🖥️ Usage\n\nFirst, you need to define your own class `MyCustomDB`, which extends `DatabaseQueries`.  \nThis class is intended to contain all SQL related methods.\nIn this context, you have access to some method from `DatabaseQueries`, such as `getType`, which help you create an implementation compatible with multiple databases.\n\n```java\npublic class MyCustomDB extends DatabaseQueries {\n\n    @Override\n    public void init() {\n        try (Connection connection = getConnection()) {\n            /* ... */\n        } catch (SQLException | DatabaseLinkException e) {\n            LOGGER.error(\"Unable to initialize: {}\", e.getMessage());\n        }\n    }\n    \n    /* other methods */\n}\n```\n\nYou will also need to create a database instance. Here is a little code snippet that creates a database based on a string value. This value can be obtained, for example, from a configuration file.\n```java\nString name = /* ... */;\nType type = DatabaseUtils.getType(name);\nDatabase db;\nswitch (type) {\n    case MYSQL -> db = new MySQL(/* ... */);\n    case MARIADB -> db = new MariaDB(/* ... */);\n    case POSTGRESQL -> db = new PostgreSQL(/* ... */);\n    case SQLITE -> db = new SQLite(/* ... */);\n    case TEST -> db = new TestDB(/* ... */);\n}\n```\nCurrently, this mod supports four databases:\n- MySQL (`mysql`)\n- MariaDB (`mariadb`)\n- PostgreSQL (`postgres`)\n- SQLite (`sqlite`)\n\nA test database is also provided if you want to do some tests using stub values.  \nOnce your database has been initialized, you need to link it to your `MyCustomDB` implementation.\n\n```java\nMyCustomDB custom = new MyCustomDB();\ncustom.link(db);\n\n// You can now use methods that contain SQL\ncustom.init();\n/* ... */\n```\n",
+  "categories": [
+    "fabric",
+    "library",
+    "storage"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 104,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

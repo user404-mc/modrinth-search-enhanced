@@ -1,0 +1,22 @@
+{
+  "id": "NUQIP0lM",
+  "slug": "halfbright",
+  "title": "Halfbright",
+  "description": "Halfbright allows Minecraft to be brighter without looking worse. The better alternative to Fullbright / Gamma Utils Mods.",
+  "body": "# Halfbright\n\nA fundamentally different approach to fullbright in modern Minecraft that looks great at any brightness level!\n\nBrighten up your world without loosing shadows and light sources!\n\nThis is the Fullbright Mod I always wanted to have, but never managed to find.\n\n![Halfbright solves the problem that other Fullbright mods have at 500% Gamma](https://cdn.modrinth.com/data/cached_images/5b474adadc513835c1efd9967203100097cdf25f.webp)\n\n## About\n\nHalfbright brightens up your world only half-way. This means that it makes dark spots brighter, while still having a perfect light transition going from 0 to 15 smoothly.\n\nHalfbright avoids all kind of yellow light artifacts, brightness jumps and clamping. With Halfbright enabled, you can turn up the brightness just a bit so that you can see more in caves while not making everything 100% bright. This allows you to still see Lamps and Torches light up your world, even though the world is already brighter.\n\nYou can configure any value between 0.0 and 15.0 in steps of 0.5, and Halfbright will look great at any level. This means you can still have 'Full Brightness' when you really need it, but also have the option to just make the world just a little bit brighter. You can configure it just like you want!\n\n## Why?\n\nTraditional fullbright mods often attempt to raise the game's gamma levels to extreme values (e.g., 1200%). While this makes things visible, it introduces severe visual issues:\n- **Poor Light Curves:** Smooth lighting is completely broken, resulting in flat, unnatural transitions.\n- **Color Distortion:** Intermediate light levels look washed out or shift toward a harsh yellow tint.\n- **Sodium Incompatibilities:** On modern Minecraft versions (like 1.21.x), performance mods like Sodium completely bypass the vanilla shader pipeline (`lightmap.fsh`), rendering shader-based fullbright mods inactive or broken.\n\n## Features\n\n- **Sodium Options Menu Integration:** Configurable via Sodium's Options interface with a toggle button and a slider to adjust the minimum light level.\n- **Command Support:** Use `/halfbright` (with subcommands `toggle`, `enable`, `disable`, and `level <value>`).\n- **Default Keybindings:**\n  - `H` - Toggle Halfbright on/off.\n  - `Arrow Up` - Increase the minimum light level.\n  - `Arrow Down` - Decrease the minimum light level.\n\n## Incompatabilities\n\nWhile I don't know of any imcompatible mod yet, I'm sure there might be some problems with some other mods, so please let me know if you run into any issues!\n\nWorks with and without Sodium on both Fabric and Neoforge!\n\n## How Halfbright Works\n\nInstead of raising the global gamma, **Halfbright scales the lightmap directly on the CPU**.\n\n1. **Lightmap Scaling:** The mod captures the 16x16 lightmap texture on the CPU.\n2. **Dynamic Range Remapping:** It remaps the lower bounds of the light levels to start at a configurable minimum value (defaults to `8.0`).\n3. **Curve Preservation:** By keeping all 16 steps in the lightmap and scaling them smoothly, the mod preserves Minecraft's smooth lighting curve. Shadows and caves remain visually pleasing, and nights stay dark and atmospheric while ensuring you can still clearly see your surroundings.\n4. **Universal Compatibility:** By writing directly to the lightmap texture before uploading to the GPU, it works seamlessly with both vanilla rendering and custom rendering engines like **Sodium** on both **Fabric** and **NeoForge**.",
+  "categories": [
+    "decoration",
+    "fabric",
+    "game-mechanics",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 81,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

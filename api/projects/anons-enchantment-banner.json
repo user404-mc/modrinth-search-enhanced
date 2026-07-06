@@ -1,0 +1,21 @@
+{
+  "id": "Dinq7HY6",
+  "slug": "anons-enchantment-banner",
+  "title": "Anon's Enchantment Banner",
+  "description": "Very jankily removes enchantments from natural loot pools.",
+  "body": "Since nothing like this seems to exist for Forge 1.20.1, I decided to hack something together quickly for personal use, then upload it in case others needed it. \n\nBasically, this mod will make it so that if a piece of naturally generated loot uses the enchant_randomly or enchant_with_levels functions, it will reroll any enchanted items that hit an enchant from the list in the config. The list in the config is made of _description_ ids, since those are easiest to get, so things like \"enchantment.minecraft.sharpness\". If you want to know what a given enchantment's ID is, check the lang files for the mod that contains it.\n\nSo, for example, if your config looks like this:\n```\nbannedEnchantIds = [\"enchantment.spartanweaponry.propel\", \"enchantment.spartanweaponry.razors_edge\", \"enchantment.spartanweaponry.incendiary\", \"enchantment.spartanweaponry.lucky_throw\", \"enchantment.spartanweaponry.hydrodynamic\", \"enchantment.spartanweaponry.supercharge\", \"enchantment.spartanweaponry.expanse\", \"enchantment.spartanweaponry.sharpshooter\", \"enchantment.spartanweaponry.collectorang\"]\n```\nand you roll a loot table that drops enchanted gear using enchant_randomly or enchant_with_levels, if anything in that table rolls one of those enchantments it will _reroll_ itself continually with the same settings until it no longer has one of those enchantments. In my case, I have essentially removed the extra enchantments from Spartan Weaponry using the config above.\n\nThis mod does not affect the enchanting table, to do that you'll need something like Enchantato, which you can find over on Curseforge. It might in the future if I want to add that feature but right now it's just for loot.\n\n**NOTICE**: This mod uses mixins, in fact it's basically just two mixins and two mixin interfaces. Specifically, I am mixing in to EnchantRandomlyFunction and EnchantWithLevelsFunction at TAIL on both to adjust the return values, and with some accessors and invokers to get at their non-public code. If, for some reason, you have another mod that also mixes in to those areas there may be weirdness or broken behavior.\n\n**WARNING**: Hypothetically, if you try to ban every enchant, you will cause some lag. There is a hardcoded reroll limit of 100 times per item (after which it just gives you what it rolls, banned or not) to prevent infinite loops but this isn't exactly \"free\" computation. Still, for normal use you probably won't notice any hitching or anything. If you enter a bad value in the config (or remove a mod but forget to update the config), it simply won't do anything since it won't match an ID, near-zero cost or negative end-user effect besides a few string checks.\n\nOther than that, I tested it and it works for me. You'll see some INFO log emits whenever it rerolls something, which will tell you it's working.\n\nAs for the license, _this mod is provided with essentially zero support or guarantees of bugfixing/features, but also zero restrictions with what you do with it_. I'm not uploading it to github but feel free to decompile, copy, put it on your own work, whatever. No credits necessary, but I can't stop you if you want to give them. I filed it under MIT since that's the most permissive license available.",
+  "categories": [
+    "forge",
+    "management",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 82,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

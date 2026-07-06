@@ -1,0 +1,35 @@
+{
+  "id": "eM2Lunct",
+  "slug": "spywebsocket",
+  "title": "SpyWebSocket",
+  "description": "SpyWebSocket is a lightweight Paper plugin that exposes a secure WebSocket API for remotely interacting with a Minecraft server.",
+  "body": "📡 SpyWebSocket\n\nSpyWebSocket is a lightweight Paper plugin that exposes a secure WebSocket API for remotely interacting with a Minecraft server.\n\nIt allows external programs (such as Python scripts, bots, or automation tools) to authenticate, execute console commands, and retrieve live player data in real time using structured JSON messages.\n\nThis plugin is designed for local or trusted network usage and focuses on simplicity, flexibility, and thread safety.\n\n✨ Features\n\n🔐 Authentication system\nClients must authenticate before accessing any functionality.\n\n📡 Built-in WebSocket server\nNo proxies or external services required.\n\n🧵 Thread-safe command execution\nAll commands are dispatched on the Minecraft main thread.\n\n📍 Live player coordinates API\nRetrieve world and position data for all online players.\n\n⚙️ Fully configurable\nHost, port, username, and password are configurable via config.yml.\n\n🧩 JSON-based protocol\nSimple, human-readable messages for easy integration.\n\n⚙️ Configuration (config.yml)\nwebsocket:\n  host: 127.0.0.1\n  port: 8765\n  username: admin\n  password: strongpassword\n\n\n⚠️ Security warning:\nKeep the server bound to 127.0.0.1 or protect it with a firewall.\nThis plugin allows remote console command execution.\n\n🔐 Authentication\n\nClients must authenticate first before using any other action.\n\n\n\n➤ Request\n```\n{\n  \"type\": \"auth\",\n  \"username\": \"admin\",\n  \"password\": \"strongpassword\"\n}\n```\n\n\n➤ Success Response\n```\n{\n  \"type\": \"auth_ok\"\n}\n```\n\n➤ Failure Response\n```\n{\n  \"type\": \"auth_fail\"\n}\n```\n\n🧾 Execute Console Commands\n\nExecutes a command as the server console.\n\n➤ Request\n```\n{\n  \"type\": \"command\",\n  \"command\": \"say Hello from WebSocket\"\n}\n```\n\nCommands are executed safely on the main server thread.\n\n📍 Get Online Player Coordinates\n\nReturns position and world data for all online players.\n\n➤ Request\n```\n{\n  \"type\": \"get_players\"\n}\n```\n\n➤ Response\n```\n{\n  \"type\": \"players\",\n  \"players\": {\n    \"Notch\": {\n      \"x\": 123.45,\n      \"y\": 64.0,\n      \"z\": -98.32,\n      \"world\": \"world\"\n    },\n    \"Steve\": {\n      \"x\": -20.0,\n      \"y\": 70.0,\n      \"z\": 45.1,\n      \"world\": \"world_nether\"\n    }\n  }\n}\n```\n❌ Error Responses\n\nIf a request is invalid or unauthorized, the server responds with:\n```\n{\n  \"type\": \"error\",\n  \"reason\": \"not_authenticated\"\n}\n```\n\nCommon error reasons:\n\ninvalid_json\n\nmissing_type\n\nunknown_type\n\nnot_authenticated\n\n🧠 Use Cases\n\nPython-controlled Minecraft automation\n\nAdmin dashboards or monitoring tools\n\nTwitch / chat integrations\n\nLive overlays or external UIs\n\nCustom moderation tools\n\n🛡️ Security Notes\n\nOnly authenticated clients can issue commands or access data\n\nIntended for trusted environments\n\nNot recommended for public-facing servers without additional protection\n\n📌 Compatibility\n\nPlatform: Paper\n\nMinecraft version: 1.21+\n\nJava version: 21\n\nDependency handling: Shaded (Shadow JAR)\n\n⚠️ Disclaimer\n\nThis plugin enables remote execution of server console commands.\nUse responsibly and only on servers you trust.",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

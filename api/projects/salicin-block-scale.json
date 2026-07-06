@@ -1,0 +1,20 @@
+{
+  "id": "JAG6ZQRQ",
+  "slug": "salicin-block-scale",
+  "title": "Salicin: Block Scale",
+  "description": "Easily and conveniently resize & rotate blocks (with BERs and collision boxes)",
+  "body": "Easily and conveniently resize and rotate blocks (including their block entity renderers and collision boxes) with a single interface.\n\nThis is a library mod for Minecraft Forge 1.20.1. Have your `Block` implement `IScalableBlock` and/or `IRotatableBlock`, and it automatically gets scaled/rotated model rendering, BER rendering, and VoxelShape collision, no per-block mixin registration required.\n\n# Features\n\n- **One interface, everything scaled**: implement `IScalableBlock`, return an `SBSProp` config, done.\n- **One interface, everything rotated**: implement `IRotatableBlock`, return an `SBSRProp` config, and blocks rotate around any axis at any angle.\n- **Block model rendering**: BakedQuad vertices transformed via `BakedModel` proxy at model bake time, ensuring compatibility with rendering replacers like Embeddium & Oculus.\n- **Block entity rendering**: BERs (chests, signs, etc.) scale and rotate together with their parent block via Mixin injection into `BlockEntityRenderDispatcher`.\n- **Collision box scaling & translation**: VoxelShape automatically transformed when `scaleShape` is enabled; intelligently translated to match rotated model center.\n- **Compound transforms**: blocks can implement both interfaces — rotation is applied first, then scaling.\n- **Configurable pivot**: scale and rotate around any anchor point within the block.\n- **Zero configuration**: no mixin config, no JSON, no data-gen. Pure API.\n\n# Usage\n\n```java\npublic class MyBlock extends Block implements IScalableBlock, IRotatableBlock {\n\n    @Override\n    public SBSProp getScaleConfig(BlockState state) {\n        // Scale to 50% around the block center, including collision\n        return new SBSProp(0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, true);\n    }\n\n    @Override\n    public SBSRProp getRotationConfig(BlockState state) {\n        // Rotate 45° around Y axis, centered on the block\n        return new SBSRProp(45f, Direction.Axis.Y, 0.5f, 0.5f, 0.5f);\n    }\n\n    @Override\n    public VoxelShape getShape(BlockState state,\n                               BlockGetter level,\n                               BlockPos pos,\n                               CollisionContext ctx) {\n        VoxelShape rotatedShape = getTranslatedShape(state, level, pos, ctx, \n                                                     super.getShape(state, level, pos, ctx));\n        return getScaledShape(state, level, pos, ctx, rotatedShape);\n    }\n}\n```\n\n# SBSProp Parameters\n\n| Field | Description |\n|-------|-------------|\n| `scaleX / Y / Z` | Scale multiplier per axis (1.0 = original) |\n| `pivotX / Y / Z` | Anchor point in block coordinates (0~1, 0.5 = center) |\n| `scaleShape` | Whether to also scale the collision VoxelShape |\n\n# SBSRProp Parameters\n\n| Field | Description |\n|-------|-------------|\n| `degree` | Rotation angle in degrees |\n| `axis` | Rotation axis (`Direction.Axis.X / Y / Z`) |\n| `pivotX / Y / Z` | Anchor point in block coordinates (0~1, 0.5 = center) |\n\n# Compatible\nThis mod is designed to be compatible with Embeddium & Oculus. Any incompatibility is welcome to feedback.\n\n# Feedback\nIf you have issues/pr to submit, please first send a brief description about the issue to 3485874663@qq.com, you will be redirected to a gitea website with username & password. You can continue your issues/pr there.\n",
+  "categories": [
+    "decoration",
+    "forge",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

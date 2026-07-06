@@ -1,0 +1,22 @@
+{
+  "id": "1LTZnmB3",
+  "slug": "auracraft",
+  "title": "AuraCraft",
+  "description": "AuraCraft adds token-based, persistent effect progression for SMP-style gameplay.",
+  "body": "# AuraCraft (Fabric)\n\nAuraCraft adds a persistent, point-based aura system for SMP-style gameplay. Players choose status effects as **auras** through an in-game UI, upgrade them over time, and defend them in PvP. Server admins control balance through GameRules and config.\n\n## Features\n- Press **Y** (default) to open the **Aura Picker** at any time - even with no points to spend.\n![Selection Screen](https://cdn.modrinth.com/data/cached_images/46e79d116eb7aec94cd84dfcd2cbb8c587f05f7a.png)\n- Selected auras persist across sessions and are reapplied automatically on login.\n- Picking the same aura again **upgrades** it (e.g. Speed I -> Speed II), up to a configurable max level.\n- Combined cap prevents overstacking: `selected auras + unspent points ≤ max_auras`.\n- **Restoration Queue** - auras lost to PvP or voluntarily withdrawn are remembered. Using an **Aura Plus** restores the most recently lost aura automatically before granting a new point.\n- PvP loss system: dying to a player removes your most recent aura (or a point if you have none). The killer receives an **Aura Plus** drop if `drop_plus_on_kill` is enabled.\n- Multiplayer handshake gate - clients without AuraCraft or on a mismatched version are rejected on join.\n- Mod Menu config screen with per-aura enable/disable toggles and upgrade caps.\n\n## Items\n\n| Item | Stack | Behavior |\n|---|---|---|\n| `Aura Plus` ![Aura Plus](https://cdn.modrinth.com/data/cached_images/5650f7f54061c99bbd0f189ec2515f0216232e7f.png) | 1 | Restores your most recently lost aura (if queued), otherwise grants +1 point. Not consumed in creative mode. |\n| `Aura Reset` ![Aura Reset](https://cdn.modrinth.com/data/cached_images/79cfba9bcf293acfcf1517f52cc3c239c6e511d5.png) | 8 | Refunds all points (invested + unspent), capped at `max_auras`. Requires at least one previously selected aura. Not consumed in creative mode. |\n\n## Commands\nAll `/aura` commands require **GameMaster (OP level 2+)**, except `/aura withdraw`.\n\n- `/aura` - Toggle the AuraCraft UI on/off server-wide.\n- `/aura status [player]` - View a player's current points and selected auras.\n- `/aura reset [player]` - Refund all points for repicking (mirrors the Aura Reset item).\n- `/aura restart [player]` - Hard reset: returns player to 1 point, clears all auras and the restoration queue.\n- `/aura plus [player] [amount]` - Grant extra points to a player.\n- `/aura remove [player] [amount]` - Remove points or auras from a player.\n- `/aura withdraw [amount]` - Convert your own points/auras into Aura Plus items (self-use).\n\n## GameRules\nConfigured in-game via `/gamerule` under the **AuraCraft** category.\n\n| Rule | Default | Description |\n|---|---|---|\n| `max_auras` | `3` | Combined load cap (selected auras + unspent points) |\n| `drop_plus_on_kill` | `true` | Whether killing a player drops an Aura Plus |\n| `enable_heart_recipe` | `true` | Whether the Heart of the Sea -> Aura Plus recipe is craftable |\n\n## Config\nConfig file: `config/auracraft.json`\n\nControls per-aura availability and max upgrade level only. Gameplay numbers are managed through GameRules.\n\n```json\n{\n  \"enabledAuras\": {\n    \"minecraft:speed\": true,\n    \"minecraft:strength\": true,\n    \"minecraft:blindness\": false\n  },\n  \"auraUpgradeLevels\": {\n    \"minecraft:speed\": 2,\n    \"minecraft:strength\": 1\n  }\n}\n```\n\n- `enabledAuras` - Which auras appear in the picker UI.\n- `auraUpgradeLevels` - Max upgrade level per aura (`1` = base only, `2` = one upgrade, etc.).\n\n## License\nThis mod is licensed under the MIT License. See the [LICENSE](https://github.com/artm-stack/AuraCraft/blob/main/LICENSE) file for details.\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "minigame",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 113,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

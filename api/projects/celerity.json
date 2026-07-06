@@ -1,0 +1,23 @@
+{
+  "id": "XBQPQck9",
+  "slug": "celerity",
+  "title": "Celerity",
+  "description": "Celerity: Geo-Based Server Redirection: This plugin allows players to connect to the closest proxy server based on their geographic location.",
+  "body": "# Celerity: Geo-Based Server Redirection\n\n# USE AT YOUR OWN RISK (NOT IN PRODUCTION)\n\n## About\nThis plugin allows players to connect to the closest server based on their geographic location. By simply entering myserver.com, players are automatically redirected to the nearest server without the need for proxying their connection.\n\nExample Scenario:\n\nServer A (east.myserver.com) located in New York.\n\nServer B (west.myserver.com) located in Los Angeles.\n\nPlayers who connect through myserver.com will be redirected to either Server A or Server B, depending on which is geographically closer.\n\n## Road Map\n\nThis is a work in progress but here is a basic roadmap for what needs to be done:\n- Set up the cache expiry system.\n- Allow clients with old versions to connect through.\n- Add more API options\n- Allow IP history to be stored locally. SQLite?\n\nIf you would like to help out, check out the github!\n\n## Installing\nDrop it into the velocity plugins folder of your main proxy server, then make sure all downstream server are configured to accept players with transfer packets.\n\nIt will then make a config.toml like such:\n```\n[settings]\n\n# List of domains where no transfer should occur if the user connects using these\nno_transfer_domains = [\"east.myserver.com\", \"est.myserver.com\"]\ndebug = false   # Enable to get debug messages. You know the drill\n\n[settings.api]\nenabled = true             # Disabling this will stop use from using the api.\nprovider = \"ipgeolocation\" # Right now only ipgeolocation (https://ipgeolocation.io/) is supported, go there to make an api key\nkey = \"somekeyyouget\"      # If no key is needed, set to None\n\n[settings.db_cache]\nenabled = true           # Whether to use the database caching feature\ncache_ip = true          # Save IPs in the database\ncache_username = true    # Save usernames in the database (may decrease accuracy)\ncache_expire = 730       # Hours until a cached entry expires (0 disables expiration)\n\n[db] ## Database Configuration for Cache\naddress = \"120.0.0.1:12345\"\ndatabase = \"fundatabase\"\ntable_prefix = \"cel_\"\nusername = \"username\"\npassword = \"password\"\n\n[servers] ## Server Configuration section\n\n[servers.easternserver]\nip = \"east.myserver.net\"\nport = 25565\nlatitude = 40.7128   # Example: Latitude of New York City\nlongitude = -74.0060 # Example: Longitude of New York City\n\n[servers.westernserver]\nip = \"123.45.68.79\"\nport = 42069\nlatitude = 34.0522    # Example: Latitude of Los Angeles\nlongitude = -118.2437 # Example: Longitude of Los Angeles\n```\n\n## Building\nYou should be able to build this plugin with Maven, using Java 21.\n",
+  "categories": [
+    "management",
+    "optimization",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 59,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

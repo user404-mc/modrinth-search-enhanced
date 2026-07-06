@@ -1,0 +1,35 @@
+{
+  "id": "6ozRs78b",
+  "slug": "coop",
+  "title": "ConfigOptimizer",
+  "description": "Optimizes your Minecraft's server config for better server performance.",
+  "body": "# ConfigOptimizer\n\nConfigOptimizer detects your server software (Bukkit, Spigot, Paper, Purpur, and their forks), applies battle-tested performance tweaks from the [community optimization guide](https://raw.githubusercontent.com/YouHaveTrouble/minecraft-optimization/refs/heads/1.21.11/README.md), and restarts your server so changes take effect instantly. Everything is safely backed up before any modification.\n\n## How it works\n\n1. **Smart Detection** — Scans for unique classes to identify your server type: Purpur → Paper → Spigot → Bukkit. Forks are automatically recognized (e.g., a Purpur fork is treated as Purpur)\n\n2. **Targeted Patches** — Only applies settings relevant to your server. Paper gets Paper + Spigot + Bukkit patches; Purpur gets everything including Purpur-specific settings; Bukkit applies `server.properties` + `bukkit.yml` tweaks. No cross-contamination.\n\n3. **Needs Check** — Reads every config file (`server.properties`, `bukkit.yml`, `spigot.yml`, `paper-world-defaults.yml`, `paper-global.yml`, `purpur.yml`) and compares current values against optimized targets. If everything is already optimal, the plugin disables itself and does nothing.\n\n4. **Automatic Backup** — Before any write, copies every affected file to `plugins/ConfigOptimizer/backups/<date>/` with full directory structure preserved. Rollback is a simple copy-paste away.\n\n5. **Guided Restart** — After applying patches, schedules a clean server shutdown 2 seconds later so all new settings take effect on next boot.\n\n6. **Self-Disabling** — Once optimizations are applied, the plugin shuts itself down. It only runs again if configs are reset or changed.\n\n## What gets optimized\n\nOver 100 individual settings across all config files:\n\n| Config | Highlights |\n|--------|-----------|\n| `server.properties` | `simulation-distance`, `view-distance`, `network-compression-threshold` |\n| `bukkit.yml` | spawn limits, tick rates for all mob categories |\n| `spigot.yml` | entity activation/tracking ranges, merge radius, hopper timings, mob-spawn-range |\n| `paper-world-defaults.yml` | chunk unloading, despawn ranges, per-player mob spawns, entity-per-chunk-save limits, alt-item-despawn, redstone impl, anti-xray, nether roof damage, tick rates, armor stands, explosions, treasure maps, hopper behavior |\n| `paper-global.yml` | velocity settings (disabled by default) |\n| `purpur.yml` | alternate keepalive, zombie behavior, portal usage, villager lobotomize, dolphin treasure search, teleport-if-outside-border |\n\n## Usage\n\n1. Drop the jar into `plugins/`\n2. Restart the server\n3. ConfigOptimizer detects, backs up, patches, and restarts — all automatically\n\n## Requirements\n\n- Java 21+\n- Bukkit / Spigot / Paper / Purpur (or any fork)\n- No configuration needed — zero setup\n\n## FAQ\n\n**Q: Will this break my server?**\nA: All values are based on the well-known community optimization guide. Backups are created automatically before any change.\n\n**Q: Does it work on forks?**\nA: Yes. The detector checks for parent software classes, so any fork of Paper or Purpur is correctly identified.\n\n**Q: Can I run it again after changing configs?**\nA: Yes, Go to the plugins/ConfigOptimizer folder and delete a file called \"OPTIMIZATIONSAPPLIED\", and after that reboot the server.",
+  "categories": [
+    "bukkit",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 20,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

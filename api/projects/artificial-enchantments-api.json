@@ -1,0 +1,36 @@
+{
+  "id": "3r7G1rGR",
+  "slug": "artificial-enchantments-api",
+  "title": "Artificial Enchantments API",
+  "description": "centralized singleton enchantment managment api (folia comaptible)",
+  "body": "# Artificial Enchantments\n\nA shared plugin library for Paper 1.21+ servers that lets other plugins create **real, client-visible custom enchantments** — no lore hacks, no packet trickery.\n\n## What It Does\n\nArtificial Enchantments is a **server-side library** that multiple plugins can depend on simultaneously. Instead of every enchantment plugin shipping its own (conflicting) enchantment system, they all hook into this one shared registry.\n\n**For players:** Enchantments show up natively in the client — you see them in item tooltips, anvil interfaces, and the enchantment table. They look and feel like vanilla enchantments because they *are* registered in the native Paper registry.\n\n**For server owners:** Install this once, and any plugin that depends on it Just Works™. No conflicts, no duplicate listeners, no \"why does my sword have 3 different lore-based sharpness enchantments\" headaches.\n\n## Requirements\n\n- **Paper 1.21+** (Purpur and Folia supported)\n- **Java 21+**\n\n## Installation\n\n1. Download the latest release from the **Files** tab on this page.\n2. Drop `artificial-enchantments-x.x.x.jar` into your server's `plugins/` folder.\n3. Start (or restart) your server.\n4. Install any plugin that depends on Artificial Enchantments.\n\nThat's it. There is no configuration file — this is a library, not a plugin with commands or settings.\n\n## Why This Exists\n\nMost custom enchantment plugins before 1.21 used one of two approaches:\n\n- **Lore-based:** Fake enchantments stored in item lore. Looks janky, breaks constantly, incompatible with other plugins.\n- **Shaded registries:** Each plugin ships its own copy of an enchantment library. They conflict with each other, duplicate event listeners, and corrupt each other's state.\n\nArtificial Enchantments solves this by sitting **between** the server and enchantment plugins as a single, shared authority. Every plugin that uses it talks to the same registry, the same event dispatch spine, and the same native Paper enchantment system.\n\n## Compatibility\n\n| Platform | Status |\n|---|---|\n| Paper | ✅ Supported |\n| Purpur | ✅ Supported |\n| Folia | ✅ Supported |\n| Spigot | ❌ Not supported (requires Paper 1.21+ API) |\n\n## For Plugin Developers\n\nIf you're building a plugin that uses Artificial Enchantments, check out the [GitHub repository](https://github.com/modpotato-plugins/artificial-enchantments) for:\n\n- API documentation\n- Gradle/Maven setup instructions\n- Code examples\n- Javadoc reference\n\n**Do not shade this library into your plugin.** It must remain a separate plugin JAR in the `plugins/` folder. Every dependent plugin references it via `compileOnly`.\n\n## Support\n\n- **Bug reports & feature requests:** [GitHub Issues](https://github.com/modpotato-plugins/artificial-enchantments/issues)\n- **Source code:** [GitHub](https://github.com/modpotato-plugins/artificial-enchantments)\n\n## License\n\nMIT License\n",
+  "categories": [
+    "folia",
+    "game-mechanics",
+    "library",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

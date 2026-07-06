@@ -1,0 +1,26 @@
+{
+  "id": "oW0XTNmr",
+  "slug": "forestcore",
+  "title": "ForestCore",
+  "description": "API for my plugins",
+  "body": "# ForestCore\n\nA plugin that adds several features at once for my plugins\n\n## Key Features\n\n### 1. Update system\n- Automatic update check via Modrinth\n- Notifications about available updates in the console\n- Support for all plugins connected to ForestCore\n\n### 2. Color system\n- HEX color support (&#000000)\n- Vanilla color support (&f)\n- Convenient `ColorUtils.colorize()` method for use in plugins\n\n### 3. Plugin management menu\n- View all connected plugins\n- Display information about each plugin:\n  - Name\n  - Version\n  - Plugin ID\n  - Operation status\n- Ability to edit plugin configuration directly from the menu\n\n### 4. Command system\n- `/fcore` - basic information about ForestCore\n- `/fcore help` - list of all commands\n- `/fcore help <plugin-id>` - commands of a specific plugin\n- `/fcore reload <plugin-id>` - reload plugin configuration\n- `/fcore menu` - open plugin management menu\n- `/fcore <plugin-id>` - information about a specific plugin\n\n## Installation\n\n### For servers\n1. Download the latest version of `ForestCore-1.0-SNAPSHOT.jar` from the `target` folder after building the project\n2. Place the file in the `plugins` folder of your server\n3. Restart the server\n4. ForestCore is ready to use!\n\n### For developers\n\n## Connecting the plugin to ForestCore\n\n### 1. Adding a dependency\nIn your plugin's `pom.xml` add:\n\n```xml\n<repositories>\n    <repository>\n        <id>github</id>\n        <name>GitHub Packages</name>\n        <url>https://maven.pkg.github.com/camper_crafting/ForestCore</url>\n    </repository>\n</repositories>\n\n<dependencies>\n    <dependency>\n        <groupId>ru.forestcore</groupId>\n        <artifactId>ForestCore</artifactId>\n        <version>1.0-SNAPSHOT</version>\n        <scope>provided</scope>\n    </dependency>\n</dependencies>\n```\n\n### 2. Adding dependency to plugin.yml\n```yaml\ndepend: [ForestCore]\n```\n\n### 3. Registering the plugin\nIn the `onEnable()` method of your plugin:\n\n```java\nForestCore forestCore = (ForestCore) Bukkit.getPluginManager().getPlugin(\"ForestCore\");\nif (forestCore != null) {\n    ForestPlugin forestPlugin = new ForestPlugin(\n        \"Plugin Name\",           // plugin name\n        getDescription().getVersion(), // plugin version\n        \"plugin-id\",                  // Unique plugin ID\n        \"camper_crafting\",            // author's name\n        \"https://modrinth.com/plugin/your-plugin\", // link to Modrinth\n        \"https://github.com/your-username/your-plugin\", // link to GitHub\n        Arrays.asList(                // List of plugin commands\n            \"/command1 - Command Description 1\",\n            \"/command2 - Command Description 2\"\n        )\n    );\n    forestCore.getPluginManager().registerPlugin(\"plugin-id\", forestPlugin);\n}\n```\n\n## Use of colors\n\n### HEX colors\n```java\nString message = ColorUtils.colorize(\"&#FF0000Red text\");\n```\n\n### Vanilla colors\n```java\nString message = ColorUtils.colorize(\"&cRed text\");\n```\n\n### Color combination\n```java\nString message = ColorUtils.colorize(\"&#FF0000Red text &aand green text\");\n```\n\n## Plugin Example\n\nThere is an `example-plugin.yml` in the repository called `ExamplePlugin` that demonstrates:\n- Connecting to ForestCore\n- Using colors\n- Registering commands\n- Integrating with ForestCore menus\n\n## Requirements\n\n- Minecraft 1.16.5\n- Paper/Spigot server\n- Java 8 or higher\n\n## Support\n\nIf you have any problems or questions, please create an Issue in the GitHub repository.",
+  "categories": [
+    "library",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 71,
+  "followers": 0,
+  "game_versions": [
+    "1.16",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5"
+  ],
+  "date_updated": null
+}

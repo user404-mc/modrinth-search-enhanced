@@ -1,0 +1,23 @@
+{
+  "id": "AcfWJW3e",
+  "slug": "llama.jar",
+  "title": "llama.jar",
+  "description": "Local AI inference in Minecraft based on llama.cpp",
+  "body": "# llama.jar 🦙\n\n**llama.jar** is a lightweight, high-performance Minecraft mod that brings the power of local Large Language Models (LLMs) directly into Minecraft using **llama.cpp**. \n\nRuns completely offline on your own hardware with no API keys, no subscriptions, and zero external network requests. \n\n> [!WARNING]\n> This is an alpha release and has not been fully tested in all environments. Use with caution and please report any bugs or issues you encounter.\n\n---\n\n## Key Features\n\n*   **Offline Local LLM Inference**: Run your favorite open-source models (such as LLaMA-3, Qwen-2.5, Phi-3, Mistral, and more) directly inside the Minecraft process.\n*   **Hardware Acceleration & GPU Support**: Supports multi-core CPU execution alongside GPU offloading (CUDA, Metal, OpenCL/CLBlast) for hardware-accelerated generation. Supports multi-GPU configurations.\n*   **Built-in Game Integration**: Prompt your loaded models in real-time using in-game commands or listen to interactions.\n*   **Modding Library Base**: Fully architected to serve as a library mod. You can import `llama.jar` in your custom mods to easily add AI-driven NPCs, dynamic quest generation, or intelligent automated assistants.\n*   **Wide Version Compatibility**: Supports both **Forge** and **Fabric** platforms across multiple Minecraft versions:\n    *   `1.20.1`\n    *   `1.21.1`\n    *   `1.21.11`\n\n---\n\n## How to Setup\n\n1.  **Download the Mod**: Download the correct jar matching your mod loader (Forge or Fabric) and Minecraft version.\n2.  **Add GGUF Models**: Download any GGUF format model (e.g. `llama-3-8b-instruct.Q4_K_M.gguf` or smaller models like `qwen-2.5-1.5b-instruct`) and place the `.gguf` file inside your `.minecraft/models/` folder.\n3.  **Launch Minecraft**: The mod will automatically set up the workspace on startup.\n\n---\n\n## In-Game Commands\n\nManage models and run prompts on the fly using command permissions:\n\n*   `/model list` — Lists all available GGUF files in your `models/` directory.\n*   `/model load <filename>` — Loads the selected model into memory.\n*   `/model status` — Displays information about the currently active model.\n*   `/llama <prompt>` — Submits a prompt to the loaded model and streams the output directly to chat.\n*   `/llama stop` — Immediately halts the current text generation.\n\n---\n\n## Configuration\n\nA common configuration file (`llamajar-common.toml` or `llamajar.json`) is generated in your `config` directory. You can tweak performance parameters:\n\n*   `modelName` — Name of the GGUF model to load automatically on startup (leave empty to load manually).\n*   `systemPrompt` — Set a default system prompt to customize model behavior, personality, or guidelines (leave empty for no system prompt).\n*   `gpuLayers` — The number of model layers to offload to the GPU (higher offloads more computation to GPU VRAM).\n*   `threads` — Number of CPU threads to allocate to model inference (defaults to matching CPU physical cores).\n*   `contextLength` — The maximum context window size (tokens) for conversations.\n\n---\n\n## Developer Integration (Library Mod Usage)\n\nTo use `llama.jar` as a foundation for your own AI-enabled mod, add it to your development environment.\n\n### Gradle Setup\n\n```groovy\nrepositories {\n    mavenLocal() // After publishing llama.jar locally\n}\n\ndependencies {\n    // For Fabric development\n    modImplementation \"com.popr4x.llamajar:llamajar-fabric-1.20.1:alpha-1.0\"\n    \n    // For Forge development\n    implementation \"com.popr4x.llamajar:llamajar-forge-1.20.1:alpha-1.0\"\n}\n```\n\n### Accessing llama.cpp context in Java\n\n```java\nimport com.llamajar.LlamaJar;\nimport de.kherud.llama.LlamaModel;\nimport de.kherud.llama.LlamaIterator;\n\n// Check if a model is currently loaded\nif (LlamaJar.isModelLoaded()) {\n    LlamaModel model = LlamaJar.getModel();\n    // Perform custom inferences, register custom listeners, or manage model state\n}\n```\n\n---\n\n## License\n\nThis project is licensed under the **AGPLv3 License**. Under the hood, it utilizes `llama.cpp` and the Java JNI bindings from `de.kherud:llama` licensed under Apache-2.0.\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "library"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 49,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

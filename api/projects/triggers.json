@@ -1,0 +1,22 @@
+{
+  "id": "O39hIwP5",
+  "slug": "triggers",
+  "title": "Triggers",
+  "description": "A modular Forge-style event API for triggers!",
+  "body": "# Triggers\n\n<a href='https://files.minecraftforge.net'><img alt=\"forge\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg\"></a>\n<a href='https://fabricmc.net'><img alt=\"fabric\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg\"></a>\n<a href='https://neoforged.net/'><img alt=\"neoforge\" height=\"56\" src=\"https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/neoforge_vector.svg\"></a>\n\n## About\n\n**Triggers** is a library mod that provides a unified, modular, Forge-style event API for in-game triggers and\nadvancement criteria. It abstracts standard Minecraft triggers (such as item enchantment, block interactions, taming\nanimals, and earning stats) into an easy-to-use event bus. This allows developers to seamlessly listen to and handle\nthese actions across multi-loader environments (Forge, Fabric, and NeoForge) without needing to mixin to the triggers\nthemselves.\n\n## For Developers\n\n### Adding to your `build.gradle`\n\nYou can easily add Triggers to your development environment using the Modrinth Maven.\n\nFirst, add the Modrinth maven to your `repositories` block:\n\n```gradle\nrepositories {\n    exclusiveContent {\n        forRepository { \n            maven { \n                url = \"https://api.modrinth.com/maven\" \n            } \n        }\n        filter { \n            includeGroup \"maven.modrinth\" \n        }\n    }\n}\n````\n\nThen, add the mod as a dependency in your `dependencies` block:\n\n```gradle\ndependencies {\n    // Replace <version> with the target version of Triggers\n    implementation \"maven.modrinth:triggers:<version>\" \n}\n```\n\n### Example Usage\n\nTriggers uses a custom event bus that functions similarly to Forge's event bus. You can register listeners to\n`Triggers.EVENTS` and listen for specific events.\n\n```java\nimport com.evandev.triggers.Triggers;\nimport com.evandev.triggers.event.events.TriggerEntityEvent;\nimport com.evandev.triggers.event.events.TriggerPlayerEvent;\n\npublic class MyMod {\n    public static void init() {\n        // Listen for when a player enchants an item\n        Triggers.EVENTS.addListener(TriggerPlayerEvent.Enchant.class, event -> {\n            System.out.println(event.player.getName().getString() + \" enchanted \" + event.item);\n        });\n\n        // Listen for when an animal is tamed\n        Triggers.EVENTS.addListener(TriggerEntityEvent.TameAnimal.class, event -> {\n            if (event.causedByPlayer != null) {\n                System.out.println(\"Animal tamed by: \" + event.causedByPlayer.getName().getString());\n            }\n        });\n    }\n}\n```\n\n## License\n\n[![Code license (MIT)](https://img.shields.io/badge/code%20license-MIT-green.svg?style=flat-square)](https://github.com/evanbones/Triggers/blob/1.20.1/LICENSE)\n\n---\n\n[![discord-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/discord-plural_vector.svg)](https://discord.com/invite/JcGRdT6Pbx) [![github-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/github-plural_vector.svg)](https://github.com/evanbones/Triggers)\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 143,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,25 @@
+{
+  "id": "WjO53Sw8",
+  "slug": "create-gl4es-stencil-fix",
+  "title": "create-gl4es-stencil-fix",
+  "description": "Fixes Create mod crash on mobile (GL4ES/Krypton) create模组的手机端修复",
+  "body": "# GL4ES Stencil Fix\n\nA tiny Forge mod that fixes a crash affecting **Create** (机械动力) on mobile Minecraft launchers that use OpenGL wrappers like **GL4ES** or **Krypton Wrapper**.\n\n## The Problem\n\nOn mobile Android launchers (ZalithLauncher, PojavLauncher, FCL, etc.), the game crashes during loading with:\n\n- `GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT` (GL4ES / GLES 2.0)\n- `GL_FRAMEBUFFER_UNSUPPORTED` (Krypton Wrapper / GLES 3.x)\n\nThe crash happens because Create/Ponder calls `RenderTarget.enableStencil()`, which tries to attach a stencil buffer to an existing FBO. Mobile OpenGL wrappers can't handle this operation, causing Forge to throw a fatal `RuntimeException`.\n\n## The Fix\n\nThis mod uses a **Forge Coremod** (ASM bytecode transformer) that runs at class-load time to replace `enableStencil()` with a no-op. The stencil buffer call is never made, so the crash never occurs.\n\nIf the patch is applied successfully, you'll see this line in the log:\n\"\"\"\n[GL4ESFix] SUCCESS: RenderTarget.enableStencil() replaced with no-op RETURN.\n\"\"\"\n\n## Compatibility\n\n- **Minecraft:** 1.20.1\n- **Forge:** 47.x\n- **Create:** 0.5.x and 6.0.x (all 1.20.1 versions)\n- **Launchers:** ZalithLauncher, PojavLauncher, FCL, and any GL4ES-based launcher\n- **Client-side only** — does not need to be installed on servers\n\n## Side Effects\n\nThe stencil buffer is used by Create/Ponder for UI clipping in the **Ponder** tutorial viewer. With this fix, that clipping effect is disabled, which may cause minor visual artifacts (UI elements slightly overflowing their bounds) in the Ponder screen.\n\nNormal gameplay, machines, contraptions, and all other features are completely unaffected.\n\n## Installation\n\nPlace the jar in your `.minecraft/mods/` folder alongside Create. No additional configuration required.\n",
+  "categories": [
+    "forge",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 140,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

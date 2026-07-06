@@ -1,0 +1,40 @@
+{
+  "id": "oKfIr67I",
+  "slug": "voidcleaner",
+  "title": "Void Cleaner",
+  "description": "VoidCleaner automatically and intelligently cleans up dropped items, projectiles, vehicles, and mobs from your server, storing them in a special \"void\" (storage).",
+  "body": "# 🪐 VoidCleaner\n\n**Intelligent item management plugin for Paper Minecraft 1.20+ servers**\n\nVoidCleaner automatically and intelligently cleans up dropped items, projectiles, vehicles, and mobs from your server, storing them in a special \"void\" (storage) where players can retrieve them. The system automatically adjusts cleanup aggression based on server load (TPS).\n\n## ✨ Key Features\n\n### 🎯 Intelligent TPS-Based Cleanup\n- **Healthy TPS** → Normal cleanup (items, projectiles, empty vehicles)\n- **Low TPS** → Aggressive cleanup (+ mobs)\n- **Critical TPS** → Full cleanup (almost everything)\n\n### 📦 Multi-World Void Storage\n- Separate void for each world group (Overworld, Nether+End, Custom)\n- Items automatically route to the correct void\n- Flexible world-to-void mapping in config\n\n### ⚡ Asynchronous Cleanup\n- `/void worldclean` — Cleans unloaded chunks without lag\n- Background scanning, main-thread removal\n- Safe for all operations\n\n### 🔄 Real-Time Player Synchronization\n- When player A takes an item, player B sees it instantly\n- GUI automatically updates for all viewers\n- No duplicate or ghost items\n\n### 📊 Smart Item Stacking\n- Automatically merges items of the same type\n- Respects max stack size (boats=1, iron=64)\n- Reduces void slots needed\n\n### 🛡️ Advanced Filtering\n- Protects tamed animals (default)\n- Protects named entities (default)\n- Blacklists for each cleanup mode\n- Advanced conditions (+empty, !tamed, +adult, etc.)\n\n## 📥 Installation\n\n1. Download `.jar` from GitHub or Modrinth\n2. Place in `plugins/` folder\n3. Restart server\n4. Edit `plugins/VoidCleaner/config.yml` (auto-generated)\n5. Restart server again\n\nSee [INSTALLATION.md](INSTALLATION.md) for detailed instructions.\n\n## 🎮 Player Commands\n\n```\n/void\n```\nOpens the void GUI to retrieve items (if void is open).\n\n## 🔧 Admin Commands\n\n```\n/void open           # Manually open void\n/void close          # Manually close void\n/void clean          # Normal cleanup\n/void fullclean      # Aggressive cleanup (removes mobs)\n/void worldclean     # Async world cleanup (unloaded chunks)\n```\n\n## 🔐 Permissions\n\n| Permission | Default | Description |\n|-----------|---------|-------------|\n| `voidcleaner.use` | true | Access to `/void` GUI |\n| `voidcleaner.admin` | op | All admin commands |\n| `voidcleaner.open` | op | `/void open` |\n| `voidcleaner.close` | op | `/void close` |\n| `voidcleaner.clean` | op | `/void clean` |\n| `voidcleaner.fullclean` | op | `/void fullclean` |\n| `voidcleaner.worldclean` | op | `/void worldclean` |\n\n### Example: LuckPerms\n```\n/lp user <player> permission set voidcleaner.use true\n/lp group admin permission set voidcleaner.admin true\n```\n\n## ⚙️ Configuration\n\n### World Mapping\n\n```yaml\nworld-voids:\n  overworld:\n    - world\n  nether-end:\n    - world_nether\n    - world_the_end\n\ndefault-void: overworld\n```\n\nItems from each world go to their mapped void.\n\n### Storage Limit\n\n```yaml\nmax-void-storage: 10000  # Max items per void (0 = unlimited)\n```\n\n### Auto Cleanup\n\n```yaml\ncleanup-interval-seconds: 600  # Cleanup every 10 minutes\nenable-auto-cleanup: true\n```\n\n**Recommendations:**\n- Small server (2-4 players): 300s (5 min)\n- Medium server (5-20 players): 600s (10 min)\n- Large server (20+ players): 1200s (20 min)\n\n### TPS-Based Cleanup\n\n```yaml\nlow-tps-threshold: 12.0          # Trigger aggressive cleanup\ncritical-tps-threshold: 8.0      # Trigger full cleanup\ntps-check-interval-seconds: 30\n```\n\n**How it works:**\n- TPS > 12.0 → Normal mode\n- TPS 8.0-12.0 → Remove mobs too\n- TPS < 8.0 → Full cleanup\n\n### Void Duration\n\n```yaml\nvoid-close-delay-seconds: 120  # Void closes after 2 minutes\n```\n\nAfter this time, the void closes and remaining items are deleted forever.\n\n### Cleanup Rules\n\n```yaml\ndefault-clean:  # Regular cleanup\n  - minecraft:item\n  - minecraft:arrow\n  - minecraft:oak_boat +empty\n\nhigh-clean:     # Aggressive cleanup\n  - minecraft:zombie\n  - minecraft:skeleton\n  # ... more mobs\n```\n\n#### Rule Format\n\n```\n\"minecraft:item\"              # All items\n\"minecraft:oak_boat +empty\"   # Empty boats only\n\"minecraft:minecart\"          # All minecarts\n\"minecraft:wolf !tamed\"       # Wild wolves only\n\"minecraft:zombie +adult\"     # Adult zombies only\n```\n\n#### Conditions\n\n| Condition | Meaning |\n|-----------|---------|\n| `+empty` | Vehicle without passenger |\n| `!empty` | Vehicle with passenger |\n| `+tamed` | Tamed animal |\n| `!tamed` | Wild animal |\n| `+named` | Has nametag |\n| `!named` | No nametag |\n| `+adult` | Adult |\n| `+baby` | Baby/young |\n| `+hostile` | Hostile mob |\n| `!hostile` / `+passive` | Peaceful |\n| `+on_ground` | Standing on ground |\n\n### Blacklists\n\n```yaml\ndefault-blacklist: []        # Protected from default cleanup\nfullclean-blacklist:\n  - minecraft:villager       # Never removed\n  - minecraft:iron_golem\n```\n\nSee full [config.yml](src/main/resources/config.yml) for all options.\n\n## 📊 Use Cases\n\n### Small SMP Server\n\n```yaml\nworld-voids:\n  all:\n    - world\n    - world_nether\n    - world_the_end\n\nmax-void-storage: 5000\ncleanup-interval-seconds: 300\n```\n\n### Large Survival Server\n\n```yaml\nworld-voids:\n  main:\n    - world\n    - world_nether\n    - world_the_end\n  creative:\n    - creative_world\n\nmax-void-storage: 20000\ncleanup-interval-seconds: 600\nlow-tps-threshold: 12.0\n```\n\n### Anti-Lag Machine Setup\n\n```yaml\nenable-auto-cleanup: false\nprotect-tamed: true\nprotect-named: true\n```\n\nThen manually run `/void worldclean` to clean unloaded areas.\n\n## 🐛 Troubleshooting\n\n### Plugin won't load\n\n**Check:**\n1. Are you using Paper 1.20+? (`/version`)\n2. Is the JAR in the `plugins/` folder?\n3. Do you have Java 17+? (`java -version`)\n\n### `/void` command not found\n\n**Check:**\n1. Did the plugin load? (Check console for \"[VoidCleaner]\")\n2. Do you have `voidcleaner.use` permission?\n3. Restart the server\n\n### Void won't open\n\n**Check:**\n1. Run `/void fullclean` to force cleanup\n2. Check `void-close-delay-seconds` in config\n3. Is `enable-auto-cleanup: true`?\n\n### High CPU usage\n\n**Solutions:**\n- Increase `cleanup-interval-seconds` (e.g., 1200)\n- Increase `tps-check-interval-seconds` (e.g., 60)\n- Reduce rules in `default-clean`\n\nSee [INSTALLATION.md](INSTALLATION.md) for more solutions.\n\n## 📈 Performance\n\nVoidCleaner is optimized for performance:\n\n- ✅ Async world scanning (no lag)\n- ✅ Efficient entity filtering\n- ✅ Memory-optimized storage\n- ✅ Smart stacking reduces slots\n- ✅ Main-thread safe operations\n\n**TPS Impact:**\n- Regular cleanup: < 0.1 TPS drop\n- Void open/close: < 0.01 TPS drop\n- Player sync: No impact\n\n## 🔗 Links\n\n- **GitHub:** https://github.com/Dominos111G/VoidCleaner\n- **Modrinth:** https://modrinth.com/plugin/voidcleaner\n- **Issues:** https://github.com/Dominos111G/VoidCleaner/issues\n",
+  "categories": [
+    "game-mechanics",
+    "optimization",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 5,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

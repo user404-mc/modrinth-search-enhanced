@@ -1,0 +1,37 @@
+{
+  "id": "S8rZ60p7",
+  "slug": "enf-afkzone",
+  "title": "AfkZone",
+  "description": "Increase your player count by rewards for AFK! Players that enter the AFK zone will be rewarded for staying online on your server.",
+  "body": "Increase your player count by rewards for AFK! Players that enter the AFK zone will be rewarded for staying online on your server.\nPermissions: enf.afkzone.permission\n\nPlugin includes the ability to create AFK zones using a command, visualize zones, display messages on chat, title, bossbar, or actionbar, set time formatting, configure the progress bar, adjust bossbar direction (increasing or decreasing), display messages upon entering or exiting an AFK zone, set rewards based on permissions, chance, and support for multiple AFK zones in one location.\n\nFor help use command: **/afkzone help**\n\nFor hot reload config use command: **/afkzone reloadconfig**\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/VIviTfMzK0E\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n**config.yml**\n\n\n```yaml\n# EnfAfkZone configuration\n# Author: xEnif\n# DON'T DELETE THAT VALUES\n# Project Version: 2.8\n# DON'T DELETE THAT VALUES\n\nhelp-command:\n- ''\n- <#00fff7>⎯ ⎯ ⎯ [ <bold><#00ffcc>AFKZONE HELP</#00ffcc></bold> ] ⎯ ⎯ ⎯\n- ''\n- <#00ffe0><click:run_command:'/afkzone wand'><hover:show_text:'<bold><gray>Click\n    to get AFKZone Wand'>/afkzone wand<dark_gray>  -  </dark_gray><white>Gives you\n    the AfkZone Wand.\n- <#00ffe0>/afkzone create [name]<dark_gray>  -  </dark_gray><white>Creates a new\n    AFK zone with the given name.\n- <#00ffe0>/afkzone delete [name]<dark_gray>  -  </dark_gray><white>Deletes the AFK\n    zone with the given name.\n- <#00ffe0><click:run_command:'/afkzone list'><hover:show_text:'<bold><gray>Click\n    to list all AFK zones'>/afkzone list<dark_gray>  -  </dark_gray><white>Displays\n    a list of all created AFK zones.\n- <#00ffe0>/afkzone tp [name]<dark_gray>  -  </dark_gray><white>Teleports you to the\n    specified AFK zone.\n- <#00ffe0>/afkzone reloadconfig<dark_gray>  -  </dark_gray><white>Reload AFK zone\n    config.\n- ''\nafk-zone-enter:\n    type: TITLE\n    enabled: true\n    message:\n    - <bold><#00ffcc>You have entered an AFK Zone!\n    - <gray>You are now marked as AFK.\n    options:\n        title-times:\n            fade-in: 0\n            stay: 3\n            fade-out: 1\nafk-zone-exit:\n    type: TITLE\n    enabled: true\n    message:\n    - <bold><#00ffcc>You have left the AFK Zone!\n    - <gray>You are no longer AFK.\n    options:\n        title-times:\n            fade-in: 0\n            stay: 3\n            fade-out: 1\nwand-item:\n    type: GOLDEN_HOE\n    amount: 1\n    display-name: <!italic><bold><#b56eff>AfkZone Wand\n    lore: []\n    enchantments: {}\n    item-flags:\n    - HIDE_ADDITIONAL_TOOLTIP\nwand-received-message: <#00ff7f>✔ </#00ff7f><green>You have received the </green><bold><#b56eff>AfkZone\n    Wand</#b56eff></bold><green>!\ntime-format: '{H}h {M}m {S}s'\nprogress-bar-format:\n    symbol-count: 10\n    symbol: '|'\n    loading-color: yellow\n    completed-color: green\nupdate-boss-bar-progress: true\nboss-bar-progress-direction: INCREASING\n```\n\n**afk-zones.yml**\n\n\n```yaml\n# EnfAfkZone configuration\n# Author: xEnif\n# DON'T DELETE THAT VALUES\n# Project Version: 2.8\n# DON'T DELETE THAT VALUES\n\nafk-zones:\n    test2:\n        worldName: world\n        minX: 55\n        minY: 63\n        minZ: 23\n        maxX: 67\n        maxY: 71\n        maxZ: 30\n        rewards:\n        -   permission: ''\n            chance: 0.0\n            items:\n            -   type: DIRT\n                amount: 1\n            commands: []\n        -   permission: ''\n            chance: 0.0\n            items:\n            -   type: DIAMOND_SWORD\n                amount: 1\n                lore: []\n                enchantments: {}\n                custom-model-data-component-string: customModelData\n            commands: []\n        -   permission: ''\n            chance: 0.0\n            items:\n            -   type: DIRT\n                amount: 1\n            commands:\n            - give {PLAYER} minecraft:dirt 1\n        message:\n            type: BOSSBAR\n            enabled: true\n            message:\n            - <bold><#00ffcc>YOU ARE IN AFK<#00fff7> ⏳ Reward in </#00fff7><#b56eff>{TIME}</#b56eff><#00fff7>\n                (</#00fff7><#b56eff>{PERCENT}%</#b56eff><#00fff7>)\n            options:\n                bossbar-options:\n                    color: PURPLE\n                    overlay: PROGRESS\n                    flags:\n                    - CREATE_WORLD_FOG\n                    - DARKEN_SCREEN\n        time-to-stay: 1m\n        add-reward-success-sound: ENTITY.ARROW.HIT_PLAYER\n    test:\n        worldName: world\n        minX: 55\n        minY: 63\n        minZ: 23\n        maxX: 66\n        maxY: 71\n        maxZ: 29\n        rewards:\n        -   permission: ''\n            chance: 0.0\n            items:\n            -   type: DIRT\n                amount: 1\n            commands: []\n        -   permission: ''\n            chance: 0.0\n            items:\n            -   type: DIAMOND_SWORD\n                amount: 1\n                lore: []\n                enchantments: {}\n                custom-model-data-component-string: customModelData\n            commands: []\n        -   permission: ''\n            chance: 0.0\n            items:\n            -   type: DIRT\n                amount: 1\n            commands:\n            - give {PLAYER} minecraft:dirt 1\n        message:\n            type: TITLE\n            enabled: true\n            message:\n            - <bold><#00ffcc>YOU ARE IN AFK\n            - <#00fff7>(<#b56eff>{BAR}</#b56eff>)\n            options:\n                bossbar-options:\n                    color: PURPLE\n                    overlay: PROGRESS\n                    flags:\n                    - CREATE_WORLD_FOG\n                    - DARKEN_SCREEN\n        time-to-stay: 1m\n        add-reward-success-sound: ENTITY.ARROW.HIT_PLAYER\n```\n",
+  "categories": [
+    "economy",
+    "equipment",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 108,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

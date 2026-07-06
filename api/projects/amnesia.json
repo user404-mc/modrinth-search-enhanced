@@ -1,0 +1,26 @@
+{
+  "id": "TIKiVyZF",
+  "slug": "amnesia",
+  "title": "Amnesia",
+  "description": "have you ever wondered what would happen if steve stopped taking his meds?",
+  "body": "# Amnesia\n![banner](https://raw.githubusercontent.com/modpotato-plugins/Amnesia/refs/heads/main/banner/banner.webp)\nAmnesia is a highly configurable Minecraft plugin for PaperMC and Folia servers that shuffles crafting recipes. It offers two distinct shuffling modes: random item replacement and recipe result swapping.\n\n## Features\n\n- **Recipe Shuffling:** Two modes of recipe manipulation:\n  - **Random Item Mode:** Recipe outputs are replaced with random items from the Minecraft item registry.\n  - **Recipe Result Shuffle Mode:** Recipe outputs are shuffled amongst existing recipes.\n- **Timer-Based Reshuffling:** Automatic reshuffling of recipes at configurable intervals with countdown notifications.\n- **Seed-Based Rotations:** Ability to use seeds to generate and recall specific recipe shuffles.\n- **Cross-Restart Synchronization:** Recipe shuffle state and timer settings persist across server restarts.\n- **Client Recipe Synchronization:** Control how clients handle recipe changes with three different modes.\n- **Command-Line Interface:** Comprehensive commands for managing shuffling, timer, seed, and configuration.\n- **Configuration File:** YAML based configuration for persistent settings and customization.\n- **Performance Focused:** Designed for minimal server impact, especially on Folia servers.\n- **User Notifications:** Clear and informative messages to players about upcoming and executed recipe shuffles.\n\n## Commands\n\n- `/amnesia shuffle [mode] [seed <value>|random]` - Shuffles recipes using the specified mode and optionally a seed.\n- `/amnesia timer [enable|disable|interval <seconds>]` - Manages the timer-based reshuffling.\n- `/amnesia seed [view|set <seed>|random]` - Manages the shuffle seed.\n- `/amnesia reload` - Reloads the plugin configuration.\n\n## Permissions\n\n- `amnesia.command.shuffle` - Allows use of `/amnesia shuffle` command.\n- `amnesia.command.timer` - Allows use of `/amnesia timer` command.\n- `amnesia.command.seed` - Allows use of `/amnesia seed` command.\n- `amnesia.command.reload` - Allows use of `/amnesia reload` command.\n\n## Configuration\n\nThe plugin uses a `config.yml` file for configuration settings and a `data.yml` file for persistent data. Here's an example configuration:\n\n```yaml\n# Shuffle mode: \"random_item\" or \"recipe_result\"\nshuffle-mode: \"random_item\"\n\n# Timer interval in seconds (default: 3600 - 1 hour)\ntimer-interval: 3600\n\n# Whether the timer-based reshuffling is enabled by default\ntimer-enabled: false\n\n# Client recipe synchronization mode:\n# \"resync\" - Clients will be resynced with the new recipes (default)\n# \"clear\" - Clients won't get any recipes\n# \"vanilla\" - Don't touch client recipes and let Minecraft handle it\nclient-sync-mode: \"vanilla\"\n\n# List of recipe keys to exclude from shuffling\nexcluded-recipes:\n  # - \"minecraft:stick\"\n\n# List of item keys to exclude from being selected in random_item shuffle mode\nexcluded-random-items:\n  - \"minecraft:air\"\n  - \"minecraft:barrier\"\n  # ... more items\n\n# Countdown intervals (in seconds) for timer notifications\nnotification-intervals:\n  - 300 # 5 minutes\n  - 60  # 1 minute\n  - 30  # 30 seconds\n  # ... more intervals\n\n# Customizable notification messages\nnotification-messages:\n  countdown-5-minutes: \"<gold>5 minutes until recipes are shuffled!</gold>\"\n  # ... more messages\n```\n\nThe `data.yml` file stores persistent data such as:\n\n```yaml\n# The seed used for recipe shuffling\nseed: 123456789\n\n# Whether the seed was set by the user (true) or generated randomly (false)\nuser-set-seed: false\n\n# Whether recipes are currently shuffled\nis-shuffled: false\n\n# When recipes were last shuffled (milliseconds since epoch)\nlast-shuffle-time: 0\n```\n\n## Installation\n\n1. Download the latest release from the releases page.\n2. Place the JAR file in your server's `plugins` folder.\n3. Start or restart your server.\n4. Configure the plugin by editing the `config.yml` file in the `plugins/Amnesia` folder.\n\n## Support\n\nIf you encounter any issues or have suggestions, please open an issue on the GitHub repository.\n",
+  "categories": [
+    "adventure",
+    "cursed",
+    "folia",
+    "game-mechanics",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 75,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "date_updated": null
+}

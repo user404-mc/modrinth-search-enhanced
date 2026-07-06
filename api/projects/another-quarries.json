@@ -1,0 +1,21 @@
+{
+  "id": "y3JgHbwo",
+  "slug": "another-quarries",
+  "title": "Another Quarries",
+  "description": "Adds a powerful quarry with various upgrades.",
+  "body": "# Another Quarries\n\n## Overview\n\nAnother Quarries adds a configurable **Quarry** block that mines a rectangular volume **behind** its facing direction. Supply RF, install drones and drills, add upgrade modules, and the machine clears the area layer by layer while storing loot in an internal buffer and ejecting upward into the block above.\n\nA decorative **structure frame** outlines the mining footprint. The quarry supports redstone control, in-GUI area preview, reboot (rebuild frame + reset progress), and scales from early setups to large end-game operations.\n\n**Requires:** [Iskandert's Library](https://modrinth.com/mod/iska-lib) (`iska_lib`).\n\n---\n\n## Features\n\n### Quarry machine\n- **RF-powered** mining with a **tiered internal energy buffer** that grows with peak equipment load (configurable tier list + upgrade ratio).\n- **Adjustable area** — width left/right, height, and depth behind the quarry facing (defaults to a **15×15** horizontal footprint and **height 5** when placed; max **128×128** footprint and **64** blocks tall by default, all configurable).\n- **27-slot output buffer** (extract-only for players/pipes/hoppers; only the quarry inserts mined drops).\n- **Auto ejection upward** into any item handler on the block **above** the quarry.\n- **GUI** — area size, digging mode, area preview, reboot, redstone mode, live RF cost breakdown.\n- **Smart throughput** — each drone adds a logical worker; active worker simulations are capped per tick, with **batched breaks per worker** so large drone stacks stay fast without melting TPS.\n\n### Digging modes\n- **Full Area** — mines the entire configured footprint together (default while width and depth are ≤ 64 blocks).\n- **Chunk** — forced when width **or** depth exceeds 64 blocks; mines one chunk at a time with **forced chunk loading** on the active chunk.\n\n### Equipment slots\n\n| Slot | Items | Effect |\n|------|--------|--------|\n| Drone | Drone | +1 mining worker per drone (quarry includes **1 built-in worker** without drones) |\n| Drill | Diamond / Netherite Drill | Sets mining tier, speed, and max break level (**best drill among installed drills wins**) |\n| Digger | Digger Module | Faster breaking on **non-ore** blocks (stackable, default max **16**) |\n| Speed | Speed Module | Faster mining speed (stackable, default max **16**) |\n| Enchant | Fortune Module / Silk Touch Module / **Enchant Module** | Fortune (stackable, max **3**) **or** Silk Touch (max **1**) **or** one anvil-enchanted **Enchant Module** — Fortune and Silk Touch stack modules are mutually exclusive |\n| Filter | Filter Module | **Destroy list** for drops; right-click module in hand to edit; Shift-click quarry to install |\n\nInstall gear by opening the GUI or **Shift-clicking** the quarry with the item in hand (drones, drills, modules).\n\n### Filter module (destroy list)\n- Up to **50** lines (config: `quarryFilterMaxLines`).\n- Syntax: plain item ID, `-id`, `@modid`, `#tag` (see in-GUI help).\n- Matching **drops are destroyed** before entering the buffer; existing buffer stacks are purged while the filter is active.\n\n### Drills\n- **No drill** — iron pickaxe tier (base speed / level).\n- **Diamond Drill** — diamond tier (+RF, faster, higher level).\n- **Netherite Drill** — netherite tier (smithing upgrade from diamond drill).\n\n### Redstone\n- **Ignore** / **Low signal** / **High signal** / **Pulse** / **Disabled**\n- Compatible with standard redstone (including dust through passable covers above the quarry).\n\n### Structure frame\n- **Structure quarry** blocks form the visible frame; breaking one can cascade-remove connected pieces (configurable).\n- **Reboot** rebuilds the frame and resets mining progress without losing equipment or buffer contents (unless filtered).\n\n### Other items\n- **Artificial Eye** — crafting component for the quarry and drone.\n- **Base Module** — intermediate for module recipes.\n\n---",
+  "categories": [
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

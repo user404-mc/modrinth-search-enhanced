@@ -1,0 +1,23 @@
+{
+  "id": "SJv9juzq",
+  "slug": "tungsten",
+  "title": "Tungsten",
+  "description": "A precise, lightweight HUD overlay for tracking Minecraft stability.",
+  "body": "# Tungsten Benchmark\n\n**Tungsten** is a comprehensive, precise, and passive observability and benchmarking tool for Minecraft (Fabric). \n\nUnlike optimization mods that attempt to alter game logic, Tungsten focuses entirely on giving you **accurate, real-time analytics** to help you diagnose exactly *why* your game feels laggy. We strictly observe game state without modifying server packets, ticking, or engine loops, ensuring full compliance with both Modrinth guidelines and strict server rules.\n\n## What Does Tungsten Track?\n\nTungsten provides a clean, smooth in-game HUD overlay (`/tungsten toggle`) alongside an active file-logging suite (`/tungsten log start`) that measures performance across three critical pillars: Hardware, Memory, and Network.\n\n### 🎮 Frametime & Hardware Analytics\nRelying on standard FPS numbers hides micro-stutters. Tungsten intercepts the core render loop to track precise microsecond delays between frames:\n* **Current, Average, Peak, and Minimum FPS**\n* **1% and 0.1% Lows**: Identifies if your framerate is consistently dropping during intense moments.\n* **Stutter Detection**: Accurately counts how many times your game drops below a playable 20fps equivalent (>50ms frame time).\n\n### 🧠 JVM Memory Monitoring\nMinecraft lag is frequently caused by Java Garbage Collection sweeps.\n* **Live Memory Footprint**: Watch your real-time Used Memory vs Max Allocated Memory to instantly identify if GC spikes are the exact cause of your recorded frame drops.\n\n### 🌐 Advanced Network & Server Metrics\nStop wondering if the lag is your PC, your internet, or the server hardware.\n* **Estimated Server TPS**: By tracking the delta time between the server's dispatched `WorldTimeUpdate` packets, Tungsten accurately estimates if the host server itself is lagging behind 20.0 TPS.\n* **Chunk Load Bandwidth**: Tracks exactly how many chunks your client is downloading per second to help identify choked internet bandwidth.\n* **Ping & Ping Jitter**: Passively evaluates your connection stability, tracking extreme ping variance and highest jitter percentages.\n* **Action Routing Delay (RTT)**: Hooks into packet confirmations to determine your physical input latency when breaking blocks or hitting entities.\n\n## Active Logging\nNeed to benchmark a new optimization mod or compare two shaderpacks?\nRun `/tungsten log start`. Tungsten will silently begin graphing every extreme high, explicit low, standard deviation, and stutter that occurs while you play. \n\nRun `/tungsten log stop` to automatically crunch the data and generate an exhaustive `.txt` report inside your `tungsten-benchmarks/` directory, giving you permanent mathematical proof of how smooth your game truly was during that window.\n\n## Technical Transparency\n*Per Modrinth's Content Rules regarding performance data:*\n* **No Optimization Claims:** Tungsten is exclusively a read-only analytics dashboard. It does not contain game-altering engine tweaks to improve your gameplay.\n* **Data Gathering Mechanics:** FPS and lows are calculated via a `MinecraftClient.render` mixin capturing true `System.nanoTime()` deltas. Server TPS is mathematically derived client-side via `WorldTimeUpdateS2CPacket` intervals. All data gathered is directly represented without arbitrary modifiers algorithms.\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "optimization",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 67,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

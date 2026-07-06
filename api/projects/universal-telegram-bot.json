@@ -1,0 +1,32 @@
+{
+  "id": "L5BCRHAc",
+  "slug": "universal-telegram-bot",
+  "title": "Universal Telegram Bot",
+  "description": "Manage your Minecraft server via Telegram! Add custom commands with ease!",
+  "body": "# 📱 TELEGRAM BOT FOR MINECRAFT - SETUP GUIDE\n\n## 🎯 WHAT IS THIS?\nA plugin that allows you to manage your Minecraft server through Telegram. Players can send commands to a Telegram group, and the bot will execute them on the server.\n\n## 🚀 QUICK INSTALLATION (5 MINUTES)\n- Step 1: Create a bot in Telegram\n- Open Telegram\n- Find @BotFather\n- Send /newbot\n- Choose a bot name (e.g., MyServerBot)\n- Get the token (save it!)\n  \n```\nToken looks like this: 1234567890:ABCdefGHIjklMNOpqrsTUVwxyz\n```\n1. Step 2: Add bot to group\n1. Create a new Telegram group\n1. Add your bot to the group\n1. Make the bot an administrator\n- Get the group ID:\n- Add @getidsbot to the group\n- Send /start\n- Copy the group ID (starts with -100)\n\n## Step 3: Install plugin on server\n- Download UniversalTelegramBot.jar file\n- Place it in your server's plugins/ folder\n- Restart the server\n\n## Step 4: Configure settings\nAfter first launch, the file plugins/TelegramBot/config.yml will appear\n\nEdit it:\n\n```\ntelegram:\n  enabled: true\n  bot-token: \"PASTE_YOUR_TOKEN_HERE\"\n  group-chat-id: \"PASTE_YOUR_GROUP_ID_HERE\"\n```\n\n## Step 5: Reload the plugin\nIn-game, execute:\n\n```\n/telegrambot reload\n```\n## ⚙️ IN-GAME MANAGEMENT COMMANDS\nBasic commands:\n\n```\n/telegrambot status          - Check bot status\n/telegrambot reload          - Reload configuration\n/telegrambot test            - Send test message\n/telegrambot list            - Show all commands\n/telegrambot debug           - Toggle debug mode\n```\n\nPermission management:\n\n```\n/telegrambot addperm <ID> <permission>     - Grant permission to user\n/telegrambot removeperm <ID> <permission>  - Remove permission\n/telegrambot listperms                     - List all permissions\n```\nExample of granting permission:\n```\n/telegrambot addperm (id)123456789 telegrambot.restart\n```\n## 💬 TELEGRAM COMMANDS\nFor all players (if configured):\n```\n/help          - Show command list\n/fly <nick>    - Grant 1 hour of fly\n/money <nick>  - Give money\n/kit <nick>    - Give kit\n/online        - Check online players\n```\nFor admins (require permissions):\n```\n/kick <nick>   - Kick player\n/ban <nick>    - Ban player\n/restart       - Restart server\n/give <nick>   - Give items\n```\n\n## 🔧 CONFIGURING COMMANDS\nCommand example:\n```\ncommands:\n  fly:\n    command: \"lp user %player% permission settemp essentials.fly true 60m\"\n    cooldown: 86400                    # 24 hours in seconds\n    eho: \"Fly for 1 hour | \"           # Description in /help\n    message: \"✅ Fly granted!\"          # Success message\n    error-message: \"❌ Error\"           # Error message\n    permission: \"\"                     # Required permission (empty = for everyone)\n    run-as-console: true               # Execute as console\n ```\n\n Command parameters:\n- command - command to execute on server\n- cooldown - cooldown between uses (seconds)\n- eho - description in /help menu\n- message - bot response on success\n- error-message - response on error\n- permission - required permission (leave empty for everyone)\n- run-as-console - execute as console (better to keep true)\n\nPLACEHOLDERS FOR COMMANDS\nUse in ```command``` field:\n```\n%player%    - Player nickname from Telegram command\n%args%      - All arguments after command\n%user%      - Telegram username\n%user_id%   - Telegram user ID\n```\nExample:\n```\ncommand: \"eco give %player% 1000\"      # Will give 1000 money to player\ncommand: \"msg %player% Hello from %user%\"  # Will send message\n```\n\n## 🔐 PERMISSION SYSTEM\n1. How to get user ID:\n- Ask user to send any message to group\n- Check server logs - their ID will be there\n- Or use @getidsbot\n\n2. Granting permissions:\n```\n/telegrambot addperm 123456789 telegrambot.restart\n/telegrambot addperm 123456789 telegrambot.ban\n```\n3. Standard permissions:\n- ```telegrambot.restart``` - restart permission\n- ```telegrambot.ban``` - ban permission\n- ```telegrambot.kick``` - kick permission\n- ```telegrambot.admin``` - all permissions (for operators)\n\n## 🛠️ TROUBLESHOOTING\n1. Bot not responding:\n- Check token: /telegrambot status\n- Check group ID\n- Ensure bot is group administrator\n- Enable debug: /telegrambot debug\n2. Commands not executing:\n- Check server logs\n- Ensure required plugins are installed\n- Check command syntax in config\n\nConsole errors:\n```\n[TelegramBot] ERROR: ... - check config.yml\n[TelegramBot] WARNING: ... - usually not critical\n```\nUseful diagnostic commands:\n```\n/telegrambot execute say Test command  # Test execution\n/telegrambot debug                     # Enable detailed logs\n/telegrambot reload                    # Reload settings\n```\n## 🎉 USEFUL TIPS\n1. For beginners:\n- Start with one command /fly\n- Test in a small group\n- Gradually add new commands\n2. For administrators:\n- Create separate group for commands\n- Assign responsible people for permissions\n- Regularly check logs\n3. For players:\n- Use format: /command player_nickname\n- Respect cooldowns\n- Use /help for command list\n\nDone! Now players can manage the server through Telegram. Start with simple commands and gradually expand functionality. 🎮\n",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

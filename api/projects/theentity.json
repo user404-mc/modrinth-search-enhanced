@@ -1,0 +1,22 @@
+{
+  "id": "5FBPkQiV",
+  "slug": "theentity",
+  "title": "The Entity",
+  "description": "A mysterious AI-powered presence that watches over your Minecraft world, reacting to player behavior using an LLM.",
+  "body": "# The Entity\n\n**The Entity** turns your singleplayer Minecraft world into a reactive, AI-driven sandbox. Instead of being another helpful chatbot, this mod actively watches your gameplay and acts as a dynamic Dungeon Master.\n\nIt reads your health, inventory, location, and recent actions, and responds in real-time. Depending on its configured personality, it might quietly guide you to safety, gaslight you with phantom sounds, or actively try to kill you.\n\n### Features\n\n* **Active Surveillance:** The mod constantly monitors your state. It knows if you are bleeding out, holding a raw porkchop, sprinting through a forest, or drowning in a river.\n* **Dynamic World Control:** The AI can execute commands to spawn mobs, change the weather, alter the time of day, play sounds, drop items, and speak to you in chat or via action bars.\n* **Infinite Customization:** The Entity's brain is entirely controlled by simple YAML files. You can rewrite its system prompt by editing or creating new configurations in \n`.minecraft/config/the-entity/prompts`. Turn it into a benevolent nature spirit, a cryptic cosmic horror, or an unhinged manager roasting your terrible survival skills, the limit is only your imagination.\n\n---\n\n### Setup Guide (Local LLM)\n\nThis mod requires an LLM to function. While you *can* use paid APIs, polling the game state gets expensive quickly. Running a local model or using a free API like Groq is highly recommended.\n\nHere is the beginner-friendly setup using **llama.cpp**:\n\n**1. Download llama.cpp**\n\nGrab the latest release for your OS from the official repository: [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp/releases/latest).\n\n**2. Get a Model**\n\nFor the best balance of logic and hardware performance, **Qwen 3.5** models are recommended. You can find several versions in the [Qwen 3.5 unsloth Collection](https://huggingface.co/collections/unsloth/qwen35) on Hugging Face.\n\n* *Minimum requirement:* An 8B model.\n* *Recommended:* 27B or 35B (if you have the VRAM for it) for the best situational awareness.\n\n**3. Start the Server**\n\nOpen your terminal and boot up the llama.cpp server. **You must include specific flags** for the mod to work correctly. For example, using the 27B model:\n\n```bash\nllama-server -hf unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL --reasoning off -c 16384\n```\n\n* `--reasoning off`: Prevents the model from getting stuck in internal thinking loops.\n* `-c 16384`: Sets the context window high enough so the AI can remember your recent game history and inventory state.\n\n**4. Connect the Mod**\n\nBoot up Minecraft, load into your world, and open The Entity's config screen from Mod Menu. Point the endpoint to your local server (usually `http://127.0.0.1:8080`), tune the rest of the configuration values to your taste, save, and see how long you survive.\n\n---\n\n**Note:** This mod is heavily resource-intensive depending on the local model you choose to run. It is currently designed for **Singleplayer only**.",
+  "categories": [
+    "adventure",
+    "cursed",
+    "fabric",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 116,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

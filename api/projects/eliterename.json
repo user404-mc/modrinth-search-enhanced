@@ -1,0 +1,35 @@
+{
+  "id": "kqVDm9Ov",
+  "slug": "eliterename",
+  "title": "EliteRename",
+  "description": "Rename, Items, Lore, Enchant Lore, Attribute Lore and more.",
+  "body": "![EliteRenameSplash](https://cdn.modrinth.com/data/cached_images/7d187cc0945ad5115e41ca72b9f27b4570932920_0.webp)\n**EliteRename** is a lightweight, state-driven item metadata manipulation plugin designed for Paper 1.21. It bypasses rigid vanilla client-side rendering by utilizing persistent data storage and strict component recreation, granting users total control over item display names, lore arrays, enchantment displays, and attribute modifiers.\n\n1. Core Rendering & Formatting Pipeline\n\n    MiniMessage Integration: Drops legacy string formatting in favor of the Adventure API’s MiniMessage, allowing for complex RGB gradients, hex colors, and rich text components (<!italic>, <bold>) parsed safely into native Component objects.\n\n    Dynamic Lore Reconstruction: Utilizes a pipeline (rebuildLoreOnMeta) that acts as a single source of truth for the item's visible lore array. It concatenates custom enchant labels and user-defined lore on the fly, ensuring that UI updates remain synchronized with underlying data structures.\n\n2. Data Persistence (PDC)\n\n    Isolated Storage: Rather than storing custom data in fragile string-based lore lines, the plugin serializes state into JSON arrays and objects using Gson and stores them directly in the item's PersistentDataContainer (PDC).\n\n    Namespaced Keys: Uses dedicated keys (KEY_ENCHANT_LABELS, KEY_USER_LORE) to separate plugin-managed data from vanilla NBT data or foreign plugin modifications, preventing collisions and allowing foreign items to degrade gracefully when edited.\n\n3. Client UI Obfuscation & Emulation\n\n    Enchantment Faking (/enchlabel): Applies ItemFlag.HIDE_ENCHANTS to suppress the hardcoded client tooltip. It then prepends user-defined, non-italic gray text to the lore array, perfectly mimicking the vanilla enchantment display while allowing custom naming (e.g., changing \"Sharpness\" to \"Blade of Doom\").\n\n    Attribute Injection (/renameattr): Applies ItemFlag.HIDE_ATTRIBUTES to hide default weapon/tool modifiers. It reads the item's AttributeModifiers (or falls back to the material's vanilla defaults), factors in the base player entity stats (e.g., 1.0 base damage, 4.0 base speed), and injects a mathematically accurate, visually identical replica of the vanilla \"When in Main Hand:\" tooltip directly into the PDC lore array. This transforms hardcoded client attributes into fully mutable text.\n\n4. State Management (The Regret Machine)\n\n    Session-Based Undo Stack: Maintains a transient, per-player Deque<ItemStack> mapped by UUID.\n\n    LIFO Memory: Captures deep clones of the ItemStack immediately prior to any mutation. The stack is capped at 5 states per session to prevent memory leaks and acts as a Last-In-First-Out rollback mechanism, verifying item types match before restoring ItemMeta.\n\n5. Utility & Quality of Life\n\n    Identity Theft (/rename steal): A context-aware cloning method that reads the ItemMeta of the offhand item, extracts its display name and PDC-stored user lore (falling back to raw lore for foreign items), and overwrites the main-hand item while preserving the main-hand's native enchantments.\n\n    Contextual Tab-Completion: The command router features deep tab-completion that queries the item's current internal state in real-time. For example, typing /setlore 1  dynamically serializes and suggests the exact MiniMessage string currently sitting on line 1, allowing for rapid in-place typo corrections.\n\n\n```\ncommands:\n  rename:\n    description: Rename held item, reset it, undo a change, or steal identity from your offhand.\n    usage: /rename [reset | undo | steal | <text...>]\n    permission: elr.rename.player\n  setlore:\n    description: Set or replace a specific lore line.\n    usage: /setlore <line> <text...>\n    permission: elr.lore\n  addlore:\n    description: Append a new lore line.\n    usage: /addlore <text...>\n    permission: elr.lore\n  removelore:\n    description: Remove a specific lore line by number.\n    usage: /removelore <line>\n    permission: elr.lore\n  clearlore:\n    description: Strip all user lore from the held item.\n    usage: /clearlore\n    permission: elr.lore\n  enchlabel:\n    description: Apply a custom visual label to a specific enchantment.\n    usage: /enchlabel <enchant> [<text...> | reset]\n    permission: elr.enchant\n  iteminfo:\n    description: View metadata details for the held item.\n    usage: /iteminfo [field]\n    permission: elr.info\n  renameattr:\n    description: Hides vanilla attributes and converts them into editable lore.\n    usage: /renameattr <true|false>\n    permission: elr.renameattr\n\npermissions:\n  elr.rename.player:\n    description: Allows regular players to use the /rename command.\n    default: true\n  elr.rename:\n    description: Explicit admin grant for the /rename command.\n    default: op\n  elr.lore:\n    description: Allows the use of /setlore, /addlore, /removelore, and /clearlore.\n    default: op\n  elr.enchant:\n    description: Allows the use of the /enchlabel command.\n    default: op\n  elr.info:\n    description: Allows reading item metadata using /iteminfo.\n    default: true\n  elr.renameattr:\n    description: Allows Hiding of vanilla attributes and converts them into editable lore using /renameattr.\n    default: true\n  elr.admin:\n    description: Full access to all EliteRename commands and features.\n    default: op\n```\n\nVersion 1.0 (Steal feature not yet working how I would prefer, it does work it just feels not... intrusive enough due to it looking at matching as needed)\n",
+  "categories": [
+    "equipment",
+    "management",
+    "paper",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "jxIOrWzI",
+  "slug": "throwablearrow",
+  "title": "Throwablearrow",
+  "description": "A light plugin to throw arrows (choose speed and different damage per item model)",
+  "body": "# ThrowableArrow\nThrowableArrow is a lightweight Paper plugin that adds simple throwable arrow-like items to Minecraft.\n\nIt was designed for servers that want custom consumable projectiles, such as throwing sticks, spikes, darts, or other RPG-style items. Players can right-click with a configured arrow item to launch it as a projectile. The item is consumed, the projectile deals fixed configurable damage, and it cannot be picked up afterward.\n\n## Features\n- Create custom throwable arrow items using item models\n- Configure fixed damage for each throwable item\n- Optional support for vanilla `minecraft:arrow`\n- Consume one item on throw\n- Prevent thrown arrows from being picked up\n- Automatic despawn after a configurable delay\n- Cooldown system to avoid spam\n- Reload command to apply config changes without restarting the server\n- Startup cleanup for old plugin arrows left in the world after a restart or crash\n\n## Configuration example\n\n```yml\narrow-speed: 2.8\ndespawn-seconds: 30\ncooldown-ticks: 4\n\n# If true, vanilla minecraft:arrow can also be thrown by right-clicking it in hand.\n# You must also define minecraft:arrow in the throwables section.\nvanilla-arrow: false\n\nthrowables:\n  minecraft:arrow:\n    damage: 4.0\n\n  namespace:name:\n    damage: 6.0\n\n  namespace:name2:\n    damage: 12.0\n\n  namespace:name3:\n    damage: 20.0\n\n  namespace:name4:\n    damage: 40.0\n\n```\n## Commands\n```\n/throwablearrow reload\n```\n\n## Permissions\n\n```\nthrowablearrow.reload:\n  description: Allows reloading the ThrowableArrow config.\n  default: op\n```\n\n## Requirements\n* Paper server\n* Minecraft 1.21.4+\n* Custom item models if you want custom throwable items\n\n## How do I use item models?\nYou need a texture pack compatible with 1.21.4+ and `item_model`.\nThrowableArrow identifies custom throwable items using their Minecraft `item_model`.\nThe model key in your item plugin must match the key in `config.yml`.\n\nExample config:\n\n```yml\nthrowables:\n  oom:arrows/coolarrow:\n    damage: 6.0\n```\nIn your texture pack, you can have something like this:\n```yml\n{\n  \"model\": {\n    \"type\": \"minecraft:model\",\n    \"model\": \"oom:item/arrows/coolarrow\"\n  }\n}\n```\nThen you can give yourself the item in game with\n`/minecraft:give @p minecraft:arrow[minecraft:item_model=\"oom:arrows/coolarrow\"] 1`",
+  "categories": [
+    "cursed",
+    "equipment",
+    "game-mechanics",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 15,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

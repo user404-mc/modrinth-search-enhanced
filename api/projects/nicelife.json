@@ -1,0 +1,28 @@
+{
+  "id": "GcVicEpE",
+  "slug": "nicelife",
+  "title": "NiceLife",
+  "description": "A recreation of the Nice Life series by Grian!",
+  "body": "# NiceLife\n\nA recreation of the [Nice Life](https://www.youtube.com/watch?v=2teag5QC7NA) Series by [Grian](https://www.youtube.com/@Grian)\n\n---\n\n## Features\n\nCarries on over most of the features as seen in the series on Youtube. This plugin has quite a lot of customization options as well including enabling/disabling snow accumulation, red winter, tweaking amout of time given to voting and triva and more!\n\n\n---\n\n## 🔧 Setup Guide\n\n### Requirements\n- **Paper 26.1+**\n- Java 21+\n- *(Optional, client-side)* **EMF** (Entity Model Features) + **ETF** (Entity Texture Features) for custom Santa Bot models (coming soon, i broke them accidently)\n\n### Installation\n1. Drop `NiceLife.jar` into your server's `plugins/` folder\n2. Start the server once to generate `plugins/NiceLife/config.yml` and `plugins/NiceLife/trivia.yml`\n\n### Configuration\nOpen `plugins/NiceLife/config.yml` and set:\n\n*This does not have to be changed unless dimension folders have been renamed*\n\n```yaml\nworlds:\n  overworld: \"world\"        # exact name of your overworld folder\n  nether: \"world_nether\"    # exact name of your nether folder\n```\n\nAll other settings have sensible defaults. See the inline comments in `config.yml` for full documentation of every option, or you can reach out to me for help via my discord server\n\n### Trivia Questions\nEdit `plugins/NiceLife/trivia.yml` to add your own questions:\n\n```yaml\nquestions:\n  my_question:\n    question: \"Who runs the Life Series?\"\n    options:\n      - \"Grian\"\n      - \"Joel\"\n      - \"Bdubs\"\n    answer: \"Grian\"\n```\n\nThe `answer` field must exactly match one of the `options` (case-insensitive).\n\nYou can also use [this tool](https://armyfury.github.io/WLTriviaGen/) to generate your trivia but make sure to delete the \"difficulty\" lines before putting this in (ideally they will get ignored but sometimes it bugs out)\n\n### Starting a Game\n```\n/nicelife session 1    # set the session number (1, 2, or 3)\n/nicelife start        # begins the game and registers all online players\n```\n\n### Nether Conversion *(optional)*\nConverts your existing nether to Nice Life's nether (lava -> ice, netherrack -> snow)\nPre-generate your nether world, then run:\n```\n/nicelife nether-convert\n```\nThis command will convert all chunks that were generated at time time of command execution.\nProgress is shown to all operators. This is irreversible — back up your world first.\n\n---\n\n## Commands\n\nAll admin commands require the `nicelife.admin` permission (default: **op**).\nNon-admin players who run `/nicelife` will see a description of the plugin instead.\n\n| Command | Description |\n|---|---|\n| `/nicelife start` | Start the game and register all online players |\n| `/nicelife stop` | Stop the game and save state to disk |\n| `/nicelife session <1\\|2\\|3>` | Set the current session number |\n| `/nicelife info` | Display full game state — lives, session, night count, snow speed |\n| `/nicelife addlife <player>` | Give a player one extra life |\n| `/nicelife removelife <player>` | Remove one life from a player |\n| `/nicelife setlives <player> <n>` | Set a player's life count directly |\n| `/nicelife setnaughty <player>` | Manually place a player on the Naughty List |\n| `/nicelife setnice <player>` | Manually place a player on the Nice List |\n| `/nicelife clearlist [player]` | Clear Naughty/Nice status — one player or everyone |\n| `/nicelife nether-convert` | Begin the async Nether conversion |\n| `/nicelife reload` | Reload `config.yml` and `trivia.yml` without restarting |\n| `/nicelife trivia` | Show how many trivia questions are currently loaded |\n\n---\n\n## Permissions\n\n| Permission | Description | Default |\n|---|---|---|\n| `nicelife.admin` | Access to all admin commands | op |\n| `nicelife.player` | Basic player permission (auto-granted) | true |\n\n---\n\n## Session Guide\n\n| Session | Naughty List | Nice List | Red Winter |\n|---|---|---|---|\n| 1 | ✅ Every night | ❌ | ❌ |\n| 2 | ✅ Alternating nights | ✅ Alternating nights | ❌ |\n| 3 | ✅ Alternating nights | ✅ Alternating nights | ✅ Triggers on last Yellow death |\n\nSwitch sessions mid-series with `/nicelife session <n>`. \n\n---\n\n## Trivia Format Reference\n\n```yaml\nquestions:\n  unique_key:             # any unique string, used only as an identifier\n    question: \"...\"       # the question shown to players\n    options:              # 2–5 answer choices\n      - \"Option A\"\n      - \"Option B\"\n      - \"Option C\"\n    answer: \"Option A\"    # must exactly match one of the options (case-insensitive)\n```\n\n\n## Extra help/Bug reports/Feature requests\n\nYou can contact me on my discord server (username-ArmyFury)\n---\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "magic",
+    "minigame",
+    "paper",
+    "purpur",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 35,
+  "followers": 0,
+  "game_versions": [
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

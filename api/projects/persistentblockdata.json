@@ -1,0 +1,34 @@
+{
+  "id": "f5LdagkI",
+  "slug": "persistentblockdata",
+  "title": "PersistentBlockData",
+  "description": "Easily store persistent block data",
+  "body": "**Persistent Blocks Data**\n\nA simple utility for storing persistent data chained to blocks in paper plugins using PersistentDataContainer.\n\n**KOTLIN ONLY**\n\n**Usage**\n\nYou can write data as if you are just interacting with PersistentDataContainer.\n\n\n``` kotlin\nimport dev.devoirr.pbd.Blocks.getPersistentData\nimport dev.devoirr.pbd.Blocks.setPersistentData\nimport org.bukkit.NamespacedKey\nimport org.bukkit.block.Block\nimport org.bukkit.persistence.PersistentDataType\n\nclass SomeClass {\n    val key = NamespacedKey.minecraft(\"current_clicks\")\n \n    fun addAndReturnClicks(block: Block): Int {\n        val currentClicks = block.getPersistentData(key, PersistentDataType.INTEGER) as? Int ?: 0\n        val updatedClicks = currentClicks + 1\n \n        block.setPersistentData(key, PersistentDataType.INTEGER, updatedClicks)\n \n        return updatedClicks\n    }\n}\n```\n\n\n**Warning**\n\nYou need to take into account that the NamespacedKey has limited length (32768 symbols), and the lib adds blocks coordinates to the initial provided key, so don't use ridiculously long keys, otherwise it will break. ",
+  "categories": [
+    "bukkit",
+    "folia",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 33,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10"
+  ],
+  "date_updated": null
+}

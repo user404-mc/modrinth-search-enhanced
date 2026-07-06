@@ -1,0 +1,35 @@
+{
+  "id": "e0qj8zAD",
+  "slug": "meoworegen",
+  "title": "MeowOreGen",
+  "description": "MeowOreGen is a highly customizable and performance-optimized cobblestone generator plugin for Minecraft servers. It features seamless BentoBox integration but works perfectly in standalone mode.",
+  "body": "# MeowOreGen  [Issues](https://github.com/xiaoyiluck666/MeowOreGen/issues)\n\nCustom ore generator plugin for Paper servers with optional BentoBox support.\n\n## Overview\n\nMeowOreGen turns cobblestone-style generators into configurable ore generators. It supports:\n\n- Running with **BentoBox** island level progression\n- Running in **standalone mode** when BentoBox is not installed\n- Per-tier unlock rules based on **permissions** and/or **island level**\n- Different generator tables for **Overworld**, **Nether**, and **The End**\n- GUI-based tier selection and generator enable/disable toggle\n- Optional explosion protection that disables generators after TNT/Creeper-style blasts\n- Optional integration with **Slimefun** and **CraftEngine**\n- Persistent player data using **SQLite** or **MySQL**\n\n## Requirements\n\n- Paper API `1.21.x`\n- Java `21`\n\nOptional integrations:\n\n- BentoBox\n- Slimefun\n- CraftEngine\n\n## Installation\n\n1. Build or obtain `MeowOreGen.jar`.\n2. Put it into your server's `plugins` folder.\n3. Start or restart the server.\n4. Edit `plugins/MeowOreGen/config.yml` as needed.\n5. Use `/mog reload` after config changes.\n\n`BentoBox` is optional. If it is not installed, the plugin runs in standalone mode.\n\n## Commands\n\n| Command | Alias | Description | Permission |\n| :--- | :--- | :--- | :--- |\n| `/mog` | `/oregen` | Open the generator GUI | `meoworegen.use` |\n| `/mog gui` | - | Open the generator GUI | `meoworegen.use` |\n| `/mog reload` | - | Reload config and language files | `meoworegen.admin` |\n| `/mog rates <tier>` | - | Show configured rates for a tier | `meoworegen.use` |\n| `/mog chances <tier>` | - | Alias of `/mog rates <tier>` | `meoworegen.use` |\n\n## Permissions\n\n| Permission | Default | Description |\n| :--- | :--- | :--- |\n| `meoworegen.use` | `true` | Use the plugin and open the GUI |\n| `meoworegen.admin` | `op` | Reload the plugin |\n| `meoworegen.bypass.explosion_disable` | `op` | Bypass generator auto-disable after explosions |\n\nGenerator tiers can also define their own permission nodes such as `meoworegen.group.vip1`.\n\n## Configuration Highlights\n\nThe main configuration file is [src/main/resources/config.yml](/e:/Meow/MeowOreGen/src/main/resources/config.yml).\n\nImportant sections:\n\n- `fortune_level_cap`: caps how Fortune affects generated ore blocks\n- `gui`: GUI size, filler items, decorative items, toggle slot, and display limits\n- `disable_on_explosion`: auto-disables generators after explosions\n- `use_offline_owner_tier`: controls offline owner tier behavior\n- `custom_interactions`: custom block interactions such as Nether-style generators\n- `storage`: `SQLITE` or `MYSQL`\n- `generators`: all generator tiers, icons, slots, requirements, and rates\n\nExample tier:\n\n```yaml\ngenerators:\n  vip1:\n    display_name: \"&6VIP 1 Generator\"\n    permission: meoworegen.group.vip1\n    island_level_required: 10\n    priority: 10\n    slots: [13]\n    icon: IRON_BLOCK\n    worlds:\n      NORMAL:\n        STONE: 10.0\n        COAL_ORE: 4.0\n        DIAMOND_ORE: 0.8\n      NETHER:\n        NETHERRACK: 50.0\n        NETHER_QUARTZ_ORE: 3.0\n      THE_END:\n        END_STONE: 70.0\n        OBSIDIAN: 15.0\n```\n\n## Storage\n\nSupported storage backends:\n\n- `SQLITE`\n- `MYSQL`\n\nExample:\n\n```yaml\nstorage:\n  type: SQLITE\n```\n\n## Notes\n\n- Without BentoBox, island-level checks effectively behave as unlocked in standalone mode.\n- Tier selection is stored per player.\n- The GUI shows rates for the player's current dimension and hints when other dimensions also have rates.\n",
+  "categories": [
+    "bukkit",
+    "equipment",
+    "game-mechanics",
+    "management",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 106,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

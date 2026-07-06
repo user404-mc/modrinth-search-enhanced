@@ -1,0 +1,38 @@
+{
+  "id": "PG4gqnzX",
+  "slug": "autostopper",
+  "title": "AutoStopper",
+  "description": "A Velocity proxy plugin that automatically stops and starts Minecraft server containers based on player activity",
+  "body": "<p align=\"center\">\n  <img src=\"https://cdn.modrinth.com/data/PG4gqnzX/images/b2003a220072c1bfbb6255af452a39dab08a5377.png\" width=\"200\" alt=\"AutoStopper Logo\">\n</p>\n\n# AutoStopper\n\nAutoStopper is a Velocity proxy plugin that automatically stops and starts Minecraft server containers based on player activity. It helps server administrators save resources by shutting down inactive Docker-based Minecraft servers.\n\n## Download links\n\n- [Modrinth](https://modrinth.com/plugin/autostopper)\n\n## Features\n\n- Automatically monitors server activity\n- Stops inactive Docker containers after a configurable timeout\n- Starts servers on-demand when players try to connect\n- Seamlessly connects players to servers after starting them\n- Maintains server state tracking\n\n## Requirements\n\n- Velocity proxy server (3.3.0 or newer)\n- Docker environment with itzg/minecraft-server containers\n- Docker socket mounted to the Velocity container\n- Java 21+\n\n## Installation\n\n1. Download the latest AutoStopper JAR from the [releases](https://github.com/YourUsername/AutoStopper/releases) page\n2. Place the JAR in your Velocity server's `plugins` directory\n3. Start (or restart) your Velocity server\n4. Edit the generated configuration file to match your setup\n\n## Configuration\n\nAfter the first run, AutoStopper will generate a `config.yml` in the `plugins/AutoStopper` directory:\n\n```yaml\n# Time in seconds before an inactive server is stopped\ninactivity_timeout_seconds: 900\n\n# List of servers AutoStopper should manage\nmonitored_servers:\n  - server_name: purpur\n    container_name: purpur-server\n  - server_name: fabric\n    container_name: fabric-server\n```\n\n### Configuration Options\n\n- `inactivity_timeout_seconds`: Time in seconds a server must be inactive before being shut down (default: 900 seconds/15 minutes)\n- `monitored_servers`: List of server mappings\n  - `server_name`: Name of the server in Velocity configuration\n  - `container_name`: Corresponding Docker container name\n\n## Docker Setup\n\nAutoStopper requires the Docker socket to be mounted in your Velocity container. Here's an example `docker-compose.yml` setup:\n\n```yaml\nservices:\n  velocity:\n    image: itzg/mc-proxy\n    container_name: velocity-server\n    environment:\n      TYPE: \"VELOCITY\"\n      ONLINE_MODE: \"true\"\n      VELOCITY_VERSION: \"latest\"\n      VELOCITY_BUILD_ID: \"latest\"\n      REPLACE_ENV_VARIABLES: \"true\"\n    ports:\n      - \"25565:25565\"\n    volumes:\n      - ./velocity_server:/server\n      - /var/run/docker.sock:/var/run/docker.sock  # Required for AutoStopper\n    networks:\n      - mc-network\n    restart: unless-stopped\n    entrypoint: bash -c\n    command: >\n      \"if [ ! -f /usr/bin/docker ]; then\n        apt-get update && apt-get install -y docker.io && apt-get clean;\n      fi &&\n      SOCKET_GID=$$(stat -c '%g' /var/run/docker.sock) &&\n      if ! getent group $$SOCKET_GID > /dev/null; then groupadd -g $$SOCKET_GID docker_sock; fi &&\n      GROUP_NAME=$$(getent group $$SOCKET_GID | cut -d: -f1) &&\n      usermod -aG $$GROUP_NAME bungeecord &&\n      exec /usr/bin/run-bungeecord.sh\"\n\n  # Example Minecraft servers that can be managed by AutoStopper\n  purpur:\n    image: itzg/minecraft-server:java21\n    container_name: purpur-server\n    environment:\n      TYPE: \"PURPUR\"\n      VERSION: \"1.21.4\"\n      EULA: \"TRUE\"\n      ONLINE_MODE: \"FALSE\"\n    volumes:\n      - ./purpur_data:/data\n    networks:\n      - mc-network\n    restart: \"no\"  # Important: Let AutoStopper manage the container lifecycle\n\n  fabric:\n    image: itzg/minecraft-server:java21\n    container_name: fabric-server\n    environment:\n      TYPE: \"FABRIC\"\n      VERSION: \"1.21.4\"\n      EULA: \"TRUE\"\n      ONLINE_MODE: \"FALSE\"\n    volumes:\n      - ./fabric_data:/data\n    networks:\n      - mc-network\n    restart: \"no\"  # Important: Let AutoStopper manage the container lifecycle\n\nnetworks:\n  mc-network:\n    driver: bridge\n```\n\n### Important Docker Configuration Notes\n\n1. The Velocity container must have Docker CLI installed, which is why the entrypoint script installs it\n2. The Docker socket must be mounted (`/var/run/docker.sock:/var/run/docker.sock`)\n3. The script automatically handles permissions by detecting the socket group ID and adding the server user to it.\n4. Set `restart: \"no\"` for managed servers so Docker doesn't automatically restart them\n5. Keep any hub/lobby servers with `restart: unless-stopped` if you want them to always be available\n\n## Commands\n\n- `/autostopper` or `/as` - Main command\n- `/autostopper help` - Displays help information\n- `/autostopper status` - Shows the status of all monitored servers\n- `/autostopper reload` - Reloads the configuration (requires `autostopper.admin` permission)\n\n## Permissions\n\n- `autostopper.admin` - Allows use of the reload command\n\n## How It Works\n\n1. When a player attempts to connect to a monitored server:\n   - If the server is running, the connection proceeds normally\n   - If the server is stopped, AutoStopper:\n     - Starts the Docker container\n     - Waits for the server to fully initialize\n     - Automatically connects the player once the server is ready\n\n2. The plugin tracks the last activity time for each server\n3. A scheduled task checks for inactive servers and stops them after the configured timeout period\n4. Servers that are always needed (like hubs/lobbies) can be excluded from monitoring\n\n## Building from Source\n\n1. Clone the repository\n2. Build using Maven:\n\n   ```bash\n   mvn clean package\n   ```\n\n3. Find the JAR file in `target/AutoStopper-1.1.2.jar`\n\n## License\n\nThis project is licensed under the [MIT License](LICENSE). See the LICENSE file for details.\n\n## Credits\n\n- Built for Velocity by [Criseda](https://criseda.com)\n- Uses [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server)\n- Uses [itzg/mc-proxy](https://github.com/itzg/docker-mc-proxy)\n",
+  "categories": [
+    "management",
+    "optimization",
+    "storage",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 68,
+  "followers": 0,
+  "game_versions": [
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

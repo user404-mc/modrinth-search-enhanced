@@ -1,0 +1,23 @@
+{
+  "id": "S24juNPU",
+  "slug": "phats-progression-framework",
+  "title": "Phat's Progression Framework",
+  "description": "A modpack-configurable mining tier progression system for Minecraft, extending the vanilla tier system past netherite.",
+  "body": "**Phat's Progression Framework** is a config-driven mining tier system for Minecraft. Reassign vanilla tools to new tiers, gate iron ore behind copper, extend progression past netherite — entirely through JSON. No item registration, no worldgen, no content. Just a flexible foundation for modpack progression.\n\nMost Minecraft progression mods either add their own tiers (forcing you to use their tools) or bolt new metals onto the vanilla system (capping at netherite). This mod takes a different approach: it lets modpack developers choose how the existing tools, blocks, and modded materials fit together. Want copper to gate iron ore? One config line. Want runite tools above netherite? Two config lines. Want adamantine ore to require Mythic Metals' end-game tools? You get the idea.\n\n[![Available on Fabric](https://img.shields.io/badge/Fabric-supported-brightgreen.svg)](https://modrinth.com/mod/phats-progression-framework/versions?l=fabric)\n[![Available on NeoForge](https://img.shields.io/badge/NeoForge-supported-orange.svg)](https://modrinth.com/mod/phats-progression-framework/versions?l=neoforge)\n\n# Why install this\n\n- **Modpack developers**: turn flat progression into something with real depth. Spread Mythic Metals' 20+ ores across distinct tiers. Insert mod metals between vanilla ones. Make every metal meaningful.\n- **Mod developers**: ship your tier opinions via datapack so users get sensible defaults out of the box.\n- **Players**: install a modpack that uses this and finally have a reason to upgrade past netherite.\n\n# What it does\n\n- **Tier system 0-10**: integers, easy to reason about. 0-5 match vanilla (hand through netherite), 6-10 are modpack-extensible.\n- **Mining tier enforcement**: tools too weak for a block don't drop items and mine at bare-hands speed. Tool TYPE still matters (axe still won't mine iron ore — only pickaxes do).\n- **Flexible matching**: configure tiers by exact item ID, glob pattern (`*:copper_pickaxe`), tag (`#c:tools/pickaxes`), or substring keyword. Combine these for precision (`{\"keyword\": \"bronze\", \"tag\": \"c:tools/pickaxes\"}`).\n- **Datapack support**: mods ship tier definitions, modpack devs override them via config.\n- **Hot reload**: edit configs and `/reload` in-game. No restart needed.\n- **Debug command**: `/progression info` and `/progression block` show what tier any item or block is currently assigned to.\n\n# Default behavior\n\nOut of the box, this mod ships with sensible defaults that mostly mirror vanilla. The 1.21.11 build adds **copper-gates-iron progression** by default — copper tools (added in vanilla 1.21.9) are now actually required to mine iron ore. The 1.21.1 build keeps vanilla progression intact.\n\n# Quick start\n\n1. Install [Architectury API](https://modrinth.com/mod/architectury-api).\n2. Drop this jar into your mods folder.\n3. Launch the game once. Default config files generate at `config/phats_progression/`.\n4. Edit them or leave them alone — the defaults work.\n\n# Compatibility\n\n- **Jade**: works without integration code — the block-look tooltip shows the right mining requirements.\n- **Server-required**: requires the mod on both client and server. Vanilla clients cannot connect.\n- **Java 21** required (Minecraft 1.21.x standard).\n\n# Configuration\n\nTwo config files at `config/phats_progression/`:\n- `block_tiers.json` — assign blocks to tiers\n- `tool_tiers.json` — assign tools to tiers\n\nSchema accepts hybrid string-or-object entries:\n\n```json\n{\n  \"ignore_datapacks\": false,\n  \"tiers\": {\n    \"6\": [\n      \"mythicmetals:runite_ore\",\n      \"*:adamantite_pickaxe\",\n      \"#c:tools/pickaxes\",\n      {\"keyword\": \"mithril\", \"tag\": \"c:tools/pickaxes\"}\n    ]\n  }\n}\n```\n\nSee the [GitHub README](https://github.com/Phatdog731/phats_progression) for full documentation.\n\n# Reporting issues\n\n[GitHub Issues](https://github.com/Phatdog731/phats_progression/issues)\n\n# License\n\nMIT — modify and ship at will.",
+  "categories": [
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 95,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

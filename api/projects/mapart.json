@@ -1,0 +1,33 @@
+{
+  "id": "k74351Br",
+  "slug": "mapart",
+  "title": "MapArt",
+  "description": "A map art plugin for Purpur/Paper servers that allows players to convert custom images into in-game map paintings.",
+  "body": "# MapArt - Minecraft Map Art Plugin\n\nA map art plugin for Purpur/Paper servers that allows players to convert custom images into in-game map paintings.\n\n## Features\n\n- Supports PNG, JPG, GIF, BMP image formats\n- Auto-scales and crops images to fit map dimensions\n- Large images automatically split into multiple maps\n- Async processing, no server lag\n- Folia architecture support\n\n## Installation\n\n1. Place `MapArt-1.1.2.jar` into your server's `plugins` directory\n2. Restart the server\n3. Players use `/mapart upload` to upload images (saved to `plugins/MapArt/images/<playerUUID>/`)\n4. Or manually place images into `plugins/MapArt/images/` directory\n\n## Usage\n\n| Command | Description |\n|---------|-------------|\n| `/mapart` | Open GUI (shows current player images) |\n| `/mapart gui` | Open GUI |\n| `/mapart upload` | Get a web upload link (player-specific) |\n| `/mapart apply <image file> [scale\\|tile]` | Convert image to map art (scale: fit single map, tile: split into grid) |\n| `/mapart clear` | Clear all map art |\n| `/mapart info` | View number of maps you hold |\n| `/mapart list` | List current player's available image files |\n\n**Example:**\n```\n/mapart apply myimage.png           # Scale to single map (default)\n/mapart apply myimage.png tile      # Split into multiple maps for large image\n```\n\n### Two Modes\n\n| Mode | Command | Description |\n|------|---------|-------------|\n| **Scale** | `/mapart apply <image>` | Default. Scales image to 128x128, outputs 1 map |\n| **Tile** | `/mapart apply <image> tile` | No scaling. Splits image into 128x128 tiles, outputs multiple maps for mosaic |\n\n## Recommended Image Size\n\n### Standard Single Map\n- **Recommended size: 128x128 pixels**\n- Exactly matches one map's 128x128 pixel display area, one-to-one pixel mapping with no scaling distortion\n\n### Size Comparison\n\n| Image Size | Map Count | Description |\n|------------|-----------|-------------|\n| **128x128** | **1 map** | **Recommended, pixel-perfect mapping** |\n| 256x256 | 1 map | Auto-scaled down to 128x128 |\n| 512x512 | 1 map | Auto-scaled down to 128x128 |\n| 1024x1024 | 1 map | Auto-scaled down to 128x128 |\n| 2048x2048 | 1 map | Auto-scaled down to 128x128 |\n| 256x128 | 2 maps | Horizontal split, auto-divided |\n| 512x256 | 8 maps | 4x2 map grid |\n\n### Important Notes\n\n- Minecraft maps only have a **128x128 pixel** display area\n- Using a 128x128 image gives you precise pixel-by-pixel control, WYSIWYG\n- Images larger than 128x128 are automatically split into multiple maps\n- Images smaller than 128x128 are auto-scaled to fill\n\n### Color Limitations\n\n- Minecraft maps only have **128 available colors**\n- Use images with high color contrast for best results\n- Avoid images with excessive gradients\n- Pixel art style images work best\n\n## Configuration\n\n`plugins/MapArt/config.yml`:\n\n### Web Upload Server\n\nControls the built-in web upload server.\n\n| Config | Type | Default | Description |\n|--------|------|---------|-------------|\n| `web-server.enabled` | boolean | `true` | Enable/disable the web upload server. When off, players must place images manually |\n| `web-server.host` | string | `0.0.0.0` | Listen address. `0.0.0.0` = all interfaces, `127.0.0.1` = local only |\n| `web-server.port` | int | `8080` | Listen port. Ensure firewall allows traffic |\n| `web-server.public-url` | string | `http://127.0.0.1:8080` | URL opened by players. Use `http://127.0.0.1:port` for local testing, server public IP for remote |\n\n> **Note**: `public-url` must use `http://` (not `https://`) unless you have a reverse proxy providing HTTPS.\n\n### Image Limits\n\n| Config | Type | Default | Description |\n|--------|------|---------|-------------|\n| `max-image-width` | int | `2048` | Maximum allowed image width (pixels) |\n| `max-image-height` | int | `2048` | Maximum allowed image height (pixels) |\n\nImages exceeding these limits will be rejected on upload.\n\n### Map Settings\n\n| Config | Type | Default | Description |\n|--------|------|---------|-------------|\n| `map-size` | int | `128` | Pixel size of a single map. Standard Minecraft maps are `128x128` |\n\n### Performance Settings\n\n| Config | Type | Default | Description |\n|--------|------|---------|-------------|\n| `async-processing` | boolean | `true` | Process images asynchronously (recommended) |\n| `max-concurrent-tasks` | int | `4` | Max concurrent processing tasks |\n\n### Full Config Example\n\n```yaml\nweb-server:\n  enabled: true\n  host: 0.0.0.0\n  port: 8080\n  public-url: \"http://127.0.0.1:8080\"\n\nmax-image-width: 2048\nmax-image-height: 2048\nmap-size: 128\nasync-processing: true\nmax-concurrent-tasks: 4\n```\n\n### Public Server Example\n\nIf your server's public IP is `1.2.3.4` and port is `8080`:\n\n```yaml\nweb-server:\n  enabled: true\n  host: 0.0.0.0\n  port: 8080\n  public-url: \"http://1.2.3.4:8080\"\n```\n\nThen set up port forwarding: external `8080` → internal server `8080`.\n\n### Player image isolation\n- Uploaded files are saved under: `plugins/MapArt/images/<playerUUID>/`\n- Each player can only see and use their own uploaded images\n\n## Permissions\n\n| Permission | Description | Default |\n|------------|-------------|---------|\n| `mapart.use` | Use map art commands | OP |\n| `mapart.admin` | Admin permissions | OP |\n\n## Building\n\n```bash\nmvn clean package\n```\n\nBuild output is located at `target/MapArt-1.1.2.jar`\n\n## Dependencies\n\n- Purpur 1.21+ or Paper 1.21+\n- Java 21+\n\n## Telemetry\n\nThis plugin collects anonymous usage data to help improve the project. A unique UUID is generated on first launch and stored in `DreamArk/server-uuid.txt`. Heartbeat data is sent every 60 seconds to our telemetry server. No personal or server content data is collected.\n\nBy using this plugin, you agree to our [Privacy Policy](https://www.dreamark.club/page.php?slug=privacy) and [Terms of Service](https://www.dreamark.club/page.php?slug=terms).\n\n## Credits\n\nDeveloped by [DreamArk Studio](https://www.dreamark.club/)\n",
+  "categories": [
+    "bukkit",
+    "decoration",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 43,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

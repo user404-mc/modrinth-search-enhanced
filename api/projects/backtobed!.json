@@ -1,0 +1,40 @@
+{
+  "id": "jY1PwrfM",
+  "slug": "backtobed!",
+  "title": "BackToBed!",
+  "description": "Vanilla friendly AND customizable way to teleport back to bed",
+  "body": "## Features\n\n### Recipe\n- 1 Ender Pearl + 1 Bed (any color) + 1 Paper\n- Shapeless recipe — any arrangement works\n\n**Use it to get home**\n- Right-click to teleport back to your bed\n- Consumed on use, non-stackable\n- Works across dimensions (Nether/End → Overworld)\n\n**Balance-it-yourself (BIY) Health-based delay system**\n- Full health = instant teleport\n- Injured = countdown timer based on missing HP\n- Half health = ~5 second delay with rising bell chime\n- **Nearby players can hear the countdown**\n- Heal to full during countdown to skip the wait\n- Move more than 1 block to cancel (scroll is preserved)\n\n**Server-side only**\n- Players don't need to install anything\n- Vanilla clients see the scroll as enchanted paper\n- Powered by [Polymer](https://modrinth.com/mod/polymer)\n\n**Fully configurable**\n- Health delay mode: linear, exponential, or disabled\n- Optional fixed delay on top of health delay\n- \"Full health only\" mode for hardcore servers\n- Customizable countdown sound and volume\n- Config file: `config/bed-recall-scroll.json`\n\n---\n\n## Configuration\n\nA config file is created automatically at `config/bed-recall-scroll.json`:\n\n| Setting | Default | Description |\n|---------|---------|-------------|\n| `healthMode` | `\"linear\"` | `\"none\"`, `\"linear\"`, `\"exponential\"` |\n| `maxDelaySeconds` | `10.0` | Maximum delay at 1 HP |\n| `fixedDelaySeconds` | `0.0` | Extra flat delay added to every teleport |\n| `requireFullHealth` | `false` | If true, scroll only works at full HP |\n| `countdownSound` | `\"block.note_block.bell\"` | Sound during countdown |\n| `countdownVolume` | `0.6` | Volume (0.0–1.0) |\n| `cancelFallDamage` | `true` | Cancel fall damage on arrival |\n\n### Suggested Configurations\n\n| Style | Settings | Effect |\n|-------|----------|--------|\n| Casual | `healthMode: \"none\"` | Instant teleport always |\n| Balanced | `healthMode: \"linear\"` (default) | Delay scales with missing HP |\n| Challenging | `healthMode: \"exponential\"`, `fixedDelaySeconds: 2` | Steep curve + 2s base |\n| Hardcore | `requireFullHealth: true` | Only works at 20 HP |\n\n---\n\n## How the Delay Works\n\n**Linear:** `delay = (missingHP / 20) × maxDelay`\n**Exponential:** `delay = (missingHP / 20)² × maxDelay`\n\nDuring the countdown:\n- A rising-pitch bell sounds at halving intervals\n- Action bar shows remaining time\n- **Move >1 block** → cancelled, scroll preserved\n- **Heal to full** → instant teleport\n\n---\n\n## Compatibility\n\n| Minecraft | JAR | Polymer |\n|-----------|-----|---------|\n| 1.20.1 – 1.20.4 | `mc1.20.1` | 0.5.19 |\n| 1.21 – 1.21.x | `mc1.21` | 0.9.19 |\n| 26.1 – 26.1.1 | `mc26.1` | 0.16.0 |\n\n**Requires:** [Fabric Loader](https://fabricmc.net/) and [Fabric API](https://modrinth.com/mod/fabric-api)\n\n---\n\n## Installation\n\n1. Install Fabric Loader on your server\n2. Install [Fabric API](https://modrinth.com/mod/fabric-api)\n3. Drop the correct JAR for your Minecraft version into `mods/`\n4. Start the server — config is created automatically\n5. No client mod needed — vanilla clients connect normally\n\n---\n\n## Credits\n\nBuilt with [Fabric](https://fabricmc.net/) and [Polymer](https://github.com/Patbox/polymer).\n",
+  "categories": [
+    "adventure",
+    "fabric",
+    "game-mechanics",
+    "magic",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 80,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1"
+  ],
+  "date_updated": null
+}
