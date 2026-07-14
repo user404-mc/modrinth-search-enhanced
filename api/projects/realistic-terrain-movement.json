@@ -1,0 +1,33 @@
+{
+  "id": "gZ3BGcf6",
+  "slug": "realistic-terrain-movement",
+  "title": "Realistic Terrain Movement",
+  "description": "Movement speed varies by terrain block, boats break in oceans, at mountain peaks high-altitude winds push players around. Designed to encourage the use of external transport mods, particularly Create Aeronautics.",
+  "body": "**Realistic Terrain Movement** changes how movement works in Minecraft by making terrain, altitude, and environmental conditions affect both players and mobs. Roads become faster, mud and snow slow you down, mountain winds become a challenge and the open ocean is no longer a safe place for small boats.\n\nThe mod is designed to encourage players to use transport mods or other environmental mechanics.\n\n_All mechanics are **fully configurable** and can be enabled or disabled independently:\n.../config/realisticterrainmovement-common.toml_\n\n# Features\n**Different surfaces affect movement speed:**\n- Paths, wooden planks, bricks, stone and similar constructed surfaces provide a speed bonus.\n- Sand, gravel, mud, snow, soul sand, powder snow and other rough terrain slow movement down.\n\n![surfaces movement speed](https://cdn.modrinth.com/data/cached_images/308357da51152d276cb5c2a70caf880f2c183c26.png)\n\n**Anti-Jump Exploit:**\n- Jumping can no longer be used to bypass terrain penalties. The mod remembers the last terrain modifier for a short configurable period (2 sec.) after leaving the ground, preventing players from spam-jumping across mud, snow, or sand to avoid slowdowns.\n\n**Boots Reduce Terrain Penalties:**\n- Any boots equipped in the feet slot reduce terrain penalties (50%) by default. Walking through rough terrain becomes easier while preserving all positive bonuses from roads and pathways.\n\n**Mobs Are Affected Too:**\n- Terrain effects are applied not only to players but also to most creatures in the world.\n- Aquatic mobs, flying entities, and certain legless creatures are excluded by default to maintain natural behavior.\n\n**High-Altitude Wind System:**\n\nAbove Y=120, strong winds begin to affect movement. Wind strength scales up to Y=250\n- Wind pushes player and mobs sideways.\n- Walking against the wind reduces movement speed.\n- Wind strength increases with altitude.\n- Only works under open sky (caves/structures are sheltered).\n- Normal climbing jumps remain unaffected.\n\n**Boats and Open Oceans:**\n\nSmall boats are not suitable for deep ocean travel. The vanilla boat is essentially a small coastal vessel that would realistically be unable to withstand the rough conditions of the open ocean. This encourages players to build proper seafaring ships from other mods for exploring distant islands and continents.\n- Newly placed boats inside ocean biomes immediately break and drop themselves as an item, encouraging players to seek alternative transportation methods.\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/dlibRdg2wM0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n\n# Compatibility\n\nThe default configuration includes support for:\n- [Biomes O' Plenty](https://modrinth.com/mod/biomes-o-plenty)\n- [Regions Unexplored](https://modrinth.com/mod/regions-unexplored)\n- [Nature's Spirit](https://modrinth.com/mod/natures-spirit)\n- [Geophilic](https://modrinth.com/mod/geophilic)\n\nMay conflict with mods that modify the **MOVEMENT_SPEED** attribute, apply custom movement mechanics or alter vanilla boat behavior. Also, if the transport mod you're using has the **\"boat\"** tag, it will break in the open ocean just like all vanilla boats. The solution is to disable the boat breaking feature in my mod's configuration.\n\n# Recommendations\n\nAs this mod was created primarily to supplement other mods, I recommend the following ones to fully unlock 100% of its potential:\n- [Create Aeronautics](https://modrinth.com/mod/create-aeronautics)\n- [Lithosphere](https://modrinth.com/mod/lithosphere)\n- [Continents](https://modrinth.com/mod/continents)\n- [Serene Seasons](https://modrinth.com/mod/serene-seasons)\n- [Natural Temperature](https://modrinth.com/mod/natural-temperature)\n- [Project Atmosphere: Realistic Climate & Weather](https://modrinth.com/mod/project-atmosphere)\n- [eZWeight](https://modrinth.com/mod/ezweight)\n- [AmbientSounds 6](https://modrinth.com/mod/ambientsounds)\n- [Deeper Oceans](https://modrinth.com/mod/deeper-oceans)\n\n**Technical Notes:**\n\n\n<details>\n<summary>Spoiler</summary>\n\n- All movement logic runs server-side only, via **EntityTickEvent.Post**.\n- Terrain + boots use a combined **MOVEMENT_SPEED** attribute modifier **(ADD_MULTIPLIED_TOTAL)**. While airborne, the last grounded value is held (sticky) instead of resetting to neutral.\n- Wind is applied as direct velocity manipulation, not via the attribute — kept reliably felt and doesn't trigger vanilla's speed-based FOV widening.\n- Wind tracks each entity's last on-ground Y position to detect \"is this a normal jump\" and skips pushing/slowing during jumps under the configured ascent threshold.\n- Biome-mod block entries use plain modid:block or #modid:tag syntax — if that mod isn't installed, the registry lookup simply finds nothing and the entry is a no-op.\n- Config lists are cached and only re-parsed when the config actually changes.\n\n</details>\n\n",
+  "categories": [
+    "adventure",
+    "equipment",
+    "game-mechanics",
+    "mobs",
+    "neoforge",
+    "transportation"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 123,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,43 @@
+{
+  "id": "27Rawmke",
+  "slug": "advancedtags",
+  "title": "AdvancedTags",
+  "description": "A modern, high-performance title system compatible with a wide range of server forks. Features a dynamic pagination GUI, multi-language support, and full MiniMessage RGB/Gradient integration for a premium experience.",
+  "body": "# **🏷️ AdvancedTags**\nA modern, **high-performance tag management system** for Minecraft servers. Built with a focus on aesthetics and performance, it offers a premium experience for both players and administrators.\n\n## 🌐 Multi-Language Support\nAdvancedTags comes with built-in support for **28 different languages**, allowing your community to interact with the plugin in their native tongue:\n\n**🇺🇸 English (en) | 🇹🇷 Turkish (tr) | 🇩🇪 German (de) | 🇪🇸 Spanish (es) | 🇷🇺 Russian (ru) | 🇨🇳 Chinese (zh) | 🇯🇵 Japanese (ja) | 🇦🇿 Azerbaijani (az) | 🇫🇷 French (fr) | 🇸🇦 Arabic (ar) | 🇳🇱 Dutch (nl) | 🇮🇩 Indonesian (id) | 🇦🇲 Armenian (hy) | 🇮🇹 Italian (it) | 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scottish Gaelic (gd) | 🇸🇪 Swedish (sv) | 🇰🇬 Kyrgyz (ky) | 🇰🇷 Korean (ko) | 🇭🇺 Hungarian (hu) | 🇨🇿 Czech (cs) | 🇬🇷 Greek (el) | 🇮🇷 Persian (fa) | 🇵🇱 Polish (pl) | 🇷🇴 Romanian (ro) | 🇻🇳 Vietnamese (vi) | 🇵🇹 Portuguese (pt) | 🇹🇭 Thai (th) | 🇺🇦 Ukrainian (uk)**\n\nThe language can be easily selected from the **config file**, and all translation files are located in: `/plugins/AdvancedTags/lang`\n\n## 🚀 Features\n\n- **Modern Visuals (MiniMessage)**\n  - Full support for **RGB colors, HEX codes, and Gradients.**\n  - Create eye-catching titles like `<gradient:#FFD700:#FFA500>KING</gradient>`\n- **Smart GUI System**\n  - **Infinite Pagination:** Automatically divides your tags into pages.\n  - **Selection Glow:** Active titles have a magical enchantment glow in the menu.\n  - **Reset Button:** Players can easily clear their current tag with a dedicated button.\n- **Performance & Stability**\n  - **Folia Ready:** 100% compatible with multi-threaded server environments.\n  - **Fully Asynchronous:** Zero impact on server TPS.\n  - **JSON Storage:** Fast and reliable player data management.\n- **PlaceholderAPI Integration**\n  - Display tags anywhere (Chat, Tab, Scoreboards) using `%advancedtags_unvan%`.\n\n## 🛠️ Configuration\nThe `config.yml` file allows you to customize every aspect of the plugin, from menu layouts to individual tag permissions.\n### 🌍 General Settings\n- **lang:** Set your preferred language (e.g., `en`,`tr`, `de`). The plugin automatically generates all 28 language files in the `/lang` folder.\n- **cooldown:** Defines the wait time (in seconds) between tag changes to prevent server spam. Administrators with `advancedtags.bypass.cooldown` are unaffected. \n![settings](https://cdn.modrinth.com/data/cached_images/147692ca84fed58b9a27ba4e498b0bc9dde4c8c7_0.webp)\n### 📦 Menu Customization \nYou have full control over the Tag Selection GUI:\n- **size:** Define the inventory size (must be a multiple of 9: `9, 18, 27, 36, 45, 54`).\n- **title:** Supports full **MiniMessage** for beautiful gradients and HEX colors.\n- **fill_material:** Custom item to fill empty slots in the menu.\n- **Buttons:** Fully customizable materials and display names for \"Next Page\", \"Previous Page\", and \"Reset Tag\" buttons.\n![menu_settings](https://cdn.modrinth.com/data/cached_images/440b8d47bedc28e9352f8a6ca691b13103bab234.jpeg)\n![menu_settings](https://cdn.modrinth.com/data/cached_images/6ffb8b8833c64d45d01c8148b5cd228d9ed43367.jpeg)\n\n### 🔑 Creating Tags & Permissions \nThe system is dynamic. The ID you give to a tag in the config automatically determines its permission node.\n\n```\ntags:\n  tag1: # ID: tag1\n    display_name: \"<#FF7F50>[✈]\"\n    material: PAPER\n    lore:\n      - \"&7For beginners.\"\n      - \"&7Everyone can select.\"\n```\n> **Permission:** To use the tag above, give the player: `advancedtags.tag.tag1`\n- **Visuals:** You can use HEX (`<#RRGGBB>`), Gradients (`<gradient:color1:color2>`), and traditional color codes (`&6`).\n- **Locked State:** If a player doesn't have permission, the item automatically switches to the `locked` material (default: Gray Dye) defined in your config. \n![locket_state](https://cdn.modrinth.com/data/cached_images/ad56510f9d8245d816650c2ad7d0a83d7a2c8a3e.jpeg)\n\n## ⚡ Commands\n\n| Command | Permission | Description | Aliases Usage |\n|---------|------------|-------------|---------------|\n| `/tags` | advancedtags.command | Opens the tag selection menu | `/unvan` `/ünvan` |\n| `/advancedtags reload` | advancedtags.admin | Reloads config and lang files | `/at reload` |\n\n## 🛡️ Permissions\n\n| Permission                  | Description                                           |\n|------------------------------|------------------------------------------------------|\n| `advancedtags.command`       | Permission to open the menu (Available to everyone). |\n| `advancedtags.admin`         | Permission to use the reload command (OP) and bypass the cooldown. |\n| `advancedtags.bypass.cooldown` | Permission to bypass the cooldown.               |\n| `advancedtags.tag.<id>`      | Permission to access a specific tag (e.g., `advancedtags.tag.tag1`). |\n| `advancedtags.tag.*`         | Wildcard permission granting access to all tags.   |\n\n## ⚙️ Supported Forks\n\n| Fork / Build | Support Status  |\n|--------------|----------------|\n| ✅ Paper     | Fully Supported |\n| ✅ Purpur    | Fully Supported |\n| ✅ Folia     | Fully Supported |\n| ❌ Spigot    | Not Supported |\n| ❌ Bukkit    | Not Supported |\n\n- Optimized for **modern server software**. Fully compatible with **Paper**, **Folia**, and all their fork (**Purpur**, **Pufferfish**, etc.).\n\n## 🧩 Placeholders\nMake sure that **PlaceholderAPI** is installed to use the **AdvancedTags** plugin.\n- `%advancedtags_unvan%` - Returns the player's active tag (with colors).\n\n## ⚖️ License\nLicensed under CC BY-NC 4.0 (Attribution-NonCommercial 4.0 International).\nCommercial use and resale are strictly prohibited\n\n[![Discord](https://cdn.modrinth.com/data/cached_images/4de86371cc7bcf3818924b198f31baacc304700f.png)\n](https://discord.gg/62TzJBpm6C)",
+  "categories": [
+    "decoration",
+    "folia",
+    "management",
+    "optimization",
+    "paper",
+    "purpur",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 90,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

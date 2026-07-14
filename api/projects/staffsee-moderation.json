@@ -1,0 +1,28 @@
+{
+  "id": "bR7GxU9W",
+  "slug": "staffsee-moderation",
+  "title": "StaffSee - Server Moderation",
+  "description": "StaffSee is a lightweight Fabric mod for server moderation. Warn, mute, kick, freeze, and report, logged to .txt files, with optional LuckPerms support.",
+  "body": "StaffSee is a lightweight Fabric mod for server moderation.\nWarn, mute, kick, freeze, and report players. Every action is logged to simple `.txt` files in your world folder.\n\nServer-side only. Vanilla clients can join.\n\n<br>\n\n## How it works\n\nStaffSee runs entirely on the server. Staff use slash commands; the mod writes each action to `world/StaffLog/` in human-readable text files — one folder per player, plus shared audit files for chat and reports.\n\nNo database. No web panel. Open the files in any text editor.\n\n---\n\n## Commands\n\n**`/warn <player> <reason>`**\nWarn a player and append the entry to their log.\n\n**`/warns <player>`**\nShow recent warnings for a player.\n\n**`/mute <player> [duration] <reason>`**\nBlock chat messages.\nDurations: `30m`, `2h`, `1d`, or `perm` for permanent.\n\n**`/unmute <player>`**\nRemove an active mute.\n\n**`/kick <player> <reason>`**\nKick a player and log the reason.\n\n**`/freeze <player> [reason]`**\nFreeze a player in place — no movement, no interactions. Useful for screenshares.\n\n**`/unfreeze <player>`**\nRemove an active freeze.\n\n**`/report <player> <reason>`**\nReport a player. Online staff are notified instantly.\n\n**`/reports`**\nList open reports (staff).\n\n**`/reports resolve <id>`**\nClose a report and archive it to a `.txt` file (staff).\n\n> Requires OP level 2 by default, or LuckPerms nodes (see Permissions below).\n\n---\n\n## Log structure\n\n```\nworld/\n└── StaffLog/\n    ├── _mutes.json\n    ├── _counts.json\n    ├── _freezes.json\n    ├── _reports.json\n    ├── _chat/\n    │   └── 2026-07-07.txt\n    ├── _reports/\n    │   └── 2026-07-07.txt\n    └── Steve/\n        ├── warns.txt\n        ├── mutes.txt\n        ├── kicks.txt\n        └── freezes.txt\n```\n\nEach player gets their own folder.\nStaff actions are split into separate files — easy to review, easy to share.\nChat messages are logged globally under `_chat/`, one file per day.\n\n---\n\n## Example entry\n\n`world/StaffLog/Steve/warns.txt`\n\n```\n[06.07.26  21:15:33]\nby AdminName\nReason: Griefing spawn area\n```\n\n---\n\n## Config\n\nOn first start, StaffSee creates `config/staffsee.json`:\n\n```json\n{\n  \"autoKickAfterWarns\": 0,\n  \"muteMessage\": \"You are muted.\",\n  \"warnBroadcast\": false,\n  \"freezeMessage\": \"You are frozen by staff.\",\n  \"logChat\": true,\n  \"reportCooldownSeconds\": 60\n}\n```\n\n| Option | Description |\n| --- | --- |\n| `autoKickAfterWarns` | Auto-kick after N warnings. Set to `0` to disable. |\n| `muteMessage` | Message shown when a muted player tries to chat. |\n| `warnBroadcast` | Broadcast warnings to all online players. |\n| `freezeMessage` | Message shown when a frozen player tries to move or chat. |\n| `logChat` | Write all chat messages to `_chat/YYYY-MM-DD.txt`. |\n| `reportCooldownSeconds` | Cooldown between `/report` per player. Set to `0` to disable. |\n\n---\n\n## Permissions (optional — LuckPerms)\n\nStaffSee uses fabric-permissions-api. Without LuckPerms, staff commands require OP level 2.\n\n| Node | Access |\n| --- | --- |\n| `staffsee.moderate` | All staff commands |\n| `staffsee.report` | `/report` (default: everyone) |\n\nExample:\n```\n/lp group moderator permission set staffsee.moderate true\n```\n\n---\n\n## Companion mod\n\nStaffSee pairs with **[ChestSee](https://modrinth.com/mod/chestsee-chestlogger)** — log container interactions in `ChestLog/`, handle player moderation in `StaffLog/`.\n\n---\n\n## Install\n\n1. Install **Fabric Loader** and **Fabric API** for your Minecraft version\n2. Place `StaffSee.jar` in your server's `mods/` folder\n3. Restart the server\n\nDone. No extra setup required.",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 8,
+  "followers": 0,
+  "game_versions": [
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

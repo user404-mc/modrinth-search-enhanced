@@ -1,0 +1,36 @@
+{
+  "id": "XHX6YKmN",
+  "slug": "sovaantilag",
+  "title": "SovaAntiLag",
+  "description": "Heuristic anti-lag against redstone lag machines — without breaking legit farms.",
+  "body": "# 🦉 SovaAntiLag\n\n**Heuristic anti-lag for redstone lag machines — without breaking legitimate farms.**\n\nMost anti-lag plugins use hard limits (e.g. \"max 8 hoppers per chunk\") that punish honest\nplayers as much as griefers. SovaAntiLag takes a different approach: it measures how *useful*\na chunk's activity actually is, and only intervenes when a chunk is clearly burning ticks for\nnothing — and even then it reacts **softly and gradually**.\n\n## How it works\n\nEvery chunk gets a **Productivity Score**:\n\n```\nP = U_redstone / (A_useful + 1)\n```\n\n- **U_redstone** — redstone churn: piston/dispenser/dropper firings, redstone signal changes.\n- **A_useful** — real work: hopper item transfers, crop growth, block breaking, mob deaths.\n\nA high score means *lots of activity, no payoff* → a likely lag machine. A productive farm has\nplenty of `U_redstone` **and** plenty of `A_useful`, so its score stays low and it is left alone.\n\n> The plugin only starts actively scanning when the server is genuinely struggling\n> (`MSPT > 40 ms` by default). When the server is healthy, it stays out of the way.\n\n## Soft, staged response\n\n1. **Throttle** — suspicious chunk's redstone events are skipped with an 80% chance. The machine\n   slows down instead of dying.\n2. **Freeze** — if MSPT still doesn't recover, redstone in that chunk is fully paused for 5 minutes.\n3. **Recovery** — once the server is healthy again, restrictions lift automatically.\n\n## Specialized modules\n\n- **🔁 Idle Loop Detector** — empty dispensers/droppers fired in a tight loop get silenced until\n  an item actually enters them.\n- **💡 Light Spam Limiter** — redstone lamps flickering many times per second get locked ON briefly.\n- **🧍 Entity Physics Capping** — huge stacks of entities (armor stands, etc.) in one block get\n  their collision temporarily disabled.\n\n## Compatibility\n\n- **Cores:** Bukkit · Spigot · **Paper** · Purpur · Pufferfish. **Folia** supported (experimental).\n- **Minecraft:** 1.20.6 – 1.21.x (Java 21).\n\n## Commands & permissions\n\n| Command | Description |\n|---|---|\n| `/sal status` | Show MSPT, detected core, tracked chunks |\n| `/sal top` | List the most suspicious chunks |\n| `/sal reload` | Reload config and language |\n\nPermission: `sovaantilag.admin` (default: OP).\n\n## Languages\n\nShips with **English (default), Русский, Deutsch, Español, Français, 简体中文, Português (BR), Українська**.\nSet `language:` in `config.yml`, or edit any file in `plugins/SovaAntiLag/lang/`.\n\n## Configuration\n\nEverything is tunable — thresholds, throttle chance, freeze duration, per-module toggles, and an\noptional Discord webhook for chunk alerts. See `config.yml`.\n\n---\n\n*Open to issues and translation PRs. \"Sova\" (сова) means \"owl\" — the watchful kind.*",
+  "categories": [
+    "bukkit",
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "OXFW4hW4",
+  "slug": "viperantixray",
+  "title": "ViperAntiXray",
+  "description": "ViperAntiXray is an ultra-high-performance, 100% server-side Fabric utility (1.21.x – 26.x) engineered to secure server economies by completely blinding client-side X-Ray radars.",
+  "body": "# 🐍 ViperAntiXray (1.21.x – 26.x)\n\n### **✨ High-Performance Asynchronous Packet Obfuscation Core ✨**\n\n**ViperAntiXray** is an ultra-high-performance, 100% server-side Fabric utility engineered to secure server economies by completely blinding client-side X-Ray radars. Through advanced asynchronous chunk manipulation, it effectively eliminates cheating vectors while maintaining pristine server TPS and a seamless connection for vanilla players. 🚀\n\n---\n\n## 🛠️ Operational Modes & Deep-Dive\n\nClick below to check out how each security layer handles network payloads, shifts packet data on-the-fly, and restores transient states natively.\n\n* **How it works:** Scans outgoing chunk packets on separate thread pools and dynamically swaps unexposed target blocks (diamond, emerald, ancient debris, etc.) with standard Stone, Deepslate, or Netherrack before the data reaches the player. Ores already exposed to air or transparent blocks remain fully visible. 💎\n* **Configuration parameter:** `\"mode\": 1` 📂\n* **Pro-Tip:** ||This mode uses near-zero CPU and is perfect for budget hardware setups looking to hide valuable ores from basic texture packs.|| 🏎️\n* **How it works:** Generates a randomized, dynamic matrix that multiplies fake diamond, gold, and lapis packets directly into the client stream, replacing a configurable percentage of Stone/Deepslate/Netherrack blocks to completely clutter and overwhelm cheat radar HUDs. 🔮\n* **Configuration parameter:** `\"mode\": 2` 📂\n* **Pro-Tip:** ||All modifications are strictly temporary—the real world state is restored immediately after packet serialization to ensure disk data stays 100% untouched!|| 🐍\n\n---\n\n## ⚙️ Configuration File Setup (`viperantixray.json`)\n\nThe mod reads its profile from the server root directory on startup. If the file doesn't exist, it is generated automatically with these high-performance defaults:\n\n```json\n{\n  \"mode\": 1,\n  \"target_ores\": [\n    \"minecraft:diamond_ore\",\n    \"minecraft:deepslate_diamond_ore\",\n    \"minecraft:emerald_ore\",\n    \"minecraft:deepslate_emerald_ore\",\n    \"minecraft:ancient_debris\"\n  ],\n  \"fake_ore_ratio\": 0.05\n  \"debug\": false\n}\n\n```\n\n### 📋 Field Matrix Reference\n\n| Field | Type | Default | Description |\n| --- | --- | --- | --- |\n| `mode` | `int` | `1` | `1` = Hide Ores (Obfuscate), `2` = Multiply Ores (Fake Ores) |\n| `target_ores` | `string[]` | *(see defaults)* | List of block IDs to dynamically mask (Mode 1) or clone as fakes (Mode 2) |\n| `fake_ore_ratio` | `float` | `0.05` | Fraction of eligible blocks replaced with fake variants in Mode 2 (`0.0` – `1.0`) |\n| debug | bool | false | Enables verbose per-chunk logging (Viper\\| Obfuscating chunk, Viper\\|DBG chunk) for diagnostics |\n\n### 🛠️ Modifying the Target Registries\n\nTo adjust the security mesh, append or drop identifiers directly inside the string list. For instance, expanding protection to capture raw Iron blocks looks like this:\n\n```json\n\"target_ores\": [\n  \"minecraft:diamond_ore\",\n  \"minecraft:deepslate_diamond_ore\",\n  \"minecraft:emerald_ore\",\n  \"minecraft:deepslate_emerald_ore\",\n  \"minecraft:ancient_debris\",\n  \"minecraft:iron_ore\",\n  \"minecraft:deepslate_iron_ore\"\n]\n\n```\n\n> 📑 **Note:** The configuration matrix safely hot-reloads during the boot process on every server restart—eliminating the need for complex command inputs.\n\n---\n\n## 📋 Technical Specs\n\n* **Mod Loader:** ⚙️ **Fabric Loader** (Uses raw Mojang/Yarn mappings with zero Fabric API dependencies).\n* **Target Environments:** 🎯 **Minecraft 1.21.x** (Java 21) | **26.1.x** (Java 25) | **26.2.x** (Java 25).\n* **Client-Side Requirements:** **100% Server-Side Only** (Vanilla clients connect without any client mods installed).\n* **Optimization Alignment:** Engineered from the ground up to operate in tandem with high-capacity thread managers like the **SS Optimization Stack**.\n\n---\n\n## 🏆 Unrivaled Stability & Performance\n\nViperAntiXray stands alone as the industry's first **100% bug-free** anti-xray mod. Because it processes chunk data asynchronously outside the main server thread loop, it completely avoids the ghost blocks, lighting glitches, and client-side stuttering that plague traditional solutions. It is lighter, faster, and demonstrably better than any other anti-xray method on the market. Test it out on your server today to see the difference yourself! 📈\n\n**SS Stack | Shielding Your Community Across Every Era** 🛡️⚡\n**THIS IS A DEMO SO IF SOMETHING ISNT WORKING PLEASE INFORM ME ON MY DISCORD SERVER** ",
+  "categories": [
+    "fabric",
+    "management",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 176,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

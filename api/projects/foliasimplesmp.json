@@ -1,0 +1,35 @@
+{
+  "id": "q1jtSRzY",
+  "slug": "foliasimplesmp",
+  "title": "FoliaSimpleSMP",
+  "description": "A Folia supported simple SMP plugin that adds combatlog, homes and TPA.",
+  "body": "# Folia-supported SimpleSMP Plugin\n\nAn OpenJS ScriptPack for Bukkit/Paper/Folia servers that adds player-to-player teleport requests, home points, and a combat-log protection system.\n\n## Requirements\n- [OpenJavascript for Bukkit, Paper, Folia, Purpur or Spigot](https://modrinth.com/plugin/openjavascript)\n- Server build with Adventure-based `sendActionBar` support (uses `net.kyori.adventure` components internally)\n\n## Features\n\n### Teleport Requests (`/tpa`, `/tpaccept`, `/tpdeny`)\n- Send a teleport request to another online player via a clickable chat message with **Accept**/**Deny** buttons.\n- On acceptance, a **10-second countdown** begins, shown live on the requester's action bar.\n- The countdown is calculated from real elapsed time (not server ticks), so it stays accurate even under server lag.\n- **Movement cancels the teleport** — if the requester moves so much as one block during the countdown, the request is cancelled and they're notified.\n- Fully Folia-compatible: per-player logic runs on the correct entity thread, and teleports use the async-safe teleport API.\n\n### Homes (`/sethome`, `/delhome`, `/home`)\n- Save one or more named home locations per player (`/sethome [name]`, defaults to `\"home\"` if unnamed).\n- Delete a saved home with `/delhome [name]`.\n- Teleport to a saved home with `/home [name]`, using the same 10-second movement-cancellable countdown as `/tpa`.\n- Tab-completion suggests the player's existing home names.\n- Home data persists to disk per player and survives server restarts.\n\n### Combat Log Protection\n- Landing or receiving a hit in PvP applies a **15-second combat tag** to both players, extended (not stacked) on repeated hits.\n- Tagged players see a live action bar countdown showing time remaining and their opponent's name.\n- **Teleporting is blocked while tagged** — both `/home` and accepting a `/tpa` request are refused during combat, and any in-progress teleport countdown is automatically cancelled the moment a player gets tagged.\n- **Logging out while tagged results in an instant death** and a server-wide broadcast, discouraging combat logging.\n- Correctly distinguishes real player-vs-player damage from other damage sources (environmental damage, mobs, projectiles), so animals and non-combat damage never trigger a tag.",
+  "categories": [
+    "bukkit",
+    "bungeecord",
+    "folia",
+    "paper",
+    "purpur",
+    "spigot",
+    "waterfall"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

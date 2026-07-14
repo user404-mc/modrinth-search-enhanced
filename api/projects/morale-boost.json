@@ -1,0 +1,25 @@
+{
+  "id": "QgzxvFY5",
+  "slug": "morale-boost",
+  "title": "Morale Boost",
+  "description": "Adds a Team Morale System - For Roleplaying or Party Game",
+  "body": "# Morale Boost\n**A cooperative team morale system for Minecraft servers**\n\n_This mod is used for RP with admins as gamemasters. Use function morale:add commands to give morale._\n\n---\n\n## Overview\n\nMorale Boost adds a shared **Team Morale** score that rises and falls based on what your team does together. Sleep through the night, and morale climbs. Watch a teammate die, and the whole team feels it. Morale directly affects every player's movement speed and attack speed, and going beyond the cap unlocks a buff state that makes the whole team faster and hit harder.\n\nDesigned for cooperative survival and medieval/roleplay servers.\n\n---\n\n## Features\n\n- **Shared morale score** — one value for the whole team, ranging from `0` to `150`\n- **Death penalty** — every death costs the team `-5` morale, with atmospheric flavor messages broadcast to all players\n- **Sleep bonus** — each player who sleeps in a bed grants `+1` morale\n- **Passive drain** — morale above `100` slowly drains back down over time (1 point per minute)\n- **Overflow buff** — morale above `100` grants all players a `+20%` attack speed and `+10%` movement speed bonus\n- **Gradual penalties** — low morale applies increasing attack speed and movement speed debuffs across multiple thresholds\n- **Debug command** — built-in debug function for server admins\n\n---\n\n## Morale Thresholds\n\n### Penalties (morale ≤ 100)\n\n| Morale Range | Attack Speed | Movement Speed |\n|:---:|:---:|:---:|\n| 101+ | +20% *(overflow buff)* | +10% *(overflow buff)* |\n| 90–100 | — | — |\n| 85–89 | −7% | — |\n| 80–84 | −14% | — |\n| 75–79 | −21% | −3% |\n| 70–74 | −28% | −6% |\n| 65–69 | −35% | −9% |\n| 60–64 | −35% | −12% |\n| 55–59 | −35% | −15% |\n| 50–54 | −35% | −18% |\n| 45–49 | −35% | −21% |\n| 40–44 | −35% | −24% |\n| 35–39 | −35% | −27% |\n| ≤ 34 | −35% | −30% |\n\nMorale is capped at a **maximum of 150** and a **minimum of 0**.\n\n---\n\n## Morale Changes at a Glance\n\n| Event | Morale Change |\n|---|:---:|\n| Player death | −5 |\n| Player sleeps in bed | +1 |\n| Overflow drain (above 100) | −1 per minute |\n\n> The overflow drain only ticks while morale is above 100. Once it returns to 100 or below, the timer resets.\n\n---\n\n## Commands\n\nAll commands require operator permissions (`/op`).\n\n### Check Morale Status\n```\n/function morale:status\n```\nDisplays the current team morale to all players, color-coded by range.\n\n### Manually Adjust Morale\n```\n/function morale:add_morale_1\n/function morale:add_morale_5\n/function morale:add_morale_10\n/function morale:add_morale_15\n/function morale:add_morale_25\n```\nAdds the specified amount to team morale. Caps at 150.\n\n### Debug Info\n```\n/function morale:debug\n```\nBroadcasts an admin-facing debug panel showing current morale, overflow timer (in ticks), and cumulative death count.\n\n---\n\n## Installation\n\n1. Download `Morale_Boost_release.zip`\n2. Place the `.zip` file into your world's `datapacks` folder:\n   ```\n   <world_folder>/datapacks/\n   ```\n3. In-game or in the server console, run:\n   ```\n   /reload\n   ```\n   The pack initializes automatically on load. Morale starts at `100` if no previous value exists.\n\n---\n\n## Compatibility\n\n| Version | Status |\n|---|:---:|\n| Minecraft 26.2 (pack format 107) | ✅ Supported |\n| Minecraft 1.21.11-1.21.5 | Maybe Supported? |\n| Minecraft 1.20.x and below | ❌ Not supported |\n\n> This datapack uses the `attribute modifier add` command syntax introduced in 1.21. It will not function correctly on older versions.\n\n---\n\n## Notes for Server Owners\n\n\n- The death detection system works by comparing a running total of all player deaths each tick. \n- The `on_join` advancement uses `minecraft:tick` as its trigger, which fires once on a player's first tick. It is automatically revoked after granting, so it re-fires correctly if a player re-joins.\n- There is no GUI or boss bar — morale feedback is delivered through chat messages and the `/function morale:status` command.\n\n---\n\nMade for the need of **Toba Garage Gamedev Department**\n\n---\n\n## License\n\nGNU GPL v3",
+  "categories": [
+    "datapack",
+    "fabric",
+    "forge",
+    "game-mechanics",
+    "minigame",
+    "neoforge",
+    "quilt",
+    "social"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 37,
+  "followers": 0,
+  "game_versions": [
+    "26.2"
+  ],
+  "date_updated": null
+}

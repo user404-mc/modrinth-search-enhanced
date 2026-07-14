@@ -1,0 +1,18 @@
+{
+  "id": "Ty551Ygv",
+  "slug": "curses-removed",
+  "title": "Curses Removed",
+  "description": "Removes curse enchantments from NeoForge 1.21.1 by detecting anything tagged as minecraft:curse, stripping cursed items and blocking /enchant applications.",
+  "body": "# Curses Removed\n\n**Curses Removed** is a NeoForge 1.21.1 mod that keeps curse enchantments out of normal gameplay by detecting enchantments tagged as `minecraft:curse` and removing them from items.\n\n## Features\n\n- Detects curse enchantments through the shared `minecraft:curse` enchantment tag.\n- Supports vanilla curses and curse enchantments added by other mods when they use the curse tag.\n- Removes curses from regular enchanted items.\n- Removes curses from enchanted books through stored enchantment cleanup.\n- Cleans player inventories during gameplay.\n- Cleans dropped item entities when they enter the world.\n- Blocks curse enchantments applied through `/enchant`.\n- Removes vanilla curse entries from normal enchantment tooltip ordering and non-treasure tag participation.\n\n## Gameplay\n\n### Tag-Based Curse Detection\n\nThe mod does not hardcode only `minecraft:binding_curse` and `minecraft:vanishing_curse` for runtime cleanup. Instead, it checks whether each enchantment is in `minecraft:curse`, so properly tagged curse enchantments from other mods are handled automatically.\n\n### Item Cleanup\n\nWhenever cursed enchantments are found on an item, they are stripped from the enchantment component while the item itself remains intact. This applies to both:\n\n- `DataComponents.ENCHANTMENTS`\n- `DataComponents.STORED_ENCHANTMENTS`\n\nThat means cursed tools, armor, weapons, and enchanted books are all cleaned.\n\n### Command Blocking\n\nThe vanilla enchantment registry still keeps curse IDs registered for compatibility, but curse enchantments cannot be successfully applied through `/enchant`. Attempts to apply a tagged curse fail with:\n\n`Curse enchantments are disabled.`\n\n## Compatibility\n\n### Modded Curses\n\nOther mods can add new curse enchantments. As long as those enchantments are tagged with `minecraft:curse`, Curses Removed will detect and strip them without needing a dedicated compatibility patch.\n\n### Registry Safety\n\nCurse enchantment IDs may still appear in command suggestions because they remain registered. This avoids breaking datapacks, loot tables, saved data, or other mods that reference those enchantment IDs, while still preventing curse enchantments from staying on items or being applied successfully.\n",
+  "categories": [
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 0,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

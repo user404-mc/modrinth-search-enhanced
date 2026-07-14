@@ -3,19 +3,18 @@
   "slug": "lightplus",
   "title": "LightPlus",
   "description": "A Simple Plugin that Adds Functions to Light Blocks in Survival",
-  "body": "# Light Plus\n---\nA Simple Plugin that Adds Functions to Light Blocks in Survival\n\n## Functions\n- Use light blocks in survival/adventure (not just creative).\n- Place leveled light blocks from light items.\n- Break light blocks in survival/adventure and get them back as items.\n- Preserve and carry light level (0-15) in the dropped/held light item.\n- Rotate light level on placed light blocks:\n- Right-click: +1 (wraps 15 -> 0).\n- Shift-right-click a light block to place another light block next to it (same level).\n- Left-click targeting logic to break looked-at invisible light blocks reliably.\n- Show action-bar feedback when level is set/changed (Set to %level% Level, configurable).\n- Show marker particles around nearby light blocks while holding a light item.\n- Stonecutter conversion recipes for all 16 light levels.\n- Stonecutter output always matches selected target level.\n- Recipe permission enforcement for stonecutter usage.\n- Auto-discover stonecutter recipes on join (configurable).\n- Auto-discover recipes for online players on plugin enable/reload.\n- Crafting reset recipe: craft a light item to reset it to level 15.\n- Permission-based control for all features.\n\n## Config\n```yml\ngrant_recipes_on_login: true\nmessages:\n  action_bar_level_set: \"<green>Set to <yellow>%level%</yellow> level\"\n  command_usage: \"<red>Usage: /lightplus reload\"\n  command_no_permission: \"<red>You do not have permission to use this command.\"\n  command_reloaded: \"<green>LightPlus config reloaded.\"\n```\n\n\n## Commands\n| Command | Description | Usuage | Permission |\n| --- | --- | --- | --- |\n| /lightplus reload | LightPlus management command. | /lightplus reload | lightplus.reload |\n\n## Permissions\n| Permission | Description | Default | \n| --- | --- | --- |\n| lightplus.use | Base permission for LightPlus features. | true | \n| lightplus.place | Allows placing Light blocks with stored levels. | op | \n| lightplus.break | Allows breaking Light blocks in survival/adventure and dropping items. | true | \n| lightplus.adjust | Allows adjusting placed Light block levels in survival/adventure. | true | \n| lightplus.recipe | Allows using and being auto-granted LightPlus stonecutter recipes. | op | \n| lightplus.reload | Allows reloading LightPlus config. | op | ",
+  "body": "# Light Plus\n---\nA Simple Plugin that Adds Functions to Light Blocks in Survival\n\n## Functions\n- Use light blocks in survival/adventure (not just creative).\n- Place leveled light blocks from light items.\n- Break light blocks in survival/adventure and get them back as items.\n- Preserve and carry light level (0-15) in the dropped/held light item.\n- Rotate light level on placed light blocks:\n- Right-click: +1 (wraps 15 -> 0).\n- Shift-right-click a light block to place another light block next to it (same level).\n- Left-click targeting logic to break looked-at invisible light blocks reliably.\n- Show action-bar feedback when level is set/changed (Set to %level% Level, configurable).\n- Show marker particles around nearby light blocks while holding a light item.\n- Stonecutter conversion recipes for all 16 light levels.\n- Stonecutter output always matches selected target level.\n- Recipe permission enforcement for stonecutter usage.\n- Auto-discover stonecutter recipes on join (configurable).\n- Auto-discover recipes for online players on plugin enable/reload.\n- Crafting reset recipe: craft a light item to reset it to level 15.\n- Configurable shaped crafting recipe for a light block, fully defined in `config.yml` (custom shape, ingredients, and result level). Auto-discovered for players on join and on `/lightplus reload`.\n- Folia support: light particle preview and recipe discovery run through the global region and per-player entity schedulers.\n- faststats metrics integration, including `lights_placed` and `lights_mined` custom metrics.\n- Permission-based control for all features.\n\n## Config\n```yml\ngrant_recipes_on_login: true\ncrafting_recipe:\n  enabled: true\n  result_level: 15\n  items:\n    A: GLASS\n    B: GLOWSTONE\n  recipe:\n    - 'AAA'\n    - 'ABA'\n    - 'AAA'\nmessages:\n  action_bar_level_set: \"<green>Set to <yellow>%level%</yellow> level\"\n  command_usage: \"<red>Usage: /lightplus reload\"\n  command_no_permission: \"<red>You do not have permission to use this command.\"\n  command_reloaded: \"<green>LightPlus config reloaded.\"\n```\n\n\n## Commands\n| Command | Description | Usuage | Permission |\n| --- | --- | --- | --- |\n| /lightplus reload (alias: /lp reload) | LightPlus management command. | /lightplus reload | lightplus.reload |\n\n## Permissions\n| Permission | Description | Default | \n| --- | --- | --- |\n| lightplus.use | Base permission for LightPlus features. | true | \n| lightplus.place | Allows placing Light blocks with stored levels. | op | \n| lightplus.break | Allows breaking Light blocks in survival/adventure and dropping items. | true | \n| lightplus.adjust | Allows adjusting placed Light block levels in survival/adventure. | true | \n| lightplus.recipe | Allows using and being auto-granted LightPlus stonecutter recipes. | op | \n| lightplus.reload | Allows reloading LightPlus config. | op | \n\n[![Servers & Players](https://faststats.dev/embed/default:31e8483a-a898-4a73-a62e-f803eee2a457:servers-and-players.svg?w=960&h=340&theme=dark)](https://faststats.dev/project/lightplus/minecraft-plugin)",
   "categories": [
-    "bukkit",
     "decoration",
+    "folia",
     "game-mechanics",
     "management",
     "paper",
-    "purpur",
-    "spigot"
+    "purpur"
   ],
   "client_side": "unsupported",
   "server_side": "required",
-  "downloads": 80,
+  "downloads": 88,
   "followers": 0,
   "game_versions": [
     "1.21",
@@ -30,7 +29,10 @@
     "1.21.9",
     "1.21.10",
     "1.21.11",
-    "26.1"
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

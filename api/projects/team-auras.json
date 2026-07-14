@@ -1,0 +1,26 @@
+{
+  "id": "yHPhfjvG",
+  "slug": "team-auras",
+  "title": "Team Auras",
+  "description": "A Minecraft datapack that lets you create team-based aura helmets.",
+  "body": "# Team Auras\n\nA Minecraft datapack that lets you create team-based aura helmets. Players wearing an aura helmet grant configurable potion effects to themselves and nearby teammates.\n\n## Features\n\n- Supports **8 configurable teams** (`team1` to `team8`)\n- Turn any wearable helmet item into an aura helmet\n- Configurable self and nearby teammate potion effects\n- Configurable aura radius and effect amplifier\n- Vanilla-compatible team customization\n- Simple setup functions for creating teams and assigning aura helmets\n- Compatible with **Minecraft 1.21.11 to 26.2**\n\n## Installation\n\n1. [Download the latest release.](https://modrinth.com/datapack/team-auras/versions)\n2. Place the datapack into your world's `datapacks` folder.\n3. Run:\n\n```mcfunction\n/reload\n```\n\n## Setup\n\nCreate the default teams:\n\n```mcfunction\n/function team_auras:setup/create_teams\n```\n\nTo turn the item in your main hand into a Team 1 aura helmet:\n\n```mcfunction\n/function team_auras:item_apply/team1\n```\n\nReplace `team1` with any team from `team1` to `team8`.\n\n> **Note:** Aura items only grant their effects while equipped in the **helmet slot**. The `/function team_auras:apply/teamX` functions only assign the aura to the held item. They **do not** make the item wearable as a helmet if it isn't already.\n>\n> If you want to use an item that is not normally wearable as a helmet, you can use Minecraft's `/give` command with the `equippable` item component to make it wearable in the helmet slot. This is a vanilla feature.\n\n## Team Customization\n\nThe datapack creates the default teams (`team1` to `team8`).\n\nYou can freely customize these teams using vanilla Minecraft's `team modify` command, including:\n\n- Display name\n- Prefix\n- Suffix\n- Team color\n- Friendly fire\n- Collision rules\n- Name tag visibility\n- Death message visibility\n- Any other supported `team modify` options\n\nFor example:\n\n```mcfunction\nteam modify team1 displayName {\"text\":\"Red Team\",\"color\":\"red\",\"bold\":true}\nteam modify team1 prefix {\"text\":\"[RED] \",\"color\":\"red\"}\nteam modify team1 color red\n```\n\nThese customizations do not affect the aura system. As long as players remain on the correct team (`team1` to `team8`), the datapack will continue to function normally.\n\n## Configuration\n\nEach team's aura is configured in its corresponding function:\n\n```text\ndata/team_auras/function/team1.mcfunction\n...\ndata/team_auras/function/team8.mcfunction\n```\n\nBy default, each aura grants:\n\n- **Self:** Glowing I\n- **Nearby teammates (10 block radius):** Resistance I\n\nEach team's function contains two commands:\n\n- One that applies the effect to the wearer.\n- One that applies the effect to nearby teammates.\n\nFor example:\n\n```mcfunction\n# Self effect\nexecute as @a[team=team1,gamemode=!spectator] if items entity @s armor.head *[custom_data~{team:\"team1\"}] run effect give @s minecraft:glowing 2 0 true\n\n# Nearby teammates\nexecute as @a[team=team1,gamemode=!spectator] if items entity @s armor.head *[custom_data~{team:\"team1\"}] at @s run effect give @a[team=team1,gamemode=!spectator,distance=..10] minecraft:resistance 2 0 true\n```\n\nYou can customize:\n\n- Potion effects\n- Effect duration\n- Effect amplifier (`0 = Level I`, `1 = Level II`, etc.)\n- Aura radius (`distance=..10`, `distance=..20`, etc.)\n\nFor example, to make Team 1 grant **Speed II** to the wearer and **Regeneration I** to teammates within **20 blocks**:\n\n```mcfunction\nexecute as @a[team=team1,gamemode=!spectator] if items entity @s armor.head *[custom_data~{team:\"team1\"}] run effect give @s minecraft:speed 2 1 true\n\nexecute as @a[team=team1,gamemode=!spectator] if items entity @s armor.head *[custom_data~{team:\"team1\"}] at @s run effect give @a[team=team1,gamemode=!spectator,distance=..20] minecraft:regeneration 5 0 true\n```\n\n## License\n\nThis project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.\n",
+  "categories": [
+    "datapack",
+    "equipment",
+    "game-mechanics",
+    "minigame",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 10,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

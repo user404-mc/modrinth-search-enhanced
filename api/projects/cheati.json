@@ -1,0 +1,32 @@
+{
+  "id": "eFdbxSwC",
+  "slug": "cheati",
+  "title": "Cheati",
+  "description": "Cheati - The best anticheat solution for paper servers",
+  "body": "Cheati\n\nA configurable, false-positive-conscious anticheat for Paper servers — covering movement, combat, and world/inventory exploits.\n\nCheati watches the same player data your server already produces and flags suspicious activity to your staff in real time. It's built around one principle: catching cheaters shouldn't mean punishing legitimate players. A huge amount of Cheati's design goes into not firing on lag, knockback, sprint-jumps, or the dozens of normal-but-unusual things players do every day.\n\nYou decide how far it goes — from quiet staff alerts, to actively blocking cheated movement, to running your own punishment commands automatically. All per-check, all configurable, all reloadable live.\n\n\nWhat it checks\n\nMovement — Speed, Fly, NoFall, Jesus (water-walk), Phase (wall-clip), Step, NoSlow (including cobwebs, soul sand, berry bushes, and powder snow)\n\nCombat — Reach, KillAura, AutoClicker\n\nWorld & inventory — FastBreak, Nuker, Scaffold, AutoTool\n\nOptional packet-level — Timer (requires PacketEvents)\n\n\nMore than alerts\n\n\nStaff alerts with a decaying violation buffer and a non-decaying lifetime count, so isolated false reads fade out while sustained cheating keeps surfacing.\n/cheati vl <player> to review a player's lifetime violations per check.\nOpt-in action prevention, per check. Movement violations are corrected with a tracked setback to the player's last known-good position (not a crude rubber-band); combat and world violations cancel the offending action; NoFall applies the fall damage that was dodged. Enable it only where you want it.\nOpt-in auto-punish. Instead of reinventing bans, Cheati runs your console commands at violation thresholds you set — so it plugs straight into whatever punishment plugin you already trust (LiteBans, AdvancedBan, vanilla /ban, anything).\n\n\n\nBuilt to avoid false positives\n\nThis is where most of the work went:\n\n\nCentralized exemptions for states where normal movement rules don't apply — flight, elytra gliding, vehicles, riptide, levitation, and more.\nGrace windows after teleports, respawns, knockback, world changes, logins, flight toggles, gamemode changes, and trident launches.\nVelocity/knockback tracking — server-applied velocity (knockback, explosions, fishing-rod pulls, wind charges) widens the relevant caps for the few ticks it actually matters, so legitimate launches don't read as Speed or Fly.\nLatency compensation — grace windows scale with each player's real ping, so high-latency players aren't flagged for what's really just lag.\nGravity-based vertical prediction in the Fly check, compared against Minecraft's actual movement physics rather than a loose heuristic.\nPer-check bypass permissions — exempt a trusted account from one specific check (cheati.bypass.<check>) without dropping every other protection.\n\n\n\nRequirements\n\nServerPaper 1.21+ (or a fork such as Purpur / Pufferfish)Java21+PacketEventsOptional — only needed for the packet-level Timer check\n\n\nCheati uses Paper-specific API and does not run on plain Spigot or Bukkit.\n\n\n\n\nCommands & permissions\n\n/cheati reload — live-reload the configuration\n/cheati alerts — toggle alert visibility\n/cheati vl <player> — view a player's violations\n\n\ncheati.alerts — receive alerts and use /cheati alerts / /cheati vl (default: op)\ncheati.admin — use /cheati reload (default: op)\ncheati.bypass / cheati.bypass.<check> — exempt from all, or one specific check (default: false)\n\n\n\nConfiguration\n\nEverything is configurable and documented inline in config.yml — check toggles, sensitivity thresholds, per-check prevention, grace windows, latency scaling, and auto-punish ladders. Edit and run /cheati reload to apply without a restart.\n\nA note on tuning: every server's playerbase moves differently. Cheati ships with sensible defaults, but enforcement (prevention and auto-punish) is best switched on after watching alert traffic for your own players first. The config comments call out which values to adjust if you see a false positive or a miss.",
+  "categories": [
+    "bukkit",
+    "management",
+    "paper",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

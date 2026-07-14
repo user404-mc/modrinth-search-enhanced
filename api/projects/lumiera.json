@@ -1,0 +1,27 @@
+{
+  "id": "pKjISKyx",
+  "slug": "lumiera",
+  "title": "Lumiera",
+  "description": "A cinematics and cutscene mod with powerful tools",
+  "body": "# Lumiera\n\nLumiera is a camera and cutscene tool for Minecraft. You build camera shots from\nkeyframes on an in-game timeline, hang timed events like fades, sound, and screen\nshake off the path, and play the whole thing back from a key, a command, or a\ndatapack.\n\nIt runs on Forge, Fabric, and NeoForge across three Minecraft versions, so a shot\nyou build in one place works the same everywhere the mod is installed.\n\n## What you can do\n\n- Drop camera keyframes as you fly around, then scrub the timeline and preview the\n  result live.\n- Choose how the camera moves between keyframes: straight lines, Catmull-Rom,\n  Bezier with handles, cosine, or a stepped hold. Centripetal Catmull-Rom is the\n  safe default; it won't loop on sharp turns.\n- Set easing per segment. Plain ease in/out is there, along with quad, cubic, sine,\n  expo, back, elastic, and bounce, all solved as real cubic-bezier curves.\n- Animate field of view and roll per keyframe, bank into turns, or lock the aim onto\n  an entity or a fixed point.\n- Keep a per-world library of your paths and cutscenes to rename, duplicate, or\n  delete.\n\n## Cutscene cues\n\nA path can carry events that fire as it plays:\n\n- Fades, colour-ramp veils, and letterbox bars\n- On-screen text, action bar messages, and styled captions\n- Sound and particle cues, placed in the world or pinned to the camera\n- Screen shake with adjustable intensity, frequency, and decay\n- Fog, vignette, and a smooth time-of-day ramp for mood\n- Look-at, orbit, and offset moves layered on top of the path\n- Expression-driven field of view, rotation, and position for handheld drift\n- HUD hide, time-of-day lock, and a command run at any point on the timeline\n\nOn 1.21.1 and newer you can also stage actors: entities, players, items, blocks,\narmor stands, or particles. Each one gets its own pose keyframes and a track of\ntimed actions like swinging, jumping, attacking, breaking a block, dying, or\nplaying a sound.\n\n## Building a shot in-game\n\nOpen the timeline with `G`. Fly your camera into place and press `=` to drop a\nkeyframe. Add a few more, scrub the timeline, and press `]` to preview. Every key is\nlisted under Controls and can be rebound:\n\n- `G` timeline, `.` edit mode, `,` view mode\n- `=` add keyframe, `Delete` remove, `K` duplicate\n- `[` play, `]` preview, `End` reset, `M` library\n\n## Commands\n\nServers and command blocks get the same reach through `/lumiera`:\n\n- `/lumiera play <id> [speed] [targets] [center]`, where center is an entity or `x y z`\n- `/lumiera stop [target]` and `/lumiera reset [target]`\n- `/lumiera list [saved|datapack]` and `/lumiera info <id>`\n- `/lumiera delete <id>` and `/lumiera rename <id> <newId>`\n- `/lumiera interpolation`, `/lumiera center`, `/lumiera reload`\n\n`/lumiera cutscene play <id> [targets]` plays a datapack cutscene, with `stop`,\n`pause`, `resume`, `skip`, and `seek <tick>` alongside it.\n\n## Datapacks\n\nShip cutscenes with a map by dropping JSON under `data/<namespace>/cutscenes/`:\n\n```json\n{\n  \"schema\": 1,\n  \"id\": \"intro\",\n  \"duration_ticks\": 40,\n  \"fov\": { \"mode\": \"keyframed\", \"default\": 90.0 },\n  \"keyframes\": [\n    { \"time\": 0.0, \"pos\": { \"x\": 0, \"y\": 65, \"z\": 0 }, \"rot\": { \"yaw\": 0, \"pitch\": 0 }, \"fov\": 90.0, \"path_type\": \"linear\" },\n    { \"time\": 2.0, \"pos\": { \"x\": 8, \"y\": 67, \"z\": 4 }, \"rot\": { \"yaw\": -30, \"pitch\": 10 }, \"fov\": 70.0, \"path_type\": \"smooth\" }\n  ],\n  \"camera_position_mode\": \"absolute\"\n}\n```\n\nCamera paths under `data/<namespace>/camera_paths/` take an `events` list for the cues\nabove. Times can be given as `tick`, `time`, or `at` in seconds, and event types accept\nnamespaced ids like `lumiera:shake_camera`.\n\n## Supported versions\n\n- Minecraft 1.20.1 on Forge and Fabric\n- Minecraft 1.21.1 on NeoForge and Fabric\n- Minecraft 26.1 on NeoForge and Fabric\n\nActor staging is 1.21.1 and newer. The fog cue applies on NeoForge 1.21.1 for now;\nelsewhere it loads but has no effect. On-screen text and captions use EmbersTextAPI on\nthe client.\n\n## For modders\n\nLumiera exposes a camera modifier API so other mods can drive the camera without\nfighting over it. Modifiers stack by priority on a separate background layer, so one\nmod's cutscene won't stomp another's. A small runtime API starts and stops cutscenes\nby id.\n\n## License\n\nLumiera is released under Ember's Modding Licence (EML) v1.2. See\nhttps://tysontheember.dev/modding-licence/. In short: use it and feature it freely,\nbut don't rehost the files, fork it or use the code in your own projects without permission.",
+  "categories": [
+    "adventure",
+    "fabric",
+    "forge",
+    "library",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 30,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

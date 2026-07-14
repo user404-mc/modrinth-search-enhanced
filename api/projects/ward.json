@@ -1,0 +1,21 @@
+{
+  "id": "arCLMKiz",
+  "slug": "ward",
+  "title": "Ward",
+  "description": "A testing framework for Minecraft datapacks using mcfunction.",
+  "body": "<div>\n  <img src=\"https://raw.githubusercontent.com/mcbookshelf/ward/main/docs/assets/logo.png\" alt=\"Ward logo\" height=\"54\" align=\"left\">\n  <h1>Ward</h1>\n</div>\n\nWard lets you write automated tests for your datapacks as plain `.mcfunction`\nfiles in a `test/` folder.\n\n![demo](https://raw.githubusercontent.com/mcbookshelf/ward/main/docs/assets/demo.gif)\n\nWard is two pieces that work together:\n\n- 🧩 **The Mod** (on [Modrinth](https://modrinth.com/mod/ward)) — a Fabric mod\n  adding the test commands (`/assert`, `/await`, `/fail`, `/succeed`,\n  `/dummy`) and a headless test server that streams results live.\n- 🐍 **The Tooling** (on [PyPI](https://pypi.org/project/mcward/)) — the `mcward`\n  CLI that installs test servers (fetching Java and the mod for you), runs your packs against one or several\n  Minecraft versions with a live display, plus a [beet](https://github.com/mcbeet/beet)\n  plugin adding `beet test`.\n\nWrite tests in your datapack under `data/<namespace>/test/`:\n\n```mcfunction\n# @timeout 100\nsummon minecraft:armor_stand ~ ~ ~ {Tags: [\"target\"]}\nassert entity @e[tag=target]\nawait not entity @e[tag=target]\n```\n\nTest files support directives (`# @timeout`, `# @optional`, `# @dummy`,\n`# @template`, `# @environment`, `# @skyaccess`) and the full command set:\n\n| Command | Purpose |\n| --- | --- |\n| `assert [not] block/entity/data/score/chat/biome/predicate/items ...` | Assert immediately |\n| `await [not] ...` | Retry every tick until true or timeout |\n| `await delay <time>` | Pause the test |\n| `fail [message]` / `succeed` | End the test explicitly |\n| `dummy <player> spawn/leave/jump/use/attack/mine/...` | Control fake players |\n\n### Console\n\n```sh\nuv tool install mcward[cli]   # or: pip install mcward[cli]\nmcward test                   # discovers datapacks, picks compatible versions, runs\n```\n\n### In-Game\n- `/test run <name>` - Run a specific test\n- `/test runall [namespace]` - Run all tests (optionally filtered by namespace)\n- `/test runfailed` - Re-run previously failed tests\n- `/test runthis` - Run the closest test\n- `/test runthese` - Run all tests within 200 blocks\n\n## Documentation\n\n- [CLI](docs/cli.md) — the `mcward` CLI and `beet test`\n- [Dummies](docs/dummies.md) — fake players and the `/dummy` command\n- [Directives](docs/directives.md) — `# @timeout`, `# @environment`, ...\n- [Test commands](docs/commands.md) — `/assert`, `/await`, `/fail`, `/succeed`\n- [Test environments](docs/environments.md) — world setup/teardown around tests\n\n## Acknowledgements\n\nWard is heavily inspired by [packtest](https://github.com/misode/packtest) by\n[misode](https://github.com/misode).\n\nWard implements packtest's full command set, so **existing packtest tests run\nunmodified under Ward**. On top of that, Ward adds a few extra commands, a CLI\nwith multi-version runs and a live test display, and a `beet test` plugin.\n",
+  "categories": [
+    "fabric",
+    "management",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 18,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

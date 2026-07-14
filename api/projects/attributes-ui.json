@@ -1,0 +1,20 @@
+{
+  "id": "4EYd9NM2",
+  "slug": "attributes-ui",
+  "title": "Attributes UI",
+  "description": "Adds a configurable attributes table to the player inventory, with custom attribute support, display transforms, separators, and an in-inventory toggle.",
+  "body": "# Attributes UI\n\n**Attributes UI** is a client-side NeoForge mod that adds a clean, configurable attributes table to the left side of the player inventory.\n\nIt is designed for modded setups where players need to see both vanilla and custom attributes without opening extra menus or relying on hardcoded compatibility.\n\n## Features\n\n- Shows player attributes directly from the inventory screen\n- Supports vanilla and custom modded attributes\n- Configurable rows through `config/attributesui-client.toml`\n- Toggle button inside the inventory player model area\n- Toggle state persists across inventory reopens and game restarts\n- Automatically hides rows when their value is not above the configured threshold\n- Supports blank separator rows for grouping sections\n- Supports plain numbers and percent-style display\n- Supports display-only value transforms with `Deduct`, `Divide`, and `Multiply`\n- Client-side only; it does not change actual player attributes\n\n## Default Attributes\n\nThe default generated config includes:\n\n- `generic.max_health`\n- `generic.armor`\n- `generic.armor_toughness`\n- `generic.attack_damage`\n- `generic.attack_speed`\n\n## Configuration\n\nAfter launching the game once, edit:\n\n`config/attributesui-client.toml`\n\nEach attribute entry is an object:\n\n```toml\nattributes = [\n  { Name = \"Max Health\", Attribute = \"generic.max_health\", Deduct = 0.0, Divide = 0.0, Multiply = 0.0, ShowAbove = 0.0, Type = \"plain\" },\n  { Name = \"Armor\", Attribute = \"generic.armor\", Deduct = 0.0, Divide = 0.0, Multiply = 0.0, ShowAbove = 0.0, Type = \"plain\" }\n]\n```\n\n## Custom Attribute Example\n\n```toml\nattributes = [\n  { Name = \"Ability Haste\", Attribute = \"spell_power:haste\", Deduct = 100.0, Divide = 0.0, Multiply = 0.0, ShowAbove = 100.0, Type = \"percent\" },\n  { },\n  { Name = \"Arcane Spell Power\", Attribute = \"spell_power:arcane\", Deduct = 0.0, Divide = 0.0, Multiply = 0.0, ShowAbove = 1.0, Type = \"plain\" },\n  { Name = \"Spell Critical Damage\", Attribute = \"spell_power:critical_damage\", Deduct = 0.0, Divide = 0.0, Multiply = 100.0, ShowAbove = 150.0, Type = \"percent\" }\n]\n```\n\n## Config Fields\n\n- `Name`: Display name shown in the table\n- `Attribute`: Attribute id to read from the player\n- `Deduct`: Subtracts from the shown value only\n- `Divide`: Divides the shown value when greater than `0`\n- `Multiply`: Multiplies the shown value when greater than `0`\n- `ShowAbove`: Shows the row only when the real attribute value is greater than this number\n- `Type`: `plain` or `percent`\n- `{ }`: Adds a blank separator row in the UI\n\n## Display Transforms\n\nTransforms are visual only. The mod never changes the real attribute value.\n\nThe display value is calculated as:\n\n```text\ndisplay = raw - Deduct\nif Divide > 0: display = display / Divide\nif Multiply > 0: display = display * Multiply\n```\n\nIf `Type` is `percent`, the mod adds `%` after the final displayed value.\n\nFor example, if a custom attribute returns `105` and the config has `Deduct = 100` and `Type = \"percent\"`, the UI shows `5%`.\n\n## Compatibility\n\nAttributes UI reads attributes by id, so it can support custom attributes from other mods as long as they are registered as normal Minecraft attributes.\n\nThe mod is client-side and intended for NeoForge `1.21.1`.\n",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "neoforge"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,24 @@
+{
+  "id": "IMfK9X4S",
+  "slug": "copper-golem-patch",
+  "title": "Copper Golem Patch",
+  "description": "Copper Golem Patch gives every golem a persistent memory of which chest holds what, lets them gossip with nearby golems to share that knowledge, and makes them put down unsortable items instead of carrying them forever, sorting that actually scales.",
+  "body": "# Copper Golem Patch\n\n> Keeps vanilla Copper Golem behavior intact — it just makes them actually good at their job.\n\nVanilla Copper Golems forget everything the moment they look away. Every trip is trial and error: open a chest, check if the item fits, walk to the next one, repeat — sometimes for the same wrong chest, over and over. **Copper Golem Patch** fixes that without changing how golems are *supposed* to behave.\n\n## What it does\n\n- 🧠 **Persistent memory** — each golem remembers which chest holds what, so it stops wasting trips on chests it already knows are wrong.\n\n![Visual of a copper golem opening consecutive chests and gathering more knowledge each time he opens a new chest. Knowledge is represented as a brain icon growing up in a bubble above his head.](https://cdn.modrinth.com/data/cached_images/79fef5f5ea44a902ebf0ca2270c993172b756dcd.png)\n- 🤝 **Swarm knowledge sharing** — golems that wander close to each other share what they've learned, proximity-style. No global instant database, no magic — just golems passing knowledge along like a real swarm.\n\n![Visual of two copper golem transmitting a signal to each other represented by circular waves around each golem.](https://cdn.modrinth.com/data/cached_images/2d4545d4381dfd5349f71906865f824294b16904.png)\n- 🪫 **No more stuck golems** — if a golem ends up holding an item that genuinely has nowhere to go, it puts it back in a copper chest and moves on, instead of wandering forever with a diamond in its hand.\n- ✅ **100% vanilla matching rules** — a chest counts as a valid drop-off if it's empty *or* already contains that item type **anywhere** inside it, exactly like vanilla — not just in the first slot.\n- ⚙️ **Fully configurable**, with a config file written in plain English for non-technical server owners.\n- 🪶 **Built for performance** — tuned and benchmarked so it doesn't add meaningful load next to your other plugins.\n\n## How it works\n\n1. While vanilla AI evaluates candidate chests for a golem, the plugin observes their contents and remembers them.\n2. On its next pass, the golem skips chests it already knows won't work — no detour, no 3-second examine animation wasted.\n3. Golems passing near each other exchange what they've learned, so a golem doesn't need to have personally visited a chest to know about it.\n4. An item that truly has nowhere to go gets returned to a copper chest and marked \"unsortable for now\" — shared with nearby golems too — until a spot frees up.\n\n## Performance\n\nBenchmarked on a real Paper 26.1.2 server with `/tick query`, plugin enabled vs. disabled, at 5/10/50 and 100 simultaneous golems. After an internal caching pass, server impact at 100 golems sits within a few milliseconds of the **plugin-disabled** baseline — this plugin is built to run alongside everything else on your server, not compete with it.\n\n## Configuration\n\nEvery setting in `config.yml` ships with a plain-language explanation — no Minecraft-plugin-dev jargon required. Tweak the gossip radius, memory size, or give-up timing, or just leave the defaults; they work well out of the box.\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/cgp info` | Shows what the nearest golem currently remembers |\n| `/cgp reload` | Reloads the config without restarting the server |\n| `/cgp toggle` | Quickly enables/disables the plugin |\n\nPermission: `coppergolempatch.admin` (default: op)\n\n## Compatibility\n\n- Paper **26.1.2**\n- No dependencies, no other plugins required\n- Safe to disable at any time — golems fall back to pure vanilla behavior instantly\n\n## Source code\n\nOpen source — link in the sidebar. Issues and pull requests welcome.\n",
+  "categories": [
+    "management",
+    "mobs",
+    "optimization",
+    "paper",
+    "storage",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

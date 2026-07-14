@@ -3,7 +3,7 @@
   "slug": "musicstudio",
   "title": "MusicStudio",
   "description": "Compose your own music, right in-game..!",
-  "body": "",
+  "body": "# MusicStudio\n\n게임 안에서 작곡하는 음악 스튜디오 — 트래커 방식 GUI로 곡을 만들고, 음반으로 추출해 어디서나 재생합니다.\n\n## 기능\n\n- 인벤토리 54칸 GUI의 **트래커 에디터** — 레이어 × 틱 그리드에서 노트를 배치·이동·삭제\n- **노트블록 악기 16종**, **음높이 25단계** (F#3–F#5, 2옥타브)\n- 레이어별 **악기 · 볼륨 · 음소거** 제어\n- 조절 가능한 **템포** (셀당 틱)\n- **복사 / 붙여넣기**, 에디터 내 **미리듣기**(본인에게만 재생)\n- **곡을 음반으로 추출** — 우클릭으로 재생, 소지자를 따라다니는 휴대용 라디오처럼 동작\n- 선택적 **추출 비용**, **ItemsAdder** 커스텀 아이템 연동, 바닐라 `glint` / `unbreakable` / `custom-model-data`\n- **Note Block Studio `.nbs` 파일 임포트**\n- **플레이어별 곡 소유권** — 본인 곡만 보이고 편집됨(관리자는 전체 접근)\n- **완전한 다국어**(`ko_kr` / `en_us`), 모든 문구를 MiniMessage로 커스터마이즈 가능\n- **업데이트 알림** — GitHub에 새 릴리스가 올라오면 콘솔과 관리자에게 알림\n- **넓은 버전 지원** — Paper / Purpur **1.20.x – 1.21.x 및 26.x**\n\n## 지원 버전\n\n버전 시리즈별로 JAR 하나가 `build/libs/Upload/<시리즈>/` 에 제공됩니다. 각 JAR은 **Paper와 Purpur 모두**에서 동작합니다.\n\n| 폴더 | 지원 서버 버전 |\n|------|----------------|\n| `1.20` | 1.20 – 1.20.6 (1.20.x 전체) |\n| `1.21` | 1.21 – 1.21.11 (1.21.x 전체) |\n| `26.1.2` | 26.1.2 전용 |\n\n> Java 요구사항은 서버를 따릅니다: 1.20–1.20.4는 Java 17, 1.20.5 이상은 Java 21, 26.x는 Java 25.\n\n## 권한\n\n| 권한 | 기본값 | 부여 내용 |\n|------|--------|-----------|\n| `musicstudio.use` | `true` (모두) | 본인 곡 생성·편집·재생 |\n| `musicstudio.admin` | `op` | `.nbs` 임포트, 설정 리로드, **모든** 플레이어의 곡 접근, 곡 개수 제한 면제 |\n\n## 명령어\n\n기본 명령: `/음악스튜디오` &nbsp;(별칭: `/음스`, `/ms`, `/musicstudio`). 한국어·영어 하위 명령을 모두 지원합니다.\n\n### 곡 관리\n| 명령어 | 설명 |\n|--------|------|\n| `/음스 생성 <이름>` &nbsp;(`create`) | 새 빈 곡 생성 |\n| `/음스 목록` &nbsp;(`list`) | 내 곡 목록(관리자는 전체) |\n| `/음스 열기 <이름>` &nbsp;(`open`) | 에디터로 곡 열기 |\n| `/음스 이름변경 <기존> <새>` &nbsp;(`rename`) | 곡 이름 변경 |\n| `/음스 음반 <이름>` &nbsp;(`disc`) | 곡을 음반으로 추출 |\n| `/음스 삭제 <이름>` &nbsp;(`delete`) | 곡 삭제 |\n| `/음스 도움말` &nbsp;(`help`) | 도움말 표시 |\n\n### 관리자\n| 명령어 | 설명 |\n|--------|------|\n| `/음스 관리자 임포트 <파일.nbs>` &nbsp;(`admin import`) | import 폴더의 `.nbs` 임포트(인자 없으면 파일 목록 표시) |\n| `/음스 관리자 리로드` &nbsp;(`admin reload`) | 설정·텍스트·곡 데이터 다시 읽기 |\n\n> 곡 이름엔 공백을 쓸 수 있고(`_`로 합쳐짐), 최대 32자입니다.\n\n## 에디터 조작\n\n에디터는 인벤토리 GUI입니다. 행은 **레이어**, 열은 **틱**이며, 아래쪽 행에 눈금과 컨트롤 바가 있습니다.\n\n| 대상 | 동작 |\n|------|------|\n| **빈 칸** | 좌클릭 — 현재 음높이로 노트 생성 |\n| **노트** | 좌클릭: 선택 · 우클릭: 반음↑ · Shift+우클릭: 반음↓ · Shift+좌클릭: 삭제 |\n| **레이어 헤더** | 좌클릭: 악기 변경 · 우클릭: 음소거 토글 · Shift+좌/우클릭: 볼륨 ±10% · Q(드롭): 레이어 삭제 |\n| **정보(주크박스)** | 좌클릭: 음↑ · 우클릭: 음↓ · Shift: 옥타브 단위 — 새 노트의 음높이 설정 |\n| **눈금(종이)** | 클릭: 그 틱에 커서 놓기(복사/붙여넣기 기준) · 다시 클릭: 해제 |\n| **◀ / ▶ 틱** | 1틱 스크롤 · Shift: 8틱 점프 |\n| **▲ / ▼ 레이어** | 레이어 위/아래 스크롤 |\n| **▶ 미리듣기 / ■ 정지** | 본인에게만 재생 / 정지 |\n| **설정** | 템포 · 음반 추출 |\n| **복사 / 붙여넣기** | 커서 틱 복사(Shift: 화면 8틱 전체) / 커서 틱부터 붙여넣기 |\n| **음반 아이템** | 우클릭: 재생 · 재우클릭: 정지 |\n\n**악기(16종):** 하프, 베이스, 베이스드럼, 스네어, 하이햇, 기타, 플루트, 벨, 차임, 실로폰, 철실로폰, 카우벨, 디저리두, 비트, 밴조, 플링.\n\n## 설정\n\n`plugins/MusicStudio/config.yml`:\n\n```yaml\nlanguage: ko_kr          # ko_kr(한국어) 또는 en_us(영어). 미번역 문구는 ko_kr로 자동 폴백\n\nupdate-check:\n  enabled: true          # GitHub 최신 릴리스와 비교해 새 버전 알림 (콘솔 + 관리자 접속 시)\n\nlimits:\n  max-ticks: 4096        # 곡 최대 길이(셀)\n  max-songs-per-player: 30   # 플레이어당 곡 개수 상한 (musicstudio.admin 면제)\n  max-layers: 9          # 곡당 레이어 수 (1~256)\n\ndisc:\n  material: MUSIC_DISC_5 # 음반 베이스 아이템(바닐라 뮤직디스크)\n  itemsadder-id: \"\"      # ItemsAdder 커스텀 아이템 id (예: \"myitems:music_disc\"). 비우면 material 사용\n  glint: false           # 인챈트 반짝임\n  unbreakable: false\n  custom-model-data: 0   # 리소스팩 모델 id. 0이면 미적용\n  cost:\n    enabled: false       # 음반 추출 시 아이템 소모\n    item: EMERALD\n    amount: 5\n```\n\n표시 텍스트는 `messages_<언어>.yml`, `gui_<언어>.yml`(MiniMessage 문법)에 있습니다 — 편집하면 플러그인을 완전히 리스킨할 수 있습니다.\n\n## 예시\n\n`mysong` 곡을 만들고, 에디터를 연 뒤, 음반으로 추출:\n```\n/음스 생성 mysong\n/음스 열기 mysong\n/음스 음반 mysong\n```\n\nNote Block Studio 파일 임포트 (`plugins/MusicStudio/import/song.nbs`):\n```\n/음스 관리자 임포트 song\n```\n\n서버를 영어로 전환: `config.yml`에서 `language: en_us` 설정 후:\n```\n/음스 관리자 리로드\n```\n\n## 설치\n\n1. `build/libs/Upload/<시리즈>/` 에서 사용 중인 마인크래프트 버전 시리즈에 맞는 JAR을 고릅니다.\n2. 서버의 `plugins/` 폴더에 넣습니다.\n3. 서버(Paper 또는 Purpur)를 재시작합니다.\n\n## 소스에서 빌드\n\n```bash\n./gradlew build                # 표준 jar (build/libs)\n./gradlew buildAllVersions     # 시리즈별 jar을 build/libs/Upload/<시리즈>/ 에 생성\n```\n\nJDK 21과 JDK 25가 필요합니다(JDK 25는 26.x 타깃에만 사용).",
   "categories": [
     "adventure",
     "bukkit",
@@ -15,7 +15,7 @@
   ],
   "client_side": "unsupported",
   "server_side": "required",
-  "downloads": 42,
+  "downloads": 48,
   "followers": 0,
   "game_versions": [
     "1.20",
@@ -27,6 +27,7 @@
     "1.20.6",
     "1.21",
     "1.21.1",
+    "1.21.2",
     "1.21.3",
     "1.21.4",
     "1.21.5",

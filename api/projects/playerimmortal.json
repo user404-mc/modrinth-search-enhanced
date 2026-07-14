@@ -1,0 +1,34 @@
+{
+  "id": "3QKMAsKU",
+  "slug": "playerimmortal",
+  "title": "Player Immortal",
+  "description": "A lightweight Bukkit/Spigot/Paper plugin that gives operators (OP) god-mode immunity, preventing death from any damage source.",
+  "body": "# PlayerImmortal\n\n[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)\n![Version](https://img.shields.io/badge/version-v1.0.0-brightgreen)\n![Platform](https://img.shields.io/badge/platform-Paper%20%7C%20Spigot%20%7C%20Bukkit-lightgrey)\n![Java](https://img.shields.io/badge/Java-17%2B-orange)\n![Minecraft](https://img.shields.io/badge/Minecraft-1.21.*-blue)\n\n> A lightweight Bukkit/Spigot/Paper plugin that gives operators (OP) god-mode immunity, preventing death from any damage source.\n\n**PlayerImmortal** is a minimalistic plugin that allows OP players to toggle immortality on themselves. When active, the player cannot die – health will never drop below 1 heart (half a heart). Perfect for server administrators who need to test mechanics without the risk of dying, or for builders in dangerous environments.\n\n---\n\n## 📑 Table of Contents\n- [About](#-about)\n- [Features](#-features)\n- [Installation](#-installation)\n- [Quick Start](#-quick-start)\n- [Commands & Permissions](#-commands--permissions)\n- [Configuration](#-configuration)\n- [Building from Source](#-building-from-source)\n- [FAQ](#-faq)\n- [Acknowledgments](#-acknowledgments)\n- [License](#-license)\n\n---\n\n## 📖 About\n\n**PlayerImmortal** was created to provide a simple, no‑frills way for server operators to enable temporary invulnerability. While creative mode or `/god` commands exist in other plugins, this plugin focuses on **simplicity** and **lightweight performance** – it only does one thing and does it well.\n\nIt is designed for:\n- **Server Administrators** – who need to test redstone, combat, or parkour without dying.\n- **Builders** – who work in survival mode but don’t want to be interrupted by mobs or falls.\n- **Plugin Developers** – who want a minimal example of a Bukkit event listener and command.\n\nKey use cases:\n- Quickly toggle immortality with a single command.\n- Stay alive while testing game mechanics.\n- Avoid accidental death during server maintenance.\n\n---\n\n## ✨ Features\n\n- 🛡️ **Toggle Immortality** – Use `/immortal` to turn god-mode on or off.\n- ❤️ **Health Floor** – Health will never drop below 1.0 HP, preventing death.\n- 🔒 **Operator Only** – Only players with OP privileges can use the command.\n- ⚡ **Lightweight** – No configuration files, no database, no bloat.\n- 🎮 **Compatible** – Works on Bukkit, Spigot, and Paper 1.21.*.\n- 📦 **Zero Dependencies** – Pure Bukkit API, no external libraries.\n\n---\n\n## 📦 Installation\n\n### Manual installation (JAR)\n\n1. Download the latest `PlayerImmortal.jar` from the [Modrinth]([https://github.com/yourusername/PlayerImmortal/releases](https://modrinth.com/plugin/playerimmortal)) page.\n2. Place the JAR file into your server's `plugins/` folder.\n3. Restart your server (or use a plugin manager like `/reload` – though a full restart is recommended).\n\n---\n\n## 🚀 Quick Start\n\n1. **Start your server** with the plugin installed.\n2. **Become OP** (if not already):\n   ```\n   /op YourName\n   ```\n3. **Toggle immortality**:\n   ```\n   /immortal\n   ```\n   - First execution: `§aImmortal on` – you are now invincible.\n   - Second execution: `§cImmortal off` – immortality disabled.\n4. **Test it** – jump from a high cliff or let a zombie hit you; your health will never reach zero.\n\n---\n\n## 🛡 Commands & Permissions\n\n| Command         | Permission     | Description                                    |\n|-----------------|----------------|------------------------------------------------|\n| `/immortal`     | (none – OP only) | Toggles immortality for the executing player.  |\n\n- The command **does not require** a specific permission node; it checks if the sender is OP (`player.isOp()`).\n- Only players can execute the command – console senders are rejected.\n- The plugin does not expose any other commands or subcommands.\n\n---\n\n## ⚙️ Configuration\n\n**PlayerImmortal does not use a configuration file.**  \nAll behaviour is hardcoded for simplicity. There are no settings to adjust – just drop it in and use it.\n\nIf you wish to customise messages or add permissions, please consider forking the project and modifying the source.\n\n---\n\n## 🏗 Building from Source\n\nIf you prefer to build the plugin yourself:\n\n1. Clone the repository:\n   ```bash\n   git clone https://github.com/yourusername/PlayerImmortal.git\n   cd PlayerImmortal\n   ```\n2. Ensure you have Java 17+ and Maven installed.\n3. Build:\n   ```bash\n   mvn clean package\n   ```\n4. The compiled JAR will be in `target/PlayerImmortal-{version}.jar`. Copy it to your server's `plugins/` folder.\n\n---\n\n## ❓ FAQ\n\n**Q: Does this work on versions other than 1.21?**  \nA: The plugin is built against the 1.21.1 API. It may work on older versions that support the `EntityDamageEvent` API, but we only officially support 1.21.*.\n\n**Q: Can I give the command to non-OP players?**  \nA: Currently, no. The plugin explicitly checks `player.isOp()`. If you need permission-based control, you can modify the source or use a permission plugin with a wrapper.\n\n**Q: What happens when I toggle immortality on?**  \nA: You will receive a message `§aImmortal on`. Your health will be capped at 1.0 HP when damage would otherwise kill you. You can still take damage, but you cannot die.\n\n**Q: Does it work with other damage sources (fall, fire, void, etc.)?**  \nA: Yes, it cancels all `EntityDamageEvent` sources by reducing the damage so that health never reaches 0.\n\n**Q: I found a bug. Where do I report it?**  \nA: Please open an issue on the [GitHub Issues](https://github.com/Mr-Catcraft/PlayerImmortal/issues) page with steps to reproduce and your server logs.\n\n---\n\n## 🙏 Acknowledgments\n\n- [Bukkit](https://dev.bukkit.org/)/[Spigot](https://www.spigotmc.org/)/[Paper API](https://papermc.io/) – for providing the Minecraft server interface.\n- All contributors and testers who help improve this plugin.\n\n---\n\n## 📄 License\n\nThis project is licensed under the **GNU General Public License v3.0** – see the [LICENSE](https://github.com/Mr-Catcraft/PlayerImmortalPlugin/blob/main/LICENSE) file for details.\n\n---\n\n*Built with ❤️ by [Mr_Catcraft](https://github.com/Mr-Catcraft)*",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "management",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

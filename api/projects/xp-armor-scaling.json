@@ -1,0 +1,20 @@
+{
+  "id": "scqc705U",
+  "slug": "xp-armor-scaling",
+  "title": "Epic RPG: Armor Scaling",
+  "description": "Replaces the vanilla Armor formula",
+  "body": "ArmorScaling was originally part of AttributeCore. It is built for modpacks where enemy damage keeps scaling upwards, so the natural progression forces players to constantly upgrade their armor sets if they want to survive increasingly brutal hits\n\n## How the new armor scaling works\n\nArmorScaling changes how armor reduces damage using a simple rule:\n\n1. **Total defense (the system adds up armor)**\n   - your armor value,\n   - plus a bonus based on armor toughness,\n   - plus “virtual armor” coming from protection enchantments.\n\n2. **Mitigation is calculated from your total defense and the hit size**\n   (important part)\n   - Maximum mitigation is always 90%,\n   - Mitigation always depends on the hit,\n   - The bigger the hit, the less armor mitigates,\n   - You need more and more armor to mitigate bigger and bigger hits (there is no upper limit).\n\n3. **That mitigation is applied to the final damage**\n   - this means a tank build massively reduces normal hits,\n   - but huge hits are still dangerous,\n   - and total immunity to damage never exists,\n   - the stronger the enemy’s hit, the more armor you will need.\n\n```text\nmitigation  = total_defense\n              ─────────────────────────────\n              total_defense + incoming_damage\n\nfinal_damage = incoming_damage × (1 − mitigation)\n```\n\n### Quick examples\n\n```text\nTotal defense: 70\nIncoming hit: 50\nMitigation: 58.33%\nFinal damage: 20.83\n```\n\nThe hit is closer to your total defense, so mitigation is lower than in the previous case and the final damage goes up.\n\n```text\nTotal defense: 70\nIncoming hit: 80\nMitigation: 46.67%\nFinal damage: 42.67\n```\n\nHere the hit already exceeds your defense, so the reduction drops a lot more and almost half the damage goes through.\n\n```text\nTotal defense: 70\nIncoming hit: 100\nMitigation: 41.18%\nFinal damage: 58.82\n```\n\nIn this case the incoming damage is way higher than your total defense, so mitigation keeps dropping and the hit lands much harder.\n\n### In short\n\n- More defense = more mitigation.  \n- Bigger hits = less effective mitigation.  \n- The maximum reduction cap is always 90%.  \n- It does not work like a fixed percentage such as “70 defense = 70% less damage”.",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

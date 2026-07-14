@@ -3,16 +3,29 @@
   "slug": "citx",
   "title": "CITX (CIT Extension)",
   "description": "A mod that allows easy renaming of CIT items with a custom command.",
-  "body": "**CITX** is a Minecraft mod that makes renaming Custom Item Textures (CIT) items easy. Use a simple in-game command to quickly rename items, without the need for an anvil.\n\n### **Features:**\n- **Easy Item Renaming**: Use the `/citx <extension>` command to quickly append a custom extension to the item in your hand.\n- **Command Flexibility**: The mod supports a wide range of custom extensions and includes an easy-to-use reset function (`/citxreset`) to revert item names back to their original state.\n- **Optimized Renaming Logic**: Supports multiple renames without affecting the name of the original item and prevents double underscores.\n\n### **How to Use:**\n1. **Renaming Items**:\n   - Hold the item you wish to rename.\n   - Use the `/citx <extension>` command, replacing `<extension>` with your desired suffix (e.g., `_newname`).\n   - The item will be renamed with the specified extension, and the new name will be visible.\n\n2. **Resetting Item Names**:\n   - If you want to reset the item’s name back to its original state, simply use the `/citxreset` command.\n   \n3. **Important Reminder**:\n   - After renaming an item, please open and close your inventory to refresh the item model and see the changes properly. (I've yet to figure out how to solve this issue ehe pls help)",
+  "body": "# CITX (CIT Extension)\n\n**A smart mod that makes renaming CIT items quick and easy with one command.**  \nMade for builders, creators, and anyone tired of the anvil clanking.\n\n## 👉 Features\n\n- 🏷️ Rename items with simple commands\n- 🔄 Swap CIT extensions instead of stacking them\n- 📝 Full rename support for display names\n- ♻️ One-command reset to default\n- 🛡️ Smart logics, clean-ups, and naming conditions\n- 💻 Client-side only, nothing to install server-side\n\n## 🚀 Quick Reference\n\n| Command | Alias | What it does |\n|---|---|---|\n| `/citx <input>` |  | Shortcut. Skips \"extend\" entirely, just adds/swaps the extension |\n| `/citx extend <extension>` | `/citx e <extension>` | Adds or swaps a CIT extension, keeps the base name |\n| `/citx rename <name>` | `/citx r <name>` | Replaces the entire display name |\n| `/citx reset` | `/citx x` | Clears the custom name |\n\n⚠️ **Important: After using any command, open and close your inventory to refresh the renamed item so it displays correctly in the world.**\n\nUnfortunately, this cannot be fixed, as it is a limitation of how Minecraft handles item renames and client-side item updates.\n\n## #️⃣ Commands\n\n<details>\n<summary>/citx extend</summary>\n\n#### Adds or swaps an extension\n\nKeeps the item's base name and only touches the extension.\n\n```\n/citx extend <extension>\n/citx e <extension>          # alias\n/citx <input>            # shortcut, no subcommand needed\n```\n\nFor quick extension changes you don't even need to type \"extend\" or \"e\". Just `/citx <input>` on its own works the same way:\n\n```\n/citx red\nGrass Block → Grass Block_red\n```\n\n**Example (full form)**\n```\n/citx extend red\nGrass Block → Grass Block_red\n```\n\nRun it again with a new extension and it replaces the old one, it doesn't stack:\n```\nGrass Block_old\n/citx e new\n→ Grass Block_new        ✅\n→ Grass Block_old_new    ❌ (never happens)\n```\n</details>\n\n<details>\n<summary>/citx rename</summary>\n\n## Replaces the whole name\n\n```\n/citx rename <name>\n/citx r <name>            # alias\n```\n\n**Example**\n```\n/citx rename Mystic Sword\n→ Mystic Sword\n```\n</details>\n\n<details>\n   \n<summary>/citx reset</summary>\n\n## Resets item name back to default \n\n```\n/citx reset\n/citx x                   # alias\n```\n</details>\n\n## 🧹 Automatic Cleanup\n\nYou don't have to think about formatting. CITX handles it in the background:\n\n- Collapses duplicate underscores\n- Keeps only one extension at a time\n- Adds a missing leading underscore\n- Blocks malformed names before they happen\n\n```\nStone__red → Stone_red\n```\n\n## 🔁 Example Workflow\n\n```\nHold: Grass Block\n\n/citx blue           → Grass Block_blue     (shortcut for extend)\n/citx green          → Grass Block_green    (swapped, not stacked)\n/citx r Emerald Trophy   → Emerald Trophy\n/citx x              → Grass Block          (back to default)\n```\n\n## 🐞 Reporting Bugs & Issues\nPlease report all bugs & issues you found in the [github issues](https://github.com/aerhazu/CITX/issues) page.\n\n## ⚖️ Apache-2.0 license\nThis project is protected by Apache License Version 2.0, January 2004: http://www.apache.org/licenses/",
   "categories": [
-    "fabric"
+    "decoration",
+    "fabric",
+    "utility"
   ],
   "client_side": "required",
-  "server_side": "unsupported",
-  "downloads": 421,
+  "server_side": "required",
+  "downloads": 452,
   "followers": 0,
   "game_versions": [
-    "1.20.1"
+    "1.20.1",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
   ],
   "date_updated": null
 }

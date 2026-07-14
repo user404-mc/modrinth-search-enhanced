@@ -1,0 +1,37 @@
+{
+  "id": "FNW9AfJI",
+  "slug": "ytcounter",
+  "title": "YTcounter",
+  "description": "YTcounter is a plugin that shows the subscribers of a YouTube, Twitch, or TikTok channel in the game",
+  "body": "# 📺 YTCounter — Social Media Counter for Minecraft\nDisplay real-time YouTube subscribers, TikTok followers and Twitch followers directly in your Minecraft server — via PlaceholderAPI.\n\n## 🌟 What is YTCounter?\nYTCounter is a lightweight, fully asynchronous Minecraft plugin that connects your server to the most popular social media platforms. It fetches live subscriber and follower counts from YouTube, TikTok and Twitch, and exposes them as PlaceholderAPI placeholders usable in any plugin that supports PAPI.\n\nWhether you want to show your channel growth in a hologram, a scoreboard, a TAB list, or a chat message — YTCounter makes it effortless.\n\n## ✨ Features\n📊 Real-time counters — YouTube, TikTok, Twitch (more platforms coming)  \n⚡ 100% Asynchronous — zero lag, never blocks the main thread  \n🔁 Auto-refresh — configurable update interval (default: 60 seconds)  \n🧠 Smart cache — no HTTP request on every placeholder call  \n🔌 Universal PlaceholderAPI support — works with any PAPI-compatible plugin  \n🖱️ Clickable links — clicking a counter value in chat opens the channel URL (Adventure/MiniMessage contexts)  \n🎨 MiniMessage & RGB support — fully styled messages  \n🗺️ Folia compatible — works on Paper, Spigot, Purpur, Pufferfish, Leaf, Folia  \n🔐 Permission system — granular control over commands  \n🔄 Hot reload — /counter reload without restarting the server  \n📦 Internal API — other plugins can query YTCounter programmatically  \n🌐 Expandable architecture — adding Instagram, Kick, Discord etc. requires zero changes to existing code  \n\n## 🔌 Compatible plugins (PlaceholderAPI)\nYTCounter placeholders work out of the box in:\n\n![ ](https://cdn.modrinth.com/data/cached_images/2204304e91593bd30c2114aa771b6fc27645780e.png)\n\n## 📌 Placeholders\nMain placeholders:\n\n![ ](https://cdn.modrinth.com/data/cached_images/1e53d394daaf3ffb529bd8ad55c45aa9d6a2c44d.png)\n\nExamples:\n%ytcounter_subscribers_DragonMC% → 1.234.567  \n%ytcounter_followers_dragonmc% → 98.765  \n%ytcounter_name_DragonMC% → DragonMC  \n%ytcounter_url_DragonMC% → https://www.youtube.com/@DragonMC  \n%ytcounter_raw_DragonMC% → 1234567  \n\n## 💬 Commands\nCommand | Description | Permission\n--- | --- | ---\n/counter youtube <url> | Register a YouTube channel | ytcounter.use\n/counter tiktok <url> | Register a TikTok profile | ytcounter.use\n/counter twitch <url> | Register a Twitch channel | ytcounter.use\n/counter list | List all registered channels | ytcounter.admin\n/counter remove <platform> <handle> | Remove a channel | ytcounter.admin\n/counter reload | Reload config without restart | ytcounter.reload\n/counter info | Show plugin info and status | ytcounter.use\n/counter help | Show help | ytcounter.use\n\nAliases: /ytcounter, /ytc\n\n## 🔑 Permissions\nPermission | Default | Description\n--- | --- | ---\nytcounter.use | OP | Use /counter commands\nytcounter.admin | OP | List and remove channels\nytcounter.reload | OP | Reload the plugin\nytcounter.bypass-cooldown | OP | Skip command cooldown\n\n## 🚀 Installation\nStep 1 — Install PlaceholderAPI  \nYTCounter requires PlaceholderAPI. Download it from SpigotMC and place it in your plugins/ folder.\n\nStep 2 — Install YTCounter  \nPlace YTCounter-1.0.0.jar in your server's plugins/ folder and restart the server.\n\nThe plugin will create:\n\n\n```\nplugins/\n└── YTCounter/\n    ├── config.yml\n    └── messages.yml\n```\n\n\nStep 3 — Configure API Keys  \nOpen plugins/YTCounter/config.yml and fill in your API keys.\n\n## 🔑 How to get API Keys\n\n### 🔴 YouTube Data API v3\nGo to Google Cloud Console  \nCreate a project  \nEnable YouTube Data API v3  \nCreate API Key  \nPaste it in config.yml:\n\n\n```\nyoutube:\n  api-key: \"YOUR_KEY_HERE\"\n```\n\n\n💡 Free quota: 10,000 units/day\n\n### 🟣 Twitch Helix API\nGo to Twitch Developer Console  \nCreate app  \nCopy Client ID + Secret  \nPaste in config.yml:\n\n\n```\ntwitch:\n  client-id: \"your_client_id\"\n  client-secret: \"your_client_secret\"\n```\n\n\n### 🖤 TikTok\nNo API key required (automatic mode)\n\n\n```\ntiktok:\n  api-key: \"\"\n\n```\n\n## ⚙️ config.yml\n\n```\n\n# ============================================================\n#  YTCounter - Configuration\n# ============================================================\n# How often (in seconds) the plugin fetches fresh data from APIs.\n# Minimum: 30 | Recommended: 60-300\nupdate-interval: 60\n# --- YouTube ---\nyoutube:\n  api-key: \"YOUR_YOUTUBE_API_KEY_HERE\"\n# --- Twitch ---\ntwitch:\n  client-id: \"YOUR_TWITCH_CLIENT_ID_HERE\"\n  client-secret: \"YOUR_TWITCH_CLIENT_SECRET_HERE\"\n# --- TikTok ---\ntiktok:\n  api-key: \"\"   # leave empty — automatic mode works without a key\n# --- Cache ---\ncache:\n  enabled: true\n  ttl: 60   # how long (seconds) a cached value stays valid\n# --- Formatting ---\nformat:\n  use-locale-format: true   # true = 1.234.567 | false = 1234567\n  locale: \"it_IT\"           # change to en_US, de_DE, fr_FR, etc.\n  loading-text: \"...\"       # shown while first fetch is in progress\n  error-text: \"N/A\"         # shown if the API returns an error\n# --- Logging ---\nlogging:\n  level: \"INFO\"             # INFO | FINE (verbose debug) | WARNING\n  log-requests: false       # true = log every HTTP request\n\n\n```\n\n## 📋 Quick Start\n\nRegister channels:\n/counter youtube https://www.youtube.com/@DragonMC\n/counter tiktok https://www.tiktok.com/@dragonmc\n/counter twitch https://www.twitch.tv/dragonmc\n\nUse in DecentHolograms:\n\n```\n/dh line add MyHologram 1 &6YouTube: &f%ytcounter_subscribers_DragonMC%\n/dh line add MyHologram 2 &bTikTok: &f%ytcounter_followers_dragonmc%\n/dh line add MyHologram 3 &9Twitch: &f%ytcounter_followers_dragonmc%\n\n```\n\nUse in TAB:\n\n```\nheader:\n  - \"&6Il mio server | YouTube: %ytcounter_subscribers_DragonMC%\"\n```\n\n\nUse in FeatherBoard:\n\n```\nlines:\n  - \"&6YT: &f%ytcounter_subscribers_DragonMC%\"\n  - \"&bTT: &f%ytcounter_followers_dragonmc%\"\n\n```\n\n## 🔧 API for developers\n\n\n```\nPlugin raw = Bukkit.getPluginManager().getPlugin(\"YTCounter\");\nif (raw instanceof YTCounterPlugin ytc) {\n    YTCounterAPI api = ytc.getApi();\n    // Get cached count\n    long subs = api.getCount(Platform.YOUTUBE, \"DragonMC\");\n    // Register a channel programmatically\n    api.registerChannel(Platform.TWITCH, \"https://twitch.tv/dragonmc\")\n       .thenAccept(entry -> System.out.println(\"Registered: \" + entry.getHandle()));\n    // Force an immediate refresh\n    api.forceRefresh();\n}\n\n```\n\n## 🗺️ Supported Platforms\nPaper 1.21.x — Supported  \nSpigot 1.21.x — Supported  \nPurpur 1.21.x — Supported  \nPufferfish 1.21.x — Supported  \nLeaf 1.21.x — Supported  \nFolia 1.21.x — Supported  \n\nJava 21+ required  \nPlaceholderAPI 2.11+ required",
+  "categories": [
+    "adventure",
+    "decoration",
+    "folia",
+    "minigame",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "jw8RQg8t",
+  "slug": "legal-flight-in-survival-mode",
+  "title": "Legal flight in survival mode?",
+  "description": "A configurable Fabric flight time and paid flight mod for survival servers.",
+  "body": "## **中文说明**\n\n这是一个适合 Fabric 生存服务器使用的飞行福利模组。\n\n玩家每天可以获得固定免费飞行时间，免费时间用完后可以使用指定物品购买额外飞行时间。模组支持箱子 GUI、Boss 栏倒计时、彩色提示、语言文件自定义和客户端选装快捷键。\n\n服务端安装后，客户端不安装也可以使用 `/fly gui` 打开控制面板。客户端安装后，可以在按键设置中自定义快捷键，默认按键为 `L`(是的我的朋友，这是一个失误……当然，您可以在 “选项-按键控制-按键绑定-杂项”中修改）。\n\n# _Server Fly Mod_\n\nServer Fly Mod is a configurable Fabric mod that adds limited-time flight for survival servers.\n\nPlayers can receive daily free flight time, purchase extra flight time with configurable items, and manage everything through a chest-style GUI. The mod is designed for servers that want to offer convenient flight without giving unlimited creative-style flying.\n\n## _Features_\n\n- Daily free flight time\n- Paid flight time using configurable items\n- Chest-style GUI with `/fly gui`\n- Optional client keybinding for opening the GUI\n- Boss bar remaining time display\n- Colored chat messages\n- Custom language configuration\n- Real-world time based accounting\n- Persistent player data after server restart\n- Dimension change flight restoration\n- Admin commands for reload, reset, and grant\n\n## _Commands_\n\n| Command | Description |\n|---|---|\n| `/fly` | Toggle free flight |\n| `/fly2` | Start paid flight |\n| `/fly gui` | Open the flight control GUI |\n| `/fly status` | Show current flight status |\n| `/flymodadmin reload` | Reload config and data |\n| `/flymodadmin reset <player>` | Reset a player's daily free flight time |\n| `/flymodadmin grant <player> <minutes>` | Set custom free flight minutes for a player |\n\n## _GUI_\n\nUse `/fly gui` to open the flight control panel.\n\nThe GUI includes:\n\n- Start or stop free flight\n- Start paid flight\n- Disable flight\n- View remaining time\n- View paid flight rules\n\n## _Optional client installation_\n\nThe mod is mainly server-side.\n\nPlayers do not need to install it on the client when joining a dedicated server. However, if players install it on the client, they will get a customizable keybinding for opening the GUI.\n\nDefault key: `L`\n\nThe key can be changed in Minecraft's standard keybind settings.\n\n## Configuration\n\nThe mod generates configuration files in the `config` folder.\n\nYou can configure:\n\n- Daily free flight time\n- Paid flight item\n- Paid flight duration\n- Warning messages\n- Boss bar behavior\n- Language text\n\n## _Compatibility_\n\n| Minecraft | Java |\n|---|---|\n| 1.21.4 | Java 21+ |\n| 26.1 | Java 25+ |\n| 26.2 | Java 25+ |\n\n## **Dependencies**\n\n- Fabric Loader\n- Fabric API\n\n\n## Language / 语言\n\nThe default language of this mod is Simplified Chinese. If needed, you can replace or customize the language file using the configuration file below.\n\nAfter the first launch, the mod will generate `config/flymod-lang.json`. You can edit this file to translate all messages into English, Traditional Chinese, or any custom wording you prefer. After changing it, restart the server or run `/flymodadmin reload` to apply the new text.\n\nThis language file only controls displayed messages. It does not change gameplay settings such as daily free flight time, paid flight cost, or paid flight duration.\n\n---\n\n本模组的默认语言是简体中文。如果你需要英文、繁体中文，或者想把提示文本改成服务器自己的风格，可以修改首次启动后生成的 `config/flymod-lang.json`。\n\n修改完成后，可以重启服务器，或者使用 `/flymodadmin reload` 重新加载语言文本。\n\n语言文件只影响玩家看到的提示文本，不会改变每日免费飞行时间、付费物品、付费时长等玩法设置。\n\nflymod-lang.json\n\n\n```\n{\n  \"flyOff\": \"Flight disabled.\",\n  \"paidStarted\": \"Paid flight has started.\",\n  \"paidConfirmed\": \"Paid flight confirmed: when your free time runs out, the cost item will be charged before flight continues.\",\n  \"alreadyPaid\": \"You are already using paid flight.\",\n  \"noFreeUseFly2\": \"Your daily free flight time has run out. Use /fly2 to confirm paid flight.\",\n  \"fiveMinutePaidHint\": \"Your free flight time will run out soon ({remaining} left). After that, every {minutes} minutes of flight will cost {count} x {item}. Type /fly2 to continue with paid flight.\",\n  \"freeExhausted\": \"Your free flight time has run out, and flight has been disabled. Use /fly2 if you want to continue with paid flight.\",\n  \"noCostItem\": \"No required payment item was found in your inventory. Flight will be disabled in 20 seconds.\",\n  \"noPaidStartItem\": \"Paid flight requires the payment item first, but you do not have enough items in your inventory. Paid flight was not started.\",\n  \"noItemShutdownDone\": \"No required payment item was found. Flight has been disabled automatically.\",\n  \"firstJoin\": \"This server uses the FlyMod flight system. Use /fly to start or stop flying. You get one free hour every day; extra flight time requires payment items.\",\n  \"flyOnFree\": \"Flight enabled. Today's free flight time remaining: {remaining}.\",\n  \"timeLeft\": \"Notice: flight time remaining: {remaining}!\",\n  \"noItemCountdown\": \"Not enough payment items. Flight will be disabled in {seconds}s.\",\n  \"costCharged\": \"Charged {count} x {item}. You received another {minutes} minutes of paid flight.\",\n  \"statusHeader\": \"====== Fly Status ======\",\n  \"statusFreeRemaining\": \"Today's free flight time remaining: {remaining}\",\n  \"statusCurrentState\": \"Current state: {mode}\",\n  \"statusPaidTotal\": \"Total paid flight time used: {time}\",\n  \"statusCost\": \"Paid flight cost: {count} x {item} = {minutes} minutes\",\n  \"statusOperation\": \"Controls: use /fly to start or stop flight. When free time runs out, use /fly2 to confirm paid flight.\",\n  \"modeNotFlying\": \"Not flying\",\n  \"modeFree\": \"Free flight\",\n  \"modePaid\": \"Paid flight\",\n  \"bossBarFree\": \"Free flight remaining: {remaining}\",\n  \"bossBarPaid\": \"Paid flight remaining: {remaining}\",\n  \"bossBarShutdown\": \"No-item shutdown countdown: {remaining}\"\n}\n```\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 31,
+  "followers": 0,
+  "game_versions": [
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

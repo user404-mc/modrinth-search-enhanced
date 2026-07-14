@@ -1,0 +1,23 @@
+{
+  "id": "CvJyStW5",
+  "slug": "chunk-animator-embeddium-compat",
+  "title": "Chunk Animator Embeddium Compat",
+  "description": "Adds compatibility between the Chunk Animator mod and Embeddium/Xenon/Rubidium/Magnesium.",
+  "body": "![Chunk Animator Embeddium Compat Banner](https://cdn.modrinth.com/data/cached_images/363627aa7ce6ec8e9d96ca2601714ef1d33aeb97.png)\n\nChunk Animator Embeddium Compat allows the Chunk Animator mod to work with the Embeddium mod as well as Xenon, Rubidium, and Magnesium.\n\nChunk Animator crashes on startup when Embeddium or Xenon is installed. Both replace vanilla's chunk-rendering pipeline with their own GPU-instanced per-region rendering. This makes Chunk Animator's mixin unable to find the vanilla call to hook to. \n\nA Mixin plugin stops Chunk Animator's incompatible LevelRenderer mixin at load time when Embeddium or Xenon is detected. New chunks are tracked, and their per-section offset is applied during Embeddium's render pass via a separate draw per animating chunk. The fast batched path still runs for every static section. \n\nOculus runs without Embeddium when Xenon is installed; this mod supports either renderer.\n\nThis has been tested with multiple shaders.\n\nConfiguration:\n\n- enabled: The master toggle.\n- animationDurationMs: This is how long each chunk's animation lasts.\n- startOffsetX / startOffsetY / startOffsetZ: Control the direction and distance to slide from.\n- easing: This is animation curve options. LINEAR, QUAD_OUT, CUBIC_OUT, QUART_OUT, QUINT_OUT, SINE_OUT, EXPO_OUT, CIRC_OUT, BACK_OUT, BOUNCE_OUT.\n- disableAroundPlayer + playerRadius: This suppress animations near the player.\n\nRequirements:\nChunk Animator by Lumien231: [Chunk Animator](https://www.curseforge.com/minecraft/mc-mods/chunk-animator)\nOne of these:\nEmbeddium by FiniteReality: [Embeddium](https://www.curseforge.com/minecraft/mc-mods/embeddium)\nXenon by Txni: [Xenon](https://www.curseforge.com/minecraft/mc-mods/xenon)\n\nNotes:\nThis mod is client side only. Servers don't need it.\nThis mod replaces Chunk Animator's render hook with its own; you don't need to remove Chunk Animator. Both need to be installed.\n\nIf you have any incompatibilities or issues with this mod, leave a comment!",
+  "categories": [
+    "forge",
+    "optimization",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 0,
+  "followers": 0,
+  "game_versions": [
+    "1.16.5",
+    "1.18.2",
+    "1.19.2",
+    "1.20.1"
+  ],
+  "date_updated": null
+}

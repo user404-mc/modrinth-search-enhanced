@@ -1,0 +1,22 @@
+{
+  "id": "TwN8uQRZ",
+  "slug": "block-durability",
+  "title": "[BD] 方块耐久 Block-Durability",
+  "description": "Make TaCZ guns truly destructive — no more binary \"can hit / can't hit\". Every bullet chips away at a block's HP, complete with crack progression effects for a deeply satisfying destruction feel.",
+  "body": "中文见[GitHub](https://github.com/zhuimeng1233/block-durability)\n\n# Block Durability\n\nGive Minecraft blocks durability values — shoot them enough and they break!\n\n## Dependencies\n\n- **NeoForge** 1.21.1\n- **[TaCZ](https://modrinth.com/mod/tacz-1.21.1)** (Timeless & Classics Guns: Zero, NeoForge port) ≥ 1.1.6 — optional; the mod loads without errors when TaCZ is absent but will have no effect.\n\n## Features\n\n- **Whitelist-based**: only blocks listed in the config can be damaged by bullets\n- **HP = Hardness × Multiplier**: block HP is derived from vanilla hardness, with manual overrides available\n- **Crack progression**: damaged blocks display destruction crack stages (like player mining)\n- **Particles & Sound**: block break particles and hit sounds on impact\n- **Tag matching**: supports block tags (`tag:minecraft:planks`), automatically compatible with blocks from other mods\n\n## Default Breakable Blocks\n\n| Category | Tag |\n|---|---|\n| Glass blocks | `tag:c:glass_blocks` |\n| Glass panes | `tag:c:glass_panes` |\n| Planks | `tag:minecraft:planks` |\n| Logs | `tag:minecraft:logs` |\n| Wooden doors | `tag:minecraft:wooden_doors` |\n| Wooden trapdoors | `tag:minecraft:wooden_trapdoors` |\n| Wooden stairs | `tag:minecraft:wooden_stairs` |\n| Wooden slabs | `tag:minecraft:wooden_slabs` |\n| Wooden buttons | `tag:minecraft:wooden_buttons` |\n| Wooden pressure plates | `tag:minecraft:wooden_pressure_plates` |\n| Signs | `tag:minecraft:standing_signs`, etc. |\n\n## Configuration\n\nThe config file is auto-generated at `config/blockdurability-common.toml`:\n\n```toml\n[general]\n    enabled = true\n    damagePerHit = 1.0            # Fixed damage per bullet hit\n    useBulletDamage = false       # Use bullet entity damage instead\n\n[whitelist]\n    blockWhitelist = [\n        \"tag:c:glass_blocks\",\n        \"tag:minecraft:planks\",\n        # ... supports tag: prefix and name wildcards\n    ]\n\n[hp_calculation]\n    hardnessMultiplier = 1.5      # HP = max(minHP, hardness × multiplier)\n    minBlockHP = 1.0\n    blockHPOverrides = []         # Format: \"minecraft:glass=2\"\n\n[effects]\n    spawnBreakParticles = true\n    playBreakSound = true\n    dropItems = false",
+  "categories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 135,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

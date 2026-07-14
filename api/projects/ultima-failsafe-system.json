@@ -1,0 +1,19 @@
+{
+  "id": "h8JsRZYd",
+  "slug": "ultima-failsafe-system",
+  "title": "Ultima Failsafe System",
+  "description": "The Ultima Failsafe System guards against various types of crashes in runtime, and prevents them from crashing the game.",
+  "body": "This mod is a semi advanced mixin project;\nWe specifically target several key crash-origins, and purposefully guard them against crashes in a way that doesnt majorly effect gameplay;\nAfter all, all the edits our mod does, can simply be reversed by restarting the game fully, or the server fully, It's all saved to only memory, not disk!\n\nExpected results, since we designed for it, Please contact me personally on discord or such if there are major issues, or if you experience a non Out Of Memory fatal crash with this mod!\nI want to make this mod the best it can be for you all, So please feel free to reach out!\n\nServer tick crash - Any unhandled exception that would normally kill the server during a game tick is caught and suppressed. The server skips the bad tick and continues running.\n\nCrash report interception - When Minecraft builds a crash report (the first step before showing the crash screen), it's intercepted and discarded. The crash screen never appears.\n\nEntity tick crash - If an entity's tick throws an exception or causes a stack overflow, it's quarantined. Quarantined entities are silently skipped every tick instead of repeatedly crashing the server.\n\nBlock entity tick crash - Same as entity protection but for block entities (chests, furnaces, spawners, etc.). A bad block entity is quarantined by position and skipped on future ticks.\n\nBlock tick crash - Catches crashes during block state ticks (e.g. sand falling, crop growth, command block execution). The offending block position is quarantined.\n\nCommand execution crash - Any crash triggered by running a command, whether from chat, a command block, a function pack, or the console, is caught and aborted without taking the server down.\n\nOut of memory - A 64MB emergency memory reserve is held in reserve. On OOM, it's freed immediately to give the server room to recover. If OOM hits again within 1.5 seconds, it's allowed to propagate (recovery clearly failed, We do not want to corrupt anything!).",
+  "categories": [
+    "neoforge",
+    "optimization"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 50,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

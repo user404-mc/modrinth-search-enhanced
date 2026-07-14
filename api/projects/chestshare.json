@@ -1,0 +1,20 @@
+{
+  "id": "6BCWQ9WC",
+  "slug": "chestshare",
+  "title": "ChestShare",
+  "description": "Per-player loot in every world-generated chest, 100% server-side. Can even restore chests that were looted before you installed it.",
+  "body": "# ChestShare\n\n## Summary\n\nPer-player loot in every world-generated chest — 100% server-side. Can even restore chests that were looted before you installed it.\n\n## Description\n\n---\n\n# Every player gets the dungeon chest. Not just the first one.\n\nOn a survival server, the first player to find a structure empties it. Everyone after them explores a looted world. **ChestShare gives each player their own instance of every world-generated container** — same seed, same loot, nobody left out.\n\nAnd it's **100% server-side**: drop one jar in `mods/`, done. No client install, works with vanilla clients, launcher-locked modpack players, and cracked-open modpacks alike.\n\n## What it does\n\n- **Per-player loot instances** — chests, trapped chests, barrels, shulkers, dispensers, chest minecarts, and modded containers built on vanilla mechanics. Two players opening the same dungeon chest see the exact same items, each in their own copy.\n- **Deposit friendly** — players can take *and* stash items in their instance; everything persists with the world.\n- **Mod-generated structures included** — containers are captured at chunk generation, whether they use a loot table or were pre-filled with custom modded items (full NBT).\n- **No exploits** — hoppers and pipes can't touch shared containers; breaking one drops only the breaker's own instance; player-placed chests keep vanilla behavior, always.\n- **Double chests, done right** — combined 54-slot screen, each half tracked separately.\n\n## Installed the mod too late? We did too.\n\nChestShare was born on a live Cobblemon (COBBLEVERSE) server where players had already explored and emptied chests across the whole map. Vanilla deletes a chest's loot table the moment it's opened — that information is gone from the world forever.\n\nBut world generation is deterministic. So ChestShare ships a **recovery workflow**:\n\n1. Copy your server setup (same mods, same seed), delete the world copy.\n2. Pre-generate the explored area on that mirror (Chunky works great) — ChestShare captures every container as it generates.\n3. `/chestshare export recovery` on the mirror.\n4. `/chestshare import recovery` on your real server: every chest still standing — **including the ones already looted** — becomes a shared container with its original loot.\n\nThe import runs spread across server ticks (no freeze, no watchdog kill) and skips non-empty containers by default so it never eats player storage. On our server: 332 containers exported from the mirror, 241 restored in one command, zero downtime beyond a restart.\n\n## Commands (op level 2)\n\n| Command | Effect |\n|---|---|\n| `/chestshare convert <pos> <loot_table>` | Convert one container (e.g. a chest looted pre-mod) into a shared container |\n| `/chestshare reset <pos>` | Wipe player instances — loot regenerates for everyone |\n| `/chestshare export <file>` | Export all captured containers to a file |\n| `/chestshare import <file> [force]` | Apply an export to this world (recovery) |\n\n## Good to know\n\n- Fabric, Minecraft 1.21.1, Java 21. Requires Fabric API. Server-side only (also works in singleplayer/LAN).\n- Chunks generated before install: unopened containers still convert automatically on first open (their loot table is intact); already-looted ones need the recovery workflow above.\n- Fully custom container implementations (not based on vanilla loot mechanics) aren't covered.\n- Cosmetic: no chest lid animation on shared containers (server-side trade-off).\n",
+  "categories": [
+    "fabric",
+    "optimization",
+    "storage"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "atYK7Pdn",
+  "slug": "echograve",
+  "title": "EchoGrave",
+  "description": "EchoGrave is a Fabric and NeoForge grave mod that stores player items and optional XP in graves on death, adds a Grave Compass, /back support, trusted grave access, configurable decay, localization, and optional async webhook notifications.",
+  "body": "# EchoGrave\n\nEchoGrave is a lightweight Minecraft grave mod for Fabric and NeoForge. When a player dies, their items and optional XP are saved in a grave instead of being scattered across the world. The mod also includes a Grave Compass, `/back` support, grave trust access, configurable decay, and optional webhook notifications for server automation.\n\n## Features\n\n### Graves on death\n\n- Stores the player's inventory in a grave at the death location.\n- Remembers the death position for `/back` teleport support.\n- Tries the death block first, then nearby offsets if the grave cannot be placed there.\n- Supports owner-only grave access before decay.\n- Supports trusted players through the grave trust design.\n- Decayed graves become public and release their contents normally.\n\n### Decay and warning state\n\n- Default grave lifetime: 30 minutes.\n- The warning state begins 10 seconds before expiry.\n- Server owners can change the decay duration in config.\n\n### Grave Compass\n\n- Adds a craftable Grave Compass recipe.\n- Points players toward their nearest active grave using direction and distance helper text.\n- Crafting can be disabled in config.\n\n### `/back` support\n\n- Stores each player's last death location.\n- Configurable cooldown, default 60 seconds.\n- Includes an admin bypass hook for permission integrations.\n\n### Optional webhooks\n\nEchoGrave can send an asynchronous HTTP POST when a player dies. This never blocks the server thread. Payload fields include:\n\n- `playerName`\n- `deathCause`\n- `x`, `y`, `z`\n- `dimension`\n- `timestamp`\n- `xpAmount`\n\n### Localization\n\n- English: `en_us`\n- German: `de_de`\n\n## Supported targets\n\n- Minecraft 1.20.1\n- Minecraft 1.20.4\n- Minecraft 1.21.1\n- Fabric\n- NeoForge\n\n## Configuration example\n\n```json\n{\n  \"decaySeconds\": 1800,\n  \"backCooldownSeconds\": 60,\n  \"webhookEnabled\": false,\n  \"webhookUrl\": \"https://example.invalid/webhook\",\n  \"storeXp\": true,\n  \"graveCompassCraftable\": true\n}\n```\n\n## Building from source\n\n```bash\n./gradlew build -PmcVersion=1.20.1\n./gradlew build -PmcVersion=1.20.4\n./gradlew build -PmcVersion=1.21.1\n./gradlew buildAllVersions packageDistribution\n```\n\nGenerated jars are written to `build-output/`.\n",
+  "categories": [
+    "adventure",
+    "equipment",
+    "fabric",
+    "game-mechanics",
+    "management",
+    "neoforge",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 29,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

@@ -1,0 +1,20 @@
+{
+  "id": "jaus3ZGT",
+  "slug": "coal-cloth-config-adapter",
+  "title": "COAL — Cloth Config adapter",
+  "description": "Renders every COAL-using mod's settings screen in Cloth Config.",
+  "body": "Renders every [COAL](https://modrinth.com/mod/config-object-abstraction-lib)-using mod's settings screen\nin [Cloth Config](https://modrinth.com/mod/cloth-config), plus JSON\npersistence, load-time validation, and versioned migrations.\n\n## For players\n\nInstall **all three** side-by-side in your `mods/` folder:\n\n1. **[COAL](https://modrinth.com/mod/config-object-abstraction-lib)** — the abstraction layer that COAL-consuming mods depend on.\n2. **coal-cloth-adapter** — this mod.\n3. **[Cloth Config](https://modrinth.com/mod/cloth-config)** — the GUI library that actually renders the screens.\n\nAny mod that consumes COAL will use Cloth Config for its settings screen once\nthese three are installed together.\n\n### Cloth vs. YACL\n\nCloth Config's sub-category widget recurses cleanly, so this adapter\npreserves deep-nested config trees end-to-end. YACL's equivalent flattens\nafter two levels. If your mods declare heavily-nested configs and you want\nevery level preserved in the GUI, pick this adapter.\n\n### Don't install alongside `coal-yacl-adapter`\n\nOnly **one** COAL adapter should be installed at a time. If you'd rather use\nYACL, install [`coal-yacl-adapter`](https://modrinth.com/mod/coal-yacl-adapter)\ninstead of this one.\n\n## For mod authors\n\nYou don't compile against this mod. Depend on `coal-api` +\n`coal-api-gui-<loader>` at compile time; your users install whichever adapter\nthey prefer at runtime. See the [docs](https://mc.oliveryasuna.com/coal/) for\nthe walkthrough.\n\n## Feature coverage\n\nAdvertises `MIGRATION`, `VALIDATION`, and `GUI_DELEGATION`. Does not advertise\n`SYNC`, `FILE_WATCH`, `JSON5`, or `CUSTOM_FORMATS` — see the module README on\nGitHub for the full annotation-to-widget mapping and known limitations.\n\n## Links\n\n- [Documentation](https://mc.oliveryasuna.com/)\n- [Source code](https://github.com/oliveryasuna/minecraft-mods)\n- [Sibling: `coal-yacl-adapter`](https://modrinth.com/mod/coal-yacl-adapter)\n",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "1.21.8"
+  ],
+  "date_updated": null
+}

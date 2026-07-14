@@ -1,0 +1,23 @@
+{
+  "id": "OiV5AbTD",
+  "slug": "hisoka-markers",
+  "title": "HisokaMarkers",
+  "description": "Team-ping style markers: middle-click a spot, get a see-through-walls beam with name and distance. Syncs over /msg — no server plugin.",
+  "body": "<div align=\"center\">\n      <img src=\"https://cdn.modrinth.com/data/OiV5AbTD/images/49d0f4509e81e32e450afc070f5b906605957a7d.png\"\n    alt=\"HisokaMarkers\" width=\"100%\"/>\n      <br/>\n      <img src=\"https://img.shields.io/badge/Minecraft-1.21.11-9EE11A?style=for-the-badge&amp;labelColor=261018&amp;logo\n  =minecraft&amp;logoColor=F4F2EE\" alt=\"Minecraft\"/>\n      <img src=\"https://img.shields.io/badge/Loader-Fabric-9D1E4C?style=for-the-badge&amp;labelColor=261018\"\n    alt=\"Fabric\"/>\n      <img src=\"https://img.shields.io/badge/Environment-Client--only-9EE11A?style=for-the-badge&amp;labelColor=261018\"\n    alt=\"Client\"/>\n      <img src=\"https://img.shields.io/badge/License-MIT-9D1E4C?style=for-the-badge&amp;labelColor=261018\" alt=\"MIT\"/>\n  </div>\n# HisokaMarkers\n\n  Client-side marker mod inspired by team ping systems from tactical\n  shooters. Middle-click anywhere you're looking (up to 500 blocks\n  away) and a colored beam appears at that spot — visible through\n  walls — with your name and live distance floating above it. Friends\n  receive the marker over regular `/msg`, so no server plugin needed.\n\n  ## Features\n\n  - **See-through-walls beam.** Uses the vanilla glow-outline framebuffer\n    pass on a `BlockDisplay` — no shaders, no custom RenderType, plays\n    nice with any resource pack.\n  - **HUD label** shows sender's name, sender's skin face icon, distance\n    in meters, and (optionally) exact block coordinates.\n  - **Chat-based sync.** The mod sends `/msg <friend> [[MRKR:...]]` with\n    an encoded payload. The receiver decodes it and draws the beam; the\n    payload itself is hidden from local chat via a client mixin.\n  - **Command queue.** Whispers go out one at a time with a configurable\n    cooldown, so server antispam doesn't kick you.\n  - **Team-chat mode** (second keybind, unbound by default) — a single\n    `/teamchat [[MRKR:...]]` reaches the whole team if your server has\n    a team-chat plugin.\n  - **Friend list.** You only see markers from mutual friends who\n    targeted you. Empty recipients = broadcast to all mutual friends.\n  - **Auto-cleanup.** Markers expire after a configurable lifetime, and\n    can optionally remove locally when you stand on the marker block.\n  - **Configurable via ModMenu + Cloth Config:** beam color, thickness,\n    height (from 1 block), text color, render distance, head icon size,\n    send cooldown, whisper/team command names (`msg`, `tell`, `w`, `pm`,\n    `teamchat`, etc).\n  - Full **English and Russian** translations.\n\n  ## Controls\n\n  Bind the marker keys under **Options → Controls → HisokaMarkers**.\n\n  - **Middle mouse** (default) — place a marker and send to the first\n    friend in your list via `/msg`.\n  - **Team-chat key** (unbound) — place a marker and send via `/teamchat`.\n\n  Config screen: **ModMenu → HisokaMarkers**.\n\n  ## Requirements\n\n  - Minecraft **1.21.11** (Fabric)\n  - Fabric Loader ≥ 0.19\n  - Fabric API\n  - Cloth Config\n  - ModMenu (suggested — required to open the config screen)\n\n  ## Compatibility\n\n  - **Client-only.** Install on your client. Nothing changes on the\n    server; the payload travels as a normal whisper.\n  - **Doesn't touch vanilla chat.** The mod only intercepts messages\n    containing the `[[MRKR:` prefix (your own whisper echoes and\n    incoming team-chat broadcasts).\n  - **Creative mode intentionally disables placement** — an anti-abuse\n    guard for shared servers.\n\n  ## Under the hood\n\n  Payload format: `/msg friend [[MRKR:<base64-encoded-marker-data>]]`\n  — a versioned binary blob (~90 bytes pre-base64) carrying position,\n  color, height, timestamp, and the recipient list. The receiver\n  decodes it, hides it from chat, and spawns a client-only\n  `Display.BlockDisplay` with a glow-outline color.\n\n  ## Notes\n\n  The mod doesn't read or modify anything beyond its own payload\n  messages in the system chat. All beam entities are vanilla\n  `Display.BlockDisplay` instances living purely client-side.\n\n  Author: caapo. Licensed under MIT.",
+  "categories": [
+    "adventure",
+    "fabric",
+    "social",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 10,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.8",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

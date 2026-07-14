@@ -1,0 +1,22 @@
+{
+  "id": "muuV0NOB",
+  "slug": "nobodylib",
+  "title": "Nobody Lib",
+  "description": "A library for mods by Nobodyasidentity.",
+  "body": "**Nobody Lib** is a simple library mod made by/for Nobodyasidentity for developing Fabric mods.  \n> <font color=\"orange\">⚠ Nobody Lib is still under development and stuff might change</font>\n# Usage\n## Including in Gradle project\nI currently don't have a maven set up but I hope to use Modrinth's built-in maven\n```gradle\ndependencies {\n    implementation files('libs/nobodylib-${project.nobodylib_version}.jar')\n}\n```\n## Item\n```java\nimport io.github.nobodyasidentity.lib.core.item.Item;\n\npublic class item_example {\n    public static final String MOD_ID = \"example_mod\";\n\n    public static final Item EXAMPLE_ITEM = Item.create(MOD_ID, \"example_item\");\n}\n```\n### Music Disc item\nNote: you will have to add stuff to the data and assets folder on your own, otherwise the mod will not be able to run.\n```java\nimport io.github.nobodyasidentity.lib.core.item.Item;\n\npublic class music_disc_example {\n    public static final String MOD_ID = \"example_mod\";\n    \n    // this will also create a sound event called \"example_mod:example_music_disc\"\n    public static final Item EXAMPLE_MUSIC_DISC = Item.createMusicDisc(MOD_ID, \"example_music_disc\");\n}\n```\n### Spawn Egg item\n```java\nimport io.github.nobodyasidentity.lib.core.item.Item;\nimport net.minecraft.world.item.SpawnEggItem;\nimport example_mod.example_entities\n\npublic class spawn_egg_example {\n    public static final String MOD_ID = \"example_mod\";\n    \n    public static final SpawnEggItem EXAMPLE_SPAWN_EGG = Item.createSpawnEgg(MOD_ID, \"example_spawn_egg\", example_entities.example_entity);\n}\n```\n## Block\n```java\nimport net.minecraft.world.item.BlockItem;\nimport io.github.nobodyasidentity.lib.core.item.Block;\n\npublic class block_example {\n    public static final String MOD_ID = \"example_mod\";\n    \n    public static final Block EXAMPLE_BLOCK = Block.create(MOD_ID, \"example_block\");\n    public static final BlockItem EXAMPLE_BLOCK_ITEM = Block.register(EXAMPLE_BLOCK);\n}\n```\n## Logger\n```java\nimport io.github.nobodyasidentity.lib.Logger;\n\npublic class logger_example {\n    public static final String MOD_ID = \"example_mod\";\n    \n    public static final Logger LOGGER = Logger.create(MOD_ID);\n}\n```\n## Py\nNobody Lib also has some simple functions based on functions from Python\n```java\nimport io.github.nobodyasidentity.lib.Py;\n\npublic class py_example {\n    public static final String MOD_ID = \"example_mod\";\n    \n    public void init(){\n        Py.print(\n            py.str(null) // \"null\"\n        );\n    }\n}\n```\n## Client Load Event\n```java\nimport io.github.nobodyasidentity.lib.client.ClientLoadEvent;\nimport net.minecraft.client.Minecraft;\nimport com.mojang.blaze3d.platform.Window;\n\npublic class client_load_example {\n    public static final String MOD_ID = \"example_mod\";\n    \n    public void init(){\n        ClientLoadEvent.register(client->{\n            Window window=ClientLoadEvent.Minecraft().getWindow(); // get game window\n        });\n    }\n}\n```\n## Data generators\nData generators are still work-in-progress and I can't even guarantee that they will stay\n# Dependencies\n* <a href=\"https://modrinth.com/mod/fabric-api\" target=\"_blank\">FabricAPI</a>",
+  "categories": [
+    "cursed",
+    "fabric",
+    "library",
+    "quilt",
+    "utility"
+  ],
+  "client_side": "optional",
+  "server_side": "optional",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "26.2"
+  ],
+  "date_updated": null
+}

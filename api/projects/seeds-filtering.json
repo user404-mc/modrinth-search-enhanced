@@ -1,0 +1,20 @@
+{
+  "id": "TSM5py95",
+  "slug": "seeds-filtering",
+  "title": "Seeds Filtering",
+  "description": "A mod for PackDev that allows you to select only certain default seeds.",
+  "body": "# Seeds Filtering — Mod overview\n\nA mod for PackDev that allows you to select only certain default seeds.\n\n## How it works\n\nWhen you click **Create New World** and leave the seed field **empty**:\n\n1. If the config seed list is **empty**, Minecraft behaves normally and picks a fully random seed.\n2. If the config seed list has **one or more entries**, the mod picks one at random and uses it for the new world.\n\nIf you **type a seed manually**, the mod does nothing and your chosen seed is used as usual.\n\nEach world creation is independent. With three seeds in the list, each one has an equal chance every time you create a world.\n\n### Seed string conversion\n\nEntries in the config are plain strings. Minecraft converts them when the world is created:\n\n- **Numeric strings** (e.g. `12345`, `-9876543210`) → used as the numeric world seed\n- **Text strings** (e.g. `minecraft`) → converted via `hashCode()` to a numeric seed\n- **Empty string** in the list → treated like a normal empty seed (random)\n\n## Configuration\n\nOn first launch, the mod creates `config/seeds_filtering-common.toml`:\n\n```toml\n# List of seeds to randomly pick from on new world creation (empty = fully random).\nseeds = []\n```\n\nExample with three seeds:\n\n```toml\nseeds = [\n    \"123456789\",\n    \"minecraft\",\n    \"42\"\n]\n```\n\n",
+  "categories": [
+    "neoforge",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

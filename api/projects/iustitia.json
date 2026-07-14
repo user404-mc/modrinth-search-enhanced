@@ -1,0 +1,21 @@
+{
+  "id": "W3HOLfeH",
+  "slug": "iustitia",
+  "title": "Iustitia Anti-Cheat",
+  "description": "A free, open-source Fabric anti-cheat that watches other players from your client. A basic, advanced moderation tool.",
+  "body": "### IUSTITIA\n **Iustitia** is a Fabric client mod that watches every other player on your server and flags impossible world/combat interactions — the kind of thing a reach hack, a killaura, a fly hack, or a timer cheat produces. It does this entirely on your client:\n\n **Read-only on incoming packets.** A single mixin (ClientPlayNetworkHandlerMixin) observes server packets and feeds them into a tracking pipeline. It never sends anything to the server and never mutates the local player. The watch follow-cam (/ius spectate, see below) is the one deliberate exception: it overrides the camera only, while you're actively spectating, and auto-reverts the instant you stop, move, get hit, or the target leaves — vanilla re-derives the camera every frame so it can never get stuck.\n\n **Other players only.** It builds a server-space model of every other client player (position, yaw/pitch, sprint/sneak, hurt ticks, vehicle, deltas) from rebroadcast state, then runs 32 detection checks against that model each tick.\n\n **Fail-open everywhere.** Every check and mixin body is wrapped so a thrown exception is swallowed and skipped — a detection error never crashes your client and never produces a false positive. A chunk-unloaded player is a false negative, never a false positive.\n\n **Two streams, kept separate.** Chat alerts fire only when a check's violation level crosses its setback threshold. Verbose console logging (every flag, a pipeline heartbeat) is opt-in via /ius verbose for validation/debugging and is off by default — the release build is silent in latest.log unless you turn it on.\n\nIt is a tool with detection/inspection/moderation capabilities, not an enforcement tool: it tells you who looks like a cheater. It does not kick, ban, or report anyone, and it sends nothing anywhere.\n\n### REQUIREMENTS\nMinecraft\t1.21.11\nFabric Loader\t0.19.3+\nFabric API\t0.141.3+1.21.11 (any compatible)\nfabric-language-kotlin\t1.13.9+kotlin.2.3.10 (any compatible)\nYet Another Config Lib (YACL)\t3.8.2+1.21.11 (any compatible)\nJava\t21\nRecommended: ViaFabricPlus\tfor playing on 1.8-era servers via protocol translation\n\n[Iustitia Website!](https://thoriadevelopment.github.io/Iustitia/) All three library mods (Fabric API, fabric-language-kotlin, YACL) are standard and can be installed alongside any other modpack. Iustitia is written to fail-open and not crash when other mods are present.\n\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 32,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

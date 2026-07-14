@@ -1,0 +1,21 @@
+{
+  "id": "pXciMYpV",
+  "slug": "relib",
+  "title": "ReLib",
+  "description": "General-purpose Minecraft mod library, also powering Rere's mods",
+  "body": "# ReLib\n\nGeneral-purpose utility library for Fabric mods, originally built for TheSmoothRere's mods but open for anyone to use.\n\n## Features\n\n- **Config system** — Define configuration classes with the `@Config` annotation\n- **Auto-discovery** — Configs are automatically discovered via Fabric entrypoints and registered at startup\n- **JSON persistence** — Config values are saved/loaded as pretty-printed JSON via Gson\n- **Typed options** — `BooleanOption`, `StringOption`, `IntegerOption`, `DoubleOption`, `EnumOption<E>`, `ListStringOption`\n- **Bounded ranges** — `IntegerOption` and `DoubleOption` enforce min/max bounds\n- **List support** — `ListStringOption` backed by a mutable `ListString` wrapper with `add`, `edit`, `remove`, `clear`\n\n## Usage\n\n### 1. Create a config class\n\n```java\nimport io.github.thesmoothrere.relib.config.ListString;\nimport io.github.thesmoothrere.relib.config.option.*;\n\n@Config(name = \"my_mod\")\npublic class MyModConfig implements ConfigApi {\n\n    private final BooleanOption enabled = new BooleanOption(\"enabled\", true);\n    private final IntegerOption volume = new IntegerOption(\"volume\", 50, 0, 100);\n    private final DoubleOption sensitivity = new DoubleOption(\"sensitivity\", 0.5, 0.0, 1.0);\n    private final StringOption greeting = new StringOption(\"greeting\", \"Hello!\");\n    private final EnumOption<MyEnum> mode = new EnumOption<>(\"mode\", MyEnum.NORMAL);\n    private final ListStringOption favoriteColors = new ListStringOption(\"favorite_colors\", \"red\", \"blue\");\n\n    public ConfigOption<Boolean> enabled() {\n        return enabled;\n    }\n\n    public ConfigOption<Integer> volume() {\n        return volume;\n    }\n\n    public ConfigOption<Double> sensitivity() {\n        return sensitivity;\n    }\n\n    public ConfigOption<String> greeting() {\n        return greeting;\n    }\n\n    public ConfigOption<MyEnum> mode() {\n        return mode;\n    }\n\n    public ConfigOption<ListString> favoriteColors() {\n        return favoriteColors;\n    }\n}\n```\n\n### 2. Register the entrypoint in `fabric.mod.json`\n\n```json\n{\n  \"entrypoints\": {\n    \"relib\": [\n      \"com.example.MyModConfig\"\n    ]\n  }\n}\n```\n\n### 3. Access your config anywhere\n\n```java\nMyModConfig config = ConfigManager.get(MyModConfig.class);\nboolean enabled = config.enabled().getValue();\n\nConfigManager.load(config);\nConfigManager.save(config);\n```\n\n## Option Types\n\n| Class | Value Type | Bounded |\n|-------|-----------|---------|\n| `BooleanOption` | `Boolean` | No |\n| `StringOption` | `String` | No |\n| `IntegerOption` | `Integer` | Yes |\n| `DoubleOption` | `Double` | Yes |\n| `EnumOption<E>` | `E extends Enum<E>` | No |\n| `ListStringOption` | `ListString` | No |\n\n## License\n\nLicensed under the **GNU Lesser General Public License v2.1**. See [LICENSE](https://github.com/TheSmoothRere/ReLib/blob/main/LICENSE).",
+  "categories": [
+    "fabric",
+    "library"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 13,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

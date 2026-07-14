@@ -1,0 +1,25 @@
+{
+  "id": "xIvQB3Fv",
+  "slug": "patternium",
+  "title": "Patternium",
+  "description": "Patterns is a client-side mod that lets you instantly craft any crafting grid arrangement, automatically.",
+  "body": "# Patternium\n\n**Ctrl+Shift+Click** on the crafting result to auto-craft the current recipe until materials run out — even when inventory fills up.\n\n**Patternium** is a 100% client-side Fabric mod that automates bulk crafting. Place items in your crafting grid (2x2 or 3x3), hold `Ctrl` + `Shift`, and left-click the result. The mod crafts continuously until your inventory is empty of matching materials or you close the screen.\n\n## What It Does\n\n*   **Bulk Craft** — Hold `Ctrl` + `Shift` and left-click the crafting result slot. The mod shift-clicks the result, refills the grid evenly from your inventory, and repeats.\n*   **Even Distribution** — Items are split equally across grid slots. 64 oak planks in a 2×2 recipe? 16 planks per slot.\n*   **Overflow Dropping** — When inventory fills, the remaining output is picked up and dropped on the ground, so crafting never stalls.\n\n![Crafting 4 redstone block with Patternium.](https://cdn.modrinth.com/data/xIvQB3Fv/images/380757d9bc50c66a610589d083b4fa9d8d02c514.gif)\n\n## Why Patternium?\n\nThe vanilla recipe book is fine for crafting one stack. But for bulk processing — converting stacks of raw materials into their crafted forms — doing it manually is absurd repetition.\n\n> **Example:** You have 9 stacks of iron blocks from a farm. Place blocks in the 2×2 or 3×3 grid, hold `Ctrl` + `Shift`, click the result. The mod crafts all 576 ingots automatically. Overflow drops at your feet. Total: **1 click**.\n\nWorks with any item and any recipe — vanilla, modded, shaped, or shapeless. If `CraftingRecipe.matches()` accepts it, Patternium can auto-craft it.\n\n## How It Works\n\nPatternium uses the same approach as Mouse Tweaks: it simulates normal inventory clicks (`clickSlot()` via `ClientPlayerInteractionManager`). The server sees exactly what a fast, precise player doing it manually would produce. No special packets, no modified world state, no server-side code.\n\n*   No configuration needed — just hold <kbd>Ctrl+Shift</kbd> and click\n*   Uses `RecipeManager` and `CraftingRecipe.matches()` — works with modded recipes\n*   Works on vanilla, Fabric, Paper, Spigot — any server that allows vanilla clients\n*   Always read the server rules first. Some servers ban inventory modification mods or other macro's.\n\n## Overflow Handling\n\nWhen the inventory fills up mid-batch:\n\n1.  Patternium shift-clicks the result into your inventory normally.\n2.  If there's no room, the remaining output stays in the result slot.\n3.  Patternium picks it up and **drops it on the ground**, then keeps crafting.\n\nThis means you never stall on a full inventory. Stand under a mob farm with a crafting table — bones land in your inventory, Patternium turns them into bonemeal, and the excess bonemeal drops at your feet while fresh bones keep falling in.\n\n## Controls\n\n| Key                                  |Action                                 |\n| ------------------------------------ |-------------------------------------- |\n| <code>Ctrl+Shift+Left Click</code> on result slot |Start auto-crafting the current recipe |\n| Close the crafting screen            |Stop auto-crafting                     |\n\n## Requirements\n\n*   Minecraft 1.21.11, 26.1, 26.1.2, or 26.2\n*   Fabric Loader 0.16.10+\n*   Fabric API 0.100.0+\n*   Java 21 or higher.",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "management",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

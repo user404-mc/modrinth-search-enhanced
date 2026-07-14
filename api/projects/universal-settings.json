@@ -1,0 +1,31 @@
+{
+  "id": "1XpIQ46r",
+  "slug": "universal-settings",
+  "title": "Universal Settings",
+  "description": "A mod that syncs your settings across different instances, versions and computers.",
+  "body": "# Universal Settings\n\nA client-side Minecraft mod (Fabric + NeoForge) that syncs your settings across every computer, instance, and game version you play on.\n\nNo more redoing the same setup for every new instance or PC. A fresh install pulls your settings on first launch, and every change you make afterwards syncs to your other installs automatically.\n\n**What syncs:** everything in `options.txt` and your multiplayer server list.\n\n**Profiles:** keep multiple named profiles (e.g. `default`, `laptop`) and pick one as the default. If an install already has customized settings, you get a one-time choice to keep them as a new profile or switch to your synced ones.\n\n**Authentication:** no login, ever. The mod proves who you are through the same Mojang session handshake used to join multiplayer servers, so only you can read or write your settings. In offline mode syncing pauses for the session and your local settings are untouched.\n\n## Privacy\n\nThis mod uploads your settings to a sync server so they can be shared across your installs. By default that server is the central instance operated by the mod author ([universalsettings.whitemcwizard.nl](https://universalsettings.whitemcwizard.nl)).\n\n- **What is stored:** your Minecraft username and UUID, the contents of your `options.txt`, your `servers.dat` (multiplayer server list), and your exclusion lists.\n- **Your server list is included.** `servers.dat` holds the addresses of every multiplayer server you've saved. If you'd rather not upload that, turn off **Sync servers** in the in-game *Ignored Settings* screen.\n- **You can delete it.** Deleting a profile in-game removes it from the server.\n- **No secrets are stored.** The Mojang handshake never exposes your password or launcher token to the sync server.\n\nPrefer not to use the central server? This repository includes the full server (`server/`). Self-host it and point the mod at your own instance with `serverUrl` in `config/universalsettings.json`.\n\n## Layout\n\n- `common/`: all mod logic (sync manager, options codec, HTTP client, auth, first-run UI, mixins)\n- `fabric/`, `neoforge/`: thin loader entry points\n- `server/`: the central sync server (Node.js + Fastify + SQLite)\n- `versions/{mc}/gradle.properties`: per-Minecraft-version properties, shared by all branches\n\nMulti-version builds are managed by [Stonecutter](https://stonecutter.kikugie.dev/):\nevery supported Minecraft version is a Gradle subproject (\"node\") of each branch,\ne.g. `:fabric:26.1.2`. The active version's sources live directly in `{branch}/src/`;\nuse the `Reset active project` task before committing after a version switch.\n\nTo add a Minecraft version: register it in `settings.gradle` (`versions '26.1.2', '...'`),\ncreate `versions/{mc}/gradle.properties` with that version's properties, and port\nversion-specific code with Stonecutter comments (`//? if <1.21 {`).\n\n## Development\n\nMod (JDK 21+ recommended to run Gradle; each Minecraft version targets a different\nJava release, and Gradle auto-provisions the right toolchain per version):\n\n```sh\n./gradlew buildAll                            # build every version of every branch\n./gradlew :fabric:26.1.2:build                # build one loader jar\n./gradlew :fabric:26.1.2:runClient            # dev client\n```\n\nServer (Node 22+):\n\n```sh\ncd server\nnpm install\nAUTH_DISABLED=true npm run dev   # dev server on :8080, skips Mojang verification\nnpm test                         # vitest API tests\n```\n\nFor an end-to-end dev loop, point the run dir's `config/universalsettings.json` `serverUrl` at `http://localhost:8080` and start the dev server with `AUTH_DISABLED=true`. Dev clients have no real Mojang token, so the mod skips the client-side join in dev environments to match. The server refuses to start with `AUTH_DISABLED` when `NODE_ENV=production`.\n\n### API\n\n| Method/Path | Auth |\n|---|---|\n| `POST /auth/challenge`, `POST /auth/verify` | (rate limited) |\n| `GET /players/:uuid/profiles[/default\\|/:name]` | JWT |\n| `PUT /players/:uuid/profiles/:name` | JWT |\n| `POST /players/:uuid/default` | JWT |\n| `POST /players/:uuid/profiles/:name/rename` | JWT |\n| `DELETE /players/:uuid/profiles/:name` | JWT |\n| `GET\\|PUT /players/:uuid/exclusions` | JWT |\n| `PUT /players/:uuid/profiles/:name/exclusions` | JWT |\n| `GET /health` | |\n\n### Deploying the central server\n\n```sh\ncd server\ncp .env.example .env       # set JWT_SECRET (openssl rand -hex 32) and DOMAIN\ndocker compose up -d --build\n```\n\nThe bundled Compose stack runs the API behind Caddy, which obtains HTTPS automatically for `DOMAIN`. The SQLite database lives in `server/data/`; back it up by copying the file.\n\n## License\n\n[MIT](LICENSE). Based on the [MultiLoader Template](https://github.com/jaredlll08/MultiLoader-Template).\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 52,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

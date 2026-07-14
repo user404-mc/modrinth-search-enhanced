@@ -1,0 +1,36 @@
+{
+  "id": "mLzfCWUt",
+  "slug": "zorythaiboss",
+  "title": "Custom  Boss Zoryth AI",
+  "description": "Zoryth AI Boss is a premium, high-performance custom boss framework for Paper (1.21.x).",
+  "body": "# 👑 Zoryth AI Boss\n\nCreate intelligent, multi-phase Minecraft bosses.\n\n---\n\n# 🚀 Getting Started\n\nWhen you first start your server, the plugin automatically creates the following directory:\n\n```text\nplugins/\n└── ZorythAIBoss/\n    ├── config.yml\n    └── bosses/\n```\n\n### Files\n\n* **config.yml** — Global plugin settings, arena rules, AI behavior, and loot settings.\n* **bosses/** — Stores all boss configuration files.\n\n### Create a Boss\n\n1. Copy an existing boss file.\n2. Rename it (e.g. `my_boss.yml`).\n3. Edit the configuration.\n4. Reload the plugin:\n\n```text\n/zoryth reload\n```\n\n---\n\n# 📜 Commands\n\nMain command:\n\n```text\n/zoryth\n```\n\nAliases:\n\n```text\n/zboss\n/zab\n/boss\n```\n\n| Command                         | Permission       | Description                    |\n| ------------------------------- | ---------------- | ------------------------------ |\n| `/zoryth help`                  | None             | Shows the help menu.           |\n| `/zoryth list`                  | `zoryth.list`    | Lists every loaded boss.       |\n| `/zoryth spawn <id>`            | `zoryth.spawn`   | Spawns a boss.                 |\n| `/zoryth giveegg <id> [player]` | `zoryth.giveegg` | Gives a boss spawn egg.        |\n| `/zoryth kill [id/all]`         | `zoryth.kill`    | Removes active bosses.         |\n| `/zoryth reload`                | `zoryth.reload`  | Reloads all configs instantly. |\n| `/zoryth create <id>`           | `zoryth.create`  | Creates a new boss config.     |\n| `/zoryth delete <id>`           | `zoryth.delete`  | Deletes a boss config.         |\n| `/zoryth debug`                 | `zoryth.debug`   | Toggles debug mode.            |\n\n---\n\n# ⚔️ Boss Mechanics\n\n## Phases\n\nBosses become stronger as their health decreases.\n\nEach phase can modify:\n\n* Movement speed\n* Attack damage\n* Particle effects\n* AI behavior\n* Available abilities\n\n---\n\n## Abilities\n\nEvery ability has its own cooldown and optional phase restrictions.\n\n### Available Abilities\n\n* **dash** — Dash toward the target.\n* **leap** — Jump high and slam the ground.\n* **fireball** — Launch explosive fireballs.\n* **meteor_shower** — Rain meteors from the sky.\n* **black_hole** — Pull nearby players inward.\n* **ice_prison** — Trap players inside packed ice.\n* **earthquake** — Shake and damage nearby players.\n* **ground_slam** — Massive area attack with knockback.\n* **life_steal** — Damage enemies while healing the boss.\n* **clone** — Summon weaker copies of the boss.\n\n---\n\n## 🏟️ Arenas\n\nEnable an invisible combat arena for boss fights.\n\n### Setup\n\n```yaml\narena-enabled: true\nleash-distance: 50.0\n```\n\n* `arena-enabled` enables the arena.\n* `leash-distance` sets the arena radius.\n\n### Combat\n\n* ⚔️ Arena activates when combat starts.\n* 🔒 Players cannot leave the arena.\n* 🚫 Crossing the border pulls players back.\n* 🌀 Ender Pearls and Chorus Fruit can be blocked.\n* ☠️ If all players die or disconnect, the boss despawns and the arena resets.\n\n\n---\n\n### 🛡️ How It Works\n\nOnce combat begins:\n\n* ⚔️ The arena is automatically created when the boss attacks a player or a player attacks the boss.\n* 📍 The boss's current location becomes the center of the arena.\n* 🔒 Players inside the arena are locked into the encounter.\n* 🚫 Players cannot escape by running away. Crossing the arena boundary will instantly pull them back toward the boss.\n* 🌀 Ender Pearls and Chorus Fruit teleportation are automatically blocked while inside the arena (configurable in `config.yml`).\n* ☠️ If every locked player dies or disconnects, the boss despawns automatically and the arena is removed.\n* 🔄 The arena is fully reset, allowing the boss encounter to start fresh the next time it spawns.\n\n\n---\n\n## 💰 Loot\n\nLoot is based on player contribution.\n\n### SHARED\n\nOnly the highest damage dealer receives loot.\n\n### PER_PLAYER\n\nEvery eligible player receives their own loot roll.\n\n---\n\n## 🌍 Auto Spawn\n\nBosses can automatically spawn in the world.\n\nFeatures include:\n\n* Fixed world coordinates\n* Configurable respawn timers\n* Persistent cooldowns after server restarts\n\n---\n\n# 📝 Example Config\n\n> **Tip:** Supports MiniMessage formatting (`<red>`, `<gradient:blue:aqua>`, etc.)\n\n```yaml\nid: \"example_boss\"\n\ndisplay-name: \"<red><bold>Fire Demon</bold></red>\"\n\nentity-type: \"BLAZE\"\n\nattributes:\n  max-health: 1000.0\n  damage: 20.0\n  speed: 0.3\n  knockback-resistance: 1.0\n\nauto-spawn:\n  enabled: false\n  world: world\n  x: 100.5\n  y: 65.0\n  z: -250.5\n  respawn-delay: 300\n\nboss-bar:\n  title: \"{boss} - {phase} - <red>{health_percent}%</red>\"\n  color: RED\n  style: SEGMENTED_10\n\nloot:\n  mode: SHARED\n  entries:\n    - type: ITEM\n      chance: 1.0\n      min-amount: 1\n      max-amount: 1\n      item:\n        material: DIAMOND_BLOCK\n        name: \"<aqua>Demon Core\"\n\nphases:\n  phase1:\n    name: \"<yellow>Warm Up</yellow>\"\n    threshold: 100\n\n  phase2:\n    name: \"<dark_red>Enraged</dark_red>\"\n    threshold: 40\n    speed-multiplier: 1.5\n\nabilities:\n  fireball_attack:\n    type: fireball\n    cooldown: 5\n    damage: 15\n\n  meteor_attack:\n    type: meteor_shower\n    cooldown: 20\n    damage: 25\n    conditions:\n      phase: phase2\n```\n\n---\n\n# 🔗 Integrations\n\nAutomatically integrates with:\n\n* **Vault** — Economy rewards.\n* **PlaceholderAPI** — Boss placeholders.\n* **WorldGuard** — Prevent spawning inside protected regions.\n\n---\n\n# 🧟 Built-In Bosses\n\nThe plugin ships with **13 ready-to-use bosses**:\n\n* 👑 Skeleton King\n* 👻 Sky Terror\n* 🔥 Inferno Ghast\n* ⚡ Storm Wither\n* ❄ Frost Monarch\n* 🗡 Shadow Assassin\n* ☣ Toxic Alchemist\n* 🦬 The Behemoth\n* 🌌 Abyssal Warden\n* 🌋 Magma Lord\n* 🎭 Illusion Master\n* 🌑 Void Walker\n* 💀 Infernal Titan\n\n---\n\n# ✨ Features\n\n* ✅ YAML-based boss creation\n* ✅ Multi-phase boss fights\n* ✅ Advanced combat AI\n* ✅ Arena system\n* ✅ Boss abilities\n* ✅ Boss bars\n* ✅ Auto spawning\n* ✅ Loot tables\n* ✅ Hot reload support\n* ✅ Vault integration\n* ✅ PlaceholderAPI support\n* ✅ WorldGuard support\n* ✅ Zero coding required\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "mobs",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 13,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

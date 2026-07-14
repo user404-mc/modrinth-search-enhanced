@@ -1,0 +1,36 @@
+{
+  "id": "RDtTXpil",
+  "slug": "no-villager-price-increase",
+  "title": "No Villager Price Increase",
+  "description": "A datapack/mod that prevents villager prices from ever going up",
+  "body": "# Datapack\n\n## What it does\n\nIn MC 26.1, the old `Offers.Recipes` NBT structure was removed as part of the new data-driven trading system. Price changes now come entirely from the **Gossip system** (reputation).\n\nThis datapack removes only the gossip entries that raise prices, every 3 seconds, on all loaded villagers — using the `Gossips[{Type:\"...\"}]` NBT path to target and delete matching entries directly, with no loop or index guessing required.\n\n| Gossip type | Cause | Effect on price | Action |\n|---|---|---|---|\n| `minor_negative` | Hitting the villager | Increase | Removed |\n| `major_negative` | Killing a villager nearby | Increase | Removed |\n| `minor_positive` | Curing a zombie villager | Decrease | Kept |\n| `major_positive` | Curing, permanent bonus | Decrease | Kept |\n| `trading` | Frequent trading | Decrease | Kept |\n\n> Only price **increases** are blocked. Discounts you've earned are never touched.\n\n---\n\n## Installation\n\n1. Drop the `no-villager-price-increase` folder (or the `.zip`) into:  \n   `saves/<world-name>/datapacks/`\n2. In-game: `/reload`\n3. You will see a green confirmation message in chat.\n\n---\n\n## Commands\n\n| Command | Effect |\n|---|---|\n| `/function no_vp:reset_all` | Immediate manual reset of all villagers |\n| `/function no_vp:uninstall` | Clean uninstallation (run before removing files) |\n\n---\n\n## Uninstalling\n\n1. Run `/function no_vp:uninstall` in-game\n2. The cycle stops automatically within 3 seconds\n3. Remove the datapack folder and run `/reload`\n\n---\n\n## Technical notes\n\n- Runs every **60 ticks (3 seconds)** via a self-scheduling function\n- Uses an `#active` scoreboard flag: when `uninstall` removes the scoreboard, the cycle stops on its own\n- In 26.1, `Offers.Recipes` NBT no longer exists on villager entities — the gossip system is the only accessible data that drives price changes\n\n# Mod\n\nPrevents villager prices from increasing due to bad reputation.\nPreserves discounts from curing zombie villagers and Hero of the Village.\n\n---\n\n## How it works\n\nEvery 3 seconds, the mod scans all loaded villagers and removes\nnegative gossips (the data that drives reputation-based price increases)\nwhile keeping positive ones (curing bonuses, trading discounts).\n\n| Removed | Kept |\n|---|---|\n| `minor_negative` | `minor_positive` |\n| `major_negative` | `major_positive` (zombie curing) |\n| `villager_killed` | `trading` |\n| `golem_killed` | |\n\n---\n\n## Installing the mod\n\nPut the `.jar` in the `mods/` folder of your Fabric instance.\nWorks with any launcher (Prism, GDLauncher, Modrinth App, official, etc.).",
+  "categories": [
+    "datapack",
+    "fabric",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 130,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

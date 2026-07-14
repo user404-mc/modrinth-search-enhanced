@@ -1,0 +1,25 @@
+{
+  "id": "gK4zqBqP",
+  "slug": "md-grieflog",
+  "title": "GriefLog",
+  "description": "An anti-grief rollback tool.",
+  "body": "# GriefLog\n\nBlock-change logger + selection-based rollback for **Minecraft 26.1+** (Tiny Takeover drop).\n\n## Key Features\n\n*   **GriefWand Tool** — A specialized wooden axe tool marked with a secure PersistentDataContainer (PDC) signature that cannot be counterfeited. Left-clicking defines selection corners to boundary a rollback region. While holding the wand, normal block breaking is disabled to prevent accidental damage.\n*   **Multi-Point Selections** — Supports both 2-point axis-aligned bounding boxes (3D cuboids) and 3-to-4 point horizontal polygon selections extruded across the entire height of the world.\n*   **Complete Event Logging** — Tracks player block placements and breakages, block/entity explosions, fire ignitions, fire spreads, and high-frequency water and lava fluid flows.\n*   **Ultra-Low Latency Database WAL Journaling** — Employs a local embedded SQLite database utilizing Write-Ahead Logging (WAL) journaling for optimized reading/writing, executing bulk transaction batches asynchronously to prevent server tick stutter.\n*   **Batch Rollbacks** — Restores block operations safely by querying data asynchronously and scheduling block mutations in configured chunks on the main server thread.\n*   **Automated Purges** — Runs automated purges on configurable intervals (default: 30 minutes) to delete entries older than the configured retention threshold (default: 3 days), preventing storage bloat.\n\n## System Requirements\n\n| Requirement | Value |\n|-------------|-------|\n| Minecraft Server | Spigot / Paper 26.1.x (tested against 26.1.2) |\n| Runtime JRE/JDK | Java 25 or newer (UnsupportedClassVersionError occurs on older runtimes) |\n\n## Commands & Permissions\n\n| Command | Description | Permission Node | Default |\n|---------|-------------|-----------------|---------|\n| `/griefwand` (or `/gw`) | Gives the user the selector GriefWand tool. | `grieflog.wand` | OP |\n| `/griefwand pos <1-4>` | Manually registers selection points. | `grieflog.wand` | OP |\n| `/griefwand clear` | Clears all active selection points. | `grieflog.wand` | OP |\n| `/griefwand info` | Prints selection details in chat. | `grieflog.wand` | OP |\n| `/ungrief <time>` | Rolls back block changes in selected region. Examples: `/ungrief 10m`, `/ungrief 2h`, `/ungrief 1d`. | `grieflog.rollback` | OP |\n| `grieflog.*` | Wildcard permission granting all GriefLog commands. | — | OP |\n\n## Configuration Sample\n\nConfigure GriefLog to fit your server volume. Set custom retention periods, database batch sizes, and event triggers:\n\n```yaml\n# plugins/GriefLog/config.yml\n\nretention: 3d\npurge-interval-minutes: 30\nflush-interval-ticks: 20\nrollback-batch-size: 250\n\nlog:\n  player-break: true\n  player-place: true\n  explosions: true\n  fire: true\n  liquid-flow: true   # High-volume; tune retention accordingly\n\ndelete-on-rollback: true\n```\n",
+  "categories": [
+    "management",
+    "paper",
+    "purpur",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 9,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

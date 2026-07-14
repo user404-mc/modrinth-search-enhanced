@@ -1,0 +1,29 @@
+{
+  "id": "wRmWtHsQ",
+  "slug": "world-fix",
+  "title": "World Fix",
+  "description": "Prevent console spam caused by server-side “a block at a specific coordinate failed to load” errors. If not suppressed, they will keep repeatedly bothering you. Also adds some world loading optimizations.",
+  "body": "## World Fix\n\nWorld Fix 是一个适用于 Minecraft 1.21.1 Fabric 服务端的小型工具模组。\n\n它主要面向更换、移除模组，升级游戏版本，或迁移世界存档后，世界中仍残留旧方块、缺失方块或无效方块数据的模组服务器。\n\n### 这个模组会做什么\n\nWorld Fix 会过滤部分与无效方块数据、未知方块注册项有关的重复日志。\n\n例如，世界存档中仍保存着某个已移除模组的方块，而服务器当前没有安装该模组时，加载对应区块或 section 可能会反复输出相关报错。World Fix 可以减少这类重复刷屏，让服主更容易查看其他重要日志。\n\n它也可以过滤部分无法正常使用的方块实体加载警告。\n\n### 这个模组不会做什么\n\nWorld Fix 不会真正修复世界数据。\n\n它不会恢复已移除模组的方块，不会修复损坏的 NBT，不会自动删除异常方块，也不能保证所有受影响区块都能正常加载。根据具体情况，Minecraft 或其他模组可能会把未知方块数据替换为默认方块状态。\n\n这个模组的主要作用只是减少部分已知重复日志输出，方便服主查看控制台。\n\n### 空世界 tick 节流\n\nWorld Fix 还包含一个可选的空世界 tick 节流功能。\n\n原版 Minecraft 已经会在没有玩家靠近时卸载区块，并避免许多不必要的 tick。World Fix 并不会替代原版的这套机制。\n\n它额外做的是：当某个世界或维度内没有玩家时，跳过该世界大部分常规 `ServerWorld` tick，只保留偶尔的维护 tick。当玩家重新进入该世界时，正常 tick 会立即恢复。\n\n这个功能主要面向拥有大量维度或自定义世界的服务器。对于只有原版三个维度的小型服务器，它可能不会带来明显变化。\n\n如果你的服务器依赖出生区块、区块加载器，或其他需要在空维度中持续运行的系统，可以在配置文件中关闭这个功能。\n\n### 配置文件\n\n首次启动后会生成配置文件：\n\n`config/world_fixer.properties`\n\n你可以在里面开启或关闭日志过滤和空世界 tick 节流功能。\n\n### 兼容性说明\n\nWorld Fix 不会修改 C2ME 的区块调度器或工作线程。日志过滤只针对部分已知消息，空世界处理逻辑也只作用于世界 tick 层面。\n\n\n## World Fix\n\nWorld Fix is a small server-side Fabric mod for Minecraft 1.21.1.\n\nIt is mainly intended for modded servers that still contain old, missing, or invalid block data after changing mods, removing mods, upgrading versions, or migrating worlds.\n\n### What this mod does\n\nWorld Fix filters selected repeated log messages related to invalid or unknown block data while chunks or sections are being loaded.\n\nThis includes messages such as unknown block registry keys from removed mods, for example when a saved world still contains blocks from a mod that is no longer installed.\n\nThe mod can also filter some repeated block entity loading warnings when the affected data cannot be used normally by Minecraft.\n\n### What this mod does not do\n\nWorld Fix does not repair world data.\n\nIt does not restore removed mod blocks, fix corrupted NBT, delete broken blocks, or guarantee that affected chunks will load correctly. Minecraft or other mods may replace unknown block data with a fallback block state, depending on the exact situation.\n\nThis mod only reduces selected repeated log output so server owners can more easily read other important logs.\n\n### Idle world tick throttling\n\nWorld Fix also includes an optional idle-world tick throttling feature.\n\nVanilla Minecraft already unloads chunks and avoids ticking many things when no players are nearby. This mod does not replace that behavior.\n\nInstead, when a world or dimension has no players, World Fix can skip most of that world's regular `ServerWorld` ticks and only allow occasional maintenance ticks. When a player enters that world again, normal ticking resumes immediately.\n\nThis feature is intended for servers with many dimensions or custom worlds. It may not provide a noticeable benefit on small servers with only the vanilla dimensions.\n\nIf your server relies on spawn chunks, chunk loaders, or other systems that should keep working in empty dimensions, you may want to disable this feature in the config.\n\n### Configuration\n\nA config file is generated after the first launch:\n\n`config/world_fixer.properties`\n\nYou can enable or disable log filtering and idle-world tick throttling there.\n\n### Compatibility notes\n\nWorld Fix does not modify C2ME's chunk scheduler or worker threads. Its log filtering is limited to selected known messages, and its idle-world behavior works at the world tick level.",
+  "categories": [
+    "fabric",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 10,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

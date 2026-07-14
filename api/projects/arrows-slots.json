@@ -1,0 +1,37 @@
+{
+  "id": "aFgzro0N",
+  "slug": "arrows-slots",
+  "title": "Arrows & Slots",
+  "description": "When you draw a bow, Arrow & Slots automatically consumes the arrow placed in the hotbar slot directly above that bow. Made for DashPum4",
+  "body": "# Arrow & Slots\n\nA lightweight Minecraft archery helper that lets you focus on aiming, not inventory management.\n\n## Description\n\nWhen you draw a bow, **Arrow & Slots** automatically picks the arrow from the hotbar slot directly **above** the bow. No more swapping items mid-fight—your ammunition always matches the weapon you are holding.\n\n- Works on dedicated servers (the logic runs server-side).\n- Works in single-player because the integrated server handles it.\n- Also available as a **Paper** plugin for Bukkit-based servers.\n\n## Supported Platforms\n\n| Platform | Type | Status |\n|----------|------|--------|\n| Fabric | Mod | implemented |\n| NeoForge | Mod | implemented |\n| Paper | Plugin | implemented |\n\n## Project Layout\n\n```text\nArrowMod/\n├── common/        Shared code used by Fabric and NeoForge\n├── fabric/        Fabric loader entry point\n├── neoforge/      NeoForge loader entry point\n├── paper/         Paper plugin entry point\n├── build.gradle   Root build configuration\n└── settings.gradle\n```\n\n## Supported Versions\n\n| Platform | Supported MC versions | Notes |\n|----------|----------------------|-------|\n| Fabric | 1.21.1 – 26.1.2 | Built against 1.21.1; metadata declares `>=1.21.1` |\n| NeoForge | 1.21.1 – 26.1.2 | NeoForge 21.1+ through 26.1+ |\n| Paper | 1.21.1 – 26.1.2 | `api-version: '1.21'` |\n\nThe jar is compiled against MC 1.21.1 with official Mojang mappings.\nAll injected code is wrapped in try-catch with `require = 0` on Mixin targets\nso it degrades gracefully instead of crashing if an API changes between versions.\n\nIf you hit issues on a newer MC version, rebuild the mod against that version's\ntoolchain — the Mixin target (`Player#getProjectile`) and class names are\nstable across all supported versions under official mappings.\n\n## Requirements\n\n- Java 21 or newer\n- Gradle 8.11+ (wrapper included)\n\n## Building\n\n```bash\n./gradlew build\n```\n\nBuilt artifacts will be in each subproject's `build/libs/` directory.\n\n## Development Run Configurations\n\nGenerate run configs for your IDE with:\n\n```bash\n./gradlew genIntelliJRuns\n# or\n./gradlew genEclipseRuns\n```\n\nYou can also run a client/server directly from the command line:\n\n```bash\n./gradlew :fabric:runClient\n./gradlew :fabric:runServer\n./gradlew :neoforge:runClient\n./gradlew :neoforge:runServer\n```\n\n## License\n\nMIT\n",
+  "categories": [
+    "fabric",
+    "folia",
+    "neoforge",
+    "paper",
+    "purpur"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 25,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

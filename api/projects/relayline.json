@@ -1,0 +1,43 @@
+{
+  "id": "fWu5VLB3",
+  "slug": "relayline",
+  "title": "RelayLine",
+  "description": "Relay chat across Velocity servers while keeping each backend server’s local chat formatting untouched.",
+  "body": "# RelayLine\n\n**RelayLine** is a lightweight Velocity plugin for Minecraft networks that want clean cross-server chat without replacing, flattening, or interfering with each backend server's local chat formatting.\n\nIt is designed for networks where each server has its own identity, ranks, prefixes, colours, and chat style. Your Survival server can keep its Survival formatting, your Prison server can keep prison ranks and prestige formatting, and your Lobby can keep its own chat style. RelayLine simply relays a clean copy of global chat messages to players on other backend servers.\n\nThe player’s current server still sees the normal local chat message from that server’s own chat plugin.\n\n---\n\n## Example Remote Message\n\n```text\n[Survival] Zenova > hello\n[Prison] BobJunior > Oh hey!\n[Lobby] Noob123 > how do I join a server\n```\n\nA player on another backend server would see the relayed message, while players on the sender’s current backend server continue to see the normal local chat output from that server.\n\n---\n\n## Features\n\n* Velocity-only proxy plugin\n* Keeps backend server chat formatting untouched\n* Relays chat to other backend servers only\n* `/global` and `/local` player chat modes\n* MiniMessage support for relay messages, server aliases, and notices\n* Server switch notices\n* Lobby-only join notices\n* Leave notices from any backend server\n* Player toggle for switch, join, and leave notices with `/servernotices`\n* Console logging for relayed chat and notices\n* Reload command with `/relayline reload`\n* Simple permission support for toggle and reload commands\n* No required dependencies\n\n---\n\n## Why Use RelayLine?\n\nMany cross-server chat plugins try to fully control chat across the entire network. That can be useful, but it can also cause problems if your backend servers already have their own chat plugins, rank prefixes, suffixes, prestige tags, or custom formatting.\n\nRelayLine takes a lighter approach.\n\nIt lets each backend server keep its own local chat exactly as it is, while still allowing players to speak globally across the network when they choose to use global mode.\n\nThis makes it ideal for Minecraft networks with different game modes.\n\n---\n\n## Example Format\n\nRelayLine uses MiniMessage for relay formatting.\n\n```properties\nformat=<gray>[</gray>%server_name%<gray>]</gray> <aqua>%player%</aqua> <gray>></gray> <white>%message%</white>\n\nserver-alias.lobby=<aqua>Lobby</aqua>\nserver-alias.survival=<green>Survival</green>\nserver-alias.prison=<red>Prison</red>\n```\n\nAvailable relay placeholders:\n\n```text\n%server_name%\n%server%\n%player%\n%message%\n```\n\nPlayer names and messages are inserted as plain text, so players cannot inject MiniMessage tags into relayed chat.\n\n---\n\n## Server Notices\n\nRelayLine can show small network notices when players move between backend servers, join through the lobby, or leave from any server.\n\n```properties\nserver-switch-notices-enabled=true\ndefault-see-server-switch-notices=true\nserver-switch-format=<dark_gray>(<gold>*</gold><dark_gray>) <gray>%player% <dark_gray>(<gold>%old_server%->%new_server%<dark_gray>)\n\njoin-leave-notices-enabled=true\njoin-notice-server=lobby\nleave-notice-server=*\njoin-notice-format=<dark_gray>(<green>+</green><dark_gray>) <gray>%player%</gray>\nleave-notice-format=<dark_gray>(<red>-</red><dark_gray>) <gray>%player%</gray>\n```\n\nPlayers can use `/servernotices` to toggle whether they see server switch, join, and leave notices.\n\n---\n\n## Installation\n\n1. Download the RelayLine jar.\n2. Put the jar in your Velocity proxy’s `plugins` folder.\n3. Restart Velocity.\n4. Edit the generated config file:\n\n```text\nplugins/relayline/config.properties\n```\n\n5. Make sure your server aliases match the server names in your `velocity.toml`.\n6. Run `/relayline reload` after making config changes, or restart Velocity.\n\n> RelayLine should only be installed on your Velocity proxy.\n> Do not install it on backend Paper, Spigot, Purpur, or Folia servers.\n\n---\n\n## Upgrading From LocalGlobalChat\n\nIf you are upgrading from the pre-release **LocalGlobalChat** build, remove the old `LocalGlobalChat-*.jar` file first.\n\nRelayLine will copy missing data files from:\n\n```text\nplugins/localglobalchat\n```\n\ninto:\n\n```text\nplugins/relayline\n```\n\non first startup.\n\n---\n\n## Commands\n\n| Command                   | Description                                    |\n| ------------------------- | ---------------------------------------------- |\n| `/global`                 | Enables cross-server relay for your messages   |\n| `/local`                  | Keeps your messages on the current server only |\n| `/servernotices`          | Toggles switch, join, and leave notices        |\n| `/switchalerts`           | Alias for `/servernotices`                     |\n| `/serveralerts`           | Alias for `/servernotices`                     |\n| `/relayline reload`       | Reloads the config                             |\n| `/rl reload`              | Alias for `/relayline reload`                  |\n| `/localglobalchat reload` | Legacy alias for `/relayline reload`           |\n| `/lgc reload`             | Legacy alias for `/relayline reload`           |\n\n---\n\n## Permissions\n\n| Permission         | Description                                                                         |\n| ------------------ | ----------------------------------------------------------------------------------- |\n| `relayline.toggle` | Allows players to use RelayLine toggle commands when permission checking is enabled |\n| `relayline.reload` | Allows access to the reload command                                                 |\n\n`relayline.toggle` is only required if this is enabled in the config:\n\n```properties\nrequire-permission=true\n```\n\nIf you use LuckPerms, set these permissions on your Velocity or proxy LuckPerms instance:\n\n```text\n/lp group default permission set relayline.toggle true\n/lp group admin permission set relayline.reload true\n```\n\n---\n\n## Important Notes\n\nRelayLine respects chat messages that Velocity has already marked as cancelled or denied.\n\nIf your mute system only runs on a backend server and does not cancel the Velocity chat event, you should use a proxy-side mute setup or carefully test your mute plugin before relying on global relay.\n\nRelayLine is not a Discord bridge. It works nicely alongside DiscordSRV or similar plugins, but Discord linking should be handled separately.\n\n---\n",
+  "categories": [
+    "management",
+    "social",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

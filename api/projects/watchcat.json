@@ -1,0 +1,29 @@
+{
+  "id": "xVHlMr9F",
+  "slug": "watchcat",
+  "title": "WatchCat",
+  "description": "Netty-based anti-cheat for Paper 1.21.11. All rights reserved.",
+  "body": "# Watchcat\n\nServer-side anti-cheat for Paper 1.21.11. By @Az7car.\n\nWebsite: https://watchcat.gg\nDiscord: https://discord.gg/2hPbabJ9jP\n\n## Features\n\n### Combat Detection (53 checks)\n- Killaura, AimAssist, Reach, Hitbox, AutoClicker, Triggerbot\n- Velocity, AntiKnockback, Criticals, BowAimbot, AutoShield\n- AutoTotem, AutoArmor, FastBow, MultiAura, ShieldBreaker\n- MaceSwitch, NoSlow, FastEat, FastHeal, KeepSprint\n- AimLock, Regen, SuperKnockback, WTap, Backtrack\n- PitchLimit, NoMiss, InvisibleAim, ReachMulti, CPSLimit\n- Delay, AutoBlock, Combo, DoubleHit, PerfectBlock\n- ShieldBlock, AutoWeapon, AutoPot, AutoPearl\n- ReachOverride, HitBoxOverride, NoHurtCam, AntiWeakness\n- AntiHunger, NoFire, NoPush, SmoothAim, RageAura\n- ClickPattern, TickShift, AutoSoup, AutoLeave\n\n### Movement Detection (44 checks)\n- Speed, Fly, NoFall, Step, Jesus, Spider, Glide, HighJump\n- BunnyHop, FastLadder, Phase, Blink, LongJump, ElytraFly\n- BoatFly, NoWeb, Strafe, SafeWalk, EntitySpeed, Derp\n- AntiVoid, Motion, Gravity, AirJump, FastFall, Collision\n- Prediction, TimerBalance, TimerAccel, Swim, Ascension\n- JumpCheck, VehicleSpeed, IceSpeed, SlimeBlock, WaterSpeed\n- LavaSpeed, WallClimb, Clip, YPort, SpeedLimit\n- AntiLevitation, DolphinJump, Sneak, PingSpoof, PacketDelay\n- NoDrag, NoJumpDelay, SpeedField, EnderPearl, AutoWalk\n\n### World Detection (34 checks)\n- Scaffold, FastPlace, InventoryMove, FastBreak, Nuker\n- AirPlace, Tower, ChestStealer, BuildReach, NoSwing\n- AutoFarm, AutoFish, AutoMine, InventoryActions, AutoTool\n- BlockInteraction, FastConsume, GhostBlock, RotationPlace\n- InstantMine, MultiTask, Direction, PacketOrder, RotationBreak\n- BreakPattern, ChestAura, AutoRespawn, FastDoor, Surround\n- PistonPush, AutoSign, AutoDoor, AutoBrew, AutoEnchant\n- AutoAnvil, BoatGlitch, ContainerSort, AutoSmithing\n- PickRange, ExpPickup\n\n### Mod & Injector Detection (87 checks)\n- BrandDetector, PayloadProber, TickTimerAnalyzer, BadPackets\n- Freecam, AntiAFK, Timer, MorePackets, InvalidInteract\n- Disabler, SkinBlinker, SpinBot, HeadRoll, NoRotateSet\n- Flight, AntiSwear, AntiFlood, AntiAd, Aimbot, GroundSpoof\n- XRay, Baritone, AutoCrystal, AntiAntiXRay, OreBot\n- NoRender, Trajectory, ClickTP, AntiInvis, Proxy\n- AntiAntiCheat, ScreenShare, PluginDetector, ClientSpoof\n- PacketMani, ForceOP, NoPitchLimit, AntiFirework\n- ResourceSpoof, NameSpoof, NoAttackCooldown, AntiCactus\n- AntiBerry, NoPortalOverlay, NoPumpkin, NoFireOverlay\n- AntiFog, NoScoreboard, AntiPotion, CrashPayload, ESP\n- Tracers, NoFov, NoBob, AntiBlind, TimeSpoof, AntiShield\n- BookExploit, NoWeather, AntiWDL, SoundPos, PacketSpam\n- AntiResourcePack, NoPotionLabel, AntiBot, Raid\n\n### Machine Learning Brain\n- 32-dimension feature vector (rotation deltas, GCD, click variance, acceleration, packet rate, velocity std/mean/trend, pitch entropy, convergence)\n- ONNX Runtime inference (in-JVM, no external dependencies)\n- Isolation Forest anomaly detection blending with heuristic scores\n- CSV training data export for offline model training\n\n### Punishment System\n- Shadow flagging with configurable confidence thresholds\n- Randomized ban wave execution (30min-6hr jitter)\n- Severity-based duration tiers: 30 days to permanent\n- Offense multiplier: 1st=1x, 2nd=2x, 3rd=4x, 4th+=permanent\n- IP bans alongside UUID bans\n- Unique 7-character alphanumeric appeal code per player\n- Non-deterministic scheduling to blind cheat developers\n\n### Architecture\n- Direct Netty pipeline injection (no ProtocolLib dependency)\n- Fully asynchronous check execution (off-main-thread)\n- 100% reflection-based, no Mojang-mapped dependencies\n- Maven build, Java 21, Paper 1.21.11\n- 218 checks total | 265+ Java files\n\n## Building\n\n```\nmvn clean package\n```\n\nOutput JAR in `target/watchcat-1.0.0.jar`.\n\n## Configuration\n\nEdit `config.yml` in the plugin data folder. Each check has:\n- `enabled` - toggle\n- `severity` - critical/high/medium/low (affects ban duration)\n- `weight` - contribution to confidence score\n- Check-specific thresholds\n\n## Commands\n\n- `/watchcat alerts` or `/watchdog alerts` - toggle alert messages\n- `/watchcat stats` or `/watchdog stats` - check performance statistics  \n- `/watchcat profile` or `/watchdog profile` - detailed check profiling\n- `/watchcat checks [category]` or `/watchdog checks [category]` - list checks with status\n- `/watchcat player <name>` or `/watchdog player <name>` - per-player check state\n- `/watchcat reason <player> <reason>` or `/watchdog reason <player> <reason>` - ban a player with reason\n- `/watchcat reload` or `/watchdog reload` - reload configuration\n- `/watchcat whitelist <check|all> <player>` or `/watchdog whitelist` - exemption management\n- `/watchcat report <check> <player>` or `/watchdog report` - report a false positive\n- `/watchcat banwave` or `/watchdog banwave` - trigger manual ban wave\n\n## Dependencies\n\n- Paper 1.21.11 (required)\n- ONNX Runtime 1.26.0 (bundled via Maven shade plugin)\n- Java 21 (required)\n\n## License\n\nAll rights reserved. Not for redistribution without permission.",
+  "categories": [
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 3,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

@@ -3,7 +3,7 @@
   "slug": "better-fabric-console",
   "title": "Better Fabric Console",
   "description": "Server-side Fabric mod enhancing the console with tab completions, colored log output, command syntax highlighting, command history, and more.",
-  "body": "# Better Fabric Console\n\nServer-side Fabric mod enhancing the console with tab completions, colored log output, command syntax highlighting, command history, and more.\n\nBetter Fabric Console is configurable through the `better-fabric-console.conf` file generated in the config folder. Requires [Fabric-API](https://modrinth.com/mod/fabric-api).\n",
+  "body": "# Better Fabric Console\n\n<img src=\"https://raw.githubusercontent.com/jpenilla/better-fabric-console/master/src/main/resources/assets/better-fabric-console/icon.png\" alt=\"Better Fabric Console icon\" width=\"128\" />\n\nBetter Fabric Console is a server-side Fabric mod that replaces the vanilla dedicated server console experience with an interactive, color-aware terminal.\n\n## Features\n\n- Brigadier-aware command completion in the server console\n- Command syntax highlighting with configurable argument colors\n- Colored log output in terminal consoles\n- Persistent command history in `.console_history`\n- Optional logging of player-executed commands\n\n![Screenshot 1](https://raw.githubusercontent.com/jpenilla/better-fabric-console/master/docs/images/screenshot_1.png)\n\n## Requirements\n\n- Fabric server\n- [Fabric API](https://modrinth.com/mod/fabric-api)\n- [adventure-platform-fabric](https://modrinth.com/mod/adventure-platform-mod)\n\n## Installation\n\n1. Download the latest Better Fabric Console, Fabric API, and adventure-platform-fabric jars.\n2. Place the jars in your server `mods/` directory.\n3. Start the server once to generate config files.\n4. Stop the server and edit configuration as needed.\n5. Start the server again.\n\nYou may also choose to run the server with the `--nogui` argument (i.e. `java -jar fabric.jar --nogui`)\nto disable the server GUI (this is a Vanilla option).\n\n## Configuration\n\nBetter Fabric Console generates and reads:\n\n- `config/better-fabric-console/better-fabric-console.conf`\n- `config/better-fabric-console/log4j2.xml`\n\nThe bundled default Log4j config is also written to `config/better-fabric-console/defaults/log4j2.xml` for reference.\nIf you customize `log4j2.xml` and the bundled default changes, Better Fabric Console will warn on startup until you review/merge the change and run:\n\n```text\n/better-fabric-console dismiss-log4j-config-update\n```\n\nYou can also start once with `-Dbetter-fabric-console.dismiss-log4j-config-update=true` to dismiss the warning.\n\nDefault `better-fabric-console.conf` for reference:\n\n```hocon\n# Specify argument highlight colors, in order. Possible values: [BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE]\nhighlight-colors=[\n    CYAN,\n    YELLOW,\n    GREEN,\n    MAGENTA,\n    BLUE\n]\n# Whether to log commands executed by players to console.\nlog-player-executed-commands=true\n```\n\n[Click here](src/main/resources/better-fabric-console-default-log4j2.xml) to see the default `log4j2.xml` configuration.\n\nBetter Fabric Console also respects the following system properties to override terminal environment detection:\n- Adventure ANSI properties: https://docs.papermc.io/adventure/serializer/ansi/\n\nChanges require a server restart.\n\n## Command\n\n- `/better-fabric-console` (operator-level): Prints mod version information.\n- `/better-fabric-console dismiss-log4j-config-update` (operator-level): Marks the current bundled Log4j default as reviewed.\n\n## License\n\nMIT. See `license.txt`.\n",
   "categories": [
     "fabric",
     "management",
@@ -11,7 +11,7 @@
   ],
   "client_side": "unsupported",
   "server_side": "required",
-  "downloads": 30133,
+  "downloads": 30483,
   "followers": 0,
   "game_versions": [
     "1.19.3",
@@ -27,7 +27,9 @@
     "1.21.5",
     "1.21.8",
     "1.21.10",
-    "1.21.11"
+    "1.21.11",
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

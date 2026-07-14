@@ -1,0 +1,33 @@
+{
+  "id": "AD4Evpot",
+  "slug": "worldresetter-plugin",
+  "title": "WorldResetter",
+  "description": "Deletes the world folder on every server startup so players get a fresh random seed each time.",
+  "body": "# 🌍 WorldResetter\n\nA minimal **Paper** plugin that deletes the overworld folder on every server startup and creates a fresh world with configurable seed, type, gamerules, time, weather, and Paper-specific performance tuning.\n\n---\n\n## ⚙️ How It Works\n\nOn every startup (before worlds load), WorldResetter deletes the `world` folder, then programmatically creates a new overworld using `Bukkit.createWorld()` with your configured seed and world type.\n\nIt also applies your gamerules, time, weather, and per-world performance settings, and writes the seed and spawn protection radius into `server.properties`.\n\n> ℹ️ `world_nether` and `world_the_end` are **not** touched.\n\n---\n\n## 💡 Why It Exists\n\nBuilt for lava rising minigame servers where every match should feel different. Instead of playing the same map over and over, the world resets on every server restart — giving players a brand new terrain each time.\n\n---\n\n## 📜 Commands\n\n| Command | Description |\n|---|---|\n| 🔀 `/wr toggle` | Toggles world reset on/off |\n| ✅ `/wr toggle on` | Enables world reset on next startup |\n| ❌ `/wr toggle off` | Disables world reset on next startup |\n| ℹ️ `/wr settings info` | Shows current settings |\n| 🌱 `/wr settings seed <seed\\|random>` | Sets the world seed (or random) |\n| 🗺️ `/wr settings worldtype <type>` | ⚠️ Currently under maintenance — disabled |\n| 🎲 `/wr settings gamerule <rule> <value>` | Sets a gamerule |\n| 🎲 `/wr settings gamerule list` | Lists configured gamerules |\n| 🎲 `/wr settings gamerule reset` | Clears all gamerules |\n| ☀️ `/wr settings time <day\\|night\\|0-24000>` | Sets world time |\n| ⛈️ `/wr settings weather <clear\\|rain\\|thunder>` | Sets weather |\n| 🛡️ `/wr settings spawnprotection <radius>` | Sets spawn protection radius |\n| 🖥️ `/wr settings viewdistance <2-32\\|default>` | Sets this world's view distance (Paper-only) |\n| 🌐 `/wr settings simulationdistance <2-32\\|default>` | Sets this world's simulation distance (Paper-only) |\n| 🏛️ `/wr settings structures <true\\|false>` | Toggles structure generation (villages, strongholds, etc.) |\n| ♻️ `/wr settings reset` | Resets all settings to defaults |\n| 📦 `/wr version` | Shows current version vs latest available |\n| 📥 `/wr version update` | Downloads and applies the latest version from Modrinth |\n\n**Alias:** `/worldresetter` can be used in place of `/wr`\n\n**Permission:** `worldresetter.admin` (default: op)\n\n---\n\n## 🛠️ Configuration (`config.yml`)\n\n```yaml\nenabled: false\nsettings:\n  seed: ''\n  world-type: 'normal'\n  time: -1\n  weather: ''\n  spawn-protection: -1\n  view-distance: -1\n  simulation-distance: -1\n  generate-structures: true\n  gamerules: {}\n```\n\n---\n\n## 📋 Requirements\n\n- ☕ Java 21+\n- 📦 Paper or a Paper-based fork (e.g. Purpur) — **1.21.11+ recommended**\n\n> ⚠️ Not compatible with vanilla Spigot or CraftBukkit — see [Platform Support](#-platform-support) below.\n\n---\n\n## 🧩 Platform Support\n\nWorldResetter uses the **Paper Plugin** system (not Bukkit's `plugin.yml`) and only works on **Paper** and Paper-based servers like **Purpur** — it does not work on plain Spigot or CraftBukkit.\n\nThis isn't a bug, it's intentional: some of the plugin's features (like per-world view distance and the modern command API) simply don't exist outside of Paper. If your server runs on Purpur, you're fine — Purpur is built on top of Paper, so everything works the same.\n\n---\n\n## 🚀 Performance Optimizations\n\nA few things this plugin does to keep your server running smoothly:\n\n- **⚡ Faster restarts** — Deleting the old world used to happen one file at a time, which could take a while on large maps. Now it deletes everything at once using multiple CPU cores, so your server starts back up much faster — especially noticeable on SSD/NVMe drives.\n- **🪶 Lighter load per world** — You can lower the view distance and simulation distance just for this world, without affecting your other worlds. Small minigame maps don't need long render distances, so turning this down reduces lag with no downside.\n- **⏭️ Skip unnecessary generation** — If players never explore for loot, you can turn off village/stronghold generation entirely — this makes new worlds generate faster.\n\n---\n\n## 🔄 Auto-Update\n\nWorldResetter checks the Modrinth API every 6 hours for new releases. OPs are notified on join when an update is available. Use `/wr version` to check manually and `/wr version update` to download and apply the update automatically.\n\n---\n\n## 📄 License\n\nMIT\n\n---\n\n## ⚙️ Source Code\n\n[GitHub](https://github.com/MrGodzilla38/WorldResetter)",
+  "categories": [
+    "adventure",
+    "paper",
+    "purpur",
+    "utility",
+    "worldgen"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 8,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

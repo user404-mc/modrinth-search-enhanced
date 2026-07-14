@@ -1,0 +1,20 @@
+{
+  "id": "epAA4DmE",
+  "slug": "apotheosis-bags",
+  "title": "Apotheosis Bags",
+  "description": "Bags containing randomly dropped gems appear. These bags have a chance to drop in chests.",
+  "body": "**Gem lootbox pouches for Apotheosis.** Right-click a pouch to get a random Apotheosis gem from its rarity tier. Four tiers plus configurable chest generation.\n\n_Requires **Apotheosis**. The Artifact tier uses **Apotheotic Additions**._\n\n![Подставьте сюда описание](https://cdn.modrinth.com/data/cached_images/f742f3f4d2a149f0c2d34c174bf529e633521b54.png)\n\n***\n\n## The four tiers\n\nEach pouch rolls a rarity from its own weighted table, then a random gem from the Apotheosis registry that supports it. Gems are read at open time, so anything added by Apotheosis or its addons is eligible.\n\n| Pouch | Possible rarities (weight) |\n| --- | --- |\n| **Common Gem Pouch** | Common (70), Uncommon (30) |\n| **Rare Gem Pouch** | Rare (65), Epic (35) |\n| **Legendary Gem Pouch** | Mythic (60), Ancient (40) |\n| **Artifact Gem Pouch** | Artifact (55), Heirloom (35), Esoteric (10) |\n\nWeights are relative: a rarity's odds = its weight / the sum of the pouch's weights.\n\n***\n\n## Chest generation\n\nPouches can be injected into any chest loot table (vanilla and modded), with a chance and per-tier weights set in the config. No pouches generate if Apotheosis is missing.\n\n**Artifact safety rule:** without **Apotheotic Additions**, the Artifact tier is excluded from generation, so players never find a pouch in a chest they can't open.\n\n***\n\n## Config: `config/apotheosis_bags-common.toml`\n\n```toml\n[\"Loot\"]\n    # If gem bags should be added to chests.\n    do_loot_generation = true\n    # Chance a bag appears in a chest (0.1 = 10%, 1.0 = always).\n    loot_chance = 0.1\n\n[\"Bag Weights\"]\n    # Which tier a bag is, once one spawns. Odds = weight / sum of weights.\n    # With defaults the sum is 100 -> reads as percentages. Weight 0 disables a tier.\n    weight_common = 60\n    weight_rare = 25\n    weight_legendary = 12\n    # Artifact only works with Apotheotic Additions; without it the others are divided by 97.\n    weight_artifact = 3\n```\n\nWith the defaults a chest yields a pouch 10% of the time: common 6%, rare 2.5%, legendary 1.2%, artifact 0.3%. For comparison, Apotheosis itself drops a raw gem in ~25% of vanilla chests.",
+  "categories": [
+    "adventure",
+    "equipment",
+    "forge"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

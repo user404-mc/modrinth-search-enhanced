@@ -1,0 +1,31 @@
+{
+  "id": "MeuttNXP",
+  "slug": "commandkick",
+  "title": "CommandKick",
+  "description": "Kicks players who run blocked commands, instead of removing the commands from the tree. Server-side, configurable, Fabric + Kotlin.",
+  "body": "# CommandKick\n\nInstead of fiddling with permissions,CommandKick takes a different approach: the commands stay **fully visible and tab-completable**, but the moment a player runs a blocked one, they're kicked with a custom message. Humorous, no?\n\n## Features\n\n- **Leaves the command tree intact.** Blocked commands still show up and tab-complete; only execution is intercepted.\n- **Console-safe.** Server console, command blocks, datapack functions, and rcon run blocked commands normally. Only player-initiated runs are caught.\n- **Configurable.** Edit a JSON file and restart — no rebuild needed.\n- **Custom kick message.** Set whatever text players see when they get booted.\n- **Logging.** Every kick records which player ran which command, in the server log.\n- **Lightweight.** No LuckPerms or other permission-system dependency required.\n\n## Configuration\n\nOn first launch, CommandKick writes `config/commandkick.json` with defaults. Edit it and **restart the server** to apply — the command list is read once at startup, because Brigadier builds the command tree only at boot. (A `/reload` is *not* enough.)\n\n```json\n{\n  \"kickMessage\": \"command verboten.\",\n  \"blockedCommands\": [\n    \"tick\",\n    \"givepokemon\",\n    \"pokespawn\"\n  ]\n}\n```\n\nEach entry blocks that command and all of its subcommands — listing `tick` covers `/tick freeze`, `/tick rate`, and so on.\n\n## Installation\n\n1. Install [Fabric Loader](https://fabricmc.net/) and [Fabric API](https://modrinth.com/mod/fabric-api).\n2. Install [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin).\n3. Drop CommandKick into your server's `mods` folder.\n4. Start the server once to generate the config, edit it, then restart.\n\n**Server-side only** — no client installation needed.\n\nMade with the help of Claude",
+  "categories": [
+    "fabric",
+    "management",
+    "social",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 8,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

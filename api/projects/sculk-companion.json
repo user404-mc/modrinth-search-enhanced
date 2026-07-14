@@ -1,0 +1,28 @@
+{
+  "id": "UxQINRsI",
+  "slug": "sculk-companion",
+  "title": "Sculk Companion",
+  "description": "An AI companion plugin that interacts with players and executes in-game commands asynchronously using any OpenAI-compatible API.",
+  "body": "# Sculk Companion: AI-Powered Server Helper\n\n**Sculk Companion** integrates Large Language Models directly into your server chat, creating an interactive companion that remembers players, tracks relationships, assigns quests, handles sacrifices, and runs in-game commands. The plugin is powered by any OpenAI-compatible LLM API like DeepSeek, OpenAI, Ollama, LM Studio, or vLLM.\n\n---\n\n## Key Features\n\n### AI Chat with Persistent Memory\n* Talk to Sculk via server chat using the `sculk` keyword or commands (`/ask <question>` or `/sculk ask <question>`).\n* Toggle **Chat Mode** (`/sculk toggle`) to route all your messages straight to Sculk.\n* Per-player persistent conversation history stored locally as JSON profiles.\n* Free-form personality and lore injection via `config.yml` and `lore.txt`.\n\n### Dynamic Relationship & Affection System\n* Tracks a player **affection score** ranging from **-100 (Hostile)** to **+100 (Devoted)**.\n* The AI dynamically updates this score based on player interactions.\n* High affection levels unlock helpful actions like healing, item gifting, and buffs.\n* Low affection makes Sculk hostile, cold, or sarcastic.\n* Positive relationship changes have a 2-minute cooldown to prevent spam, which is bypassed for high-value items.\n\n### Interactive Sacrifice System\n* Hold any item in your hand and ask Sculk to accept it as a sacrifice.\n* The AI evaluates the item's worth and modifies your relationship score accordingly.\n* **Transaction Safety**: Items are only consumed if the relationship update succeeds. If the cooldown blocks it, your item stays safe in your hand.\n\n### In-Game Questing\n* Sculk can assign you **KILL_MOB** or **COLLECT_ITEM** quests.\n* Progress is tracked automatically for objectives like killing zombies or collecting copper.\n* Displays real-time progress via action-bar notifications with custom particle and sound feedback.\n\n### Landmarks & Teleportation\n* Save coordinates under a custom name during conversation (e.g., \"my base\", \"portal\").\n* Ask Sculk to teleport you back to any of your saved landmarks.\n\n---\n\n## AI Tool Permissions & System (18 Actions)\n\nSculk has access to standard in-game commands and tools it can execute during chat loops:\n\n| Tool Name | Affection Required | Description |\n|---|---|---|\n| `heal_player` | 30+ | Fully restores health and feeds the player |\n| `gift_item_to_player` | 20+ | Drops requested items at the player's feet |\n| `apply_potion_effect` | 10+ | Gives potion buffs (Speed, Night Vision, etc.) |\n| `play_sound` | 0+ | Triggers a Bukkit sound locally |\n| `spawn_particles` | 0+ | Spawns cosmetic particles |\n| `execute_console_command` | 0+ | Runs whitelisted commands |\n| `save_landmark` | 0+ | Saves current location under a name |\n| `teleport_to_landmark` | 0+ | Teleports player to a saved location |\n| `start_quest` | 0+ | Assigns a new mob-hunting or collecting quest |\n| `check_quest_status` | Any | Checks/refreshes active quest progress |\n| `complete_quest` | Any | Clears active quest after completion |\n| `modify_relationship` | Any | Adjusts affection score |\n| `sacrifice_held_item` | Any | Consumes hand item to gain affection |\n| `remember_player_fact` | Any | Remembers details (long-term memory) |\n| `kick_player` | 0+ | Kicks player (requires `sculk.sudo` permission) |\n| `teleport_player` | 0+ | Teleports players (requires `sculk.sudo.teleport` permission) |\n| `get_server_status` | 0+ | Displays TPS and RAM (requires `sculk.sudo.monitor` permission) |\n| `broadcast_announcement` | 0+ | Broadcasts announcements (requires `sculk.sudo.broadcast` permission) |\n\n---\n\n## Configuration & Setup\n\n### Requirements\n* **Server Engine**: Paper, Spigot, or compatible forks (e.g., Purpur).\n* **Minecraft Version**: 1.20+ (Targeted for 1.20 - 1.26.x+)\n* **Java Version**: 25+\n* **LLM API Provider**: Any OpenAI-compatible API (local or cloud-hosted).\n\n### Installation Steps\n1. Place the `Sculk-1.0.0.jar` into your server's `plugins/` directory.\n2. Start the server to generate default configurations.\n3. Open `plugins/sculk/config.yml` and insert your API URL and Token:\n```yaml\n   api:\n     url: \"[https://api.deepseek.com/chat/completions](https://api.deepseek.com/chat/completions)\" # Your endpoint\n     token: \"your-api-key-here\"                       # Your API key\n     model: \"deepseek-v4-flash\"                       # LLM Model\n   ```\n4. Customize `plugins/sculk/lore.txt` with your own server rules, backstory, and guidelines.\n5. Reload config using `/sculk reload` or restart your server.\n\n---\n\n## Permissions\n\n* `sculk.use` (*Default: true*) - Allows players to talk to Sculk.\n* `sculk.admin` (*Default: op*) - Access to config reloading.\n* `sculk.sudo` (*Default: op*) - Allows AI to kick players on request.\n* `sculk.sudo.teleport` (*Default: op*) - Allows AI to teleport players.\n* `sculk.sudo.monitor` (*Default: op*) - Allows AI to access server status metrics.\n* `sculk.sudo.broadcast` (*Default: op*) - Allows AI to send announcements.",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "social",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

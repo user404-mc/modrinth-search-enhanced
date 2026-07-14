@@ -1,0 +1,21 @@
+{
+  "id": "UY8NykSz",
+  "slug": "limboautoserver",
+  "title": "LimboAutoServer",
+  "description": "A Velocity plugin that lazily starts backend servers when players connect and automatically shuts them down when no players remain. While a backend server is starting, players wait in a virtual world powered by LimboAPI",
+  "body": "# LimboAutoServer\n\nA [Velocity](https://papermc.io/software/velocity) plugin that **lazy-starts backend\nservers** when a player connects and keeps them running only while players are present —\nthe same idea as [AutoServer](https://github.com/Artificial-720/AutoServer), but built on\ntop of [LimboAPI](https://github.com/Elytrium/LimboAPI).\n\n## Why\n\nAutoServer denies the initial connection while the backend boots, which leaves the client\nstuck in the login phase. A cold Fabric server can take a while to start, and clients often\nhit a **login timeout** before it is ready.\n\nLimboAutoServer fixes this by dropping the player into a **LimboAPI virtual world** (a tiny\n\"waiting room\" served directly by the proxy) while the backend starts. The player is fully\nconnected — no timeout — sees a status message, and is **seamlessly transferred** to the\nreal server as soon as it is responsive.\n\n## How it works\n\n1. During login, LimboAPI fires `LoginLimboRegisterEvent`.\n2. LimboAutoServer resolves the backend the player is heading to (forced host, else the\n   first entry of Velocity's `try` list) and pings it.\n3. If it's **online**, the player connects normally.\n4. If it's **offline**, the player is spawned into the limbo world and the backend's\n   `start` command is run. Concurrent joiners share a single startup and are released\n   together once the server responds.\n5. When the last player leaves a backend, it is stopped again after `autoShutdownDelay`.\n\n## Requirements\n\n- Velocity 3.4.x\n- [LimboAPI](https://modrinth.com/plugin/limboapi) installed on the same proxy (declared as\n  a plugin dependency, so it loads first).\n\n## Build\n\n```bash\n./gradlew build\n```\n\nThe plugin jar is produced at `build/libs/limboautoserver-velocity-<version>.jar`.\n`toml4j` and the Velocity/Adventure APIs are provided by Velocity at runtime, and the\nLimboAPI classes are provided by the LimboAPI plugin, so the jar stays small (no shading).\n\n## Configuration\n\nOn first run `config.toml` is written to `plugins/limboautoserver/`. Each backend is a\n`[servers.<name>]` block whose name matches the server in `velocity.toml`. See the bundled\n[config.toml](src/main/resources/config.toml) for the full set of options (start/stop\ncommands, working directory, startup/shutdown/idle delays) and the `[limbo]` section\n(dimension, gamemode, spawn position, world time) and `[messages]`.\n\n## Commands\n\n`/limboautoserver` (alias `/las`):\n\n| Subcommand | Permission | Description |\n| --- | --- | --- |\n| `reload` | `limboautoserver.command.reload` | Reload config and rebuild the limbo world |\n| `status [server]` | `limboautoserver.command.status` | Show cached server status |\n| `start <server>` | `limboautoserver.command.start` | Run the start sequence |\n| `stop <server>` | `limboautoserver.command.stop` | Run the stop sequence |\n\n## Credits\n\nDerived from [AutoServer](https://github.com/Artificial-720/AutoServer) by Artificial-720\n(MIT). Built on [LimboAPI](https://github.com/Elytrium/LimboAPI) by Elytrium (MIT).\nLicensed under the MIT License — see [LICENSE](LICENSE).\n",
+  "categories": [
+    "management",
+    "technology",
+    "utility",
+    "velocity"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 0,
+  "followers": 0,
+  "game_versions": [
+    "26.1"
+  ],
+  "date_updated": null
+}

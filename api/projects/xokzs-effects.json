@@ -3,7 +3,7 @@
   "slug": "xokzs-effects",
   "title": "xokz's Particle Effects",
   "description": "A collection of novel visual effects.",
-  "body": "A collection of novel visual effects for datapack creation.\n\n### Lightning Effect\nTo make a bolt of lightning, execute the function `xze:effects/lightning/spawn` **at** the location the bolt should start, and **as** the entity the bolt should target. For example, the command block in the gif is running: \n\n`execute positioned ~ ~ ~ as @p run function xze:effects/lightning/spawn`\n\n- To change the lightning segment length and angles, you can change the ranges in the `generate_pitch_yaw_len.mcfunction` function.\n- To change the chance of a branch being made, change the value in the `lightning_branch_chance.json` predicate.\n\nThis effect uses no entities and only @s selectors, resulting in great performance.\n\n### Block Outline Effect\nTo do the block outline, simply run `function xze:effects/block_outline/spawn` at the block you want. It will automatically snap to the block grid, so don't worry about positioning it perfectly!",
+  "body": "## A Collection of Novel Visual Effects\n\nxokz's Particle Effects aims to provide several useful particle effects for datapack creation.\n\nThis datapack is purely a library, and contains no ticking function. It exists only to be called by other datapacks, or to be modified.\n\n### Effects\n(Check the gallery for visuals!)\n\n<details>\n<summary>Lightning</summary>\n\n### Functions:\n`xze:effects/lightning/spawn`\n- Must be run **at** the origin point, and **as** the entity to move towards\n  - To target a location instead, spawn a marker there and run as that\n\n### Examples:\n`execute positioned ~ ~ ~ as @p run function xze:effects/lightning/spawn`\n- Put this in a repeating command block and see what happens\n\n### Notes:\n- To change the lightning segment length and angles, you can change the ranges in the `generate_pitch_yaw_len.mcfunction` function\n- To change the chance of a branch being made, change the value in the `lightning_branch_chance.json` predicate\n\n### PERFORMANCE IMPACT: Low\n\n</details>\n\n<details>\n<summary>Spiral</summary>\n\n# IN BETA, USE AT YOUR OWN RISK\n\n### Functions:\n`xze:effects/spiral/spawn_with {particle:\"<particle>\",radius:<num>,period:<num>}`\n- Must be run **at** the origin point, and **as** the entity to move towards\n  - To target a location instead, spawn a marker there and run as that\n- Draws a columnal spiral between the origin point and target entity with the given particle, radius, and period\n  - Period is the distance the spiral moves forward between each loop\n\n### Examples:\n`execute positioned ~ ~ ~ as @p run function xze:effects/spawn_with {particle:\"minecraft:end_rod\",radius:1,period:3}`\n- Put this in a command block, move away, and activate it\n\n### Notes:\n- Increase the gamerule `max_command_sequence_length` to a larger number like 1000000, otherwise your spiral may get cut off\n\n### PERFORMANCE IMPACT: High\n- Not recommended to run every tick!\n\n</details>\n\n<details>\n<summary>Circle</summary>\n\n### Functions:\n`function xze:effects/circle/spawn_with {particle:\"<particle>\",radius:<num>}` \n- Spawns a circle of the provided particle and radius perpendicular to the execution look direction\n\n### Examples:\n`execute anchored eyes positioned ^ ^ ^5 run function xze:effects/circle/spawn_with {particle:\"minecraft:end_rod\",radius:2.5}`\n\n### PERFORMANCE IMPACT: Neglegible\n\n</details>\n\n<details>\n<summary>Block Edge Outline</summary>\n\n### Functions:\n`function xze:effects/block_outline/spawn`\n- Spawns the block edge outline effect with the default end rod particle\n  \n`function xze:effects/block_outline/spawn_with {particle:\"<particle>\"}` \n- Spawns the block edge outline effect using the provided particle\n\n### Examples:\n`function xze:effects/block_outline/spawn_with {particle:\"minecraft:flame\"}` \n\n### Notes:\n- Automatically snaps to the block grid\n\n### PERFORMANCE IMPACT: Neglegible\n\n</details>\n\n<details>\n<summary>Block Verticies</summary>\n\n### Functions:\n`function xze:effects/block_outline/spawn_with {particle:\"<particle>\"}` \n- Spawns the provided particle at the 8 corners of the block\n\n### Examples:\n`function xze:effects/block_outline/spawn_with {particle:\"minecraft:flame\"}`\n\n### Notes:\n- Automatically snaps to the block grid\n\n### PERFORMANCE IMPACT: Neglegible\n\n</details>\n\n<details>\n<summary>Line</summary>\n\n### Functions:\n`xze:effects/line/spawn_with {particle:\"<particle>\"}`\n- Must be run **at** the origin point, and **as** the entity to move towards\n  - To target a location instead, spawn a marker there and run as that\n- Spawns a line of particles between the origin point and target entity\n  \n### Examples:\n`execute positioned ^ ^ ^10 as @p run function xze:effects/line/spawn_with {particle:\"minecraft:end_rod\"}`\n\n### PERFORMANCE IMPACT: Low\n\n</details>\n\nRun `/function xze:demo/laser` for a demo!",
   "categories": [
     "datapack",
     "library",
@@ -11,7 +11,7 @@
   ],
   "client_side": "optional",
   "server_side": "required",
-  "downloads": 48,
+  "downloads": 70,
   "followers": 0,
   "game_versions": [
     "1.20.3",
@@ -75,7 +75,11 @@
     "1.21.8",
     "1.21.9",
     "1.21.10",
-    "1.21.11"
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

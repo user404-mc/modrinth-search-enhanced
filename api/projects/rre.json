@@ -1,0 +1,23 @@
+{
+  "id": "dZY8Do0o",
+  "slug": "rre",
+  "title": "Runtime Registry Extender",
+  "description": "Empowers mod authors to register things at runtime",
+  "body": "# Runtime Registry Extender\n\nAn absurdly twisted library mod to add entries at runtime to the just as absurdly\ntwisted Minecraft registries.\n\nPlease note that \"runtime\" here is limited to a few phases of the game loop to\navoid random breakage.\n\nAdditionally, this only allows adding new entries to the aforementioned\nregistries but not modifying their frozen base, also as a matter of stability.\n\nThe core point of these limitations is to allow servers/worlds to provide extra\nvalues for the players' games to take into account, without having to restart the\ngame or launch a whole other configuration every time.\n\nRight now, only *registry entries* are affected. Any related asset (models,\ntextures, translations, etc.) will still have to be either present locally or\nprovided by some other mean (e.g. server resource pack, locally present assets)\n\nTo avoid imposing on mod authors having to meddle with the pointlessly intricate\nregistries structure, this mod provides a few entrypoints allowing mod authors to\nset everything up quite easily:\n* `runtime_registry_extender:extension_setup`: must be of type\n  [ExtendableRegistryInitializer](https://git.gay/NerjalNosk/runtime_registry_extensions/src/branch/main/src/main/java/com/nerjal/registry_shenanigans/ExtendableRegistryInitializer.java)\n  * Is executed *before* registries’ initialisation! Mind your static values!\n  * Allows providing registry keys for which to make registries extendable.\n  * Other registries will *not* be made extendable! Make sure to provide it\n    for all of your needs.\n\n* `runtime_registry_extender:values_loader`: must be of type\n  [RegistryExtensionLoader](https://git.gay/NerjalNosk/runtime_registry_extensions/src/branch/main/src/main/java/com/nerjal/registry_shenanigans/RegistryExtensionLoader.java)\n  * Allows registering the extension values. Any value provided for a registry\n    that wasn't made extendable will cause issues.\n    It is split between builtin registries' extension values registration and\n    reloadable registries' extension values registration to ensure that values\n    aren't registered too early nor too late, while still providing access to the\n    appropriate data source. (i.e. to allow registering entries based on\n    data-driven capabilities)\n  * Is executed at the beginning of data reloading, before other giving way to\n    other reloading, to ensure providing extension entries to the following phases.\n    (e.g. making sure that extension entries can be reached upon loading tags)\n  * Allows writing your custom entries as you see fit in packet buffers using\n    a provided \"collector\", which will automatically handle the transfer itself.\n    * It is recommended to split your entries each in individual buffers. They will\n      automatically get grouped as possible to optimise packet count afterwards.\n      Doing so ensures that each entry doesn't get split on multiple packets and\n      fails to be parsed by the client.\n    * This is only executed on the server, during any client's configuration phase.\n  * The entrypoint is always provided with a helper for registering various more\n    tricky element types that either might require some post-registration processing\n    or hare not standardly registered. For instance, the block and fluid registration\n    helper methods will automatically handle registering appropriate block states and\n    fluid states.\n\n### Platform\n\nThis mod is made for the Fabric modloader, and will only ever support Fabric.\n\nI have little to no doubt that this mod *will* break on forge-based loaders.\nAnd attempting to load it with Sinytra likely will not work either.\n\nThis mod reimplements registries in ways that are incompatible with the\nforge-based toolchain, and I am neither willing to put in the work to make\nan equivalent for NeoForge, nor endorsing people porting this mod for it.\nIn case you may wonder, the licence does prevent distribution of unauthorised ports and forks, and I preventively inform you of a strict refusal of any port to the aforementioned toolchain, or its predecessor.",
+  "categories": [
+    "cursed",
+    "fabric",
+    "library",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 4,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

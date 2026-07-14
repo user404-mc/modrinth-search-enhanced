@@ -1,0 +1,24 @@
+{
+  "id": "DCyMsr3U",
+  "slug": "uxmessentials-redis",
+  "title": "uxmEssentials Redis",
+  "description": "The Redis transport for uxmEssentials' cross-server bus, keep homes, warps, economy, vaults and more in sync across your network over Redis pub/sub, no proxy needed. Requires the uxmEssentials plugin.",
+  "body": "<div align=\"center\">\n\n# uxmEssentials Redis add-on\n\n**The Redis transport for uxmEssentials' cross-server bus keep homes, warps, economy, vaults, and more in sync across a network over Redis pub/sub, with no proxy required.**\n\nPaper 26.1.2 &nbsp;·&nbsp; Java 25 &nbsp;·&nbsp; Folia-ready &nbsp;·&nbsp; Companion to uxmEssentials &nbsp;·&nbsp; Open source (GPL-3.0)\n\n</div>\n\n## What it does\n\nuxmEssentials keeps cross-server state consistent over a small \"this changed\" bus rather than shipping full payloads around the network. This add-on is the **Redis transport** for that bus: point it at a Redis server and a plain set of backends sharing one database and one Redis instance sync directly, with **no Velocity proxy in the middle**.\n\nWhen a player sets a home, deposits money, or edits a vault on one server, the origin publishes a short notice over Redis pub/sub; every other backend drops its cached copy of that row and re-reads the authoritative value from the shared database. The database stays the single source of truth, and a change never travels as a full object.\n\n## What stays in sync\n\nHomes, warps, player-warps, economy, vaults, moderation, holograms, NPCs, the vote party, and the messaging ignore list every context uxmEssentials replicates across nodes that share one database.\n\n## Setup\n\n1. Drop `uxmEssentials-redis-0.3.0.jar` into each backend's `plugins/` folder, alongside the main uxmEssentials jar.\n2. Point uxmEssentials at your Redis server and pick the transport in `plugins/uxmEssentials/config.conf`:\n\n   ```hocon\n   network {\n     enabled   = true\n     server-id = \"survival-1\"     # unique per backend\n     transport = \"redis\"          # velocity | redis | both\n     redis {\n       host     = \"127.0.0.1\"\n       port     = 6379\n       password = \"\"\n       db       = 0\n       channel  = \"uxmessentials:bus\"\n     }\n   }",
+  "categories": [
+    "folia",
+    "management",
+    "paper",
+    "purpur",
+    "technology",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 2,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

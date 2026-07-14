@@ -1,0 +1,21 @@
+{
+  "id": "4JiVuE1B",
+  "slug": "world-switcher",
+  "title": "World Switcher",
+  "description": "Server-side Multiverse-style world manager: switch worlds with /ws, import and manage world saves with /wsc, per-player per-world inventories. Vanilla clients can join - no client install needed.",
+  "body": "# World Switcher\nRun **multiple worlds on one server** and let players switch between them with a single command - Multiverse-style, but for NeoForge.\n**100% server-side**: no client installation needed. Vanilla 1.21.1 clients can join without the mod.\n## Features\n- **/ws <world>** - switch worlds instantly, no server restart. Bare /ws lists all worlds (clickable).\n- **/wsc** - full world management for operators: create <name> [seed], import <folder> [as <name>], rename, load, unload, tp <player> <world>, info, delete (with confirmation).\n- **Per-player, per-world inventories** (optional, on by default): inventory, ender chest, XP, health, hunger, effects and last position are kept separately for every world. The vanilla dimensions (overworld/nether/end) count as one group.\n- **World import done right**: copies only the overworld data, reads seed & spawn from the source level.dat, so terrain keeps generating seamlessly beyond the imported border. Old worlds (1.18+) are upgraded on the fly.\n- **Persistent**: registered worlds are re-loaded automatically at server start.\n- **Safe renaming**: display names are decoupled from the internal world id - inventories, bed spawns and world folders survive renames.\n\n## Edge cases handled\n- Nether portals inside the default world group don't touch your inventory.\n- Portals that cross world groups swap the player state like /ws would (configurable).\n- Dying in a world without a bed respawns you in the default world with your default state - your items stay at the death spot in the other world.\n- If a world is deleted while you're offline in it, you're safely reconciled into the overworld on login.\n\n## Configuration\nSee world/serverconfig/worldswitcher-server.toml: separateInventories (default true), wsPermissionLevel (0 = everyone may use /ws), worldsFolder (import folder, default worlds), autoLoadOnStartup, restoreLastPosition, handlePortalGroupChanges.\n## Notes\n- Time, weather and gamerules are shared across all worlds (like the vanilla nether/end).\n- Map mods (BlueMap etc.) will see the extra dimensions and may need per-dimension config.",
+  "categories": [
+    "management",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "date_updated": null
+}

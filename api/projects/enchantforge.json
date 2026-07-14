@@ -1,0 +1,31 @@
+{
+  "id": "eNnFDb5J",
+  "slug": "enchantforge",
+  "title": "EnchantForge",
+  "description": "EnchantForge gives server administrators full control \nover enchantment balance; buff, nerf, or ban any enchantment \nwith per-level precision, natively on Paper.",
+  "body": "# EnchantForge\n\n<div align=\"center\">\n\n[![GitHub](https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MaxLananas/EnchantForge)\n[![Discord](https://img.shields.io/badge/Support-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/c6ARdev73C)\n\n</div>\n\nEnchantForge is a native Paper plugin that intercepts combat events and applies\nconfigurable damage multipliers based on enchantments present on the attacker's weapon.\nEach enchantment can be independently buffed, nerfed, or banned entirely through a\nsingle YAML configuration file, with no external dependencies.\n\n---\n\n## How it works\n\nWhen a player attacks, EnchantForge reads every enchantment on the weapon in hand\nand computes a compound damage multiplier from the configured values. The multiplier\nscales linearly with the enchantment level. If any enchantment on the weapon is marked\nas banned, the attack is cancelled and the player is notified. No damage is applied.\n\n---\n\n## Features\n\n- Per-enchantment damage multiplier scaled by enchantment level\n- Enchantment ban system with configurable player notification\n- Hot reload via `/ef reload`, no server restart required\n- Full coverage of all Java Edition enchantments including 1.21 additions\n- Zero external dependencies, pure Paper API\n- Configurable messages with legacy color code support\n\n---\n\n## Configuration\n\nEach enchantment entry in `config.yml` exposes three fields:\n\n```yaml\nSHARPNESS:\n  enabled: true\n  damage_multiplier: 1.10\n  banned: false\n```\n\n| Field | Type | Description |\n|---|---|---|\n| `enabled` | boolean | Whether EnchantForge processes this enchantment at all |\n| `damage_multiplier` | double | Damage multiplier applied per enchantment level |\n| `banned` | boolean | Cancels the attack if this enchantment is on the weapon |\n\n**How multipliers stack with levels:**\nA `damage_multiplier` of `1.10` means `+10%` per level.\nSharpness V with a multiplier of `1.10` results in a final multiplier of `1.50x`\non top of vanilla damage. A value below `1.0` reduces damage. A value of `1.0`\nis equivalent to vanilla behavior and is ignored by the engine.\n\n**Example setups:**\n\n```yaml\n# Buff Sharpness by 10% per level\nSHARPNESS:\n  enabled: true\n  damage_multiplier: 1.10\n  banned: false\n\n# Nerf Fire Aspect damage by 3% per level\nFIRE_ASPECT:\n  enabled: true\n  damage_multiplier: 0.97\n  banned: false\n\n# Completely ban Breach\nBREACH:\n  enabled: true\n  damage_multiplier: 1.00\n  banned: true\n```\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/ef reload` | Reloads `config.yml` without restarting | `enchantforge.admin` |\n| `/ef info` | Shows all active multipliers and bans | `enchantforge.admin` |\n| `/ef list` | Lists every registered enchantment and its current status | `enchantforge.admin` |\n\nAll commands are also accessible via the `/enchantforge` alias.\n\n---\n\n## Permissions\n\n| Node | Default | Description |\n|---|---|---|\n| `enchantforge.admin` | op | Access to all EnchantForge commands |",
+  "categories": [
+    "equipment",
+    "management",
+    "paper"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

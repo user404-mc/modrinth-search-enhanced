@@ -1,0 +1,25 @@
+{
+  "id": "vbd0ThlJ",
+  "slug": "yet-another-home",
+  "title": "Yet Another Home",
+  "description": "Homes, TPA, /back, and combat-safe teleports for Minecraft Forge 1.20.1+",
+  "body": "# Yet Another Home\n\nServer-only Forge mod that adds homes, teleport requests, and a safe `/back` — with built-in combat protection to prevent teleporting out of PvP fights.\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/sethome [name]` | Save current location as a named home (defaults to `home`) |\n| `/home [name]` | Teleport to a saved home |\n| `/delhome [name]` | Delete a saved home |\n| `/listhomes` | List all your saved homes |\n| `/tpa <player>` | Request to teleport to another player |\n| `/tpahere <player>` | Request another player to teleport to you |\n| `/tpaccept` / `/tpdeny` | Accept or deny an incoming TPA request |\n| `/tpcancel` | Cancel a TPA request you sent |\n| `/back` | Return to your last teleport origin, or back to your death location |\n| `/tphere <player>` | *[OP only]* Force-teleport a player to your location |\n\n## Combat Safety\n\nTeleports are protected by two layers of configuration:\n\n* **Hurt lockout** (`hurtLockoutSeconds`, default **15s**): If you take damage, you cannot start or complete any mod teleport until the lockout expires. Death clears the lockout so you can immediately `/home` or `/back` to your corpse.\n* **Teleport warmup** (`teleportWarmupSeconds`, default **5s**): Player-initiated teleports (`/home`, `/back`, accepted TPA) wait before executing. If you take damage during the warmup, the teleport is cancelled.\n\nThese prevent using teleport commands to escape from a fight.\n\n## `/back` Behavior\n\n* Returns to your **death location** first (if you died recently). Cleared once used or after `deathBackExpirySeconds` (default 10m).\n* Falls back to your **last teleport origin** (a toggle: `/back` swaps you between where you were and where you are now). Expires after `backExpirySeconds` (default 5m) so teleporting out of a friend's base doesn't leave a permanent waypoint back in.\n\n## Configuration\n\nAll settings in `config/yet-another-home.toml`:\n\n| Option | Default | Description |\n|---|---|---|\n| `maxHomes` | `1` | Homes per player |\n| `opUnlimitedHomes` | `true` | Operators bypass `maxHomes` |\n| `tpaExpirySeconds` | `60` | How long a TPA request stays pending |\n| `deathBackExpirySeconds` | `600` | How long after death preceding the death location |\n| `backExpirySeconds` | `300` | How long a teleport origin is valid for `/back` |\n| `hurtLockoutSeconds` | `15` | Seconds after taking damage when players can't teleport (0 to disable |\n| `teleportWarmupSeconds` | `5` | Delay before a teleport executes (0 for instant) |\n| `opUnlimitedHomes` | `true` | Operators bypass `maxHomes` |\n\n## Compatibility\n\n* Server-only mod — vanilla clients can join without installing anything.\n* Fires `EntityTeleportEvent.TeleportCommand` so protection mods (WorldGuard, GriefPrevention, etc.) can veto teleports.\n* Saves persist across restarts via world `SavedData`.\n\n## AI disclosure\n\nCoding agent was used in developing this mod.",
+  "categories": [
+    "forge",
+    "transportation",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 6,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

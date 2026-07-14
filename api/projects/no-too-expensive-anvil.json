@@ -1,0 +1,36 @@
+{
+  "id": "4OuU5Dhm",
+  "slug": "no-too-expensive-anvil",
+  "title": "No Too Expensive Anvil",
+  "description": "Removes the vanilla anvil \"Too Expensive\" cap, keeps prior work penalties, and applies a friendlier post-40 XP cost\n移除原版铁砧“过于昂贵”硬限制，保留惩罚值累计，并为 40 级以上费用提供更亲民的经验曲线",
+  "body": "# No Too Expensive Anvil / 铁砧不再过于昂贵\n（// This file contains bilingual Chinese and English descriptions. / 此文件包含中文和英文双语介绍。）\n## English\n\n**No Too Expensive Anvil** removes the vanilla anvil's hard **\"Too Expensive\"** limit while keeping the rest of the vanilla anvil system intact.\n\nIt is designed for players who want long-term tools, weapons, books, and named items to remain usable in survival multiplayer without turning the anvil into a free or overpowered system.\n\n### What It Changes\n\n- Removes the vanilla hard cap that blocks anvil results as \"Too Expensive\".\n- Keeps normal prior work penalty accumulation.\n- Keeps vanilla repair, rename, material consumption, and anvil damage behavior.\n- Keeps vanilla enchantment compatibility rules unless another mod changes them.\n- Keeps server authority in multiplayer.\n- Applies a friendlier XP curve only after the vanilla expensive range is reached.\n\n### What It Does Not Change\n\n- It does not edit enchantment data directly.\n- It does not increase enchantment max levels.\n- It does not make incompatible enchantments compatible.\n- It does not remove XP costs.\n- It does not change item NBT, data components, attributes, durability, or enchantment storage.\n- It does not replace the anvil with a custom block or custom mechanic.\n\n### Friendly Post-Cap Cost Curve\n\nVanilla costs below 40 levels are left unchanged.\n\nFor costs at 40 or above, the displayed and paid cost uses this curve:\n\n```text\npaid cost = min(vanilla cost, 39 + floor(sqrt(vanilla cost - 39) * 2.5))\n```\n\nExamples:\n\n| Vanilla cost | Paid cost |\n| ---: | ---: |\n| 39 | 39 |\n| 40 | 40 |\n| 50 | 47 |\n| 78 | 54 |\n| 100 | 58 |\n| 200 | 70 |\n| 300 | 79 |\n| 500 | 92 |\n| 1000 | 116 |\n\n### Which File Should I Download?\n\nUse the jar that matches your mod loader:\n\n| Loader | File |\n| --- | --- |\n| Fabric | `no-too-expensive-anvil-1.3.0.jar` |\n| NeoForge | `no-too-expensive-anvil-neoforge-1.3.0.jar` |\n| Forge | `no-too-expensive-anvil-forge-1.3.0.jar` |\n\nDo not put all three loader jars into the same `mods` folder. Install only the file for your loader.\n\n### Multiplayer\n\nFor LAN play, the host must install the mod because the LAN host is also the server. Friends can join without it, but installing it on clients is recommended so the anvil screen shows the correct reduced cost instead of vanilla \"Too Expensive\" or stale high-cost text.\n\nFor dedicated servers, install the matching loader jar on the server. Players should install the same matching loader jar on their clients for the best UI experience.\n\n### Compatibility\n\nThis mod is intentionally small and only touches the final anvil level cost and the client label that displays the cost. It should work with enchantment mods that add new enchantments, expand levels, or change compatibility rules, because those mods remain responsible for their own enchantment logic.\n\nIf another mod fully replaces the anvil screen, anvil menu, or result calculation, this mod should not crash, but it may not affect that replacement block or UI.\n\nTax Free Levels is explicitly detected. When Tax Free Levels is installed, Tax Free Levels takes priority for anvil cost behavior and this mod disables its overlapping anvil cost mixins to avoid conflicts.\n\n### Requirements\n\n- Minecraft Java Edition `1.21.x`, `26.1.x`, or `26.2`\n- Fabric Loader `0.16.0+`, NeoForge `21+`, or Forge `51+`\n- Java 21+ for Minecraft `1.21.x`\n- Java 25+ for Minecraft `26.x`, as required by Minecraft itself\n\nThe jars are compiled for Java 21 bytecode so they can load on Minecraft 1.21.x. Minecraft 26.x still needs to be launched with Java 25.\n\n### Tested\n\n- Fabric 26.2 dedicated server load test\n- NeoForge 26.2 dedicated server load test\n- Forge 1.21.8 dedicated server load test\n- Forge 26.2 dedicated server load test\n- Fabric 26.2 with Tax Free Levels, Fabric API, and Cloth Config\n- NeoForge 26.2 with Tax Free Levels and Cloth Config\n- Jar metadata, mixin config, icon, and Java bytecode checks for all loader builds\n\n## 中文\n\n**铁砧不再过于昂贵** 会移除原版铁砧的 **“过于昂贵”** 硬限制，同时尽量保持原版铁砧系统的其它规则不变。\n\n它的目标不是把铁砧变成免费工具，也不是破坏附魔玩法，而是让长期使用的工具、武器、附魔书和命名物品在生存与多人联机中继续有维护空间。\n\n### 它会改变什么\n\n- 移除原版铁砧阻止产物的“过于昂贵”硬限制。\n- 保留正常的惩罚值，也就是 prior work penalty 仍会继续累计。\n- 保留原版修复、重命名、材料消耗、铁砧损坏逻辑。\n- 保留原版附魔兼容规则，除非其它模组主动修改这些规则。\n- 保留多人游戏中的服务端判定。\n- 只在进入原版昂贵区间后使用更亲民的经验消耗曲线。\n\n### 它不会改变什么\n\n- 不直接修改附魔数据。\n- 不提高附魔最大等级。\n- 不让原本互斥的附魔变得兼容。\n- 不取消经验消耗。\n- 不修改物品 NBT、数据组件、属性、耐久或附魔存储。\n- 不替换铁砧方块，也不加入新的铁砧机制。\n\n### 更亲民的突破后经验曲线\n\n原版 40 级以下的花费保持不变。\n\n当原版花费达到 40 级或更高时，显示和实际扣除的等级会使用下面的曲线：\n\n```text\n实际消耗 = min(原版花费, 39 + floor(sqrt(原版花费 - 39) * 2.5))\n```\n\n示例：\n\n| 原版花费 | 实际消耗 |\n| ---: | ---: |\n| 39 | 39 |\n| 40 | 40 |\n| 50 | 47 |\n| 78 | 54 |\n| 100 | 58 |\n| 200 | 70 |\n| 300 | 79 |\n| 500 | 92 |\n| 1000 | 116 |\n\n### 应该下载哪一个文件？\n\n请按你的加载器选择对应 jar：\n\n| 加载器 | 文件 |\n| --- | --- |\n| Fabric | `no-too-expensive-anvil-1.3.0.jar` |\n| NeoForge | `no-too-expensive-anvil-neoforge-1.3.0.jar` |\n| Forge | `no-too-expensive-anvil-forge-1.3.0.jar` |\n\n不要把三种加载器的 jar 一起放进同一个 `mods` 文件夹。只安装与你当前加载器对应的那一个。\n\n### 多人联机\n\n局域网联机时，房主必须安装本模组，因为房主同时也是服务端。朋友不装也可以加入，但建议朋友也安装同加载器版本的 jar，这样铁砧界面会显示正确的降低后花费，而不是原版“过于昂贵”或旧的高花费文本。\n\n专用服务器游玩时，请在服务端安装对应加载器版本的 jar。玩家客户端也建议安装同一加载器版本，以获得正确的铁砧界面显示。\n\n### 兼容性\n\n本模组刻意保持很小的修改范围：只处理最终铁砧等级花费，以及客户端铁砧界面的花费显示。对于新增附魔、扩展附魔等级、修改附魔兼容规则的模组，本模组会让那些模组继续负责它们自己的附魔逻辑。\n\n如果其它模组完全替换了铁砧界面、铁砧菜单或结果计算，本模组不应主动导致崩溃，但可能不会影响那个替代方块或替代界面。\n\n已显式兼容 Tax Free Levels。检测到 Tax Free Levels 时，Tax Free Levels 会优先控制铁砧花费，本模组会禁用自身重叠的铁砧花费 Mixin，以避免冲突。\n\n### 需求\n\n- Minecraft Java Edition `1.21.x`、`26.1.x` 或 `26.2`\n- Fabric Loader `0.16.0+`、NeoForge `21+` 或 Forge `51+`\n- Minecraft `1.21.x` 使用 Java 21+\n- Minecraft `26.x` 按游戏本身要求使用 Java 25+\n\n所有 jar 都编译为 Java 21 字节码，因此可以加载在 Minecraft 1.21.x 上。Minecraft 26.x 本身仍需要用 Java 25 启动。\n\n### 已测试\n\n- Fabric 26.2 专用服务端加载测试\n- NeoForge 26.2 专用服务端加载测试\n- Forge 1.21.8 专用服务端加载测试\n- Forge 26.2 专用服务端加载测试\n- Fabric 26.2 + Tax Free Levels + Fabric API + Cloth Config 同装测试\n- NeoForge 26.2 + Tax Free Levels + Cloth Config 同装测试\n- 三种加载器 jar 的 metadata、Mixin 配置、图标和 Java 字节码检查\n",
+  "categories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 133,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "date_updated": null
+}

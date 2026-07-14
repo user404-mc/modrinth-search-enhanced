@@ -1,0 +1,21 @@
+{
+  "id": "m0dBUINa",
+  "slug": "create-display-link-void-fix",
+  "title": "Create: Display link void fix",
+  "description": "Fixes a bug in Create v6.0.10 where the Display Link always shows \"Void Air\"",
+  "body": "# Create Display Link Void Fix\n\nFixes a bug in Create v6.0.10 where the Display Link always shows \"Void Air\" in its GUI. The Mixin patches `DisplayLinkBlockEntity.getTargetPosition()` to return the correct block position instead of `BlockPos.ZERO`.\n\n## For normal users\n\nThis mod must be installed on both server and client. Drop the JAR into the `mods/` folder on both sides. That is all.\n\n## For developers\n\nThe root cause is that DisplayLinkBlockEntity.getTargetPosition() returns BlockPos.ZERO despite worldPosition and targetOffset being correct. The Mixin replaces the method body with getBlockPos().offset(targetOffset). The mod is required on both sides because it patches a shared class.\n\n# Before\n![The Bug](https://cdn.modrinth.com/data/cached_images/dbe4cf71a54b5dde8e812202f85169026301361e.png)\n\n\n# After\n![Normally](https://cdn.modrinth.com/data/cached_images/9d592d9191fad52a5e34cb22d49fa7105f6b23c5.png)\n",
+  "categories": [
+    "management",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 13,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1"
+  ],
+  "date_updated": null
+}

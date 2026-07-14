@@ -1,0 +1,21 @@
+{
+  "id": "x5cr7gTL",
+  "slug": "mirage-kit",
+  "title": "Mirage Kit",
+  "description": "A streamlined, server-side display manipulation toolkit purpose-built for fluent BlockDisplay control.",
+  "body": "# Mirage\n\nA server-side Fabric library that provides a type-safe, fluent API for Minecraft's Display Entity system. It abstracts entity construction, spatial transformation, interpolation, and hierarchical grouping into a single cohesive toolkit for mod developers.\n\n## Overview\n\nMirage eliminates the repetitive boilerplate required to spawn and manipulate `BlockDisplayEntity`, `ItemDisplayEntity`, and `TextDisplayEntity` at runtime. Instead of manually composing NBT, sending packets, or tracking entity IDs, developers describe the desired state through a chainable builder API. The library handles entity lifecycle, transform matrices, and server-tick scheduling internally.\n\n## Capabilities\n\n### Display Construction\n`MirageBuilder` supports all three vanilla display types through a unified interface. Configure position, affine transformation, interpolation duration, view range, shadow parameters, billboard mode, brightness override, and glow color before spawning.\n\n### Transform Hierarchies\n`MirageHierarchy` and `TransformNode` implement a directed tree of local-to-world transforms. Each node caches its world matrix and invalidates lazily when ancestors change. The system supports arbitrary nesting, full pivot-point rotation, and scale inheritance.\n\n### Keyframe Animation\n`MirageAnimation` sequences vanilla interpolation fields server-side. Define hold durations, transition durations, loop modes, ping-pong playback, and speed multipliers. The animator advances only after the current interpolation window completes, preventing state tearing.\n\n### Spatial Groups\n`MirageGroup` maintains relative offsets from a shared center point. It supports bulk translation, rotation, and interpolated movement, as well as automatic distribution algorithms for linear, circular, and grid layouts.\n\n### Task Scheduling\n`MirageScheduler` registers one-shot, repeating, and self-cancelling callbacks synchronized to the server tick. All task handles expose their next-run tick and period for inspection.\n\n## Quick Example\n\n```java\nServerWorld world = ...;\n\nMirageDisplay hologram = MirageBuilder.in(world)\n    .block(Blocks.DIAMOND_BLOCK.getDefaultState())\n    .at(100.5, 64.0, 200.5)\n    .transform(MirageTransform.identity().scale(2.0f))\n    .glowColor(0xFF00FFFF)\n    .buildAndSpawn();\n\nhologram.lookAt(new Vec3d(110.0, 65.0, 210.0));\n\nMirage.animate(hologram)\n    .keyframe(20, MirageTransform.identity().scale(2.0f))\n    .keyframe(20, MirageTransform.identity().scale(2.5f))\n    .loop(true)\n    .pingPong(true)\n    .play();\n```\n\n## Requirements\n\n- Minecraft 1.20.x or newer\n- Fabric Loader and Fabric API\n- JOML (bundled with Minecraft; no additional dependency)\n\n## Architecture\n\n- **Server-authoritative.** All mutations originate on the server thread. The client receives standard display entity packets; no client-side installation is required for core functionality.\n- **Zero-allocation hot paths.** `MirageMath`, `MirageEasing`, and `TransformNode` minimize heap pressure. World-matrix queries are constant-time after the initial cached computation.\n- **Pivot semantics.** Pivot points are fully evaluated within the hierarchy pipeline via `MirageTransform.toMatrix4d()`. When applied directly to a vanilla `AffineTransformation` through `build()`, the pivot is omitted because the vanilla format does not store it.\n\n## Roadmap\n\n| Phase | Status | Deliverable |\n|-------|--------|-------------|\n| I | Released | Fabric 1.20.x core, builder API, display management |\n| II | Released | Transform hierarchies, keyframe animation, spatial groups, tick scheduler |\n| III | Planned | NeoForge 1.21.1+ port and cross-loader artifact publishing |\n",
+  "categories": [
+    "fabric",
+    "game-mechanics",
+    "library",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.20.1"
+  ],
+  "date_updated": null
+}

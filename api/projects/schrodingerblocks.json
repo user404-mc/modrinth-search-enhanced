@@ -1,0 +1,35 @@
+{
+  "id": "nPOZvMGY",
+  "slug": "schrodingerblocks",
+  "title": "Schrödinger Blocks",
+  "description": "Quantum blocks flicker between the real block and a random \"anything\" block until a player sees them, then collapse to one (coordinate-seeded). They spawn naturally underground and only shimmer near players. Server-side, Paper/Spigot/Bukkit/Purpur 1.21+.",
+  "body": "# Schrodinger Blocks\n\nQuantum blocks that exist in superposition until a player observes them.\n\nEvery quantum block shimmers between two states:\n\n- its natural block, whatever was actually there (`stateA`), and\n- a \"could be anything\" block (`stateB`), a full opaque cube picked deterministically\n  from a safe-candidate set using the block's coordinates.\n\nIt flickers back and forth with a haze of portal particles. The moment any player gets a\nclear, unobstructed line of sight to it, the wavefunction collapses. The block locks to\none of the two, and which one is decided purely by its coordinates, not by chance or\ntiming. Look away all you like; until someone actually sees it, it never settles.\n\nQuantum blocks can be placed by command or appear naturally as the world generates,\nscattered underground like a quantum ore.\n\n## What it does\n\n- Natural-vs-random shimmer: each quantum block alternates between its real, original\n  block and a deterministic \"could be any safe block\" pick. Same coordinates always\n  yield the same pair and the same collapse outcome.\n- Safe-candidate set: the random side (and the only blocks natural-spawn will convert)\n  are full opaque cubes only. No slabs, stairs, glass, leaves, carpets, plants, tile\n  entities, redstone-state blocks, pistons, spawners, bedrock, or infested blocks. The\n  set is built once at startup by scanning the Material registry and removing a problem\n  blacklist.\n- Natural world-generation: freshly-generated chunks have a configurable chance to seed\n  quantum blocks at a random spot within a Y range, but only where the natural block is\n  itself a safe full cube. Honors the global cap. Main-thread only.\n- Observation: detected with a real eye-to-block ray trace. The line of sight must be\n  clear; a block in the way does not count.\n- Collapse: locks to a deterministic, coordinate-seeded outcome (the same spot always\n  collapses the same way), then leaves an ordinary block behind, with subtle particle\n  and sound feedback and an action-bar message telling the observer what they forced\n  into existence.\n- Performance: only blocks within `observe-range x 1.5` of an online player are\n  processed each tick. Idle blocks sit on their natural state and cost nothing, so a\n  world full of scattered quantum blocks looks untouched until a player is near. Then\n  shimmering resumes.\n- Persistence: still-unobserved blocks survive restarts. The natural state and seed are\n  stored, so the pair and the outcome are unchanged.\n\n## Commands\n\n| Command | Description |\n|---|---|\n| `/quantum place [forcedStateB]` | Make the block you are looking at quantum. `stateA` is that block's current type; `stateB` is the seeded safe-random block, or `forcedStateB` if you supply a material. |\n| `/quantum clear` | Stop tracking the quantum block you are looking at (leaves the current world block as-is). |\n| `/quantum clear all` | Stop tracking every quantum block. |\n| `/quantum info` | Show active count and current tunables. |\n| `/quantum reload` | Reload `config.yml` (admin). |\n\nAliases: `/qblock`, `/superposition`.\n\n## Permissions\n\n| Permission | Default | Grants |\n|---|---|---|\n| `quantum.use` | op | Place and clear quantum blocks. |\n| `quantum.admin` | op | Reload the config (implies `quantum.use`). |\n\n## Config (`config.yml`)\n\n```yaml\nobserve-range: 24.0              # eye -> block-centre distance that allows observation\nshimmer-period-ticks: 4          # ticks between shimmer flips (20 = 1s)\nmax-active-blocks: 500           # safety cap on concurrent superpositions\n\nnatural-spawn:\n  enabled: true                  # master switch for world-generation spawning\n  chance-per-chunk: 0.12         # probability a fresh chunk gets any quantum block(s)\n  max-per-chunk: 1               # max quantum blocks placed per new chunk\n  min-y: -60                     # lowest Y a natural quantum block may appear at\n  max-y: 64                      # highest Y a natural quantum block may appear at\n```\n\nThere is no longer a `default-state-a` / `default-state-b`. The two states are now the\nblock's natural type and a coordinate-seeded pick from the safe-candidate set.\n\nReload at runtime with `/quantum reload`.\n\n## Compatibility\n\nPaper / Spigot / Bukkit / Purpur 1.21.1 to 1.21.11 and the 26.1.x line (verified on\n26.1.2), Java 21. Built against the Spigot API only (no Paper-specific classes), so the\nsame jar runs on any of them.\n\n---\n\nOriginal concept, an internal test idea, not sourced from a Reddit post.\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

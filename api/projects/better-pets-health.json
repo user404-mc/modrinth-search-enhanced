@@ -1,0 +1,18 @@
+{
+  "id": "dNWYsbNV",
+  "slug": "better-pets-health",
+  "title": "Better Pets Health",
+  "description": "whenever a player's OWNED pet (tamed mob) takes damage, the same damage amount is applied to the owner player instead of  the pet.",
+  "body": "# Better Pets Health\n\nBetter Pets Health makes your **tamed/owned pets stop taking damage** by **transferring that damage to their owner instead**.\n\n**Example:** If your wolf is hit for **3.0**, the wolf takes **0** and you take **3.0**.\n\nWorks on **client + dedicated server** (must be installed on the server; clients can join without it unless you want config UI).\n\n---\n\n## Features\n\n- ✅ **Core rule (default):** Pet takes **0 damage**, owner takes **full damage**\n- ✅ Supports **all owned/tameable entities** that expose an owner (wolves, cats, parrots, etc.)\n- ✅ Supports **modded tameables** via config allow/deny entity-id lists\n- ✅ Optional distance limit (disabled by default)\n- ✅ Damage type ignore list (prevents weird edge cases like void/fall/out-of-world)\n- ✅ Message aggregation to avoid spam (actionbar by default)\n\n---\n\n## Configuration (Cloth Config + AutoConfig)\n\nThis mod uses **AutoConfig** with **Cloth Config**.\n\nConfig file location:\n- `config/betterpetshealth.json5`\n\n### Key options\n- `enabled` (default `true`)\n- `transfer_mode`:\n  - `TRANSFER_ONLY` (**default**) — pet 0, player full\n  - `DUPLICATE` — pet full + player full\n  - `SPLIT` — split damage with `percent_to_player`\n- `ignore_if_owner_creative` (default `true`)\n- `ignore_if_owner_spectator` (default `true`)\n- `ignore_if_owner_offline` (default `true`)\n- `distance_limit_enabled` (default `false`)\n- `ignore_damage_types` (default includes: `in_wall`, `drown`, `fall`, `out_of_world`, etc.)\n- `message_enabled` (default `true`)\n- `message_mode` (default `ACTIONBAR`)\n- `message_aggregate_window_ms` (default `1000`)\n- `message_cooldown_ms` (default `400`)\n\n---\n\n## Dependencies\n\nRequired:\n- **Fabric API**\n- **Cloth Config API (Fabric)**\n\n---\n\n## Notes / Edge Cases\n\n- Damage only transfers if the owner is a **player and online**\n- If the owner is **creative** or **spectator**, default behavior is **no transfer** (pet takes normal damage)\n- Optional distance limit can restrict cross-dimension / far-away transfers\n\n---\n\n## License\nMIT",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "optional",
+  "server_side": "required",
+  "downloads": 69,
+  "followers": 0,
+  "game_versions": [
+    "1.21.11"
+  ],
+  "date_updated": null
+}

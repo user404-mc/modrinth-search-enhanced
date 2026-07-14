@@ -3,7 +3,7 @@
   "slug": "portalbackport",
   "title": "PortalBackport",
   "description": "Port of Nether Portal features from Minecraft 1.21+(includes TNT-related fixes)",
-  "body": "# portal-backport\n[简体中文](https://github.com/chenjunfu2/portal-backport/blob/master/README.md)  \nPort of Nether Portal features from Minecraft 1.21+ (includes TNT-related fixes)\n\n**Currently Ported Features:**\n- Allows falling blocks to pass through Nether portals\n- Allows primed TNT entities to pass through Nether portals\n- TNT passing through portals will no longer destroy portal blocks\n\n**TNT-Related Fixes:**\n- TNT retains the activator entity's data after portal traversal\n- Preserves the portal traversal flag in TNT's `Teleport` field (fixes a bug where reloading chunks containing portal-traversed TNT would cause it to destroy the portal)\n- Stores the igniter entity's UUID in TNT's `Owner` field (Note: Due to underlying engine limitations, this is a partial fix and does not guarantee successful entity resolution after world reload)\n\n**Explicitly Excluded Features:**\n- Teleportation of riding entities (requires extensive breaking changes and code injection)\n- Non-player entities generating new portals in the target dimension when no valid exit exists (intentionally excluded to prevent breaking existing portal-based contraptions)",
+  "body": "# portal-backport\n[简体中文](https://github.com/chenjunfu2/portal-backport/blob/master/README.md)  \nPort of Nether Portal features from Minecraft 1.21+ (includes TNT-related fixes)\n\n**Currently Ported Features:**\n- Allows falling blocks to pass through Nether portals\n- Allows primed TNT entities to pass through Nether portals\n- TNT passing through portals will no longer destroy portal blocks\n- TNT entities entering a Nether portal with no valid exit in the target dimension can create a new portal on the other side, similar to players (the only entity for which this auto-portal-creation feature has been ported)\n\n**TNT-Related Fixes:**\n- TNT retains the activator entity's data after portal traversal\n- Preserves the portal traversal flag in TNT's `Teleport` field (fixes a bug where reloading chunks containing portal-traversed TNT would cause it to destroy the portal)\n- Stores the igniter entity's UUID in TNT's `Owner` field (Note: Due to underlying engine limitations, this is a partial fix and does not guarantee successful entity resolution after world reload)\n\n**Explicitly Excluded Features:**\n- Teleportation of riding entities (requires extensive breaking changes and code injection)\n- Non-player entities (except TNT, which has been specifically ported) generating new portals in the target dimension when no valid exit exists, similar to players (intentionally excluded to prevent breaking existing portal-based contraptions)",
   "categories": [
     "fabric",
     "game-mechanics",
@@ -12,7 +12,7 @@
   ],
   "client_side": "unsupported",
   "server_side": "required",
-  "downloads": 23,
+  "downloads": 32,
   "followers": 0,
   "game_versions": [
     "1.20.1"

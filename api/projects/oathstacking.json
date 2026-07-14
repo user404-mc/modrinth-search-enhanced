@@ -1,0 +1,35 @@
+{
+  "id": "9bxQEKlO",
+  "slug": "oathstacking",
+  "title": "Oath Potion Stacking",
+  "description": "Allows for easy Potion Stacking with limits to what can be stacked and what can't, easy use for any server.",
+  "body": "Allows for easy Potion Stacking with limits to what can be stacked and what can't, easy use for any server.\n\nConfig.yml\n```\n####################################################################\n#  Oath-PotionStacking\n# ------------------------------------------------------------------\n#  Makes potions stack like normal items by stamping them with\n#  Minecraft's NATIVE max_stack_size item component (1.20.5+).\n#\n#  Because this uses the real vanilla mechanic, stamped potions:\n#    • merge automatically on pickup, shift-click, drag AND\n#      double-click — exactly like cobblestone or arrows,\n#    • NEVER \"destack\" when moved around the inventory.\n#  No fake/lore stacking, so there are none of the classic dupe or\n#  destack bugs that approach suffers from.\n####################################################################\n\n# Master switch. false = the plugin does nothing (existing stacks keep\n# whatever size component they already have).\nenabled: true\n\n# Default maximum stack size for every stackable potion (1-99). Used for any\n# potion type that does not have its own override in potion-types below.\ndefault-stack-size: 16\n\n# Which item materials are treated as \"potions\". By default ALL THREE potion\n# item types are made stackable — drinkable, splash and lingering.\npotion-materials:\n  - POTION\n  - SPLASH_POTION\n  - LINGERING_POTION\n\n# ------------------------------------------------------------------\n#  Strict matching\n#    true  (recommended): potions only ever stack when they are EXACTLY\n#          identical (same type, effects, custom name, lore — the server's own\n#          item comparison). This is precisely how normal vanilla items behave\n#          and is completely safe — nothing is ever rewritten.\n#    false: looser matching. Potions of the same type are normalised to a\n#          canonical form (their custom name and lore are stripped) so cosmetic\n#          differences no longer stop them from stacking together.\n#          WARNING: this rewrites the name/lore of affected potions. Leave it\n#          on 'true' unless you specifically want that behaviour.\n# ------------------------------------------------------------------\nstrict-matching: true\n\n# Never touch potions created by other plugins, so custom/special potions are\n# left completely alone (detected by their persistent-data-container namespace).\nignore-custom-items: true\ncustom-item-namespaces:\n  - mmoitems\n  - itemsadder\n  - nexo\n  - oraxen\n\n# A safety-net re-scan of every online player's inventory, in ticks (20 = 1s).\n# Stamps potions that arrived from sources we don't hook directly (the creative\n# menu, /give, other plugins, trades, ...). Set 0 to disable the periodic scan.\nrescan-interval-ticks: 100\n\n# Event hooks for INSTANT stacking. Leave all true for the best experience.\nhooks:\n  pickup: true            # stamp ground items just before they are picked up\n  inventory-open: true    # stamp every potion when a player opens an inventory\n  inventory-click: true   # stamp (next tick) after a click, for instant merges\n  brew: true              # stamp brewing-stand output\n\n# ==================================================================\n#  Per-potion-type overrides\n# ------------------------------------------------------------------\n#  Keys are Bukkit PotionType names. Hold a potion and run\n#  /oathpotionstacking info to see the exact key for it.\n#  For each type you may set:\n#     enabled: false    -> keep that potion type UNSTACKABLE\n#     stack-size: <n>   -> use a different limit than default-stack-size\n#  Potions that have only custom effects (no base type) use the key CUSTOM.\n#\n#  Every potion type stacks by default — only the entries below differ.\n# ==================================================================\npotion-types:\n  # Instant Healing is kept unstackable by default — this is the example disable.\n  # Every other potion type stacks. Add more entries to disable others the same\n  # way (e.g. HARMING / STRONG_HARMING for instant damage on a PvP server).\n  HEALING:\n    enabled: false\n  STRONG_HEALING:\n    enabled: false\n\n  # ---- More disable examples (uncomment to use) ----\n  # HARMING:\n  #   enabled: false\n  # STRONG_HARMING:\n  #   enabled: false\n\n  # ---- Per-type custom stack limits (uncomment / edit) ----\n  # REGENERATION:\n  #   stack-size: 8\n  # STRONG_REGENERATION:\n  #   stack-size: 8\n  # STRENGTH:\n  #   stack-size: 16\n  # WATER:\n  #   stack-size: 64\n```\n",
+  "categories": [
+    "bukkit",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "spigot",
+    "storage",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 7,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

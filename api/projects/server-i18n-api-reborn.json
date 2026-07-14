@@ -1,0 +1,22 @@
+{
+  "id": "xsx32x3v",
+  "slug": "server-i18n-api-reborn",
+  "title": "Server I18n API (Reborn)",
+  "description": "26.1+ Port for Server I18n API",
+  "body": "# Server I18n API (Reborn)\n\nThis is a server-side only mod API to provide I18n for server-side only mods.\n\nLanguage detection is automatic when sending message to player(s).\n\n[![Upstream: CodeOfArdonia/ServerI18nAPI](https://img.shields.io/badge/Upstream-CodeOfArdonia%2FServerI18nAPI-green?logo=modrinth)](https://modrinth.com/mod/server-i18n-api)\n\nThis is a fork of [Server I18n API](https://modrinth.com/mod/server-i18n-api) for 26.1+ support.\n\n## Guide for developers\n\nYou need to put language JSONs in `data/<mod id>/lang/<language>.json`, filling in key-value pairs. Lang files in `assets` folders are ignored by ServerI18n.\n\nAPI: [`ServerI18n.java`](https://github.com/teddyxlandlee/ServerI18nApi-Reborn/tree/main/src/main/java/com/iafenvoy/server/i18n/ServerI18n.java) class.\n\nExamples:\n\n```java\n// 1. Translate a key into a specific player's language with positional arguments\nString msg = ServerI18n.translate(player, \"chat.welcome\", \"Steve\", 5);\n// player's language (e.g., \"zh_cn\") -> \"欢迎回来, Steve! 你有5条新消息。\"\n\n// 2. Send a translated system message to the command source (player or console)\nServerI18n.sendMessage(stack, \"foo.command.success\", \"backup.zip\");\n// If stack is a player, uses their language; otherwise falls back to en_us.\n\n// 3. Get raw translation without applying String.format (e.g., for custom formatting)\nString raw = ServerI18n.translateRaw(\"fr_fr\", \"bar.gui.button.confirm\");\n// raw = \"Confirmer\" (if exists), otherwise fallback to en_us or the key itself.\n\n// 4. Broadcast a message to all online players using the server instance\nServerI18n.broadcast(server, \"announcement.maintenance\", \"10:00\", \"12:00\");\n// Each player receives the message in their own language.\n\n// 5. Use default language (en_us) explicitly for console or fallback\nComponent comp = ServerI18n.translateToLiteralDefault(\"baz.error.file_not_found\", \"config.yml\");\n// comp is a literal Component with English text: \"File not found: config.yml\"\n```",
+  "categories": [
+    "fabric",
+    "library",
+    "neoforge"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 16,
+  "followers": 0,
+  "game_versions": [
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

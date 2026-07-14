@@ -3,7 +3,7 @@
   "slug": "client-execution",
   "title": "Client Execution",
   "description": "Run Client-Side only commands from the server!",
-  "body": "required on both server and client (although it shouldnt crash anything if only client/only server has it)\n\nadds a new command `/executeclient` for running client only commands from the server\n\nthe syntax is `/executeclient <targets> <command>`\n\nthe `/` is automatically included, eg `/executeclient @r soup:random` runs `/soup:random` from [Souper Secret Settings](https://modrinth.com/mod/souper-secret-settings) (as long as the client has it installed), and `/executeclient @p /calc` would run `//calc` from [WorldEdit](https://modrinth.com/plugin/worldedit)\n\nit runs the command as if the client typed it themselves, so it can also run server side commands, but only if the player running the command has the permission level needed for that command. (the command itself has the same permission level as /execute)\n\n### Notes for the plugin version:\nthe permission node is `client_execution.executeclient`, and it only works with specifically mentioned players and @a - so `/executeclient Steve soup:random` works, but `/executeclient @p soup:random` or `/execute as Steve run executeclient @s soup:random` do not! this is an important difference!",
+  "body": "# Client Execution\n\nrequired on both server and client (although it shouldnt crash anything if only client/only server has it)\n\nadds a new command `/executeclient` for running client only commands from the server\n\nthe syntax is `/executeclient <targets> <command>`\n\nthe `/` is automatically included, eg `/executeclient @r soup:random` runs `/soup:random` from [Souper Secret Settings](https://modrinth.com/mod/souper-secret-settings) (as long as the client has it installed), and `/executeclient @p /calc` would run `//calc` from [WorldEdit](https://modrinth.com/plugin/worldedit)\n\nit runs the command as if the client typed it themselves, so it can also run server side commands, but only if the player running the command has the permission level needed for that command. (the command itself has the same permission level as /execute)\n\nyou can also use `/commandlock` and `/commandunlock` to stop players running specific commands. For example, `/commandlock @a me` will stop anyone running `/me` (however, it would also block a `/message`, since it just checks if the entered command starts with any of the locks). command locks are reset on relog\n\n### Notes for the plugin version:\nthe permission node is `client_execution.executeclient`, and it only works with specifically mentioned players and @a - so `/executeclient Steve soup:random` works, but `/executeclient @p soup:random` or `/execute as Steve run executeclient @s soup:random` do not! this is an important difference!\n\nthe permission nodes for command locking are `client_execution.commandlock` and `client_execution.commandunlock`",
   "categories": [
     "fabric",
     "game-mechanics",
@@ -12,9 +12,9 @@
     "spigot",
     "utility"
   ],
-  "client_side": "unsupported",
+  "client_side": "required",
   "server_side": "required",
-  "downloads": 23512,
+  "downloads": 25546,
   "followers": 0,
   "game_versions": [
     "1.20",
@@ -35,7 +35,11 @@
     "1.21.8",
     "1.21.9",
     "1.21.10",
-    "1.21.11"
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
   ],
   "date_updated": null
 }

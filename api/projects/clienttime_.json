@@ -1,0 +1,18 @@
+{
+  "id": "FDwaBeL0",
+  "slug": "clienttime_",
+  "title": "ClientTime",
+  "description": "Changes the sky visually on your client without affecting server gameplay.",
+  "body": "# ClientTime Mod 🌤\n\n**Client-side mod for Minecraft 26.1.2 (Fabric)**\n\nChanges the sky visually on your client without affecting server gameplay.\nWorks on any server - you see your sky, the server sees its own.\n\n**Note:** This command only works on dedicated servers (not in single-player), since it's designed for server-side time customization.\n\n---\n\n## Commands\n\n| Command | Description                   |\n|---|-------------------------------|\n| `/settime morning` | Dawn (0 ticks)                |\n| `/settime day` | Noon (6000 ticks)             |\n| `/settime evening` | Sunset (12000 ticks)          |\n| `/settime night` | Midnight (18000 ticks)        |\n| `/settime <number>` | Custom time (0–24000)         |\n| `/settime sync` | Sync with your PC's real time |\n| `/settime off` | Disable - restore server sky  |\n\n### PC Sync\n\n`/settime sync` maps real-world time to in-game time:\n\n| PC time | In-game time |\n|---|---|\n| 06:00 | Dawn (0) |\n| 12:00 | Noon (6000) |\n| 18:00 | Sunset (12000) |\n| 00:00 | Midnight (18000) |\n\n---\n\n## Build\n\nRequirements:\n- **Java 25+**\n- **Gradle 9.4+** (or use `./gradlew`)\n\n```bash\ncd clienttime-mod\n./gradlew build\n```\n\nThe JAR will be in `build/libs/clienttimemod-1.0.0.jar`.\nPlace it in your `mods` folder and launch Fabric for 26.1.2.\n\n---\n\n## How it works\n\nThe mod intercepts `ClientClockManager.getTotalTicks()` on the client via a Mixin.\nSince Minecraft 26.1+ ships without obfuscation, the mixin uses Mojang's original class names directly.\n\nThe mod is **client-side** (`\"environment\": \"client\"` in fabric.mod.json) - it does not load on the server, does not require server-side installation, and does not affect gameplay.\n",
+  "categories": [
+    "fabric"
+  ],
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "26.1.2"
+  ],
+  "date_updated": null
+}

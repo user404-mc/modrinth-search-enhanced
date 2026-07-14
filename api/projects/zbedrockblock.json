@@ -1,0 +1,32 @@
+{
+  "id": "6jE9yXgg",
+  "slug": "zbedrockblock",
+  "title": "ZBedRockBlock",
+  "description": "Block Bedrock players from joining your Paper backend server using name-prefix detection.",
+  "body": "# 🌐 ZBedRockBlock\n\nBlocks **Bedrock** players (identified by a **name prefix**) from joining a **backend Paper** server behind Velocity.  \nNo Floodgate hooks; purely name-prefix based. Built for **Paper 1.21.x** on **Java 21**.\n\n## What it does (and doesn’t) do\n\n- ✅ **Blocks** players whose Java username **starts with** the configured prefix (case-insensitive).\n- ✅ **Kick reason** supports **MiniMessage** (e.g., `<red>…</red>`) **and** legacy `&` color codes.\n- ✅ **Bypass** permission for exceptions (trusted players, staff alts, etc).\n- ✅ **Admin commands** for reload and test.\n- ❌ Doesn’t talk to Floodgate/Geyser APIs or Mojang auth; it’s lightweight and proxy-agnostic.\n- ❌ Doesn’t manage your queue; if you use a queue plugin (e.g., ajQueue), configure it to **remove** players on this kick reason.\n\n---\n\n## Requirements\n- Paper (1.21+)  \n- Java 21+\n\n---\n\n## Optional dependencies\n- LuckPerms (or any permissions plugin)\n\n---\n\n## Installation\n\n1. Place the JAR into the backend server’s `plugins/` folder.\n2. Start the server once to generate `plugins/ZBedRockBlock/config.yml`.\n3. Edit `config.yml` (see below), then `/zbedrockblock reload`.\n\n> **Backend requirements:**  \n> - Server is **behind Velocity** and typically **offline mode**.  \n> - Make sure Paper is proxy-aware (standard Velocity modern forwarding setup).\n\n---\n\n## Configuration (`config.yml`)\n\n```yaml\nenabled: true\n\n# Ops are *not* automatically exempt; they must have the bypass permission.\nignore-ops: true\n\n# Single, exact prefix (case-insensitive). Example: \".\" or \"bedrock_\"\nbedrock-prefix: \".\"\n\n# Kick message supports MiniMessage and legacy & codes.\nkick-message: \"<red>Bedrock accounts aren’t allowed on this server.</red>\"\n\n# Logs match decisions to console if true.\ndebug: false\n\nmessages:\n  reload-success: \"&aZBedRockBlock config reloaded.\"\n  no-permission: \"&cYou don't have permission.\"\n  usage-test: \"&cUsage: /zbedrockblock test <name>\"\n  test-header: \"&7Kick preview (as seen by player/proxy):\"\n  test-allowed: \"&eTest for &f%name%&e: &aALLOWED\"\n  test-blocked: \"&eTest for &f%name%&e: &cBLOCKED (would be kicked)\"\n```\n\n### Tips\n- **Choosing the prefix:**  \n  Use the same prefix your Bedrock players receive on Java (e.g., `\".\"`, `\"BD_\"`, or `\"bedrock_\"`).\n- **MiniMessage example:**  \n  `kick-message: \"<red><bold>No Bedrock accounts on this server.</bold></red>\"`\n- **Legacy example:**  \n  `kick-message: \"&c&lNo Bedrock accounts on this server.\"`\n\n> **YAML gotcha:** Keep MiniMessage tags **inside** the quotes.  \n> ✅ `\"<red>text</red>\"`  \n> ❌ `\"<red>text\"</red>`\n\n---\n\n## Commands\n\n| Command | Description | Permission |\n|---|---|---|\n| `/zbedrockblock reload` | Reloads the plugin configuration | `zbedrockblock.admin` |\n| `/zbedrockblock test <name>` | Shows whether a name would be blocked; previews the kick message | `zbedrockblock.admin` |\n\n**Tab-completion** is included.\n\n---\n\n## Permissions\n\n| Node | Who should get it | Effect |\n|---|---|---|\n| `zbedrockblock.admin` | Admins/staff | Access to `/zbedrockblock reload` and `/zbedrockblock test` |\n| `zbedrockblock.bypass` | Specific players | Allows joining even if their name matches the Bedrock prefix |\n\n> To **whitelist** a specific Bedrock player, grant them `zbedrockblock.bypass`.\n\n---\n\n## ajQueue / Queue plugin note (important)\n\nIf you use **ajQueue** (or similar), make sure it **removes** players from the queue when they’re kicked by this backend.  \nA simple way is to include a keyword in your kick message (e.g., “Bedrock”) and configure ajQueue’s “kick reasons” list to **match** that word. ajQueue will then pop them out of the queue instead of looping them.\n\nExample approach:\n- Keep the default kick message (`\"Bedrock …\"`) or any message containing a consistent keyword.\n- Add that keyword to your queue plugin’s configuration where it looks for **contains** matches in backend kick messages.\n\n---\n\n## Compatibility\n\n- **Server:** Paper **1.21.x** (including 1.21.10)\n- **Java:** 21\n- **Proxy:** Works fine behind Velocity. No Velocity/Waterfall helper plugin required.\n- **Other plugins:** Plays nicely with virtually everything; it only reads config and listens for `PlayerLoginEvent`.\n\n---\n\n## Common scenarios\n\n**Block all Bedrock users across one backend:**\n```yaml\nbedrock-prefix: \".\"\nkick-message: \"<red>No Bedrock accounts on this server.</red>\"\n```\n\n**Allow a specific Bedrock user (staff alt):**\n- Grant them `zbedrockblock.bypass` via your permissions plugin.\n\n**Temporarily disable the plugin without removing it:**\n```yaml\nenabled: false\n```\nThen `/zbedrockblock reload`.\n\n---\n\n## Troubleshooting\n\n- **YAML error on reload:**  \n  Most often a quoting issue in `kick-message`. Keep the entire message in quotes if you use `<tags>` or `&` codes.\n\n- **Players looping in queue:**  \n  The queue plugin isn’t configured to drop them on this kick reason. Add a **keyword** from your kick message to the queue plugin’s “kick reasons” list (or equivalent).\n\n- **“429” Mojang warnings on startup:**  \n  That’s Mojang rate-limiting for **profile lookups** (skins), usually triggered by skins/heads/cosmetics/tablist plugins—not this plugin. Consider enabling caches or disabling startup fetches in those plugins.\n\n- **Ops getting blocked:**  \n  This is by design. If you want ops exempt, either set `ignore-ops: false` (lets ops in even if they match) or grant ops `zbedrockblock.bypass`.\n\n---\n\n## Uninstall\n\n1. Remove the JAR from `plugins/`.\n2. (Optional) Delete `plugins/ZBedRockBlock/` if you don’t need the config anymore.\n3. Restart the server.\n\n---\n\n## 🧑‍💻 Author\n\n- **Zenologia**\n- [GitHub Repository](https://github.com/Zenologia/ZBedRockBlock)\n- [License](https://github.com/Zenologia/ZBedRockBlock/blob/main/LICENSE)\n",
+  "categories": [
+    "game-mechanics",
+    "paper",
+    "spigot",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 1,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

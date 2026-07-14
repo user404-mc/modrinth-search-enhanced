@@ -1,0 +1,39 @@
+{
+  "id": "xI6wpDnA",
+  "slug": "capspawn",
+  "title": "Capture Spawn",
+  "description": "Capture mobs into a Pokeball-like item",
+  "body": "# CaptureSpawn\n\nA Paper plugin that lets you “capture mobs into a Pokéball” and release them via right-click or a physics-based throw. It preserves entity NBT as much as possible and simulates more realistic projectile behavior (gravity / bounces / rolling / lifetime).\n\n- Runtime: Paper 26.1\n- Required dependencies: PacketEvents, NBTAPI (Item-NBT-API plugin)\n- License: MIT ([LICENSE](LICENSE))\n\n## Features\n\n- Capture & release with compressed NBT storage (GZIP + Base64) and necessary sanitization to reduce size risks\n- THROW mode: behaves like a real projectile; only captures on collision; can bounce/roll on ground; auto-recovers on timeout\n- Pokéball item supports custom player-head texture and configurable name/lore/glow/custom-model-data\n- Lore enrichment for common mobs (villager profession/level, sheep color, cat variant, wolf collar/tamed, etc.)\n- Protection-friendly: optional “build permission” checks for capture/release to prevent abuse in protected areas\n- Persistent local logs with time-range queries (CO-like time filtering)\n\n## Quick Start\n\n1. Install dependencies: PacketEvents, NBTAPI (Item-NBT-API plugin)\n2. Put CaptureSpawn into `plugins/` and start the server once to generate config\n3. Edit `plugins/CaptureSpawn/config.yml`\n\nDefault interaction mode is THROW (can be switched back to DIRECT in config).\n\n## Commands\n\n- `/capturespawn reload` reload config and listeners\n- `/capturespawn log <player|me> <from> [to] [release|capture|all] [limit]`\n  - Time examples: `10m` `1h` `2d` `1w` `1h30m`\n  - Examples:\n    - `/capturespawn log me 10m all 50`\n    - `/capturespawn log steve 3d 1d release 100`\n\n## Permissions\n\n- `capturespawn.capture` capture permission\n- `capturespawn.release` release permission\n- `capturespawn.bypass.blacklist` bypass capture blacklist\n- `capturespawn.craft` craft permission (optional)\n- `capturespawn.reload` reload permission (default: OP)\n- `capturespawn.log` log query permission (default: OP)\n\n## Config Notes\n\n`plugins/CaptureSpawn/config.yml` (high-level)\n\n- `interaction-mode: THROW | DIRECT`\n- `throw.physics.*`: air drag / bounce restitution / friction / max bounces / min-speed threshold\n- `storage.nbt-format: GZIP_BASE64` + `storage.max-bytes`: control payload size\n- `protection.capture-requires-build / protection.release-requires-build`: build-based checks\n- `logging.*`: local log enablement, filename pattern, flush interval, queue limit\n\n## Local Logs\n\nLogs are written daily by default:\n\n- `plugins/CaptureSpawn/logs/ball-YYYY-MM-DD.log`\n\nThe log format is TSV (one record per line) and includes timestamp, player, action, entity type, world/coords, result, etc.\n\n## Compatibility\n\n- Dependencies:\n  - PacketEvents (used for THROW mode packet-based triggering)\n  - NBTAPI (Item-NBT-API plugin for reading/writing entity NBT)",
+  "categories": [
+    "adventure",
+    "bukkit",
+    "folia",
+    "game-mechanics",
+    "magic",
+    "paper",
+    "purpur",
+    "spigot"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 58,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "date_updated": null
+}

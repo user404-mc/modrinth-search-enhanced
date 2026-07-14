@@ -1,0 +1,33 @@
+{
+  "id": "InA8es8F",
+  "slug": "cartdebuffer",
+  "title": "CartDebuffer",
+  "description": "TNT Minecart damage adjustment with multiple modes of operation",
+  "body": "# CartDebuffer\n\nTested on **Purpur 1.21.11**.\nExpected to work on **Paper/Purpur 1.21–1.21.11**.\n\nThat plugin modifies the damage players receive\nfrom **TNT Minecart** explosions. It allows you to test \ndifferent damage balancing approaches **live** and\nchoose the best one without restarting the server.\n\n---\n\n## 1. How It Works\n\nThe plugin listens for `EntityDamageEvent` events with the cause\n`ENTITY_EXPLOSION` or `BLOCK_EXPLOSION`. To ensure that the damage comes\nspecifically from a **TNT Minecart**, rather than regular TNT or a\nCreeper explosion, it checks the damage source through\n`event.getDamageSource()`.\n\nIf you want to disable the plugin completely and restore vanilla\nbehavior, simply set `entity-damage.enabled: false` in the configuration\nor run `/cartdebuff toggle`.\n\n---\n\n## 2. Damage Modes\n\nSwitch modes with:\n\n```text\n/cartdebuff mode <mode>\n```\n\n### `multiplier` - Simple Multiplier\n\n```text\nfinal_damage = incoming_damage × multiplier\n```\n\nThe simplest mode. It takes the vanilla damage value and scales it by\n`multiplier`. For example, `multiplier: 0.5` halves the damage.\n`min-damage` and `max-damage` act as safety limits.\n\n**Best for:** situations where you like the vanilla damage behavior\n(distance scaling, explosion strength, etc.) but simply want to make it\nstronger or weaker proportionally.\n\n---\n\n### `fixed` - Fixed Damage\n\nEvery TNT Minecart explosion always deals exactly `damage` HP,\nregardless of distance, the number of minecarts, obstacles, or any other\nfactors.\n\n**Best for:** highly predictable gameplay, such as PvP arenas where\ndamage should always remain the same.\n\n---\n\n### `distance-falloff` - Fixed Damage with Distance Falloff\n\nThe most advanced and accurate mode. Damage is calculated as follows:\n\n1. `base-damage` is used as the maximum damage at the explosion center.\n2. Damage decreases with the player's distance from the explosion using\n   the selected `falloff-curve`:\n   - `linear` - constant decrease;\n   - `quadratic` - falls off more rapidly at medium distances (default);\n   - `exponential` - drops very quickly immediately outside the close\n     range.\n3. Damage is further reduced if solid (opaque) blocks are located\n   between the player and the explosion. Each blocking block reduces the\n   damage by `damage-reduction-per-block` (percentage). This is\n   calculated using ray tracing\n   (`ExplosionMath.countObstructingBlocks`).\n4. Damage will never drop below `min-damage`.\n\n**Best for:** the most realistic and flexible model. Players behind\nwalls or farther away receive significantly less damage than those\nstanding nearby.\n\n---\n\n### `stepped-zones` - Stepped Distance Zones\n\nInstead of a smooth curve, damage is divided into fixed distance ranges.\nIf the player is within `max-distance`, they receive the corresponding\n`damage`. Zones are checked in order, and the first matching zone is\nused.\n\n```yaml\nzones:\n  - max-distance: 2.0   # up to 2 blocks\n    damage: 12.0\n  - max-distance: 4.0   # from 2 to 4 blocks\n    damage: 7.0\n  - max-distance: 6.0   # from 4 to 6 blocks\n    damage: 3.0\n  - max-distance: 999.0 # everything beyond\n    damage: 0.0\n```\n\n**Best for:** simple, predictable balancing without complex calculations.\n\n---\n\n## 3. General Settings (`settings`)\n\n| Setting | Description |\n|---|---|\n| `debug` | Logs every damage recalculation to the console, including the original value, new value, mode, and distance from the explosion |\n| `notify-admins-in-chat` | Sends the same information to players with the `cartdebuffer.admin` permission |\n| `only-players` | `true` - only players are affected; `false` - mobs are affected as well |\n| `disabled-worlds` | List of worlds where the plugin does not modify damage |\n\n---\n\n## 4. Commands\n\n| Command | Description |\n|---|---|\n| `/cartdebuff reload` | Reloads `config.yml` from disk without restarting the server |\n| `/cartdebuff mode <mode>` | Switches the active damage mode |\n| `/cartdebuff toggle` | Enables or disables all damage processing (restores vanilla behavior) |\n| `/cartdebuff info` | Displays the currently active mode and a list of all available modes |\n\nAll commands require the `cartdebuffer.admin` permission (by default,\nonly server operators have it). Tab completion is supported for mode\nnames.\n\n**Important:** the `mode` command immediately saves the selected mode\nboth in memory and in `config.yml` (`plugin.saveConfig()`), so the\nselected mode persists across server restarts.\n\n---\n\n## 5. Finding the Best Mode (Practical Guide)\n\n1. Join the server with `op` permissions.\n2. Try each mode one by one:\n\n   ```text\n   /cartdebuff mode multiplier\n   /cartdebuff mode fixed\n   /cartdebuff mode distance-falloff\n   /cartdebuff mode stepped-zones\n   ```\n\n3. After manually changing values in the configuration (`damage`,\n   `multiplier`, etc.), run `/cartdebuff reload` to apply the changes\n   without switching modes.\n4. Enable `settings.debug: true` and run `/cartdebuff reload` to see\n   every damage recalculation in the console (old value, new value,\n   distance).\n5. Once you've found the mode you like, simply leave it as\n   `active-mode` in `config.yml` (or use the `mode` command, which saves\n   it automatically).",
+  "categories": [
+    "equipment",
+    "game-mechanics",
+    "paper",
+    "purpur",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}

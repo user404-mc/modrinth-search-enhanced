@@ -1,0 +1,26 @@
+{
+  "id": "da0SqNmx",
+  "slug": "autoemc",
+  "title": "AutoEMC",
+  "description": "Automatic, accurate EMC assignment for ProjectE — built for modpacks, not just vanilla.",
+  "body": "# AutoEMC\n\n**Automatic, safe EMC value generation for ProjectE.**\n\nAutoEMC scans your modpack's item registry and recipes on startup and fills in missing [ProjectE](https://www.curseforge.com/minecraft/mc-mods/projecte) EMC values automatically, so you're not stuck with a Table of Existence full of \"unlearnable\" items. It's built for large kitchen-sink modpacks where manually pricing every item is unrealistic.\n\n## What it does\n\n- **Solves EMC from recipes first.** AutoEMC walks your loaded recipes and derives EMC values from known inputs before ever guessing, so pricing stays internally consistent wherever possible.\n- **Falls back intelligently when there's no recipe.** Items with no recipe path are priced using:\n  - Bundled baseline values pulled directly from ProjectE Integration's shipped data (Botania, EnderIO, and dozens of other mods).\n  - Material/tag-based fallback (ore, ingot, dust, block, raw forms, etc.), matched against `forge`, `mekanism`, `create`, and other configurable tag namespaces.\n  - Rarity-based fallback as a last resort, with a reverse-recipe floor so cheap raw materials can't end up worth less than the processed goods made from them.\n- **Understands NBT-tagged items.** A pluggable NBT material resolver framework (with built-in support for things like Avaritia singularities) prices NBT-variant items based on their embedded material, instead of lumping them all into one generic value. This can run both as a pre-scan pass and as a live ProjectE conversion source that resolves on demand.\n- **Protects the economy from itself.** Several safety layers work together:\n  - Creative-only and no-recipe technical items are locked to `1 EMC` so they can never become a cheap source of infinite value if they somehow leak into survival.\n  - A large-drop guard blocks any single-run change that would crash an already-priced item's value by more than a configurable ratio, and logs it to a quarantine report instead of silently applying it.\n  - An ownership arbiter decides, item by item, whether AutoEMC should keep tracking a value or hand it off to ProjectE/a pack author's manual entry — so legitimate overrides are respected but ProjectE simply echoing AutoEMC's own last value can't cause ownership (and the entry) to be deleted.\n- **Batched and adaptive.** Every scan phase runs in small, adaptively-sized chunks across ticks instead of freezing the server on startup, even on packs with thousands of items.\n- **Transparent.** Every generated value is logged with its source (`baseline`, `tag-material`, `rarity-fallback`, `reverse-recipe-floor`, `creative-no-recipe`, etc.), and the mod writes out diagnostic reports each scan:\n  - `generated_entries.json` — everything AutoEMC currently owns\n  - `underpriced_inputs_report.json` — non-owned items that look priced too low relative to what they're used to craft\n  - `quarantined_drops.json` — value changes that were blocked for looking unsafe\n\n## Requirements\n\n- Minecraft 1.16.5, Forge\n- [ProjectE](https://www.curseforge.com/minecraft/mc-mods/projecte) (required)\n- [ProjectE Integration](https://www.curseforge.com/minecraft/mc-mods/projecte-integration) (required — AutoEMC's bundled baseline data is sourced from it, and it must be present for those integrations to actually function in-game)\n\n## Configuration highlights\n\nAll of the following are configurable in `autoemc-common.toml`:\n\n- `scanNbtVariants` — scan NBT-tagged item variants (on by default)\n- `useNbtMaterialResolvers` / `useLiveNbtMaterialResolution` — enable material-aware NBT pricing, pre-baked and/or live\n- `giveCreativeNoRecipeItemsOneEmc` — toggle the creative-item safety floor (on by default)\n- `largeDropProtectionThreshold` / `maxAllowedDropRatio` — tune the large-drop guard\n- `ownershipSmallDifferenceRatio` — how much difference between AutoEMC's and ProjectE's value counts as \"just noise\"\n- `tagFallbackNamespaces` — which tag namespaces are checked during material fallback\n- `consistencyWarnMinRatio` / `consistencyWarnMinAbsoluteDelta` — thresholds for the underpriced-input report\n\n## Notes\n\n- AutoEMC never overwrites a value that's already correctly priced by ProjectE or a pack author unless it's confident the change is safe.\n- If you're auditing a pack's economy, the debug log and JSON reports in `config/autoemc/` are the fastest way to see exactly what was priced, how, and why.",
+  "categories": [
+    "forge",
+    "game-mechanics"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "downloads": 17,
+  "followers": 0,
+  "game_versions": [
+    "1.12.2",
+    "1.16.5",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6"
+  ],
+  "date_updated": null
+}

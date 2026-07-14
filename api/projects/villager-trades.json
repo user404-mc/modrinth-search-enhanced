@@ -1,0 +1,31 @@
+{
+  "id": "cHEtH7e1",
+  "slug": "villager-trades",
+  "title": "Villager Trades",
+  "description": "Datapack-driven NeoForge mod for replacing villager profession and wandering trader trades with custom JSON-defined trades.",
+  "body": "# Villager Trades\n\n**Villager Trades** is a lightweight NeoForge mod for Minecraft 1.21.1 that lets modpack makers and server owners define villager trades through datapacks.\n\nInstead of hardcoding trade changes in Java or editing the mod itself, trades are controlled with JSON files. Each villager profession has its own file, and wandering trader trades are handled separately.\n\n## Features\n\n- Add custom trades through datapacks\n- Configure trades per villager profession\n- Configure wandering trader trades\n- Replace vanilla trades only when a matching datapack file exists\n- Leave vanilla trades unchanged when no datapack file is present\n- Enable or disable the mod's trade functionality through a simple config option\n- Works on both dedicated servers and singleplayer worlds\n\n## How It Works\n\nDatapack trade files are placed under:\n\n<code>data/villagertrades/trades/</code>\n\nSupported profession files:\n\n- <code>farmer.json</code>\n- <code>fisherman.json</code>\n- <code>shepherd.json</code>\n- <code>fletcher.json</code>\n- <code>cleric.json</code>\n- <code>weaponsmith.json</code>\n- <code>armorer.json</code>\n- <code>toolsmith.json</code>\n- <code>librarian.json</code>\n- <code>cartographer.json</code>\n- <code>leatherworker.json</code>\n- <code>butcher.json</code>\n- <code>mason.json</code>\n- <code>nitwit.json</code>\n- <code>wandering.json</code>\n\nIf a valid profession file exists, that profession's vanilla trades are removed and replaced with the trades from the JSON file.\n\nIf no file exists for a profession, that profession keeps its vanilla trades.\n\n## Wandering Trader\n\nWandering trader trades are configured with:\n\n<code>wandering.json</code>\n\nEntries can use:\n\n- <code>\"pool\": \"generic\"</code>\n- <code>\"pool\": \"rare\"</code>\n\nIf no pool is specified, the trade is added to the generic pool.\n\nWhen <code>wandering.json</code> exists, vanilla wandering trader trades are replaced by the JSON-defined trades.\n\n## Config\n\nThe mod generates a common config file:\n\n<code>config/villagertrades-common.toml</code>\n\nThe config contains:\n\n<code>enabled = true</code>\n\nWhen set to <code>false</code>, the mod does not change villager or wandering trader trades.\n\n## Example Trade\n\n<code>{\n  \"trades\": [\n    {\n      \"level\": 1,\n      \"buy\": { \"item\": \"minecraft:emerald\", \"count\": 1 },\n      \"sell\": { \"item\": \"minecraft:diamond\", \"count\": 1 },\n      \"max_uses\": 16,\n      \"xp\": 2,\n      \"price_multiplier\": 0.05\n    }\n  ]\n}</code>\n\n## Notes\n\n- Villager trades use levels from <code>1</code> to <code>5</code>\n- Minecraft datapack resource paths must be lowercase\n- Trade files can contain either a JSON array or an object with a <code>trades</code> array\n- This mod is intended for datapack-driven customization, modpacks, and server-side trade balancing\n",
+  "categories": [
+    "adventure",
+    "game-mechanics",
+    "neoforge",
+    "utility"
+  ],
+  "client_side": "unsupported",
+  "server_side": "required",
+  "downloads": 12,
+  "followers": 0,
+  "game_versions": [
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "date_updated": null
+}
